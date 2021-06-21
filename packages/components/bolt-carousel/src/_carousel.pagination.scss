@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 .c-bolt-carousel__pagination {
   @include bolt-z-index(contentTop);
@@ -33,14 +33,15 @@
   opacity: 0.2;
   position: relative;
   width: 20px;
-  height: calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)});
+  height: calc(#{$bolt-carousel-bullet-height} + var(--bolt-spacing-y-medium));
 
   &:after {
     content: '';
+    display: block;
     width: 8px;
     height: $bolt-carousel-bullet-height;
     border-radius: 100%;
-    background-color: bolt-theme(text);
+    background-color: var(--m-bolt-text);
   }
 
   @at-root button#{&} {
@@ -65,6 +66,6 @@
   }
 
   &:after {
-    background-color: bolt-theme(primary);
+    background-color: var(--m-bolt-primary);
   }
 }

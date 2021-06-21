@@ -1,47 +1,32 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
 import styles from './<%= props.name.kebabCase %>.scss';
-//import schema from '../<%= props.name.kebabCase %>.schema.yml'; //Todo: Uncomment when you will need schema
+import schema from '../<%= props.name.kebabCase %>.schema';
 
 let cx = classNames.bind(styles);
 
-@define
-class Bolt<%= props.name.pascalCase %> extends withLitHtml() {
-  static is = 'bolt-<%= props.name.kebabCase %>';
+@customElement('bolt-<%= props.name.kebabCase %>')
+class Bolt<%= props.name.pascalCase %> extends BoltElement {
+  static schema = schema;
 
-  static props = {
-    noShadow: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    disabled: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-  };
+  static get properties() {
+    return {
+      ...this.props,
+    }
+  }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    return self;
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   render() {
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const {
-      disabled,
-    } = this.validateProps(this.props);
-
     const classes = cx('c-bolt-<%= props.name.kebabCase %>', {
-      [`c-bolt-<%= props.name.kebabCase %>--disabled`]: disabled,
+      [`c-bolt-<%= props.name.kebabCase %>--disabled`]: this.disabled,
     });
 
     return html`
-      ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
-        ${this.slot('default')}
+      <div class="${classes}">
+        ${this.slotify('default')}
       </div>
     `;
   }

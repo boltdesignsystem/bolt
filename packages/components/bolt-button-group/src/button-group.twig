@@ -20,21 +20,13 @@
   <{{ tag }} {{ attributes.addClass(classes) }}>
     {% for button in buttons %}
       <li class="{{ "#{baseClass}__item" }}">
-        {% include "@bolt/button.twig" with button only %}
+        {% if button.text is defined %}
+          {% include "@bolt-components-button/button.twig" with button only %}
+        {% else %}
+          {# It's only valid to pass a bolt button here; anything else is not supported. #}
+          {{ button }}
+        {% endif %}
       </li>
     {% endfor %}
   </{{ tag }}>
-
-  {% block button_group_content %}
-    {% for item in contentItems if item.pattern %}
-      {% include pattern_template(item.pattern) with item only %}
-    {% endfor %}
-
-  {% if content %}
-    {% include "@bolt-components-headline/text.twig" with {
-      text: content | striptags,
-      tag: "p"
-    } only %}
-  {% endif %}
-{% endblock button_group_content %}
 </bolt-button-group>

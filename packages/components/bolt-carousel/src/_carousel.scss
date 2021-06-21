@@ -1,6 +1,4 @@
-@import '@bolt/core';
-
-$bolt-carousel-space-around: bolt-spacing(xsmall);
+@import '@bolt/core-v3.x';
 
 bolt-carousel {
   display: flex;
@@ -13,28 +11,29 @@ bolt-carousel {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 
-  &:not(:last-child){
-    @include bolt-margin-bottom(medium);
+  &.is-ready {
+    overflow: visible;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: var(--bolt-spacing-y-medium);
   }
 
   // add custom scrollbar styling till JS kicks in
-  &:not(.is-ready){
-    &:not([no-pagination]){
-      @include bolt-carousel-scrollbar;
-      padding-bottom: calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(xsmall)});
+  &:not(.is-ready) {
+    &:not([no-pagination]) {
+      padding-bottom: calc(
+        #{$bolt-carousel-bullet-height} + var(--bolt-spacing-y-xsmall)
+      );
     }
 
     overflow-x: auto;
     overflow-y: hidden;
 
-    @include bolt-mq($until: medium){
+    @include bolt-mq($until: medium) {
       overflow-x: visible;
     }
   }
-
-  // &[no-scroll-snap]{
-  //   scroll-snap-type: none;
-  // }
 }
 
 .c-bolt-carousel {
@@ -54,7 +53,12 @@ bolt-carousel {
   }
 
   &--no-overflow {
+    min-width: calc(100% + var(--c-bolt-carousel-space-around) * 2);
     overflow: hidden;
+    margin-right: calc(var(--c-bolt-carousel-space-around) * -1);
+    margin-left: calc(var(--c-bolt-carousel-space-around) * -1);
+    padding-right: var(--c-bolt-carousel-space-around);
+    padding-left: var(--c-bolt-carousel-space-around);
   }
 }
 
@@ -64,7 +68,7 @@ bolt-carousel {
   transform: translate3d(0, 0, 0);
   width: 100%;
   height: auto;
-  transition-property:transform;
+  transition-property: transform;
 }
 
 .c-bolt-carousel--invisible-blank {
@@ -73,97 +77,69 @@ bolt-carousel {
 
 /* IE10 Windows Phone 8 Fixes */
 .c-bolt-carousel--wp8-horizontal {
-  &, & > .c-bolt-carousel__wrapper {
+  &,
+  & > .c-bolt-carousel__wrapper {
     touch-action: pan-y;
   }
 }
+
 .c-bolt-carousel--wp8-vertical {
-  &, & > .c-bolt-carousel__wrapper {
+  &,
+  & > .c-bolt-carousel__wrapper {
     touch-action: pan-x;
   }
 }
 
-
 // carousel's nav position-specific styles
 // if nav-position isn't specified, set to default
 bolt-carousel[no-nav-buttons].is-ready,
-bolt-carousel[nav-button-position="outside"].is-ready {
-  @include bolt-padding-left(bolt-spacing(medium));
-  @include bolt-padding-right(bolt-spacing(medium));
-  min-width: calc(100% + #{bolt-spacing(medium) * 2});
-  margin-right: (bolt-spacing(medium)) * -1;
-  margin-left: (bolt-spacing(medium)) * -1;
-  // min-width: calc(100% + #{bolt-spacing(medium) * 2} + #{bolt-spacing(xxsmall) * 2});
-}
+bolt-carousel[nav-button-position='outside'].is-ready {
+  min-width: calc(100% + var(--bolt-spacing-x-medium) * 2);
+  margin-right: calc(var(--bolt-spacing-x-medium) * -1);
+  margin-left: calc(var(--bolt-spacing-x-medium) * -1);
+  padding-right: var(--bolt-spacing-x-medium);
+  padding-left: var(--bolt-spacing-x-medium);
 
-bolt-carousel:not([nav-button-position]):not([no-nav-buttons]).is-ready,
-bolt-carousel[nav-button-position="inside"].is-ready {
-  @include bolt-padding-left(0);
-  @include bolt-padding-right(0);
-  min-width: 100%;
-
-  &.is-offset-after,
-  &.is-offset-before {
-    min-width: calc(100% + 5px);
-  }
-
-  &.is-offset-before {
-    padding-left: 5px;
-  }
-
-  &.is-offset-after {
-    padding-right: 5px;
-  }
-
-  &.is-offset-both,
-  &.is-offset-before {
-    margin-left: -5px;
-  }
-
-  &.is-offset-both {
-    width: calc(100% + 10px);
-    min-width: calc(100% + 10px);
-    padding-right: 5px;
-    padding-left: 5px;
+  // mirror approach used by Wrapper at larger screen sizes
+  @include bolt-mq(medium) {
+    min-width: calc(100% + var(--bolt-spacing-x-large) * 2);
+    margin-right: calc(var(--bolt-spacing-x-large) * -1);
+    margin-left: calc(var(--bolt-spacing-x-large) * -1);
+    padding-right: var(--bolt-spacing-x-large);
+    padding-left: var(--bolt-spacing-x-large);
   }
 }
-
 
 // carousel space-between slides
 bolt-carousel {
-  &[space-between="none"] {
-    --bolt-carousel-spacing: 0rem;
+  &[space-between='none'] {
+    --c-bolt-carousel-space-between: 0rem;
   }
 
-  &[space-between="small"] {
-    --bolt-carousel-spacing: #{bolt-spacing(small)};
+  &[space-between='small'] {
+    --c-bolt-carousel-space-between: var(--bolt-spacing-x-small);
   }
 
   &,
-  &[space-between="medium"] {
-    --bolt-carousel-spacing: #{bolt-spacing(medium)};
+  &[space-between='medium'] {
+    --c-bolt-carousel-space-between: var(--bolt-spacing-x-medium);
   }
 
-  &[space-between="large"] {
-    --bolt-carousel-spacing: #{bolt-spacing(large)};
+  &[space-between='large'] {
+    --c-bolt-carousel-space-between: var(--bolt-spacing-x-large);
   }
 }
 
-
 // extra space around-specific styles
 bolt-carousel {
-  --bolt-carousel-space-around: 0rem;
+  --c-bolt-carousel-space-around: #{$bolt-carousel-space-around};
 
-  &[extra-space-between] {
-    --bolt-carousel-space-around: #{$bolt-carousel-space-around};
+  width: calc(100% + var(--c-bolt-carousel-space-around) * 2);
+  margin-right: calc(var(--c-bolt-carousel-space-around) * -1);
+  margin-left: calc(var(--c-bolt-carousel-space-around) * -1);
+
+  &.is-ready {
+    padding-right: var(--c-bolt-carousel-space-around);
+    padding-left: var(--c-bolt-carousel-space-around);
   }
-
-  // &:not(.is-ready) {
-  //   // adds a small bit of padding before and after the carousel to prevent slides with box-shadows from getting cut off
-  //   &:before,
-  //   &:after {
-  //     content: '';
-  //     @include bolt-padding-left($bolt-carousel-space-around);
-  //   }
-  // }
 }

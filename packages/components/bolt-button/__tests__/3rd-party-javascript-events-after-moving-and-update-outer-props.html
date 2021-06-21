@@ -46,12 +46,12 @@
 
   // switch between primary and secondary button colors
   window.toggleButtonColor = function(){
-    var currentButtonColor = buttonElement.getAttribute('color') || 'primary';
-    
+    var currentButtonColor = buttonElement.getAttribute('hierarchy') || 'primary';
+
     if (currentButtonColor === 'primary'){
-      buttonElement.setAttribute('color', 'secondary');
+      buttonElement.setAttribute('hierarchy', 'secondary');
     } else {
-      buttonElement.setAttribute('color', 'primary');
+      buttonElement.setAttribute('hierarchy', 'primary');
     }
   }
 
@@ -60,7 +60,7 @@
     while (gridCells[0].childNodes.length > 0) {
       gridCells[1].appendChild(gridCells[0].childNodes[0]);
     }
-    
+
     gridCells.reverse();
   }, 4000);
 
@@ -88,7 +88,7 @@
   function setupButtonClickEvent(){
     renderCounter += 1;
     displayRenderCount.textContent = renderCounter;
-    
+
     // console.log('handle button click event');
     innerButtonElement = buttonElement.renderRoot.querySelector('.c-bolt-button');
 

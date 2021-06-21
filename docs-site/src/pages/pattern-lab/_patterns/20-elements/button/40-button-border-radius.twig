@@ -1,0 +1,47 @@
+{% set schema = bolt.data.components['@bolt-elements-button'].schema %}
+
+{% set description %}
+  Rounded buttons are possible with the <bolt-code-snippet display="inline">border_radius</bolt-code-snippet> prop.
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    {% for border_radius in schema.properties.border_radius.enum %}
+      <bolt-list-item>
+        {% include '@bolt-elements-button/button.twig' with {
+          content: border_radius|capitalize ~ ' border radius',
+          border_radius: border_radius,
+          attributes: {
+            type: 'button',
+          }
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'This is a fully rounded button',
+  border_radius: 'full',
+  attributes: {
+    type: 'button'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<button type="button" class="e-bolt-button e-bolt-button--border-radius-full">This is a fully rounded button</button>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Button Border Radius',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

@@ -1,0 +1,30 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-banner"].schema %}
+
+{% set link %}
+{% include "@bolt-components-link/link.twig" with {
+  text: "View Details",
+  url: "https://pega.com",
+} only %}
+{% endset %}
+
+<bolt-text headline>
+  Banner with links
+</bolt-text>
+{% for status in schema.properties.status.enum %}
+  {% if status == "warning" %}
+    {% set status_text = "almost failed" %}
+  {% elseif status == "error" %}
+    {% set status_text = "failed" %}
+  {% elseif status == "success" %}
+    {% set status_text = "passed" %}
+  {% else %}
+    {% set status_text = "completed" %}
+  {% endif %}
+  {# Start component specific code #}
+  {% include "@bolt-components-banner/banner.twig" with {
+    content: "You " ~ status_text ~ " this challenge on <strong>May 21, 2020</strong>. " ~ link,
+    status: status,
+  } only %}
+  {# End component specific code #}
+{% endfor %}

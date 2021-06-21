@@ -1,0 +1,20 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-menu/menu.twig' with {
+  items: [
+    {
+      content: 'Menu Item 1',
+    },
+    {
+      content: 'Menu Item 2',
+      attributes: {
+        target: '_blank',
+      },
+    },
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'menu',
+  usage: usage
+} only %}

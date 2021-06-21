@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Bolt Twig Renderer API renders attributes on the button component correctly 1`] = `
+<bolt-button class="u-bolt-margin-bottom-large">
+  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
+      Hello world!
+    </ssr-keep>
+  </button>
+</bolt-button>
+`;
+
+exports[`Test the Bolt Twig Renderer API renders the button component correctly 1`] = `
+<bolt-button>
+  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
+      Hello world!2
+    </ssr-keep>
+  </button>
+</bolt-button>
+`;
+
+exports[`Test the Bolt Twig Renderer API renders the secondary button correctly 1`] = `
+<bolt-button hierarchy="secondary">
+  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--secondary c-bolt-button--border-radius-regular c-bolt-button--center">
+    <ssr-keep for="bolt-button"
+              class="c-bolt-button__item"
+    >
+      Secondary Button!
+    </ssr-keep>
+  </button>
+</bolt-button>
+`;

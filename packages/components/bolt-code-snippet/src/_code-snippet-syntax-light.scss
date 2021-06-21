@@ -4,18 +4,22 @@ $bolt-syntax-light: 'c-bolt-code-snippet-syntax--light';
 
 code.#{$bolt-syntax-light},
 pre.#{$bolt-syntax-light} {
-  color: black;
-  background: lighten(bolt-color(indigo, xlight), 17%);
+  color: var(--bolt-color-black);
+  background: var(--bolt-color-gray-xlight);
 }
 
-pre.#{$bolt-syntax-light}::-moz-selection, pre.#{$bolt-syntax-light} ::-moz-selection,
-code.#{$bolt-syntax-light}::-moz-selection, code.#{$bolt-syntax-light} ::-moz-selection {
-  background: bolt-color(indigo, xlight);
+pre.#{$bolt-syntax-light}::-moz-selection,
+pre.#{$bolt-syntax-light} ::-moz-selection,
+code.#{$bolt-syntax-light}::-moz-selection,
+code.#{$bolt-syntax-light} ::-moz-selection {
+  background: var(--bolt-color-navy-xlight);
 }
 
-pre.#{$bolt-syntax-light}::selection, pre.#{$bolt-syntax-light} ::selection,
-code.#{$bolt-syntax-light}::selection, code.#{$bolt-syntax-light} ::selection {
-  background: bolt-color(indigo, xlight);
+pre.#{$bolt-syntax-light}::selection,
+pre.#{$bolt-syntax-light} ::selection,
+code.#{$bolt-syntax-light}::selection,
+code.#{$bolt-syntax-light} ::selection {
+  background: var(--bolt-color-navy-xlight);
 }
 
 .#{$bolt-syntax-light} {
@@ -55,7 +59,7 @@ code.#{$bolt-syntax-light}::selection, code.#{$bolt-syntax-light} ::selection {
   .language-css .token.string,
   .style .token.string {
     color: #9a6e3a;
-    background: hsla(0, 0%, 100%, .5);
+    background: hsla(0, 0%, 100%, 0.5);
   }
 
   .token.atrule,
@@ -66,7 +70,7 @@ code.#{$bolt-syntax-light}::selection, code.#{$bolt-syntax-light} ::selection {
 
   .token.function,
   .token.class-name {
-    color: #DD4A68;
+    color: #dd4a68;
   }
 
   .token.regex,

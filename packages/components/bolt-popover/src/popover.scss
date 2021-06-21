@@ -1,0 +1,54 @@
+/* ------------------------------------ *\
+   Popover
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '@bolt/global/styles/00-vars/_vars-mode.scss';
+// For base Tippy.js styles, @see packages/global/styles/08-vendor/_vendor-tippy.scss
+
+/**
+ * Register custom element
+ */
+
+//  Note: this does not actually render to the Shadow DOM so :host rule not required
+bolt-popover {
+  display: inline;
+
+  // This element is copied by Tippy and appended to the document.body
+  [slot='content'] {
+    display: none;
+  }
+}
+
+/**
+ * Content container
+ */
+.c-bolt-popover__content {
+  display: block;
+  text-align: start;
+  white-space: nowrap;
+
+  &.c-bolt-popover__content--text-wrap {
+    // Capitalize "Min" to avoid collision with SASS function named `min()`. Remove this hack once we switch to "dart-sass".
+    // @see https://css-tricks.com/when-sass-and-new-css-features-collide/#the-solution
+    /* stylelint-disable function-name-case */
+    width: var(--c-bolt-popover-bubble-width, Min(65vw, 250px));
+    white-space: normal; // If the content is long (more than 31 characters), the bubble will have this specific width and text will wrap. This logic is in the JS and Twig files.
+
+    @include bolt-ms-edge-42-only {
+      width: var(--c-bolt-popover-bubble-width, 250px);
+    }
+  }
+}
+
+/**
+ * Spacing prop
+ */
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  .c-bolt-popover__content--spacing-#{$size-name} {
+    padding: var(--bolt-spacing-y-#{$size-name})
+      var(--bolt-spacing-x-#{$size-name});
+  }
+}

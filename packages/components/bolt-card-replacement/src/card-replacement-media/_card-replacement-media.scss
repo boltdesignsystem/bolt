@@ -1,0 +1,37 @@
+/* ------------------------------------ *\
+   card-replacement Media
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_card-replacement-settings-and-tools.scss';
+
+bolt-card-replacement-media {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  @at-root [horizontal] #{&} {
+    flex-shrink: 1;
+    min-width: 80px;
+    max-width: 300px;
+  }
+
+  bolt-image {
+    overflow: hidden; // Do not mess with this unless you understand the logic for the border-radius prop in card-replacement.scss. This makes sure vertical card's media image respects the card's border-radius.
+  }
+}
+
+.c-bolt-card_replacement__media {
+  display: block;
+  height: 100%;
+}
+
+// required so the nested content fills the full width of the card-replacement -- otherwise content (like a ratio object with an image inside) might not display as expected.
+.c-bolt-card_replacement__media ::slotted(*) {
+  width: 100%;
+}
+
+.c-bolt-card_replacement__media--video {
+  position: relative;
+  z-index: $bolt-card-replacement-z-index-inner-link;
+}

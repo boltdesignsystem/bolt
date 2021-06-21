@@ -1,0 +1,41 @@
+{% set _card_replacement_image = media.image %}
+{% set _card_replacement_video = media.video %}
+{% set attributes = create_attribute(media.attributes|default({})) %}
+
+{% set _card_replacement_media_content = media.content %}
+
+{% if horizontal and _card_replacement_image %}
+  {% set _card_replacement_image = _card_replacement_image|merge({
+    ratio: false,
+    cover: true,
+  }) %}
+{% endif %}
+
+{% if _card_replacement_media_content %}
+  {{ _card_replacement_media_content }}
+{% else %}
+  {% if _card_replacement_image or block('media') %}
+    <bolt-card-replacement-media {{ attributes }}>
+      <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media">
+        {% if _card_replacement_image %}
+          {% include '@bolt-components-image/image.twig' with _card_replacement_image only %}
+        {% elseif block('media') %}
+          {{ block('media') }}
+        {% endif %}
+      </ssr-keep>
+    </bolt-card-replacement-media>
+  {% endif %}
+
+  {% if (_card_replacement_video.videoId) %}
+    {% set _card_replacement_video %}
+      {% include '@bolt-components-video/video.twig' with _card_replacement_video only %}
+    {% endset %}
+  {% endif %}
+  {% if _card_replacement_video %}
+    <bolt-card-replacement-media {{ attributes }}>
+      <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media c-bolt-card_replacement__media--video">
+        {{ _card_replacement_video }}
+      </ssr-keep>
+    </bolt-card-replacement-media>
+  {% endif %}
+{% endif %}

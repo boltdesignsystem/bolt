@@ -1,4 +1,7 @@
 const { promisify } = require('util');
+const { join } = require('path');
+const { writeJSON } = require('fs-extra');
+const { spawnSync } = require('child_process');
 const mkdirp = promisify(require('mkdirp'));
 const ora = require('ora');
 const chalk = require('chalk');
@@ -47,7 +50,34 @@ async function clean(dirs) {
   return true;
 }
 
+/**
+ * Write Build MetaData JSON
+ * Writes a "meta.bolt.json" file to data directory
+ * @param {Object} [extraData={}] Any extra data to include
+ * @return {Promise<void>}
+ */
+async function writeMetadata(extraData = {}) {
+  config = config || (await getConfig());
+  let gitSha;
+  try {
+    gitSha = spawnSync('git', ['rev-parse', '--short', 'HEAD'], {
+      encoding: 'utf8',
+    }).stdout.trim();
+  } catch (err) {}
+
+  const metadata = {
+    buildDate: new Date(),
+    gitSha,
+  };
+
+  return writeJSON(join(config.dataDir, 'meta.bolt.json'), {
+    ...metadata,
+    ...extraData,
+  });
+}
+
 module.exports = {
   mkDirs,
   clean,
+  writeMetadata,
 };

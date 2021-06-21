@@ -1,0 +1,130 @@
+@import '@bolt/core-v3.x';
+
+// @todo: fixed size bullet will require some flex magic to line up a fixed height element to variable height text. If the need arises, we'll work on that.
+.c-bolt-headline__bullet {
+  display: block;
+  margin-right: calc(
+    var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xsmall) * 1em
+  );
+
+  &-inner {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: bolt-border-radius(full);
+    background-color: var(--m-bolt-tertiary);
+
+    &--orange {
+      color: var(--bolt-color-white);
+      background-color: var(--bolt-color-orange);
+    }
+
+    &--navy,
+    &--indigo {
+      color: var(--bolt-color-white);
+      background-color: var(--bolt-color-navy-light);
+    }
+
+    &--berry,
+    &--purple {
+      color: var(--bolt-color-white);
+      background-color: var(--bolt-color-berry);
+    }
+
+    &--teal {
+      color: var(--bolt-color-white);
+      background-color: var(--bolt-color-teal);
+    }
+  }
+
+  &-text {
+    display: block;
+    transform: scale(0.65);
+    font-family: var(--bolt-type-font-family-headline);
+    font-weight: var(--bolt-type-font-weight-bold);
+    text-align: center;
+  }
+}
+
+// @todo: use a map for this.
+.c-bolt-text--xxxlarge,
+.c-bolt-subheadline--xxxlarge,
+.c-bolt-headline--xxxlarge {
+  .c-bolt-headline__bullet--size-auto {
+    width: calc(var(--bolt-type-line-height-xxxlarge) * 1em);
+    min-width: calc(var(--bolt-type-line-height-xxxlarge) * 1em);
+    height: calc(var(--bolt-type-line-height-xxxlarge) * 1em);
+  }
+}
+
+.c-bolt-text--xxlarge,
+.c-bolt-subheadline--xxlarge,
+.c-bolt-headline--xxlarge {
+  .c-bolt-headline__bullet--size-auto {
+    width: calc(var(--bolt-type-line-height-xxlarge) * 1em);
+    min-width: calc(var(--bolt-type-line-height-xxlarge) * 1em);
+    height: calc(var(--bolt-type-line-height-xxlarge) * 1em);
+  }
+}
+
+.c-bolt-text--xlarge,
+.c-bolt-subheadline--xlarge,
+.c-bolt-headline--xlarge {
+  .c-bolt-headline__bullet--size-auto {
+    width: calc(var(--bolt-type-line-height-xlarge) * 1em);
+    min-width: calc(var(--bolt-type-line-height-xlarge) * 1em);
+    height: calc(var(--bolt-type-line-height-xlarge) * 1em);
+  }
+}
+
+.c-bolt-text--large,
+.c-bolt-subheadline--large,
+.c-bolt-headline--large {
+  .c-bolt-headline__bullet--size-auto {
+    width: calc(var(--bolt-type-line-height-large) * 1em);
+    min-width: calc(var(--bolt-type-line-height-large) * 1em);
+    height: calc(var(--bolt-type-line-height-large) * 1em);
+  }
+}
+
+.c-bolt-text--medium,
+.c-bolt-subheadline--medium,
+.c-bolt-headline--medium {
+  .c-bolt-headline__bullet--size-auto {
+    width: calc(var(--bolt-type-line-height-medium) * 1em);
+    min-width: calc(var(--bolt-type-line-height-medium) * 1em);
+    height: calc(var(--bolt-type-line-height-medium) * 1em);
+  }
+}
+
+.c-bolt-text--small,
+.c-bolt-subheadline--small,
+.c-bolt-headline--small {
+  .c-bolt-headline__bullet--size-auto {
+    width: calc(var(--bolt-type-line-height-small) * 1em);
+    min-width: calc(var(--bolt-type-line-height-small) * 1em);
+    height: calc(var(--bolt-type-line-height-small) * 1em);
+  }
+}
+
+.c-bolt-eyebrow,
+.c-bolt-text--xsmall,
+.c-bolt-subheadline--xsmall,
+.c-bolt-headline--xsmall {
+  .c-bolt-headline__bullet--size-auto {
+    width: calc(var(--bolt-type-line-height-xsmall) * 1em);
+    min-width: calc(var(--bolt-type-line-height-xsmall) * 1em);
+    height: calc(var(--bolt-type-line-height-xsmall) * 1em);
+  }
+}
+
+.c-bolt-text--xxsmall,
+.c-bolt-subheadline--xxsmall,
+.c-bolt-headline--xxsmall {
+  .c-bolt-headline__bullet--size-auto {
+    width: calc(var(--bolt-type-line-height-xsmall) * 1em);
+    min-width: calc(var(--bolt-type-line-height-xsmall) * 1em);
+    height: calc(var(--bolt-type-line-height-xsmall) * 1em);
+  }
+}

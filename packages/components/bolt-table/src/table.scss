@@ -2,18 +2,16 @@
    Table
 \* ------------------------------------ */
 
-@import '@bolt/core';
-
-$bolt-table-overflow-shadow-color: bolt-theme(text, 0.25);
+@import '@bolt/core-v3.x';
 
 // see https://github.com/datorama/themify#known-issues for more info on why the border styles need to be written out longhand
 $bolt-table-border-width: 1px;
 $bolt-table-border-style: solid;
-$bolt-table-border-color: bolt-theme(disabled);
-$bolt-table-header-background-color: bolt-theme(text, 0.04375);
-$bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
+$bolt-table-border-color: var(--m-bolt-disabled);
+$bolt-table-header-background-color: rgba(bolt-color(gray), 0.1);
+$bolt-table-row-hover-background-color: rgba(bolt-color(gray), 0.1);
 
-@mixin bolt-table-border($direction){
+@mixin bolt-table-border($direction) {
   border-#{$direction}-color: $bolt-table-border-color;
   border-#{$direction}-style: $bolt-table-border-style;
   border-#{$direction}-width: $bolt-table-border-width;
@@ -22,64 +20,54 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 @include bolt-custom-element('bolt-table', block, medium);
 
 .c-bolt-table {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
   @include bolt-horizontal-scroll;
+  @include bolt-table-border(right);
+  @include bolt-table-border(bottom);
+  @include bolt-table-border(left);
 
   display: inline-block;
+  width: 100%;
   max-width: 100%;
+  margin: 0;
+  padding: 0;
   vertical-align: top;
-  @include bolt-table-border(right);
-  @include bolt-table-border(left);
-  background:
+  background: -webkit-radial-gradient(
+        left,
+        ellipse,
+        var(--m-bolt-border) 0%,
+        transparent 75%
+      )
+      0 center,
     -webkit-radial-gradient(
-      left,
-      ellipse,
-      bolt-theme(text, 0.25) 0%,
-      bolt-theme(text, 0) 75%
-    ) 0 center,
-    -webkit-radial-gradient(
-      right,
-      ellipse,
-      bolt-theme(text, 0.25) 0%,
-      bolt-theme(text, 0) 75%
-    ) 100% center;
+        right,
+        ellipse,
+        var(--m-bolt-border) 0%,
+        transparent 75%
+      ) 100% center;
   background-attachment: scroll, scroll;
-  background-color: bolt-theme(background);
+  background-color: var(--m-bolt-bg);
   background-repeat: no-repeat;
-  background-size: .5em 100%, .5em 100%;
+  background-size: 0.5em 100%, 0.5em 100%;
   overflow-x: auto;
   border-collapse: collapse;
   border-spacing: 0;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-
-  // Caption is not offered in the component. These generic styles are in place in case there are some legacy tables out there that used <caption>.
-  caption {
-    @include bolt-font-size(small);
-    color: bolt-theme(text, 0.65);
-    text-align: center;
-    background-color: bolt-theme(background);
-
-    caption-side: bottom;
-  }
 }
 
 .c-bolt-table__head,
 .c-bolt-table__body,
 .c-bolt-table__foot {
-  background:
-    linear-gradient(
-      to right,
-      bolt-theme(background, 1) 0.75em,
-      bolt-theme(background, 0) 2em,
-      bolt-theme(background, 0) calc(100% - 2em),
-      bolt-theme(background, 1) calc(100% - 0.75em)
-    );
+  background: linear-gradient(
+    to right,
+    var(--m-bolt-bg) 0.5em,
+    transparent 0.5em,
+    transparent calc(100% - 0.5em),
+    var(--m-bolt-bg) calc(100% - 0.5em)
+  );
 }
 
 .c-bolt-table__row {
   @include bolt-table-border(top);
-  @include bolt-table-border(bottom);
   transition: background-color $bolt-transition;
 
   @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&}:hover {
@@ -100,9 +88,8 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
   }
 
   @at-root .c-bolt-table__head #{&} {
-    @include bolt-padding(small, squished);
-
     width: 1%;
+    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
     background-color: $bolt-table-header-background-color;
   }
 
@@ -111,11 +98,11 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
   }
 
   @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&} {
-    @include bolt-padding(small);
+    padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   }
 
   @at-root .c-bolt-table__foot #{&} {
-    @include bolt-font-weight(bold);
+    font-weight: var(--bolt-type-font-weight-bold);
   }
 
   img {
@@ -124,13 +111,13 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 }
 
 .c-bolt-table__cell--header {
-  @include bolt-font-family(heading);
-  @include bolt-font-size(xsmall);
-  @include bolt-font-weight(semibold);
-
-  color: bolt-theme(text, 0.65);
-  white-space: nowrap;
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--m-bolt-headline);
+  line-height: var(--bolt-type-line-height-small);
   background-color: $bolt-table-header-background-color;
+  white-space: nowrap;
 
   &:first-child {
     width: 1%;
@@ -142,11 +129,11 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 }
 
 .c-bolt-table__cell--data {
-  @include bolt-font-family(code);
-  @include bolt-font-size(small);
-  @include bolt-font-weight(regular);
-
-  color: bolt-theme(text);
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-regular);
+  color: var(--m-bolt-text);
+  line-height: var(--bolt-type-line-height-small);
 }
 
 .c-bolt-table--borderless {
@@ -173,6 +160,10 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
     white-space: nowrap;
   }
 
+  .c-bolt-table__cell--data {
+    font-family: var(--bolt-type-font-family-code);
+  }
+
   > *:not(.c-bolt-table__head) .c-bolt-table__cell--header:first-child {
     text-align: right;
   }
@@ -188,4 +179,17 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
       width: auto;
     }
   }
+}
+
+.c-bolt-table__figure {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.c-bolt-table__caption {
+  display: block;
+  padding-top: var(--bolt-spacing-y-xsmall);
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }

@@ -1,52 +1,24 @@
-import {
-  renameKey,
-  props,
-  define,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
-import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { html, unsafeCSS, customElement, BoltElement } from '@bolt/element';
 import classNames from 'classnames/bind';
-import changeCase from 'change-case';
-import Swiper from 'swiper';
+// Import Swiper and modules
+import {
+  Swiper,
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from 'swiper/js/swiper.esm.js';
+
+// Install modules
+Swiper.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
+
+import schema from '../carousel.schema';
 import styles from '../index.scss';
-import originalSchema from '../carousel.schema.yml';
+
+import '@bolt/core-v3.x/utils/optimized-resize';
 
 let cx = classNames.bind(styles);
-let wasCarouselResizerAdded = false;
-
-function addBoltCarouselResizer() {
-  if (wasCarouselResizerAdded === false) {
-    wasCarouselResizerAdded = true;
-
-    // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
-    // won't fire before a previous event is complete.
-    // This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-    (function() {
-      function throttle(type, name, obj) {
-        obj = obj || window;
-        let running = false;
-
-        function func() {
-          if (running) {
-            return;
-          }
-          running = true;
-          requestAnimationFrame(function() {
-            obj.dispatchEvent(new CustomEvent(name));
-            running = false;
-          });
-        }
-        obj.addEventListener(type, func);
-      }
-
-      // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
-      // such as scroll.
-      throttle('resize', 'carousel:resize');
-    })();
-  } else {
-    // console.log('carouselResizer already Added');
-  }
-}
 
 // @todo: re-wire to point to actual breakpoint data
 const boltBreakpoints = {
@@ -60,91 +32,46 @@ const boltBreakpoints = {
   xxxlarge: '1920px',
 };
 
-const carouselProps = {};
-const schemaPropKeys = Object.keys(originalSchema.properties);
+@customElement('bolt-carousel')
+class BoltCarousel extends BoltElement {
+  static schema = schema;
 
-function setWebComponentProperty(propertyName, propertyType, property) {
-  return {
-    ...props[propertyType],
-    // Set to '', not null, or validator will not delete empty props
-    ...{ default: property.default ? property.default : '' },
-  };
-}
-
-for (const key of schemaPropKeys) {
-  const property = originalSchema.properties[key];
-
-  // Skip props with type "object" and "array". They are Twig-only. Breaking IE11.
-  if (property.type !== 'object' && property.type !== 'array') {
-    const propertyName = changeCase.camelCase(key);
-    const propertyType =
-      typeof property.type === 'object' && property.type.length > 1
-        ? 'string'
-        : property.type === 'integer'
-        ? 'number'
-        : property.type;
-
-    carouselProps[propertyName] = setWebComponentProperty(
-      propertyName,
-      propertyType,
-      property,
-    );
+  static get properties() {
+    return {
+      ...this.props,
+      slideOffsetBefore: {
+        type: Boolean,
+        attribute: 'slide-offset-before',
+      },
+      slideOffsetAfter: {
+        type: Boolean,
+        attribute: 'slide-offset-after',
+      },
+      thumbs: {
+        type: Object,
+      },
+    };
   }
-}
 
-@define
-class BoltCarousel extends withLitHtml() {
-  static is = 'bolt-carousel';
-
-  static props = {
-    ...carouselProps,
-    slideOffsetBefore: props.boolean,
-    slideOffsetAfter: props.boolean,
-    thumbs: {
-      ...props.object,
-      ...{ default: false },
-    },
-  };
+  static useShadow = false;
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.useShadow = false;
-    self.schema = originalSchema;
-    self.onSlideChange = self.onSlideChange.bind(self);
-    self.hideArrowsIfAllSlidesAreVisible = self.hideArrowsIfAllSlidesAreVisible.bind(
-      self,
+  constructor() {
+    super();
+    this.onSlideChange = this.onSlideChange.bind(this);
+    this.disableSwipingIfAllSlidesAreVisible = this.disableSwipingIfAllSlidesAreVisible.bind(
+      this,
     );
-    self.disableSwipingIfAllSlidesAreVisible = self.disableSwipingIfAllSlidesAreVisible.bind(
-      self,
+    this.conditionallyDisableButtons = this.conditionallyDisableButtons.bind(
+      this,
     );
-    self.conditionallyDisableButtons = self.conditionallyDisableButtons.bind(
-      self,
-    );
-    self.reInitCarousel = self.reInitCarousel.bind(self);
-    return self;
+    this.reInitCarousel = this.reInitCarousel.bind(this);
   }
 
-  checkForSlideOffset() {
-    const carouselSlides = this.querySelectorAll('bolt-carousel-slide');
-    this.slideOffsetBefore = carouselSlides[0].querySelector('bolt-card')
-      ? true
-      : false;
-    this.slideOffsetAfter = carouselSlides[
-      carouselSlides.length - 1
-    ].querySelector('bolt-card')
-      ? true
-      : false;
-  }
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
 
-  connecting() {
-    super.connecting && super.connecting();
-    addBoltCarouselResizer();
-
-    if (!this.carouselResizeEventAdded) {
-      this.carouselResizeEventAdded = true;
-      window.addEventListener('carousel:resize', this.reInitCarousel);
-    }
+    window.addEventListener('throttledResize', this.reInitCarousel);
 
     const nextButton = this.querySelector('[slot="next-btn"]');
     const prevButton = this.querySelector('[slot="previous-btn"]');
@@ -156,15 +83,25 @@ class BoltCarousel extends withLitHtml() {
     if (prevButton) {
       prevButton.setAttribute('tabindex', '-1');
     }
+  }
 
-    this.checkForSlideOffset();
+  init() {
+    this.swiper = new Swiper(
+      this.renderRoot.querySelector('.c-bolt-carousel'),
+      {
+        ...this.options,
+      },
+    );
+
+    this.configureSlidesPerGroup();
+    this.disableSwipingIfAllSlidesAreVisible();
   }
 
   // recalculates the ideal # of slides to display when the overal carousel width changes
   // @todo: update to only reinitialize when the data for this changes
   reInitCarousel() {
     const calculatedSlidesPerView = this.calculateSlidesPerView(
-      this.props.slidesPerView,
+      this.slidesPerView,
     );
 
     // Only re-initialize if slidesPerView changes
@@ -180,33 +117,28 @@ class BoltCarousel extends withLitHtml() {
       this.options.initialSlide = currentlyActiveSlide;
 
       this.swiper.destroy(false, true);
-      this.options.thumbs = this.props.thumbs;
+      this.options.thumbs = this.thumbs;
 
-      this.swiper = new Swiper(
-        this.renderRoot.querySelector('.c-bolt-carousel'),
-        {
-          ...this.options,
-        },
-      );
+      this.init();
     }
   }
 
   findIdealNumberOfSlides(desiredNumberOfSlides) {
     const availableWidth = this.getBoundingClientRect().width;
     const spaceBetween = this.spaceBetweenConfig;
-    const minWidth = this.props.noMinWidth ? 0 : 240; // @todo: update to pull in this min-width automatically
+    const minWidth = this.noMinWidth ? 0 : 240; // @todo: update to pull in this min-width automatically
     let realisticNumberOfSlides = 'auto';
 
     // adjust the requested # of slides based on the min / max number set
-    if (this.props.slidesPerView <= this.props.maxSlidesPerView) {
-      desiredNumberOfSlides = this.props.slidesPerView;
+    if (this.slidesPerView <= this.maxSlidesPerView) {
+      desiredNumberOfSlides = this.slidesPerView;
     } else {
-      desiredNumberOfSlides = this.props.maxSlidesPerView;
+      desiredNumberOfSlides = this.maxSlidesPerView;
     }
 
     for (
       let i = 1;
-      i <= desiredNumberOfSlides && i <= this.props.maxSlidesPerView;
+      i <= desiredNumberOfSlides && i <= this.maxSlidesPerView;
       i++
     ) {
       if (i * minWidth + i * spaceBetween <= availableWidth) {
@@ -223,18 +155,6 @@ class BoltCarousel extends withLitHtml() {
 
     if (idealNumberOfSlides === 'auto' || idealNumberOfSlides === 1) {
       slidesPerView = 1;
-    } else if (
-      this.props.loop &&
-      idealNumberOfSlides &&
-      this.numberOfChildren >= idealNumberOfSlides
-    ) {
-      slidesPerView = idealNumberOfSlides;
-    } else if (
-      this.props.loop &&
-      idealNumberOfSlides &&
-      this.numberOfChildren < idealNumberOfSlides
-    ) {
-      slidesPerView = this.numberOfChildren;
     } else if (idealNumberOfSlides) {
       slidesPerView = idealNumberOfSlides;
     } else {
@@ -245,8 +165,7 @@ class BoltCarousel extends withLitHtml() {
   }
 
   calculateSlidesPerViewBreakpoints() {
-    // let slidesPerViewBreakpoints = {};
-    for (let i = 1; i < this.props.maxSlidesPerView; i++) {
+    for (let i = 1; i < this.maxSlidesPerView; i++) {
       const bpNumber = boltBreakpoints[Object.keys(boltBreakpoints)[i]].replace(
         'px',
         '',
@@ -257,7 +176,7 @@ class BoltCarousel extends withLitHtml() {
       };
 
       // @todo: uncomment or refactor when enabling "stack" mode
-      // spaceBetween: this.props.stacked
+      // spaceBetween: this.stacked
       //   ? i <= 3
       //     ? smallOverlap + spacingUnit
       //     : i === 4
@@ -268,26 +187,23 @@ class BoltCarousel extends withLitHtml() {
     }
   }
 
-  configureSwiper() {
+  configureSlidesPerGroup() {
     // opt out of the default slidesPerGroup behavior if being used as an image gallery
     if (this.mode === 'gallery' || this.mode === 'gallery-thumbnail') {
-      // console.log(
-      //   'opting out of reconfiguring Swiper slidesPerGroup while in `gallery` or `gallery-thumbnail` mode.',
-      // );
       return;
     }
 
-    if (this.props.slidesPerGroup && this.props.slidesPerGroup === 'auto') {
+    if (this.swiper.params.slidesPerView === 'auto') {
+      // If `slidesPerView` is still equal to 'auto', the carousel was probably hidden on load. Just set `slidesPerGroup` to `1` for now, must be an integer.
+      this.swiper.params.slidesPerGroup = 1;
+    } else if (this.slidesPerGroup && this.slidesPerGroup === 'auto') {
       this.swiper.params.slidesPerGroup = parseInt(
         this.swiper.params.slidesPerView,
         10,
       );
-    } else if (
-      this.props.slidesPerGroup &&
-      this.props.slidesPerGroup !== 'auto'
-    ) {
+    } else if (this.slidesPerGroup && this.slidesPerGroup !== 'auto') {
       // make sure slidesPerGroup can't be set to a number greater than total # of slides visible
-      const slidesPerGroup = parseInt(this.props.slidesPerGroup, 10);
+      const slidesPerGroup = parseInt(this.slidesPerGroup, 10);
       if (slidesPerGroup <= parseInt(this.swiper.params.slidesPerView, 10)) {
         this.swiper.params.slidesPerGroup = slidesPerGroup;
       } else {
@@ -301,27 +217,32 @@ class BoltCarousel extends withLitHtml() {
     }
 
     this.options.slidesPerGroup = this.swiper.params.slidesPerGroup;
+
+    // Must call `update()` after setting slidesPerGroup for the change to take effect
+    this.swiper.update();
   }
 
-  // init() {
-  //   this.props.noAutoInit = false;
-  //   this.rendered();
-  //   this.swiper.init();
-  // }
-
-  rendered() {
-    if (this.props.noJs) {
+  firstUpdated(props) {
+    if (this.noJs) {
       return;
     }
 
     const self = this;
+
+    if (this.offsetHeight) {
+      // Set flag so that carousel will not be re-initialized unnecessarily on update()
+      this.isVisible = true;
+    } else {
+      // If not visible, add attribute so that it can be found by other components and updated manually.
+      this.setAttribute('will-update', '');
+    }
 
     const spacingUnit =
       window.getComputedStyle(document.body).fontSize.replace('px', '') * 2;
 
     this.spaceBetweenConfig;
 
-    switch (this.props.spaceBetween) {
+    switch (this.spaceBetween) {
       case 'large':
         this.spaceBetweenConfig = spacingUnit * 2;
         break;
@@ -342,18 +263,19 @@ class BoltCarousel extends withLitHtml() {
     ).length;
 
     this.options = {
-      thumbs: this.props.thumbs,
+      thumbs: this.thumbs,
       watchOverflow: true,
+      roundLengths: true,
       a11y: {
         enabled: true,
-        prevSlideMessage: this.props.prevSlideMessage,
-        nextSlideMessage: this.props.nextSlideMessage,
-        firstSlideMessage: this.props.firstSlideMessage,
-        lastSlideMessage: this.props.lastSlideMessage,
-        paginationBulletMessage: this.props.paginationBulletMessage,
+        prevSlideMessage: this.prevSlideMessage,
+        nextSlideMessage: this.nextSlideMessage,
+        firstSlideMessage: this.firstSlideMessage,
+        lastSlideMessage: this.lastSlideMessage,
+        paginationBulletMessage: this.paginationBulletMessage,
         notificationClass: 'c-bolt-carousel__notification',
       },
-      initialSlide: this.props.initialSlide ? this.props.initialSlide : 0,
+      initialSlide: this.initialSlide ? this.initialSlide : 0,
       slideActiveClass: 'c-bolt-carousel__slide--active',
       slideNextClass: 'c-bolt-carousel__slide--next',
       slidePrevClass: 'c-bolt-carousel__slide--previous',
@@ -371,7 +293,7 @@ class BoltCarousel extends withLitHtml() {
         disabledClass: 'c-bolt-carousel__button--disabled',
         hiddenClass: 'c-bolt-carousel__button--hidden',
       },
-      pagination: this.props.noPagination
+      pagination: this.noPagination
         ? false
         : {
             el: this.renderRoot.querySelector('.c-bolt-carousel__pagination'),
@@ -386,7 +308,7 @@ class BoltCarousel extends withLitHtml() {
           },
       spaceBetween: this.spaceBetweenConfig,
       scrollbar: {
-        hide: !this.props.freeScroll && this.props.noScrollbar,
+        hide: !this.freeScroll && this.noScrollbar,
         el: this.renderRoot.querySelector('.c-bolt-carousel__scrollbar'),
         draggable: true,
         lockClass: 'c-bolt-carousel__scrollbar-lock',
@@ -396,33 +318,49 @@ class BoltCarousel extends withLitHtml() {
       breakpoints: {},
       grabCursor: true,
       loop: false,
-      // loop: this.props.loop, // @todo: re-enable once related re-rendering bugs addressed
-      autoplay: this.props.autoplay
+      // loop: this.loop, // @todo: re-enable once related re-rendering bugs addressed
+      autoplay: this.autoplay
         ? {
             delay: 5000,
           }
         : false,
-      // touchEventsTarget: 'wrapper',
       centeredSlides: false,
       centerInsufficientSlides: false,
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
-      slideToClickedSlide: true,
-      // preventClicks: false,
-      // mousewheel: {
-      //   invert: true,
-      //   releaseOnEdges: false,
-      //   forceToAxis: true,
-      // },
       threshold: 3,
-      keyboard: {
-        enabled: true,
-        onlyInViewport: true,
+      centeredSlides: this.slideAlign === 'center' ? true : false,
+      effect: this.fade ? 'fade' : 'slide',
+      freeMode: this.freeScroll, //@todo: re-enable when adding free-scroll prop options
+      slidesPerView: this.calculateSlidesPerView(this.slidesPerView),
+
+      // If not visible, observer will automatically re-int when element is shown
+      // Swiper's 'observer' feature uses rAF so it should be pretty performant, but let's still keep an eye on it (https://github.com/nolimits4web/swiper/pull/2731)
+      observer: !this.isVisible, // Set to true to enable Mutation Observer on Swiper and its elements
+      observeParents: !this.isVisible, // Set to true if you also need to watch Mutations for Swiper parent elements
+      on: {
+        update: () => {
+          // If `observer` has been set, carousel now has height, and the `isVisible` flag has not yet been switched, reinit the carousel with some updated options
+          if (this.options.observer && this.offsetHeight && !this.isVisible) {
+            // Set the flag so that this block is only ever run once
+            this.isVisible = true;
+            // Turn off the observers, not needed once properly initialized
+            this.options.observer = false;
+            this.options.observeParents = false;
+
+            this.reInitCarousel();
+          }
+
+          this.dispatchEvent(
+            new CustomEvent('bolt:layout-size-changed', {
+              bubbles: true,
+            }),
+          );
+        },
+        slideChange: () => {
+          this.onSlideChange();
+        },
       },
-      centeredSlides: this.props.slideAlign === 'center' ? true : false,
-      effect: this.props.fade ? 'fade' : 'slide',
-      freeMode: this.props.freeScroll, //@todo: re-enable when adding free-scroll prop options
-      slidesPerView: this.calculateSlidesPerView(this.props.slidesPerView),
     };
 
     this.calculateSlidesPerViewBreakpoints();
@@ -436,43 +374,13 @@ class BoltCarousel extends withLitHtml() {
 
       this.classList.add('is-ready');
 
-      if (this.slideOffsetBefore && this.slideOffsetAfter) {
-        this.classList.remove(`is-offset-before`);
-        this.classList.remove(`is-offset-after`);
-        this.classList.add(`is-offset-both`);
-      } else if (this.slideOffsetBefore && !this.slideOffsetAfter) {
-        this.classList.remove(`is-offset-both`);
-        this.classList.remove(`is-offset-after`);
-        this.classList.add(`is-offset-before`);
-      } else if (this.slideOffsetAfter && !this.slideOffsetBefore) {
-        this.classList.remove(`is-offset-both`);
-        this.classList.remove(`is-offset-before`);
-        this.classList.add(`is-offset-after`);
-      } else {
-        this.classList.remove(`is-offset-both`);
-        this.classList.remove(`is-offset-before`);
-        this.classList.remove(`is-offset-after`);
-      }
-
       const slides = Array.from(this.querySelectorAll('bolt-carousel-slide'));
       slides.forEach(slide => {
         slide.classList.add('c-bolt-carousel__slide');
         slide.classList.add('is-ready');
       });
 
-      this.swiper = new Swiper(
-        this.renderRoot.querySelector('.c-bolt-carousel'),
-        {
-          ...this.options,
-        },
-      );
-
-      // customizes slidesPerGroup
-      this.configureSwiper(this.swiper);
-      this.hideArrowsIfAllSlidesAreVisible();
-      this.disableSwipingIfAllSlidesAreVisible();
-      this.swiper.on('slideChange', this.onSlideChange);
-      this.reInitCarousel(); // this fires when the props on the component changes HOWEVER it also needs to fire once the component has finished rendering for the very first time so that the appropriate slidesPerGroup value is automatically set for the initial state
+      this.init();
     } else {
       if (this.swiper) {
         // update swiper if component re-rendered
@@ -480,27 +388,32 @@ class BoltCarousel extends withLitHtml() {
       }
     }
 
-    super.rendered && super.rendered();
+    super.firstUpdated && super.firstUpdated(props);
   }
 
-  disconnecting() {
-    super.disconnecting && super.disconnecting();
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
 
-    if (this.carouselResizeEventAdded === true) {
-      this.carouselResizeEventAdded = false;
-      window.removeEventListener('carousel:resize', this.reInitCarousel);
-    }
+    this.isVisible = false;
+
+    window.removeEventListener('throttledResize', this.reInitCarousel);
   }
 
-  // make sure the pagination tracking keeps updating accurately when the component re-renders
-  updating(newProps) {
-    if (this.swiper && !this.props.noPagination) {
+  updated(props) {
+    super.updated && super.updated(props);
+    this.swiper && this.swiper.update();
+
+    if (this.swiper && !this.noPagination) {
       this.swiper.pagination.update();
     }
   }
 
+  // Public method called by Tabs and Accordion when DOM changes and Carousel needs to update
+  updateLayout() {
+    this.swiper?.update();
+  }
+
   onSlideChange() {
-    this.hideArrowsIfAllSlidesAreVisible();
     this.disableSwipingIfAllSlidesAreVisible();
   }
 
@@ -538,34 +451,6 @@ class BoltCarousel extends withLitHtml() {
     }
   }
 
-  hideArrowsIfAllSlidesAreVisible() {
-    this.canNavButtonsBeHidden =
-      this.canNavButtonsBeHidden || this.props.noNavButtons === false;
-
-    if (this._wasManuallyUpdated === true) {
-      this._wasManuallyUpdated = false;
-    } else {
-      if (
-        this.swiper.isBeginning === true &&
-        this.swiper.isEnd === true &&
-        this.canNavButtonsBeHidden === true &&
-        this.noNavButtons === false
-      ) {
-        this._wasManuallyUpdated = true;
-        this.noNavButtons = true;
-        this.updated();
-      } else if (
-        this.canNavButtonsBeHidden &&
-        this.noNavButtons === true &&
-        (this.swiper.isBeginning === false || this.swiper.isEnd === false)
-      ) {
-        this._wasManuallyUpdated = true;
-        this.noNavButtons = false;
-        this.updated();
-      }
-    }
-  }
-
   buttonDownHandler() {
     this.classList.add('is-pressed');
   }
@@ -588,16 +473,12 @@ class BoltCarousel extends withLitHtml() {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const props = this.validateProps(this.props);
-
-    this.checkForSlideOffset();
+    // const props = this.validateProps(this.props);
 
     const classes = cx('c-bolt-carousel', {
-      [`c-bolt-carousel--offset-before`]: props.slideOffsetBefore,
-      [`c-bolt-carousel--offset-after`]: props.slideOffsetAfter,
-      [`c-bolt-carousel--disabled`]: props.disabled,
-      [`c-bolt-carousel--overflow`]: this.props.overflow,
-      [`c-bolt-carousel--no-overflow`]: !this.props.overflow,
+      [`c-bolt-carousel--disabled`]: this.disabled,
+      [`c-bolt-carousel--overflow`]: this.overflow,
+      [`c-bolt-carousel--no-overflow`]: !this.overflow,
     });
 
     const wrapperClasses = cx('c-bolt-carousel__wrapper');
@@ -606,9 +487,9 @@ class BoltCarousel extends withLitHtml() {
       'c-bolt-carousel__button',
       'c-bolt-carousel__button--previous',
       {
-        [`c-bolt-carousel__button--hidden`]: this.props.noNavButtons,
-        [`c-bolt-carousel__button--${this.props.navButtonPosition ||
-          'inner'}`]: this.props.navButtonPosition,
+        [`c-bolt-carousel__button--hidden`]: this.noNavButtons,
+        [`c-bolt-carousel__button--${this.navButtonPosition || 'inner'}`]: this
+          .navButtonPosition,
       },
     );
 
@@ -616,9 +497,9 @@ class BoltCarousel extends withLitHtml() {
       'c-bolt-carousel__button',
       'c-bolt-carousel__button--next',
       {
-        [`c-bolt-carousel__button--hidden`]: this.props.noNavButtons,
-        [`c-bolt-carousel__button--${this.props.navButtonPosition ||
-          'inner'}`]: this.props.navButtonPosition,
+        [`c-bolt-carousel__button--hidden`]: this.noNavButtons,
+        [`c-bolt-carousel__button--${this.navButtonPosition || 'inner'}`]: this
+          .navButtonPosition,
       },
     );
 
@@ -635,25 +516,24 @@ class BoltCarousel extends withLitHtml() {
     `;
 
     return html`
-      ${this.addStyles([styles])}
       <div class="${classes}">
         <div class="${wrapperClasses}">
-          ${this.slot('default')}
+          ${this.slotify('default')}
         </div>
-        ${this.props.freeScroll
-          ? this.props.noScrollbar
+        ${this.freeScroll
+          ? this.noScrollbar
             ? ''
             : html`
                 <div class="c-bolt-carousel__scrollbar"></div>
               `
-          : this.props.noPagination
+          : this.noPagination
           ? ''
           : html`
               <div class="c-bolt-carousel__pagination"></div>
             `}
       </div>
 
-      ${this.props.noNavButtons === true
+      ${this.noNavButtons === true
         ? ''
         : html`
             <div
@@ -661,8 +541,8 @@ class BoltCarousel extends withLitHtml() {
               @mousedown=${this.buttonDownHandler}
               @mouseup=${this.buttonUpHandler}
             >
-              ${this.slots['previous-btn']
-                ? this.slot('previous-btn')
+              ${this.slotMap.get('previous-btn')
+                ? this.slotify('previous-btn')
                 : buttonTemplate('Previous', 'chevron-left')}
             </div>
             <div
@@ -670,8 +550,8 @@ class BoltCarousel extends withLitHtml() {
               @mousedown=${this.buttonDownHandler}
               @mouseup=${this.buttonUpHandler}
             >
-              ${this.slots['next-btn']
-                ? this.slot('next-btn')
+              ${this.slotMap.get('next-btn')
+                ? this.slotify('next-btn')
                 : buttonTemplate('Next', 'chevron-right')}
             </div>
           `}
@@ -679,23 +559,17 @@ class BoltCarousel extends withLitHtml() {
   }
 }
 
-@define
-class BoltCarouselSlide extends withLitHtml() {
-  static is = 'bolt-carousel-slide';
-
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    return self;
+@customElement('bolt-carousel-slide')
+class BoltCarouselSlide extends BoltElement {
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   render() {
     const classes = cx('c-bolt-carousel-slide');
 
     return html`
-      ${this.addStyles([styles])}
-      <div class="${classes}">${this.slot('default')}</div>
+      <div class="${classes}">${this.slotify('default')}</div>
     `;
   }
 }

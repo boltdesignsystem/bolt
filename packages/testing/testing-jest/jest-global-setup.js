@@ -7,7 +7,6 @@ const os = require('os');
 
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
-const chromePath = require('@moonandyou/chrome-path');
 const { buildPrep } = require('@bolt/build-tools/tasks/task-collections.js');
 const imageTasks = require('@bolt/build-tools/tasks/image-tasks');
 const iconTasks = require('@bolt/build-tools/tasks/icon-tasks');
@@ -15,7 +14,6 @@ const { getConfig } = require('@bolt/build-tools/utils/config-store');
 
 module.exports = async function globalSetup() {
   let config = await getConfig();
-  const localChromePath = await chromePath();
   const existingIconsDir =
     typeof config.iconDir !== 'undefined' ? config.iconDir : [];
 
@@ -25,19 +23,19 @@ module.exports = async function globalSetup() {
   ];
 
   await buildPrep(true); // clear out all folders before running
-  await imageTasks.processImages(); // process image fixtures used by any tests
+  await imageTasks.processImages(true); // process image fixtures used by any tests, but don't optimize
   await iconTasks.build(); // process icons used by any tests
 
   await setupDevServer({
     command: `node packages/servers/testing-server`,
-    launchTimeout: 120000,
+    launchTimeout: 300000,
     port: 4444,
     usedPortAction: 'kill',
+    debug: true,
   });
 
   const browser = await puppeteer.launch({
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    executablePath: localChromePath['google-chrome'],
   });
   // store the browser instance so we can teardown it later
   // this global is only available in the teardown but not in TestEnvironments

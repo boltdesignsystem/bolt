@@ -1,250 +1,1305 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<bolt-chip-list> Component basic usage with links 1`] = `
-<bolt-list tag="ul"
-           display="inline"
-           spacing="xsmall"
-           separator="none"
-           align="start"
-           valign="center"
->
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
-      <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip tag="a"
-                       url="#!"
+<bolt-chip-list id="c-bolt-chip-list-12345">
+  <div class="c-bolt-chip-list">
+    <ssr-keep for="bolt-chip-list"
+              class="js-bolt-chip-list__container"
+    >
+      <bolt-list tag="ul"
+                 display="inline"
+                 spacing="xsmall"
+                 separator="none"
+                 align="start"
+                 valign="center"
+      >
+        <ssr-keep for="bolt-list"
+                  role="list"
+                  class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center"
+        >
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
             >
-              <replace-with-grandchildren>
+              <bolt-chip url="#!">
                 <a href="#!"
-                   class="c-bolt-chip"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
                 >
-                  <span class="c-bolt-chip__item-text">
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
                     Chip link 1
-                  </span>
+                  </ssr-keep>
                 </a>
-              </replace-with-grandchildren>
-            </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
-      </bolt-list-item>
-      <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip tag="a"
-                       url="#!"
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
             >
-              <replace-with-grandchildren>
+              <bolt-chip url="#!">
                 <a href="#!"
-                   class="c-bolt-chip"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
                 >
-                  <span class="c-bolt-chip__item-text">
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
                     Chip link 2
-                  </span>
+                  </ssr-keep>
                 </a>
-              </replace-with-grandchildren>
-            </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
-      </bolt-list-item>
-      <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip tag="a"
-                       url="#!"
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
             >
-              <replace-with-grandchildren>
+              <bolt-chip url="#!">
                 <a href="#!"
-                   class="c-bolt-chip"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
                 >
-                  <span class="c-bolt-chip__item-text">
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
                     Chip link 3
-                  </span>
+                  </ssr-keep>
                 </a>
-              </replace-with-grandchildren>
-            </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
-      </bolt-list-item>
-      <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
-            <bolt-chip tag="a"
-                       url="#!"
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item last
+                          role="presentation"
+          >
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item"
             >
-              <replace-with-grandchildren>
+              <bolt-chip url="#!">
                 <a href="#!"
-                   class="c-bolt-chip"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
                 >
-                  <span class="c-bolt-chip__item-text">
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
                     Chip link 4
-                  </span>
+                  </ssr-keep>
                 </a>
-              </replace-with-grandchildren>
-            </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
-      </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
-</bolt-list>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+        </ssr-keep>
+      </bolt-list>
+    </ssr-keep>
+  </div>
+</bolt-chip-list>
 `;
 
 exports[`<bolt-chip-list> Component basic usage with mixed behavior 1`] = `
-<bolt-list tag="ul"
-           display="inline"
-           spacing="xsmall"
-           separator="none"
-           align="start"
-           valign="center"
->
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
-      <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip tag="a"
-                       url="#!"
+<bolt-chip-list id="c-bolt-chip-list-12345">
+  <div class="c-bolt-chip-list">
+    <ssr-keep for="bolt-chip-list"
+              class="js-bolt-chip-list__container"
+    >
+      <bolt-list tag="ul"
+                 display="inline"
+                 spacing="xsmall"
+                 separator="none"
+                 align="start"
+                 valign="center"
+      >
+        <ssr-keep for="bolt-list"
+                  role="list"
+                  class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center"
+        >
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
             >
-              <replace-with-grandchildren>
+              <bolt-chip url="#!">
                 <a href="#!"
-                   class="c-bolt-chip"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
                 >
-                  <span class="c-bolt-chip__item-text">
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
                     Chip link 1
-                  </span>
+                  </ssr-keep>
                 </a>
-              </replace-with-grandchildren>
-            </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
-      </bolt-list-item>
-      <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip tag="span">
-              <replace-with-grandchildren>
-                <span class="c-bolt-chip">
-                  <span class="c-bolt-chip__item-text">
-                    Chip text 1
-                  </span>
-                </span>
-              </replace-with-grandchildren>
-            </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
-      </bolt-list-item>
-      <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip tag="a"
-                       url="#!"
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
             >
-              <replace-with-grandchildren>
-                <a href="#!"
-                   class="c-bolt-chip"
-                >
-                  <span class="c-bolt-chip__item-text">
-                    Chip link 3
-                  </span>
-                </a>
-              </replace-with-grandchildren>
-            </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
-      </bolt-list-item>
-      <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
-            <bolt-chip tag="span">
-              <replace-with-grandchildren>
-                <span class="c-bolt-chip">
-                  <span class="c-bolt-chip__item-text">
-                    Chip text 2
-                  </span>
+              <bolt-chip>
+                <span class="c-bolt-chip c-bolt-chip--size-small">
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip text 1
+                  </ssr-keep>
                 </span>
-              </replace-with-grandchildren>
-            </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
-      </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
-</bolt-list>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip url="#!">
+                <a href="#!"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                >
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip link 3
+                  </ssr-keep>
+                </a>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item last
+                          role="presentation"
+          >
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item"
+            >
+              <bolt-chip>
+                <span class="c-bolt-chip c-bolt-chip--size-small">
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip text 2
+                  </ssr-keep>
+                </span>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+        </ssr-keep>
+      </bolt-list>
+    </ssr-keep>
+  </div>
+</bolt-chip-list>
 `;
 
 exports[`<bolt-chip-list> Component basic usage without links 1`] = `
-<bolt-list tag="ul"
-           display="inline"
-           spacing="xsmall"
-           separator="none"
-           align="start"
-           valign="center"
->
-  <replace-with-grandchildren>
-    <ul class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
-      <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip tag="span">
-              <replace-with-grandchildren>
-                <span class="c-bolt-chip">
-                  <span class="c-bolt-chip__item-text">
+<bolt-chip-list id="c-bolt-chip-list-12345">
+  <div class="c-bolt-chip-list">
+    <ssr-keep for="bolt-chip-list"
+              class="js-bolt-chip-list__container"
+    >
+      <bolt-list tag="ul"
+                 display="inline"
+                 spacing="xsmall"
+                 separator="none"
+                 align="start"
+                 valign="center"
+      >
+        <ssr-keep for="bolt-list"
+                  role="list"
+                  class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center"
+        >
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip>
+                <span class="c-bolt-chip c-bolt-chip--size-small">
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
                     Chip text 1
-                  </span>
+                  </ssr-keep>
                 </span>
-              </replace-with-grandchildren>
-            </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
-      </bolt-list-item>
-      <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip tag="span">
-              <replace-with-grandchildren>
-                <span class="c-bolt-chip">
-                  <span class="c-bolt-chip__item-text">
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip>
+                <span class="c-bolt-chip c-bolt-chip--size-small">
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
                     Chip text 2
-                  </span>
+                  </ssr-keep>
                 </span>
-              </replace-with-grandchildren>
-            </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
-      </bolt-list-item>
-      <bolt-list-item>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip tag="span">
-              <replace-with-grandchildren>
-                <span class="c-bolt-chip">
-                  <span class="c-bolt-chip__item-text">
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip>
+                <span class="c-bolt-chip c-bolt-chip--size-small">
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
                     Chip text 3
-                  </span>
+                  </ssr-keep>
                 </span>
-              </replace-with-grandchildren>
-            </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
-      </bolt-list-item>
-      <bolt-list-item last>
-        <replace-with-grandchildren>
-          <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
-            <bolt-chip tag="span">
-              <replace-with-grandchildren>
-                <span class="c-bolt-chip">
-                  <span class="c-bolt-chip__item-text">
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item last
+                          role="presentation"
+          >
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item"
+            >
+              <bolt-chip>
+                <span class="c-bolt-chip c-bolt-chip--size-small">
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
                     Chip text 4
-                  </span>
+                  </ssr-keep>
                 </span>
-              </replace-with-grandchildren>
-            </bolt-chip>
-          </li>
-        </replace-with-grandchildren>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+        </ssr-keep>
+      </bolt-list>
+    </ssr-keep>
+  </div>
+</bolt-chip-list>
+`;
+
+exports[`<bolt-chip-list> Component collapsible 1`] = `
+<bolt-chip-list
+  collapsible=""
+  id="c-bolt-chip-list-12345"
+  style=""
+  truncate="3"
+>
+  
+  
+
+      
+
+
+
+
+    
+
+  <bolt-list
+    align="start"
+    display="inline"
+    separator="none"
+    spacing="xsmall"
+    style=""
+    tag="ul"
+    valign="center"
+  >
+    
+      
+    
+  
+
+                  
+
+
+    <bolt-list-item
+      role="presentation"
+      style=""
+    >
+      
+  
+
+                
+
+
+
+
+
+
+        
+
+
+
+
+      <bolt-chip
+        style=""
+        url="#!"
+      >
+        
+      Chip link 1
+    
+      </bolt-chip>
+          
+      
+    </bolt-list-item>
+    
+                        
+
+
+    <bolt-list-item
+      role="presentation"
+      style=""
+    >
+      
+  
+
+                
+
+
+
+
+
+
+        
+
+
+
+
+      <bolt-chip
+        style=""
+        url="#!"
+      >
+        
+      Chip link 2
+    
+      </bolt-chip>
+          
+      
+    </bolt-list-item>
+    
+                        
+
+
+    <bolt-list-item
+      role="presentation"
+      style=""
+    >
+      
+  
+
+                
+
+
+
+
+
+
+        
+
+
+
+
+      <bolt-chip
+        style=""
+        url="#!"
+      >
+        
+      Chip link 3
+    
+      </bolt-chip>
+          
+      
+    </bolt-list-item>
+    
+                        
+
+
+    <bolt-list-item
+      aria-hidden="true"
+      hidden=""
+      role="presentation"
+      style=""
+    >
+      
+  
+
+                
+
+
+
+
+
+
+        
+
+
+
+
+      <bolt-chip
+        style=""
+        url="#!"
+      >
+        
+      Chip link 4
+    
+      </bolt-chip>
+          
+      
+    </bolt-list-item>
+    
+                        
+
+
+    <bolt-list-item
+      aria-hidden="true"
+      hidden=""
+      role="presentation"
+      style=""
+    >
+      
+  
+
+                
+
+
+
+
+
+
+        
+
+
+
+
+      <bolt-chip
+        style=""
+        url="#!"
+      >
+        
+      Chip link 5
+    
+      </bolt-chip>
+          
+      
+    </bolt-list-item>
+    
+                        
+
+
+                        
+
+
+            
+    <bolt-list-item
+      last=""
+      style=""
+      truncate-trigger=""
+    >
+      <!---->
+      
+          
+                
+      <bolt-trigger
+        aria-label="Show more"
+        style=""
+      >
+        
+                  
+        <bolt-chip
+          icon-only=""
+          style=""
+        >
+          
+                    
+          <bolt-icon
+            name="more"
+            slot="after"
+            style=""
+          >
+            
+                    
+          </bolt-icon>
+          
+                  
+        </bolt-chip>
+        
+                
+      </bolt-trigger>
+      
+              
+        
+      <!---->
+    </bolt-list-item>
+  </bolt-list>
+  
+    
+</bolt-chip-list>
+`;
+
+exports[`<bolt-chip-list> Component collapsible 2`] = `
+<bolt-chip-list truncate="3"
+                collapsible
+                id="c-bolt-chip-list-12345"
+>
+  <div class="c-bolt-chip-list">
+    <style class="c-bolt-chip-list--no-js">
+      #c-bolt-chip-list-12345 #c-bolt-chip-list__input-12345:not(:checked) ~ .js-bolt-chip-list__container bolt-list-item:nth-child(n+3) ~  bolt-list-item:not([truncate-trigger-expand]),
+        #c-bolt-chip-list-12345 #c-bolt-chip-list__input-12345:checked ~ .js-bolt-chip-list__container [truncate-trigger-expand] {
+          display: none;
+        }
+    </style>
+    <input type="checkbox"
+           id="c-bolt-chip-list__input-12345"
+           class="c-bolt-chip-list__input c-bolt-chip-list--no-js"
+    >
+    <ssr-keep for="bolt-chip-list"
+              class="js-bolt-chip-list__container"
+    >
+      <bolt-list tag="ul"
+                 display="inline"
+                 spacing="xsmall"
+                 separator="none"
+                 align="start"
+                 valign="center"
+      >
+        <ssr-keep for="bolt-list"
+                  role="list"
+                  class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center"
+        >
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip url="#!">
+                <a href="#!"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                >
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip link 1
+                  </ssr-keep>
+                </a>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip url="#!">
+                <a href="#!"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                >
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip link 2
+                  </ssr-keep>
+                </a>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip url="#!">
+                <a href="#!"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                >
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip link 3
+                  </ssr-keep>
+                </a>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip url="#!">
+                <a href="#!"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                >
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip link 4
+                  </ssr-keep>
+                </a>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip url="#!">
+                <a href="#!"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                >
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip link 5
+                  </ssr-keep>
+                </a>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation"
+                          truncate-trigger
+                          truncate-trigger-expand
+          >
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <label class="c-bolt-chip-list__label"
+                     for="c-bolt-chip-list__input-12345"
+              >
+                <bolt-chip icon-only>
+                  <span class="c-bolt-chip c-bolt-chip--size-small c-bolt-chip--icon-only">
+                    <ssr-keep for="bolt-chip"
+                              class="c-bolt-chip__text"
+                    >
+                      Show more
+                    </ssr-keep>
+                    <ssr-keep for="bolt-chip"
+                              class="c-bolt-chip__icon"
+                    >
+                      <bolt-icon slot="after"
+                                 name="more"
+                                 aria-hidden="true"
+                      >
+                        <span class="c-bolt-icon c-bolt-icon--more">
+                          <svg class="c-bolt-icon__icon"
+                               xmlns="http://www.w3.org/2000/svg"
+                               viewbox="0 0 24 24"
+                          >
+                            <g fill="none"
+                               fill-rule="evenodd"
+                            >
+                              <path>
+                              </path>
+                              <g fill="var(--bolt-theme-icon, currentColor)">
+                                <path d="M14 12a2 2 0 11-4 0 2 2 0 014 0M6 12a2 2 0 11-4 0 2 2 0 014 0M22.1 12a2 2 0 11-4 0 2 2 0 014 0">
+                                </path>
+                              </g>
+                            </g>
+                          </svg>
+                        </span>
+                      </bolt-icon>
+                    </ssr-keep>
+                  </span>
+                </bolt-chip>
+              </label>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item last
+                          role="presentation"
+                          truncate-trigger
+                          truncate-trigger-collapse
+          >
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item"
+            >
+              <label class="c-bolt-chip-list__label"
+                     for="c-bolt-chip-list__input-12345"
+              >
+                <bolt-chip icon-only>
+                  <span class="c-bolt-chip c-bolt-chip--size-small c-bolt-chip--icon-only">
+                    <ssr-keep for="bolt-chip"
+                              class="c-bolt-chip__text"
+                    >
+                      Show less
+                    </ssr-keep>
+                    <ssr-keep for="bolt-chip"
+                              class="c-bolt-chip__icon"
+                    >
+                      <bolt-icon slot="after"
+                                 name="chevron-left"
+                                 aria-hidden="true"
+                      >
+                        <span class="c-bolt-icon c-bolt-icon--chevron-left">
+                          <svg class="c-bolt-icon__icon"
+                               xmlns="http://www.w3.org/2000/svg"
+                               viewbox="0 0 32 32"
+                          >
+                            <path fill="var(--bolt-theme-icon, currentColor)"
+                                  fill-rule="evenodd"
+                                  d="M19 25c.6.5 1.4.5 2 0 .5-.6.5-1.4 0-2l-7.1-7 7-7a1.3 1.3 0 00-.9-2.3c-.3 0-.7.1-1 .4l-8 8c-.5.5-.5 1.3 0 1.8l8 8z"
+                            >
+                            </path>
+                          </svg>
+                        </span>
+                      </bolt-icon>
+                    </ssr-keep>
+                  </span>
+                </bolt-chip>
+              </label>
+            </ssr-keep>
+          </bolt-list-item>
+        </ssr-keep>
+      </bolt-list>
+    </ssr-keep>
+  </div>
+</bolt-chip-list>
+`;
+
+exports[`<bolt-chip-list> Component truncate 1`] = `
+<bolt-chip-list
+  id="c-bolt-chip-list-12345"
+  style=""
+  truncate="3"
+>
+  
+  
+
+      
+
+
+
+
+    
+
+  <bolt-list
+    align="start"
+    display="inline"
+    separator="none"
+    spacing="xsmall"
+    style=""
+    tag="ul"
+    valign="center"
+  >
+    
+      
+    
+  
+    <ssr-keep
+      class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center"
+      for="bolt-list"
+      role="list"
+      style=""
+    >
+      
+                  
+
+
+      <bolt-list-item
+        role="presentation"
+        style=""
+      >
+        
+  
+        <ssr-keep
+          class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+          for="bolt-list-item"
+          role="listitem"
+          style=""
+        >
+          
+                
+
+
+
+
+
+
+        
+
+
+
+
+          <bolt-chip
+            style=""
+            url="#!"
+          >
+            <a
+              class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+              href="#!"
+              style=""
+            >
+              <ssr-keep
+                class="c-bolt-chip__text"
+                for="bolt-chip"
+                style=""
+              >
+                
+      Chip link 1
+    
+              </ssr-keep>
+            </a>
+          </bolt-chip>
+              
+      
+        </ssr-keep>
+        
+
       </bolt-list-item>
-    </ul>
-  </replace-with-grandchildren>
-</bolt-list>
+      
+                        
+
+
+      <bolt-list-item
+        role="presentation"
+        style=""
+      >
+        
+  
+        <ssr-keep
+          class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+          for="bolt-list-item"
+          role="listitem"
+          style=""
+        >
+          
+                
+
+
+
+
+
+
+        
+
+
+
+
+          <bolt-chip
+            style=""
+            url="#!"
+          >
+            <a
+              class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+              href="#!"
+              style=""
+            >
+              <ssr-keep
+                class="c-bolt-chip__text"
+                for="bolt-chip"
+                style=""
+              >
+                
+      Chip link 2
+    
+              </ssr-keep>
+            </a>
+          </bolt-chip>
+              
+      
+        </ssr-keep>
+        
+
+      </bolt-list-item>
+      
+                        
+
+
+      <bolt-list-item
+        role="presentation"
+        style=""
+      >
+        
+  
+        <ssr-keep
+          class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+          for="bolt-list-item"
+          role="listitem"
+          style=""
+        >
+          
+                
+
+
+
+
+
+
+        
+
+
+
+
+          <bolt-chip
+            style=""
+            url="#!"
+          >
+            <a
+              class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+              href="#!"
+              style=""
+            >
+              <ssr-keep
+                class="c-bolt-chip__text"
+                for="bolt-chip"
+                style=""
+              >
+                
+      Chip link 3
+    
+              </ssr-keep>
+            </a>
+          </bolt-chip>
+              
+      
+        </ssr-keep>
+        
+
+      </bolt-list-item>
+      
+                        
+
+
+      <bolt-list-item
+        aria-hidden="true"
+        hidden=""
+        role="presentation"
+        style=""
+      >
+        
+  
+        <ssr-keep
+          class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+          for="bolt-list-item"
+          role="listitem"
+          style=""
+        >
+          
+                
+
+
+
+
+
+
+        
+
+
+
+
+          <bolt-chip
+            style=""
+            url="#!"
+          >
+            <a
+              class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+              href="#!"
+              style=""
+            >
+              <ssr-keep
+                class="c-bolt-chip__text"
+                for="bolt-chip"
+                style=""
+              >
+                
+      Chip link 4
+    
+              </ssr-keep>
+            </a>
+          </bolt-chip>
+              
+      
+        </ssr-keep>
+        
+
+      </bolt-list-item>
+      
+                        
+
+
+      <bolt-list-item
+        aria-hidden="true"
+        hidden=""
+        role="presentation"
+        style=""
+      >
+        
+  
+        <ssr-keep
+          class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+          for="bolt-list-item"
+          role="listitem"
+          style=""
+        >
+          
+                
+
+
+
+
+
+
+        
+
+
+
+
+          <bolt-chip
+            style=""
+            url="#!"
+          >
+            <a
+              class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+              href="#!"
+              style=""
+            >
+              <ssr-keep
+                class="c-bolt-chip__text"
+                for="bolt-chip"
+                style=""
+              >
+                
+      Chip link 5
+    
+              </ssr-keep>
+            </a>
+          </bolt-chip>
+              
+      
+        </ssr-keep>
+        
+
+      </bolt-list-item>
+      
+                        
+
+
+            
+      <bolt-list-item
+        style=""
+        truncate-trigger=""
+      >
+        <!---->
+        
+          
+                
+        <bolt-trigger
+          aria-label="Show more"
+          style=""
+        >
+          
+                  
+          <bolt-chip
+            icon-only=""
+            style=""
+          >
+            
+                    
+            <bolt-icon
+              name="more"
+              slot="after"
+              style=""
+            >
+              
+                    
+            </bolt-icon>
+            
+                  
+          </bolt-chip>
+          
+                
+        </bolt-trigger>
+        
+              
+        
+        <!---->
+      </bolt-list-item>
+    </ssr-keep>
+    
+
+  </bolt-list>
+  
+    
+</bolt-chip-list>
+`;
+
+exports[`<bolt-chip-list> Component truncate 2`] = `
+<bolt-chip-list truncate="3"
+                id="c-bolt-chip-list-12345"
+>
+  <div class="c-bolt-chip-list">
+    <style class="c-bolt-chip-list--no-js">
+      #c-bolt-chip-list-12345 #c-bolt-chip-list__input-12345:not(:checked) ~ .js-bolt-chip-list__container bolt-list-item:nth-child(n+3) ~  bolt-list-item:not([truncate-trigger-expand]),
+        #c-bolt-chip-list-12345 #c-bolt-chip-list__input-12345:checked ~ .js-bolt-chip-list__container [truncate-trigger-expand] {
+          display: none;
+        }
+    </style>
+    <input type="checkbox"
+           id="c-bolt-chip-list__input-12345"
+           class="c-bolt-chip-list__input c-bolt-chip-list--no-js"
+    >
+    <ssr-keep for="bolt-chip-list"
+              class="js-bolt-chip-list__container"
+    >
+      <bolt-list tag="ul"
+                 display="inline"
+                 spacing="xsmall"
+                 separator="none"
+                 align="start"
+                 valign="center"
+      >
+        <ssr-keep for="bolt-list"
+                  role="list"
+                  class="c-bolt-list c-bolt-list--display-inline c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center"
+        >
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip url="#!">
+                <a href="#!"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                >
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip link 1
+                  </ssr-keep>
+                </a>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip url="#!">
+                <a href="#!"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                >
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip link 2
+                  </ssr-keep>
+                </a>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip url="#!">
+                <a href="#!"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                >
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip link 3
+                  </ssr-keep>
+                </a>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip url="#!">
+                <a href="#!"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                >
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip link 4
+                  </ssr-keep>
+                </a>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item role="presentation">
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start"
+            >
+              <bolt-chip url="#!">
+                <a href="#!"
+                   class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
+                >
+                  <ssr-keep for="bolt-chip"
+                            class="c-bolt-chip__text"
+                  >
+                    Chip link 5
+                  </ssr-keep>
+                </a>
+              </bolt-chip>
+            </ssr-keep>
+          </bolt-list-item>
+          <bolt-list-item last
+                          role="presentation"
+                          truncate-trigger
+                          truncate-trigger-expand
+          >
+            <ssr-keep for="bolt-list-item"
+                      role="listitem"
+                      class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item"
+            >
+              <label class="c-bolt-chip-list__label"
+                     for="c-bolt-chip-list__input-12345"
+              >
+                <bolt-chip icon-only>
+                  <span class="c-bolt-chip c-bolt-chip--size-small c-bolt-chip--icon-only">
+                    <ssr-keep for="bolt-chip"
+                              class="c-bolt-chip__text"
+                    >
+                      Show more
+                    </ssr-keep>
+                    <ssr-keep for="bolt-chip"
+                              class="c-bolt-chip__icon"
+                    >
+                      <bolt-icon slot="after"
+                                 name="more"
+                                 aria-hidden="true"
+                      >
+                        <span class="c-bolt-icon c-bolt-icon--more">
+                          <svg class="c-bolt-icon__icon"
+                               xmlns="http://www.w3.org/2000/svg"
+                               viewbox="0 0 24 24"
+                          >
+                            <g fill="none"
+                               fill-rule="evenodd"
+                            >
+                              <path>
+                              </path>
+                              <g fill="var(--bolt-theme-icon, currentColor)">
+                                <path d="M14 12a2 2 0 11-4 0 2 2 0 014 0M6 12a2 2 0 11-4 0 2 2 0 014 0M22.1 12a2 2 0 11-4 0 2 2 0 014 0">
+                                </path>
+                              </g>
+                            </g>
+                          </svg>
+                        </span>
+                      </bolt-icon>
+                    </ssr-keep>
+                  </span>
+                </bolt-chip>
+              </label>
+            </ssr-keep>
+          </bolt-list-item>
+        </ssr-keep>
+      </bolt-list>
+    </ssr-keep>
+  </div>
+</bolt-chip-list>
 `;

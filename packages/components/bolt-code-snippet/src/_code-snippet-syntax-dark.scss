@@ -4,18 +4,22 @@ $bolt-syntax-dark: 'c-bolt-code-snippet-syntax--dark';
 
 code.#{$bolt-syntax-dark},
 pre.#{$bolt-syntax-dark} {
-  color: bolt-color(gray, xlight);
-  background: bolt-color(indigo, xdark);
+  color: var(--bolt-color-gray-xlight);
+  background: var(--bolt-color-navy-xdark);
 }
 
-pre.#{$bolt-syntax-dark}::-moz-selection, pre.#{$bolt-syntax-dark} ::-moz-selection,
-code.#{$bolt-syntax-dark}::-moz-selection, code.#{$bolt-syntax-dark} ::-moz-selection {
-  background: bolt-color(indigo, xlight);
+pre.#{$bolt-syntax-dark}::-moz-selection,
+pre.#{$bolt-syntax-dark} ::-moz-selection,
+code.#{$bolt-syntax-dark}::-moz-selection,
+code.#{$bolt-syntax-dark} ::-moz-selection {
+  background: var(--bolt-color-navy-xlight);
 }
 
-pre.#{$bolt-syntax-dark}::selection, pre.#{$bolt-syntax-dark} ::selection,
-code.#{$bolt-syntax-dark}::selection, code.#{$bolt-syntax-dark} ::selection {
-  background: bolt-color(indigo, xlight);
+pre.#{$bolt-syntax-dark}::selection,
+pre.#{$bolt-syntax-dark} ::selection,
+code.#{$bolt-syntax-dark}::selection,
+code.#{$bolt-syntax-dark} ::selection {
+  background: var(--bolt-color-navy-xlight);
 }
 
 .#{$bolt-syntax-dark} {
@@ -23,7 +27,7 @@ code.#{$bolt-syntax-dark}::selection, code.#{$bolt-syntax-dark} ::selection {
   .token.prolog,
   .token.doctype,
   .token.cdata {
-    color: #5C6370;
+    color: #5c6370;
   }
 
   .token.punctuation {
@@ -77,6 +81,6 @@ code.#{$bolt-syntax-dark}::selection, code.#{$bolt-syntax-dark} ::selection {
   }
 
   .line-numbers-rows > span:before {
-    color: #5C6370;
+    color: #5c6370;
   }
 }

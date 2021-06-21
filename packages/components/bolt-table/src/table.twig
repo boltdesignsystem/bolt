@@ -35,6 +35,11 @@
     first_col_fixed_width ? "#{base_class}--first-col-fixed-width",
   ] %}
 
+  {% if caption %}
+    <figure class="{{ "#{base_class}__figure" }}">
+      <ssr-keep for="bolt-table">
+  {% endif %}
+
   <table {{ inner_attributes.addClass(classes) }}>
     {% if top_headers %}
       <thead class="{{ "#{base_class}__head" }}">
@@ -50,7 +55,7 @@
               ]
             %}
             <th {{ cell_attributes.addClass(cell_classes) }} scope="col">
-              {% if cell is iterable %}
+              {% if cell.content %}
                 {{ cell.content }}
               {% else %}
                 {{ cell }}
@@ -75,7 +80,7 @@
               %}
               {% if cell is not empty %}
                 <th {{ cell_attributes.addClass(cell_classes) }} scope="row">
-                  {% if cell is iterable %}
+                  {% if cell.content %}
                     {{ cell.content }}
                   {% else %}
                     {{ cell }}
@@ -109,7 +114,7 @@
             {% for cell in side_headers.cells %}
               {% if loop.last %}
                 <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">
-                  {% if cell is iterable %}
+                  {% if cell.content %}
                     {{ cell.content }}
                   {% else %}
                     {{ cell }}
@@ -126,7 +131,7 @@
               ]
             %}
             <td {{ cell_attributes.addClass(cell_classes) }}>
-              {% if cell is iterable %}
+              {% if cell.content %}
                 {{ cell.content }}
               {% else %}
                 {{ cell }}
@@ -137,4 +142,15 @@
       </tfoot>
     {% endif %}
   </table>
+
+  {% if caption %}
+      <replace-with-grandchildren>
+        <figcaption class="{{ "#{base_class}__caption" }}">
+          <div slot="caption">{{ caption }}</div>
+        </figcaption>
+      </replace-with-grandchildren>
+    </ssr-keep>
+  </figure>
+  {% endif %}
+
 </bolt-table>

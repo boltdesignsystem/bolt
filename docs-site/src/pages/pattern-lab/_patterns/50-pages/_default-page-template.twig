@@ -1,0 +1,35 @@
+{% block global_header %}
+  {# Located inside components/page-header in PL #}
+  {% include '@pl/_main-site-page-header.twig' with {
+    static_header: static_header,
+    japanese: japanese,
+  } only %}
+{% endblock %}
+
+<div class="c-bolt-site__content c-bolt-site__content--middle"><!-- vertically center -->
+  <div class="o-bolt-wrapper">
+    <main>
+      <article>
+        {% block main_content %}
+          <!-- <p>Example main content block.</p> -->
+        {% endblock %}
+      </article>
+    </main>
+  </div>
+</div>
+
+{% block global_footer %}
+  {# To be added. Footer is not built out as a component yet. #}
+{% endblock %}
+
+{% if japanese %}
+  <script type="text/javascript">
+    document.getElementsByTagName("HTML")[0].setAttribute("lang", "ja");
+  </script>
+{% endif %}
+
+{% if info_density %}
+  <script type="text/javascript">
+    document.getElementsByTagName("HTML")[0].setAttribute("data-bolt-info-density", "{{ info_density }}");
+  </script>
+{% endif %}

@@ -1,10 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`trigger Trigger with "disabled" adds attr to <button> 1`] = `
+<bolt-trigger disabled>
+  <button type="button"
+          disabled
+          class="c-bolt-trigger c-bolt-trigger--display-inline"
+          is="shadow-root"
+  >
+    Hello World
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger Trigger with "disabled" does not add attr to <a> 1`] = `
+<bolt-trigger url="http://pega.com"
+              disabled
+>
+  <a aria-disabled="true"
+     target="_self"
+     class="c-bolt-trigger c-bolt-trigger--display-inline"
+     is="shadow-root"
+  >
+    Hello World
+  </a>
+</bolt-trigger>
+`;
+
 exports[`trigger Trigger with "no_outline" 1`] = `
 <bolt-trigger url="http://pega.com"
               no-outline
 >
   <a href="http://pega.com"
+     target="_self"
      class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
      is="shadow-root"
   >
@@ -13,9 +40,12 @@ exports[`trigger Trigger with "no_outline" 1`] = `
 </bolt-trigger>
 `;
 
-exports[`trigger Trigger with "url" renders as link 1`] = `
-<bolt-trigger url="http://pega.com">
+exports[`trigger Trigger with "target" attribute renders same value on <bolt-trigger> and inner <a> 1`] = `
+<bolt-trigger target="_blank"
+              url="http://pega.com"
+>
   <a href="http://pega.com"
+     target="_blank"
      class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
      is="shadow-root"
   >
@@ -24,7 +54,33 @@ exports[`trigger Trigger with "url" renders as link 1`] = `
 </bolt-trigger>
 `;
 
-exports[`trigger Trigger with an onClick attributes renders properly 1`] = `
+exports[`trigger Trigger with "type" adds attr to <button> 1`] = `
+<bolt-trigger type="submit"
+              disabled
+>
+  <button type="submit"
+          disabled
+          class="c-bolt-trigger c-bolt-trigger--display-inline"
+          is="shadow-root"
+  >
+    Hello World
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger Trigger with "url" renders as link 1`] = `
+<bolt-trigger url="http://pega.com">
+  <a href="http://pega.com"
+     target="_self"
+     class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+     is="shadow-root"
+  >
+    Hello World
+  </a>
+</bolt-trigger>
+`;
+
+exports[`trigger Trigger with an on_click attributes renders properly 1`] = `
 <bolt-trigger on-click="on-click-test">
   <button type="button"
           class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
@@ -34,7 +90,7 @@ exports[`trigger Trigger with an onClick attributes renders properly 1`] = `
 </bolt-trigger>
 `;
 
-exports[`trigger Trigger with an onClick param renders properly 1`] = `
+exports[`trigger Trigger with an on_click param renders properly 1`] = `
 <bolt-trigger on-click="on-click-test">
   <button type="button"
           class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"

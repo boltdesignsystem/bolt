@@ -1,0 +1,10 @@
+{% if text %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: text,
+    attributes: {
+      class: [
+        "u-bolt-line-length-optimal"
+      ]
+    }
+  } only %}
+{% endif %}

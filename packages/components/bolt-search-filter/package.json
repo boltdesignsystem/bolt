@@ -1,6 +1,8 @@
 {
   "name": "@bolt/components-search-filter",
-  "description": "Search Filter Component in Bolt",
+  "version": "3.8.0",
+  "private": true,
+  "description": "Placeholder element only used in Pattern Lab demos.",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -8,7 +10,21 @@
     "design system",
     "components"
   ],
-  "version": "2.5.2",
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/"
+  },
+  "license": "MIT",
+  "style": "search-filter.scss",
+  "dependencies": {
+    "@bolt/components-button": "^3.8.0",
+    "@bolt/components-button-group": "^3.8.0",
+    "@bolt/core-v3.x": "^3.6.0"
+  },
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -21,22 +37,6 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt/"
-  },
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
-  "style": "search-filter.scss",
-  "twig": "search-filter.twig",
-  "schema": "search-filter.schema.yml",
-  "private": true,
-  "dependencies": {
-    "@bolt/components-button": "^2.5.2",
-    "@bolt/components-button-group": "^2.5.2",
-    "@bolt/core": "^2.5.2"
-  }
+  "schema": "search-filter.schema.js",
+  "twig": "search-filter.twig"
 }

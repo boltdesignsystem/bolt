@@ -1,0 +1,16 @@
+<p>
+  {% include "@bolt-components-trigger/trigger.twig" with {
+    content: "Trigger with <code>button</code> tag",
+    attributes: {
+      "onclick": "alert('Trigger clicked')"
+    }
+  } only %}
+</p>
+
+<p>
+  {% include "@bolt-components-trigger/trigger.twig" with {
+    content: "Trigger with <code>a</code> tag",
+    url: "https://www.pega.com/",
+    target: "_blank"
+  } only %}
+</p>

@@ -1,0 +1,23 @@
+/* ------------------------------------ *\
+  Repeat Rule
+\* ------------------------------------ */
+
+////
+/// @group Tools: Utilities
+/// @author Dan Morse
+////
+
+/// Repeat a block of styles as a separate rule-set for each selector provided. Does not combine multiple selectors with commas.
+/// Most often used with selectors like `:host` which do not work properly when combined with other selectors.
+/// @param {list} $selectors - A SASS list of selectors
+/// @example scss
+///  @include repeat-rule(('bolt-link', ':host')) {
+///    display: inline;
+///  }
+@mixin bolt-repeat-rule($selectors: null) {
+  @each $selector in $selectors {
+    #{$selector} {
+      @content;
+    }
+  }
+}

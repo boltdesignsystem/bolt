@@ -1,0 +1,35 @@
+/* ------------------------------------ *\
+   card-replacement Link
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_card-replacement-settings-and-tools.scss';
+
+// https://www.w3.org/TR/CSS21/visudet.html#abs-replaced-width
+
+.c-bolt-card_replacement__link {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $bolt-card-replacement-z-index-outer-link;
+  cursor: pointer;
+}
+
+button.c-bolt-card_replacement__link {
+  width: 100%; // [1]
+  height: 100%; // [1]
+  padding: 0;
+  border: none;
+  background: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.c-bolt-card_replacement__link-text {
+  @include bolt-visuallyhidden;
+}

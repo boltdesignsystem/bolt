@@ -1,0 +1,9 @@
+{% set content %}
+  <bolt-button size="medium" width="auto" border-radius="regular" color="primary">
+    <span>This is a Button; click "Edit" above to edit me</span>
+  </bolt-button>
+{% endset %}
+
+{% include '@bolt-components-editor/editor-in-pl.twig' with {
+  content: content,
+} only %}

@@ -1,0 +1,45 @@
+{# Test passing attributes with share sources, test url still works #}
+{% set demo_sources = [
+  {
+    name: 'facebook',
+    attributes: {
+      href: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse',
+      class: 'test-class',
+      'test-attribute': 'Attribute for testing purposes'
+    }
+  },
+  {
+    name: 'twitter',
+    url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+  },
+  {
+    name: 'linkedin',
+    attributes: {
+      href: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com'
+    }
+  },
+  {
+    name: 'email',
+    attributes: {
+      href: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+    }
+  }
+] %}
+
+{% set demo_copy_to_clipboard =
+  {
+    text_to_copy: 'https://boltdesignsystem.com'
+  }
+%}
+
+{% include '@bolt-components-share/share.twig' with {
+  sources: demo_sources,
+  copy_to_clipboard: demo_copy_to_clipboard,
+} only %}
+
+{# Note: passing classes do not currently work in "menu" display #}
+{% include '@bolt-components-share/share.twig' with {
+  sources: demo_sources,
+  copy_to_clipboard: demo_copy_to_clipboard,
+  display: 'menu',
+} only %}

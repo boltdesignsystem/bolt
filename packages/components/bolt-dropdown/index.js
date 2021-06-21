@@ -1,5 +1,5 @@
-import { polyfillLoader } from '@bolt/core/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import('./dropdown.js');
+lazyQueue(['bolt-dropdown'], async () => {
+  await import(/* webpackChunkName: 'bolt-dropdown' */ './dropdown');
 });

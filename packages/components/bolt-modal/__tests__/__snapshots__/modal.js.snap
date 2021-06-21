@@ -1,30 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<bolt-modal> Component <bolt-modal> rendered by Twig 1`] = `
-<bolt-modal uuid="12345">
-  <bolt-text tag="h3"
-             slot="header"
-  >
-    This is the header
-  </bolt-text>
-  <bolt-text>
-    This is the body (default).
-  </bolt-text>
-  <bolt-text slot="footer">
-    This is the footer
-  </bolt-text>
+exports[`<bolt-modal> Component <bolt-modal> slots 1`] = `
+<bolt-modal width="regular"
+            uuid="12345"
+>
+  <div slot="header">
+    Header slot
+  </div>
+  Default slot
+  <div slot="footer">
+    Footer slot
+  </div>
 </bolt-modal>
 `;
 
-exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] = `
+exports[`<bolt-modal> Component Long content usage <bolt-modal> at various viewport sizes 1`] = `
+<bolt-modal width="regular"
+            uuid="12345"
+>
+  <div slot="header">
+    Header slot
+  </div>
+  <div>
+    This is very long content.
+  </div>
+  <bolt-image src="/fixtures/1200x2500.jpg"
+              alt="Placeholder"
+  >
+  </bolt-image>
+  <div slot="footer">
+    Footer slot
+  </div>
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM renders 1`] = `
 <bolt-modal
+  no-shadow=""
   ready=""
   style=""
   uuid="12345"
+  width="regular"
 >
   <!---->
   
-      
       
   <div
     aria-hidden="true"
@@ -33,9 +52,6 @@ exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] 
   >
     
         
-    <!---->
-    <!---->
-    
         
     <focus-trap
       style=""
@@ -45,7 +61,7 @@ exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] 
       <dialog
         aria-hidden="true"
         aria-labelledby="dialog-title-12345"
-        class="c-bolt-modal__content c-bolt-modal__content--width-optimal"
+        class="c-bolt-modal__content c-bolt-modal__content--width-regular"
         style=""
       >
         
@@ -56,20 +72,19 @@ exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] 
         >
           
               
+                    
           <div
-            class="c-bolt-modal__close-button"
+            class="c-bolt-modal__close-button c-bolt-modal__close-button--light"
             style=""
           >
             
-                
+                      
       
             <bolt-trigger
-              autofocus=""
               class="js-close-button-fallback"
               display="block"
               no-outline=""
               style=""
-              tabindex="0"
             >
               
         
@@ -90,9 +105,10 @@ exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] 
             </bolt-trigger>
             
     
-              
+                    
           </div>
           
+                  
               
           <header
             class="c-bolt-modal__container-header"
@@ -112,16 +128,13 @@ exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] 
             
                 
             <!---->
-            <!---->
-            <bolt-text
+            <div
               class="is-first-child is-last-child"
               slot="header"
               style=""
-              tag="h3"
             >
-              This is the header
-            </bolt-text>
-            <!---->
+              Header slot
+            </div>
             <!---->
             
               
@@ -136,18 +149,22 @@ exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] 
                 
             <!---->
             <!---->
-            
-      
             <!---->
-            <bolt-text
-              class="is-first-child is-last-child"
+            <div
+              class="is-first-child"
               style=""
             >
-              This is the body (default).
-            </bolt-text>
+              This is very long content.
+            </div>
             <!---->
-            
-      
+            <!---->
+            <bolt-image
+              alt="Placeholder"
+              class="is-last-child"
+              src="/fixtures/1200x2500.jpg"
+              style=""
+            />
+            <!---->
             <!---->
             <!---->
             
@@ -163,15 +180,13 @@ exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] 
             
             
             <!---->
-            <!---->
-            <bolt-text
+            <div
               class="is-first-child is-last-child"
               slot="footer"
               style=""
             >
-              This is the footer
-            </bolt-text>
-            <!---->
+              Footer slot
+            </div>
             <!---->
             
           
@@ -195,34 +210,335 @@ exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] 
 </bolt-modal>
 `;
 
-exports[`<bolt-modal> Component Default <bolt-modal> with Shadow DOM renders 2`] = `
+exports[`<bolt-modal> Component Long content usage <bolt-modal> with Shadow DOM renders 1`] = `
 <bolt-modal
   ready=""
   style=""
   uuid="12345"
+  width="regular"
 >
-  <bolt-text
+  
+          
+  <div
+    class="is-first-child is-last-child"
     slot="header"
     style=""
-    tag="h3"
   >
-    This is the header
-  </bolt-text>
+    Header slot
+  </div>
   
+          
       
-  <bolt-text
+  <div
+    class="is-first-child"
     style=""
   >
-    This is the body (default).
-  </bolt-text>
+    This is very long content.
+  </div>
   
       
-  <bolt-text
+  <bolt-image
+    alt="Placeholder"
+    class="is-last-child"
+    src="/fixtures/1200x2500.jpg"
+    style=""
+  />
+  
+    
+          
+  <div
+    class="is-first-child is-last-child"
     slot="footer"
     style=""
   >
-    This is the footer
-  </bolt-text>
+    Footer slot
+  </div>
+  
+        
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component Long content usage<bolt-modal> with band at various viewport sizes 1`] = `
+<bolt-modal width="regular"
+            uuid="12345"
+>
+  <div slot="header">
+    Header slot
+  </div>
+  <bolt-band class="is-ready">
+    <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center">
+      <div class="c-bolt-band__content">
+        <bolt-wrapper size="xxlarge"
+                      full="true"
+                      bolt-object
+        >
+          <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+            <div>
+              This is very long content.
+            </div>
+            <bolt-image src="/fixtures/1200x2500.jpg"
+                        alt="Placeholder"
+            >
+            </bolt-image>
+          </div>
+        </bolt-wrapper>
+      </div>
+    </div>
+  </bolt-band>
+  <div slot="footer">
+    Footer slot
+  </div>
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component Simple usage <bolt-modal> at various viewport sizes 1`] = `
+<bolt-modal width="regular"
+            uuid="12345"
+>
+  <div slot="header">
+    Header slot
+  </div>
+  <div>
+    Default slot.
+  </div>
+  <div slot="footer">
+    Footer slot
+  </div>
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component Simple usage <bolt-modal> w/o Shadow DOM renders 1`] = `
+<bolt-modal
+  no-shadow=""
+  ready=""
+  style=""
+  uuid="12345"
+  width="regular"
+>
+  <!---->
+  
+      
+  <div
+    aria-hidden="true"
+    class="c-bolt-modal c-bolt-modal--scroll-container c-bolt-modal--overlay-dark"
+    style=""
+  >
+    
+        
+        
+    <focus-trap
+      style=""
+    >
+      
+          
+      <dialog
+        aria-hidden="true"
+        aria-labelledby="dialog-title-12345"
+        class="c-bolt-modal__content c-bolt-modal__content--width-regular"
+        style=""
+      >
+        
+            
+        <article
+          class="c-bolt-modal__container c-bolt-modal__container--spacing-medium t-bolt-xlight"
+          style=""
+        >
+          
+              
+                    
+          <div
+            class="c-bolt-modal__close-button c-bolt-modal__close-button--light"
+            style=""
+          >
+            
+                      
+      
+            <bolt-trigger
+              class="js-close-button-fallback"
+              display="block"
+              no-outline=""
+              style=""
+            >
+              
+        
+              <span
+                class="c-bolt-modal__close-button__text"
+                style=""
+              >
+                Close this dialog window
+              </span>
+              
+        
+              <span
+                class="c-bolt-modal__close-button__icon"
+                style=""
+              />
+              
+      
+            </bolt-trigger>
+            
+    
+                    
+          </div>
+          
+                  
+              
+          <header
+            class="c-bolt-modal__container-header"
+            style=""
+          >
+            
+                
+            <h1
+              class="c-bolt-modal__dialog-title"
+              id="dialog-title-12345"
+              style=""
+            >
+              
+                  Dialog content
+                
+            </h1>
+            
+                
+            <!---->
+            <div
+              class="is-first-child is-last-child"
+              slot="header"
+              style=""
+            >
+              Header slot
+            </div>
+            <!---->
+            
+              
+          </header>
+          
+              
+          <div
+            class="c-bolt-modal__container-body"
+            style=""
+          >
+            
+                
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="is-first-child is-last-child"
+              style=""
+            >
+              Default slot.
+            </div>
+            <!---->
+            <!---->
+            <!---->
+            
+              
+          </div>
+          
+              
+          
+          <footer
+            class="c-bolt-modal__container-footer"
+            style=""
+          >
+            
+            
+            <!---->
+            <div
+              class="is-first-child is-last-child"
+              slot="footer"
+              style=""
+            >
+              Footer slot
+            </div>
+            <!---->
+            
+          
+          </footer>
+          
+        
+            
+        </article>
+        
+          
+      </dialog>
+      
+        
+    </focus-trap>
+    
+      
+  </div>
+  
+    
+  <!---->
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component Simple usage <bolt-modal> with Shadow DOM renders 1`] = `
+<bolt-modal
+  ready=""
+  style=""
+  uuid="12345"
+  width="regular"
+>
+  
+          
+  <div
+    class="is-first-child is-last-child"
+    slot="header"
+    style=""
+  >
+    Header slot
+  </div>
+  
+          
+  <div
+    class="is-first-child is-last-child"
+    style=""
+  >
+    Default slot.
+  </div>
+  
+          
+  <div
+    class="is-first-child is-last-child"
+    slot="footer"
+    style=""
+  >
+    Footer slot
+  </div>
+  
+        
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component Simple usage<bolt-modal> with band at various viewport sizes 1`] = `
+<bolt-modal width="regular"
+            uuid="12345"
+>
+  <div slot="header">
+    Header slot
+  </div>
+  <bolt-band class="is-ready">
+    <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center">
+      <div class="c-bolt-band__content">
+        <bolt-wrapper size="xxlarge"
+                      full="true"
+                      bolt-object
+        >
+          <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+            <div>
+              Default slot.
+            </div>
+          </div>
+        </bolt-wrapper>
+      </div>
+    </div>
+  </bolt-band>
+  <div slot="footer">
+    Footer slot
+  </div>
 </bolt-modal>
 `;
 
@@ -338,6 +654,14 @@ exports[`<bolt-modal> Component modal width: full 1`] = `
 
 exports[`<bolt-modal> Component modal width: optimal 1`] = `
 <bolt-modal width="optimal"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal width: regular 1`] = `
+<bolt-modal width="regular"
             uuid="12345"
 >
   This is a modal

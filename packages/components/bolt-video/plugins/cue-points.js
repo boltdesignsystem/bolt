@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import { h } from '@bolt/core/renderers';
+import { h } from '@bolt/core-v3.x/renderers';
 import '@bolt/components-button';
 import isEqual from 'lodash.isequal';
 import { getSubArray } from '../utils';

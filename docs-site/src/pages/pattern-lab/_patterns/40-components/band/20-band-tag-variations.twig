@@ -1,0 +1,11 @@
+{% set schema = bolt.data.components["@bolt-components-band"].schema %}
+
+{% for tag in schema.properties.tag.enum %}
+  <h3>Setting the container's HTML tag to: {{ tag }}</h3>
+  <div class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-band/band.twig" with {
+      tag: tag,
+      content: "This is a band.",
+    } only %}
+  </div>
+{% endfor %}

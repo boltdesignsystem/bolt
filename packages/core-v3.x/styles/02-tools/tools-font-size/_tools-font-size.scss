@@ -1,0 +1,17 @@
+/* ------------------------------------ *\
+  TOOLS - FONT SIZE
+\* ------------------------------------ */
+
+@mixin bolt-font-size($name, $custom_line_height: regular) {
+  // @warn 'This scss mixin is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-size-*)';
+
+  font-size: var(--bolt-type-font-size-#{$name});
+  line-height: var(--bolt-type-line-height-#{$name});
+
+  @if $custom_line_height {
+    line-height: calc(
+      var(--bolt-type-line-height-#{$name}) *
+        var(--bolt-type-line-height-multiplier-#{$custom_line_height})
+    );
+  }
+}

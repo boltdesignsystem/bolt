@@ -1,0 +1,58 @@
+<bolt-text headline font-size="xlarge">Video Modal Usage</bolt-text>
+<bolt-text>Videos opening and playing in a modal are handled by a couple data attributes.</bolt-text>
+
+<bolt-text headline font-size="large">Button Attribute</bolt-text> 
+<bolt-text>To open a modal, the triggering button requires a <code>data-bolt-modal-target</code> attribute. The value of this attribute is the target modal's class. There is JS that will handle the opening on target modal based on the attribute's value.</bolt-text>
+
+<bolt-text headline font-size="large">Video Attributes</bolt-text> 
+<bolt-text>To prevent a video from initializing on page load, the <code>video-js</code> requires a couple of attributes to delay the initialization. There are four attributes that are required, three of these <em>replace</em> the default Brightcove attributes.</bolt-text>
+<ul>
+  <li><strong>data-delayed-account</strong> (replaces <em>data-account</em>)</li>
+  <li><strong>data-delayed-player</strong/> (replaces <em>data-player</em>)</li>
+  <li><strong>data-delayed-video-id</strong/> (replaces <em>data-video-id</em>)</li>
+  <li><strong>data-video-delayed</strong/> (flag to delay the initialization)</li>
+</ul>
+<bolt-text>Within the Brightcove initialization logic these attributes will defer the video initialization until the <em>modal:show</em> event is fired. The JS will create the Brigthcove required attributes on the fly and start the initialization shortly after. After the modal is opened, it will automatically start playing the video</bolt-text>
+
+<bolt-text headline font-size="large">Demo</bolt-text>
+<div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
+  {% set modal_content_1 %}
+    {% set video %}
+      <video-js
+        data-delayed-account="1900410236"
+        data-delayed-player="O3FkeBiaDz"
+        data-delayed-video-id="4892122320001"
+        data-video-delayed
+        data-embed="default"
+        controls
+        data-media-title
+        data-media-duration
+        class="c-base-video js-bolt-video--demo-1"></video-js>
+    {% endset %}
+
+    {% include "@bolt-components-ratio/ratio.twig" with {
+      children: video,
+      ratio: "16/9"
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Play the video",
+    attributes: {
+      "data-bolt-modal-target": ".js-bolt-modal--demo-1",
+    }
+  } only %}
+
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: modal_content_1,
+    width: "optimal",
+    spacing: "none",
+    theme: "none",
+    scroll: "overall",
+    attributes: {
+      class: "js-bolt-modal--demo-1",
+    },
+  } only %}
+
+  {{ javascript_1 }}
+</div>

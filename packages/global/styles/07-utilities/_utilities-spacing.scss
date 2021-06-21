@@ -1,57 +1,45 @@
-// Add additional spacing size rules for handling auto and zero'd rules
-$bolt-spacing-sizes-extras: (
-  none: 0,
-  auto: auto,
+/* ------------------------------------ *\
+   Spacing Utilities
+\* ------------------------------------ */
+
+/**
+ * Extra options not in the spacing system
+ */
+$bolt-spacing-system-extras: (
+  'auto': auto,
+  'none': 0,
 );
 
-// Merge extra size options into Sass Map of sizes that already exist, tacking on to the front
-$bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
+@each $size in $bolt-spacing-system-extras {
+  $size-name: nth($size, 1);
+  $size-value: nth($size, 2);
 
-// prefix prop name if value set
-@function bolt-prefix-prop-name($propName) {
-  @if ($propName != '') {
-    @return '-' + $propName;
-  } @else {
-    @return $propName;
-  }
-}
+  @each $prop in $bolt-spacing-prop-system {
+    $prop-name: nth($prop, 1);
 
-@mixin bolt-spacing-sizes-utils($breakpoint: null) {
-  @each $prop in $bolt-spacing-properties {
-    @for $i from 1 through length($bolt-spacing-directions) {
-      $direction: nth($bolt-spacing-directions, $i);
+    .u-bolt-#{$prop-name}-#{$size-name} {
+      #{$prop-name}: #{$size-value} !important;
+    }
 
-      @each $type in $bolt-spacing-types {
-        @each $size, $value in $bolt-spacing-sizes {
-          $sizeName: bolt-prefix-prop-name($size);
-          $typeName: bolt-prefix-prop-name($type);
-          $directionName: bolt-prefix-prop-name($direction);
-          $propName: '-' + $prop;
+    @each $direction in $bolt-spacing-direction-system {
+      $axis: '';
 
-          @if ($size== 'none' and $value == 0) {
-            $size: 0;
-          }
+      @if $direction != top and $direction != bottom {
+        $axis: 'x';
+      } @else {
+        $axis: 'y';
+      }
 
-          // Ex. .u-bolt-margin-left-large@small
-          // Ex. .u-bolt-margin-left-squish
-          // Ex. .u-bolt-margin-right
+      .u-bolt-#{$prop-name}-#{$direction}-#{$size-name} {
+        #{$prop-name}-#{$direction}: #{$size-value} !important;
+      }
 
-          .u-bolt#{$propName}#{$directionName}#{$sizeName}#{$typeName}#{$breakpoint} {
-            $sizes: null null null null;
-            $size-index: index($bolt-spacing-directions, $direction);
-            @if ($direction != '') {
-              $sizes: set-nth($sizes, $size-index - 1, $size);
-            } @else {
-              $sizes: $size $size $size $size;
-            }
-            $normalizedSizes: _bolt-normalize-spacing-sizes($sizes, null);
+      @each $breakpoint in $bolt-breakpoints {
+        $breakpoint-name: nth($breakpoint, 1);
 
-            @include _bolt-directional-property(
-              #{$prop},
-              false,
-              $normalizedSizes,
-              important
-            );
+        @include bolt-mq(#{$breakpoint-name}) {
+          .u-bolt-#{$prop-name}-#{$direction}-#{$size-name}\@#{$breakpoint-name} {
+            #{$prop-name}-#{$direction}: #{$size-value} !important;
           }
         }
       }
@@ -59,16 +47,137 @@ $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
   }
 }
 
-@include bolt-spacing-sizes-utils;
+/**
+ * Regular options in the spacing system
+ */
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
-// Loop over our breakpoints
-@each $breakpoint in $bolt-breakpoints {
-  $breakpointName: nth($breakpoint, 1);
-  @include bolt-mq($breakpointName) {
-    @include bolt-spacing-sizes-utils(\@#{$breakpointName});
+  @each $prop in $bolt-spacing-prop-system {
+    $prop-name: nth($prop, 1);
+
+    // All directions
+    .u-bolt-#{$prop-name}-#{$size-name} {
+      #{$prop-name}: var(--bolt-spacing-y-#{$size-name})
+        var(--bolt-spacing-x-#{$size-name}) !important;
+    }
+
+    // Responsive all directions
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
+
+      @include bolt-mq(#{$breakpoint-name}) {
+        .u-bolt-#{$prop-name}-#{$size-name}\@#{$breakpoint-name} {
+          #{$prop-name}: var(--bolt-spacing-y-#{$size-name})
+            var(--bolt-spacing-x-#{$size-name}) !important;
+        }
+      }
+    }
+
+    // One direction
+    @each $direction in $bolt-spacing-direction-system {
+      $axis: '';
+
+      @if $direction != top and $direction != bottom {
+        $axis: 'x';
+      } @else {
+        $axis: 'y';
+      }
+
+      .u-bolt-#{$prop-name}-#{$direction}-#{$size-name} {
+        #{$prop-name}-#{$direction}: var(
+          --bolt-spacing-#{$axis}-#{$size-name}
+        ) !important;
+      }
+
+      // Responsive one direction
+      @each $breakpoint in $bolt-breakpoints {
+        $breakpoint-name: nth($breakpoint, 1);
+
+        @include bolt-mq(#{$breakpoint-name}) {
+          .u-bolt-#{$prop-name}-#{$direction}-#{$size-name}\@#{$breakpoint-name} {
+            #{$prop-name}-#{$direction}: var(
+              --bolt-spacing-#{$axis}-#{$size-name}
+            ) !important;
+          }
+        }
+      }
+    }
   }
 }
 
-@include export-data('spacing-sizes.bolt.json', $bolt-spacing-sizes);
-@include export-data('spacing-properties.bolt.json', $bolt-spacing-properties);
-@include export-data('spacing-directions.bolt.json', $bolt-spacing-directions);
+/**
+ * Negative margins
+ */
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  @each $direction in $bolt-spacing-direction-system {
+    $axis: '';
+
+    @if $direction != top and $direction != bottom {
+      $axis: 'x';
+    } @else {
+      $axis: 'y';
+    }
+
+    .u-bolt-negative-margin-#{$direction}-#{$size-name} {
+      margin-#{$direction}: calc(
+        var(--bolt-spacing-#{$axis}-#{$size-name}) * -1
+      ) !important;
+    }
+  }
+}
+
+/**
+ * @todo: [Mai] We need to deprecate these sizeless names.
+ */
+@each $prop in $bolt-spacing-prop-system {
+  $prop-name: nth($prop, 1);
+
+  .u-bolt-#{$prop-name} {
+    #{$prop-name}: var(--bolt-spacing-y-medium)
+        var(--bolt-spacing-x-medium) !important;
+  }
+
+  @each $direction in $bolt-spacing-direction-system {
+    $axis: '';
+
+    @if $direction != top and $direction != bottom {
+      $axis: 'x';
+    } @else {
+      $axis: 'y';
+    }
+
+    .u-bolt-#{$prop-name}-#{$direction} {
+      #{$prop-name}-#{$direction}: var(
+        --bolt-spacing-#{$axis}-medium
+      ) !important;
+    }
+  }
+}
+
+/**
+ * @todo: [Mai] We need to deprecate these magic options.
+ */
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  // All directions
+  .u-bolt-padding-#{$size-name}-squished {
+    padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
+      var(--bolt-spacing-x-#{$size-name}) !important;
+  }
+
+  // Responsive all directions
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    @include bolt-mq(#{$breakpoint-name}) {
+      .u-bolt-padding-#{$size-name}-squished\@#{$breakpoint-name} {
+        padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
+          var(--bolt-spacing-x-#{$size-name}) !important;
+      }
+    }
+  }
+}

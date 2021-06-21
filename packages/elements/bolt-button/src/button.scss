@@ -1,0 +1,264 @@
+@import '@bolt/core-v3.x';
+
+/**
+ * Button
+ *
+ * Dev notes:
+ * 1. Special tricks are used here to make inline icon work, reference the mixin scss to understand it.
+ * 2. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
+ * 3. Offsets the white space around chevron icons' SVG files.
+ * 4. Icon only button should be a square, the width and height must be of equal values.
+ */
+
+.e-bolt-button {
+  @include bolt-button-native-styles-reset;
+
+  --e-bolt-button-padding-y: calc(var(--bolt-spacing-y-medium) * 0.5);
+  --e-bolt-button-padding-x: var(--bolt-spacing-x-medium);
+  --e-bolt-button-font-size: var(--bolt-type-font-size-small);
+  --e-bolt-button-text-color: var(--m-bolt-bg);
+  --e-bolt-button-line-height: var(--bolt-type-line-height-small);
+  --e-bolt-button-border-radius: #{bolt-border-radius(small)};
+  --e-bolt-button-bg-color: var(--m-bolt-primary);
+  --e-bolt-button-icon-only-size: 1.4em;
+
+  display: inline-block;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  padding: var(--e-bolt-button-padding-y) var(--e-bolt-button-padding-x);
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--e-bolt-button-font-size);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--e-bolt-button-text-color);
+  line-height: var(--e-bolt-button-line-height);
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  border-radius: var(--e-bolt-button-border-radius);
+  background-color: var(--e-bolt-button-bg-color);
+  transition: transform var(--bolt-transition);
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    transition: opacity var(--bolt-transition),
+      box-shadow var(--bolt-transition), background-color var(--bolt-transition);
+  }
+
+  &:before {
+    opacity: 0.8;
+    box-shadow: 0 0.2em 0.75em var(--m-bolt-neutral);
+  }
+
+  &:after {
+    opacity: 0;
+  }
+
+  &:hover {
+    transform: translate3d(0, -2px, 0);
+
+    &:after {
+      opacity: 0.4;
+      box-shadow: 0 0.4em 1.5em var(--m-bolt-primary);
+    }
+  }
+
+  &:focus,
+  &:active:not(:disabled) {
+    transform: translate3d(0, 0, 0);
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    --e-bolt-button-text-color: var(--m-bolt-text-on-disabled);
+    --e-bolt-button-bg-color: var(--m-bolt-disabled);
+    transform: translate3d(0, 0, 0);
+    cursor: not-allowed;
+
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+}
+
+$_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
+
+@each $hierarchy-name in $_bolt-button-hierarchy {
+  .e-bolt-button--#{$hierarchy-name} {
+    @if $hierarchy-name == tertiary or $hierarchy-name == transparent {
+      &:hover {
+        transform: translate3d(0, 0, 0);
+
+        &:after {
+          opacity: 0.2;
+          box-shadow: none;
+          background-color: var(--bolt-color-gray);
+        }
+      }
+    }
+
+    @if $hierarchy-name != transparent {
+      --e-bolt-button-text-color: var(--m-bolt-text-on-#{$hierarchy-name});
+      --e-bolt-button-bg-color: var(--m-bolt-#{$hierarchy-name});
+
+      @if $hierarchy-name == secondary {
+        &:before {
+          opacity: 0.4;
+        }
+      }
+
+      @if $hierarchy-name == tertiary {
+        backdrop-filter: blur(0.1em);
+
+        &:before {
+          opacity: 0;
+        }
+
+        &:after {
+          box-shadow: 0 0 0 2px var(--m-bolt-primary);
+        }
+      }
+    } @else {
+      --e-bolt-button-text-color: var(--m-bolt-link);
+      --e-bolt-button-bg-color: transparent;
+
+      &:before,
+      &:after {
+        display: none;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+      }
+    }
+  }
+}
+
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  @if $size-name ==
+    xsmall or
+    $size-name ==
+    small or
+    $size-name ==
+    medium or
+    $size-name ==
+    large {
+    .e-bolt-button--#{$size-name} {
+      @if $size-name == large {
+        --e-bolt-button-padding-y: calc(var(--bolt-spacing-y-medium) * 0.75);
+        --e-bolt-button-padding-x: var(--bolt-spacing-x-medium);
+        --e-bolt-button-font-size: var(--bolt-type-font-size-medium);
+        --e-bolt-button-line-height: var(--bolt-type-line-height-medium);
+        --e-bolt-button-icon-only-size: 1.75em;
+      } @else {
+        --e-bolt-button-padding-y: calc(
+          var(--bolt-spacing-y-#{$size-name}) * 0.5
+        );
+        --e-bolt-button-padding-x: var(--bolt-spacing-x-#{$size-name});
+      }
+
+      @if $size-name == xsmall {
+        --e-bolt-button-font-size: var(--bolt-type-font-size-xsmall);
+        --e-bolt-button-line-height: var(--bolt-type-line-height-xsmall);
+        --e-bolt-button-icon-only-size: 1.1em;
+      }
+    }
+  }
+}
+
+@each $radius-name, $radius-value in $bolt-border-radius-values {
+  .e-bolt-button--border-radius-#{$radius-name} {
+    --e-bolt-button-border-radius: #{$radius-value};
+  }
+}
+
+.e-bolt-button--block {
+  display: block;
+  width: 100%;
+}
+
+.e-bolt-button--inline\@from-small {
+  display: block;
+  width: 100%;
+
+  @include bolt-mq(small) {
+    display: inline-block;
+    width: auto;
+  }
+}
+
+.e-bolt-button--icon-only {
+  width: calc(
+    var(--e-bolt-button-padding-y) * 2 + var(--e-bolt-button-line-height) * 1em
+  ); /* [4] */
+  height: calc(
+    var(--e-bolt-button-padding-y) * 2 + var(--e-bolt-button-line-height) * 1em
+  );
+  padding: 0;
+}
+
+[class*='e-bolt-button__icon'] {
+  @include bolt-inline-icon-wrapper; /* [1] */
+}
+
+.e-bolt-button__icon-before {
+  margin-right: calc(
+    var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
+  ); /* [2] */
+
+  > bolt-icon[size] {
+    margin-right: var(--bolt-spacing-x-xxsmall);
+  }
+
+  > bolt-icon[name*='chevron-'] {
+    margin-left: calc(
+      var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * -2em
+    ); /* [3] */
+  }
+}
+
+.e-bolt-button__icon-after {
+  margin-left: calc(
+    var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * 1em
+  ); /* [2] */
+
+  > bolt-icon[size] {
+    margin-left: var(--bolt-spacing-x-xxsmall);
+  }
+
+  > bolt-icon[name*='chevron-'] {
+    margin-right: calc(
+      var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xxsmall) * -2em
+    ); /* [3] */
+  }
+}
+
+.e-bolt-button__icon-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 1em;
+  height: 1em;
+  font-size: var(--e-bolt-button-icon-only-size);
+
+  > * {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate3d(-50%, -50%, 0) !important;
+  }
+}

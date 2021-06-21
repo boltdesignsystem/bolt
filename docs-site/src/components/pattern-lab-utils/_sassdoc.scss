@@ -1,5 +1,5 @@
 .c-bds-docs--sassdoc__item {
-  @include bolt-margin-bottom(xlarge);
+  margin-bottom: var(--bolt-spacing-y-xlarge);
 
   &:first-of-type hr:first-child {
     display: none;
@@ -9,13 +9,13 @@
 .c-bds-docs__return,
 .c-bds-docs__example,
 .c-bds-docs-table--sassdoc {
-  @include bolt-margin-bottom(medium);
+  margin-bottom: var(--bolt-spacing-y-medium);
 }
 
 .c-bds-docs__return-label {
-  @include bolt-font-weight(bold);
-  color: bolt-color(indigo, light);
   font-family: monospace;
+  font-weight: var(--bolt-type-font-weight-bold);
+  color: bolt-color(navy, light);
 }
 
 .c-bds-docs__meta {
@@ -25,14 +25,15 @@
 
 .c-bds-docs__meta-item {
   details {
-    @include bolt-margin(0);
+    margin: 0;
 
     &[open] summary {
-      @include bolt-font-weight(bold);
+      font-weight: var(--bolt-type-font-weight-bold);
     }
   }
+
   summary {
-    @include bolt-margin(0);
+    margin: 0;
     user-select: none;
 
     &:focus {
@@ -50,7 +51,8 @@
   max-height: calc(100vh - 4.5rem); // [1]
   overflow-y: auto;
 
-  bolt-dropdown { // [2]
+  bolt-dropdown {
+    // [2]
     width: calc(100% - 6px);
     margin: 0 auto;
   }

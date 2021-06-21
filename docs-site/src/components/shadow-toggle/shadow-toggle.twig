@@ -1,0 +1,28 @@
+{#
+/* --------------------------------
+  NOTE: This is a fork of our upcoming <bolt-radio-switch> component!
+  @todo: Once <bolt-radio-switch> is more fully baked, the majority of this code should be able to be cleared out
+-------------------------------- */
+#}
+
+<bolt-button size="small" color="secondary" on-click="show" on-click-target="js-bolt-modal-debug-panel" icon-only style="position: fixed; bottom: 0.5rem; right: 0.5rem;" border-radius="full">
+  <replace-with-children class="u-bolt-visuallyhidden">Debug Panel</replace-with-children>
+  <bolt-icon slot="before" name="java"></bolt-icon>
+</bolt-button>
+
+<bolt-modal scroll="overall" class="js-bolt-modal-debug-panel" width="auto">
+  <bolt-shadow-toggle>
+    <ul class="c-bolt-shadow-toggle">
+      <li class="c-bolt-shadow-toggle__item">
+        <input class="c-bolt-shadow-toggle__input reset" type="radio" value="enable-shadow" name="radioSwitch" id="radio1">
+        <label class="c-bolt-shadow-toggle__label" for="radio1">Enable Shadow DOM</label>
+      </li>
+
+      <li class="c-bolt-shadow-toggle__item">
+        <input class="c-bolt-shadow-toggle__input reset" type="radio" name="radioSwitch" id="radio2" value="disable-shadow">
+        <label class="c-bolt-shadow-toggle__label" for="radio2">Disable Shadow DOM</label>
+        <div aria-hidden="true" class="c-bolt-shadow-toggle__toggle"><span class="c-bolt-shadow-toggle__marker"></span></div>
+      </li>
+    </ul>
+  </bolt-shadow-toggle>
+</bolt-modal>

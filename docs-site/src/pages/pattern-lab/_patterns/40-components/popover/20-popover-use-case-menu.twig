@@ -1,0 +1,99 @@
+{% set description %}
+  Create a popover menu by combining the Popover and Menu components.
+{% endset %}
+
+{% set notes %}
+  It is recommended to set the spacing to none because the Menu component already has spacing built in.
+{% endset %}
+
+{% set demo %}
+  {% set trigger %}
+    {% include '@bolt-components-button/button.twig' with {
+      text: 'This triggers a popover menu',
+    } only %}
+  {% endset %}
+  {% set content %}
+    {% include '@bolt-components-menu/menu.twig' with {
+      title: 'Choose one of these',
+      items: [
+        {
+          content: 'Menu item 1',
+        },
+        {
+          content: 'Menu item 2',
+        },
+        {
+          content: 'Menu item 2',
+        },
+      ]
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: trigger,
+    content: content,
+    spacing: 'none',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set trigger %}
+  {% include '@bolt-components-button/button.twig' with {
+    text: 'This triggers a popover menu',
+  } only %}
+{% endset %}
+{% set content %}
+  {% include '@bolt-components-menu/menu.twig' with {
+    title: 'Choose one of these',
+    items: [
+      {
+        content: 'Menu item 1',
+      },
+      {
+        content: 'Menu item 2',
+      },
+      {
+        content: 'Menu item 2',
+      },
+    ]
+  } only %}
+{% endset %}
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: trigger,
+  content: content,
+  spacing: 'none',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-popover>
+  <bolt-button>
+    This triggers a popover menu
+  </bolt-button>
+  <div slot="content">
+    <bolt-menu>
+      <bolt-menu-item>
+        Menu Item 1
+      </bolt-menu-item>
+      <bolt-menu-item>
+        Menu Item 2
+      </bolt-menu-item>
+      <bolt-menu-item>
+        Menu Item 3
+      </bolt-menu-item>
+    </bolt-menu>
+  </div>
+</bolt-popover>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Popover Menu',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

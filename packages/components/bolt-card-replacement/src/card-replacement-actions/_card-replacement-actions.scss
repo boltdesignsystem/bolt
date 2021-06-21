@@ -1,0 +1,41 @@
+/* ------------------------------------ *\
+   card-replacement Actions
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_card-replacement-settings-and-tools.scss';
+
+bolt-card-replacement-actions {
+  position: relative;
+  overflow: hidden;
+
+  &:last-child {
+    margin-top: auto;
+  }
+
+  &:only-child {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  &:not(:last-child) {
+    border-bottom-color: $bolt-card-replacement-border-color;
+    border-bottom-style: $bolt-card-replacement-border-style;
+    border-bottom-width: $bolt-card-replacement-border-width;
+  }
+
+  @at-root * + #{&} {
+    border-top-color: $bolt-card-replacement-border-color;
+    border-top-style: $bolt-card-replacement-border-style;
+    border-top-width: $bolt-card-replacement-border-width;
+  }
+}
+
+.c-bolt-card_replacement__actions {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: $bolt-card-replacement-z-index-inner-link;
+  width: 100%;
+  margin-top: auto;
+}

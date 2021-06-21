@@ -1,0 +1,45 @@
+diff --git a/node_modules/lazysizes/lazysizes.js b/node_modules/lazysizes/lazysizes.js
+index de0354d..e547391 100644
+--- a/node_modules/lazysizes/lazysizes.js
++++ b/node_modules/lazysizes/lazysizes.js
+@@ -139,9 +139,13 @@
+ 		}
+ 	};
+
+-	var getCSS = function (elem, style){
+-		return (getComputedStyle(elem, null) || {})[style];
+-	};
++	var getCSS = function(elem, style) {
++    try {
++      return (getComputedStyle(elem, null) || {})[style];
++    } catch {
++      return {}[style];
++    }
++  };
+
+ 	var getWidth = function(elem, parent, width){
+ 		width = width || elem.offsetWidth;
+@@ -596,8 +600,21 @@
+ 			_: function(){
+ 				started = Date.now();
+
+-				lazysizes.elements = document.getElementsByClassName(lazySizesCfg.lazyClass);
+-				preloadElems = document.getElementsByClassName(lazySizesCfg.lazyClass + ' ' + lazySizesCfg.preloadClass);
++        lazysizes.elements = lazySizesCfg.getElements
++          ? lazySizesCfg.getElements(`.${lazySizesCfg.lazyClass}`)
++          : document.getElementsByClassName(lazySizesCfg.lazyClass);
++
++        preloadElems = lazySizesCfg.getElements
++          ? lazySizesCfg.getElements(
++              `.${lazySizesCfg.lazyClass}.${
++                lazySizesCfg.preloadClass
++              }`,
++            )
++          : document.getElementsByClassName(
++              lazySizesCfg.lazyClass +
++                ' ' +
++                lazySizesCfg.preloadClass,
++            );
+
+ 				addEventListener('scroll', throttledCheckElements, true);
+

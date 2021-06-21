@@ -1,0 +1,573 @@
+/* ------------------------------------ *\
+   Tabs
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '_tabs-settings-and-tools.scss';
+
+@include bolt-custom-element('bolt-tabs', block, medium);
+
+bolt-tabs {
+  text-align: initial; // unset user-agent styles targeting `align` prop
+
+  &.is-resizing {
+    overflow: hidden;
+  }
+}
+
+@include bolt-repeat-rule(
+  (
+    'bolt-tabs.is-opening, bolt-tabs.is-closing',
+    ':host(.is-opening), :host(.is-closing)'
+  )
+) {
+  .c-bolt-tabs__dropdown {
+    overflow: hidden;
+  }
+}
+
+.c-bolt-tabs__label {
+  // @todo: copied from navlink, refactor into shared styles
+  display: flex;
+  flex-shrink: 0;
+  opacity: 0.9;
+  position: relative;
+  padding-bottom: $bolt-tabs-selected-border-size; // add space for negative margin of active tab underline
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--m-bolt-link);
+  line-height: var(--bolt-type-line-height-medium);
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: $bolt-tabs-bg-border-radius;
+  border-color: transparent;
+  transition: opacity $bolt-tabs-text-transition,
+    color $bolt-transition-timing ease-out;
+
+  &:active {
+    opacity: bolt-opacity(100);
+  }
+
+  &[aria-selected='true'] {
+    opacity: bolt-opacity(100);
+    color: var(--m-bolt-headline);
+
+    .c-bolt-tabs__label-text:after {
+      opacity: bolt-opacity(100);
+      width: 100%;
+    }
+  }
+
+  &.c-bolt-tabs__label--vertical-border {
+    &[aria-selected='true'] {
+      .c-bolt-tabs__label-text:before {
+        display: block;
+        opacity: bolt-opacity(100);
+        height: calc(100% - #{$bolt-tabs-selected-border-size * 2});
+      }
+
+      .c-bolt-tabs__label-text:after {
+        display: none;
+      }
+    }
+  }
+
+  @at-root .c-bolt-tabs--inset & {
+    &:active {
+      .c-bolt-tabs__label-inner:before {
+        opacity: 0.2;
+        transform: scale3d(1, 1, 1);
+        animation: none;
+      }
+    }
+
+    &:not([aria-selected='true']) {
+      &:hover,
+      &:focus {
+        .c-bolt-tabs__label-inner:before {
+          animation: a-bolt-tabs-bg-hover $bolt-tabs-bg-transition-timing both;
+        }
+      }
+    }
+  }
+
+  @at-root .c-bolt-tabs:not(.c-bolt-tabs--inset) & {
+    &:active {
+      .c-bolt-tabs__label-text:after {
+        opacity: bolt-opacity(100);
+      }
+    }
+
+    &:not([aria-selected='true']) {
+      &:hover,
+      &:focus {
+        .c-bolt-tabs__label-text:after {
+          opacity: bolt-opacity(40);
+          width: 100%;
+        }
+      }
+
+      &:active {
+        .c-bolt-tabs__label-text:after {
+          opacity: bolt-opacity(100);
+        }
+      }
+
+      .c-bolt-tabs__label-text:after {
+        transition: opacity $bolt-tabs-text-transition,
+          width $bolt-tabs-text-transition;
+      }
+    }
+
+    // @todo: these selectors are getting very confusing, time to refactor
+    &.c-bolt-tabs__label--vertical-border {
+      .c-bolt-tabs__label-text {
+        &:before {
+          left: -#{$bolt-tabs-selected-border-size * 2};
+        }
+
+        &:after {
+          display: none;
+        }
+      }
+
+      &:not([aria-selected='true']) {
+        &:hover {
+          .c-bolt-tabs__label-text {
+            &:before {
+              opacity: bolt-opacity(40);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// extra wrapping SPAN to help with inset padding
+.c-bolt-tabs__label-inner {
+  display: block;
+  position: relative;
+  font-weight: var(
+    --bolt-type-font-weight-semibold
+  ); // include font-weight here to override Trigger defaults
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale3d(0, 0, 0);
+    width: 100%;
+    height: 100%;
+    border-radius: $bolt-tabs-bg-border-radius;
+    background-color: var(--m-bolt-link);
+    transition: all 0.1s ease;
+  }
+}
+
+.c-bolt-tabs__label-text {
+  display: block;
+  position: relative; // allows this element to stack on top of `.c-bolt-tabs__label-inner:before`
+
+  &:before,
+  &:after {
+    content: '';
+    opacity: bolt-opacity(0);
+    position: absolute;
+    background-color: var(--m-bolt-primary);
+    will-change: opacity;
+    transition: opacity $bolt-tabs-text-transition;
+  }
+
+  // dropdown active state (vertical)
+  &:before {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: $bolt-tabs-selected-border-size;
+    height: 0;
+  }
+
+  // primary active state (horizontal)
+  &:after {
+    bottom: -($bolt-tabs-selected-border-size);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: $bolt-tabs-selected-border-size;
+  }
+}
+
+// Label spacing
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  @if (
+    $size-name !=
+      'xxsmall' and
+      $size-name !=
+      'large' and
+      $size-name !=
+      'xlarge' and
+      $size-name !=
+      'xxlarge'
+  ) {
+    .c-bolt-tabs:not(.c-bolt-tabs--inset) {
+      .c-bolt-tabs__label--spacing-#{$size-name} {
+        .c-bolt-tabs__label-inner {
+          padding-right: calc(var(--bolt-spacing-x-#{$size-name}) / 2);
+          padding-left: calc(var(--bolt-spacing-x-#{$size-name}) / 2);
+        }
+
+        .c-bolt-tabs__label-text {
+          padding-right: 0;
+          padding-left: 0;
+        }
+        // first-of-type for no-JS
+        &:first-child,
+        &:first-of-type {
+          .c-bolt-tabs__label-inner {
+            margin-left: calc(var(--bolt-spacing-x-#{$size-name}) / -2);
+          }
+        }
+        // last-of-type for no-JS
+        &:last-child,
+        &:last-of-type {
+          .c-bolt-tabs__label-inner {
+            margin-right: calc(var(--bolt-spacing-x-#{$size-name}) / -2);
+          }
+        }
+      }
+    }
+
+    .c-bolt-tabs--inset {
+      .c-bolt-tabs__label--spacing-#{$size-name} {
+        .c-bolt-tabs__label-text {
+          // Use longhand instead of short hand to fix a bug with older versions of Edge (e.g. 42, 17).
+          padding-top: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
+          padding-right: var(--bolt-spacing-x-#{$size-name});
+          padding-bottom: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
+          padding-left: var(--bolt-spacing-x-#{$size-name});
+        }
+      }
+    }
+  }
+}
+
+.c-bolt-tabs__nav {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 0;
+
+  // Label align
+  @at-root .c-bolt-tabs--align-center & {
+    justify-content: center;
+  }
+  @at-root .c-bolt-tabs--align-start & {
+    justify-content: flex-start;
+  }
+  @at-root .c-bolt-tabs--align-end & {
+    justify-content: flex-end;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+
+  .is-hidden {
+    display: none;
+  }
+}
+
+.c-bolt-tabs__dropdown {
+  .c-bolt-tabs__label {
+    flex-grow: 1;
+  }
+}
+
+// No-JS styles
+bolt-tabs:not([ready]) {
+  .c-bolt-tabs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  // No-JS align styles
+  .c-bolt-tabs--align-center {
+    justify-content: center;
+  }
+
+  .c-bolt-tabs--align-start {
+    justify-content: flex-start;
+  }
+
+  .c-bolt-tabs--align-end {
+    justify-content: flex-end;
+  }
+}
+
+.c-bolt-tabs__input {
+  opacity: 0;
+  position: absolute;
+
+  &:checked
+    + .c-bolt-tabs__label
+    + .c-bolt-tab-panel__outer
+    .c-bolt-tab-panel__content {
+    display: block;
+  }
+}
+
+.c-bolt-tabs__input:checked + .c-bolt-tabs__label {
+  opacity: bolt-opacity(100);
+  color: var(--m-bolt-headline);
+
+  .c-bolt-tabs__label-text:after {
+    opacity: bolt-opacity(100);
+    width: 100%;
+  }
+
+  @at-root .c-bolt-tabs--inset & {
+    &:not(:active) {
+      &:hover,
+      &:focus {
+        .c-bolt-tabs__label-inner:before {
+          animation: none;
+        }
+      }
+    }
+  }
+
+  @at-root .c-bolt-tabs:not(.c-bolt-tabs--inset) & {
+    &:hover {
+      .c-bolt-tabs__label-text:after {
+        opacity: bolt-opacity(100);
+      }
+    }
+  }
+}
+
+/* ------------------------------------ *\
+   Tabs dropdown
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '_tabs-settings-and-tools.scss';
+
+// required so the dropdown can be positioned consistently
+.c-bolt-tabs__show-more {
+  display: flex;
+  position: relative;
+  padding-bottom: $bolt-tabs-selected-border-size; // add space for negative margin of active tab underline
+
+  @include bolt-mq($until: $bolt-tabs-xsmall-bp) {
+    margin-left: auto;
+  }
+
+  &.is-invisible {
+    visibility: hidden;
+  }
+}
+
+.c-bolt-tabs__dropdown-list {
+  box-sizing: border-box;
+  opacity: bolt-opacity(0);
+  transform: translate3d(0, calc(var(--bolt-spacing-y-medium) * -1), 0);
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+  list-style: none;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0s,
+    opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
+
+  @include bolt-mq(small) {
+    padding-right: var(--bolt-spacing-x-xsmall);
+    padding-left: var(--bolt-spacing-x-xsmall);
+  }
+
+  .c-bolt-tabs--show-dropdown & {
+    opacity: bolt-opacity(100);
+    transform: translate3d(0, 0, 0);
+    pointer-events: auto;
+    transition-delay: 0.2s, 0.1s;
+  }
+}
+
+.c-bolt-tabs__dropdown {
+  @include bolt-z-index(tooltip);
+  @include bolt-shadow('level-10');
+  visibility: hidden;
+  position: absolute;
+  top: calc(100% - #{$bolt-tabs-selected-border-size});
+  right: 0;
+  width: auto;
+  min-width: 12rem;
+  max-width: calc(100vw - var(--bolt-spacing-x-large));
+  max-height: 0;
+  border: 1px solid var(--m-bolt-border);
+  border-bottom-right-radius: $bolt-border-radius;
+  border-bottom-left-radius: $bolt-border-radius;
+  background-color: var(--m-bolt-bg);
+  transition: max-height 0.3s cubic-bezier(0.28, 0.11, 0.32, 1) 0s,
+    visibility 0s linear 0.3s;
+
+  * {
+    white-space: normal;
+  }
+
+  @include bolt-mq($bolt-tabs-xsmall-bp) {
+    max-width: 100%;
+  }
+
+  .c-bolt-tabs--show-dropdown & {
+    visibility: visible;
+    max-height: 400px;
+    max-height: calc(100vh - 48px - 48px);
+    pointer-events: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transition-delay: 0.1s, 0s;
+  }
+
+  .is-closing &,
+  .is-opening & {
+    overflow: hidden;
+  }
+}
+
+.c-bolt-tabs__show-button {
+  @include bolt-button-native-styles-reset;
+
+  display: flex;
+  flex-shrink: 0; // without this IE sometimes stacks text and icon
+  align-items: center;
+  position: relative;
+  padding: 0 var(--bolt-spacing-x-small);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--m-bolt-headline);
+  line-height: var(--bolt-type-line-height-medium);
+  cursor: pointer;
+  border-radius: $bolt-tabs-bg-border-radius;
+  // Added border so that &:after,&:focus doesn't change the size of the band
+  // We should consider making this thin dotted style a mixin to share with tabs
+  border-width: thin;
+  border-style: solid;
+  border-color: transparent;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+
+  &:before {
+    content: '';
+    opacity: bolt-opacity(0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    border-radius: $bolt-tabs-bg-border-radius;
+    background-color: var(--m-bolt-primary);
+    transition: all 0.1s ease;
+  }
+
+  &:hover {
+    &:before {
+      opacity: 0.1;
+      animation: a-bolt-tabs-bg-hover $bolt-tabs-bg-transition-timing both;
+    }
+  }
+
+  &:focus,
+  &.is-active {
+    border-style: dotted;
+    border-color: var(--m-bolt-primary);
+    outline: none;
+  }
+
+  &.is-active,
+  &:active {
+    &:before {
+      opacity: 0.1;
+    }
+  }
+}
+
+.c-bolt-tabs__show-text {
+  position: relative;
+  z-index: 10;
+
+  @include bolt-mq($until: $bolt-tabs-xsmall-bp) {
+    @include bolt-visuallyhidden;
+  }
+
+  & + * {
+    @include bolt-mq($from: $bolt-tabs-xsmall-bp) {
+      margin-left: var(--bolt-spacing-x-xsmall);
+    }
+  }
+}
+
+.c-bolt-tabs__show-icon {
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+  font-size: 1em;
+  line-height: 0;
+  transition: transform 0.2s;
+
+  @include bolt-mq($until: $bolt-tabs-xsmall-bp) {
+    font-size: 24px;
+  }
+
+  .c-bolt-tabs--show-dropdown & {
+    transform: rotate(180deg);
+  }
+}
+
+.c-bolt-tabs__dropdown-list > .c-bolt-tabs__item {
+  opacity: bolt-opacity(0);
+  transform: translate3d(0, calc(var(--bolt-spacing-y-large) * -1), 0);
+  transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1),
+    transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1); // transition:
+  transition-property: transform, opacity;
+}
+
+@for $quantity from 1 through 12 {
+  $time: 0;
+
+  @for $i from $quantity through 1 {
+    $time: $time + 50;
+
+    bolt-tabs:not(.is-closing)
+      .c-bolt-tabs__dropdown-list
+      > .c-bolt-tabs__item:nth-last-child(n + #{$quantity}),
+    bolt-tabs:not(.is-closing)
+      .c-bolt-tabs__dropdown-list
+      > .c-bolt-tabs__item:nth-last-child(n + #{$quantity})
+      ~ .c-bolt-tabs__item:nth-child(#{$i}) {
+      transition-delay: $time + ms;
+    }
+
+    .is-closing
+      .c-bolt-tabs__dropdown-list
+      > .c-bolt-tabs__item:nth-child(#{$i}) {
+      transition-delay: $i * 17 + ms;
+    }
+  }
+
+  $time: $time + 50;
+}
+
+.c-bolt-tabs--show-dropdown .c-bolt-tabs__dropdown-list > .c-bolt-tabs__item {
+  opacity: bolt-opacity(100);
+  transform: translate3d(0, 0, 0);
+}

@@ -1,0 +1,42 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-list"].schema %}
+{% set regular_display_options = [
+  "block",
+  "flex",
+  "inline",
+] %}
+{% set placeholder_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 1",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 2",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 3",
+    size: "xsmall",
+  } only %}
+{% endset %}
+
+{# Start component specific code #}
+{% for display in regular_display_options %}
+  {% for spacing in schema.properties.spacing.enum %}
+    <h3>{{ display|capitalize }} list with spacing ({{ spacing }})</h3>
+    {% include "@bolt-components-list/list.twig" with {
+      display: display,
+      spacing: spacing,
+      items: [
+        placeholder_1,
+        placeholder_2,
+        placeholder_3,
+      ]
+    } only %}
+  {% endfor %}
+{% endfor %}
+{# End component specific code #}

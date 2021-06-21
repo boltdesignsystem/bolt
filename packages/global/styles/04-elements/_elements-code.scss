@@ -1,10 +1,6 @@
 /* ------------------------------------ *\
-    ELEMENTS - CODE
+   Pre and Code resets
 \* ------------------------------------ */
-
-$bolt-code-border-radius: $bolt-border-radius;
-$bolt-code-background-color: rgba(bolt-color(indigo, light), 0.08);
-
 
 pre,
 code {
@@ -14,35 +10,38 @@ code {
   word-spacing: normal;
   word-break: normal;
   word-wrap: break-word;
-  color: bolt-theme(text);
+  color: var(--bolt-color-black);
   text-align: left;
-  border-radius: $bolt-code-border-radius;
+  border-radius: bolt-border-radius(small);
 }
 
 pre {
-  @include bolt-padding(small, squished);
-  overflow-y: auto;
-  overflow-x: auto;
-
   display: block;
-  background-color: $bolt-code-background-color;
+  overflow: auto;
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  border: 1px solid var(--bolt-color-white);
+  box-shadow: 0 0 6px var(--bolt-color-gray-xlight);
+  background-color: var(--bolt-color-gray-xlight);
 }
 
 code {
-  @include bolt-margin(0);
-  @include bolt-padding(2px 0.25rem 2px 0.3rem); // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
-  @include bolt-font-family(code);
-  @include bolt-font-weight(regular);
-  @include bolt-font-size(small);
-
   display: inline;
+  margin: 0;
+  padding: 2px 0.25rem 2px 0.3rem; // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
+  font-family: var(--bolt-type-font-family-code);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-regular);
+  line-height: var(--bolt-type-line-height-small);
   letter-spacing: 0.05rem;
-  background-color: $bolt-code-background-color;
+  border: 1px solid var(--bolt-color-white);
+  box-shadow: 0 0 6px var(--bolt-color-gray-xlight);
+  background-color: var(--bolt-color-gray-xlight);
 }
 
 pre code {
-  @include bolt-padding(0);
-
   display: block;
+  padding: 0;
+  border: none;
+  box-shadow: none;
   background-color: transparent;
 }

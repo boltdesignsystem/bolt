@@ -1,60 +1,80 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import { ifDefined } from 'lit-html/directives/if-defined';
-
-// Use 'dedupe' version instead of 'bind' to help merge initial classes with those defined here
+import {
+  customElement,
+  BoltElement,
+  html,
+  ifDefined,
+  unsafeCSS,
+} from '@bolt/element';
 import classNames from 'classnames/dedupe';
+import styles from './image.scss';
+import { lazySizes } from './_image-lazy-sizes';
+import schema from '../image.schema';
+import '@bolt/core-v3.x/utils/optimized-resize';
 
-import imageStyles from './image.scss';
+let cx = classNames.bind(styles);
+let passiveIfSupported = false;
 
-import schema from '../image.schema.yml';
+// from https://github.com/aFarkas/lazysizes/blob/gh-pages/plugins/respimg/ls.respimg.js#L24
+const img = document.createElement('img');
+const supportsSrcset = 'sizes' in img && 'srcset' in img;
 
-import './_image-lazy-sizes';
+// https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners
+try {
+  window.addEventListener(
+    'test',
+    null,
+    Object.defineProperty({}, 'passive', {
+      // eslint-disable-next-line getter-return
+      get() {
+        // @ts-ignore
+        passiveIfSupported = { passive: true };
+      },
+    }),
+  );
+} catch (err) {}
 
-let cx = classNames.bind(imageStyles);
+@customElement('bolt-image')
+class BoltImage extends BoltElement {
+  static schema = schema;
 
-@define
-class BoltImage extends withLitHtml() {
-  static is = 'bolt-image';
-
-  static props = {
-    src: props.string,
-    alt: props.string,
-    noLazy: props.boolean,
-    srcset: props.string,
-    sizes: props.string,
-    ratio: props.string,
-    maxWidth: props.string,
-    placeholderColor: props.string,
-    placeholderImage: props.string,
-    zoom: props.boolean,
-    cover: props.boolean,
-  };
-
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    self.schema = this.getModifiedSchema(schema, [
-      'lazyload',
-      'useAspectRatio',
-    ]);
-    return self;
+  static get properties() {
+    return {
+      ...this.props,
+      // deprecated
+      ratio: {
+        type: String,
+      },
+      zoom: {
+        type: Boolean,
+        reflect: true,
+      },
+    };
   }
 
-  lazyloadImage(image) {
-    if (!this.isLoaded) {
-      // Note: This immediately unveils the image. Add intersection observer?
-      lazySizes.loader.unveil(image);
-      this.isLoaded = true;
-    }
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
-  connecting() {
+  constructor() {
+    super();
+    this.onResize = this.onResize.bind(this);
+    this.onLazyLoaded = this.onLazyLoaded.bind(this);
+    this.initialClasses = [];
+    // Must manually set default because ratio is "deprecated" and will be filtered out by `json-schema-props` decorator
+    this.ratio = 'auto';
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+    window.removeEventListener('debouncedResize', this.onResize);
+    this.isLazyLoaded = false;
+  }
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
     // IE fires this twice, only let it remove children once
     if (!this._wasInitiallyRendered) {
-      super.connecting && super.connecting();
-
       const image = this.querySelector('.c-bolt-image__image');
       this.initialClasses = image ? [].slice.call(image.classList) : [];
 
@@ -64,85 +84,167 @@ class BoltImage extends withLitHtml() {
     }
   }
 
-  rendered() {
-    super.rendered && super.rendered();
+  onResize() {
+    // auto calculate the sizes prop for:
+    // - non-lazy loaded images
+    //   - that don't have a sizes prop specifically set OR
+    //   - that DO have a sizes prop but it's set to auto
+    // - lazy loaded images
+    //   - that have already been lazyloaded by lazysizes + size has changed
+    //
+    if (
+      (this.noLazy &&
+        (this.getAttribute('sizes') === 'auto' ||
+          !this.getAttribute('sizes')) &&
+        this.offsetWidth > 0) ||
+      (this.isLazyLoaded &&
+        this.offsetWidth > 0 &&
+        this.sizes.replace('px', '') !== this.offsetWidth)
+    ) {
+      this.sizes = `${this.offsetWidth}px`;
+    }
+  }
 
-    const lazyImage = this.renderRoot.querySelector('.js-lazyload');
+  // fires when lazysizes has finished lazyloading a particular component.
+  onLazyLoaded(e) {
+    this.isLazyLoaded = true;
 
-    if (lazyImage) {
-      // check if placeholder image has loaded; lazySizes will only unveil an image that is "complete"
-      if (lazyImage.complete) {
-        this.lazyloadImage(lazyImage);
-      } else {
-        lazyImage.onload = () => {
-          this.lazyloadImage(lazyImage);
-        };
+    // delete all element references of this particular image from the lazySizes elements queue
+    lazySizes.elements.forEach((item, index) => {
+      if (item === this.lazyImage) {
+        delete lazySizes.elements[index];
       }
+    });
+
+    this.lazyImage.removeEventListener('lazyloaded', this.onLazyLoaded);
+    window.addEventListener('debouncedResize', this.onResize);
+  }
+
+  firstUpdated(changedProperties) {
+    super.firstUpdated && super.firstUpdated(changedProperties);
+    // if image should lazyload
+
+    if (!this.noLazy) {
+      this.lazyImage =
+        this.lazyImage ||
+        this.renderRoot.querySelector(`.${lazySizes.cfg.lazyClass}`);
+
+      // if component contains a lazy image that is rendering for the first time, but hasn't yet lazyloaded
+
+      // force unveil lazyloaded SVGs. Workaround to fix lazyloaded SVGs not loading in IE 11
+      if (this._isSvg && this.lazyImage && !supportsSrcset) {
+        this.sizes = `${this.offsetWidth}px`;
+        this.isLazyLoaded = true;
+      } else if (this.lazyImage) {
+        this.lazyImage.addEventListener('lazyloaded', this.onLazyLoaded);
+        // `lazySizes.elements` may be undefined on first load. That's ok - the line below is just to catch JS injected images.
+
+        const self = this; // required so checkIfLazySizesReady has the right scope
+
+        // wait until lazySizes.elements is available
+        const waitForLazySizes = setInterval(checkIfLazySizesReady, 50);
+        // eslint-disable-next-line no-inner-declarations
+        function checkIfLazySizesReady() {
+          if (lazySizes.elements) {
+            lazySizes.elements && lazySizes.elements.push(self.lazyImage);
+            lazySizes.loader.checkElems();
+            clearInterval(waitForLazySizes);
+          }
+        }
+      }
+    } else {
+      // debounce setting the `sizes` prop
+      window.addEventListener('debouncedResize', this.onResize);
     }
   }
 
   render() {
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const {
-      src,
-      alt,
-      noLazy,
-      srcset,
-      sizes,
-      ratio,
-      maxWidth,
-      placeholderColor,
-      placeholderImage,
-      zoom,
-      cover,
-    } = this.validateProps(this.props);
-
     // negate and rename variables for readability
-    const lazyload = !noLazy;
+    const lazyload = !this.noLazy;
 
     // use ratio by default, still depends upon aspect-ratio being passed in
-    let useRatio = true;
+    let _useRatio = true;
     let ratioW, ratioH;
 
-    if (ratio === 'none') {
-      useRatio = false;
+    if (this.ratio === 'none') {
+      _useRatio = false;
     } else {
-      if (ratio === 'auto') {
+      if (this.ratio === 'auto') {
         // TODO: automatically get image dimensions
-      } else if (ratio.includes('/')) {
-        const ratioArr = ratio.split('/');
+      } else if (this.ratio.includes('/')) {
+        const ratioArr = this.ratio.split('/');
         ratioW = ratioArr[0];
         ratioH = ratioArr[1];
       }
     }
 
-    const _isJpg = src && src.split('.').pop() === 'jpg';
-    const _canUseRatio = ratioW > 0 && ratioH > 0 && useRatio && !cover;
+    const _isJpg =
+      this.src &&
+      this.src
+        .split('.')
+        .pop()
+        .includes('jpg');
+    this._isSvg =
+      !this._isJpg &&
+      this.src &&
+      this.src
+        .split('.')
+        .pop()
+        .includes('svg');
+    const _canUseRatio = ratioW > 0 && ratioH > 0 && _useRatio && !this.cover;
     // Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder
-    const _canUsePlaceholder = (_canUseRatio || cover) && _isJpg;
+    const _canUsePlaceholder = (_canUseRatio || this.cover) && _isJpg;
 
     const classes = cx(...this.initialClasses, 'c-bolt-image__image', {
       'c-bolt-image__lazyload': lazyload,
-      'c-bolt-image__lazyload--fade': lazyload,
-      'c-bolt-image__lazyload--blur': lazyload && _isJpg,
-      'js-lazyload': lazyload,
-      'c-bolt-image--cover': cover,
+      'c-bolt-image__lazyload--fade': lazyload && !this.isLazyLoaded,
+      'c-bolt-image__lazyload--blur': lazyload && _isJpg && !this.isLazyLoaded,
+      'js-lazyload': lazyload && !this.isLazyLoaded,
+      // 'is-lazyloaded': this.isLazyLoaded,
+      'c-bolt-image--cover': this.cover,
     });
 
+    // grab the last image path referenced in srcset as a fallback if src isn't defined
+    const fallbackSrc = this.srcset
+      ? this.srcset
+          .split(',')
+          [this.srcset.split(',').length - 1].trim()
+          .split(' ')[0]
+      : undefined;
+
     const imageElement = () => {
-      if (src || srcset) {
+      if (this.src || this.srcset) {
         return html`
           <img
             class="${classes}"
-            src="${lazyload ? placeholderImage : src}"
-            alt="${ifDefined(alt ? alt : undefined)}"
+            src="${ifDefined(this.src ? this.src : fallbackSrc)}"
+            alt="${this.alt || ''}"
             srcset="${ifDefined(
-              !lazyload || this.isLoaded ? srcset || src : undefined,
+              !lazyload
+                ? this.srcset || this.src || undefined
+                : this.isLazyLoaded
+                ? this.srcset
+                : this.placeholderImage || undefined,
             )}"
-            data-srcset="${ifDefined(lazyload ? srcset || src : undefined)}"
-            sizes="${ifDefined(!lazyload || this.isLoaded ? sizes : undefined)}"
-            data-sizes="${ifDefined(lazyload ? sizes : undefined)}"
-            data-zoom="${ifDefined(zoom ? src : undefined)}"
+            data-srcset="${ifDefined(
+              lazyload ? this.srcset || this.src : undefined,
+            )}"
+            sizes="${ifDefined(
+              this.isLazyLoaded || (this.sizes && this.sizes !== 'auto')
+                ? this.sizes
+                : this.offsetWidth > 0
+                ? `${this.offsetWidth}px`
+                : undefined,
+            )}"
+            data-sizes="${ifDefined(
+              lazyload && this.sizes === 'auto' ? 'auto' : undefined,
+            )}"
+            data-zoom="${ifDefined(this.zoom ? this.src : undefined)}"
+            style="${ifDefined(
+              this.valign
+                ? `object-position: ${this.align} ${this.valign};`
+                : undefined,
+            )}"
           />
         `;
       }
@@ -161,11 +263,11 @@ class BoltImage extends withLitHtml() {
                 'c-bolt-image__lazyload--fade': false,
                 'c-bolt-image__lazyload--blur': false,
                 'js-lazyload': false,
-                'c-bolt-image--cover': cover,
+                'c-bolt-image--cover': this.cover,
               },
             )}"
-            src="${placeholderImage}"
-            alt="${ifDefined(alt ? alt : undefined)}"
+            src="${this.placeholderImage}"
+            alt="${this.alt || ''}"
           />
         `;
       }
@@ -174,17 +276,21 @@ class BoltImage extends withLitHtml() {
     // Include <noscript> for server-side rendered components
     const fallbackImageElement = () => {
       // this.isSSR is undefined at the moment, placeholder for future server-side rendering
-      if (lazyload && src && this.isSSR) {
+      if (lazyload && this.src && this.isSSR) {
         return html`
           <noscript>
             <img
               class="${cx('c-bolt-image__image', {
-                'c-bolt-image--cover': cover,
+                'c-bolt-image--cover': this.cover,
               })}"
-              src="${src}"
-              alt="${ifDefined(alt ? alt : undefined)}"
-              srcset="${ifDefined(!lazyload ? srcset || src : undefined)}"
-              data-srcset="${ifDefined(lazyload ? srcset || src : undefined)}"
+              src="${this.src}"
+              alt="${this.alt || ''}"
+              srcset="${ifDefined(
+                !lazyload ? this.srcset || this.src : undefined,
+              )}"
+              data-srcset="${ifDefined(
+                lazyload ? this.srcset || this.src : undefined,
+              )}"
             />
           </noscript>
         `;
@@ -203,14 +309,14 @@ class BoltImage extends withLitHtml() {
       `;
     };
 
-    if (_canUsePlaceholder && placeholderColor) {
-      this.style.backgroundColor = placeholderColor;
+    if (_canUsePlaceholder && this.placeholderColor) {
+      this.style.backgroundColor = this.placeholderColor;
     }
 
-    if (maxWidth) {
-      this.style.width = maxWidth;
+    if (this.maxWidth) {
+      this.style.width = this.maxWidth;
       // Don't bother setting `max-width` if `width` is also a percentage
-      if (!maxWidth.includes('%')) {
+      if (!this.maxWidth.includes('%')) {
         this.style.maxWidth = '100%';
       }
     }
@@ -224,7 +330,7 @@ class BoltImage extends withLitHtml() {
     }
 
     return html`
-      ${this.addStyles([imageStyles])} ${renderedImage}
+      ${renderedImage}
     `;
   }
 }

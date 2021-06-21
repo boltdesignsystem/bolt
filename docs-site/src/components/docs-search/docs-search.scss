@@ -1,43 +1,42 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 @import 'docsearch.js/dist/npm/styles/main.scss';
 
 // temporary style overrides to the default form input until we're done refactoring to support additional input sizes + icon placement
 bds-docs-search {
-  @include bolt-padding-right(xsmall);
   flex-shrink: 1;
   max-width: 100%;
   margin-left: auto;
   transition: all 250ms;
 
   ~ bolt-nav-priority:not(.is-ready) {
-    grid-column: 1/span 4;
+    grid-column: 1 / span 4;
     justify-self: center;
   }
-  
-  @include bolt-mq($from: small){
+
+  @include bolt-mq($from: small) {
     width: 50px;
     min-width: 100px;
   }
 
-  @include bolt-mq($from: medium){
+  @include bolt-mq($from: medium) {
     width: auto;
     min-width: none;
   }
-  
+
   &:focus-within {
     width: 200px;
     transition: all 250ms;
 
-    @include bolt-mq($from: medium){
+    @include bolt-mq($from: medium) {
       width: auto;
     }
   }
 
   .c-bolt-navbar & {
-    @include bolt-mq($until: 420px){
+    @include bolt-mq($until: 420px) {
       -ms-grid-column: 3;
       -ms-grid-column-span: 2;
-      grid-column: 3/span 2;
+      grid-column: 3 / span 2;
       padding-bottom: 0;
     }
   }
@@ -45,10 +44,8 @@ bds-docs-search {
   .c-bolt-input-icons,
   .c-bolt-input,
   .c-bolt-input:focus {
-    padding-top: bolt-v-spacing(xsmall);
-    padding-right: bolt-spacing(small);
-    padding-bottom: bolt-v-spacing(xsmall);
-    padding-left: bolt-spacing(medium);
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small)
+      var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-medium);
     line-height: 1;
     border-radius: 50rem;
   }
@@ -62,13 +59,12 @@ bds-docs-search {
     right: auto;
     left: 0;
     transform: translateY(-50%) translateY(-1px) translateX(2px);
-    padding-right: bolt-spacing(xsmall);
-    padding-left: bolt-spacing(xsmall);
+    padding-right: var(--bolt-spacing-x-xsmall);
+    padding-left: var(--bolt-spacing-x-xsmall);
     line-height: 1;
     pointer-events: none;
     border-radius: 50rem;
     background-color: transparent;
-    
 
     &:before {
       display: none;
@@ -81,7 +77,7 @@ bds-docs-search {
 
   .o-bolt-inline-list__item:first-child {
     display: none;
-    
+
     &:last-child {
       display: inline-block;
     }
@@ -92,12 +88,12 @@ bds-docs-search {
   }
 
   .algolia-autocomplete .ds-dropdown-menu {
-    @include bolt-mq($until: small){
+    @include bolt-mq($until: small) {
       min-width: 250px;
       max-width: 95vw;
     }
 
-    @include bolt-mq($from: small, $until: medium){
+    @include bolt-mq($from: small, $until: medium) {
       min-width: 320px;
       max-width: 80vw;
     }

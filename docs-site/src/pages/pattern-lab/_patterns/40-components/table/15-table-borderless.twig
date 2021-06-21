@@ -1,0 +1,35 @@
+<h3>Remove the vertical border in between cells.</h3>
+{% include "@bolt-components-table/table.twig" with {
+  borderless: true,
+  headers: {
+    top: {
+      cells: [
+        "Description",
+        "Team",
+        "Vehicle Form",
+      ]
+    },
+    side: {
+      cells: [
+        "Optimus Prime",
+        "Bumblebee",
+      ]
+    }
+  },
+  rows: [
+    {
+      cells: [
+        "The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.",
+        "Autobots",
+        "Peterbilt Truck",
+      ]
+    },
+    {
+      cells: [
+        "One of Optimus Prime's most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.",
+        "Autobots",
+        "VW Beetle",
+      ]
+    },
+  ],
+} only %}

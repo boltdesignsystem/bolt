@@ -1,149 +1,136 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../blockquote.schema.yml'));
-const { tag } = schema.properties;
+import { render, stopServer, renderWC } from '../../../testing/testing-helpers';
+import schema from '../blockquote.schema';
+const componentSelector = 'bolt-blockquote';
+const { size, alignItems, border } = schema.properties;
+const languages = ['en', 'de', 'fr', 'ja'];
+let page, fixtures;
 
-const timeout = 90000;
+afterAll(async () => {
+  await stopServer();
+  await page.close();
+}, 100);
 
-describe('button', () => {
-  let page, context;
+beforeEach(async () => {
+  await page.evaluate(() => {
+    document.body.innerHTML = '';
+  });
+  await page.setViewport({ width: 800, height: 400 });
+});
 
-  afterAll(async () => {
-    await stopServer();
-  }, 100);
-
-  beforeAll(async () => {
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
+beforeAll(async () => {
+  page = await global.__BROWSER__.newPage();
+  await page.goto('http://127.0.0.1:4444/', {
+    timeout: 0,
   });
 
-  beforeEach(async () => {
-    page = await context.newPage();
-    await page.goto('http://127.0.0.1:4444/', {
-      timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
-    });
-  }, timeout);
+  const defaultData = {
+    author: {
+      name: 'Michelangelo di Lodovico Buonarroti Simoni',
+      title: 'Renaissance Artist',
+    },
+    content:
+      '<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>',
+  };
 
-  test('Basic usage', async () => {
+  fixtures = {
+    defaultData,
+  };
+});
+
+describe('Bolt Blockquote', () => {
+  test(`default`, async () => {
     const results = await render(
       '@bolt-components-blockquote/blockquote.twig',
       {
-        author: {
-          name: 'Michelangelo di Lodovico Buonarroti Simoni',
-          title: 'Renaissance Artist',
-        },
-        content:
-          '<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>',
+        ...fixtures.defaultData,
       },
-      true,
     );
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
   });
 
-  test('Default <bolt-blockquote> with Shadow DOM renders', async function() {
-    const defaultBlockquoteOuter = await page.evaluate(() => {
-      const blockquote = document.createElement('bolt-blockquote');
-      blockquote.setAttribute(
-        'author-name',
-        'Michelangelo di Lodovico Buonarroti Simoni',
+  test(`default with web component`, async () => {
+    const results = await render(
+      '@bolt-components-blockquote/blockquote.twig',
+      {
+        ...fixtures.defaultData,
+      },
+    );
+
+    const { innerHTML, outerHTML } = await renderWC(
+      componentSelector,
+      results.html,
+      page,
+    );
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+    await expect(innerHTML).toMatchSnapshot();
+    await expect(outerHTML).toMatchSnapshot();
+  });
+});
+
+describe('Bolt Blockquote Props', () => {
+  alignItems.enum.forEach(async option => {
+    test(`align items: ${option}`, async () => {
+      const results = await render(
+        '@bolt-components-blockquote/blockquote.twig',
+        {
+          ...fixtures.defaultData,
+          alignItems: option,
+        },
       );
-      blockquote.setAttribute('author-title', 'Renaissance Artist');
-      blockquote.setAttribute('author-image', '/fixtures/500x500.jpg');
-      blockquote.innerHTML = `<img slot="logo" src="/fixtures/logo-paypal.svg" alt="PayPal Logo">
-        <p>The greater danger for most of us lies not in setting our aim too high and falling short...</p>
-        <p>In fact, the greater danger is setting our aim too low and achieving our mark.</p>`;
-      document.body.appendChild(blockquote);
-      blockquote.updated();
-      return blockquote.outerHTML;
+
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
     });
-
-    const renderedHTML = await html(defaultBlockquoteOuter);
-
-    await page.waitFor(500); // wait half a second before running VRTs
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.03',
-      failureThresholdType: 'percent',
-    });
-
-    expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Default <bolt-blockquote> w/o Shadow DOM renders', async function() {
-    const renderedBlockquoteHTML = await page.evaluate(() => {
-      const blockquote = document.createElement('bolt-blockquote');
-      blockquote.setAttribute(
-        'author-name',
-        'Michelangelo di Lodovico Buonarroti Simoni',
+  size.enum.forEach(async option => {
+    test(`size: ${option}`, async () => {
+      const results = await render(
+        '@bolt-components-blockquote/blockquote.twig',
+        {
+          ...fixtures.defaultData,
+          size: option,
+        },
       );
-      blockquote.setAttribute('author-title', 'Renaissance Artist');
-      blockquote.setAttribute('author-image', '/fixtures/500x500.jpg');
-      blockquote.innerHTML = `<img slot="logo" src="/fixtures/logo-paypal.svg" alt="PayPal Logo">
-        <p>The greater danger for most of us lies not in setting our aim too high and falling short...</p>
-        <p>In fact, the greater danger is setting our aim too low and achieving our mark.</p>`;
-      document.body.appendChild(blockquote);
-      blockquote.useShadow = false;
-      blockquote.updated();
-      return blockquote.outerHTML;
+
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
     });
-
-    const renderedHTML = await html(renderedBlockquoteHTML);
-
-    expect(
-      renderedHTML
-        .querySelector('.c-bolt-blockquote')
-        .classList.contains('c-bolt-blockquote--xlarge'),
-    ).toBe(true);
-
-    await page.waitFor(500); // wait half a second before running VRTs
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.03',
-      failureThresholdType: 'percent',
-    });
-
-    expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Default <bolt-blockquote> inside a <form> renders', async function() {
-    const renderedBlockquoteHTML = await page.evaluate(() => {
-      const form = document.createElement('form');
-      const blockquote = document.createElement('bolt-blockquote');
-      blockquote.setAttribute(
-        'author-name',
-        'Michelangelo di Lodovico Buonarroti Simoni',
+  border.enum.forEach(async option => {
+    test(`border: ${option}`, async () => {
+      const results = await render(
+        '@bolt-components-blockquote/blockquote.twig',
+        {
+          ...fixtures.defaultData,
+          border: option,
+        },
       );
-      blockquote.setAttribute('author-title', 'Renaissance Artist');
-      blockquote.setAttribute('author-image', '/fixtures/500x500.jpg');
-      blockquote.innerHTML = `<img slot="logo" src="/fixtures/logo-paypal.svg" alt="PayPal Logo">
-        <p>The greater danger for most of us lies not in setting our aim too high and falling short...</p>
-        <p>In fact, the greater danger is setting our aim too low and achieving our mark.</p>`;
-      document.body.appendChild(form);
-      form.appendChild(blockquote);
-      blockquote.updated();
-      return blockquote.innerHTML;
+
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
     });
+  });
+});
 
-    const renderedHTML = await html(renderedBlockquoteHTML);
-    await page.waitFor(500); // wait half a second before running VRTs
-    const image = await page.screenshot();
+describe('Bolt Blockquote Language', () => {
+  languages.forEach(async option => {
+    test(`language: ${option}`, async () => {
+      const results = await render(
+        '@bolt-components-blockquote/blockquote.twig',
+        {
+          ...fixtures.defaultData,
+          lang: option,
+        },
+      );
 
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.03',
-      failureThresholdType: 'percent',
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
     });
-
-    expect(renderedHTML).toMatchSnapshot();
   });
 });

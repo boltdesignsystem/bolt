@@ -1,0 +1,37 @@
+{% set schema = bolt.data.components['@bolt-components-chip'].schema %}
+
+{% set demo %}
+  <bolt-list display="inline">
+    {% for border_radius in schema.properties.border_radius.enum %}
+      <bolt-list-item>
+        {% include '@bolt-components-chip/chip.twig' with {
+          text: border_radius,
+          border_radius: border_radius,
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-chip/chip.twig' with {
+  text: 'This chip has small border radius',
+  border_radius: 'small',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-chip border-radius="small">This chip has small border radius</bolt-chip>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Chip Border Radius',
+  description: 'Other than the fully rounded chips, there are other options for adjusting the border radius.',
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

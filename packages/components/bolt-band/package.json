@@ -1,21 +1,29 @@
 {
   "name": "@bolt/components-band",
-  "description": "Band Component in Bolt",
-  "license": "MIT",
-  "version": "2.5.2",
-  "homepage": "https://boltdesignsystem.com",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "index.scss",
-  "main": "index.js",
-  "twig": "src/band.twig",
-  "schema": "band.schema.yml",
+  "version": "3.6.0",
+  "description": "A general content container with spacing and background options.",
   "keywords": [
     "bolt design system",
     "bolt",
     "design system",
     "components"
   ],
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band",
+  "license": "MIT",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/components-background": "^3.6.0",
+    "@bolt/components-grid": "^3.6.0",
+    "@bolt/core-v3.x": "^3.6.0",
+    "@bolt/element": "^3.6.0",
+    "@bolt/lazy-queue": "^3.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -28,12 +36,6 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@bolt/components-grid": "^2.5.2",
-    "@bolt/core": "^2.5.2"
-  },
-  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
+  "schema": "band.schema.js",
+  "twig": "src/band.twig"
 }

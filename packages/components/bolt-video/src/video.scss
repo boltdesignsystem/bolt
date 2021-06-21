@@ -10,9 +10,8 @@ $bolt-video-background-max-height: 50.625vw;
     black
   ); // placeholder color before poster loads up.
 
+  // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
   &[is-background-video] {
-    @include bolt-margin-right(auto);
-    @include bolt-margin-left(auto);
     flex-grow: 1;
     opacity: bolt-opacity(0);
     z-index: 20;
@@ -21,6 +20,8 @@ $bolt-video-background-max-height: 50.625vw;
     max-width: 100vh;
     height: calc((90vw * (9 / 16)) - 4rem);
     max-height: 56.25vh;
+    margin-right: auto;
+    margin-left: auto;
     pointer-events: none;
     background-color: $bolt-video-background-color;
     transition: opacity 0.3s ease, min-height 0.3s ease;
@@ -35,11 +36,11 @@ $bolt-video-background-max-height: 50.625vw;
     }
 
     .video-js {
-      @include bolt-margin(0 auto);
       position: relative;
       width: 100%;
       min-width: 0;
       height: 100%;
+      margin: 0 auto;
       pointer-events: none;
       background-color: transparent;
       transition: all 0.4s ease;
@@ -87,7 +88,7 @@ $bolt-video-background-max-height: 50.625vw;
   &.c-#{$bolt-namespace}-video--background {
     display: block;
     position: relative;
-    max-width: calc(100% - #{bolt-spacing(large)});
+    max-width: calc(100% - var(--bolt-spacing-x-large));
     height: $bolt-video-background-max-height;
     max-height: 100%;
     margin: 0 auto;
@@ -110,15 +111,17 @@ $bolt-video-background-max-height: 50.625vw;
     0
   ); // Initial state before brightcove video player kicks in
   position: absolute;
-  top: bolt-spacing(xsmall);
-  right: bolt-spacing(xsmall);
+  top: var(--bolt-spacing-y-xsmall);
+  right: var(--bolt-spacing-x-xsmall);
   z-index: bolt-z-index('tooltip');
   color: bolt-color(orange);
   transition: all 0.3s ease;
   @include bolt-css-vars((--#{$bolt-namespace}-theme-icon: bolt-color(orange)));
 
   @include bolt-mq(small) {
-    right: (bolt-spacing(large) / -2) - bolt-spacing(xsmall);
+    right: calc(
+      var(--bolt-spacing-x-large) / -2 - var(--bolt-spacing-x-xsmall)
+    );
   }
 
   &:hover {
@@ -147,12 +150,14 @@ $bolt-video-background-max-height: 50.625vw;
     top: 0;
     right: 0;
     float: right;
+
     .c-#{$bolt-namespace}-video__close-button-icon {
       display: none;
     }
   }
   @media (min-width: bolt-breakpoint(small)) {
     position: absolute;
+
     .c-#{$bolt-namespace}-video__close-button-text {
       @include bolt-visuallyhidden;
     }
@@ -179,7 +184,39 @@ $bolt-video-background-max-height: 50.625vw;
   .video-js .vjs-control-bar {
     display: none;
   }
+
   .video-js {
     pointer-events: none;
+  }
+}
+
+// Prevent Brightcove from rendering a video as a 'vjs-layout-tiny'
+// when in a inactive accordion or tab panel on load if on a tablet or desktop device
+bolt-accordion-item,
+bolt-tab-panel {
+  @include bolt-mq($from: medium) {
+    .video-js.vjs-layout-tiny:not(.vjs-fullscreen) {
+      // Remaining time should never be shown.  Other controls that shouldn't be forced to show, but sometimes do show--
+      // such as the subs-caps button-- are typically hidden with an !important declaration when they should be hidden.
+      // This seems to be the exception.
+      //
+      // .vjs-remaining-time,
+      .vjs-audio-button,
+      .vjs-captions-button,
+      .vjs-chapters-button,
+      .vjs-current-time,
+      .vjs-descriptions-button,
+      .vjs-duration,
+      .vjs-mute-control,
+      .vjs-playback-rate,
+      .vjs-progress-control,
+      .vjs-subs-caps-button,
+      .vjs-subtitles-button,
+      .vjs-time-divider,
+      .vjs-volume-control,
+      .vjs-volume-panel {
+        display: flex;
+      }
+    }
   }
 }

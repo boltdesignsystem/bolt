@@ -1,0 +1,141 @@
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--flex" %}
+    {% cell "u-bolt-width-12/12" %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxlarge",
+        weight: "bold",
+        align: "center",
+        text: "Achieve your Pega Certification",
+        attributes: {
+          class: [
+            "u-bolt-margin-top-xlarge",
+            "u-bolt-margin-bottom-large"
+          ]
+        }
+      } only %}
+    {% endcell %}
+
+    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "thumbs-up-open",
+        attributes: {
+          style: [
+            "font-size: 4rem;"
+          ],
+          class: [
+            "u-bolt-margin-bottom-medium"
+          ],
+        }
+      } only %}
+
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xlarge",
+        weight: "bold",
+        align: "center",
+        text: "Show the world how great you are."
+      } only %}
+
+      {% include "@bolt-components-headline/text.twig" with {
+        size: "medium",
+        align: "center",
+        text: "A Pega certification confirms that you and your team have the skills, knowledge and experience to architect and implement world-class Pega solutions."
+      } only %}
+    {% endcell %}
+
+    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "world-open",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-medium"
+          ],
+          style: [
+            "font-size: 4rem;"
+          ]
+        }
+      } only %}
+
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xlarge",
+        weight: "bold",
+        align: "center",
+        text: "Future proof your career."
+      } only %}
+
+      {% include "@bolt-components-headline/text.twig" with {
+        size: "medium",
+        align: "center",
+        text: "Join our thriving Pega certified professional ecosystem and stay relevant and valuable."
+      } only %}
+    {% endcell %}
+
+    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium u-bolt-text-align-center" %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "time-open",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-medium"
+          ],
+          style: [
+            "font-size: 4rem;"
+          ]
+        }
+      } only %}
+
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xlarge",
+        weight: "bold",
+        align: "center",
+        text: "Build fast. Empower your team."
+      } only %}
+
+      {% include "@bolt-components-headline/text.twig" with {
+        size: "medium",
+        align: "center",
+        text: "Projects that leverage Pega certified professionals see reduced costs and faster times to market by increasing team efficiency and minimizing errors."
+      } only %}
+    {% endcell %}
+
+    {% cell "u-bolt-width-12/12 u-bolt-text-align-center u-bolt-margin-top-medium" %}
+      {% include "@bolt-components-button/button.twig" with {
+        text: "Browse Certification Missions",
+        border_radius: "full"
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "xdark",
+  content: content,
+  attributes: {
+    class: [
+      "has-transparent-background",
+    ]
+  },
+  inner_attributes: {
+    class: [
+      "u-bolt-padding-top-xxlarge",
+    ]
+  }
+} only %}
+
+  {% block band_background %}
+    <div class="c-bolt-background-crop u-bolt-negative-margin-top-xlarge u-bolt-margin-top-none@medium">
+      <svg width="100%" height="100%" viewbox="0 0 1439 910" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveaspectratio="none">
+        <defs>
+          <linearGradient x1="61.0254517%" y1="-9.85212704%" x2="59.3614272%" y2="85.2372888%" id="linearGradient-1">
+            <stop stop-color="#06D6D6" stop-opacity="1" offset="0%"></stop>
+            <stop stop-color="#06304B" offset="100%"></stop>
+          </linearGradient>
+        </defs>
+        <g id="Pega-Academy-POC" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="POC-Homepage" transform="translate(0.000000, -552.000000)" fill="url(#linearGradient-1)">
+            <path d="M1439,559.354391 L1439,899.910482 L1439,1462 L0,1462 L0,552.117981 C882.480263,925.532853 1362.14693,927.945041 1439,559.354391 Z" id="Rectangle-2"></path>
+          </g>
+        </g>
+      </svg>
+    </div>
+  {% endblock %}
+
+{% endembed %}

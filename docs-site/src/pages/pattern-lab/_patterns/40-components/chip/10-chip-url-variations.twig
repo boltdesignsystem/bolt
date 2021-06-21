@@ -1,0 +1,31 @@
+{% set demo %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'This is a linked chip',
+    url: 'https://pega.com',
+    target: '_blank',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-chip/chip.twig' with {
+  text: 'This is a linked chip',
+  url: 'https://pega.com',
+  target: '_blank',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-chip url="https://pega.com" target="_blank">This is a linked chip</bolt-chip>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Linked Chip',
+  description: 'A chip can be linked and its target can be modified.',
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

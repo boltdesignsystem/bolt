@@ -1,0 +1,81 @@
+{# Setting variables for demo purposes #}
+{% set link_1 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Item 1",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set button_1 %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Item 1",
+    url: "#!",
+    width: "full",
+  } only %}
+{% endset %}
+{% set button_2 %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Item 2",
+    url: "#!",
+    width: "full",
+  } only %}
+{% endset %}
+{% set button_3 %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Item 3",
+    url: "#!",
+    width: "full",
+  } only %}
+{% endset %}
+{% set chip_1 %}
+  {% include "@bolt-components-chip/chip.twig" with {
+    text: "Item 1",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set chip_2 %}
+  {% include "@bolt-components-chip/chip.twig" with {
+    text: "Item 2",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set chip_3 %}
+  {% include "@bolt-components-chip/chip.twig" with {
+    text: "Item 3",
+    url: "#!",
+  } only %}
+{% endset %}
+
+{# Start component specific code #}
+<h3>Inline list of different items</h3>
+{% include "@bolt-components-list/list.twig" with {
+  display: "inline",
+  items: [
+    link_1,
+    chip_2,
+    button_3,
+    "Item 4",
+    "Item 5",
+    "Item 6",
+  ]
+} only %}
+
+<h3>Inline list of chips</h3>
+{% include "@bolt-components-list/list.twig" with {
+  display: "inline",
+  items: [
+    chip_1,
+    chip_2,
+    chip_3,
+  ]
+} only %}
+
+<h3>Inline list of buttons</h3>
+{% include "@bolt-components-list/list.twig" with {
+  display: "inline",
+  items: [
+    button_1,
+    button_2,
+    button_3,
+  ]
+} only %}
+{# End component specific code #}

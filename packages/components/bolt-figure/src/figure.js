@@ -1,65 +1,31 @@
-import { define } from '@bolt/core/utils';
-import {
-  withLitHtml,
-  html,
-  render,
-} from '@bolt/core/renderers/renderer-lit-html';
-import { convertInitialTags } from '@bolt/core/decorators';
-
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
+import figureStyles from './figure.scss';
 
-import styles from './figure.scss';
+let cx = classNames.bind(figureStyles);
 
-let cx = classNames.bind(styles);
-
-@define
-class BoltFigure extends withLitHtml() {
-  static is = 'bolt-figure';
-
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    return self;
+@customElement('bolt-figure')
+class BoltFigure extends BoltElement {
+  static get styles() {
+    return [unsafeCSS(figureStyles)];
   }
 
   render() {
-    const classes = cx('c-bolt-figure');
-
-    const slotMarkup = name => {
-      switch (name) {
-        case 'media':
-          const mediaClasses = cx('c-bolt-figure__media');
-
-          return name in this.slots
-            ? html`
-                <div class="${mediaClasses}">${this.slot(name)}</div>
-              `
-            : html`
-                <slot name="${name}" />
-              `;
-        default:
-          const captionClasses = cx('c-bolt-figure__caption');
-
-          return html`
-            <figcaption class="${captionClasses}">
-              ${name in this.slots
-                ? this.slot('default')
-                : html`
-                    <slot />
-                  `}
-            </figcaption>
-          `;
-      }
-    };
-
-    const innerSlots = [slotMarkup('media'), slotMarkup('default')];
-
-    let renderedFigure = html`
-      <figure class="${classes}">${innerSlots}</figure>
-    `;
-
     return html`
-      ${this.addStyles([styles])} ${renderedFigure}
+      <figure class="${cx('c-bolt-figure')}">
+        ${this.slotMap.get('media') &&
+          html`
+            <div class="${cx('c-bolt-figure__media')}">
+              ${this.slotify('media')}
+            </div>
+          `}
+        ${this.slotMap.get('default') &&
+          html`
+            <figcaption class="${cx('c-bolt-figure__caption')}">
+              ${this.slotify('default')}
+            </figcaption>
+          `}
+      </figure>
     `;
   }
 }

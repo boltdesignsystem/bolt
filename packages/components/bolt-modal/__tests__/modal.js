@@ -1,30 +1,14 @@
 /* eslint-disable no-await-in-loop */
 import {
   render,
-  renderString,
-  stop as stopTwigRenderer,
-} from '@bolt/twig-renderer';
-import { fixture as html } from '@open-wc/testing-helpers';
+  stopServer,
+  renderWC,
+  html,
+} from '../../../testing/testing-helpers';
+import schema from '../modal.schema';
+const { width, spacing, theme, scroll } = schema.properties;
 
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../modal.schema.yml'));
-const { persistent, width, spacing, theme, scroll } = schema.properties;
-
-async function renderTwig(template, data) {
-  return await render(template, data, true);
-}
-
-async function renderTwigString(template, data) {
-  return await renderString(template, data, true);
-}
-
-const imageVrtConfig = {
-  failureThreshold: '0.02',
-  failureThresholdType: 'percent',
-};
-
-const timeout = 60000;
+const timeout = 120000;
 
 // Currently, the only important breakpoints to test are 'small' and 'large'
 const viewportSizes = [
@@ -40,24 +24,43 @@ const viewportSizes = [
   },
 ];
 
+const modalContent = [
+  {
+    name: 'Simple usage',
+    content: `<div>Default slot.</div>`,
+  },
+  {
+    name: 'Long content usage',
+    content: `
+      <div>This is very long content.</div>
+      <bolt-image src="/fixtures/1200x2500.jpg" alt="Placeholder"></bolt-image>
+    `,
+  },
+];
+
 describe('<bolt-modal> Component', () => {
   let page;
 
   beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
   afterAll(async () => {
-    await stopTwigRenderer();
+    await stopServer();
+    await page.close();
   }, timeout);
 
   test('basic usage', async () => {
-    const results = await renderTwig('@bolt-components-modal/modal.twig', {
+    const results = await render('@bolt-components-modal/modal.twig', {
       content: 'This is a modal',
     });
     expect(results.ok).toBe(true);
@@ -66,7 +69,7 @@ describe('<bolt-modal> Component', () => {
 
   width.enum.forEach(async widthChoice => {
     test(`modal width: ${widthChoice}`, async () => {
-      const results = await renderTwig('@bolt-components-modal/modal.twig', {
+      const results = await render('@bolt-components-modal/modal.twig', {
         width: widthChoice,
         content: 'This is a modal',
       });
@@ -77,7 +80,7 @@ describe('<bolt-modal> Component', () => {
 
   spacing.enum.forEach(async spacingChoice => {
     test(`modal spacing: ${spacingChoice}`, async () => {
-      const results = await renderTwig('@bolt-components-modal/modal.twig', {
+      const results = await render('@bolt-components-modal/modal.twig', {
         spacing: spacingChoice,
         content: 'This is a modal',
       });
@@ -88,7 +91,7 @@ describe('<bolt-modal> Component', () => {
 
   theme.enum.forEach(async themeChoice => {
     test(`modal theme: ${themeChoice}`, async () => {
-      const results = await renderTwig('@bolt-components-modal/modal.twig', {
+      const results = await render('@bolt-components-modal/modal.twig', {
         theme: themeChoice,
         content: 'This is a modal',
       });
@@ -99,7 +102,7 @@ describe('<bolt-modal> Component', () => {
 
   scroll.enum.forEach(async scrollChoice => {
     test(`modal scroll: ${scrollChoice}`, async () => {
-      const results = await renderTwig('@bolt-components-modal/modal.twig', {
+      const results = await render('@bolt-components-modal/modal.twig', {
         scroll: scrollChoice,
         content: 'This is a modal',
       });
@@ -108,116 +111,189 @@ describe('<bolt-modal> Component', () => {
     });
   });
 
-  test('Default <bolt-modal> with Shadow DOM renders', async function() {
-    const renderedModal = await page.evaluate(async () => {
-      const modal = document.createElement('bolt-modal');
-      modal.setAttribute('uuid', '12345');
-      modal.innerHTML = `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
-      <bolt-text>This is the body (default).</bolt-text>
-      <bolt-text slot="footer">This is the footer</bolt-text>`;
-      document.body.appendChild(modal);
-      modal.show();
-      return modal.outerHTML;
-    });
-
-    // const activeTagName = await page.evaluate(async () => {
-    //   return document.activeElement.tagName;
-    // });
-
-    const renderedHTML = await html(renderedModal);
-
-    const image = await page.screenshot();
-
-    // @todo: Fix this, returns 'BOLT-MODAL', expected 'BOLT-BUTTON'.
-    // console.log(activeTagName);
-    // expect(renderedModal.activeTagName === 'BOLT-BUTTON').toBe(true);
-
-    expect(image).toMatchImageSnapshot(imageVrtConfig);
-
-    expect(renderedHTML).toMatchSnapshot();
-  });
-
-  test('Default <bolt-modal> w/o Shadow DOM renders', async function() {
-    const renderedModal = await page.evaluate(() => {
-      const modal = document.createElement('bolt-modal');
-      modal.setAttribute('uuid', '12345');
-      modal.innerHTML = `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
-      <bolt-text>This is the body (default).</bolt-text>
-      <bolt-text slot="footer">This is the footer</bolt-text>`;
-      document.body.appendChild(modal);
-      modal.useShadow = false;
-      modal.updated();
-      modal.show();
-      return modal.outerHTML;
-    });
-
-    const renderedHTML = await html(renderedModal);
-
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot(imageVrtConfig);
-
-    expect(renderedHTML).toMatchSnapshot();
-  });
-
   test(
-    '<bolt-modal> rendered by Twig',
+    `<bolt-modal> slots`,
     async () => {
-      const { html, ok } = await renderTwig(
-        '@bolt-components-modal/modal.twig',
-        {
-          content:
-            '<bolt-text tag="h3" slot="header">This is the header</bolt-text><bolt-text>This is the body (default).</bolt-text><bolt-text slot="footer">This is the footer</bolt-text>',
-        },
-      );
+      const { html, ok } = await render('@bolt-components-modal/modal.twig', {
+        content: `<div slot="header">Header slot</div>Default slot<div slot="footer">Footer slot</div>`,
+        width: 'regular',
+      });
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
-      await page.evaluate(html => {
-        const div = document.createElement('div');
-        const trigger = document.createElement('bolt-button');
-        trigger.textContent = 'Open Modal';
-        trigger.setAttribute('class', 'js-modal-trigger--open');
-        trigger.setAttribute('onclick', 'this.nextElementSibling.show()');
-        div.innerHTML = `${html}`;
-        div.prepend(trigger);
-        document.body.appendChild(div);
-      }, html);
-
-      const screenshots = [];
-
-      async function isVisible(selector) {
-        return await page.evaluate(selector => {
-          const e = document.querySelector(selector);
-          if (!e) return false;
-          const style = window.getComputedStyle(e);
-          return style &&
-            style.display !== 'none' &&
-            style.visibility !== 'hidden' &&
-            style.opacity !== '0'
-            ? true
-            : false;
-        }, selector);
-      }
+      await renderWC('bolt-modal', html, page);
 
       for (const item of viewportSizes) {
         const { height, width, size } = item;
-        screenshots[size] = [];
 
         await page.setViewport({ height, width });
-        await page.tap('.js-modal-trigger--open');
+        await page.evaluate(async () => {
+          const modals = Array.from(document.querySelectorAll('bolt-modal'));
+          await customElements.whenDefined('bolt-modal');
+          return await Promise.all(
+            modals.map(elem => {
+              if (elem._wasInitiallyRendered) return;
+              return new Promise((resolve, reject) => {
+                elem.addEventListener('ready', resolve);
+                elem.addEventListener('error', reject);
+              });
+            }),
+          ).then(() => {
+            modals[0].show();
+          });
+        });
         await page.waitFor(500);
 
-        if (await isVisible('bolt-modal')) {
-          screenshots[size].modalOpened = await page.screenshot();
-          expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-            imageVrtConfig,
-          );
-          await page.tap('bolt-button'); // closes modal
-          await page.waitFor(500);
-        }
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').hide();
+        });
+        await page.waitFor(500);
       }
     },
     timeout,
   );
+
+  modalContent.forEach(async contentChoice => {
+    test(`${contentChoice.name} <bolt-modal> with Shadow DOM renders`, async () => {
+      const { outerHTML } = await renderWC(
+        'bolt-modal',
+        `
+        <bolt-modal uuid="12345" width="regular">
+          <div slot="header">Header slot</div>
+          ${contentChoice.content}
+          <div slot="footer">Footer slot</div>
+        </bolt-modal>
+      `,
+        page,
+      );
+
+      for (const item of viewportSizes) {
+        const { height, width, size } = item;
+
+        await page.setViewport({ height, width });
+
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').show();
+        });
+        await page.waitFor(500);
+
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').hide();
+        });
+
+        await page.waitFor(500);
+      }
+
+      const renderedHTML = await html(outerHTML);
+      expect(renderedHTML).toMatchSnapshot();
+    });
+  });
+
+  modalContent.forEach(async contentChoice => {
+    test(`${contentChoice.name} <bolt-modal> w/o Shadow DOM renders`, async () => {
+      const { outerHTML } = await renderWC(
+        'bolt-modal',
+        `
+        <bolt-modal uuid="12345" width="regular" no-shadow>
+          <div slot="header">Header slot</div>
+          ${contentChoice.content}
+          <div slot="footer">Footer slot</div>
+        </bolt-modal>
+      `,
+        page,
+      );
+
+      for (const item of viewportSizes) {
+        const { height, width, size } = item;
+
+        await page.setViewport({ height, width });
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').show();
+        });
+        await page.waitFor(500);
+
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').hide();
+        });
+        await page.waitFor(500);
+      }
+
+      const renderedHTML = await html(outerHTML);
+      expect(renderedHTML).toMatchSnapshot();
+    });
+  });
+
+  modalContent.forEach(async contentChoice => {
+    test(
+      `${contentChoice.name} <bolt-modal> at various viewport sizes`,
+      async () => {
+        const { html, ok } = await render('@bolt-components-modal/modal.twig', {
+          content: `<div slot="header">Header slot</div>
+            ${contentChoice.content}
+            <div slot="footer">Footer slot</div>`,
+          width: 'regular',
+        });
+        expect(ok).toBe(true);
+        expect(html).toMatchSnapshot();
+
+        await renderWC('bolt-modal', html, page);
+
+        for (const item of viewportSizes) {
+          const { height, width, size } = item;
+
+          await page.setViewport({ height, width });
+          await page.evaluate(() => {
+            document.querySelector('bolt-modal').show();
+          });
+          await page.waitFor(500);
+
+          await page.evaluate(() => {
+            document.querySelector('bolt-modal').hide();
+          });
+          await page.waitFor(500);
+        }
+      },
+      timeout,
+    );
+  });
+
+  modalContent.forEach(async contentChoice => {
+    test(
+      `${contentChoice.name}<bolt-modal> with band at various viewport sizes`,
+      async () => {
+        const renderedBand = await render('@bolt-components-band/band.twig', {
+          content: contentChoice.content,
+          full_bleed: false,
+          theme: 'none',
+        });
+
+        const { html, ok } = await render('@bolt-components-modal/modal.twig', {
+          content: `<div slot="header">Header slot</div>
+            ${renderedBand.html}
+            <div slot="footer">Footer slot</div>`,
+          width: 'regular',
+        });
+        expect(ok).toBe(true);
+        expect(html).toMatchSnapshot();
+
+        await renderWC('bolt-modal', html, page);
+
+        for (const item of viewportSizes) {
+          const { height, width, size } = item;
+
+          await page.setViewport({ height, width });
+          await page.evaluate(() => {
+            document.querySelector('bolt-modal').show();
+          });
+          await page.waitFor(500);
+
+          await page.evaluate(() => {
+            document.querySelector('bolt-modal').hide();
+          });
+          await page.waitFor(500);
+        }
+      },
+      timeout,
+    );
+  });
 });

@@ -1,5 +1,6 @@
-import { beforeNextRender, define, props, css } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+import { customElement } from '@bolt/element';
+import { props, css } from '@bolt/core-v3.x/utils';
+import { h, withPreact } from '@bolt/core-v3.x/renderers';
 import Mousetrap from 'mousetrap';
 import classNames from 'classnames';
 
@@ -12,16 +13,14 @@ import {
 import { datasetToObject, formatVideoDuration } from '../utils';
 
 let index = 0;
-@define
-class BoltVideo extends withPreact() {
-  static is = `${bolt.namespace}-video`;
-
+@customElement('bolt-video')
+class BoltVideo extends withPreact {
   static props = {
     videoId: props.string,
     accountId: props.string,
     playerId: props.string,
     poster: props.object,
-    isBackgroundVideo: props.boolean,
+    isBackgroundVideo: props.boolean, // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
     onInit: props.string,
     showMeta: props.boolean,
     showMetaTitle: props.boolean,
@@ -33,6 +32,7 @@ class BoltVideo extends withPreact() {
     resetOnFinish: props.boolean,
     directToFullscreen: props.boolean,
     hideFullScreenButton: props.boolean,
+    errorMessage: props.string,
     overlayAlignment: {
       ...props.string,
       ...{ default: 'bottom' },
@@ -49,27 +49,26 @@ class BoltVideo extends withPreact() {
     self = super(self);
     self.useShadow = false;
 
-    this.defaultPlugins = ['playback'];
+    self.defaultPlugins = ['playback'];
 
     index += 1;
 
     // These bindings are necessary to make `this` work in the callback
-    this.onPlay = this.onPlay.bind(this);
-    this.onPause = this.onPause.bind(this);
-    this.onEnded = this.onEnded.bind(this);
-    this.onDurationChange = this.onDurationChange.bind(this);
-    this.onSeeked = this.onSeeked.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.collapseOnClickAway = this.collapseOnClickAway.bind(this);
+    self.onPlay = self.onPlay.bind(self);
+    self.onPause = self.onPause.bind(self);
+    self.onEnded = self.onEnded.bind(self);
+    self.onDurationChange = self.onDurationChange.bind(self);
+    self.onSeeked = self.onSeeked.bind(self);
+    self.handleClose = self.handleClose.bind(self);
+    self.collapseOnClickAway = self.collapseOnClickAway.bind(self);
 
-    // BoltVideo.globalErrors.forEach(this.props.onError);
+    // BoltVideo.globalErrors.forEach(self.props.onError);
 
-    this.shareDescription = this.shareDescription || 'Share This Video';
+    self.shareDescription = self.shareDescription || 'Share This Video';
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
-    this._onWindowResize = this._onWindowResize.bind(this);
-
+    self._onWindowResize = self._onWindowResize.bind(self);
     return self;
   }
 
@@ -175,10 +174,33 @@ class BoltVideo extends withPreact() {
 
     elem.setPlayer(player);
 
-    // If the option to show controls is set to false (meaning, no controls will be shown), make sure the video is also muted.
+    // The absence of controls is what determines whether a video should be
+    // muted and have autoplay compatibility in iOS.
+    //
+    // This makes some sense in the context of iOS-- if you provide controls,
+    // this video isn't just the equivalent of an animated gif and probably
+    // should play full screen in iOS.  iOS doesn't let a full screen video
+    // autoplay.  See https://webkit.org/blog/6784/new-video-policies-for-ios/.
     if (elem.controls === false) {
+      // If controls are hidden, the video should always be muted.
       elem.player.muted(true);
+
+      // Additionally, if a video doesn't have controls, it's only logical that
+      // it's autoplaying.  Since it will also be muted (see above), it already
+      // passes 2 out of 3 requirements for autoplaying in iOS.  This
+      // 'playsinline' prop is the third.
+      elem.player.playsinline(true);
     }
+    // @TODO If a video has controls and autoplay, it should also probably be
+    // muted initally-- not muting and auto playing is obnoxious.  If stakeholders
+    // insiste on unmuted autoplay, we should add a new prop to allow it
+    // (an "obnoxious" boolean?). The only thing keeping us from making that
+    // change now is respect for backwards compatibility.  Uncomment the
+    // following to enable that.
+    //
+    // else if (elem.autoplay) {
+    //   elem.player.muted(true);
+    // }
 
     // auto-configure the social overlay config (loaded via the social plugin)
     if (player.socialOverlay) {
@@ -229,6 +251,15 @@ class BoltVideo extends withPreact() {
 
     player.on('ended', function() {
       elem.onEnded(player);
+    });
+
+    player.on('error', () => {
+      const headlineHTML = elem.querySelector('.vjs-errors-headline');
+      if (headlineHTML) {
+        headlineHTML.innerHTML =
+          elem.props.errorMessage ||
+          "This video didn't load correctly. Refresh page to view.";
+      }
     });
   }
 
@@ -359,6 +390,7 @@ class BoltVideo extends withPreact() {
 
     if (this.player) {
       this.player.dispose();
+      this.hasInitialized = false;
     }
   }
 
@@ -628,7 +660,6 @@ class BoltVideo extends withPreact() {
     //     ▶️
     //   </span>
     // );
-    /* eslint jsx-a11y/media-has-caption: "off" */
     // Added a wrapping div as brightcove adds siblings to the video tag
     const dataAttributes = datasetToObject(this);
 

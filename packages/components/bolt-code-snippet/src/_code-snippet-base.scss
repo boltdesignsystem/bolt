@@ -1,64 +1,63 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 /* ------------------------------------ *\
     Bolt Code Snippet
 \* ------------------------------------ */
 
-$bolt-code-snippet-border-radius: $bolt-border-radius;
-$bolt-code-snippet-background-color: rgba(bolt-color(indigo, light), 0.08);
-
+$bolt-code-snippet-border-radius: bolt-border-radius(small);
+$bolt-code-snippet-border: 1px solid var(--bolt-color-white);
+$bolt-code-snippet-background-color: var(--bolt-color-gray-xlight);
+$bolt-code-snippet-shadow: 0 0 6px var(--bolt-color-gray-xlight);
 
 // Custom element default styles
 bolt-code-snippet {
   &:last-child {
     .c-bolt-code-snippet {
-      @include bolt-margin-bottom(0);
+      margin-bottom: 0;
     }
   }
 }
 
 .c-bolt-code-snippet,
 .c-bolt-code-snippet__code {
-  white-space: -moz-pre-wrap;
-  white-space: -o-pre-wrap;
+  font-family: var(--bolt-type-font-family-code);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-regular);
   white-space: pre-wrap;
   word-spacing: normal;
   word-break: normal;
   word-wrap: break-word;
-  color: bolt-theme(headline);
+  color: var(--bolt-color-black);
   text-align: left;
   border-radius: $bolt-code-snippet-border-radius;
 }
 
 .c-bolt-code-snippet {
-  @include bolt-margin-top(0);
-  @include bolt-margin-right(0);
-  @include bolt-margin-bottom(medium);
-  @include bolt-margin-left(0);
-  @include bolt-padding(small, squished);
   @include bolt-horizontal-scroll;
-  display: flex;
+  display: block;
+  margin: 0 0 var(--bolt-spacing-y-medium) 0;
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  border: $bolt-code-snippet-border;
+  box-shadow: $bolt-code-snippet-shadow;
   background-color: $bolt-code-snippet-background-color;
 }
 
 .c-bolt-code-snippet__code {
-  @include bolt-margin(0);
-  @include bolt-font-family(code);
-  @include bolt-font-weight(regular);
-  @include bolt-font-size(small);
-
+  margin: 0;
   letter-spacing: 0.05rem;
 }
 
 .c-bolt-code-snippet__code--block {
-  @include bolt-padding(0);
   display: block;
+  padding: 0;
+  line-height: var(--bolt-type-line-height-small);
   background-color: transparent;
 }
 
 .c-bolt-code-snippet__code--inline {
-  @include bolt-padding(2px 0.25rem 2px 0.3rem); // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
-
   display: inline;
+  padding: 2px 0.25rem 2px 0.3rem; // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
+  border: $bolt-code-snippet-border;
+  box-shadow: $bolt-code-snippet-shadow;
   background-color: $bolt-code-snippet-background-color;
 }

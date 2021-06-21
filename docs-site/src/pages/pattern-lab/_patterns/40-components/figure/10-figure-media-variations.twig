@@ -1,0 +1,115 @@
+{% set image %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/placeholders/landscape-16x9-mountains.jpg",
+  } only %}
+{% endset %}
+
+{% set icon %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "add-open",
+    size: "large",
+  } only %}
+{% endset %}
+
+{% set video %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-title
+      data-media-duration
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% include "@bolt-components-ratio/ratio.twig" with {
+    children: video,
+    ratio: "16/9"
+  } only %}
+{% endset %}
+
+{% set table %}
+  {% include "@bolt-components-table/table.twig" with {
+    headers: {
+      top: {
+        cells: [
+          "Column 1",
+          "Column 2",
+          "Column 3",
+        ]
+      },
+      side: {
+        cells: [
+          "Row 1",
+          "Row 2",
+          "Row 3",
+          "Footer",
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          "R1C1",
+          "R1C2",
+          "R1C3",
+        ]
+      },
+      {
+        cells: [
+          "R2C1",
+          "R2C2",
+          "R2C3",
+        ]
+      },
+      {
+        cells: [
+          "R3C1",
+          "R3C2",
+          "R3C3",
+        ]
+      }
+    ],
+    footer: {
+      cells: [
+        "FC1",
+        "FC2",
+        "FC3",
+      ]
+    }
+  } only %}
+{% endset %}
+
+<h3>Image Figure</h3>
+{% include "@bolt-components-figure/figure.twig" with {
+  media: {
+    content: image
+  },
+  caption: "Fig. 1: This is an image."
+} only %}
+
+<h3>Icon Figure</h3>
+{% include "@bolt-components-figure/figure.twig" with {
+  media: {
+    content: icon
+  },
+  caption: "Fig. 2: This is an icon."
+} only %}
+
+<h3>Video Figure</h3>
+{% include "@bolt-components-figure/figure.twig" with {
+  media: {
+    content: video
+  },
+  caption: "Fig. 3: This is a video."
+} only %}
+
+<h3>Table Figure</h3>
+{% include "@bolt-components-figure/figure.twig" with {
+  media: {
+    content: table
+  },
+  caption: "Fig. 4: This is a table."
+} only %}

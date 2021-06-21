@@ -1,5 +1,5 @@
-import { polyfillLoader } from '@bolt/core/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import('./src/tooltip.js');
+lazyQueue(['bolt-tooltip'], async () => {
+  await import(/* webpackChunkName: 'bolt-tooltip' */ './src/tooltip');
 });

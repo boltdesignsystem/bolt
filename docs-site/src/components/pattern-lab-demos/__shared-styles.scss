@@ -1,5 +1,5 @@
 %bolt-demo-wrapper-border {
-  border: 2px dashed bolt-color(gray, light);
+  border: 2px dashed var(--bolt-color-gray-light);
 }
 
 %bolt-demo-wrapper {
@@ -12,12 +12,36 @@
 }
 
 %bolt-demo-item-background {
-  color: bolt-color(indigo);
-  background: bolt-color(indigo, xlight);
+  color: var(--bolt-color-navy);
+  background: var(--bolt-color-navy-xlight);
 }
 
 %bolt-demo-item {
   @extend %bolt-demo-item-border;
   @extend %bolt-demo-item-background;
   padding: 1rem;
+}
+
+bolt-demo {
+  display: block;
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+}
+
+.c-bds-demo-visible-scrollbar {
+  display: block;
+  max-height: 50vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.c-bds-demo-visible-scrollbar::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.c-bds-demo-visible-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }

@@ -1,0 +1,30 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-list"].schema %}
+{% set regular_display_options = [
+  "block",
+  "flex",
+  "inline",
+] %}
+
+{# Start component specific code #}
+{% for separator in schema.properties.separator.enum %}
+  {% if separator != "none" %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-large" %}
+      {% for display in regular_display_options %}
+        {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+          <h3>{{ separator|capitalize }} separators in a {{ display }} list</h3>
+          {% include "@bolt-components-list/list.twig" with {
+            display: display,
+            separator: separator,
+            items: [
+              "Item 1",
+              "Item 2",
+              "Item 3",
+            ]
+          } only %}
+        {% endcell %}
+      {% endfor %}
+    {% endgrid %}
+  {% endif %}
+{% endfor %}
+{# End component specific code #}

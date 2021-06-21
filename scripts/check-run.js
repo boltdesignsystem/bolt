@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const jwt = require('jsonwebtoken');
 const execa = require('execa');
 const fs = require('fs');
@@ -66,9 +67,7 @@ async function getAccessToken() {
   if (!response.ok) {
     console.log(results);
     throw new Error(
-      `Error getting access token: ${response.status} ${response.statusText}. ${
-        results.message
-      }`,
+      `Error getting access token: ${response.status} ${response.statusText}. ${results.message}`,
     );
   }
 
@@ -161,9 +160,7 @@ async function createCheckSuite() {
   if (!response.ok) {
     console.log(results);
     throw new Error(
-      `Error creating check suite: ${response.status} ${response.statusText}. ${
-        results.message
-      }`,
+      `Error creating check suite: ${response.status} ${response.statusText}. ${results.message}`,
     );
   }
 
@@ -172,20 +169,20 @@ async function createCheckSuite() {
 
 /**
  * @typedef {Object} GitHubCheckOutput
- * @param {string} title
- * @param {string} summary - supports Markdown
- * @param {string} [text] - supports Markdown
- * @param {Object[]} [annotations]
- * @param {{ alt: string, image_url: string, caption: string }[]} [images] - Image Grid using absolute urls
+ * @prop {string} title
+ * @prop {string} summary - supports Markdown
+ * @prop {string} [text] - supports Markdown
+ * @prop {Object[]} [annotations]
+ * @prop {{ alt: string, image_url: string, caption: string }[]} [images] - Image Grid using absolute urls
  * @link https://developer.github.com/v3/checks/runs/#output-object
  */
 
 /**
  * @param {Object} opt
- * @param opt.name
- * @param [opt.status='queued'] - One of queued, in_progress, or completed
+ * @param {string} opt.name
+ * @param {string} [opt.status='queued'] - One of queued, in_progress, or completed
  * @param {GitHubCheckOutput} [opt.output]
- * @param [opt.conclusion] - The final conclusion of the check. Can be one of success, failure, neutral, cancelled, timed_out, or action_required. When the conclusion is action_required, additional details should be provided on the site specified by details_url.
+ * @param {string} [opt.conclusion] - The final conclusion of the check. Can be one of success, failure, neutral, cancelled, timed_out, or action_required. When the conclusion is action_required, additional details should be provided on the site specified by details_url.
  * @param {string} [opt.details_url]
  * @return {Promise<Object>}
  * @link https://developer.github.com/v3/checks/runs/#create-a-check-run
@@ -231,9 +228,7 @@ async function setCheckRun({
   if (!response.ok) {
     console.log(results);
     throw new Error(
-      `Error creating check run: ${response.status} ${response.statusText}. ${
-        results.message
-      }`,
+      `Error creating check run: ${response.status} ${response.statusText}. ${results.message}`,
     );
   }
 

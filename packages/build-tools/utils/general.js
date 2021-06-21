@@ -70,10 +70,18 @@ async function fileExists(path) {
 }
 
 /**
- * Check if a directory exists
+ * Deprecated - use folderExists instead.
  * @param path {string} - Path to the directory to check
  */
 async function dirExists(path) {
+  return await folderExists(path);
+}
+
+/**
+ * Check if a folder exists
+ * @param path {string} - Path to the folder to check
+ */
+async function folderExists(path) {
   try {
     const stats = await stat(path);
     return stats.isDirectory() ? true : false;
@@ -82,11 +90,31 @@ async function dirExists(path) {
   }
 }
 
+/**
+ * Ensure a folder exists
+ * We don't want to do anything with the folder now, we just want to provide an early error if a path is wrong.
+ * This is called async and by the time an error is thrown, we may be several steps ahead with WebPack probably already trying to start - that's ok, we don't want to hold up the process everytime things are correct.
+ * @param folderPath {string} - Path to folder to check if it exists
+ */
+async function ensureFolderExists(folderPath, pkgName) {
+  const stats = await stat(folderPath);
+  if (!stats.isDirectory()) {
+    log.errorAndExit(
+      `The ${folderPath} folder does not exist and it was referenced in ${
+        pkgName ? `${pkgName}'s package.json` : "a component's package.json"
+      } registered in the .boltrc.js config. Please verify the folder path is correct and try restarting the build.`,
+      folderPath,
+    );
+  }
+}
+
 module.exports = {
   flattenArray,
   concatArrays,
   uniqueArray,
   ensureFileExists,
+  ensureFolderExists,
   dirExists,
+  folderExists,
   fileExists,
 };

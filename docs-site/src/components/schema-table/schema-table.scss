@@ -1,11 +1,10 @@
 .c-bds-schema-table {
   &:not(:last-child) {
-    @include bolt-margin-bottom(medium);
+    margin-bottom: var(--bolt-spacing-y-medium);
   }
 
   ul {
     p {
-      display: inline;
       margin: 0;
     }
 
@@ -17,12 +16,14 @@
       cursor: pointer;
 
       summary {
+        font-weight: var(--bolt-type-font-weight-semibold);
         user-select: none;
-        font-weight: bolt-font-weight(700);
+
         &:focus {
           outline: none;
         }
       }
+
       &,
       summary {
         margin: 0;
@@ -60,8 +61,6 @@ bolt-schema-table.is-wc {
 // }
 
 .c-bds-schema-table {
-  border-radius: $bolt-border-radius;
-
   background-attachment: local, local, scroll, scroll;
   // background-image: -webkit-linear-gradient(left, bolt-color(white), bolt-color(black)),
   // -webkit-linear-gradient(right, bolt-color(white), bolt-color(black)),
@@ -73,12 +72,11 @@ bolt-schema-table.is-wc {
   //   linear-gradient(left, bolt-color(gray, xlight), bolt-color(gray, xdark)),
   //   linear-gradient(right, bolt-color(gray, xlight), bolt-color(gray, xdark));
 
-
   background-color: bolt-color(white);
   background-image: -webkit-linear-gradient(left, #fff, hsla(0, 0%, 100%, 0)),
-  -webkit-linear-gradient(right, #fff, hsla(0, 0%, 100%, 0)),
-  -webkit-linear-gradient(left, #eaf0f6, rgba(234, 240, 246, 0)),
-  -webkit-linear-gradient(right, #eaf0f6, rgba(234, 240, 246, 0));
+    -webkit-linear-gradient(right, #fff, hsla(0, 0%, 100%, 0)),
+    -webkit-linear-gradient(left, #eaf0f6, rgba(234, 240, 246, 0)),
+    -webkit-linear-gradient(right, #eaf0f6, rgba(234, 240, 246, 0));
   background-position: 0 0, 100% 0, 0 0, 100% 0;
   background-repeat: no-repeat;
   background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
@@ -89,11 +87,12 @@ bolt-schema-table.is-wc {
   overflow-y: hidden;
 
   table {
-    @include bolt-font-size(xsmall);
-    @include bolt-font-family(body);
-    @include bolt-margin-bottom(0);
     transform: translate3d(0, 0, 0);
     width: 100%;
+    margin-bottom: 0;
+    font-family: var(--bolt-type-font-family-body);
+    font-size: var(--bolt-type-font-size-xsmall);
+    line-height: var(--bolt-type-line-height-xsmall);
     border: 1px solid bolt-color(gray, light);
     table-layout: auto;
   }
@@ -105,7 +104,7 @@ bolt-schema-table.is-wc {
   tr {
     transition: background-color 0.1s ease;
 
-    &:not(:last-child){
+    &:not(:last-child) {
       border-bottom: 1px solid bolt-color(gray, light);
     }
   }
@@ -114,19 +113,19 @@ bolt-schema-table.is-wc {
     background-color: rgba(bolt-color(gray, xlight), 0.5);
   }
 
-
   th {
-    @include bolt-padding(xsmall);
-    @include bolt-font-size(xsmall);
-    @include bolt-font-weight(semibold);
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+    font-size: var(--bolt-type-font-size-xsmall);
+    font-weight: var(--bolt-type-font-weight-semibold);
     color: bolt-color(gray, dark);
+    line-height: var(--bolt-type-line-height-xsmall);
     text-align: left;
     vertical-align: bottom;
     background-color: bolt-color(gray, xlight);
   }
 
   td {
-    @include bolt-padding(xsmall);
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
     vertical-align: top;
   }
 
@@ -140,7 +139,7 @@ bolt-schema-table.is-wc {
 }
 
 .c-bds-schema-table__col--key {
-  font-weight: bolt-font-weight(600);
+  font-weight: var(--bolt-type-font-weight-semibold);
 }
 
 .c-bds-schema-table .c-bds-schema-table {

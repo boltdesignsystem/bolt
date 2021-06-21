@@ -1,7 +1,3 @@
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) | raw }}
-{% endif %}
-
 {% set schema = bolt.data.components['@bolt-components-headline'].schema %}
 
 {% if enable_json_schema_validation %}
@@ -26,6 +22,8 @@
 {% set type = type in types ? type : "text" %}
 {% set size = size | default(schema.properties.size.default) %}
 
+{% set numberSize = "auto" %}
+{% set autoshrink = autoshrink is defined ? autoshrink : schema.properties.autoshrink.default %}
 
 {# For backwards compatibility only, setting icon to exactly 'false' is the same as specifying 'none'.  Deprecated. #}
 {% if icon is sameas(false) %}
@@ -60,7 +58,7 @@
 {% set baseClass = prefix ~ type %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{% if (size == "xxxlarge") and (text|length >= 60) %}
+{% if (size == "xxxlarge") and (text|length >= 60) and autoshrink == true %}
   {% set longTitle = true %}
 {% endif %}
 
@@ -68,9 +66,9 @@
   {% set attributes = attributes.setAttribute("slot", slot) %}
 {% endif %}
 
-
 {% set classes = [
   baseClass,
+  numberText ? baseClass ~ "--" ~ "bulleted" : "",
   quoted ? baseClass ~ "--" ~ "quoted" : "",
   weight in weights ? baseClass ~ "--" ~ weight : "",
   align in alignments and align != null ? baseClass ~ "--" ~ align : "",
@@ -81,32 +79,50 @@
   iconPosition ? baseClass ~ "--icon-position-" ~ iconPosition : ""
 ] %}
 
-<{{ tag }} {{ attributes.addClass(classes) }}>{% spaceless %}
+{% set iconBefore %}{% apply spaceless %}
   {% if icon and not url and iconPosition == "before" %}
-    <span class="{{ "#{baseClass}__icon" }}">
-      {% include "@bolt/icon.twig" with icon only %}
+    <span class="c-bolt-headline__icon c-bolt-headline__icon--position-before">
+      {% include "@bolt-components-icon/icon.twig" with icon only %}
     </span>
   {% endif %}
+{% endapply %}{% endset %}
 
-  {% if url %}
+{% set iconAfter %}{% apply spaceless %}
+  {% if icon and not url and iconPosition != "before" %}
+    <span class="c-bolt-headline__icon c-bolt-headline__icon--position-after">
+      {% include "@bolt-components-icon/icon.twig" with icon only %}
+    </span>
+  {% endif %}
+{% endapply %}{% endset %}
+
+{% set hasIcon = iconBefore or iconAfter ? true : false %}
+
+<{{ tag }} {{ attributes.addClass(classes) }}>{% apply spaceless %}
+  {% if numberText %}
+    <span class="c-bolt-headline__bullet c-bolt-headline__bullet--size-{{ numberSize }}">
+      <span class="c-bolt-headline__bullet-inner {{ numberColor ? 'c-bolt-headline__bullet-inner--' ~ numberColor : ''}}">
+        <span class="c-bolt-headline__bullet-text">{{ numberText }}</span>
+      </span>
+    </span>
+  {% endif %}
+  {%- if url -%}
     {% set linkVars = {
       text: text,
       url: url,
-      isHeadline: (type != "text")
+      is_headline: (type != "text")
     } %}
-
+    {% if target %}
+      {% set linkVars = linkVars | merge({ target: target }) %}
+    {% endif %}
     {% if icon %}
       {% set linkVars = linkVars | merge({ icon: icon }) %}
     {% endif %}
-
     {% include "@bolt/link.twig" with linkVars only %}
-  {% else %}
-    {{ text }}
+  {%- else -%}
+    {% if hasIcon or quoted %}<span class="c-bolt-headline__text">{% endif %}
+      {{- iconBefore -}}
+      {{- text -}}
+      {{- iconAfter -}}
+    {% if hasIcon or quoted %}</span>{% endif %}
   {% endif %}
-
-  {% if icon and not url and iconPosition != "before" %}
-    <span class="{{ "#{baseClass}__icon" }}">
-      {% include "@bolt/icon.twig" with icon only %}
-    </span>
-  {% endif %}
-{% endspaceless %}</{{ tag }}>
+{% endapply %}</{{ tag }}>

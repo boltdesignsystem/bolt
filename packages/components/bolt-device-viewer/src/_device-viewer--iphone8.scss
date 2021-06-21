@@ -1,27 +1,36 @@
-$device-shadow: 0 1px 2px 1px rgba(6,10,36,0.10), 0 5px 10px 1px rgba(6,10,36,0.15), 0 15px 30px 0 rgba(6,10,36,0.25);
+$device-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1),
+  0 5px 10px 1px rgba(6, 10, 36, 0.15), 0 15px 30px 0 rgba(6, 10, 36, 0.25);
 
 $bolt-iphone8-viewer-height: 667px + (105px * 2);
 $bolt-iphone8-viewer-width: 375px + (24px * 2);
 
 .c-bolt-iphone8-viewer {
   width: 100%;
-  max-width: $bolt-iphone8-viewer-width * .8;
-  border-top-right-radius: (56px / $bolt-iphone8-viewer-width * 100%) (56px / $bolt-iphone8-viewer-height * 100%);
+  max-width: $bolt-iphone8-viewer-width * 0.8;
+  border-top-right-radius: (56px / $bolt-iphone8-viewer-width * 100%)
+    (56px / $bolt-iphone8-viewer-height * 100%);
 
-  border-top-left-radius: (56px / $bolt-iphone8-viewer-width * 100%) (56px / $bolt-iphone8-viewer-height * 100%);
-  border-bottom-right-radius: (56px / $bolt-iphone8-viewer-width * 100%) (56px / $bolt-iphone8-viewer-height * 100%);
-  border-bottom-left-radius: (56px / $bolt-iphone8-viewer-width * 100%) (56px / $bolt-iphone8-viewer-height * 100%);
+  border-top-left-radius: (56px / $bolt-iphone8-viewer-width * 100%)
+    (56px / $bolt-iphone8-viewer-height * 100%);
+  border-bottom-right-radius: (56px / $bolt-iphone8-viewer-width * 100%)
+    (56px / $bolt-iphone8-viewer-height * 100%);
+  border-bottom-left-radius: (56px / $bolt-iphone8-viewer-width * 100%)
+    (56px / $bolt-iphone8-viewer-height * 100%);
 
   box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.2), $device-shadow;
   background-color: #d9dbdc;
 
   &.c-bolt-iphone8-viewer--landscape {
-    max-width: $bolt-iphone8-viewer-height * .8;
-    border-top-right-radius: (56px / $bolt-iphone8-viewer-height * 100%) (56px / $bolt-iphone8-viewer-width * 100%);
+    max-width: $bolt-iphone8-viewer-height * 0.8;
+    border-top-right-radius: (56px / $bolt-iphone8-viewer-height * 100%)
+      (56px / $bolt-iphone8-viewer-width * 100%);
 
-    border-top-left-radius: (56px / $bolt-iphone8-viewer-height * 100%) (56px / $bolt-iphone8-viewer-width * 100%);
-    border-bottom-right-radius: (56px / $bolt-iphone8-viewer-height * 100%) (56px / $bolt-iphone8-viewer-width * 100%);
-    border-bottom-left-radius: (56px / $bolt-iphone8-viewer-height * 100%) (56px / $bolt-iphone8-viewer-width * 100%);
+    border-top-left-radius: (56px / $bolt-iphone8-viewer-height * 100%)
+      (56px / $bolt-iphone8-viewer-width * 100%);
+    border-bottom-right-radius: (56px / $bolt-iphone8-viewer-height * 100%)
+      (56px / $bolt-iphone8-viewer-width * 100%);
+    border-bottom-left-radius: (56px / $bolt-iphone8-viewer-height * 100%)
+      (56px / $bolt-iphone8-viewer-width * 100%);
   }
 
   &.c-bolt-iphone8-viewer--gold {
@@ -35,38 +44,46 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
 }
 
 .c-bolt-iphone8-viewer__inner {
-  padding: (105px / $bolt-iphone8-viewer-width * 100%) (24px / $bolt-iphone8-viewer-width * 100%);
+  padding: (105px / $bolt-iphone8-viewer-width * 100%)
+    (24px / $bolt-iphone8-viewer-width * 100%);
 
   .c-bolt-iphone8-viewer--landscape & {
-    padding: (24px / $bolt-iphone8-viewer-height * 100%) (105px / $bolt-iphone8-viewer-height * 100%);
+    padding: (24px / $bolt-iphone8-viewer-height * 100%)
+      (105px / $bolt-iphone8-viewer-height * 100%);
   }
 
   &:before {
-
     top: 6px / $bolt-iphone8-viewer-height * 100%;
     right: 6px / $bolt-iphone8-viewer-width * 100%;
     bottom: 6px / $bolt-iphone8-viewer-height * 100%;
     left: 6px / $bolt-iphone8-viewer-width * 100%;
     width: auto;
     height: auto;
-    border-top-right-radius: (50px / $bolt-iphone8-viewer-width * 100%) (50px / $bolt-iphone8-viewer-height * 100%);
+    border-top-right-radius: (50px / $bolt-iphone8-viewer-width * 100%)
+      (50px / $bolt-iphone8-viewer-height * 100%);
 
-    border-top-left-radius: (50px / $bolt-iphone8-viewer-width * 100%) (50px / $bolt-iphone8-viewer-height * 100%);
-    border-bottom-right-radius: (50px / $bolt-iphone8-viewer-width * 100%) (50px / $bolt-iphone8-viewer-height * 100%);
-    border-bottom-left-radius: (50px / $bolt-iphone8-viewer-width * 100%) (50px / $bolt-iphone8-viewer-height * 100%);
+    border-top-left-radius: (50px / $bolt-iphone8-viewer-width * 100%)
+      (50px / $bolt-iphone8-viewer-height * 100%);
+    border-bottom-right-radius: (50px / $bolt-iphone8-viewer-width * 100%)
+      (50px / $bolt-iphone8-viewer-height * 100%);
+    border-bottom-left-radius: (50px / $bolt-iphone8-viewer-width * 100%)
+      (50px / $bolt-iphone8-viewer-height * 100%);
 
     background-color: #f8f8f8;
 
     .c-bolt-iphone8-viewer--landscape & {
-
       top: 6px / $bolt-iphone8-viewer-width * 100%;
       right: 6px / $bolt-iphone8-viewer-height * 100%;
       bottom: 6px / $bolt-iphone8-viewer-width * 100%;
       left: 6px / $bolt-iphone8-viewer-height * 100%;
-      border-top-right-radius: (50px / $bolt-iphone8-viewer-height * 100%) (50px / $bolt-iphone8-viewer-width * 100%);
-      border-top-left-radius: (50px / $bolt-iphone8-viewer-height * 100%) (50px / $bolt-iphone8-viewer-width * 100%);
-      border-bottom-right-radius: (50px / $bolt-iphone8-viewer-height * 100%) (50px / $bolt-iphone8-viewer-width * 100%);
-      border-bottom-left-radius: (50px / $bolt-iphone8-viewer-height * 100%) (50px / $bolt-iphone8-viewer-width * 100%);
+      border-top-right-radius: (50px / $bolt-iphone8-viewer-height * 100%)
+        (50px / $bolt-iphone8-viewer-width * 100%);
+      border-top-left-radius: (50px / $bolt-iphone8-viewer-height * 100%)
+        (50px / $bolt-iphone8-viewer-width * 100%);
+      border-bottom-right-radius: (50px / $bolt-iphone8-viewer-height * 100%)
+        (50px / $bolt-iphone8-viewer-width * 100%);
+      border-bottom-left-radius: (50px / $bolt-iphone8-viewer-height * 100%)
+        (50px / $bolt-iphone8-viewer-width * 100%);
     }
 
     .c-bolt-iphone8-viewer--black & {
@@ -84,38 +101,43 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
 
     width: auto;
     height: auto;
-    border-top-right-radius: (48px / $bolt-iphone8-viewer-width * 100%) (48px / $bolt-iphone8-viewer-height * 100%);
+    border-top-right-radius: (48px / $bolt-iphone8-viewer-width * 100%)
+      (48px / $bolt-iphone8-viewer-height * 100%);
 
-    border-top-left-radius: (48px / $bolt-iphone8-viewer-width * 100%) (48px / $bolt-iphone8-viewer-height * 100%);
-    border-bottom-right-radius: (48px / $bolt-iphone8-viewer-width * 100%) (48px / $bolt-iphone8-viewer-height * 100%);
-    border-bottom-left-radius: (48px / $bolt-iphone8-viewer-width * 100%) (48px / $bolt-iphone8-viewer-height * 100%);
+    border-top-left-radius: (48px / $bolt-iphone8-viewer-width * 100%)
+      (48px / $bolt-iphone8-viewer-height * 100%);
+    border-bottom-right-radius: (48px / $bolt-iphone8-viewer-width * 100%)
+      (48px / $bolt-iphone8-viewer-height * 100%);
+    border-bottom-left-radius: (48px / $bolt-iphone8-viewer-width * 100%)
+      (48px / $bolt-iphone8-viewer-height * 100%);
 
-    box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.1), inset 0 0 6px 3px #FFFFFF;
+    box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.1), inset 0 0 6px 3px #ffffff;
 
     .c-bolt-iphone8-viewer--landscape & {
-
       top: 8px / $bolt-iphone8-viewer-width * 100%;
       right: 8px / $bolt-iphone8-viewer-height * 100%;
       bottom: 8px / $bolt-iphone8-viewer-width * 100%;
       left: 8px / $bolt-iphone8-viewer-height * 100%;
-      border-top-right-radius: (48px / $bolt-iphone8-viewer-height * 100%) (48px / $bolt-iphone8-viewer-width * 100%);
-      border-top-left-radius: (48px / $bolt-iphone8-viewer-height * 100%) (48px / $bolt-iphone8-viewer-width * 100%);
-      border-bottom-right-radius: (48px / $bolt-iphone8-viewer-height * 100%) (48px / $bolt-iphone8-viewer-width * 100%);
-      border-bottom-left-radius: (48px / $bolt-iphone8-viewer-height * 100%) (48px / $bolt-iphone8-viewer-width * 100%);
+      border-top-right-radius: (48px / $bolt-iphone8-viewer-height * 100%)
+        (48px / $bolt-iphone8-viewer-width * 100%);
+      border-top-left-radius: (48px / $bolt-iphone8-viewer-height * 100%)
+        (48px / $bolt-iphone8-viewer-width * 100%);
+      border-bottom-right-radius: (48px / $bolt-iphone8-viewer-height * 100%)
+        (48px / $bolt-iphone8-viewer-width * 100%);
+      border-bottom-left-radius: (48px / $bolt-iphone8-viewer-height * 100%)
+        (48px / $bolt-iphone8-viewer-width * 100%);
     }
 
     .c-bolt-iphone8-viewer--black & {
-      box-shadow : inset 0 0 3px 0 rgba(0, 0, 0, 0.1),
-      inset 0 0 6px 3px #212121;
+      box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.1), inset 0 0 6px 3px #212121;
     }
   }
 }
 
-
 .c-bolt-iphone8-viewer__screen {
   padding-bottom: 177.78636649%;
   box-shadow: 0 0 0 3px #111;
-  background-color: bolt-color(black);
+  background-color: var(--bolt-color-black);
   background-image: linear-gradient(to bottom, #b3b3b7 0%, #424044 100%);
 
   .c-bolt-iphone8-viewer--landscape & {
@@ -155,8 +177,14 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
   width: 68px / $bolt-iphone8-viewer-width * 100%;
   height: 68px / $bolt-iphone8-viewer-height * 100%;
 
-  background-color: rgb(48,50,51);
-  background-image: linear-gradient(135deg, rgba(48,50,51,1) 0%,rgba(181,183,185,1) 50%,rgba(240,242,242,1) 69%,rgba(48,50,51,1) 100%);
+  background-color: rgb(48, 50, 51);
+  background-image: linear-gradient(
+    135deg,
+    rgba(48, 50, 51, 1) 0%,
+    rgba(181, 183, 185, 1) 50%,
+    rgba(240, 242, 242, 1) 69%,
+    rgba(48, 50, 51, 1) 100%
+  );
 
   .c-bolt-iphone8-viewer--landscape & {
     top: 50%;
@@ -187,13 +215,23 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
   }
 
   .c-bolt-iphone8-viewer--gold & {
-    background-color: rgb(206,187,169);
-    background-image: linear-gradient(135deg, rgba(206,187,169,1) 0%,rgba(249,231,211,1) 50%,rgba(206,187,169,1) 100%);
+    background-color: rgb(206, 187, 169);
+    background-image: linear-gradient(
+      135deg,
+      rgba(206, 187, 169, 1) 0%,
+      rgba(249, 231, 211, 1) 50%,
+      rgba(206, 187, 169, 1) 100%
+    );
   }
 
   .c-bolt-iphone8-viewer--black & {
-    background-color: rgb(8,8,8);
-    background-image: linear-gradient(135deg, rgba(8,8,8,1) 0%,rgba(70,70,70,1) 50%,rgba(8,8,8,1) 100%);
+    background-color: rgb(8, 8, 8);
+    background-image: linear-gradient(
+      135deg,
+      rgba(8, 8, 8, 1) 0%,
+      rgba(70, 70, 70, 1) 50%,
+      rgba(8, 8, 8, 1) 100%
+    );
   }
 }
 
@@ -206,7 +244,7 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
 
   .c-bolt-iphone8-viewer--landscape & {
     top: 0;
-    left: calc(100% - 68px -  14px);
+    left: calc(100% - 68px - 14px);
     width: 14px;
     height: 100%;
   }
@@ -330,7 +368,6 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
   height: 12px / $bolt-iphone8-viewer-height * 100%;
   background-color: #3c3d3d;
 
-
   .c-bolt-iphone8-viewer--black & {
     background-color: #080808;
   }
@@ -349,7 +386,6 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
 }
 
 .c-bolt-iphone8-viewer__sensor {
-
   position: absolute;
   top: 49px / $bolt-iphone8-viewer-height * 100%;
   left: 134px / $bolt-iphone8-viewer-width * 100%;
@@ -371,9 +407,7 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
   }
 }
 
-
 .c-bolt-iphone8-viewer__speaker {
-
   position: absolute;
   top: 54px / $bolt-iphone8-viewer-height * 100%;
   left: 50%;

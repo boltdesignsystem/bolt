@@ -1,0 +1,64 @@
+// /* ------------------------------------ *\
+//    Tabs Items
+// \* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+bolt-tab-panel {
+  display: block;
+
+  [slot='label'] {
+    display: none;
+  }
+}
+
+.c-bolt-tab-panel__content {
+  display: none;
+  flex-grow: 1; // sits inside flex container, always want full-width
+
+  &[aria-expanded='true'] {
+    display: block;
+  }
+
+  &:focus {
+    // gets focus when you tab after opening a tab panel, user agent adds focus ring by default
+    outline: none;
+  }
+}
+
+// Panel spacing
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  @if (
+    $size-name !=
+      'xxsmall' and
+      $size-name !=
+      'large' and
+      $size-name !=
+      'xlarge' and
+      $size-name !=
+      'xxlarge'
+  ) {
+    .c-bolt-tab-panel--spacing-#{$size-name} {
+      > .c-bolt-tab-panel__content {
+        padding: var(--bolt-spacing-y-#{$size-name})
+          var(--bolt-spacing-x-#{$size-name});
+      }
+
+      &:not(.c-bolt-tab-panel--inset) {
+        > .c-bolt-tab-panel__content {
+          padding-right: 0;
+          padding-bottom: 0;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+
+// No-js styles
+.c-bolt-tab-panel__outer {
+  order: 99; // tab panels must *appear* at the end but live next to their respective labels for adjacent sibling selectors to work
+  width: 100%; // required for no-JS panel alignment
+}

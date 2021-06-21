@@ -1,0 +1,77 @@
+@import '@bolt/core-v3.x';
+@import './nav-shared';
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-interactive-pathway', block, medium);
+
+$bolt-interactive-step--dot-size: 1.2rem;
+
+.c-bolt-interactive-pathway {
+  display: none;
+  position: relative;
+  overflow: hidden;
+  padding-top: 1.65rem;
+
+  &--active {
+    display: flex;
+  }
+
+  &__nav {
+    display: none;
+  }
+
+  &__nav-item {
+    &:before {
+      @include bolt-micro-journeys-nav-dot;
+    }
+
+    &--active {
+      &:before {
+        @include bolt-micro-journeys-nav-dot($active: true);
+      }
+    }
+  }
+
+  @include bolt-mq(medium) {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    &__nav {
+      display: block;
+      flex: 1 0 25%;
+      position: relative;
+      margin-right: var(--bolt-spacing-x-small);
+      @include bolt-micro-journeys-nav-items-wrapper;
+    }
+
+    &__nav-item {
+      position: relative;
+      @include bolt-micro-journeys-nav-title;
+
+      &:after {
+        @include bolt-micro-journeys-nav-line;
+      }
+
+      &--active {
+        @include bolt-micro-journeys-nav-title($active: true);
+      }
+
+      &:last-of-type:after {
+        display: none;
+      }
+    }
+  }
+
+  &__items {
+    flex: 1 1 70%;
+    max-width: 100%; // fix to prevent UI from overflowing on smaller screen sizes
+  }
+}
+
+/**
+ * This builds the vertical strikethrough line on the interactive pathway nav
+ */
+bolt-interactive-pathway {
+  position: relative;
+  margin-bottom: 0 !important; // override the global vertical spacing rhythm, as only one is visible in any list
+}

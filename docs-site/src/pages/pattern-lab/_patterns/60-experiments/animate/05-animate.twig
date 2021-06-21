@@ -1,0 +1,105 @@
+<div class="demo-animate">
+
+  <button class="demo-animate__trigger">Trigger</button>
+  <div class="demo-animate__items">
+    <div class="demo-animate__item">
+      <bolt-animate
+        initial-appearance="hidden"
+        in="fade-in"
+        in-duration="2000"
+        idle="pulse"
+        out="fade-out"
+      >
+        <h2>In, Idle, Out</h2>
+      </bolt-animate>
+    </div>
+
+    <div class="demo-animate__item">
+      <bolt-animate
+        initial-appearance="hidden"
+        in="fade-in"
+      >
+        <h2>In</h2>
+      </bolt-animate>
+    </div>
+
+    <div class="demo-animate__item">
+      <bolt-animate
+        idle="pulse"
+        idle-duration="5000"
+        out="fade-out"
+      >
+        <h2>Idle, Out</h2>
+      </bolt-animate>
+    </div>
+
+    <div class="demo-animate__item">
+      <bolt-animate
+        out="fade-out"
+      >
+        <h2>Out</h2>
+      </bolt-animate>
+    </div>
+
+    <div class="demo-animate__item">
+      <bolt-animate
+        initial-appearance="hidden"
+        in="fade-in"
+        out="fade-out"
+      >
+        <h2>In, Out</h2>
+      </bolt-animate>
+    </div>
+
+    <div class="demo-animate__item">
+      <bolt-animate
+        initial-appearance="hidden"
+        in="fade-in"
+        idle="pulse"
+      >
+        <h2>In, Idle</h2>
+      </bolt-animate>
+    </div>
+
+    <div class="demo-animate__item">
+      <bolt-animate
+        idle="pulse"
+        idle-duration="5000"
+      >
+        <h2>Idle</h2>
+      </bolt-animate>
+    </div>
+  </div>
+
+
+  <style>
+    .demo-animate__item {
+      margin-bottom: 10px;
+    }
+  </style>
+
+  <script type="application/javascript">
+    const els = document.querySelectorAll('.demo-animate__items bolt-animate');
+    els.forEach(el => {
+      el.addEventListener('bolt-animate:end:in', event => {
+        console.log('pl bolt-animate:end:in', event);
+      });
+      el.addEventListener('bolt-animate:end:out', event => {
+        console.log('pl bolt-animate:end:out', event);
+      });
+    });
+
+    function trigger(type) {
+      els.forEach(el => {
+        if (type === 'in') {
+          el.triggerAnimIn();
+        }
+        if (type === 'out') {
+          el.triggerAnimOut();
+        }
+        // el.setAttribute('trigger', type);
+      });
+    }
+  </script>
+
+</div>

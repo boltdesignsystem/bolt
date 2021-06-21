@@ -8,6 +8,7 @@
 {% set base_class = "c-bolt-blockquote" %}
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
+{% set text_attributes = create_attribute({}) %}
 
 {# Required by Blockquote to map prop values to strings used in classname #}
 {% set align_items_options = {
@@ -17,17 +18,21 @@
 } %}
 
 {# Blockquote content is not required to be wrapped in a <p> tag, but if it is, update variables accordingly #}
-{% set quote_tag = "<p>" in content ? "replace-with-grandchildren" : "replace-with-children" %}
 {% set text_tag = "<p>" in content ? "div" : "p" %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  this.data.size.value in schema.properties.size.enum ? base_class ~ "--" ~ this.data.size.value : "",
   this.data.align_items.value in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[this.data.align_items.value],
   this.data.border.value == 'none' ? base_class ~ "--borderless" : base_class ~ "--bordered-" ~ this.data.border.value,
   this.data.indent.value ? base_class ~ "--indented" : "",
   this.data.full_bleed.value ? base_class ~ "--full" : ""
+] %}
+
+{% set text_classes = [
+  "c-bolt-blockquote__quote",
+  this.data.size.value ? "c-bolt-blockquote__quote--" ~ this.data.size.value : "",
+  this.data.weight.value ? "c-bolt-blockquote__quote--" ~ this.data.weight.value : ""
 ] %}
 
 {#
@@ -50,60 +55,64 @@
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
 >
-  <blockquote {{ inner_attributes.addClass(inner_classes) }} is="shadow-root">
+  <blockquote {{ inner_attributes.addClass(inner_classes) }}>
     {% if logo %}
-      <replace-with-children class="{{ "#{base_class}__logo" }}">
+      <ssr-keep for="bolt-blockquote" class="c-bolt-blockquote__logo">
         {% include "@bolt/logo.twig" with logo|merge({
-          "lazyload": false, 
           slot: "logo",
         }) only %}
-      </replace-with-children>
+      </ssr-keep>
     {% endif %}
 
-    <{{quote_tag}} class="{{ "#{base_class}__quote" }}">
-      {% include "@bolt-components-headline/text.twig" with {
-        text: content,
-        tag: text_tag,
-        size: this.data.size.value,
-        weight: "semibold"
-      } only %}
-    </{{quote_tag}}>
+    <div {{ text_attributes.addClass(text_classes) }}>
+      {% if "<p>" in content %}
+        <ssr-keep for="bolt-blockquote">
+          {{ content }}
+        </ssr-keep>
+      {% else %}
+        <ssr-keep for="bolt-blockquote">
+          <p>
+            {{ content }}
+          </p>
+        </ssr-keep>
+      {% endif %}
+    </div>
 
     {% if author %}
-      <replace-with-grandchildren>
-        <footer class="{{ "#{base_class}__footer" }}">
-            {% if author.image %}
-              <replace-with-grandchildren class="{{ "#{base_class}__footer-item" }}">
-                <div class="{{ "#{base_class}__image" }}">
-                  {% include "@bolt/image.twig" with author.image|merge({"lazyload": false, slot:"author-image"}) only %}
-                </div>
-              </replace-with-grandchildren>
-            {% endif %}
+      <footer class="c-bolt-blockquote__footer">
+        {% if author.image %}
+          <div class="c-bolt-blockquote__footer-item">
+            <div class="c-bolt-blockquote__image">
+              <ssr-keep for="bolt-blockquote">
+                {% include "@bolt/image.twig" with author.image|merge({ slot:"author-image"}) only %}
+              </ssr-keep>
+            </div>
+          </div>
+        {% endif %}
 
-            {% if author.name %}
-              <replace-with-children class="{{ "#{base_class}__footer-item" }}">
-                {% include "@bolt-components-headline/text.twig" with {
-                  text: author.name,
-                  tag: "cite",
-                  size: "xsmall",
-                  weight: "bold",
-                  slot: "author-name"
-                } %}
-              </replace-with-children>
-            {% endif %}
+        {% if author.name %}
+          <ssr-keep for="bolt-blockquote" class="c-bolt-blockquote__footer-item">
+            {% include "@bolt-components-headline/text.twig" with {
+              text: author.name,
+              tag: "cite",
+              size: "xsmall",
+              weight: "bold",
+              slot: "author-name"
+            } %}
+          </ssr-keep>
+        {% endif %}
 
-            {% if author.title %}
-              <replace-with-children class="{{ "#{base_class}__footer-item" }}">
-                {% include "@bolt-components-headline/text.twig" with {
-                  text: author.title,
-                  tag: "cite",
-                  size: "xsmall",
-                  slot: "author-title"
-                } only %}
-              </replace-with-children>
-            {% endif %}
-        </footer>
-      </replace-with-grandchildren>
+        {% if author.title %}
+          <ssr-keep for="bolt-blockquote" class="c-bolt-blockquote__footer-item">
+            {% include "@bolt-components-headline/text.twig" with {
+              text: author.title,
+              tag: "cite",
+              size: "xsmall",
+              slot: "author-title"
+            } only %}
+          </ssr-keep>
+        {% endif %}
+      </footer>
     {% endif %}
   </blockquote>
 </bolt-blockquote>

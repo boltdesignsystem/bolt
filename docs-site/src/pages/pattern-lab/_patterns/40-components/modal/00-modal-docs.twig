@@ -1,0 +1,21 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-button/button.twig" with {
+  text: "Open Modal",
+  attributes: {
+    "on-click": "show",
+    "on-click-target": "js-target-name"
+  }
+} only %}
+
+{% include "@bolt-components-modal/modal.twig" with {
+  content: "This is a modal",
+  attributes: {
+    class: "js-target-name"
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "modal",
+  usage: usage
+} only %}

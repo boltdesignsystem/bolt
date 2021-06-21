@@ -1,0 +1,126 @@
+/* ------------------------------------ *\
+   Menu
+\* ------------------------------------ */
+
+/**
+ * Dev notes:
+ * 1. [Mai] This CSS var is defined in menu.scss.
+ * 2. [Mai] Reset font styles here so it doesn't inherit from parent container.
+ * 3. [Mai] Reset the stacking order to be the lowest within the item container.
+ * 4. [Mai] Repeat the interactive styles for when the copy-to-clipboard component is used as a menu-item.
+ * 5. [Mai] Set the menu-item width to 100% when the copy-to-clipboard component is used as a menu-item.
+ * 6. [Mai] Fix icon and text vertical alignment.
+*/
+
+@import '@bolt/core-v3.x';
+@import './_menu-settings-and-tools.scss';
+
+// Register Custom Block Element
+@include bolt-repeat-rule(('bolt-menu-item', ':host(bolt-menu-item)')) {
+  display: block;
+
+  & + * {
+    border-top-color: $bolt-menu-border-color;
+    border-top-style: $bolt-menu-border-style;
+    border-top-width: $bolt-menu-border-width;
+  }
+
+  bolt-icon[size] {
+    display: block;
+    place-items: center;
+  }
+}
+
+.c-bolt-menu-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: var(--bolt-spacing-x-xsmall);
+  align-items: center;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  padding: var(--c-bolt-menu-item-spacing); /* [1] */
+  font-family: var(--bolt-type-font-family-body); /* [2] */
+  font-size: var(--bolt-type-font-size-small); /* [2] */
+  font-weight: var(--bolt-type-font-weight-regular); /* [2] */
+  color: var(--m-bolt-text);
+  line-height: var(--bolt-type-line-height-small); /* [2] */
+  transition: background-color var(--bolt-transition);
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 0; /* [3] */
+    user-select: none;
+  }
+
+  &:before {
+    opacity: 0.05;
+    top: 0;
+    left: 0;
+    transform: translate3d(0, 0, 0);
+    width: 0;
+    height: 100%;
+    background-color: var(--m-bolt-link);
+    transition: width var(--bolt-transition),
+      border-radius var(--bolt-transition);
+  }
+
+  &:after {
+    top: 50%;
+    bottom: 0;
+    left: 0;
+    transform: translate3d(0, -50%, 0);
+    width: 3px;
+    height: 0;
+    border-radius: bolt-border-radius(small);
+    background-color: var(--bolt-color-teal);
+    transition: height var(--bolt-transition);
+  }
+
+  /* [4] */
+  bolt-trigger:hover &,
+  .c-bolt-copy-to-clipboard__trigger:hover & {
+    color: var(--m-bolt-link);
+
+    &:before {
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+
+  bolt-trigger:active &,
+  .c-bolt-copy-to-clipboard__trigger:active & {
+    background-color: var(--m-bolt-tertiary);
+  }
+
+  bolt-trigger:focus-within &,
+  .c-bolt-copy-to-clipboard__trigger:focus-within & {
+    font-weight: var(--bolt-type-font-weight-semibold);
+    color: var(--m-bolt-headline);
+    outline: none;
+
+    &:before {
+      width: 100%;
+      border-radius: 0;
+    }
+
+    &:after {
+      height: calc(100% - var(--bolt-spacing-y-xsmall) * 2);
+    }
+  }
+
+  bolt-copy-to-clipboard & {
+    width: 100%; /* [5] */
+  }
+}
+
+[class*='c-bolt-menu-item__icon-'] {
+  display: inline-flex;
+  place-items: center;
+}
+
+.c-bolt-menu-item__icon-after {
+  margin-left: auto;
+}

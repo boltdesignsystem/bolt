@@ -1,0 +1,84 @@
+{% embed "@bolt-components-card-replacement/card-replacement.twig" with {
+  horizontal: true,
+  theme: "xlight",
+  link_url: cardUrl,
+  cardGradient: cardGradient,
+  gradientStart: gradientStart,
+  gradientMiddle: gradientMiddle,
+  gradientEnd: gradientEnd,
+  cardIcon: cardIcon,
+  cardSubtitle: cardSubtitle,
+  cardTitle: cardTitle,
+  cardMetaItems: cardMetaItems,
+  cardDescription: cardDescription,
+} only %}
+  {% block media %}
+    {% include "@bolt-academy/_icon-banner.twig" with {
+      cardGradient: cardGradient,
+      gradientStart: gradientStart,
+      gradientMiddle: gradientMiddle,
+      gradientEnd: gradientEnd,
+      cardIcon: cardIcon,
+      horizontal: true
+    } only %}
+  {% endblock %}
+
+  {% block body %}
+    <ul class="c-acd-horizontal-card-grid">
+      <li class="c-acd-horizontal-card-grid-item">
+        {% set cardTextContent %}
+          {% if cardSubtitle %}
+            {% include "@bolt-components-headline/eyebrow.twig" with {
+              text: cardSubtitle,
+              weight: "semibold"
+            } only %}
+          {% endif %}
+
+          {% if cardTitle %}
+            {% include "@bolt-components-headline/headline.twig" with {
+              text: cardTitle,
+              size: "xlarge"
+            } only %}
+          {% endif %}
+        {% endset %}
+
+        {% include "@bolt-components-stack/stack.twig" with {
+          content: cardTextContent,
+          spacing: "xsmall"
+        } only %}
+
+        {% if cardMetaItems %}
+          {% set cardMetaContent %}
+            {% include "@bolt-components-list/list.twig" with {
+              display: "inline",
+              separator: "solid",
+              tag: "ul",
+              items: cardMetaItems
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-stack/stack.twig" with {
+            content: cardMetaContent,
+            spacing: "xsmall"
+          } only %}
+        {% endif %}
+      </li>
+
+      {% if cardDescription %}
+        <li class="c-acd-horizontal-card-grid-item u-bolt-flex@small u-bolt-align-items-center">
+          {% include "@bolt-components-headline/text.twig" with {
+            text: cardDescription,
+            size: "small",
+            attributes: {
+              class: [
+                "u-bolt-padding-top-xsmall@small",
+                "u-bolt-padding-bottom-xsmall@small",
+              ]
+            }
+          } only %}
+        </li>
+      {% endif %}
+    </ul>
+  {% endblock %}
+
+{% endembed %}

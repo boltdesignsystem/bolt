@@ -1,170 +1,110 @@
-import { define, props } from '@bolt/core/utils';
-import classNames from 'classnames/bind';
-import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { customElement, BoltElement, html } from '@bolt/element';
+import { tippy, hideOnEsc, inspectNodeTypes } from '@bolt/core-v3.x/utils';
+import schema from '../tooltip.schema';
 
-import styles from './tooltip.scss';
+@customElement('bolt-tooltip')
+class BoltTooltip extends BoltElement {
+  static schema = schema;
 
-let cx = classNames.bind(styles);
-
-@define
-class BoltTooltip extends withLitHtml() {
-  static is = 'bolt-tooltip';
-
-  static props = {
-    triggerText: {
-      ...props.string,
-      ...{ default: undefined },
-    },
-    triggerType: {
-      ...props.string,
-      ...{ default: undefined },
-    },
-    triggerTransform: {
-      ...props.string,
-      ...{ default: undefined },
-    },
-    triggerIconName: {
-      ...props.string,
-      ...{ default: undefined },
-    },
-    triggerIconSize: {
-      ...props.string,
-      ...{ default: 'medium' },
-    },
-    triggerToggleText: {
-      ...props.string,
-      ...{ default: undefined },
-    },
-    triggerToggleIcon: {
-      ...props.string,
-      ...{ default: undefined },
-    },
-    content: props.any,
-    noWrap: props.boolean,
-    spacing: {
-      ...props.string,
-      ...{ default: 'small' },
-    },
-    triggerID: props.string,
-    positionVert: {
-      ...props.string,
-      ...{ default: 'up' },
-    },
-    count: {
-      ...props.string,
-      ...{ default: undefined },
-    }, // For use ONLY with share
-    active: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-  };
-
-  constructor(self) {
-    self = super(self);
-    self.clickHandler = self.clickHandler.bind(self);
-    return self;
+  static get properties() {
+    return {
+      ...this.props,
+      dotted: {
+        type: Boolean,
+        reflect: true,
+      },
+    };
   }
 
-  connected() {
-    this.triggerID = `bolt-tooltip-id-${Math.floor(Math.random() * 20)}`;
+  constructor() {
+    super();
+    this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
   }
 
-  clickHandler() {
-    this.active = !this.active;
-    this.renderRoot
-      .querySelector('bolt-tooltip-trigger')
-      .classList.toggle('is-active');
+  initTippy() {
+    this.$boundary =
+      this.$boundary ||
+      (this.boundary && this.closest(this.boundary)) ||
+      undefined;
+
+    // Note: trigger cannot not be a shadow DOM element or Tippy doesn't always hide properly
+    this.popover = tippy(this.trigger, {
+      content: this.content,
+      placement: this.placement || schema.properties.placement.default,
+      trigger: 'mouseenter focus', // To help debug styles set to 'click'
+      arrow: false,
+      interactive: true,
+      theme: 'tooltip',
+      appendTo: document.body,
+      maxWidth: 'none', // Set width via CSS variable for legacy Edge support
+      offset: [0, 0],
+      plugins: [hideOnEsc],
+      popperOptions: {
+        modifiers: [
+          {
+            name: 'flip',
+            options: {
+              fallbackPlacements: this.fallbackPlacements ?? undefined,
+              boundary: this.$boundary,
+            },
+          },
+          {
+            name: 'preventOverflow',
+            options: {
+              boundary: this.$boundary,
+            },
+          },
+        ],
+      },
+      onCreate: ({ popper }) => {
+        const theme = this.inverted ? `t-bolt-xlight` : `t-bolt-xxdark`;
+        popper.querySelector('.tippy-box').classList.add(theme);
+      },
+    });
   }
 
-  setClick() {
-    if (this.triggerType === 'button') {
-      return html`
-        <bolt-tooltip-trigger
-          class="c-bolt-tooltip__trigger"
-          aria-describedby=${this.triggerID}
-          @click=${this.clickHandler}
-        >
-          ${this.setTrigger()}
-        </bolt-tooltip-trigger>
-      `;
-    } else {
-      return html`
-        <bolt-tooltip-trigger
-          class="c-bolt-tooltip__trigger"
-          aria-describedby=${this.triggerID}
-        >
-          ${this.setTrigger()}
-        </bolt-tooltip-trigger>
-      `;
+  firstUpdated() {
+    const {
+      hasText,
+      hasAllowedContent,
+      hasDisallowedContent,
+      firstFocusableElement,
+    } = inspectNodeTypes(this.slotMap.get('default'));
+
+    // If `firstFocusableElement` has Shadow DOM, `getFocusableElement()` returns the focusable element within the Shadow DOM
+    this.trigger = firstFocusableElement || this;
+    this.content = this.querySelector('[slot="content"]');
+    this.dotted = (hasText || hasAllowedContent) && !hasDisallowedContent;
+
+    if (!this.content) return;
+
+    // Handle non-focusable trigger elements
+    if (!firstFocusableElement) {
+      this.trigger.setAttribute('role', 'button');
+      this.trigger.setAttribute('tabindex', 0);
     }
-  }
 
-  setTrigger() {
-    if (this.triggerType === 'button') {
-      return html`
-        <bolt-button
-          color="secondary"
-          transform="${ifDefined(this.triggerTransform)}"
-          >${this.triggerIconName &&
-            html`
-              <bolt-icon
-                name="${this.active
-                  ? this.triggerToggleIcon
-                  : this.triggerIconName}"
-                size="${this.triggerIconSize}"
-                slot="before"
-              ></bolt-icon>
-            `}
-          ${this.active
-            ? this.triggerToggleText
-            : this.triggerText}</bolt-button
-        >
-      `;
-    } else {
-      return html`
-        ${this.triggerIconName &&
-          html`
-            <bolt-icon
-              name="${this.triggerIconName}"
-              size="${this.triggerIconSize}"
-              slot="before"
-            ></bolt-icon>
-          `}
-        ${this.triggerText}
-      `;
+    // Set classes on content container
+    const contentClasslist = [`c-bolt-tooltip__content`];
+    const textContentLength = this.content.textContent.trim().length;
+    if (textContentLength > 31) {
+      contentClasslist.push(`c-bolt-tooltip__content--text-wrap`);
     }
+    if (textContentLength > 31 && textContentLength < 62) {
+      contentClasslist.push(`c-bolt-tooltip__content--text-align-center`);
+    }
+    this.content.classList.add(...contentClasslist);
+
+    this.initTippy();
+    this.setAttribute('ready', '');
+
+    // Call super and dispatch "ready" event _after_ Tippy is setup
+    super.firstUpdated && super.firstUpdated();
   }
 
   render() {
-    const classes = cx('c-bolt-tooltip is-align-center', {
-      [`c-bolt-tooltip${
-        this.triggerType === 'button' ? `--action` : `--help`
-      }`]: this.triggerType,
-      [`is-push-${this.positionVert}`]: this.positionVert,
-      [`c-bolt-tooltip--nowrap`]: this.noWrap,
-      [`c-bolt-tooltip--spacing-${this.spacing}`]: this.spacing,
-    });
-
-    const contentClasses = cx('c-bolt-tooltip__content', {
-      [`c-bolt-tooltip__content--${this.triggerType}`]: this.triggerType,
-      [`c-bolt-tooltip__content--${this.count}`]: this.count,
-    });
-
     return html`
-      ${this.addStyles([styles])}
-      <span class=${classes}>
-        ${this.setClick()}
-        <bolt-tooltip-content
-          id=${ifDefined(this.triggerID)}
-          class=${contentClasses}
-          role="tooltip"
-          aria-hidden="true"
-        >
-          <span class="c-bolt-tooltip__content-bubble">${this.content}</span>
-        </bolt-tooltip-content>
-      </span>
+      ${this.slotify('default')} ${this.slotify('content')}
     `;
   }
 }

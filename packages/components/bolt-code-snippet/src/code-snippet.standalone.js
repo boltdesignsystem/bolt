@@ -1,19 +1,15 @@
-import {
-  define,
-  props,
-  css,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
-
-import html from 'preact-html';
+import { customElement } from '@bolt/element';
+import { props, css, hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { h, withPreact, Markup } from '@bolt/core-v3.x/renderers';
 import Prism from 'prismjs/components/prism-core';
-
 import styles from './code-snippet.scss';
+import schema from '../code-snippet.schema';
 
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-twig';
 import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-sql';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-css-extras';
@@ -22,10 +18,8 @@ import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-markdown';
 import 'prismjs/components/prism-yaml';
 
-@define
-class BoltCodeSnippetClass extends withPreact() {
-  static is = 'bolt-code-snippet';
-
+@customElement('bolt-code-snippet')
+class BoltCodeSnippetClass extends withPreact {
   static props = {
     lang: props.string,
     display: props.string,
@@ -61,33 +55,29 @@ class BoltCodeSnippetClass extends withPreact() {
   }
 
   render() {
-    const { lang, display, syntax } = this.props;
+    const lang = this.props.lang || schema.properties.lang.default;
+    const display = this.props.display || schema.properties.display.default;
+    const syntax = this.props.syntax || schema.properties.syntax.default;
     const highlightedCode = this.highlightHTML(this.code, lang);
 
     const codeClasses = css(
       'c-bolt-code-snippet__code',
-      display
-        ? `c-bolt-code-snippet__code--${display}`
-        : 'c-bolt-code-snippet__code--block',
-      syntax
-        ? `c-bolt-code-snippet-syntax--${syntax}`
-        : 'c-bolt-code-snippet-syntax--light',
-      lang ? `language-${lang}` : 'language-html',
+      `c-bolt-code-snippet__code--${display}`,
+      `c-bolt-code-snippet-syntax--${syntax}`,
+      `language-${lang}`,
     );
 
     const preClasses = css(
       'c-bolt-code-snippet',
-      syntax
-        ? `c-bolt-code-snippet-syntax--${syntax}`
-        : 'c-bolt-code-snippet-syntax--light',
-      lang ? `language-${lang}` : 'language-html',
+      `c-bolt-code-snippet-syntax--${syntax}`,
+      `language-${lang}`,
     );
 
     if (display === 'inline') {
       return (
         <code className={codeClasses}>
           {this.addStyles([styles])}
-          {html(highlightedCode)}
+          <Markup markup={highlightedCode} trim={false} />
         </code>
       );
     } else {
@@ -95,7 +85,7 @@ class BoltCodeSnippetClass extends withPreact() {
         <pre className={preClasses}>
           <code className={codeClasses}>
             {this.addStyles([styles])}
-            {html(highlightedCode)}
+            <Markup markup={highlightedCode} trim={false} />
           </code>
         </pre>
       );

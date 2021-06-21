@@ -1,0 +1,14 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    "Slide 1",
+    "Slide 2",
+    "Slide 3",
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "carousel",
+  usage: usage
+} only %}

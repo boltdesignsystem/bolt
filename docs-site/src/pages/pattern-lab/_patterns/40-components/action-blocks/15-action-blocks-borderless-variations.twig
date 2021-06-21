@@ -1,0 +1,48 @@
+{% set icon_1 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "download",
+    size: "large"
+  } %}
+{% endset %}
+
+{% set icon_2 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "copy-to-clipboard",
+    size: "large"
+  } %}
+{% endset %}
+
+{% set icon_3 %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "calendar",
+    size: "large"
+  }%}
+{% endset %}
+
+{% for borderless in [true, false] %}
+  <h3>
+    Borderless: {% if borderless is sameas(true) %}true{% elseif borderless is sameas(false) %}false{% endif %}
+  </h3>
+  <div class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+      borderless: borderless,
+      items: [
+        {
+          text: "Item 1",
+          url: "#!",
+          media: icon_1,
+        },
+        {
+          text: "Item 2",
+          url: "#!",
+          media: icon_2,
+        },
+        {
+          text: "Item 3",
+          url: "#!",
+          media: icon_3,
+        }
+      ]
+    } only %}
+  </div>
+{% endfor %}

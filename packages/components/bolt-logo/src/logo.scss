@@ -1,16 +1,16 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
-$bolt-logo-max-width: bolt-spacing(xlarge);
+$bolt-logo-max-width: var(--bolt-spacing-x-xlarge);
 
 bolt-logo {
   display: block; // to force break to new line by default
   max-width: $bolt-logo-max-width;
 
   &:not(:last-child) {
-    @include bolt-margin-bottom(small);
+    margin-bottom: var(--bolt-spacing-y-small);
   }
 }
 
 .c-bolt-logo--invert {
-  filter: var(--bolt-theme-contrast-filter);
+  filter: var(--m-bolt-img-filter);
 }

@@ -1,0 +1,264 @@
+@import "../settings/settings-animations";
+/* ------------------------------------ *\
+   TOOLS - ANIMATIONS
+\* ------------------------------------ */
+
+////
+/// @group Tools: Animations
+/// @author Joseph Karasek
+////
+
+/// Spin
+/// @param {Bool} $base [false] - Base styling preps an element for transition
+/// @param {Bool} $active [false] - Triggers transition
+/// @param {String} $duration [$bolt-duration--medium] - Duration of animation
+/// @param {String} $timing-function [$bolt-timing--linear] - Timing/easing function
+/// @param {String|Number} $iteration [infinite] - Number of iterations of the animation to go through. Number or defaults to infinite
+/// @param {String} $direction [normal] - Animation direction (normal, reserve, etc)
+/// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
+/// @example Fade-in on hover
+/// .class {
+///    @include bolt-animation--fade-in($base: true);
+///    &:hover {
+///      @include bolt-animation--fade-in($active: true);
+///    }
+///  }
+@mixin bolt-animation--spin(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--linear,
+  $iteration: infinite,
+  $direction: normal,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-direction: $direction;
+    animation-duration: $duration;
+    animation-iteration-count: $iteration;
+    animation-name: bolt-animation--spin;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}
+
+/// Zoom In
+/// @param {Bool} $base [false] - Base styling preps an element for transition
+/// @param {Bool} $active [false] - Triggers transition
+/// @param {String} $duration [$bolt-duration--medium] - Duration of animation
+/// @param {String} $timing-function [$bolt-timing--linear] - Timing/easing function
+/// @param {String|Number} $iteration [infinite] - Number of iterations of the animation to go through. Number or defaults to infinite
+/// @param {String} $direction [normal] - Animation direction (normal, reserve, etc)
+/// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
+/// @example Zoom in on hover
+/// .class {
+///    @include bolt-animation--zoom-in($base: true);
+///    &:hover {
+///      @include bolt-animation--zoom-in($active: true);
+///    }
+///  }
+@mixin bolt-animation--zoom-in(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--linear,
+  $iteration: infinite,
+  $direction: normal,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-direction: $direction;
+    animation-duration: $duration;
+    animation-iteration-count: $iteration;
+    animation-name: bolt-animation--zoom-in;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}
+
+/// Zoom In Left
+/// @param {Bool} $base [false] - Base styling preps an element for transition
+/// @param {Bool} $active [false] - Triggers transition
+/// @param {String} $duration [$bolt-duration--medium] - Duration of animation
+/// @param {String} $timing-function [$bolt-timing--linear] - Timing/easing function
+/// @param {String|Number} $iteration [infinite] - Number of iterations of the animation to go through. Number or defaults to infinite
+/// @param {String} $direction [normal] - Animation direction (normal, reserve, etc)
+/// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
+/// @example Zoom in left on hover
+/// .class {
+///    @include bolt-animation--zoom-in-left($base: true);
+///    &:hover {
+///      @include bolt-animation--zoom-in-left($active: true);
+///    }
+///  }
+@mixin bolt-animation--zoom-in-left(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--linear,
+  $iteration: infinite,
+  $direction: normal,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-direction: $direction;
+    animation-duration: $duration;
+    animation-iteration-count: $iteration;
+    animation-name: bolt-animation--zoom-in-left;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}
+
+/// Zoom In Down
+/// @param {Bool} $base [false] - Base styling preps an element for transition
+/// @param {Bool} $active [false] - Triggers transition
+/// @param {String} $duration [$bolt-duration--medium] - Duration of animation
+/// @param {String} $timing-function [$bolt-timing--linear] - Timing/easing function
+/// @param {String|Number} $iteration [infinite] - Number of iterations of the animation to go through. Number or defaults to infinite
+/// @param {String} $direction [normal] - Animation direction (normal, reserve, etc)
+/// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
+/// @example Zoom in down on hover
+/// .class {
+///    @include bolt-animation--zoom-in-down($base: true);
+///    &:hover {
+///      @include bolt-animation--zoom-in-down($active: true);
+///    }
+///  }
+@mixin bolt-animation--zoom-in-down(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--linear,
+  $iteration: infinite,
+  $direction: normal,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-direction: $direction;
+    animation-duration: $duration;
+    animation-iteration-count: $iteration;
+    animation-name: bolt-animation--zoom-in-down;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}
+
+/// Heart Beat
+/// @param {Bool} $base [false] - Base styling preps an element for transition
+/// @param {Bool} $active [false] - Triggers transition
+/// @param {String} $duration [$bolt-duration--medium] - Duration of animation
+/// @param {String} $timing-function [$bolt-timing--linear] - Timing/easing function
+/// @param {String|Number} $iteration [infinite] - Number of iterations of the animation to go through. Number or defaults to infinite
+/// @param {String} $direction [normal] - Animation direction (normal, reserve, etc)
+/// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
+/// @example Heart Beat on hover
+/// .class {
+///    @include bolt-animation--heart-beat($base: true);
+///    &:hover {
+///      @include bolt-animation--heart-beat($active: true);
+///    }
+///  }
+@mixin bolt-animation--heart-beat(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--linear,
+  $iteration: infinite,
+  $direction: normal,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-direction: $direction;
+    animation-duration: $duration;
+    animation-iteration-count: $iteration;
+    animation-name: bolt-animation--heart-beat;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}
+
+@mixin bolt-animation--pulse(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--linear,
+  $iteration: infinite,
+  $direction: normal,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-direction: $direction;
+    animation-duration: $duration;
+    animation-iteration-count: $iteration;
+    animation-name: bolt-animation--pulse;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}
+
+@mixin bolt-animation--slide-down(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--linear,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-iteration-count: 1;
+    animation-name: slide-down;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+    transition-property: all;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}
+
+@mixin bolt-animation--slide-up(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--linear,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-iteration-count: 1;
+    animation-name: slide-up;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+    transition-property: all;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}

@@ -1,50 +1,103 @@
-import './components/version-selector/version-selector';
-// import './components/schema-form'; // Component Explorer is temporarily disabled until we're done migrating our Twig Rendering Service to Now.sh v2
-import './components/handle-iframe-height';
-import './pages/pattern-lab/_patterns/02-components/card/__tests__';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-preact-test';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-lit-test';
-// import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/lazy-lit-test';
-import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-// here if you need pl only JS
-// document.addEventListener('DOMContentLoaded', () => {
-//   /**
-//    * Docs Edit README Link > Simple edit hover effect
-//    */
-//   const editLink = document.getElementsByClassName(
-//     'c-bds-docs__page-nav__link',
-//   );
-//   const editWrap = document.getElementsByClassName('c-bds-docs__lead');
+lazyQueue(['bolt-typeahead'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--typeahead-demos' */ './typeahead-demos'
+  );
+});
 
-//   function toggleEditOn() {
-//     editWrap[0].classList.add('edit-this-readme');
-//   }
+import './pages/pattern-lab/_patterns/50-pages/99999-bolt-dev-sandbox/editor-integration'; // lazy-queue used internally so not using it here
 
-//   function toggleEditOff() {
-//     editWrap[0].classList.remove('edit-this-readme');
-//   }
+lazyQueue(['bolt-select'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--version-selector' */ './components/version-selector/version-selector'
+  );
+});
 
-//   if (editLink[0]) {
-//     editLink[0].addEventListener('mouseover', toggleEditOn, false);
-//   }
+lazyQueue(['bolt-animate'], async () => {
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--animate-demos' */ './animate-demos'
+  );
+});
 
-//   if (editWrap[0]) {
-//     editLink[0].addEventListener('mouseout', toggleEditOff, false);
-//   }
+// remaining (misc) docs site-related code that isn't attached to a particular selector
+lazyQueue([], async () => {
+  await import('./custom-icons');
 
-//   /**
-//    * Make sure all external facing links open in a new tab in PL.
-//    * Important as external links can behave strangely within the iframe setup of PL.
-//    */
-//   const docsSiteLinks = document.querySelectorAll('a');
-//   for (var i = 0, len = docsSiteLinks.length; i < len; i++) {
-//     const linkElem = docsSiteLinks[i];
-//     const href = linkElem.getAttribute('href');
-//     if (href) {
-//       if (href.startsWith('http')) {
-//         linkElem.setAttribute('target', '_blank');
-//       }
-//     }
-//   }
-// });
+  await import(
+    /*  webpackChunkName: 'bolt-docs-site--analytics-autotrack' */ '@bolt/analytics-autotrack'
+  );
+});
+
+// Academy-specific JS demoing the Mission Completed form's button re-activating
+const missionRatingInputs = document.querySelectorAll(
+  '.js-mission-rating-input',
+);
+const missionRatingSubmit = document.querySelector('.js-mission-rating-submit');
+
+for (const missionRatingInput of missionRatingInputs) {
+  missionRatingInput.addEventListener('input', e => {
+    if (missionRatingInput.validity.valid && e.target.value !== 'on') {
+      missionRatingSubmit.removeAttribute('disabled');
+    } else {
+      missionRatingSubmit.setAttribute('disabled', '');
+    }
+  });
+}
+
+if (missionRatingSubmit) {
+  missionRatingSubmit.addEventListener('click', e => {
+    if (!missionRatingSubmit.hasAttribute('disabled')) {
+      e.preventDefault();
+
+      window.location.href =
+        '/pattern-lab/patterns/50-pages-60-academy-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit/50-pages-60-academy-05-pages-t1-landing-pages-mission-landing--test-with-modal-02-t1-mission-landing--test-with-modal--after-submit.html';
+    }
+  });
+}
+
+// Quick-filters-specific JS demoing the overflow scroll behavior of the filter menu
+const quickFiltersScroll = el => {
+  if (!el) return;
+
+  const wrapper = el.closest('.js-www-quick-filters-scroll-wrapper');
+
+  const handleScroll = () => {
+    const wrapperWidth = wrapper.offsetWidth;
+    const buffer = 1; // Use buffer due to sub-pixel rounding differences between scroll and wrapper width
+    const notStart = el.scrollLeft > buffer;
+    const notEnd = el.scrollLeft < el.scrollWidth - wrapperWidth - buffer;
+    const isOverflowing = el.scrollWidth > wrapperWidth;
+
+    if (isOverflowing) {
+      wrapper.classList.add('is-overflowing');
+      if (notStart) {
+        wrapper.classList.add('is-not-start');
+      } else {
+        wrapper.classList.remove('is-not-start');
+      }
+      if (notEnd) {
+        wrapper.classList.add('is-not-end');
+      } else {
+        wrapper.classList.remove('is-not-end');
+      }
+    } else {
+      wrapper.classList.remove('is-overflowing');
+      wrapper.classList.remove('is-not-start');
+      wrapper.classList.remove('is-not-end');
+    }
+  };
+
+  el.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', handleScroll, { passive: true });
+
+  handleScroll(); // Call once onload to setup initial classes
+};
+
+const quickFiltersScrollEl = document.querySelector(
+  '.js-www-quick-filters-scroll',
+);
+
+if (quickFiltersScrollEl) {
+  quickFiltersScroll(quickFiltersScrollEl);
+}

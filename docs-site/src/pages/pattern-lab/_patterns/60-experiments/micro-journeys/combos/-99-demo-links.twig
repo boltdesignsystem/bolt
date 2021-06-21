@@ -1,0 +1,9 @@
+<h3>Direct links to Micro Journey pages</h3>
+<p>This is helpful for IE to use since navigating via the PL menu opens up many of these pages together which can be slow. Bookmark this page in IE11!</p>
+<ul>
+  {% for key, value in link %}
+    {% if 'experiments-micro-journeys' in value %}
+      <li><a href="{{ value }}">{{ key }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>

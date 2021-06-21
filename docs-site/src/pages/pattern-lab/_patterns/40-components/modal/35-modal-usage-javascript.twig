@@ -1,0 +1,98 @@
+<bolt-text headline font-size="xlarge">Toggle the Modal</bolt-text>
+<bolt-text>You can toggle a modal either by adding the <bolt-code-snippet display="inline" lang="html">data-bolt-modal-target</bolt-code-snippet> data attribute to a trigger element, or by calling the Modal's <bolt-code-snippet display="inline" lang="html">show()</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">hide()</bolt-code-snippet> methods directly via JavaScript.</bolt-text>
+
+<bolt-text headline font-size="large">Data attribute</bolt-text>
+<bolt-text>Use the data attribute <bolt-code-snippet display="inline" lang="html">data-bolt-modal-target</bolt-code-snippet> on a <bolt-link url="/pattern-lab/?p=components-modal-trigger-variations">trigger element</bolt-link> to toggle a modal. The value of the data attribute must be a valid CSS selector that matches your target modal. When you click the trigger the modal will show if currently hidden or it will hide if currently shown.
+</bolt-text>
+
+<bolt-text headline font-size="medium">Demo</bolt-text>
+{% set modal_content %}
+  <bolt-text>This modal was shown via the <bolt-code-snippet display="inline" lang="html">data-bolt-modal-target</bolt-code-snippet> data attribute.</bolt-text>
+  <bolt-text>The same data attribute is used on the button below to hide the modal.</bolt-text>
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Close Modal",
+    size: "small",
+    attributes: {
+      "data-bolt-modal-target": ".js-bolt-modal",
+    },
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-button/button.twig" with {
+  text: "Open Modal",
+  size: "small",
+  attributes: {
+    "data-bolt-modal-target": ".js-bolt-modal",
+  },
+} only %}
+
+{% include "@bolt-components-modal/modal.twig" with {
+  content: modal_content,
+  attributes: {
+    class: "js-bolt-modal",
+  },
+} only %}
+
+<bolt-text headline font-size="large">JavaScript</bolt-text>
+<bolt-text>Use the Modal's <bolt-code-snippet display="inline" lang="html">show()</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">hide()</bolt-code-snippet> methods to toggle a modal. Before calling any methods on the modal you must first wait for the Modal component to be ready. See the demo below for reference.
+</bolt-text>
+
+<bolt-text headline font-size="medium">Demo</bolt-text>
+
+{% set js_modal_content %}
+  <bolt-text>This modal was shown by calling the <bolt-code-snippet display="inline" lang="html">show()</bolt-code-snippet> method.</bolt-text>
+  <bolt-text>The <bolt-code-snippet display="inline" lang="html">hide()</bolt-code-snippet> method will be called when you click the button below.</bolt-text>
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Close Modal",
+    size: "small",
+    attributes: {
+      class: [
+        "js-bolt-modal-trigger--close"
+      ]
+    },
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-button/button.twig" with {
+  text: "Open Modal",
+  size: "small",
+  attributes: {
+    class: [
+      "js-bolt-modal-trigger--open"
+    ]
+  },
+} only %}
+
+{% include "@bolt-components-modal/modal.twig" with {
+  content: js_modal_content,
+  attributes: {
+    class: "js-bolt-modal--js-demo",
+  },
+} only %}
+
+
+{% set javascript_modal %}
+<script>
+ const modal = document.querySelector('.js-bolt-modal--js-demo');
+ const showButton = document.querySelector('.js-bolt-modal-trigger--open');
+ const hideButton = document.querySelector('.js-bolt-modal-trigger--close');
+
+ // Promise ensures Modal is defined before calling hide/show
+ customElements.whenDefined('bolt-modal').then(() => {
+   showButton.addEventListener('click', () => {
+     modal.show();
+   })
+   hideButton.addEventListener('click', () => {
+     modal.hide();
+   })
+ });
+</script>
+{% endset %}
+{{ javascript_modal }}
+<bolt-text headline font-size="large">Custom JavaScript</bolt-text>
+<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+  {{ javascript_modal | replace({
+    '<': '&lt;',
+    '>': '&gt;',
+  }) | trim | raw }}
+{% endspaceless %}</bolt-code-snippet>

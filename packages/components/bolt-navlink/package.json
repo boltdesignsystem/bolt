@@ -1,5 +1,6 @@
 {
   "name": "@bolt/components-navlink",
+  "version": "3.8.0",
   "description": "Navlink Component in Bolt",
   "keywords": [
     "bolt design system",
@@ -7,7 +8,23 @@
     "design system",
     "components"
   ],
-  "version": "2.5.2",
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav",
+  "license": "MIT",
+  "main": "index.js",
+  "style": "navlink.scss",
+  "dependencies": {
+    "@bolt/components-icon": "^3.8.0",
+    "@bolt/components-smooth-scroll": "^3.6.0",
+    "@bolt/core-v3.x": "^3.6.0",
+    "@bolt/lazy-queue": "^3.1.0",
+    "is-visible": "^2.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -20,20 +37,5 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "publishConfig": {
-    "access": "public"
-  },
-  "style": "navlink.scss",
-  "main": "index.js",
-  "schema": "navlink.schema.yml",
-  "dependencies": {
-    "@bolt/components-smooth-scroll": "^2.5.2",
-    "@bolt/core": "^2.5.2",
-    "is-visible": "^2.2.0"
-  },
-  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
+  "schema": "navlink.schema.js"
 }

@@ -2,42 +2,41 @@
    Breadcrumb
 \* ------------------------------------ */
 
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 // Register Custom Block Element
 @include bolt-custom-element('bolt-breadcrumb', block, medium);
 
-
 // Breadcrumb styles
 .c-bolt-breadcrumb {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
+  margin: 0;
+  padding: 0;
   background: transparent;
 }
 
 .c-bolt-breadcrumb__list {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
-  @include bolt-font-size(xsmall);
+  margin: 0;
+  padding: 0;
+  font-size: var(--bolt-type-font-size-small);
   list-style: none;
+  line-height: var(--bolt-type-line-height-small);
 }
 
 .c-bolt-breadcrumb__item {
   display: inline;
 
   &:not(:last-child):after {
-    @include bolt-margin(0 xxsmall);
     content: '';
-
     display: inline-block;
     position: relative;
     top: -1px; // [Mai] Offsets the 1px border to align the chevron with text.
     transform: rotate(45deg);
-    width: bolt-v-spacing(xsmall);
-    height: bolt-v-spacing(xsmall);
+    width: var(--bolt-spacing-y-xsmall); // This needs to be the same as height.
+    height: var(--bolt-spacing-y-xsmall);
+    margin: 0 var(--bolt-spacing-x-xxsmall);
     vertical-align: baseline;
     border-width: 1px 1px 0 0;
     border-style: solid;
-    border-color: bolt-theme(text);
+    border-color: var(--m-bolt-text);
   }
 }

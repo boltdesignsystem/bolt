@@ -1,0 +1,24 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-toc/toc.twig' with {
+  header: 'This is the header',
+  items: [
+    {
+      text: 'Section One',
+      url: '#section-one',
+    },
+    {
+      text: 'Section Two',
+      url: '#section-two',
+    },
+    {
+      text: 'Section Three',
+      url: '#section-three',
+    },
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "toc",
+  usage: usage
+} only %}

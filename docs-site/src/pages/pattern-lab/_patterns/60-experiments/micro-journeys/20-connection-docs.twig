@@ -1,0 +1,5 @@
+<h2>Connection Docs</h2>
+<pre><code>{{ '<bolt-connection size="small"></bolt-connection>' | e }}</code></pre>
+
+{% set schema = bolt.data.components["@bolt-micro-journeys"].schema.connection %}
+{% include '@utils/schema-docs.twig' with { schema: schema } only %}

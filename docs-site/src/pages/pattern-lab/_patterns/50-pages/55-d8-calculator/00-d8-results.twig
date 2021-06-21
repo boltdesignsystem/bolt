@@ -1,0 +1,408 @@
+{#
+/**
+ * Page variables
+ */
+#}
+{% set recalculate_url = "#!" %}
+{% set total_benefit = 429457192.75 %}
+{% set retention_benefit = 207500000 %}
+{% set upsell_cross_sell_benefit = 220833333 %}
+{% set churn_rate = 10 %}
+{% set churn_rate_with_pega = 9 %}
+{% set number_of_additional_customers_retained = 100000 %}
+{% set cost_avoidance_of_replacing_churned_customers = 20000000 %}
+{% set revenue_loss_avoidance_with_pega = 187500000 %}
+{% set customer_value = 1875 %}
+{% set customer_value_with_pega = 1897 %}
+{% set customer_value_increase = (customer_value_with_pega - customer_value) / customer_value * 100 %}
+
+{% set graph_array_1 = [
+  {
+    number: churn_rate ~ "%",
+    description: "Your churn rate today",
+    color: "gray"
+  },
+  {
+    number: churn_rate_with_pega ~ "%",
+    description: "Your churn rate with Pega Customer Decision Hub",
+    color: "navy"
+  }
+] %}
+
+{% set graph_array_2 = [
+  {
+    number: "$" ~ customer_value|number_format,
+    description: "Your current value of a customer",
+    color: "gray"
+  },
+  {
+    number: "$" ~ customer_value_with_pega|number_format,
+    description: "Your value of a customer with Pega Customer Decision Hub",
+    color: "navy"
+  }
+] %}
+
+{#
+/**
+ * Page macros
+ */
+#}
+{% macro resultsGraph(graph_array) %}
+  <div class="c-www-results-graph">
+    {% for item in graph_array %}
+      {% set color_class = " c-www-results-graph__box--" ~ item.color %}
+      <div class="c-www-results-graph__box {{ color_class }}">
+        <h4 class="c-www-results-stat">
+          <span class="c-www-results-stat__text">{{ item.description }}</span>
+          <span class="c-www-results-stat__headline c-www-results-stat__headline--xxlarge">{{ item.number }}</span>
+        </h4>
+      </div>
+      {% if not loop.last %}
+        <div class="c-www-results-graph__icon">
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "arrow-left",
+            size: "small",
+            attributes: {
+              "aria-hidden": "true",
+            }
+          } only %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{% import _self as macros %}
+
+
+
+{#
+/**
+ * Band's pinned content
+ */
+#}
+{% set pinned_recalculate_link %}
+  {% set text %}
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Recalculate",
+      url: recalculate_url,
+      icon: {
+        name: "refresh",
+        position: "before"
+      },
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: text,
+    size: "small",
+    weight: "semibold",
+  } only %}
+{% endset %}
+{% set pinned_email_results_link %}
+  {% set text %}
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Email my results",
+      icon: {
+        name: "email",
+        position: "before"
+      },
+      attributes: {
+        "data-bolt-modal-target": ".js-bolt-modal-email-results",
+      },
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: text,
+    size: "small",
+    weight: "semibold",
+  } only %}
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: "Modal form goes here.",
+    attributes: {
+      class: "js-bolt-modal-email-results",
+    },
+  } only %}
+{% endset %}
+
+
+{#
+/**
+ * Band content
+ */
+#}
+{% set content %}
+  {#
+  /**
+   * Heading
+   */
+  #}
+  {% set text %}
+    Your total benefit from a real-time, next-best-action approach is <span class="u-bolt-visuallyhidden">{{ total_benefit|number_format }}</span>
+  {% endset %}
+  {% include "@bolt-components-headline/subheadline.twig" with {
+    text: text,
+    size: "xxlarge",
+    tag: "h1",
+    align: "center",
+    attributes: {
+      class: "u-bolt-margin-bottom-small",
+    }
+  } only %}
+
+
+  {#
+  /**
+   * Total benefit tooltip
+   */
+  #}
+  {% set tooltip_content %}
+    <div class="u-bolt-text-align-center" style="white-space: nowrap">
+      <bolt-stack spacing="small">
+        Retention benefits:<br>
+        <strong>${{ retention_benefit|number_format }}</strong>
+      </bolt-stack>
+      <bolt-stack>
+        Upsell/Cross-sell benefit:<br>
+        <strong>${{ upsell_cross_sell_benefit|number_format}}</strong>
+      </bolt-stack>
+    </div>
+  {% endset %}
+  {% set info_icon %}
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "info-open",
+      size: "small",
+    } only %}
+  {% endset %}
+  {% set total_benefit_tooltip %}
+    {% include "@bolt-components-tooltip/tooltip.twig" with {
+      trigger: "$" ~ total_benefit|number_format(0, "ceil") ~ "&nbsp;<sup>" ~ info_icon ~ "</sup>",
+      content: tooltip_content,
+      attributes: {
+        style: "cursor: help;"
+      }
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: total_benefit_tooltip,
+    size: "xxlarge",
+    tag: "div",
+    align: "center",
+    attributes: {
+      class: "u-bolt-color-navy-light",
+      "aria-hidden": "true",
+    }
+  } only %}
+
+  {#
+  /**
+   * Tab 1
+   */
+  #}
+  {% set tab_1_label = "The Value of Customer Retention" %}
+  {% set tab_1_content %}
+    <h2 class="u-bolt-visuallyhidden" id="www-calculator-results-tab-1-heading">{{ tab_1_label }}</h2>
+    <div class="o-bolt-grid o-bolt-grid--matrix o-bolt-grid--flex o-bolt-grid--middle">
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Deeper relationships. Lasting benefits.",
+          size: "xlarge",
+          tag: "p"
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Pega protects your revenue by proactively predicting churn, then delivering hyper-personalized next best actions that retain customers, buiild long-term loyalty, and reduce discounts.",
+        } only %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "Total Retention Benefit: <strong>$" ~ retention_benefit|number_format ~ "</strong>",
+          size: "xlarge",
+          tag: "h3"
+        } only %}
+      </div>
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+
+        {{ macros.resultsGraph(graph_array_1) }}
+
+        {# Flag 1 #}
+        {% set flag_1_figure %}
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "partners",
+            size: "large",
+            color: "teal",
+            attributes: {
+              "aria-hidden": "true",
+            }
+          } only %}
+        {% endset %}
+        {% set flag_1_content %}
+          <p class="c-www-results-stat">
+            <span class="c-www-results-stat__text">Number of additional customers retained</span>
+            <span class="c-www-results-stat__headline">{{ number_of_additional_customers_retained|number_format }}</span>
+          </p>
+        {% endset %}
+        {% include "@bolt/flag.twig" with {
+          valign: "middle",
+          figure: {
+            content: flag_1_figure,
+          },
+          content: flag_1_content,
+        } only %}
+
+        {# Flag 2 #}
+        {% set flag_2_figure %}
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "dollar-open",
+            size: "large",
+            color: "teal",
+            attributes: {
+              "aria-hidden": "true",
+            }
+          } only %}
+        {% endset %}
+        {% set flag_2_content %}
+          <p class="c-www-results-stat">
+            <span class="c-www-results-stat__text">Cost avoidance of replacing churned customers</span>
+            <span class="c-www-results-stat__headline">{{ cost_avoidance_of_replacing_churned_customers|number_format }}</span>
+          </p>
+        {% endset %}
+        {% include "@bolt/flag.twig" with {
+          valign: "middle",
+          figure: {
+            content: flag_2_figure,
+          },
+          content: flag_2_content,
+        } only %}
+
+        {# Flag 3 #}
+        {% set flag_3_figure %}
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "reporting",
+            size: "large",
+            color: "teal",
+            attributes: {
+              "aria-hidden": "true",
+            }
+          } only %}
+        {% endset %}
+        {% set flag_3_content %}
+          <p class="c-www-results-stat">
+            <span class="c-www-results-stat__text">Revenue loss avoidance with Pega Customer Decision Hub</span>
+            <span class="c-www-results-stat__headline">{{ revenue_loss_avoidance_with_pega|number_format }}</span>
+          </p>
+        {% endset %}
+        {% include "@bolt/flag.twig" with {
+          valign: "middle",
+          figure: {
+            content: flag_3_figure,
+          },
+          content: flag_3_content,
+        } only %}
+      </div>
+    </div>
+  {% endset %}
+
+
+  {#
+  /**
+   * Tab 2
+   */
+  #}
+  {% set tab_2_label = "Upsell and Cross-Sell Benefits" %}
+  {% set tab_2_content %}
+    <h2 class="u-bolt-visuallyhidden" id="www-calculator-results-tab-2-heading">{{ tab_2_label }}</h2>
+    <div class="o-bolt-grid o-bolt-grid--matrix o-bolt-grid--flex o-bolt-grid--middle">
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Make selling more empathetic.",
+          size: "xlarge",
+          tag: "p"
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "With Pega&rsquo;s real-time decisioning you&rsquo;ll know when a customer is in-market, and how to convert the sale. You&rsquo;ll trigger relevant offers at exactly the right time - increasing your accept rates and maximizing customer lifetime value.",
+        } only %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "Total Uppsell/Cross-sell Benefit: <strong>$220,833,333</strong>",
+          size: "xlarge",
+          tag: "h3"
+        } only %}
+      </div>
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+
+        {{ macros.resultsGraph(graph_array_2) }}
+
+        {# Flag 1 #}
+        {% set flag_1_figure %}
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "reporting",
+            size: "large",
+            color: "teal",
+            attributes: {
+              "aria-hidden": "true",
+            }
+          } only %}
+        {% endset %}
+        {% set flag_1_content %}
+          <p class="c-www-results-stat">
+            <span class="c-www-results-stat__text">Percent increase in customer value from improved upsell/cross-sell presentation and conversion rates</span>
+            <span class="c-www-results-stat__headline">{{ customer_value_increase|number_format(0, "ceil") }}%</span>
+          </p>
+        {% endset %}
+        {% include "@bolt/flag.twig" with {
+          valign: "middle",
+          figure: {
+            content: flag_1_figure,
+          },
+          content: flag_1_content,
+        } only %}
+      </div>
+    </div>
+  {% endset %}
+
+
+  {#
+  /**
+   * Tabs
+   */
+  #}
+  {% include "@bolt-components-tabs/tabs.twig" with {
+    align: "center",
+    panel_spacing: "medium",
+    panels: [
+      {
+        label: tab_1_label,
+        content: tab_1_content,
+        attributes: {
+          "aria-labelledby": "www-calculator-results-tab-1-heading"
+        }
+      },
+      {
+        label: tab_2_label,
+        content: tab_2_content,
+        attributes: {
+          "aria-labelledby": "www-calculator-results-tab-2-heading"
+        }
+      }
+    ]
+  } only %}
+{% endset %}
+
+
+{#
+/**
+ * Overall band
+ */
+#}
+{% include "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "light",
+  full_bleed: true,
+  pinned_content: {
+    upper: [
+      {
+        content: pinned_recalculate_link
+      },
+      {
+        content: pinned_email_results_link
+      },
+    ]
+  },
+  content: content,
+} only %}

@@ -1,8 +1,11 @@
-import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
+import { hasNativeShadowDomSupport } from '@bolt/core-v3.x/utils';
+import { withLitHtml } from '@bolt/core-v3.x/renderers/renderer-lit-html';
 
 import gumshoe from 'gumshoejs';
 import isVisible from 'is-visible';
+
+import '@bolt/core-v3.x/utils/optimized-resize';
 
 // const indicatorElement = '.js-bolt-nav-indicator';
 const navLinkElement = 'bolt-navlink'; // Custom element
@@ -148,10 +151,8 @@ let gumshoeStateModule = (function() {
   return pub;
 })();
 
-@define
-class BoltNavIndicator extends withLitHtml() {
-  static is = 'bolt-nav-indicator';
-
+@customElement('bolt-nav-indicator')
+class BoltNavIndicator extends withLitHtml {
   // Behavior for `<bolt-nav>` parent container
   static get observedAttributes() {
     return ['offset'];
@@ -300,6 +301,12 @@ class BoltNavIndicator extends withLitHtml() {
 
   // `<bolt-nav-link>` emits a custom event when the link is active
   connecting() {
+    super.connecting && super.connecting();
+
+    this.addEventListener('navlink:active', this._onActivateLink);
+    window.addEventListener('throttledResize', this._onWindowResize);
+    this.addEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
+
     Promise.all([
       customElements.whenDefined('bolt-nav-priority'),
       customElements.whenDefined('bolt-navlink'),
@@ -329,10 +336,6 @@ class BoltNavIndicator extends withLitHtml() {
 
       this._initializeGumshoe();
       this._upgradeProperty('offset');
-
-      this.addEventListener('navlink:active', this._onActivateLink);
-      window.addEventListener('optimizedResize', this._onWindowResize);
-      this.addEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
     });
   }
 
@@ -352,35 +355,12 @@ class BoltNavIndicator extends withLitHtml() {
 
   // Clean up event listeners when being removed from the page
   disconnecting() {
+    super.disconnecting && super.disconnecting();
+
     this.removeEventListener('navlink:active', this._onActivateLink);
-    window.removeEventListener('optimizedResize', this._onWindowResize);
+    window.removeEventListener('throttledResize', this._onWindowResize);
+    this.removeEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
   }
 }
-
-// Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
-// won't fire before a previous event is complete.
-// This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-(function() {
-  function throttle(type, name, obj) {
-    obj = obj || window;
-    let running = false;
-
-    function func() {
-      if (running) {
-        return;
-      }
-      running = true;
-      requestAnimationFrame(function() {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    }
-    obj.addEventListener(type, func);
-  }
-
-  // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
-  // such as scroll.
-  throttle('resize', 'optimizedResize');
-})();
 
 export { BoltNavIndicator };

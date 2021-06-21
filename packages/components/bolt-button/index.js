@@ -1,21 +1,5 @@
-import { polyfillLoader } from '@bolt/core/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  if (!window.customElements.get('replace-with-children')) {
-    import(
-      /*
-      webpackMode: 'eager',
-      webpackChunkName: 'replace-with-children'
-    */ '@bolt/core/elements/replace-with-children'
-    );
-  }
-
-  if (!window.customElements.get('bolt-button')) {
-    import(
-      /*
-      webpackMode: 'eager',
-      webpackChunkName: 'bolt-button'
-    */ './src/button'
-    );
-  }
+lazyQueue(['bolt-button'], async () => {
+  await import(/* webpackChunkName: 'bolt-button' */ './src/button');
 });

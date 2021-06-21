@@ -1,0 +1,165 @@
+//// VARIABLES ////
+@import '../tools-themes/_tools.themes.scss';
+
+
+// global map to be filled via variables
+$bolt-css-variables: ();
+
+// the variable may be set to "true" anywhere in the code,
+// so native CSS custom properties will be used instead of the Sass global map
+$bolt-css-vars-use-native: true !default;
+
+// enables the output of debug messages
+$bolt-css-vars-debug-log: false !default;
+
+// FUNCTIONS
+
+/// Assigns a variable to the global map
+@function bolt-css-vars-assign($name: null, $value: null) {
+  // CHECK PARAMS
+  @if ($name==null) {
+    @error "Variable name is expected, instead got: null";
+  }
+  @if ($value == null) {
+    @error "Variable value is expected, instead got: null";
+  }
+  // assign to the global map
+  @if ($bolt-css-vars-debug-log and map-get($bolt-css-variables, $name)) {
+    @debug "'#{$name}' variable is reassigned";
+  }
+  @return map-merge($bolt-css-variables, ($name: $value));
+}
+
+/// Emulates var() CSS native function behavior
+/// @param {String} $args  - Variable name
+/// @param {string} $args2 - Optional default value if variable is not assigned yet
+/// @example scss - basic usage
+///   color: var(--main-color);
+///   background: var(--main-bg, green);
+
+@function bolt-var($args...) {
+  $var: '';
+  $opacity: 1;
+
+  @if (length($args) >= 1) {
+    $var: nth($args, 1);
+  }
+
+  @if type-of($var) == list {
+    $opacity: nth($var, 2);
+  }
+
+  $varName: str-slice(nth($var, 1), 8, str-length(nth($var, 1)));
+
+  @if str-slice($varName, 0, 5) == 'theme' {
+    $varNameSansTheme: str-slice($varName, 7, str-length($varName));
+
+    @if bolt-is-theme-var($varNameSansTheme) and bolt-is-shimmable-theme-prop($varNameSansTheme) {
+      @return bolt-theme($varNameSansTheme, $opacity);
+    } @else {
+      // @warn "The `#{$varNameSansTheme}` theme-specific CSS variable used isn't a registered theme variable in Bolt. Be carefull as these will not work as expected in IE 11...";
+    }
+  } @else {
+    // @warn $varName + ' CSS variable was used but not registered as a Globally variable in Bolt. Be carefull as these will not work as expected in IE 11...';
+  }
+  @return var($args);
+}
+
+
+@function var($args...) { /* stylelint-disable-line */
+  $var: '';
+  $opacity: 1;
+
+  @if (length($args)==0) {
+    @error "Variable name is expected to be passed to the var() function";
+  }
+
+  @if (length($args) >= 1) {
+    $var: nth($args, 1);
+  }
+
+  @if type-of($var) == list {
+    $opacity: nth($var, 2);
+  }
+
+  @if (str-length(nth($var, 1)) < 2 or str-slice(nth($var, 1), 0, 2) != '--') {
+    @error "Variable name is expected to start from '--'";
+  }
+
+  $name: nth($args, 1);
+
+  $value: map-get($bolt-css-variables, $name);
+
+  @if ($bolt-css-vars-debug-log or not $bolt-css-vars-use-native) { // Sass or debug
+    @if ($value==null) { // variable is not provided so far
+      @if (length($args)==2) { // the default value is passed
+        @if ($bolt-css-vars-debug-log) {
+          @debug "Provided default value is used for the variable: '#{$name}'";
+        }
+        $value: nth($args, 2);
+      } @else if ($bolt-css-vars-debug-log) {
+        @debug "Variable '#{$name}' is not assigned";
+        @if (not $bolt-css-vars-use-native) {
+          @debug "The 'var(#{$name}...)' usage will be skipped in the output CSS";
+        }
+      }
+    }
+  }
+
+  @if ($bolt-css-vars-use-native) { // CSS variables
+    // Native CSS: don't process function in case of native
+    @return unquote('var(' + $args + ')');
+  } @else {
+    // Sass: return value from the map
+    @return $value;
+  }
+}
+
+/// CSS mixin to provide variables
+/// @param {Map} $varMap [null] - Check for our params
+/// @param {Boolean} $root [false] - Output as root?
+/// @example scss - "basic usage"
+///  @include bolt-css-vars((
+///      --color: rebeccapurple,
+///      --height: 68px,
+///      --margin-top: calc(2vh + 20px)
+/// ));
+@mixin bolt-css-vars($varMap: null, $root: false) {
+  // CHECK PARAMS
+  @if ($varMap == null) {
+    @error "Map of variables is expected, instead got: null";
+  }
+  @if (type_of($varMap) != map) {
+    @error "Map of variables is expected, instead got another type passed: #{type_of($varMap)}";
+  }
+  // PROCESS
+  @if ($bolt-css-vars-debug-log or not $bolt-css-vars-use-native) { // Sass or debug
+    // merge variables and values to the global map (provides no output)
+    @each $name, $value in $varMap {
+      $bolt-css-vars: bolt-css-vars-assign($name, $value) !global; // store in global variable
+    }
+  }
+
+  @if ($bolt-css-vars-use-native) { // CSS variables
+    // Native CSS: assign CSS custom properties to the global scope
+    @if $root == true {
+      @at-root :root {
+        @each $name, $value in $varMap {
+          @if (type_of($value) == string) {
+            #{$name}: $value // to prevent quotes interpolation
+          } @else {
+            #{$name}: #{$value}
+          }
+        }
+      }
+    } @else {
+      @each $name, $value in $varMap {
+        @if (type_of($value) == string) {
+          #{$name}: $value // to prevent quotes interpolation
+        } @else {
+          #{$name}: #{$value}
+        }
+      }
+    }
+  }
+}

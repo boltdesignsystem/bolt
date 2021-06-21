@@ -1,23 +1,26 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
+
+@import '00-vars/_vars-color';
+@import '00-vars/_vars-spacing';
+@import '00-vars/_vars-typography';
+@import '00-vars/_vars-interactive-states';
+@import '00-vars/_vars-mode';
+@import '00-vars/_vars-page-width-and-spacing';
+@import '00-vars/_vars-transition';
+@import '00-vars/_vars-info-density'; /* Info density config must come after all other global vars */
+@import '00-vars/_vars-japanese'; /* Japanese config must come last to override everything else */
 
 @import '03-generic/_generic-font-stacks';
 @import '03-generic/_generic-global';
-
-// [Mai] Normalize.css is already included in generic.
 @import '03-generic/_generic-normalize';
 @import '03-generic/_generic-reset';
-@import '03-generic/_generic-shared';
 
+@import '04-elements/_elements-misc';
+@import '04-elements/_elements-anchor-and-button';
 @import '04-elements/_elements-code';
 @import '04-elements/_elements-headings';
-@import '04-elements/_elements-hr';
-@import '04-elements/_elements-images';
-@import '04-elements/_elements-links';
-@import '04-elements/_elements-misc';
+@import '04-elements/_elements-table';
 @import '04-elements/_elements-page';
-@import '04-elements/_elements-paragraphs';
-@import '04-elements/_elements-small';
-@import '04-elements/_elements-tables';
 
 @import '05-objects/objects-bare-list/_objects-bare-list';
 @import '05-objects/objects-block/_objects-block';
@@ -40,6 +43,8 @@
 @import '07-utilities/_utilities-height';
 @import '07-utilities/_utilities-opacity';
 @import '07-utilities/_utilities-overflow';
+@import '07-utilities/_utilities-pointer-events';
+@import '07-utilities/_utilities-position';
 @import '07-utilities/_utilities-shadow';
 @import '07-utilities/_utilities-spacing';
 @import '07-utilities/_utilities-text-align';
@@ -47,3 +52,8 @@
 @import '07-utilities/_utilities-visuallyhidden';
 @import '07-utilities/_utilities-widths';
 @import '07-utilities/_utilities-z-index';
+@import '07-utilities/_utilities-float';
+@import '07-utilities/_utilities-line-length';
+@import '07-utilities/_utilities-vertical-alignment';
+
+@import '08-vendor/_vendor-tippy';

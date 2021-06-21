@@ -1,0 +1,136 @@
+{% macro code_example(code) %}
+  <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as tabs_demo %}
+
+{% set basic_usage %}
+<bolt-tabs>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tab label 1</bolt-text>
+    <bolt-text>Tab panel 1</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tab label 2</bolt-text>
+    <bolt-text>Tab panel 2</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tab label 3</bolt-text>
+    <bolt-text>Tab panel 3</bolt-text>
+  </bolt-tab-panel>
+</bolt-tabs>
+{% endset %}
+
+{% set prop_usage %}
+<bolt-tabs panel-spacing="small" align="center">
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tab label 1</bolt-text>
+    <bolt-text>Tab panel 1</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tab label 2</bolt-text>
+    <bolt-text>Tab panel 2</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tab label 3</bolt-text>
+    <bolt-text>Tab panel 3</bolt-text>
+  </bolt-tab-panel>
+</bolt-tabs>
+{% endset %}
+
+
+{% set advanced_usage %}
+<!-- Use `selected-tab` to set selected tab -->
+<bolt-tabs selected-tab="2">
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tab label 1</bolt-text>
+    <bolt-text>Tab panel 1</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tab label 2</bolt-text>
+    <bolt-text>Tab panel 2</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tab label 3</bolt-text>
+    <bolt-text>Tab panel 3</bolt-text>
+  </bolt-tab-panel>
+</bolt-tabs>
+
+<!-- Use `selected` to set selected tab -->
+<bolt-tabs>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tab label 1</bolt-text>
+    <bolt-text>Tab panel 1</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel selected>
+    <bolt-text slot="label">Tab label 2</bolt-text>
+    <bolt-text>Tab panel 2</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tab label 3</bolt-text>
+    <bolt-text>Tab panel 3</bolt-text>
+  </bolt-tab-panel>
+</bolt-tabs>
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Tabs is a web component. Add the <bolt-code-snippet display="inline" lang="html">&lt;bolt-tabs&gt;</bolt-code-snippet> element containing multiple <bolt-code-snippet display="inline" lang="html">&lt;bolt-tabs-panel&gt;</bolt-code-snippet> elements to create a set of tabs. Inside each <bolt-code-snippet display="inline" lang="html">&lt;bolt-tab-panel&gt;</bolt-code-snippet> mark the "label" content with the attribute <bolt-code-snippet display="inline" lang="html">slot="label"</bolt-code-snippet>. Everything else is considered tab "content".
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-1/1" %}
+        {{ basic_usage }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include tabs_demo.code_example(basic_usage) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Prop Usage
+  </bolt-text>
+  <bolt-text>
+    Configure the tabs with the properties specified in the schema.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-1/1" %}
+        {{ prop_usage }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include tabs_demo.code_example(prop_usage) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Advanced Usage
+  </bolt-text>
+  <bolt-text>
+    Two advanced options are shown below. Automatically show a <bolt-code-snippet display="inline" lang="html">&lt;bolt-tab-panel&gt;</bolt-code-snippet> by setting <bolt-code-snippet display="inline" lang="html">selected-tab</bolt-code-snippet> on <bolt-code-snippet display="inline" lang="html">&lt;bolt-tabs&gt;</bolt-code-snippet> or by adding <bolt-code-snippet display="inline" lang="html">selected</bolt-code-snippet> to a single <bolt-code-snippet display="inline" lang="html">&lt;bolt-tab-panel&gt;</bolt-code-snippet>.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-1/1" %}
+        {{ advanced_usage }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include tabs_demo.code_example(advanced_usage) %}
+  </div>
+</div>

@@ -1,0 +1,16 @@
+/// Places an element full browser width
+/// @group Tools: Layout
+/// @author Evan Lovely
+/// @example scss
+/// .element {
+///   @include bolt-full-bleed();
+/// }
+@mixin bolt-full-bleed {
+  position: relative;
+  right: 50%;
+  left: 50%;
+  width: 100%; // Fallback if vw not supported.
+  width: 100vw;
+  margin-right: -50vw;
+  margin-left: -50vw;
+}

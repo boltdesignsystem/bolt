@@ -1,0 +1,108 @@
+{# Required variables #}
+{% set return_link_url = "https://pega.com" %}
+{% set return_link_text = "No thanks! Return to last page" %}
+
+{# Text content and form #}
+{% set persistent_modal_form_children %}
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    title: "Email Address",
+    inputAttributes: {
+      placeholder: "Enter your email address",
+      type: "email",
+      required: true
+    },
+    labelDisplayType: "floating"
+  } only %}
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    title: "Password",
+    inputAttributes: {
+      placeholder: "Enter your password",
+      type: "password",
+      required: true
+    },
+    labelDisplayType: "floating"
+  } only %}
+  {% include "@pl/30-form-element-demo-checkbox.twig" with {
+    labelTitle: "Remember this computer",
+    elementId: "checkbox-" ~ random(),
+    labelDisplayType: "inline"
+  } only %}
+  {% include "@bolt-components-form/form-button.twig" with {
+    text: "Sign In",
+    width: "full"
+  } only %}
+{% endset %}
+{% set persistent_modal_content %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Template Instructions",
+      size: "xxxlarge",
+      tag: "h2",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Modal content can be anything. Content authors are free to set up single or multiple column layouts. The recommended format is text content on the left and form on the right. The return link is required, which is in its own cell under both the text content and form cells. It should not be part of the free-form authorable content, instead two required fields are required for content authors to input: return link url and return link text.",
+    } only %}
+  {% endcell %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Sign in to view restricted content",
+      size: "xlarge",
+      tag: "h3",
+    } only %}
+    {% include "@bolt-components-form/form.twig" with {
+      children: persistent_modal_form_children,
+    } only  %}
+  {% endcell %}
+{% endset %}
+
+{# Band inside the modal that handles the grid #}
+{% set band_content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix" %}
+    {{ persistent_modal_content }}
+    {% cell "u-bolt-width-12/12" %}
+      {% include "@bolt-components-link/link.twig" with {
+        text: return_link_text,
+        url: return_link_url,
+        icon: {
+          name: "chevron-left",
+          position: "before"
+        },
+        attributes: {
+          "data-bolt-autofocus": ""
+        }
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+{% set modal_content %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: band_content,
+    theme: "none",
+    full_bleed: false,
+  } only %}
+{% endset %}
+
+{# Demo layout #}
+<bolt-text headline font-size="xlarge">Persistent Modal Usage</bolt-text>
+<bolt-text>Persistent modal is useful when creating subscription based content. To create one, two props are required: <code>persistent</code> and <code>persistent_return_url</code>. When a modal is persistent, the default close button is not shown, the only ways to close the modal is through filling out the form, hitting the return link, or hitting the escape key on the keyboard (which acts exactly like the return link).</bolt-text>
+<bolt-text>Activate the modal to see more instructions on setting up the twig template.</bolt-text>
+{% include "@bolt-components-button/button.twig" with {
+  text: "Activate the persistent modal",
+  size: "small",
+  attributes: {
+    "data-bolt-modal-target": ".js-bolt-modal--usage-persistent",
+  }
+} only %}
+
+{# The persistent modal #}
+{% include "@bolt-components-modal/modal.twig" with {
+  persistent_return_url: return_link_url,
+  content: modal_content,
+  width: "full",
+  spacing: "none",
+  scroll: "overall",
+  persistent: true,
+  attributes: {
+    class: "js-bolt-modal--usage-persistent",
+  },
+} only %}

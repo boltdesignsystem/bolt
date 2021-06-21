@@ -1,0 +1,57 @@
+{% set schema = bolt.data.components["@bolt-components-tabs"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{# Append string to `random()` to coerce to string #}
+{% set uuid = bolt.data.config.env == "test" ? "12345" : random() ~ "" %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  "c-bolt-tabs",
+  this.data.align.value ? "c-bolt-tabs--align-" ~ this.data.align.value : "",
+  this.data.inset.value == "auto" or this.data.inset.value == "on" ? "c-bolt-tabs--inset" : ""
+] %}
+
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in this.props.class %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+<bolt-tabs
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ this.props|without("content")|without("class") }}
+  >
+  {% if panels %}
+    <div
+      {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
+    >
+    {% for panel in panels %}
+      {% include "@bolt-components-tabs/TabPanel/tab-panel.twig" with panel|merge({
+        index: loop.index,
+        uuid: uuid,
+        label_spacing: this.data.label_spacing.value,
+        panel_spacing: this.data.panel_spacing.value,
+        inset: this.data.inset.value,
+        selected_tab: this.data.selected_tab.value,
+      }) only %}
+    {% endfor %}
+    </div>
+  {% endif %}
+</bolt-tabs>

@@ -1,0 +1,118 @@
+{% set schema = bolt.data.components['@bolt-components-card-replacement'].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# DEPRECATED.  Use the property `border_radius` instead of `borderRadius`. #}
+{% if borderRadius %}
+  {% set border_radius = borderRadius %}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{% if link %}
+  {% set _link_url = link.url %}
+  {% set _link_text = link.text %}
+  {% set _link_target = link.target %}
+  {% set _link_attributes = create_attribute(link.attributes|default({})) %}
+{% endif %}
+
+{% if block('background') %}
+  {% set _background_block %}
+    {{ block('background') }}
+  {% endset %}
+{% endif %}
+
+{% if block('media') %}
+  {% set _media_block %}
+    {{ block('media') }}
+  {% endset %}
+{% endif %}
+
+{% if block('body') %}
+  {% set _body_block %}
+    {{ block('body') }}
+  {% endset %}
+{% endif %}
+
+{# card-replacement component's custom element wrapper #}
+<bolt-card-replacement
+  {% if _link_url %} url="{{ _link_url }}" {% endif %}
+  {# this line is here to prevent a breaking change with property validation #}
+  {% if this.data.height.value %} height="{{ this.data.height.value }}" {% endif %}
+  {{ this.props|without('height') }}
+  >
+
+  {# Array of classes based on the defined + default props #}
+  {% set classes = [
+    'c-bolt-card-replacement',
+    this.data.horizontal.value ? 'c-bolt-card-replacement--horizontal' : '',
+    this.data.border_radius.value ? 'c-bolt-card-replacement--border-radius-' ~ this.data.border_radius.value : '',
+    this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : '',
+  ] %}
+
+  <ssr-keep for="bolt-card-replacement" {{ inner_attributes.addClass(classes) }}>
+    {% if link and _link_url %}
+      <bolt-card-replacement-link {{ _link_attributes }}>
+        {% if _link_url %}
+          <a href="{{ _link_url }}" class="{{ 'c-bolt-card-replacement__link' }}" {% if _link_target %} target="{{ _link_target }}" {% endif %}>
+            {% if _link_text %}
+              <ssr-keep for="bolt-card-replacement-link" class="u-bolt-visuallyhidden">{{ _link_text }}</ssr-keep>
+            {% endif %}
+          </a>
+        {% endif %}
+      </bolt-card-replacement-link>
+    {% endif %}
+
+    {% if background or _background_block %}
+      {% if _background_block %}
+        {% embed '@bolt-components-card-replacement/_card-replacement-background.twig' %}
+          {% block background %}
+            {{ _background_block }}
+          {% endblock %}
+        {% endembed %}
+      {% else %}
+        {% include '@bolt-components-card-replacement/_card-replacement-background.twig' %}
+      {% endif %}
+    {% endif %}
+
+    {% if content %}
+      {# Custom Content #}
+      {{ content }}
+    {% else %}
+      {# Structured Content #}
+      {% if media or _media_block %}
+        {% if _media_block %}
+          {% embed '@bolt-components-card-replacement/_card-replacement-media.twig' %}
+            {% block media %}
+              {{ _media_block }}
+            {% endblock %}
+          {% endembed %}
+        {% else %}
+          {% include '@bolt-components-card-replacement/_card-replacement-media.twig' %}
+        {% endif %}
+      {% endif %}
+      {% if this.data.horizontal.value %}<div class="c-bolt-card-replacement__horizontal-wrapper">{% endif %}
+        {% if body or _body_block %}
+          {% if _body_block %}
+            {% embed '@bolt-components-card-replacement/_card-replacement-body.twig' %}
+              {% block body %}
+                {{ _body_block }}
+              {% endblock %}
+            {% endembed %}
+          {% else %}
+            {% include '@bolt-components-card-replacement/_card-replacement-body.twig' %}
+          {% endif %}
+        {% endif %}
+        {% block actions %}
+          {% if actions %}
+            {% include '@bolt-components-card-replacement/_card-replacement-actions.twig' %}
+          {% endif %}
+        {% endblock %}
+      {% if this.data.horizontal.value %}</div>{% endif %}
+    {% endif %}
+  </ssr-keep>
+</bolt-card-replacement>

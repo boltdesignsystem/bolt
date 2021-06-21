@@ -1,7 +1,5 @@
 import { render } from '@bolt/twig-renderer';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../trigger.schema.yml'));
+import schema from '../trigger.schema';
 const { display, cursor } = schema.properties;
 
 describe('trigger', () => {
@@ -54,6 +52,53 @@ describe('trigger', () => {
     expect(results.html).toMatchSnapshot();
   });
 
+  // This is a test of the `init()` function, @see packages/twig-integration/twig-extensions-shared/src/TwigFunctions.php
+  // It verifies `this.props` and `this.data` match. Previously, an attribute would be reflected in `this.props` but not `this.data`.
+  test('Trigger with "target" attribute renders same value on <bolt-trigger> and inner <a>', async () => {
+    const results = await render('@bolt-components-trigger/trigger.twig', {
+      content: 'Hello World',
+      url: 'http://pega.com',
+      attributes: {
+        target: '_blank',
+      },
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('Trigger with "disabled" adds attr to <button>', async () => {
+    const results = await render('@bolt-components-trigger/trigger.twig', {
+      content: 'Hello World',
+      disabled: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+
+    // @todo: also test rendered HTML for `disabled` attribute
+  });
+
+  test('Trigger with "disabled" does not add attr to <a>', async () => {
+    const results = await render('@bolt-components-trigger/trigger.twig', {
+      content: 'Hello World',
+      url: 'http://pega.com',
+      disabled: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+
+    // @todo: also test rendered HTML for `disabled` attribute
+  });
+
+  test('Trigger with "type" adds attr to <button>', async () => {
+    const results = await render('@bolt-components-trigger/trigger.twig', {
+      content: 'Hello World',
+      type: 'submit',
+      disabled: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   test('Trigger with outer classes via Drupal Attributes', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
       content: 'Trigger with outer classes',
@@ -87,18 +132,18 @@ describe('trigger', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Trigger with an onClick param renders properly', async () => {
+  test('Trigger with an on_click param renders properly', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
-      text: 'Trigger with onClick via param',
+      text: 'Trigger with on_click via param',
       on_click: 'on-click-test',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Trigger with an onClick attributes renders properly', async () => {
+  test('Trigger with an on_click attributes renders properly', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
-      text: 'Trigger w/ onClick via attributes',
+      text: 'Trigger w/ on_click via attributes',
       attributes: {
         'on-click': 'on-click-test',
       },

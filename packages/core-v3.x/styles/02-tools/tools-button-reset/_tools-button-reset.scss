@@ -1,0 +1,20 @@
+/* ------------------------------------ *\
+   TOOLS - BUTTON RESET
+\* ------------------------------------ */
+
+@mixin bolt-button-reset() {
+  appearance: none; // override default [type=submit] button styles coming from Normalize
+  padding: 0;
+  font-family: var(--bolt-type-font-family-body);
+  background: none;
+}
+
+@mixin bolt-button-native-styles-reset {
+  appearance: none;
+  padding: 0;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+}

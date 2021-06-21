@@ -1,48 +1,61 @@
+@import '@bolt/core-v3.x';
 @import '../bolt-select/bolt-select.scss';
 
 .#{$choices-selector}__inner {
   min-height: 0; // overrides min-height 44px
-  @include bolt-font-size(small);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: var(--bolt-type-line-height-small);
+  vertical-align: middle;
 }
 
 .#{$choices-selector}__heading {
-  @include bolt-padding(bolt-v-spacing(small) bolt-spacing(small) 0 bolt-spacing(xsmall));
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small) 0
+    var(--bolt-spacing-x-xsmall);
   line-height: 1;
 }
 
 .#{$choices-selector}__group ~ .#{$choices-selector}__item {
-  @include bolt-padding(small, squished);
+  padding-left: calc(var(--bolt-spacing-y-small) / 2)
+    var(--bolt-spacing-x-small);
+}
+
+.#{$choices-selector}__list--dropdown .#{$choices-selector}__item--selectable {
+  padding-right: var(--bolt-spacing-x-small);
+  padding-left: var(--bolt-spacing-x-small);
 }
 
 .#{$choices-selector}__input {
-  @include bolt-margin-bottom(0);
+  margin-bottom: 0;
   font-size: 16px; // prevent input zoom on mobile
 }
 
-.#{$choices-selector}[data-type*="select-one"].is-open:after {
+.#{$choices-selector}[data-type*='select-one'].is-open:after {
   border-bottom-color: currentColor;
 }
 
-.#{$choices-selector}[data-type*="select-one"]:after {
+.#{$choices-selector}[data-type*='select-one']:after {
   border-top-color: currentColor;
 }
 
 .#{$choices-selector}__list--single {
-  padding-right: bolt-spacing(small) + bolt-spacing(xsmall);
+  padding-right: calc(
+    var(--bolt-spacing-x-small) + var(--bolt-spacing-x-xsmall)
+  );
 }
 
 .#{$choices-selector}__inner,
-.#{$choices-selector}[data-type*="select-one"] .#{$choices-selector}__inner {
-  @include bolt-padding-top(0);
-  @include bolt-padding-bottom(0);
-  @include bolt-padding-left(xsmall);
+.#{$choices-selector}[data-type*='select-one'] .#{$choices-selector}__inner {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: var(--bolt-spacing-x-xsmall);
 }
 
 .#{$choices-selector}__list--dropdown {
   width: auto;
   color: bolt-color(black);
 
-  @include bolt-mq(small){
+  @include bolt-mq(small) {
     width: 100%;
     min-width: 140px;
   }
@@ -56,25 +69,22 @@
 }
 
 .#{$choices-selector}.is-focused {
-  border-color: bolt-color(indigo, light);
-  @include bolt-shadow($key: 'level-20', $base-color: bolt-color(indigo, light));
+  border-color: bolt-color(navy, light);
+  @include bolt-shadow($key: 'level-20', $base-color: bolt-color(navy, light));
 }
 
-
 .c-bds-version-selector {
-  @include bolt-font-size(small);
+  font-size: var(--bolt-type-font-size-small);
   color: inherit;
   line-height: 1;
   border-color: transparent;
   background-color: transparent;
 
-
-
   & ~ .c-bolt-input-icons {
     padding: 0.05rem 0.1rem 0 0; // This is a one-off override for this site only. It would stop working if the bolt-form becomes a web component.
     color: inherit;
     background-color: transparent;
-    
+
     &:before {
       display: none;
     }

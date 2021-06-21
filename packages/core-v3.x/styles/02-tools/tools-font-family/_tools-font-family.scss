@@ -1,0 +1,9 @@
+/* ------------------------------------ *\
+  TOOLS - FONT FAMILY
+\* ------------------------------------ */
+
+@mixin bolt-font-family($name) {
+  // @warn 'This scss mixin is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-family-*)';
+
+  font-family: var(--bolt-type-font-family-#{$name});
+}

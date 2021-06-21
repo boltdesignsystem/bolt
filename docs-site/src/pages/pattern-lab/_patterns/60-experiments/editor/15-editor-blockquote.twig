@@ -1,0 +1,10 @@
+{% set content %}
+  <bolt-blockquote size="xlarge" align-items="left" border="vertical" author-name="John Doe" author-title="Some title" indent>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </bolt-blockquote>
+{% endset %}
+
+{% include '@bolt-components-editor/editor-in-pl.twig' with {
+  content: content,
+} only %}

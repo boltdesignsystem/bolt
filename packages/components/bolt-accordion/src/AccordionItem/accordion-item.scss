@@ -2,15 +2,14 @@
    Accordion Items
 \* ------------------------------------ */
 
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 @import '../_accordion-settings-and-tools.scss';
 
 bolt-accordion-item {
   display: block;
 
   // Required for no-JS styles to display properly
-  replace-with-children,
-  replace-with-grandchildren {
+  ssr-keep {
     display: block;
     flex-grow: 1;
   }
@@ -30,46 +29,39 @@ bolt-accordion-item {
 // Shadow
 .c-bolt-accordion-item--box-shadow {
   .c-bolt-accordion-item__content {
-    &:before {
+    background-color: var(--m-bolt-bg);
+
+    &:before,
+    &:after {
       content: '';
       display: block;
-      opacity: bolt-opacity(100);
+      opacity: 1;
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
       pointer-events: none;
-      // This gradient is IE proof, created using https://colorzilla.com/gradient-editor/
-      background: -moz-linear-gradient(
-        top,
-        rgba(bolt-color(gray), 0.2) 0%,
-        rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 98%,
-        rgba(bolt-color(gray), 0.2) 100%
-      ); /* FF3.6-15 */
-      background: -webkit-linear-gradient(
-        top,
-        rgba(bolt-color(gray), 0.2) 0%,
-        rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 98%,
-        rgba(bolt-color(gray), 0.2) 100%
-      ); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(
-        to bottom,
-        rgba(bolt-color(gray), 0.2) 0%,
-        rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 98%,
-        rgba(bolt-color(gray), 0.2) 100%
-      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      will-change: opacity;
       transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
+    }
+
+    &:before {
+      opacity: 0.2;
+      background-color: var(--m-bolt-tertiary);
+    }
+
+    &:after {
+      background: linear-gradient(
+        var(--m-bolt-tertiary) 0%,
+        rgba(0, 0, 0, 0) var(--bolt-spacing-y-xxsmall),
+        rgba(0, 0, 0, 0) calc(100% - var(--bolt-spacing-y-xxsmall)),
+        var(--m-bolt-tertiary) 100%
+      );
     }
   }
 
   &.c-bolt-accordion-item--first-item {
     .c-bolt-accordion-item__trigger,
-    .c-bolt-accordion-item__trigger-button,
     .c-bolt-accordion-item__trigger-label {
       border-top-right-radius: $bolt-accordion-border-radius;
       border-top-left-radius: $bolt-accordion-border-radius;
@@ -78,33 +70,14 @@ bolt-accordion-item {
 
   &.c-bolt-accordion-item--last-item {
     .c-bolt-accordion-item__trigger:not(.c-bolt-accordion-item__trigger--open),
-    .c-bolt-accordion-item__trigger-button,
     .c-bolt-accordion-item__trigger-label,
     .c-bolt-accordion-item__content {
       border-bottom-right-radius: $bolt-accordion-border-radius;
       border-bottom-left-radius: $bolt-accordion-border-radius;
     }
 
-    .c-bolt-accordion-item__content:before {
-      // This gradient is IE proof, created using https://colorzilla.com/gradient-editor/
-      background: -moz-linear-gradient(
-        top,
-        rgba(bolt-color(gray), 0.2) 0%,
-        rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 100%
-      ); /* FF3.6-15 */
-      background: -webkit-linear-gradient(
-        top,
-        rgba(bolt-color(gray), 0.2) 0%,
-        rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 100%
-      ); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(
-        to bottom,
-        rgba(bolt-color(gray), 0.2) 0%,
-        rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 100%
-      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    .c-bolt-accordion-item__content:after {
+      display: none;
     }
   }
 }
@@ -116,13 +89,7 @@ bolt-accordion-item {
   margin: 0;
 }
 
-// Button used with JS
-.c-bolt-accordion-item__trigger-button,
-// Label used with no-JS
 .c-bolt-accordion-item__trigger-label {
-  @include bolt-font-family(heading);
-  @include bolt-font-size(medium);
-
   display: flex;
   justify-content: space-between;
   align-items: center; // align center by default
@@ -131,14 +98,16 @@ bolt-accordion-item {
   width: 100%;
   margin: 0;
   padding: 0;
-  color: inherit;
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-medium);
+  color: var(--m-bolt-text);
+  line-height: var(--bolt-type-line-height-medium);
   text-align: left; // Fixes center aligned accordion items in the Shadow DOM.
   text-align: start; // For internationalization, will fall back to left if start is not supported.
-  cursor: pointer;
   user-select: none;
-  outline-offset: $bolt-accordion-outline-offset;
   border: none;
-  background-color: bolt-theme(background);
+  background: transparent;
+  outline-offset: $bolt-accordion-outline-offset;
 
   .c-bolt-accordion-item--icon-valign-top & {
     align-items: flex-start;
@@ -152,24 +121,27 @@ bolt-accordion-item {
   &:before {
     content: '';
     display: block;
-    opacity: bolt-opacity(0);
+    opacity: 0;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     pointer-events: none;
-    background-color: bolt-theme(primary, 0.15);
-    will-change: opacity;
+    background-color: var(--m-bolt-primary);
     transition: opacity ($bolt-transition-timing/2) $bolt-transition-ease;
   }
 
-  &:hover:before {
-    opacity: bolt-opacity(20);
-  }
+  &:not(.c-bolt-accordion-item__trigger-label--inactive) {
+    cursor: pointer;
 
-  &:active:before {
-    opacity: bolt-opacity(100);
+    &:hover:before {
+      opacity: 0.05;
+    }
+
+    &:active:before {
+      opacity: 0.1;
+    }
   }
 }
 
@@ -191,10 +163,14 @@ bolt-accordion-item {
     width: $bolt-accordion-icon-size / 2.25;
     height: $bolt-accordion-icon-size / 2.25;
     border-radius: 1px;
-    border-width: 3px 3px 0 0;
+    border-width: 2px 2px 0 0;
     border-style: solid;
-    border-color: bolt-theme(link);
+    border-color: var(--m-bolt-link);
     transform-origin: 50% 50%;
+  }
+
+  @at-root .c-bolt-accordion-item__trigger-label--inactive ~ & {
+    visibility: hidden; // keep layout so inner content lines up
   }
 }
 
@@ -240,23 +216,23 @@ bolt-accordion-item {
   display: flex;
   flex-shrink: 0; // for when there is a very long title - adds left/right spacing
   position: relative;
-  transform: translateX(bolt-spacing(xxsmall));
+  transform: translateX(var(--bolt-spacing-x-xxsmall));
   overflow: hidden; // so transformed icons don't spill out
-  color: bolt-theme(link);
-  line-height: 0; // Workaround to line-height messing up icon alignment
   font-size: $bolt-accordion-icon-size;
+  color: var(--m-bolt-link);
+  line-height: 0; // Workaround to line-height messing up icon alignment
+
+  @at-root .c-bolt-accordion-item__trigger-label--inactive & {
+    visibility: hidden; // keep layout so inner content lines up
+  }
 }
 
 .c-bolt-accordion-item__trigger-icons-inner {
-  @include bolt-padding(
-    xxsmall 0
-  ); // This is for aligning the icon with the text baseline.
-
   display: block;
   transform: rotate(0deg);
-  transform-origin: 50% 50%;
-  will-change: transform;
+  padding: var(--bolt-spacing-y-xxsmall) 0; // This is for aligning the icon with the text baseline.
   transition: transform $bolt-transition;
+  transform-origin: 50% 50%;
 }
 
 [aria-expanded='false'] {
@@ -283,7 +259,6 @@ bolt-accordion-item {
   transform: translateY(-1rem);
   width: 100%;
   height: 0;
-  will-change: transform;
   transition: transform $bolt-transition-timing cubic-bezier(0, 0, 0.3, 1)
     ($bolt-transition-timing / 2);
 
@@ -310,7 +285,6 @@ bolt-accordion-item {
   visibility: visible;
   transform: translate3d(0, 0, 0);
   max-height: none;
-  will-change: transform, height;
   transition: transform $bolt-transition, height $bolt-transition;
 }
 
@@ -321,10 +295,9 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item__content-inner {
-  opacity: bolt-opacity(0);
+  opacity: 0;
   position: relative;
   overflow: auto;
-  will-change: opacity;
   transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
   -webkit-overflow-scrolling: touch;
 }
@@ -336,8 +309,7 @@ bolt-accordion-item {
   + .c-bolt-accordion-item
   .c-bolt-accordion-item__content-inner,
 .c-bolt-accordion-item__content--opened .c-bolt-accordion-item__content-inner {
-  opacity: bolt-opacity(100);
-  will-change: opacity;
+  opacity: 1;
   transition: opacity $bolt-transition;
 }
 
@@ -371,31 +343,31 @@ bolt-accordion-item {
 }
 
 // Spacing
-@each $spacing-value in $bolt-spacing-values {
-  $spacing-value-name: nth($spacing-value, 1);
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
 
   @if (
-    $spacing-value-name !=
-      '' and
-      $spacing-value-name !=
+    $size-name !=
       'xxsmall' and
-      $spacing-value-name !=
+      $size-name !=
       'xlarge' and
-      $spacing-value-name !=
+      $size-name !=
       'xxlarge'
   ) {
-    .c-bolt-accordion-spacing--#{$spacing-value-name} {
-      @include bolt-padding(#{$spacing-value-name}, squished);
-
-      &.c-bolt-accordion-item__content-inner,
-      &.c-bolt-accordion-item__trigger-label {
+    .c-bolt-accordion-spacing--#{$size-name} {
+      padding: calc(var(--bolt-spacing-y-#{$size-name}) / 2)
+        var(--bolt-spacing-x-#{$size-name});
+      // Applies only to js content
+      &.c-bolt-accordion-item__content-inner.c-bolt-accordion-item__content-inner--offset,
+      // Applies only to no-js trigger
+      &.c-bolt-accordion-item__trigger-label.c-bolt-accordion-item__trigger-label--offset {
         padding-right: calc(
-          #{bolt-spacing($spacing-value-name) + $bolt-accordion-icon-size}
+          var(--bolt-spacing-x-#{$size-name}) + #{$bolt-accordion-icon-size}
         );
       }
 
       &.c-bolt-accordion-item__content-inner {
-        @include bolt-padding-bottom(#{$spacing-value-name});
+        padding-bottom: var(--bolt-spacing-y-#{$size-name});
       }
     }
   }

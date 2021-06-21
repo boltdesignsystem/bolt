@@ -5,19 +5,24 @@
   "repositories": [
     {
       "type": "path",
-      "url": "../packages/core-php"
+      "url": "../packages/twig-integration/twig-extensions-shared"
     },
     {
       "type": "path",
-      "url": "../packages/twig-renderer"
+      "url": "../packages/twig-integration/twig-renderer"
     },
     {
       "type": "path",
-      "url": "../packages/drupal-twig-extensions"
+      "url": "../packages/twig-integration/twig-extensions-compat"
     },
     {
       "type": "path",
-      "url": "../packages/styleguidekit-twig-default"
+      "url": "../packages/website-ui/styleguidekit-twig-default"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/boltdesignsystem/patternlab-php-core",
+      "no-api": true
     }
   ],
   "require": {
@@ -25,10 +30,12 @@
     "bolt-design-system/core-php": "*",
     "bolt-design-system/drupal-twig-extensions": "*",
     "bolt-design-system/styleguidekit-twig-default": "*",
-    "pattern-lab/core": "^2.8.10",
+    "pattern-lab/core": "dev-develop as 2.9.0",
     "pattern-lab/patternengine-twig": "^2.2.2",
-    "cweagans/composer-patches": "^1.6.4",
-    "evanlovely/plugin-twig-namespaces": "^1.1.1"
+    "cweagans/composer-patches": "^1.7.0",
+    "evanlovely/plugin-twig-namespaces": "^1.1.1",
+    "cebe/markdown": "^1.2",
+    "hyn/frontmatter": "^1.1"
   },
   "autoload": {
     "psr-0": {

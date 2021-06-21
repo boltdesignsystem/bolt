@@ -11,7 +11,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-image-05-image/02-components-image-05-image.html`,
+        `${testingUrl}/pattern-lab/patterns/999-tests-image-00-image-no-shadow/999-tests-image-00-image-no-shadow.html`,
       )
       .waitForElementVisible('body', 1000)
       .getElementSize('body', function(result) {
@@ -21,7 +21,7 @@ module.exports = {
         const imageHeight = Math.round(bodyWidth / 1.3333333333);
 
         this.assert.equal(result.value.width, bodyWidth);
-        this.assert.equal(result.value.height, imageHeight);
+        // this.assert.equal(result.value.height, imageHeight);
       })
       .execute(
         function(data) {
@@ -35,23 +35,16 @@ module.exports = {
           );
         },
       )
-      .saveScreenshot(
-        `screenshots/bolt-image/${testName}--${currentBrowser}.png`,
+      .assert.attributeContains(
+        '.c-bolt-image__image',
+        'src',
+        '/images/placeholders/landscape-16x9-mountains.jpg',
       )
-      .end();
-  },
-
-  'Bolt Image zoom': function(browser) {
-    const { testingUrl } = browser.globals;
-    console.log(`global browser url: ${testingUrl}`);
-    currentBrowser = '--' + browser.currentEnv || 'chrome';
-    let testName = 'bolt-image-zoom';
-
-    browser
-      .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-image-30-image-zoom-variation/02-components-image-30-image-zoom-variation.html`,
+      .assert.attributeEquals(
+        '.c-bolt-image__image',
+        'srcset',
+        '/images/placeholders/landscape-16x9-mountains-50.jpg 50w, /images/placeholders/landscape-16x9-mountains-100.jpg 100w, /images/placeholders/landscape-16x9-mountains-200.jpg 200w, /images/placeholders/landscape-16x9-mountains-320.jpg 320w, /images/placeholders/landscape-16x9-mountains-480.jpg 480w, /images/placeholders/landscape-16x9-mountains-640.jpg 640w, /images/placeholders/landscape-16x9-mountains-800.jpg 800w, /images/placeholders/landscape-16x9-mountains-1024.jpg 1024w, /images/placeholders/landscape-16x9-mountains.jpg 1151w',
       )
-      .waitForElementVisible('.c-bolt-image-zoom__overlay-icon', 1000)
       .saveScreenshot(
         `screenshots/bolt-image/${testName}--${currentBrowser}.png`,
       )

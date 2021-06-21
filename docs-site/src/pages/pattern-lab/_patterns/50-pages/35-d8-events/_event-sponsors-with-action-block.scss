@@ -1,0 +1,23 @@
+.event-sponsors-proof-of-concept {
+  .c-partner-card__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+
+    @include bolt-mq(small) {
+      height: 74px;
+    }
+
+    img {
+      width: auto;
+      max-width: 160px;
+      height: auto;
+      max-height: 50px;
+
+      @include bolt-mq(small) {
+        max-height: 74px;
+      }
+    }
+  }
+}

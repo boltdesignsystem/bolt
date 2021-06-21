@@ -1,11 +1,10 @@
 /* eslint-disable no-return-assign */
 // // Import the individual autotrack plugins you want to use.
-import '@bolt/core/polyfills/symbol-polyfill';
 import 'autotrack/lib/plugins/clean-url-tracker';
 import 'autotrack/lib/plugins/media-query-tracker';
 import 'autotrack/lib/plugins/outbound-link-tracker';
 import 'autotrack/lib/plugins/page-visibility-tracker';
-// import { stateListener } from '@bolt/core/renderers/bolt-base';
+// import { stateListener } from '@bolt/core-v3.x/renderers/bolt-base';
 
 // // trackedCrossDomains is an array of external domains that we want to add external GA autolink tracking to.
 // // We use this to check if any components being rendered (or re-rendered) contain external links to one of these domains.
@@ -306,10 +305,17 @@ const createTracker = () => {
   //   // Loads the Linker plugin
   ga('require', 'linker');
 
-  ga(
-    'linker:autoLink',
-    window.drupalSettings.google_analytics.trackCrossDomains,
-  );
+  let trackedDomains = [];
+  try {
+    trackedDomains = window.drupalSettings.google_analytics.trackCrossDomains;
+  } catch {
+    // default domains to track if no global data defined
+    trackedDomains = window.bolt.autolink.domains || [];
+  }
+
+  if (trackedDomains.length >= 1) {
+    ga('linker:autoLink', trackedDomains);
+  }
 
   //   // Log hits in non-production environments.
   // if (process.env.NODE_ENV !== 'production') {

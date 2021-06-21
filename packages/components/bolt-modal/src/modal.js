@@ -1,70 +1,61 @@
 // based originally off of https://github.com/edenspiekermann/a11y-dialog before heavy modifications and customizations
 
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
+import { getTransitionDuration } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
 import styles from './modal.scss';
-import schema from '../modal.schema.yml';
+import schema from '../modal.schema.js';
+import '@bolt/core-v3.x/elements/focus-trap';
 
 const tabbable = require('tabbable');
-import '../focus-trap';
-
 const ESCAPE_KEY = 27;
 let cx = classNames.bind(styles);
 
-@define
-class BoltModal extends withLitHtml() {
-  static is = 'bolt-modal';
+@customElement('bolt-modal')
+class BoltModal extends BoltElement {
+  static schema = schema;
 
-  static props = {
-    width: props.string,
-    spacing: props.string,
-    theme: props.string,
-    scroll: props.string,
-    uuid: props.string,
-    // @todo: persistent - this is here to set up the future prop, which is commented out in the schema right now. For now, this will always be false until it's introduced. The same applies for all the other persistent logics below.
-    persistent: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    open: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    hideCloseButton: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-  };
-
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    self.schema = schema;
-    self.show = self.show.bind(this);
-    self.hide = self.hide.bind(this);
-    self._handleKeyPresseskeypress = this._handleKeyPresseskeypress.bind(this);
-
-    return self;
+  static get properties() {
+    return {
+      ...this.props,
+      open: { type: Boolean },
+      hideCloseButton: { type: Boolean },
+    };
   }
 
-  connecting() {
-    super.connecting && super.connecting();
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
+    this._handleKeyPresseskeypress = this._handleKeyPresseskeypress.bind(this);
     document.addEventListener('keydown', this._handleKeyPresseskeypress);
+
     this.setAttribute('ready', '');
   }
 
-  // Initialise everything needed for the dialog to work properly
-  rendered() {
-    super.rendered && super.rendered();
-    this.focusTrap = this.renderRoot.querySelector('focus-trap'); // reference to the focus trap element inside -- handles focus binding when enabled
+  updated(changedProperties) {
+    super.updated && super.updated(changedProperties);
 
-    if (this.open) {
-      this.focusTrap.active = true;
-      this.setFocusToFirstItem(this.renderRoot);
-      this.ready = true;
-    }
+    changedProperties.forEach((oldValue, propName) => {
+      if (propName === 'open') {
+        if (this.open) {
+          this.focusTrap.active = true;
+          this.setFocusToFirstItem();
+          this.ready = true;
+        }
+      }
+    });
+  }
+
+  // Initialise everything needed for the dialog to work properly
+  firstUpdated() {
+    super.firstUpdated && super.firstUpdated();
+
+    // reference to the focus trap element inside -- handles focus binding when enabled
+    this.focusTrap = this.renderRoot.querySelector('focus-trap');
 
     this.dialog = this.renderRoot.querySelector(
       'dialog, [role="dialog"], [role="alertdialog"]',
@@ -74,7 +65,21 @@ class BoltModal extends withLitHtml() {
       'show' in document.createElement('dialog') &&
       this.dialog.nodeName === 'DIALOG';
 
+    this.setupTriggers();
+
     this.dispatchEvent(new CustomEvent('modal:ready'));
+  }
+
+  setupTriggers() {
+    const triggers = document.querySelectorAll('[data-bolt-modal-target]');
+    triggers.forEach(el => {
+      const target = el.dataset.boltModalTarget;
+      if (document.querySelector(target) === this) {
+        el.addEventListener('click', () => {
+          this.toggle();
+        });
+      }
+    });
   }
 
   /**
@@ -95,6 +100,8 @@ class BoltModal extends withLitHtml() {
     // triggers re-render
     this.open = true;
 
+    this.dispatchEvent(new CustomEvent('modal:show'));
+
     document.body.classList.add('u-bolt-overflow-hidden');
 
     // @todo: re-evaluate if the trigger element used needs to have it's tabindex messed with
@@ -107,7 +114,7 @@ class BoltModal extends withLitHtml() {
     // this.dialog.setAttribute('open', '');
     // this.container.removeAttribute('aria-hidden');
 
-    this.dispatchEvent(new CustomEvent('modal:show'));
+    this.dispatchEvent(new CustomEvent('modal:shown'));
   }
 
   /**
@@ -128,7 +135,18 @@ class BoltModal extends withLitHtml() {
     this.open = false;
     this.ready = false;
 
+    this.dispatchEvent(new CustomEvent('modal:hide'));
+
     document.body.classList.remove('u-bolt-overflow-hidden');
+
+    this.transitionDuration = getTransitionDuration(
+      this.renderRoot.querySelector('.c-bolt-modal'),
+    );
+
+    // Wait until after transition or modal will shift
+    setTimeout(() => {
+      this.dispatchEvent(new CustomEvent('modal:hidden'));
+    }, this.transitionDuration);
 
     // @todo: refactor this to be more component / element agnostic
     if (this.focusedBeforeDialog) {
@@ -158,8 +176,20 @@ class BoltModal extends withLitHtml() {
       //   target.removeAttribute('aria-hidden');
       // });
     }
+  }
 
-    this.dispatchEvent(new CustomEvent('modal:hide'));
+  /**
+   * Toggle the dialog element. If dialog is open, close it. If closed, open it.
+   *
+   * @param {Event} event
+   * @return {this}
+   */
+  toggle() {
+    if (this.open) {
+      this.hide();
+    } else {
+      this.show();
+    }
   }
 
   /**
@@ -174,7 +204,14 @@ class BoltModal extends withLitHtml() {
     // further effects from the ESCAPE key and hide the modal
     if (this.open && event.which === ESCAPE_KEY) {
       event.preventDefault();
-      this.hide();
+      // Alter the behavior on a persistent modal to redirect to the return link value
+      if (this.persistent) {
+        if (this.persistentReturnUrl.length) {
+          window.location = this.persistentReturnUrl;
+        }
+      } else {
+        this.hide();
+      }
     }
   };
 
@@ -195,40 +232,31 @@ class BoltModal extends withLitHtml() {
     }
   }
 
-  _handleTriggerFocus(e) {
-    const closeButton = e.target.closest('.c-bolt-modal__close-button');
-    closeButton.classList.add('c-bolt-modal__close-button--focus-within');
-  }
-
-  _handleTriggerBlur(e) {
-    const closeButton = e.target.closest('.c-bolt-modal__close-button');
-    closeButton.classList.remove('c-bolt-modal__close-button--focus-within');
-  }
-
   /**
-   * Set the focus to the first element with `autofocus` or the first focusable
-   * child of the given element
-   *
-   * @param {Element} node
+   * Set focus on the close button, the first element with `data-bolt-autofocus`,
+   * `autofocus`, or the first focusable element in the modal (in that order)
    */
-  setFocusToFirstItem(node) {
-    const focusableChildren = this.getFocusableChildren(node);
-    const childToBeFocused =
-      node.querySelector('[autofocus]') || focusableChildren[0];
+  async setFocusToFirstItem() {
+    const closeButton = this.renderRoot.querySelector(
+      '.js-close-button-fallback',
+    );
+    const boltAutofocusEl = this.querySelector('[data-bolt-autofocus]');
+    const autofocusEl = this.querySelector('[autofocus]');
 
-    if (childToBeFocused) {
-      childToBeFocused.focus();
+    const initialEl =
+      closeButton || boltAutofocusEl || autofocusEl || tabbable(this)[0];
+
+    if (!initialEl) return;
+
+    const tagName = initialEl.tagName.toLowerCase();
+
+    if (tagName.includes('bolt-') && customElements.get(tagName)) {
+      // Wait for component to update or renderRoot can be undefined.
+      await initialEl.updateComplete;
+      tabbable(initialEl.renderRoot)[0].focus();
+    } else {
+      initialEl.focus();
     }
-  }
-
-  /**
-   * Get the focusable children of the given element
-   *
-   * @param {Element} node
-   * @return {Array<Element>}
-   */
-  getFocusableChildren(node) {
-    return tabbable(node);
   }
 
   /**
@@ -236,11 +264,11 @@ class BoltModal extends withLitHtml() {
    * @todo: refactor, move into base class
    */
   addClassesToSlottedChildren() {
-    if (this.slots) {
+    if (this.slotMap) {
       const applyClasses = slotName => {
         const currentSlot = [];
 
-        this.slots[slotName].forEach(item => {
+        this.slotMap.get(slotName).forEach(item => {
           if (item.tagName) {
             item.classList.remove('is-first-child');
             item.classList.remove('is-last-child'); // clean up existing classes
@@ -261,9 +289,9 @@ class BoltModal extends withLitHtml() {
         }
       };
 
-      this.slots.default && applyClasses('default');
-      this.slots.header && applyClasses('header');
-      this.slots.footer && applyClasses('footer');
+      this.slotMap.get('default') && applyClasses('default');
+      this.slotMap.get('header') && applyClasses('header');
+      this.slotMap.get('footer') && applyClasses('footer');
     }
   }
 
@@ -273,8 +301,8 @@ class BoltModal extends withLitHtml() {
    *
    * @return {this}
    */
-  disconnecting() {
-    super.disconnecting && super.disconnecting();
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
     // Remove the focus event listener to the body element and stop listening for specific key presses
     document.removeEventListener('keydown', this._handleKeyPresseskeypress);
     this.removeAttribute('ready');
@@ -283,73 +311,54 @@ class BoltModal extends withLitHtml() {
   }
 
   render() {
-    const {
-      width,
-      spacing,
-      theme,
-      scroll,
-      open,
-      persistent,
-      hideCloseButton,
-    } = this.validateProps(this.props);
-
-    const uuid = this.props.uuid || Math.floor(10000 + Math.random() * 90000);
+    const uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
 
     const classes = cx('c-bolt-modal', {
-      [`is-open`]: open,
-      [`c-bolt-modal--scroll-${scroll}`]: scroll,
+      [`is-open`]: this.open,
+      [`is-persistent`]: this.persistent,
+      [`c-bolt-modal--scroll-${this.scroll}`]: this.scroll,
       [`c-bolt-modal--overlay-dark`]:
-        theme && (theme === 'light' || theme === 'xlight'),
+        this.theme && (this.theme === 'light' || this.theme === 'xlight'),
       [`c-bolt-modal--overlay-light`]:
-        theme && (theme === 'dark' || theme === 'xdark'),
+        this.theme && (this.theme === 'dark' || this.theme === 'xdark'),
     });
 
     const headerClasses = cx('c-bolt-modal__container-header', {
       [`c-bolt-modal__container-header--hidden`]:
-        this.slots.header === undefined || !this.slots.header.length,
+        this.slotMap.get('header') === undefined ||
+        !this.slotMap.get('header').length,
     });
 
     const contentClasses = cx('c-bolt-modal__content', {
-      [`c-bolt-modal__content--width-${width}`]: width && width !== 'auto',
+      [`c-bolt-modal__content--width-${this.width}`]:
+        this.width && this.width !== 'auto',
     });
 
     const containerClasses = cx('c-bolt-modal__container', {
-      [`c-bolt-modal__container--spacing-${spacing}`]:
-        spacing && spacing !== 'none',
-      [`t-bolt-${theme}`]: theme && theme !== 'none',
+      [`c-bolt-modal__container--spacing-${this.spacing}`]:
+        this.spacing && this.spacing !== 'none',
+      [`t-bolt-${this.theme}`]: this.theme && this.theme !== 'none',
     });
 
     const closeButtonClasses = cx('c-bolt-modal__close-button', {
-      [`c-bolt-modal__close-button--hidden`]: hideCloseButton,
+      [`c-bolt-modal__close-button--hidden`]: this.hideCloseButton,
+      [`c-bolt-modal__close-button--dark`]:
+        this.theme && (this.theme === 'dark' || this.theme === 'xdark'),
+      [`c-bolt-modal__close-button--light`]:
+        this.theme && (this.theme === 'light' || this.theme === 'xlight'),
     });
 
-    const delegateFocus = e => {
-      if (!this.useShadow) {
-        const button = e.target.renderRoot.querySelector('button');
-        button && button.focus();
-      }
-    };
-
-    // <button> element is included here to set a required style inside the Shadow DOM.
-    // Button's default transition 'all' property delays 'visibility: visible'
-    // and thus prevents it from getting focus on 'rendered'.
-    // @todo: Can we safely fix this from within the button component itself?
     const defaultCloseButton = html`
       <bolt-trigger
         class="js-close-button-fallback"
         @click=${e => this.hide(e)}
-        @focus=${e => delegateFocus(e)}
-        @trigger:focus=${e => this._handleTriggerFocus(e)}
-        @trigger:blur=${e => this._handleTriggerBlur(e)}
         display="block"
         no-outline
-        autofocus
-        tabindex="0"
       >
-        <span class="${closeButtonClasses}__text"
+        <span class="c-bolt-modal__close-button__text"
           >Close this dialog window</span
         >
-        <span class="${closeButtonClasses}__icon"></span>
+        <span class="c-bolt-modal__close-button__icon"></span>
       </bolt-trigger>
     `;
 
@@ -357,10 +366,10 @@ class BoltModal extends withLitHtml() {
 
     // Cannot inline this logic so moved it outside of html template
     const footerTemplate = () => {
-      if (this.slots.footer) {
+      if (this.slotMap.get('footer')) {
         return html`
           <footer class="c-bolt-modal__container-footer">
-            ${this.slot('footer')}
+            ${this.slotify('footer')}
           </footer>
         `;
       }
@@ -371,24 +380,29 @@ class BoltModal extends withLitHtml() {
     // @todo: work through how we want to handle the default dialog modal title
     //  vs a customized modal title vs providing a title but hiding it.
     return html`
-      ${this.addStyles([styles])}
       <div
         class="${classes}"
-        aria-hidden=${open === true ? 'false' : 'true'}
+        aria-hidden=${this.open === true ? 'false' : 'true'}
         @click="${handleModalClick}"
       >
-        ${this.slot('trigger')}
+        ${this.slotify('trigger')}
         <focus-trap>
           <dialog
             aria-labelledby="dialog-title-${uuid}"
-            ?open=${open}
-            aria-hidden=${open === true ? 'false' : 'true'}
+            ?open=${this.open}
+            aria-hidden=${this.open === true ? 'false' : 'true'}
             class="${contentClasses}"
           >
             <article class="${containerClasses}">
-              <div class="${closeButtonClasses}">
-                ${this.slots.close ? this.slot('close') : defaultCloseButton}
-              </div>
+              ${!this.persistent
+                ? html`
+                    <div class="${closeButtonClasses}">
+                      ${this.slotMap.get('close')
+                        ? this.slotify('close')
+                        : defaultCloseButton}
+                    </div>
+                  `
+                : ''}
               <header class="${headerClasses}">
                 <h1
                   id="dialog-title-${uuid}"
@@ -396,10 +410,10 @@ class BoltModal extends withLitHtml() {
                 >
                   Dialog content
                 </h1>
-                ${this.slot('header')}
+                ${this.slotify('header')}
               </header>
               <div class="c-bolt-modal__container-body">
-                ${this.slot('default')}
+                ${this.slotify('default')}
               </div>
               ${footerTemplate()}
             </article>

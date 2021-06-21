@@ -1,0 +1,40 @@
+{% set schema = bolt.data.components['@bolt-components-card-replacement'].schema %}
+
+{# Variables #}
+{# @todo this template should use init() but it cannot because it currently gets all of the parent data. Try to fix with next breaking change. #}
+{% set attributes = create_attribute(body.attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
+{% set _spacing_options = schema.properties.spacing.enum %}
+{% set spacing = spacing in _spacing_options ? spacing : schema.properties.spacing.default %}
+
+{% set classes = [
+  'c-bolt-card_replacement__body',
+  'c-bolt-card_replacement__body--spacing-' ~ spacing,
+] %}
+
+<bolt-card-replacement-body {{ attributes }}>
+  <ssr-keep for="bolt-card-replacement-body" {{ inner_attributes.addClass(classes) }}>
+    {% block body %}
+      {% if body.content %}
+        {{ body.content }}
+      {% else %}
+        {% if body.eyebrow %}
+          {% include '@bolt-components-headline/eyebrow.twig' with {
+            text: body.eyebrow,
+          } only %}
+        {% endif %}
+        {% if body.headline %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: body.headline,
+            size: 'large',
+          } only %}
+        {% endif %}
+        {% if body.paragraph %}
+          {% include '@bolt-components-headline/text.twig' with {
+            text: body.paragraph,
+          } only %}
+        {% endif %}
+      {% endif %}
+    {% endblock %}
+  </ssr-keep>
+</bolt-card-replacement-body>

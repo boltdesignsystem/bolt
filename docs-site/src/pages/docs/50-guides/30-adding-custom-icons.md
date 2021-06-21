@@ -16,7 +16,7 @@ module.exports = {
 
 The next time you run `start` or `build`, the icons will be moved into your Bolt installation. Specifically, these files will be modified:
 
-- `../components/bolt-icon/icon.schema.yml`
+- `../components/bolt-icon/icon.schema.json`
 - `../components/bolt-icons/src/index.js`
 - `../components/bolt-icons/src/icons/CUSTOM_ICON.js`
 

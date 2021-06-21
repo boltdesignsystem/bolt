@@ -2,9 +2,9 @@ const globby = require('globby');
 const path = require('path');
 const seleniumServer = require('selenium-server');
 const chromeDriver = require('chromedriver');
-const geckoDriver = require('geckodriver');
+// const geckoDriver = require('geckodriver'); // temporarily disabling FF testing till self-signed cert issue (when installing geckodriver) is debugged
 const { NOW_URL } = process.env;
-
+const { startServer, stopServer } = require('@bolt/default-server/server.js');
 const testingUrl = NOW_URL ? NOW_URL : 'http://localhost:3000';
 
 console.log(`Nightwatch testingUrl is ${testingUrl}`);
@@ -24,15 +24,24 @@ module.exports = {
   globals: {
     waitForConditionTimeout: 5000,
     testingUrl,
+    before(cb) {
+      startServer(); // start local dev server automatically
+      cb();
+    },
+    after(cb) {
+      stopServer(); // stop local dev server automatically
+      cb();
+    },
   },
+  persist_globals: true,
   src_folders: srcFolders,
   selenium: {
     start_process: true,
     server_path: seleniumServer.path,
-    port: 4444, // Standard selenium port
+    // port: 4444, // Standard selenium port -- commenting this out to try and allow selenium to auto-assign
     cli_args: {
       'webdriver.chrome.driver': chromeDriver.path,
-      'webdriver.gecko.driver': geckoDriver.path,
+      // 'webdriver.gecko.driver': geckoDriver.path, // temporarily disabling FF testing till self-signed cert issue (when installing geckodriver) is debugged
     },
   },
   test_workers: {
@@ -52,6 +61,7 @@ module.exports = {
         browserName: 'chrome',
         chromeOptions: {
           args: ['--headless'],
+          w3c: false,
         },
         javascriptEnabled: true,
         acceptSslCerts: true,
@@ -63,20 +73,22 @@ module.exports = {
         browserName: 'chrome',
         chromeOptions: {
           args: ['--headless'],
+          w3c: false,
         },
         javascriptEnabled: true,
         acceptSslCerts: true,
         nativeEvents: true,
       },
     },
-    firefox: {
-      desiredCapabilities: {
-        browserName: 'firefox',
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        nativeEvents: true,
-      },
-    },
+    // temporarily disabling FF testing till self-signed cert issue (when installing geckodriver) is debugged
+    // firefox: {
+    //   desiredCapabilities: {
+    //     browserName: 'firefox',
+    //     javascriptEnabled: true,
+    //     acceptSslCerts: true,
+    //     nativeEvents: true,
+    //   },
+    // },
     safari: {
       desiredCapabilities: {
         browserName: 'safari',

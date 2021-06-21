@@ -1,50 +1,49 @@
-import {
-  define,
-  props,
-  css,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
-import {
-  render,
-  withLitHtml,
-  html,
-} from '@bolt/core/renderers/renderer-lit-html';
-
+import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import Handorgel from 'handorgel';
-
-import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
+import classNames from 'classnames/bind';
 import styles from './dropdown.scss';
+import schema from './dropdown.schema';
 
-@define
-class BoltDropdown extends withLitHtml() {
-  static is = 'bolt-dropdown';
+let cx = classNames.bind(styles);
 
-  static props = {
-    autoOpen: props.boolean,
-    collapse: props.boolean,
-    children: props.any,
-    center: props.boolean,
-    toggleText: props.string,
-    primaryUuid: props.string,
-    secondaryUuid: props.string,
-    title: props.string,
-  };
+@customElement('bolt-dropdown')
+class BoltDropdown extends BoltElement {
+  static schema = schema;
 
-  constructor(self) {
-    self = super(self);
+  static get properties() {
+    return {
+      ...this.props,
+      autoOpen: {
+        type: Boolean,
+      },
+      primaryUuid: {
+        type: String,
+      },
+      secondaryUuid: {
+        type: String,
+      },
+    };
+  }
 
-    this.useShadow = hasNativeShadowDomSupport;
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
+  constructor() {
+    super();
 
     this.state = {
-      open: this.props.autoOpen ? this.props.autoOpen : false,
-      collapse: this.props.collapse ? this.props.collapse : false,
+      open: this.autoOpen ? this.autoOpen : false,
+      collapse: this.collapse ? this.collapse : false,
     };
 
     this.uuid = '12345';
-    return self;
+    return this;
   }
 
-  connecting() {
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+
     const contentInner = this.querySelector('.c-bolt-dropdown__content-inner');
     const originalDropdown = this.querySelector('.c-bolt-dropdown');
     const originalInput = this.querySelector('.c-bolt-dropdown__state');
@@ -68,13 +67,10 @@ class BoltDropdown extends withLitHtml() {
 
   autoHeight() {
     if (this.contentElem) {
-      if (
-        this.props.collapse &&
-        window.matchMedia('(min-width: 600px)').matches
-      ) {
-        this.contentElem.classList.add('u-bolt-height-auto');
-      } else if (this.props.collapse) {
-        this.contentElem.classList.remove('u-bolt-height-auto');
+      if (this.collapse && window.matchMedia('(min-width: 600px)').matches) {
+        this.contentElem.classList.add('c-bolt-dropdown--height-auto');
+      } else if (this.collapse) {
+        this.contentElem.classList.remove('c-bolt-dropdown--height-auto');
       }
     }
   }
@@ -107,15 +103,15 @@ class BoltDropdown extends withLitHtml() {
   }
 
   dropdownHeader() {
-    const dropdownHeaderClasses = css(
+    const dropdownHeaderClasses = cx(
       'c-bolt-dropdown__header',
-      this.props.center ? 'c-bolt-dropdown__header--center' : '',
+      this.center ? 'c-bolt-dropdown__header--center' : '',
     );
 
-    const dropdownTitle = this.slots.title
-      ? this.slot('title')
-      : this.props.title
-      ? this.props.title
+    const dropdownTitle = this.slotMap.get('title')
+      ? this.slotify('title')
+      : this.title
+      ? this.title
       : '';
 
     return html`
@@ -143,40 +139,35 @@ class BoltDropdown extends withLitHtml() {
     `;
   }
 
-  template() {
-    const classes = css(
+  render() {
+    const classes = cx(
       'c-bolt-dropdown',
-      this.props.collapse ? 'c-bolt-dropdown--collapse@small' : '',
+      this.collapse ? 'c-bolt-dropdown--collapse@small' : '',
     );
-
-    const dropdownChildren = this.slots.default
-      ? this.slot('default')
-      : this.props.children
-      ? this.props.children
-      : '';
 
     return html`
       <div class="${classes}" id="${this.uuid}">
         ${this.dropdownHeader()}
         <div class="c-bolt-dropdown__content">
-          <div class="c-bolt-dropdown__content-inner">${dropdownChildren}</div>
+          <div class="c-bolt-dropdown__content-inner">
+            ${this.slotify('default')}
+          </div>
         </div>
       </div>
     `;
   }
 
-  render() {
-    this.dropdownTemplate = document.createDocumentFragment();
-    render(this.template(), this.dropdownTemplate);
+  firstUpdated() {
+    super.firstUpdated && super.firstUpdated();
 
-    this.contentElem = this.dropdownTemplate.querySelector(
+    this.contentElem = this.renderRoot.querySelector(
       '.c-bolt-dropdown__content',
     );
 
     this.autoHeight();
 
     this.dropdown = new Handorgel(
-      this.dropdownTemplate.querySelector('.c-bolt-dropdown'),
+      this.renderRoot.querySelector('.c-bolt-dropdown'),
       {
         // whether multiple folds can be opened at once
         multiSelectable: true,
@@ -218,10 +209,6 @@ class BoltDropdown extends withLitHtml() {
         contentNoTransitionClass: 'c-bolt-dropdown__content--notransition',
       },
     );
-
-    return html`
-      ${this.addStyles([styles, heightUtils])} ${this.dropdownTemplate}
-    `;
   }
 }
 

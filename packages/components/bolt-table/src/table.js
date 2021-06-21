@@ -1,46 +1,48 @@
-import { props, define } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { parse, stringify } from 'himalaya';
-
 import classNames from 'classnames/bind';
-
 import styles from './table.scss';
-import schema from '../table.schema.yml';
+import schema from '../table.schema';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltTable extends withLitHtml() {
-  static is = 'bolt-table';
+@customElement('bolt-table')
+class BoltTable extends BoltElement {
+  static schema = schema;
 
-  static props = {
-    format: {
-      ...props.string,
-      ...{ default: 'regular' },
-    },
-    borderless: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    firstColFixedWidth: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-  };
+  static get properties() {
+    return {
+      ...this.props,
+      caption: {
+        type: Object,
+      },
+    };
+  }
 
-  constructor(self) {
-    self = super(self);
-    self.schema = schema;
-    self.useShadow = false;
-    return self;
+  static useShadow = false;
+
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   removeEmptyNodes(nodes) {
     return nodes.filter(node => {
+      if (node.type !== 'comment') {
+        if (node.type === 'element') {
+          node.children = this.removeEmptyNodes(node.children);
+          return true;
+        }
+        return node.content.length;
+      }
+    });
+  }
+
+  removeCommentNodes(nodes) {
+    return nodes.filter(node => {
       if (node.type === 'element') {
-        node.children = this.removeEmptyNodes(node.children);
+        node.children = this.removeCommentNodes(node.children);
         return true;
       }
       return node.content.length;
@@ -65,6 +67,10 @@ class BoltTable extends withLitHtml() {
     return this.removeEmptyNodes(this.stripWhitespace(nodes));
   }
 
+  removeComments(nodes) {
+    return this.removeCommentNodes(nodes);
+  }
+
   createProp(object, prop, value) {
     if (object[`${prop}`] === undefined) {
       object[`${prop}`] = value;
@@ -73,7 +79,6 @@ class BoltTable extends withLitHtml() {
 
   convertElements(element, object, parent = 'body') {
     const boltedObject = object !== undefined ? object : {};
-
     element.map(element => {
       switch (element.tagName) {
         case 'thead':
@@ -90,18 +95,25 @@ class BoltTable extends withLitHtml() {
           break;
         case 'tr':
           const elements = element.children.map(child => child);
-
           boltedObject[`${parent}`].push(elements);
           break;
+        case 'caption':
+          // If we encounter a `<caption>` tag, save as prop and deal with it separately later on.
+          this.caption = element;
+          break;
         default:
-          this.convertElements(element.children, boltedObject);
+          if (element.children) {
+            this.convertElements(element.children, boltedObject);
+          }
       }
     });
 
     return boltedObject;
   }
 
-  rendered() {
+  updated(changedProperties) {
+    super.updated && super.updated();
+
     const nodesToUpdate = this.renderRoot.querySelectorAll('*[data-attrs]');
     const tdInThead = this.renderRoot.querySelectorAll('thead td');
 
@@ -125,23 +137,40 @@ class BoltTable extends withLitHtml() {
   }
 
   render() {
-    const parseCode = this.removeWhitespace(parse(this.innerHTML));
-    const { format, borderless, firstColFixedWidth } = this.props;
+    const slottedTable = this.querySelector('table');
+
+    // If there's no table inside stop here, only errors lie ahead
+    if (!slottedTable) return;
+
+    const parseCode =
+      slottedTable &&
+      this.removeComments(
+        this.removeWhitespace(parse(slottedTable.parentNode.innerHTML)),
+      );
+
     const tableClasses = cx('c-bolt-table', {
-      [`c-bolt-table--format-${format}`]: format !== 'regular',
-      [`c-bolt-table--borderless`]: borderless,
-      [`c-bolt-table--first-col-fixed-width`]: firstColFixedWidth,
+      [`c-bolt-table--format-${this.format}`]: this.format !== 'regular',
+      [`c-bolt-table--borderless`]: this.borderless,
+      [`c-bolt-table--first-col-fixed-width`]: this.firstColFixedWidth,
     });
     const bodyClasses = cx('c-bolt-table__body');
     const headClasses = cx('c-bolt-table__head');
     const footClasses = cx('c-bolt-table__foot');
     const rowClasses = cx('c-bolt-table__row');
+    const figureClasses = cx('c-bolt-table__figure');
+    const captionClasses = cx('c-bolt-table__caption');
     let boltTableMarkup = [];
 
     const boltTable = this.convertElements(parseCode);
 
     function setSectionTag(tag) {
       switch (tag) {
+        case 'caption':
+          return html`
+            <!-- <caption class=${captionClasses}>
+              ${boltTable[tag]}
+            </caption> -->
+          `;
         case 'head':
           return html`
             <thead class=${headClasses}>
@@ -237,6 +266,8 @@ class BoltTable extends withLitHtml() {
     }
 
     function injectClasses(classes, attributes) {
+      // @todo: `findIndex` does not work in IE11 without a polyfill, so it silently stops/fails here.
+      // Once polyfilled, the table markup disappears on load. Come back to this, polyfill it, and fix he underlying table bug.
       const classIndex = attributes.findIndex(item => item.key === 'class');
 
       if (classIndex === -1) {
@@ -264,11 +295,29 @@ class BoltTable extends withLitHtml() {
 
     injectClasses(tableClasses, parseCode[0].attributes);
 
+    // Caption should be passed in as table content, except when coming from
+    // our Twig template, where it is slotted content for SSR purposes.
+    const tableCaption = this.caption
+      ? stringify(this.caption.children)
+      : this.slotMap.get('caption')
+      ? this.slotify('caption')
+      : '';
+
     return html`
-      ${this.addStyles([styles])}
-      <table data-attrs=${ifDefined(setAttr(parseCode[0].attributes))}>
-        ${boltTableMarkup}
-      </table>
+      ${tableCaption
+        ? html`
+            <figure class="${figureClasses}">
+              <table data-attrs=${ifDefined(setAttr(parseCode[0].attributes))}>
+                ${boltTableMarkup}
+              </table>
+            </figure>
+            <figcaption class="${captionClasses}">${tableCaption}</figcaption>
+          `
+        : html`
+            <table data-attrs=${ifDefined(setAttr(parseCode[0].attributes))}>
+              ${boltTableMarkup}
+            </table>
+          `}
     `;
   }
 }

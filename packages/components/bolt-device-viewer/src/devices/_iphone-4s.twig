@@ -1,13 +1,13 @@
 {% set content = content | default({}) %}
 
 <div class="marvel-device iphone4s silver">
-    {% include "parts/_top-bar.twig" only %}
-    {% include "parts/_sleep.twig" only %}
-    {% include "parts/_volume.twig" only %}
-    {% include "parts/_camera.twig" only %}
-    {% include "parts/_sensor.twig" only %}
-    {% include "parts/_speaker.twig" only %}
-    {% include "parts/_screen.twig" with content only %}
-    {% include "parts/_home.twig" only %}
-    {% include "parts/_bottom-bar.twig" only %}
+    {% include "@bolt-components-device-viewer/parts/_top-bar.twig" only %}
+    {% include "@bolt-components-device-viewer/parts/_sleep.twig" only %}
+    {% include "@bolt-components-device-viewer/parts/_volume.twig" only %}
+    {% include "@bolt-components-device-viewer/parts/_camera.twig" only %}
+    {% include "@bolt-components-device-viewer/parts/_sensor.twig" only %}
+    {% include "@bolt-components-device-viewer/parts/_speaker.twig" only %}
+    {% include "@bolt-components-device-viewer/parts/_screen.twig" with content only %}
+    {% include "@bolt-components-device-viewer/parts/_home.twig" only %}
+    {% include "@bolt-components-device-viewer/parts/_bottom-bar.twig" only %}
 </div>

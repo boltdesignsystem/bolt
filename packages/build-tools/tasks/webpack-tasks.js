@@ -4,16 +4,28 @@ const browserSync = require('browser-sync').create();
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const chalk = require('chalk');
+const opn = require('better-opn');
 const { handleRequest } = require('@bolt/api');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackMessages } = require('@bolt/build-utils/webpack-helpers');
 const events = require('@bolt/build-utils/events');
+const {
+  webpackStats,
+  statsPreset,
+} = require('@bolt/build-utils/webpack-verbosity');
+const fs = require('fs');
 const createWebpackConfig = require('../create-webpack-config');
 const webpackDevServerWaitpage = require('./webpack-dev-server-waitpage');
 
 let boltBuildConfig;
 let browserSyncIsRunning = false;
 const app = express();
+
+const getDirectories = source =>
+  fs
+    .readdirSync(source, { withFileTypes: true })
+    .filter(dir => dir.isDirectory())
+    .map(dir => dir.name);
 
 async function compile(customWebpackConfig) {
   boltBuildConfig = boltBuildConfig || (await getConfig());
@@ -55,46 +67,66 @@ watch.displayName = 'webpack:watch';
 
 async function server(customWebpackConfig) {
   const boltBuildConfig = await getConfig();
-  const useHotMiddleware =
-    Array.isArray(boltBuildConfig.lang) && boltBuildConfig.lang.length > 1
-      ? false
-      : true;
-
-  const webpackConfig =
+  const webpackConfigs =
     customWebpackConfig || (await createWebpackConfig(boltBuildConfig));
 
   const browserSyncFileToWatch = [
     `${boltBuildConfig.wwwDir}/**/*.css`,
     `${boltBuildConfig.wwwDir}/**/*.html`,
+    `!**/node_modules/**/*`,
+    `!**/vendor/**/*`,
   ];
 
-  if (useHotMiddleware === false) {
-    browserSyncFileToWatch.push(`${boltBuildConfig.wwwDir}/**/*.js`);
-  }
+  browserSyncFileToWatch.push(`${boltBuildConfig.wwwDir}/**/*.js`);
+
+  const isUsingInternalServer =
+    typeof boltBuildConfig.proxyHostname === 'undefined' &&
+    typeof boltBuildConfig.proxyPort === 'undefined';
 
   return new Promise((resolve, reject) => {
     if (!browserSyncIsRunning) {
       browserSync.init(
         {
-          proxy: 'localhost:' + boltBuildConfig.port,
+          proxy: !isUsingInternalServer
+            ? `${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`
+            : `${boltBuildConfig.hostname}:${boltBuildConfig.port}`,
           logLevel: 'info',
           ui: false,
           notify: false,
-          open: boltBuildConfig.openServerAtStart,
+          open: false,
+          // This can be temporarily toggled to solve IP access issues on a lan. https://www.browsersync.io/docs/options#option-tunnel
+          tunnel: false,
           logFileChanges: false,
           reloadOnRestart: true,
           watchOptions: {
             ignoreInitial: true,
           },
+          port: boltBuildConfig.port,
           files: browserSyncFileToWatch,
         },
         function(err, bs) {
           browserSyncIsRunning = true; // so we only spin this up once Webpack has finished up initially
+
+          if (boltBuildConfig.openServerAtStart) {
+            opn(`http://${boltBuildConfig.hostname}:${boltBuildConfig.port}`);
+          }
+
+          if (!isUsingInternalServer) {
+            console.log(
+              chalk.green(
+                `\nBrowsersync is now proxying ${chalk.underline(
+                  `http://${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`,
+                )}.\nOpen ${chalk.underline(
+                  `http://${boltBuildConfig.hostname}:${boltBuildConfig.port}`,
+                )} to have your locally served pages automatically reload when HTML, CSS, and Javascript files are updated. \n`,
+              ),
+            );
+          }
         },
       );
     }
 
-    const compiler = boltWebpackMessages(webpack(webpackConfig));
+    const compiler = boltWebpackMessages(webpack(webpackConfigs));
 
     compiler.hooks.done.tap('AfterDonePlugin', (params, callback) => {
       events.emit('webpack-dev-server:compiled');
@@ -103,36 +135,49 @@ async function server(customWebpackConfig) {
     app.use(
       webpackDevServerWaitpage(compiler, {
         proxyHeader: boltBuildConfig.proxyHeader,
-        redirectPath: `http://localhost:${boltBuildConfig.port}/${
+        redirectPath: `${boltBuildConfig.proxyHostname}:${
+          boltBuildConfig.proxyPort
+        }/${
           boltBuildConfig.startPath !== '/' ? boltBuildConfig.startPath : ''
         }`,
       }),
     );
-    app.use(webpackDevMiddleware(compiler, webpackConfig[0].devServer));
-
-    // Don't use hot middleware when there's more than 1 language setup in the config -- workaround to prevent infinite loops when doing local dev
-    if (useHotMiddleware) {
-      app.use(
-        webpackHotMiddleware(compiler, {
-          log: false,
-          quiet: true,
-          noInfo: true,
-          logLevel: 'silent',
-          reload: true,
-        }),
-      );
-    } else {
-      console.log(
-        chalk.yellow(
-          '\n⚠️  Warning: disabling webpackHotMiddleware (HMR) to avoid infinite loops... falling back to a simple page reload. \n   To re-enable HMR, update your .boltrc config to only compile for one language at a time while doing local dev work.\n',
-        ),
-      );
-    }
+    app.use(
+      webpackDevMiddleware(compiler, {
+        quiet: true,
+        stats: 'errors-warnings',
+        writeToDisk: true,
+        logLevel: 'error',
+        stats: statsPreset(webpackStats[boltBuildConfig.verbosity]),
+      }),
+    );
 
     app.use(express.static(boltBuildConfig.wwwDir));
     // app.use('/api', handleRequest); // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
 
-    app.listen(boltBuildConfig.port, '0.0.0.0', function onStart(err) {
+    if (fs.existsSync(`${boltBuildConfig.wwwDir}/integrations`)) {
+      const integrationDirs = getDirectories(
+        `${boltBuildConfig.wwwDir}/integrations`,
+      );
+
+      integrationDirs.map(item => {
+        app.use(
+          express.static(`${boltBuildConfig.wwwDir}/integrations/${item}`),
+        );
+      });
+
+      app.get(['/drupal-lab'], (req, res) => {
+        const options = {
+          root: `${boltBuildConfig.wwwDir}/integrations/drupal-lab`,
+        };
+
+        res.sendFile('index.html', options);
+      });
+    }
+
+    app.listen(boltBuildConfig.port, boltBuildConfig.hostname, function onStart(
+      err,
+    ) {
       if (err) {
         console.log(err);
       }

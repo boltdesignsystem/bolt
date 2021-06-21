@@ -3,6 +3,553 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v3.7.1...v3.8.0) (2021-06-10)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [3.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v3.6.3...v3.7.0) (2021-06-01)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [3.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v3.5.4...v3.6.0) (2021-05-13)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [3.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v3.4.3...v3.5.0) (2021-04-09)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [3.4.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v3.4.1...v3.4.2) (2021-03-31)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [3.4.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v3.4.0...v3.4.1) (2021-03-30)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [3.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v3.3.1...v3.4.0) (2021-03-29)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [3.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v3.2.0...v3.3.0) (2021-03-12)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [3.1.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.31.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.31.1...v2.31.2) (2021-02-04)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.31.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.30.2...v2.31.0) (2021-02-02)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [3.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.30.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.30.1...v2.30.2) (2021-01-21)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.30.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.30.0...v2.30.1) (2021-01-14)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.30.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.29.3...v2.30.0) (2021-01-13)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+
+# [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.29.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.29.0...v2.29.1) (2020-11-25)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.29.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.28.0...v2.29.0) (2020-11-23)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.28.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.27.1...v2.28.0) (2020-09-16)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.27.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.26.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.25.1...v2.26.0) (2020-07-22)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* tooltip flicker ([ddbcf74](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/ddbcf7493047addb80f65b99c61055149d2f8cb5))
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* tooltip flicker ([ddbcf74](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/ddbcf7493047addb80f65b99c61055149d2f8cb5))
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Features
+
+* globally lazyload JS bundles to expose same existing issues as the ones found with the new lazy-queue functionality ([7cc4ce2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/7cc4ce2fa9ce28dc4f9f37078762f106ca87729f))
+
+
+
+
+
+# [2.22.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.21.1...v2.22.0) (2020-04-22)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.18.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.18.0...v2.18.1) (2020-02-21)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+
+### Bug Fixes
+
+* address prettier warnings on master ([51abac6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/51abac6cb034a3741e872efde17d5d00d3edca3b))
+* adjust no-JS behavior for Tooltip / Popover to reduce layout shifting when booting up / within carousels ([81768db](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/81768dbd75e1bda69cfe0b50622c13bb5af771a9))
+
+
+
+
+
+## [2.16.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.16.1...v2.16.2) (2020-01-28)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.16.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.16.0...v2.16.1) (2020-01-27)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* schema typo in Tooltip component ([9f00c29](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/9f00c295cdaab237db3d0cf09736a4410f44eadf))
+* update tooltip snapshots ([92f8970](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/92f8970a4448c1bb07b65dedf15f7dd5e0d1a6d7))
+
+
+### Features
+
+* add new boundary option to Tooltip and Popover ([ed60347](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/ed60347b9c3204703439da9ec2756e67f5852015))
+* add new Fallback Placements config option for Tooltip and Popover ([0f8ed44](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/0f8ed4429464a3c184321f2034f1423f423eacd7))
+* update Tooltip default placement from bottom to top ([93b86ba](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/93b86ba8e3fd467b1d847686c56cb04e390a94c0))
+
+
+
+
+
+## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* add missing uuid prop ([03a7003](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/03a700381ee015b8be6ee9b612e997cb05fc8922))
+* always set role to button ([9b84e36](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/9b84e368bee88b9049b3b513472b210d2c27d86c))
+* change placement default to auto ([525cb60](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/525cb60f92d64bee4c7ccb01c2ecc4a25ab082a7))
+* dependencies ([11520f4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/11520f440a933f933b57a18aaccfd6251b3195e4))
+* js to not render class when placement is auto ([b73ec96](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/b73ec967fbdcffdcf09fcf45370eca54c7f9dcf1))
+* keep component placement prop in sync with popper ([d6be669](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/d6be669f217876cbc3643c7667f42aa8fe93f1df))
+* properly track mouseout event ([d596873](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/d596873d8f9707b8749e66d7dcb73bfdc81d894e))
+* remove button from tooltip dependencies ([14783ea](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/14783ea97f84c211629c367907d8e1ad3e0b1ce4))
+* rename 'templateMap' to 'slotMap' after update on master ([83db554](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/83db554009ac2f8fc85bb5ff2921cd3c6a11a625))
+* schema ([8557204](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/8557204ee7ba2928482ee6ca9a6ad852dd521b31))
+* set placement based on schema default instead of hardcoding ([e5aa812](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/e5aa81244e5e77a70b32f8563da214b668198bc0))
+* switch to mouseenter, mouseleave with debounce, mostly avoids bug where tooltip stays open after leave ([35e5fcd](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/35e5fcda5eb94caa4a3ec6ac566d9f5670f4f9d0))
+* test snaps ([5686349](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/56863496f8d1c6e7feec5a5e23f9e43e3e7173d4))
+* update Tooltip snapshots ([fdd1a4d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/fdd1a4deaa7be235965b210c39c9d8747b8bf5a1))
+* z-index ([cfe058d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/cfe058d04e894d8bfe1411da8d001060bf642c46))
+
+
+### Features
+
+* add popper to handle tooltip placement ([1181b50](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/1181b500f65a7c1f5f0669bf9f1d4c11f3e2cb74))
+* revert to 'bottom' placement as default, works better in v2 ([6ea0979](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/6ea097966c0c3cdc8c6865e6a09b8cf721c866da))
+* update popper to v2 for preventOverflow improvements ([fdb808f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tooltip/commit/fdb808fd057b4d4a30beae953617fdca9095ca32))
+
+
+
+
+
+# [2.14.0](https://github.com/bolt-design-system/bolt/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Features
+
+* migrate over the customElements.define-related replacement + component dependency updates from https://github.com/boltdesignsystem/bolt/pull/1579 ([3b6f529](https://github.com/bolt-design-system/bolt/commit/3b6f529))
+
+
+
+
+
+# [2.13.0](https://github.com/bolt-design-system/bolt/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.12.1](https://github.com/bolt-design-system/bolt/compare/v2.12.0...v2.12.1) (2019-12-12)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.12.0](https://github.com/bolt-design-system/bolt/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.11.2](https://github.com/bolt-design-system/bolt/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.9.2](https://github.com/bolt-design-system/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.9.0](https://github.com/bolt-design-system/bolt/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.8.1](https://github.com/bolt-design-system/bolt/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+
+### Bug Fixes
+
+* adjust styles to reduce the gap between the Tooltip content vs Trigger ([f59f91d](https://github.com/bolt-design-system/bolt/commit/f59f91d))
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.7.0](https://github.com/bolt-design-system/bolt/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* globally update max timeout in Jest ([f1e6f95](https://github.com/bolt-design-system/bolt/commit/f1e6f95))
+
+
+
+
+
+## [2.5.6](https://github.com/bolt-design-system/bolt/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
+## [2.5.3](https://github.com/bolt-design-system/bolt/compare/v2.5.2...v2.5.3) (2019-07-12)
+
+**Note:** Version bump only for package @bolt/components-tooltip
+
+
+
+
+
 ## [2.5.2](https://github.com/bolt-design-system/bolt/compare/v2.5.1...v2.5.2) (2019-06-25)
 
 **Note:** Version bump only for package @bolt/components-tooltip

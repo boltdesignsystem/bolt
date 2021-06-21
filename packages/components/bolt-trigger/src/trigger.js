@@ -1,37 +1,31 @@
-import { props, define } from '@bolt/core/utils';
-import { html, render } from '@bolt/core/renderers/renderer-lit-html';
-import { BoltAction } from '@bolt/core/elements/bolt-action';
-import { convertInitialTags } from '@bolt/core/decorators';
+import {
+  BoltActionElement,
+  unsafeCSS,
+  html,
+  convertInitialTags,
+  customElement,
+} from '@bolt/element';
+import { render } from 'lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
-
 import classNames from 'classnames/bind';
-
 import styles from './trigger.scss';
-import schema from '../trigger.schema.yml';
+import schema from '../trigger.schema';
 
 let cx = classNames.bind(styles);
 
-@define
+@customElement('bolt-trigger')
 @convertInitialTags(['button', 'a']) // The first matching tag will have its attributes converted to component props
-class BoltTrigger extends BoltAction {
-  static is = 'bolt-trigger';
+class BoltTrigger extends BoltActionElement {
+  static schema = schema;
 
-  static props = {
-    url: props.string,
-    target: props.string,
-    cursor: props.string,
-    display: props.string,
-    noOutline: props.boolean,
-    onClick: props.string, // Managed by base class
-    onClickTarget: props.string, // Managed by base class
-  };
+  static get properties() {
+    return {
+      ...this.props,
+    };
+  }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.schema = schema;
-    self.delegateFocus = true;
-    return self;
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   _handleFocus() {
@@ -43,18 +37,14 @@ class BoltTrigger extends BoltAction {
   }
 
   render() {
-    const { url, target, cursor, display, noOutline } = this.validateProps(
-      this.props,
-    );
-
     const classes = cx('c-bolt-trigger', {
-      [`c-bolt-trigger--cursor-${cursor}`]: cursor,
-      [`c-bolt-trigger--display-${display}`]: display,
-      [`c-bolt-trigger--outline-none`]: noOutline,
+      [`c-bolt-trigger--cursor-${this.cursor}`]: this.cursor && !this.disabled,
+      [`c-bolt-trigger--display-${this.display}`]: this.display,
+      [`c-bolt-trigger--outline-none`]: this.noOutline,
     });
 
     // If a url has been provided the rendered tag will be an <a>
-    const hasUrl = url && url.length;
+    const hasUrl = this.url && this.url.length;
 
     // The triggerElement to render
     let triggerElement;
@@ -63,44 +53,68 @@ class BoltTrigger extends BoltAction {
       triggerElement = this.rootElement.firstChild.cloneNode(true);
       triggerElement.className += ' ' + classes;
 
-      if (hasUrl) {
-        triggerElement.setAttribute('href', url);
-      }
+      // @todo: find automatic way to dissolve original HTML elements into their respective props + custom attributes
+      if (triggerElement.tagName === 'A') {
+        const url = this.url || this.originalUrl;
 
-      if (target) {
-        triggerElement.setAttribute('target', target);
+        if (this.disabled) {
+          this.originalUrl = triggerElement.getAttribute('href');
+          triggerElement.setAttribute('aria-this.', 'true');
+          triggerElement.removeAttribute('href');
+        } else {
+          triggerElement.removeAttribute('aria-disabled');
+          if (url) {
+            triggerElement.setAttribute('href', url);
+          }
+        }
+
+        if (this.target) {
+          triggerElement.setAttribute('target', this.target);
+        }
+      } else {
+        if (this.disabled) {
+          triggerElement.setAttribute('disabled', '');
+        } else {
+          triggerElement.removeAttribute('disabled');
+        }
+        if (this.type) {
+          triggerElement.setAttribute('type', this.type);
+        }
       }
 
       // @todo: use of buttons/anchors in the default slot has not been thoroughly tested. Is this even required?
       // triggerElement.addEventListener('focus', this._handleFocus);
       // triggerElement.addEventListener('blur', this._handleBlur);
 
-      render(this.slot('default'), triggerElement);
+      render(this.slotify('default'), triggerElement);
     } else if (hasUrl) {
       triggerElement = html`
         <a
-          href="${url}"
+          href="${ifDefined(this.url && !this.disabled ? this.url : undefined)}"
           class="${classes}"
-          target="${ifDefined(target ? target : undefined)}"
+          target="${ifDefined(this.target ? this.target : undefined)}"
+          aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
           @focus="${e => this._handleFocus(e)}"
           @blur="${e => this._handleBlur(e)}"
-          >${this.slot('default')}</a
+          >${this.slotify('default')}</a
         >
       `;
     } else {
       triggerElement = html`
         <button
           class="${classes}"
+          type="${this.type}"
+          disabled=${ifDefined(this.disabled ? '' : undefined)}
           @focus="${e => this._handleFocus(e)}"
           @blur="${e => this._handleBlur(e)}"
         >
-          ${this.slot('default')}
+          ${this.slotify('default')}
         </button>
       `;
     }
 
     return html`
-      ${this.addStyles([styles])} ${triggerElement}
+      ${triggerElement}
     `;
   }
 }

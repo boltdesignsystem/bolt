@@ -1,0 +1,15 @@
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+{% set themes = get_data("@bolt/themes.schema.json") %}
+
+<div class="u-bolt-shadow-level-10">
+  {% for theme in themes.properties.colors.enum %}
+    <div class="u-bolt-padding-medium t-bolt-{{ theme }}">
+      <bolt-text headline>
+        Progress bar in {{ theme }} theme
+      </bolt-text>
+      {% include "@bolt-components-progress-bar/progress-bar.twig" with {
+        value: 65,
+      } only %}
+    </div>
+  {% endfor %}
+</div>

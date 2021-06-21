@@ -1,51 +1,57 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 /* ------------------------------------ *\
    Grid
 \* ------------------------------------ */
 
-@mixin bolt-support-grid-gap {
+/**
+ * Progressive enhancements for setting gutter spacing
+ * 1. grid-gap is not supported in Safari (as of 5/18/2020)
+ */
+@mixin bolt-grid-gap-progressive-enhance {
   @supports (grid-gap: 1px) {
     @content;
   }
 }
 
-.c-bolt-grid {
+bolt-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr); // 12-column grid is Bolt's default.
   grid-auto-rows: minmax(min-content, max-content);
 
-  @each $name, $value in $bolt-spacing-values {
-    &--gutter-#{$name} {
-      margin-left: bolt-spacing(#{$name}) * -1;
+  @each $size in $bolt-spacing-multiplier-system {
+    $size-name: nth($size, 1);
+
+    &[gutter='#{$size-name}'] {
+      margin-left: calc(var(--bolt-spacing-x-#{$size-name}) * -1);
 
       > bolt-grid-item {
-        @include bolt-margin-left(#{$name});
+        margin-left: var(--bolt-spacing-x-#{$size-name});
       }
 
-      @include bolt-support-grid-gap {
-        grid-column-gap: bolt-spacing(#{$name});
+      @include bolt-grid-gap-progressive-enhance {
+        grid-column-gap: var(--bolt-spacing-x-#{$size-name});
         margin-left: 0;
 
         > bolt-grid-item {
-          @include bolt-margin-left(0);
+          margin-left: 0;
         }
       }
     }
 
-    &--row-gutter-#{$name} {
-      margin-top: bolt-v-spacing(#{$name}) * -1;
+    &[row-gutter='#{$size-name}'] {
+      margin-top: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
 
       > bolt-grid-item {
-        @include bolt-margin-top(#{$name});
+        margin-top: var(--bolt-spacing-y-#{$size-name});
       }
 
-      @include bolt-support-grid-gap {
-        grid-row-gap: bolt-v-spacing(#{$name});
+      @include bolt-grid-gap-progressive-enhance {
+        grid-row-gap: var(--bolt-spacing-y-#{$size-name});
         margin-top: 0;
 
         > bolt-grid-item {
-          @include bolt-margin-top(0);
+          margin-top: 0;
         }
       }
     }

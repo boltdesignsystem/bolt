@@ -4,11 +4,6 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{# Variables #}
-{% set base_class = "c-bolt-action-blocks" %}
-{% set attributes = create_attribute(attributes|default({})) %}
-{% set inner_attributes = create_attribute({}) %}
-
 {# DEPRECATED: maxItemsPerRow has been renamed to max_items_per_row #}
 {% if maxItemsPerRow %}
   {% set max_items_per_row = maxItemsPerRow %}
@@ -30,21 +25,27 @@
   {% set borderless = true %}
 {% endif %}
 
-{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
-{% set valign_options = schema.properties.valign.enum %}
-{% set max_items_per_row_options = schema.properties.max_items_per_row.enum %}
+{# DEPRECATED: 'contentItems' has been renamed 'items'. #}
+{% if contentItems %}
+  {% set items = contentItems %}
+{% endif %}
 
-{# Check that the component's current prop values are valid. if not, default to the schema default #}
-{% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
-{% set max_items_per_row = max_items_per_row in max_items_per_row_options ? max_items_per_row : schema.properties.max_items_per_row.default %}
-{% set borderless = borderless is sameas(true) or borderless is sameas(false) ? borderless : schema.properties.borderless.default %}
+{# DEPRECATED.  `children` has been renamed to `content` #}
+{% if children %}
+  {% set content = children %}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  base_class,
-  valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
-  max_items_per_row in max_items_per_row_options ? "#{base_class}--item-max-#{max_items_per_row}" : "",
-  borderless ? "#{base_class}--borderless" : "",
+  "c-bolt-action-blocks",
+  this.data.spacing.value ? "c-bolt-action-blocks--spacing-" ~ this.data.spacing.value : "",
+  this.data.valign.value ? "c-bolt-action-blocks--valign-" ~ this.data.valign.value : "",
+  this.data.max_items_per_row.value ? "c-bolt-action-blocks--item-max-" ~ this.data.max_items_per_row.value : "",
+  this.data.borderless.value ? "c-bolt-action-blocks--borderless" : "",
 ] %}
 
 {#
@@ -55,7 +56,7 @@
 {% set outer_classes = [] %}
 {% set inner_classes = classes %}
 
-{% for class in attributes["class"] %}
+{% for class in this.props.class %}
   {% if class starts with "is-" or class starts with "has-" %}
     {% set inner_classes = inner_classes|merge([class]) %}
   {% elseif class starts with "c-bolt-" == false %}
@@ -63,21 +64,17 @@
   {% endif %}
 {% endfor %}
 
-{# Example component's custom element wrapper #}
 <bolt-action-blocks
-  {% if valign %} valign="{{ valign }}" {% endif %}
-  {% if max_items_per_row %} max-items-per-row="{{ max_items_per_row }}" {% endif %}
-  {% if borderless %} borderless {% endif %}
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ attributes | without("class") }}
+  {{ this.props|without("items")|without("class") }}
 >
   <ul {{ inner_attributes.addClass(inner_classes) }}>
-    {% if children %}
-      {{ children }}
+    {% if content %}
+      {{ content }}
     {% else %}
-      {% for item in contentItems %}
-        <li class="{{ "#{base_class}__item" }}">
-          {% include "@bolt-components-action-blocks/_action-blocks-item.twig" with item only %}
+      {% for item in items %}
+        <li class="c-bolt-action-blocks__item">
+          {% include "@bolt-components-action-blocks/action-block.twig" with item only %}
         </li>
       {% endfor %}
     {% endif %}

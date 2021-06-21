@@ -1,2 +1,8 @@
-// https://jamie.build/last-2-versions
-module.exports = ['>0.25%', 'ie 11', 'not op_mini all'];
+module.exports = [
+  'last 2 Chrome versions',
+  'last 2 Safari versions',
+  'last 2 iOS versions',
+  'last 2 Edge versions',
+  'Firefox ESR',
+  'Edge 18',
+];

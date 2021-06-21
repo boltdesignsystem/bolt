@@ -1,13 +1,28 @@
 {
   "name": "@bolt/components-nav-priority",
-  "description": "Priority+ Nav Component in Bolt",
+  "version": "3.8.0",
+  "description": "Priority plus navigation system.",
   "keywords": [
     "bolt design system",
     "bolt",
     "design system",
     "components"
   ],
-  "version": "2.5.2",
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority",
+  "license": "MIT",
+  "main": "index.js",
+  "style": "nav-priority.scss",
+  "dependencies": {
+    "@bolt/components-navlink": "^3.8.0",
+    "@bolt/core-v3.x": "^3.6.0",
+    "@bolt/lazy-queue": "^3.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -20,18 +35,5 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "main": "index.js",
-  "style": "nav-priority.scss",
-  "schema": "nav-priority.schema.yml",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@bolt/core": "^2.5.2"
-  },
-  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
+  "schema": "nav-priority.schema.js"
 }

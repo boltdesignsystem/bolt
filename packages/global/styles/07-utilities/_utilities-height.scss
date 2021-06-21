@@ -2,22 +2,14 @@
   #HEIGHT UTILITIES
 \* ------------------------------------ */
 
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 $bolt-height-props: (
-  'xxsmall': bolt-spacing(xxsmall),
-  'xsmall': bolt-spacing(xsmall),
-  'small': bolt-spacing(small),
-  'medium': bolt-spacing(medium),
-  'large': bolt-spacing(large),
-  'xlarge': bolt-spacing(xlarge),
-  'xxlarge': bolt-spacing(xxlarge),
   'none': 0,
   'auto': auto,
   'full': 100%,
-  'screen': 100vh,
+  'fullscreen': 100vh,
 );
-
 
 // Height
 @mixin bolt-height-utils($breakpoint: null) {
@@ -37,7 +29,6 @@ $bolt-height-props: (
     @include bolt-height-utils(\@#{$breakpointName});
   }
 }
-
 
 // Min height
 @mixin bolt-min-height-utils($breakpoint: null) {

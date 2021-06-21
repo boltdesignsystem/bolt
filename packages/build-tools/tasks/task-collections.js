@@ -121,7 +121,7 @@ async function clean(cleanAll = false) {
         dirs = [config.buildDir];
         break;
     }
-    if (cleanAll === true) {
+    if (cleanAll === true && config.env !== 'pwa') {
       dirs = [config.wwwDir];
     }
     await internalTasks.clean(dirs);
@@ -197,12 +197,12 @@ async function build(shouldReturnTime = false) {
   try {
     await buildPrep(startTime);
 
-    // don't try to process / convert SVG icons if the `@bolt/components-icon` package isn't part of the build
-    if (
-      config.components.global.includes('@bolt/components-icon') ||
-      config.components.individual.includes('@bolt/components-icon')
-    ) {
-      await iconTasks.build();
+    // only try to generate / update the SVG manifest for pwa / non-Drupal builds
+    switch (config.env) {
+      case 'pl':
+      case 'static':
+      case 'pwa':
+        await iconTasks.build();
     }
 
     config.prod || config.watch === false ? await webpackTasks.compile() : '';
@@ -214,6 +214,8 @@ async function build(shouldReturnTime = false) {
     config.prod || config.watch === false
       ? await Promise.all(await compileBasedOnEnvironment())
       : '';
+
+    await internalTasks.writeMetadata();
 
     if (shouldReturnTime) {
       return startTime;
@@ -247,15 +249,8 @@ async function watch() {
         watchTasks.push(extraTasks.patternLab.watch());
         watchTasks.push(extraTasks.api.watch());
         watchTasks.push(extraTasks.static.watch());
+        watchTasks.push(iconTasks.watch());
         break;
-    }
-
-    // don't watch for SVG icon changes if the `@bolt/components-icon` package isn't part of the build
-    if (
-      config.components.global.includes('@bolt/components-icon') ||
-      config.components.individual.includes('@bolt/components-icon')
-    ) {
-      watchTasks.push(iconTasks.watch());
     }
 
     return Promise.all(watchTasks);
@@ -270,13 +265,11 @@ async function start() {
 
   try {
     if (!config.quick) {
-      buildTime = await build({
-        shouldReturnTime: true,
-      });
+      buildTime = await build(true);
     }
     await Promise.all(await compileBasedOnEnvironment()).then(async () => {
       await watch();
-      await serve(buildTime, true);
+      await serve(buildTime);
     });
   } catch (error) {
     log.errorAndExit('Start failed', error);

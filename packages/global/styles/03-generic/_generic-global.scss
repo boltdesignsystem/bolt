@@ -11,11 +11,10 @@
 *,
 *:before,
 *:after {
-  @include bolt-font-kerning;
-
   box-sizing: border-box; /* [1] */
+  font-feature-settings: 'kern';
+  font-kerning: normal;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* [2] */
-
   -webkit-font-smoothing: antialiased; /* [3] */
   -moz-osx-font-smoothing: grayscale;
 }

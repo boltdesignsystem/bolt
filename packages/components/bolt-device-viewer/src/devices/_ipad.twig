@@ -27,11 +27,11 @@
 ] %}
 
 <div {{ attributes.addClass(classes | raw) }}>
-  {% include "parts/_camera.twig" only %}
+  {% include "@bolt-components-device-viewer/parts/_camera.twig" only %}
   <div class="screen">
     {% if image %}
       {{ include('@bolt/image.twig', {'image': image}, with_context = false) }}
     {% endif %}
   </div>
-  {% include "parts/_home.twig" only %}
+  {% include "@bolt-components-device-viewer/parts/_home.twig" only %}
 </div>

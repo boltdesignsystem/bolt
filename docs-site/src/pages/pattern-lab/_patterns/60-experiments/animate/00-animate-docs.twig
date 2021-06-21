@@ -1,0 +1,88 @@
+{% set usage %}
+  <bolt-animate in="fade-in"> ...</bolt-animate>
+{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "animate",
+  usage: usage
+} only %}
+
+<h3>Slots</h3>
+{% include "@bolt-components-table/table.twig" with {
+  first_col_fixed_width: false,
+  headers: {
+    top: {
+      cells: [
+        "Name",
+        "Required?",
+        "Description",
+      ]
+    },
+  },
+  rows: [
+    {
+      cells: [
+        "<code>default</code>",
+        "No",
+        "wrapped content to animate",
+      ]
+    },
+  ],
+} only %}
+
+<h3>Methods</h3>
+{% include "@bolt-components-table/table.twig" with {
+  first_col_fixed_width: false,
+  headers: {
+    top: {
+      cells: [
+        "Name",
+        "Description",
+      ]
+    },
+  },
+  rows: [
+    {
+      cells: [
+        "<code>triggerAnimIn() => boolean</code>",
+        "start the <code>in</code> animation, will go to <code>idle</code> animation after",
+      ],
+    },
+    {
+      cells: [
+        "<code>triggerAnimOut() => boolean</code>",
+        "start the <code>out</code> animation",
+      ],
+    },
+  ],
+} only %}
+
+<h3>Events</h3>
+{% include "@bolt-components-table/table.twig" with {
+  first_col_fixed_width: false,
+  headers: {
+    top: {
+      cells: [
+        "Name",
+        "Detail",
+        "Description",
+      ]
+    },
+  },
+  rows: [
+    {
+      cells: [
+        "<code>bolt-animate:end:in</code>",
+        "<code>{}</code>",
+        "Indicates when the <code>in</code> animation concluded",
+      ]
+    },
+    {
+      cells: [
+        "<code>bolt-animate:end:out</code>",
+        "<code>{}</code>",
+        "Indicates when the <code>out</code> animation concluded",
+      ]
+    },
+  ],
+} only %}

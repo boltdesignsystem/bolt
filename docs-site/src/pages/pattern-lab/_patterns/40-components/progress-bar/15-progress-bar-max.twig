@@ -1,0 +1,28 @@
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large" %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+    <bolt-text headline>
+      Set max to 100
+    </bolt-text>
+    <bolt-text>
+      When using percent format for value.
+    </bolt-text>
+    {% include "@bolt-components-progress-bar/progress-bar.twig" with {
+      value: 65,
+      valueFormat: "percent",
+      max: 100,
+    } only %}
+  {% endcell %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+    <bolt-text headline>
+      Set max to any positive number
+    </bolt-text>
+    <bolt-text>
+      When using step format for value.
+    </bolt-text>
+    {% include "@bolt-components-progress-bar/progress-bar.twig" with {
+      value: 7,
+      valueFormat: "step",
+      max: 12,
+    } only %}
+  {% endcell %}
+{% endgrid %}

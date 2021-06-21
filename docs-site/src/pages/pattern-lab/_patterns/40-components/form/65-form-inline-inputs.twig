@@ -1,0 +1,57 @@
+{% extends "@bolt/form.twig" %}
+
+{% set children %}
+
+  {% set form_field %}
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "Email Address",
+      inputAttributes: {
+        placeholder: "Enter Email Address",
+        required: true,
+        type: "email"
+      },
+      labelDisplayType: "floating"
+    } only %}
+  {% endset %}
+
+  {% set submit_button %}
+    {% include "@bolt-components-form/form-button.twig" with {
+      text: "Sign up now",
+      tag: "submit"
+    } only %}
+  {% endset %}
+
+  {% set full_width_submit_button %}
+    {% include "@bolt-components-form/form-button.twig" with {
+      text: "Sign up now",
+      tag: "submit",
+      width: "full",
+    } only %}
+  {% endset %}
+
+  <h3>Inline inputs: auto width</h3>
+  <p>Use a bolt-list with display set to inline, and pass each input as an item. This will create an inline layout with multiple inputs. The width of each input will be adjusted to fit its content.</p>
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    spacing: "xsmall",
+    align: "start",
+    valign: "start",
+    items: [
+      form_field,
+      submit_button
+    ]
+  } only %}
+
+  <h3>Inline inputs: flexible width</h3>
+  <p>Use a bolt-list with display set to flex, and pass each input as an item. This will create a flexible layout with multiple inputs. The width of each input will be adjusted to the available space to fill up the full width of the layout.</p>
+  {% include "@bolt-components-list/list.twig" with {
+    display: "flex",
+    spacing: "xsmall",
+    align: "start",
+    valign: "start",
+    items: [
+      form_field,
+      full_width_submit_button
+    ]
+  } only %}
+{% endset %}

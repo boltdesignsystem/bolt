@@ -1,53 +1,53 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 @include bolt-custom-element('bolt-placeholder', block, medium);
 
 .c-bolt-placeholder {
   display: block;
+  height: 100%;
   overflow: hidden;
-  color: bolt-color(gray);
+  color: var(--bolt-color-gray);
   text-align: center;
   text-transform: uppercase;
-  text-shadow: 1px 1px 0.08px bolt-color(gray, light);
-  background-color: bolt-color(gray, light);
+  text-shadow: 1px 1px 0.08px var(--bolt-color-gray-light);
+  background-color: var(--bolt-color-gray-light);
 }
 
 .c-bolt-placeholder__content {
-  display: block; // Needed so custom elements take up the correct space
+  display: flex; // Needed so custom elements take up the correct space
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
-
 
 // Size Options
 .c-bolt-placeholder__content--xsmall {
-  @include bolt-padding(xsmall);
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
 }
 
 .c-bolt-placeholder__content--small {
-  @include bolt-padding(small);
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
 }
 
 .c-bolt-placeholder__content--medium {
-  @include bolt-padding(medium);
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
 }
 
 .c-bolt-placeholder__content--large {
-  @include bolt-padding(large);
+  padding: var(--bolt-spacing-y-large) var(--bolt-spacing-x-large);
 }
 
 .c-bolt-placeholder__content--xlarge {
-  @include bolt-padding(xlarge);
+  padding: var(--bolt-spacing-y-xlarge) var(--bolt-spacing-x-xlarge);
 }
-
-
-
 
 // Wrapper layer - created the dashed line treatment
 .c-bolt-placeholder__wrapper {
-  display: block; // Needed so custom elements take up the correct space
-  position:relative;
-  overflow:hidden;
+  display: flex; // Needed so custom elements take up the correct space
+  position: relative;
+  height: 100%;
+  overflow: hidden;
 }
-
 
 .c-bolt-placeholder__wrapper-x,
 .c-bolt-placeholder__wrapper-y {
@@ -58,7 +58,6 @@
   pointer-events: none;
 }
 
-
 .c-bolt-placeholder__wrapper-x:before,
 .c-bolt-placeholder__wrapper-x:after {
   content: '';
@@ -67,7 +66,11 @@
   bottom: 0;
   width: 2px;
   height: 100%;
-  background-image: linear-gradient(to top, bolt-color(gray) 70%, rgba(bolt-color(black), 0) 0%);
+  background-image: linear-gradient(
+    to top,
+    var(--bolt-color-gray) 70%,
+    transparent 0%
+  );
   background-position: bottom;
   background-repeat: repeat-y;
   background-size: 2px 11px;
@@ -89,7 +92,11 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background-image: linear-gradient(to right, bolt-color(gray) 71%, rgba(bolt-color(black), 0) 0%);
+  background-image: linear-gradient(
+    to right,
+    var(--bolt-color-gray) 70%,
+    transparent 0%
+  );
   background-repeat: repeat-x;
   background-size: 11px 2px;
 }
@@ -104,11 +111,11 @@
   background-position: top;
 }
 
-
 @keyframes move-top {
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: 10px 0px;
   }
@@ -118,6 +125,7 @@
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: -10px 0px;
   }
@@ -127,6 +135,7 @@
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: 0px -10px;
   }
@@ -136,23 +145,29 @@
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: 0px 10px;
   }
 }
-
 
 .c-bolt-placeholder__wrapper--animated {
   .c-bolt-placeholder__wrapper-x {
     &:after {
       animation: move-left 1s linear infinite;
     }
+
     &:before {
       animation: move-right 1s linear infinite;
     }
+
     &:after,
     &:before {
-      background-image: linear-gradient(to top, bolt-color(gray) 70%, rgba(bolt-color(black), 0) 0%);
+      background-image: linear-gradient(
+        to top,
+        var(--bolt-color-gray) 70%,
+        transparent 0%
+      );
     }
   }
 
@@ -160,14 +175,18 @@
     &:after {
       animation: move-top 1s linear infinite;
     }
+
     &:before {
       animation: move-bottom 1s linear infinite;
     }
+
     &:after,
     &:before {
-      background-image: linear-gradient(to right, bolt-color(gray) 70%, rgba(bolt-color(black), 0) 0%);
+      background-image: linear-gradient(
+        to right,
+        var(--bolt-color-gray) 70%,
+        transparent 0%
+      );
     }
   }
 }
-
-

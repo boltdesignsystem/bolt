@@ -1,0 +1,25 @@
+{% set content %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="3974147489001"
+      controls  
+      data-media-title
+      data-media-duration
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% include "@bolt-components-ratio/ratio.twig" with {
+    children: video,
+    ratio: "16/9"
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-device-viewer/device-viewer.twig" with {
+  device: "iphone8",
+  orientation: "landscape",
+  color: "silver",
+  content: content,
+} only %}

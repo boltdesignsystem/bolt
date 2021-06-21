@@ -1,0 +1,23 @@
+{% set schema = bolt.data.components["@bolt-components-accordion"].schema %}
+
+<p>
+  Set the <code>inactive</code> prop to <code>true</code> on any accordion item to display the trigger as an inactive element. It will have the same font-styles as the other triggers but none of the interactive styles. It will not be clickable, and that item's content and toggle icon will always be hidden.
+</p>
+
+{% include "@bolt-components-accordion/accordion.twig" with {
+  items: [
+    {
+      trigger: "Active Accordion item",
+      content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+    },
+    {
+      trigger: "Inactive Accordion item",
+      content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+      inactive: true,
+    },
+    {
+      trigger: "Active Accordion item",
+      content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+    },
+  ]
+} only %}

@@ -1,27 +1,29 @@
-{% set schema = bolt.data.components["@bolt-components-stack"].schema %}
+{% set schema = bolt.data.components['@bolt-components-stack'].schema %}
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-stack" %}
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
 
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
 {% set outer_classes = [] %}
 
-{% for class in attributes["class"] %}
-  {% if class starts with "c-bolt-" == false %}
+{% for class in this.props.class %}
+  {% if class starts with 'c-bolt-' == false %}
     {% set outer_classes = outer_classes|merge([class]) %}
   {% endif %}
 {% endfor %}
 
 <bolt-stack
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ this.props|without("content")|without("class") }}
+  {{ this.props|without('content')|without('class') }}
 >
-  <div {{ inner_attributes.addClass(base_class) }} is="shadow-root">
-    {{ content }}
-  </div>
+  {{ content }}
 </bolt-stack>

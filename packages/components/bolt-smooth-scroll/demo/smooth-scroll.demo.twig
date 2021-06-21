@@ -1,4 +1,5 @@
-{% extends "@utils/theme-demo.twig" %}
+{# @todo consider deleting - the file below does not exist; using `~` so dependency mapper does not try to find it #}
+{% extends "@utils/" ~ "theme-demo.twig" %}
 {% block demo_content %}
     <a class="test" href="#anchor-1">Link 1</a>
     <a href="#anchor-2">Link 2</a>

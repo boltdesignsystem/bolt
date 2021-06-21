@@ -1,10 +1,11 @@
-@import './components/banner/banner.scss';
+@import '@bolt/core-v3.x';
+
+// Pattern Lab specific
 @import './components/callout/callout.scss';
 @import './components/component-status/component-status.scss';
 @import './components/gearbox/gearbox.scss';
 @import './components/animated-logo/animated-logo.scss';
 @import './components/animated-shapes/animated-shapes.scss';
-@import './components/banner/banner.scss';
 @import './components/site-layout/site-layout.scss';
 @import './components/off-canvas-nav/off-canvas-nav.scss';
 @import './components/hamburger-button/hamburger-button.scss';
@@ -12,9 +13,14 @@
 @import './components/pattern-lab-hacks/pattern-lab-hacks.scss';
 @import './components/pattern-lab-demos/pattern-lab-demos.scss';
 @import './components/schema-table/schema-table.scss';
-@import './components/schema-form/component-explorer.scss';
-@import './pages/pattern-lab/_patterns/01-visual-styles/00-color-palette/_color-swatch';
-@import './pages/pattern-lab/_patterns/01-visual-styles/15-breakpoints/_breakpoints';
 @import './components/pattern-lab-utils/_sassdoc.scss';
-@import './pages/pattern-lab/_patterns/04-pages/35-d8-events/_event-sponsors-with-action-block';
 
+// Demo specific
+@import './pages/pattern-lab/_patterns/10-visual-styles/00-color/_color-swatch';
+@import './pages/pattern-lab/_patterns/10-visual-styles/05-spacing/_spacing';
+@import './pages/pattern-lab/_patterns/10-visual-styles/15-breakpoints/_breakpoints';
+@import './pages/pattern-lab/_patterns/50-pages/35-d8-events/_event-sponsors-with-action-block';
+@import './pages/pattern-lab/_patterns/50-pages/60-academy/index';
+@import './pages/pattern-lab/_patterns/50-pages/55-d8-calculator/calculator';
+@import './pages/pattern-lab/_patterns/50-pages/99999-bolt-dev-sandbox/styles/index';
+@import './pages/pattern-lab/_patterns/50-pages/65-best-of-content/index';

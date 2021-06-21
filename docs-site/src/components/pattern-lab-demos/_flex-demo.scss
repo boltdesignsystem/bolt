@@ -1,10 +1,11 @@
 .c-bds-docs__flex-demo {
   @extend %bolt-demo-wrapper;
-  @include bolt-margin-bottom(2rem);
+  margin-bottom: 2rem;
   resize: horizontal;
   overflow-y: auto;
-  &+h4 {
-    @include bolt-margin-top(4rem);
+
+  & + h4 {
+    margin-top: 4rem;
   }
 }
 
@@ -25,6 +26,6 @@
   &.u-bolt-flex-grow,
   &.u-bolt-flex-shrink,
   &.u-bolt-flex-basis-auto {
-    @include bolt-font-weight(bold);
+    font-weight: var(--bolt-type-font-weight-bold);
   }
 }

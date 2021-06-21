@@ -1,5 +1,9 @@
-import { polyfillLoader } from '@bolt/core/polyfills';
+import { lazyQueue } from '@bolt/lazy-queue';
 
-polyfillLoader.then(res => {
-  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-li' */ './src/li');
+lazyQueue(['bolt-li'], async () => {
+  if (!window.customElements.get('bolt-li')) {
+    await import(
+      /* webpackChunkName: 'bolt-li' */ '@bolt/components-li/src/li.js'
+    );
+  }
 });

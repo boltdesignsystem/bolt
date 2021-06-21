@@ -1,0 +1,251 @@
+/* ------------------------------------ *\
+   card-replacements
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+@import '../_card-replacement-settings-and-tools.scss';
+@import '@bolt/global/styles/06-themes/_themes.all.scss'; // @todo: remove this once bolt-theme() function is completely deprecated and removed.
+@import '@bolt/global/styles/00-vars/_vars-mode.scss';
+
+// Custom element
+@include bolt-custom-element('bolt-card-replacement', block, medium);
+
+// Border radius prop
+// @todo: the massive conditions used here are due to the inability of using overflow hidden.
+bolt-card-replacement,
+.c-bolt-card-replacement {
+  --c-bolt-card-border-radius: #{bolt-border-radius(small)};
+  border-radius: var(--c-bolt-card-border-radius);
+}
+
+.c-bolt-card-replacement--border-radius-small {
+  --c-bolt-card-border-radius: #{bolt-border-radius(small)};
+}
+
+.c-bolt-card-replacement--border-radius-large {
+  --c-bolt-card-border-radius: #{bolt-border-radius(large)};
+}
+
+bolt-card-replacement,
+.c-bolt-card-replacement {
+  > *:first-child,
+  bolt-card-replacement-link + *,
+  bolt-card-replacement-background + *,
+  bolt-card-replacement-media:first-child > *,
+  bolt-card-replacement-media:first-child > ssr-keep > *,
+  bolt-card-replacement-link + bolt-card-replacement-media > *,
+  bolt-card-replacement-link + bolt-card-replacement-media > ssr-keep > *,
+  bolt-card-replacement-background + bolt-card-replacement-media > *,
+  bolt-card-replacement-background
+    + bolt-card-replacement-media
+    > ssr-keep
+    > * {
+    border-top-right-radius: var(--c-bolt-card-border-radius);
+    border-top-left-radius: var(--c-bolt-card-border-radius);
+  }
+
+  > *:last-child,
+  bolt-card-replacement-link + *:last-child,
+  bolt-card-replacement-background + *:last-child,
+  bolt-card-replacement-media:last-child > *,
+  bolt-card-replacement-media:last-child > ssr-keep > *,
+  bolt-card-replacement-link + bolt-card-replacement-media:last-child > *,
+  bolt-card-replacement-link
+    + bolt-card-replacement-media:last-child
+    > ssr-keep
+    > *,
+  bolt-card-replacement-background
+    + bolt-card-replacement-media:last-child
+    bolt-image,
+  bolt-card-replacement-background
+    + bolt-card-replacement-media:last-child
+    > ssr-keep
+    > * {
+    border-bottom-right-radius: var(--c-bolt-card-border-radius);
+    border-bottom-left-radius: var(--c-bolt-card-border-radius);
+  }
+}
+
+bolt-card-replacement[horizontal],
+.c-bolt-card-replacement--horizontal {
+  > *:first-child,
+  bolt-card-replacement-link + *,
+  bolt-card-replacement-background + * {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: var(--c-bolt-card-border-radius);
+  }
+
+  > *:last-child,
+  bolt-card-replacement-link + *:last-child,
+  bolt-card-replacement-background + *:last-child {
+    border-top-right-radius: var(--c-bolt-card-border-radius);
+    border-bottom-left-radius: 0;
+  }
+
+  bolt-card-replacement-media {
+    overflow: hidden; // Since horizontal card is only supporting image right now, and the media is using overflow hidden, the logic here is simpler than vertical card.
+  }
+
+  bolt-card-replacement-media > *,
+  .c-bolt-card_replacement__media > * {
+    border-radius: 0 !important; // Since horizontal media is using overflow hidden, there's no need for inside content to have border-radius.
+  }
+}
+
+bolt-card-replacement {
+  > .c-bolt-card-replacement:only-child {
+    border-radius: var(--c-bolt-card-border-radius);
+  }
+}
+
+.c-bolt-card-replacement--horizontal {
+  border-radius: calc(
+    calc(
+        var(--c-bolt-card-border-radius) + #{(
+            $bolt-card-replacement-border-width * 2
+          )}
+      )
+      ;
+  );
+}
+
+// card-replacement container styles
+bolt-card-replacement {
+  position: relative;
+
+  &[height='full'] {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+}
+
+.c-bolt-card-replacement {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  width: 100%; // Fix for IE 11 when height is set to full
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: $bolt-card-replacement-border-width * -1; // This pushes the border and shadow outside the width of the parent container, so they don't overlap with the parent's background color.
+    right: $bolt-card-replacement-border-width * -1;
+    bottom: $bolt-card-replacement-border-width * -1;
+    left: $bolt-card-replacement-border-width * -1;
+    z-index: 0; // This resets the stacking order.
+    pointer-events: none;
+    border-radius: calc(
+      var(--c-bolt-card-border-radius) + #{(
+          $bolt-card-replacement-border-width * 2
+        )}
+    ); // Since these pseudo elements are larger than the parent, the border-radius has to be larger by the same value. Don't remove if you don't understand.
+  }
+
+  &:before {
+    @include bolt-shadow(
+      'level-20',
+      false,
+      $bolt-card-replacement-shadow-color
+    );
+
+    content: '';
+    border-width: $bolt-card-replacement-border-width;
+    border-style: $bolt-card-replacement-border-style;
+    border-color: $bolt-card-replacement-border-color;
+  }
+
+  // Non-themed card-replacement color settings.
+  &:not([class*='t-bolt']) {
+    color: var(--m-bolt-text);
+
+    &:before {
+      opacity: 0.85;
+      background: linear-gradient(rgba(white, 0.05), rgba(white, 0.05));
+      background-color: var(--m-bolt-bg);
+    }
+  }
+
+  > *:not(bolt-card-replacement-link),
+  > *::slotted(*:not(bolt-card-replacement-link)) {
+    position: relative;
+  }
+}
+
+.c-bolt-card-replacement--raised {
+  transition: transform $bolt-transition;
+
+  &:after {
+    @include bolt-shadow(
+      'level-30',
+      false,
+      $bolt-card-replacement-shadow-color
+    );
+    content: '';
+    opacity: 0;
+    transition: opacity $bolt-transition;
+  }
+
+  &:hover,
+  &:focus-within {
+    transform: translate3d(0, -1px, 0);
+
+    &:after {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// Horizontal prop
+.c-bolt-card-replacement--horizontal {
+  flex-direction: row;
+}
+
+.c-bolt-card-replacement__horizontal-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+// Toolbar that's passed into the media container
+.c-bolt-card_replacement__overflow-menu {
+  position: absolute;
+
+  &--top {
+    top: 0;
+  }
+
+  &--right {
+    right: 0;
+  }
+}
+
+// This catches all links and button inside the card (inner links) and increases their z-index to make them higher than the outer link. Reference the _card-replacement-settings-and-tools.scss to see the full stacking order.
+@include bolt-repeat-rule(
+  (
+    '::slotted(bolt-link)',
+    'bolt-card-replacement bolt-link',
+    '::slotted(bolt-button)',
+    'bolt-card-replacement bolt-button'
+  )
+) {
+  position: relative;
+  z-index: $bolt-card-replacement-z-index-inner-link;
+}
+
+// Old card-replacement footer
+.c-bolt-card_replacement__footer {
+  display: block;
+  border-top-color: $bolt-card-replacement-border-color;
+  border-top-style: $bolt-card-replacement-border-style;
+  border-top-width: $bolt-card-replacement-border-width;
+}

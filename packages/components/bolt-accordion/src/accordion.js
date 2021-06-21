@@ -1,52 +1,59 @@
-import {
-  defineContext,
-  withContext,
-  define,
-  props,
-  css,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
-import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
+import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
+import { withContext } from 'wc-context/lit-element';
+import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
+import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
+import classNames from 'classnames/bind';
 import styles from './accordion.scss';
-import schema from '../accordion.schema.yml';
-
+import schema from '../accordion.schema';
 import { Accordion } from './_accordion-handorgel';
 
-// define which specific props to provide to children that subscribe
-export const AccordionContext = defineContext({
-  noSeparator: schema.properties.no_separator.default,
-  boxShadow: schema.properties.box_shadow.default,
-  spacing: schema.properties.spacing.default,
-  iconValign: schema.properties.icon_valign.default,
-  useShadow: hasNativeShadowDomSupport,
-});
+let cx = classNames.bind(styles);
 
-@define
-class BoltAccordion extends withContext(withLitHtml()) {
-  static is = 'bolt-accordion';
+@customElement('bolt-accordion')
+class BoltAccordion extends withContext(BoltElement) {
+  static schema = schema;
 
-  static props = {
-    single: props.boolean,
-    noSeparator: props.boolean,
-    boxShadow: props.boolean,
-    spacing: props.string,
-    iconValign: props.string,
-  };
-
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    self.schema = this.getModifiedSchema(schema);
-
-    return self;
+  static get properties() {
+    return {
+      ...this.props,
+    };
   }
 
-  // provide context info to children that subscribe
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get provides() {
-    return [AccordionContext];
+  static get providedContexts() {
+    return {
+      noSeparator: { property: 'noSeparator' },
+      boxShadow: { property: 'boxShadow' },
+      spacing: { property: 'spacing' },
+      iconValign: { property: 'iconValign' },
+    };
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
+  updated(changedProperties) {
+    super.updated && super.updated(changedProperties);
+    let hasSpacingChanged = false;
+
+    changedProperties.forEach((oldValue, propName) => {
+      // is spacing has changed, wait for the updates to finish before updating handorgel
+      if (propName === 'spacing') {
+        hasSpacingChanged = true;
+      }
+    });
+
+    this.updateComplete.then(() => {
+      if (this.accordion && this.accordion.options) {
+        this.accordion.options = this.accordionOptions;
+        this.accordion.update();
+      }
+
+      if (hasSpacingChanged) {
+        this.accordion?.resize();
+        hasSpacingChanged = false;
+      }
+    });
   }
 
   get accordionOptions() {
@@ -55,7 +62,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
       items: this.accordionItems,
 
       // whether multiple folds can be opened at once
-      multiSelectable: !this.props.single,
+      multiSelectable: !this.single,
       // whether the folds are collapsible
       collapsible: true,
 
@@ -95,17 +102,24 @@ class BoltAccordion extends withContext(withLitHtml()) {
     };
   }
 
-  getModifiedSchema(schema) {
-    var modifiedSchema = schema;
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
 
-    // Remove "items" from schema, does not apply to web component.
-    for (let property in modifiedSchema.properties) {
-      if (property === 'items') {
-        delete modifiedSchema.properties[property];
-      }
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedItemParam = urlParams.get('selected-accordion-item');
+    this.deepLinkTarget = this.querySelector(
+      `#${selectedItemParam}:not([inactive])`,
+    );
+
+    if (this.single && this.deepLinkTarget) {
+      // When in "single" mode, a deep link should override any items set to auto-open.
+      // Unset these items immediately or we face race conditions as Handorgel initializes.
+      this.querySelectorAll('bolt-accordion-item[open]').forEach(el =>
+        el.removeAttribute('open'),
+      );
     }
 
-    return modifiedSchema;
+    this.addEventListener('bolt:layout-size-changed', this.handleLayoutChanged);
   }
 
   handleAccordionItemReady(item) {
@@ -140,9 +154,49 @@ class BoltAccordion extends withContext(withLitHtml()) {
       this.accordionOptions,
     );
 
+    this.accordion.folds.forEach(fold => {
+      if (
+        fold.button.classList.contains(
+          'c-bolt-accordion-item__trigger-label--inactive',
+        )
+      ) {
+        fold.disable();
+      }
+    });
+
     this.accordion.on('destroyed', fold => {
       delete this.accordion;
     });
+
+    this.accordion.on('fold:opened', fold => {
+      this.dispatchLayoutChanged();
+
+      // @todo: register these elements in Bolt data instead?
+      const elementsToUpdate = this.querySelectorAll('[will-update]');
+      if (elementsToUpdate.length) {
+        elementsToUpdate.forEach(el => {
+          el.updateLayout && el.updateLayout();
+        });
+      }
+    });
+
+    this.accordion.on('fold:closed', fold => {
+      this.dispatchLayoutChanged();
+    });
+  }
+
+  dispatchLayoutChanged() {
+    this.dispatchEvent(
+      new CustomEvent('bolt:layout-size-changed', {
+        bubbles: true,
+      }),
+    );
+  }
+
+  handleLayoutChanged(e) {
+    if (e.target !== this) {
+      this.accordion && this.accordion.resize();
+    }
   }
 
   setupAccordion() {
@@ -163,20 +217,46 @@ class BoltAccordion extends withContext(withLitHtml()) {
     // Array passed to the Accordion plugin, a series of trigger/content pairs
     this.accordionItems = [];
 
-    this.accordionItemElements.forEach(item => {
-      const onItemReady = e => {
-        if (e.detail.name !== 'bolt-accordion-item') return;
+    Promise.all(
+      this.accordionItemElements.map(item => {
+        if (item._wasInitiallyRendered || this._wasMutated) return;
+        return new Promise((resolve, reject) => {
+          item.addEventListener('ready', e => {
+            return item === e.target && resolve();
+          });
+          item.addEventListener('error', reject);
+        });
+      }),
+    ).then(() => {
+      this.accordionItemElements.forEach(item => {
         this.handleAccordionItemReady(item);
-        item.removeEventListener('rendered', onItemReady);
-      };
-
-      if (item._wasInitiallyRendered || this._wasMutated) {
-        this.handleAccordionItemReady(item);
-        this._wasMutated = false;
-      } else {
-        item.addEventListener('rendered', onItemReady);
-      }
+      });
+      this.handleDeepLink();
+      this._wasMutated = false;
     });
+
+    setTimeout(() => {
+      // "Open item" hack: This hack is required to fix accordion items that are supposed to open on load but do not because they are inside a hidden element, e.g. an inactive tab panel
+      const openItems = this.querySelectorAll('bolt-accordion-item[open]');
+      if (openItems.length && openItems[0].offsetWidth === 0) {
+        this.openItemToFix = openItems[0];
+        this.setAttribute('will-update', '');
+      }
+    }, 250); // timeout allows parent components (such as Tabs) to finish rendering
+  }
+
+  // Public method called when a Tab Panel that contains an Accordion is opened and that Accordion has been flagged with the "[will-update]" attribute
+  updateLayout() {
+    // "Open item" hack continued...
+    if (this.openItemToFix) {
+      const index = Array.from(this.accordionItemElements).indexOf(
+        this.openItemToFix,
+      );
+      this.accordion.folds[index].close();
+      this.accordion.folds[index].open();
+      this.openItemToFix = null;
+      this.removeAttribute('will-update', '');
+    }
   }
 
   addMutationObserver() {
@@ -222,21 +302,67 @@ class BoltAccordion extends withContext(withLitHtml()) {
     }
   }
 
-  template() {
-    const classes = css(
-      'c-bolt-accordion',
-      this.props.boxShadow ? 'c-bolt-accordion--box-shadow' : '',
-    );
+  async handleDeepLink() {
+    if (!this.deepLinkTarget) return;
 
-    return html`
-      <div class="${classes}">
-        ${this.slots.default ? this.slot('default') : ''}
-      </div>
-    `;
+    const deepLinkTargetIndex = this.accordionItemElements.indexOf(
+      this.deepLinkTarget,
+    );
+    let shouldScrollIntoView;
+
+    if (deepLinkTargetIndex !== -1) {
+      // This Promise is a workaround for a bug that sometimes happens when you
+      // put an accordion in a band and use deep linking. When the band first
+      // renders, it interrupts the initial accordion animation and causes
+      // Handorgel's 'transitionend' event to not fire. @see DS-253 for more.
+      const closestBand = this.closest('bolt-band');
+      if (closestBand) {
+        await new Promise((resolve, reject) => {
+          closestBand._wasInitiallyRendered && resolve();
+          closestBand.addEventListener('ready', e => {
+            e.target === closestBand && resolve();
+          });
+          closestBand.addEventListener('error', reject);
+        });
+      }
+
+      this.accordion.folds[deepLinkTargetIndex].open();
+      shouldScrollIntoView = true;
+    }
+
+    if (shouldScrollIntoView) {
+      let shouldResetScroll;
+
+      if (window.history?.scrollRestoration === 'auto') {
+        // If you are refreshing the page and using a browser with `scrollRestoration`,
+        // temporarily disable `scrollRestoration` while we scroll to the element, avoids janky scroll.
+        // https://developers.google.com/web/updates/2015/09/history-api-scroll-restoration
+        window.history.scrollRestoration = 'manual';
+        shouldResetScroll = true;
+      }
+
+      setTimeout(() => {
+        smoothScroll.animateScroll(this.deepLinkTarget, 0, {
+          header: this.scrollOffsetSelector,
+          offset: this.scrollOffset || 0,
+          speed: 750,
+          easing: 'easeInOutCubic',
+          updateURL: false,
+        });
+
+        shouldScrollIntoView = false;
+
+        if (shouldResetScroll) {
+          setTimeout(() => {
+            window.history.scrollRestoration = 'auto';
+          }, 1000); // wait another second to turn 'scrollRestoration' back on, just to be safe
+        }
+      }, 750); // Must let the page load or scroll is not at all "smooth", can reduce to 500ms but not much less
+    }
   }
 
-  rendered() {
-    super.rendered && super.rendered();
+  firstUpdated(changedProperties) {
+    super.firstUpdated && super.firstUpdated(changedProperties);
 
     if (this.accordion) {
       // If accordion already exists, update options
@@ -249,8 +375,13 @@ class BoltAccordion extends withContext(withLitHtml()) {
     }
   }
 
-  disconnected() {
-    super.disconnected && super.disconnected();
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+
+    this.removeEventListener(
+      'bolt:layout-size-changed',
+      this.handleLayoutChanged,
+    );
 
     // remove MutationObserver if supported + exists
     if (window.MutationObserver && this.observer) {
@@ -259,18 +390,14 @@ class BoltAccordion extends withContext(withLitHtml()) {
   }
 
   render() {
-    const { noSeparator, boxShadow, spacing, iconValign } = this.validateProps(
-      this.props,
-    );
-
-    this.contexts.get(AccordionContext).noSeparator = noSeparator;
-    this.contexts.get(AccordionContext).boxShadow = boxShadow;
-    this.contexts.get(AccordionContext).spacing = spacing;
-    this.contexts.get(AccordionContext).iconValign = iconValign;
-    this.contexts.get(AccordionContext).useShadow = this.useShadow;
+    const classes = cx('c-bolt-accordion', {
+      'c-bolt-accordion--box-shadow': this.boxShadow,
+    });
 
     return html`
-      ${this.addStyles([styles, heightUtils])} ${this.template()}
+      <div class="${classes}">
+        ${this.slotify('default')}
+      </div>
     `;
   }
 }

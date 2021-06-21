@@ -1,0 +1,66 @@
+{# The code below is strictly used as a sample for background demos included here #}
+<div class="u-bolt-margin-bottom-medium">
+  {% embed "@bolt-components-band/band.twig" with {
+    size: size | default("large"),
+    theme: theme | default("dark"),
+    full_bleed: true,
+    tag: "figure",
+  } %}
+    {% block band_background %}
+      {% if background %}
+        {% include "@bolt-components-background/background.twig" with background only %}
+      {% endif %}
+    {% endblock band_background %}
+
+    {% block band_content %}
+      {% grid with {
+          attributes: {
+            class: [
+              "o-bolt-grid--flex",
+              "o-bolt-grid--middle",
+              "o-bolt-grid--large",
+              "o-bolt-grid--matrix"
+            ]
+          }
+        } %}
+      {# teaserPosition == "center" ? "o-bolt-grid--center" : "" #}
+
+      {% if teaserPosition == "right" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}{% endcell %}
+      {% endif %}
+
+
+      {% cell with {
+          attributes: {
+            class: [
+              "u-bolt-width-1/1",
+              "u-bolt-width-2/3@small"
+            ]
+          }
+        } %}
+      {# teaserAlign == "center" ? "u-bolt-text-align-center" : "" #}
+      {% include "@bolt-components-headline/headline.twig" with {
+            text: "Visualization & Simulation",
+            size: "xxxlarge",
+            tag: "h1"
+          } only %}
+
+      {% include "@bolt-components-headline/subheadline.twig" with {
+            text: "Imagine the Future with Decision Hub",
+            size: "xxlarge",
+            tag: "h2"
+          } only %}
+
+      {% include "@bolt-components-headline/text.twig" with {
+            text: "Continuously improve results by visualizing how future adjustments to your strategies can impact business performance. Simulate and test your ideas, evaluate the results using intuitive views, and then deploy optimal alterations."
+          } only %}
+
+      {% include "@bolt-components-button/button.twig" with {
+            text: "View the data sheet"
+          } only %}
+      {% endcell %}
+      {% endgrid %}
+
+    {% endblock band_content %}
+  {% endembed %}
+</div>

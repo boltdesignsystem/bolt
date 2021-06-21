@@ -1,91 +1,50 @@
-import {
-  withContext,
-  define,
-  props,
-  css,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
-import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
+import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
+import { withContext } from 'wc-context/lit-element';
+import classNames from 'classnames/bind';
 import styles from './accordion-item.scss';
+import schema from '../../accordion-item.schema';
 import { AccordionItemTrigger } from './AccordionItemTrigger';
 import { AccordionItemContent } from './AccordionItemContent';
-import { AccordionContext } from '../accordion';
 
-@define
-class AccordionItem extends withContext(withLitHtml()) {
-  static is = 'bolt-accordion-item';
+let cx = classNames.bind(styles);
 
-  static props = {
-    open: props.boolean,
-    uuid: props.string,
-  };
+@customElement('bolt-accordion-item')
+class AccordionItem extends withContext(BoltElement) {
+  static schema = schema;
 
-  // subscribe to specific props that are defined and available on the parent container
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get consumes() {
-    return [
-      [AccordionContext, 'noSeparator'],
-      [AccordionContext, 'boxShadow'],
-      [AccordionContext, 'spacing'],
-      [AccordionContext, 'iconValign'],
-      [AccordionContext, 'useShadow'],
-    ];
+  static get properties() {
+    return {
+      ...this.props,
+
+      // context-only props, intentionally omitted from schema
+      spacing: {
+        type: String,
+      },
+      noSeparator: {
+        type: Boolean,
+        attribute: 'no-separator',
+      },
+      boxShadow: {
+        type: Boolean,
+        attribute: 'box-shadow',
+      },
+      iconValign: {
+        type: String,
+        attribute: 'icon-valign',
+      },
+    };
   }
 
-  // @todo: move to BoltBase and/or move into a standalone addon function components can opt into
-  ssrHydrationPrep() {
-    if (this._ssrHydrationPrep) return;
-    const parentElem = this;
-    const initialNodesToKeep = Array.from(
-      this.querySelectorAll('[ssr-hydrate]'),
-    );
-    const nodesToClean = [];
-
-    initialNodesToKeep.forEach(item => {
-      const hydrationType = item.getAttribute('ssr-hydrate');
-
-      switch (hydrationType) {
-        case 'keep-children':
-          while (item.firstChild) {
-            parentElem.appendChild(item.firstChild);
-          }
-          break;
-        case 'keep':
-        default:
-          parentElem.appendChild(item);
-          nodesToClean.push(item); // track the [ssr-hydrate] nodes to clean up later
-      }
-    });
-
-    // grab an array of the pre-rendered DOM nodes to potentially remove
-    const nodesToRemove = Array.from(
-      parentElem.querySelectorAll(
-        '[class*="c-bolt-accordion"]:not([ssr-hydrate]):first-child',
-      ),
-    );
-
-    // remove pre-rendered DOM nodes not containing children with [ssr-hydrate] attributes
-    nodesToRemove.forEach(node => {
-      if (!node.closest(['[ssr-hydrate]'])) {
-        node.parentElement.removeChild(node);
-      }
-    });
-
-    // cleanup any [ssr-hydrate] nodes afterward
-    nodesToClean.forEach(node => {
-      node.removeAttribute('ssr-hydrate');
-    });
-
-    this._ssrHydrationPrep = true;
+  static get observedContexts() {
+    return ['noSeparator', 'boxShadow', 'spacing', 'iconValign'];
   }
 
-  constructor(self) {
-    self = super(self);
+  contextChangedCallback(name, oldValue, value) {
+    this[name] = value;
+  }
 
-    this.useShadow = hasNativeShadowDomSupport;
-    return self;
+  static get styles() {
+    return [unsafeCSS(styles)];
   }
 
   get isFirstItem() {
@@ -99,7 +58,8 @@ class AccordionItem extends withContext(withLitHtml()) {
     );
   }
 
-  connecting() {
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
     const originalInput = this.querySelector('.c-bolt-accordion-item__state');
     const originalLinks = this.querySelectorAll(
       '.c-bolt-accordion-item__trigger-link',
@@ -116,14 +76,6 @@ class AccordionItem extends withContext(withLitHtml()) {
     this.addEventListener('activateLink', this.close);
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.context = this.contexts.get(AccordionContext);
-
-    // Inherit useShadow from `bolt-accordion`
-    this.useShadow = this.context.useShadow;
-  }
-
   close() {
     const elem = this;
     setTimeout(function() {
@@ -131,36 +83,30 @@ class AccordionItem extends withContext(withLitHtml()) {
     }, 300);
   }
 
-  template() {
-    const { noSeparator, boxShadow, iconValign } = this.context;
+  render() {
+    this.addClassesToSlottedChildren(['default', 'trigger']);
 
-    const accordionClasses = css(
-      'c-bolt-accordion-item',
-      !noSeparator ? 'c-bolt-accordion-item--separator' : '',
-      boxShadow ? 'c-bolt-accordion-item--box-shadow' : '',
-      iconValign && iconValign !== 'center'
-        ? `c-bolt-accordion-item--icon-valign-${iconValign}`
-        : '',
-      this.isFirstItem ? 'c-bolt-accordion-item--first-item' : '',
-      this.isLastItem ? 'c-bolt-accordion-item--last-item' : '',
-    );
+    const accordionClasses = cx('c-bolt-accordion-item', {
+      'c-bolt-accordion-item--separator': !this.noSeparator,
+      'c-bolt-accordion-item--box-shadow': this.boxShadow,
+      [`c-bolt-accordion-item--icon-valign-${this.iconValign}`]:
+        this.iconValign && this.iconValign !== 'center',
+      'c-bolt-accordion-item--first-item': this.isFirstItem,
+      'c-bolt-accordion-item--last-item': this.isLastItem,
+    });
 
     const slotMarkup = name => {
       switch (name) {
         case 'trigger':
-          return name in this.slots
-            ? AccordionItemTrigger(this.slot(name), this.props, this.context)
+          return this.slotMap.get(name)
+            ? AccordionItemTrigger(this.slotify(name), this)
             : html`
                 <slot name="${name}" />
               `;
 
         default:
-          return name in this.slots
-            ? AccordionItemContent(
-                this.slot('default'),
-                this.props,
-                this.context,
-              )
+          return this.slotMap.get(name)
+            ? AccordionItemContent(this.slotify('default'), this)
             : html`
                 <slot />
               `;
@@ -171,22 +117,6 @@ class AccordionItem extends withContext(withLitHtml()) {
 
     return html`
       <div class="${accordionClasses}">${innerSlots}</div>
-    `;
-  }
-
-  rendered() {
-    super.rendered && super.rendered();
-
-    this.contentElem = this.renderRoot.querySelector(
-      '.c-bolt-accordion-item__content',
-    );
-  }
-
-  render() {
-    this.addClassesToSlottedChildren(['default', 'trigger']);
-
-    return html`
-      ${this.addStyles([styles, heightUtils])} ${this.template()}
     `;
   }
 }

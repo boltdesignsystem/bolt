@@ -2,57 +2,55 @@
    Button
 \* ------------------------------------ */
 
-@import '@bolt/core';
-@import './button-settings-and-tools';
+// Dev Notes
+// 1. [Morse] This mixin outputs a separate ruleset for each selector to prevent IE from failing on unrecognized selectors like `:host`. It is not a substitute for comma-separated selectors.
+// 2. [Morse] Bolt-link delegates focus to inner element.
+// 3. [Mai] These selectors and rules must be separated to override browser defaults.
 
-%bolt-button-base-styles {
-  display: inline-flex;
-  
-  &[disabled],
-  &[disabled]:focus {
-    outline: none;
-  }
-}
+@import '@bolt/core-v3.x';
+@import './button-settings-and-tools';
 
 /**
  * Base Button
  */
-bolt-button {
-  @extend %bolt-button-base-styles;
+@include bolt-repeat-rule(('bolt-button', ':host(bolt-button)')) {
+  // [1]
+  display: inline-flex;
+  outline: none; // [2]
 }
 
-:host {
-  @extend %bolt-button-base-styles;
+@include bolt-repeat-rule(('bolt-button[type]', ':host(bolt-button[type])')) {
+  @include bolt-button-native-styles-reset;
 }
 
 .c-bolt-button {
   @include bolt-button;
 }
 
-
 /**
  * Button Styles
  */
 .c-bolt-button--primary {
   @include bolt-button-style(primary);
-  @include bolt-button-raised-effect;
 }
 
 .c-bolt-button--secondary {
   @include bolt-button-style(secondary);
-  @include bolt-button-raised-effect;
+}
+
+.c-bolt-button--tertiary {
+  @include bolt-button-style(tertiary);
 }
 
 .c-bolt-button--text {
   @include bolt-button-style(text);
 }
 
-[aria-disabled="true"] .c-bolt-button,
+[aria-disabled='true'] .c-bolt-button,
 .c-bolt-button[disabled],
 .c-bolt-button--disabled {
   @include bolt-button-style(disabled);
 }
-
 
 /**
  * Button Text Transform
@@ -69,76 +67,56 @@ bolt-button {
   text-transform: capitalize;
 }
 
-@function bolt-button-icon-only-size($paddingSize, $fontSize: xsmall){
-  $line-height: map-get-deep($bolt-font-sizes, 'font-sizes', $fontSize, 'line-height', 'regular');
-  $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $fontSize, 'font-size');
-  @return (bolt-v-spacing($paddingSize) * $bolt-spacing-squished * 2) + ($line-height * $font-size);
-}
-
-
 /**
  * Button Sizes
  */
 .c-bolt-button--medium {
-  @include bolt-padding(medium, squished);
-  @include bolt-font-size(xsmall);
-
-  &.c-bolt-button--icon-only {
-    width: bolt-button-icon-only-size(medium);
-    min-height: bolt-button-icon-only-size(medium);
-  }
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }
 
 .c-bolt-button--xsmall {
-  @include bolt-padding(xsmall, squished);
-  @include bolt-font-size(xsmall);
-
-  &.c-bolt-button--icon-only {
-    width: bolt-button-icon-only-size(xsmall);
-    min-height: bolt-button-icon-only-size(xsmall);
-  }
+  padding: calc(var(--bolt-spacing-y-xsmall) / 2) var(--bolt-spacing-x-xsmall);
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }
 
 .c-bolt-button--small {
-  @include bolt-padding(small, squished);
-  @include bolt-font-size(xsmall);
-
-  &.c-bolt-button--icon-only {
-    width: bolt-button-icon-only-size(small);
-    min-height: bolt-button-icon-only-size(small);
-  }
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }
 
 .c-bolt-button--large {
-  @include bolt-padding(medium, squished);
-  @include bolt-font-size(medium);
-
-  &.c-bolt-button--icon-only {
-    width: bolt-button-icon-only-size(medium, medium);
-    min-height: bolt-button-icon-only-size(medium, medium);
-  }
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
+  font-size: var(--bolt-type-font-size-medium);
+  line-height: var(--bolt-type-line-height-medium);
 }
 
 .c-bolt-button--xlarge {
-  @include bolt-padding(large, squished);
-  @include bolt-font-size(large);
-
-  &.c-bolt-button--icon-only {
-    width: bolt-button-icon-only-size(large, large);
-    min-height: bolt-button-icon-only-size(large, large);
-  }
+  padding: calc(var(--bolt-spacing-y-large) / 2) var(--bolt-spacing-x-large);
+  font-size: var(--bolt-type-font-size-large);
+  line-height: var(--bolt-type-line-height-large);
 }
-
 
 /**
  * Icon Only Buttons
  */
+@function bolt-button-icon-only-size($padding_size, $font_size: xsmall) {
+  @return calc(
+    var(--bolt-type-line-height-#{$font_size}) *
+      var(--bolt-type-font-size-#{$font_size}) +
+      var(--bolt-spacing-y-#{$padding_size})
+  );
+}
+
 .c-bolt-button--icon-only {
-  @include bolt-padding(0);
+  padding: 0;
 
   .c-bolt-button__item,
   .c-bolt-button__icon {
-    @include bolt-margin(0);
+    margin: 0;
   }
 
   .c-bolt-button__item {
@@ -159,36 +137,50 @@ bolt-button {
 
   // Scale icon only version's icon size based on button size
   &.c-bolt-button--xsmall {
+    width: bolt-button-icon-only-size(xsmall);
+    min-height: bolt-button-icon-only-size(xsmall);
+
     .c-bolt-button__icon-sizer {
       font-size: 1em;
     }
   }
 
   &.c-bolt-button--small {
+    width: bolt-button-icon-only-size(small);
+    min-height: bolt-button-icon-only-size(small);
+
     .c-bolt-button__icon-sizer {
       font-size: 1.25em;
     }
   }
 
   &.c-bolt-button--medium {
+    width: bolt-button-icon-only-size(medium);
+    min-height: bolt-button-icon-only-size(medium);
+
     .c-bolt-button__icon-sizer {
       font-size: 1.5em;
     }
   }
 
   &.c-bolt-button--large {
+    width: bolt-button-icon-only-size(medium, medium);
+    min-height: bolt-button-icon-only-size(medium, medium);
+
     .c-bolt-button__icon-sizer {
       font-size: 1.75em;
     }
   }
 
   &.c-bolt-button--xlarge {
+    width: bolt-button-icon-only-size(large, large);
+    min-height: bolt-button-icon-only-size(large, large);
+
     .c-bolt-button__icon-sizer {
       font-size: 2em;
     }
   }
 }
-
 
 /**
  * Button Width
@@ -203,7 +195,6 @@ bolt-button[width='full'],
 :host([width='full']) {
   width: 100%;
 }
-
 
 // full@small width variations
 bolt-button[width='full@small'],
@@ -221,32 +212,24 @@ bolt-button[width='full@small'],
   }
 }
 
-
 /**
  * Border Radius
  */
-@each $radius-name, $radius-value in $bolt-button-border-radii {
-  .c-bolt-button--border-radius-#{$radius_name} {
-    &,
-    &:before {
+@each $radius-name, $radius-value in $bolt-border-radius-values {
+  @if $radius-name == 'full' {
+    .c-bolt-button--border-radius-#{$radius-name},
+    .c-bolt-button--border-radius-#{$radius-name}:before,
+    .c-bolt-button--border-radius-#{$radius-name}:after,
+    bolt-button[border-radius='#{$radius-name}'] {
       border-radius: $radius-value;
     }
   }
-
-  bolt-button[border-radius="#{$radius_name}"] {
-    border-radius: $radius-value;
-  }
 }
-
 
 /**
  * Icon and text spacing and display
  */
-.c-bolt-button__icon.is-empty {
-  display: none;
-}
-
-.c-bolt-button__icon:not(.is-empty) {
+.c-bolt-button__icon {
   display: flex;
 }
 
@@ -256,23 +239,20 @@ bolt-button[width='full@small'],
   text-align: start;
 }
 
-.c-bolt-button__icon:not(.is-empty) {
-  .c-bolt-button__icon-sizer {
-    display: flex; // This fixes the spacing issue caused by bolt-icon defined as inline-block.
-  }
+.c-bolt-button__icon-sizer {
+  display: flex; // This fixes the spacing issue caused by bolt-icon defined as inline-block.
 }
 
 // Spacing only applies when there are BOTH text and icon
 .c-bolt-button:not(.c-bolt-button--icon-only) {
-  .c-bolt-button__item + .c-bolt-button__icon:not(.is-empty) {
-    @include bolt-margin-left(xxsmall);
+  .c-bolt-button__item + .c-bolt-button__icon {
+    margin-left: var(--bolt-spacing-x-xxsmall);
   }
 
-  .c-bolt-button__icon:not(.is-empty) + .c-bolt-button__item {
-    @include bolt-margin-left(xxsmall);
+  .c-bolt-button__icon + .c-bolt-button__item {
+    margin-left: var(--bolt-spacing-x-xxsmall);
   }
 }
-
 
 /**
  * Button Alignments

@@ -41,7 +41,10 @@ module.exports = {
   },
   persist_globals: true,
   live_output: false, // set to `true` to see output as it happens; make appear interlaced if ran in parallel
-  test_workers: { enabled: true, workers: '1' },
+  test_workers: {
+    enabled: true,
+    workers: 'auto',
+  },
   test_settings: {
     compatible_testcase_support: true,
     default: {
@@ -74,28 +77,21 @@ module.exports = {
         browserName: 'chrome',
         chromeOptions: {
           args: ['headless'],
+          w3c: false,
         },
       },
     },
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
-        platform: 'OS X 10.11',
-        version: '73',
+        platform: 'macOS 10.15',
+        version: '84',
         javascriptEnabled: true,
         acceptSslCerts: true,
-        //         chromeOptions: {
-        //           args: ['headless'],
-        //         },
-      },
-      build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
-      'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,
-    },
-    ie11: {
-      desiredCapabilities: {
-        browserName: 'internet explorer',
-        platform: 'Windows 10',
-        version: '11.0',
+        chromeOptions: {
+          // args: ['headless'],
+          w3c: false,
+        },
       },
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
       'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,
@@ -103,8 +99,8 @@ module.exports = {
     firefox: {
       desiredCapabilities: {
         browserName: 'firefox',
-        platform: 'OS X 10.11',
-        version: '66',
+        platform: 'macOS 10.14',
+        version: '68',
       },
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
       'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,

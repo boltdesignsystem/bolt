@@ -1,0 +1,35 @@
+<p>Fill: Color</p>
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    fill: "color",
+    opacity: "medium",
+    focal_point: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    content_items: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-2.jpg"
+      }
+    ]
+  }
+} %}
+
+<p>Fill: Gradient</p>
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    fill: "gradient",
+    opacity: "medium",
+    focal_point: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    content_items: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-2.jpg"
+      }
+    ]
+  }
+} %}

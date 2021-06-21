@@ -1,0 +1,1 @@
+# The Bolt Animate Component

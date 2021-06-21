@@ -1,0 +1,27 @@
+{% set demo %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'This is a chip',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-chip/chip.twig' with {
+  text: 'This is a chip',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-chip>This is a chip</bolt-chip>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Chip',
+  description: 'A chip is commonly used to display meta data.',
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

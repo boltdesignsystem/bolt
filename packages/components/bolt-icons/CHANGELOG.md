@@ -3,6 +3,453 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v3.7.1...v3.8.0) (2021-06-10)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [3.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v3.5.4...v3.6.0) (2021-05-13)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [3.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v3.3.1...v3.4.0) (2021-03-29)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [3.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v3.2.0...v3.3.0) (2021-03-12)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+## [3.1.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.31.2...v3.1.0) (2021-02-08)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+## [3.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v3.0.0...v3.0.1) (2021-01-22)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.30.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.29.3...v2.30.0) (2021-01-13)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [3.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.29.3...v3.0.0) (2021-01-08)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.29.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.28.0...v2.29.0) (2020-11-23)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.28.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.27.1...v2.28.0) (2020-09-16)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.27.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.27.0-alpha-calculator-2...v2.27.0) (2020-08-28)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.26.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.25.1...v2.26.0) (2020-07-22)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+## [2.25.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.25.0...v2.25.1) (2020-07-14)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.25.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.22.2...v2.25.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update SVG <use> tags ([5f10098](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+
+
+
+
+
+## [2.24.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.24.0...v2.24.1) (2020-06-17)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.24.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.23.0...v2.24.0) (2020-06-05)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.23.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.22.1...v2.23.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* update Jest tests to more reliably work with fully async-loaded components ([6b4c752](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/6b4c752cfcf32a3d0d260d5e2f718be12fd3df50))
+* update SVG <use> tags ([5f10098](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/5f100987030abb61e324e3ca2213727b488b14b7))
+
+
+
+
+
+# [2.21.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.20.2...v2.21.0) (2020-04-08)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.20.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.19.1...v2.20.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* update Icons per PR feedback ([c3f5457](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/c3f54575b0bbda56ad60f680bf8052ab648c7ae0))
+
+
+### Features
+
+* update 5 out of the 7 existing Academy icons to be more consistent with the rest of the Bolt Design System ([20e47d7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/20e47d7f76c6f934296e9240ae8d53cd8bb7a1fa))
+
+
+
+
+
+# [2.19.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.18.1...v2.19.0) (2020-03-04)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.18.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.17.1...v2.18.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* update asset-text SVG asset to no longer use a mask. fixes weird rendering / opacity issues being seen with this original version ([b0771f6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/b0771f6e7e81fff7fe91843e6a954aeea5993e16))
+* update file SVG icon to correctly render a visible border after compiling ([a7cce95](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/a7cce9521e3326c3cfe58bfc61f4843aba18cdaa))
+* update Jest snapshots ([ffb309e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/ffb309edef66264d916d58e2e44d97a1152dd44e))
+
+
+
+
+
+# [2.17.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.16.3...v2.17.0) (2020-02-04)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.16.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.15.2...v2.16.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* add xdark theme test for icons + update fill colors so SVG transform logic works correctly ([b2187b5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/b2187b523ad5eed618cee7a52c5c2136ba3030ef))
+* re-test Icon updates ([c64faee](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/c64faee4b2ebf33c011aa6e411a457da94e83ee1))
+* update atom icon ([afd604c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/afd604c465ed24bb28acf3f7ae88d373e6423b11))
+* update atom icon ([6ec91be](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/6ec91be3551112b93683910110bc7cab301764d5))
+* update snapshots + fix prettier issues ([3eed559](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/3eed559af2e4ca279ad3328157f822588e97e3a3))
+* update trash icon ([d57a61d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/d57a61d4816fca534bcd33c7d05ce743495858f0))
+* update updated brand SVG icons + fix handful of utility icons ([6b5c6b8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/6b5c6b85ec1338b3664a48070f68db08a2976908))
+
+
+### Features
+
+* add new helper Webpack plugins ([7eb295c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/7eb295c4e934c4a1e10e44d5fbb072905d0a7efd))
+
+
+
+
+
+## [2.15.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.15.1...v2.15.2) (2020-01-21)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.15.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.14.3...v2.15.0) (2020-01-17)
+
+
+### Features
+
+* add new List icon ([cb94fd5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/cb94fd5ad504c5e076b837469570ee06bb0ac0b1))
+
+
+
+
+
+# [2.14.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.13.3...v2.14.0) (2020-01-06)
+
+
+### Bug Fixes
+
+* update @bolt/core-v3.x references to v2.13.0 ([28d7bcb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/28d7bcb))
+
+
+
+
+
+# [2.13.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.12.1...v2.13.0) (2019-12-13)
+
+
+### Bug Fixes
+
+* cherry pick update to @bolt/components-icons from https://github.com/boltdesignsystem/bolt/pull/1602 to pass eslint check ([9624370](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/9624370))
+* revert removing `main` key until other upstream updates are merged down; update .gitignore and .eslintignore rules as temp workaround to failing the build with these updates ([3e49783](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/3e49783))
+
+
+### Features
+
+* re-export SVG icons that have visually clipped / masked areas to have the shape physically cut out (vs overlapping) ([174cd87](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/174cd87))
+* remove pre-compiled JS files with inline SVG source code ([3723f0d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/3723f0d))
+
+
+
+
+
+## [2.12.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.12.0...v2.12.1) (2019-12-12)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+## [2.11.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+## [2.9.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+
+### Features
+
+* **with-with:** self-drawing circle added ([a799a8a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/a799a8a))
+* **with-without:** continued development ([b0f62aa](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/b0f62aa))
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Features
+
+* **icons:** add exclamation icon ([af221dd](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/af221dd))
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Features
+
+* **icons:** add exclamation icon ([af221dd](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/af221dd))
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+
+### Features
+
+* **icons:** add exclamation icon ([af221dd](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/af221dd))
+
+
+
+
+
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+
+### Bug Fixes
+
+* update icon snapshot to reflect minor SVG compression changes ([5b9c569](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/5b9c569))
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+## [2.5.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.5.2...v2.5.3) (2019-07-12)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
 ## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.5.1...v2.5.2) (2019-06-25)
 
 **Note:** Version bump only for package @bolt/components-icons

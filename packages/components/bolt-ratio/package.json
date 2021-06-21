@@ -1,9 +1,7 @@
 {
   "name": "@bolt/components-ratio",
-  "version": "2.5.2",
-  "description": "A small helper-component that display's nested content / other components at a specific aspect ratio.",
-  "main": "index.js",
-  "style": "index.scss",
+  "version": "3.6.0",
+  "description": "A small helper-component that displays image or video children at a specific aspect ratio.",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -11,6 +9,21 @@
     "design system",
     "objects"
   ],
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio",
+  "license": "MIT",
+  "main": "index.js",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/core-v3.x": "^3.6.0",
+    "@bolt/element": "^3.6.0",
+    "@bolt/lazy-queue": "^3.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -23,16 +36,5 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
-  "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@bolt/core": "^2.5.2"
-  },
-  "schema": "bolt-ratio.schema.yml",
-  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
+  "schema": "ratio.schema.js"
 }

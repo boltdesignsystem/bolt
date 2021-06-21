@@ -2,27 +2,21 @@
    Background
 \* ------------------------------------ */
 
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
-$bolt-test-color-background-gradient--primary: bolt-color(black); // This needs to map to the theme's background color.
-$bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-background-gradient--primary, 0.1);
-
-
-$bolt-gradient-angle--default: -35deg;
-$bolt-gradient-angle--reversed: 180deg - abs($bolt-gradient-angle--default);
-
-$bolt-background-dark-overlay-opacity--light: 0.3;
-$bolt-background-dark-overlay-opacity--medium: 0.55;
-$bolt-background-dark-overlay-opacity--heavy: 0.8;
-
+$bolt-bg-gradient-color-primary: black;
+$bolt-bg-gradient-color-secondary: rgba($bolt-bg-gradient-color-primary, 0.1);
+$bolt-bg-gradient-angle-default: -35deg;
+$bolt-bg-gradient-angle-reversed: 180deg + $bolt-bg-gradient-angle-default;
+$bolt-bg-dark-overlay-opacity-light: 0.3;
+$bolt-bg-dark-overlay-opacity-medium: 0.55;
+$bolt-bg-dark-overlay-opacity-heavy: 0.8;
 $bolt-bg-shape-offset-bottom-default: -100px;
 $bolt-bg-shape-offset-side-default: $bolt-bg-shape-offset-bottom-default * 1.2;
 $bolt-bg-shape-offset-bottom-small: -150px;
 $bolt-bg-shape-offset-side-small: $bolt-bg-shape-offset-bottom-small * 1.2;
 $bolt-bg-shape-offset-bottom-large: -300px;
 $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
-
-
 
 // Zoom animation treatment
 @keyframes a-bolt-zoom-in-out {
@@ -39,24 +33,27 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   }
 }
 
-
 bolt-background {
-  flex-grow: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
 }
 
 .c-bolt-background {
   position: absolute;
-  top: 0;
-  right: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
-
 .c-bolt-background__item {
-  display: block;
   display: flex;
+  position: absolute;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -79,6 +76,7 @@ bolt-background {
   animation: a-bolt-zoom-in-out 45s ease-in-out infinite both;
 }
 
+// todo: remove in v3.0, video background is deprecated
 .c-bolt-background__video {
   top: 0;
   right: 0;
@@ -89,7 +87,7 @@ bolt-background {
 
   .is-ready & {
     pointer-events: none;
-    background-color: rgba(bolt-color(indigo, dark), 0.8);
+    background-color: var(--bolt-color-navy-dark);
     perspective: 500px;
     perspective-origin: 50% 150%;
   }
@@ -142,12 +140,11 @@ bolt-background {
 
 .c-bolt-background__video,
 .c-bolt-background__image {
-  @include bolt-margin(auto);
-
   position: absolute;
   min-width: 100%;
   max-width: none; //Required to handle instances where a max-width is previously set.
   min-height: 100%;
+  margin: auto;
 
   @supports (object-fit: cover) {
     display: block;
@@ -158,7 +155,6 @@ bolt-background {
 }
 
 .c-bolt-background__overlay {
-
   content: '';
   display: block;
   position: absolute;
@@ -166,43 +162,45 @@ bolt-background {
   // This overlay has a history of rounding errors (which can leave a stripe on one side of the background that's not
   // covered by the overlay).  The following is a hack that all but guarantees that can't happen.
   top: -1px;
-  right:  -1px;
+  right: -1px;
   bottom: -1px;
   left: -1px;
 }
 
 .c-bolt-background__overlay--medium-opacity {
-  opacity: $bolt-background-dark-overlay-opacity--medium; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
+  opacity: $bolt-bg-dark-overlay-opacity-medium; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
 .c-bolt-background__overlay--heavy-opacity {
-  opacity: $bolt-background-dark-overlay-opacity--heavy; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
+  opacity: $bolt-bg-dark-overlay-opacity-heavy; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
 .c-bolt-background__overlay--light-opacity {
-  opacity: $bolt-background-dark-overlay-opacity--light; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
+  opacity: $bolt-bg-dark-overlay-opacity-light; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
-
 
 .c-bolt-background__overlay--color-fill {
-  background-color: bolt-theme(background);
+  background-color: var(--m-bolt-bg);
 }
-
-
-
 
 // TODO: The gradient option is only working for the dark and xdark themes. It needs to map to the theme colors in order for it to work for the light and xlight themes.
 
 // Default gradient if the image focal point (point of interest) is in the center or on the right side
 .c-bolt-background__overlay--gradient-fill {
-  background: linear-gradient($bolt-gradient-angle--default, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 50%);
-  background: linear-gradient($bolt-gradient-angle--default, var(--bolt-theme-background-gradient-primary, $bolt-test-color-background-gradient--secondary), var(--bolt-theme-background-gradient-primary, $bolt-test-color-background-gradient--primary) 50%);
+  background: linear-gradient(
+    $bolt-bg-gradient-angle-default,
+    $bolt-bg-gradient-color-secondary,
+    $bolt-bg-gradient-color-primary 50%
+  );
 }
 
 // Alt gradient used if the image focal point (point of interest) is on the left side
 .c-bolt-background__overlay--gradient-reversed-fill {
-  background: linear-gradient($bolt-gradient-angle--reversed, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 50%);
-  background: linear-gradient($bolt-gradient-angle--reversed, var(--bolt-theme-background-gradient-secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-theme-background-gradient-primary, $bolt-test-color-background-gradient--primary) 50%);
+  background: linear-gradient(
+    $bolt-bg-gradient-angle-reversed,
+    $bolt-bg-gradient-color-secondary,
+    $bolt-bg-gradient-color-primary 50%
+  );
 }
 
 .c-bolt-background__shapes {
@@ -233,5 +231,95 @@ bolt-background {
 
   @include bolt-mq(large) {
     left: $bolt-bg-shape-offset-side-large;
+  }
+}
+
+// @todo: move into Academy-specific styles
+.c-bolt-background-crop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: calc(var(--bolt-spacing-y-xxxlarge) * -100%);
+  pointer-events: none;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: drop-shadow(0 12px 55px #50e3c2)
+    drop-shadow(-13px -22px 58px rgba(0, 0, 0, 0.36));
+
+  @include bolt-mq(medium) {
+    justify-content: flex-end;
+  }
+
+  svg {
+    min-width: 3000px;
+
+    @include bolt-mq($from: 1100px) {
+      min-width: 0;
+    }
+  }
+}
+
+.has-transparent-background {
+  background-color: transparent !important;
+}
+
+.c-bolt-background__overlay--radial-gradient-fill {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  &.c-bolt-background__overlay-fill-color--navy,
+  &.c-bolt-background__overlay-fill-color--indigo {
+    background-image: radial-gradient(
+        circle at 80vh 10vw,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(4, 4, 4, 0.5) 100%,
+        rgba(0, 0, 0, 0.5) 100%
+      ),
+      radial-gradient(
+        circle at 80% 40%,
+        var(--bolt-color-navy-light) 20%,
+        var(--bolt-color-navy-dark) 60%
+      );
+    background-position: top right;
+  }
+
+  &.c-bolt-background__overlay-fill-color--pink {
+    background-image: radial-gradient(
+      54% 190% at top -20% left 10%,
+      var(--bolt-color-pink) 10%,
+      var(--bolt-color-berry) 96%
+    );
+    background-position: top left;
+  }
+}
+
+.c-bolt-background__overlay--linear-gradient-fill {
+  &.c-bolt-background__overlay-fill-color--navy,
+  &.c-bolt-background__overlay-fill-color--indigo {
+    background: linear-gradient(
+      350.07deg,
+      var(--bolt-color-navy-light) 0%,
+      var(--bolt-color-navy) 6.56%,
+      var(--bolt-color-navy-dark) 100%
+    );
+  }
+
+  &.c-bolt-background__overlay-fill-color--pink {
+    background: linear-gradient(
+      350.07deg,
+      var(--bolt-color-pink) 0%,
+      var(--bolt-color-berry) 6.56%,
+      var(--bolt-color-wine) 100%
+    );
+  }
+
+  &.c-bolt-background__overlay-fill-color--black {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0.02%, #000000 100%);
   }
 }

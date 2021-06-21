@@ -1,16 +1,46 @@
-import { css } from '@bolt/core/utils';
-import { html } from '@bolt/core/renderers/renderer-lit-html';
+import { html } from '@bolt/element';
+import classNames from 'classnames/bind';
+import styles from './accordion-item.scss';
 
-export const AccordionItemTrigger = (children, props, context) => {
-  const triggerClasses = css('c-bolt-accordion-item__trigger');
+let cx = classNames.bind(styles);
 
-  const spacingClasses = css(
-    context.spacing ? `c-bolt-accordion-spacing--${context.spacing}` : '',
-  );
+export const AccordionItemTrigger = (children, self) => {
+  const triggerClasses = cx('c-bolt-accordion-item__trigger');
+
+  const labelClasses = cx('c-bolt-accordion-item__trigger-label', {
+    [`c-bolt-accordion-item__trigger-label--inactive`]: self.inactive,
+    [`c-bolt-accordion-spacing--${self.triggerSpacing || self.spacing}`]:
+      self.triggerSpacing || self.spacing,
+  });
+
+  const labelInner = children => {
+    return html`
+      <div class="c-bolt-accordion-item__trigger-content">
+        ${children}
+      </div>
+      <span class="c-bolt-accordion-item__trigger-icons">
+        <div class="c-bolt-accordion-item__trigger-icons-inner">
+          <bolt-icon name="chevron-down"></bolt-icon>
+        </div>
+      </span>
+    `;
+  };
+
+  const innerTriggerTemplate = children => {
+    return self.inactive
+      ? html`
+          <div class="${labelClasses}">${labelInner(children)}</div>
+        `
+      : html`
+          <button type="button" class="${labelClasses}">
+            ${labelInner(children)}
+          </button>
+        `;
+  };
 
   const triggerTemplate = children => {
     return html`
-      ${props.open
+      ${self.open
         ? html`
             <div class="${triggerClasses}" data-open>
               ${children}
@@ -19,21 +49,6 @@ export const AccordionItemTrigger = (children, props, context) => {
         : html`
             <div class="${triggerClasses}">${children}</div>
           `}
-    `;
-  };
-
-  const innerTriggerTemplate = children => {
-    return html`
-      <button class="c-bolt-accordion-item__trigger-button ${spacingClasses}">
-        <div class="c-bolt-accordion-item__trigger-content">
-          ${children}
-        </div>
-        <span class="c-bolt-accordion-item__trigger-icons">
-          <div class="c-bolt-accordion-item__trigger-icons-inner">
-            <bolt-icon name="chevron-down"></bolt-icon>
-          </div>
-        </span>
-      </button>
     `;
   };
 

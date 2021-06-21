@@ -2,13 +2,14 @@
    #BOLT RATIO OBJECT
    ========================================================================== */
 
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 bolt-ratio {
   display: block;
   width: 100%;
+  overflow: hidden; // Hide placeholder blurred images from leaking through
 
-  &:not(:defined){
+  &:not(:defined) {
     @supports (--custom: property) {
       &:before {
         content: '';
@@ -22,6 +23,7 @@ bolt-ratio {
 
 :host {
   display: block;
+  overflow: hidden; // Hide placeholder blurred images from leaking through
 }
 
 .c-bolt-ratio {

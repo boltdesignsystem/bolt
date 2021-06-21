@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 /* ------------------------------------ *\
    Copy to Clipboard
@@ -12,7 +12,8 @@
 // 5. @todo: [Mai] This needs rework when we have animation library. This animation does not apply when custom transition is passed. Custom transition should take on its own animation.
 
 $bolt-copy-to-clipboard-animation-duration: 500ms;
-$bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-duration ease-in-out;
+$bolt-copy-to-clipboard-transition: all
+  $bolt-copy-to-clipboard-animation-duration ease-in-out;
 
 @include bolt-custom-element('bolt-copy-to-clipboard', block, medium);
 
@@ -46,6 +47,7 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
       0% {
         transform: scale(0) rotate(0deg);
       }
+
       100% {
         transform: scale(1) rotate(900deg);
       }
@@ -67,20 +69,18 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
 
 // [4]
 .c-bolt-copy-to-clipboard__trigger {
-  @include bolt-padding(0);
-
-  display: inline-flex;
+  display: flex;
   flex-wrap: nowrap;
   align-items: center;
+  appearance: none;
   opacity: bolt-opacity(100);
-  color: inherit;
-  line-height: inherit;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  text-align: inherit;
   cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  border: none;
-  background: none;
+  border: 0;
+  background: transparent;
   transition: $bolt-copy-to-clipboard-transition;
   transition-delay: $bolt-copy-to-clipboard-animation-duration; // [1]
 }
@@ -91,12 +91,12 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
   align-items: center;
 
   > *:first-child {
-    @include bolt-margin-right(xxsmall);
+    margin-right: var(--bolt-spacing-x-xxsmall);
   }
 }
 
 .c-bolt-copy-to-clipboard__action {
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
 
   &:hover {
     opacity: $bolt-global-link-hover-opacity;
@@ -114,7 +114,7 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
 
 .c-bolt-copy-to-clipboard__info {
   opacity: bolt-opacity(40);
-  color: bolt-theme(text);
+  color: var(--m-bolt-text);
 }
 
 .c-bolt-copy-to-clipboard__transition,
@@ -131,5 +131,5 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
 
 .c-bolt-copy-to-clipboard__transition-animation {
   display: inline-block;
-  color: bolt-theme(link);
+  color: var(--m-bolt-link);
 }

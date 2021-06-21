@@ -1,0 +1,42 @@
+{% set schema = bolt.data.components["@bolt-components-tabs"].schema %}
+
+{% set tab_content_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 1",
+      size: "large",
+    } only %}
+{% endset %}
+{% set tab_content_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 2",
+      size: "large",
+    } only %}
+{% endset %}
+{% set tab_content_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 3",
+      size: "large",
+    } only %}
+{% endset %}
+
+{% for align in schema.properties.align.enum %}
+  <bolt-text headline font-size="large">Align: {{ align }}</bolt-text>
+  {% include "@bolt-components-tabs/tabs.twig" with {
+    align: align,
+    panels: [
+      {
+        label: "Tab label 1",
+        content: tab_content_1,
+      },
+      {
+        label: "Tab label 2",
+        content: tab_content_2,
+      },
+      {
+        label: "Tab label 3",
+        content: tab_content_3,
+      }
+    ]
+  } only %}
+{% endfor %}
+

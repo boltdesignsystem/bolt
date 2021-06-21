@@ -1,0 +1,140 @@
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+    <h3>Passing free-form content inside the card-replacement body only</h3>
+    {% set card_replacement_body_content %}
+      {% include "@bolt-components-image/image.twig" with {
+        src: "/images/placeholders/tout-4x3-climber.jpg",
+        alt: "A Rock Climber",
+        attributes: {
+          class: "u-bolt-margin-bottom-medium"
+        }
+      } only %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        text: "Anything can be passed inside the card body container. Woohoo!",
+        size: "xlarge",
+      } only %}
+      {% include "@bolt-components-button/button.twig" with {
+        text: "This is a button"
+      } only %}
+    {% endset %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      tag: "article",
+      height: "auto",
+      body: {
+        content: card_replacement_body_content,
+      },
+    } only %}
+  {% endcell %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+    <h3>Passing free-form content for the entire card</h3>
+    {% set card_replacement_content %}
+      {% include "@bolt-components-card-replacement/_card-replacement-actions.twig" with {
+        actions: [
+          {
+            text: "This is a button",
+            url: "http://pega.com",
+          },
+          {
+            text: "Verylongunbrokenword",
+            url: "http://pega.com",
+          }
+        ],
+      } %}
+      {% include "@bolt-components-card-replacement/_card-replacement-body.twig" with {
+        body: {
+          eyebrow: "This is an eyebrow",
+          headline: "This is a headline",
+          paragraph: "This is a paragraph.",
+        },
+      } %}
+      {% include "@bolt-components-card-replacement/_card-replacement-actions.twig" with {
+        actions: [
+          {
+            text: "This is a button",
+            url: "http://pega.com",
+          },
+          {
+            text: "Verylongunbrokenword",
+            url: "http://pega.com",
+          }
+        ],
+      } %}
+      {% include "@bolt-components-card-replacement/_card-replacement-body.twig" with {
+        body: {
+          eyebrow: "This is an eyebrow",
+          headline: "This is a headline",
+          paragraph: "This is a paragraph.",
+        },
+      } %}
+      <hr class="u-bolt-margin-none">
+      {% include "@bolt-components-band/band.twig" with {
+        theme: "none",
+        size: "xsmall",
+        full_bleed: false,
+        content: "Anything can be passed inside the card container. Woohoo!",
+      } only %}
+      {% include "@bolt-components-table/table.twig" with {
+        headers: {
+          top: {
+            cells: [
+              "This card is",
+              "completely customized",
+              "using the content prop",
+            ]
+          },
+          side: {
+            cells: [
+              "Row 1",
+              "Row 2",
+              "Row 3",
+              "Footer",
+            ]
+          }
+        },
+        rows: [
+          {
+            cells: [
+              "R1C1",
+              "R1C2",
+              "R1C3",
+            ]
+          },
+          {
+            cells: [
+              "R2C1",
+              "R2C2",
+              "R2C3",
+            ]
+          },
+          {
+            cells: [
+              "R3C1",
+              "R3C2",
+              "R3C3",
+            ]
+          }
+        ],
+        footer: {
+          cells: [
+            "FC1",
+            "FC2",
+            "FC3",
+          ]
+        }
+      } only %}
+      {% include "@bolt-components-card-replacement/_card-replacement-media.twig" with {
+        media: {
+          image: {
+            src: "/images/placeholders/landscape-16x9-mountains.jpg",
+            alt: "Image alt.",
+          },
+        }
+      } %}
+    {% endset %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      tag: "article",
+      height: "auto",
+      content: card_replacement_content,
+    } only %}
+  {% endcell %}
+{% endgrid %}

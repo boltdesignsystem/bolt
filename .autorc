@@ -1,0 +1,69 @@
+{
+  "repo": "bolt",
+  "author": {
+    "name": "Bolt Bot",
+    "email": "no-reply@boltdesignsystem.com",
+  },
+  "plugins": [
+    ["./scripts/auto-plugin.js"],
+    [
+      "omit-commits",
+      {
+        "subject": ["chore: version bump", "chore: update .incache", "chore(release)", "Merge"],
+      }
+    ]
+  ],
+  "owner": "boltdesignsystem",
+  "labels": [
+    {
+      "name": "type: feature",
+      "description": "List this PR in the 'Features' section of the release notes.",
+      "changelogTitle": "Features",
+    },
+    {
+      "name": "type: bugfix",
+      "description": "List this PR in the 'Bug Fixes' section of the release notes.",
+      "changelogTitle": "Bug Fixes",
+    },
+    {
+      "name": "type: docs",
+      "description": "List this PR in the 'Docs' section of the release notes.",
+      "changelogTitle": "Docs",
+    },
+    {
+      "name": "breaking change",
+      "description": "Add this label to a PR to create a major release when merged.",
+      "releaseType": "major",
+      "changelogTitle": "Breaking Changes",
+    },
+    {
+      "name": "version: major",
+      "description": "Use only on PRs to the release branch.  Increments the major version when merged.",
+      "releaseType": "major",
+      "changelogTitle": "Misc",
+    },
+    {
+      "name": "version: minor",
+      "releaseType": "minor",
+      "description": "Use only on PRs to the release branch.  Increments the minor version when merged.",
+      "changelogTitle": "Misc",
+    },
+    {
+      "name": "version: hotfix",
+      "description": "Use only on PRs to the release branch.  Increments the patch version when merged.",
+      "releaseType": "patch",
+      "changelogTitle": "Misc",
+    },
+    {
+      "name": "patch",
+      "description": "Default release notes grouping for unlabeled PRs",
+      "changelogTitle": "Features",
+      "overwrite": true,
+    },
+    {
+      "name": "pushToBaseBranch",
+      "description": "Release notes grouping for commits made directly to the release branch.",
+      "changelogTitle": "Misc"
+    },
+  ]
+}

@@ -75,7 +75,7 @@ function writeYamlFile(file, data) {
 }
 
 /**
- * Read a JSON/Yaml data file
+ * Read a JSON/Yaml/JS data file
  * @param {string} filePath
  * @returns {Promise<object>} - data from file
  */
@@ -91,6 +91,9 @@ async function getDataFile(filePath) {
       case '.yml':
       case '.yaml':
         return await readYamlFile(filePath);
+        break;
+      case '.js':
+        return require(filePath);
         break;
     }
   } catch (err) {

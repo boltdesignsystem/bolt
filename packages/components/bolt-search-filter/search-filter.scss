@@ -2,7 +2,7 @@
    Search
 \* ------------------------------------ */
 
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 $bolt-search-filter-transition: $bolt-transition;
 
@@ -13,8 +13,8 @@ $bolt-search-filter-transition: $bolt-transition;
 .c-bolt-search-filter__trigger {
   display: block;
   position: fixed;
-  right: bolt-spacing(medium);
-  bottom: bolt-v-spacing(medium);
+  right: var(--bolt-spacing-x-medium);
+  bottom: var(--bolt-spacing-y-medium);
   z-index: 99998;
 
   @include bolt-mq(medium) {
@@ -32,7 +32,7 @@ $bolt-search-filter-transition: $bolt-transition;
     z-index: 99999;
     width: 100%;
     height: 100%;
-    background-color: bolt-color(white);
+    background-color: var(--bolt-color-white);
 
     &,
     > * {
@@ -64,18 +64,18 @@ $bolt-search-filter-transition: $bolt-transition;
 
 .c-bolt-search-filter__panel-content {
   @media screen and (max-width: (bolt-breakpoint(medium) - 1px)) {
-    @include bolt-padding(medium);
     display: block;
     flex: 1;
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    background-color: bolt-color(white);
+    background-color: var(--bolt-color-white);
   }
 }
 
 .c-bolt-search-filter__panel-controls {
   display: block;
-  box-shadow: 0px -2px 4px rgba(bolt-color(black), 0.1);
+  box-shadow: 0px -2px 4px var(--m-bolt-border);
 
   @include bolt-mq(medium) {
     display: none;
@@ -90,32 +90,30 @@ $bolt-search-filter-transition: $bolt-transition;
 }
 
 .c-bolt-search-filter__panel-controls--submit {
-  @include bolt-padding(medium, squished);
   width: 100%;
-  background-color: bolt-color(white);
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
+  background-color: var(--bolt-color-white);
 }
 
 .c-bolt-search-inline-tags {
-  @include bolt-margin(0);
-  @include bolt-padding(0);
-
   display: inline;
+  margin: 0;
+  padding: 0;
 }
 
 .c-bolt-search-inline-tag {
-  @include bolt-font-weight(semibold);
   display: inline;
   display: inline-flex;
-  color: bolt-theme(link);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--m-bolt-link);
   text-decoration: none;
   transition: all $bolt-transition;
 
   &:after {
-
     content: ',';
     display: inline-block;
     *display: inline;
-    color: bolt-theme(text);
+    color: var(--m-bolt-text);
     vertical-align: middle;
 
     // are these two lines still necessary? isn't this an old IE workaround?

@@ -1,0 +1,11 @@
+{% set usage %}{% verbatim %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "svg-animations",
+  usage: usage
+} only %}
+
+{% include "@bolt-components-svg-animations/svg-animations.twig" with {
+    speed: "1000"
+} only %}
+{% endverbatim %}{% endset %}

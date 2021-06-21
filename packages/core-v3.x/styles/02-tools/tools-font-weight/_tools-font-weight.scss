@@ -1,0 +1,15 @@
+/* ------------------------------------ *\
+  Font weight
+\* ------------------------------------ */
+
+@mixin bolt-font-weight($name) {
+  // @warn 'This scss mixin is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-weight-*)';
+
+  font-weight: var(--bolt-type-font-weight-#{$name});
+}
+
+@function bolt-font-weight($name) {
+  // @warn 'This scss function is being deprecated. Please convert to use global CSS vars -> var(--bolt-type-font-weight-*)';
+
+  @return var(--bolt-type-font-weight-#{$name});
+}

@@ -1,15 +1,19 @@
-import { css } from '@bolt/core/utils';
-import { html } from '@bolt/core/renderers/renderer-lit-html';
+import { html } from '@bolt/element';
+import classNames from 'classnames/bind';
+import styles from './accordion-item.scss';
 
-export const AccordionItemContent = (children, props, context) => {
-  const contentInnerClasses = css(
-    'c-bolt-accordion-item__content-inner',
-    context.spacing ? `c-bolt-accordion-spacing--${context.spacing}` : '',
-  );
+let cx = classNames.bind(styles);
+
+export const AccordionItemContent = (children, self) => {
+  const contentInnerClasses = cx('c-bolt-accordion-item__content-inner', {
+    [`c-bolt-accordion-spacing--${self.contentSpacing || self.spacing}`]:
+      self.contentSpacing || self.spacing,
+    'c-bolt-accordion-item__content-inner--offset': !self.contentSpacing,
+  });
 
   const contentTemplate = children => {
     return html`
-      <div class="${css('c-bolt-accordion-item__content')}">
+      <div class="${cx('c-bolt-accordion-item__content')}">
         <div class="${contentInnerClasses}">
           ${children}
         </div>

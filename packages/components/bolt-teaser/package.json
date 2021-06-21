@@ -1,27 +1,26 @@
 {
   "name": "@bolt/components-teaser",
-  "description": "Teaser Component",
+  "version": "3.6.0",
+  "description": "An interactive UI element that summarizes a particular resoruce.",
   "keywords": [
-    "eyeglass-module",
-    "bolt design system",
-    "bolt",
-    "ui toolkit",
-    "design system"
+    "bolt design system"
   ],
-  "version": "2.5.2",
-  "sourceFilesFrom": "0.9.0",
-  "author": "Salem Ghoweri",
-  "homepage": "https://boltdesignsystem.com",
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser"
+  },
   "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "src/teaser.scss",
+  "author": "CJ White <hello@cjwhitedev.com>",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/core-v3.x": "^3.6.0"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@bolt/core": "^2.5.2"
-  },
-  "schema": "teaser.schema.yml",
-  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
+  "schema": "teaser.schema.js",
+  "twig": "src/teaser.twig"
 }

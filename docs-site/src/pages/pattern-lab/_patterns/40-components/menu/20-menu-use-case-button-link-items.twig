@@ -1,0 +1,60 @@
+{% set description %}
+  A menu item can be either a link or button, and additional attributes can be passed by using the <bolt-code-snippet display="inline">attributes</bolt-code-snippet> prop.
+{% endset %}
+
+{% set demo %}
+{% include '@bolt-components-menu/menu.twig' with {
+  items: [
+    {
+      content: 'Menu item 1 is a button',
+    },
+    {
+      content: 'Menu item 2 is a link with attributes',
+      url: 'https://pega.com',
+      attributes: {
+        target: '_blank',
+      },
+    },
+  ]
+} only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-menu/menu.twig' with {
+  items: [
+    {
+      content: 'Menu item 1 is a button',
+    },
+    {
+      content: 'Menu item 2 is a link with attributes',
+      url: 'https://pega.com',
+      attributes: {
+        target: '_blank',
+      },
+    },
+  ]
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-menu spacing="medium">
+  <bolt-menu-item>
+    Menu item 1 is a button
+  </bolt-menu-item>
+  <bolt-menu-item url="https://pega.com" target="_blank">
+    Menu item 2 is a link with attributes
+  </bolt-menu-item>
+</bolt-menu>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Menu item as link or button',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

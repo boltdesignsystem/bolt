@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '@bolt/core-v3.x';
 
 // Image Component Styling (if any)
 
@@ -34,11 +34,11 @@ bolt-image {
 
 .c-bolt-image__image-placeholder {
   pointer-events: none;
+  filter: blur(20px); // low quality image placeholders should always be blurred
   transition: opacity 0.2s ease;
 }
 
 .c-bolt-image--cover {
-  @include bolt-margin(auto);
   position: absolute;
   top: -9999px;
   right: -9999px;
@@ -47,6 +47,7 @@ bolt-image {
   min-width: 100%;
   max-width: none; //Required to handle instances where a max-width is previously set.
   min-height: 100%;
+  margin: auto;
 
   @supports (object-fit: cover) {
     display: block;

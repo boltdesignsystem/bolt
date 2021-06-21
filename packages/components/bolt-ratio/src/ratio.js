@@ -1,76 +1,83 @@
+import { supportsCSSVars } from '@bolt/core-v3.x/utils';
 import {
-  props,
-  css,
-  hasNativeShadowDomSupport,
-  supportsCSSVars,
-} from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import { styleMap } from 'lit-html/directives/style-map.js';
-
+  customElement,
+  BoltElement,
+  html,
+  styleMap,
+  unsafeCSS,
+} from '@bolt/element';
+import classNames from 'classnames/dedupe';
 import styles from './ratio.scss';
+import schema from '../ratio.schema';
 
-function BoltRatio() {
-  return class BoltRatioClass extends withLitHtml() {
-    static props = {
-      ratio: props.string,
-      _ratioW: props.string, // internal only prop for handling the width-specific data from the ratio prop
-      _ratioH: props.string, // internal only prop for handling the height-specific data from the ratio prop
-      aspectRatioHeight: props.number, // deprecated - will be removed in Bolt v3.0
-      aspectRatioWidth: props.number, // deprecated - will be removed in Bolt v3.0
-      noCssVars: {
-        ...props.boolean,
-        ...{ default: supportsCSSVars ? false : true },
+let cx = classNames.bind(styles);
+
+@customElement('bolt-ratio')
+class BoltRatio extends BoltElement {
+  static schema = schema;
+
+  static get properties() {
+    return {
+      ...this.props,
+      //internal only props
+      _ratioW: {
+        type: String,
+      },
+      _ratioH: {
+        type: String,
+      },
+      // deprecated - will be removed in Bolt v3.0
+      aspectRatioHeight: {
+        type: Number,
+        attribute: 'aspect-ratio-height',
+      },
+      aspectRatioWidth: {
+        type: Number,
+        attribute: 'aspect-ratio-width',
       },
     };
+  }
 
-    constructor(self) {
-      self = super(self);
-      return self;
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    this.noCssVars = supportsCSSVars ? false : true;
+  }
+
+  static get styles() {
+    return [unsafeCSS(styles)];
+  }
+
+  /**
+   * sets the style so that the height is based on a ratio of width to height
+   * @param {Number} aspH - the height component of the ratio
+   * @param {Number} aspW - the width component of the ratio
+   */
+  _computeRatio() {
+    if (this.aspectRatioHeight && this.aspectRatioWidth) {
+      this._ratioH = this.aspectRatioHeight;
+      this._ratioW = this.aspectRatioWidth;
+    } else {
+      this._ratioH = this.ratio ? this.ratio.split('/')[1] : 1;
+      this._ratioW = this.ratio ? this.ratio.split('/')[0] : 1;
     }
+  }
 
-    updating() {
-      super.updating && super.updating();
-      this._computeRatio();
-    }
+  render() {
+    this._computeRatio();
+    const inlineStyles = this.noCssVars
+      ? {
+          'padding-bottom': `${100 * (this._ratioH / this._ratioW)}%`,
+        }
+      : {
+          '--aspect-ratio': `${this._ratioW / this._ratioH}`,
+        };
 
-    /**
-     * sets the style so that the height is based on a ratio of width to height
-     * @param {Number} aspH - the height component of the ratio
-     * @param {Number} aspW - the width component of the ratio
-     */
-    _computeRatio() {
-      if (this.props.aspectRatioHeight && this.props.aspectRatioWidth) {
-        this._ratioH = this.props.aspectRatioHeight;
-        this._ratioW = this.props.aspectRatioWidth;
-      } else {
-        this._ratioH = this.props.ratio ? this.props.ratio.split('/')[1] : 1;
-        this._ratioW = this.props.ratio ? this.props.ratio.split('/')[0] : 1;
-      }
-    }
-
-    connecting() {
-      super.connecting && super.connecting();
-      this._computeRatio();
-    }
-
-    // Render out component via Lit-HTML
-    render() {
-      const inlineStyles = this.noCssVars
-        ? {
-            'padding-bottom': `${100 * (this._ratioH / this._ratioW)}%`,
-          }
-        : {
-            '--aspect-ratio': `${this._ratioW / this._ratioH}`,
-          };
-
-      return html`
-        ${this.addStyles([styles])}
-        <div class="${css(`c-bolt-ratio`)}" style=${styleMap(inlineStyles)}>
-          ${this.slot('default')}
-        </div>
-      `;
-    }
-  };
+    return html`
+      <div class="${cx(`c-bolt-ratio`)}" style=${styleMap(inlineStyles)}>
+        ${this.slotify('default')}
+      </div>
+    `;
+  }
 }
 
 export { BoltRatio };

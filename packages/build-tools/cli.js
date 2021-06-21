@@ -7,12 +7,18 @@ const explorer = cosmiconfig('bolt');
 const configStore = require('@bolt/build-utils/config-store');
 const log = require('@bolt/build-utils/log');
 const { readYamlFileSync } = require('@bolt/build-utils/yaml');
+const { getPort } = require('@bolt/build-utils/get-port');
+const boxen = require('boxen');
+const chalk = require('chalk');
+
 const configSchema = readYamlFileSync(
   path.join(__dirname, './utils/config.schema.yml'),
 );
 const packageJson = require('./package.json');
 
 let userConfig;
+
+const parseIntWithRadix = string => parseInt(string, 10);
 
 // global `bolt` cli options & meta
 program
@@ -25,36 +31,38 @@ program
   .option(
     '-v, --verbosity <amount>',
     configSchema.properties.verbosity.description,
-    parseInt,
+    parseIntWithRadix,
   )
   .parse(process.argv);
 
-if (program.configFile) {
-  const configFilePath = path.join(process.cwd(), program.configFile);
-  if (!fs.existsSync(configFilePath)) {
-    console.error(`Error, config file does not exist: ${configFilePath}`);
-    process.exit(1);
-  }
-  const configFile = require(configFilePath);
-  userConfig = {
-    ...configFile,
-    configFileUsed: configFilePath,
-  };
-} else {
-  try {
-    const searchedFor = explorer.searchSync();
-    userConfig = {
-      ...searchedFor.config,
-      configFileUsed: searchedFor.filepath,
-    };
-  } catch (error) {
-    log.errorAndExit('Could not find config in a .boltrc file', error);
-  }
-}
-
 (async () => {
-  await configStore.init(userConfig).then(async config => {
-    // Now that config is initilized, we can start requiring other things
+  if (program.configFile) {
+    const configFilePath = path.join(process.cwd(), program.configFile);
+    if (!fs.existsSync(configFilePath)) {
+      console.error(`Error, config file does not exist: ${configFilePath}`);
+      process.exit(1);
+    }
+    const configFile = require(configFilePath);
+    userConfig = {
+      ...configFile,
+      configFileUsed: configFilePath,
+    };
+  } else {
+    try {
+      // Use `search()` which is async to cover build tools downstream that use async functions in their boltrc file.
+      // @see https://www.npmjs.com/package/cosmiconfig/v/5.2.1#explorersearch
+      const searchedFor = await explorer.search();
+      userConfig = {
+        ...searchedFor.config,
+        configFileUsed: searchedFor.filepath,
+      };
+    } catch (error) {
+      log.errorAndExit('Could not find config in a .boltrc file', error);
+    }
+  }
+
+  await configStore.init(userConfig).then(async () => {
+    // Now that config is initialized, we can start requiring other things
     const { buildBoltManifest } = require('@bolt/build-utils/manifest');
     const log = require('@bolt/build-utils/log');
 
@@ -67,13 +75,13 @@ if (program.configFile) {
      * @returns {Object} config - Final updated config
      */
     async function updateConfig(options, programInstance) {
-      await configStore.updateConfig(config => {
+      await configStore.updateConfig(async config => {
         originalConfig = config;
 
         config.verbosity =
           typeof program.verbosity === 'undefined'
             ? config.verbosity
-            : program.verbosity;
+            : parseInt(program.verbosity, 10);
 
         config.openServerAtStart =
           typeof options.open === 'undefined'
@@ -92,6 +100,9 @@ if (program.configFile) {
           : typeof options.env === 'undefined'
           ? config.env
           : options.env;
+
+        //check port not only when setting defaults but in boltrc.js too
+        config.port = await getPort(config.port);
 
         config.webpackStats =
           typeof options.webpackStats === 'undefined'
@@ -118,12 +129,13 @@ if (program.configFile) {
         // automatically set enableSSR to true in prod mode and false in dev mode, unless manually set.
         config.enableSSR = false;
 
+        // automatically enable i18n in production builds if undefined
         config.i18n =
-          typeof options.i18n === 'undefined'
-            ? config.prod
-              ? true
-              : false
-            : options.i18n;
+          typeof options.i18n !== 'undefined'
+            ? options.i18n
+            : config.prod
+            ? true
+            : false;
 
         // If i18n is disabled, ignore and remove lang config settings
         if (config.lang && config.i18n === false) {
@@ -135,15 +147,38 @@ if (program.configFile) {
       });
 
       const config = await configStore.getConfig();
-      log.dim(`Verbosity: ${config.verbosity}`);
-      log.dim(`Prod: ${config.prod}`);
-      log.dim(`i18n: ${config.i18n}`);
-      log.dim(
-        `enableSSR: ${config.enableSSR} ${
-          originalConfig.enableSSR ? '(manually set)' : '(auto set)'
-        }`,
+
+      const defaultConfigLog = chalk.white(`
+Logging Verbosity: ${config.verbosity}
+Environment: ${config.prod ? 'Production' : 'Development'}
+Multi-lang: ${config.i18n}
+`);
+
+      console.log(
+        boxen(defaultConfigLog, {
+          padding: {
+            top: 0,
+            bottom: 0,
+            left: 3,
+            right: 3,
+          },
+          margin: {
+            top: 1,
+            bottom: 0,
+            left: 1,
+            right: 1,
+          },
+          borderStyle: 'double',
+        }),
       );
-      log.dim(`Rendering Mode: ${config.mode}`);
+
+      // @todo: re-enable once JS-based SSR gets re-enabled and ships
+      // log.dim(
+      //   `enableSSR: ${config.enableSSR} ${
+      //     originalConfig.enableSSR ? '(manually set)' : '(auto set)'
+      //   }`,
+      // );
+      // log.dim(`Rendering Mode: ${config.mode}`);
       if (config.verbosity > 2) {
         log.dim(`Opening browser: ${config.openServerAtStart}`);
         log.dim(`Quick mode: ${config.quick}`);
@@ -270,6 +305,7 @@ if (program.configFile) {
 
     program
       .command('img')
+      .alias('images')
       .description('Image process')
       .action(async options => {
         await updateConfig(options, program);

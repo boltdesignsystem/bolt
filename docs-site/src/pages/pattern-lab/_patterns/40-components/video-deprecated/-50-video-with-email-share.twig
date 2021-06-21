@@ -1,0 +1,19 @@
+<p>
+  This video has <code>attributes</code> for email share. Inline script is required for the email share.
+</p>
+
+{% include "@bolt/_video-inline-script.twig" with {
+  socialUrl: "https://www.pega.com/products/pega-platform/decision-hub"
+} %}
+
+{% include "@bolt/video.twig" with {
+  "videoId": "4892122320001",
+  "accountId": "1900410236",
+  "playerId": "r1CAdLzTW",
+  "enabled_plugins": "social email",
+  "attributes": {
+    "data-email-subject": "Learn more about the Pega Adaptive Decision Manager",
+    "data-email-body": "Check out this video about the Adaptive Decision Manager from Pega",
+    "data-email-videourl": "https://www.pega.com/products/pega-platform/decision-hub"
+  }
+} only %}

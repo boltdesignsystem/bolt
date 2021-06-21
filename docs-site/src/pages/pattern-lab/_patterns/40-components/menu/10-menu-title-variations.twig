@@ -1,0 +1,64 @@
+{% set description %}
+  Create a title for the menu by using the <bolt-code-snippet display="inline">title</bolt-code-snippet> prop.
+{% endset %}
+
+{% set demo %}
+{% include '@bolt-components-menu/menu.twig' with {
+  title: 'Choose one of these',
+  items: [
+    {
+      content: 'Menu item 1',
+    },
+    {
+      content: 'Menu item 2',
+    },
+    {
+      content: 'Menu item 3',
+    },
+  ]
+} only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-menu/menu.twig' with {
+  title: 'Choose one of these',
+  items: [
+    {
+      content: 'Menu item 1',
+    },
+    {
+      content: 'Menu item 2',
+    },
+    {
+      content: 'Menu item 3',
+    },
+  ]
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-menu>
+  <span slot="title">Choose one of these</span>
+  <bolt-menu-item>
+    Menu item 1
+  </bolt-menu-item>
+  <bolt-menu-item>
+    Menu item 2
+  </bolt-menu-item>
+  <bolt-menu-item>
+    Menu item 3
+  </bolt-menu-item>
+</bolt-menu>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Menu title',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

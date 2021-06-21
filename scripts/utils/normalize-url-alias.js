@@ -18,7 +18,7 @@ function normalizeUrlAlias(prefix, suffix = '.boltdesignsystem.com') {
     }
 
     let aliasedUrl = `https://${normalizedUrlBase}${suffix}`;
-    console.log(aliasedUrl);
+    // console.log(aliasedUrl);
     return aliasedUrl;
   }
 }
