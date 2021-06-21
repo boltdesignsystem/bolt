@@ -2,28 +2,38 @@
 
 {% import "@bolt-academy/_macros.twig" as macros %}
 
+{% set _pencil_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'pencil'
+  } only %}
+{% endset %}
+{% set _download_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'download'
+  } only %}
+{% endset %}
 {% include "@bolt-components-list/list.twig" with {
   display: "flex",
   align: "end",
   spacing: "xsmall",
   nowrap: true,
   items: [
-    editButton ? macros.include("@bolt-components-button/button.twig", {
-      text: "Edit",
+    editButton ? macros.include("@bolt-elements-button/button.twig", {
+      content: "Edit",
       size: "small",
       hierarchy: "tertiary",
-      iconOnly: true,
-      icon: {
-        name: "pencil",
+      icon_only: _pencil_icon,
+      attributes: {
+        type: 'button'
       }
     }, false) : '',
-    downloadButton ? macros.include("@bolt-components-button/button.twig", {
-      text: "Download",
+    downloadButton ? macros.include("@bolt-elements-button/button.twig", {
+      content: "Download",
       size: "small",
       hierarchy: "tertiary",
-      iconOnly: true,
-      icon: {
-        name: "download",
+      icon_only: _download_icon,
+      attributes: {
+        type: 'button'
       }
     }, false) : '',
     shareButton ? macros.include("@bolt-academy/toolbar-buttons/_share.twig", {}, false) : '',

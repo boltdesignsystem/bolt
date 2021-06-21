@@ -1,11 +1,17 @@
+{% set _chevron_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: "chevron-down"
+  } only %}
+{% endset %}
+
 {% set trigger %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Pega Customer Decision Hub 8.5",
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Pega Customer Decision Hub 8.5",
     size: "xsmall",
     hierarchy: "tertiary",
-    icon: {
-      name: "chevron-down",
-      position: "after",
+    icon_after: _chevron_icon,
+    attributes: {
+      type: 'button'
     }
   } only %}
 {% endset %}

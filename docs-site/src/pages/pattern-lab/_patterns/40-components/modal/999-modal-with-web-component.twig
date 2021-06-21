@@ -19,18 +19,18 @@
 {% import _self as modal_code %}
 
 {% set modal_demo %}
-<bolt-button data-bolt-modal-target=".js-bolt-modal-demo">
+<button type="button" class="e-bolt-button" data-bolt-modal-target=".js-bolt-modal-demo">
   Open Modal
-</bolt-button>
+</button>
 <bolt-modal class="js-bolt-modal-demo">
   This is a modal.
 </bolt-modal>
 {% endset %}
 
 {% set modal_basic_demo %}
-<bolt-button data-bolt-modal-target=".js-bolt-modal-basic-demo">
+<button type="button" class="e-bolt-button" data-bolt-modal-target=".js-bolt-modal-basic-demo">
   Open Modal
-</bolt-button>
+</button>
 <bolt-modal class="js-bolt-modal-basic-demo">
   <bolt-text slot="header">This is the header</bolt-text>
   <bolt-text>This is the body (default).</bolt-text>
@@ -39,9 +39,9 @@
 {% endset %}
 
 {% set modal_advanced_demo %}
-<bolt-button data-bolt-modal-target=".js-bolt-modal-advanced-demo">
+<button type="button" class="e-bolt-button" data-bolt-modal-target=".js-bolt-modal-advanced-demo">
   Open Modal
-</bolt-button>
+</button>
 <bolt-modal width="optimal" spacing="none" theme="none" scroll="overall" class="js-bolt-modal-advanced-demo">
   <bolt-image src="/images/content/backgrounds/background-robotics-customer-service.jpg" alt="This is an image"></bolt-image>
 </bolt-modal>
@@ -52,7 +52,7 @@
     Web Component Usage
   </bolt-text>
   <bolt-text>
-    Modal is a web component. You can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-modal&gt;</bolt-code-snippet> in the markup to make it render. In the following examples, we use <bolt-code-snippet display="inline" lang="html">data-bolt-modal-target</bolt-code-snippet> to trigger the modal. However, the same options shown on the <bolt-link url="/pattern-lab/?p=components-modal-usage-javascript">Usage Javascript page</bolt-link> are also available on the web component.
+    Modal is a web component. You can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-modal&gt;</bolt-code-snippet> in the markup to make it render. In the following examples, we use <bolt-code-snippet display="inline" lang="html">data-bolt-modal-target</bolt-code-snippet> to trigger the modal. However, the same options shown on the <a href="/pattern-lab/?p=components-modal-usage-javascript" class="e-bolt-text-link">Usage Javascript page</a> are also available on the web component.
   </bolt-text>
   {% include modal_code.code_example(modal_demo) %}
 </div>

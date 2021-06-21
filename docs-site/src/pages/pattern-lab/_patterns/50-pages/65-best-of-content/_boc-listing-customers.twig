@@ -322,32 +322,37 @@
 
   {% set band_content %}
     {% set filter_button %}
-      {% include '@bolt-components-button/button.twig' with {
-        text: 'Filters',
+      {% set _filter_icon %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: "filter"
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Filters',
         hierarchy: 'secondary',
-        width: 'full',
-        type: 'button',
-        icon: {
-          name: 'filter',
-          position: 'before',
-        },
+        display: 'block',
         attributes: {
-          'data-bolt-modal-target': '.js-bolt-modal',
+          type: 'button',
+          'data-bolt-modal-target': '.js-bolt-modal'
         },
+        icon_before: _filter_icon
       } only %}
       {% set apply_button %}
-        {% include '@bolt-components-button/button.twig' with {
-          text: 'Save',
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Save',
           size: 'small',
-          type: 'submit',
+          attributes: {
+            type: 'submit',
+          }
         } only %}
       {% endset %}
       {% set cancel_button %}
-        {% include '@bolt-components-button/button.twig' with {
-          text: 'Cancel',
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Cancel',
           size: 'small',
-          hierarchy: 'text',
+          hierarchy: 'transparent',
           attributes: {
+            type: 'button',
             'data-bolt-modal-target': '.js-bolt-modal',
           },
         } only %}
@@ -537,8 +542,11 @@
         {{ item_pdf }}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-text-align-center">
-        {% include '@bolt-components-button/button.twig' with {
-          text: 'Load more',
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Load more',
+          attributes: {
+            type: 'button'
+          }
         } only %}
       </div>
     </div>

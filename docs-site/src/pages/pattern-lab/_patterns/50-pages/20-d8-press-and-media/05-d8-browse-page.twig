@@ -44,12 +44,12 @@
 
       {% set navbar_items %}
         {% for item in navbar_data %}
-          {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+          {% include '@bolt-components-navbar/navbar-li.twig' with item only %}
         {% endfor %}
       {% endset %}
 
       {% set navbar_list %}
-        {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+        {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}
       {% endset %}
 
       {% include '@bolt-components-navbar/navbar.twig' with {
@@ -219,16 +219,19 @@
 
           <div class="c-bolt-search-filter">
             <div class="c-bolt-search-filter__trigger">
-              {% include "@bolt-components-button/button.twig" with {
-                "text": "Close search filters",
-                "url": "#search-filters",
-                "size": "xsmall",
-                "hierarchy": "primary",
-                "border_radius": "full",
-                "iconOnly": true,
-                "icon": {
-                  "name": "more",
-                  "size": "medium"
+              {% set _icon_more %}
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'more',
+                  size: 'medium'
+                } only %}
+              {% endset %}
+              {% include '@bolt-elements-button/button.twig' with {
+                content: 'Close search filters',
+                icon_only: _icon_more,
+                border_radius: 'full',
+                size: 'xsmall',
+                attributes: {
+                  href: '#search-filters'
                 }
               } only %}
             </div>
@@ -494,16 +497,20 @@
               </div>
 
               <div class="c-bolt-search-filter__panel-controls c-bolt-search-filter__panel-controls--close">
-                {% include "@bolt-components-button/button.twig" with {
-                  "text": "Close search filters",
-                  "url": "#!",
-                  "size": "xsmall",
-                  "hierarchy": "text",
-                  border_radius: "full",
-                  "iconOnly": true,
-                  "icon": {
-                    "name": "close",
-                    "size": "medium"
+                {% set _icon_close %}
+                  {% include '@bolt-components-icon/icon.twig' with {
+                    name: 'close',
+                    size: 'medium'
+                  } only %}
+                {% endset %}
+                {% include '@bolt-elements-button/button.twig' with {
+                  content: 'Close search filters',
+                  icon_only: _icon_close,
+                  hierarchy: 'transparent',
+                  border_radius: 'full',
+                  size: 'xsmall',
+                  attributes: {
+                    href: '#!'
                   }
                 } only %}
               </div>

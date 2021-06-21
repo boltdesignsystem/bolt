@@ -31,9 +31,11 @@
           display: "block",
           spacing: "none",
           items: [
-            macros.include("@bolt-components-link/link.twig", {
-              url: "https://www.google.com",
-              text: "Name of Mission will go here"
+            macros.include('@bolt-elements-text-link/text-link.twig', {
+              attributes: {
+                href: 'https://www.google.com'
+              },
+              content: "Name of Mission will go here"
             }),
           ],
           attributes: {
@@ -133,18 +135,21 @@
                   ]
                 },
                 items: [
-                  macros.include("@bolt-components-button/button.twig", {
-                    text: "Create Pearson VUE Account",
+                  macros.include("@bolt-elements-button/button.twig", {
+                    content: "Create Pearson VUE Account",
                     size: "small",
                     hierarchy: "secondary",
                     border_radius: "full",
-                    url: "https://www.google.com",
+                    attributes: {
+                      href: "https://www.google.com",
+                    }
                   }),
-                  macros.include("@bolt-components-button/button.twig", {
-                    text: "Register for Exam",
+                  macros.include("@bolt-elements-button/button.twig", {
+                    content: "Register for Exam",
                     size: "small",
                     border_radius: "full",
                     attributes: {
+                      type: "button",
                       "data-bolt-modal-target": ".js-modal-advanced-auto-open",
                     },
                   }),

@@ -1,10 +1,10 @@
 <bolt-text headline font-size="xlarge">Video Modal Usage</bolt-text>
 <bolt-text>Videos opening and playing in a modal are handled by a couple data attributes.</bolt-text>
 
-<bolt-text headline font-size="large">Button Attribute</bolt-text> 
+<bolt-text headline font-size="large">Button Attribute</bolt-text>
 <bolt-text>To open a modal, the triggering button requires a <code>data-bolt-modal-target</code> attribute. The value of this attribute is the target modal's class. There is JS that will handle the opening on target modal based on the attribute's value.</bolt-text>
 
-<bolt-text headline font-size="large">Video Attributes</bolt-text> 
+<bolt-text headline font-size="large">Video Attributes</bolt-text>
 <bolt-text>To prevent a video from initializing on page load, the <code>video-js</code> requires a couple of attributes to delay the initialization. There are four attributes that are required, three of these <em>replace</em> the default Brightcove attributes.</bolt-text>
 <ul>
   <li><strong>data-delayed-account</strong> (replaces <em>data-account</em>)</li>
@@ -36,9 +36,10 @@
     } only %}
   {% endset %}
 
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Play the video",
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Play the video",
     attributes: {
+      type: 'button',
       "data-bolt-modal-target": ".js-bolt-modal--demo-1",
     }
   } only %}

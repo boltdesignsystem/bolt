@@ -1,6 +1,8 @@
-{% set link %}{% spaceless %}{% include "@bolt-components-link/link.twig" with {
-  text: "like this",
-  url: "https://yahoo.com",
+{% set link %}{% spaceless %}{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: "like this",
+  attributes: {
+    href: 'https://yahoo.com'
+  }
 } only %}{% endspaceless %}{% endset %}
 
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}

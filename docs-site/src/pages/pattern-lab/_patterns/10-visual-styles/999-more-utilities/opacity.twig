@@ -25,16 +25,22 @@
           } only %}
 
           {% set button_1 %}
-            {% include "@bolt-components-button/button.twig" with {
-              text: "CTA 1",
-              hierarchy: "primary"
+            {% include "@bolt-elements-button/button.twig" with {
+              content: "CTA 1",
+              hierarchy: "primary",
+              attributes: {
+                type: 'button'
+              }
             } only %}
           {% endset %}
 
           {% set button_2 %}
-            {% include "@bolt-components-button/button.twig" with {
-              text: "CTA 2",
-              hierarchy: "secondary"
+            {% include "@bolt-elements-button/button.twig" with {
+              content: "CTA 2",
+              hierarchy: "secondary",
+              attributes: {
+                type: 'button'
+              }
             } only %}
           {% endset %}
 

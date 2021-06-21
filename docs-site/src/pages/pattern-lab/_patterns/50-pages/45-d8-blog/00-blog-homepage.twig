@@ -72,16 +72,19 @@
 
         <div class="c-bolt-search-filter">
           <div class="c-bolt-search-filter__trigger">
-            {% include "@bolt-components-button/button.twig" with {
-              "text": "Close search filters",
-              "url": "#search-filters",
-              "size": "xsmall",
-              "hierarchy": "primary",
-              "border_radius": "full",
-              "iconOnly": true,
-              "icon": {
-                "name": "filter",
-                "size": "medium"
+            {% set _icon_filter %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'filter',
+                size: 'medium'
+              } only %}
+            {% endset %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Close search filters',
+              icon_only: _icon_filter,
+              border_radius: 'full',
+              size: 'xsmall',
+              attributes: {
+                href: '#search-filters'
               }
             } only %}
           </div>
@@ -466,16 +469,20 @@
             </div>
 
             <div class="c-bolt-search-filter__panel-controls c-bolt-search-filter__panel-controls--close">
-              {% include "@bolt-components-button/button.twig" with {
-                "text": "Close search filters",
-                "url": "#!",
-                "size": "xsmall",
-                "hierarchy": "text",
-                "border_radius": "full",
-                "iconOnly": true,
-                "icon": {
-                  "name": "close",
-                  "size": "medium"
+              {% set _icon_close %}
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'close',
+                  size: 'medium'
+                } only %}
+              {% endset %}
+              {% include '@bolt-elements-button/button.twig' with {
+                content: 'Close search filters',
+                icon_only: _icon_close,
+                hierarchy: 'transparent',
+                border_radius: 'full',
+                size: 'xsmall',
+                attributes: {
+                  href: '#!'
                 }
               } only %}
             </div>
