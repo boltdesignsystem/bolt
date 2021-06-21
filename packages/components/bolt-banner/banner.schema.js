@@ -1,6 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Banner',
+  title: 'Bannerrrrr',
   description:
     'A content container that delivers important messages to the user.',
   type: 'object',

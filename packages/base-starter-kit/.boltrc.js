@@ -72,6 +72,7 @@ module.exports = {
       '@bolt/components-video',
       '@bolt/components-video-thumbnail',
       '@bolt/layouts-holy-grail',
+      '@bolt/layouts-site',
       '@bolt/analytics-autolink',
     ],
   },

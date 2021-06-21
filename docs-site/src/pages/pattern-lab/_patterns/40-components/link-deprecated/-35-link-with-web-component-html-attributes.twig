@@ -1,3 +1,5 @@
+{% include '@pl/00-deprecated-link-docs.twig' %}
+
 {% macro code_example(code, copy) %}
   <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
     {{ code | replace({

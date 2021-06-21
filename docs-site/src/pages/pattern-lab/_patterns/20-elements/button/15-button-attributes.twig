@@ -22,6 +22,15 @@
 
 {% set twig_markup %}
 {% verbatim %}
+// <button>
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'This button has the "type" attribute',
+  attributes: {
+    type: 'submit',
+  }
+} only %}
+
+// <a>
 {% include '@bolt-elements-button/button.twig' with {
   content: 'This button has the "href", "target", and "id" attributes',
   attributes: {
