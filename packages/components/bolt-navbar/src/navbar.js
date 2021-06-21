@@ -245,7 +245,7 @@ export class BoltNavbar {
   setupOffsets() {
     // Default sticky elements
     const defaultStickyElements = document.querySelectorAll(
-      '[data-bolt-sticky-header], .js-global-header.is-fixed',
+      '.js-bolt-sticky-page-header, .js-global-header.is-fixed',
     ); // First selector covers new header, second covers old header
 
     // Sticky offsets
