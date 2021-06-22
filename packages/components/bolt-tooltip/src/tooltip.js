@@ -21,25 +21,40 @@ class BoltTooltip extends BoltElement {
   constructor() {
     super();
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
+  }
 
+  getPaddingTop() {
+    const stickyPageHeader =
+      document.querySelector('.c-bolt-page-header') ||
+      document.querySelector('.c-page-header.is-fixed'); // use [data-sticky-page-header] once navbar work merged into master
+
+    const stickyElements = document.querySelectorAll('.js-bolt-sticky');
+
+    let offsetHeight = 0;
+    let tallestStickyElement = 0;
+
+    if (stickyPageHeader) {
+      offsetHeight += stickyPageHeader.offsetHeight;
+    }
+
+    if (stickyElements.length) {
+      stickyElements.forEach(el => {
+        const height = el.offsetHeight;
+        if (height > tallestStickyElement) {
+          tallestStickyElement = height;
+        }
+      });
+    }
+
+    return offsetHeight + tallestStickyElement;
+  }
+
+  initTippy() {
     this.zIndex = parseInt(
       getComputedStyle(this).getPropertyValue('--c-bolt-tooltip-z-index'),
       10,
     );
-
-    let offsetHeight = 0;
-    // if header is sticky
-    if (
-      document.querySelector('header.is-fixed') !== null ||
-      document.querySelector('header.c-bolt-page-header') !== null
-    ) {
-      offsetHeight += document.querySelector('header').clientHeight;
-    }
-    // @TODO: also add tallest js-sticky element?
-    this.paddingTop = offsetHeight;
-  }
-
-  initTippy() {
+    this.paddingTop = this.getPaddingTop();
     this.$boundary =
       this.$boundary ||
       (this.boundary && this.closest(this.boundary)) ||

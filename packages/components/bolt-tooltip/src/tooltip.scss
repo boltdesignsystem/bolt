@@ -10,7 +10,8 @@
  */
 //  Note: this does not actually render to the Shadow DOM so :host rule not required
 bolt-tooltip {
-  --c-bolt-tooltip-z-index: #{bolt-z-index('tooltip')};
+  // @TODO: we're using modal here to resolve a bug, this will need to be refactored.
+  --c-bolt-tooltip-z-index: #{bolt-z-index('modal')};
   display: inline;
 
   // This element is copied by Tippy and appended to the document.body
