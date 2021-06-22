@@ -39,9 +39,8 @@ async function init() {
   if (isFullRelease) {
     const version =
       (await shell
-        .exec(`auto version --from v${currentVersion}`, {
+        .exec(`./node_modules/.bin/auto version --from v${currentVersion}`, {
           silent: true,
-          maxBuffer: Infinity,
         })
         .stdout.trim()) || 'minor';
 
