@@ -10,7 +10,7 @@
  */
 //  Note: this does not actually render to the Shadow DOM so :host rule not required
 bolt-tooltip {
-  // @TODO: we're using modal here to resolve a bug, this will need to be refactored.
+  // @TODO: we're using modal here to resolve a bug, this will need to be refactored. [Ticket: DS-525]
   --c-bolt-tooltip-z-index: #{bolt-z-index('modal')};
   display: inline;
 
