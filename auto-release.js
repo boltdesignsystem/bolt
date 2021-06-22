@@ -41,6 +41,7 @@ async function init() {
       (await shell
         .exec(`./node_modules/.bin/auto version --from v${currentVersion}`, {
           silent: true,
+          maxBuffer: 20 * 1024 * 1024,
         })
         .stdout.trim()) || 'minor';
 
