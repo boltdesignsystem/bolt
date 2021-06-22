@@ -6,32 +6,56 @@
 
 {% block main_content %}
   {# Navigation #}
-  {% embed "@bolt-components-sticky/sticky.twig" %}
-    {% block sticky_content %}
-      {% include "@bolt-components-navbar/navbar.twig" with {
-        theme: "dark",
-        title: {
-          tag: "h1",
-          text: "Future Proof",
-          url: "http://pega.com/blog",
-        },
-        links: [
-          {
-            text: "Digital Process Automation",
-            url: "#a",
-          },
-          {
-            text: "1-to-1 Customer Engagement",
-            url: "#a",
-          },
-          {
-            text: "Customer Service",
-            url: "#a",
-          },
-        ]
-      } only %}
-    {% endblock %}
-  {% endembed %}
+  {% set navbar_data = [
+    {
+      link: {
+        content: "Digital Process Automation",
+        attributes: {
+          href: "#a",
+        }
+      }
+    },
+    {
+      link: {
+        content: "1-to-1 Customer Engagement",
+        attributes: {
+          href: "#a",
+        }
+      }
+    },
+    {
+      link: {
+        content: "Customer Service",
+        attributes: {
+          href: "#a",
+        }
+      }
+    },
+  ] %}
+
+  {% set navbar_items %}
+    {% for item in navbar_data %}
+      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+    {% endfor %}
+  {% endset %}
+
+  {% set navbar_list %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+  {% endset %}
+
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    theme: 'dark',
+    title: {
+      tag: 'h1',
+      content: 'Future Proof',
+      link: {
+        attributes: {
+          href: 'http://pega.com/blog'
+        }
+      }
+    },
+    links: navbar_list
+  } only %}
   {# End Navigation #}
 
   {# Hero #}

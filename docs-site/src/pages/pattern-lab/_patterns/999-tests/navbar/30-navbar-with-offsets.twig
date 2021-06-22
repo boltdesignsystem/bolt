@@ -1,0 +1,177 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+
+{% include '@bolt-components-sticky/sticky.twig' with {
+  content: include('@bolt-components-banner/banner.twig', {
+    content: 'Example Additional Sticky Element',
+    status: 'warning',
+  }),
+  attributes: {
+    class: [
+      'u-bolt-margin-bottom-large',
+      'js-sticky-target',
+    ],
+    style: 'top: var(--bolt-page-header-height)'
+  },
+} only %}
+
+<section>
+  {% set navbar_data = [
+    {
+      link: {
+        content: 'Section 1',
+        attributes: {
+          href: '#section-1'
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Section 2',
+        attributes: {
+          href: '#section-2'
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Section 3',
+        attributes: {
+          href: '#section-3'
+        }
+      }
+    }
+  ] %}
+
+  {% set navbar_items %}
+    {% for item in navbar_data %}
+      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+    {% endfor %}
+  {% endset %}
+
+  {% set navbar_links %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+  {% endset %}
+
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    title: {
+      content: 'Title text',
+      icon: {
+        name: "marketing-gray"
+      },
+    },
+    links: navbar_links,
+    sticky_offset: 10,
+    sticky_offset_selector: '.js-sticky-target',
+  } only %}
+
+  {% set section_content %}
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  {% endset %}
+
+  <div id="section-1">
+    <h2>Section 1</h2>
+    {{ section_content }}
+  </div>
+
+  <div id="section-2">
+    <h2>Section 2</h2>
+    {{ section_content }}
+  </div>
+
+  <div id="section-3">
+    <h2>Section 3</h2>
+    {{ section_content }}
+  </div>
+</section>
+
+<section>
+  {% set navbar_data = [
+    {
+      link: {
+        content: 'Section 1',
+        attributes: {
+          href: '#section-alt-1'
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Section 2',
+        attributes: {
+          href: '#section-alt-2'
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Section 3',
+        attributes: {
+          href: '#section-alt-3'
+        }
+      }
+    }
+  ] %}
+
+  {% set navbar_items %}
+    {% for item in navbar_data %}
+      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+    {% endfor %}
+  {% endset %}
+
+  {% set navbar_links %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+  {% endset %}
+
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    title: {
+      content: 'Title text',
+      icon: {
+        name: "marketing-gray"
+      },
+    },
+    links: navbar_links,
+    sticky_offset: 10,
+    sticky_offset_selector: '.js-sticky-target',
+    scroll_offset: 25,
+    sticky_offset_selector: '.js-sticky-target',
+  } only %}
+
+  {% set section_content %}
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  {% endset %}
+
+  <div id="section-alt-1">
+    <h2>Section 1</h2>
+    {{ section_content }}
+  </div>
+
+  <div id="section-alt-2">
+    <h2>Section 2</h2>
+    {{ section_content }}
+  </div>
+
+  <div id="section-alt-3">
+    <h2>Section 3</h2>
+    {{ section_content }}
+  </div>
+</section>
+
+{% endblock %}

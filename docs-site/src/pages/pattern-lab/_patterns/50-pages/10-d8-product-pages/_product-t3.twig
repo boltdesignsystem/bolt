@@ -42,7 +42,7 @@
       buttons: [
         {
           text: "Call to Action",
-          style: "primary",
+          hierarchy: "primary",
           url: "#!"
         }
       ]
@@ -227,11 +227,11 @@
           "buttons": [
             {
               "text": "Call to action",
-              "style": "primary"
+              "hierarchy": "primary"
             },
             {
               "text": "Call to action",
-              "style": "secondary"
+              "hierarchy": "secondary"
             }
           ]
         } only %}
@@ -300,11 +300,11 @@
           "buttons": [
             {
               "text": "Call to action",
-              "style": "primary"
+              "hierarchy": "primary"
             },
             {
               "text": "Call to action",
-              "style": "secondary"
+              "hierarchy": "secondary"
             }
           ]
         } only %}
@@ -345,7 +345,7 @@
           } only %}
           {% include "@bolt/button.twig" with {
             text: "Toggle video",
-            tag: "button",
+            type: "button",
             attributes: {
               "on-click": "toggle",
               "on-click-target": videoUuid3
@@ -381,11 +381,11 @@
           "buttons": [
             {
               "text": "Call to action",
-              "style": "primary"
+              "hierarchy": "primary"
             },
             {
               "text": "Call to action",
-              "style": "secondary"
+              "hierarchy": "secondary"
             }
           ]
         } only %}
@@ -475,7 +475,7 @@
           {% set videoUuid2 = "js-bolt-video-uuid--2" %}
           {% include "@bolt/button.twig" with {
             text: "Toggle video",
-            tag: "button",
+            type: "button",
             attributes: {
               "on-click": "toggle",
               "on-click-target": videoUuid2
@@ -519,11 +519,11 @@
           "buttons": [
             {
               "text": "Call to action",
-              "style": "primary"
+              "hierarchy": "primary"
             },
             {
               "text": "Call to action",
-              "style": "secondary"
+              "hierarchy": "secondary"
             }
           ]
         } only %}
@@ -576,7 +576,7 @@
           } only %}
           {% include "@bolt/button.twig" with {
             text: "Toggle video",
-            tag: "button",
+            type: "button",
             attributes: {
               "on-click": "toggle",
               "on-click-target": videoUuid3b
@@ -616,7 +616,7 @@
         "buttons": [
           {
             "text": "Learn More",
-            "style": "secondary",
+            "hierarchy": "secondary",
             "url": "www.google.com/pega7",
             "width": "full"
           }
@@ -643,7 +643,7 @@
         "buttons": [
           {
             "text": "Learn More",
-            "style": "secondary",
+            "hierarchy": "secondary",
             "url": "www.google.com/pega7",
             "width": "full"
           }
@@ -670,7 +670,7 @@
         "buttons": [
           {
             "text": "Learn More",
-            "style": "secondary",
+            "hierarchy": "secondary",
             "url": "www.google.com/pega7",
             "width": "full"
           }
@@ -774,7 +774,7 @@
         {% include "@bolt/button.twig" with {
           text: "Call to Action",
           url: "www.google.com",
-          style: "secondary"
+          hierarchy: "secondary"
         } only %}
 
 

@@ -8,8 +8,11 @@
 
 {% set demo %}
   {% set popover_trigger %}
-    {% include '@bolt-components-button/button.twig' with {
-      text: 'Share menu',
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Share menu',
+      attributes: {
+        type: 'button'
+      }
     } only %}
   {% endset %}
   {% set popover_content %}
@@ -29,8 +32,11 @@
 {% set twig_markup %}
 {% verbatim %}
 {% set popover_trigger %}
-  {% include '@bolt-components-button/button.twig' with {
-    text: 'Share menu',
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Share menu',
+    attributes: {
+      type: 'button'
+    }
   } only %}
 {% endset %}
 {% set popover_content %}

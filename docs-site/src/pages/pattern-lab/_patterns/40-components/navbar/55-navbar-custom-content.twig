@@ -1,0 +1,80 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>content</code> prop completely overrides the <code>title</code> and <code>links</code> props.</bolt-li>
+    <bolt-li>Since this is still a navbar, it is recommended that the custom content contains links.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set custom_content %}
+    {% set title %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'This is the navbar title',
+        size: 'large',
+        tag: 'h2',
+      } only %}
+    {% endset %}
+    {% set links %}
+      {% set link_1 %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Link 1',
+          size: 'small',
+          attributes: {
+            href: 'https://pega.com',
+            style: 'white-space: nowrap;',
+          }
+        } only %}
+      {% endset %}
+      {% set link_2 %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Link 2',
+          size: 'small',
+          hierarchy: 'secondary',
+          attributes: {
+            href: 'https://pega.com',
+            style: 'white-space: nowrap;',
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        nowrap: true,
+        items: [
+          link_1,
+          link_2
+        ]
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      align: 'justify',
+      spacing: 'small',
+      items: [
+        title,
+        links,
+      ]
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    content: custom_content,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-navbar/navbar.twig' with {
+  content: custom_content,
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Custom Navbar',
+  description: 'A completely custom navbar can be built if neccessary.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

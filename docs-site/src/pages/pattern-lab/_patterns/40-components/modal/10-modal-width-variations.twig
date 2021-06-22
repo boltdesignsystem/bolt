@@ -10,11 +10,12 @@
       {% for width in schema.properties.width.enum %}
         <tr>
           <th>
-            {% include "@bolt-components-button/button.twig" with {
-              text: width|capitalize,
+            {% include "@bolt-elements-button/button.twig" with {
+              content: width|capitalize,
               size: "small",
-              width: "full",
+              display: "block",
               attributes: {
+                type: 'button',
                 "data-bolt-modal-target": ".js-bolt-modal--width-" ~ width,
               }
             } only %}

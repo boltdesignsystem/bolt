@@ -164,9 +164,11 @@
         {% endif %}
 
         {% set children = children|merge([
-          include("@bolt-components-link/link.twig", {
-            "text": link|capitalize,
-            "url": url
+          include("@bolt-elements-text-link/text-link.twig", {
+            "content": link|capitalize,
+            "attributes": {
+              "href": url
+            }
           })
         ]) %}
       {% endfor %}
@@ -222,9 +224,11 @@
           {% set text = "@#{link.type} #{link.name}" %}
         {% endif %}
         {% set children = children|merge([
-          include("@bolt-components-link/link.twig", {
-            "text": text,
-            "url": "##{link.type}-#{link.name}"
+          include("@bolt-elements-text-link/text-link.twig", {
+            "content": text,
+            "attributes": {
+              "href": "##{link.type}-#{link.name}"
+            }
           })
         ]) %}
       {% endfor %}

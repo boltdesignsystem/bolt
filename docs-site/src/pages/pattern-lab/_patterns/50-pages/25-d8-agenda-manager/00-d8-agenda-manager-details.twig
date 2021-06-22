@@ -347,8 +347,11 @@
           {% include "@bolt-components-headline/text.twig" with {
             text: "Time is running out to take advantage of end-of-year pricing.",
           } only %}
-          {% include "@bolt-components-button/button.twig" with {
-            text: "Register Now!",
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Register Now!',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endcell %}
 
@@ -360,9 +363,12 @@
           {% include "@bolt-components-headline/text.twig" with {
             text: "Stay up-to-date on all the latest PegaWorld news and announcements.",
           } only %}
-          {% include "@bolt-components-button/button.twig" with {
-            text: "Sign up",
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Sign up',
             hierarchy: 'secondary',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endcell %}
 

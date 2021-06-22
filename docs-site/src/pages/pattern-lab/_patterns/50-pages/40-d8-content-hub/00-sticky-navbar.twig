@@ -1,7 +1,7 @@
 {% extends "@pl/_default-page-template.twig" %}
 
 {% block global_header %}
-  {% include '@pl/_main-site-page-header.twig' with { static_header: true } %}
+  {% include '@pl/_main-site-page-header.twig' %}
 {% endblock %}
 
 {% block main_content %}
@@ -60,49 +60,76 @@
 
 
   {# Anchor Band #}
+  {% set navbar_data = [
+    {
+      link: {
+        content: 'Take the Automation Journey',
+        attributes: {
+          href: '#automation'
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Attain Transformational Results',
+        attributes: {
+          href: '#transformation'
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Increase Employee Productivity',
+        attributes: {
+          href: '#productivity',
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Drive Workforce Intelligence',
+        attributes: {
+          href: '#intelligence',
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Create full system integration',
+        attributes: {
+          href: '#integration'
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Instill governance and oversite',
+        attributes: {
+          href: '#governance',
+        }
+      }
+    }
+  ] %}
 
+  {% set navbar_items %}
+    {% for item in navbar_data %}
+      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+    {% endfor %}
+  {% endset %}
 
+  {% set navbar_list %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+  {% endset %}
 
-{% embed "@bolt-components-sticky/sticky.twig" %}
-  {% block sticky_content %}
-
-    {% include "@bolt-components-navbar/navbar.twig" with {
-        theme: "xlight",
-        center: true,
-        title: {
-          "tag": "h2",
-          "text": "Discover Intelligent Process Automation",
-        },
-        links: [
-          {
-            "text": "Take the Automation Journey",
-            "url": "#automation"
-          },
-          {
-            "text": "Attain Transformational Results",
-            "url": "#transformation"
-          },
-          {
-            "text": "Increase Employee Productivity",
-            "url": "#productivity",
-          },
-          {
-            "text": "Drive Workforce Intelligence",
-            "url": "#intelligence",
-          },
-          {
-            "text": "Create full system integration",
-            "url": "#integration"
-          },
-          {
-            "text": "Instill governance and oversite",
-            "url": "#governance",
-          }
-        ]
-      } only %}
-  {% endblock %}
-{% endembed %}
-
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    title: {
+      content: 'Discover Intelligent Process Automation'
+    },
+    links: navbar_list,
+    theme: 'xlight',
+    center: true,
+    spacing: 'xsmall'
+  } only %}
 
   {# End Anchor Band #}
 
