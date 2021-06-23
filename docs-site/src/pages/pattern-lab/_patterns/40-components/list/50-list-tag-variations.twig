@@ -1,21 +1,27 @@
 {# Setting variables for demo purposes #}
 {% set schema = bolt.data.components["@bolt-components-list"].schema %}
 {% set link_1 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Item 1",
-    url: "#!",
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: "Item 1",
+    attributes: {
+      href: '#!'
+    }
   } only %}
 {% endset %}
 {% set link_2 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Item 2",
-    url: "#!",
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: "Item 2",
+    attributes: {
+      href: '#!'
+    }
   } only %}
 {% endset %}
 {% set link_3 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Item 3",
-    url: "#!",
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: "Item 3",
+    attributes: {
+      href: '#!'
+    }
   } only %}
 {% endset %}
 

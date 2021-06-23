@@ -161,9 +161,5 @@ module.exports = {
         'Manually switch on / off the raised (shadow + animation effect) treament. By default this config option is applied if the card-replacement contains a bolt-card-replacement-link OR includes the `url` prop.',
       hidden: true,
     },
-    borderRadius: {
-      title: 'DEPRECATED',
-      description: 'Use border_radius instead.',
-    },
   },
 };

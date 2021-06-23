@@ -13,10 +13,13 @@
       size: "large",
       text: "Perhaps a Band would be a better fit for these types of use-cases?",
     }),
-    macros.include("@bolt-components-button/button.twig", {
-      text: "Band Component Docs",
-      url: link["viewall-components-band"],
-      style: "secondary"
+    macros.include("@bolt-elements-button/button.twig", {
+      content: "Band Component Docs",
+      hierarchy: "secondary",
+      attributes: {
+        type: 'button',
+        href: link["viewall-components-band"],
+      }
     }),
   ]|join(''),
   reverseOrder: true,

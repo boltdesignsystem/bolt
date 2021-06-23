@@ -7,7 +7,7 @@
   {% set secondary %}
     {% include "@bolt-components-button/button.twig" with {
       text: "Secondary",
-      style: "secondary",
+      hierarchy: "secondary",
     } only %}
   {% endset %}
   {% set modal_content %}
@@ -86,17 +86,23 @@
           separator: "solid",
           spacing: "medium",
           items: [
-            include("@bolt-components-link/link.twig", {
-              text: "Block List Item 1",
-              url: "#!",
+            include('@bolt-elements-text-link/text-link.twig', {
+              content: "Block List Item 1",
+              attributes: {
+                href: '#!'
+              }
             }),
-            include("@bolt-components-link/link.twig", {
-              text: "Block List Item 2",
-              url: "#!",
+            include('@bolt-elements-text-link/text-link.twig', {
+              content: "Block List Item 2",
+              attributes: {
+                href: '#!'
+              }
             }),
-            include("@bolt-components-link/link.twig", {
-              text: "Block List Item 3",
-              url: "#!",
+            include('@bolt-elements-text-link/text-link.twig', {
+              content: "Block List Item 3",
+              attributes: {
+                href: '#!'
+              }
             }),
           ]
         } only %}
@@ -191,14 +197,14 @@
         {% set button_1 %}
           {% include "@bolt-components-button/button.twig" with {
             size: "small",
-            style: "primary",
+            hierarchy: "primary",
             text: "Primary action",
           } only %}
         {% endset %}
         {% set button_2 %}
           {% include "@bolt-components-button/button.twig" with {
             size: "small",
-            style: "secondary",
+            hierarchy: "secondary",
             text: "Secondary action",
           } only %}
         {% endset %}

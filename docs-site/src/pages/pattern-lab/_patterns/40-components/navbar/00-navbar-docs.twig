@@ -1,62 +1,40 @@
 {% set usage %}{% verbatim %}
-{% include "@bolt-components-navbar/navbar.twig" with {
+// Set up the navbar items
+{% set navbar_items %}
+  {% include '@bolt-components-navbar/navbar-li.twig' with {
+    link: {
+      content: 'Section 1',
+      attributes: {
+        href: '#section-1'
+      }
+    }
+  } only %}
+  ...
+{% endset %}
+{% set navbar_list %}
+  {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+    content: navbar_items,
+  } only %}  
+{% endset %}
+
+// Pass the navbar items to the navbar template
+{% include '@bolt-components-navbar/navbar.twig' with {
   title: {
-    tag: "h2",
-    text: "Title Text",
+    content: 'This is the navbar title',
     icon: {
-      name: "icon-name"
-    }
+      name: 'marketing-gray'
+    },
+    link: {
+      attributes: {
+        href: 'https://pega.com'
+      },
+    },
   },
-  links: [
-    {
-      text: "Link 1 Text",
-      url: "#!"
-    },
-    {
-      text: "Link 2 Text",
-      url: "#!"
-    },
-    {
-      text: "Link 3 Text",
-      url: "#!"
-    }
-  ]
+  links: navbar_list
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "navbar",
-  usage: usage,
-  schemaForm: {
-    template: '@bolt-components-navbar/navbar.twig',
-    layout: "horizontal",
-    initialData: {
-      width: "auto",
-      "title": {
-        "tag": "h2",
-        "text": "Title Text",
-        "icon": {
-          "name": "marketing-gray"
-        }
-      },
-      "links": [
-        {
-          "text": "Features",
-          "url": "#!"
-        },
-        {
-          "text": "Resources",
-          "url": "#!"
-        },
-        {
-          "text": "Industry Apps",
-          "url": "#!"
-        },
-        {
-          "text": "Customer Success",
-          "url": "#!"
-        }
-      ]
-    },
-  },
+{% include '@utils/docs.twig' with {
+  componentName: 'navbar',
+  usage: usage
 } only %}
