@@ -87,29 +87,29 @@ describe('link', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Link with outer JS-class via Drupal Attributes', async () => {
-    const results = await render('@bolt-components-link/link.twig', {
-      text: 'Link with outer JS-prefixed class',
-      url: 'https://pega.com',
-      attributes: {
-        class: ['js-click-me'],
-      },
-    });
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
-  });
+  // test('Link with outer JS-class via Drupal Attributes', async () => {
+  //   const results = await render('@bolt-components-link/link.twig', {
+  //     text: 'Link with outer JS-prefixed class',
+  //     url: 'https://pega.com',
+  //     attributes: {
+  //       class: ['js-click-me'],
+  //     },
+  //   });
+  //   expect(results.ok).toBe(true);
+  //   expect(results.html).toMatchSnapshot();
+  // });
 
-  test('Link with c-bolt- class is thrown out', async () => {
-    const results = await render('@bolt-components-link/link.twig', {
-      text: 'Link with outer JS-prefixed class',
-      url: 'https://pega.com',
-      attributes: {
-        class: ['c-bolt-link--secondary'],
-      },
-    });
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
-  });
+  // test('Link with c-bolt- class is thrown out', async () => {
+  //   const results = await render('@bolt-components-link/link.twig', {
+  //     text: 'Link with outer JS-prefixed class',
+  //     url: 'https://pega.com',
+  //     attributes: {
+  //       class: ['c-bolt-link--secondary'],
+  //     },
+  //   });
+  //   expect(results.ok).toBe(true);
+  //   expect(results.html).toMatchSnapshot();
+  // });
 
   test('Link with an on_click param renders properly', async () => {
     const results = await render('@bolt-components-link/link.twig', {
