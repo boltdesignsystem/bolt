@@ -230,21 +230,6 @@ exports[`link Link with an on_click param renders properly 1`] = `
 </bolt-link>
 `;
 
-exports[`link Link with c-bolt- class is thrown out 1`] = `
-<bolt-link url="https://pega.com">
-  <a href="https://pega.com"
-     target="_self"
-     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
-  >
-    <ssr-keep for="bolt-link"
-              class="c-bolt-link__text"
-    >
-      Link with outer JS-prefixed class
-    </ssr-keep>
-  </a>
-</bolt-link>
-`;
-
 exports[`link Link with inner classes via Drupal Attributes 1`] = `
 <bolt-link url="https://pega.com">
   <a href="https://pega.com"
@@ -255,23 +240,6 @@ exports[`link Link with inner classes via Drupal Attributes 1`] = `
               class="c-bolt-link__text"
     >
       Link with inner classes
-    </ssr-keep>
-  </a>
-</bolt-link>
-`;
-
-exports[`link Link with outer JS-class via Drupal Attributes 1`] = `
-<bolt-link url="https://pega.com"
-           class="js-click-me"
->
-  <a href="https://pega.com"
-     target="_self"
-     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
-  >
-    <ssr-keep for="bolt-link"
-              class="c-bolt-link__text"
-    >
-      Link with outer JS-prefixed class
     </ssr-keep>
   </a>
 </bolt-link>

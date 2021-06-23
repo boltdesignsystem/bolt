@@ -29,70 +29,6 @@ exports[`button Button adds target if passed via attributes 1`] = `
 </bolt-button>
 `;
 
-exports[`button Button tag: a 1`] = `
-<bolt-button>
-  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center">
-    <ssr-keep for="bolt-button"
-              class="c-bolt-button__item"
-    >
-      This is a button
-    </ssr-keep>
-  </button>
-</bolt-button>
-`;
-
-exports[`button Button tag: button 1`] = `
-<bolt-button>
-  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center">
-    <ssr-keep for="bolt-button"
-              class="c-bolt-button__item"
-    >
-      This is a button
-    </ssr-keep>
-  </button>
-</bolt-button>
-`;
-
-exports[`button Button tag: link 1`] = `
-<bolt-button>
-  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center">
-    <ssr-keep for="bolt-button"
-              class="c-bolt-button__item"
-    >
-      This is a button
-    </ssr-keep>
-  </button>
-</bolt-button>
-`;
-
-exports[`button Button tag: reset 1`] = `
-<bolt-button type="reset">
-  <button type="reset"
-          class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
-  >
-    <ssr-keep for="bolt-button"
-              class="c-bolt-button__item"
-    >
-      This is a button
-    </ssr-keep>
-  </button>
-</bolt-button>
-`;
-
-exports[`button Button tag: submit 1`] = `
-<bolt-button type="submit">
-  <button type="submit"
-          class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
-  >
-    <ssr-keep for="bolt-button"
-              class="c-bolt-button__item"
-    >
-      This is a button
-    </ssr-keep>
-  </button>
-</bolt-button>
-`;
-
 exports[`button Button type: button 1`] = `
 <bolt-button type="button">
   <button type="button"
@@ -271,18 +207,6 @@ exports[`button Button with an on_click param renders properly 1`] = `
 </bolt-button>
 `;
 
-exports[`button Button with c-bolt- class is thrown out 1`] = `
-<bolt-button>
-  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center">
-    <ssr-keep for="bolt-button"
-              class="c-bolt-button__item"
-    >
-      Button with outer JS-prefixed class
-    </ssr-keep>
-  </button>
-</bolt-button>
-`;
-
 exports[`button Button with inner classes via Drupal Attributes 1`] = `
 <bolt-button>
   <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center is-active">
@@ -290,18 +214,6 @@ exports[`button Button with inner classes via Drupal Attributes 1`] = `
               class="c-bolt-button__item"
     >
       Button with inner classes
-    </ssr-keep>
-  </button>
-</bolt-button>
-`;
-
-exports[`button Button with outer JS-class via Drupal Attributes 1`] = `
-<bolt-button class="js-click-me">
-  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center">
-    <ssr-keep for="bolt-button"
-              class="c-bolt-button__item"
-    >
-      Button with outer JS-prefixed class
     </ssr-keep>
   </button>
 </bolt-button>
