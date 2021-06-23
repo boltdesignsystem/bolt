@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/babel-preset-bolt/compare/v4.0.0-beta-4...v4.0.0) (2021-06-23)
+
+**Note:** Version bump only for package @bolt/babel-preset-bolt
+
+
+
+
+
 ## [3.3.1](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/babel-preset-bolt/compare/v3.3.0...v3.3.1) (2021-03-22)
 
 **Note:** Version bump only for package @bolt/babel-preset-bolt
