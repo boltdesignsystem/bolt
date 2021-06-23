@@ -1,45 +1,72 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
-import schema from '../text-link.schema';
-const { display, valign } = schema.properties;
+import { render, stopServer } from '../../../testing/testing-helpers';
+// import schema from '../text-link.schema';
+// const { hierarchy, size, border_radius, display } = schema.properties;
+let page, fixtures;
 
-const timeout = 90000;
+afterAll(async () => {
+  await stopServer();
+  await page.close();
+}, 100);
 
-describe('textLink', () => {
-  let page;
+beforeEach(async () => {
+  await page.evaluate(() => {
+    document.body.innerHTML = '';
+  });
+});
 
-  afterAll(async () => {
-    await stopServer();
-    await page.close();
+beforeAll(async () => {
+  page = await global.__BROWSER__.newPage();
+  await page.goto('http://127.0.0.1:4444/', {
+    timeout: 0,
   });
 
-  beforeEach(async () => {
-    await page.evaluate(() => {
-      document.body.innerHTML = '';
-    });
-  }, timeout);
+  const defaultData = {
+    content: 'This is a text link',
+    attributes: {
+      href: 'https://pega.com',
+      target: '_blank',
+    },
+  };
 
-  beforeAll(async () => {
-    page = await global.__BROWSER__.newPage();
-    await page.goto('http://127.0.0.1:4444/', {
-      timeout: 0,
-    });
-  }, timeout);
+  const icon = await render('@bolt-components-icon/icon.twig', {
+    name: 'chevron-right',
+  });
 
-  test('basic text link', async () => {
+  fixtures = {
+    defaultData,
+    icon,
+  };
+});
+
+describe('Bolt text-link', () => {
+  test(`default`, async () => {
     const results = await render('@bolt-elements-text-link/text-link.twig', {
-      content: 'This is a text link',
-      attributes: {
-        href: 'https://pega.com',
-        target: '_blank',
-      },
+      ...fixtures.defaultData,
     });
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+});
+
+describe('Bolt text-link Props', () => {
+  test(`icon after`, async () => {
+    const results = await render('@bolt-elements-text-link/text-link.twig', {
+      ...fixtures.defaultData,
+      icon_after: fixtures.icon.html,
+    });
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  test(`reverse underline`, async () => {
+    const results = await render('@bolt-elements-text-link/text-link.twig', {
+      ...fixtures.defaultData,
+      reversed_underline: 'true',
+    });
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
   });
 });
