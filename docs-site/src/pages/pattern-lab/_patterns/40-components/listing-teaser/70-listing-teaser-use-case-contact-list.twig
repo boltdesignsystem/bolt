@@ -33,6 +33,39 @@
       ]
     } only %}
   {% endset %}
+  {% set view_org_chart %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'View in Org Chart',
+      display: 'block',
+      hierarchy: 'transparent',
+      size: 'xsmall',
+      attributes: {
+        href: 'https://pega.com',
+      },
+    } only %}
+  {% endset %}
+  {% set view_peoplehub %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'View on PeopleHub',
+      display: 'block',
+      hierarchy: 'transparent',
+      size: 'xsmall',
+      attributes: {
+        href: 'https://pega.com',
+      },
+    } only %}
+  {% endset %}
+  {% set callout_content %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'flex',
+      separator: 'solid',
+      spacing: 'none',
+      items: [
+        view_org_chart,
+        view_peoplehub,
+      ]
+    } only %}
+  {% endset %}
 
   {% set contact_result_1 %}
     {% set signifier %}
@@ -52,7 +85,6 @@
       },
       meta_items: [
         'Phone: <a href="tel:+79261204482" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+79261204482</a>',
-        'Mobile: <a href="tel:+79261204482" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+79261204482</a>',
         'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">evgeny.vyatkin@pega.com</a>',
         'Location: Germany',
         'Pega ID: VYATE',
@@ -61,7 +93,9 @@
       description: '<strong>Project Delivery Leader</strong>, Pega Consulting',
       variant: 'card',
       inset_spacing: 'small',
-      action_menu: action_menu,
+      callout: {
+        content: callout_content,
+      }
     } only %}
   {% endset %}
 
@@ -108,7 +142,6 @@
         trigger: trigger,
         content: content,
         spacing: 'none',
-        trigger_event: 'hover',
       } only %}
     {% endset %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
@@ -125,7 +158,6 @@
       },
       meta_items: [
         'Phone: <a href="tel:+1(123)-456-7890x1346" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)-456-7890x1346</a>',
-        'Mobile: <a href="tel:1 098-765-4321" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(098)-765-4321</a>',
         'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">kerim.akgonul@pega.com</a>',
         'Location: Cambridge HQ',
         'Pega ID: AKGOK',
@@ -134,7 +166,9 @@
       description: teaser_description,
       variant: 'card',
       inset_spacing: 'small',
-      action_menu: action_menu,
+      callout: {
+        content: callout_content,
+      }
     } only %}
   {% endset %}
 
@@ -156,7 +190,6 @@
       },
       meta_items: [
         'Phone: <a href="tel:+1(123)-456-7890" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)-456-7890</a>',
-        'Mobile: <a href="tel:1 098-765-4321" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(098)-765-4321</a>',
         'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mike.mai@pega.com</a>',
         'Location: Cambridge HQ',
         'Pega ID: MMAI',
@@ -165,7 +198,9 @@
       description: '<p><strong>Lead Web Architect</strong>, Pega Digital IT</p>',
       variant: 'card',
       inset_spacing: 'small',
-      action_menu: action_menu,
+      callout: {
+        content: callout_content,
+      }
     } only %}
   {% endset %}
 
@@ -235,7 +270,6 @@
   },
   meta_items: [
     'Phone: <a href="tel:+1(123)-456-7890" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)-456-7890</a>',
-    'Mobile: <a href="tel:1 098-765-4321" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(098)-765-4321</a>',
     'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mike.mai@pega.com</a>',
     'Location: Cambridge HQ',
     'Pega ID: FLAST',
