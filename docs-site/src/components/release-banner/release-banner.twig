@@ -51,9 +51,11 @@
   {% set currentVersionText = "a previous " %}
 {% endif %}
 
-{% set suggestedRenderedLink = include("@bolt-components-link/link.twig", {
-  text: suggestedLink.label,
-  url: suggestedLink.value,
+{% set suggestedRenderedLink = include("@bolt-elements-text-link/text-link.twig", {
+  content: suggestedLink.label,
+  attributes: {
+    href: suggestedLink.value,
+  }
 }) %}
 
 {% set text %}

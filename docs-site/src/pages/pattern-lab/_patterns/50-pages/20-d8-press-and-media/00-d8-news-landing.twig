@@ -7,33 +7,60 @@
 {% block main_content %}
   {% embed "@bolt-components-sticky/sticky.twig" %}
     {% block sticky_content %}
-      {% include "@bolt-components-navbar/navbar.twig" with {
-        theme: "xdark",
-        "title": {
-          "tag": "h2",
-          "text": "Newsroom",
-          "icon": {
-            "name": "info-solid"
+      {% set navbar_data = [
+        {
+          link: {
+            content: 'News',
+            attributes: {
+              href: '#'
+            }
           }
         },
-        "links": [
-          {
-            "text": "News",
-            "url": "#"
-          },
-          {
-            "text": "Press Kit & Resources",
-            "url": "#"
-          },
-          {
-            "text": "Media Contacts",
-            "url": "#"
-          },
-          {
-            "text": "Another Link",
-            "url": "#"
+        {
+          link: {
+            content: 'Press Kit & Resources',
+            attributes: {
+              href: '#'
+            }
           }
-        ]
+        },
+        {
+          link: {
+            content: 'Media Contacts',
+            attributes: {
+              href: '#'
+            }
+          }
+        },
+        {
+          link: {
+            content: 'Another Link',
+            attributes: {
+              href: '#'
+            }
+          }
+        }
+      ] %}
+
+      {% set navbar_items %}
+        {% for item in navbar_data %}
+          {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+        {% endfor %}
+      {% endset %}
+
+      {% set navbar_list %}
+        {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+      {% endset %}
+
+      {% include '@bolt-components-navbar/navbar.twig' with {
+        theme: 'xdark',
+        title: {
+          content: 'Newsroom',
+          icon: {
+            name: 'info-solid'
+          }
+        },
+        links: navbar_list
       } only %}
     {% endblock %}
   {% endembed %}
@@ -61,13 +88,13 @@
           {
             text: "Press Releases",
             url: "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-press-browse--list-view/50-pages-100-d8-Press-and-Media-press-browse--list-view.html",
-            style: "secondary",
+            hierarchy: "secondary",
             width: "full@small"
           },
           {
             text: "Media Coverage",
             url: "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-media-browse--list-view/50-pages-100-d8-Press-and-Media-d8-media-browse--list-view.html",
-            style: "secondary",
+            hierarchy: "secondary",
             width: "full@small",
           }
         ],
@@ -346,7 +373,7 @@
           "pattern": "button",
           "width": "full",
           "text": "Get the resource",
-          "style": "text"
+          "hierarchy": "text"
         }
       ]
     },
@@ -370,13 +397,13 @@
         "buttons": [
           {
             "text": "First CTA",
-            "style": "secondary",
+            "hierarchy": "secondary",
             "url": "www.google.com/pega7",
             "width": "full"
           },
           {
             "text": "Optional CTA",
-            "style": "secondary",
+            "hierarchy": "secondary",
             "url": "www.google.com/pega7",
             "width": "full"
           }
@@ -403,7 +430,7 @@
           "buttons": [
             {
               "text": "Learn more",
-              "style": "text",
+              "hierarchy": "text",
               "url": "www.google.com/pega7",
               "width": "full"
             }

@@ -12,15 +12,20 @@
 
 {% set classes = [
   'c-bolt-page-header',
-  this.data.static.value ? 'c-bolt-page-header--static',
+  this.data.static.value ? 'c-bolt-page-header--static' : 'js-bolt-sticky-page-header',
   this.data.theme.value ? 't-bolt-' ~ this.data.theme.value,
 ] %}
 
 {# Setting the desktop breakpoint to work with JS. See page-header.js #}
-{% set breakpoint = bolt.data.breakpoints.large %}
+{% set attributes = attributes.setAttribute('data-bolt-page-header-desktop-bp', bolt.data.breakpoints.large) %}
+
+{# Set data-attribute used by Navbar for calculating offset. #}
+{% if this.data.static.value is sameas(false) %}
+  {% set attributes = attributes.setAttribute('data-bolt-sticky-header', '') %}
+{% endif %}
 
 {# Template #}
-<header {{ attributes.addClass(classes)|without('data-bolt-page-header-desktop-bp') }} data-bolt-page-header-desktop-bp="{{ breakpoint }}">
+<header {{ attributes.addClass(classes) }}>
   <div class="c-bolt-page-header__primary">
     {% if logo %}
       <{{ logo_tag }} {{ logo_attributes.addClass('c-bolt-page-header__logo')|without('aria-label') }} aria-label="{{ logo.label }}">

@@ -1,0 +1,83 @@
+{% set notes %}
+  It is recommended to set the <code>spacing</code> prop to <code>xsmall</code> when using the <code>center</code> prop.
+{% endset %}
+
+{% set demo %}
+  {% set navbar_items %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 1',
+        attributes: {
+          href: '#section-1'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 2',
+        attributes: {
+          href: '#section-2'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 3',
+        attributes: {
+          href: '#section-3'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 4',
+        attributes: {
+          href: '#section-4'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 5',
+        attributes: {
+          href: '#section-5'
+        }
+      }
+    } only %} 
+  {% endset %}
+  {% set navbar_list %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+      content: navbar_items,
+    } only %}  
+  {% endset %}
+
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    title: {
+      content: 'This is the navbar title',
+      icon: {
+        name: 'marketing-gray'
+      }
+    },
+    links: navbar_list,
+    center: true,
+    spacing: 'xsmall',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-navbar/navbar.twig' with {
+  center: true,
+  spacing: 'xsmall',
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Center Alignment',
+  description: 'Navbar has a style variant that allows the title and links to be center aligned horizontally.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

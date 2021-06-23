@@ -12,11 +12,12 @@
     } only %}
   {% endset %}
   {% set trigger %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "Show content",
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "Show content",
       size: "small",
-      width: "full",
+      display: "block",
       attributes: {
+        type: 'button',
         "data-bolt-modal-target": ".js-bolt-modal--simple-layout",
       }
     } only %}
@@ -121,11 +122,12 @@
     } only %}
   {% endset %}
   {% set trigger %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "Show content",
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "Show content",
       size: "small",
-      width: "full",
+      display: "block",
       attributes: {
+        type: 'button',
         "data-bolt-modal-target": ".js-bolt-modal--complex-layout",
       }
     } only %}

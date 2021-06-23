@@ -16,11 +16,12 @@
             {% else %}
               {% set modal_content = text %}
             {% endif %}
-            {% include '@bolt-components-button/button.twig' with {
-              text: theme|capitalize,
+            {% include '@bolt-elements-button/button.twig' with {
+              content: theme|capitalize,
               size: 'small',
-              width: 'full',
+              display: 'block',
               attributes: {
+                type: 'button',
                 "data-bolt-modal-target": ".js-bolt-modal--theme-" ~ theme,
               }
             } only %}

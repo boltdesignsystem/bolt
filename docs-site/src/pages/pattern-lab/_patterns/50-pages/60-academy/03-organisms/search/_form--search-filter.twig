@@ -104,11 +104,16 @@
 
 <hr>
 
-{% include "@bolt-components-link/link.twig" with {
-  text: "View archived training",
-  url: "#!",
-  icon: {
-    name: "chevron-right",
-    position: "after",
-  }
+{% set icon_chevron_right %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'chevron-right'
+  } only %}
+{% endset %}
+
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'View archived training',
+  attributes: {
+    href: '#!'
+  },
+  icon_after: icon_chevron_right
 } only %}

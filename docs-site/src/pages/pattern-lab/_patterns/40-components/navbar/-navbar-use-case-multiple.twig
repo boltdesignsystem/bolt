@@ -1,0 +1,141 @@
+{% extends '@pl/_default-page-template.twig' %}
+
+{% block main_content %}
+  <section>
+    {% set navbar_items %}
+      {% include '@bolt-components-navbar/navbar-li.twig' with {
+        link: {
+          content: 'Section 1',
+          attributes: {
+            href: '#section-1'
+          }
+        }
+      } only %} 
+      {% include '@bolt-components-navbar/navbar-li.twig' with {
+        link: {
+          content: 'Section 2',
+          attributes: {
+            href: '#section-2'
+          }
+        }
+      } only %} 
+      {% include '@bolt-components-navbar/navbar-li.twig' with {
+        link: {
+          content: 'Section 3',
+          attributes: {
+            href: '#section-3'
+          }
+        }
+      } only %} 
+    {% endset %}
+    {% set navbar_list %}
+      {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+        content: navbar_items,
+      } only %}  
+    {% endset %}
+
+    {% include '@bolt-components-navbar/navbar.twig' with {
+      title: {
+        content: 'First Navbar',
+        icon: {
+          name: 'academy'
+        }
+      },
+      links: navbar_list,
+      scroll_offset: 16
+    } only %}
+
+    {% set band_content %}
+      <div class="e-bolt-article">
+        <h2 id="section-1">Section 1</h2>
+        <p>Spicy jalapeno picanha kielbasa strip steak flank tail shankle swine. Porchetta pig cupim biltong rump pastrami flank filet mignon turkey doner. Short ribs corned beef ham short loin, turducken tri-tip shank ham hock bresaola meatloaf prosciutto. Pork loin ham hock fatback hamburger picanha ball tip filet mignon cow boudin shank. Landjaeger ham hock bacon turducken picanha. Boudin ground round pig hamburger beef ribs buffalo shoulder chicken capicola venison porchetta frankfurter ball tip. Beef ribs hamburger filet mignon leberkas ball tip beef landjaeger turkey bresaola meatball sausage pork loin.</p>
+        <p>Frankfurter tri-tip meatball prosciutto jowl beef ribs pork pork chop short loin corned beef. Doner salami bresaola sausage ham kevin burgdoggen chislic turducken chicken. Short ribs leberkas ribeye, ham jowl rump alcatra pancetta meatball spare ribs. Ham hock sirloin kielbasa, doner bresaola ball tip leberkas picanha turducken jerky. Turkey filet mignon ball tip pastrami prosciutto tongue alcatra short ribs, corned beef pork loin tenderloin doner turducken. Landjaeger prosciutto shoulder, chuck short loin leberkas frankfurter bresaola alcatra. Jerky boudin chicken, turkey chislic capicola pork belly jowl kevin corned beef buffalo fatback.</p>
+        <h2 id="section-2">Section 2</h2>
+        <p>Ball tip picanha bresaola prosciutto, cow porchetta leberkas. Tri-tip prosciutto fatback, swine kielbasa buffalo filet mignon leberkas strip steak tenderloin. Chicken cupim tail, spare ribs capicola venison turkey picanha bresaola brisket kevin boudin ribeye. Short loin shoulder bresaola porchetta landjaeger turkey meatball venison tri-tip ham. Porchetta pork fatback, sausage landjaeger beef bresaola strip steak shoulder biltong picanha.</p>
+        <p>Cow pork loin shankle, pig brisket frankfurter landjaeger shank ham chislic. Drumstick corned beef chicken landjaeger tenderloin ham hock biltong tail meatball hamburger t-bone leberkas pork chop strip steak. Pork belly fatback brisket salami short loin. Kielbasa buffalo ribeye turducken pastrami filet mignon.</p>
+        <h2 id="section-3">Section 3</h2>
+        <p>Boudin frankfurter shankle, picanha pancetta rump bresaola pig bacon fatback. Tri-tip shoulder pork kielbasa short loin, hamburger strip steak landjaeger sausage alcatra. Short ribs porchetta rump, kielbasa pork belly pancetta picanha burgdoggen pig brisket meatball pork loin pastrami salami. Cupim brisket turkey, chicken corned beef frankfurter swine pork. Ribeye meatball swine pancetta chislic. Beef ribs pancetta pastrami spare ribs, pig meatloaf jowl alcatra chicken pork chop. Frankfurter swine pancetta spare ribs bacon, cow doner pork chop jerky venison pastrami corned beef tri-tip.</p>
+        <p>Spicy jalapeno picanha kielbasa strip steak flank tail shankle swine. Porchetta pig cupim biltong rump pastrami flank filet mignon turkey doner. Short ribs corned beef ham short loin, turducken tri-tip shank ham hock bresaola meatloaf prosciutto. Pork loin ham hock fatback hamburger picanha ball tip filet mignon cow boudin shank. Landjaeger ham hock bacon turducken picanha. Boudin ground round pig hamburger beef ribs buffalo shoulder chicken capicola venison porchetta frankfurter ball tip. Beef ribs hamburger filet mignon leberkas ball tip beef landjaeger turkey bresaola meatball sausage pork loin.</p>
+        <p>Frankfurter tri-tip meatball prosciutto jowl beef ribs pork pork chop short loin corned beef. Doner salami bresaola sausage ham kevin burgdoggen chislic turducken chicken. Short ribs leberkas ribeye, ham jowl rump alcatra pancetta meatball spare ribs. Ham hock sirloin kielbasa, doner bresaola ball tip leberkas picanha turducken jerky. Turkey filet mignon ball tip pastrami prosciutto tongue alcatra short ribs, corned beef pork loin tenderloin doner turducken. Landjaeger prosciutto shoulder, chuck short loin leberkas frankfurter bresaola alcatra. Jerky boudin chicken, turkey chislic capicola pork belly jowl kevin corned beef buffalo fatback.</p>
+      </div>
+    {% endset %}
+
+    {% include '@bolt-components-band/band.twig' with {
+      content: band_content,
+      theme: 'xlight',
+    } only %}
+  </section>
+
+  <section>
+    {% set navbar_items %}
+      {% include '@bolt-components-navbar/navbar-li.twig' with {
+        link: {
+          content: 'Section 4',
+          attributes: {
+            href: '#section-4'
+          }
+        }
+      } only %} 
+      {% include '@bolt-components-navbar/navbar-li.twig' with {
+        link: {
+          content: 'Section 5',
+          attributes: {
+            href: '#section-5'
+          }
+        }
+      } only %} 
+      {% include '@bolt-components-navbar/navbar-li.twig' with {
+        link: {
+          content: 'Section 6',
+          attributes: {
+            href: '#section-6'
+          }
+        }
+      } only %} 
+    {% endset %}
+    {% set navbar_list %}
+      {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+        content: navbar_items,
+      } only %}  
+    {% endset %}
+
+    {% include '@bolt-components-navbar/navbar.twig' with {
+      title: {
+        content: 'Second navbar pushes off the first',
+        icon: {
+          name: 'info-open'
+        }
+      },
+      links: navbar_list,
+      theme: 'xdark'
+    } only %}
+
+    {% set band_content %}
+      <div class="e-bolt-article">
+        <h2 id="section-4">Section 4</h2>
+        <p>Spicy jalapeno picanha kielbasa strip steak flank tail shankle swine. Porchetta pig cupim biltong rump pastrami flank filet mignon turkey doner. Short ribs corned beef ham short loin, turducken tri-tip shank ham hock bresaola meatloaf prosciutto. Pork loin ham hock fatback hamburger picanha ball tip filet mignon cow boudin shank. Landjaeger ham hock bacon turducken picanha. Boudin ground round pig hamburger beef ribs buffalo shoulder chicken capicola venison porchetta frankfurter ball tip. Beef ribs hamburger filet mignon leberkas ball tip beef landjaeger turkey bresaola meatball sausage pork loin.</p>
+        <p>Frankfurter tri-tip meatball prosciutto jowl beef ribs pork pork chop short loin corned beef. Doner salami bresaola sausage ham kevin burgdoggen chislic turducken chicken. Short ribs leberkas ribeye, ham jowl rump alcatra pancetta meatball spare ribs. Ham hock sirloin kielbasa, doner bresaola ball tip leberkas picanha turducken jerky. Turkey filet mignon ball tip pastrami prosciutto tongue alcatra short ribs, corned beef pork loin tenderloin doner turducken. Landjaeger prosciutto shoulder, chuck short loin leberkas frankfurter bresaola alcatra. Jerky boudin chicken, turkey chislic capicola pork belly jowl kevin corned beef buffalo fatback.</p>
+        <p>Ball tip picanha bresaola prosciutto, cow porchetta leberkas. Tri-tip prosciutto fatback, swine kielbasa buffalo filet mignon leberkas strip steak tenderloin. Chicken cupim tail, spare ribs capicola venison turkey picanha bresaola brisket kevin boudin ribeye. Short loin shoulder bresaola porchetta landjaeger turkey meatball venison tri-tip ham. Porchetta pork fatback, sausage landjaeger beef bresaola strip steak shoulder biltong picanha.</p>
+        <p>Cow pork loin shankle, pig brisket frankfurter landjaeger shank ham chislic. Drumstick corned beef chicken landjaeger tenderloin ham hock biltong tail meatball hamburger t-bone leberkas pork chop strip steak. Pork belly fatback brisket salami short loin. Kielbasa buffalo ribeye turducken pastrami filet mignon.</p>
+        <p>Boudin frankfurter shankle, picanha pancetta rump bresaola pig bacon fatback. Tri-tip shoulder pork kielbasa short loin, hamburger strip steak landjaeger sausage alcatra. Short ribs porchetta rump, kielbasa pork belly pancetta picanha burgdoggen pig brisket meatball pork loin pastrami salami. Cupim brisket turkey, chicken corned beef frankfurter swine pork. Ribeye meatball swine pancetta chislic. Beef ribs pancetta pastrami spare ribs, pig meatloaf jowl alcatra chicken pork chop. Frankfurter swine pancetta spare ribs bacon, cow doner pork chop jerky venison pastrami corned beef tri-tip.</p>
+        <h2 id="section-5">Section 5</h2>
+        <p>Ball tip picanha bresaola prosciutto, cow porchetta leberkas. Tri-tip prosciutto fatback, swine kielbasa buffalo filet mignon leberkas strip steak tenderloin. Chicken cupim tail, spare ribs capicola venison turkey picanha bresaola brisket kevin boudin ribeye. Short loin shoulder bresaola porchetta landjaeger turkey meatball venison tri-tip ham. Porchetta pork fatback, sausage landjaeger beef bresaola strip steak shoulder biltong picanha.</p>
+        <p>Cow pork loin shankle, pig brisket frankfurter landjaeger shank ham chislic. Drumstick corned beef chicken landjaeger tenderloin ham hock biltong tail meatball hamburger t-bone leberkas pork chop strip steak. Pork belly fatback brisket salami short loin. Kielbasa buffalo ribeye turducken pastrami filet mignon.</p>
+        <p>Spicy jalapeno picanha kielbasa strip steak flank tail shankle swine. Porchetta pig cupim biltong rump pastrami flank filet mignon turkey doner. Short ribs corned beef ham short loin, turducken tri-tip shank ham hock bresaola meatloaf prosciutto. Pork loin ham hock fatback hamburger picanha ball tip filet mignon cow boudin shank. Landjaeger ham hock bacon turducken picanha. Boudin ground round pig hamburger beef ribs buffalo shoulder chicken capicola venison porchetta frankfurter ball tip. Beef ribs hamburger filet mignon leberkas ball tip beef landjaeger turkey bresaola meatball sausage pork loin.</p>
+        <p>Frankfurter tri-tip meatball prosciutto jowl beef ribs pork pork chop short loin corned beef. Doner salami bresaola sausage ham kevin burgdoggen chislic turducken chicken. Short ribs leberkas ribeye, ham jowl rump alcatra pancetta meatball spare ribs. Ham hock sirloin kielbasa, doner bresaola ball tip leberkas picanha turducken jerky. Turkey filet mignon ball tip pastrami prosciutto tongue alcatra short ribs, corned beef pork loin tenderloin doner turducken. Landjaeger prosciutto shoulder, chuck short loin leberkas frankfurter bresaola alcatra. Jerky boudin chicken, turkey chislic capicola pork belly jowl kevin corned beef buffalo fatback.</p>
+        <p>Ball tip picanha bresaola prosciutto, cow porchetta leberkas. Tri-tip prosciutto fatback, swine kielbasa buffalo filet mignon leberkas strip steak tenderloin. Chicken cupim tail, spare ribs capicola venison turkey picanha bresaola brisket kevin boudin ribeye. Short loin shoulder bresaola porchetta landjaeger turkey meatball venison tri-tip ham. Porchetta pork fatback, sausage landjaeger beef bresaola strip steak shoulder biltong picanha.</p>
+        <h2 id="section-6">Section 6</h2>
+        <p>Boudin frankfurter shankle, picanha pancetta rump bresaola pig bacon fatback. Tri-tip shoulder pork kielbasa short loin, hamburger strip steak landjaeger sausage alcatra. Short ribs porchetta rump, kielbasa pork belly pancetta picanha burgdoggen pig brisket meatball pork loin pastrami salami. Cupim brisket turkey, chicken corned beef frankfurter swine pork. Ribeye meatball swine pancetta chislic. Beef ribs pancetta pastrami spare ribs, pig meatloaf jowl alcatra chicken pork chop. Frankfurter swine pancetta spare ribs bacon, cow doner pork chop jerky venison pastrami corned beef tri-tip.</p>
+        <p>Spicy jalapeno picanha kielbasa strip steak flank tail shankle swine. Porchetta pig cupim biltong rump pastrami flank filet mignon turkey doner. Short ribs corned beef ham short loin, turducken tri-tip shank ham hock bresaola meatloaf prosciutto. Pork loin ham hock fatback hamburger picanha ball tip filet mignon cow boudin shank. Landjaeger ham hock bacon turducken picanha. Boudin ground round pig hamburger beef ribs buffalo shoulder chicken capicola venison porchetta frankfurter ball tip. Beef ribs hamburger filet mignon leberkas ball tip beef landjaeger turkey bresaola meatball sausage pork loin.</p>
+        <p>Frankfurter tri-tip meatball prosciutto jowl beef ribs pork pork chop short loin corned beef. Doner salami bresaola sausage ham kevin burgdoggen chislic turducken chicken. Short ribs leberkas ribeye, ham jowl rump alcatra pancetta meatball spare ribs. Ham hock sirloin kielbasa, doner bresaola ball tip leberkas picanha turducken jerky. Turkey filet mignon ball tip pastrami prosciutto tongue alcatra short ribs, corned beef pork loin tenderloin doner turducken. Landjaeger prosciutto shoulder, chuck short loin leberkas frankfurter bresaola alcatra. Jerky boudin chicken, turkey chislic capicola pork belly jowl kevin corned beef buffalo fatback.</p>
+        <p>Cow pork loin shankle, pig brisket frankfurter landjaeger shank ham chislic. Drumstick corned beef chicken landjaeger tenderloin ham hock biltong tail meatball hamburger t-bone leberkas pork chop strip steak. Pork belly fatback brisket salami short loin. Kielbasa buffalo ribeye turducken pastrami filet mignon.</p>
+        <p>Spicy jalapeno picanha kielbasa strip steak flank tail shankle swine. Porchetta pig cupim biltong rump pastrami flank filet mignon turkey doner. Short ribs corned beef ham short loin, turducken tri-tip shank ham hock bresaola meatloaf prosciutto. Pork loin ham hock fatback hamburger picanha ball tip filet mignon cow boudin shank. Landjaeger ham hock bacon turducken picanha. Boudin ground round pig hamburger beef ribs buffalo shoulder chicken capicola venison porchetta frankfurter ball tip. Beef ribs hamburger filet mignon leberkas ball tip beef landjaeger turkey bresaola meatball sausage pork loin.</p>
+      </div>
+    {% endset %}
+
+    {% include '@bolt-components-band/band.twig' with {
+      content: band_content,
+      theme: 'xlight',
+    } only %}
+  </section>
+{% endblock %}
