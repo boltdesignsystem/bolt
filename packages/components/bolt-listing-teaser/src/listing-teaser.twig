@@ -117,15 +117,19 @@
   {% if action_menu or share_menu %}<div class="c-bolt-listing-teaser__actions">{% endif %}
     {% if share_menu %}
       {% set _share_popover_trigger %}
-        {% include '@bolt-components-button/button.twig' with {
-          text: 'Share menu'|t,
-          size: 'xsmall',
-          hierarchy: 'text',
-          iconOnly: true,
-          icon: {
+        {% set _icon_share %}
+          {% include '@bolt-components-icon/icon.twig' with {
             name: 'share',
-            position: 'before',
-          },
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Share'|t,
+          size: 'xsmall',
+          hierarchy: 'transparent',
+          icon_only: _icon_share,
+          attributes: {
+            type: 'button'
+          }
         } only %}
       {% endset %}
       {% include '@bolt-components-popover/popover.twig' with {
@@ -137,15 +141,19 @@
     {% endif %}
     {% if action_menu %}
       {% set _action_popover_trigger %}
-        {% include '@bolt-components-button/button.twig' with {
-          text: 'Action menu'|t,
+        {% set _icon_more %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'more',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'More actions'|t,
           size: 'xsmall',
           hierarchy: 'tertiary',
-          iconOnly: true,
-          icon: {
-            name: 'more',
-            position: 'before',
-          },
+          icon_only: _icon_more,
+          attributes: {
+            type: 'button'
+          }
         } only %}
       {% endset %}
       {% include '@bolt-components-popover/popover.twig' with {
