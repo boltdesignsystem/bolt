@@ -44,7 +44,7 @@
 {% set notes %}
   <bolt-ol>
     <bolt-li>It is recommended that icon only buttons to be used in tandem with tooltip to give the user more context about the button&rsquo;s function.</bolt-li>
-    <bolt-li>When writing in plain HTML, <bolt-code-snippet display="inline">aria-label</bolt-code-snippet> is required, and it must equal to the button text. For example: <bolt-code-snippet display="inline" lang="html">&lt;button type="button" class="e-bolt-button e-bolt-button--icon-only" aria-label="Download"&gt;</bolt-code-snippet>. Text should not be used inside the button when using <bolt-code-snippet display="inline">aria-label</bolt-code-snippet>.</bolt-li>
+    <bolt-li>When writing in plain HTML, <bolt-code-snippet display="inline">aria-label</bolt-code-snippet> is required to render the button text. For example: <bolt-code-snippet display="inline" lang="html">&lt;button type="button" class="e-bolt-button e-bolt-button--icon-only" aria-label="Download"&gt;</bolt-code-snippet>. Text should not be used inside the button when using <bolt-code-snippet display="inline">aria-label</bolt-code-snippet>.</bolt-li>
     <bolt-li>When writing in plain HTML, <bolt-code-snippet display="inline" lang="html">&lt;span class="e-bolt-button__icon-center"&gt;</bolt-code-snippet> is required to wrap around the icon markup. The wrapper ensures that the icon will always center within the button.</bolt-li>
   </bolt-ol>
 {% endset %}
