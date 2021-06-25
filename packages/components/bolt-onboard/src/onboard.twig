@@ -36,8 +36,5 @@
 <bolt-onboard {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %} {{ this.props|without("content")|without("class") }}>
 	<replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
 		{{ content }}
-		{# <footer class="c-bolt-onboard__test">
-							{{content}}
-						</footer> #}
 	</replace-with-children>
 </bolt-onboard>
