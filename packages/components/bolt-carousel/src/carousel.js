@@ -504,15 +504,19 @@ class BoltCarousel extends BoltElement {
     );
 
     const buttonTemplate = (text, iconName) => html`
-      <bolt-button
-        size="medium"
-        border-radius="full"
-        color="secondary"
-        icon-only
+      <button
+        type="button"
+        class="e-bolt-button
+        e-bolt-button--medium
+        e-bolt-button--border-radius-full
+        e-bolt-button--secondary
+        e-bolt-button--icon-only"
+        aria-label="${text}"
       >
-        ${text}
-        <bolt-icon size="large" slot="before" name="${iconName}"></bolt-icon>
-      </bolt-button>
+        <span class="e-bolt-button__icon-center">
+          <bolt-icon size="large" name="${iconName}"></bolt-icon>
+        </span>
+      </button>
     `;
 
     return html`
