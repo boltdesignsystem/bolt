@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef4f54aec82f84b24a7a9ed66dc72270",
+    "content-hash": "9a1598e0c28d1b2c77d5b22ede2de7da",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -70,37 +70,32 @@
         },
         {
             "name": "basaltinc/twig-tools",
-            "version": "v1.4.3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/basaltinc/twig-tools.git",
-                "reference": "99f3b6bbc6066a0ca336185aa628e3c1f6797696"
+                "url": "https://github.com/boltdesignsystem/twig-tools",
+                "reference": "2914cf7da4465aa102ffa773f6c276127a0ae139"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/99f3b6bbc6066a0ca336185aa628e3c1f6797696",
-                "reference": "99f3b6bbc6066a0ca336185aa628e3c1f6797696",
+                "url": "https://api.github.com/repos/boltdesignsystem/twig-tools/zipball/2914cf7da4465aa102ffa773f6c276127a0ae139",
+                "reference": "2914cf7da4465aa102ffa773f6c276127a0ae139",
                 "shasum": ""
             },
             "require": {
                 "fzaninotto/faker": "^1.7",
                 "justinrainbow/json-schema": "^5.2",
                 "symfony/yaml": "^3.2",
-                "twig/twig": "^1.0",
+                "twig/twig": "^1.0 || ^2.0",
                 "webmozart/path-util": "^2.3"
             },
+            "default-branch": true,
             "type": "library",
-            "extra": {
-                "patches_applied": {
-                    "Add schema error reporting configuration": ".patches/configurableSchemaErrorReporting.patch"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "BasaltInc\\TwigTools\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -110,7 +105,7 @@
                     "email": "evanlovely@gmail.com"
                 }
             ],
-            "time": "2019-05-28T16:50:14+00:00"
+            "time": "2021-06-25T21:45:04+00:00"
         },
         {
             "name": "bolt-design-system/core-php",
@@ -118,10 +113,9 @@
             "dist": {
                 "type": "path",
                 "url": "../packages/twig-integration/twig-extensions-shared",
-                "reference": "9c7bf6d0acca18a62a2c22fbc2ac4d6585391390"
+                "reference": "e423ee4b95ee0da3dafaa407166dd442807ca31c"
             },
             "require": {
-                "basaltinc/twig-tools": "^1.4.0",
                 "fzaninotto/faker": "^1.9.1",
                 "gregwar/image": "^2.0",
                 "mexitek/phpcolors": "^0.4.0",
@@ -1840,16 +1834,23 @@
     "packages-dev": [],
     "aliases": [
         {
+            "package": "basaltinc/twig-tools",
+            "version": "9999999-dev",
+            "alias": "1.4.3",
+            "alias_normalized": "1.4.3.0"
+        },
+        {
             "package": "pattern-lab/core",
             "version": "dev-develop",
             "alias": "2.9.0",
             "alias_normalized": "2.9.0.0"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "pattern-lab/core": 20,
-        "pattern-lab/patternengine-twig": 20
+        "pattern-lab/patternengine-twig": 20,
+        "basaltinc/twig-tools": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

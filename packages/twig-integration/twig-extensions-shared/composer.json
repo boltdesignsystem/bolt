@@ -13,6 +13,13 @@
       "name": "Evan Lovely"
     }
   ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/boltdesignsystem/twig-tools",
+      "no-api": true
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Bolt\\": "src/"
@@ -20,7 +27,7 @@
   },
   "require": {
     "fzaninotto/faker": "^1.9.1",
-    "basaltinc/twig-tools": "^1.4.0",
+    "basaltinc/twig-tools": "dev-master as 1.4.3",
     "michelf/php-markdown": "^1.8.0",
     "webmozart/path-util": "^2.3",
     "shudrum/array-finder": "^1.1",
@@ -41,5 +48,6 @@
       "@composer install --no-interaction --prefer-dist --no-progress",
       "vendor/bin/phpunit --colors=always tests"
     ]
-  }
+  },
+  "minimum-stability": "dev"
 }
