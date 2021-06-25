@@ -233,13 +233,13 @@
             "dist": {
                 "type": "path",
                 "url": "../packages/twig-integration/twig-renderer",
-                "reference": "234598fba82daf1e242ec99577fb8c6b5ba35001"
+                "reference": "6c972748f07dbf5b04c6a556c337736cc109bd21"
             },
             "require": {
                 "bolt-design-system/core-php": "*",
                 "bolt-design-system/drupal-twig-extensions": "*",
                 "symfony/finder": "*",
-                "twig/twig": "^1.42.5",
+                "twig/twig": "^1.42.5 || ^2.0",
                 "webmozart/path-util": "*"
             },
             "type": "library",
@@ -251,7 +251,10 @@
             "license": [
                 "MIT"
             ],
-            "description": "Twig rendering service used by the Bolt Design System."
+            "description": "Twig rendering service used by the Bolt Design System.",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "cebe/markdown",
