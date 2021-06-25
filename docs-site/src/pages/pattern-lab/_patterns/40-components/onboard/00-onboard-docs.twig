@@ -1,0 +1,12 @@
+{% set usage %}
+{% verbatim %}
+	{% include '@bolt-components-onboard/onboard.twig' with {
+  content: "This is an onboard component"
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "onboard",
+  usage: usage
+} only %}

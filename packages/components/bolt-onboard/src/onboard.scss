@@ -1,0 +1,72 @@
+/* ------------------------------------ *\
+   Onboard
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-onboard', block, medium) {
+  .c-bolt-icon {
+    margin: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall) 0 0;
+  }
+
+  .c-bolt-icon--warning {
+    color: var(--bolt-color-warning);
+  }
+
+  .c-bolt-icon--product {
+    color: var(--bolt-color-blue);
+  }
+
+  .c-bolt-icon--check-solid {
+    color: var(--bolt-color-success);
+  }
+}
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+.c-bolt-onboard {
+  // Styles go here. /* [1] */
+  display: flex;
+  align-items: flex-start;
+  padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
+  // Status styling//
+  &--status-information {
+    border: 0.1rem solid var(--bolt-color-blue);
+    border-left: 1rem solid var(--bolt-color-blue);
+  }
+
+  &--status-warning {
+    border: 0.1rem solid var(--bolt-color-warning);
+    border-left: 1rem solid var(--bolt-color-warning);
+  }
+
+  &--status-success {
+    border: 0.1rem solid var(--bolt-color-success);
+    border-left: 1rem solid var(--bolt-color-success);
+  }
+
+  //Size styling//
+  &--size-medium {
+    padding: var(--bolt-spacing-y-large) var(--bolt-spacing-x-medium);
+  }
+
+  &--size-large {
+    padding: var(--bolt-spacing-y-xlarge) var(--bolt-spacing-x-medium);
+  }
+
+  //Border radius styling//
+  &--radius-full {
+    border-radius: 100em;
+  }
+
+  &--radius-medium {
+    border-radius: 0.6rem;
+  }
+}

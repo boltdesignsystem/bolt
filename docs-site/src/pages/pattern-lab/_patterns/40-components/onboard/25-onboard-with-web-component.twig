@@ -1,0 +1,46 @@
+{% macro code_example(code) %}
+	<div class="u-bolt-margin-bottom-small">
+		{{ code }}
+	</div>
+	<div class="u-bolt-margin-bottom-large">
+		<bolt-code-snippet syntax="dark" lang="html">
+			{% spaceless %}
+				{{ code }}
+			{% endspaceless %}
+		</bolt-code-snippet>
+	</div>
+{% endmacro %}
+
+{% import _self as onboard_example %}
+
+{% set onboard_demo %}
+<bolt-onboard>
+	This is a default onboard component.
+</bolt-onboard>
+{% endset %}
+
+{% set onboard_prop_demo %}
+<bolt-onboard status="success">
+	You passed this challenge
+</bolt-onboard>
+<bolt-onboard status="warning" size="medium" radius="medium">
+	Check your chalange
+</bolt-onboard>
+<bolt-onboard status="success" size="medium" radius="full">
+	You passed this challenge
+</bolt-onboard>
+{% endset %}
+
+<bolt-text headline>Web Component Usage</bolt-text>
+<bolt-text>
+	Bolt onboard is a web component, you can simply use
+	<bolt-code-snippet display="inline" lang="html">&lt;bolt-onboard&gt;</bolt-code-snippet>
+	in the markup to make it render.
+</bolt-text>
+{% include onboard_example.code_example(onboard_demo) %}
+
+<bolt-text headline>Prop Usage</bolt-text>
+<bolt-text>
+	Configure the onboard with the properties specified in the schema.
+</bolt-text>
+{% include onboard_example.code_example(onboard_prop_demo) %}
