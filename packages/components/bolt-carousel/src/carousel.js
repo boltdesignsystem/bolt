@@ -504,7 +504,7 @@ class BoltCarousel extends BoltElement {
     );
 
     const buttonTemplate = (text, iconName) => html`
-      <button
+      <span
         type="button"
         class="e-bolt-button
         e-bolt-button--medium
@@ -516,7 +516,7 @@ class BoltCarousel extends BoltElement {
         <span class="e-bolt-button__icon-center">
           <bolt-icon size="large" name="${iconName}"></bolt-icon>
         </span>
-      </button>
+      </span>
     `;
 
     return html`
