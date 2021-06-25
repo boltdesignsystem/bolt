@@ -23,6 +23,11 @@
       "type": "vcs",
       "url": "https://github.com/boltdesignsystem/patternlab-php-core",
       "no-api": true
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/remydenton/patternengine-php-twig",
+      "no-api": true
     }
   ],
   "require": {
@@ -31,7 +36,7 @@
     "bolt-design-system/drupal-twig-extensions": "*",
     "bolt-design-system/styleguidekit-twig-default": "*",
     "pattern-lab/core": "dev-develop as 2.9.0",
-    "pattern-lab/patternengine-twig": "^2.2.2",
+    "pattern-lab/patternengine-twig": "dev-develop",
     "cweagans/composer-patches": "^1.7.0",
     "evanlovely/plugin-twig-namespaces": "^1.1.1",
     "cebe/markdown": "^1.2",
@@ -74,5 +79,6 @@
     "installer-types": [
       "patternlab-plugin"
     ]
-  }
+  },
+  "minimum-stability": "dev"
 }

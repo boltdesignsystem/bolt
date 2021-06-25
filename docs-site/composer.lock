@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "714122d932aa9201361741108bee6c31",
+    "content-hash": "ef4f54aec82f84b24a7a9ed66dc72270",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1081,22 +1081,23 @@
         },
         {
             "name": "pattern-lab/patternengine-twig",
-            "version": "v2.2.2",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pattern-lab/patternengine-php-twig.git",
-                "reference": "edeb27a56a7a389e8f369e02ba9c50ee83a84cbb"
+                "url": "https://github.com/remydenton/patternengine-php-twig",
+                "reference": "dcafa7ef9c778120bdf118b241ab78dd3f958d89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pattern-lab/patternengine-php-twig/zipball/edeb27a56a7a389e8f369e02ba9c50ee83a84cbb",
-                "reference": "edeb27a56a7a389e8f369e02ba9c50ee83a84cbb",
+                "url": "https://api.github.com/repos/remydenton/patternengine-php-twig/zipball/dcafa7ef9c778120bdf118b241ab78dd3f958d89",
+                "reference": "dcafa7ef9c778120bdf118b241ab78dd3f958d89",
                 "shasum": ""
             },
             "require": {
                 "pattern-lab/core": "^2.0.0",
-                "twig/twig": "~1.0"
+                "twig/twig": "^1.0 || ^2.0"
             },
+            "default-branch": true,
             "type": "patternlab-patternengine",
             "extra": {
                 "patternlab": {
@@ -1114,12 +1115,6 @@
                         "twigTagExt": "tag.php",
                         "twigTestExt": "test.php"
                     }
-                },
-                "patches_applied": {
-                    "[FEATURE] Add Twig Globals to Pattern Engine.": ".patches/addTwigGlobals.patch",
-                    "[FEATURE] Faster compile times - add cache support to file loader": ".patches/faster-compile-times--add-twig-cache-support--file-system-loader.patch",
-                    "[FEATURE] Faster compile times - add cache support to pattern loader": ".patches/faster-compile-times--add-twig-cache-support--pattern-loader.patch",
-                    "[FEATURE] Faster compile times - add cache support to string loader": ".patches/faster-compile-times--add-twig-cache-support--string-loader.patch"
                 }
             },
             "autoload": {
@@ -1127,7 +1122,6 @@
                     "PatternLab\\PatternEngine\\Twig": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1146,7 +1140,12 @@
                 "pattern lab",
                 "twig"
             ],
-            "time": "2018-02-08T00:11:23+00:00"
+            "support": {
+                "issues": "https://github.com/pattern-lab/patternengine-php-twig/issues",
+                "wiki": "http://patternlab.io/docs/",
+                "source": "https://github.com/pattern-lab/patternengine-php-twig/releases"
+            },
+            "time": "2021-06-25T21:21:42+00:00"
         },
         {
             "name": "seld/jsonlint",
@@ -1849,7 +1848,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "pattern-lab/core": 20
+        "pattern-lab/core": 20,
+        "pattern-lab/patternengine-twig": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
