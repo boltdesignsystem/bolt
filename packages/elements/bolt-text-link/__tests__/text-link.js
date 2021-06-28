@@ -1,6 +1,4 @@
 import { render, stopServer } from '../../../testing/testing-helpers';
-// import schema from '../text-link.schema';
-// const { hierarchy, size, border_radius, display } = schema.properties;
 let page, fixtures;
 
 afterAll(async () => {

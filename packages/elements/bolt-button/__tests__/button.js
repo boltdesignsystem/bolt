@@ -39,7 +39,6 @@ beforeAll(async () => {
 });
 
 describe('Bolt button', () => {
-  // Without a Web Component
   test(`default`, async () => {
     const results = await render('@bolt-elements-button/button.twig', {
       ...fixtures.defaultData,
