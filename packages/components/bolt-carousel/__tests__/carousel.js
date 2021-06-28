@@ -49,12 +49,12 @@ const carouselSlideImage = `
 `;
 
 const carouselButtonControls = `
-<button class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"  aria-label="Previous" slot="previous-btn">
+<span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only" aria-hidden="true" slot="previous-btn">
 <span class="e-bolt-button__icon-center"><bolt-icon name="chevron-left"size="large"></bolt-icon></span>
-</button>
-<button class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"  aria-label="Next" slot="next-btn">
+</span>
+<span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only" aria-hidden="true" slot="next-btn">
 <span class="e-bolt-button__icon-center"><bolt-icon name="chevron-right"size="large"></bolt-icon></span>
-</button>
+</span>
 `;
 
 describe('carousel', () => {
