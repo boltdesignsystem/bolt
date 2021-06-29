@@ -21,10 +21,11 @@
 
 {% macro loopThroughEnums(prop) %}
   {% for x in prop.enum %}
-    <code>{% if prop.type == "boolean" %}{{ x ? "true" : "false" }}{% elseif x == null %}NULL{% else %}{{- x -}}{% endif %}</code>
-    {%- if not loop.last %}
-      {{ prop.enum|length == 2 ? " or " : ", " }}
-    {% endif -%}
+    {% set join_value = '' %}
+    {% if not loop.last %}
+      {% set join_value = prop.enum|length == 2 ? " or " : ", " %}
+    {% endif %}
+    <code>{% if prop.type == "boolean" %}{{ x ? "true" : "false" }}{% elseif x == null %}NULL{% else %}{{- x -}}{% endif %}</code>{{ join_value }}
   {% endfor %}
 {% endmacro %}
 
@@ -267,7 +268,7 @@
                   {% else %}
                     <td class="c-bds-docs-table__col">
                       <code>{{ prop.type }}</code>
-                    {% endif %}
+                  {% endif %}
 
                     <!-- default value -->
                     <td class="c-bds-docs-table__col">
