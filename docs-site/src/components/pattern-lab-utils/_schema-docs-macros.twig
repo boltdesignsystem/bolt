@@ -148,7 +148,13 @@
     {% else %}
       <td class="c-bds-docs-table__col">
         {% if prop.type %}
-          <code>{{ prop.type }}</code>
+          {% set display_type = prop.type %}
+          {% if prop.type == "array" and prop.items and prop.items.type == "string" %}
+            {% set is_array_of_strings = true %}
+            <code>array[string]</code>
+          {% else %}
+            <code>{{ prop.type }}</code>
+          {% endif %}
         {% else %}
           —
         {% endif %}
@@ -169,7 +175,11 @@
       </td>
 
       <!-- values -->
+      {% if is_array_of_strings %}
+      <td class="c-bds-docs-table__col">{{ _self.schemaProps(prop.items) }}</td>
+      {% else %}
       <td class="c-bds-docs-table__col">{{ _self.schemaProps(prop) }}</td>
+      {% endif %}
 
   </tr>
 {% endmacro %}
