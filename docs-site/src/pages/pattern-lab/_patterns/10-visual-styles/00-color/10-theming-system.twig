@@ -40,6 +40,7 @@
             },
             attributes: {
               class: [
+                "u-bolt-margin-top-large",
                 "u-bolt-margin-bottom-xsmall",
               ],
             },
@@ -167,7 +168,6 @@
             },
             attributes: {
               class: [
-                "u-bolt-margin-top-large",
                 "u-bolt-margin-bottom-xsmall",
               ],
             },
@@ -187,10 +187,24 @@
                 size: "xxxlarge",
                 text: "Headline Text",
               } only %}
+              {% set link %}
+                {% set icon_chevron_right %}
+                  {% include "@bolt-components-icon/icon.twig" with {
+                    name: "chevron-right",
+                  } only %}
+                {% endset %}
+                {% include "@bolt-elements-text-link/text-link.twig" with {
+                  content: "Headline Text Link",
+                  reversed_underline: true,
+                  icon_after: icon_chevron_right,
+                  attributes: {
+                    href: "https://pega.com",
+                  }
+                } only %}
+              {% endset %}
               {% include "@bolt-components-headline/headline.twig" with {
                 size: "xxxlarge",
-                text: "Headline Text Link",
-                url: "https://pega.com",
+                text: link,
               } only %}
             </bolt-card-replacement-body>
           </bolt-card-replacement>
@@ -207,9 +221,16 @@
               {% include "@bolt-components-headline/text.twig" with {
                 text: "Body text",
               } only %}
+              {% set link %}
+                {% include "@bolt-elements-text-link/text-link.twig" with {
+                  content: "Body Text Link",
+                  attributes: {
+                    href: "https://pega.com",
+                  }
+                } only %}
+              {% endset %}
               {% include "@bolt-components-headline/text.twig" with {
-                text: "Body text link",
-                url: "https://pega.com",
+                text: link,
               } only %}
             </bolt-card-replacement-body>
           </bolt-card-replacement>
