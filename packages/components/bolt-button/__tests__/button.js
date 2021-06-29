@@ -53,16 +53,16 @@ describe('button', () => {
   // Tag is deprecated.  The presence or absence of a URL param determines which
   // tag will be used.  The 'type' prop should be used for the values 'reset'
   // and 'submit' because those aren't tags.
-  // tag.enum.forEach(async tagChoice => {
-  //   test(`Button tag: ${tagChoice}`, async () => {
-  //     const results = await render('@bolt-components-button/button.twig', {
-  //       text: 'This is a button',
-  //       tag: tagChoice,
-  //     });
-  //     expect(results.ok).toBe(true);
-  //     expect(results.html).toMatchSnapshot();
-  //   });
-  // });
+  tag.enum.forEach(async tagChoice => {
+    test(`Button tag: ${tagChoice}`, async () => {
+      const results = await render('@bolt-components-button/button.twig', {
+        text: 'This is a button',
+        tag: tagChoice,
+      });
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
 
   type.enum.forEach(async typeChoice => {
     test(`Button type: ${typeChoice}`, async () => {
@@ -148,27 +148,27 @@ describe('button', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  // test('Button with outer JS-class via Drupal Attributes', async () => {
-  //   const results = await render('@bolt-components-button/button.twig', {
-  //     text: 'Button with outer JS-prefixed class',
-  //     attributes: {
-  //       class: ['js-click-me'],
-  //     },
-  //   });
-  //   expect(results.ok).toBe(true);
-  //   expect(results.html).toMatchSnapshot();
-  // });
+  test('Button with outer JS-class via Drupal Attributes', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'Button with outer JS-prefixed class',
+      attributes: {
+        class: ['js-click-me'],
+      },
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
 
-  // test('Button with c-bolt- class is thrown out', async () => {
-  //   const results = await render('@bolt-components-button/button.twig', {
-  //     text: 'Button with outer JS-prefixed class',
-  //     attributes: {
-  //       class: ['c-bolt-button--secondary'],
-  //     },
-  //   });
-  //   expect(results.ok).toBe(true);
-  //   expect(results.html).toMatchSnapshot();
-  // });
+  test('Button with c-bolt- class is thrown out', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'Button with outer JS-prefixed class',
+      attributes: {
+        class: ['c-bolt-button--secondary'],
+      },
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
 
   test('Button with an on_click param renders properly', async () => {
     const results = await render('@bolt-components-button/button.twig', {
