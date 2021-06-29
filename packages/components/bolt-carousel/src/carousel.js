@@ -505,7 +505,6 @@ class BoltCarousel extends BoltElement {
 
     const buttonTemplate = iconName => html`
       <span
-        type="button"
         class="e-bolt-button
         e-bolt-button--medium
         e-bolt-button--border-radius-full
