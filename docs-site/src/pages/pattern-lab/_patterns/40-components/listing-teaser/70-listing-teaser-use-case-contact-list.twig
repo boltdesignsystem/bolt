@@ -1,3 +1,11 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>custom_menu</code> prop is being used to render a custom popover menu (the more button).</bolt-li>
+    <bolt-li>The <code>subheadline</code> prop is being used to render the job title.</bolt-li>
+    <bolt-li>The <code>description</code> prop is being used to render the recent-articles popover.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
 {% set demo %}
   {% set icon_map %}
     {% include '@bolt-components-icon/icon.twig' with {
@@ -14,19 +22,37 @@
       name: 'pega-connection-hierachy',
     } only %}
   {% endset %}
-  {% set action_menu %}
-    {% include '@bolt-components-menu/menu.twig' with {
-      title: 'More actions',
-      items: [
-        {
-          content: 'View in Org Chart',
-          icon_before: icon_connection_hierachy,
-        },
-        {
-          content: 'View on PeopleHub',
-          icon_before: icon_partners,
-        },
-      ]
+  {% set more_button %}
+    {% set popover_content %}
+      {% include '@bolt-components-menu/menu.twig' with {
+        title: 'More actions',
+        items: [
+          {
+            content: 'View in Org Chart',
+            icon_before: icon_connection_hierachy,
+          },
+          {
+            content: 'View on PeopleHub',
+            icon_before: icon_partners,
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% set popover_trigger %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'More',
+        size: 'xsmall',
+        hierarchy: 'tertiary',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: popover_trigger,
+      content: popover_content,
+      spacing: 'none',
+      placement: 'bottom-end',
     } only %}
   {% endset %}
   {% set view_org_chart %}
@@ -79,6 +105,7 @@
           href: 'https://pega.com'
         },
       },
+      subheadline: '<strong>Project Delivery Leader</strong>, Pega Consulting',
       meta_items: [
         'Phone: <a href="tel:+79261204482" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+79261204482</a>',
         'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">evgeny.vyatkin@pega.com</a>',
@@ -86,10 +113,9 @@
         'Pega ID: VYATE',
         'Hired date: June 21, 2021',
       ],
-      description: '<strong>Project Delivery Leader</strong>, Pega Consulting',
       variant: 'card',
       inset_spacing: 'small',
-      action_menu: action_menu,
+      custom_menu: more_button,
     } only %}
   {% endset %}
 
@@ -98,7 +124,6 @@
       <img src="/images/placeholders/thumb-square-ivy.jpg" alt="" width=56 height=56 class="u-bolt-border-radius-full">
     {% endset %}
     {% set teaser_description %}
-      <p><strong>Chief Product Officer</strong>, Product R&amp;D</p>
       {% set icon_chevron_down %}
         {% include '@bolt-components-icon/icon.twig' with {
           name: 'chevron-down',
@@ -150,6 +175,7 @@
           href: 'https://pega.com'
         },
       },
+      subheadline: '<p><strong>Chief Product Officer</strong>, Product R&amp;D</p>',
       meta_items: [
         'Phone: <a href="tel:+1(123)-456-7890x1346" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)-456-7890x1346</a>',
         'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">kerim.akgonul@pega.com</a>',
@@ -160,7 +186,7 @@
       description: teaser_description,
       variant: 'card',
       inset_spacing: 'small',
-      action_menu: action_menu,
+      custom_menu: more_button,
     } only %}
   {% endset %}
 
@@ -180,6 +206,7 @@
           href: 'https://pega.com'
         },
       },
+      subheadline: '<p><strong>Lead Web Architect</strong>, Pega Digital IT</p>',
       meta_items: [
         'Phone: <a href="tel:+1(123)-456-7890" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)-456-7890</a>',
         'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mike.mai@pega.com</a>',
@@ -187,10 +214,9 @@
         'Pega ID: MMAI',
         'Hired date: May 4, 2018',
       ],
-      description: '<p><strong>Lead Web Architect</strong>, Pega Digital IT</p>',
       variant: 'card',
       inset_spacing: 'small',
-      action_menu: action_menu,
+      custom_menu: more_button,
     } only %}
   {% endset %}
 
@@ -222,23 +248,37 @@
     name: 'pega-connection-hierachy',
   } only %}
 {% endset %}
-{% set action_menu %}
-  {% include '@bolt-components-menu/menu.twig' with {
-    title: 'More actions',
-    items: [
-      {
-        content: 'View in Org Chart',
-        icon_before: icon_connection_hierachy,
-      },
-      {
-        content: 'View on PeopleHub',
-        icon_before: icon_partners,
-      },
-      {
-        content: 'Show where I sit',
-        icon_before: icon_map,
-      },
-    ]
+{% set more_button %}
+  {% set popover_content %}
+    {% include '@bolt-components-menu/menu.twig' with {
+      title: 'More actions',
+      items: [
+        {
+          content: 'View in Org Chart',
+          icon_before: icon_connection_hierachy,
+        },
+        {
+          content: 'View on PeopleHub',
+          icon_before: icon_partners,
+        },
+      ]
+    } only %}
+  {% endset %}
+  {% set popover_trigger %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'More',
+      size: 'xsmall',
+      hierarchy: 'tertiary',
+      attributes: {
+        type: 'button',
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: popover_trigger,
+    content: popover_content,
+    spacing: 'none',
+    placement: 'bottom-end',
   } only %}
 {% endset %}
 {% set signifier %}
@@ -258,6 +298,7 @@
       href: 'https://pega.com'
     },
   },
+  subheadline: '<p><strong>Lead Web Architect</strong>, Pega Digital IT</p>',
   meta_items: [
     'Phone: <a href="tel:+1(123)-456-7890" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)-456-7890</a>',
     'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mike.mai@pega.com</a>',
@@ -265,17 +306,17 @@
     'Pega ID: FLAST',
     'Hired date: May 4, 2018',
   ],
-  description: '<p><strong>Lead Web Architect</strong>, Pega Digital IT</p>',
   variant: 'card',
   inset_spacing: 'small',
-  action_menu: action_menu,
+  custom_menu: more_button,
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Use Case: Contact Cards',
+  title: 'Use Case: Contact List',
   description: 'A list of contact card teasers, each displays a quick summary of a particular person.',
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
 } only %}

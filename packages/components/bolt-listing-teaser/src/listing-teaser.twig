@@ -42,6 +42,11 @@
         tag: headline.tag,
         size: headline.size,
       } only %}
+      {% if subheadline %}
+        <div class="c-bolt-listing-teaser__flag-subheadline">
+          {{ subheadline }}
+        </div>
+      {% endif %}
     </div>
     {% if eyebrow_items %}
       <div class="c-bolt-listing-teaser__flag-eyebrow">
@@ -114,7 +119,7 @@
       </ul>
     {% endif %}
   </div>
-  {% if action_menu or share_menu %}<div class="c-bolt-listing-teaser__actions">{% endif %}
+  {% if action_menu or share_menu or custom_menu %}<div class="c-bolt-listing-teaser__actions">{% endif %}
     {% if share_menu %}
       {% set _share_popover_trigger %}
         {% set _icon_share %}
@@ -163,7 +168,10 @@
         boundary: '.' ~ _listing_id,
       } only %}
     {% endif %}
-  {% if action_menu or share_menu %}</div>{% endif %}
+    {% if custom_menu %}
+      {{ custom_menu }}
+    {% endif %}
+  {% if action_menu or share_menu or custom_menu %}</div>{% endif %}
   {% if callout %}
     {% set callout_attributes = create_attribute(callout.attributes|default({})) %}
     {% set callout_classes = [

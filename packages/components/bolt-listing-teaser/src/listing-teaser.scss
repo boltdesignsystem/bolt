@@ -67,9 +67,7 @@
 }
 
 .c-bolt-listing-teaser__flag-heading {
-  display: flex;
-  align-items: center;
-  align-self: center;
+  display: block;
   grid-area: heading;
   word-break: break-word;
   hyphens: auto;
@@ -92,6 +90,15 @@
       grid-row-start: 2;
     }
   }
+
+  > * {
+    margin-bottom: 0 !important; // Reset text spacing
+  }
+}
+
+.c-bolt-listing-teaser__flag-subheadline {
+  font-size: var(--bolt-type-font-size-small);
+  line-height: var(--bolt-type-line-height-small);
 }
 
 .c-bolt-listing-teaser__flag-content {
@@ -266,16 +273,20 @@
   order: 3;
 }
 
-.c-bolt-listing-teaser__flag-content {
+.c-bolt-listing-teaser__flag-subheadline {
   order: 4;
 }
 
-.c-bolt-listing-teaser__flag-status {
+.c-bolt-listing-teaser__flag-content {
   order: 5;
 }
 
-.c-bolt-listing-teaser__actions {
+.c-bolt-listing-teaser__flag-status {
   order: 6;
+}
+
+.c-bolt-listing-teaser__actions {
+  order: 7;
 }
 
 .c-bolt-listing-teaser--variant-card {
