@@ -37,7 +37,7 @@
 {% elseif direction == "down" %}
   {% set placement = "bottom" %}
 {% endif %}
-{% if noWrap is sameas(true) or noWrap is sameas(false) %}
+{% if noWrap is same as(true) or noWrap is same as(false) %}
   {% set noWrap = null %}
 {% endif %}
 {% if spacing %}
