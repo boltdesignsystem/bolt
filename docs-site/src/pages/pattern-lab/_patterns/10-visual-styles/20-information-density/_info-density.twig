@@ -43,10 +43,13 @@
           size: "xlarge",
           tag: "p",
         } only %}
-        {% include "@bolt-components-button/button.twig" with {
-          text: "Call to action",
+        {% include "@bolt-elements-button/button.twig" with {
+          content: "Call to action",
           size: "large",
           border_radius: "full",
+          attributes: {
+            type: 'button'
+          }
         } only %}
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}

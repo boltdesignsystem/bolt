@@ -33,125 +33,6 @@
           {% include "@bolt-components-headline/subheadline.twig" with {
             tag: "h2",
             size: "xlarge",
-            text: "Content Type Overview",
-            icon: {
-              name: "documentation",
-              position: "before",
-            },
-            attributes: {
-              class: [
-                "u-bolt-margin-bottom-xsmall",
-              ],
-            },
-          } only %}
-          <hr class="u-bolt-margin-top-none">
-          {% include "@bolt-components-headline/headline.twig" with {
-            tag: "h3",
-            size: "small",
-            text: "Headline",
-            attributes: {
-              class: "u-bolt-margin-bottom-xsmall"
-            },
-          } only %}
-          <bolt-card-replacement>
-            <bolt-card-replacement-body>
-              {% include "@bolt-components-headline/headline.twig" with {
-                size: "xxxlarge",
-                text: "Headline Text",
-              } only %}
-              {% set link %}
-                {% set icon_chevron_right %}
-                  {% include "@bolt-components-icon/icon.twig" with {
-                    name: "chevron-right",
-                  } only %}
-                {% endset %}
-                {% include "@bolt-elements-text-link/text-link.twig" with {
-                  content: "Headline Text Link",
-                  reversed_underline: true,
-                  icon_after: icon_chevron_right,
-                  attributes: {
-                    href: "https://pega.com",
-                  }
-                } only %}
-              {% endset %}
-              {% include "@bolt-components-headline/headline.twig" with {
-                size: "xxxlarge",
-                text: link,
-              } only %}
-            </bolt-card-replacement-body>
-          </bolt-card-replacement>
-          {% include "@bolt-components-headline/headline.twig" with {
-            tag: "h3",
-            size: "small",
-            text: "Text",
-            attributes: {
-              class: "u-bolt-margin-bottom-xsmall"
-            },
-          } only %}
-          <bolt-card-replacement>
-            <bolt-card-replacement-body>
-              {% include "@bolt-components-headline/text.twig" with {
-                text: "Body text",
-              } only %}
-              {% set link %}
-                {% include "@bolt-elements-text-link/text-link.twig" with {
-                  content: "Body Text Link",
-                  attributes: {
-                    href: "https://pega.com",
-                  }
-                } only %}
-              {% endset %}
-              {% include "@bolt-components-headline/text.twig" with {
-                text: link,
-              } only %}
-            </bolt-card-replacement-body>
-          </bolt-card-replacement>
-          {% include "@bolt-components-headline/headline.twig" with {
-            tag: "h3",
-            size: "small",
-            text: "Border",
-            attributes: {
-              class: "u-bolt-margin-bottom-xsmall"
-            },
-          } only %}
-          <bolt-card-replacement>
-            <bolt-card-replacement-body>
-              <hr>
-            </bolt-card-replacement-body>
-          </bolt-card-replacement>
-          {% include "@bolt-components-headline/headline.twig" with {
-            tag: "h3",
-            size: "small",
-            text: "Button",
-            attributes: {
-              class: "u-bolt-margin-bottom-xsmall"
-            },
-          } only %}
-          <bolt-card-replacement>
-            <bolt-card-replacement-body>
-              <bolt-list display="inline">
-                <bolt-list-item>
-                  <bolt-button>
-                    Primary
-                  </bolt-button>
-                </bolt-list-item>
-                <bolt-list-item>
-                  <bolt-button color="secondary">
-                    Secondary
-                  </bolt-button>
-                </bolt-list-item>
-                <bolt-list-item>
-                  <bolt-button color="tertiary">
-                    Tertiary
-                  </bolt-button>
-                </bolt-list-item>
-              </bolt-list>
-            </bolt-card-replacement-body>
-          </bolt-card-replacement>
-
-          {% include "@bolt-components-headline/subheadline.twig" with {
-            tag: "h2",
-            size: "xlarge",
             text: "Theme Color Tokens",
             icon: {
               name: "bolt-logo-colored",
@@ -159,7 +40,6 @@
             },
             attributes: {
               class: [
-                "u-bolt-margin-top-large",
                 "u-bolt-margin-bottom-xsmall",
               ],
             },
@@ -276,6 +156,105 @@
               </tbody>
             </table>
           </bolt-table>
+
+          {% include "@bolt-components-headline/subheadline.twig" with {
+            tag: "h2",
+            size: "xlarge",
+            text: "Content Type Overview",
+            icon: {
+              name: "documentation",
+              position: "before",
+            },
+            attributes: {
+              class: [
+                "u-bolt-margin-top-large",
+                "u-bolt-margin-bottom-xsmall",
+              ],
+            },
+          } only %}
+          <hr class="u-bolt-margin-top-none">
+          {% include "@bolt-components-headline/headline.twig" with {
+            tag: "h3",
+            size: "small",
+            text: "Headline",
+            attributes: {
+              class: "u-bolt-margin-bottom-xsmall"
+            },
+          } only %}
+          <bolt-card-replacement>
+            <bolt-card-replacement-body>
+              {% include "@bolt-components-headline/headline.twig" with {
+                size: "xxxlarge",
+                text: "Headline Text",
+              } only %}
+              {% include "@bolt-components-headline/headline.twig" with {
+                size: "xxxlarge",
+                text: "Headline Text Link",
+                url: "https://pega.com",
+              } only %}
+            </bolt-card-replacement-body>
+          </bolt-card-replacement>
+          {% include "@bolt-components-headline/headline.twig" with {
+            tag: "h3",
+            size: "small",
+            text: "Text",
+            attributes: {
+              class: "u-bolt-margin-bottom-xsmall"
+            },
+          } only %}
+          <bolt-card-replacement>
+            <bolt-card-replacement-body>
+              {% include "@bolt-components-headline/text.twig" with {
+                text: "Body text",
+              } only %}
+              {% include "@bolt-components-headline/text.twig" with {
+                text: "Body text link",
+                url: "https://pega.com",
+              } only %}
+            </bolt-card-replacement-body>
+          </bolt-card-replacement>
+          {% include "@bolt-components-headline/headline.twig" with {
+            tag: "h3",
+            size: "small",
+            text: "Border",
+            attributes: {
+              class: "u-bolt-margin-bottom-xsmall"
+            },
+          } only %}
+          <bolt-card-replacement>
+            <bolt-card-replacement-body>
+              <hr>
+            </bolt-card-replacement-body>
+          </bolt-card-replacement>
+          {% include "@bolt-components-headline/headline.twig" with {
+            tag: "h3",
+            size: "small",
+            text: "Button",
+            attributes: {
+              class: "u-bolt-margin-bottom-xsmall"
+            },
+          } only %}
+          <bolt-card-replacement>
+            <bolt-card-replacement-body>
+              <bolt-list display="inline">
+                <bolt-list-item>
+                  <button type="button" class="e-bolt-button">
+                    Primary
+                  </button>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <button type="button" class="e-bolt-button  e-bolt-button--secondary">
+                    Secondary
+                  </button>
+                </bolt-list-item>
+                <bolt-list-item>
+                  <button type="button" class="e-bolt-button  e-bolt-button--tertiary">
+                    Tertiary
+                  </button>
+                </bolt-list-item>
+              </bolt-list>
+            </bolt-card-replacement-body>
+          </bolt-card-replacement>
         </div>
       </bolt-tab-panel>
     {% endfor %}

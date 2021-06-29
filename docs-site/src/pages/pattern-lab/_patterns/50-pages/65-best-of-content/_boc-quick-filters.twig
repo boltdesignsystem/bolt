@@ -1,17 +1,20 @@
 <form>
   {% set apply_button %}
-    {% include '@bolt-components-button/button.twig' with {
-      text: 'Apply',
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Save',
       size: 'small',
-      type: 'submit',
+      attributes: {
+        type: 'submit',
+      }
     } only %}
   {% endset %}
   {% set cancel_button %}
-    {% include '@bolt-components-button/button.twig' with {
-      text: 'Cancel',
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Cancel',
       size: 'small',
-      style: 'text',
+      hierarchy: 'transparent',
       attributes: {
+        type: 'button',
         'data-bolt-modal-target': '.js-bolt-modal',
       },
     } only %}

@@ -24,6 +24,19 @@
             {% endcell %}
 
             {% cell %}
+              {% set _add_icon %}
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'add-open',
+                  size: 'large'
+                } only %}
+              {% endset %}
+              {% set _minus_icon %}
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'minus-open',
+                  size: 'large'
+                } only %}
+              {% endset %}
+
               {% include "@bolt-components-list/list.twig" with {
                   display: "inline",
                   size: "medium",
@@ -34,24 +47,22 @@
                     ]
                   },
                   items: [
-                    macros.include("@bolt-components-button/button.twig", {
-                      text: "Yes",
-                      style: "text",
+                    macros.include("@bolt-elements-button/button.twig", {
+                      content: "Yes",
+                      hierarchy: "transparent",
                       size: "small",
-                      icon: {
-                        size: "large",
-                        position: "before",
-                        name: "add-open"
+                      icon_before: _add_icon,
+                      attributes: {
+                        type: 'button'
                       }
                     }, false),
-                    macros.include("@bolt-components-button/button.twig", {
-                      text: "No",
-                      style: "text",
+                    macros.include("@bolt-elements-button/button.twig", {
+                      content: "No",
+                      hierarchy: "transparent",
                       size: "xsmall",
-                      icon: {
-                        size: "large",
-                        position: "before",
-                        name: "minus-open"
+                      icon_before: _minus_icon,
+                      attributes: {
+                        type: 'button'
                       }
                     }, false),
                     macros.include("@bolt-components-headline/text.twig", {

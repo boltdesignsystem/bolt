@@ -17,8 +17,11 @@
     <bolt-text>
       This is regular text, and some lorem ipsum. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante.
     </bolt-text>
-    {% include "@bolt-components-button/button.twig" with {
-      text: "This is a button"
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "This is a button",
+      attributes: {
+        type: 'button'
+      }
     } only %}
 {% endset %}
 

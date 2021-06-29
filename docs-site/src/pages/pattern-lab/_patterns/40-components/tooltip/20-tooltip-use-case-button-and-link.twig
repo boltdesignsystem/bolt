@@ -4,9 +4,11 @@
       <bolt-list-item>
         {# Start component specific code #}
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          trigger: include("@bolt-components-link/link.twig", {
-            text: "CRM",
-            url: "https://pega.com/glossary#crm"
+          trigger: include('@bolt-elements-text-link/text-link.twig', {
+            content: 'CRM',
+            attributes: {
+              href: 'https://pega.com/glossary#crm'
+            }
           }),
           content: "Customer relationship management",
         } only %}
@@ -15,8 +17,11 @@
       <bolt-list-item>
         {# Start component specific code #}
         {% include "@bolt-components-tooltip/tooltip.twig" with {
-          trigger: include("@bolt-components-button/button.twig", {
-            text: "Download",
+          trigger: include("@bolt-elements-button/button.twig", {
+            content: "Download",
+            attributes: {
+              type: 'button'
+            }
           }),
           content: "File size: 25MB",
         } only %}

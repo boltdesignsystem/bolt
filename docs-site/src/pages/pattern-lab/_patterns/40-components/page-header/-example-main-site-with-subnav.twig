@@ -968,40 +968,76 @@
 
 {# Secondary Nav #}
 {% set secondary_nav %}
+  {% set navbar_data = [
+    {
+      link: {
+        content: 'Real-Time AI',
+        attributes: {
+          href: '#!'
+        }
+      }
+    },
+    {
+      link: {
+        content: 'End-to-end Automation',
+        attributes: {
+          href: '#!'
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Journey-centric Delivery',
+        attributes: {
+          href: '#!'
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Low Code',
+        attributes: {
+          href: '#!'
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Multi-dimensional Power Long Title',
+        attributes: {
+          href: '#!'
+        }
+      }
+    },
+    {
+      link: {
+        content: 'Cloud Choice',
+        attributes: {
+          href: '#!'
+        }
+      }
+    }
+  ] %}
+
+  {% set navbar_items %}
+    {% for item in navbar_data %}
+      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+    {% endfor %}
+  {% endset %}
+
+  {% set navbar_list %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+  {% endset %}
+
   {% include '@bolt-components-navbar/navbar.twig' with {
     title: {
-      text: 'Subnav',
+      content: 'Subnav',
       tag: 'h1',
       icon: {
         name: 'marketing-gray'
       }
     },
-    links: [
-      {
-        text: 'Real-Time AI',
-        url: '#!'
-      },
-      {
-        text: 'End-to-end Automation',
-        url: '#!'
-      },
-      {
-        text: 'Journey-centric Delivery',
-        url: '#!'
-      },
-      {
-        text: 'Low Code',
-        url: '#!'
-      },
-      {
-        text: 'Multi-dimensional Power Long Title',
-        url: '#!'
-      },
-      {
-        text: 'Cloud Choice',
-        url: '#!'
-      }
-    ]
+    links: navbar_list
   } only %}
 {% endset %}
 

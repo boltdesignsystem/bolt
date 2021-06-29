@@ -128,10 +128,7 @@ export class Waypoint {
     // Save previous position as early as possible to prevent cycles
     item._previousPosition = currentPosition;
 
-    // We could return here if we were listening on each item rather than iterating over an array of items.
-    // The latter, while reducing scroll jank, can cause a race condition when scrolling rapidly where the
-    // `activeItem` is not properly set. So, let the code below always execute to avoid that race condition.
-    // if (previousPosition === currentPosition) return;
+    if (previousPosition === currentPosition) return;
 
     const callbackArg = {
       trigger,

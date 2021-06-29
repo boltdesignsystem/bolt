@@ -1,0 +1,90 @@
+{% set navbar_data = [
+  {
+    link: {
+      content: 'Section 1',
+      attributes: {
+        href: '#section-1'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'Section 2',
+      attributes: {
+        href: '#section-2'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'Section 3',
+      attributes: {
+        href: '#section-3'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'Section 4',
+      attributes: {
+        href: '#section-4'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'Section 5',
+      attributes: {
+        href: '#section-5'
+      }
+    }
+  }
+] %}
+
+{% set navbar_items %}
+  {% for item in navbar_data %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+  {% endfor %}
+{% endset %}
+
+{% set navbar_list %}
+  {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+{% endset %}
+
+{% include '@bolt-components-navbar/navbar.twig' with {
+  title: {
+    content: 'Title Text',
+    icon: {
+      name: 'marketing-gray'
+    }
+  },
+  links: navbar_list,
+  center: true,
+  spacing: 'xsmall'
+} only %}
+<br>
+{% include '@bolt-components-navbar/navbar.twig' with {
+  title: {
+    content: 'Title Text'
+  },
+  links: navbar_list,
+  center: true,
+  spacing: 'xsmall'
+} only %}
+<br>
+{% include '@bolt-components-navbar/navbar.twig' with {
+  title: {
+    icon: {
+      name: 'marketing-gray'
+    }
+  },
+  links: navbar_list,
+  center: true,
+  spacing: 'xsmall'
+} only %}
+<br>
+{% include '@bolt-components-navbar/navbar.twig' with {
+  links: navbar_list,
+  center: true,
+  spacing: 'xsmall'
+} only %}

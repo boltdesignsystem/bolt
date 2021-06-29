@@ -30,11 +30,12 @@
       } only %}
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
-      {% include "@bolt-components-button/button.twig" with {
-        text: "View Class Schedule",
-        style: "secondary",
+      {% include "@bolt-elements-button/button.twig" with {
+        content: "View Class Schedule",
         border_radius: "full",
-        style: "primary"
+        attributes: {
+          type: 'button'
+        }
       } only %}
     {% endcell %}
   {% endgrid %}

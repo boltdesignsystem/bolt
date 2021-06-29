@@ -22,9 +22,12 @@
       text: "Monday, June 3rd, 2019 <br>10AM - 3PM EST",
       weight: "bold",
     }),
-    macros.include("@bolt-components-button/button.twig", {
-      text: "Watch livestream",
-      style: "secondary"
+    macros.include("@bolt-elements-button/button.twig", {
+      content: "Watch livestream",
+      hierarchy: "secondary",
+      attributes: {
+        type: 'button'
+      }
     })
   ]|join(''),
   theme: "light",
