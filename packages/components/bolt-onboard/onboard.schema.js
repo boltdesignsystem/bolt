@@ -30,7 +30,7 @@ module.exports = {
       type: 'string',
       description: 'Controls the vertical spacing of the "onboard component".',
       default: 'none',
-      enum: ['none', 'medium', 'full'],
+      enum: ['none', 'large', 'full'],
     },
   },
 };

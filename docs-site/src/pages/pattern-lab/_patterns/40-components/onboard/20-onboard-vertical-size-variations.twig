@@ -1,12 +1,12 @@
-{% set schema =  bolt.data.components["@bolt-components-onboard"].schema %}
+{% set schema =  bolt.data.components['@bolt-components-onboard'].schema %}
 
 <bolt-text headline>
 	Size variations
 </bolt-text>
 
 {% for size in schema.properties.size.enum %}
-	{% include "@bolt-components-onboard/onboard.twig" with {
+	{% include '@bolt-components-onboard/onboard.twig' with {
     size: size,
-    content: "This is onboard component with " ~ size ~ " size.",
+    content: 'This is onboard component with ' ~ size ~ ' size.',
   } only %}
 {% endfor %}

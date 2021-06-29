@@ -1,36 +1,36 @@
 {# Setting variables for demo purposes #}
-{% set schema = bolt.data.components["@bolt-components-onboard"].schema %}
+{% set schema = bolt.data.components['@bolt-components-onboard'].schema %}
 
 <bolt-text headline>
 	Status variations
 </bolt-text>
 
 {% for status in schema.properties.status.enum %}
-	{% if status == "warning" %}
+	{% if status == 'warning' %}
 		{% set status_icon %}
-		{% include "@bolt-components-icon/icon.twig" with {
-			name: "warning",
-			size: "small",
+		{% include '@bolt-components-icon/icon.twig' with {
+			name: 'warning',
+			size: 'small',
 		} only %}
 		{% endset %}
-	{% elseif status == "success" %}
+	{% elseif status == 'success' %}
 		{% set status_icon %}
-		{% include "@bolt-components-icon/icon.twig" with {
-			name: "check-solid",
-			size: "small",
+		{% include '@bolt-components-icon/icon.twig' with {
+			name: 'check-solid',
+			size: 'small',
 		} only %}
 		{% endset %}
 	{% else %}
 		{% set status_icon %}
-		{% include "@bolt-components-icon/icon.twig" with {
-			name: "product",
-			size: "small",
+		{% include '@bolt-components-icon/icon.twig' with {
+			name: 'product',
+			size: 'small',
 		} only %}
 		{% endset %}
 	{% endif %}
 	{# Start component specific code #}
-	{% include "@bolt-components-onboard/onboard.twig" with {
-    content: status_icon ~ "This onboard component tells about onboarding " ~ status,
+	{% include '@bolt-components-onboard/onboard.twig' with {
+    content: status_icon ~ 'This onboard component tells about onboarding ' ~ status,
     status: status,
   } only %}
 	{# End component specific code #}

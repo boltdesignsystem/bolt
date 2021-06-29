@@ -5,7 +5,17 @@
 @import '@bolt/core-v3.x';
 
 // Register Custom Block Element
-@include bolt-custom-element('bolt-onboard', block, medium) {
+@include bolt-custom-element('bolt-onboard', block, medium);
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+bolt-onboard {
   .c-bolt-icon {
     margin: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall) 0 0;
   }
@@ -23,14 +33,6 @@
   }
 }
 
-/**
- * Long-form comment.
- *
- * This spans multiple lines and is also constrained to no longer than 80
- * characters in width.
- *
- * 1. Provide line-comments like this.
- */
 .c-bolt-onboard {
   // Styles go here. /* [1] */
   display: flex;
@@ -38,18 +40,18 @@
   padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
   // Status styling//
   &--status-information {
-    border: 0.1rem solid var(--bolt-color-blue);
-    border-left: 1rem solid var(--bolt-color-blue);
+    border: 1px solid var(--bolt-color-blue);
+    border-left-width: var(--bolt-spacing-x-small);
   }
 
   &--status-warning {
-    border: 0.1rem solid var(--bolt-color-warning);
-    border-left: 1rem solid var(--bolt-color-warning);
+    border: 1px solid var(--bolt-color-warning);
+    border-left-width: var(--bolt-spacing-x-small);
   }
 
   &--status-success {
-    border: 0.1rem solid var(--bolt-color-success);
-    border-left: 1rem solid var(--bolt-color-success);
+    border: 1px solid var(--bolt-color-success);
+    border-left-width: var(--bolt-spacing-x-small);
   }
 
   //Size styling//
@@ -63,10 +65,10 @@
 
   //Border radius styling//
   &--radius-full {
-    border-radius: 100em;
+    border-radius: bolt-border-radius(full);
   }
 
-  &--radius-medium {
-    border-radius: 0.6rem;
+  &--radius-large {
+    border-radius: bolt-border-radius(large);
   }
 }
