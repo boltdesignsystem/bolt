@@ -19,9 +19,9 @@
 {% endif %}
 
 {# DEPRECATED: use borderless instead #}
-{% if border is sameas(true) %}
+{% if border is same as(true) %}
   {% set borderless = false %}
-{% elseif border is sameas(false) %}
+{% elseif border is same as(false) %}
   {% set borderless = true %}
 {% endif %}
 
