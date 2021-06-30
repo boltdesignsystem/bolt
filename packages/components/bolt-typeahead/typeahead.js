@@ -99,51 +99,51 @@ class BoltTypeahead extends withLitEvents {
         .disabled=${this.disabled}
         @keypress=${this.handleKeyPress.bind(this)}
       ></bolt-autosuggest>
-      <bolt-button
-        type="submit"
-        color="text"
-        size="medium"
-        icon-only
-        @click=${this.submit}
-        no-shadow
-        disabled=${ifDefined(this.disabled === true ? true : undefined)}
+      <button
         class=${cx(
+          'e-bolt-button',
+          'e-bolt-button--transparent',
+          'e-bolt-button--icon-only',
           'c-bolt-typeahead__button',
           'c-bolt-typeahead__button--submit',
         )}
-      >
-        ${this.submitButtonText}
-        <bolt-icon
-          name="search"
-          class=${cx('c-bolt-typeahead__icon')}
-          slot="before"
-        ></bolt-icon>
-      </bolt-button>
-
-      <bolt-button
-        color="text"
-        size="medium"
-        icon-only
-        type="reset"
-        @click=${this.clearSearch}
-        no-shadow
+        aria-label="${this.submitButtonText}"
+        type="submit"
+        @click=${this.submit}
         disabled=${ifDefined(this.disabled === true ? true : undefined)}
+      >
+        <span class="e-bolt-button__icon-center">
+          <bolt-icon
+            name="search"
+            class=${cx('c-bolt-typeahead__icon')}
+          ></bolt-icon>
+        </span>
+      </button>
+
+      <button
         class=${cx(
+          'e-bolt-button',
+          'e-bolt-button--transparent',
+          'e-bolt-button--icon-only',
           'c-bolt-typeahead__button',
           'c-bolt-typeahead__button--clear',
           {
             [`is-visible`]: this.inputValue !== '',
           },
         )}
+        aria-label="${this.clearInputText}"
+        type="reset"
+        @click=${this.clearSearch}
+        disabled=${ifDefined(this.disabled === true ? true : undefined)}
       >
-        ${this.clearInputText}
-        <bolt-icon
-          name="close-solid"
-          slot="before"
-          class=${cx('c-bolt-typeahead__icon')}
-          title=${this.clearInputText}
-        />
-      </bolt-button>
+        <span class="e-bolt-button__icon-center">
+          <bolt-icon
+            name="close-solid"
+            class=${cx('c-bolt-typeahead__icon')}
+            title=${this.clearInputText}
+          />
+        </span>
+      </button>
     `;
   }
 
