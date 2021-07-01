@@ -5,6 +5,8 @@
 @import '@bolt/core-v3.x';
 @import '../card-replacement-settings-and-tools.scss';
 
+// @TODO: can we unify these? why are the styles different?
+
 bolt-card-replacement-action {
   display: block;
   flex: 1;
@@ -17,6 +19,10 @@ bolt-card-replacement-action {
   // [Mai] When there are 2 actions, the text is likely to be short, that's a situation where it would benefit from text not wrapping to another line. Instead, if it runs out of room, the actions stack on top of each other.
   &:not(:only-child) {
     white-space: nowrap;
+  }
+
+  .e-bolt-button {
+    text-align: start;
   }
 }
 
@@ -35,5 +41,9 @@ bolt-card-replacement-action {
 
   > * {
     height: 100%;
+  }
+
+  .e-bolt-button {
+    text-align: start;
   }
 }
