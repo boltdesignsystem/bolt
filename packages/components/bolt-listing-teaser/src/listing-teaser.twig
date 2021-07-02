@@ -108,7 +108,8 @@
         {% endif %}
         {% if status.replies %}
           <li class="c-bolt-listing-teaser__flag-status__item">
-            <span class="c-bolt-listing-teaser__flag-status__number">{{ status.replies }}</span> {{ 'Replies'|t }}
+            <span class="c-bolt-listing-teaser__flag-status__number">{{ status.replies }}</span>
+            {{ status.replies_label ? status.replies_label|t : 'Replies'|t }}
           </li>
         {% endif %}
         {% if status.views %}
