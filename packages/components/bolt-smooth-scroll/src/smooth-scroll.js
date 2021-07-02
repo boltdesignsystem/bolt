@@ -46,8 +46,10 @@ const customScrollElems = document.querySelectorAll('a[href^="#"]');
 const customScrollElemsArray = Array.from(customScrollElems);
 
 // go through our array of results and filter out only the ones that are valid selectors. // in this case, valid selectors = valid HTML5 id names which omits hash bang links, etc.
-let filteredCustomScrollElems = customScrollElemsArray.filter(element =>
-  isValidSelector(element.getAttribute('href')),
+let filteredCustomScrollElems = customScrollElemsArray.filter(
+  element =>
+    isValidSelector(element.getAttribute('href')) &&
+    !element.hasAttribute('data-scroll-ignore'),
 );
 
 for (var i = 0, len = filteredCustomScrollElems.length; i < len; i++) {

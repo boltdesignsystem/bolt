@@ -1,0 +1,31 @@
+{% include '@pl/00-deprecated-button-docs.twig' %}
+
+<bolt-banner status="success" align="start">
+  <bolt-icon name="documentation" size="medium"></bolt-icon> Please reference <a href="{{ link['elements-button-hierarchy'] }}" class="e-bolt-text-link"> element doc</a> instead.
+</bolt-banner>
+
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+
+{% for hierarchy in schema.properties.hierarchy.enum %}
+  {% set button %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: hierarchy|capitalize ~ " button",
+      hierarchy: hierarchy
+    } only %}
+  {% endset %}
+  {% set button_disabled %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: hierarchy|capitalize ~ " button (disabled)",
+      disabled: true,
+      hierarchy: hierarchy
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    items: [
+      button,
+      button_disabled,
+    ]
+  } only %}
+{% endfor %}

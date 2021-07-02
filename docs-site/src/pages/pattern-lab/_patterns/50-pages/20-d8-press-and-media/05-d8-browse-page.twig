@@ -7,33 +7,60 @@
 {% block main_content %}
   {% embed "@bolt-components-sticky/sticky.twig" %}
     {% block sticky_content %}
-      {% include "@bolt-components-navbar/navbar.twig" with {
-        theme: "xdark",
-        "title": {
-          "tag": "h2",
-          "text": "Newsroom",
-          "icon": {
-            "name": "info-solid"
+      {% set navbar_data = [
+        {
+          link: {
+            content: 'News',
+            attributes: {
+              href: '#'
+            }
           }
         },
-        "links": [
-          {
-            "text": "News",
-            "url": "#"
-          },
-          {
-            "text": "Press Kit & Resources",
-            "url": "#"
-          },
-          {
-            "text": "Media Contacts",
-            "url": "#"
-          },
-          {
-            "text": "Another Link",
-            "url": "#"
+        {
+          link: {
+            content: 'Press Kit & Resources',
+            attributes: {
+              href: '#'
+            }
           }
-        ]
+        },
+        {
+          link: {
+            content: 'Media Contacts',
+            attributes: {
+              href: '#'
+            }
+          }
+        },
+        {
+          link: {
+            content: 'Another Link',
+            attributes: {
+              href: '#'
+            }
+          }
+        }
+      ] %}
+
+      {% set navbar_items %}
+        {% for item in navbar_data %}
+          {% include '@bolt-components-navbar/navbar-li.twig' with item only %}
+        {% endfor %}
+      {% endset %}
+
+      {% set navbar_list %}
+        {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}
+      {% endset %}
+
+      {% include '@bolt-components-navbar/navbar.twig' with {
+        theme: 'xdark',
+        title: {
+          content: 'Newsroom',
+          icon: {
+            name: 'info-solid'
+          }
+        },
+        links: navbar_list
       } only %}
     {% endblock %}
   {% endembed %}
@@ -70,78 +97,48 @@
 
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
         {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-          {% include "@bolt-components-card/card.twig" with {
-            "teaser": {
-              "eyebrow": {
-                text: "Jan 18 2018"
+          {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+            body: {
+              eyebrow: "Jan 18 2018",
+              headline: "A New CRM Bill of Rights for the Future Empowered Enterprise",
+            },
+            actions: [
+              {
+                text: "Read more",
+                url: "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-press-details/50-pages-100-d8-Press-and-Media-d8-press-details.html",
+                external: true,
               },
-              "headlines": [
-                {
-                  "type": "headline",
-                  "text": "A New CRM Bill of Rights for the Future Empowered Enterprise",
-                  "size": "large"
-                }
-              ],
-              "buttons": [
-                {
-                  "text": "Read more",
-                  "url": "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-press-details/50-pages-100-d8-Press-and-Media-d8-press-details.html",
-                  "width": "full",
-                  icon: {
-                    name: "external-link",
-                  },
-                }
-              ]
-            }
+            ],
           } only %}
         {% endcell %}
         {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-          {% include "@bolt-components-card/card.twig" with {
-            "teaser": {
-              "eyebrow": {
-                text: "Jan 18 2018"
+          {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+            body: {
+              eyebrow: "Jan 18 2018",
+              headline: "6 Customer Experience Trends to Watch in 2018",
+            },
+            actions: [
+              {
+                text: "Read more",
+                url: "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-press-details/50-pages-100-d8-Press-and-Media-d8-press-details.html",
+                external: true,
               },
-              "headlines": [
-                {
-                  "type": "headline",
-                  "text": "6 Customer Experience Trends to Watch in 2018",
-                  "size": "large",
-                }
-              ],
-              "buttons": [
-                {
-                  "text": "Read more",
-                  "url": "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-press-details/50-pages-100-d8-Press-and-Media-d8-press-details.html",
-                  "width": "full",
-                  icon: {
-                    name: "external-link",
-                  },
-                }
-              ]
-            }
+            ],
           } only %}
         {% endcell %}
         {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-          {% include "@bolt-components-card/card.twig" with {
-            "teaser": {
-              "eyebrow": {
-                text: "Jan 18 2018"
+          {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+            body: {
+              eyebrow: "Jan 18 2018",
+              headline: "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
+            },
+            actions: [
+              {
+                text: "Read more",
+                url: "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-press-details/50-pages-100-d8-Press-and-Media-d8-press-details.html",
+                external: true,
               },
-              "headlines": [
-                {
-                  "type": "headline",
-                  "text": "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
-                  "size": "large"
-                }
-              ],
-              "buttons": [
-                {
-                  "text": "Read more",
-                  "url": "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-press-details/50-pages-100-d8-Press-and-Media-d8-press-details.html",
-                  "width": "full"
-                }
-              ]
-            }
+            ],
           } only %}
         {% endcell %}
       {% endgrid %}
@@ -222,16 +219,19 @@
 
           <div class="c-bolt-search-filter">
             <div class="c-bolt-search-filter__trigger">
-              {% include "@bolt-components-button/button.twig" with {
-                "text": "Close search filters",
-                "url": "#search-filters",
-                "size": "xsmall",
-                "style": "primary",
-                "border_radius": "full",
-                "iconOnly": true,
-                "icon": {
-                  "name": "more",
-                  "size": "medium"
+              {% set _icon_more %}
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'more',
+                  size: 'medium'
+                } only %}
+              {% endset %}
+              {% include '@bolt-elements-button/button.twig' with {
+                content: 'Close search filters',
+                icon_only: _icon_more,
+                border_radius: 'full',
+                size: 'xsmall',
+                attributes: {
+                  href: '#search-filters'
                 }
               } only %}
             </div>
@@ -485,28 +485,32 @@
                   "buttons": [
                     {
                       "text": "Apply",
-                      "style": "primary"
+                      "hierarchy": "primary"
                     },
                     {
                       "text": "Cancel",
                       "url": "#!",
-                      "style": "secondary"
+                      "hierarchy": "secondary"
                     }
                   ]
                 } only %}
               </div>
 
               <div class="c-bolt-search-filter__panel-controls c-bolt-search-filter__panel-controls--close">
-                {% include "@bolt-components-button/button.twig" with {
-                  "text": "Close search filters",
-                  "url": "#!",
-                  "size": "xsmall",
-                  "style": "text",
-                  border_radius: "full",
-                  "iconOnly": true,
-                  "icon": {
-                    "name": "close",
-                    "size": "medium"
+                {% set _icon_close %}
+                  {% include '@bolt-components-icon/icon.twig' with {
+                    name: 'close',
+                    size: 'medium'
+                  } only %}
+                {% endset %}
+                {% include '@bolt-elements-button/button.twig' with {
+                  content: 'Close search filters',
+                  icon_only: _icon_close,
+                  hierarchy: 'transparent',
+                  border_radius: 'full',
+                  size: 'xsmall',
+                  attributes: {
+                    href: '#!'
                   }
                 } only %}
               </div>
@@ -518,113 +522,108 @@
           {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
             {% for i in 0..4 %}
               {% cell "u-bolt-width-1/1" %}
-                {% include "@bolt-components-card/card.twig" with {
+                {% set text_group %}
+                  {% include "@bolt/eyebrow.twig" with {
+                    text: "June 5, 2018"
+                  } only %}
+                  {% include "@bolt-components-headline/headline.twig" with {
+                    text: "Pegasystems Launches Pega Community to Empower Anyone to Create Better Software",
+                    url: "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-press-details/50-pages-100-d8-Press-and-Media-d8-press-details.html",
+                    size: "large",
+                  } only %}
+                  {% include "@bolt-components-headline/text.twig" with {
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent.",
+                  } only %}
+                {% endset %}
+                {% include "@bolt-components-card-replacement/card-replacement.twig" with {
                   theme: "xlight",
-                  contentItems: [
-                    {
-                      pattern: "eyebrow",
-                      text: " June 5, 2018"
-                    },
-                    {
-                      pattern: "headline",
-                      tag: "h3",
-                      size: "large",
-                      text: "Pegasystems Launches Pega Community to Empower Anyone to Create Better Software",
-                      url: "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-press-details/50-pages-100-d8-Press-and-Media-d8-press-details.html"
-                    },
-                    {
-                      pattern: "text",
-                      text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                    }
-                  ]
+                  body: {
+                    content: text_group,
+                  },
                 } only %}
               {% endcell %}
               {% cell "u-bolt-width-1/1" %}
-                {% include "@bolt-components-card/card.twig" with {
+                {% set text_group %}
+                  {% include "@bolt/eyebrow.twig" with {
+                    text: "Jan 18, 2018"
+                  } only %}
+                  {% include "@bolt-components-headline/headline.twig" with {
+                    text: "A New CRM Bill of Rights for the Future Empowered Enterprise",
+                    url: "http://pega.com",
+                    size: "large",
+                  } only %}
+                  {% include "@bolt-components-headline/text.twig" with {
+                    text: "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors.",
+                  } only %}
+                {% endset %}
+                {% include "@bolt-components-card-replacement/card-replacement.twig" with {
                   theme: "xlight",
-                  contentItems: [
-                    {
-                      pattern: "eyebrow",
-                      text: "Jan 18 2018"
-                    },
-                    {
-                      pattern: "headline",
-                      tag: "h3",
-                      size: "large",
-                      text: "A New CRM Bill of Rights for the Future Empowered Enterprise",
-                      url: "http://pega.com"
-                    },
-                    {
-                      pattern: "text",
-                      text: "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors."
-                    }
-                  ]
+                  body: {
+                    content: text_group,
+                  },
                 } only %}
               {% endcell %}
               {% cell "u-bolt-width-1/1" %}
-                {% include "@bolt-components-card/card.twig" with {
+                {% set text_group %}
+                  {% include "@bolt/eyebrow.twig" with {
+                    text: "Jan 18, 2018"
+                  } only %}
+                  {% include "@bolt-components-headline/headline.twig" with {
+                    text: "6 Customer Experience Trends to Watch in 2018",
+                    url: "http://pega.com",
+                    size: "large",
+                  } only %}
+                  {% include "@bolt-components-headline/text.twig" with {
+                    text: "Pega's Don Schuerman previews customer experience questions and trends for the New Year.",
+                  } only %}
+                {% endset %}
+                {% include "@bolt-components-card-replacement/card-replacement.twig" with {
                   theme: "xlight",
-                  contentItems: [
-                    {
-                      pattern: "eyebrow",
-                      text: "Jan 18 2018"
-                    },
-                    {
-                      pattern: "headline",
-                      tag: "h3",
-                      size: "large",
-                      text: "6 Customer Experience Trends to Watch in 2018",
-                      url: "http://pega.com"
-                    },
-                    {
-                      pattern: "text",
-                      text: "Pega's Don Schuerman previews customer experience questions and trends for the New Year."
-                    }
-                  ]
+                  body: {
+                    content: text_group,
+                  },
                 } only %}
               {% endcell %}
               {% cell "u-bolt-width-1/1" %}
-                {% include "@bolt-components-card/card.twig" with {
+                {% set text_group %}
+                  {% include "@bolt/eyebrow.twig" with {
+                    text: "Jan 18, 2018"
+                  } only %}
+                  {% include "@bolt-components-headline/headline.twig" with {
+                    text: "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
+                    url: "http://pega.com",
+                    size: "large",
+                  } only %}
+                  {% include "@bolt-components-headline/text.twig" with {
+                    text: "Pega's Jeff Nicholson examines the state of AI in today's customer experiences.",
+                  } only %}
+                {% endset %}
+                {% include "@bolt-components-card-replacement/card-replacement.twig" with {
                   theme: "xlight",
-                  contentItems: [
-                    {
-                      pattern: "eyebrow",
-                      text: "Jan 18 2018"
-                    },
-                    {
-                      pattern: "headline",
-                      tag: "h3",
-                      size: "large",
-                      text: "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
-                      url: "http://pega.com"
-                    },
-                    {
-                      pattern: "text",
-                      text: "Pega's Jeff Nicholson examines the state of AI in today's customer experiences."
-                    }
-                  ]
+                  body: {
+                    content: text_group,
+                  },
                 } only %}
               {% endcell %}
               {% cell "u-bolt-width-1/1" %}
-                {% include "@bolt-components-card/card.twig" with {
+                {% set text_group %}
+                  {% include "@bolt/eyebrow.twig" with {
+                    text: "Date"
+                  } only %}
+                  {% include "@bolt-components-headline/headline.twig" with {
+                    text: "Article Headline",
+                    url: "http://pega.com",
+                    size: "large",
+                  } only %}
+                  {% include "@bolt-components-headline/text.twig" with {
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent.",
+                  } only %}
+                {% endset %}
+                {% include "@bolt-components-card-replacement/card-replacement.twig" with {
                   theme: "xlight",
-                  contentItems: [
-                    {
-                      pattern: "eyebrow",
-                      text: "Date"
-                    },
-                    {
-                      pattern: "headline",
-                      tag: "h3",
-                      size: "large",
-                      text: "Article Headline",
-                      url: "http://pega.com"
-                    },
-                    {
-                      pattern: "text",
-                      text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                    }
-                  ]
+                  body: {
+                    content: text_group,
+                  },
                 } only %}
               {% endcell %}
             {% endfor %}

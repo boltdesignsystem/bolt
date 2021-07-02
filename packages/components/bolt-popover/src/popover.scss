@@ -12,9 +12,12 @@
 
 //  Note: this does not actually render to the Shadow DOM so :host rule not required
 bolt-popover {
+  // @TODO: we're using modal here to resolve a bug, this will need to be refactored. [Ticket: DS-525]
+  --c-bolt-popover-z-index: #{bolt-z-index('modal')};
   display: inline;
 
-  &:not([ready]) [slot='content'] {
+  // This element is copied by Tippy and appended to the document.body
+  [slot='content'] {
     display: none;
   }
 }

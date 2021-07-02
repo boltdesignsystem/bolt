@@ -28,13 +28,18 @@
         } only %}
       {% endcell %}
       {% cell "u-bolt-flex-shrink" %}
-        {% include "@bolt-components-button/button.twig" with {
-          text: "Launch Pega",
+        {% set _link_icon %}
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "external-link"
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: "Launch Pega",
           size: "small",
           border_radius: "full",
-          icon: {
-            name: "external-link",
-            position: "after",
+          icon_after: _link_icon,
+          attributes: {
+            type: 'button'
           }
         } only %}
       {% endcell %}

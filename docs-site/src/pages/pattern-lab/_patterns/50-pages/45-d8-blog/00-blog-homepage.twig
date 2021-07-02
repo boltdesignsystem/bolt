@@ -72,16 +72,19 @@
 
         <div class="c-bolt-search-filter">
           <div class="c-bolt-search-filter__trigger">
-            {% include "@bolt-components-button/button.twig" with {
-              "text": "Close search filters",
-              "url": "#search-filters",
-              "size": "xsmall",
-              "style": "primary",
-              "border_radius": "full",
-              "iconOnly": true,
-              "icon": {
-                "name": "filter",
-                "size": "medium"
+            {% set _icon_filter %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'filter',
+                size: 'medium'
+              } only %}
+            {% endset %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Close search filters',
+              icon_only: _icon_filter,
+              border_radius: 'full',
+              size: 'xsmall',
+              attributes: {
+                href: '#search-filters'
               }
             } only %}
           </div>
@@ -454,28 +457,32 @@
                 "buttons": [
                   {
                     "text": "Apply",
-                    "style": "primary"
+                    "hierarchy": "primary"
                   },
                   {
                     "text": "Cancel",
                     "url": "#!",
-                    "style": "secondary"
+                    "hierarchy": "secondary"
                   }
                 ]
               } only %}
             </div>
 
             <div class="c-bolt-search-filter__panel-controls c-bolt-search-filter__panel-controls--close">
-              {% include "@bolt-components-button/button.twig" with {
-                "text": "Close search filters",
-                "url": "#!",
-                "size": "xsmall",
-                "style": "text",
-                "border_radius": "full",
-                "iconOnly": true,
-                "icon": {
-                  "name": "close",
-                  "size": "medium"
+              {% set _icon_close %}
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'close',
+                  size: 'medium'
+                } only %}
+              {% endset %}
+              {% include '@bolt-elements-button/button.twig' with {
+                content: 'Close search filters',
+                icon_only: _icon_close,
+                hierarchy: 'transparent',
+                border_radius: 'full',
+                size: 'xsmall',
+                attributes: {
+                  href: '#!'
                 }
               } only %}
             </div>
@@ -486,22 +493,22 @@
       {% cell "u-bolt-width-12/12 u-bolt-width-9/12@medium" %}
         {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-medium" %}
           {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge" %}
-            {% embed "@bolt-components-card/card.twig" with {
+            {% embed "@bolt-components-card-replacement/card-replacement.twig" with {
               theme: "xlight",
-              contentItems: [
-                {
-                  pattern: "image",
+              media: {
+                image: {
                   src: "/images/content/promos/promo-blog-1.jpg",
+                  alt: "",
                 },
+              },
+              actions: [
                 {
-                  pattern: "button",
-                  width: "full",
                   text: "Continue Reading",
-                  url: "#!",
-                }
-              ]
+                  url: "https://pega.com",
+                },
+              ],
             } only %}
-              {% block card_body %}
+              {% block body %}
                 {% include "@bolt-components-headline/eyebrow.twig" with {
                   text: "Matthew Nolan",
                 } only %}
@@ -517,22 +524,22 @@
             {% endembed %}
           {% endcell %}
           {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge" %}
-            {% embed "@bolt-components-card/card.twig" with {
+            {% embed "@bolt-components-card-replacement/card-replacement.twig" with {
               theme: "xlight",
-              contentItems: [
-                {
-                  pattern: "image",
+              media: {
+                image: {
                   src: "/images/content/promos/promo-blog-2.jpg",
+                  alt: "",
                 },
+              },
+              actions: [
                 {
-                  pattern: "button",
-                  width: "full",
                   text: "Continue Reading",
-                  url: "#!",
-                }
-              ]
+                  url: "https://pega.com",
+                },
+              ],
             } only %}
-              {% block card_body %}
+              {% block body %}
                 {% include "@bolt-components-headline/eyebrow.twig" with {
                   text: "Gerry McCool",
                 } only %}
@@ -548,22 +555,22 @@
             {% endembed %}
           {% endcell %}
           {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge" %}
-            {% embed "@bolt-components-card/card.twig" with {
+            {% embed "@bolt-components-card-replacement/card-replacement.twig" with {
               theme: "xlight",
-              contentItems: [
-                {
-                  pattern: "image",
+              media: {
+                image: {
                   src: "/images/content/promos/promo-blog-3.jpg",
+                  alt: "",
                 },
+              },
+              actions: [
                 {
-                  pattern: "button",
-                  width: "full",
                   text: "Continue Reading",
-                  url: "#!",
-                }
-              ]
+                  url: "https://pega.com",
+                },
+              ],
             } only %}
-              {% block card_body %}
+              {% block body %}
                 {% include "@bolt-components-headline/eyebrow.twig" with {
                   text: "Gerry McCool",
                 } only %}
@@ -580,84 +587,66 @@
           {% endcell %}
           {% for i in 0..2 %}
             {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge" %}
-              {% include "@bolt-components-card/card.twig" with {
+              {% include "@bolt-components-card-replacement/card-replacement.twig" with {
                 theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "image",
+                media: {
+                  image: {
                     src: "/images/content/promos/promo-16x9-ai.jpg",
+                    alt: "",
                   },
+                },
+                body: {
+                  eyebrow: "Kate Fowler",
+                  headline: "3 capabilities insurers need for outstanding customer engagement",
+                },
+                actions: [
                   {
-                    pattern: "eyebrow",
-                    text: "Kate Fowler"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "3 capabilities insurers need for outstanding customer engagement",
-                  },
-                  {
-                    pattern: "button",
-                    width: "full",
                     text: "Continue Reading",
-                    url: "#!",
-                  }
-                ]
+                    url: "https://pega.com",
+                  },
+                ],
               } only %}
             {% endcell %}
             {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge" %}
-              {% include "@bolt-components-card/card.twig" with {
+              {% include "@bolt-components-card-replacement/card-replacement.twig" with {
                 theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "image",
+                media: {
+                  image: {
                     src: "/images/content/promos/promo-16x9-ai.jpg",
+                    alt: "",
                   },
+                },
+                body: {
+                  eyebrow: "Anthony Abdulla",
+                  headline: "7 reasons why you should embrace low-code development right now",
+                },
+                actions: [
                   {
-                    pattern: "eyebrow",
-                    text: "Anthony Abdulla"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "7 reasons why you should embrace low-code development right now",
-                  },
-                  {
-                    pattern: "button",
-                    width: "full",
                     text: "Continue Reading",
-                    url: "#!",
-                  }
-                ]
+                    url: "https://pega.com",
+                  },
+                ],
               } only %}
             {% endcell %}
             {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge" %}
-              {% include "@bolt-components-card/card.twig" with {
+              {% include "@bolt-components-card-replacement/card-replacement.twig" with {
                 theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "image",
+                media: {
+                  image: {
                     src: "/images/content/promos/promo-16x9-ai.jpg",
+                    alt: "",
                   },
+                },
+                body: {
+                  eyebrow: "Baruch Sachs and Leanne Russell",
+                  headline: "Pega Catalyst™: Applying design thinking principles to speed digital transformation",
+                },
+                actions: [
                   {
-                    pattern: "eyebrow",
-                    text: "Baruch Sachs and Leanne Russell"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Pega Catalyst™: Applying design thinking principles to speed digital transformation",
-                  },
-                  {
-                    pattern: "button",
-                    width: "full",
                     text: "Continue Reading",
-                    url: "#!",
-                  }
-                ]
+                    url: "https://pega.com",
+                  },
+                ],
               } only %}
             {% endcell %}
           {% endfor %}

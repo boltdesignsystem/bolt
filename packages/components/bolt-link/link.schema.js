@@ -28,7 +28,20 @@ module.exports = {
   description: 'Text link.',
   type: 'object',
   not: {
-    required: ['href'],
+    anyOf: [
+      {
+        required: ['href'],
+      },
+      {
+        required: ['isHeadline'],
+      },
+      {
+        required: ['onClick'],
+      },
+      {
+        required: ['onClickTarget'],
+      },
+    ],
   },
   properties: {
     attributes: {

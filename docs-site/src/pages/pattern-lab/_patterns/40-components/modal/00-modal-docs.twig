@@ -1,9 +1,9 @@
 {% set usage %}{% verbatim %}
-{% include "@bolt-components-button/button.twig" with {
-  text: "Open Modal",
+{% include "@bolt-elements-button/button.twig" with {
+  content: "Open Modal",
   attributes: {
-    "on-click": "show",
-    "on-click-target": "js-target-name"
+    type: 'button',
+    "data-bolt-modal-target": ".js-target-name",
   }
 } only %}
 

@@ -2,6 +2,18 @@
    Misc. resets
 \* ------------------------------------ */
 
+/**
+ * Always declare margins in the same direction:
+ * csswizardry.com/2012/06/single-direction-margin-declarations
+ */
+#{$bolt-all-block-elements} {
+  margin-bottom: var(--bolt-spacing-y-medium);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 img {
   max-width: 100%;
 }
@@ -47,6 +59,19 @@ dd {
   line-height: var(--bolt-type-line-height-small);
 
   &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+dd,
+ol,
+ul {
+  margin-left: var(--bolt-spacing-x-medium);
+}
+
+li > {
+  ol,
+  ul {
     margin-bottom: 0;
   }
 }

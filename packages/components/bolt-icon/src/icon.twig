@@ -14,6 +14,17 @@
   {% set color = color %}
 {% endif %}
 
+{# These icons have been renamed and converted to new brand icons. #}
+{% if name %}
+  {% if name == 'discussions' %}
+    {% set name = 'pega-chat-typing' %}
+  {% elseif name == 'questions' %}
+    {% set name = 'pega-chat-question' %}
+  {% elseif name == 'healthcare' %}
+    {% set name = 'pega-healthcare' %}
+  {% endif %}
+{% endif %}
+
 {% set attributes = attributes
   .setAttribute('name', name)
   .setAttribute('size', size)

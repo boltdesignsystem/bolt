@@ -6,14 +6,15 @@ module.exports = {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
+    const modalTrigger = 'button[data-bolt-modal-target]';
     let testName = 'bolt-modal';
 
     browser
       .url(
         `${testingUrl}/pattern-lab/patterns/40-components-modal-05-modal/40-components-modal-05-modal.html`,
       )
-      .waitForElementVisible('bolt-button', 1000)
-      .click('bolt-button')
+      .waitForElementVisible(modalTrigger, 1000)
+      .click(modalTrigger)
       .pause(1000)
       .execute(
         function(data) {
@@ -26,7 +27,7 @@ module.exports = {
         function(result) {
           browser.assert.ok(
             result.value === true,
-            `verified that clicking <bolt-button> opened <bolt-modal> and added the class "is-open".`,
+            `verified that clicking ${modalTrigger} opened <bolt-modal> and added the class "is-open".`,
           );
         },
       )

@@ -179,12 +179,10 @@
 {% endset %}
 
 {% set card_with_form %}
-  {% embed "@bolt-components-card/card.twig" %}
-    {% block card_media %}{% endblock %}
-    {% block card_body %}
+  {% embed "@bolt-components-card-replacement/card-replacement.twig" %}
+    {% block body %}
       {{ form }}
     {% endblock %}
-    {% block card_footer %}{% endblock %}
   {% endembed %}
 {% endset %}
 
@@ -289,56 +287,45 @@
     } only %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
       {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-card/card.twig" with {
-          contentItems: [
-            {
-              pattern: "image",
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          media: {
+            image: {
               src: "/images/content/promos/promo-16x9-anthem.jpg",
               alt: "Anthem Video",
               lazyload: false,
             },
+          },
+          body: {
+            eyebrow: "Eyebrow",
+            headline: "Headline",
+          },
+          actions: [
             {
-              pattern: "eyebrow",
-              text: "Eyebrow"
-            },
-            {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Headline"
-            },
-            {
-              pattern: "button",
               text: "Button",
-              url: "https://pega.com"
-            }
-          ]
+              url: "https://pega.com",
+            },
+          ],
         } only %}
       {% endcell %}
       {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-card/card.twig" with {
-          contentItems: [
-            {
-              pattern: "image",
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          media: {
+            image: {
               src: "/images/content/promos/promo-16x9-anthem.jpg",
               alt: "Anthem Video",
               lazyload: false,
             },
-            {
-              pattern: "headline",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            }
-          ]
+          },
+          body: {
+            headline: "TAnthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+          },
         } only %}
       {% endcell %}
       {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-card/card.twig" with {
-          contentItems: [
-            {
-              pattern: "headline",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            }
-          ]
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          body: {
+            headline: "TAnthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+          },
         } only %}
       {% endcell %}
     {% endgrid %}

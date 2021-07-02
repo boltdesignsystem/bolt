@@ -13,6 +13,8 @@ class BoltTooltip extends BoltElement {
         type: Boolean,
         reflect: true,
       },
+      zIndex: { type: Number },
+      paddingTop: { type: Number },
     };
   }
 
@@ -21,7 +23,38 @@ class BoltTooltip extends BoltElement {
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
   }
 
+  getPaddingTop() {
+    const stickyPageHeader =
+      document.querySelector('.c-bolt-page-header') ||
+      document.querySelector('.c-page-header.is-fixed'); // use [data-sticky-page-header] once navbar work merged into master
+
+    const stickyElements = document.querySelectorAll('.js-bolt-sticky');
+
+    let offsetHeight = 0;
+    let tallestStickyElement = 0;
+
+    if (stickyPageHeader) {
+      offsetHeight += stickyPageHeader.offsetHeight;
+    }
+
+    if (stickyElements.length) {
+      stickyElements.forEach(el => {
+        const height = el.offsetHeight;
+        if (height > tallestStickyElement) {
+          tallestStickyElement = height;
+        }
+      });
+    }
+
+    return offsetHeight + tallestStickyElement;
+  }
+
   initTippy() {
+    this.zIndex = parseInt(
+      getComputedStyle(this).getPropertyValue('--c-bolt-tooltip-z-index'),
+      10,
+    );
+    this.paddingTop = this.getPaddingTop();
     this.$boundary =
       this.$boundary ||
       (this.boundary && this.closest(this.boundary)) ||
@@ -39,6 +72,7 @@ class BoltTooltip extends BoltElement {
       maxWidth: 'none', // Set width via CSS variable for legacy Edge support
       offset: [0, 0],
       plugins: [hideOnEsc],
+      zIndex: this.zIndex,
       popperOptions: {
         modifiers: [
           {
@@ -46,6 +80,7 @@ class BoltTooltip extends BoltElement {
             options: {
               fallbackPlacements: this.fallbackPlacements ?? undefined,
               boundary: this.$boundary,
+              padding: { top: this.paddingTop },
             },
           },
           {
@@ -104,7 +139,7 @@ class BoltTooltip extends BoltElement {
 
   render() {
     return html`
-      ${this.slotify('default')}
+      ${this.slotify('default')} ${this.slotify('content')}
     `;
   }
 }

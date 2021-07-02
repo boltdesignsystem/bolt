@@ -21,10 +21,11 @@
 
 {% macro loopThroughEnums(prop) %}
   {% for x in prop.enum %}
-    <code>{% if prop.type == "boolean" %}{{ x ? "true" : "false" }}{% elseif x == null %}NULL{% else %}{{- x -}}{% endif %}</code>
-    {%- if not loop.last %}
-      {{ prop.enum|length == 2 ? " or " : ", " }}
-    {% endif -%}
+    {% set join_value = '' %}
+    {% if not loop.last %}
+      {% set join_value = prop.enum|length == 2 ? " or " : ", " %}
+    {% endif %}
+    <code>{% if prop.type == "boolean" %}{{ x ? "true" : "false" }}{% elseif x == null %}NULL{% else %}{{- x -}}{% endif %}</code>{{ join_value }}
   {% endfor %}
 {% endmacro %}
 
@@ -148,7 +149,13 @@
     {% else %}
       <td class="c-bds-docs-table__col">
         {% if prop.type %}
-          <code>{{ prop.type }}</code>
+          {% set display_type = prop.type %}
+          {% if prop.type == "array" and prop.items and prop.items.type == "string" %}
+            {% set is_array_of_strings = true %}
+            <code>array[string]</code>
+          {% else %}
+            <code>{{ prop.type }}</code>
+          {% endif %}
         {% else %}
           —
         {% endif %}
@@ -169,7 +176,11 @@
       </td>
 
       <!-- values -->
+      {% if is_array_of_strings %}
+      <td class="c-bds-docs-table__col">{{ _self.schemaProps(prop.items) }}</td>
+      {% else %}
       <td class="c-bds-docs-table__col">{{ _self.schemaProps(prop) }}</td>
+      {% endif %}
 
   </tr>
 {% endmacro %}
@@ -257,7 +268,7 @@
                   {% else %}
                     <td class="c-bds-docs-table__col">
                       <code>{{ prop.type }}</code>
-                    {% endif %}
+                  {% endif %}
 
                     <!-- default value -->
                     <td class="c-bds-docs-table__col">

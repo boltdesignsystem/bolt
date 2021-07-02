@@ -4,15 +4,20 @@
 
 {% set demo %}
   {% set trigger %}
-    {% include '@bolt-components-button/button.twig' with {
-      text: 'This triggers a popover on hover',
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This triggers a popover on hover',
       size: 'small',
+      attributes: {
+        type: 'button'
+      }
     } only %}
   {% endset %}
   {% set link %}
-    {% include '@bolt-components-link/link.twig' with {
-      text: 'call to action',
-      url: 'https://pega.com',
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'call to action',
+      attributes: {
+        href: 'https://pega.com'
+      }
     } only %}
   {% endset %}
   {% set content %}
@@ -39,9 +44,9 @@
 {% set html_markup %}
 {% verbatim %}
 <bolt-popover spacing="medium" trigger-event="hover">
-  <bolt-button>
-    This triggers a popover on hover
-  </bolt-button>
+  <button type="button" class="e-bolt-button">
+    This triggers a popover
+  </button>
   <div slot="content">
     This is the content of the popover.
   </div>

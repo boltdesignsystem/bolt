@@ -1,0 +1,42 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-layouts-site'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'l-bolt-site',
+] %}
+
+{# Template #}
+<div {{ attributes.addClass(classes) }}>
+  {#
+  /**
+   * The contents of `header` must be a single element, for example:
+   * <header>
+   *   ...
+   * </header>
+   */
+  #}
+  {{ header }}
+
+  <main id="main-content" {{ main.attributes }}>
+    {# Main content goes here #}
+    {{ main.content }}
+  </main>
+
+  {#
+  /**
+   *  This must be a single element, for example:
+   *  <footer>
+   *    ...
+   *  </footer>
+   */
+  #}
+  {{ footer }}
+</div>

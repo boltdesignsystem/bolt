@@ -1,98 +1,76 @@
-{% set schema = bolt.data.components["@bolt-components-card-replacement"].schema %}
+{% set schema = bolt.data.components['@bolt-components-card-replacement'].schema %}
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-card-replacement" %}
-{% set attributes = create_attribute(attributes|default({})) %}
+{% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
 
-{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
-{% set tag_options = schema.properties.tag.enum %}
-{% set spacing_options = schema.properties.spacing.enum %}
-{% set borderRadius_options = schema.properties.borderRadius.enum %}
-{% set theme_options = schema.properties.theme.enum %}
-{% set height_options = schema.properties.height.enum %}
-
-{# Check that the component's current prop values are valid. if not, default to the schema default #}
-{% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
-{% set spacing = spacing in spacing_options ? spacing : schema.properties.spacing.default %}
-{% set borderRadius = borderRadius in borderRadius_options ? borderRadius : schema.properties.borderRadius.default %}
-{% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
-{% set height = height in height_options ? height : schema.properties.height.default %}
-
 {% if link %}
-  {% set link_url = link.url %}
-  {% set link_text = link.text %}
-  {% set link_target = link.target %}
-  {% set link_attributes = create_attribute(link.attributes|default({})) %}
+  {% set _link_url = link.url %}
+  {% set _link_text = link.text %}
+  {% set _link_target = link.target %}
+  {% set _link_attributes = create_attribute(link.attributes|default({})) %}
 {% endif %}
 
-{% if block("background") %}
-  {% set background_block %}
-    {{ block("background") }}
+{% if block('background') %}
+  {% set _background_block %}
+    {{ block('background') }}
   {% endset %}
 {% endif %}
 
-{% if block("media") %}
-  {% set media_block %}
-    {{ block("media") }}
+{% if block('media') %}
+  {% set _media_block %}
+    {{ block('media') }}
   {% endset %}
 {% endif %}
 
-{% if block("body") %}
-  {% set body_block %}
-    {{ block("body") }}
+{% if block('body') %}
+  {% set _body_block %}
+    {{ block('body') }}
   {% endset %}
 {% endif %}
 
 {# card-replacement component's custom element wrapper #}
 <bolt-card-replacement
-  {% if rounded %} rounded {% endif %}
-  {% if tag %} tag="{{ tag }}" {% endif %}
-  {% if spacing %} spacing="{{ spacing }}" {% endif %}
-  {% if borderRadius %} border-radius="{{ borderRadius }}" {% endif %}
-  {% if theme %} theme="{{ theme }}" {% endif %}
-  {% if height %} height="{{ height }}" {% endif %}
-  {% if link_url %} url="{{ link_url }}" {% endif %}
-  {% if horizontal %} horizontal {% endif %}
-  {{ attributes }}>
-
-  {# This sets none value to not render anything. #}
-  {% set theme = theme == "none" ? false : theme %}
+  {% if _link_url %} url="{{ _link_url }}" {% endif %}
+  {# this line is here to prevent a breaking change with property validation #}
+  {% if this.data.height.value %} height="{{ this.data.height.value }}" {% endif %}
+  {{ this.props|without('height') }}
+  >
 
   {# Array of classes based on the defined + default props #}
   {% set classes = [
-    base_class,
-    horizontal ? "c-bolt-card-replacement--horizontal" : "",
-    borderRadius in borderRadius_options ? "c-bolt-card-replacement--border-radius-#{borderRadius}" : "",
-    theme in theme_options ? "t-bolt-#{theme}" : "",
+    'c-bolt-card-replacement',
+    this.data.horizontal.value ? 'c-bolt-card-replacement--horizontal' : '',
+    this.data.border_radius.value ? 'c-bolt-card-replacement--border-radius-' ~ this.data.border_radius.value : '',
+    this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : '',
   ] %}
 
   <ssr-keep for="bolt-card-replacement" {{ inner_attributes.addClass(classes) }}>
-    {% if link and link_url %}
-      <bolt-card-replacement-link {{ link_attributes }}>
-        {% if link_url %}
-          <a href="{{ link_url }}" class="{{ "#{base_class}__link" }}" {% if link_target %} target="{{ link_target }}" {% endif %}>
-            {% if link_text %}
-              <ssr-keep for="bolt-card-replacement-link" class="u-bolt-visuallyhidden">{{ link_text }}</ssr-keep>
+    {% if link and _link_url %}
+      <bolt-card-replacement-link {{ _link_attributes }}>
+        {% if _link_url %}
+          <a href="{{ _link_url }}" class="{{ 'c-bolt-card-replacement__link' }}" {% if _link_target %} target="{{ _link_target }}" {% endif %}>
+            {% if _link_text %}
+              <ssr-keep for="bolt-card-replacement-link" class="u-bolt-visuallyhidden">{{ _link_text }}</ssr-keep>
             {% endif %}
           </a>
         {% endif %}
       </bolt-card-replacement-link>
     {% endif %}
 
-    {% if background or background_block %}
-      {% if background_block %}
-        {% embed "@bolt-components-card-replacement/_card-replacement-background.twig" %}
+    {% if background or _background_block %}
+      {% if _background_block %}
+        {% embed '@bolt-components-card-replacement/_card-replacement-background.twig' %}
           {% block background %}
-            {{ background_block }}
+            {{ _background_block }}
           {% endblock %}
         {% endembed %}
       {% else %}
-        {% include "@bolt-components-card-replacement/_card-replacement-background.twig" %}
+        {% include '@bolt-components-card-replacement/_card-replacement-background.twig' %}
       {% endif %}
     {% endif %}
 
@@ -101,35 +79,35 @@
       {{ content }}
     {% else %}
       {# Structured Content #}
-      {% if media or media_block %}
-        {% if media_block %}
-          {% embed "@bolt-components-card-replacement/_card-replacement-media.twig" %}
+      {% if media or _media_block %}
+        {% if _media_block %}
+          {% embed '@bolt-components-card-replacement/_card-replacement-media.twig' %}
             {% block media %}
-              {{ media_block }}
+              {{ _media_block }}
             {% endblock %}
           {% endembed %}
         {% else %}
-          {% include "@bolt-components-card-replacement/_card-replacement-media.twig" %}
+          {% include '@bolt-components-card-replacement/_card-replacement-media.twig' %}
         {% endif %}
       {% endif %}
-      {% if horizontal %}<div class="c-bolt-card-replacement__horizontal-wrapper">{% endif %}
-        {% if body or body_block %}
-          {% if body_block %}
-            {% embed "@bolt-components-card-replacement/_card-replacement-body.twig" %}
+      {% if this.data.horizontal.value %}<div class="c-bolt-card-replacement__horizontal-wrapper">{% endif %}
+        {% if body or _body_block %}
+          {% if _body_block %}
+            {% embed '@bolt-components-card-replacement/_card-replacement-body.twig' %}
               {% block body %}
-                {{ body_block }}
+                {{ _body_block }}
               {% endblock %}
             {% endembed %}
           {% else %}
-            {% include "@bolt-components-card-replacement/_card-replacement-body.twig" %}
+            {% include '@bolt-components-card-replacement/_card-replacement-body.twig' %}
           {% endif %}
         {% endif %}
         {% block actions %}
           {% if actions %}
-            {% include "@bolt-components-card-replacement/_card-replacement-actions.twig" %}
+            {% include '@bolt-components-card-replacement/_card-replacement-actions.twig' %}
           {% endif %}
         {% endblock %}
-      {% if horizontal %}</div>{% endif %}
+      {% if this.data.horizontal.value %}</div>{% endif %}
     {% endif %}
   </ssr-keep>
 </bolt-card-replacement>

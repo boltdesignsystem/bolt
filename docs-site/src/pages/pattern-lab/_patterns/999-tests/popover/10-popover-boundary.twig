@@ -1,0 +1,88 @@
+{% extends '@pl/_default-page-template.twig' %}
+
+{% block main_content %}
+  {% set banner %}
+    {% include '@bolt-components-sticky/sticky.twig' with {
+      content: include('@bolt-components-banner/banner.twig', {
+        content: 'Example Additional Sticky Element',
+        status: 'warning'
+      }),
+      attributes: {
+        class: [
+          'u-bolt-margin-bottom-large',
+          'js-bolt-sticky',
+        ],
+        style: 'top: var(--bolt-page-header-height); z-index: 100;'
+      },
+    } only %}
+  {% endset %}
+  {% set banner_tall %}
+    {% set content %}
+      <div class="u-bolt-padding-bottom-large">
+        <p>Example Additional Sticky Element</p>
+      </div>
+    {% endset %}
+    {% include '@bolt-components-sticky/sticky.twig' with {
+      content: include('@bolt-components-banner/banner.twig', {
+        content: content,
+        status: 'warning',
+      }),
+      attributes: {
+        class: [
+          'u-bolt-margin-bottom-large',
+          'js-bolt-sticky',
+        ],
+        style: 'top: var(--bolt-page-header-height); z-index: 100;'
+      },
+    } only %}
+  {% endset %}
+  {% set link %}
+    {% include '@bolt-components-link/link.twig' with {
+      text: 'call to action',
+      url: 'https://pega.com',
+    } only %}
+  {% endset %}
+  {% set trigger %}
+    {% include '@bolt-components-button/button.twig' with {
+      text: 'This triggers a popover',
+    } only %}
+  {% endset %}
+  {% set content %}
+    This is the content of the popover with a {{ link }}.
+  {% endset %}
+  {% set popover %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: trigger,
+      content: content,
+      placement: 'top'
+    } only %}
+  {% endset %}
+  <div>
+    {{ banner }}
+    {{ popover }}
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+  </div>
+  <div>
+    {{ banner_tall }}
+    {{ popover }}
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+  </div>
+  <div>
+    {{ banner }}
+    {{ popover }}
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
+  </div>
+  <div style="height: 200vh"><!-- trigger scrollbars --></div>
+{% endblock %}
