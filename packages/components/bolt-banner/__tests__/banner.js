@@ -66,6 +66,7 @@ describe('Bolt banner Props', () => {
     test(`status items: ${option}`, async () => {
       const results = await render('@bolt-components-banner/banner.twig', {
         ...fixtures.defaultData,
+        content: `This banner is trying to convey ${option}`,
         status: option,
       });
 
@@ -78,6 +79,7 @@ describe('Bolt banner Props', () => {
     test(`status items: ${option}`, async () => {
       const results = await render('@bolt-components-banner/banner.twig', {
         ...fixtures.defaultData,
+        content: `The text is aligned to the ${option}`,
         align: option,
       });
 
