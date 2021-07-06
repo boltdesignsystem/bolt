@@ -112,7 +112,7 @@ class BoltTypeahead extends withLitEvents {
         @click=${this.submit}
         disabled=${ifDefined(this.disabled === true ? true : undefined)}
       >
-        <span class="e-bolt-button__icon-center">
+        <span class="e-bolt-button__icon-center" aria-hidden="true">
           <bolt-icon
             name="search"
             class=${cx('c-bolt-typeahead__icon')}
@@ -136,7 +136,7 @@ class BoltTypeahead extends withLitEvents {
         @click=${this.clearSearch}
         disabled=${ifDefined(this.disabled === true ? true : undefined)}
       >
-        <span class="e-bolt-button__icon-center">
+        <span class="e-bolt-button__icon-center" aria-hidden="true">
           <bolt-icon
             name="close-solid"
             class=${cx('c-bolt-typeahead__icon')}
