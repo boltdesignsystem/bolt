@@ -90,6 +90,16 @@
       },
     } only %}
   {% endset %}
+  {% set number_items %}
+    {% include '@bolt-components-listing-teaser/listing-teaser-status-number.twig' with {
+      number: '167',
+      label: 'Upvotes',
+    } only %}
+    {% include '@bolt-components-listing-teaser/listing-teaser-status-number.twig' with {
+      number: '25',
+      label: 'Likes',
+    } only %}
+  {% endset %}
   {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
     signifier: icon_questions,
     headline: {
@@ -112,6 +122,7 @@
       replies: '33',
       replies_label: 'Replies',
       views: '6k',
+      number_items: number_items,
     },
     action_menu: action_menu,
     share_menu: share_menu,

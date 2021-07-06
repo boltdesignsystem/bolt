@@ -83,9 +83,22 @@ module.exports = {
           type: 'string',
           description: 'Set the count of replies.',
         },
+        replies_label: {
+          type: 'string',
+          description: 'Set a custom label for the "reply count".',
+        },
         views: {
           type: 'string',
           description: 'Set the count of views.',
+        },
+        views_label: {
+          type: 'string',
+          description: 'Set a custom label for the "view count".',
+        },
+        number_items: {
+          type: 'object',
+          description:
+            'Render custom number indicators. This will override reply count and view count.',
         },
       },
     },

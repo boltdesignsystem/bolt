@@ -1,0 +1,19 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-listing-teaser'].schema['listing-teaser-status-number'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema.properties.content) %}
+{% set number_attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set number_classes = [
+  'c-bolt-listing-teaser__flag-status__item',
+] %}
+
+<li {{ number_attributes.addClass(number_classes) }}>
+  <span class="c-bolt-listing-teaser__flag-status__number">{{ number }}</span>
+  {{ label }}
+</li>
