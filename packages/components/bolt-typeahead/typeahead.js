@@ -113,10 +113,7 @@ class BoltTypeahead extends withLitEvents {
         disabled=${ifDefined(this.disabled === true ? true : undefined)}
       >
         <span class="e-bolt-button__icon-center" aria-hidden="true">
-          <bolt-icon
-            name="search"
-            class=${cx('c-bolt-typeahead__icon')}
-          ></bolt-icon>
+          <bolt-icon name="search" class=${cx('c-bolt-typeahead__icon')} />
         </span>
       </button>
 
@@ -137,11 +134,7 @@ class BoltTypeahead extends withLitEvents {
         disabled=${ifDefined(this.disabled === true ? true : undefined)}
       >
         <span class="e-bolt-button__icon-center" aria-hidden="true">
-          <bolt-icon
-            name="close-solid"
-            class=${cx('c-bolt-typeahead__icon')}
-            title=${this.clearInputText}
-          />
+          <bolt-icon name="close-solid" class=${cx('c-bolt-typeahead__icon')} />
         </span>
       </button>
     `;
