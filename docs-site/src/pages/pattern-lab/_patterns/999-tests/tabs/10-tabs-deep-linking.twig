@@ -1,0 +1,21 @@
+<div style="min-height: 50vh"></div>
+{% include "@bolt-components-tabs/tabs.twig" with {
+  panels: [
+    {
+      label: "Tab label 1",
+      content: "Tab content 1",
+      id: "tab-1",
+    },
+    {
+      label: "Tab label 2",
+      content: "Tab content 2",
+      id: "tab-2",
+    },
+    {
+      label: "Tab label 3",
+      content: "Tab content 3",
+      id: "tab-3",
+    }
+  ]
+} only %}
+<div style="min-height: 100vh"></div>
