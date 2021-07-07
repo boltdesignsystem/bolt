@@ -67,9 +67,7 @@
 }
 
 .c-bolt-listing-teaser__flag-heading {
-  display: flex;
-  align-items: center;
-  align-self: center;
+  display: block;
   grid-area: heading;
   word-break: break-word;
   hyphens: auto;
@@ -92,6 +90,15 @@
       grid-row-start: 2;
     }
   }
+
+  > * {
+    margin-bottom: 0 !important; // Reset text spacing
+  }
+}
+
+.c-bolt-listing-teaser__flag-subheadline {
+  font-size: var(--bolt-type-font-size-small);
+  line-height: var(--bolt-type-line-height-small);
 }
 
 .c-bolt-listing-teaser__flag-content {
@@ -225,16 +232,8 @@
 
     &:not(:last-child):after {
       content: '\007C';
-      display: inline-block;
-      position: relative;
-      top: -1px; // [Mai] Offsets the 1px border to align the chevron with text.
-      width: var(--bolt-spacing-y-xsmall); // Width and height must be the same.
-      height: var(
-        --bolt-spacing-y-xsmall
-      ); // Width and height must be the same.
       margin: 0 var(--bolt-spacing-x-xxsmall);
       color: var(--m-bolt-neutral);
-      vertical-align: baseline;
     }
 
     > * {
@@ -244,6 +243,20 @@
     a,
     button {
       position: relative; // This raises the stacking order of the meta link above the main heading link.
+    }
+
+    @at-root .c-bolt-listing-teaser--layout-responsive
+        .c-bolt-listing-teaser__flag-content
+        #{&} {
+      @include bolt-mq($until: small) {
+        display: block;
+        padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xsmall);
+        border-left: 1px solid var(--m-bolt-border);
+
+        &:not(:last-child):after {
+          display: none;
+        }
+      }
     }
   }
 }
@@ -260,16 +273,20 @@
   order: 3;
 }
 
-.c-bolt-listing-teaser__flag-content {
+.c-bolt-listing-teaser__flag-subheadline {
   order: 4;
 }
 
-.c-bolt-listing-teaser__flag-status {
+.c-bolt-listing-teaser__flag-content {
   order: 5;
 }
 
-.c-bolt-listing-teaser__actions {
+.c-bolt-listing-teaser__flag-status {
   order: 6;
+}
+
+.c-bolt-listing-teaser__actions {
+  order: 7;
 }
 
 .c-bolt-listing-teaser--variant-card {
@@ -295,6 +312,11 @@
     padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
   }
 
+  .c-bolt-listing-teaser__actions {
+    margin-top: var(--bolt-spacing-y-small);
+    margin-right: var(--bolt-spacing-x-small);
+  }
+
   &.c-bolt-listing-teaser--inset-spacing-small {
     .c-bolt-listing-teaser__callout,
     .c-bolt-listing-teaser__flag {
@@ -306,6 +328,11 @@
     .c-bolt-listing-teaser__callout,
     .c-bolt-listing-teaser__flag {
       padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+    }
+
+    .c-bolt-listing-teaser__actions {
+      margin-top: var(--bolt-spacing-y-xsmall);
+      margin-right: var(--bolt-spacing-x-xsmall);
     }
   }
 }

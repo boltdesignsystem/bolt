@@ -8,6 +8,7 @@ $bolt-blockquote-image-border-width: $bolt-border-width;
 $bolt-blockquote-image-border-style: $bolt-border-style;
 $bolt-blockquote-image-border-color: var(--m-bolt-border);
 $bolt-blockquote-image-size: 4rem;
+$bolt-blockquote-image-border-radius: bolt-border-radius(full);
 
 @mixin bolt-lang-specific-quotes($type: 'open') {
   $quote-selector: 'p:not([slot]):first-of-type:before';
@@ -174,7 +175,7 @@ bolt-blockquote {
   overflow: hidden;
   margin-bottom: var(--bolt-spacing-y-small);
   vertical-align: middle;
-  border-radius: 50%;
+  border-radius: $bolt-blockquote-image-border-radius;
   border-width: $bolt-blockquote-image-border-width;
   border-style: $bolt-blockquote-image-border-style;
   border-color: $bolt-blockquote-image-border-color;
