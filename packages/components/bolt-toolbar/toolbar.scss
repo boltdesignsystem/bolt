@@ -59,6 +59,11 @@
   position: relative;
   width: 100%;
   margin-bottom: calc(var(--bolt-spacing-y-small) * -1);
+
+  @include bolt-mq(medium) {
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
 }
 
 .c-bolt-toolbar__item {
@@ -70,7 +75,7 @@
 
   &--before {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
   }
 
   &--after {
