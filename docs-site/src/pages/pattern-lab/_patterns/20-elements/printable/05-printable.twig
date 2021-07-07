@@ -1,0 +1,55 @@
+{% set description %}
+  A Printable element can be used for any content you wish to be visible and styled for printing.
+{% endset %}
+
+{% set notes %}
+<bolt-ol>
+  <bolt-li>You can add the class <bolt-code-snippet display="inline">e-bolt-printable</bolt-code-snippet> to an element to hide everything on the page besides what is include in the targeted element. To apply styles specifically related to articles, please also use the <bolt-code-snippet display="inline">e-bolt-printable--article</bolt-code-snippet> class.</bolt-li>
+  <bolt-li>To see an example of this in action, please go to this <a class="e-bolt-text-link" href="/pattern-lab/patterns/50-pages-60-academy-05-pages-t2-inner-pages-topic-details-acd-topic-detail-page/50-pages-60-academy-05-pages-t2-inner-pages-topic-details-acd-topic-detail-page.html" target="_blank">Academy Detail Page</a> template and start the print process.</bolt-li>
+</bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set printable_content %}
+    <h1>This is an example of an article to be printed</h1>
+    <p>Magna aliqua ea magna cillum aute mollit deserunt. Culpa commodo sint mollit mollit culpa velit ad eiusmod sunt magna magna aliquip. Ea duis quis est ea velit sint velit ut et reprehenderit ea id cillum.</p>
+  {% endset %}
+
+  {% include '@bolt-elements-printable/printable.twig' with {
+    content: printable_content,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Render content
+{% set printable_content %}
+    <h1>This is an example of an article to be printed</h1>
+    <p>Magna aliqua ea magna cillum aute mollit deserunt. Culpa commodo sint mollit mollit culpa velit ad eiusmod sunt magna magna aliquip. Ea duis quis est ea velit sint velit ut et reprehenderit ea id cillum.</p>
+{% endset %}
+
+// Pass content to the component and set proper HTML tag
+{% include '@bolt-elements-printable/printable.twig' with {
+  content: printable_content,
+  tag: 'article',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<article class="e-bolt-printable e-bolt-printable--article">
+  <h1>This is an example of an article</h1>
+  <p>Magna aliqua ea magna cillum aute mollit deserunt. Culpa commodo sint mollit mollit culpa velit ad eiusmod sunt magna magna aliquip. Ea duis quis est ea velit sint velit ut et reprehenderit ea id cillum. In proident eiusmod velit laborum officia. Reprehenderit laborum id proident adipisicing quis sunt nostrud amet elit. Est qui eu tempor qui id dolor ullamco mollit tempor laboris laborum sunt dolor.</p>
+</article>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Printable',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
