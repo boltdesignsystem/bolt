@@ -22,8 +22,7 @@
   padding: calc(var(--bolt-spacing-y-xsmall) / 2) var(--bolt-spacing-x-xsmall);
   color: var(--m-bolt-headline);
   cursor: pointer;
-  border-radius: 3px;
-  border-radius: $bolt-border-radius;
+  border-radius: bolt-border-radius(small);
   // Added border so that &:after,&:focus doesn't change the size of the band
   // We should consider making this thin dotted style a mixin to share with navbar
   border-width: thin;
@@ -59,7 +58,7 @@
     transition: opacity 0.3s ease;
 
     @include bolt-mq(xsmall) {
-      border-radius: $bolt-border-radius;
+      border-radius: bolt-border-radius(small);
     }
   }
 
@@ -125,8 +124,8 @@
   max-width: 100vw;
   max-height: calc(100vh - 48px - 48px);
   pointer-events: none;
-  border-bottom-right-radius: $bolt-border-radius;
-  border-bottom-left-radius: $bolt-border-radius;
+  border-bottom-right-radius: bolt-border-radius(small);
+  border-bottom-left-radius: bolt-border-radius(small);
   box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
   background-color: var(--m-bolt-bg);
   transition: opacity var(--bolt-transition);

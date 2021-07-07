@@ -2,7 +2,7 @@
 .c-bolt-carousel__scrollbar {
   position: relative;
   margin-top: var(--bolt-spacing-y-small);
-  border-radius: 10px;
+  border-radius: bolt-border-radius(large);
   box-shadow: inset 0 0 6px var(--m-bolt-border);
   transition: opacity 0.2s ease;
   -ms-touch-action: none;
@@ -23,7 +23,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  border-radius: bolt-border-radius(large);
   background-image: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 1) 0%,
