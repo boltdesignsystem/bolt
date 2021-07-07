@@ -12,6 +12,12 @@
     'callout callout';
   align-items: flex-start;
   position: relative; // Position is set here so the heading link can expand its click target up to this point.
+
+  &:hover {
+    span.e-bolt-text-link {
+      text-decoration: underline; // When a visual read more link is added to the description, it must not be a semantic link because it will create a duplicate link within the teaser (same as the heading link). Use a span with text link class will allow the visual to be expected. When hover over the entire teaser, this span will get underline. Same treatment as the heading link.
+    }
+  }
 }
 
 .c-bolt-listing-teaser__callout {
