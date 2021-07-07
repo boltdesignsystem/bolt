@@ -1,11 +1,4 @@
-{% set usage %}{% verbatim %}
-{% include '@bolt-elements-printable/printable.twig' with {
-  content: 'This is printable.',
-} only %}
-{% endverbatim %}{% endset %}
-
 {% include '@utils/docs.twig' with {
   componentName: 'printable',
   componentGroup: 'elements',
-  usage: usage
 } only %}

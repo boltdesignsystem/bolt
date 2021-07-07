@@ -1,47 +1,33 @@
 {% set description %}
-  A Printable element can be used for any content you wish to be visible and styled for printing.
+  A Printable element can be used for any content you wish to be visible and styled in print mode.
 {% endset %}
 
 {% set notes %}
 <bolt-ol>
-  <bolt-li>You can add the class <bolt-code-snippet display="inline">e-bolt-printable</bolt-code-snippet> to an element to hide everything on the page besides what is include in the targeted element. To apply styles specifically related to articles, please also use the <bolt-code-snippet display="inline">e-bolt-printable--article</bolt-code-snippet> class.</bolt-li>
-  <bolt-li>To see an example of this in action, please go to this <a class="e-bolt-text-link" href="/pattern-lab/patterns/50-pages-60-academy-05-pages-t2-inner-pages-topic-details-acd-topic-detail-page/50-pages-60-academy-05-pages-t2-inner-pages-topic-details-acd-topic-detail-page.html" target="_blank">Academy Detail Page</a> template and start the print process.</bolt-li>
+  <bolt-li>You must add the <bolt-code-snippet display="inline">e-bolt-printable</bolt-code-snippet> class to the <bolt-code-snippet display="inline">&lt;body&gt;</bolt-code-snippet> element. It will hide everything on the page in print mode.</bolt-li>
+  <bolt-li>Then add the the <bolt-code-snippet display="inline">e-bolt-printable__article</bolt-code-snippet> class to the article container. This class will make the article visible in print mode. Additionally, print specific styles are set for many plain HTML elements.</bolt-li>
+  <bolt-li>To see an example of this in action, please go to this <a class="e-bolt-text-link" href="{{ link['pages-acd-topic-detail-page'] }}">Academy Article Detail Page</a> template (click &ldquo;Open in new tab&rdquo; to view it outside of Pattern Lab) and start the print process.</bolt-li>
 </bolt-ol>
 {% endset %}
 
 {% set demo %}
-  {% set printable_content %}
-    <h1>This is an example of an article to be printed</h1>
-    <p>Magna aliqua ea magna cillum aute mollit deserunt. Culpa commodo sint mollit mollit culpa velit ad eiusmod sunt magna magna aliquip. Ea duis quis est ea velit sint velit ut et reprehenderit ea id cillum.</p>
-  {% endset %}
-
-  {% include '@bolt-elements-printable/printable.twig' with {
-    content: printable_content,
-  } only %}
-{% endset %}
-
-{% set twig_markup %}
-{% verbatim %}
-// Render content
-{% set printable_content %}
-    <h1>This is an example of an article to be printed</h1>
-    <p>Magna aliqua ea magna cillum aute mollit deserunt. Culpa commodo sint mollit mollit culpa velit ad eiusmod sunt magna magna aliquip. Ea duis quis est ea velit sint velit ut et reprehenderit ea id cillum.</p>
-{% endset %}
-
-// Pass content to the component and set proper HTML tag
-{% include '@bolt-elements-printable/printable.twig' with {
-  content: printable_content,
-  tag: 'article',
-} only %}
-{% endverbatim %}
+  <script type="text/javascript">
+    document.getElementsByTagName("body")[0].setAttribute("class", "e-bolt-printable");
+  </script>
+  <article class="e-bolt-printable__article">
+    <h2>This is an example of an element to be printed</h2>
+    <p>Only the heading and this paragraph will be shown in print mode. Click &ldquo;Open in new tab&rdquo; to view it outside of Pattern Lab, then in the browser menu click &ldquo;Print&rdquo;.</p>
+  </article>
 {% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<article class="e-bolt-printable e-bolt-printable--article">
-  <h1>This is an example of an article</h1>
-  <p>Magna aliqua ea magna cillum aute mollit deserunt. Culpa commodo sint mollit mollit culpa velit ad eiusmod sunt magna magna aliquip. Ea duis quis est ea velit sint velit ut et reprehenderit ea id cillum. In proident eiusmod velit laborum officia. Reprehenderit laborum id proident adipisicing quis sunt nostrud amet elit. Est qui eu tempor qui id dolor ullamco mollit tempor laboris laborum sunt dolor.</p>
-</article>
+<body class="e-bolt-printable">
+  <article class="e-bolt-printable__article">
+    <h2>This is an example of an article to be printed</h2>
+    <p>Only the heading and this paragraph will be shown in print mode.</p>
+  </article>
+</body>
 {% endverbatim %}
 {% endset %}
 
@@ -50,6 +36,5 @@
   description: description,
   notes: notes,
   demo: demo,
-  twig_markup: twig_markup,
   html_markup: html_markup,
 } only %}
