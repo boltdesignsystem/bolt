@@ -150,7 +150,7 @@ async function createWebpackConfig(buildConfig) {
       {
         loader: 'clean-css-loader',
         options: {
-          level: config.prod ? 2 : 0,
+          level: config.prod ? 1 : 0,
           format: config.prod ? false : 'beautify',
           inline: ['remote'],
         },
