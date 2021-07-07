@@ -81,19 +81,23 @@ module.exports = {
         },
         replies: {
           type: 'string',
-          description: 'Set the count of replies.',
+          title: 'DEPRECATED',
+          description: 'Use number_items prop instead.',
         },
         replies_label: {
           type: 'string',
-          description: 'Set a custom label for the "reply count".',
+          title: 'DEPRECATED',
+          description: 'Use number_items prop instead.',
         },
         views: {
           type: 'string',
-          description: 'Set the count of views.',
+          title: 'DEPRECATED',
+          description: 'Use number_items prop instead.',
         },
         views_label: {
           type: 'string',
-          description: 'Set a custom label for the "view count".',
+          title: 'DEPRECATED',
+          description: 'Use number_items prop instead.',
         },
         number_items: {
           type: 'object',

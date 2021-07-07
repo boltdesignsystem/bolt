@@ -1,6 +1,7 @@
 {% set notes %}
   <bolt-ol>
-    <bolt-li>The solved, locked, replies, and views status labels can be customized.</bolt-li>
+    <bolt-li>The solved and locked status labels can be customized.</bolt-li>
+    <bolt-li>Use the <code>status.number_items</code> prop to render status numbers. The <code>replies</code> and <code>views</code> props are deprecated.</bolt-li>
     <bolt-li>It is recommended to pass the Menu component in the <bolt-code-snippet display="inline">action_menu</bolt-code-snippet> prop. Additionally use the Menu component&rsquo;s <bolt-code-snippet display="inline">title</bolt-code-snippet></bolt-li> prop to create a label for the action menu.</bolt-li>
     <bolt-li>It is mandatory to pass the Share component with menu display in the <bolt-code-snippet display="inline">share_menu</bolt-code-snippet> prop.</bolt-li>
     <bolt-li>In addition to the <bolt-code-snippet display="inline">action_menu</bolt-code-snippet> prop and <bolt-code-snippet display="inline">share_menu</bolt-code-snippet> prop, a custom menu can be built using the <bolt-code-snippet display="inline">custom_menu</bolt-code-snippet> prop. When building a custom menu, make sure the menu trigger is not too wide that would squish the listing teaser&rsquo;s content.</bolt-li>
@@ -88,6 +89,16 @@
       },
     } only %}
   {% endset %}
+  {% set number_items %}
+    {% include '@bolt-components-listing-teaser/listing-teaser-status-number.twig' with {
+      number: '167',
+      label: 'Replies',
+    } only %}
+    {% include '@bolt-components-listing-teaser/listing-teaser-status-number.twig' with {
+      number: '6k',
+      label: 'Views',
+    } only %}
+  {% endset %}
   {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
     signifier: icon_questions,
     headline: {
@@ -107,9 +118,7 @@
       solved_label: 'Completed',
       locked: true,
       locked_label: 'Archived',
-      replies: '33',
-      replies_label: 'Replies',
-      views: '6k',
+      number_items: number_items,
     },
     action_menu: action_menu,
     share_menu: share_menu,
@@ -118,7 +127,7 @@
 
 {% set twig_markup %}
 {% verbatim %}
-// Set up action menu and share menu variables
+// Set up variables
 {% set demo_action_menu %}
   {% include '@bolt-components-menu/menu.twig' with {
     title: 'More actions',
@@ -174,8 +183,18 @@
     },
   } only %}
 {% endset %}
+{% set number_items %}
+  {% include '@bolt-components-listing-teaser/listing-teaser-status-number.twig' with {
+    number: '167',
+    label: 'Replies',
+  } only %}
+  {% include '@bolt-components-listing-teaser/listing-teaser-status-number.twig' with {
+    number: '6k',
+    label: 'Views',
+  } only %}
+{% endset %}
 
-// Use the variables in action_menu and share_menu props
+// Use the variables in the appropriate props
 {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
   headline: {
     text: 'This listing has every status and menu possible',
@@ -194,10 +213,7 @@
     solved_label: 'Completed',
     locked: true,
     locked_label: 'Archived',
-    replies: '33',
-    replies_label: 'Replies',
-    views: '6k',
-    views_label: 'Views',
+    number_items: number_items,
   },
   action_menu: demo_action_menu,
   share_menu: demo_share_menu,
