@@ -5,16 +5,15 @@
 {% endif %}
 
 {# Variables #}
-{% set base_class = 'c-bolt-onboard' %}
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  base_class,
-  this.data.status ? base_class ~ '--status-' ~ this.data.status.value,
-  this.data.size ? base_class ~ '--size-' ~ this.data.size.value,
-  this.data.radius ? base_class ~ '--radius-' ~ this.data.radius.value,
+  'c-bolt-onboard',
+  this.data.status ? 'c-bolt-onboard--status-' ~ this.data.status.value,
+  this.data.size ? 'c-bolt-onboard--size-' ~ this.data.size.value,
+  this.data.radius ? 'c-bolt-onboard--radius-' ~ this.data.radius.value,
 ] %}
 
 {#
