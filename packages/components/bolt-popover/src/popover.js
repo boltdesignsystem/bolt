@@ -15,6 +15,8 @@ class BoltPopover extends BoltElement {
   static get properties() {
     return {
       ...this.props,
+      zIndex: { type: Number },
+      paddingTop: { type: Number },
     };
   }
 
@@ -23,7 +25,38 @@ class BoltPopover extends BoltElement {
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
   }
 
+  getPaddingTop() {
+    const stickyPageHeader =
+      document.querySelector('.c-bolt-page-header') ||
+      document.querySelector('.c-page-header.is-fixed'); // use [data-sticky-page-header] once navbar work merged into master
+
+    const stickyElements = document.querySelectorAll('.js-bolt-sticky');
+
+    let offsetHeight = 0;
+    let tallestStickyElement = 0;
+
+    if (stickyPageHeader) {
+      offsetHeight += stickyPageHeader.offsetHeight;
+    }
+
+    if (stickyElements.length) {
+      stickyElements.forEach(el => {
+        const height = el.offsetHeight;
+        if (height > tallestStickyElement) {
+          tallestStickyElement = height;
+        }
+      });
+    }
+
+    return offsetHeight + tallestStickyElement;
+  }
+
   initTippy() {
+    this.zIndex = parseInt(
+      getComputedStyle(this).getPropertyValue('--c-bolt-popover-z-index'),
+      10,
+    );
+    this.paddingTop = this.getPaddingTop();
     this.$boundary =
       this.$boundary ||
       (this.boundary && this.closest(this.boundary)) ||
@@ -42,6 +75,7 @@ class BoltPopover extends BoltElement {
       maxWidth: 'none', // Set width via CSS variable, requires legacy Edge support
       offset: [0, 0],
       plugins: [hideOnEsc, handleFocus],
+      zIndex: this.zIndex,
       popperOptions: {
         modifiers: [
           {
@@ -49,6 +83,7 @@ class BoltPopover extends BoltElement {
             options: {
               fallbackPlacements: this.fallbackPlacements ?? undefined,
               boundary: this.$boundary,
+              padding: { top: this.paddingTop },
             },
           },
           {

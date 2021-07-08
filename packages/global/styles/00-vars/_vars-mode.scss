@@ -4,19 +4,17 @@
    @todo: `.t-bolt-theme` classes are for backward compatibility and the `bolt-card-replacement` selectors are for the poorly built card component. They can be removed once we completely deprecate themes.
 \* ------------------------------------ */
 
-:root,
-[data-bolt-mode='light'],
-.t-bolt-light,
-.t-bolt-xlight {
+// Light and dark mode
+@mixin bolt-base-light-mode {
   --m-bolt-neutral: var(--bolt-color-gray);
   --m-bolt-text: var(--bolt-color-black);
   --m-bolt-bg: var(--bolt-color-white);
   --m-bolt-headline: var(--bolt-color-navy);
   --m-bolt-link: var(--bolt-color-navy-light);
   --m-bolt-primary: var(--bolt-color-navy-light);
-  --m-bolt-text-on-primary: var(--m-bolt-bg);
+  --m-bolt-text-on-primary: var(--bolt-color-white);
   --m-bolt-secondary: var(--bolt-color-white);
-  --m-bolt-text-on-secondary: var(--m-bolt-headline);
+  --m-bolt-text-on-secondary: var(--bolt-color-navy);
   --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.15);
   --m-bolt-text-on-tertiary: var(--m-bolt-headline);
   --m-bolt-disabled: var(--bolt-color-gray-light);
@@ -25,19 +23,16 @@
   --m-bolt-img-filter: none;
 }
 
-[data-bolt-mode='dark'],
-.t-bolt-dark,
-.t-bolt-xdark,
-.t-bolt-xxdark {
+@mixin bolt-base-dark-mode {
   --m-bolt-neutral: var(--bolt-color-gray);
   --m-bolt-text: var(--bolt-color-white);
-  --m-bolt-bg: var(--bolt-color-navy);
+  --m-bolt-bg: var(--bolt-color-navy-xdark);
   --m-bolt-headline: var(--bolt-color-white);
   --m-bolt-link: var(--bolt-color-white);
   --m-bolt-primary: var(--bolt-color-yellow);
   --m-bolt-text-on-primary: var(--bolt-color-black);
   --m-bolt-secondary: var(--bolt-color-white);
-  --m-bolt-text-on-secondary: var(--m-bolt-bg);
+  --m-bolt-text-on-secondary: var(--bolt-color-navy);
   --m-bolt-tertiary: hsla(0, 0%, 100%, 0.15);
   --m-bolt-text-on-tertiary: var(--m-bolt-headline);
   --m-bolt-disabled: var(--bolt-color-gray-light);
@@ -46,9 +41,44 @@
   --m-bolt-img-filter: grayscale(100%) invert(100%) brightness(150%);
 }
 
+:root,
+// Legacy themes
+.t-bolt-light,
+.t-bolt-xlight,
+// New themes
+.t-bolt-white,
+.t-bolt-gray-xlight,
+.t-bolt-orange,
+.t-bolt-yellow,
+.t-bolt-pink {
+  @include bolt-base-light-mode;
+}
+
+[data-bolt-mode='dark'],
+// Legacy themes
+.t-bolt-dark,
+.t-bolt-xdark,
+.t-bolt-xxdark,
+// New themes
+.t-bolt-black,
+.t-bolt-navy-dark,
+.t-bolt-navy,
+.t-bolt-navy-light,
+.t-bolt-teal,
+.t-bolt-wine,
+.t-bolt-berry,
+.t-bolt-violet {
+  @include bolt-base-dark-mode;
+}
+
 .t-bolt-light,
 bolt-card-replacement[theme='light'] {
   --m-bolt-bg: var(--bolt-color-gray-xlight);
+}
+
+.t-bolt-dark,
+bolt-card-replacement[theme='dark'] {
+  --m-bolt-bg: var(--bolt-color-navy);
 }
 
 .t-bolt-xdark,
@@ -60,7 +90,113 @@ bolt-card-replacement[theme='xdark'] {
   --m-bolt-bg: black;
 }
 
-[data-bolt-mode] {
+// New themes
+.t-bolt-white {
+  --m-bolt-bg: var(--bolt-color-white);
+}
+
+.t-bolt-gray-xlight {
+  --m-bolt-bg: var(--bolt-color-gray-xlight);
+}
+
+.t-bolt-orange {
+  --m-bolt-text: var(--bolt-color-black);
+  --m-bolt-bg: var(--bolt-color-orange);
+  --m-bolt-headline: var(--bolt-color-black);
+  --m-bolt-link: var(--bolt-color-navy);
+  --m-bolt-primary: var(--bolt-color-navy);
+  --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.08);
+}
+
+.t-bolt-yellow {
+  --m-bolt-bg: var(--bolt-color-yellow);
+}
+
+.t-bolt-pink {
+  --m-bolt-text: var(--bolt-color-black);
+  --m-bolt-bg: var(--bolt-color-pink);
+  --m-bolt-headline: var(--bolt-color-black);
+  --m-bolt-link: var(--bolt-color-navy);
+  --m-bolt-primary: var(--bolt-color-navy);
+  --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.08);
+}
+
+.t-bolt-black {
+  --m-bolt-bg: var(--bolt-color-black);
+}
+
+.t-bolt-navy-dark {
+  --m-bolt-bg: var(--bolt-color-navy-dark);
+}
+
+.t-bolt-navy {
+  --m-bolt-bg: var(--bolt-color-navy);
+}
+
+.t-bolt-navy-light {
+  --m-bolt-bg: var(--bolt-color-navy-light);
+}
+
+.t-bolt-teal {
+  --m-bolt-bg: var(--bolt-color-teal);
+}
+
+.t-bolt-wine {
+  --m-bolt-bg: var(--bolt-color-wine);
+}
+
+.t-bolt-berry {
+  --m-bolt-bg: var(--bolt-color-berry);
+}
+
+.t-bolt-violet {
+  --m-bolt-bg: var(--bolt-color-violet);
+}
+
+// Redefine light themes within dark mode
+[data-bolt-mode='dark'] {
+  // Legacy themes
+  .t-bolt-xlight {
+    @include bolt-base-dark-mode;
+    --m-bolt-bg: var(--bolt-color-navy-xdark);
+  }
+
+  .t-bolt-light {
+    @include bolt-base-dark-mode;
+    --m-bolt-bg: var(--bolt-color-gray-xdark);
+  }
+
+  // New themes
+  .t-bolt-white {
+    @include bolt-base-dark-mode;
+    --m-bolt-bg: var(--bolt-color-navy-xdark);
+  }
+
+  .t-bolt-gray-xlight {
+    @include bolt-base-dark-mode;
+    --m-bolt-bg: var(--bolt-color-gray-xdark);
+  }
+
+  .t-bolt-orange {
+    @include bolt-base-dark-mode;
+    --m-bolt-bg: var(--bolt-color-orange-dark);
+  }
+
+  .t-bolt-yellow {
+    @include bolt-base-dark-mode;
+    --m-bolt-bg: var(--bolt-color-gray-dark);
+  }
+
+  .t-bolt-pink {
+    @include bolt-base-dark-mode;
+    --m-bolt-bg: var(--bolt-color-pink);
+  }
+}
+
+// Declare text color and bg color
+// Dev note: add :root after bolt-theme() function usage is completely removed.
+[data-bolt-mode],
+[class^='t-bolt-'] {
   color: var(--m-bolt-text);
   background-color: var(--m-bolt-bg);
-} /* Add :root after bolt-theme() function usage is completely removed. */
+}

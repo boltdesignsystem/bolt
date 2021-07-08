@@ -99,17 +99,17 @@
 }
 
 .c-bolt-icon__background-shape--circle {
-  border-radius: 50%;
+  border-radius: bolt-border-radius(full);
 }
 
 .c-bolt-icon__background-shape--square {
-  border-radius: $bolt-border-radius;
-  border-radius: #{var(--bolt-theme-icon-radius, #{$bolt-border-radius})};
+  border-radius: bolt-border-radius(small);
+  border-radius: #{var(--bolt-theme-icon-radius, #{bolt-border-radius(small)})};
 }
 
 .c-bolt-icon__background-shape--outline {
   opacity: 0.8;
-  border-radius: 50%;
+  border-radius: bolt-border-radius(full);
   border-width: 2px;
   border-style: solid;
   border-color: currentColor;
