@@ -1415,6 +1415,60 @@
     node-fetch "^2.1.2"
     sleep-promise "^8.0.1"
 
+"@bolt/core-v3.x@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@bolt/core-v3.x/-/core-v3.x-3.6.0.tgz#bea56d74ff028f5744e353f413ff7db4f646f164"
+  integrity sha512-7Y4pvXAIesOEsCkx2P3cgAehj6WAhnlhNU2BkVmiNNwEfoUK7RdYk3CAylOI64smE2tpA2+shtmRy3rHAfDSsA==
+  dependencies:
+    "@bolt/element" "^3.6.0"
+    "@bolt/lazy-queue" "^3.1.0"
+    camelcase "^5.3.1"
+    change-case "^3.1.0"
+    classnames "^2.2.6"
+    color "^3.1.2"
+    html-element "^2.3.0"
+    jsonschema "^1.2.6"
+    lit-element "^2.2.0"
+    lit-html "^1.1.2"
+    lodash.merge "^4.6.2"
+    preact "^10.0.5"
+    preact-markup "^2.0.0"
+    pwa-helpers "^0.9.1"
+    raf "^3.4.1"
+    sass-mq "github:bolt-design-system/sass-mq#master"
+    sassy-lists "^3.0.1"
+    sassy-maps "github:at-import/Sassy-Maps#0.x.x"
+    skatejs "^5.2.4"
+    tippy.js "^6.3.1"
+    wc-context "^0.8.0"
+
+"@bolt/element@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@bolt/element/-/element-3.6.0.tgz#0b0d1e4631e7e1bd4688b42701c1f970ac8253d7"
+  integrity sha512-/bf3pJDF8NnkuhKnuUYQ28W09InhSN9+gcQNeA0Gxn4W3lmvU0VowYKhcEUkR1t46799QDUSK5MnH9TKClpTlg==
+  dependencies:
+    "@bolt/core-v3.x" "^3.6.0"
+    "@bolt/polyfills" "^3.1.0"
+    "@open-wc/lit-helpers" "^0.3.5"
+    camel-case "^4.1.1"
+    lit-element "2.2.1"
+    param-case "^3.0.3"
+
+"@bolt/lazy-queue@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@bolt/lazy-queue/-/lazy-queue-3.1.0.tgz#4aeb5d8e830e1f819237584265a9483078e6ae52"
+  integrity sha512-OlQOfzHX4fpYV8Sbpjmqt0YcoGeQ/oktOFBeuSG00RgyAxkwrrCVyGMxjbNWEtiSdRlEjXIOyHSJ0XjoiY78Xg==
+  dependencies:
+    "@bolt/polyfills" "^3.1.0"
+    idlize "^0.1.1"
+
+"@bolt/polyfills@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@bolt/polyfills/-/polyfills-3.1.0.tgz#c240856bd3d5d51e7d2c88465534ffcaa5143c94"
+  integrity sha512-ctIDyoYw2fISVJfayu37W6AlHV19gGEglVhlfXvTUoccA2P5jdBCS7BME032+C1E80/KXQTnceyB3AkOxrjSwQ==
+  dependencies:
+    "@webcomponents/custom-elements" "^1.3.0"
+
 "@ckeditor/ckeditor5-build-classic@^12.1.0":
   version "12.4.0"
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-12.4.0.tgz#d5eefb00424d6c559f826d8509ba6ce7e1ce12b9"
@@ -9655,10 +9709,6 @@ gulp-sourcemaps@1.6.0:
     through2 "^2.0.0"
     vinyl "^1.0.0"
 
-gumshoejs@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/gumshoejs/-/gumshoejs-3.5.0.tgz#407f468e760d3817994f8afc107defa5fd4a7d0a"
-
 gzip-size@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/gzip-size/-/gzip-size-3.0.0.tgz#546188e9bdc337f673772f81660464b389dce520"
@@ -11126,13 +11176,6 @@ is-valid-glob@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/is-valid-glob/-/is-valid-glob-0.3.0.tgz#d4b55c69f51886f9b65c70d6c2622d37e29f48fe"
 
-is-visible@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/is-visible/-/is-visible-2.2.0.tgz#722b3acff3694a30074927e1156f58ae87db0e9c"
-  dependencies:
-    iselement "^1.1.3"
-    style-properties "^1.3.1"
-
 is-whitespace-character@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/is-whitespace-character/-/is-whitespace-character-1.0.3.tgz#b3ad9546d916d7d3ffa78204bca0c26b56257fac"
@@ -11193,10 +11236,6 @@ isbinaryfile@^3.0.2:
   resolved "https://registry.yarnpkg.com/isbinaryfile/-/isbinaryfile-3.0.3.tgz#5d6def3edebf6e8ca8cae9c30183a804b5f8be80"
   dependencies:
     buffer-alloc "^1.2.0"
-
-iselement@^1.1.3:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/iselement/-/iselement-1.1.4.tgz#7e55b52a8ebca50a7e2e80e5b8d2840f32353146"
 
 isexe@^2.0.0:
   version "2.0.0"
@@ -13351,7 +13390,7 @@ min-document@^2.19.0:
   dependencies:
     dom-walk "^0.1.0"
 
-min-indent@^1.0.1:
+min-indent@^1.0.0, min-indent@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/min-indent/-/min-indent-1.0.1.tgz#a63f681673b30571fbe8bc25686ae746eefa9869"
   integrity sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==
@@ -14456,6 +14495,13 @@ once@^1.3.0, once@^1.3.1, once@^1.4.0:
 onetime@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/onetime/-/onetime-1.1.0.tgz#a1f7838f8314c516f05ecefcbc4ccfe04b4ed789"
+
+onetime@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/onetime/-/onetime-2.0.1.tgz#067428230fd67443b2794b22bba528b6867962d4"
+  integrity sha1-BnQoIw/WdEOyeUsiu6UotoZ5YtQ=
+  dependencies:
+    mimic-fn "^1.0.0"
 
 onetime@^5.1.0:
   version "5.1.0"
@@ -17288,6 +17334,9 @@ restore-cursor@^1.0.1:
 restore-cursor@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/restore-cursor/-/restore-cursor-2.0.0.tgz#9f7ee287f82fd326d4fd162923d62129eee0dfaf"
+  dependencies:
+    onetime "^2.0.0"
+    signal-exit "^3.0.2"
 
 restore-cursor@^3.1.0:
   version "3.1.0"
@@ -18485,10 +18534,6 @@ stealthy-require@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
 
-stickyfilljs@^2.0.3:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/stickyfilljs/-/stickyfilljs-2.1.0.tgz#46dabb599d8275d185bdb97db597f86a2e3afa7b"
-
 stream-browserify@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-2.0.2.tgz#87521d38a44aa7ee91ce1cd2a47df0cb49dd660b"
@@ -18746,6 +18791,8 @@ strip-indent@^2.0.0:
 strip-indent@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-3.0.0.tgz#c32e1cee940b6b3432c771bc2c54bcce73cd3001"
+  dependencies:
+    min-indent "^1.0.0"
 
 strip-json-comments@2.0.1, strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   version "2.0.1"
@@ -18776,10 +18823,6 @@ style-loader@^1.1.3:
   dependencies:
     loader-utils "^1.2.3"
     schema-utils "^2.6.4"
-
-style-properties@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/style-properties/-/style-properties-1.3.1.tgz#7f8617421f2959157f08d09eecba8688a15854c5"
 
 style-search@^0.1.0:
   version "0.1.0"

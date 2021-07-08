@@ -1,12 +1,12 @@
-{% set schema = bolt.data.components["@bolt-components-onboard"].schema %}
+{% set schema = bolt.data.components['@bolt-components-onboard'].schema %}
 
 <bolt-text headline>
 	Border radius variations
 </bolt-text>
 
 {% for radius in schema.properties.radius.enum %}
-	{% include "@bolt-components-onboard/onboard.twig" with {
+	{% include '@bolt-components-onboard/onboard.twig' with {
     radius: radius,
-    content: "This is onboard component with " ~ radius  ~ " border radius."
+    content: 'This is onboard component with ' ~ radius  ~ ' border radius.'
   } only %}
 {% endfor %}

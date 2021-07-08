@@ -1,33 +1,39 @@
 <div class="c-bds-hamburger u-bolt-hidden@medium">
   <div class="c-bds-hamburger__inner">
     <div class="c-bds-hamburger__button c-bds-hamburger__button--open">
-      {% include "@bolt-components-button/button.twig" with {
-        text: 'Open Menu',
-        iconOnly: true,
-        url: "#nav",
-        style: "primary",
-        size: "medium",
-        rounded: "rounded",
-        icon: {
+      {% set _icon_menu %}
+        {% include '@bolt-components-icon/icon.twig' with {
           name: "menu",
           size: "medium",
-          position: "after"
+        } only %}
+      {% endset %}
+      {% include "@bolt-elements-button/button.twig" with {
+        content: 'Open Menu',
+        icon_only: _icon_menu,
+        hierarchy: "primary",
+        size: "medium",
+        border_radius: "full",
+        attributes: {
+          href: "#nav",
         }
       } %}
     </div>
 
     <div class="c-bds-hamburger__button c-bds-hamburger__button--close">
-      {% include "@bolt-components-button/button.twig" with {
-        text: 'Close Menu',
-        iconOnly: true,
-        url: "#",
-        style: "primary",
-        size: "medium",
-        rounded: "rounded",
-        icon: {
+      {% set _icon_close %}
+        {% include '@bolt-components-icon/icon.twig' with {
           name: "close",
           size: "medium",
-          position: "after"
+        } only %}
+      {% endset %}
+      {% include "@bolt-elements-button/button.twig" with {
+        content: 'Close Menu',
+        icon_only: _icon_close,
+        hierarchy: "primary",
+        size: "medium",
+        border_radius: "full",
+        attributes: {
+          href: "#",
         }
       } %}
     </div>

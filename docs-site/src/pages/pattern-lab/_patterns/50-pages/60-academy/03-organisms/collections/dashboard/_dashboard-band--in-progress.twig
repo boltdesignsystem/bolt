@@ -1,5 +1,12 @@
 {% import "@bolt-academy/_macros.twig" as macros %}
 
+{% set _share_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: "share",
+    size: "small"
+  } only %}
+{% endset %}
+
 {% include "@bolt-academy/_dashboard-band.twig" with {
   sectionTitle: "In Progress",
   contentItems: [
@@ -26,15 +33,14 @@
       cardIcon: "brand-orbit",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
+          hierarchy: "transparent",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
         }, false )
       ],
       cardStatusItems: [
@@ -70,15 +76,14 @@
       cardIcon: "brand-meteor",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
+          hierarchy: "transparent",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
         }, false )
       ],
       cardStatusItems: [

@@ -24,10 +24,10 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
   opacity: 0;
   position: absolute;
   cursor: pointer;
-  border-radius: 50px;
+  border-radius: bolt-border-radius(full);
   transition: all 0.2s ease;
 
-  bolt-button {
+  .e-bolt-button {
     pointer-events: none;
   }
 

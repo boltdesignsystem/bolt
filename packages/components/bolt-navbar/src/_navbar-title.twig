@@ -1,41 +1,60 @@
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar'].properties.title %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Override hide_text if no text provided #}
+{% if not content or content is empty %}
+  {% set content = schema.properties.content.default %}
+  {% if not hide_text %}
+    {% set hide_text = 'from-xsmall-bp' %}
+  {% endif %}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set title_attributes = create_attribute({}) %}
+{% set _inner_attributes = create_attribute(link.attributes|default({})) %}
+{% set _inner_tag = link.attributes.type ? 'button' : link.attributes.href ? 'a' : 'div' %}
+{% set _text_attributes = create_attribute({}) %}
 
-{% set schema = bolt.data.components["@bolt-components-navbar"].schema %}
-{% set hideOptions = schema.properties.title.properties.hide_title.enum %}
-{% set hide_title = hide_title in hideOptions ? hide_title %}
-
-{% set title_classes = [
-  'c-bolt-navbar__title-text',
-  hide_title ? "c-bolt-navbar__title-text--hide-#{hide_title}" : "",
-  (not hide_title and not text) ? "c-bolt-navbar__title-text--hide-from-xsmall-bp"
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-navbar__title'
 ] %}
-{% set title_attributes = title_attributes.addClass(title_classes) %}
 
-{% if url %}
-  {% set attributes = attributes.setAttribute("href", url) %}
+{% set _inner_classes = [
+  'c-bolt-navbar__title-inner',
+  link ? 'c-bolt-navbar__title-inner--link' : ''
+] %}
+
+{% set _text_classes = [
+  'c-bolt-navbar__title-text',
+  this.data.hide_text.value ? 'c-bolt-navbar__title-text--hide-' ~ this.data.hide_text.value : '',
+  secondary_content ? 'c-bolt-navbar__title-text--no-min-width' : '',
+] %}
+
+{% if uuid %}
+  {% set _text_attributes = _text_attributes.setAttribute('id', 'js-bolt-navbar-title-' ~ uuid) %}
 {% endif %}
 
 {% set navbar_title %}
   {% if icon %}
-    <div class="c-bolt-navbar__title-icon">
-      {% include "@bolt/icon.twig" with {
-        "name": icon.name,
-        "size": "large"
+    <span class="c-bolt-navbar__title-icon">
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: icon.name,
+        size: 'large'
       } only %}
-    </div>
+    </span>
   {% endif %}
-  <{{ tag }} {{ title_attributes }}>
-    {{ text|default("Go to"|t) }}
-  </{{ tag }}>
+  <span {{ _text_attributes.addClass(_text_classes) }}>
+    {{ content|default('Go to'|t) }}
+  </span>
 {% endset %}
 
-{% if url %}
-  <a class="c-bolt-navbar__title--link" {{ attributes }}>
+<{{ this.data.tag.value }} {{ attributes.addClass(classes)}}>
+  <{{ _inner_tag}} {{ _inner_attributes.addClass(_inner_classes)}}>
     {{ navbar_title }}
-  </a>
-{% else %}
-  <div class="c-bolt-navbar__title--static">
-    {{ navbar_title }}
-  </div>
-{% endif %}
+  </{{ _inner_tag}}>
+  {{ secondary_content }}
+</{{ this.data.tag.value }}>

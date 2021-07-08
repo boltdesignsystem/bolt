@@ -5,12 +5,12 @@
       {% set isActive = currentUrl == item.url %}
       {% set isActivePath = currentUrl starts with item.url|replace({'index.html': ''}) %}
 
-      <li class="c-bds-offcanvas__item 
+      <li class="c-bds-offcanvas__item
         {% if depth == 1 and not loop.first %} u-bolt-margin-top-medium {% endif %}">
-        
+
 
       {% if item.meta.category and depth != 1%}
-        <details 
+        <details
           class="c-bds-offcanvas__collapsible"
           {% if isActivePath %}open{% endif %}>
       {% endif %}
@@ -39,10 +39,10 @@
         {% endif %}
 
         {% if not item.meta.hidden %}
-          {% include '@bolt-components-link/link.twig' with {
-            text: item.meta.title,
-            url: "/" ~ item.url,
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: item.meta.title,
             attributes: {
+              href: "/" ~ item.url,
               class: [
                 "c-bds-offcanvas__link",
                 depth == 1 ? "is-parent" : "",
@@ -52,7 +52,7 @@
             }
           } %}
         {% endif %}
-        
+
         {% if item.children %}
           {{ macros.menu(item.children, depth + 1, currentUrl) }}
         {% endif %}

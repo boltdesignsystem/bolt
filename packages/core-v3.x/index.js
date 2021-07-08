@@ -1,5 +1,4 @@
 import './elements/index.js';
-import './modules/index.js';
 
 // import './elements';
 // import { getData } from './data/get-data';

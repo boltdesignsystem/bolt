@@ -1,35 +1,122 @@
-{% include "@bolt-components-navbar/navbar.twig" with {
-  "title": {
-    "tag": "h2",
-    "text": "Title Text",
-    "icon": {
-      "name": "marketing-gray"
+{% set notes %}
+  The title can be turned into a link by passing link attributes.
+{% endset %}
+
+{% set demo %}
+  {% set navbar_items %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 1',
+        attributes: {
+          href: '#section-1'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 2',
+        attributes: {
+          href: '#section-2'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 3',
+        attributes: {
+          href: '#section-3'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 4',
+        attributes: {
+          href: '#section-4'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 5',
+        attributes: {
+          href: '#section-5'
+        }
+      }
+    } only %} 
+  {% endset %}
+  {% set navbar_list %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+      content: navbar_items,
+    } only %}  
+  {% endset %}
+
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    title: {
+      content: 'This is the navbar title',
+      icon: {
+        name: 'marketing-gray'
+      },
+      link: {
+        attributes: {
+          href: 'https://pega.com'
+        },
+      },
+    },
+    links: navbar_list
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up the navbar items
+{% set navbar_items %}
+  {% include '@bolt-components-navbar/navbar-li.twig' with {
+    link: {
+      content: 'Section 1',
+      attributes: {
+        href: '#section-1'
+      }
     }
+  } only %} 
+  {% include '@bolt-components-navbar/navbar-li.twig' with {
+    link: {
+      content: 'Section 2',
+      attributes: {
+        href: '#section-2'
+      }
+    }
+  } only %}
+  ...
+{% endset %}
+{% set navbar_list %}
+  {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+    content: navbar_items,
+  } only %}  
+{% endset %}
+
+// Pass the navbar items to the navbar template
+{% include '@bolt-components-navbar/navbar.twig' with {
+  title: {
+    content: 'This is the navbar title',
+    icon: {
+      name: 'marketing-gray'
+    },
+    link: {
+      attributes: {
+        href: 'https://pega.com'
+      },
+    },
   },
-  "links": [
-    {
-      "text": "Real-Time AI",
-      "url": "#!"
-    },
-    {
-      "text": "End-to-end Automation",
-      "url": "#!"
-    },
-    {
-      "text": "Journey-centric Delivery",
-      "url": "#!"
-    },
-    {
-      "text": "Low Code",
-      "url": "#!"
-    },
-    {
-      "text": "Multi-dimensional Power Long Title",
-      "url": "#!"
-    },
-    {
-      "text": "Cloud Choice",
-      "url": "#!"
-    }
-  ]
-} %}
+  links: navbar_list
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Navbar',
+  description: 'Navbar is a sticky container for secondary page navigation.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

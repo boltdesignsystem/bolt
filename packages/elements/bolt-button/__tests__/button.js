@@ -1,44 +1,110 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
+import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../button.schema';
-const { display, valign } = schema.properties;
+// eslint-disable-next-line camelcase
+const { hierarchy, size, border_radius, display } = schema.properties;
+let page, fixtures;
 
-const timeout = 90000;
+afterAll(async () => {
+  await stopServer();
+  await page.close();
+}, 100);
 
-describe('textLink', () => {
-  let page;
+beforeEach(async () => {
+  await page.evaluate(() => {
+    document.body.innerHTML = '';
+  });
+});
 
-  afterAll(async () => {
-    await stopServer();
-    await page.close();
+beforeAll(async () => {
+  page = await global.__BROWSER__.newPage();
+  await page.goto('http://127.0.0.1:4444/', {
+    timeout: 0,
   });
 
-  beforeEach(async () => {
-    await page.evaluate(() => {
-      document.body.innerHTML = '';
-    });
-  }, timeout);
+  const defaultData = {
+    content: 'This is a button',
+    attributes: {
+      type: 'button',
+    },
+  };
 
-  beforeAll(async () => {
-    page = await global.__BROWSER__.newPage();
-    await page.goto('http://127.0.0.1:4444/', {
-      timeout: 0,
-    });
-  }, timeout);
+  const icon = await render('@bolt-components-icon/icon.twig', {
+    name: 'chevron-down',
+  });
 
-  test('basic button', async () => {
+  fixtures = {
+    defaultData,
+    icon,
+  };
+});
+
+describe('Bolt button', () => {
+  test(`default`, async () => {
     const results = await render('@bolt-elements-button/button.twig', {
-      content: 'This is a button',
-      attributes: {
-        type: 'submit',
-      },
+      ...fixtures.defaultData,
     });
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+});
+
+describe('Bolt button Props', () => {
+  test(`icon after`, async () => {
+    const results = await render('@bolt-elements-button/button.twig', {
+      ...fixtures.defaultData,
+      icon_after: fixtures.icon.html,
+    });
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  hierarchy.enum.forEach(async option => {
+    test(`hierarchy: ${option}`, async () => {
+      const results = await render('@bolt-elements-button/button.twig', {
+        ...fixtures.defaultData,
+        hierarchy: option,
+      });
+
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  size.enum.forEach(async option => {
+    test(`size: ${option}`, async () => {
+      const results = await render('@bolt-elements-button/button.twig', {
+        ...fixtures.defaultData,
+        size: option,
+      });
+
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  border_radius.enum.forEach(async option => {
+    test(`border_radius: ${option}`, async () => {
+      const results = await render('@bolt-elements-button/button.twig', {
+        ...fixtures.defaultData,
+        border_radius: option,
+      });
+
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  display.enum.forEach(async option => {
+    test(`display: ${option}`, async () => {
+      const results = await render('@bolt-elements-button/button.twig', {
+        ...fixtures.defaultData,
+        display: option,
+      });
+
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
   });
 });

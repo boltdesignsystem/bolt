@@ -87,14 +87,12 @@
     {% grid "o-bolt-grid--center" %}
       {% cell %}
         {% include "@bolt-components-form/form-element.twig" with {
-          children: macros.include("@bolt-components-button/button.twig", {
-            text: "Submit",
-            type: "submit",
-            size: "medium",
-            disabled: true,
+          children: macros.include("@bolt-elements-button/button.twig", {
+            content: "Submit",
             border_radius: "full",
-            align: "center",
             attributes: {
+              type: "submit",
+              disabled: '',
               class: [
                 "js-mission-rating-submit",
                 "u-bolt-margin-left-auto",

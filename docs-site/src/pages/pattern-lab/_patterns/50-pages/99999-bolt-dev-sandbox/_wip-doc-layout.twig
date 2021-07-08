@@ -34,36 +34,44 @@
 
     <bolt-stack spacing="large">
       {% set item_home %}
-        {% include '@bolt-components-link/link.twig' with {
-          text: 'Home',
-          url: '#!',
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Home',
+          attributes: {
+            href: '#!'
+          }
         } only %}
       {% endset %}
       {% set item_1 %}
-        {% include '@bolt-components-link/link.twig' with {
-          text: 'Knowledgebase',
-          url: '#!',
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Knowledgebase',
+          attributes: {
+            href: '#!'
+          }
         } only %}
       {% endset %}
       {% set item_2 %}
-        {% include '@bolt-components-link/link.twig' with {
-          text: 'All Products',
-          url: '#!',
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'All Products',
+          attributes: {
+            href: '#!'
+          }
         } only %}
       {% endset %}
       {% set item_3 %}
-        {% include '@bolt-components-link/link.twig' with {
-          text: 'Pega Platform',
-          url: '#!',
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Pega Platform',
+          attributes: {
+            href: '#!'
+          }
         } only %}
       {% endset %}
       {% set item_current %}
-        {% include '@bolt-components-link/link.twig' with {
-          text: 'Book title goes here',
-          url: '#!',
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Book title goes here',
           attributes: {
-            'aria-current': 'page',
-          },
+            href: '#!',
+            'aria-current': 'page'
+          }
         } only %}
       {% endset %}
 

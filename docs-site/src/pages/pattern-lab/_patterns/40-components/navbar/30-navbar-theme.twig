@@ -1,0 +1,85 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>If the <code>theme</code> prop is set to <code>none</code>, the navbar will have a transparent background.</bolt-li>
+    <bolt-li>Reference the schema for all options. <a href="{{ link['viewall-components-navbar'] }}" class="e-bolt-text-link">Navbar schema<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set navbar_items %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 1',
+        attributes: {
+          href: '#section-1'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 2',
+        attributes: {
+          href: '#section-2'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 3',
+        attributes: {
+          href: '#section-3'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 4',
+        attributes: {
+          href: '#section-4'
+        }
+      }
+    } only %} 
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 5',
+        attributes: {
+          href: '#section-5'
+        }
+      }
+    } only %} 
+  {% endset %}
+  {% set navbar_list %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+      content: navbar_items,
+    } only %}  
+  {% endset %}
+
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    title: {
+      content: 'This is the navbar title',
+      icon: {
+        name: 'marketing-gray'
+      }
+    },
+    links: navbar_list,
+    width: 'auto',
+    theme: 'light',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-navbar/navbar.twig' with {
+  theme: 'light',
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Color Themes',
+  description: 'All color themes are available for use in the navbar while dark is the default.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

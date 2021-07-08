@@ -445,7 +445,7 @@ class BoltTabs extends withContext(BoltElement) {
 
         smoothScroll.animateScroll(targetTab, 0, {
           header: this.scrollOffsetSelector,
-          offset: this.scrollOffset,
+          offset: this.scrollOffset || 0,
           speed: 750,
           easing: 'easeInOutCubic',
           updateURL: false,

@@ -1,17 +1,22 @@
 {% set description %}
-  Popover usually contains a small piece of structured content that may have calls to action. For rendering more complex layouts, please consider using <bolt-link url="{{ link['viewall-components-modal'] }}">the modal component</bolt-link> instead. As for simple text or phrases, please consider using <bolt-link url="{{ link['viewall-components-tooltip'] }}">the tooltip component</bolt-link>.
+  Popover usually contains a small piece of structured content that may have calls to action. For rendering more complex layouts, please consider using <a href="{{ link['viewall-components-modal'] }}" class="e-bolt-text-link">the modal component</a> instead. As for simple text or phrases, please consider using <a href="{{ link['viewall-components-tooltip'] }}" class="e-bolt-text-link">the tooltip component</a>.
 {% endset %}
 
 {% set demo %}
   {% set link %}
-    {% include '@bolt-components-link/link.twig' with {
-      text: 'call to action',
-      url: 'https://pega.com',
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'call to action',
+      attributes: {
+        href: 'https://pega.com'
+      }
     } only %}
   {% endset %}
   {% set trigger %}
-    {% include '@bolt-components-button/button.twig' with {
-      text: 'This triggers a popover',
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This triggers a popover',
+      attributes: {
+        type: 'button'
+      }
     } only %}
   {% endset %}
   {% set content %}
@@ -26,8 +31,11 @@
 {% set twig_markup %}
 {% verbatim %}
 {% set trigger %}
-  {% include '@bolt-components-button/button.twig' with {
-    text: 'This triggers a popover',
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'This triggers a popover',
+    attributes: {
+      type: 'button'
+    }
   } only %}
 {% endset %}
 {% include '@bolt-components-popover/popover.twig' with {
@@ -40,9 +48,9 @@
 {% set html_markup %}
 {% verbatim %}
 <bolt-popover spacing="medium">
-  <bolt-button>
+  <button type="button" class="e-bolt-button">
     This triggers a popover
-  </bolt-button>
+  </button>
   <div slot="content">
     This is the content of the popover.
   </div>

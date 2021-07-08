@@ -1,0 +1,221 @@
+{% include '@pl/00-layout-docs.twig' %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Single-column: <code>50</code>, <code>67</code>, and <code>75</code> represent the percentage of width for the layout items. Layout item width is full if no template is set. Layout items can be horizontally centered only in a single-column layout.</bolt-li>
+    <bolt-li>Multi-column: again, numbers represent percentage. Combinations of <code>25</code>, <code>50</code>, <code>67</code>, and <code>75</code> can be used as long as they add up to 100 (eg. <code>25/50/25@from-small</code>). These options must be used with the <code>@from-*</code> breakpoint postfix. <code>@from-small</code> means starting from small breakpoint and beyond; <code>@from-medium</code> means starting from medium breakpoint and beyond.</bolt-li>
+    <bolt-li>Traditional: even columns can be created with <code>halves</code>, <code>thirds</code>, and <code>fourths</code>. These options also must be used with the <code>@from-*</code> breakpoint postfix.</bolt-li>
+    <bolt-li>Special: <code>flag</code> is a common layout that contains an image on the left and text content on the right; <code>tiles</code> renders even-width layout items that will wrap once they hit a certain min-width.</bolt-li>
+    <bolt-li><code>--l-bolt-layout-flag-media-width</code> and <code>--l-bolt-layout-tile-min-width</code> CSS custom properties are available to further customize the Flag and Tiles templates.</bolt-li>
+    <bolt-li>Reference the schema for all options. <a href="{{ link['viewall-layouts-layout'] }}?selected-tab=schema" class="e-bolt-text-link">Layout schema<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-tabs inset="off">
+    <bolt-tab-panel>
+      <bolt-text slot="label">Single-column</bolt-text>
+      <bolt-layout>
+        <bolt-layout-item>
+          <bolt-placeholder>full</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-layout template="50">
+        <bolt-layout-item>
+          <bolt-placeholder>50%</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-layout template="67">
+        <bolt-layout-item>
+          <bolt-placeholder>67%</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-layout template="75">
+        <bolt-layout-item>
+          <bolt-placeholder>75%</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+    </bolt-tab-panel>
+    
+    <bolt-tab-panel>
+      <bolt-text slot="label">Multi-column</bolt-text>
+      <bolt-layout template="67/33@from-small">
+        <bolt-layout-item>
+          <bolt-placeholder>67%</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>33%</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-layout template="33/67@from-small">
+        <bolt-layout-item>
+          <bolt-placeholder>33%</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>67%</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-layout template="75/25@from-small">
+        <bolt-layout-item>
+          <bolt-placeholder>75%</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>25%</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-layout template="25/75@from-small">
+        <bolt-layout-item>
+          <bolt-placeholder>25%</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>75%</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-layout template="25/50/25@from-small">
+        <bolt-layout-item>
+          <bolt-placeholder>25%</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>50%</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>25%</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-layout template="50/25/25@from-small">
+        <bolt-layout-item>
+          <bolt-placeholder>50%</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>25%</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>25%</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-layout template="25/25/50@from-small">
+        <bolt-layout-item>
+          <bolt-placeholder>25%</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>25%</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>50%</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+    </bolt-tab-panel>
+
+    <bolt-tab-panel>
+      <bolt-text slot="label">Traditional</bolt-text>
+      <bolt-layout template="halves@from-small">
+        <bolt-layout-item>
+          <bolt-placeholder>halves</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>halves</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-layout template="thirds@from-small">
+        <bolt-layout-item>
+          <bolt-placeholder>thirds</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>thirds</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>thirds</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-layout template="fourths@from-small">
+        <bolt-layout-item>
+          <bolt-placeholder>fourths</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>fourths</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>fourths</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>fourths</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+    </bolt-tab-panel>
+
+    <bolt-tab-panel>
+      <bolt-text slot="label">Special</bolt-text>
+      <bolt-layout template="flag" valign-items="center">
+        <bolt-layout-item>
+          <bolt-placeholder>flag media</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>flag content</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+      <bolt-layout template="tiles">
+        <bolt-layout-item>
+          <bolt-placeholder>tile</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>tile</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>tile</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>tile</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>tile</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>tile</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>tile</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>tile</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>tile</bolt-placeholder>
+        </bolt-layout-item>
+        <bolt-layout-item>
+          <bolt-placeholder>tile</bolt-placeholder>
+        </bolt-layout-item>
+      </bolt-layout>
+    </bolt-tab-panel>
+  </bolt-tabs>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-layouts-layout/layout.twig' with {
+  template: '67/33@from-small 75/25@from-medium',
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-layout template="67/33@from-small 75/25@from-medium">
+  <bolt-layout-item>
+    <!-- Content goes here -->
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <!-- Content goes here -->
+  </bolt-layout-item>
+</bolt-layout>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Template',
+  description: 'Template controls how the layout behaves. There are many options available to accommodate all kinds of use cases.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

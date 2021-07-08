@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/Tribex/prerenderer/compare/v4.0.0-beta-4...v4.0.0) (2021-06-23)
+
+**Note:** Version bump only for package @bolt/uikit-prerenderer
+
+
+
+
+
 ## [3.1.2](https://github.com/Tribex/prerenderer/compare/v3.1.1...v3.1.2) (2021-03-05)
 
 **Note:** Version bump only for package @bolt/uikit-prerenderer
