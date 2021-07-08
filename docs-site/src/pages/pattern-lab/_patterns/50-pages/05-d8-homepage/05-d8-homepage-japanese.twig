@@ -142,18 +142,34 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1@only-small" %}
-          {% include "@bolt/button-group.twig" with {
-            buttons: [
-              {
-                text: "会社概要",
-                hierarchy: "primary",
-                size: "small"
-              },
-              {
-                text: "ビジョンと主要な概念",
-                hierarchy: "secondary",
-                size: "small"
+
+          {% set button_cta_primary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: '会社概要',
+              hierarchy: "primary",
+              size: "small",
+              attributes: {
+                type: 'button'
               }
+            } only %}
+          {% endset %}
+
+          {% set button_cta_secondary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'ビジョンと主要な概念',
+              hierarchy: "secondary",
+              size: "small",
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: 'inline',
+            items: [
+              button_cta_primary,
+              button_cta_secondary,
             ]
           } only %}
         {% endcell %}

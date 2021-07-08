@@ -36,18 +36,32 @@
       </div>
 
       <div class="{{ "#{baseClass}__panel-controls #{baseClass}__panel-controls--submit" }}">
-        {% include "@bolt-components-button-group/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Apply"|t,
-              "style": "primary",
-              "url": "#!"
-            },
-            {
-              "text": "Cancel"|t,
-              "style": "secondary",
-              "url": "#!"
-            }
+
+      {% set button_apply %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: "Apply"|t,
+          hierarchy: "primary",
+          attributes: {
+            href: '#!'
+          }
+        } only %}
+      {% endset %}
+
+      {% set button_cancel %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: "Cancel"|t,
+          hierarchy: "secondary",
+          attributes: {
+            href: '#!'
+          }
+        } only %}
+      {% endset %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: 'inline',
+          items: [
+            button_apply,
+            button_cancel,
           ]
         } only %}
       </div>
