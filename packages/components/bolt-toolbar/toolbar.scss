@@ -60,9 +60,8 @@
   width: 100%;
   margin-bottom: calc(var(--bolt-spacing-y-small) * -1);
 
-  @include bolt-mq(medium) {
+  @include bolt-mq(small) {
     flex-wrap: nowrap;
-    align-items: flex-start;
   }
 }
 
@@ -75,7 +74,7 @@
 
   &--before {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
   }
 
   &--after {
