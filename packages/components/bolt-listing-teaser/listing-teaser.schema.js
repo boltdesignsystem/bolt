@@ -81,11 +81,28 @@ module.exports = {
         },
         replies: {
           type: 'string',
-          description: 'Set the count of replies.',
+          title: 'DEPRECATED',
+          description: 'Use number_items prop instead.',
+        },
+        replies_label: {
+          type: 'string',
+          title: 'DEPRECATED',
+          description: 'Use number_items prop instead.',
         },
         views: {
           type: 'string',
-          description: 'Set the count of views.',
+          title: 'DEPRECATED',
+          description: 'Use number_items prop instead.',
+        },
+        views_label: {
+          type: 'string',
+          title: 'DEPRECATED',
+          description: 'Use number_items prop instead.',
+        },
+        number_items: {
+          type: 'object',
+          description:
+            'Render custom number indicators. This will override reply count and view count.',
         },
       },
     },
