@@ -1,44 +1,43 @@
 @import '@bolt/core-v3.x';
 
 .c-bolt-toolbar {
+  display: block;
   position: relative;
-  min-width: 100%;
-  margin: 0 auto;
-  font-size: var(--bolt-type-font-size-small);
-  color: var(--m-bolt-secondary);
-  line-height: var(--bolt-type-line-height-small);
 }
 
 .c-bolt-toolbar--sticky {
   position: sticky;
   top: 0;
+  right: 0;
   left: 0;
   z-index: bolt-z-index(nav);
-  width: 100vw;
-  margin: 0 -50vw;
 }
 
 .c-bolt-toolbar__inner {
-  max-width: bolt-breakpoint(xxlarge);
-  margin: 0 auto;
+  @include bolt-full-bleed;
+
+  display: block;
   padding-top: var(--bolt-spacing-y-small);
-  padding-right: $bolt-wrapper-padding;
+  padding-right: calc(
+    var(--bolt-spacing-x-xsmall) + var(--bolt-spacing-x-small)
+  ); // Matches the padding on Page Header.
   padding-bottom: var(--bolt-spacing-y-small);
-  padding-left: $bolt-wrapper-padding;
+  padding-left: calc(
+    var(--bolt-spacing-x-xsmall) + var(--bolt-spacing-x-small)
+  ); // Matches the padding on Page Header.
+  color: inherit;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 
   @include bolt-mq(medium) {
-    padding-right: $bolt-wrapper-padding-at-medium-bp;
-    padding-left: $bolt-wrapper-padding-at-medium-bp;
+    padding-right: var(--bolt-page-padding-x);
+    padding-left: var(--bolt-page-padding-x);
   }
 }
 
 .c-bolt-toolbar__title {
   display: flex;
   align-items: center;
-
-  &:not(:last-child) {
-    margin-right: 0.5rem;
-  }
+  margin-right: calc(var(--bolt-spacing-x-medium) * 0.8);
 }
 
 .c-bolt-toolbar__title-text {
@@ -47,39 +46,40 @@
   line-height: var(--bolt-type-line-height-medium);
 }
 
-.c-bolt-toolbar__title-icon {
-  margin-right: var(--bolt-spacing-x-small);
-}
-
 .c-bolt-toolbar__items {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  margin-bottom: calc(var(--bolt-spacing-y-small) * -1);
+  display: grid;
 
-  @include bolt-mq(small) {
-    flex-wrap: nowrap;
+  > * + * {
+    margin-top: var(--bolt-spacing-y-small);
+  }
+
+  @include bolt-mq(xsmall) {
+    grid-template-columns: auto 1fr auto;
+
+    > * + * {
+      margin-top: 0;
+      margin-left: var(--bolt-spacing-x-small);
+    }
   }
 }
 
-.c-bolt-toolbar__item {
-  margin-bottom: var(--bolt-spacing-y-small);
+.c-bolt-toolbar__item--before {
+  display: grid;
+  align-items: start;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(3, minmax(min-content, max-content)) 1fr;
+  grid-template-areas:
+    'signifier .'
+    'signifier breadcrumbs'
+    'signifier .';
+}
 
-  &:not(:last-child) {
-    margin-right: 1rem;
-  }
+.c-bolt-toolbar__title {
+  grid-area: signifier;
+}
 
-  &--before {
-    display: flex;
-    align-items: center;
-  }
-
-  &--after {
-    margin-left: auto;
-  }
+bolt-breadcrumb {
+  grid-area: breadcrumbs;
 }
 
 .c-bolt-toolbar--purple,
