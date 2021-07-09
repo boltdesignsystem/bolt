@@ -1,71 +1,102 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Onboard adds class via Drupal Attributes 1`] = `
-<bolt-onboard class="u-bolt-margin-top-medium">
-  <replace-with-children class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-default c-bolt-onboard--radius-none">
-  </replace-with-children>
-</bolt-onboard>
-`;
-
-exports[`Onboard basic usage 1`] = `
+exports[`Bolt onboard default 1`] = `
 <bolt-onboard>
   <replace-with-children class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-default c-bolt-onboard--radius-none">
+    This is an onboard component
   </replace-with-children>
 </bolt-onboard>
 `;
 
-exports[`Onboard renders with Shadow DOM 1`] = `
-<div
-  class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-default c-bolt-onboard--radius-none"
-  style=""
->
-  
-        
-  <slot
-    style=""
-  />
-  
-      
+exports[`Bolt onboard default 2`] = `
+<div class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-default c-bolt-onboard--radius-none">
+  <slot>
+  </slot>
 </div>
 `;
 
-exports[`Onboard renders with Shadow DOM 2`] = `
-<bolt-onboard
-  style=""
->
-  Onboard test
+exports[`Bolt onboard default 3`] = `
+<bolt-onboard>
+  This is an onboard component
 </bolt-onboard>
 `;
 
-exports[`Onboard renders without Shadow DOM 1`] = `
-<bolt-onboard
-  no-shadow=""
-  style=""
->
-  <!---->
-  
-      
-  <div
-    class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-default c-bolt-onboard--radius-none"
-    style=""
-  >
-    
-        
-    <!---->
-    Onboard test
-    <!---->
-    
-      
-  </div>
-  
-    
-  <!---->
-</bolt-onboard>
-`;
-
-exports[`Onboard sets 'disabled' prop 1`] = `
+exports[`Bolt onboard default 4`] = `
 <bolt-onboard>
   <replace-with-children class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-default c-bolt-onboard--radius-none">
+    This is an onboard component
+  </replace-with-children>
+</bolt-onboard>
+`;
+
+exports[`Bolt onboard prop - radius: full 1`] = `
+<bolt-onboard radius="full">
+  <replace-with-children class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-default c-bolt-onboard--radius-full">
+    This is an onboard component
+  </replace-with-children>
+</bolt-onboard>
+`;
+
+exports[`Bolt onboard prop - radius: large 1`] = `
+<bolt-onboard radius="large">
+  <replace-with-children class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-default c-bolt-onboard--radius-large">
+    This is an onboard component
+  </replace-with-children>
+</bolt-onboard>
+`;
+
+exports[`Bolt onboard prop - radius: none 1`] = `
+<bolt-onboard radius="none">
+  <replace-with-children class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-default c-bolt-onboard--radius-none">
+    This is an onboard component
+  </replace-with-children>
+</bolt-onboard>
+`;
+
+exports[`Bolt onboard prop - size: default 1`] = `
+<bolt-onboard size="default">
+  <replace-with-children class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-default c-bolt-onboard--radius-none">
+    This is an onboard component
+  </replace-with-children>
+</bolt-onboard>
+`;
+
+exports[`Bolt onboard prop - size: large 1`] = `
+<bolt-onboard size="large">
+  <replace-with-children class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-large c-bolt-onboard--radius-none">
+    This is an onboard component
+  </replace-with-children>
+</bolt-onboard>
+`;
+
+exports[`Bolt onboard prop - size: medium 1`] = `
+<bolt-onboard size="medium">
+  <replace-with-children class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-medium c-bolt-onboard--radius-none">
+    This is an onboard component
+  </replace-with-children>
+</bolt-onboard>
+`;
+
+exports[`Bolt onboard prop - status: information 1`] = `
+<bolt-onboard status="information">
+  <replace-with-children class="c-bolt-onboard c-bolt-onboard--status-information c-bolt-onboard--size-default c-bolt-onboard--radius-none">
+    This is an onboard component
+  </replace-with-children>
+</bolt-onboard>
+`;
+
+exports[`Bolt onboard prop - status: success 1`] = `
+<bolt-onboard status="success">
+  <replace-with-children class="c-bolt-onboard c-bolt-onboard--status-success c-bolt-onboard--size-default c-bolt-onboard--radius-none">
+    This is an onboard component
+  </replace-with-children>
+</bolt-onboard>
+`;
+
+exports[`Bolt onboard prop - status: warning 1`] = `
+<bolt-onboard status="warning">
+  <replace-with-children class="c-bolt-onboard c-bolt-onboard--status-warning c-bolt-onboard--size-default c-bolt-onboard--radius-none">
+    This is an onboard component
   </replace-with-children>
 </bolt-onboard>
 `;
