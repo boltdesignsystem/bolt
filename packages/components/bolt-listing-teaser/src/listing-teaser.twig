@@ -42,23 +42,20 @@
         tag: headline.tag,
         size: headline.size,
       } only %}
+      {% if subheadline %}
+        <div class="c-bolt-listing-teaser__flag-subheadline">
+          {{ subheadline }}
+        </div>
+      {% endif %}
     </div>
     {% if eyebrow_items %}
       <div class="c-bolt-listing-teaser__flag-eyebrow">
-        <ul class="c-bolt-listing-teaser__meta">
-          {% for item in eyebrow_items %}
-            <li class="c-bolt-listing-teaser__meta__item">{{ item }}</li>
-          {% endfor %}
-        </ul>
+        {% spaceless %}<ul class="c-bolt-listing-teaser__meta">{% for item in eyebrow_items %}<li class="c-bolt-listing-teaser__meta__item">{{ item }}</li>{% endfor %}</ul>{% endspaceless %}
       </div>
     {% endif %}
     <div class="c-bolt-listing-teaser__flag-content">
       {% if meta_items %}
-        <ul class="c-bolt-listing-teaser__meta">
-          {% for item in meta_items %}
-            <li class="c-bolt-listing-teaser__meta__item">{{ item }}</li>
-          {% endfor %}
-        </ul>
+        {% spaceless %}<ul class="c-bolt-listing-teaser__meta">{% for item in meta_items %}<li class="c-bolt-listing-teaser__meta__item">{{ item }}</li>{% endfor %}</ul>{% endspaceless %}
       {% endif %}
       {% if description %}
         <div class="c-bolt-listing-teaser__flag-content__item">
@@ -111,7 +108,8 @@
         {% endif %}
         {% if status.replies %}
           <li class="c-bolt-listing-teaser__flag-status__item">
-            <span class="c-bolt-listing-teaser__flag-status__number">{{ status.replies }}</span> {{ 'Replies'|t }}
+            <span class="c-bolt-listing-teaser__flag-status__number">{{ status.replies }}</span>
+            {{ status.replies_label ? status.replies_label|t : 'Replies'|t }}
           </li>
         {% endif %}
         {% if status.views %}
@@ -122,18 +120,22 @@
       </ul>
     {% endif %}
   </div>
-  {% if action_menu or share_menu %}<div class="c-bolt-listing-teaser__actions">{% endif %}
+  {% if action_menu or share_menu or custom_menu %}<div class="c-bolt-listing-teaser__actions">{% endif %}
     {% if share_menu %}
       {% set _share_popover_trigger %}
-        {% include '@bolt-components-button/button.twig' with {
-          text: 'Share menu'|t,
-          size: 'xsmall',
-          style: 'text',
-          iconOnly: true,
-          icon: {
+        {% set _icon_share %}
+          {% include '@bolt-components-icon/icon.twig' with {
             name: 'share',
-            position: 'before',
-          },
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Share'|t,
+          size: 'xsmall',
+          hierarchy: 'transparent',
+          icon_only: _icon_share,
+          attributes: {
+            type: 'button'
+          }
         } only %}
       {% endset %}
       {% include '@bolt-components-popover/popover.twig' with {
@@ -145,15 +147,19 @@
     {% endif %}
     {% if action_menu %}
       {% set _action_popover_trigger %}
-        {% include '@bolt-components-button/button.twig' with {
-          text: 'Action menu'|t,
-          size: 'xsmall',
-          style: 'tertiary',
-          iconOnly: true,
-          icon: {
+        {% set _icon_more %}
+          {% include '@bolt-components-icon/icon.twig' with {
             name: 'more',
-            position: 'before',
-          },
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'More actions'|t,
+          size: 'xsmall',
+          hierarchy: 'tertiary',
+          icon_only: _icon_more,
+          attributes: {
+            type: 'button'
+          }
         } only %}
       {% endset %}
       {% include '@bolt-components-popover/popover.twig' with {
@@ -163,7 +169,10 @@
         boundary: '.' ~ _listing_id,
       } only %}
     {% endif %}
-  {% if action_menu or share_menu %}</div>{% endif %}
+    {% if custom_menu %}
+      {{ custom_menu }}
+    {% endif %}
+  {% if action_menu or share_menu or custom_menu %}</div>{% endif %}
   {% if callout %}
     {% set callout_attributes = create_attribute(callout.attributes|default({})) %}
     {% set callout_classes = [

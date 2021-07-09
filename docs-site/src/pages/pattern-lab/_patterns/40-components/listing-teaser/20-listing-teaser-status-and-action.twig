@@ -2,8 +2,10 @@
   <bolt-ol>
     <bolt-li>The solved status label can be customized.</bolt-li>
     <bolt-li>The locked status label can be customized.</bolt-li>
+    <bolt-li>The replies status label can be customized.</bolt-li>
     <bolt-li>It is recommended to pass the Menu component in the <bolt-code-snippet display="inline">action_menu</bolt-code-snippet> prop. Additionally use the Menu component&rsquo;s <bolt-code-snippet display="inline">title</bolt-code-snippet></bolt-li> prop to create a label for the action menu.</bolt-li>
     <bolt-li>It is mandatory to pass the Share component with menu display in the <bolt-code-snippet display="inline">share_menu</bolt-code-snippet> prop.</bolt-li>
+    <bolt-li>In addition to the <bolt-code-snippet display="inline">action_menu</bolt-code-snippet> prop and <bolt-code-snippet display="inline">share_menu</bolt-code-snippet> prop, a custom menu can be built using the <bolt-code-snippet display="inline">custom_menu</bolt-code-snippet> prop. When building a custom menu, make sure the menu trigger is not too wide that would squish the listing teaser&rsquo;s content.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -108,6 +110,7 @@
       locked: true,
       locked_label: 'Archived',
       replies: '33',
+      replies_label: 'Replies',
       views: '6k',
     },
     action_menu: action_menu,
@@ -194,6 +197,7 @@
     locked: true,
     locked_label: 'Archived',
     replies: '33',
+    replies_label: 'Replies',
     views: '6k',
   },
   action_menu: demo_action_menu,

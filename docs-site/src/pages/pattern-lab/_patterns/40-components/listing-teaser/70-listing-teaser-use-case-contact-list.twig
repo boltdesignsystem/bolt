@@ -1,0 +1,322 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>custom_menu</code> prop is being used to render a custom popover menu (the more button).</bolt-li>
+    <bolt-li>The <code>subheadline</code> prop is being used to render the job title.</bolt-li>
+    <bolt-li>The <code>description</code> prop is being used to render the recent-articles popover.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set icon_map %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'pega-map',
+    } only %}
+  {% endset %}
+  {% set icon_partners %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'partners',
+    } only %}
+  {% endset %}
+  {% set icon_connection_hierarchy %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'pega-connection-hierarchy',
+    } only %}
+  {% endset %}
+  {% set more_button %}
+    {% set popover_content %}
+      {% include '@bolt-components-menu/menu.twig' with {
+        title: 'More actions',
+        items: [
+          {
+            content: 'View in Org Chart',
+            icon_before: icon_connection_hierarchy,
+          },
+          {
+            content: 'View on PeopleHub',
+            icon_before: icon_partners,
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% set popover_trigger %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'More',
+        size: 'xsmall',
+        hierarchy: 'tertiary',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: popover_trigger,
+      content: popover_content,
+      spacing: 'none',
+      placement: 'bottom-end',
+    } only %}
+  {% endset %}
+  {% set view_org_chart %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'View in Org Chart',
+      display: 'block',
+      hierarchy: 'transparent',
+      size: 'xsmall',
+      attributes: {
+        href: 'https://pega.com',
+      },
+    } only %}
+  {% endset %}
+  {% set view_peoplehub %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'View on PeopleHub',
+      display: 'block',
+      hierarchy: 'transparent',
+      size: 'xsmall',
+      attributes: {
+        href: 'https://pega.com',
+      },
+    } only %}
+  {% endset %}
+  {% set callout_content %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'flex',
+      separator: 'solid',
+      spacing: 'none',
+      items: [
+        view_org_chart,
+        view_peoplehub,
+      ]
+    } only %}
+  {% endset %}
+
+  {% set contact_result_1 %}
+    {% set signifier %}
+      <img src="/images/placeholders/thumb-square-abstract.jpg" alt="" width=56 height=56 class="u-bolt-border-radius-full">
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      gutter: 'small',
+      signifier: signifier,
+      layout: 'responsive',
+      headline: {
+        text: 'Evgeny Vyatkin',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      subheadline: '<strong>Project Delivery Leader</strong>, Pega Consulting',
+      meta_items: [
+        'Phone: <a href="tel:+79261204482" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+79261204482</a>',
+        'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">evgeny.vyatkin@pega.com</a>',
+        'Location: Germany',
+        'Pega ID: VYATE',
+        'Hired date: June 21, 2021',
+      ],
+      variant: 'card',
+      inset_spacing: 'small',
+      custom_menu: more_button,
+    } only %}
+  {% endset %}
+
+  {% set contact_result_2 %}
+    {% set signifier %}
+      <img src="/images/placeholders/thumb-square-ivy.jpg" alt="" width=56 height=56 class="u-bolt-border-radius-full">
+    {% endset %}
+    {% set teaser_description %}
+      {% set icon_chevron_down %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'chevron-down',
+        } only %}
+      {% endset %}
+      {% set trigger %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Recent articles by Kerim Akgonul',
+          icon_after: icon_chevron_down,
+          reversed_underline: true,
+          attributes: {
+            type: 'button',
+          }
+        } only %}
+      {% endset %}
+      {% set content %}
+        {% include '@bolt-components-menu/menu.twig' with {
+          items: [
+            {
+              content: 'Survey Takes 5 Minutes to Complete',
+              url: 'https://pega.com',
+            },
+            {
+              content: 'I Do Love Customer Go Live Stories (and Stylish Puppies)',
+              url: 'https://pega.com',
+            },
+            {
+              content: 'Greate to See Pega Professionals Recognized',
+              url: 'https://pega.com',
+            },
+          ]
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: trigger,
+        content: content,
+        spacing: 'none',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      gutter: 'small',
+      signifier: signifier,
+      layout: 'responsive',
+      headline: {
+        text: 'Kerim Akgonul',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      subheadline: '<p><strong>Chief Product Officer</strong>, Product R&amp;D</p>',
+      meta_items: [
+        'Phone: <a href="tel:+1(123)-456-7890x1346" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)-456-7890x1346</a>',
+        'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">kerim.akgonul@pega.com</a>',
+        'Location: Cambridge HQ',
+        'Pega ID: AKGOK',
+        'Hired date: Jan 1, 1999',
+      ],
+      description: teaser_description,
+      variant: 'card',
+      inset_spacing: 'small',
+      custom_menu: more_button,
+    } only %}
+  {% endset %}
+
+  {% set contact_result_3 %}
+    {% set signifier %}
+      <img src="/images/placeholders/500x500.jpg" alt="" width=56 height=56 class="u-bolt-border-radius-full">
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      gutter: 'small',
+      signifier: signifier,
+      layout: 'responsive',
+      headline: {
+        text: 'Mike Mai',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      subheadline: '<p><strong>Lead Web Architect</strong>, Pega Digital IT</p>',
+      meta_items: [
+        'Phone: <a href="tel:+1(123)-456-7890" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)-456-7890</a>',
+        'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mike.mai@pega.com</a>',
+        'Location: Cambridge HQ',
+        'Pega ID: MMAI',
+        'Hired date: May 4, 2018',
+      ],
+      variant: 'card',
+      inset_spacing: 'small',
+      custom_menu: more_button,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-list/list.twig' with {
+    spacing: 'medium',
+    items: [
+      contact_result_1,
+      contact_result_2,
+      contact_result_3,
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up variables
+{% set icon_map %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'pega-map',
+  } only %}
+{% endset %}
+{% set icon_partners %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'partners',
+  } only %}
+{% endset %}
+{% set icon_connection_hierarchy %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'pega-connection-hierarchy',
+  } only %}
+{% endset %}
+{% set more_button %}
+  {% set popover_content %}
+    {% include '@bolt-components-menu/menu.twig' with {
+      title: 'More actions',
+      items: [
+        {
+          content: 'View in Org Chart',
+          icon_before: icon_connection_hierarchy,
+        },
+        {
+          content: 'View on PeopleHub',
+          icon_before: icon_partners,
+        },
+      ]
+    } only %}
+  {% endset %}
+  {% set popover_trigger %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'More',
+      size: 'xsmall',
+      hierarchy: 'tertiary',
+      attributes: {
+        type: 'button',
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: popover_trigger,
+    content: popover_content,
+    spacing: 'none',
+    placement: 'bottom-end',
+  } only %}
+{% endset %}
+{% set signifier %}
+  <img src="/images/placeholders/500x500.jpg" alt="" width=56 height=56 class="u-bolt-border-radius-full">
+{% endset %}
+
+// Pass variables to the component
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+  gutter: 'small',
+  signifier: signifier,
+  layout: 'responsive',
+  headline: {
+    text: 'Firstname Lastname',
+    tag: 'h3',
+    size: 'xlarge',
+    link_attributes: {
+      href: 'https://pega.com'
+    },
+  },
+  subheadline: '<p><strong>Lead Web Architect</strong>, Pega Digital IT</p>',
+  meta_items: [
+    'Phone: <a href="tel:+1(123)-456-7890" class="e-bolt-text-link e-bolt-text-link--reversed-underline">+1(123)-456-7890</a>',
+    'Email: <a href="mailto:evgeny.vyatkin@pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mike.mai@pega.com</a>',
+    'Location: Cambridge HQ',
+    'Pega ID: FLAST',
+    'Hired date: May 4, 2018',
+  ],
+  variant: 'card',
+  inset_spacing: 'small',
+  custom_menu: more_button,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Use Case: Contact List',
+  description: 'A list of contact card teasers, each displays a quick summary of a particular person.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

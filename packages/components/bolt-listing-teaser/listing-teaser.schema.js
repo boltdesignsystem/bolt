@@ -43,9 +43,15 @@ module.exports = {
         },
       },
     },
+    subheadline: {
+      type: 'any',
+      description:
+        'Render the subheadline of the listing. This appears below the headline.',
+    },
     eyebrow_items: {
       type: 'array',
-      description: 'Render an array of eyebrow text for the listing.',
+      description:
+        'Render an array of eyebrow text for the listing. This appears above the headline',
     },
     meta_items: {
       type: 'array',
@@ -92,6 +98,11 @@ module.exports = {
       type: 'any',
       description:
         'Render a popover share menu for the listing. Passing the Share component is mandatory.',
+    },
+    custom_menu: {
+      type: 'any',
+      description:
+        'Render a custom popover menu. This is completely freeform, unlike the pre-defined props like action_menu and share_menu. Assemble the popover and the menu components, and pass them to this prop.',
     },
     description: {
       type: 'any',
