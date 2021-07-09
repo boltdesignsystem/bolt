@@ -60,7 +60,7 @@ describe('Bolt banner', () => {
   });
 });
 
-describe('Bolt banner prop - ', () => {
+describe('Bolt banner prop -', () => {
   // Target each of the schema keys with the following pattern
   status.enum.forEach(async option => {
     test(`status: ${option}`, async () => {
