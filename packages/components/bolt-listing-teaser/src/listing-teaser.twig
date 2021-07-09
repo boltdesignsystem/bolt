@@ -1,5 +1,5 @@
 {# Schema Validation #}
-{% set schema = bolt.data.components['@bolt-components-listing-teaser'].schema %}
+{% set schema = bolt.data.components['@bolt-components-listing-teaser'].schema['listing-teaser'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
