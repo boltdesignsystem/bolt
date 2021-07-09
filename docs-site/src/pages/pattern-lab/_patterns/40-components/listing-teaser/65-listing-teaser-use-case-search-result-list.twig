@@ -104,6 +104,16 @@
       trigger_event: 'hover',
     } only %}
   {% endset %}
+  {% set number_items %}
+    {% include '@bolt-components-listing-teaser/listing-teaser-status-number.twig' with {
+      number: '167',
+      label: 'Replies',
+    } only %}
+    {% include '@bolt-components-listing-teaser/listing-teaser-status-number.twig' with {
+      number: '6k',
+      label: 'Views',
+    } only %}
+  {% endset %}
 
   {% set product_result_1 %}
     {% set eyebrow_1 %}
@@ -483,8 +493,7 @@
       status: {
         solved: true,
         locked: true,
-        replies: '2',
-        views: '56',
+        number_items: number_items,
       },
     } only %}
   {% endset %}
@@ -520,8 +529,7 @@
       chip_list: chip_list,
       status: {
         locked: true,
-        replies: '2',
-        views: '56',
+        number_items: number_items,
       },
     } only %}
   {% endset %}
@@ -556,8 +564,7 @@
       description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
       chip_list: chip_list,
       status: {
-        replies: '2',
-        views: '56',
+        number_items: number_items,
       },
     } only %}
   {% endset %}
@@ -708,28 +715,46 @@
 
 {% set twig_markup %}
 {% verbatim %}
-{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
-  signifier: signifier,
-  layout: 'responsive', // Allow the content to wrap under the signifier when it runs out of space.
-  eyebrow_items: [
-    eyebrow_1,
-    eyebrow_2,
-  ],
-  headline: {
-    text: 'This is a listing',
-    tag: 'h3',
-    size: 'xlarge',
-    link_attributes: {
-      href: 'https://pega.com', // Or set type: 'button' for video modals
+{% set demo_result %}
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    signifier: signifier,
+    layout: 'responsive', // Allow the content to wrap under the signifier when it runs out of space. Used in video listing.
+    eyebrow_items: [
+      eyebrow_1,
+      eyebrow_2,
+    ],
+    headline: {
+      text: 'This is a listing',
+      tag: 'h3',
+      size: 'xlarge',
+      link_attributes: {
+        href: 'https://pega.com', // Or set type: 'button' for video modals.
+      },
     },
-  },
-  meta_items: [
-    meta_item_1,
-    meta_item_2,
-    meta_item_3,
+    meta_items: [
+      meta_item_1,
+      meta_item_2,
+      meta_item_3,
+    ],
+    description: description,
+    chip_list: chip_list,
+    status: {
+      solved: true,
+      locked: true,
+      number_items: number_items,
+    },
+  } only %}
+{% endset %}
+
+// Render a list to display results
+{% include '@bolt-components-list/list.twig' with {
+  spacing: 'small',
+  inset: true,
+  separator: 'solid',
+  items: [
+    demo_result,
+    ...
   ],
-  description: description,
-  chip_list: chip_list,
 } only %}
 {% endverbatim %}
 {% endset %}
