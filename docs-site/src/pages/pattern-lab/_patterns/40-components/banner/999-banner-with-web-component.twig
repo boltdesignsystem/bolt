@@ -1,13 +1,13 @@
 {% macro code_example(code) %}
-  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+  <div class='t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium'>
     {% grid %}
-      {% cell "u-bolt-width-12/12" %}
+      {% cell 'u-bolt-width-12/12' %}
         {{ code }}
       {% endcell %}
     {% endgrid %}
   </div>
-  <div class="u-bolt-margin-bottom-large">
-    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+  <div class='u-bolt-margin-bottom-large'>
+    <bolt-code-snippet syntax='dark' lang='html'>{% spaceless %}
       {{ code | replace({
         '<': '&lt;',
         '>': '&gt;',
@@ -25,14 +25,14 @@
 {% endset %}
 
 {% set banner_prop_demo %}
-<bolt-banner status="success" align="start">
-  You passed this challenge on <strong>May 21, 2020</strong>. <a href="https://pega.com" class="e-bolt-text-link">View Details</a>
+<bolt-banner status='success' align='start'>
+  You passed this challenge on <strong>May 21, 2020</strong>. <a href='https://pega.com' class='e-bolt-text-link'>View Details</a>
 </bolt-banner>
 {% endset %}
 
 <bolt-text headline>Web Component Usage</bolt-text>
 <bolt-text>
-  Bolt Banner is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-banner&gt;</bolt-code-snippet> in the markup to make it render.
+  Bolt Banner is a web component, you can simply use <bolt-code-snippet display='inline' lang='html'>&lt;bolt-banner&gt;</bolt-code-snippet> in the markup to make it render.
 </bolt-text>
 {% include banner_example.code_example(banner_demo) %}
 
