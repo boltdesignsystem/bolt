@@ -10,7 +10,8 @@ describe('<bolt-popover> Component', () => {
   // Basic Usage
   test('basic usage', async () => {
     const results = await render('@bolt-components-popover/popover.twig', {
-      trigger: '<bolt-button>This triggers a popover</bolt-button>',
+      trigger:
+        '<button type="button" class="e-bolt-button">This triggers a popover</button>',
       content:
         'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
     });
@@ -22,7 +23,8 @@ describe('<bolt-popover> Component', () => {
   placement.enum.forEach(async placementChoice => {
     test(`content placement: ${placementChoice}`, async () => {
       const results = await render('@bolt-components-popover/popover.twig', {
-        trigger: '<bolt-button>This triggers a popover</bolt-button>',
+        trigger:
+          '<button type="button" class="e-bolt-button">This triggers a popover</button>',
         content:
           'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
         placement: placementChoice,
@@ -35,7 +37,8 @@ describe('<bolt-popover> Component', () => {
   spacing.enum.forEach(async spacingChoice => {
     test(`content spacing: ${spacingChoice}`, async () => {
       const results = await render('@bolt-components-popover/popover.twig', {
-        trigger: '<bolt-button>This triggers a popover</bolt-button>',
+        trigger:
+          '<button type="button" class="e-bolt-button">This triggers a popover</button>',
         content:
           'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
         spacing: spacingChoice,
@@ -48,7 +51,8 @@ describe('<bolt-popover> Component', () => {
   theme.enum.forEach(async themeChoice => {
     test(`content theme: ${themeChoice}`, async () => {
       const results = await render('@bolt-components-popover/popover.twig', {
-        trigger: '<bolt-button>This triggers a popover</bolt-button>',
+        trigger:
+          '<button type="button" class="e-bolt-button">This triggers a popover</button>',
         content:
           'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
         theme: themeChoice,
@@ -60,7 +64,8 @@ describe('<bolt-popover> Component', () => {
 
   test(`UUID of the popover`, async () => {
     const results = await render('@bolt-components-popover/popover.twig', {
-      trigger: '<bolt-button>This triggers a popover</bolt-button>',
+      trigger:
+        '<button type="button" class="e-bolt-button">This triggers a popover</button>',
       content:
         'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
       uuid: 'custom-unique-id',
