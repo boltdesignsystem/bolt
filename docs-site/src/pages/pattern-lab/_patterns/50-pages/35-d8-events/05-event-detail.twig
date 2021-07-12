@@ -299,16 +299,31 @@
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Get Directions",
-              "hierarchy": "primary"
-            },
-            {
-              "text": "Make Reservations",
-              "hierarchy": "secondary"
+        {% set button_directions %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Get Directions',
+            hierarchy: "primary",
+            attributes: {
+              type: 'button'
             }
+          } only %}
+        {% endset %}
+
+        {% set button_reservations %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Make Reservations',
+            hierarchy: "secondary",
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: 'inline',
+          items: [
+            button_directions,
+            button_reservations,
           ]
         } only %}
       {% endcell %}

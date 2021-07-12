@@ -1,3 +1,7 @@
+<script type="text/javascript">
+  document.getElementsByTagName("body")[0].setAttribute("class", "e-bolt-printable");
+</script>
+
 {% set pageControls = block("page_controls") %}
 {% set sideNav = block("side_nav") %}
 {% set breadcrumbs = [
@@ -36,7 +40,7 @@
       {% endcell %}
     {% endif %}
 
-    {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium u-bolt-padding-left-large@medium" %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium u-bolt-padding-left-large@medium e-bolt-printable__article" %}
 
       {% if showBanner %}
         {% set banner_content %}

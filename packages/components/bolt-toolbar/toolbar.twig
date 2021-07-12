@@ -13,11 +13,9 @@
       {% if title or block('content_before') or content_before %}
         <div class="c-bolt-toolbar__item c-bolt-toolbar__item--before">
           {% if title %}
-            <div class="c-bolt-toolbar__title">
-              {% block toolbar_title %}
-                {% include "@bolt-components-toolbar/_toolbar-title.twig" with title only %}
-              {% endblock %}
-            </div>
+            {% block toolbar_title %}
+              {% include "@bolt-components-toolbar/_toolbar-title.twig" with title only %}
+            {% endblock %}
           {% endif %}
 
           {%  if block("content_before") %}

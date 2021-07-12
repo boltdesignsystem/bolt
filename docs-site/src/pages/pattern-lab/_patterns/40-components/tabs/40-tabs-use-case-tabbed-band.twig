@@ -20,18 +20,35 @@
         text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
         size: "medium"
       } only %}
-      {% include "@bolt-components-button-group/button-group.twig" with {
-        "buttons": [
-          {
-            "text": "Call to action",
-            "hierarchy": "primary"
-          },
-          {
-            "text": "Call to action",
-            "hierarchy": "secondary"
+
+      {% set button_cta_primary %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Call to action',
+          hierarchy: "primary",
+          attributes: {
+            type: 'button'
           }
+        } only %}
+      {% endset %}
+
+      {% set button_cta_secondary %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Call to action',
+          hierarchy: "secondary",
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+      {% endset %}
+
+      {% include "@bolt-components-list/list.twig" with {
+        display: 'inline',
+        items: [
+          button_cta_primary,
+          button_cta_secondary,
         ]
       } only %}
+
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-7/12@small" %}
       {% set device_viewer_image %}
@@ -75,18 +92,35 @@
         text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
         size: "medium"
       } only %}
-      {% include "@bolt-components-button-group/button-group.twig" with {
-        "buttons": [
-          {
-            "text": "Call to action",
-            "hierarchy": "primary"
-          },
-          {
-            "text": "Call to action",
-            "hierarchy": "secondary"
+
+      {% set button_cta_primary %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Call to action',
+          hierarchy: "primary",
+          attributes: {
+            type: 'button'
           }
+        } only %}
+      {% endset %}
+
+      {% set button_cta_secondary %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Call to action',
+          hierarchy: "secondary",
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+      {% endset %}
+
+      {% include "@bolt-components-list/list.twig" with {
+        display: 'inline',
+        items: [
+          button_cta_primary,
+          button_cta_secondary,
         ]
       } only %}
+
     {% endcell %}
   {% endgrid %}
 {% endset %}

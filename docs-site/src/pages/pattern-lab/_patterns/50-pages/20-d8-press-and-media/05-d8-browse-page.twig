@@ -481,17 +481,30 @@
               </div>
 
               <div class="c-bolt-search-filter__panel-controls c-bolt-search-filter__panel-controls--submit">
-                {% include "@bolt-components-button-group/button-group.twig" with {
-                  "buttons": [
-                    {
-                      "text": "Apply",
-                      "hierarchy": "primary"
-                    },
-                    {
-                      "text": "Cancel",
-                      "url": "#!",
-                      "hierarchy": "secondary"
+                {% set button_apply %}
+                  {% include '@bolt-elements-button/button.twig' with {
+                    content: 'Apply',
+                    hierarchy: "primary",
+                    attributes: {
+                      type: 'submit'
                     }
+                  } only %}
+                {% endset %}
+
+                {% set button_cancel %}
+                  {% include '@bolt-elements-button/button.twig' with {
+                    content: 'Cancel',
+                    hierarchy: "secondary",
+                    attributes: {
+                      href: '#!'
+                    }
+                  } only %}
+                {% endset %}
+
+                {% include "@bolt-components-list/list.twig" with {
+                  items: [
+                    button_apply,
+                    button_cancel,
                   ]
                 } only %}
               </div>
