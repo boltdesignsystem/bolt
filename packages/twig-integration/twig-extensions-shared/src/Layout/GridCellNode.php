@@ -101,7 +101,7 @@ class GridCellNode extends \Twig\Node\Node {
       'autoescape' => false,
     ]);
     $template = $env->createTemplate('<div {{ attributes | raw }}> {{ contents }} </div>');
-    $rendered = $env->render($template, array('contents' => $contents, 'attributes' => $attributes ));
+    $rendered = $env->render($template, ['contents' => $contents, 'attributes' => $attributes]);
 
     echo $rendered, PHP_EOL;
   }
