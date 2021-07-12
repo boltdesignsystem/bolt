@@ -12,11 +12,11 @@
           content: this.data.text.value,
           hierarchy: 'transparent',
           display: 'block',
-          target: this.data.external.value == true ? '_blank' : '_self',
           attributes: attributes|default({})
         } %}
 
         {% set _attributes = _button_props.attributes %}
+        {% set _attributes = _attributes|merge({ target: this.data.external.value == true ? '_blank' : '_self' }) %}
 
         {% if spacing is not empty %}
           {% set _button_props = _button_props|merge({ size: spacing }) %}

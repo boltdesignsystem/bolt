@@ -65,17 +65,15 @@ class BoltCardReplacementAction extends withContext(BoltElement) {
               >
                 ${this.slotify('default')}
                 ${this.icon !== 'none'
-                  ? html`
-                      <span class="e-bolt-button__icon-after">
-                        <bolt-icon
-                          name="${this.icon
-                            ? this.icon
-                            : this.external
-                            ? 'external-link'
-                            : 'chevron-right'}"
-                          aria-hidden="true"
-                        ></bolt-icon>
-                      </span>
+                  ? // prettier-ignore
+                    html`
+                      <span class="e-bolt-button__icon-after"><bolt-icon
+                        name="${this.icon
+                          ? this.icon
+                          : this.external
+                          ? 'external-link'
+                          : 'chevron-right'}"
+                        aria-hidden="true"></bolt-icon></span>
                     `
                   : ''}
               </a>
