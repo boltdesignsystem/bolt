@@ -93,7 +93,7 @@ class GridTagNode extends \Twig\Node\Node {
         {{ contents }}
       </div>
     ");
-    $rendered = $env->render($template, array('contents' => $contents, 'attributes' => $attributes, 'grid' => $GLOBALS['grid_props'][$GLOBALS['counter']] ));
+    $rendered = $env->render($template, ['contents' => $contents, 'attributes' => $attributes, 'grid' => $GLOBALS['grid_props'][$GLOBALS['counter']]]);
 
     echo $rendered, PHP_EOL;
   }
