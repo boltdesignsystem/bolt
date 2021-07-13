@@ -8,12 +8,13 @@
   <ssr-keep for="bolt-card-replacement-action" class="c-bolt-card_replacement__action">
     {% block action_item %}
       {% if this.data.text.value %}
-
         {% set _button_attributes = attributes|default({}) %}
-        {% set _button_attributes = _button_attributes|merge({ target: this.data.external.value == true ? '_blank' : '_self' }) %}
 
         {% if this.data.url.value %}
-          {% set _button_attributes = _button_attributes|merge({ href: this.data.url.value }) %}
+          {% set _button_attributes = _button_attributes|merge({
+            href: this.data.url.value,
+            target: this.data.external.value == true ? '_blank' : '_self'
+          }) %}
         {% else %}
           {% set _button_attributes = _button_attributes|merge({ type: 'button' }) %}
         {% endif %}
