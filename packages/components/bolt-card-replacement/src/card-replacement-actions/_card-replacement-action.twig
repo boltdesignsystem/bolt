@@ -8,27 +8,26 @@
   <ssr-keep for="bolt-card-replacement-action" class="c-bolt-card_replacement__action">
     {% block action_item %}
       {% if this.data.text.value %}
+
+        {% set _button_attributes = attributes|default({}) %}
+        {% set _button_attributes = _button_attributes|merge({ target: this.data.external.value == true ? '_blank' : '_self' }) %}
+
+        {% if this.data.url.value %}
+          {% set _button_attributes = _button_attributes|merge({ href: this.data.url.value }) %}
+        {% else %}
+          {% set _button_attributes = _button_attributes|merge({ type: 'button' }) %}
+        {% endif %}
+
         {% set _button_props = {
           content: this.data.text.value,
           hierarchy: 'transparent',
           display: 'block',
-          attributes: attributes|default({})
+          attributes: _button_attributes
         } %}
-
-        {% set _attributes = _button_props.attributes %}
-        {% set _attributes = _attributes|merge({ target: this.data.external.value == true ? '_blank' : '_self' }) %}
 
         {% if spacing is not empty %}
           {% set _button_props = _button_props|merge({ size: spacing }) %}
         {% endif %}
-
-        {% if this.data.url.value %}
-          {% set _attributes = _attributes|merge({ href: this.data.url.value }) %}
-        {% else %}
-          {% set _attributes = _attributes|merge({ type: 'button' }) %}
-        {% endif %}
-
-        {% set _button_props = _button_props|merge({ attributes: _attributes }) %}
 
         {% if this.data.icon.value != 'none' %}
           {% set _icon_props = {} %}

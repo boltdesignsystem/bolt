@@ -2,9 +2,9 @@ import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import { withContext } from 'wc-context/lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
+import globalStyles from '@bolt/global/styles/03-generic/_generic-global.scss';
+import buttonStyles from '@bolt/elements-button/src/button.scss';
 import styles from './_card-replacement-action.scss';
-import buttonStyles from '../../../../elements/bolt-button/src/button.scss';
-import globalStyles from '../../../../global/styles/03-generic/_generic-global.scss';
 
 let cx = classNames.bind(styles);
 
@@ -29,9 +29,9 @@ class BoltCardReplacementAction extends withContext(BoltElement) {
 
   static get styles() {
     return [
-      unsafeCSS(styles),
-      unsafeCSS(buttonStyles),
       unsafeCSS(globalStyles),
+      unsafeCSS(buttonStyles),
+      unsafeCSS(styles),
     ];
   }
 
@@ -63,18 +63,15 @@ class BoltCardReplacementAction extends withContext(BoltElement) {
                   this.url ? (this.external ? '_blank' : '_self') : undefined,
                 )}"
               >
-                ${this.slotify('default')}
-                ${this.icon !== 'none'
+                ${this.slotify('default')}${this.icon !== 'none'
                   ? // prettier-ignore
-                    html`
-                      <span class="e-bolt-button__icon-after"><bolt-icon
+                    html`<span class="e-bolt-button__icon-after"><bolt-icon
                         name="${this.icon
                           ? this.icon
                           : this.external
                           ? 'external-link'
                           : 'chevron-right'}"
-                        aria-hidden="true"></bolt-icon></span>
-                    `
+                        aria-hidden="true"></bolt-icon></span>`
                   : ''}
               </a>
             `
