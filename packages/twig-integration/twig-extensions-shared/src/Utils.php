@@ -203,7 +203,7 @@ class Utils {
       return FALSE;
     }
     elseif (is_string($type)) {
-      if ($type == "array" || $type == "object") {
+      if ($type == "array" || $type == "object" || $type == "any") {
         return FALSE;
       }
     }
