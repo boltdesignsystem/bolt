@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Yeoman component generator JS file exist 1`] = `
+exports[`Bolt component generator JS file exist 1`] = `
 "import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
 import styles from './test.scss';
@@ -15,7 +15,7 @@ class BoltTest extends BoltElement {
   static get properties() {
     return {
       ...this.props,
-    }
+    };
   }
 
   static get styles() {
@@ -39,7 +39,7 @@ export { BoltTest };
 "
 `;
 
-exports[`Yeoman component generator SCSS file exist 1`] = `
+exports[`Bolt component generator SCSS file exist 1`] = `
 "/* ------------------------------------ *\\\\
    Test
 \\\\* ------------------------------------ */
@@ -64,38 +64,38 @@ exports[`Yeoman component generator SCSS file exist 1`] = `
 "
 `;
 
-exports[`Yeoman component generator folder structure of component package is correct 1`] = `
+exports[`Bolt component generator folder structure of component package is correct 1`] = `
 Array [
-  "packages/generators/yeoman-create-component/generators/component/tmp/.boltrc.js",
-  "packages/generators/yeoman-create-component/generators/component/tmp/docs-site/src/pages/pattern-lab/_patterns/40-components/test/00-test-docs.twig",
-  "packages/generators/yeoman-create-component/generators/component/tmp/package.json",
-  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/README.md",
-  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/__tests__/test.js",
-  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/index.js",
-  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/index.scss",
-  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/package.json",
-  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/src/test.js",
-  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/src/test.scss",
-  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/src/test.twig",
-  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/test.schema.js",
+  "packages/generators/tmp/.boltrc.js",
+  "packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/40-components/test/00-test-docs.twig",
+  "packages/generators/tmp/package.json",
+  "packages/generators/tmp/packages/components/bolt-test/README.md",
+  "packages/generators/tmp/packages/components/bolt-test/__tests__/test.js",
+  "packages/generators/tmp/packages/components/bolt-test/index.js",
+  "packages/generators/tmp/packages/components/bolt-test/index.scss",
+  "packages/generators/tmp/packages/components/bolt-test/package.json",
+  "packages/generators/tmp/packages/components/bolt-test/src/test.js",
+  "packages/generators/tmp/packages/components/bolt-test/src/test.scss",
+  "packages/generators/tmp/packages/components/bolt-test/src/test.twig",
+  "packages/generators/tmp/packages/components/bolt-test/test.schema.js",
 ]
 `;
 
-exports[`Yeoman component generator index JS file exist 1`] = `
+exports[`Bolt component generator index JS file exist 1`] = `
 "import './src/test';
 "
 `;
 
-exports[`Yeoman component generator index SCSS file exist 1`] = `
+exports[`Bolt component generator index SCSS file exist 1`] = `
 "@import 'src/test.scss';
 "
 `;
 
-exports[`Yeoman component generator package.json file exist 1`] = `
+exports[`Bolt component generator package.json file exist 1`] = `
 "{
   \\"name\\": \\"@bolt/components-test\\",
   \\"version\\": \\"0.0.0\\",
-  \\"description\\": \\"Test Description\\",
+  \\"description\\": \\"Test description\\",
   \\"keywords\\": [
     \\"bolt design system\\"
   ],
@@ -104,7 +104,7 @@ exports[`Yeoman component generator package.json file exist 1`] = `
   },
   \\"repository\\": {
     \\"type\\": \\"git\\",
-    \\"url\\": \\"git+https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-test\\"
+    \\"url\\": \\"https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-test\\"
   },
   \\"license\\": \\"MIT\\",
   \\"author\\": \\"Test User <test@example.org>\\",
@@ -122,7 +122,7 @@ exports[`Yeoman component generator package.json file exist 1`] = `
 "
 `;
 
-exports[`Yeoman component generator pattern lab file exist 1`] = `
+exports[`Bolt component generator pattern lab file exist 1`] = `
 "{% set usage %}{% verbatim %}
 {% include '@bolt-components-test/test.twig' only %}
 {% endverbatim %}{% endset %}
@@ -134,8 +134,8 @@ exports[`Yeoman component generator pattern lab file exist 1`] = `
 "
 `;
 
-exports[`Yeoman component generator readme file exist 1`] = `
-"Test Description
+exports[`Bolt component generator readme file exist 1`] = `
+"Test description
 
 ###### Install via NPM
 
@@ -145,7 +145,7 @@ npm install @bolt/components-test
 "
 `;
 
-exports[`Yeoman component generator schema file exist 1`] = `
+exports[`Bolt component generator schema file exist 1`] = `
 "module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Test',
@@ -167,7 +167,7 @@ exports[`Yeoman component generator schema file exist 1`] = `
 "
 `;
 
-exports[`Yeoman component generator tests file exist 1`] = `
+exports[`Bolt component generator tests file exist 1`] = `
 "import {
   isConnected,
   render,

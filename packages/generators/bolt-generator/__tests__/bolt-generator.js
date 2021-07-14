@@ -5,7 +5,7 @@ const dir = require('node-dir');
 
 const dirs = {
   global:
-    'packages/generators/yeoman-create-component/generators/component/tmp',
+    'packages/generators/tmp',
   js: 'test.js',
   scss: 'test.scss',
   test: 'test.js',
@@ -20,15 +20,15 @@ dirs.src = `${dirs.component}/src`;
 dirs.testing = `${dirs.component}/__tests__`;
 dirs.patternLab = `${dirs.global}/docs-site/src/pages/pattern-lab/_patterns/40-components/test/00-test-docs.twig`;
 
-describe('Yeoman component generator', () => {
+describe('Bolt component generator', () => {
   beforeAll(async () => {
     shell.exec(`rm -rf ${dirs.global}`);
-    shell.exec('yarn run cc -- -N Test -D "Test Description" -T');
+    shell.exec('yarn cc "Bolt-Generator-Component-Jest-Test" "Test Description"');
   });
 
-  afterAll(async () => {
-    await internalTasks.clean(dirs.global);
-  });
+  // afterAll(async () => {
+  //   await internalTasks.clean(dirs.global);
+  // });
 
   test('pattern lab file exist', async () => {
     const results = fs.readFileSync(dirs.patternLab, 'utf8');
