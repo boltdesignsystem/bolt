@@ -1,3 +1,31 @@
 /**
  * Add imports here
  */
+
+.holy-grail {
+  @include bolt-full-bleed;
+
+  display: grid;
+  grid-template-columns: minmax(16vw, var(--bolt-page-padding-x)) 1fr minmax(
+      26vw,
+      var(--bolt-page-padding-x)
+    );
+  min-height: 100%;
+}
+
+.sidebar {
+  padding: var(--bolt-spacing-y-medium) 0;
+
+  &.primary {
+    background-color: var(--bolt-color-gray-xlight);
+  }
+
+  &.sticky {
+    position: sticky;
+    top: var(--bolt-page-header-height);
+  }
+}
+
+.article {
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-large);
+}
