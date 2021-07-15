@@ -44,12 +44,13 @@
             } only %}
           {% endset %}
 
-          {% include "@bolt-components-button-group/button-group.twig" with {
-            buttons: [
+          {% include "@bolt-components-list/list.twig" with {
+            display: 'inline',
+            items: [
               button_1,
-              button_2
+              button_2,
             ]
-          } %}
+          } only %}
         </div>
       </div>
     {% endfor %}
