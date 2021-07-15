@@ -1,23 +1,23 @@
 {
   "name": "@bolt/components-{{ kebabCase name }}",
-  "version": "{{> BOLTVERSION }}",
+  "version": "{{ bolt.version }}",
   "description": "{{ sentenceCase description }}",
   "keywords": [
     "bolt design system"
   ],
   "bugs": {
-    "url": "{{> GITURL }}/issues"
+    "url": "{{ git.url }}/issues"
   },
   "repository": {
     "type": "git",
-    "url": "{{> GITURL }}/tree/master/packages/components/bolt-{{ kebabCase name }}"
+    "url": "{{ git.url }}/tree/master/packages/components/bolt-{{ kebabCase name }}"
   },
   "license": "MIT",
-  "author": "{{> GITUSERNAME }} <{{> GITUSEREMAIL }}>",
+  "author": "{{ git.name }} <{{ git.email }}>",
   "main": "index.js",
   "style": "index.scss",
   "dependencies": {
-    "@bolt/core-v3.x": "^{{> BOLTCOREVERSION }}"
+    "@bolt/core-v3.x": "^{{ bolt.coreVersion }}"
   },
   "publishConfig": {
     "access": "public"

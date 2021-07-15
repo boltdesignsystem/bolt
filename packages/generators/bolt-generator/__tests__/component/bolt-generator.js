@@ -22,6 +22,7 @@ dirs.patternLab = `${dirs.global}/docs-site/src/pages/pattern-lab/_patterns/40-c
 
 describe('Bolt component generator', () => {
   beforeAll(async () => {
+    shell.exec(`rm -rf ${dirs.global}`);
     shell.exec('yarn cc "Test" "Test Description"');
   });
 

@@ -1,10 +1,9 @@
 const shelljs = require('shelljs');
-const chalk = require('chalk');
 const updateBoltRcConfig = require('./helpers/update-boltrc');
 const updateBoltPackage = require('./helpers/add-bolt-package');
+const answersValidate = require('./helpers/validation');
 
 const config = {
-  root: '../../../',
   bolt: {
     version: require('../../../docs-site/package.json').version,
     coreVersion: require('../../../packages/core-v3.x/package.json').version,
@@ -16,6 +15,13 @@ const config = {
     test: '__tests__',
     templates: 'templates/component',
   },
+  element: {
+    dir: 'packages/generators/tmp/packages/elements',
+    patternLab: 'packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/20-elements',
+    src: 'src',
+    test: '__tests__',
+    templates: 'templates/elements',
+  },
   git: {
     email: shelljs
       .exec('git config user.email', { silent: true })
@@ -24,7 +30,8 @@ const config = {
       .exec('git config user.name', { silent: true })
       .stdout.replace(/\n/g, ''),
     url: 'https://github.com/bolt-design-system/bolt',
-  }
+  },
+  root: '../../../',
 };
 
 const addToBoltRC = (packageName, path) => data => updateBoltRcConfig(packageName, path);
@@ -37,33 +44,8 @@ module.exports = plop => {
       {
         type: 'input',
         name: 'name',
-        message: 'What is the name of your Bolt component? (for example: `button`, `card`, carousel`, etc):',
-        validate: input => {
-          if (input.includes('_')) {
-            console.log(
-              chalk.red(" Don't include underscores in your component name!"),
-            );
-            return false;
-          } else if (input.includes(' ')) {
-            console.log(
-              chalk.red(" Don't include any spaces in your component name!"),
-            );
-            return false;
-          } else if (input.includes('bolt')) {
-            console.log(
-              chalk.red(
-                " Make sure you aren't including the word `bolt` in your component name -- we take care of adding that automatically!",
-              ),
-            );
-            return false;
-          } else if (input.length === 0) {
-            console.log(
-              chalk.red('You need to name your new Bolt component something!'),
-            );
-            return false;
-          }
-          return true;
-        }
+        message: 'What is the name of your Bolt component? (e.g. `button`, `card`, etc):',
+        validate: answer => answersValidate(answer, 'component'),
       },
       {
         type: 'input',
@@ -86,71 +68,66 @@ module.exports = plop => {
       }
 
       config.component.dest = plop.renderString(`${config.component.dir}/bolt-{{ kebabCase name }}`, data);
-
-      plop.setPartial('BOLTVERSION', config.bolt.version);
-      plop.setPartial('BOLTCOREVERSION', config.bolt.coreVersion);
-      plop.setPartial('GITURL', config.git.url);
-      plop.setPartial('GITUSERNAME', config.git.name);
-      plop.setPartial('GITUSEREMAIL', config.git.email);
+      data = Object.assign(data, config);
 
       let dynamicActions = [];
       const basicActions = [
         {
           type: 'add',
-          path: `${config.root}/${config.component.dest}/index.js`,
-          templateFile: `${config.component.templates}/component.index.js`
+          path: `${data.root}/${data.component.dest}/index.js`,
+          templateFile: `${data.component.templates}/component.index.js`
         },
         {
           type: 'add',
-          path: `${config.root}/${config.component.dest}/index.scss`,
-          templateFile: `${config.component.templates}/component.index.scss`
+          path: `${data.root}/${data.component.dest}/index.scss`,
+          templateFile: `${data.component.templates}/component.index.scss`
         },
         {
           type: 'add',
-          path: `${config.root}/${config.component.dest}/package.json`,
-          templateFile: `${config.component.templates}/component.package.json`
+          path: `${data.root}/${data.component.dest}/package.json`,
+          templateFile: `${data.component.templates}/component.package.json`
         },
         {
           type: 'add',
-          path: `${config.root}/${config.component.dest}/README.md`,
-          templateFile: `${config.component.templates}/README.md`
+          path: `${data.root}/${data.component.dest}/README.md`,
+          templateFile: `${data.component.templates}/README.md`
         },
         {
           type: 'add',
-          path: `${config.root}/${config.component.dest}/{{ kebabCase name }}.schema.js`,
-          templateFile: `${config.component.templates}/component.schema.js`
+          path: `${data.root}/${data.component.dest}/{{ kebabCase name }}.schema.js`,
+          templateFile: `${data.component.templates}/component.schema.js`
         },
         {
           type: 'add',
-          path: `${config.root}/${config.component.dest}/${config.component.src}/{{ kebabCase name }}.js`,
-          templateFile: `${config.component.templates}/component.js`
+          path: `${data.root}/${data.component.dest}/${data.component.src}/{{ kebabCase name }}.js`,
+          templateFile: `${data.component.templates}/component.js`
         },
         {
           type: 'add',
-          path: `${config.root}/${config.component.dest}/${config.component.src}/{{ kebabCase name }}.scss`,
-          templateFile: `${config.component.templates}/component.scss`
+          path: `${data.root}/${data.component.dest}/${data.component.src}/{{ kebabCase name }}.scss`,
+          templateFile: `${data.component.templates}/component.scss`
         },
         {
           type: 'add',
-          path: `${config.root}/${config.component.dest}/${config.component.src}/{{ kebabCase name }}.twig`,
-          templateFile: `${config.component.templates}/component.html.twig`
+          path: `${data.root}/${data.component.dest}/${data.component.src}/{{ kebabCase name }}.twig`,
+          templateFile: `${data.component.templates}/component.html.twig`
         },
         {
           type: 'add',
-          path: `${config.root}/${config.component.dest}/${config.component.test}/{{ kebabCase name }}.js`,
-          templateFile: `${config.component.templates}/component.test.js`
+          path: `${data.root}/${data.component.dest}/${data.component.test}/{{ kebabCase name }}.js`,
+          templateFile: `${data.component.templates}/component.test.js`
         },
         {
           type: 'add',
-          path: `${config.root}/${config.component.patternLab}/{{ kebabCase name }}/00-{{ kebabCase name }}-docs.twig`,
-          templateFile: `${config.component.templates}/component.docs.twig`
+          path: `${data.root}/${data.component.patternLab}/{{ kebabCase name }}/00-{{ kebabCase name }}-docs.twig`,
+          templateFile: `${data.component.templates}/component.docs.twig`
         },
       ];
 
       if (isTest) {
         dynamicActions.push(
-          addToBoltRC(boltComponentPackageName, `${config.component.tmp}/.boltrc.js`),
-          addToPackageJSON(boltComponentPackageName, `${config.component.tmp}/package.json`),
+          addToBoltRC(boltComponentPackageName, `${data.component.tmp}/.boltrc.js`),
+          addToPackageJSON(boltComponentPackageName, `${data.component.tmp}/package.json`),
         );
       } else {
         dynamicActions.push(
@@ -160,6 +137,38 @@ module.exports = plop => {
       }
 
       return [...basicActions, ...dynamicActions];
+    }
+  });
+
+  plop.setGenerator('element', {
+    description: 'Generator for Bolt Elements',
+    prompts: [
+      {
+      type: 'input',
+      name: 'name',
+      message: 'What is the name of your Bolt element? (e.g. `button`, `link`, etc):',
+      validate: answer => answersValidate(answer, 'element'),
+    },
+    {
+      type: 'input',
+      name: 'description',
+      message: 'Could you write a sentence or two that describes your new Bolt element:'
+    }
+    ],
+    actions(data) {
+      config.element.dest = plop.renderString(`${config.element.dir}/bolt-{{ kebabCase name }}`, data);
+      data = Object.assign(data, config);
+
+      const basicActions = [
+        {
+          type: 'add',
+          path: `${data.root}/${data.element.dest}/README.md`,
+          templateFile: `${data.element.templates}/README.md`
+        },
+      ];
+
+      console.log('DATA', data);
+      return [...basicActions]
     }
   });
 };
