@@ -69,7 +69,7 @@
 
 {% set hero_content %}
   {% include "@bolt-components-headline/headline.twig" with {
-    text: schema.title ? schema.title : "Component Name",
+    text: componentName|replace({'-' : ' '})|title,
     size: "xxxlarge",
     tag: "h1",
     attributes: {

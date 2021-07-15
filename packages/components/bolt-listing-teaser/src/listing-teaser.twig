@@ -1,5 +1,5 @@
 {# Schema Validation #}
-{% set schema = bolt.data.components['@bolt-components-listing-teaser'].schema %}
+{% set schema = bolt.data.components['@bolt-components-listing-teaser'].schema['listing-teaser'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -106,16 +106,21 @@
             {{ status.locked_label ? status.locked_label|t : 'Locked'|t }}
           </li>
         {% endif %}
-        {% if status.replies %}
-          <li class="c-bolt-listing-teaser__flag-status__item">
-            <span class="c-bolt-listing-teaser__flag-status__number">{{ status.replies }}</span>
-            {{ status.replies_label ? status.replies_label|t : 'Replies'|t }}
-          </li>
-        {% endif %}
-        {% if status.views %}
-          <li class="c-bolt-listing-teaser__flag-status__item">
-            <span class="c-bolt-listing-teaser__flag-status__number">{{ status.views }}</span> {{ 'Views'|t }}
-          </li>
+        {% if status.number_items %}
+          {{ status.number_items }}
+        {% else %}
+          {% if status.replies %}
+            <li class="c-bolt-listing-teaser__flag-status__item">
+              <span class="c-bolt-listing-teaser__flag-status__number">{{ status.replies }}</span>
+              {{ status.replies_label ? status.replies_label|t : 'Replies'|t }}
+            </li>
+          {% endif %}
+          {% if status.views %}
+            <li class="c-bolt-listing-teaser__flag-status__item">
+              <span class="c-bolt-listing-teaser__flag-status__number">{{ status.views }}</span>
+              {{ status.views_label ? status.views_label|t : 'Views'|t }}
+            </li>
+          {% endif %}
         {% endif %}
       </ul>
     {% endif %}

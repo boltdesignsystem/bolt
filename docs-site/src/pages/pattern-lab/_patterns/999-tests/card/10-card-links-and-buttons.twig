@@ -1,0 +1,64 @@
+{% set modal_content %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This is the modal container's header.",
+    attributes: {
+      slot: "header",
+    }
+  } only %}
+  <div>
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      text: "This is the modal container's body"
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "This is the modal container's body."
+    } only %}
+  </div>
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This is the modal container's footer.",
+    attributes: {
+      slot: "footer",
+    }
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-modal/modal.twig" with {
+  content: modal_content,
+  attributes: {
+    class: "js-bolt-modal",
+  },
+} only %}
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      media: {
+        image: {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Image alt.",
+        },
+      },
+      body: {
+        headline: "No link",
+        paragraph: "This card doesn't have a link.",
+      },
+      actions: [
+        {
+          text: "Internal link",
+          url: "https://boltdesignsystem.com/"
+        },
+        {
+          text: "External link",
+          url: "https://pega.com/",
+          external: true
+        },
+        {
+          text: "Open a modal",
+          attributes: {
+            "data-bolt-modal-target": ".js-bolt-modal"
+          }
+        }
+      ],
+    } only %}
+  {% endcell %}
+{% endgrid %}

@@ -18,24 +18,48 @@
       border_radius: 'small',
     } only %}
   {% endset %}
-  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
-    signifier: signifier,
-    headline: {
-      text: 'This listing has a responsive layout',
-      tag: 'h3',
-      size: 'large',
-      link_attributes: {
-        href: 'https://pega.com'
+  <bolt-stack>
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      signifier: signifier,
+      headline: {
+        text: 'This listing has a responsive layout',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
       },
-    },
-    meta_items: [
-      'Posted 8 hours 15 minutes ago',
-      'Last activity: 2 minutes ago',
-    ],
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias libero repellendus, dolorum vitae iste iure quas tempora! Distinctio hic ducimus excepturi adipisci est libero quia! Explicabo mollitia ad voluptatum impedit!',
-    layout: 'responsive',
-    gutter: 'medium',
-  } only %}
+      meta_items: [
+        'Posted 8 hours 15 minutes ago',
+        'Last activity: 2 minutes ago',
+      ],
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias libero repellendus, dolorum vitae iste iure quas tempora! Distinctio hic ducimus excepturi adipisci est libero quia! Explicabo mollitia ad voluptatum impedit!',
+      layout: 'responsive',
+      gutter: 'medium',
+    } only %}
+  </bolt-stack>
+  <bolt-stack>
+    <div style="max-width: 35ch;">
+      {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+        signifier: signifier,
+        headline: {
+          text: 'This listing has a vertical layout',
+          tag: 'h3',
+          size: 'large',
+          link_attributes: {
+            href: 'https://pega.com'
+          },
+        },
+        meta_items: [
+          'Posted 8 hours 15 minutes ago',
+          'Last activity: 2 minutes ago',
+        ],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias libero repellendus, dolorum vitae iste iure quas tempora! Distinctio hic ducimus excepturi adipisci est libero quia! Explicabo mollitia ad voluptatum impedit!',
+        layout: 'vertical',
+        gutter: 'medium',
+      } only %}
+    </div>
+  </bolt-stack>
 {% endset %}
 
 {% set twig_markup %}
