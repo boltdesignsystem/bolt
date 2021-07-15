@@ -5,27 +5,26 @@ const updateBoltPackage = require('./helpers/add-bolt-package');
 
 const config = {
   root: '../../../',
+  bolt: {
+    version: require('../../../docs-site/package.json').version,
+    coreVersion: require('../../../packages/core-v3.x/package.json').version,
+  },
   component: {
     dir: 'packages/components',
     patternLab: 'docs-site/src/pages/pattern-lab/_patterns/40-components',
     src: 'src',
     test: '__tests__',
     templates: 'templates/component',
+  },
+  git: {
+    email: shelljs
+      .exec('git config user.email', { silent: true })
+      .stdout.replace(/\n/g, ''),
+    name: shelljs
+      .exec('git config user.name', { silent: true })
+      .stdout.replace(/\n/g, ''),
+    url: 'https://github.com/bolt-design-system/bolt',
   }
-};
-const gitInfo = {
-  email: shelljs
-    .exec('git config user.email', { silent: true })
-    .stdout.replace(/\n/g, ''),
-  name: shelljs
-    .exec('git config user.name', { silent: true })
-    .stdout.replace(/\n/g, ''),
-  url: 'https://github.com/bolt-design-system/bolt',
-};
-
-const bolt = {
-  version: require(`${config.root}/docs-site/package.json`).version,
-  coreVersion: require(`${config.root}/packages/core-v3.x/package.json`).version,
 };
 
 const addToBoltRC = (packageName, path) => data => updateBoltRcConfig(packageName, path);
@@ -76,25 +75,26 @@ module.exports = plop => {
       const isTest = data['name'] === 'Test';
       const boltComponentPackageName = plop.renderString('@bolt/components-{{ kebabCase name }}', data);
 
-      config.component.dest = plop.renderString(`${config.component.dir}/bolt-{{ kebabCase name }}`, data);
-
       if (isTest) {
         config.component.dir = 'packages/generators/tmp/packages/components';
         config.component.patternLab = 'packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/40-components';
         config.component.tmp = 'packages/generators/tmp'
-        gitInfo.name = 'Test User';
-        gitInfo.email = 'test@example.org';
-        bolt.version = '0.0.0';
-        bolt.coreVersion = '0.0.0';
+        config.git.name = 'Test User';
+        config.git.email = 'test@example.org';
+        config.bolt.version = '0.0.0';
+        config.bolt.coreVersion = '0.0.0';
       }
 
-      plop.setPartial('BOLTVERSION', bolt.version);
-      plop.setPartial('BOLTCOREVERSION', bolt.coreVersion);
-      plop.setPartial('GITURL', gitInfo.url);
-      plop.setPartial('GITUSERNAME', gitInfo.name);
-      plop.setPartial('GITUSEREMAIL', gitInfo.email);
+      config.component.dest = plop.renderString(`${config.component.dir}/bolt-{{ kebabCase name }}`, data);
 
-      let actions = [
+      plop.setPartial('BOLTVERSION', config.bolt.version);
+      plop.setPartial('BOLTCOREVERSION', config.bolt.coreVersion);
+      plop.setPartial('GITURL', config.git.url);
+      plop.setPartial('GITUSERNAME', config.git.name);
+      plop.setPartial('GITUSEREMAIL', config.git.email);
+
+      let dynamicActions = [];
+      const basicActions = [
         {
           type: 'add',
           path: `${config.root}/${config.component.dest}/index.js`,
@@ -147,25 +147,19 @@ module.exports = plop => {
         },
       ];
 
-      if(isTest) {
-        actions = actions.concat([
-          addToBoltRC(
-            boltComponentPackageName,
-            `${config.component.tmp}/.boltrc.js`
-          ),
-          addToPackageJSON(
-            boltComponentPackageName,
-            `${config.component.tmp}/package.json`
-          ),
-        ]);
+      if (isTest) {
+        dynamicActions.push(
+          addToBoltRC(boltComponentPackageName, `${config.component.tmp}/.boltrc.js`),
+          addToPackageJSON(boltComponentPackageName, `${config.component.tmp}/package.json`),
+        );
       } else {
-        actions = actions.concat([
+        dynamicActions.push(
           addToBoltRC(boltComponentPackageName),
           addToPackageJSON(boltComponentPackageName),
-        ]);
+        );
       }
 
-      return actions;
+      return [...basicActions, ...dynamicActions];
     }
   });
 };
