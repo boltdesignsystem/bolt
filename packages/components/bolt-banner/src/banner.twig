@@ -32,11 +32,11 @@
 {% endfor %}
 
 <bolt-banner
-  {% if outer_classes %} class='{{ outer_classes|join(' ') }}' {% endif %}
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without('content')|without('class') }}
 >
-  <div {% if inner_classes %} class='{{ inner_classes|join(' ') }}' {% endif %}>
-    <ssr-keep for='bolt-banner'>
+  <div {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+    <ssr-keep for="bolt-banner">
       {{ content }}
     </ssr-keep>
   </div>
