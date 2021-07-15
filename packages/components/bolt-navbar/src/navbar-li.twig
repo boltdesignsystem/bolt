@@ -15,11 +15,11 @@
 ] %}
 
 {% if this.data.current.value is sameas(true) %}
-  {% set attributes = attributes.setAttribute('data-bolt-current') %}
+  {% set attributes = attributes.setAttribute('data-bolt-current', true) %}
 {% endif %}
 
 {# [data-scroll-ignore] opts out of automatic smoothscroll behavior, @see packages/bolt-smooth-scroll #}
-{% set _link_attributes = _link_attributes.setAttribute('data-scroll-ignore', '') %}
+{% set _link_attributes = _link_attributes.setAttribute('data-scroll-ignore', true) %}
 
 {% if link.icon %}
   {% set _icon_position = link.icon.position in schema.properties.link.properties.icon.properties.position.enum ? link.icon.position : schema.properties.link.properties.icon.properties.position.default %}
