@@ -119,9 +119,8 @@
 
 // Title
 .c-bolt-navbar__title {
+  all: unset; // 'unset' all styles when title uses heading tag
   display: flex;
-  margin-bottom: 0; // Override global heading styles when title uses heading tag
-  font-weight: initial;
   color: var(--m-bolt-headline);
   white-space: nowrap;
 
