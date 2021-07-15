@@ -36,7 +36,7 @@
   {{ this.props|without('content')|without('class') }}
 >
   <div {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
-    <ssr-keep for='bolt-banner'>
+    <ssr-keep for="bolt-banner">
       {{ content }}
     </ssr-keep>
   </div>
