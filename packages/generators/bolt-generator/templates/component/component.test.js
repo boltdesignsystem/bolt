@@ -6,11 +6,11 @@ import {
   html,
   vrtDefaultConfig,
 } from '../../../testing/testing-helpers';
-import schema from '../<%= props.name.kebabCase %>.schema';
+import schema from '../{{ kebabCase name }}.schema';
 const { disabled } = schema.properties;
 const timeout = 90000;
 
-describe('<%= props.name.titleCase %>', () => {
+describe('{{ titleCase name }}', () => {
   let page;
 
   afterAll(async () => {
@@ -33,7 +33,7 @@ describe('<%= props.name.titleCase %>', () => {
 
   test('basic usage', async () => {
     const results = await render(
-      '@bolt-components-<%= props.name.kebabCase %>/<%= props.name.kebabCase %>.twig',
+      '@bolt-components-{{ kebabCase name }}/{{ kebabCase name }}.twig',
     );
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -41,7 +41,7 @@ describe('<%= props.name.titleCase %>', () => {
 
   test('adds class via Drupal Attributes', async () => {
     const results = await render(
-      '@bolt-components-<%= props.name.kebabCase %>/<%= props.name.kebabCase %>.twig',
+      '@bolt-components-{{ kebabCase name }}/{{ kebabCase name }}.twig',
       {
         attributes: {
           class: ['u-bolt-margin-top-medium'],
@@ -56,15 +56,15 @@ describe('<%= props.name.titleCase %>', () => {
     const shadowRoot = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
-        '<bolt-<%= props.name.kebabCase %>><%= props.name.titleCase %> test</bolt-<%= props.name.kebabCase %>>',
+        '<bolt-{{ kebabCase name }}>{{ titleCase name }} test</bolt-{{ kebabCase name }}>',
       );
-      const el = document.querySelector('bolt-<%= props.name.kebabCase %>');
+      const el = document.querySelector('bolt-{{ kebabCase name }}');
       await el.updateComplete;
       return el.renderRoot.innerHTML;
     });
 
     const outerHTML = await page.evaluate(async () => {
-      const el = document.querySelector('bolt-<%= props.name.kebabCase %>');
+      const el = document.querySelector('bolt-{{ kebabCase name }}');
       await el.updateComplete;
       return el.outerHTML;
     });
@@ -80,9 +80,9 @@ describe('<%= props.name.titleCase %>', () => {
     const outerHTML = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
-        '<bolt-<%= props.name.kebabCase %> no-shadow><%= props.name.titleCase %> test</bolt-<%= props.name.kebabCase %>>',
+        '<bolt-{{ kebabCase name }} no-shadow>{{ titleCase name }} test</bolt-{{ kebabCase name }}>',
       );
-      const el = document.querySelector('bolt-<%= props.name.kebabCase %>');
+      const el = document.querySelector('bolt-{{ kebabCase name }}');
       await el.updateComplete;
       return el.outerHTML;
     });
@@ -93,7 +93,7 @@ describe('<%= props.name.titleCase %>', () => {
 
   test(`sets 'disabled' prop`, async () => {
     const results = await render(
-      '@bolt-components-<%= props.name.kebabCase %>/<%= props.name.kebabCase %>.twig',
+      '@bolt-components-{{ kebabCase name }}/{{ kebabCase name }}.twig',
       {
         disabled: true,
       },

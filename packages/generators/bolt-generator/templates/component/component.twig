@@ -1,7 +1,7 @@
-{% set schema = bolt.data.components["@bolt-components-<%= props.name.kebabCase %>"].schema %}
+{% set schema = bolt.data.components["@bolt-components-{{ kebabCase name }}"].schema %}
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  \{{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
 {# Variables #}
@@ -10,8 +10,8 @@
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  "c-bolt-<%= props.name.kebabCase %>",
-  disabled ? "c-bolt-<%= props.name.kebabCase %>--disabled" : "",
+  "c-bolt-{{ kebabCase name }}",
+  disabled ? "c-bolt-{{ kebabCase name }}--disabled" : "",
 ] %}
 
 {#
@@ -30,11 +30,11 @@
   {% endif %}
 {% endfor %}
 
-<bolt-<%= props.name.kebabCase %>
-  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ this.props|without("class") }}
+<bolt-{{ kebabCase name }}
+  {% if outer_classes %} class="\{{ outer_classes|join(' ') }}" {% endif %}
+  \{{ this.props|without("class") }}
 >
-  <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
-  
+  <replace-with-children \{{ inner_attributes.addClass(inner_classes) }}>
+
   </replace-with-children>
-</bolt-<%= props.name.kebabCase %>>
+</bolt-{{ kebabCase name }}>

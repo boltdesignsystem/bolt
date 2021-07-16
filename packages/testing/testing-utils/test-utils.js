@@ -164,7 +164,7 @@ function getPkgsChanged({ from = 'HEAD', base = 'master' } = {}) {
   const pkgsToExclude = [
     'bolt', // monorepo
     '@bolt/website',
-    'generator-bolt',
+    'bolt-generator',
     '@bolt/drupal-twig-extensions',
     '@bolt/uikit-workshop',
     '@bolt/bolt-starter',
