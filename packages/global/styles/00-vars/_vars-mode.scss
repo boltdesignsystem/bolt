@@ -196,7 +196,8 @@ bolt-card-replacement[theme='xdark'] {
 // Declare text color and bg color
 // Dev note: add :root after bolt-theme() function usage is completely removed.
 [data-bolt-mode],
-[class^='t-bolt-'] {
+[class^='t-bolt-'],
+[class*=' t-bolt-'] {
   color: var(--m-bolt-text);
   background-color: var(--m-bolt-bg);
 }

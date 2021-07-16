@@ -6,23 +6,36 @@
   @include bolt-full-bleed;
 
   display: grid;
-  grid-template-columns: minmax(16vw, var(--bolt-page-padding-x)) 1fr minmax(
-      26vw,
-      var(--bolt-page-padding-x)
-    );
+  grid-template-columns: 280px 1fr 200px;
   min-height: 100%;
+
+  @include bolt-mq(xxxlarge) {
+    grid-template-columns: minmax(16vw, var(--bolt-page-padding-x)) 1fr minmax(
+        26vw,
+        var(--bolt-page-padding-x)
+      );
+  }
 }
 
 .sidebar {
-  padding: var(--bolt-spacing-y-medium) 0;
+  padding: var(--bolt-spacing-y-medium) 0 var(--bolt-spacing-y-medium)
+    var(--bolt-spacing-x-small);
 
   &.primary {
-    background-color: var(--bolt-color-gray-xlight);
+    > * {
+      max-width: 320px;
+      margin-left: auto;
+    }
   }
 
-  &.sticky {
-    position: sticky;
-    top: var(--bolt-page-header-height);
+  &.secondary {
+    padding-right: var(--bolt-spacing-x-small);
+    padding-left: 0;
+
+    > * {
+      max-width: 200px;
+      margin-right: auto;
+    }
   }
 }
 
