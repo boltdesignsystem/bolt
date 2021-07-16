@@ -9,13 +9,13 @@
 
 $base-video-js-button-text-color: bolt-color(navy);
 $base-video-js-button-background-color: bolt-color(yellow);
-$base-video-js-button-transition: $bolt-transition;
+$base-video-js-button-transition: var(--bolt-transition);
 $base-video-js-button-border-radius: $bolt-border-radius;
 $base-video-js-button-shadow-color: bolt-color(black);
 $base-video-js-button-shadow-level: 'level-20';
 $base-video-js-button-shadow-level-hover: 'level-40';
 $base-video-meta-border-radius: $bolt-border-radius;
-$base-video-meta-transition: $bolt-transition;
+$base-video-meta-transition: var(--bolt-transition);
 
 @mixin bolt-video-js-button($opacity: bolt-opacity(100)) {
   opacity: $opacity;
