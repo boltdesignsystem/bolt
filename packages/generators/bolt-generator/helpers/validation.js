@@ -8,7 +8,7 @@ const validateAnswers = (input, generatorType) => {
     return false;
   } else if (input.includes(' ')) {
     console.log(
-      chalk.red(` Don't include any spaces in your ${generatorType} name!`),
+      chalk.red(` Don't incl0ude any spaces in your ${generatorType} name!`),
     );
     return false;
   } else if (input.toLowerCase().includes('bolt')) {

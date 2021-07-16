@@ -2,6 +2,7 @@ const shelljs = require('shelljs');
 const updateBoltRcConfig = require('./helpers/update-boltrc');
 const updateBoltPackage = require('./helpers/add-bolt-package');
 const answersValidate = require('./helpers/validation');
+const aggregateActions = require('./helpers/aggregate-data');
 
 const config = {
   bolt: {
@@ -12,15 +13,15 @@ const config = {
     dir: 'packages/components',
     patternLab: 'docs-site/src/pages/pattern-lab/_patterns/40-components',
     src: 'src',
-    test: '__tests__',
     templates: 'templates/component',
+    test: '__tests__',
   },
   element: {
-    dir: 'packages/generators/tmp/packages/elements',
-    patternLab: 'packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/20-elements',
+    dir: 'packages/elements',
+    patternLab: 'docs-site/src/pages/pattern-lab/_patterns/20-elements',
     src: 'src',
+    templates: 'templates/element',
     test: '__tests__',
-    templates: 'templates/elements',
   },
   git: {
     email: shelljs
@@ -31,7 +32,7 @@ const config = {
       .stdout.replace(/\n/g, ''),
     url: 'https://github.com/bolt-design-system/bolt',
   },
-  root: '../../../',
+  root: '../../..',
 };
 
 const addToBoltRC = (packageName, path) => data => updateBoltRcConfig(packageName, path);
@@ -54,21 +55,10 @@ module.exports = plop => {
       }
     ],
     actions(data) {
-      const isTest = data['name'] === 'Test';
-      const boltComponentPackageName = plop.renderString('@bolt/components-{{ kebabCase name }}', data);
+      const boltPackageName = plop.renderString('@bolt/components-{{ kebabCase name }}', data);
 
-      if (isTest) {
-        config.component.dir = 'packages/generators/tmp/packages/components';
-        config.component.patternLab = 'packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/40-components';
-        config.component.tmp = 'packages/generators/tmp'
-        config.git.name = 'Test User';
-        config.git.email = 'test@example.org';
-        config.bolt.version = '0.0.0';
-        config.bolt.coreVersion = '0.0.0';
-      }
-
-      config.component.dest = plop.renderString(`${config.component.dir}/bolt-{{ kebabCase name }}`, data);
-      data = Object.assign(data, config);
+      data = aggregateActions('component', config, data, 40);
+      data.component.dest = plop.renderString(`${data.component.dir}/bolt-{{ kebabCase name }}`, data);
 
       let dynamicActions = [];
       const basicActions = [
@@ -110,7 +100,7 @@ module.exports = plop => {
         {
           type: 'add',
           path: `${data.root}/${data.component.dest}/${data.component.src}/{{ kebabCase name }}.twig`,
-          templateFile: `${data.component.templates}/component.html.twig`
+          templateFile: `${data.component.templates}/component.twig`
         },
         {
           type: 'add',
@@ -124,15 +114,15 @@ module.exports = plop => {
         },
       ];
 
-      if (isTest) {
+      if (data.isTest) {
         dynamicActions.push(
-          addToBoltRC(boltComponentPackageName, `${data.component.tmp}/.boltrc.js`),
-          addToPackageJSON(boltComponentPackageName, `${data.component.tmp}/package.json`),
+          addToBoltRC(boltPackageName, `${data.component.tmp}/.boltrc.js`),
+          addToPackageJSON(boltPackageName, `${data.component.tmp}/package.json`),
         );
       } else {
         dynamicActions.push(
-          addToBoltRC(boltComponentPackageName),
-          addToPackageJSON(boltComponentPackageName),
+          addToBoltRC(boltPackageName),
+          addToPackageJSON(boltPackageName),
         );
       }
 
@@ -156,19 +146,73 @@ module.exports = plop => {
     }
     ],
     actions(data) {
-      config.element.dest = plop.renderString(`${config.element.dir}/bolt-{{ kebabCase name }}`, data);
-      data = Object.assign(data, config);
+      const boltPackageName = plop.renderString('@bolt/elements-{{ kebabCase name }}', data);
 
+      data = aggregateActions('element', config, data, 20);
+      data.element.dest = plop.renderString(`${data.element.dir}/bolt-{{ kebabCase name }}`, data);
+
+      let dynamicActions = [];
       const basicActions = [
+        {
+          type: 'add',
+          path: `${data.root}/${data.element.dest}/index.scss`,
+          templateFile: `${data.element.templates}/element.index.scss`
+        },
+        {
+          type: 'add',
+          path: `${data.root}/${data.element.dest}/package.json`,
+          templateFile: `${data.element.templates}/element.package.json`
+        },
+        {
+          type: 'add',
+          path: `${data.root}/${data.element.dest}/CHANGELOG.md`,
+          templateFile: `${data.element.templates}/CHANGELOG.md`
+        },
         {
           type: 'add',
           path: `${data.root}/${data.element.dest}/README.md`,
           templateFile: `${data.element.templates}/README.md`
         },
+        {
+          type: 'add',
+          path: `${data.root}/${data.element.dest}/{{ kebabCase name }}.schema.js`,
+          templateFile: `${data.element.templates}/element.schema.js`
+        },
+        {
+          type: 'add',
+          path: `${data.root}/${data.element.dest}/${data.element.src}/{{ kebabCase name }}.scss`,
+          templateFile: `${data.element.templates}/element.scss`
+        },
+        {
+          type: 'add',
+          path: `${data.root}/${data.element.dest}/${data.element.src}/{{ kebabCase name }}.twig`,
+          templateFile: `${data.element.templates}/element.twig`
+        },
+        {
+          type: 'add',
+          path: `${data.root}/${data.element.dest}/${data.element.test}/{{ kebabCase name }}.js`,
+          templateFile: `${data.element.templates}/element.test.js`
+        },
+        {
+          type: 'add',
+          path: `${data.root}/${data.element.patternLab}/{{ kebabCase name }}/00-{{ kebabCase name }}-docs.twig`,
+          templateFile: `${data.element.templates}/element.docs.twig`
+        },
       ];
 
-      console.log('DATA', data);
-      return [...basicActions]
+      if (data.isTest) {
+        dynamicActions.push(
+          addToBoltRC(boltPackageName, `${data.element.tmp}/.boltrc.js`),
+          addToPackageJSON(boltPackageName, `${data.element.tmp}/package.json`),
+        );
+      } else {
+        dynamicActions.push(
+          addToBoltRC(boltPackageName),
+          addToPackageJSON(boltPackageName),
+        );
+      }
+
+      return [...basicActions, ...dynamicActions]
     }
   });
 };

@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bolt component generator SCSS file exist 1`] = `
+"/* ------------------------------------ *\\\\
+   Test
+\\\\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+
+.e-bolt-test {
+  // Styles go here. /* [1] */
+  display: block;
+}
+"
+`;
+
+exports[`Bolt component generator changelog file exist 1`] = `
+"# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+"
+`;
+
+exports[`Bolt component generator folder structure of component package is correct 1`] = `
+Array [
+  "packages/generators/tmp/.boltrc.js",
+  "packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/20-elements/test/00-test-docs.twig",
+  "packages/generators/tmp/package.json",
+  "packages/generators/tmp/packages/elements/bolt-test/CHANGELOG.md",
+  "packages/generators/tmp/packages/elements/bolt-test/README.md",
+  "packages/generators/tmp/packages/elements/bolt-test/__tests__/test.js",
+  "packages/generators/tmp/packages/elements/bolt-test/index.scss",
+  "packages/generators/tmp/packages/elements/bolt-test/package.json",
+  "packages/generators/tmp/packages/elements/bolt-test/src/test.scss",
+  "packages/generators/tmp/packages/elements/bolt-test/src/test.twig",
+  "packages/generators/tmp/packages/elements/bolt-test/test.schema.js",
+]
+`;
+
+exports[`Bolt component generator index SCSS file exist 1`] = `
+"@import 'src/test.scss';
+"
+`;
+
+exports[`Bolt component generator package.json file exist 1`] = `
+"{
+  \\"name\\": \\"@bolt/elements-test\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"description\\": \\"Test description\\",
+  \\"keywords\\": [
+    \\"bolt design system\\"
+  ],
+  \\"homepage\\": \\"https://boltdesignsystem.com\\",
+  \\"bugs\\": \\"https://github.com/bolt-design-system/bolt/issues\\",
+  \\"repository\\": {
+    \\"type\\": \\"git\\",
+    \\"url\\": \\"https://github.com/bolt-design-system/bolt/tree/master/packages/elements/bolt-test\\"
+  },
+  \\"license\\": \\"MIT\\",
+  \\"author\\": \\"Test User <test@example.org>\\",
+  \\"style\\": \\"index.scss\\",
+  \\"dependencies\\": {
+    \\"@bolt/core-v3.x\\": \\"^0.0.0\\"
+  },
+  \\"publishConfig\\": {
+    \\"access\\": \\"public\\"
+  },
+  \\"schema\\": \\"test.schema.js\\",
+  \\"twig\\": \\"src/test.twig\\"
+}
+"
+`;
+
+exports[`Bolt component generator pattern lab file exist 1`] = `
+"{% set usage %}{% verbatim %}
+{% include '@bolt-elements-test/test.twig' with {
+  content: \\"This is a test\\"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include \\"@utils/docs.twig\\" with {
+  componentName: \\"test\\",
+  componentGroup: \\"elements\\",
+  usage: usage
+} only %}
+
+"
+`;
+
+exports[`Bolt component generator readme file exist 1`] = `
+"Test description
+
+###### Install via NPM
+
+\`\`\`
+npm install @bolt/elements-test
+\`\`\`
+"
+`;
+
+exports[`Bolt component generator schema file exist 1`] = `
+"module.exports = {
+  $schema: 'http://json-schema.org/draft-04/schema#',
+  title: 'Test',
+  type: 'object',
+  properties: {
+    attributes: {
+      type: 'object',
+      description:
+        'A Drupal-style attributes object with extra attributes to append to this element.',
+    },
+    content: {
+      type: 'any',
+      description: 'Content of the test.',
+    },
+  },
+};
+"
+`;
+
+exports[`Bolt component generator tests file exist 1`] = `
+"import { render, stopServer } from '../../../testing/testing-helpers';
+import schema from '../test.schema';
+const timeout = 90000;
+let page, fixtures;
+
+afterAll(async () => {
+  await stopServer();
+  await page.close();
+});
+
+beforeEach(async () => {
+  await page.evaluate(() => {
+    document.body.innerHTML = '';
+  });
+}, timeout);
+
+beforeAll(async () => {
+  page = await global.__BROWSER__.newPage();
+  await page.goto('http://127.0.0.1:4444/', {
+    timeout: 0,
+  });
+
+  const defaultData = {
+    content: 'This is a test',
+  };
+
+  fixtures = {
+    defaultData,
+  };
+
+}, timeout);
+
+describe('Test', () => {
+  test('basic usage', async () => {
+    const results = await render(
+      '@bolt-elements-test/test.twig', {
+      ...fixtures.defaultData,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('adds class via Drupal Attributes', async () => {
+    const results = await render(
+      '@bolt-elements-test/test.twig',
+      {
+        attributes: {
+          class: ['u-bolt-margin-top-medium'],
+        },
+      },
+    );
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+});
+"
+`;
