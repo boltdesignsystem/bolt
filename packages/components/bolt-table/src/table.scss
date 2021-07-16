@@ -68,7 +68,7 @@ $bolt-table-row-hover-background-color: rgba(bolt-color(gray), 0.1);
 
 .c-bolt-table__row {
   @include bolt-table-border(top);
-  transition: background-color $bolt-transition;
+  transition: background-color var(--bolt-transition);
 
   @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&}:hover {
     background-color: $bolt-table-row-hover-background-color;

@@ -58,7 +58,7 @@ select {
 }
 
 // Checkbox and Radio Inputs
-$bolt-inline-label-transition: $bolt-transition-timing
+$bolt-inline-label-transition: var(--bolt-transition-timing)
   cubic-bezier(0.45, 1.8, 0.5, 0.75);
 $bolt-inline-label-input-color: var(--bolt-color-navy-light);
 $bolt-inline-label-input-border-color: var(--bolt-color-navy-light);
@@ -70,7 +70,7 @@ $bolt-inline-label-input-border-width: $bolt-border-width;
 $bolt-floating-label-text-scale: 0.8;
 $bolt-floating-label-text-color: var(--bolt-color-navy-light);
 $bolt-floating-label-text-color-active: var(--bolt-color-navy-light);
-$bolt-floating-label-transition: $bolt-transition;
+$bolt-floating-label-transition: var(--bolt-transition);
 $bolt-input-text-color: var(--bolt-color-black);
 $bolt-input-text-color--invalid: var(--bolt-color-error);
 $bolt-input-text-color--disabled: var(--bolt-color-gray);
@@ -91,7 +91,7 @@ $bolt-input-border-style: $bolt-border-style;
 $bolt-input-border-radius: $bolt-border-radius;
 $bolt-input-box-shadow-color: var(--m-bolt-tertiary);
 $bolt-input-shadow-level: 'level-20';
-$bolt-input-transition: $bolt-transition;
+$bolt-input-transition: var(--bolt-transition);
 
 @mixin bolt-input-placeholder($color) {
   &::-webkit-input-placeholder {
@@ -496,7 +496,7 @@ $bolt-input-message-text-color--invalid: var(--bolt-color-error);
 }
 
 // Strength Indicator
-$bolt-strength-indicator-transition: $bolt-transition;
+$bolt-strength-indicator-transition: var(--bolt-transition);
 
 .c-bolt-strength-indicator {
   display: none;

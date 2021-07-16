@@ -177,7 +177,7 @@ bolt-card-replacement {
 }
 
 .c-bolt-card-replacement--raised {
-  transition: transform $bolt-transition;
+  transition: transform var(--bolt-transition);
 
   &:after {
     @include bolt-shadow(
@@ -187,7 +187,7 @@ bolt-card-replacement {
     );
     content: '';
     opacity: 0;
-    transition: opacity $bolt-transition;
+    transition: opacity var(--bolt-transition);
   }
 
   &:hover,

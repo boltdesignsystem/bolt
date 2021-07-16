@@ -26,7 +26,7 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
     text-align: center;
     border-radius: bolt-border-radius(full);
     background-color: bolt-color(white);
-    transition: transform $bolt-transition;
+    transition: transform var(--bolt-transition);
 
     @at-root bolt-band.is-ready #{&} {
       animation: 3s ease-in-out 0.5s forwards a-www-calculator-logo-spin;
@@ -66,7 +66,7 @@ $www-calculator-logo-spacing-size: 3px; // Hard px is used to avoid subpixel iss
   .o-bolt-grid__cell {
     opacity: 0;
     transform: translate3d(0, -10px, 0);
-    transition: transform $bolt-transition, opacity $bolt-transition;
+    transition: transform var(--bolt-transition), opacity var(--bolt-transition);
 
     @at-root bolt-band.is-ready #{&} {
       animation: 0.5s ease-in-out 0.5s forwards a-www-calculator-fade-in-down;

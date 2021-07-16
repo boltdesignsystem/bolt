@@ -4,7 +4,7 @@
 
 @import '@bolt/core-v3.x';
 
-$bolt-search-filter-transition: $bolt-transition;
+$bolt-search-filter-transition: var(--bolt-transition);
 
 .c-bolt-search-filter {
   display: block;
@@ -107,7 +107,7 @@ $bolt-search-filter-transition: $bolt-transition;
   font-weight: var(--bolt-type-font-weight-semibold);
   color: var(--m-bolt-link);
   text-decoration: none;
-  transition: all $bolt-transition;
+  transition: all var(--bolt-transition);
 
   &:after {
     content: ',';

@@ -21,7 +21,7 @@ $bolt-modal-border-style: $bolt-border-style;
 $bolt-modal-border-color: var(--m-bolt-border);
 $bolt-modal-border-radius: bolt-border-radius(small);
 $bolt-modal-max-height: 80vh;
-$bolt-modal-transition: $bolt-transition;
+$bolt-modal-transition: var(--bolt-transition);
 $bolt-modal-breakpoint: 'small';
 $bolt-modal-animation-scale: 0.95;
 
@@ -179,8 +179,8 @@ bolt-modal:not([ready]) {
     min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
     max-width: calc(100% - var(--bolt-spacing-x-medium) * 2);
     max-height: $bolt-modal-max-height;
-    transition: visibility $bolt-transition-timing $bolt-transition-ease
-      $bolt-transition-timing;
+    transition: visibility var(--bolt-transition-timing)
+      var(--bolt-transition-ease) var(--bolt-transition-timing);
   }
 
   @at-root .c-bolt-modal.is-open #{&} {
@@ -188,7 +188,7 @@ bolt-modal:not([ready]) {
 
     @include bolt-mq($bolt-modal-breakpoint) {
       visibility: visible;
-      transition: visibility 0s $bolt-transition-ease 0s;
+      transition: visibility 0s var(--bolt-transition-ease) 0s;
     }
   }
 }
