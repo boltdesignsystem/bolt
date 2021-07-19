@@ -91,22 +91,27 @@
 .c-bolt-side-nav__headline {
   display: block;
   margin: 0;
-  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
-  font-size: var(--bolt-type-font-size-medium);
-  font-weight: var(--bolt-type-font-weight-bold);
-  color: var(--m-bolt-headline);
-  line-height: var(--bolt-type-line-height-medium);
-
-  @include bolt-mq(medium) {
-    padding-right: var(--bolt-spacing-x-large);
-  }
+  padding: 0;
 }
 
 .c-bolt-side-nav__headline__link {
   display: block;
-  font-weight: inherit;
-  color: inherit;
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-bold);
+  color: var(--m-bolt-headline);
+  line-height: var(--bolt-type-line-height-medium);
   text-decoration: none;
+  border-top-left-radius: bolt-border-radius(small);
+  border-bottom-left-radius: bolt-border-radius(small);
+
+  @include bolt-mq(small) {
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
+  }
+
+  @include bolt-mq(medium) {
+    padding-right: var(--bolt-spacing-x-large);
+  }
 
   &:hover {
     color: inherit;
@@ -116,6 +121,11 @@
   &:focus {
     outline: var(--bolt-focus-ring);
     outline-offset: 2px;
+  }
+
+  &[aria-current] {
+    color: var(--m-bolt-bg);
+    background-color: var(--m-bolt-headline);
   }
 }
 
@@ -194,6 +204,10 @@
   color: var(--m-bolt-link);
   text-decoration: none;
   transition: color var(--bolt-transition);
+
+  @include bolt-mq(small) {
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
+  }
 
   &:before {
     content: '';
