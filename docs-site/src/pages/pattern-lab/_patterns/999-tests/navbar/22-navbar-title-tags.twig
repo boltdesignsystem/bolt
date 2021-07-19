@@ -1,0 +1,101 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+
+{% set navbar_data = [
+  {
+    link: {
+      content: 'Section 1',
+      attributes: {
+        href: '#section-1'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'Button',
+      attributes: {
+        type: 'button',
+        'data-foo': 'bar'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'External Link',
+      attributes: {
+        href: 'http://google.com/',
+        target: '_blank'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'Section 2',
+      attributes: {
+        href: '#section-2'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'External Link',
+      attributes: {
+        href: 'http://google.com/'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'Button',
+      attributes: {
+        type: 'button',
+        onclick: 'alert("test")'
+      }
+    }
+  },
+  {
+    link: {
+      content: 'Section 3',
+      attributes: {
+        href: '#section-3'
+      }
+    }
+  }
+] %}
+
+{% set navbar_items %}
+  {% for item in navbar_data %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with item only %}
+  {% endfor %}
+{% endset %}
+
+{% set navbar_links %}
+  {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}
+{% endset %}
+
+{% include '@bolt-components-navbar/navbar.twig' with {
+  title: {
+    content: 'Navbar title h1',
+    tag: 'h1'
+  },
+  links: navbar_links
+} only %}
+<br>
+{% include '@bolt-components-navbar/navbar.twig' with {
+  title: {
+    content: 'Navbar title h2',
+    tag: 'h2'
+  },
+  links: navbar_links
+} only %}
+<br>
+{% include '@bolt-components-navbar/navbar.twig' with {
+  title: {
+    content: 'Navbar title h3',
+    tag: 'h3'
+  },
+  links: navbar_links
+} only %}
+
+{% endblock %}
