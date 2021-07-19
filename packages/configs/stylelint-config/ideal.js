@@ -91,6 +91,7 @@ module.exports = {
     'declaration-bang-space-before': 'always',
     'declaration-block-no-shorthand-property-overrides': true,
     'order/properties-order': [
+      'all',
       'content',
 
       // Display

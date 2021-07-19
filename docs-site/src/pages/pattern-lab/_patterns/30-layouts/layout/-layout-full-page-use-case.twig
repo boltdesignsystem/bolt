@@ -1,0 +1,182 @@
+{% include '@pl/00-layout-docs.twig' %}
+
+<bolt-layout template="halves@from-small" valign-items="center" gutter="large" row-gutter="large" padding-top="large" padding-bottom="large" class="t-bolt-dark">
+  {% include '@bolt-components-background/background.twig' with {
+    overlay: 'disabled',
+    contentItems: [
+      {
+        pattern: 'image',
+        src: '/images/heros/hero-background-dark-shapes-1.jpg'
+      }
+    ]
+  } only %}
+  <bolt-layout-item>
+    <bolt-text headline tag="h1" font-size="xxxlarge">
+      Ready to crush complexity?
+    </bolt-text>
+    <bolt-text>
+      Delight customers and get work done in a fast-changing world.
+    </bolt-text>
+    <a href="https://pega.com" class="e-bolt-button">
+      Explore our technology
+    </a>
+  </bolt-layout-item>
+  <bolt-layout-item valign-self="end-offset">
+    <img src="/images/heros/hero-foreground-woman-1.png" alt="Woman in a business suit glancing to her right" class="u-bolt-margin-right-auto u-bolt-margin-left-auto" style="display: block; width:100%; max-width:450px;">
+  </bolt-layout-item>
+</bolt-layout>
+
+<bolt-layout padding-top="large" padding-bottom="small">
+  <bolt-layout-item>
+    <bolt-text headline tag="h2" font-size="xxlarge" align="center">
+      Discover what Pega can do for your business
+    </bolt-text>
+  </bolt-layout-item>
+</bolt-layout>
+
+<bolt-layout template="thirds@from-small" padding-top="none" padding-bottom="large">
+  <bolt-layout-item>
+    <bolt-card-replacement url="https://pega.com" url-text="Go to pega.com" height="full">
+      <bolt-card-replacement-media>
+        <bolt-image src="/images/content/promos/promo-shape-1.jpg" alt="Brand shapes"></bolt-image>
+      </bolt-card-replacement-media>
+      <bolt-card-replacement-body>
+        <bolt-text eyebrow>Customer Engagement</bolt-text>
+        <bolt-text headline>Engage with empathy &amp; adapt instantly</bolt-text>
+      </bolt-card-replacement-body>
+    </bolt-card-replacement>
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <bolt-card-replacement url="https://pega.com" url-text="Go to pega.com" height="full">
+      <bolt-card-replacement-media>
+        <bolt-image src="/images/content/promos/promo-shape-2.jpg" alt="Brand shapes"></bolt-image>
+      </bolt-card-replacement-media>
+      <bolt-card-replacement-body>
+        <bolt-text eyebrow>Customer Service</bolt-text>
+        <bolt-text headline>Triage volume, take out cost</bolt-text>
+      </bolt-card-replacement-body>
+    </bolt-card-replacement>
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <bolt-card-replacement url="https://pega.com" url-text="Go to pega.com" height="full">
+      <bolt-card-replacement-media>
+        <bolt-image src="/images/content/promos/promo-shape-3.jpg" alt="Brand shapes"></bolt-image>
+      </bolt-card-replacement-media>
+      <bolt-card-replacement-body>
+        <bolt-text eyebrow>Intelligent Automation</bolt-text>
+        <bolt-text headline>Build apps fast, automate anything</bolt-text>
+      </bolt-card-replacement-body>
+    </bolt-card-replacement>
+  </bolt-layout-item>
+</bolt-layout>
+
+<bolt-layout template="thirds@from-small" valign-items="start" gutter="large" padding-top="xlarge" padding-bottom="xlarge" valign-items="center" class="t-bolt-dark">
+  {% include '@bolt-components-background/background.twig' with {
+    overlay: 'disabled',
+    contentItems: [
+      {
+        pattern: 'image',
+        src: '/images/heros/hero-background-dark-shapes-2.jpg'
+      }
+    ]
+  } only %}
+  <bolt-layout-item>
+    <bolt-text headline tag="h2" font-size="xxlarge">
+      Looking for a great return on investment?
+    </bolt-text>
+    <bolt-text>
+      Forrester's studies prove that Pega delivers.
+    </bolt-text>
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <bolt-layout template="flag" valign-items="center" gutter="small" padding-top="none" padding-bottom="small" style="--l-bolt-layout-flag-media-width:40px">
+      <bolt-layout-item>
+        <bolt-icon name="chevron-up" size="medium" color="yellow" background="circle"></bolt-icon>
+      </bolt-layout-item>
+      <bolt-layout-item>
+        <bolt-text headline tag="h3" font-size="xxxlarge">
+          481% ROI
+        </bolt-text>
+      </bolt-layout-item>
+    </bolt-layout>
+    <bolt-text>
+      <a href="https://pega.com" class="e-bolt-text-link">Create personalized experience<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+    </bolt-text>
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <bolt-layout template="flag" valign-items="center" gutter="small" padding-top="none" padding-bottom="small" style="--l-bolt-layout-flag-media-width:40px">
+      <bolt-layout-item>
+        <bolt-icon name="chevron-up" size="medium" color="yellow" background="circle"></bolt-icon>
+      </bolt-layout-item>
+      <bolt-layout-item>
+        <bolt-text headline tag="h3" font-size="xxxlarge">
+          186% ROI
+        </bolt-text>
+      </bolt-layout-item>
+    </bolt-layout>
+    <bolt-text>
+      <a href="https://pega.com" class="e-bolt-text-link">Automate &amp; save<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+    </bolt-text>
+  </bolt-layout-item>
+</bolt-layout>
+
+<bolt-layout padding-top="large" padding-bottom="small">
+  <bolt-layout-item>
+    <bolt-text headline tag="h2" font-size="xxlarge" align="center">
+      What&rsquo;s trending
+    </bolt-text>
+  </bolt-layout-item>
+</bolt-layout>
+
+<bolt-layout template="thirds@from-small" padding-top="none" padding-bottom="large">
+  <bolt-layout-item>
+    <bolt-card-replacement url="https://pega.com" url-text="Go to pega.com" height="full">
+      <bolt-card-replacement-media>
+        <bolt-image src="/images/content/promos/promo-forrester.jpg" alt="Forrester"></bolt-image>
+      </bolt-card-replacement-media>
+      <bolt-card-replacement-body>
+        <bolt-text headline>Forrester RTIM 2020</bolt-text>
+        <bolt-text>The Forrester Wave™: Real-Time Interaction Management, Q4 2020 names Pegasystems a Leader.</bolt-text>
+      </bolt-card-replacement-body>
+    </bolt-card-replacement>
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <bolt-card-replacement url="https://pega.com" url-text="Go to pega.com" height="full">
+      <bolt-card-replacement-media>
+        <bolt-image src="/images/content/promos/promo-pega-8-5.jpg" alt="Pega 8.5"></bolt-image>
+      </bolt-card-replacement-media>
+      <bolt-card-replacement-body>
+        <bolt-text headline>Inside our latest release</bolt-text>
+        <bolt-text>Pega 8.5 is faster, friendlier, and more flexible, so you can simplify how work gets done.</bolt-text>
+      </bolt-card-replacement-body>
+    </bolt-card-replacement>
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <bolt-card-replacement url="https://pega.com" url-text="Go to pega.com" height="full">
+      <bolt-card-replacement-media>
+        <bolt-image src="/images/content/promos/promo-pega-ai.jpg" alt="Pega AI"></bolt-image>
+      </bolt-card-replacement-media>
+      <bolt-card-replacement-body>
+        <bolt-text headline>Ten golden rules for RPA success</bolt-text>
+        <bolt-text>Getting RPA right has its challenges. Explore this report from Forrester to learn how to create lasting value.</bolt-text>
+      </bolt-card-replacement-body>
+    </bolt-card-replacement>
+  </bolt-layout-item>
+</bolt-layout>
+
+<bolt-layout template="halves@from-medium" valign-items="center" gutter="large" padding-top="none" padding-bottom="large">
+  <bolt-layout-item>
+    <bolt-text headline tag="h2" font-size="xxlarge">
+      Safe, smart &amp; scalable return-to-work solutions
+    </bolt-text>
+    <bolt-text>
+      Rise to the challenge with our workforce and workplace readiness software.
+    </bolt-text>
+    <a href="https://pega.com" class="e-bolt-button">
+      Learn more
+    </a>
+  </bolt-layout-item>
+  <bolt-layout-item valign-self="end-offset" order="first@from-medium">
+    <bolt-image src="/images/heros/hero-foreground-woman-2.png" alt="Woman in a business suit glancing to her right" class="u-bolt-margin-right-auto u-bolt-margin-left-auto" style="max-width: 450px;"></bolt-image>
+  </bolt-layout-item>
+</bolt-layout>

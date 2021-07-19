@@ -1,0 +1,18 @@
+{% set schema = bolt.data.components['@bolt-layouts-layout'].schema['layout-item'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema.properties.content) %}
+{% set item_attributes = create_attribute(attributes|default({})) %}
+
+<bolt-layout-item
+  {{ source_order ? 'source-order="' ~ source_order ~ '"' : '' }}
+  {{ valign_self ? 'valign-self="' ~ valign_self ~ '"' : '' }}
+  {{ item_attributes }}
+>
+  {% if content %}
+    {{ content }}
+  {% endif %}
+</bolt-layout-item>
