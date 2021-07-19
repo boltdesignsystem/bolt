@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v4.0.2...v4.1.0) (2021-07-19)
+
+**Note:** Version bump only for package @bolt/core-php
+
+
+
+
+
 ## [4.0.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v4.0.1...v4.0.2) (2021-07-15)
 
 **Note:** Version bump only for package @bolt/core-php
