@@ -1,0 +1,84 @@
+{#
+/**
+ * Icon Element
+ *
+ * Available variables:
+ * - Reference text-link.schema.js
+ *
+ * Dev notes
+ * 1. The markup is written in one line (combined with spaceless) to avoid any unwanted white-space.
+ * 2. Zero width no-break space is passed to the icon container's :before and :after pseudo elements, combine that with nowrap white-space on the icon container, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. Do not remove the icon container spans. See: https://codepen.io/mikemai2awesome/pen/OJXbqwe?editors=0100
+ */
+#}
+
+{# Schema Validation #}
+{# {% set schema = bolt.data.components['@bolt-elements-icon'].schema %} #}
+{# {% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %} #}
+
+{# Variables #}
+{# {% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set tag = attributes.type and not attributes.href ? 'button' : attributes.href and not attributes.type ? 'a' %} #}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# White, blue, and green are deprecated because they are not brand colors. #}
+{% if color %}
+  {% if color == 'white' or color == 'blue' or color == 'green' %}
+    {% set color = 'auto' %}
+  {% elseif color == 'indigo' %}
+    {% set color = 'navy' %}
+  {% endif %}
+  {% set color = color %}
+{% endif %}
+
+{# These icons have been renamed and converted to new brand icons. #}
+{% if name %}
+  {% if name == 'discussions' %}
+    {% set name = 'pega-chat-typing' %}
+  {% elseif name == 'questions' %}
+    {% set name = 'pega-chat-question' %}
+  {% elseif name == 'healthcare' %}
+    {% set name = 'pega-healthcare' %}
+  {% endif %}
+{% endif %}
+
+{% set attributes = attributes
+  .setAttribute('size', size)
+  .setAttribute('color', color)
+%}
+
+{% if background and background != 'none' %}
+  {% set attributes = attributes.setAttribute('background', background) %}
+{% endif %}
+
+{% set classes = [
+  'e-bolt-icon',
+  size ? 'e-bolt-icon--' ~ size : '',
+  color and color != 'auto' ? 'e-bolt-icon--' ~ color : '',
+  background and background != 'none' ? 'has-background' : '',
+  background and background != 'none' ? 'has-' ~ background ~ '-background' : '',
+] %}
+
+{% set svg_classes = [
+  'e-bolt-icon__icon',
+  size ? 'e-bolt-icon__icon--' ~ size : '',
+] %}
+
+{# set path #}
+{% if name %}
+  {% set icon_path = '@bolt-elements-icon/icons/' ~ name ~ '.twig' %}
+{% endif %}
+
+<span class="{{ classes|join(' ')|trim }}" aria-hidden="true">
+  {% if background and background != 'none' %}
+    <span class="e-bolt-icon__background-shape e-bolt-icon__background-shape--{{ background }}"></span>
+  {% endif %}
+  {% if svg %}
+    {{ svg }}
+  {% else %}  
+    {% include icon_path with { svg_classes: svg_classes } only %}
+  {% endif %}
+</span>
