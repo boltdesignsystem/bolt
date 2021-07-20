@@ -39,6 +39,19 @@
             name: 'close',
           } only %}
         </span>
+        <span class="l-bolt-holy-grail__sidebar-trigger__text l-bolt-holy-grail__sidebar-trigger__text--toggle">
+          <span class="l-bolt-holy-grail__sidebar-trigger__icon-center">
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'exit-full-screen',
+            } only %}
+          </span>
+          <span class="l-bolt-holy-grail__sidebar-trigger__icon-center">
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'full-screen',
+            } only %}
+          </span>
+          <span class="u-bolt-visuallyhidden">{{ 'Toggle'|t }} {{ sidebar.trigger_label|default('Primary Sidebar'|t)|title }}</span>
+        </span>
       </button>
       <div class="l-bolt-holy-grail__sidebar__content">
         {{ sidebar.content }}
@@ -53,7 +66,7 @@
       secondary_sidebar.auto_width ? 'l-bolt-holy-grail__sidebar--auto-width',
     ] %}
     <div class="{{ secondary_sidebar_classes|join(' ') }}">
-      <button type="button" aria-expanded="false" class="l-bolt-holy-grail__sidebar-trigger" data-bolt-holy-grail-toggle-trigger>
+      {# <button type="button" aria-expanded="false" class="l-bolt-holy-grail__sidebar-trigger" data-bolt-holy-grail-toggle-trigger>
         <span class="l-bolt-holy-grail__sidebar-trigger__text">
           {% include '@bolt-components-icon/icon.twig' with {
             name: secondary_sidebar.trigger_icon|default('more'),
@@ -67,7 +80,7 @@
             name: 'close',
           } only %}
         </span>
-      </button>
+      </button> #}
       <div class="l-bolt-holy-grail__sidebar__content">
         {{ secondary_sidebar.content }}
       </div>
