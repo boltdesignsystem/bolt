@@ -1,22 +1,31 @@
+{% set icon_presentation %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "asset-presentation",
+  } only %}
+{% endset %}
+{% set icon_video %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "asset-video",
+  } only %}
+{% endset %}
+
 {% set link_1 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Get the presentation",
-    url: "https://pega.com",
-    icon: {
-      position: "before",
-      name: "asset-presentation",
-    },
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Get the presentation',
+    icon_before: icon_presentation,
+    attributes: {
+      href: 'https://pega.com',
+    }
   } only %}
 {% endset %}
 
 {% set link_2 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Watch video",
-    url: "https://pega.com",
-    icon: {
-      position: "before",
-      name: "asset-video",
-    },
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Watch video',
+    icon_before: icon_video,
+    attributes: {
+      href: 'https://pega.com',
+    }
   } only %}
 {% endset %}
 
@@ -150,19 +159,27 @@
     sources: [
       {
         name: "facebook",
-        url: "https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
+        attributes: {
+          href: "https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
+        }
       },
       {
         name: "twitter",
-        url: "https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+        attributes: {
+          href: "https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+        }
       },
       {
         name: "linkedin",
-        url: "https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
+        attributes: {
+          href: "https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
+        }
       },
       {
         name: "email",
-        url: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+        attributes: {
+          href: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+        }
       }
     ],
     copy_to_clipboard: {
@@ -259,7 +276,7 @@
   {% set video %}
     <video-js
       data-account="1900410236"
-      data-player="4fVA8Ojzs"
+      data-player="O3FkeBiaDz"
       data-embed="default"
       controls
       data-media-title

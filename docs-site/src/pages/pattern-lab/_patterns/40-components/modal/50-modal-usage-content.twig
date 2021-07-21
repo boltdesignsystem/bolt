@@ -12,20 +12,21 @@
     } only %}
   {% endset %}
   {% set trigger %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "Show content",
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "Show content",
       size: "small",
-      width: "full",
+      display: "block",
       attributes: {
-        onclick: "this.nextElementSibling.show()",
+        type: 'button',
+        "data-bolt-modal-target": ".js-bolt-modal--simple-layout",
       }
     } only %}
     {% include "@bolt-components-modal/modal.twig" with {
-      attributes: {
-        class: "js-image-modal-simple-layout",
-      },
       content: modal_content,
       spacing: "large",
+      attributes: {
+        class: "js-bolt-modal--simple-layout",
+      },
     } only %}
   {% endset %}
   {% set description %}
@@ -121,22 +122,23 @@
     } only %}
   {% endset %}
   {% set trigger %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "Show content",
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "Show content",
       size: "small",
-      width: "full",
+      display: "block",
       attributes: {
-        onclick: "this.nextElementSibling.show()",
+        type: 'button',
+        "data-bolt-modal-target": ".js-bolt-modal--complex-layout",
       }
     } only %}
     {% include "@bolt-components-modal/modal.twig" with {
-      attributes: {
-        class: "js-image-modal-advanced-complex-layout",
-      },
       content: modal_content,
       width: "full",
       spacing: "none",
       scroll: "overall",
+      attributes: {
+        class: "js-bolt-modal--complex-layout",
+      },
     } only %}
   {% endset %}
   {% set description %}

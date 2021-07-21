@@ -1,0 +1,76 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <bolt-code-snippet display="inline">content</bolt-code-snippet> is already rendered inside a <bolt-code-snippet display="inline">&lt;main&gt;</bolt-code-snippet> element, do not pass another <bolt-code-snippet display="inline">&lt;main&gt;</bolt-code-snippet> element to the prop. <bolt-code-snippet display="inline">site_content</bolt-code-snippet> block is also available.</bolt-li>
+    <bolt-li>The <bolt-code-snippet display="inline">header</bolt-code-snippet> and <bolt-code-snippet display="inline">footer</bolt-code-snippet> are freeform, the props are expecting <bolt-code-snippet display="inline">&lt;header&gt;</bolt-code-snippet> and <bolt-code-snippet display="inline">&lt;footer&gt;</bolt-code-snippet> elements repectively. <bolt-code-snippet display="inline">site_header</bolt-code-snippet> and <bolt-code-snippet display="inline">site_footer</bolt-code-snippet> blocks are also available.</bolt-li>
+    <bolt-li>The site layout must only contain <bolt-code-snippet display="inline">&lt;header&gt;</bolt-code-snippet>, <bolt-code-snippet display="inline">&lt;main&gt;</bolt-code-snippet>, and <bolt-code-snippet display="inline">&lt;footer&gt;</bolt-code-snippet> as immediate children. No additional elements can be a child.</bolt-li>
+    <bolt-li>This is the replacement for the <bolt-code-snippet display="inline">.c-bolt-site</bolt-code-snippet> class.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set header %}
+    <header class="t-bolt-dark u-bolt-padding-small">
+      This is the header.
+    </header>
+  {% endset %}
+  {% set main_content %}
+    <div class="u-bolt-padding-small">
+      This is the main content. The site layout is at least 100% of viewport height and the footer is always positioned on the bottom.
+    </div>
+  {% endset %}
+  {% set footer %}
+    <footer class="t-bolt-dark u-bolt-padding-small">
+      This is the footer.
+    </footer>
+  {% endset %}
+  {% include '@bolt-layouts-site/site.twig' with {
+    header: header,
+    main: {
+      content: main_content,
+    },
+    footer: footer,
+    attributes: {
+      class: 't-bolt-light',
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-layouts-site/site.twig' with {
+  header: 'This is the header.',
+  main: {
+    content: 'This is the main content.',
+    attributes: {
+      'data-foo': 'bar',
+    }
+  },
+  footer: 'This is the footer.',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<div class="l-bolt-site">
+  <header>
+    // This is the header
+  </header>
+  <main id="main-content">
+    // This is the main content
+  </main>
+  <footer>
+    // This is the footer
+  </footer>
+</div>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Site Layout',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

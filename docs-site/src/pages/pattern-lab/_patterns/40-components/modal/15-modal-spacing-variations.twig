@@ -10,17 +10,21 @@
       {% for spacing in schema.properties.spacing.enum %}
         <tr>
           <th>
-            {% include "@bolt-components-button/button.twig" with {
-              text: spacing|capitalize,
+            {% include "@bolt-elements-button/button.twig" with {
+              content: spacing|capitalize,
               size: "small",
-              width: "full",
+              display: "block",
               attributes: {
-                onclick: "this.nextElementSibling.show()",
+                type: 'button',
+                "data-bolt-modal-target": ".js-bolt-modal--spacing-" ~ spacing,
               }
             } only %}
             {% include "@bolt-components-modal/modal.twig" with {
               content: "This is a modal set to " ~ spacing ~ " spacing.",
               spacing: spacing,
+              attributes: {
+                class: "js-bolt-modal--spacing-" ~ spacing,
+              },
             } only %}
           </th>
           <td>

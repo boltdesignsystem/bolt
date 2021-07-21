@@ -17,14 +17,14 @@
   {% set submit_button %}
     {% include "@bolt-components-form/form-button.twig" with {
       text: "Sign up now",
-      tag: "submit"
+      type: "submit"
     } only %}
   {% endset %}
 
   {% set full_width_submit_button %}
     {% include "@bolt-components-form/form-button.twig" with {
       text: "Sign up now",
-      tag: "submit",
+      type: "submit",
       width: "full",
     } only %}
   {% endset %}

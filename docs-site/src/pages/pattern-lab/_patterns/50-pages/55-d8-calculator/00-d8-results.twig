@@ -82,14 +82,18 @@
  */
 #}
 {% set pinned_recalculate_link %}
+  {% set refresh_icon %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'refresh'
+    } only %}
+  {% endset %}
   {% set text %}
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Recalculate",
-      url: recalculate_url,
-      icon: {
-        name: "refresh",
-        position: "before"
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Recalculate',
+      attributes: {
+        href: recalculate_url
       },
+      icon_before: refresh_icon
     } only %}
   {% endset %}
   {% include "@bolt-components-headline/text.twig" with {
@@ -99,17 +103,19 @@
   } only %}
 {% endset %}
 {% set pinned_email_results_link %}
+  {% set email_icon %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'email'
+    } only %}
+  {% endset %}
   {% set text %}
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Email my results",
-      icon: {
-        name: "email",
-        position: "before"
-      },
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Email my results',
       attributes: {
-        "on-click": "show",
-        "on-click-target": "js-bolt-modal-email-results",
+        href: '#!',
+        "data-bolt-modal-target": ".js-bolt-modal-email-results",
       },
+      icon_before: email_icon
     } only %}
   {% endset %}
   {% include "@bolt-components-headline/text.twig" with {

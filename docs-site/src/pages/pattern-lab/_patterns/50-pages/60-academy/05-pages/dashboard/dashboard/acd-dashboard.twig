@@ -1,24 +1,38 @@
 {% extends "@bolt-academy/_academy-default-page-template.twig" %}
 
+{% set button_favorite %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'My Favorite Training',
+    hierarchy: "primary",
+    size: "small",
+    border_radius: "full",
+    attributes: {
+      href: '#!'
+    }
+  } only %}
+{% endset %}
+
+{% set button_complete %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'My Completed Training',
+    hierarchy: "secondary",
+    size: "small",
+    border_radius: "full",
+    attributes: {
+      href: '#!'
+    }
+  } only %}
+{% endset %}
+
 {% block page_content %}
   {% embed "@bolt-academy/_dashboard-page-hero.twig" %}
     {% block heroButtonRow %}
-      {% include "@bolt-components-button-group/button-group.twig" with {
-        buttons: [
-          {
-            text: "My Favorite Training",
-            url: "#!",
-            style: "primary",
-            size: "small",
-            border_radius: "full"
-          },
-          {
-            text: "My Completed Training",
-            url: "#!",
-            style: "secondary",
-            size: "small",
-            border_radius: "full"
-          }
+      {% include "@bolt-components-list/list.twig" with {
+        display: "inline",
+        align: "end",
+        items: [
+          button_favorite,
+          button_complete,
         ]
       } only %}
     {% endblock %}

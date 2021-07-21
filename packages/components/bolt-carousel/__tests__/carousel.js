@@ -1,22 +1,5 @@
 /* eslint-disable no-await-in-loop */
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  renderWC,
-  html,
-  //vrtDefaultConfig as vrtConfig,
-} from '../../../testing/testing-helpers';
-import schema from '../carousel.schema';
-const vrtDefaultConfig = {
-  failureThreshold: '0.0028',
-  failureThresholdType: 'percent',
-  customDiffConfig: {
-    threshold: '0.1',
-    includeAA: true,
-  },
-};
+import { renderWC } from '../../../testing/testing-helpers';
 
 const timeout = 180000;
 
@@ -66,8 +49,12 @@ const carouselSlideImage = `
 `;
 
 const carouselButtonControls = `
-  <bolt-button slot="previous-btn" color="secondary" border-radius="full" icon-only>Previous <bolt-icon slot="before" name="chevron-left"></bolt-icon></bolt-button>
-  <bolt-button slot="next-btn" color="secondary" border-radius="full" icon-only>Next <bolt-icon slot="after" name="chevron-right"></bolt-icon></bolt-button>
+<span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only" aria-hidden="true" slot="previous-btn">
+<span class="e-bolt-button__icon-center"><bolt-icon name="chevron-left"size="large"></bolt-icon></span>
+</span>
+<span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only" aria-hidden="true" slot="next-btn">
+<span class="e-bolt-button__icon-center"><bolt-icon name="chevron-right"size="large"></bolt-icon></span>
+</span>
 `;
 
 describe('carousel', () => {
@@ -145,20 +132,6 @@ describe('carousel', () => {
       );
 
       expect(outerHTML).toMatchSnapshot();
-
-      // @TODO Re-enable VRT test and troubleshoot intermittent failures on Travis
-      // const screenshots = [];
-      // for (const item of viewportSizes) {
-      //   const { height, width, size } = item;
-      //   screenshots[size] = [];
-      //
-      //   await page.setViewport({ height, width });
-      //   await page.waitFor(500);
-      //   screenshots[size].default = await page.screenshot();
-      //   expect(screenshots[size].default).toMatchImageSnapshot(
-      //     vrtDefaultConfig,
-      //   );
-      // }
     },
     timeout,
   );
@@ -188,21 +161,6 @@ describe('carousel', () => {
       );
 
       expect(outerHTML).toMatchSnapshot();
-
-      // @TODO Re-enable VRT test and troubleshoot intermittent failures on Travis
-      // const screenshots = [];
-      //
-      // for (const item of viewportSizes) {
-      //   const { height, width, size } = item;
-      //   screenshots[size] = [];
-      //
-      //   await page.setViewport({ height, width });
-      //   await page.waitFor(500);
-      //   screenshots[size].default = await page.screenshot();
-      //   expect(screenshots[size].default).toMatchImageSnapshot(
-      //     vrtDefaultConfig,
-      //   );
-      // }
     },
     timeout,
   );
@@ -232,20 +190,6 @@ describe('carousel', () => {
       );
 
       expect(outerHTML).toMatchSnapshot();
-
-      // @TODO Re-enable VRT test and troubleshoot intermittent failures on Travis
-      // const screenshots = [];
-      // for (const item of viewportSizes) {
-      //   const { height, width, size } = item;
-      //   screenshots[size] = [];
-      //
-      //   await page.setViewport({ height, width });
-      //   await page.waitFor(500);
-      //   screenshots[size].default = await page.screenshot();
-      //   expect(screenshots[size].default).toMatchImageSnapshot(
-      //     vrtDefaultConfig,
-      //   );
-      // }
     },
     timeout,
   );
@@ -274,20 +218,6 @@ describe('carousel', () => {
       );
 
       expect(outerHTML).toMatchSnapshot();
-
-      // @TODO Re-enable VRT test and troubleshoot intermittent failures on Travis
-      // const screenshots = [];
-      // for (const item of viewportSizes) {
-      //   const { height, width, size } = item;
-      //   screenshots[size] = [];
-      //
-      //   await page.setViewport({ height, width });
-      //   await page.waitFor(500);
-      //   screenshots[size].default = await page.screenshot();
-      //   expect(screenshots[size].default).toMatchImageSnapshot(
-      //     vrtDefaultConfig,
-      //   );
-      // }
     },
     timeout,
   );
@@ -332,20 +262,6 @@ describe('carousel', () => {
       );
 
       expect(outerHTML).toMatchSnapshot();
-
-      // @TODO Re-enable VRT test and troubleshoot intermittent failures on Travis
-      // const screenshots = [];
-      // for (const item of viewportSizes) {
-      //   const { height, width, size } = item;
-      //   screenshots[size] = [];
-      //
-      //   await page.setViewport({ height, width });
-      //   await page.waitFor(500);
-      //   screenshots[size].default = await page.screenshot();
-      //   expect(screenshots[size].default).toMatchImageSnapshot(
-      //     vrtDefaultConfig,
-      //   );
-      // }
     },
     timeout,
   );

@@ -38,18 +38,16 @@
 
 {% macro body_with_link() %}
   <bolt-card-replacement-body>
-    This is a card-replacement with an overall link that makes the whole card-replacement clickable, while the body can still have <bolt-link target="_blank" url="https://boltdesignsystem.com/docs">text links</bolt-link> that would go somewhere else.
+    This is a card-replacement with an overall link that makes the whole card-replacement clickable, while the body can still have <a target="_blank" href="https://boltdesignsystem.com/docs" class="e-bolt-text-link">text links</a> that would go somewhere else.
   </bolt-card-replacement-body>
 {% endmacro %}
 
 {% macro actions() %}
   <bolt-card-replacement-actions>
-    <bolt-card-replacement-action url="https://pega.com">
-      Internal link
-    </bolt-card-replacement-action>
-    <bolt-card-replacement-action url="https://yahoo.com" external>
-      External link
-    </bolt-card-replacement-action>
+    <bolt-card-replacement-action url="https://pega.com">Internal link</bolt-card-replacement-action>
+    <bolt-card-replacement-action url="https://yahoo.com" external>External link</bolt-card-replacement-action>
+    <bolt-card-replacement-action url="https://yahoo.com" icon="download">Download Icon</bolt-card-replacement-action>
+    <bolt-card-replacement-action url="https://yahoo.com" icon="none">No Icon</bolt-card-replacement-action>
   </bolt-card-replacement-actions>
 {% endmacro %}
 
@@ -82,7 +80,7 @@
 <bolt-card-replacement url="http://google.com">
   <bolt-card-replacement-media>
     <bolt-ratio ratio="16/9">
-      <video-js data-account="1900410236" data-player="4fVA8Ojzs" data-embed="default" data-video-id="3974147489001" controls class="c-base-video"></video-js>
+      <video-js data-account="1900410236" data-player="O3FkeBiaDz" data-embed="default" data-video-id="3974147489001" controls class="c-base-video"></video-js>
     </bolt-ratio>
   </bolt-card-replacement-media>
 {% include card_replacement_code.body_with_link() %}

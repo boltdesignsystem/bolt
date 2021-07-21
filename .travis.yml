@@ -69,7 +69,6 @@ jobs:
     #      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
     #      name: 'Build Drupal Lab'
     #      script:
-    #        - cd example-integrations/drupal-lab
     #        - npm run setup
 
     # quicker build + Nightwatch tests for feature branches
@@ -83,7 +82,6 @@ jobs:
         - echo $GIT_SHA
         # - yarn global add @lhci/cli@0.3.x
       script:
-        # - cd example-integrations/drupal-lab
         # - yarn run generate # generate static version of Drupal Lab in the integration folder
         # - cd ../../
         - yarn run build
@@ -117,7 +115,6 @@ jobs:
       before_script:
         - find . -name '.incache' -exec rm -rf {} +
       script:
-        # - cd example-integrations/drupal-lab
         # - yarn run generate # generate static version of Drupal Lab in the integration folder
         # - cd ../../
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
@@ -153,7 +150,7 @@ jobs:
 
     - stage: Auto-release
       name: 'Full Release'
-      if: (branch =~ /(release)/)
+      if: (branch =~ /(release)\/[1-4]/)
       before_script:
         - git config --global user.email ${GITHUB_EMAIL}
         - git config --global user.name ${GITHUB_USER}

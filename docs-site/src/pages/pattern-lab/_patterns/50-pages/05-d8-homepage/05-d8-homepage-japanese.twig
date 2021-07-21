@@ -93,7 +93,7 @@
       buttons: [
         {
           text: "今すぐ営業目標を上げる",
-          style: "primary",
+          hierarchy: "primary",
           url: "https://www.google.com",
           icon: {
             name: "chevron-right"
@@ -105,10 +105,10 @@
     background: {
       opacity: "heavy",
       fill: "gradient",
-      focalPoint: {
+      focal_point: {
         vertical: "center"
       },
-      contentItems: [
+      content_items: [
         {
           pattern: "image",
           src: "/images/backgrounds/pw19-hp-bg2.jpg",
@@ -142,18 +142,34 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1@only-small" %}
-          {% include "@bolt/button-group.twig" with {
-            buttons: [
-              {
-                text: "会社概要",
-                style: "primary",
-                size: "small"
-              },
-              {
-                text: "ビジョンと主要な概念",
-                style: "secondary",
-                size: "small"
+
+          {% set button_cta_primary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: '会社概要',
+              hierarchy: "primary",
+              size: "small",
+              attributes: {
+                type: 'button'
               }
+            } only %}
+          {% endset %}
+
+          {% set button_cta_secondary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'ビジョンと主要な概念',
+              hierarchy: "secondary",
+              size: "small",
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: 'inline',
+            items: [
+              button_cta_primary,
+              button_cta_secondary,
             ]
           } only %}
         {% endcell %}
@@ -280,7 +296,7 @@
             pattern: "button",
             width: "full",
             text: "レポートを読む",
-            style: "text"
+            hierarchy: "text"
           }
         ]
       },
@@ -305,7 +321,7 @@
             pattern: "button",
             width: "full",
             text: "発見を探索",
-            style: "text"
+            hierarchy: "text"
           }
         ]
       },
@@ -330,7 +346,7 @@
             pattern: "button",
             width: "full",
             text: "事例を見る",
-            style: "text"
+            hierarchy: "text"
           }
         ]
       }
@@ -371,7 +387,7 @@
             } only %}
             {% include "@bolt/button.twig" with {
               text: "本物を知る",
-              style: "primary",
+              hierarchy: "primary",
               size: "small"
             } only %}
           {% endcell %}

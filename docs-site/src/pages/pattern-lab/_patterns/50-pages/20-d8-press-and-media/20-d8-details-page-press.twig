@@ -81,13 +81,18 @@
             "text": "“AI and automation technologies have generated tremendous hype, but the potential within the enterprise remains largely untapped,“ said Don Schuerman, chief technology officer and vice president, product marketing, Pegasystems. “Organizations must augment their human intelligence with AI across the entire organization in order to move beyond basic efficiency improvements. By deploying AI and automation with an end-to-end view in mind, businesses can move closer to fulfilling their customer centric vision.”"
           } only %}
 
-          {% include "@bolt-components-link/link.twig" with {
-            text: "Download related media assets for this story.",
-            url: "#!",
-            icon: {
-              name: "download",
-              position: "before"
+          {% set download_icon %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'download'
+            } only %}
+          {% endset %}
+
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: 'Download related media assets for this story.',
+            attributes: {
+              href: '#!'
             },
+            icon_before: download_icon
           } only %}
           <hr>
 
@@ -113,19 +118,27 @@
                   sources: [
                     {
                       name: "facebook",
-                      url: "https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse"
+                      attributes: {
+                        href: "https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse"
+                      }
                     },
                     {
                       name: "twitter",
-                      url: "https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}"
+                      attributes: {
+                        href: "https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}"
+                      }
                     },
                     {
                       name: "linkedin",
-                      url: "https://www.linkedin.com/shareArticle?url={url}&title={title}"
+                      attributes: {
+                        href: "https://www.linkedin.com/shareArticle?url={url}&title={title}"
+                      }
                     },
                     {
                       name: "email",
-                      url: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+                      attributes: {
+                        href: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+                      }
                     }
                   ]
                 } only %}

@@ -1,10 +1,16 @@
 {% if componentName %}
   {% set data = getBoltData() %} {# grab a fresh copy of the full manifest data to reflect schema.yml file changes, etc #}
   {% set componentGroup = componentGroup|default("components") %}
-  {% set schema = data.components["@bolt-#{componentGroup}-#{componentName}"].schema %}
   {% set readme_file = "@bolt-#{componentGroup}-#{componentName}/README.md" %}
   {% set change_log_file = "@bolt-#{componentGroup}-#{componentName}/CHANGELOG.md" %}
   {% set pkg = get_data("@bolt-#{componentGroup}-#{componentName}/package.json") %}
+  {# Handle multiple schemas #}
+  {% if data.components["@bolt-#{componentGroup}-#{componentName}"].schema["#{componentName}"] is defined %}
+    {% set component_schemas = data.components["@bolt-#{componentGroup}-#{componentName}"].schema %}
+    {% set schema = component_schemas["#{componentName}"] %}
+  {% else %} 
+    {% set schema = data.components["@bolt-#{componentGroup}-#{componentName}"].schema %}
+  {% endif %}
 {% endif %}
 
 {% set component_version = pkg.version %}
@@ -63,7 +69,7 @@
 
 {% set hero_content %}
   {% include "@bolt-components-headline/headline.twig" with {
-    text: schema.title ? schema.title : "Component Name",
+    text: componentName|replace({'-' : ' '})|title,
     size: "xxxlarge",
     tag: "h1",
     attributes: {
@@ -104,7 +110,7 @@
 
     {# Twig Usage #}
     {% if usage_content %}
-      <bolt-tab-panel>
+      <bolt-tab-panel id="twig-usage">
         <bolt-text slot="label" tag="h2">Twig Usage</bolt-text>
 
         {% include "@bolt-components-code-snippet/code-snippet.twig" with {
@@ -118,15 +124,15 @@
 
     {# Schema #}
     {% if schema and schema.properties %}
-      <bolt-tab-panel>
+      <bolt-tab-panel id="schema">
         <bolt-text slot="label" tag="h2">Schema</bolt-text>
 
-        {% include "@utils/schema-docs.twig" with { schema: schema } only %}
+        {% include "@utils/schema-docs.twig" with { schemas: component_schemas|default([schema]) } only %}
       </bolt-tab-panel>
     {% endif %}
 
     {# Install #}
-    <bolt-tab-panel>
+    <bolt-tab-panel id="install">
       <bolt-text slot="label" tag="h2">Install</bolt-text>
 
       <bolt-text headline font-size="xlarge" tag="h3">

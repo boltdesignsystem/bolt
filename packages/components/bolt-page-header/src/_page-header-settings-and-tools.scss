@@ -32,17 +32,7 @@
 
 $bolt-page-header-action-trigger-spacing-x: var(--bolt-spacing-x-small);
 $bolt-page-header-click-target-size: 44px;
-
 $bolt-page-header-desktop-util-nav-height: var(--bolt-spacing-y-medium);
-$bolt-page-header-desktop-spacing-y: var(
-  --c-bolt-page-header-desktop-spacing-y,
-  0.9rem
-);
-$bolt-page-header-desktop-padding-top: calc(
-  #{$bolt-page-header-desktop-spacing-y} + #{$bolt-page-header-desktop-util-nav-height}
-);
-$bolt-page-header-desktop-padding-bottom: #{$bolt-page-header-desktop-spacing-y};
-
 $bolt-page-header-mobile-spacing-y: 3px;
 $bolt-page-header-mobile-primary-nav-spacing-x: var(--bolt-spacing-x-xsmall);
 $bolt-page-header-mobile-expanded-content-spacing-x: calc(
@@ -57,11 +47,19 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
   --c-bolt-page-header-desktop-site-nav-link-spacing-x: var(
     --bolt-spacing-x-xsmall
   );
+  --c-bolt-page-header-desktop-spacing-y: 1.1rem;
+  --c-bolt-page-header-desktop-padding-top: calc(
+    var(--c-bolt-page-header-desktop-spacing-y) + #{$bolt-page-header-desktop-util-nav-height}
+  );
+  --c-bolt-page-header-desktop-padding-bottom: var(
+    --c-bolt-page-header-desktop-spacing-y
+  );
 
   @include bolt-mq($from: large) {
     --bolt-page-header-height: calc(
-      #{$bolt-page-header-click-target-size} + #{$bolt-page-header-desktop-padding-top} +
-        #{$bolt-page-header-desktop-padding-bottom}
+      #{$bolt-page-header-click-target-size} + var(
+          --c-bolt-page-header-desktop-padding-top
+        ) + var(--c-bolt-page-header-desktop-padding-bottom)
     );
   }
 
@@ -111,7 +109,7 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
     border-radius: inherit;
     background-color: var(--m-bolt-link);
     will-change: opacity, transform;
-    transition: opacity $bolt-transition, transform $bolt-transition;
+    transition: opacity var(--bolt-transition), transform var(--bolt-transition);
   }
 
   &:hover,
@@ -145,7 +143,8 @@ $bolt-page-header-mobile-expanded-content-spacing-x: calc(
 
 @mixin bolt-page-header-nav-background {
   background: linear-gradient(
-    var(--bolt-color-gray-light),
-    var(--bolt-color-gray-xlight)
+    rgba(bolt-color(gray), 0.1),
+    rgba(bolt-color(gray), 0.2)
   );
+  background-color: var(--m-bolt-bg);
 }

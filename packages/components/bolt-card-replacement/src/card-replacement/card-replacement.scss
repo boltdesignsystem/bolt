@@ -4,7 +4,8 @@
 
 @import '@bolt/core-v3.x';
 @import '../_card-replacement-settings-and-tools.scss';
-@import '@bolt/global/styles/06-themes/_themes.all.scss';
+@import '@bolt/global/styles/06-themes/_themes.all.scss'; // @todo: remove this once bolt-theme() function is completely deprecated and removed.
+@import '@bolt/global/styles/00-vars/_vars-mode.scss';
 
 // Custom element
 @include bolt-custom-element('bolt-card-replacement', block, medium);
@@ -233,8 +234,10 @@ bolt-card-replacement {
   (
     '::slotted(bolt-link)',
     'bolt-card-replacement bolt-link',
+    'bolt-card-replacement .e-bolt-text-link',
     '::slotted(bolt-button)',
-    'bolt-card-replacement bolt-button'
+    'bolt-card-replacement bolt-button',
+    'bolt-card-replacement .e-bolt-button'
   )
 ) {
   position: relative;

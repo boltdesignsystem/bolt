@@ -6,6 +6,10 @@
 @import '_page-header-settings-and-tools.scss';
 
 @include bolt-mq($until: large) {
+  .c-bolt-page-header {
+    pointer-events: all;
+  }
+
   // Primary section container
   .c-bolt-page-header__primary {
     padding-top: $bolt-page-header-mobile-spacing-y;
@@ -18,7 +22,7 @@
 
   // Toolbar
   .c-bolt-page-header__toolbar {
-    margin-left: auto;
+    justify-content: flex-end;
   }
 
   .c-bolt-page-header__action-trigger {
@@ -32,7 +36,8 @@
     transform: translate3d(-100%, 0, 0);
     padding-right: $bolt-page-header-mobile-expanded-content-spacing-x;
     padding-left: $bolt-page-header-mobile-expanded-content-spacing-x;
-    transition: visibility $bolt-transition, transform $bolt-transition;
+    transition: visibility var(--bolt-transition),
+      transform var(--bolt-transition);
   }
 
   // Off-canvas primary nav
@@ -48,11 +53,11 @@
     left: 0;
     transform: translate3d(100%, 0, 0);
     overflow: hidden;
-    padding-bottom: $bolt-page-header-click-target-size;
-    border-top-color: $bolt-border-color;
+    border-top-color: var(--m-bolt-border);
     border-top-style: $bolt-border-style;
     border-top-width: $bolt-border-width;
-    transition: visibility $bolt-transition, transform $bolt-transition;
+    transition: visibility var(--bolt-transition),
+      transform var(--bolt-transition);
 
     @at-root .c-bolt-page-header__action-trigger--nav[aria-expanded='true']
         ~ #{&} {
@@ -68,6 +73,7 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
+    padding-bottom: $bolt-page-header-click-target-size;
   }
 
   .c-bolt-page-header__nav-list {
@@ -83,7 +89,7 @@
   .c-bolt-page-header__nav-list-item {
     @include bolt-shadow('level-10');
 
-    border-bottom-color: $bolt-border-color;
+    border-bottom-color: var(--m-bolt-border);
     border-bottom-style: $bolt-border-style;
     border-bottom-width: $bolt-border-width;
     background-color: var(--m-bolt-bg);
@@ -97,7 +103,7 @@
       left: 0;
       z-index: 1;
       height: $bolt-page-header-click-target-size;
-      border-bottom-color: $bolt-border-color;
+      border-bottom-color: var(--m-bolt-border);
       border-bottom-style: $bolt-border-style;
       border-bottom-width: $bolt-border-width;
       background-color: var(--m-bolt-bg);
@@ -127,8 +133,8 @@
       transform: translate3d(100%, 0, 0);
       z-index: 2;
       margin-top: $bolt-page-header-click-target-size;
-      transition: margin-top $bolt-transition, visibility $bolt-transition,
-        transform $bolt-transition;
+      transition: margin-top var(--bolt-transition),
+        visibility var(--bolt-transition), transform var(--bolt-transition);
 
       &.is-covered {
         overflow: visible;
@@ -141,7 +147,7 @@
 
       > * {
         opacity: 0;
-        transition: opacity ease-out calc(#{$bolt-transition-timing} / 2);
+        transition: opacity ease-out calc(var(--bolt-transition-timing) / 2);
       }
     }
 
@@ -149,11 +155,11 @@
       ~ .c-bolt-page-header__nav-list {
       visibility: visible;
       transform: translate3d(0, 0, 0);
-      transition-delay: $bolt-transition-timing;
+      transition-delay: var(--bolt-transition-timing);
 
       > * {
         opacity: 1;
-        transition-delay: calc(#{$bolt-transition-timing} / 2);
+        transition-delay: calc(var(--bolt-transition-timing) / 2);
       }
     }
   }
@@ -216,7 +222,7 @@
       height: 0.5em;
       border-top: 1px solid;
       border-right: 1px solid;
-      transition: border $bolt-transition;
+      transition: border var(--bolt-transition);
       transform-origin: center center;
     }
   }
@@ -303,6 +309,11 @@
     display: none;
   }
 
+  // Subheadline
+  .c-bolt-page-header__subheadline {
+    margin-right: auto;
+  }
+
   // Main CTA
   .c-bolt-page-header__cta {
     visibility: hidden;
@@ -313,7 +324,8 @@
     transform: translate3d(100%, 0, 0);
     z-index: bolt-z-index(navFixed);
     height: $bolt-page-header-click-target-size;
-    transition: visibility $bolt-transition, transform $bolt-transition;
+    transition: visibility var(--bolt-transition),
+      transform var(--bolt-transition);
 
     @at-root .c-bolt-page-header__action-trigger--nav[aria-expanded='true']
         ~ #{&} {

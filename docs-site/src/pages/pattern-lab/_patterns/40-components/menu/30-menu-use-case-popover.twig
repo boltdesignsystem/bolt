@@ -4,9 +4,12 @@
 
 {% set demo %}
   {% set popover_trigger %}
-    {% include '@bolt-components-button/button.twig' with {
-      text: 'Popover menu',
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Popover menu',
       size: 'xsmall',
+      attributes: {
+        type: 'button'
+      }
     } only %}
   {% endset %}
   {% set popover_content %}
@@ -36,9 +39,12 @@
 {% set twig_markup %}
 {% verbatim %}
 {% set popover_trigger %}
-  {% include '@bolt-components-button/button.twig' with {
-    text: 'Popover menu',
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Popover menu',
     size: 'xsmall',
+    attributes: {
+      type: 'button'
+    }
   } only %}
 {% endset %}
 {% set popover_content %}
@@ -69,9 +75,9 @@
 {% set html_markup %}
 {% verbatim %}
 <bolt-popover spacing="none">
-  <bolt-button size="small">
+  <button type="button" class="e-bolt-button e-bolt-button--small">
     Popover menu
-  </bolt-button>
+  </button>
   <div slot="content">
     <bolt-menu>
       <bolt-menu-item>

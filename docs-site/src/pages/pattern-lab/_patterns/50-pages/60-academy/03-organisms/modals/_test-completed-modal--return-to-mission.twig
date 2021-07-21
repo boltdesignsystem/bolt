@@ -1,5 +1,11 @@
 {% import "@bolt-academy/_macros.twig" as macros %}
 
+{% set _external_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: "external-link"
+  } only %}
+{% endset %}
+
 {% include "@bolt-components-band/band.twig" with {
   content: "Return to mission",
   size: "xsmall",
@@ -20,19 +26,20 @@
     align: "center",
     separator: "solid",
     items: [
-      macros.include("@bolt-components-link/link.twig", {
-        text: "Return to Mission",
-        url: "#!",
-        isHeadline: true,
-      }),
-      macros.include("@bolt-components-link/link.twig", {
-        text: "View your Achievements",
-        url: "#!",
-        isHeadline: true,
-         icon: {
-          name: "external-link",
-          position: "after"
+      macros.include("@bolt-elements-text-link/text-link.twig", {
+        content: "Return to Mission",
+        attributes: {
+          href: "#!",
         },
+        reversed_underline: true,
+      }),
+      macros.include("@bolt-elements-text-link/text-link.twig", {
+        content: "View your Achievements",
+        attributes: {
+          href: "#!",
+        },
+        reversed_underline: true,
+        icon_after: _external_icon
       })
     ]
   })

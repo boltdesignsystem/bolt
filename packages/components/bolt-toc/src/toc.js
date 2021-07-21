@@ -67,10 +67,10 @@ class BoltToc extends withContext(BoltElement) {
     const data = [];
 
     this.items.forEach(item => {
-      if (item.target) {
+      if (item.waypointElement) {
         data.push({
           trigger: item,
-          target: item.target,
+          element: item.waypointElement,
         });
       }
     });
@@ -84,8 +84,10 @@ class BoltToc extends withContext(BoltElement) {
     }
   }
 
-  getItemByTarget(target, shift = 0) {
-    const match = this.waypointData.find(item => item.target === target);
+  getItemByElement(element, shift = 0) {
+    const match = this.waypointData.find(
+      item => item.waypointElement === element,
+    );
     const index = this.waypointData.indexOf(match) + shift;
 
     if (index !== -1) {
@@ -100,7 +102,7 @@ class BoltToc extends withContext(BoltElement) {
     }
   }
 
-  onPositionChange({ target, currentPosition }) {
+  onPositionChange({ element, currentPosition }) {
     this.setStickyOffset();
 
     // If `activeItem` is undefined (could be first load), use the first item
@@ -108,7 +110,7 @@ class BoltToc extends withContext(BoltElement) {
     // the most visible section
     if (!this.activeItem) {
       if (currentPosition === 'below') {
-        let item = this.getItemByTarget(target, -1);
+        let item = this.getItemByElement(element, -1);
         if (item) {
           this.activeItem = item.trigger;
         }
@@ -156,19 +158,21 @@ class BoltToc extends withContext(BoltElement) {
   }
 
   render() {
+    const classes = cx('c-bolt-toc', {
+      [`c-bolt-toc--variant-${this.variant}`]:
+        this.variant && this.variant !== 'transparent',
+    });
+
     return html`
-      <nav
-        class="${cx(`c-bolt-toc`)}"
-        aria-labelledby="js-bolt-toc-${this.uuid}"
-      >
-        <h2
+      <nav class="${classes}" aria-labelledby="js-bolt-toc-${this.uuid}">
+        <strong
           class="${cx(`c-bolt-toc__header`, {
             [`c-bolt-toc__header--hidden`]: !this.header,
           })}"
           id="js-bolt-toc-${this.uuid}"
         >
           ${this.header ? this.header : 'Table of Contents'}
-        </h2>
+        </strong>
         <div class="${cx(`c-bolt-toc__list`)}" role="list">
           ${this.slotify('default')}
         </div>

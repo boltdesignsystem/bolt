@@ -1,27 +1,33 @@
 {# Setting variables for demo purposes #}
 {% set item_home %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Home",
-    url: "#!",
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: "Home",
+    attributes: {
+      href: '#!'
+    }
   } only %}
 {% endset %}
 {% set item_landing %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Landing Page",
-    url: "#!",
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: "Landing Page",
+    attributes: {
+      href: '#!'
+    }
   } only %}
 {% endset %}
 {% set item_sub %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Sub Page",
-    url: "#!",
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: "Sub Page",
+    attributes: {
+      href: '#!'
+    }
   } only %}
 {% endset %}
 {% set item_current %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Current Page",
-    url: "#!",
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: "Current Page",
     attributes: {
+      href: '#!',
       "aria-current": "page",
     },
   } only %}
@@ -102,7 +108,7 @@
       "buttons": [
         {
           "text": "Call to Action",
-          "style": "primary",
+          "hierarchy": "primary",
           "url": "https://www.pega.com"
         }
       ]
@@ -177,7 +183,7 @@
       "buttons": [
         {
           "text": "Get Smart",
-          "style": "primary",
+          "hierarchy": "primary",
           "url": "https://www.pega.com"
         }
       ]
@@ -193,11 +199,11 @@
   "background": {
     "opacity": "heavy",
     "fill": "gradient",
-    "focalPoint": {
+    "focal_point": {
       "vertical": "center",
       "horizontal": "right"
     },
-    "contentItems": [{
+    "content_items": [{
       "pattern": "image",
       "src": "/images/content/backgrounds/background-tall-3.jpg"
     }]
@@ -266,7 +272,7 @@
       "buttons": [
         {
           "text": "Get Smart",
-          "style": "primary",
+          "hierarchy": "primary",
           "url": "https://www.pega.com"
         }
       ]

@@ -16,10 +16,12 @@
       {% import "@bolt-academy/_macros.twig" as macros %}
 
       {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
-        "contentItems": breadcrumbs | map(breadcrumb => breadcrumb.text and breadcrumb.url ? macros.include("@bolt-components-link/link.twig", {
-          text: breadcrumb.text,
-          url: breadcrumb.url,
-          isHeadline: true
+        "contentItems": breadcrumbs | map(breadcrumb => breadcrumb.text and breadcrumb.url ? macros.include("@bolt-elements-text-link/text-link.twig", {
+          content: breadcrumb.text,
+          attributes: {
+            href: breadcrumb.url,
+          },
+          reversed_underline: true
         }, false) : (breadcrumb.text ?
           macros.include("@bolt-components-headline/text.twig", {
             text: breadcrumb.text,

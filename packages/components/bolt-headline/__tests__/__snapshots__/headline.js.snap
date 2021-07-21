@@ -311,13 +311,11 @@ exports[`<bolt-headline> Component basic usage text 1`] = `
 
 exports[`<bolt-headline> Component headline with associated link 1`] = `
 <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xlarge c-bolt-headline--link">
-  <bolt-link display="inline"
-             valign="center"
-             url="www.testurl.com"
-             is-headline="true"
+  <bolt-link url="www.testurl.com"
+             is-headline
   >
     <a href="www.testurl.com"
-       is="shadow-root"
+       target="_self"
        class="c-bolt-link c-bolt-link--headline c-bolt-link--display-inline c-bolt-link--valign-center"
     >
       <ssr-keep for="bolt-link"

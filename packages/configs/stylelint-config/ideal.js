@@ -8,7 +8,6 @@ module.exports = {
     'stylelint-order',
     'stylelint-scss',
     'stylelint-declaration-use-variable',
-    'stylelint-selector-bem-pattern',
     'stylelint-declaration-strict-value',
   ],
   rules: {
@@ -40,30 +39,15 @@ module.exports = {
     'scss/dollar-variable-no-missing-interpolation': true,
     'scss/at-mixin-argumentless-call-parentheses': 'never',
     'selector-max-class': 2,
-    'plugin/selector-bem-pattern': {
-      preset: 'bem',
-      componentName:
-        '(((o-|c-|u-|t-|s-|is-|has-|no-|_|js-|qa-)(bolt-)[a-z0-9]+(?!-$)-?)+)',
-      componentSelectors: {
-        initial:
-          "\\.{componentName}(((__|--)(([a-z0-9\\[\\]'=]+(?!-$)-?)+))+)?$",
-      },
-      // componentSelectors: '^\\.ns-{componentName}(?:-[a-zA-Z]+)?$'
-      // ignoreSelectors: [
-      //   '.*\\.no-js.*',
-      //   '.*\\.js-.*',
-      //   '.*\\.lt-ie.*'
-      // ]
-    },
     'scss/dollar-variable-pattern': [
-      '^(bolt-|_bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
+      '^(bolt-|_)[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
       {
         ignore: ['local'],
       },
     ],
     'scss/percent-placeholder-pattern': '^(bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
-    'scss/at-function-pattern': '^(bolt-|_bolt-)[a-z0-9\\-]+$',
-    'scss/at-mixin-pattern': '^(bolt-|_bolt-)[a-z0-9\\-]+$',
+    'scss/at-function-pattern': '^(bolt-|_)[a-z0-9\\-]+$',
+    'scss/at-mixin-pattern': '^(bolt-|_)[a-z0-9\\-]+$',
     // https://github.com/davidtheclark/stylelint-selector-bem-pattern
     // https://github.com/xi/stylelint-selector-pattern/blob/master/lib/presets.js
     // "xi/selector-pattern": ["^\.(o-|c-|u-|t-|s-|is-|has-|_|js-|qa-)[a-z0-9-_\>\. \%]+$", {
@@ -107,6 +91,7 @@ module.exports = {
     'declaration-bang-space-before': 'always',
     'declaration-block-no-shorthand-property-overrides': true,
     'order/properties-order': [
+      'all',
       'content',
 
       // Display

@@ -1,0 +1,190 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-listing-teaser'].schema['listing-teaser'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set _listing_id = bolt.data.config.env == 'test' ? 'js-test-target' : 'js-bolt-listing-teaser-' ~ random() %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-listing-teaser',
+  this.data.gutter.value != 'small' ? 'c-bolt-listing-teaser--gutter-' ~ this.data.gutter.value,
+  this.data.layout.value != 'horizontal' ? 'c-bolt-listing-teaser--layout-' ~ this.data.layout.value,
+  this.data.variant.value != 'transparent' ? 'c-bolt-listing-teaser--variant-' ~ this.data.variant.value,
+  this.data.inset_spacing.value != 'medium' ? 'c-bolt-listing-teaser--inset-spacing-' ~ this.data.inset_spacing.value,
+  _listing_id,
+] %}
+
+<article {{ attributes.addClass(classes) }}>
+  <div class="c-bolt-listing-teaser__flag">
+    {% if signifier %}
+      <div class="c-bolt-listing-teaser__flag-signifier" aria-hidden="true">
+        {{ signifier }}
+      </div>
+    {% endif %}
+    <div class="c-bolt-listing-teaser__flag-heading">
+      {% if headline.link_attributes %}
+        {% set _linked_text %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: headline.text,
+            reversed_underline: true,
+            expand_click_target: true,
+            attributes: headline.link_attributes
+          } only %}
+        {% endset %}
+      {% endif %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: headline.link_attributes ? _linked_text : headline.text,
+        tag: headline.tag,
+        size: headline.size,
+      } only %}
+      {% if subheadline %}
+        <div class="c-bolt-listing-teaser__flag-subheadline">
+          {{ subheadline }}
+        </div>
+      {% endif %}
+    </div>
+    {% if eyebrow_items %}
+      <div class="c-bolt-listing-teaser__flag-eyebrow">
+        {% spaceless %}<ul class="c-bolt-listing-teaser__meta">{% for item in eyebrow_items %}<li class="c-bolt-listing-teaser__meta__item">{{ item }}</li>{% endfor %}</ul>{% endspaceless %}
+      </div>
+    {% endif %}
+    <div class="c-bolt-listing-teaser__flag-content">
+      {% if meta_items %}
+        {% spaceless %}<ul class="c-bolt-listing-teaser__meta">{% for item in meta_items %}<li class="c-bolt-listing-teaser__meta__item">{{ item }}</li>{% endfor %}</ul>{% endspaceless %}
+      {% endif %}
+      {% if description %}
+        <div class="c-bolt-listing-teaser__flag-content__item">
+          {{ description }}
+        </div>
+      {% endif %}
+      {% if warning %}
+        <div class="c-bolt-listing-teaser__flag-content__item c-bolt-listing-teaser__flag-content__item--warning">
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'warning',
+            color: 'yellow',
+          } only %}
+          <div>
+            {{ warning }}
+          </div>
+        </div>
+      {% endif %}
+      {% if chip_list %}
+        <div class="c-bolt-listing-teaser__flag-content__item c-bolt-listing-teaser__flag-content__item--chips">
+          {{ chip_list }}
+        </div>
+      {% endif %}
+      {% if reply %}
+        <div class="c-bolt-listing-teaser__flag-content__item c-bolt-listing-teaser__flag-content__item--reply">
+          {{ reply }}
+        </div>
+      {% endif %}
+    </div>
+    {% if status %}
+      <ul class="c-bolt-listing-teaser__flag-status">
+        {% if status.solved %}
+          <li class="c-bolt-listing-teaser__flag-status__item">
+            <span class="c-bolt-listing-teaser__flag-status__icon c-bolt-listing-teaser__flag-status__icon--solved" aria-hidden="true">
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'check-solid',
+              } only %}
+            </span>
+            {{ status.solved_label ? status.solved_label|t : 'Solved'|t }}
+          </li>
+        {% endif %}
+        {% if status.locked %}
+          <li class="c-bolt-listing-teaser__flag-status__item">
+            <span class="c-bolt-listing-teaser__flag-status__icon c-bolt-listing-teaser__flag-status__icon--locked" aria-hidden="true">
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: 'lock',
+              } only %}
+            </span>
+            {{ status.locked_label ? status.locked_label|t : 'Locked'|t }}
+          </li>
+        {% endif %}
+        {% if status.number_items %}
+          {{ status.number_items }}
+        {% else %}
+          {% if status.replies %}
+            <li class="c-bolt-listing-teaser__flag-status__item">
+              <span class="c-bolt-listing-teaser__flag-status__number">{{ status.replies }}</span>
+              {{ status.replies_label ? status.replies_label|t : 'Replies'|t }}
+            </li>
+          {% endif %}
+          {% if status.views %}
+            <li class="c-bolt-listing-teaser__flag-status__item">
+              <span class="c-bolt-listing-teaser__flag-status__number">{{ status.views }}</span>
+              {{ status.views_label ? status.views_label|t : 'Views'|t }}
+            </li>
+          {% endif %}
+        {% endif %}
+      </ul>
+    {% endif %}
+  </div>
+  {% if action_menu or share_menu or custom_menu %}<div class="c-bolt-listing-teaser__actions">{% endif %}
+    {% if share_menu %}
+      {% set _share_popover_trigger %}
+        {% set _icon_share %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'share',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Share'|t,
+          size: 'xsmall',
+          hierarchy: 'transparent',
+          icon_only: _icon_share,
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: _share_popover_trigger,
+        content: share_menu,
+        spacing: 'none',
+        boundary: '.' ~ _listing_id,
+      } only %}
+    {% endif %}
+    {% if action_menu %}
+      {% set _action_popover_trigger %}
+        {% set _icon_more %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'more',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'More actions'|t,
+          size: 'xsmall',
+          hierarchy: 'tertiary',
+          icon_only: _icon_more,
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: _action_popover_trigger,
+        content: action_menu,
+        spacing: 'none',
+        boundary: '.' ~ _listing_id,
+      } only %}
+    {% endif %}
+    {% if custom_menu %}
+      {{ custom_menu }}
+    {% endif %}
+  {% if action_menu or share_menu or custom_menu %}</div>{% endif %}
+  {% if callout %}
+    {% set callout_attributes = create_attribute(callout.attributes|default({})) %}
+    {% set callout_classes = [
+      'c-bolt-listing-teaser__callout',
+    ] %}
+    <div {{ callout_attributes.addClass(callout_classes) }}>
+      {{ callout.content }}
+    </div>
+  {% endif %}
+</article>

@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v4.0.0-beta-4...v4.0.0) (2021-06-23)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+## [3.3.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v3.3.0...v3.3.1) (2021-03-22)
+
+
+### Reverts
+
+* Revert "DS-419: Upgrade PL Babel deps, use Bolt presets" ([c4c274a](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/c4c274ae50747a497ede33cf02166af4e308b24d))
+
+
+
+
+
+# [3.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v3.2.0...v3.3.0) (2021-03-12)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+## [3.1.2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
 # [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.31.2...v3.1.0) (2021-02-08)
 
 

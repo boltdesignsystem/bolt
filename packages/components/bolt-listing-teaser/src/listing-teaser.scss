@@ -1,0 +1,369 @@
+@import '@bolt/core-v3.x';
+
+/**
+ * Listing Teaser
+ */
+
+.c-bolt-listing-teaser {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'flag actions'
+    'callout callout';
+  align-items: flex-start;
+  position: relative; // Position is set here so the heading link can expand its click target up to this point.
+
+  &:hover {
+    span.e-bolt-text-link {
+      text-decoration: underline; // When a visual read more link is added to the description, it must not be a semantic link because it will create a duplicate link within the teaser (same as the heading link). Use a span with text link class will allow the visual to be expected. When hover over the entire teaser, this span will get underline. Same treatment as the heading link.
+    }
+  }
+}
+
+.c-bolt-listing-teaser__callout {
+  grid-area: callout;
+  margin-top: var(--bolt-spacing-y-xsmall);
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
+  border: 1px solid var(--m-bolt-border);
+  border-radius: bolt-border-radius(small);
+}
+
+.c-bolt-listing-teaser__actions {
+  grid-area: actions;
+  position: relative; // This raises the stacking order of the flag media above the main heading link.
+  margin: var(--bolt-spacing-y-xsmall) 0 var(--bolt-spacing-y-xsmall)
+    var(--bolt-spacing-x-small);
+  line-height: 1;
+}
+
+.c-bolt-listing-teaser__flag {
+  display: grid;
+  align-items: start;
+  position: static; // Position must be static on this element so the heading link will not be contained inside this.
+  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(3, minmax(min-content, max-content)) 1fr;
+  grid-template-areas:
+    '. eyebrow .'
+    'signifier heading status'
+    'signifier content status';
+  grid-area: flag;
+}
+
+.c-bolt-listing-teaser__flag-signifier {
+  display: flex;
+  align-self: start;
+  margin-right: var(--bolt-spacing-x-small);
+  pointer-events: none;
+  user-select: none;
+  grid-area: signifier;
+
+  @at-root .c-bolt-listing-teaser--gutter-large #{&} {
+    margin-right: var(--bolt-spacing-x-large);
+  }
+
+  @at-root .c-bolt-listing-teaser--gutter-medium #{&} {
+    margin-right: var(--bolt-spacing-x-medium);
+  }
+}
+
+.c-bolt-listing-teaser__flag-eyebrow {
+  margin-bottom: var(--bolt-spacing-y-xxsmall);
+  pointer-events: none;
+  grid-area: eyebrow;
+}
+
+.c-bolt-listing-teaser__flag-heading {
+  display: block;
+  grid-area: heading;
+  word-break: break-word;
+  hyphens: auto;
+
+  ~ .c-bolt-listing-teaser__flag-content {
+    margin-top: var(--bolt-spacing-y-xxsmall);
+  }
+
+  &:empty {
+    grid-column: 1;
+    grid-row: 2;
+
+    &:after {
+      content: 'x';
+      visibility: hidden;
+    }
+
+    ~ .c-bolt-listing-teaser__flag-content {
+      margin-top: 0;
+      grid-row-start: 2;
+    }
+  }
+
+  > * {
+    margin-bottom: 0 !important; // Reset text spacing
+  }
+}
+
+.c-bolt-listing-teaser__flag-subheadline {
+  font-size: var(--bolt-type-font-size-small);
+  line-height: var(--bolt-type-line-height-small);
+}
+
+.c-bolt-listing-teaser__flag-content {
+  grid-area: content;
+  margin: var(--bolt-spacing-y-xsmall) 0;
+
+  > *:not(:last-child) {
+    margin-bottom: var(--bolt-spacing-y-xsmall);
+  }
+}
+
+.c-bolt-listing-teaser__flag-content__item:not(.c-bolt-listing-teaser__flag-content__item--chips) {
+  --bolt-spacing-y-xxsmall: 0.0625rem;
+  --bolt-spacing-y-xsmall: 0.125rem;
+  --bolt-spacing-y-small: 0.25rem;
+  --bolt-spacing-y-medium: 0.5rem;
+  --bolt-spacing-y-large: 0.75rem;
+  --bolt-spacing-y-xlarge: 1rem;
+  --bolt-spacing-y-xxlarge: 1.25rem;
+  --bolt-spacing-y-xxxlarge: 1.5rem;
+}
+
+.c-bolt-listing-teaser__flag-content__item {
+  display: block;
+  font-size: var(--bolt-type-font-size-small);
+  line-height: var(--bolt-type-line-height-small);
+  pointer-events: none;
+
+  a,
+  button,
+  bolt-chip {
+    position: relative; // This raises the stacking order of the meta link above the main heading link.
+    pointer-events: all;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+  }
+
+  &--reply {
+    padding-left: var(--bolt-spacing-x-medium);
+    border-left: 3px solid var(--m-bolt-link);
+  }
+
+  &--warning {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: var(--bolt-spacing-x-xxsmall);
+    align-items: baseline;
+
+    bolt-icon {
+      transform: translateY(0.1em);
+    }
+  }
+}
+
+.c-bolt-listing-teaser__flag-status {
+  display: flex;
+  grid-area: status;
+  align-self: start;
+  margin: var(--bolt-spacing-y-xsmall) 0 var(--bolt-spacing-y-xsmall)
+    var(--bolt-spacing-x-small);
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+  user-select: none;
+
+  @include bolt-mq($until: medium) {
+    grid-area: none;
+    grid-row-start: 5;
+    grid-column: 1/4;
+    grid-column-start: 2;
+    margin-left: 0;
+  }
+
+  > .c-bolt-listing-teaser__flag-status__item {
+    display: grid;
+    align-content: center;
+    padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xsmall);
+    font-size: var(--bolt-type-font-size-xsmall);
+    color: var(--m-bolt-neutral);
+    line-height: var(--bolt-type-line-height-xsmall);
+    text-align: center;
+    border-left: 1px solid var(--m-bolt-border);
+    white-space: nowrap;
+
+    @include bolt-mq(medium) {
+      min-width: 10.5ch;
+    }
+  }
+}
+
+.c-bolt-listing-teaser__flag-status__number,
+.c-bolt-listing-teaser__flag-status__icon {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: var(--bolt-spacing-y-xxsmall);
+  font-size: var(--bolt-type-font-size-medium);
+  line-height: 1;
+}
+
+.c-bolt-listing-teaser__flag-status__number {
+  font-weight: var(--bolt-type-font-weight-bold);
+}
+
+.c-bolt-listing-teaser__flag-status__icon--solved {
+  color: var(--bolt-color-success);
+}
+
+.c-bolt-listing-teaser__flag-status__icon--locked {
+  color: var(--bolt-color-neutral);
+}
+
+.c-bolt-listing-teaser__meta {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: var(--bolt-type-font-size-xsmall);
+  list-style: none;
+  line-height: var(--bolt-type-line-height-xsmall);
+
+  > .c-bolt-listing-teaser__meta__item {
+    display: inline;
+
+    &:not(:last-child):after {
+      content: '\007C';
+      margin: 0 var(--bolt-spacing-x-xxsmall);
+      color: var(--m-bolt-neutral);
+    }
+
+    > * {
+      display: inline;
+    }
+
+    a,
+    button {
+      position: relative; // This raises the stacking order of the meta link above the main heading link.
+    }
+  }
+}
+
+.c-bolt-listing-teaser__flag-signifier {
+  order: 1;
+}
+
+.c-bolt-listing-teaser__flag-eyebrow {
+  order: 2;
+}
+
+.c-bolt-listing-teaser__flag-heading {
+  order: 3;
+}
+
+.c-bolt-listing-teaser__flag-subheadline {
+  order: 4;
+}
+
+.c-bolt-listing-teaser__flag-content {
+  order: 5;
+}
+
+.c-bolt-listing-teaser__flag-status {
+  order: 6;
+}
+
+.c-bolt-listing-teaser__actions {
+  order: 7;
+}
+
+.c-bolt-listing-teaser--variant-card {
+  @include bolt-shadow('level-20');
+
+  border: 1px solid var(--m-bolt-border);
+  border-radius: bolt-border-radius(small);
+  background-color: var(--m-bolt-bg);
+
+  .c-bolt-listing-teaser__callout {
+    margin-top: 0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
+    border-left: 0;
+  }
+
+  .c-bolt-listing-teaser__callout,
+  .c-bolt-listing-teaser__flag {
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  }
+
+  .c-bolt-listing-teaser__actions {
+    margin-top: var(--bolt-spacing-y-small);
+    margin-right: var(--bolt-spacing-x-small);
+  }
+
+  &.c-bolt-listing-teaser--inset-spacing-small {
+    .c-bolt-listing-teaser__callout,
+    .c-bolt-listing-teaser__flag {
+      padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+    }
+  }
+
+  &.c-bolt-listing-teaser--inset-spacing-xsmall {
+    .c-bolt-listing-teaser__callout,
+    .c-bolt-listing-teaser__flag {
+      padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+    }
+
+    .c-bolt-listing-teaser__actions {
+      margin-top: var(--bolt-spacing-y-xsmall);
+      margin-right: var(--bolt-spacing-x-xsmall);
+    }
+  }
+}
+
+@mixin _c-bolt-listing-teaser-vertical {
+  .c-bolt-listing-teaser__flag {
+    display: block;
+  }
+
+  .c-bolt-listing-teaser__flag-signifier {
+    width: 100%;
+    margin-bottom: var(--bolt-spacing-y-small);
+  }
+
+  .c-bolt-listing-teaser__flag-status {
+    grid-column-start: 1;
+  }
+
+  .c-bolt-listing-teaser__flag-content {
+    margin-bottom: 0;
+
+    .c-bolt-listing-teaser__meta > .c-bolt-listing-teaser__meta__item {
+      display: block;
+      padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xsmall);
+      border-left: 1px solid var(--m-bolt-border);
+
+      &:not(:last-child):after {
+        display: none;
+      }
+    }
+  }
+}
+
+.c-bolt-listing-teaser--layout-vertical {
+  @include _c-bolt-listing-teaser-vertical;
+}
+
+@include bolt-mq($until: small) {
+  .c-bolt-listing-teaser--layout-responsive {
+    @include _c-bolt-listing-teaser-vertical;
+  }
+}

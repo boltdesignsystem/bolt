@@ -16,12 +16,12 @@
         {% include "@bolt-academy/_h5p-embed.twig" %}
         {% grid "o-bolt-grid--center o-bolt-grid--center o-bolt-grid--flex"  %}
           {% cell %}
-            {% include "@bolt-components-button/button.twig" with {
+            {% include '@bolt-elements-button/button.twig' with {
+              content: "Return to mission",
               size: "small",
-              text: "Return to mission",
-              url: "#!",
               border_radius: "full",
               attributes: {
+                href: '#!',
                 class: [
                   "u-bolt-margin-top-medium",
                   "u-bolt-margin-left-auto",

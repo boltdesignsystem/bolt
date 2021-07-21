@@ -25,31 +25,53 @@
   }
 ] %}
 
+{% set icon_prev %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    position: "before",
+    name: "chevron-left"
+  } only %}
+{% endset %}
+
+{% set button_prev %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Previous Topic',
+    hierarchy: "secondary",
+    size: "small",
+    border_radius: "full",
+    icon_before: icon_prev,
+    attributes: {
+      href: link["pages-acd-module-landing-page"]
+    }
+  } only %}
+{% endset %}
+
+{% set icon_next %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    position: "before",
+    name: "chevron-right"
+  } only %}
+{% endset %}
+
+{% set button_next %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Next Topic',
+    hierarchy: "secondary",
+    size: "small",
+    border_radius: "full",
+    icon_after: icon_next,
+    attributes: {
+      href: link["pages-acd-challenge-detail-page"]
+    }
+  } only %}
+{% endset %}
+
 {% block page_controls %}
-  {% include "@bolt-components-button-group/button-group.twig" with {
-    buttons: [
-      {
-        text: "Previous Topic",
-        url: link["pages-acd-module-landing-page"],
-        style: "secondary",
-        size: "small",
-        border_radius: "full",
-        icon: {
-          position: "before",
-          name: "chevron-left"
-        }
-      },
-      {
-        text: "Next Topic",
-        url: link["pages-acd-challenge-detail-page"],
-        style: "secondary",
-        size: "small",
-        border_radius: "full",
-        icon: {
-          position: "after",
-          name: "chevron-right"
-        }
-      }
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    align: "end",
+    items: [
+      button_prev,
+      button_next,
     ]
   } only %}
 {% endblock %}
@@ -133,8 +155,7 @@
         "u-bolt-margin-left-medium@small",
         "u-bolt-margin-bottom-medium",
       ],
-      "on-click": "show",
-      "on-click-target": "js-modal-trigger-image-example--uuid",
+      "data-bolt-modal-target": ".js-modal-trigger-image-example--uuid",
     },
   } only %}
 
@@ -248,7 +269,7 @@
     {% set video %}
       <video-js
         data-account="1900410236"
-        data-player="4fVA8Ojzs"
+        data-player="O3FkeBiaDz"
         data-embed="default"
         data-video-id="3974147489001"
         controls

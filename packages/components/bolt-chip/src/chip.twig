@@ -1,13 +1,12 @@
-{% import "@bolt-components-chip/_chip-macros.twig" as macros %}
+{% import '@bolt-components-chip/_chip-macros.twig' as macros %}
 
-{% set schema = bolt.data.components["@bolt-components-chip"].schema %}
+{% set schema = bolt.data.components['@bolt-components-chip'].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-chip" %}
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
 
@@ -20,37 +19,39 @@
 {% endif %}
 
 {% if url %}
-  {# If url is provided, set tag to "a" #}
-  {% set tag = "a" %}
-  {% set inner_attributes = inner_attributes.setAttribute("href", url) %}
+  {# If url is provided, set tag to 'a' #}
+  {% set tag = 'a' %}
+  {% set inner_attributes = inner_attributes.setAttribute('href', url) %}
   {% if target %}
-    {% set inner_attributes = inner_attributes.setAttribute("target", target) %}
+    {% set inner_attributes = inner_attributes.setAttribute('target', target) %}
   {% endif %}
 {% else %}
   {# Otherwise, it's a whatever tag is passed #}
-  {% set tag = "span" %}
+  {% set tag = 'span' %}
 {% endif %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  base_class,
-  url ? "#{base_class}--link" : "",
-  size ? "#{base_class}--size-#{size}" : "",
-  iconOnly ? "#{base_class}--icon-only" : "",
+  'c-bolt-chip',
+  url ? 'c-bolt-chip--link' : '',
+  size ? 'c-bolt-chip--size-' ~ size : '',
+  border_radius ? 'c-bolt-chip--border-radius-' ~ border_radius : '',
+  color ? 'c-bolt-chip--color-' ~ color : '',
+  iconOnly ? 'c-bolt-chip--icon-only' : '',
 ] %}
 
 {#
   Sort classes passed in via attributes into two groups:
-  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  1. Those that should be applied to the inner tag (namely, 'is-' and 'has-' classes)
   2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
 #}
 {% set outer_classes = [] %}
 {% set inner_classes = classes %}
 
-{% for class in this.props.class %}
-  {% if class starts with "is-" or class starts with "has-" %}
+{% for class in this.props['class'] %}
+  {% if class starts with 'is-' or class starts with 'has-' %}
     {% set inner_classes = inner_classes|merge([class]) %}
-  {% elseif class starts with "c-bolt-" == false %}
+  {% elseif class starts with 'c-bolt-' == false %}
     {% set outer_classes = outer_classes|merge([class]) %}
   {% endif %}
 {% endfor %}
@@ -62,7 +63,7 @@
     {% if target %} target="{{ target }}" {% endif %}
   {% endif %}
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ this.props|without("text")|without("class") }}
+  {{ this.props|without('text')|without('class') }}
 >
   <{{ tag }}
     {% if url %}
@@ -71,10 +72,10 @@
     {% endif %}
     {{ inner_attributes.addClass(inner_classes) }}
   >
-    {{ macros.slotted_icon(icon, icon_position, "before") }}
-    <ssr-keep for="bolt-chip" class="{{ "#{base_class}__text" }}">
+    {{ macros.slotted_icon(icon, icon_position, 'before') }}
+    <ssr-keep for="bolt-chip" class="c-bolt-chip__text">
       {{ text }}
     </ssr-keep>
-    {{ macros.slotted_icon(icon, icon_position, "after") }}
+    {{ macros.slotted_icon(icon, icon_position, 'after') }}
   </{{ tag }}>
 </bolt-chip>{% endspaceless %}

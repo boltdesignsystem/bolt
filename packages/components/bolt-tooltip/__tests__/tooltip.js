@@ -1,13 +1,6 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
+import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../tooltip.schema';
-const { placement, uuid } = schema.properties;
-const timeout = 120000;
+const { placement } = schema.properties;
 
 describe('<bolt-tooltip> Component', () => {
   afterAll(async () => {
@@ -27,7 +20,7 @@ describe('<bolt-tooltip> Component', () => {
   // Advanced Usage
   test('Advanced usage: adding tooltip to button', async () => {
     const results = await render('@bolt-components-tooltip/tooltip.twig', {
-      trigger: '<bolt-button>Download</bolt-button>',
+      trigger: '<button type="button" class="e-bolt-button">Download</button>',
       content: 'File size: 25MB',
     });
     expect(results.ok).toBe(true);

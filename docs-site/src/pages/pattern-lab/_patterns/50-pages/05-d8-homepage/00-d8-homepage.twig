@@ -92,7 +92,7 @@
       buttons: [
         {
           text: "Get Real",
-          style: "primary",
+          hierarchy: "primary",
           url: "#!",
           icon: {
             name: "chevron-right"
@@ -104,10 +104,10 @@
     background: {
       opacity: "heavy",
       fill: "gradient",
-      focalPoint: {
+      focal_point: {
         vertical: "center"
       },
-      contentItems: [
+      content_items: [
         {
           pattern: "image",
           src: "/images/backgrounds/pw19-hp-bg2.jpg",
@@ -181,7 +181,7 @@
           buttons: [
             {
               text: "Learn More",
-              style: "secondary",
+              hierarchy: "secondary",
               url: "#!",
               width: "full"
             },
@@ -284,7 +284,7 @@
           } only %}
           {% include "@bolt/button.twig" with {
             text: "Get Real",
-            style: "primary",
+            hierarchy: "primary",
             size: "small"
           } only %}
         {% endcell %}

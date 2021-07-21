@@ -19,16 +19,6 @@ export async function renderString(template, data) {
 
 export { stopServer };
 
-export const vrtDefaultConfig = {
-  failureThreshold: '0.002',
-  failureThresholdType: 'percent',
-  customDiffConfig: {
-    // Please note the threshold set in the customDiffConfig is the per pixel sensitivity threshold. For example with a source pixel colour of #ffffff (white) and a comparison pixel colour of #fcfcfc (really light grey) if you set the threshold to 0 then it would trigger a failure on that pixel. However if you were to use say 0.5 then it wouldn't, the colour difference would need to be much more extreme to trigger a failure on that pixel, say #000000 (black)
-    threshold: '0.1',
-    includeAA: false, // If true, disables detecting and ignoring anti-aliased pixels. false by default.
-  },
-};
-
 /**
  * Takes the web component markup passed in, waits for it to render, then returns back the rendered inner and outer HTML
  * @param {*} componentTag - the web component HTML tag being rendered
@@ -48,15 +38,31 @@ export async function renderWC(componentTag, html, page) {
       const undefinedElements = document.querySelectorAll(
         `${componentTag}, ssr-keep`,
       );
-
-      const promises = [...undefinedElements].map(elem =>
-        customElements.whenDefined(elem.localName),
+      const promises = [...undefinedElements].map(
+        elem =>
+          // Here in the Jest `page` context, `customElements` and `whenDefined` do not exist.
+          // It's not a complete DOM. We must set a timer and wait for component to be ready, then return.
+          new Promise((resolve, reject) => {
+            const interval = setInterval(() => {
+              // Consider component loaded once this is true
+              if (typeof elem.firstUpdated === 'function') {
+                resolve();
+                clearInterval(interval);
+              }
+            });
+            setTimeout(() => {
+              // bail after 5 seconds
+              resolve();
+            }, 5000);
+          }),
       );
+
       await Promise.all(promises);
+
       const component = document.querySelector(
         `.${uuidSelector} ${componentTag}`,
       );
-      await component.firstUpdated;
+
       return {
         innerHTML: component.renderRoot.innerHTML,
         outerHTML: component.outerHTML,
@@ -67,11 +73,3 @@ export async function renderWC(componentTag, html, page) {
     uuid,
   );
 }
-
-// import {
-//   // isConnected,
-//   // render,
-//   // renderString,
-//   // stopServer,
-//   html,
-// } from '../../../testing-helpers';

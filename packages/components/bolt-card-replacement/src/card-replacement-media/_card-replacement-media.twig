@@ -1,40 +1,40 @@
-{% set card_replacement_image = media.image %}
-{% set card_replacement_video = media.video %}
+{% set _card_replacement_image = media.image %}
+{% set _card_replacement_video = media.video %}
 {% set attributes = create_attribute(media.attributes|default({})) %}
 
-{% set card_replacement_media_content = media.content %}
+{% set _card_replacement_media_content = media.content %}
 
-{% if horizontal and card_replacement_image %}
-  {% set card_replacement_image = card_replacement_image | merge({
+{% if horizontal and _card_replacement_image %}
+  {% set _card_replacement_image = _card_replacement_image|merge({
     ratio: false,
     cover: true,
   }) %}
 {% endif %}
 
-{% if card_replacement_media_content %}
-  {{ card_replacement_media_content }}
+{% if _card_replacement_media_content %}
+  {{ _card_replacement_media_content }}
 {% else %}
-  {% if card_replacement_image or block("media") %}
+  {% if _card_replacement_image or block('media') is defined %}
     <bolt-card-replacement-media {{ attributes }}>
       <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media">
-        {% if card_replacement_image %}
-          {% include "@bolt-components-image/image.twig" with card_replacement_image only %}
-        {% elseif block("media") %}
-          {{ block("media") }}
+        {% if _card_replacement_image %}
+          {% include '@bolt-components-image/image.twig' with _card_replacement_image only %}
+        {% elseif block('media') is defined %}
+          {{ block('media') }}
         {% endif %}
       </ssr-keep>
     </bolt-card-replacement-media>
   {% endif %}
 
-  {% if (card_replacement_video.videoId) %}
-    {% set card_replacement_video %}
-      {% include "@bolt-components-video/video.twig" with card_replacement_video only %}
+  {% if (_card_replacement_video.videoId) %}
+    {% set _card_replacement_video %}
+      {% include '@bolt-components-video/video.twig' with _card_replacement_video only %}
     {% endset %}
   {% endif %}
-  {% if card_replacement_video %}
+  {% if _card_replacement_video %}
     <bolt-card-replacement-media {{ attributes }}>
       <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media c-bolt-card_replacement__media--video">
-        {{ card_replacement_video }}
+        {{ _card_replacement_video }}
       </ssr-keep>
     </bolt-card-replacement-media>
   {% endif %}

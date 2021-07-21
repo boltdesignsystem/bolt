@@ -60,14 +60,17 @@
   {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix" %}
     {{ persistent_modal_content }}
     {% cell "u-bolt-width-12/12" %}
-      {% include "@bolt-components-link/link.twig" with {
-        text: return_link_text,
-        url: return_link_url,
-        icon: {
+      {% set icon_chevron_left %}
+        {% include "@bolt-components-icon/icon.twig" with {
           name: "chevron-left",
-          position: "before"
-        },
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: return_link_text,
+        icon_before: icon_chevron_left,
         attributes: {
+          href: return_link_url,
           "data-bolt-autofocus": ""
         }
       } only %}
@@ -86,23 +89,24 @@
 <bolt-text headline font-size="xlarge">Persistent Modal Usage</bolt-text>
 <bolt-text>Persistent modal is useful when creating subscription based content. To create one, two props are required: <code>persistent</code> and <code>persistent_return_url</code>. When a modal is persistent, the default close button is not shown, the only ways to close the modal is through filling out the form, hitting the return link, or hitting the escape key on the keyboard (which acts exactly like the return link).</bolt-text>
 <bolt-text>Activate the modal to see more instructions on setting up the twig template.</bolt-text>
-{% include "@bolt-components-button/button.twig" with {
-  text: "Activate the persistent modal",
+{% include "@bolt-elements-button/button.twig" with {
+  content: "Activate the persistent modal",
   size: "small",
   attributes: {
-    onclick: "this.nextElementSibling.show()",
+    type: 'button',
+    "data-bolt-modal-target": ".js-bolt-modal--usage-persistent",
   }
 } only %}
 
 {# The persistent modal #}
 {% include "@bolt-components-modal/modal.twig" with {
-  attributes: {
-    class: "js-image-modal-advanced-complex-layout",
-  },
   persistent_return_url: return_link_url,
   content: modal_content,
   width: "full",
   spacing: "none",
   scroll: "overall",
   persistent: true,
+  attributes: {
+    class: "js-bolt-modal--usage-persistent",
+  },
 } only %}

@@ -1,13 +1,6 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-} from '../../../testing/testing-helpers';
+import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../popover.schema';
-const { placement, spacing, theme, uuid } = schema.properties;
-const timeout = 120000;
+const { placement, spacing, theme } = schema.properties;
 
 describe('<bolt-popover> Component', () => {
   afterAll(async () => {
@@ -17,9 +10,10 @@ describe('<bolt-popover> Component', () => {
   // Basic Usage
   test('basic usage', async () => {
     const results = await render('@bolt-components-popover/popover.twig', {
-      trigger: '<bolt-button>This triggers a popover</bolt-button>',
+      trigger:
+        '<button type="button" class="e-bolt-button">This triggers a popover</button>',
       content:
-        'This is the content of the popover with a <bolt-link url="https://pega.com">call to action</bolt-link>.',
+        'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -29,9 +23,10 @@ describe('<bolt-popover> Component', () => {
   placement.enum.forEach(async placementChoice => {
     test(`content placement: ${placementChoice}`, async () => {
       const results = await render('@bolt-components-popover/popover.twig', {
-        trigger: '<bolt-button>This triggers a popover</bolt-button>',
+        trigger:
+          '<button type="button" class="e-bolt-button">This triggers a popover</button>',
         content:
-          'This is the content of the popover with a <bolt-link url="https://pega.com">call to action</bolt-link>.',
+          'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
         placement: placementChoice,
       });
       expect(results.ok).toBe(true);
@@ -42,9 +37,10 @@ describe('<bolt-popover> Component', () => {
   spacing.enum.forEach(async spacingChoice => {
     test(`content spacing: ${spacingChoice}`, async () => {
       const results = await render('@bolt-components-popover/popover.twig', {
-        trigger: '<bolt-button>This triggers a popover</bolt-button>',
+        trigger:
+          '<button type="button" class="e-bolt-button">This triggers a popover</button>',
         content:
-          'This is the content of the popover with a <bolt-link url="https://pega.com">call to action</bolt-link>.',
+          'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
         spacing: spacingChoice,
       });
       expect(results.ok).toBe(true);
@@ -55,9 +51,10 @@ describe('<bolt-popover> Component', () => {
   theme.enum.forEach(async themeChoice => {
     test(`content theme: ${themeChoice}`, async () => {
       const results = await render('@bolt-components-popover/popover.twig', {
-        trigger: '<bolt-button>This triggers a popover</bolt-button>',
+        trigger:
+          '<button type="button" class="e-bolt-button">This triggers a popover</button>',
         content:
-          'This is the content of the popover with a <bolt-link url="https://pega.com">call to action</bolt-link>.',
+          'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
         theme: themeChoice,
       });
       expect(results.ok).toBe(true);
@@ -67,9 +64,10 @@ describe('<bolt-popover> Component', () => {
 
   test(`UUID of the popover`, async () => {
     const results = await render('@bolt-components-popover/popover.twig', {
-      trigger: '<bolt-button>This triggers a popover</bolt-button>',
+      trigger:
+        '<button type="button" class="e-bolt-button">This triggers a popover</button>',
       content:
-        'This is the content of the popover with a <bolt-link url="https://pega.com">call to action</bolt-link>.',
+        'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
       uuid: 'custom-unique-id',
     });
     expect(results.ok).toBe(true);

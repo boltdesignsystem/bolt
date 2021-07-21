@@ -17,10 +17,16 @@
   'js-bolt-page-header-nav-item',
   'c-bolt-page-header__nav-list-item',
   popover ? 'c-bolt-page-header__nav-list-item--popover',
+  view_all ? 'c-bolt-page-header__nav-list-item--view-all',
   full_width ? 'c-bolt-page-header__nav-list-item--full-width',
   children ? 'has-children',
   selected ? 'is-selected',
   current ? 'is-current',
+] %}
+
+{% set link_classes = [
+  'c-bolt-page-header__nav-link',
+  link.desktop_heading ? 'c-bolt-page-header__nav-link--heading',
 ] %}
 
 {# Template #}
@@ -33,7 +39,7 @@
     {% if link and children %}
       {# Visible desktop heading #}
       {% if link.desktop_heading %}
-        <{{ link_tag }} {{ link_attributes }} class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+        <{{ link_tag }} {{ link_attributes.addClass(link_classes) }}>
           <strong class="c-bolt-page-header__nav-link__content">
             {{ link.content }}
           </strong>
@@ -41,11 +47,7 @@
       {% endif %}
 
       {# Trigger and content for nested children #}
-      {% set children_link_classes = [
-        'js-bolt-page-header-trigger',
-        'c-bolt-page-header__nav-link',
-      ] %}
-      <button type="button" aria-expanded="false" {{ link_attributes.addClass(children_link_classes)|without('href')|without('target')|without('type')|without('aria-expanded') }}>
+      <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
         <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
         <span class="c-bolt-page-header__nav-link__content">
           {{ link.content }}
@@ -55,11 +57,7 @@
       {{ children }}
     {% else %}
       {# Simple link without children #}
-      {% set link_classes = [
-        'c-bolt-page-header__nav-link',
-        link.desktop_heading ? 'c-bolt-page-header__nav-link--heading'
-      ] %}
-      <{{ link_tag }} {{ link_attributes.addClass(link_classes) }} {% if selected and not current %}aria-current="true"{% endif %}>
+      <{{ link_tag }} {{ link_attributes.addClass(link_classes)|without('aria-current') }} {% if selected and not current %}aria-current="true"{% endif %}>
         <span class="c-bolt-page-header__nav-link__content">
           {{ link.content }}
         </span>

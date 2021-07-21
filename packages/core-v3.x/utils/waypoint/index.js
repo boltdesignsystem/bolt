@@ -8,8 +8,8 @@ export class Waypoint {
     this.options = {
       /**
        * `items` is an array of objects. Each object contains two keys:
-       *   - `target` is the element monitored as it scrolls in and out of the boundary area.
-       *   - `trigger` is the link or actionable element associated with this target (optional).
+       *   - `element` is the element monitored as it scrolls in and out of the boundary area.
+       *   - `trigger` is the link or actionable element associated with this element (optional).
        */
       items: [],
 
@@ -114,9 +114,9 @@ export class Waypoint {
   checkWaypoint(item) {
     if (this.scrolling) return;
 
-    const { trigger, target, position } = item;
+    const { trigger, element, position } = item;
     const bounds = getBounds(
-      target,
+      element,
       window,
       this.options.topOffset,
       this.options.bottomOffset,
@@ -128,14 +128,11 @@ export class Waypoint {
     // Save previous position as early as possible to prevent cycles
     item._previousPosition = currentPosition;
 
-    // We could return here if we were listening on each item rather than iterating over an array of items.
-    // The latter, while reducing scroll jank, can cause a race condition when scrolling rapidly where the
-    // `activeItem` is not properly set. So, let the code below always execute to avoid that race condition.
-    // if (previousPosition === currentPosition) return;
+    if (previousPosition === currentPosition) return;
 
     const callbackArg = {
       trigger,
-      target,
+      element,
       currentPosition,
       previousPosition,
       waypointTop: bounds.waypointTop,

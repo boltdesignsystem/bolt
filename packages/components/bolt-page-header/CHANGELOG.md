@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v4.0.0-beta-4...v4.0.0) (2021-06-23)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+# [3.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v3.7.1...v3.8.0) (2021-06-10)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+# [3.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v3.5.4...v3.6.0) (2021-05-13)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+# [3.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v3.4.3...v3.5.0) (2021-04-09)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+## [3.4.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v3.4.1...v3.4.2) (2021-03-31)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+# [3.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v3.3.1...v3.4.0) (2021-03-29)
+
+
+### Bug Fixes
+
+* add dot value to conditions ([1ca5233](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/commit/1ca52338658be12340198553e50f5face7dcfb25))
+
+
+
+
+
+# [3.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v3.2.0...v3.3.0) (2021-03-12)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+## [3.1.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+
+### Bug Fixes
+
+* make secondary content container conditional ([66642e5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/commit/66642e54ff80971370c36373c7f12e9498db2e01))
+
+
+
+
+
 # [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v2.31.2...v3.1.0) (2021-02-08)
 
 **Note:** Version bump only for package @bolt/components-page-header

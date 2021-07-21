@@ -5,19 +5,19 @@
     <tbody>
       <tr>
         <th>
-          {% include "@bolt-components-button/button.twig" with {
-            text: "Button trigger",
+          {% include "@bolt-elements-button/button.twig" with {
+            content: "Button trigger",
             size: "small",
             attributes: {
-              "on-click": "show",
-              "on-click-target": "js-modal-trigger-button",
+              type: 'button',
+              "data-bolt-modal-target": ".js-bolt-modal--trigger-button",
             },
           } only %}
           {% include "@bolt-components-modal/modal.twig" with {
-            attributes: {
-              class: "js-modal-trigger-button"
-            },
             content: "This modal is triggered by a button.",
+            attributes: {
+              class: "js-bolt-modal--trigger-button"
+            },
           } only %}
         </th>
         <td>
@@ -46,20 +46,19 @@
             cursor: "zoom-in",
             display: "block",
             attributes: {
-              "on-click": "show",
-              "on-click-target": "js-modal-trigger-image",
+              "data-bolt-modal-target": ".js-bolt-modal--trigger-image",
             },
           } only %}
 
           {% include "@bolt-components-modal/modal.twig" with {
-            attributes: {
-              class: "js-modal-trigger-image"
-            },
             content: modal_content,
             spacing: "none",
             theme: "none",
             scroll: "overall",
             width: "auto",
+            attributes: {
+              class: "js-bolt-modal--trigger-image"
+            },
           } only %}
         </th>
         <td>
@@ -69,10 +68,23 @@
       </tr>
       <tr>
         <th>
-          <del>Link trigger</del>
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: "Link trigger",
+            attributes: {
+              href: '#',
+              "data-bolt-modal-target": ".js-bolt-modal--trigger-link",
+            },
+          } only %}
+
+          {% include "@bolt-components-modal/modal.twig" with {
+            content: "This modal is triggered by a link.",
+            attributes: {
+              class: "js-bolt-modal--trigger-link"
+            },
+          } only %}
         </th>
         <td>
-          Link trigger is currently not supported.
+          Buttons are preferred for opening a modal, but you can use a link in a pinch.
         </td>
       </tr>
     </tbody>

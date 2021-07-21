@@ -1,54 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<bolt-breadcrumb> Component basic usage with attributes 1`] = `
-<bolt-breadcrumb bolt-component>
-  <nav data-foobar="baz"
-       aria-role="list"
-       class="c-bolt-breadcrumb"
-       aria-label="Breadcrumb"
-       role="navigation"
-  >
-    <ol class="c-bolt-breadcrumb__list">
-      <li class="c-bolt-breadcrumb__item">
-        <bolt-link display="inline"
-                   valign="center"
-                   url="#!"
-        >
-          <a href="#!"
-             is="shadow-root"
-             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-          >
-            <ssr-keep for="bolt-link"
-                      class="c-bolt-link__text"
-            >
-              Home
-            </ssr-keep>
-          </a>
-        </bolt-link>
-      </li>
-      <li class="c-bolt-breadcrumb__item">
-        <bolt-link display="inline"
-                   valign="center"
-                   url="#!"
-        >
-          <a href="#!"
-             is="shadow-root"
-             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-          >
-            <ssr-keep for="bolt-link"
-                      class="c-bolt-link__text"
-            >
-              Other Page
-            </ssr-keep>
-          </a>
-        </bolt-link>
-      </li>
-    </ol>
-  </nav>
-</bolt-breadcrumb>
-`;
-
-exports[`<bolt-breadcrumb> Component basic usage with contentItems including rendered components and strings 1`] = `
+exports[`Bolt Breadcrumb basic usage with contentItems including rendered components and strings 1`] = `
 <bolt-breadcrumb bolt-component>
   <nav class="c-bolt-breadcrumb"
        aria-label="Breadcrumb"
@@ -56,65 +8,40 @@ exports[`<bolt-breadcrumb> Component basic usage with contentItems including ren
   >
     <ol class="c-bolt-breadcrumb__list">
       <li class="c-bolt-breadcrumb__item">
-        <bolt-link display="inline"
-                   valign="center"
-                   url="#!"
+        <a href="#!"
+           class="e-bolt-text-link"
         >
-          <a href="#!"
-             is="shadow-root"
-             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-          >
-            <ssr-keep for="bolt-link"
-                      class="c-bolt-link__text"
-            >
-              Home
-            </ssr-keep>
-          </a>
-        </bolt-link>
+          Home
+        </a>
       </li>
       <li class="c-bolt-breadcrumb__item">
-        <bolt-link display="inline"
-                   valign="center"
-                   url="#!"
+        <a href="#!"
+           class="e-bolt-text-link"
         >
-          <a href="#!"
-             is="shadow-root"
-             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-          >
-            <ssr-keep for="bolt-link"
-                      class="c-bolt-link__text"
-            >
-              Landing Page
-            </ssr-keep>
-          </a>
-        </bolt-link>
+          Other Page
+        </a>
       </li>
       <li class="c-bolt-breadcrumb__item">
-        <bolt-link display="inline"
-                   valign="center"
-                   url="#!"
+        <a href="#!"
+           class="e-bolt-text-link"
         >
-          <a href="#!"
-             is="shadow-root"
-             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-          >
-            <ssr-keep for="bolt-link"
-                      class="c-bolt-link__text"
-            >
-              Sub Page
-            </ssr-keep>
-          </a>
-        </bolt-link>
+          Sub Page
+        </a>
       </li>
       <li class="c-bolt-breadcrumb__item">
-        Current Page
+        <a href="#!"
+           aria-current
+           class="e-bolt-text-link"
+        >
+          Fourth Page
+        </a>
       </li>
     </ol>
   </nav>
 </bolt-breadcrumb>
 `;
 
-exports[`<bolt-breadcrumb> Component current page aria variation 1`] = `
+exports[`Bolt Breadcrumb default 1`] = `
 <bolt-breadcrumb bolt-component>
   <nav class="c-bolt-breadcrumb"
        aria-label="Breadcrumb"
@@ -122,74 +49,25 @@ exports[`<bolt-breadcrumb> Component current page aria variation 1`] = `
   >
     <ol class="c-bolt-breadcrumb__list">
       <li class="c-bolt-breadcrumb__item">
-        <bolt-link display="inline"
-                   valign="center"
-                   url="#!"
+        <a href="#!"
+           class="e-bolt-text-link"
         >
-          <a href="#!"
-             is="shadow-root"
-             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-          >
-            <ssr-keep for="bolt-link"
-                      class="c-bolt-link__text"
-            >
-              Home
-            </ssr-keep>
-          </a>
-        </bolt-link>
+          Home
+        </a>
       </li>
       <li class="c-bolt-breadcrumb__item">
-        <bolt-link display="inline"
-                   valign="center"
-                   url="#!"
+        <a href="#!"
+           class="e-bolt-text-link"
         >
-          <a href="#!"
-             is="shadow-root"
-             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-          >
-            <ssr-keep for="bolt-link"
-                      class="c-bolt-link__text"
-            >
-              Landing Page
-            </ssr-keep>
-          </a>
-        </bolt-link>
+          Other Page
+        </a>
       </li>
       <li class="c-bolt-breadcrumb__item">
-        <bolt-link display="inline"
-                   valign="center"
-                   url="#!"
+        <a href="#!"
+           class="e-bolt-text-link"
         >
-          <a href="#!"
-             is="shadow-root"
-             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-          >
-            <ssr-keep for="bolt-link"
-                      class="c-bolt-link__text"
-            >
-              Sub Page
-            </ssr-keep>
-          </a>
-        </bolt-link>
-      </li>
-      <li class="c-bolt-breadcrumb__item">
-        <bolt-link display="inline"
-                   valign="center"
-                   url="#!"
-                   aria-current
-        >
-          <a href="#!"
-             is="shadow-root"
-             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
-             aria-current
-          >
-            <ssr-keep for="bolt-link"
-                      class="c-bolt-link__text"
-            >
-              Current Page
-            </ssr-keep>
-          </a>
-        </bolt-link>
+          Sub Page
+        </a>
       </li>
     </ol>
   </nav>

@@ -26,6 +26,12 @@ module.exports = {
         required: ['itemAlignment'],
       },
       {
+        required: ['tag'],
+      },
+      {
+        required: ['style'],
+      },
+      {
         required: ['rounded'],
       },
     ],
@@ -79,8 +85,8 @@ module.exports = {
       description:
         'Horizontal alignment of items (text and icon) inside the button. Note: the values left and right are deprecated, use start and end instead.',
       type: 'string',
-      enum: ['start', 'center', 'end'],
       default: 'center',
+      enum: ['start', 'center', 'end'],
     },
     icon: iconSchema,
     iconOnly: {

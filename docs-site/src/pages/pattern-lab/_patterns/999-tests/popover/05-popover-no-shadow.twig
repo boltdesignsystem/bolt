@@ -1,0 +1,38 @@
+{% set link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'call to action',
+    attributes: {
+      href: 'https://pega.com'
+    }
+  } only %}
+{% endset %}
+
+{% set trigger %}
+  {% include '@bolt-elements-button/button.twig' with {
+  content: 'This triggers a popover',
+  attributes: {
+    type: 'button'
+  }
+} only %}
+{% endset %}
+
+{% set content %}
+  This is the content of the popover with a {{ link }}.
+{% endset %}
+
+<h2>Popover with no-shadow</h2>
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: trigger,
+  content: content,
+  attributes: {
+    'no-shadow': ''
+  }
+} only %}
+
+<h2>Popover in a form</h2>
+<form action="">
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: trigger,
+    content: content
+  } only %}
+</form>

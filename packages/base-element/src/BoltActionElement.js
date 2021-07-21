@@ -2,27 +2,15 @@ import { declarativeClickHandler } from '@bolt/core-v3.x/utils/declarative-click
 import { watchForComponentMutations } from '@bolt/core-v3.x/utils/watch-for-component-mutations';
 import { supportsShadowDom } from './lib/utils';
 import { BoltElement } from './BoltElement';
+import schema from './BoltActionElement.schema';
 
 // Subclass of BoltElement that's designed to handle link-like component behavior
 class BoltActionElement extends BoltElement {
+  static schema = schema;
+
   static get properties() {
     return {
-      url: {
-        type: String,
-        alias: 'href',
-      },
-      target: { type: String },
-      disabled: {
-        type: Boolean,
-      },
-      onClick: {
-        type: String,
-        attribute: 'on-click',
-      },
-      onClickTarget: {
-        type: String,
-        attribute: 'on-click-target',
-      },
+      ...this.props,
     };
   }
 

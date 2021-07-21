@@ -26,14 +26,13 @@
 // 3. Full width must be defined in order for the list to dislay correctly in Firefox.
 // 4. Full width and 1px offset must be defined in order for the list to dislay correctly in Safari.
 .c-bolt-list {
-  @include bolt-font-family(body); // [1]
-  @include bolt-font-size(medium); // [1]
-  @include bolt-font-weight(regular); // [1]
-
   margin: 0;
   padding: 0;
+  font-family: var(--bolt-type-font-family-body); // [1]
+  font-size: var(--bolt-type-font-size-medium); // [1]
+  font-weight: var(--bolt-type-font-weight-regular); // [1]
   list-style: none;
-  text-align: left; // [2]
+  line-height: var(--bolt-type-line-height-medium);
   text-align: start; // [2]
 }
 

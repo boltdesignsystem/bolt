@@ -3,6 +3,84 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v4.0.0-beta-4...v4.0.0) (2021-06-23)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
+# [3.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v3.7.1...v3.8.0) (2021-06-10)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
+## [3.7.1](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v3.7.0...v3.7.1) (2021-06-08)
+
+
+### Bug Fixes
+
+* paragraph spacing and redundant rules ([13d7ffe](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/13d7ffe0868b8b09199ffacd852875fadd1c4e1f))
+
+
+
+
+
+# [3.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v3.5.4...v3.6.0) (2021-05-13)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
+# [3.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v3.4.3...v3.5.0) (2021-04-09)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
+## [3.4.2](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v3.4.1...v3.4.2) (2021-03-31)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
+# [3.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v3.3.1...v3.4.0) (2021-03-29)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
+# [3.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v3.2.0...v3.3.0) (2021-03-12)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
+## [3.1.2](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+
+### Bug Fixes
+
+* theme colors for modal and card ([b925855](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/b9258555ccde4624ce9a2025b9c3776fd38aaee6))
+
+
+
+
+
 # [3.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.31.2...v3.1.0) (2021-02-08)
 
 **Note:** Version bump only for package @bolt/global

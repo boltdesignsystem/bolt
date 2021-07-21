@@ -10,11 +10,11 @@
     background: {
       opacity: "medium",
       fill: "gradient",
-      focalPoint: {
+      focal_point: {
         vertical: "center",
         horizontal: "right"
       },
-      contentItems: [{
+      content_items: [{
         pattern: "image",
         src: "/images/placeholders/landscape-16x9-mountains.jpeg"
       }]
@@ -67,16 +67,19 @@
         {% cell 'u-bolt-width-1/1 u-bolt-width-3/12@medium' %}
           <div class="c-bolt-search-filter">
             <div class="c-bolt-search-filter__trigger">
-              {% include "@bolt-components-button/button.twig" with {
-                "text": "Close search filters",
-                "url": "#search-filters",
-                "size": "xsmall",
-                "style": "primary",
-                "border_radius": "full",
-                "iconOnly": true,
-                "icon": {
-                  "name": "more",
-                  "size": "medium"
+              {% set _icon_filter %}
+                {% include '@bolt-components-icon/icon.twig' with {
+                  name: 'filter',
+                  size: 'medium'
+                } only %}
+              {% endset %}
+              {% include '@bolt-elements-button/button.twig' with {
+                content: 'Close search filters',
+                icon_only: _icon_filter,
+                border_radius: 'full',
+                size: 'xsmall',
+                attributes: {
+                  href: '#search-filters'
                 }
               } only %}
             </div>
@@ -277,32 +280,49 @@
               </div>
 
               <div class="c-bolt-search-filter__panel-controls c-bolt-search-filter__panel-controls--submit">
-                {% include "@bolt-components-button-group/button-group.twig" with {
-                  "buttons": [
-                    {
-                      "text": "Apply",
-                      "style": "primary"
-                    },
-                    {
-                      "text": "Cancel",
-                      "url": "#!",
-                      "style": "secondary"
+                {% set button_apply %}
+                  {% include '@bolt-elements-button/button.twig' with {
+                    content: 'Apply',
+                    hierarchy: "primary",
+                    attributes: {
+                      type: 'submit'
                     }
+                  } only %}
+                {% endset %}
+
+                {% set button_cancel %}
+                  {% include '@bolt-elements-button/button.twig' with {
+                    content: 'Cancel',
+                    hierarchy: "secondary",
+                    attributes: {
+                      href: '#!'
+                    }
+                  } only %}
+                {% endset %}
+
+                {% include "@bolt-components-list/list.twig" with {
+                  items: [
+                    button_apply,
+                    button_cancel,
                   ]
                 } only %}
               </div>
 
               <div class="c-bolt-search-filter__panel-controls c-bolt-search-filter__panel-controls--close">
-                {% include "@bolt-components-button/button.twig" with {
-                  "text": "Close search filters",
-                  "url": "#!",
-                  "size": "xsmall",
-                  "style": "text",
-                  "border_radius": "full",
-                  "iconOnly": true,
-                  "icon": {
-                    "name": "close",
-                    "size": "medium"
+                {% set _icon_close %}
+                  {% include '@bolt-components-icon/icon.twig' with {
+                    name: 'close',
+                    size: 'medium'
+                  } only %}
+                {% endset %}
+                {% include '@bolt-elements-button/button.twig' with {
+                  content: 'Close search filters',
+                  icon_only: _icon_close,
+                  hierarchy: 'transparent',
+                  border_radius: 'full',
+                  size: 'xsmall',
+                  attributes: {
+                    href: '#!'
                   }
                 } only %}
               </div>
@@ -314,38 +334,29 @@
           {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
             {% for i in 1..12 %}
               {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-                {% include "@bolt-components-card/card.twig" with {
-                  "theme": "xlight",
-                  "image": {
-                    "src": "/images/placeholders/landscape-16x9-mountains.jpeg"
-                  },
-                  "teaser": {
-                    "eyebrow": {
-                      text: "Systems Integrator"
+                {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+                  theme: "xlight",
+                  media: {
+                    image: {
+                      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+                      alt: "Image alt.",
                     },
-                    "headlines": [
-                      {
-                        "type": "headline",
-                        "text": "Partner Name",
-                        "size": "large"
-                      }
-                    ],
-                    "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
-                    "buttons": [
-                      {
-                        "text": "Partner Website",
-                        "style": "secondary",
-                        "url": "http://pega.com/",
-                        "width": "full"
-                      },
-                      {
-                        "text": "App Exchange",
-                        "style": "secondary",
-                        "url": "http://pega.com/",
-                        "width": "full"
-                      }
-                    ]
-                  }
+                  },
+                  body: {
+                    eyebrow: "Systems Integrator",
+                    headline: "Partner Name",
+                    paragraph: "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  },
+                  actions: [
+                    {
+                      text: "Partner Website",
+                      url: "https://pega.com",
+                    },
+                    {
+                      text: "App Exchange",
+                      url: "https://pega.com",
+                    },
+                  ],
                 } only %}
               {% endcell %}
             {% endfor %}

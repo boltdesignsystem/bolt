@@ -89,18 +89,20 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders 1`] = `
        aria-label="Previous slide"
        aria-disabled="true"
   >
-    <bolt-button size="medium"
-                 border-radius="full"
-                 color="secondary"
-                 icon-only
+    <span class="e-bolt-button
+        e-bolt-button--medium
+        e-bolt-button--border-radius-full
+        e-bolt-button--secondary
+        e-bolt-button--icon-only"
+          aria-hidden="true"
     >
-      Previous
-      <bolt-icon size="large"
-                 slot="before"
-                 name="chevron-left"
-      >
-      </bolt-icon>
-    </bolt-button>
+      <span class="e-bolt-button__icon-center">
+        <bolt-icon size="large"
+                   name="chevron-left"
+        >
+        </bolt-icon>
+      </span>
+    </span>
   </div>
   <div class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--inside"
        tabindex="0"
@@ -108,18 +110,20 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders 1`] = `
        aria-label="Next slide"
        aria-disabled="false"
   >
-    <bolt-button size="medium"
-                 border-radius="full"
-                 color="secondary"
-                 icon-only
+    <span class="e-bolt-button
+        e-bolt-button--medium
+        e-bolt-button--border-radius-full
+        e-bolt-button--secondary
+        e-bolt-button--icon-only"
+          aria-hidden="true"
     >
-      Next
-      <bolt-icon size="large"
-                 slot="before"
-                 name="chevron-right"
-      >
-      </bolt-icon>
-    </bolt-button>
+      <span class="e-bolt-button__icon-center">
+        <bolt-icon size="large"
+                   name="chevron-right"
+        >
+        </bolt-icon>
+      </span>
+    </span>
   </div>
 </bolt-carousel>
 `;
@@ -213,24 +217,24 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls 1`] = `
        aria-label="Previous slide"
        aria-disabled="true"
   >
-    <bolt-button slot="previous-btn"
-                 color="secondary"
-                 border-radius="full"
-                 icon-only
-                 tabindex="-1"
+    <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+          aria-hidden="true"
+          slot="previous-btn"
+          tabindex="-1"
     >
-      Previous
-      <bolt-icon slot="before"
-                 name="chevron-left"
-      >
-        <span class="c-bolt-icon c-bolt-icon--chevron-left c-bolt-icon--auto">
-          <svg class="c-bolt-icon__icon">
-            <use href="#chevron-left">
-            </use>
-          </svg>
-        </span>
-      </bolt-icon>
-    </bolt-button>
+      <span class="e-bolt-button__icon-center">
+        <bolt-icon name="chevron-left"
+                   size="large"
+        >
+          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-left c-bolt-icon--auto">
+            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
+              <use href="#chevron-left">
+              </use>
+            </svg>
+          </span>
+        </bolt-icon>
+      </span>
+    </span>
   </div>
   <div class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--inside"
        tabindex="0"
@@ -238,24 +242,24 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls 1`] = `
        aria-label="Next slide"
        aria-disabled="false"
   >
-    <bolt-button slot="next-btn"
-                 color="secondary"
-                 border-radius="full"
-                 icon-only
-                 tabindex="-1"
+    <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+          aria-hidden="true"
+          slot="next-btn"
+          tabindex="-1"
     >
-      Next
-      <bolt-icon slot="after"
-                 name="chevron-right"
-      >
-        <span class="c-bolt-icon c-bolt-icon--chevron-right c-bolt-icon--auto">
-          <svg class="c-bolt-icon__icon">
-            <use href="#chevron-right">
-            </use>
-          </svg>
-        </span>
-      </bolt-icon>
-    </bolt-button>
+      <span class="e-bolt-button__icon-center">
+        <bolt-icon name="chevron-right"
+                   size="large"
+        >
+          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-right c-bolt-icon--auto">
+            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
+              <use href="#chevron-right">
+              </use>
+            </svg>
+          </span>
+        </bolt-icon>
+      </span>
+    </span>
   </div>
 </bolt-carousel>
 `;
@@ -351,24 +355,24 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
        aria-label="Previous slide"
        aria-disabled="true"
   >
-    <bolt-button slot="previous-btn"
-                 color="secondary"
-                 border-radius="full"
-                 icon-only
-                 tabindex="-1"
+    <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+          aria-hidden="true"
+          slot="previous-btn"
+          tabindex="-1"
     >
-      Previous
-      <bolt-icon slot="before"
-                 name="chevron-left"
-      >
-        <span class="c-bolt-icon c-bolt-icon--chevron-left c-bolt-icon--auto">
-          <svg class="c-bolt-icon__icon">
-            <use href="#chevron-left">
-            </use>
-          </svg>
-        </span>
-      </bolt-icon>
-    </bolt-button>
+      <span class="e-bolt-button__icon-center">
+        <bolt-icon name="chevron-left"
+                   size="large"
+        >
+          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-left c-bolt-icon--auto">
+            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
+              <use href="#chevron-left">
+              </use>
+            </svg>
+          </span>
+        </bolt-icon>
+      </span>
+    </span>
   </div>
   <div class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--outside"
        tabindex="0"
@@ -376,24 +380,24 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
        aria-label="Next slide"
        aria-disabled="false"
   >
-    <bolt-button slot="next-btn"
-                 color="secondary"
-                 border-radius="full"
-                 icon-only
-                 tabindex="-1"
+    <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+          aria-hidden="true"
+          slot="next-btn"
+          tabindex="-1"
     >
-      Next
-      <bolt-icon slot="after"
-                 name="chevron-right"
-      >
-        <span class="c-bolt-icon c-bolt-icon--chevron-right c-bolt-icon--auto">
-          <svg class="c-bolt-icon__icon">
-            <use href="#chevron-right">
-            </use>
-          </svg>
-        </span>
-      </bolt-icon>
-    </bolt-button>
+      <span class="e-bolt-button__icon-center">
+        <bolt-icon name="chevron-right"
+                   size="large"
+        >
+          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-right c-bolt-icon--auto">
+            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
+              <use href="#chevron-right">
+              </use>
+            </svg>
+          </span>
+        </bolt-icon>
+      </span>
+    </span>
   </div>
 </bolt-carousel>
 `;
@@ -483,18 +487,26 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Variable (Auto) Slide
        aria-label="Previous slide"
        aria-disabled="true"
   >
-    <bolt-button size="medium"
-                 border-radius="full"
-                 color="secondary"
-                 icon-only
+    <span class="e-bolt-button
+        e-bolt-button--medium
+        e-bolt-button--border-radius-full
+        e-bolt-button--secondary
+        e-bolt-button--icon-only"
+          aria-hidden="true"
     >
-      Previous
-      <bolt-icon size="large"
-                 slot="before"
-                 name="chevron-left"
-      >
-      </bolt-icon>
-    </bolt-button>
+      <span class="e-bolt-button__icon-center">
+        <bolt-icon size="large"
+                   name="chevron-left"
+        >
+          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-left c-bolt-icon--auto">
+            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
+              <use href="#chevron-left">
+              </use>
+            </svg>
+          </span>
+        </bolt-icon>
+      </span>
+    </span>
   </div>
   <div class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--inside"
        tabindex="0"
@@ -502,18 +514,26 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Variable (Auto) Slide
        aria-label="Next slide"
        aria-disabled="false"
   >
-    <bolt-button size="medium"
-                 border-radius="full"
-                 color="secondary"
-                 icon-only
+    <span class="e-bolt-button
+        e-bolt-button--medium
+        e-bolt-button--border-radius-full
+        e-bolt-button--secondary
+        e-bolt-button--icon-only"
+          aria-hidden="true"
     >
-      Next
-      <bolt-icon size="large"
-                 slot="before"
-                 name="chevron-right"
-      >
-      </bolt-icon>
-    </bolt-button>
+      <span class="e-bolt-button__icon-center">
+        <bolt-icon size="large"
+                   name="chevron-right"
+        >
+          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-right c-bolt-icon--auto">
+            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
+              <use href="#chevron-right">
+              </use>
+            </svg>
+          </span>
+        </bolt-icon>
+      </span>
+    </span>
   </div>
 </bolt-carousel>
 `;
@@ -695,18 +715,26 @@ exports[`carousel Basic 7 Slide <bolt-carousel> Renders 1`] = `
        aria-label="Previous slide"
        aria-disabled="true"
   >
-    <bolt-button size="medium"
-                 border-radius="full"
-                 color="secondary"
-                 icon-only
+    <span class="e-bolt-button
+        e-bolt-button--medium
+        e-bolt-button--border-radius-full
+        e-bolt-button--secondary
+        e-bolt-button--icon-only"
+          aria-hidden="true"
     >
-      Previous
-      <bolt-icon size="large"
-                 slot="before"
-                 name="chevron-left"
-      >
-      </bolt-icon>
-    </bolt-button>
+      <span class="e-bolt-button__icon-center">
+        <bolt-icon size="large"
+                   name="chevron-left"
+        >
+          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-left c-bolt-icon--auto">
+            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
+              <use href="#chevron-left">
+              </use>
+            </svg>
+          </span>
+        </bolt-icon>
+      </span>
+    </span>
   </div>
   <div class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--inside"
        tabindex="0"
@@ -714,18 +742,26 @@ exports[`carousel Basic 7 Slide <bolt-carousel> Renders 1`] = `
        aria-label="Next slide"
        aria-disabled="false"
   >
-    <bolt-button size="medium"
-                 border-radius="full"
-                 color="secondary"
-                 icon-only
+    <span class="e-bolt-button
+        e-bolt-button--medium
+        e-bolt-button--border-radius-full
+        e-bolt-button--secondary
+        e-bolt-button--icon-only"
+          aria-hidden="true"
     >
-      Next
-      <bolt-icon size="large"
-                 slot="before"
-                 name="chevron-right"
-      >
-      </bolt-icon>
-    </bolt-button>
+      <span class="e-bolt-button__icon-center">
+        <bolt-icon size="large"
+                   name="chevron-right"
+        >
+          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-right c-bolt-icon--auto">
+            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
+              <use href="#chevron-right">
+              </use>
+            </svg>
+          </span>
+        </bolt-icon>
+      </span>
+    </span>
   </div>
 </bolt-carousel>
 `;

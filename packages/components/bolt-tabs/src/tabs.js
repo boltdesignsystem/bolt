@@ -404,7 +404,14 @@ class BoltTabs extends withContext(BoltElement) {
     this.priorityDropdown = this.renderRoot.querySelector(
       '.c-bolt-tabs__dropdown',
     );
-    customElements.whenDefined('bolt-trigger').then(() => {
+    customElements.whenDefined('bolt-trigger').then(async () => {
+      const tabLabels = this.renderRoot.querySelectorAll('.c-bolt-tabs__label');
+
+      // Tab Labels are bolt-trigger elements. Wait for them to be ready or _resizeMenu() will miscalculate widths.
+      await Promise.all(
+        [...tabLabels].map(async el => await el.updateComplete),
+      );
+
       this._resizeMenu();
     });
 
@@ -438,7 +445,7 @@ class BoltTabs extends withContext(BoltElement) {
 
         smoothScroll.animateScroll(targetTab, 0, {
           header: this.scrollOffsetSelector,
-          offset: this.scrollOffset,
+          offset: this.scrollOffset || 0,
           speed: 750,
           easing: 'easeInOutCubic',
           updateURL: false,
@@ -479,9 +486,7 @@ class BoltTabs extends withContext(BoltElement) {
     });
   }
 
-  firstUpdated() {
-    super.firstUpdated && super.firstUpdated();
-
+  async firstUpdated() {
     // Use `slotMap` not `querySelectorAll` so that we don't get nested panels
     this.panels = this.slotMap
       .get('default')
@@ -489,6 +494,10 @@ class BoltTabs extends withContext(BoltElement) {
 
     // Wait to set initial tab until after `this.panels` has been properly set
     this.setInitialTab();
+
+    // Wait until after `this.panels` is set and component re-renders before calling super which dispaches "ready" event
+    await this.updateComplete;
+    super.firstUpdated && super.firstUpdated();
   }
 
   disconnectedCallback() {

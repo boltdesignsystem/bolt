@@ -1,12 +1,4 @@
-import {
-  isConnected,
-  render,
-  renderString,
-  stopServer,
-  html,
-  vrtDefaultConfig,
-} from '../../../testing/testing-helpers';
-import schema from '../chip-list.schema';
+import { render, stopServer, html } from '../../../testing/testing-helpers';
 const timeout = 90000;
 
 describe('<bolt-chip-list> Component', () => {
@@ -138,11 +130,6 @@ describe('<bolt-chip-list> Component', () => {
       twigRenderedHTML,
     );
 
-    // @todo: icons not showing up in image snapshot
-    // await page.waitFor(500);
-    // const image = await page.screenshot();
-    // expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-
     const renderedHTML = await html(renderedComponentHTML);
     expect(renderedHTML).toMatchSnapshot();
     expect(results.ok).toBe(true);
@@ -188,11 +175,6 @@ describe('<bolt-chip-list> Component', () => {
       },
       twigRenderedHTML,
     );
-
-    // @todo: icons not showing up in image snapshot
-    // await page.waitFor(500);
-    // const image = await page.screenshot();
-    // expect(image).toMatchImageSnapshot(vrtDefaultConfig);
 
     const renderedHTML = await html(renderedComponentHTML);
     expect(renderedHTML).toMatchSnapshot();

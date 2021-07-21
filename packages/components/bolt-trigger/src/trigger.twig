@@ -4,6 +4,16 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
+{# DEPRECATED.  Use the property `on_click` instead of `onClick`. #}
+{% if onClick %}
+  {% set on_click = onClick %}
+{% endif %}
+
+{# DEPRECATED.  Use the property `on_click_target` instead of `onClickTarget`. #}
+{% if onClickTarget %}
+  {% set on_click_target = onClickTarget %}
+{% endif %}
+
 {# Variables #}
 {% set base_class = "c-bolt-trigger" %}
 {% set this = init(schema) %}
@@ -40,7 +50,7 @@
 {% set classes = [
   base_class,
   display ? "#{base_class}--display-#{display}" : "",
-  cursor and not disabled is sameas(true) ? "#{base_class}--cursor-#{cursor}" : "",
+  cursor and not disabled is same as(true) ? "#{base_class}--cursor-#{cursor}" : "",
   no_outline ? "#{base_class}--outline-none" : "",
 ] %}
 
@@ -52,7 +62,7 @@
 {% set outer_classes = [] %}
 {% set inner_classes = classes %}
 
-{% for class in this.props.class %}
+{% for class in this.props['class'] %}
   {% if class starts with "is-" or class starts with "has-" %}
     {% set inner_classes = inner_classes|merge([class]) %}
   {% elseif class starts with "c-bolt-" == false %}

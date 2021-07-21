@@ -22,12 +22,12 @@
   } only %}
 {% endset %}
 
-{% include "@bolt-components-button/button.twig" with {
-  text: "Open Modal",
+{% include "@bolt-elements-button/button.twig" with {
+  content: "Open Modal",
   size: "small",
   attributes: {
-    "on-click": "show",
-    "on-click-target": "js-bolt-modal",
+    type: 'button',
+    "data-bolt-modal-target": ".js-bolt-modal",
   },
 } only %}
 

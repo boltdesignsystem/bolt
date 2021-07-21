@@ -1,0 +1,32 @@
+{% set notes %}
+  If the navbars are siblings, they will overlap each other. In such case, reference <a href="{{ link['components-navbar-sticky-offset'] }}" class="e-bolt-text-link">sticky offset</a> to avoid overlapping.
+{% endset %}
+
+{% set demo %}
+  <a href="{{ link['components-navbar-use-case-multiple'] }}" class="e-bolt-text-link">View full page demo<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+<section>
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    ...
+  } only %}
+  // Content goes here
+</section>
+<section>
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    ...
+  } only %}
+  // Content goes here
+</section>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Multiple Navbars',
+  description: 'When there are multiple navbars on the same page, in order for one to push off another, the navbars cannot be siblings in the markup. They must be contained within separate elements.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

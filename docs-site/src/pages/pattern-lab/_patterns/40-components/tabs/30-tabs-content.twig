@@ -72,25 +72,31 @@
   } only %}
 
   {% set button_1 %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "CTA 1",
-      style: "primary"
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "CTA 1",
+      attributes: {
+        href: "www.google.com"
+      }
     } only %}
   {% endset %}
 
   {% set button_2 %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "CTA 2",
-      style: "secondary"
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "CTA 12",
+      hierarchy: "secondary",
+      attributes: {
+        href: "www.google.com"
+      }
     } only %}
   {% endset %}
 
-  {% include "@bolt-components-button-group/button-group.twig" with {
-    buttons: [
+  {% include "@bolt-components-list/list.twig" with {
+    display: 'inline',
+    items: [
       button_1,
-      button_2
+      button_2,
     ]
-  } %}
+  } only %}
 {% endset %}
 
 {% set accordion_content %}
@@ -167,7 +173,7 @@
   {% set video %}
     <video-js
       data-account="1900410236"
-      data-player="4fVA8Ojzs"
+      data-player="O3FkeBiaDz"
       data-embed="default"
       data-video-id="4892122320001"
       data-media-title

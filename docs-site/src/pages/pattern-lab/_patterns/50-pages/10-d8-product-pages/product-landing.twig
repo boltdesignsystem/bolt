@@ -10,11 +10,11 @@
     background: {
       opacity: "medium",
       fill: "gradient",
-      focalPoint: {
+      focal_point: {
         vertical: "center",
         horizontal: "right"
       },
-      contentItems: [{
+      content_items: [{
         pattern: "image",
         src: "/images/content/backgrounds/background-short-1.jpg",
         alt: "Background banner of conference keynote",
@@ -50,7 +50,7 @@
       buttons: [
         {
           text: "Call to Action",
-          style: "primary",
+          hierarchy: "primary",
           url: "#!"
         }
       ]
@@ -280,7 +280,7 @@
         "buttons": [
           {
             "text": "Learn More",
-            "style": "secondary",
+            "hierarchy": "secondary",
             "url": "www.google.com/pega7",
             "width": "full"
           }
@@ -308,7 +308,7 @@
         "buttons": [
           {
             "text": "Learn More",
-            "style": "secondary",
+            "hierarchy": "secondary",
             "url": "www.google.com/pega7",
             "width": "full"
           }
@@ -336,7 +336,7 @@
         "buttons": [
           {
             "text": "Learn More",
-            "style": "secondary",
+            "hierarchy": "secondary",
             "url": "www.google.com/pega7",
             "width": "full"
           }
@@ -395,11 +395,11 @@
   background: {
     "opacity": "heavy",
     "fill": "color",
-    "focalPoint": {
+    "focal_point": {
       "vertical": "center",
       "horizontal": "center"
     },
-    "contentItems": [
+    "content_items": [
       {
         "pattern": "image",
         "src": "/images/content/backgrounds/background-tall-4.jpg",
@@ -443,7 +443,7 @@
         {% include "@bolt/button.twig" with {
           text: "Call to Action",
           url: "www.google.com",
-          style: "secondary"
+          hierarchy: "secondary"
         } only %}
 
 

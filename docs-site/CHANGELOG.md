@@ -3,6 +3,201 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/bolt-design-system/bolt/compare/v4.0.1...v4.0.2) (2021-07-15)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [4.0.1](https://github.com/bolt-design-system/bolt/compare/v4.0.0...v4.0.1) (2021-06-24)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [4.0.0](https://github.com/bolt-design-system/bolt/compare/v4.0.0-beta-4...v4.0.0) (2021-06-23)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [3.8.0](https://github.com/bolt-design-system/bolt/compare/v3.7.1...v3.8.0) (2021-06-10)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.7.1](https://github.com/bolt-design-system/bolt/compare/v3.7.0...v3.7.1) (2021-06-08)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [3.7.0](https://github.com/bolt-design-system/bolt/compare/v3.6.3...v3.7.0) (2021-06-01)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.6.3](https://github.com/bolt-design-system/bolt/compare/v3.6.2...v3.6.3) (2021-05-28)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.6.2](https://github.com/bolt-design-system/bolt/compare/v3.6.1...v3.6.2) (2021-05-26)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.6.1](https://github.com/bolt-design-system/bolt/compare/v3.6.0...v3.6.1) (2021-05-14)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [3.6.0](https://github.com/bolt-design-system/bolt/compare/v3.5.4...v3.6.0) (2021-05-13)
+
+
+
+## [3.4.4](https://github.com/bolt-design-system/bolt/compare/v3.5.3...v3.4.4) (2021-04-19)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.5.4](https://github.com/bolt-design-system/bolt/compare/v3.5.3...v3.5.4) (2021-04-21)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.5.3](https://github.com/bolt-design-system/bolt/compare/v3.5.2...v3.5.3) (2021-04-16)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.5.2](https://github.com/bolt-design-system/bolt/compare/v3.5.1...v3.5.2) (2021-04-16)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.5.1](https://github.com/bolt-design-system/bolt/compare/v3.5.0...v3.5.1) (2021-04-12)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [3.5.0](https://github.com/bolt-design-system/bolt/compare/v3.4.3...v3.5.0) (2021-04-09)
+## [3.4.4](https://github.com/bolt-design-system/bolt/compare/v3.4.3...v3.4.4) (2021-04-19)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.4.3](https://github.com/bolt-design-system/bolt/compare/v3.4.2...v3.4.3) (2021-04-01)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.4.2](https://github.com/bolt-design-system/bolt/compare/v3.4.1...v3.4.2) (2021-03-31)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.4.1](https://github.com/bolt-design-system/bolt/compare/v3.4.0...v3.4.1) (2021-03-30)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [3.4.0](https://github.com/bolt-design-system/bolt/compare/v3.3.1...v3.4.0) (2021-03-29)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.3.1](https://github.com/bolt-design-system/bolt/compare/v3.3.0...v3.3.1) (2021-03-22)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [3.3.0](https://github.com/bolt-design-system/bolt/compare/v3.2.0...v3.3.0) (2021-03-12)
+
+
+### Bug Fixes
+
+* add transition to margins ([fa998e6](https://github.com/bolt-design-system/bolt/commit/fa998e6d75af9a0bc1e45fe30850afb8d1c22ac9))
+* enhance the scrolling at edges ([987313d](https://github.com/bolt-design-system/bolt/commit/987313dc2deef04c77ba625d6341cd9c32f27ba9))
+* overflow shadows css and js ([ef0fa61](https://github.com/bolt-design-system/bolt/commit/ef0fa6148745d8e1cefaec3c1ddf3e91b18a8f9d))
+* spacing offset on the left ([b2145ab](https://github.com/bolt-design-system/bolt/commit/b2145abeb477a6c3974d6bf41956a29239f4a4ff))
+
+
+
+
+
+# [3.2.0](https://github.com/bolt-design-system/bolt/compare/v3.1.2...v3.2.0) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [3.1.2](https://github.com/bolt-design-system/bolt/compare/v3.1.1...v3.1.2) (2021-03-05)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
 ## [3.1.1](https://github.com/bolt-design-system/bolt/compare/v3.1.0...v3.1.1) (2021-02-11)
 
 

@@ -1,0 +1,63 @@
+{% set description %}
+  By default, popover activates on click, but the behavior can be changed to &ldquo;hover&rdquo; via the <bolt-code-snippet display="inline">trigger_event</bolt-code-snippet> prop.
+{% endset %}
+
+{% set demo %}
+  {% set trigger %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This triggers a popover on hover',
+      size: 'small',
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  {% endset %}
+  {% set link %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'call to action',
+      attributes: {
+        href: 'https://pega.com'
+      }
+    } only %}
+  {% endset %}
+  {% set content %}
+    This is the content of the popover with a {{ link }}.
+  {% endset %}
+
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: trigger,
+    trigger_event: 'hover',
+    content: content,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: trigger,
+  trigger_event: 'hover', // Default is 'click'.
+  content: content,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-popover spacing="medium" trigger-event="hover">
+  <button type="button" class="e-bolt-button">
+    This triggers a popover
+  </button>
+  <div slot="content">
+    This is the content of the popover.
+  </div>
+</bolt-popover>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Popover Trigger Event',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

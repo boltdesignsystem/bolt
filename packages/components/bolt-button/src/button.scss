@@ -71,33 +71,33 @@
  * Button Sizes
  */
 .c-bolt-button--medium {
-  @include bolt-font-size(xsmall);
-
   padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }
 
 .c-bolt-button--xsmall {
-  @include bolt-font-size(xsmall);
-
   padding: calc(var(--bolt-spacing-y-xsmall) / 2) var(--bolt-spacing-x-xsmall);
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }
 
 .c-bolt-button--small {
-  @include bolt-font-size(xsmall);
-
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
 }
 
 .c-bolt-button--large {
-  @include bolt-font-size(medium);
-
   padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
+  font-size: var(--bolt-type-font-size-medium);
+  line-height: var(--bolt-type-line-height-medium);
 }
 
 .c-bolt-button--xlarge {
-  @include bolt-font-size(large);
-
   padding: calc(var(--bolt-spacing-y-large) / 2) var(--bolt-spacing-x-large);
+  font-size: var(--bolt-type-font-size-large);
+  line-height: var(--bolt-type-line-height-large);
 }
 
 /**
@@ -216,14 +216,15 @@ bolt-button[width='full@small'],
  * Border Radius
  */
 @each $radius-name, $radius-value in $bolt-border-radius-values {
-  .c-bolt-button--border-radius-#{$radius-name},
-  .c-bolt-button--border-radius-#{$radius-name}:before,
-  .c-bolt-button--border-radius-#{$radius-name}:after,
-  bolt-button[border-radius='#{$radius-name}'] {
-    border-radius: $radius-value;
+  @if $radius-name == 'full' {
+    .c-bolt-button--border-radius-#{$radius-name},
+    .c-bolt-button--border-radius-#{$radius-name}:before,
+    .c-bolt-button--border-radius-#{$radius-name}:after,
+    bolt-button[border-radius='#{$radius-name}'] {
+      border-radius: $radius-value;
+    }
   }
 }
-
 /**
  * Icon and text spacing and display
  */
@@ -233,7 +234,6 @@ bolt-button[width='full@small'],
 
 .c-bolt-button__item {
   display: inline-flex;
-  text-align: left;
   text-align: start;
 }
 

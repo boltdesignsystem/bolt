@@ -1,5 +1,4 @@
 import {
-  isConnected,
   render,
   renderString,
   renderWC,
@@ -92,12 +91,6 @@ describe('button', () => {
       renderedHTML.querySelector('.c-bolt-button').hasAttribute('disabled'),
     ).toBe(true);
     expect(renderedHTML.firstElementChild).toMatchSnapshot();
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
   });
 
   test('Button with "disabled" adds attr to <a>', async () => {
@@ -119,12 +112,6 @@ describe('button', () => {
     ).toBe(true);
 
     expect(renderedHTML.firstElementChild).toMatchSnapshot();
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
   });
 
   test('Button with outer classes via Drupal Attributes', async () => {
@@ -132,6 +119,18 @@ describe('button', () => {
       text: 'Button with outer classes',
       attributes: {
         class: ['u-bolt-padding-medium'],
+      },
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('Button will add `download` attribute to inner anchor element', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'Button with download link',
+      url: 'download.pdf',
+      attributes: {
+        download: 'download.pdf',
       },
     });
     expect(results.ok).toBe(true);
@@ -171,18 +170,18 @@ describe('button', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Button with an onClick param renders properly', async () => {
+  test('Button with an on_click param renders properly', async () => {
     const results = await render('@bolt-components-button/button.twig', {
-      text: 'Button with onClick via param',
-      onClick: 'on-click-test',
+      text: 'Button with on_click via param',
+      on_click: 'on-click-test',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Button with an onClick attributes renders properly', async () => {
+  test('Button with an on_click attributes renders properly', async () => {
     const results = await render('@bolt-components-button/button.twig', {
-      text: 'Button w/ onClick via attributes',
+      text: 'Button w/ on_click via attributes',
       attributes: {
         'on-click': 'on-click-test',
       },
@@ -205,13 +204,6 @@ describe('button', () => {
         .querySelector('.c-bolt-button')
         .classList.contains('c-bolt-button--primary'),
     ).toBe(true);
-
-    const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
-
     expect(renderedHTML).toMatchSnapshot();
   });
 
@@ -241,14 +233,6 @@ describe('button', () => {
 
   //   // expect(renderedShadowDomHTML.querySelector('style')).toBe(true);
   //   // expect(renderedShadowDomHTML.querySelector('button')).toBe(true);
-
-  //   const image = await page.screenshot();
-
-  //   expect(image).toMatchImageSnapshot({
-  //     failureThreshold: '0.01',
-  //     failureThresholdType: 'percent',
-  //   });
-
   //   expect(renderedShadowDomHTML).toMatchSnapshot();
   //   expect(renderedHTML).toMatchSnapshot();
   // });

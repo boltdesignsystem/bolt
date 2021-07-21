@@ -340,41 +340,35 @@
     {% block band_content  %}
       {% grid "o-bolt-grid--matrix" %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/teaser.twig" with {
-            "headlines": [
-              {
-                "type": "headline",
-                "text": "Register Now",
-                "size": "large"
-              }
-            ],
-            "content": "Time is running out to take advantage of end-of-year pricing.",
-            "buttons": [
-              {
-                "text": "Register Now!",
-                "url": "#"
-              }
-            ]
+          {% include "@bolt-components-headline/headline.twig" with {
+            size: "large",
+            text: "Register Now",
+          } only %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "Time is running out to take advantage of end-of-year pricing.",
+          } only %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Register Now!',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/teaser.twig" with {
-            "headlines": [
-              {
-                "type": "headline",
-                "text": "Become a PegaWorld Insider",
-                "size": "large"
-              }
-            ],
-            "content": "Stay up-to-date on all the latest PegaWorld news and announcements.",
-            "buttons": [
-              {
-                "text": "Sign up",
-                "url": "#",
-                "style": "secondary"
-              }
-            ]
+          {% include "@bolt-components-headline/headline.twig" with {
+            size: "large",
+            text: "Become a PegaWorld Insider",
+          } only %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "Stay up-to-date on all the latest PegaWorld news and announcements.",
+          } only %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Sign up',
+            hierarchy: 'secondary',
+            attributes: {
+              type: 'button'
+            }
           } only %}
         {% endcell %}
 

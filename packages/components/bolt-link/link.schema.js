@@ -28,7 +28,20 @@ module.exports = {
   description: 'Text link.',
   type: 'object',
   not: {
-    required: ['href'],
+    anyOf: [
+      {
+        required: ['href'],
+      },
+      {
+        required: ['isHeadline'],
+      },
+      {
+        required: ['onClick'],
+      },
+      {
+        required: ['onClickTarget'],
+      },
+    ],
   },
   properties: {
     attributes: {
@@ -43,6 +56,12 @@ module.exports = {
     },
     url,
     target,
+    type: {
+      description: 'Determines the button tag type for semantic buttons',
+      type: 'string',
+      default: 'button',
+      enum: ['button', 'submit', 'reset'],
+    },
     display: {
       type: 'string',
       description:
@@ -56,7 +75,7 @@ module.exports = {
       enum: ['center', 'start'],
       default: 'center',
     },
-    isHeadline: {
+    is_headline: {
       type: 'boolean',
       description:
         'Whether this link should get special headline styling treatment.',
@@ -66,6 +85,10 @@ module.exports = {
     href: {
       title: 'DEPRECATED',
       description: 'Use url instead.',
+    },
+    isHeadline: {
+      title: 'DEPRECATED',
+      description: 'Use is_headline instead.',
     },
   },
 };

@@ -1,13 +1,34 @@
 {% import "@bolt-academy/_macros.twig" as macros %}
 
+{% set _chevron_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: "chevron-down"
+  } only %}
+{% endset %}
+{% set _share_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: "share"
+  } only %}
+{% endset %}
+{% set _close_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: "close"
+  } only %}
+{% endset %}
+{% set _add_icon %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: "add-open"
+  } only %}
+{% endset %}
+
 {% set trigger %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Pega Customer Decision Hub 8.5",
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Pega Customer Decision Hub 8.5",
     size: "xsmall",
-    style: "tertiary",
-    icon: {
-      name: "chevron-down",
-      position: "after",
+    hierarchy: "tertiary",
+    icon_after: _chevron_icon,
+    attributes: {
+      type: 'button'
     }
   } only %}
 {% endset %}
@@ -191,26 +212,24 @@
       cardIcon: "launchpad",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, false ),
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
+          hierarchy: "tertiary",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Remove from Dashboard",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "close",
-            size: "small"
-          },
-          iconOnly: true
-        }, false )
+          hierarchy: "tertiary",
+          icon_only: _close_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
       ],
       cardStatusItems: [
         macros.include("@bolt-components-headline/eyebrow.twig", {
@@ -250,27 +269,24 @@
       cardIcon: "launchpad",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, false ),
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
+          hierarchy: "tertiary",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Remove from Dashboard",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "close",
-            size: "small"
-          },
-          iconOnly: true,
-          disabled: true
-        }, false )
+          hierarchy: "tertiary",
+          icon_only: _close_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
       ],
       cardStatusItems: [
         macros.include("@bolt-components-headline/eyebrow.twig", {
@@ -317,26 +333,24 @@
       cardIcon: "launchpad",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, false ),
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
+          hierarchy: "tertiary",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Remove from Dashboard",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "close",
-            size: "small"
-          },
-          iconOnly: true,
-        }, false )
+          hierarchy: "tertiary",
+          icon_only: _close_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
       ],
       cardStatusItems: [
         macros.include("@bolt-components-headline/eyebrow.twig", {
@@ -376,26 +390,24 @@
       cardIcon: "launchpad",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, false ),
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
+          hierarchy: "tertiary",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Remove from Dashboard",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "close",
-            size: "small"
-          },
-          iconOnly: true
-        }, false )
+          hierarchy: "tertiary",
+          icon_only: _close_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
       ],
       cardStatusItems: [
         macros.include("@bolt-components-headline/eyebrow.twig", {
@@ -435,27 +447,24 @@
       cardIcon: "launchpad",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, false ),
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
+          hierarchy: "tertiary",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Remove from Dashboard",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "close",
-            size: "small"
-          },
-          iconOnly: true,
-          disabled: true
-        }, false )
+          hierarchy: "tertiary",
+          icon_only: _close_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
       ],
       cardStatusItems: [
         macros.include("@bolt-components-headline/eyebrow.twig", {
@@ -502,26 +511,24 @@
       cardIcon: "launchpad",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, false ),
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
+          hierarchy: "tertiary",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Remove from Dashboard",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "close",
-            size: "small"
-          },
-          iconOnly: true,
-        }, false )
+          hierarchy: "tertiary",
+          icon_only: _close_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
       ],
       cardStatusItems: [
         macros.include("@bolt-components-headline/eyebrow.twig", {
@@ -561,26 +568,24 @@
       cardIcon: "launchpad",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, false ),
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
+          hierarchy: "tertiary",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Remove from Dashboard",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "close",
-            size: "small"
-          },
-          iconOnly: true
-        }, false )
+          hierarchy: "tertiary",
+          icon_only: _close_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
       ],
       cardStatusItems: [
         macros.include("@bolt-components-headline/eyebrow.twig", {
@@ -620,27 +625,24 @@
       cardIcon: "launchpad",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, false ),
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
+          hierarchy: "tertiary",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Remove from Dashboard",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "close",
-            size: "small"
-          },
-          iconOnly: true,
-          disabled: true
-        }, false )
+          hierarchy: "tertiary",
+          icon_only: _close_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
       ],
       cardStatusItems: [
         macros.include("@bolt-components-headline/eyebrow.twig", {
@@ -687,26 +689,24 @@
       cardIcon: "launchpad",
       cardDescription: bolt.faker.paragraph(2),
       cardUtilityItems: [
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Share",
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Share",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "share",
-            size: "small"
-          },
-          iconOnly: true
-        }, false ),
-        macros.include("@bolt-components-button/button.twig", {
-          text: "Remove from Dashboard",
+          hierarchy: "tertiary",
+          icon_only: _share_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
+        macros.include("@bolt-elements-button/button.twig", {
+          content: "Remove from Dashboard",
           size: "xsmall",
-          style: "text",
-          icon: {
-            name: "close",
-            size: "small"
-          },
-          iconOnly: true,
-        }, false )
+          hierarchy: "tertiary",
+          icon_only: _close_icon,
+          attributes: {
+            type: 'button'
+          }
+        }, false),
       ],
       cardStatusItems: [
         macros.include("@bolt-components-headline/eyebrow.twig", {
@@ -813,21 +813,24 @@
   sectionTitle: sectionTitle|default("My Missions"),
   theme: "light",
   sectionButtons: sectionButtons ?? [
-    macros.include("@bolt-components-button/button.twig", {
-      style: "secondary",
+    macros.include("@bolt-elements-button/button.twig", {
+      content: "Show all (12)",
       size: "small",
+      hierarchy: "secondary",
       border_radius: "full",
-      text: "Show all (12)"
-    }, false),
-    macros.include("@bolt-components-button/button.twig", {
-      style: "text",
-      size: "large",
-      text: "Add Missions",
-      icon: {
-        name: "add-open",
-        position: "before"
+      attributes: {
+        type: 'button'
       }
-    }, false)
+    }, false),
+    macros.include("@bolt-elements-button/button.twig", {
+      content: "Add Missions",
+      size: "large",
+      hierarchy: "transparent",
+      icon_before: _add_icon,
+      attributes: {
+        type: 'button'
+      }
+    }, false),
   ],
   useCarousel: useCarousel,
   contentItems: cardContentItems

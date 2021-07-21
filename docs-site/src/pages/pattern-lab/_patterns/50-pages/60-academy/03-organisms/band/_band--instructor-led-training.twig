@@ -11,11 +11,12 @@
       } only %}
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium o-bolt-grid--right" %}
-      {% include "@bolt-components-button/button.twig" with {
-        text: "View Class Schedule",
-        style: "secondary",
+      {% include "@bolt-elements-button/button.twig" with {
+        content: "View Class Schedule",
         border_radius: "full",
-        style: "primary"
+        attributes: {
+          type: 'button'
+        }
       } only %}
     {% endcell %}
   {% endgrid %}
@@ -27,7 +28,7 @@
   background: {
     opacity: "light",
     fill: "gradient",
-    contentItems: [
+    content_items: [
       {
         pattern: "image",
         src: "/images/content/backgrounds/background-night-sky.jpg",

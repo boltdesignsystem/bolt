@@ -1,10 +1,7 @@
 import {
-  isConnected,
   render,
   renderString,
-  renderWC,
   stopServer,
-  html,
 } from '../../../testing/testing-helpers';
 import schema from '../band.schema';
 const { size, theme, tag } = schema.properties;

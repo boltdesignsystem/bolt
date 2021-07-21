@@ -1,0 +1,18 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-layouts-site/site.twig' with {
+  header: 'This is the header.',
+  main: {
+    content: 'This is the main content.',
+    attributes: {
+      'data-foo': 'bar',
+    }
+  },
+  footer: 'This is the footer.',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'site',
+  componentGroup: 'layouts',
+  usage: usage
+} only %}

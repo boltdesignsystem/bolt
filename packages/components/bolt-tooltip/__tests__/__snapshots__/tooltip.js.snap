@@ -2,60 +2,22 @@
 
 exports[`<bolt-tooltip> Component Advanced usage: adding tooltip to button 1`] = `
 <bolt-tooltip uuid="12345">
-  <span class="c-bolt-tooltip c-bolt-tooltip--top   c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        <bolt-button>
-          Download
-        </bolt-button>
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            File size: 25MB
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  <button type="button"
+          class="e-bolt-button"
+  >
+    Download
+  </button>
+  <span slot="content">
+    File size: 25MB
   </span>
 </bolt-tooltip>
 `;
 
 exports[`<bolt-tooltip> Component Basic usage 1`] = `
 <bolt-tooltip uuid="12345">
-  <span class="c-bolt-tooltip c-bolt-tooltip--top c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -64,29 +26,9 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: auto 1`] = `
 <bolt-tooltip placement="auto"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip  c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -95,29 +37,9 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: bottom 1`] = 
 <bolt-tooltip placement="bottom"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip c-bolt-tooltip--bottom c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -126,29 +48,9 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: bottom-end 1`
 <bolt-tooltip placement="bottom-end"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip c-bolt-tooltip--bottom-end c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -157,29 +59,9 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: bottom-start 
 <bolt-tooltip placement="bottom-start"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip c-bolt-tooltip--bottom-start c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -188,29 +70,9 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: left 1`] = `
 <bolt-tooltip placement="left"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip c-bolt-tooltip--left c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -219,29 +81,9 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: left-end 1`] 
 <bolt-tooltip placement="left-end"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip c-bolt-tooltip--left-end c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -250,29 +92,9 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: left-start 1`
 <bolt-tooltip placement="left-start"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip c-bolt-tooltip--left-start c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -281,29 +103,9 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: right 1`] = `
 <bolt-tooltip placement="right"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip c-bolt-tooltip--right c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -312,29 +114,9 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: right-end 1`]
 <bolt-tooltip placement="right-end"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip c-bolt-tooltip--right-end c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -343,29 +125,9 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: right-start 1
 <bolt-tooltip placement="right-start"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip c-bolt-tooltip--right-start c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -374,29 +136,9 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: top 1`] = `
 <bolt-tooltip placement="top"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip c-bolt-tooltip--top c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -405,29 +147,9 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: top-end 1`] =
 <bolt-tooltip placement="top-end"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip c-bolt-tooltip--top-end c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
@@ -436,58 +158,18 @@ exports[`<bolt-tooltip> Component Placement of the tooltip bubble: top-start 1`]
 <bolt-tooltip placement="top-start"
               uuid="12345"
 >
-  <span class="c-bolt-tooltip c-bolt-tooltip--top-start c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-12345"
-          aria-controls="js-bolt-tooltip-12345"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-12345"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;
 
 exports[`<bolt-tooltip> Component UUID of the tooltip 1`] = `
 <bolt-tooltip uuid="custom-unique-id">
-  <span class="c-bolt-tooltip c-bolt-tooltip--top c-bolt-tooltip--text-wrap c-bolt-tooltip--text-align-center c-bolt-tooltip--dotted">
-    <span role="button"
-          tabindex="0"
-          aria-describedby="js-bolt-tooltip-custom-unique-id"
-          aria-controls="js-bolt-tooltip-custom-unique-id"
-    >
-      <ssr-keep for="bolt-tooltip">
-        CRM
-      </ssr-keep>
-    </span>
-    <span id="js-bolt-tooltip-custom-unique-id"
-          class="c-bolt-tooltip__content"
-          role="tooltip"
-          aria-hidden="true"
-    >
-      <span class="c-bolt-tooltip__bubble">
-        <ssr-keep for="bolt-tooltip">
-          <span slot="content">
-            Customer relationship management
-          </span>
-        </ssr-keep>
-      </span>
-    </span>
+  CRM
+  <span slot="content">
+    Customer relationship management
   </span>
 </bolt-tooltip>
 `;

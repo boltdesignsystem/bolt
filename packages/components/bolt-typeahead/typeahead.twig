@@ -95,40 +95,34 @@
         <input id="{{ uuid }}" type="text" autocomplete="off" aria-autocomplete="list" class="{{ classNames.input }}" placeholder="{{ this.data.input_placeholder.value }}" value="{{ this.data.input_value.value }}" required name="{{ this.data.input_name.value }}" {{ this.data.disabled.value ? 'disabled' : '' }}/>
       {% endblock %}
 
-      {% embed "@bolt-components-button/button.twig" with {
-        text: this.data.clear_input_text.value,
-        iconOnly: true,
-        style: "text",
+      {% include '@bolt-elements-button/button.twig' with {
+        content: this.data.clear_input_text.value,
+        icon_only: clear_icon,
+        hierarchy: 'transparent',
         disabled: this.data.disabled.value,
         attributes: {
+          type: 'reset',
           onclick: "this.previousElementSibling.focus()",
           class: [
             classNames.clearButton | join(' ')
           ],
-        },
-        type: "reset"
-      } %}
-        {% block slot_after %}
-          <ssr-keep for="bolt-typeahead" class="c-bolt-button__icon">
-            {{ clear_icon }}
-          </ssr-keep>
-        {% endblock slot_after %}
-      {% endembed %}
+        }
+      } only %}
 
       <div class="{{ classNames.submitButton | join(' ') }}">
-        {% embed "@bolt-components-button/button.twig" with {
-          text: this.data.submit_button_text.value,
-          iconOnly: true,
-          style: "text",
-          type: "submit",
+        {% include '@bolt-elements-button/button.twig' with {
+          content: this.data.submit_button_text.value,
+          icon_only: search_icon,
+          hierarchy: 'transparent',
           disabled: this.data.disabled.value,
-        } %}
-          {% block slot_after %}
-            <ssr-keep for="bolt-typeahead" class="c-bolt-button__icon">
-              {{ search_icon }}
-            </ssr-keep>
-          {% endblock slot_after %}
-        {% endembed %}
+          attributes: {
+            type: 'submit',
+            onclick: "this.previousElementSibling.focus()",
+            class: [
+              classNames.clearButton | join(' ')
+            ],
+          }
+        } only %}
       </div>
     </div>
   </bolt-typeahead>

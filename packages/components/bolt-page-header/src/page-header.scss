@@ -65,7 +65,7 @@
   align-items: center;
   position: relative;
   z-index: 2; // Primary nav (with dropdowns) has a higher stacking order than secondary.
-  transition: transform $bolt-transition;
+  transition: transform var(--bolt-transition);
 }
 
 // Secondary section container
@@ -168,7 +168,7 @@
   left: 0;
   padding-top: var(--bolt-spacing-y-medium);
   padding-bottom: var(--bolt-spacing-y-medium);
-  border-top-color: $bolt-border-color;
+  border-top-color: var(--m-bolt-border);
   border-top-style: $bolt-border-style;
   border-top-width: $bolt-border-width;
   background-color: var(--m-bolt-bg);
@@ -208,6 +208,17 @@
       ); // Temporary fix for icon + text bad vertical alignment above xlarge breakpoint.
     }
   }
+}
+
+// Subheadline
+.c-bolt-page-header__subheadline {
+  font-size: var(--bolt-type-font-size-xxsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: calc(
+    var(--bolt-type-line-height-xxsmall) *
+      var(--bolt-type-line-height-multiplier-tight)
+  );
+  white-space: nowrap;
 }
 
 // Main CTA

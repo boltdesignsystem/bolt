@@ -1,5 +1,5 @@
-{% macro code_example(code) %}
-  <bolt-code-snippet syntax="dark" lang="twig">{% spaceless %}
+{% macro code_example(code, lang) %}
+  <bolt-code-snippet syntax="dark" lang="{{ lang }}">{% spaceless %}
     {{ code|replace({
       '<': '&lt;',
       '>': '&gt;',
@@ -33,17 +33,26 @@
       Demo
     </bolt-text>
     <bolt-stack>
+      {% set rendered_demo %}
+        {% if demo_vertical_scroll %}
+          <div class="c-bds-demo-visible-scrollbar">
+            {{ demo }}
+          </div>
+        {% else %}
+          {{ demo }}       
+        {% endif %}
+      {% endset %}
       {% if demo_light_dark %}
         <div class="u-bolt-padding-medium t-bolt-xlight">
           <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Light</bolt-text>
-          {{ demo }}
+          {{ rendered_demo }}
         </div>
         <div class="u-bolt-padding-medium t-bolt-dark">
           <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Dark</bolt-text>
-          {{ demo }}
+          {{ rendered_demo }}
         </div>
       {% else %}
-        {{ demo }}
+        {{ rendered_demo }}
       {% endif %}
     </bolt-stack>
   {% endif %}
@@ -53,7 +62,7 @@
       <bolt-tab-panel>
         <div slot="label">Twig</div>
         {% if twig_markup %}
-          {% include snippet.code_example(twig_markup) %}
+          {% include snippet.code_example(twig_markup, 'twig') %}
         {% else %}
           <bolt-banner align="start" status="warning">
             <bolt-icon name="warning" size="small" aria-hidden="true"></bolt-icon>
@@ -64,7 +73,7 @@
       <bolt-tab-panel {% if html_markup and not twig_markup %}selected{% endif %}>
         <div slot="label">HTML</div>
         {% if html_markup %}
-          {% include snippet.code_example(html_markup) %}
+          {% include snippet.code_example(html_markup, 'html') %}
         {% else %}
           <bolt-banner align="start" status="warning">
             <bolt-icon name="warning" size="small" aria-hidden="true"></bolt-icon>
@@ -72,6 +81,18 @@
           </bolt-banner>
         {% endif %}
       </bolt-tab-panel>
+      {% if css %}
+        <bolt-tab-panel>
+          <div slot="label">CSS</div>
+          {% include snippet.code_example(css, 'scss') %}
+        </bolt-tab-panel>
+      {% endif %}
+      {% if js %}
+        <bolt-tab-panel>
+          <div slot="label">JavaScript</div>
+          {% include snippet.code_example(js, 'js') %}
+        </bolt-tab-panel>
+      {% endif %}
     </bolt-tabs>
   {% endif %}
 

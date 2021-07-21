@@ -1,3 +1,5 @@
+// @todo: Remove in 4.0, no longer used by Bolt. @see https://github.com/boltdesignsystem/bolt/pull/2180
+
 /**
  * Determine whether or not the BODY has a visible scrollbar
  * @returns {Boolean} - Returns true if element has scrollbar

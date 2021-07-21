@@ -106,17 +106,18 @@
     } only  %}
   {% endset %}
   {% set trigger %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "Show form",
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "Show form",
       size: "small",
-      width: "full",
+      display: "block",
       attributes: {
-        onclick: "this.nextElementSibling.show()",
+        type: 'button',
+        "data-bolt-modal-target": ".js-bolt-modal--usage-form",
       }
     } only %}
     {% include "@bolt-components-modal/modal.twig" with {
       attributes: {
-        class: "js-image-modal-advanced-form",
+        class: "js-bolt-modal--usage-form",
       },
       content: modal_content,
     } only %}

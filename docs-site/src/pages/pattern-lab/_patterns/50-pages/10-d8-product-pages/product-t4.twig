@@ -1,5 +1,7 @@
 {% extends "@pl/_default-page-template.twig" %}
 
+
+
 {% block main_content %}
   {% embed "@pl/_band--feature.twig" with {
     teaserPosition: "left",
@@ -10,11 +12,11 @@
     background: {
       opacity: "medium",
       fill: "gradient",
-      focalPoint: {
+      focal_point: {
         vertical: "center",
         horizontal: "right"
       },
-      contentItems: [{
+      content_items: [{
         pattern: "image",
         src: "/images/content/backgrounds/background-tall-3.jpg"
       }]
@@ -42,7 +44,7 @@
       buttons: [
         {
           text: "Call to Action",
-          style: "primary",
+          hierarchy: "primary",
           url: "#!"
         }
       ]
@@ -74,7 +76,7 @@
         {% set video %}
           <video-js
             data-account="1900410236"
-            data-player="4fVA8Ojzs"
+            data-player="O3FkeBiaDz"
             data-embed="default"
             data-video-id="5609376179001"
             controls
@@ -231,16 +233,31 @@
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Call to action",
-              "style": "primary"
-            },
-            {
-              "text": "Call to action",
-              "style": "secondary"
+        {% set button_cta_primary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Call to action',
+            hierarchy: "primary",
+            attributes: {
+              type: 'button'
             }
+          } only %}
+        {% endset %}
+
+        {% set button_cta_secondary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Call to action',
+            hierarchy: "secondary",
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: 'inline',
+          items: [
+            button_cta_primary,
+            button_cta_secondary,
           ]
         } only %}
       {% endcell %}
@@ -303,16 +320,31 @@
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Call to action",
-              "style": "primary"
-            },
-            {
-              "text": "Call to action",
-              "style": "secondary"
+        {% set button_cta_primary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Call to action',
+            hierarchy: "primary",
+            attributes: {
+              type: 'button'
             }
+          } only %}
+        {% endset %}
+
+        {% set button_cta_secondary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Call to action',
+            hierarchy: "secondary",
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: 'inline',
+          items: [
+            button_cta_primary,
+            button_cta_secondary,
           ]
         } only %}
       {% endcell %}
@@ -335,7 +367,7 @@
           {% set video %}
             <video-js
               data-account="1900410236"
-              data-player="4fVA8Ojzs"
+              data-player="O3FkeBiaDz"
               data-embed="default"
               data-video-id="5609376179001"
               controls
@@ -361,7 +393,7 @@
           } only %}
           {% include "@bolt/button.twig" with {
             text: "Toggle video",
-            tag: "button",
+            type: "button",
             attributes: {
               class: "js-base-video-toggle",
               "data-video-target": videoUuid3
@@ -394,16 +426,31 @@
             size: "medium"
           } only %}
 
-          {% include "@bolt/button-group.twig" with {
-            "buttons": [
-              {
-                "text": "Call to action",
-                "style": "primary"
-              },
-              {
-                "text": "Call to action",
-                "style": "secondary"
+          {% set button_cta_primary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "primary",
+              attributes: {
+                type: 'button'
               }
+            } only %}
+          {% endset %}
+
+          {% set button_cta_secondary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "secondary",
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: 'inline',
+            items: [
+              button_cta_primary,
+              button_cta_secondary,
             ]
           } only %}
         {% endcell %}
@@ -453,16 +500,31 @@
             size: "medium"
           } only %}
 
-          {% include "@bolt/button-group.twig" with {
-            "buttons": [
-              {
-                "text": "Call to action",
-                "style": "primary"
-              },
-              {
-                "text": "Call to action",
-                "style": "secondary"
+          {% set button_cta_primary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "primary",
+              attributes: {
+                type: 'button'
               }
+            } only %}
+          {% endset %}
+
+          {% set button_cta_secondary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "secondary",
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: 'inline',
+            items: [
+              button_cta_primary,
+              button_cta_secondary,
             ]
           } only %}
         {% endcell %}
@@ -485,16 +547,31 @@
             size: "medium"
           } only %}
 
-          {% include "@bolt/button-group.twig" with {
-            "buttons": [
-              {
-                "text": "Call to action",
-                "style": "primary"
-              },
-              {
-                "text": "Call to action",
-                "style": "secondary"
+          {% set button_cta_primary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "primary",
+              attributes: {
+                type: 'button'
               }
+            } only %}
+          {% endset %}
+
+          {% set button_cta_secondary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "secondary",
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: 'inline',
+            items: [
+              button_cta_primary,
+              button_cta_secondary,
             ]
           } only %}
         {% endcell %}
@@ -545,16 +622,31 @@
             size: "medium"
           } only %}
 
-          {% include "@bolt/button-group.twig" with {
-            "buttons": [
-              {
-                "text": "Call to action",
-                "style": "primary"
-              },
-              {
-                "text": "Call to action",
-                "style": "secondary"
+          {% set button_cta_primary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "primary",
+              attributes: {
+                type: 'button'
               }
+            } only %}
+          {% endset %}
+
+          {% set button_cta_secondary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "secondary",
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: 'inline',
+            items: [
+              button_cta_primary,
+              button_cta_secondary,
             ]
           } only %}
         {% endcell %}
@@ -613,7 +705,7 @@
           {% set videoUuid3 = "js-bolt-video-uuid--3" %}
           {% include "@bolt/button.twig" with {
             text: "Toggle video",
-            tag: "button",
+            type: "button",
             attributes: {
               class: "js-base-video-toggle",
               "data-video-target": videoUuid3
@@ -624,7 +716,7 @@
           {% set video %}
             <video-js
               data-account="1900410236"
-              data-player="4fVA8Ojzs"
+              data-player="O3FkeBiaDz"
               data-embed="default"
               data-video-id="5609376179001"
               controls
@@ -662,16 +754,31 @@
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Call to action",
-              "style": "primary"
-            },
-            {
-              "text": "Call to action",
-              "style": "secondary"
+        {% set button_cta_primary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Call to action',
+            hierarchy: "primary",
+            attributes: {
+              type: 'button'
             }
+          } only %}
+        {% endset %}
+
+        {% set button_cta_secondary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Call to action',
+            hierarchy: "secondary",
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: 'inline',
+          items: [
+            button_cta_primary,
+            button_cta_secondary,
           ]
         } only %}
       {% endcell %}
@@ -706,7 +813,7 @@
           {% set video %}
             <video-js
               data-account="1900410236"
-              data-player="4fVA8Ojzs"
+              data-player="O3FkeBiaDz"
               data-embed="default"
               data-video-id="5609376179001"
               controls
@@ -732,7 +839,7 @@
           } only %}
           {% include "@bolt/button.twig" with {
             text: "Toggle video",
-            tag: "button",
+            type: "button",
             attributes: {
               class: "js-base-video-toggle",
               "data-video-target": videoUuid3
@@ -772,7 +879,7 @@
         "buttons": [
           {
             "text": "Learn More",
-            "style": "secondary",
+            "hierarchy": "secondary",
             "url": "www.google.com/pega7",
             "width": "full"
           }
@@ -799,7 +906,7 @@
         "buttons": [
           {
             "text": "Learn More",
-            "style": "secondary",
+            "hierarchy": "secondary",
             "url": "www.google.com/pega7",
             "width": "full"
           }
@@ -826,7 +933,7 @@
         "buttons": [
           {
             "text": "Learn More",
-            "style": "secondary",
+            "hierarchy": "secondary",
             "url": "www.google.com/pega7",
             "width": "full"
           }
@@ -885,11 +992,11 @@
   background: {
     "opacity": "heavy",
     "fill": "color",
-    "focalPoint": {
+    "focal_point": {
       "vertical": "center",
       "horizontal": "center"
     },
-    "contentItems": [
+    "content_items": [
       {
         "pattern": "image",
         "src": "/images/content/backgrounds/background-tall-3.jpg"
@@ -930,7 +1037,7 @@
         {% include "@bolt/button.twig" with {
           text: "Call to Action",
           url: "www.google.com",
-          style: "secondary"
+          hierarchy: "secondary"
         } only %}
 
 
