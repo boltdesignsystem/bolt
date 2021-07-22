@@ -58,5 +58,11 @@ module.exports = {
       description: 'Set the page header to be static instead of sticky.',
       default: false,
     },
+    full_width: {
+      type: 'boolean',
+      description:
+        'Set the page header width to span across the full viewport.',
+      default: false,
+    },
   },
 };

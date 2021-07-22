@@ -278,6 +278,14 @@
   </bolt-stack>
 {% endset %}
 {% set sidebar_content %}
+  <bolt-stack>
+    <form class="u-bolt-padding-right-small u-bolt-padding-left-small">
+      {% include '@bolt-components-typeahead/typeahead.twig' with {
+        input_placeholder: 'Search in book',
+      } only %}
+    </form>
+  </bolt-stack>
+
   {% set level_9_items %}
     {% include '@bolt-components-side-nav/side-nav-li.twig' with {
       link: {
@@ -756,7 +764,7 @@
 
 
 <div class="l-bolt-site">
-  {% include '@pl/-example-community.twig' %}
+  {% include '@pl/-page-header-example-docs.twig' %}
   <main id="main-content">
     {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
       content: holy_grail_content,
