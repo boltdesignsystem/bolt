@@ -5,6 +5,8 @@
 @import '@bolt/core-v3.x';
 
 .c-page-footer {
+  @include bolt-full-bleed;
+
   &__container {
     padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
     background-color: var(--m-bolt-bg);
@@ -147,6 +149,7 @@
     }
   }
 
+  //Copyrights
   &__copyrights {
     align-self: center;
     margin-bottom: 0;
