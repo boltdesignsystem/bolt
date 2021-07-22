@@ -75,7 +75,9 @@
     }
 
     .c-page-footer__list-link {
-      // margin-right: ;
+      display: flex;
+      align-items: center;
+      height: 44px;
       padding: var(--bolt-spacing-y-small) 0;
     }
   }
@@ -138,20 +140,25 @@
   }
 
   &__list-link {
-    display: inline-block;
     padding: var(--bolt-spacing-y-xsmall) 0;
     font-size: var(--bolt-type-font-size-xsmall);
     font-weight: var(--bolt-type-font-weight-bold);
     color: var(--m-bolt-link);
     line-height: var(--bolt-type-line-height-xsmall);
     text-decoration: none;
-    transition: color var(--bolt-transition);
     @include bolt-mq($until: medium) {
       padding: var(--bolt-spacing-y-small) 0;
     }
 
-    &:hover {
-      color: var(--m-bolt-text);
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+
+    &:focus {
+      border-radius: 3px;
+      box-shadow: 0 0 0 1px var(--m-bolt-link);
+      outline: none;
     }
   }
 
