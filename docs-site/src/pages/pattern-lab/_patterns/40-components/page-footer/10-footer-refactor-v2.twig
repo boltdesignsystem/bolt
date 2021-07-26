@@ -1,3 +1,33 @@
+{% set icon_fb %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "facebook",
+  } only %}
+{% endset %}
+
+{% set icon_twitter %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "twitter",
+  } only %}
+{% endset %}
+
+{% set link_fb %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: icon_fb,
+    attributes: {
+      href: '',
+    }
+  } only %}
+{% endset %}
+
+{% set link_twitter %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: icon_twitter,
+    attributes: {
+      href: '',
+    }
+  } only %}
+{% endset %}
+
 {% set icon_chevron_right %}
   {% include "@bolt-components-icon/icon.twig" with {
     name: "chevron-right",
@@ -27,7 +57,8 @@
     <nav class="c-page-footer__nav" aria-label="Footer Navigation">
       <h3 class="c-page-footer__nav-heading">Join the conversation</h3>
       <ul class="c-page-footer__nav-list">
-        <li class="c-page-footer__nav-list-item"></li>
+        <li class="c-page-footer__nav-list-item">{{link_twitter}} </li>
+        <li class="c-page-footer__nav-list-item">{{link_fb}}</li>
         ...
       </ul>
       <h3 class="c-page-footer__nav-heading">Company</h3>
