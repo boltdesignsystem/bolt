@@ -1,0 +1,57 @@
+<footer class="c-page-footer">
+  <div class="c-page-footer__main">
+    <div class="c-page-footer__description">
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'About Pegasystems',
+        tag: 'h2',
+      } only %}
+      <p>Pegasystems is...</p>
+    </div>
+    <nav class="c-page-footer__nav" aria-label="Footer Navigation">
+      <h3 class="c-page-footer__nav-heading">Join the conversation</h3>
+      <ul class="c-page-footer__nav-list">
+        <li class="c-page-footer__nav-list-item"></li>
+        ...
+      </ul>
+      <h3 class="c-page-footer__nav-heading">Company</h3>
+      <ul class="c-page-footer__nav-list">
+        <li class="c-page-footer__nav-list-item">
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: 'Link',
+            icon_after: icon_chevron_right,
+            reversed_underline: true,
+            attributes: {
+              href: '',
+            }
+          } only %}
+        </li>
+        ...
+      </ul>
+      <h3 class="c-page-footer__nav-heading">Pega Sites</h3>
+      <ul class="c-page-footer__nav-list">
+        <li class="c-page-footer__nav-list-item"></li>
+        ...
+      </ul>
+      <h3 class="c-page-footer__nav-heading">Resources</h3>
+      <ul class="c-page-footer__nav-list">
+        <li class="c-page-footer__nav-list-item"></li>
+        ...
+      </ul>
+    </nav>
+  </div>
+  <aside class="c-page-footer__aside t-bolt-gray-xlight">
+    <nav class="c-page-footer__nav c-page-footer__nav--inline" aria-label="Utility Navigation">
+      <h3 class="c-page-footer__nav-heading">Language</h3>
+      <ul class="c-page-footer__nav-list">
+        <li class="c-page-footer__nav-list-item"></li>
+        ...
+      </ul>
+      <h3 class="c-page-footer__nav-heading">Legal</h3>
+      <ul class="c-page-footer__nav-list">
+        <li class="c-page-footer__nav-list-item"></li>
+        ...
+      </ul>
+    </nav>
+    <span class="c-page-footer__copyrights">&copy;2021 Pegasystems Inc.</span>
+  </aside>
+</footer>
