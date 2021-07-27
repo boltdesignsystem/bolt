@@ -6,13 +6,25 @@ export class BoltPageFooter {
   }
 
   init() {
-    var acc = document.getElementsByClassName('c-page-footer__nav-trigger');
-    var i;
+    const toggleAccordion = this.toggleAccordion();
+  }
 
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener('click', function() {
-        this.classList.toggle('active');
-        var panel = this.nextElementSibling;
+  toggleAccordion = () => {
+    const accTrigger = this.el.getElementsByClassName(
+      'c-page-footer__nav-trigger',
+    );
+    for (let i = 0; i < accTrigger.length; i++) {
+      accTrigger[i].addEventListener('click', function() {
+        //Toggle aria-expanded
+        let ariaExpanded = this.getAttribute('aria-expanded');
+        if (ariaExpanded === 'true') {
+          ariaExpanded = 'false';
+        } else {
+          ariaExpanded = 'true';
+        }
+        this.setAttribute('aria-expanded', ariaExpanded);
+        //Toggle accordion panels
+        const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
           panel.style.maxHeight = null;
         } else {
@@ -20,5 +32,5 @@ export class BoltPageFooter {
         }
       });
     }
-  }
+  };
 }

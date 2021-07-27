@@ -7,30 +7,74 @@
 .c-page-footer {
   @include bolt-full-bleed;
 
+  padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
+  background-color: var(--m-bolt-bg);
+  @include bolt-mq($until: large) {
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  }
+
+  &__main {
+    .c-page-footer__nav-trigger {
+      &:first-of-type {
+        border-top: none;
+      }
+    }
+  }
+
   &__nav-heading {
     @include bolt-mq($until: medium) {
       display: none;
     }
   }
 
-  &__nav-list {
-    @include bolt-mq($until: medium) {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.2s ease-out;
-    }
-  }
-
   &__nav-trigger {
     display: none;
+    padding: 0;
+
+    &:after {
+      content: '\002B';
+      display: inline-block;
+      transform-origin: center;
+      transition: transform var(--bolt-transition);
+    }
+
     @include bolt-mq($until: medium) {
-      display: block;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      min-height: 44px;
+      border: none;
+      border-top: 1px solid var(--bolt-color-gray-light);
     }
 
     &[aria-expanded='true'] {
-      + .c-page-footer__nav-list {
-        // display: block;
+      &:after {
+        transform: rotate(45deg);
       }
+
+      + .c-page-footer__nav-list {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__nav-list {
+    margin-bottom: 0;
+    @include bolt-mq($until: medium) {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--bolt-transition),
+        opacity var(--bolt-transition);
+    }
+  }
+
+  &__nav-list-item {
+    padding: var(--bolt-spacing-y-small) 0;
+
+    &:last-child {
+      margin-bottom: var(--bolt-spacing-y-medium);
     }
   }
 

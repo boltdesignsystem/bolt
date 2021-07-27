@@ -56,11 +56,19 @@
   } only %}
 {% endset %}
 
+{% set links_socials %}
+  <ul class="c-page-footer__nav-list">
+    <li class="c-page-footer__nav-list-item">{{link_twitter}}</li>
+    <li class="c-page-footer__nav-list-item">{{link_fb}}</li>
+    <li class="c-page-footer__nav-list-item">...</li>
+  </ul>
+{% endset %}
+
 {% set links_collection1 %}
   <ul class="c-page-footer__nav-list">
-    <li text="c-page-footer__nav-list-item">{{link1}}</li>
-    <li text="c-page-footer__nav-list-item">{{link2}}</li>
-    <li>...</li>
+    <li class="c-page-footer__nav-list-item">{{link1}}</li>
+    <li class="c-page-footer__nav-list-item">{{link2}}</li>
+    <li class="c-page-footer__nav-list-item">...</li>
   </ul>
 {% endset %}
 
@@ -76,11 +84,7 @@
     <nav class="c-page-footer__nav" aria-label="Footer Navigation">
       <h3 class="c-page-footer__nav-heading">Join the conversation</h3>
       <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Join the conversation</button>
-      <ul class="c-page-footer__nav-list">
-        <li class="c-page-footer__nav-list-item">{{link_twitter}} </li>
-        <li class="c-page-footer__nav-list-item">{{link_fb}}</li>
-        <li class="c-page-footer__nav-list-item">...</li>
-      </ul>
+      {{links_socials}}
       <h3 class="c-page-footer__nav-heading">Company</h3>
       <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Company</button>
       {{links_collection1}}
