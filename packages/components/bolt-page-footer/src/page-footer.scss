@@ -16,7 +16,7 @@
   &__main {
     .c-page-footer__nav-trigger {
       &:first-of-type {
-        border-top: none;
+        border-top: 1px solid var(--bolt-color-gray-light);
       }
     }
   }
@@ -29,7 +29,6 @@
 
   &__nav-trigger {
     display: none;
-    padding: 0;
 
     &:after {
       content: '\002B';
@@ -44,11 +43,14 @@
       align-items: center;
       width: 100%;
       min-height: 44px;
+      padding: 0;
       border: none;
-      border-top: 1px solid var(--bolt-color-gray-light);
+      border-bottom: 1px solid var(--bolt-color-gray-light);
     }
 
     &[aria-expanded='true'] {
+      border-bottom: none;
+
       &:after {
         transform: rotate(45deg);
       }
@@ -61,6 +63,10 @@
 
   &__nav-list {
     margin-bottom: 0;
+    margin-left: 0;
+    padding-left: 2rem;
+    border-bottom: 1px solid var(--bolt-color-gray-light);
+
     @include bolt-mq($until: medium) {
       opacity: 0;
       max-height: 0;
