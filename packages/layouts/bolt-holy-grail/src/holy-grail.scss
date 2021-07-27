@@ -32,48 +32,13 @@ $_bolt-holy-grail-sidebar-overflow-offset: 2rem;
   }
 }
 
-// Loop through the spacing map to generate padding and gutter options.
-@each $size in $bolt-spacing-multiplier-system {
-  $size-name: nth($size, 1);
-
-  @if (
-    $size-name ==
-      small or
-      $size-name ==
-      medium or
-      $size-name ==
-      large or
-      $size-name ==
-      xlarge
-  ) {
-    .l-bolt-holy-grail--padding-top-#{$size-name} {
-      --l-bolt-holy-grail-layout-padding-top: var(
-        --bolt-spacing-y-#{$size-name}
-      );
-    }
-
-    .l-bolt-holy-grail--padding-bottom-#{$size-name} {
-      --l-bolt-holy-grail-layout-padding-bottom: var(
-        --bolt-spacing-y-#{$size-name}
-      );
-    }
-  }
-}
-
-.l-bolt-holy-grail--padding-top-none {
-  --l-bolt-holy-grail-layout-padding-top: 1px;
-}
-
-.l-bolt-holy-grail--padding-bottom-none {
-  --l-bolt-holy-grail-layout-padding-bottom: 1px;
-}
-
 .l-bolt-holy-grail__article,
 .l-bolt-holy-grail__sidebar {
+  --l-bolt-holy-grail-layout-padding-x: var(--bolt-spacing-y-large);
   display: block;
   order: 1;
-  padding-top: var(--l-bolt-holy-grail-layout-padding-top);
-  padding-bottom: var(--l-bolt-holy-grail-layout-padding-bottom);
+  padding-top: var(--l-bolt-holy-grail-layout-padding-x);
+  padding-bottom: var(--l-bolt-holy-grail-layout-padding-x);
 }
 
 .l-bolt-holy-grail__article {
@@ -218,6 +183,7 @@ $_bolt-holy-grail-sidebar-overflow-offset: 2rem;
       place-items: center;
       width: 2rem;
       height: 2rem;
+      font-size: var(--bolt-type-font-size-medium);
     }
 
     .l-bolt-holy-grail__sidebar-trigger__icon-center {
@@ -228,7 +194,7 @@ $_bolt-holy-grail-sidebar-overflow-offset: 2rem;
       transform: translate3d(-50%, -50%, 0);
       width: 1em;
       height: 1em;
-      font-size: 1rem;
+      font-size: 1em;
 
       > * {
         position: absolute !important;
@@ -245,12 +211,18 @@ $_bolt-holy-grail-sidebar-overflow-offset: 2rem;
     }
 
     &[aria-expanded='false'] {
+      position: relative;
+      top: calc(var(--l-bolt-holy-grail-layout-padding-x) * -1);
+
+      .l-bolt-holy-grail__sidebar-trigger__text--toggle {
+        width: $_bolt-holy-grail-sidebar-trigger-click-target;
+        height: $_bolt-holy-grail-sidebar-trigger-click-target;
+        font-size: var(--bolt-type-font-size-xlarge);
+      }
+
       .l-bolt-holy-grail__sidebar-trigger__icon-center:nth-child(2) {
         display: block;
       }
-
-      position: relative;
-      top: calc(var(--l-bolt-holy-grail-layout-padding-top) * -1);
     }
   }
 

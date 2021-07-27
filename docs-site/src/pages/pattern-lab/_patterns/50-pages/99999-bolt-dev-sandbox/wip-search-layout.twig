@@ -1,8 +1,4 @@
-{% set description %}
-  Search Result List is a way to display teasers for a list of search results.
-{% endset %}
-
-{% set demo %}
+{% set holy_grail_content %}
   {% set icon_chevron_down %}
     {% include '@bolt-components-icon/icon.twig' with {
       name: 'chevron-down',
@@ -220,15 +216,6 @@
     } only %}
   {% endset %}
 
-  {# <bolt-text headline font-size="small">Product Results</bolt-text>
-  {% include '@bolt-components-list/list.twig' with {
-    spacing: 'small',
-    separator: 'solid',
-    items: [
-      product_result_1,
-    ]
-  } only %} #}
-
   {% set com_result_1 %}
     {% set eyebrow_1 %}
       {% include '@bolt-components-headline/eyebrow.twig' with {
@@ -336,17 +323,6 @@
     } only %}
   {% endset %}
 
-  {# <bolt-text headline font-size="small">Community Results</bolt-text>
-  {% include '@bolt-components-list/list.twig' with {
-    spacing: 'small',
-    separator: 'solid',
-    items: [
-      com_result_1,
-      com_result_2,
-      com_result_3,
-    ]
-  } only %} #}
-
   {% set acd_result_1 %}
     {% set eyebrow_1 %}
       {% include '@bolt-components-headline/eyebrow.twig' with {
@@ -445,17 +421,6 @@
       chip_list: chip_list,
     } only %}
   {% endset %}
-
-  {# <bolt-text headline font-size="small">Academy Results</bolt-text>
-  {% include '@bolt-components-list/list.twig' with {
-    spacing: 'small',
-    separator: 'solid',
-    items: [
-      acd_result_1,
-      acd_result_2,
-      acd_result_3,
-    ]
-  } only %} #}
 
   {% set cc_result_1 %}
     {% set eyebrow_1 %}
@@ -566,17 +531,6 @@
     } only %}
   {% endset %}
 
-  {# <bolt-text headline font-size="small">Collaboration Center Results</bolt-text>
-  {% include '@bolt-components-list/list.twig' with {
-    spacing: 'small',
-    separator: 'solid',
-    items: [
-      cc_result_1,
-      cc_result_2,
-      cc_result_3,
-    ]
-  } only %} #}
-
   {% set vid_result_1 %}
     {% set modal_id = 'js-bolt-modal-' ~ random() %}
     {% set video %}
@@ -663,15 +617,6 @@
     } only %}
   {% endset %}
 
-  {# <bolt-text headline font-size="small">Video Results</bolt-text>
-  {% include '@bolt-components-list/list.twig' with {
-    spacing: 'small',
-    separator: 'solid',
-    items: [
-      vid_result_1,
-    ]
-  } only %} #}
-
   {% set related_vids %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Related videos',
@@ -691,6 +636,7 @@
       ]
     } only %}
   {% endset %}
+
   {% include '@bolt-components-list/list.twig' with {
     spacing: 'small',
     separator: 'solid',
@@ -709,56 +655,267 @@
     ]
   } only %}
 {% endset %}
+{% set sidebar_content %}
+  <div class="u-bolt-padding-right-small u-bolt-padding-left-small">
+    <form>
+      <fieldset class="c-bolt-fieldset">
+        <legend class="c-bolt-legend">
+          <h2 class="c-bolt-headline c-bolt-headline--small">
+            <span class="c-bolt-headline__text">
+              Search Facets
+            </span>
+          </h2>
+        </legend>
+        <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="facet" id="facet-choice-1" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="facet-choice-1">
+              Facet One (12)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="facet" id="facet-choice-2" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="facet-choice-2">
+              Facet Two (8)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="facet" id="facet-choice-3" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="facet-choice-3">
+              Facet Three (3)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="facet" id="facet-choice-4" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="facet-choice-4">
+              Facet Four (5)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="facet" id="facet-choice-5" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="facet-choice-5">
+              Facet Five (10)
+            </label>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="c-bolt-fieldset">
+        <legend class="c-bolt-legend">
+          <h2 class="c-bolt-headline c-bolt-headline--small">
+            <span class="c-bolt-headline__text">
+              Placeholder One
+            </span>
+          </h2>
+        </legend>
+        <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-1" value="Agile" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-1">
+              Agile (3)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-2" value="Analytics" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-2">
+              Analytics (4)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-3" value="Application Development" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-3">
+              Application Development (6)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-4" value="Artificial Intelligence" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-4">
+              Artificial Intelligence (7)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-5" value="BPM" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-5">
+              BPM (14)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-6" value="Case Management" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-6">
+              Case Management (10)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-7" value="Cloud" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-7">
+              Cloud (34)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-8" value="CRM" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-8">
+              CRM (1)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-9" value=" Customer Experience" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-9">
+                Customer Experience (23)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-10" value="Customer Service" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-10">
+              Customer Service (5)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-11" value="Decision Management" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-11">
+              Decision Management (5)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Digital Transformation" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Digital Transformation (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Internet of Things" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Internet of Things (9)
+            </label>
+          </div>
+            <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Marketing Automation" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Marketing Automation (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Mobile" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Mobile (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Operations" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Operations (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Pega Platform" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Pega Platform (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="PegaWorld" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              PegaWorld (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Robotic Automation" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Robotic Automation (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Sales Automation" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Sales Automation (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="UX & Design" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              UX & Design (9)
+            </label>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="c-bolt-fieldset">
+        <legend class="c-bolt-legend">
+          <h2 class="c-bolt-headline c-bolt-headline--small">
+            <span class="c-bolt-headline__text">
+              Placeholder Two
+            </span>
+          </h2>
+        </legend>
+        <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-1" value="Communications & Media" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-1">
+              Communications & Media (12)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-2" value="Energy & Utilities" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-2">
+              Energy & Utilities (8)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-3" value="Financial Services" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-3">
+              Financial Services (3)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-4" value="Government" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-4">
+              Government (5)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-5" value="Healthcare" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-5">
+              Healthcare (10)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-6" value="Insurance" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-6">
+              Insurance (10)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-7" value="Life Sciences" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-7">
+              Life Sciences (10)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-8" value="Manufacturing & High Technology" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-8">
+              Manufacturing & High Technology (10)
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+{% endset %}
 
-{% set twig_markup %}
-{% verbatim %}
-{% set demo_result %}
-  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
-    signifier: signifier,
-    layout: 'responsive', // Allow the content to wrap under the signifier when it runs out of space. Used in video listing.
-    eyebrow_items: [
-      eyebrow_1,
-      eyebrow_2,
-    ],
-    headline: {
-      text: 'This is a listing',
-      tag: 'h3',
-      size: 'xlarge',
-      link_attributes: {
-        href: 'https://pega.com', // Or set type: 'button' for video modals.
+<div class="l-bolt-site">
+  {% include '@pl/-page-header-example-docs.twig' %}
+  <main id="main-content">
+    {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+      content: holy_grail_content,
+      sidebar: {
+        content: sidebar_content,
+        trigger_icon: 'filter',
+        trigger_label: 'Search Filters',
+        auto_width: true,
       },
-    },
-    meta_items: [
-      meta_item_1,
-      meta_item_2,
-      meta_item_3,
-    ],
-    description: description,
-    chip_list: chip_list,
-    status: {
-      solved: true,
-      locked: true,
-      number_items: number_items,
-    },
-  } only %}
-{% endset %}
-
-// Render a list to display results
-{% include '@bolt-components-list/list.twig' with {
-  spacing: 'small',
-  inset: true,
-  separator: 'solid',
-  items: [
-    demo_result,
-    ...
-  ],
-} only %}
-{% endverbatim %}
-{% endset %}
-
-{% include '@utils/pattern-doc-page.twig' with {
-  title: 'Use Case: Search Result List',
-  description: description,
-  demo: demo,
-  twig_markup: twig_markup,
-} only %}
+      padding_top: 'large',
+      padding_bottom: 'large',
+      full_bleed: true,
+    } only %}
+  </main>
+  <footer class="u-bolt-padding-medium" style="background:yellow;">
+    <p>Footer placeholder.</p>
+  </footer>
+</div>
