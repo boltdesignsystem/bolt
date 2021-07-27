@@ -1,22 +1,41 @@
 {% set description %}
-  The Holy Grail layout renders a sidebar on the left and another on the right. The sidebars are sticky at and above medium breakpoint and transform into modals below medium breakpoint.
+  The Holy Grail layout renders a sidebar on the left and another on the right.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
+    <bolt-li>The sidebars are sticky at and above the medium breakpoint.</bolt-li>
+    <bolt-li>The primary sidebar transforms into a mdoal below the medium breakpoint.</bolt-li>
+    <bolt-li>The secondary sidebar disappears entirely below the medium breakpoint. This sidebar is intended for non-essential information.</bolt-li>
     <bolt-li>Community Tech Doc is a great example of using Side Nav, Content Pagination, Holy Grail layout, and Article element together. <a href="{{ link['pages-community-tech-doc'] }}" class="e-bolt-text-link">View Example Tech Documentation<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
     <bolt-li>Read more about holy grail layout on <a href="https://en.wikipedia.org/wiki/Holy_grail_(web_design)" class="e-bolt-text-link">Wikipedia</a>.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
+  {% set content %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'This is a holy grail layout.',
+    } only %}
+  {% endset %}
+  {% set sidebar_content %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Primary sidebar',
+    } only %}
+  {% endset %}
+  {% set secondary_sidebar_content %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Secondary sidebar',
+    } only %}
+  {% endset %}
+  
   {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
-    content: 'This is a holy grail layout.',
+    content: content,
     sidebar: {
-      content: 'Primary sidebar',
+      content: sidebar_content,
     },
     secondary_sidebar: {
-      content: 'Secondary sidebar',
+      content: secondary_sidebar_content,
     },
   } only %}
 {% endset %}
