@@ -1,6 +1,6 @@
 import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 // @ts-ignore
-import buttonSchema from '@bolt/components-button/button.schema';
+import buttonSchema from '@bolt/elements-button/button.schema';
 // @ts-ignore
 import textSchema from '@bolt/components-text/text.schema';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
@@ -29,7 +29,7 @@ class EditorRegisterBoltError extends Error {}
 const smallButton = {
   id: 'bolt-button--small',
   title: 'Button',
-  content: `<bolt-button size="small">Button</bolt-button>`,
+  content: `<button type="button" class="e-bolt-button e-bolt-button--small">Button</button>`,
 };
 
 const basicText = {
@@ -359,22 +359,14 @@ export function setupBolt(editor) {
     };
   }
 
-  // schema has it as `style` but web component uses it as `color` since `style` is a reserved HTML attribute; see http://vjira2:8080/browse/BDS-721 & http://vjira2:8080/browse/BDS-1104
-  const colorTrait = convertSchemaPropToTrait({
-    prop: buttonSchema.properties.style,
-    name: 'color',
-  });
-  colorTrait.label = 'Color';
-
   registerBoltComponent({
     name: 'bolt-button',
     registerBlock: true,
     schema: buttonSchema,
     extend: 'text',
     initialContent: ['<span>Button</span>'],
-    propsToTraits: ['size', 'width', 'border_radius'],
+    propsToTraits: ['size', 'display', 'border_radius', 'hierarchy'],
     extraTraits: [
-      colorTrait,
       {
         label: 'On Click',
         name: 'on-click',
