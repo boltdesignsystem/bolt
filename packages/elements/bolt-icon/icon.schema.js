@@ -2,27 +2,16 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Icon',
   type: 'object',
-  required: ['content'],
   properties: {
     attributes: {
       type: 'object',
       description:
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
-    svg: {
-      type: 'any',
-      description: 'Custom SVG markup.',
-    },
     name: {
       type: 'string',
       description: 'Name of Icon',
       default: 'none'
-    },
-    background: {
-      type: 'string',
-      description: 'Customizes the background that\'s displayed behind the SVG icon itself. Choosing any option other than `none` will automatically add a bit of space around the SVG so the background has the necessary space. Note, this option is now available to icons of all sizes!',
-      default: 'none',
-      enum: ['none', 'circle', 'square']
     },
     size: {
       type: 'string',
