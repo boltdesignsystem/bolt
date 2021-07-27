@@ -65,12 +65,12 @@
     margin-bottom: 0;
     margin-left: 0;
     padding-left: 2rem;
-    border-bottom: 1px solid var(--bolt-color-gray-light);
 
     @include bolt-mq($until: medium) {
       opacity: 0;
       max-height: 0;
       overflow: hidden;
+      border-bottom: 1px solid var(--bolt-color-gray-light);
       transition: max-height var(--bolt-transition),
         opacity var(--bolt-transition);
     }
