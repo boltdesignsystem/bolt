@@ -7,21 +7,29 @@
 .c-page-footer {
   @include bolt-full-bleed;
 
-  &__nav-list,
   &__nav-heading {
     @include bolt-mq($until: medium) {
-      &:not(.c-page-footer__socials) {
-        display: none;
-      }
+      display: none;
+    }
+  }
+
+  &__nav-list {
+    @include bolt-mq($until: medium) {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
     }
   }
 
   &__nav-trigger {
-    display: block;
+    display: none;
+    @include bolt-mq($until: medium) {
+      display: block;
+    }
 
     &[aria-expanded='true'] {
       + .c-page-footer__nav-list {
-        display: block;
+        // display: block;
       }
     }
   }
