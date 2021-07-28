@@ -1,12 +1,21 @@
 {% set usage %}{% verbatim %}
+// Set up sidebar templates
+{% set sidebar %}
+  {% include '@bolt-layouts-holy-grail/holy-grail-sidebar.twig' with {
+    content: 'Primary sidebar',
+  } only %}
+{% endset %}
+{% set secondary_sidebar %}
+  {% include '@bolt-layouts-holy-grail/holy-grail-secondary-sidebar.twig' with {
+    content: 'Secondary sidebar',
+  } only %}
+{% endset %}
+
+// Pass sidebars to main template
 {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
-  content: content,
-  sidebar: {
-    content: sidebar,
-  },
-  secondary_sidebar: {
-    content: secondary_sidebar,
-  },
+  content: 'This is a holy grail layout.',
+  sidebar: sidebar,
+  secondary_sidebar: secondary_sidebar,
 } only %}
 {% endverbatim %}{% endset %}
 
