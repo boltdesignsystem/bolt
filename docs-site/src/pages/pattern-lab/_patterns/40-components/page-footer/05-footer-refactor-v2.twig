@@ -1,21 +1,30 @@
+{% set icon_chevron_right %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+
 {% set icon_fb %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "facebook",
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'facebook',
   } only %}
 {% endset %}
 
 {% set icon_twitter %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "twitter",
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'twitter',
   } only %}
 {% endset %}
 
-{% set link_fb %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: icon_fb,
-    attributes: {
-      href: '',
-    }
+{% set icon_linkedin %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'linkedin',
+  } only %}
+{% endset %}
+
+{% set icon_youtube %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'youtube-solid',
   } only %}
 {% endset %}
 
@@ -23,53 +32,298 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: icon_twitter,
     attributes: {
-      href: '',
+      href: 'https://twitter.com/pega',
+      target: '_blank',
+      rel: 'noopener',
+      'aria-label': 'Follow Us On Twitter',
+      'aria-describedby': 'new-window',
     }
   } only %}
 {% endset %}
 
-{% set icon_chevron_right %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "chevron-right",
+{% set link_fb %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: icon_fb,
+    attributes: {
+      href: 'https://www.facebook.com/pegasystems',
+      target: '_blank',
+      rel: 'noopener',
+      'aria-label': 'Follow Us On Facebook',
+      'aria-describedby': 'new-window',
+    }
   } only %}
 {% endset %}
 
-{% set link1 %}
+{% set link_linkedin %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Link1',
+    content: icon_linkedin,
+    attributes: {
+      href: 'https://www.linkedin.com/company/165426',
+      target: '_blank',
+      rel: 'noopener',
+      'aria-label': 'Connect with us on LinkedIn',
+      'aria-describedby': 'new-window',
+    }
+  } only %}
+{% endset %}
+
+{% set link_youtube %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: icon_youtube,
+    attributes: {
+      href: 'https://www.youtube.com/user/Pegasystems',
+      target: '_blank',
+      rel: 'noopener',
+      'aria-label': 'Check us out on YouTube',
+      'aria-describedby': 'new-window',
+    }
+  } only %}
+{% endset %}
+
+{% set link_1 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'About Pega',
     icon_after: icon_chevron_right,
     reversed_underline: true,
     attributes: {
-      href: '',
+      href: 'https://www.pega.com/about',
     }
   } only %}
 {% endset %}
 
-{% set link2 %}
+{% set link_2 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Link2',
+    content: 'Office Locations',
     icon_after: icon_chevron_right,
     reversed_underline: true,
     attributes: {
-      href: '',
+      href: 'https://www.pega.com/about/office-locations',
     }
   } only %}
 {% endset %}
 
+{% set link_3 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Careers',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://www.pega.com/about/careers',
+    }
+  } only %}
+{% endset %}
+
+{% set link_4 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Contact Us',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: '/contact-us',
+    }
+  } only %}
+{% endset %}
+
+{% set link_5 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Community',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://community.pega.com/',
+    }
+  } only %}
+{% endset %}
+
+{% set link_6 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Pega Academy Training',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://academy.pega.com',
+    }
+  } only %}
+{% endset %}
+
+{% set link_7 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'PegaWorld Conference',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: '/events/pegaworld',
+    }
+  } only %}
+{% endset %}
+
+{% set link_8 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Pega Blog',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://www.pega.com/insights',
+    }
+  } only %}
+{% endset %}
+
+{% set link_9 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Pega Product Design',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://design.pega.com/',
+    }
+  } only %}
+{% endset %}
+
+{% set link_10 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Analyst Reports',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: '/insights/analyst-reports',
+    }
+  } only %}
+{% endset %}
+
+{% set link_11 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Demo Videos',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://www.pega.com/products/explore',
+    }
+  } only %}
+{% endset %}
+
+{% set link_12 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Pega Platform Trial',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://www.pega.com/services',
+    }
+  } only %}
+{% endset %}
+
+{% set link_13 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Trust Center',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://www.pega.com/products/cloud/pega-trust-center',
+    }
+  } only %}
+{% endset %}
+
+{% set link_14 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'English',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://www.pega.com',
+    }
+  } only %}
+{% endset %}
+
+{% set link_15 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Français',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://www.pega.com/fr',
+    }
+  } only %}
+{% endset %}
+
+{% set link_23 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Terms of Use',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://www.pega.com/terms',
+    }
+  } only %}
+{% endset %}
+
+{% set link_24 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Privacy',
+    icon_after: icon_chevron_right,
+    reversed_underline: true,
+    attributes: {
+      href: '/privacy-and-security',
+    }
+  } only %}
+{% endset %}
+
+{# Social links list #}
 {% set links_socials %}
   <ul class="c-page-footer__nav-list">
     <li class="c-page-footer__nav-list-item">{{link_twitter}}</li>
     <li class="c-page-footer__nav-list-item">{{link_fb}}</li>
-    <li class="c-page-footer__nav-list-item">...</li>
+    <li class="c-page-footer__nav-list-item">{{link_linkedin}}</li>
+    <li class="c-page-footer__nav-list-item">{{link_youtube}}</li>
   </ul>
 {% endset %}
 
-{% set links_collection1 %}
-  <ul class="c-page-footer__nav-list">
-    <li class="c-page-footer__nav-list-item">{{link1}}</li>
-    <li class="c-page-footer__nav-list-item">{{link2}}</li>
-    <li class="c-page-footer__nav-list-item">...</li>
-  </ul>
+{# Company links list #}
+{% set links_collection_1 %}
+<ul class="c-page-footer__nav-list">
+  <li class="c-page-footer__nav-list-item">{{link_1}}</li>
+  <li class="c-page-footer__nav-list-item">{{link_2}}</li>
+  <li class="c-page-footer__nav-list-item">{{link_3}}</li>
+  <li class="c-page-footer__nav-list-item">{{link_4}}</li>
+</ul>
+{% endset %}
+
+{# Pega Sites links list #}
+{% set links_collection_2 %}
+<ul class="c-page-footer__nav-list">
+  <li class="c-page-footer__nav-list-item">{{link_5}}</li>
+  <li class="c-page-footer__nav-list-item">{{link_6}}</li>
+  <li class="c-page-footer__nav-list-item">{{link_7}}</li>
+  <li class="c-page-footer__nav-list-item">{{link_8}}</li>
+  <li class="c-page-footer__nav-list-item">{{link_9}}</li>
+</ul>
+{% endset %}
+
+{# Resources link list #}
+{% set links_collection_3 %}
+<ul class="c-page-footer__nav-list">
+  <li class="c-page-footer__nav-list-item">{{link_10}}</li>
+  <li class="c-page-footer__nav-list-item">{{link_11}}</li>
+  <li class="c-page-footer__nav-list-item">{{link_12}}</li>
+  <li class="c-page-footer__nav-list-item">{{link_13}}</li>
+</ul>
+{% endset %}
+
+{# Languages link list #}
+{% set links_collection_4 %}
+<ul class="c-page-footer__nav-list">
+  <li class="c-page-footer__nav-list-item">{{link_14}}</li>
+  <li class="c-page-footer__nav-list-item">{{link_15}}</li>
+  <li class="c-page-footer__nav-list-item">...</li>
+</ul>
+{% endset %}
+
+{# Policy Privacy link list #}
+{% set links_collection_5 %}
+<ul class="c-page-footer__nav-list">
+  <li class="c-page-footer__nav-list-item">{{link_23}}</li>
+  <li class="c-page-footer__nav-list-item">{{link_24}}</li>
+  <li class="c-page-footer__nav-list-item">...</li>
+</ul>
 {% endset %}
 
 <footer class="c-page-footer">
@@ -79,32 +333,39 @@
         text: 'About Pegasystems',
         tag: 'h2',
       } only %}
-      <p>Pegasystems is...</p>
+      <p class="c-page-footer__description-text">Pega delivers innovative software that crushes business complexity. From increasing customer lifetime value to streamlining service to boosting efficiency, we help the world’s leading brands solve problems fast and transform for tomorrow. Our solutions save people time, so our clients’ employees and customers can get back to what matters most.</p>
+      <h3 class="c-page-footer__nav-heading">Join the conversation</h3>
+      <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Join the conversation<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
+      {{links_socials}}
     </div>
     <nav class="c-page-footer__nav" aria-label="Footer Navigation">
-      <h3 class="c-page-footer__nav-heading">Join the conversation</h3>
-      <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Join the conversation</button>
-      {{links_socials}}
-      <h3 class="c-page-footer__nav-heading">Company</h3>
-      <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Company</button>
-      {{links_collection1}}
-      <h3 class="c-page-footer__nav-heading">Pega Sites</h3>
-      <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Pega Sites</button>
-      {{links_collection1}}
-      <h3 class="c-page-footer__nav-heading">Resources</h3>
-      <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Resources</button>
-      {{links_collection1}}
+      <div class="c-page-footer__nav-group">
+        <h3 class="c-page-footer__nav-heading">Company</h3>
+        <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Company<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
+        {{links_collection_1}}
+      </div>
+      <div class="c-page-footer__nav-group">
+        <h3 class="c-page-footer__nav-heading">Pega Sites</h3>
+        <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Pega Sites<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
+        {{links_collection_2}}
+      </div>
+      <div class="c-page-footer__nav-group">
+        <h3 class="c-page-footer__nav-heading">Resources</h3>
+        <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Resources<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
+        {{links_collection_3}}
+      </div>
     </nav>
   </div>
   <aside class="c-page-footer__aside t-bolt-gray-xlight">
     <nav class="c-page-footer__nav c-page-footer__nav--inline" aria-label="Utility Navigation">
-      <h3 class="c-page-footer__nav-heading">Language</h3>
-      <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Language</button>
-      {{links_collection1}}
-      <h3 class="c-page-footer__nav-heading">Legal</h3>
-      <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Legal</button>
-      {{links_collection1}}
+      <h3 class="c-page-footer__nav-heading u-bolt-visuallyhidden">Language</h3>
+      <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Language<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
+      {{links_collection_4}}
+      <h3 class="c-page-footer__nav-heading u-bolt-visuallyhidden">Legal</h3>
+      <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Legal<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
+      {{links_collection_5}}
     </nav>
     <span class="c-page-footer__copyrights">&copy;2021 Pegasystems Inc.</span>
   </aside>
+  <span id="new-window" hidden>Opens in a new window</span>
 </footer>
