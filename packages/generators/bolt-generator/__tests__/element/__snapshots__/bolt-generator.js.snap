@@ -129,9 +129,9 @@ exports[`Bolt component generator schema file exist 1`] = `
 `;
 
 exports[`Bolt component generator tests file exist 1`] = `
-"import { render, stopServer } from '../../../testing/testing-helpers';
+"// Refer to https://github.com/boltdesignsystem/bolt/wiki/Jest-Test:-Example-Jest-Test for more testing examples
+import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../test.schema';
-const timeout = 90000;
 let page, fixtures;
 
 afterAll(async () => {
@@ -143,7 +143,7 @@ beforeEach(async () => {
   await page.evaluate(() => {
     document.body.innerHTML = '';
   });
-}, timeout);
+});
 
 beforeAll(async () => {
   page = await global.__BROWSER__.newPage();
@@ -159,27 +159,14 @@ beforeAll(async () => {
     defaultData,
   };
 
-}, timeout);
+});
 
-describe('Test', () => {
-  test('basic usage', async () => {
+describe('Bolt Test element', () => {
+  test('default', async () => {
     const results = await render(
       '@bolt-elements-test/test.twig', {
       ...fixtures.defaultData,
     });
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
-  });
-
-  test('adds class via Drupal Attributes', async () => {
-    const results = await render(
-      '@bolt-elements-test/test.twig',
-      {
-        attributes: {
-          class: ['u-bolt-margin-top-medium'],
-        },
-      },
-    );
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
