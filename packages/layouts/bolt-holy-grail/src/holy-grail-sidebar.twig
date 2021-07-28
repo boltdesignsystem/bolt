@@ -5,7 +5,7 @@
 {% endif %}
 
 {# Variables #}
-{% set this = init(schema.properties.content) %}
+{% set this = init(schema) %}
 {% set sidebar_attributes = create_attribute(attributes|default({})) %}
 
 {# Array of classes based on the defined + default props #}
