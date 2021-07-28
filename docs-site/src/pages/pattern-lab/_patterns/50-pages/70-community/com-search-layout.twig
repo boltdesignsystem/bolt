@@ -899,23 +899,40 @@
   </div>
 {% endset %}
 
-<div class="l-bolt-site">
+{% set site_header %}
   {% include '@pl/-page-header-example-docs.twig' %}
-  <main id="main-content">
-    {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
-      content: holy_grail_content,
-      sidebar: {
-        content: sidebar_content,
-        trigger_icon: 'filter',
-        trigger_label: 'Search Filters',
-        auto_width: true,
-      },
-      padding_top: 'large',
-      padding_bottom: 'large',
-      full_bleed: true,
-    } only %}
-  </main>
-  <footer class="u-bolt-padding-medium" style="background:yellow;">
-    <p>Footer placeholder.</p>
+{% endset %}
+{% set site_main %}
+  {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+    content: holy_grail_content,
+    sidebar: {
+      content: sidebar_content,
+      trigger_icon: 'filter',
+      trigger_label: 'Search Filters',
+      auto_width: true,
+    },
+    padding_top: 'large',
+    padding_bottom: 'large',
+    full_bleed: true,
+  } only %}
+{% endset %}
+{% set site_footer %}
+  <footer>
+    <bolt-layout class="t-bolt-yellow">
+      <bolt-layout-item>
+        <p>Footer placeholder.</p>
+      </bolt-layout-item>
+    </bolt-layout>
   </footer>
-</div>
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  header: site_header,
+  main: {
+    content: site_main,
+    attributes: {
+      id: 'main-content',
+    }
+  },
+  footer: site_footer,
+} only %}

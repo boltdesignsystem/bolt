@@ -1,12 +1,12 @@
 {% set description %}
-  The Holy Grail layout is commonly used for documentation design where a page might display side nav and table of contents.
+  The Holy Grail layout is commonly used for documentation design where a page would display a book nav and a page level table of contents.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
     <bolt-li>The primary sidebar works best with the Side Nav component. <a href="{{ link['viewall-components-side-nav'] }}" class="e-bolt-text-link">View Side Nav component<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
     <bolt-li>The secondary sidebar works best with the Table of Contents component. <a href="{{ link['viewall-components-toc'] }}" class="e-bolt-text-link">View Table of Contents component<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
-    <bolt-li>For smaller viewports, the primary sidebar is transformed into a modal. User can tap the trigger button to activate the modals. <bolt-code-snippet display="inline">trigger_icon</bolt-code-snippet> and <bolt-code-snippet display="inline">trigger_label</bolt-code-snippet> props are available for customizing the icon and label text in trigger buttons.</bolt-li>
+    <bolt-li>For smaller viewports, the primary sidebar is transformed into a modal. User can tap the trigger button to activate the modal. <bolt-code-snippet display="inline">trigger_icon</bolt-code-snippet> and <bolt-code-snippet display="inline">trigger_label</bolt-code-snippet> props are available for customizing the icon and label text in the trigger button.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -147,7 +147,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Use Case: Documentation',
+  title: 'Use Case: Navigation',
   description: description,
   demo: demo,
   notes: notes,
