@@ -6,7 +6,6 @@
   <bolt-ol>
     <bolt-li>The primary sidebar works best with the Side Nav component. <a href="{{ link['viewall-components-side-nav'] }}" class="e-bolt-text-link">View Side Nav component<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
     <bolt-li>The secondary sidebar works best with the Table of Contents component. <a href="{{ link['viewall-components-toc'] }}" class="e-bolt-text-link">View Table of Contents component<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
-    <bolt-li>For smaller viewports, the primary sidebar is transformed into a modal. User can tap the trigger button to activate the modal. <bolt-code-snippet display="inline">trigger_icon</bolt-code-snippet> and <bolt-code-snippet display="inline">trigger_label</bolt-code-snippet> props are available for customizing the icon and label text in the trigger button.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -117,31 +116,54 @@
     </article>
   {% endset %}
 
-  {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
-    content: content,
-    sidebar: {
+  {% set sidebar %}
+    {% include '@bolt-layouts-holy-grail/holy-grail-sidebar.twig' with {
       content: side_nav,
       trigger_icon: 'documentation',
       trigger_label: 'Book Navigation',
-    },
-    secondary_sidebar: {
+      attributes: {
+        class: 't-bolt-gray-xlight',
+      },
+    } only %}
+  {% endset %}
+
+  {% set secondary_sidebar %}
+    {% include '@bolt-layouts-holy-grail/holy-grail-secondary-sidebar.twig' with {
       content: table_of_contents,
-    },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+    content: content,
+    sidebar: sidebar,
+    secondary_sidebar: secondary_sidebar,
   } only %}
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
-{% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
-  content: content,
-  sidebar: {
+// Set up sidebar templates
+{% set sidebar %}
+  {% include '@bolt-layouts-holy-grail/holy-grail-sidebar.twig' with {
     content: side_nav,
     trigger_icon: 'documentation',
     trigger_label: 'Book Navigation',
-  },
-  secondary_sidebar: {
+    attributes: {
+      class: 't-bolt-gray-xlight',
+    },
+  } only %}
+{% endset %}
+{% set secondary_sidebar %}
+  {% include '@bolt-layouts-holy-grail/holy-grail-secondary-sidebar.twig' with {
     content: table_of_contents,
-  },
+  } only %}
+{% endset %}
+
+// Pass sidebars to main template
+{% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+  content: content,
+  sidebar: sidebar,
+  secondary_sidebar: secondary_sidebar,
 } only %}
 {% endverbatim %}
 {% endset %}

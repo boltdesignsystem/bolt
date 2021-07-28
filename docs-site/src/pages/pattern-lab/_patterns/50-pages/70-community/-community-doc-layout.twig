@@ -689,31 +689,32 @@
   {% include '@pl/-page-header-example-docs.twig' %}
 {% endset %}
 {% set site_main %}
-  {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
-    content: holy_grail_content,
-    sidebar: {
+  {% set holy_grail_sidebar %}
+    {% include '@bolt-layouts-holy-grail/holy-grail-sidebar.twig' with {
       content: sidebar_content,
       trigger_icon: 'documentation',
       trigger_label: 'Book Navigation',
-      auto_width: true,
-    },
-    secondary_sidebar: {
+      attributes: {
+        class: 't-bolt-gray-xlight',
+      },
+    } only %}
+  {% endset %}
+  {% set holy_grail_secondary_sidebar %}
+    {% include '@bolt-layouts-holy-grail/holy-grail-secondary-sidebar.twig' with {
       content: secondary_sidebar_content,
-      trigger_icon: 'more',
-      trigger_label: 'More Info',
-    },
-    padding_top: 'large',
-    padding_bottom: 'large',
-    full_bleed: true,
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+    content: holy_grail_content,
+    sidebar: holy_grail_sidebar,
+    secondary_sidebar: holy_grail_secondary_sidebar,
   } only %}
 {% endset %}
 {% set site_footer %}
   <footer>
-    <bolt-layout class="t-bolt-yellow">
-      <bolt-layout-item>
-        <p>Footer placeholder.</p>
-      </bolt-layout-item>
-    </bolt-layout>
+    <bolt-banner status="warning">
+      <p>Footer placeholder.</p>
+    </bolt-banner>
   </footer>
 {% endset %}
 

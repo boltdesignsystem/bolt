@@ -25,8 +25,8 @@ $_bolt-holy-grail-sidebar-overflow-offset: 2rem;
   }
 
   @include bolt-mq(xxxlarge) {
-    grid-template-columns: minmax(16vw, var(--bolt-page-padding-x)) 1fr minmax(
-        26vw,
+    grid-template-columns: minmax(18vw, var(--bolt-page-padding-x)) 1fr minmax(
+        20.2vw,
         var(--bolt-page-padding-x)
       );
   }
@@ -66,6 +66,7 @@ $_bolt-holy-grail-sidebar-overflow-offset: 2rem;
     grid-area: sidebar;
     width: 100%;
     padding: var(--bolt-spacing-y-small) var(--bolt-page-padding-x);
+    border-bottom: 1px solid var(--m-bolt-border);
   }
 
   @include bolt-mq($from: medium) {
@@ -79,15 +80,14 @@ $_bolt-holy-grail-sidebar-overflow-offset: 2rem;
       margin-left: auto;
     }
   }
+
+  @include bolt-mq($from: medium, $until: xxlarge) {
+    border-right: 1px solid var(--m-bolt-border);
+  }
 }
 
 .l-bolt-holy-grail__sidebar--secondary {
-  @include bolt-mq($until: medium) {
-    // @at-root .l-bolt-holy-grail__sidebar ~ #{&} {
-    //   grid-area: sidebar2;
-    //   width: #{$_bolt-holy-grail-sidebar-trigger-click-target};
-    // }
-  }
+  border: 0;
 
   @include bolt-mq($until: large) {
     display: none;

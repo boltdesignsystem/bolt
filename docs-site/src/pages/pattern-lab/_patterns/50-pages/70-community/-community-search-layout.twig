@@ -903,26 +903,26 @@
   {% include '@pl/-page-header-example-docs.twig' %}
 {% endset %}
 {% set site_main %}
-  {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
-    content: holy_grail_content,
-    sidebar: {
+  {% set holy_grail_sidebar %}
+    {% include '@bolt-layouts-holy-grail/holy-grail-sidebar.twig' with {
       content: sidebar_content,
       trigger_icon: 'filter',
       trigger_label: 'Search Filters',
-      auto_width: true,
-    },
-    padding_top: 'large',
-    padding_bottom: 'large',
-    full_bleed: true,
+      attributes: {
+        class: 't-bolt-gray-xlight',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+    content: holy_grail_content,
+    sidebar: holy_grail_sidebar,
   } only %}
 {% endset %}
 {% set site_footer %}
   <footer>
-    <bolt-layout class="t-bolt-yellow">
-      <bolt-layout-item>
-        <p>Footer placeholder.</p>
-      </bolt-layout-item>
-    </bolt-layout>
+    <bolt-banner status="warning">
+      <p>Footer placeholder.</p>
+    </bolt-banner>
   </footer>
 {% endset %}
 
