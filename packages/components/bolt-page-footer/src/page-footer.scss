@@ -16,11 +16,12 @@
     background-color: var(--m-bolt-bg);
 
     @include bolt-mq($until: large) {
-      padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium) 0;
+      padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
     }
 
     @include bolt-mq($until: medium) {
       grid-template-columns: 1fr;
+      padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium) 0;
     }
   }
 
