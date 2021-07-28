@@ -1,4 +1,5 @@
 export const UPDATE_THEME_MODE = 'UPDATE_THEME_MODE';
+export const UPDATE_TEST_MODE = 'UPDATE_TEST_MODE';
 export const UPDATE_LAYOUT_MODE = 'UPDATE_LAYOUT_MODE';
 export const UPDATE_DRAWER_ANIMATION_STATE = 'UPDATE_DRAWER_ANIMATION_STATE';
 export const UPDATE_DRAWER_STATE = 'UPDATE_DRAWER_STATE';
@@ -59,6 +60,15 @@ export const updateThemeMode = themeMode => (dispatch, getState) => {
     dispatch({
       type: UPDATE_THEME_MODE,
       themeMode,
+    });
+  }
+};
+
+export const updateTestMode = testMode => (dispatch, getState) => {
+  if (getState().app.testMode !== testMode) {
+    dispatch({
+      type: UPDATE_TEST_MODE,
+      testMode,
     });
   }
 };
