@@ -1,4 +1,9 @@
 {% set holy_grail_content %}
+  {% set icon_search %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'search',
+    } only %}
+  {% endset %}
   {% set icon_chevron_down %}
     {% include '@bolt-components-icon/icon.twig' with {
       name: 'chevron-down',
@@ -637,23 +642,121 @@
     } only %}
   {% endset %}
 
-  {% include '@bolt-components-list/list.twig' with {
-    spacing: 'small',
-    separator: 'solid',
-    items: [
-      product_result_1,
-      cc_result_1,
-      com_result_1,
-      acd_result_1,
-      related_vids,
-      acd_result_3,
-      cc_result_2,
-      com_result_3,
-      cc_result_3,
-      acd_result_2,
-      com_result_2,
-    ]
-  } only %}
+  {% set search_archive %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Search the archive',
+      icon_before: icon_search,
+      hierarchy: 'tertiary',
+      display: 'block',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    } only %}
+  {% endset %}
+
+  {% set help_system_link %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Browse the help system',
+      icon_after: icon_chevron_right,
+      attributes: {
+        href: 'https://pega.com',
+      }
+    } only %}
+  {% endset %}
+
+  <bolt-stack spacing="small">
+    {% include '@bolt-components-chip-list/chip-list.twig' with {
+      size: 'xsmall',
+      items: [
+        {
+          text: 'Selected facet 1',
+          url: '#!',
+          icon: {
+            position: 'after',
+            name: 'close',
+          }
+        },
+        {
+          text: 'Selected facet 2',
+          url: '#!',
+          icon: {
+            position: 'after',
+            name: 'close',
+          }
+        },
+        {
+          text: 'Selected facet 3',
+          url: '#!',
+          icon: {
+            position: 'after',
+            name: 'close',
+          }
+        },
+        {
+          text: 'Clear all',
+          url: '#!',
+        },
+      ]
+    } only %}
+  </bolt-stack>
+  <bolt-stack>
+    <small>Found 9268 results. Looking for help? {{ help_system_link }}</small>
+  </bolt-stack>
+  <bolt-stack spacing="large">
+    {% include '@bolt-components-list/list.twig' with {
+      spacing: 'medium',
+      separator: 'solid',
+      items: [
+        product_result_1,
+        cc_result_1,
+        com_result_1,
+        acd_result_1,
+        related_vids,
+        acd_result_3,
+        cc_result_2,
+        com_result_3,
+        cc_result_3,
+        acd_result_2,
+        com_result_2,
+        search_archive,
+      ]
+    } only %}
+  </bolt-stack>
+  <bolt-stack>
+    {% include '@bolt-components-pagination/pagination.twig' with {
+      current: 5,
+      total: 10,
+      first: {
+        href: '#!'
+      },
+      previous: {
+        href: '#!'
+      },
+      pages: {
+        3: {
+          href: '#!'
+        },
+        4: {
+          href: '#!'
+        },
+        5: {
+          href: '#!'
+        },
+        6: {
+          href: '#!'
+        },
+        7: {
+          href: '#!'
+        }
+      },
+      next: {
+        href: '#!'
+      },
+      last: {
+        href: '#!'
+      }
+    } only %}
+  </bolt-stack>
 {% endset %}
 {% set sidebar_content %}
   <div class="u-bolt-padding-right-small u-bolt-padding-left-small">
