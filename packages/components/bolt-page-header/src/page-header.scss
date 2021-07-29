@@ -198,7 +198,7 @@
 
 .c-bolt-page-header__nav-link__content {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
 
   @include bolt-mq(xlarge) {
@@ -242,4 +242,21 @@
 .c-bolt-page-header__user-flag__content {
   word-break: break-word;
   hyphens: auto;
+}
+
+// Counter
+.c-bolt-page-header__counter {
+  padding: 2px;
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--bolt-color-white);
+  line-height: 1;
+  text-decoration: none;
+  border-radius: bolt-border-radius(full);
+  background-color: var(--bolt-color-error);
+
+  &:empty {
+    width: 0.6em;
+    height: 0.6em;
+    padding: 0;
+  }
 }
