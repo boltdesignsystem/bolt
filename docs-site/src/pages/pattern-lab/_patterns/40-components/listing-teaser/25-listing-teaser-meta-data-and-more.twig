@@ -17,18 +17,12 @@
   {% endset %}
   {% set description %}
     {% set more_link %}
-      {% set icon_chevron_right %}
+      {% spaceless %}{% set icon_chevron_right %}
         {% include '@bolt-components-icon/icon.twig' with {
           name: 'chevron-right',
         } only %}
       {% endset %}
-      {% include '@bolt-elements-text-link/text-link.twig' with {
-        content: 'Read more',
-        icon_after: icon_chevron_right,
-        attributes: {
-          href: 'https://pega.com',
-        }
-      } only %}
+      <span class="e-bolt-text-link e-bolt-text-link--reversed-underline">Read more<span class="e-bolt-text-link__icon-after">{{ icon_chevron_right }}</span></span>{% endspaceless %}
     {% endset %}
     <p>This is the description. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus&hellip;{{ more_link }}</p>
   {% endset %}
