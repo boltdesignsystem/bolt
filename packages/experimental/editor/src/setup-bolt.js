@@ -2,6 +2,8 @@ import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 // @ts-ignore
 import buttonSchema from '@bolt/components-button/button.schema';
 // @ts-ignore
+import buttonElementSchema from '@bolt/elements-button/button.schema';
+// @ts-ignore
 import textSchema from '@bolt/components-text/text.schema';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
 // @ts-ignore
@@ -375,6 +377,41 @@ export function setupBolt(editor) {
     propsToTraits: ['size', 'width', 'border_radius'],
     extraTraits: [
       colorTrait,
+      {
+        label: 'On Click',
+        name: 'on-click',
+        type: 'select',
+        options: ['none', 'show'],
+        default: 'none',
+      },
+      {
+        label: 'On Click Target',
+        name: 'on-click-target',
+        type: 'string',
+      },
+      {
+        label: 'Url',
+        name: 'url',
+        type: 'string',
+      },
+      {
+        label: 'Disabled',
+        name: 'disabled',
+        type: 'checkbox',
+        default: false,
+      },
+    ],
+  });
+
+  // @TODO: need to convert props to classes.
+  registerBoltComponent({
+    name: 'button',
+    registerBlock: true,
+    schema: buttonElementSchema,
+    extend: 'text',
+    initialContent: ['<span>Button</span>'],
+    propsToTraits: ['size', 'display', 'border_radius', 'hierarchy'],
+    extraTraits: [
       {
         label: 'On Click',
         name: 'on-click',
