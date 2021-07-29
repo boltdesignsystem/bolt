@@ -1,6 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Holy Grail Layout',
+  title: 'Holy Grail',
   type: 'object',
   required: ['content'],
   properties: {

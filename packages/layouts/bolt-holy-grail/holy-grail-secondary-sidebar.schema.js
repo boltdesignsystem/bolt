@@ -1,6 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Holy Grail Layout Secondary Sidebar',
+  title: 'Holy Grail Secondary Sidebar',
   type: 'object',
   properties: {
     attributes: {
