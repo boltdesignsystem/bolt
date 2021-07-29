@@ -92,11 +92,6 @@
     border-bottom: 1px solid var(--bolt-color-gray-light);
     transition: border-color var(--bolt-transition);
 
-    &-ic {
-      transition: transform var(--bolt-transition);
-      transform-origin: center;
-    }
-
     @include bolt-mq($until: medium) {
       display: flex;
       justify-content: space-between;
@@ -114,6 +109,11 @@
         opacity: 1;
       }
     }
+  }
+
+  &__nav-trigger-ic {
+    transition: transform var(--bolt-transition);
+    transform-origin: center;
   }
 
   &__nav-list {
