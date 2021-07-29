@@ -13,7 +13,6 @@
     grid-column-gap: var(--bolt-spacing-x-large);
     padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
     background-color: var(--m-bolt-bg);
-    background-color: var(--m-bolt-bg);
 
     @include bolt-mq($until: large) {
       padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
@@ -33,6 +32,30 @@
 
     @include bolt-mq($until: medium) {
       grid-template-columns: 1fr;
+    }
+  }
+
+  &__nav--socials {
+    display: block;
+
+    .c-page-footer__nav-trigger {
+      border-top: 1px solid var(--bolt-color-gray-light);
+    }
+
+    .c-page-footer__nav-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .c-page-footer__nav-list-item {
+      display: flex;
+      align-items: center;
+      min-width: 44px;
+      margin-bottom: var(--bolt-spacing-y-small);
+
+      &:last-child {
+        margin-bottom: var(--bolt-spacing-y-small);
+      }
     }
   }
 
@@ -56,26 +79,6 @@
 
   &__description {
     color: var(--m-bolt-text);
-
-    .c-page-footer__nav-trigger {
-      border-top: 1px solid var(--bolt-color-gray-light);
-    }
-
-    .c-page-footer__nav-list {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .c-page-footer__nav-list-item {
-      display: flex;
-      align-items: center;
-      min-width: 44px;
-      margin-bottom: var(--bolt-spacing-y-small);
-
-      &:last-child {
-        margin-bottom: var(--bolt-spacing-y-small);
-      }
-    }
   }
 
   &__nav-trigger {
@@ -84,9 +87,10 @@
     min-height: 44px;
     padding: 0;
     font-weight: var(--bolt-type-font-weight-bold);
-    color: var(--m-bolt-text);
+    color: var(--m-bolt-headline);
     border: none;
     border-bottom: 1px solid var(--bolt-color-gray-light);
+    transition: border-color var(--bolt-transition);
 
     &-ic {
       transition: transform var(--bolt-transition);
@@ -100,7 +104,7 @@
     }
 
     &[aria-expanded='true'] {
-      border-bottom: none;
+      border-bottom-color: transparent;
 
       .c-page-footer__nav-trigger-ic {
         transform: rotate(45deg);
@@ -124,7 +128,7 @@
       overflow: hidden;
       border-bottom: 1px solid var(--bolt-color-gray-light);
       transition: max-height var(--bolt-transition),
-        opacity var(--bolt-transition);
+        opacity calc(var(--bolt-transition-timing) * 2.5);
     }
   }
 

@@ -333,10 +333,12 @@
         text: 'About Pegasystems',
         tag: 'h2',
       } only %}
-      <p class="c-page-footer__description-text">Pega delivers innovative software that crushes business complexity. From increasing customer lifetime value to streamlining service to boosting efficiency, we help the world’s leading brands solve problems fast and transform for tomorrow. Our solutions save people time, so our clients’ employees and customers can get back to what matters most.</p>
-      <h3 class="c-page-footer__nav-heading">Join the conversation</h3>
-      <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Join the conversation<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
-      {{links_socials}}
+        <p class="c-page-footer__description-text">Pega delivers innovative software that crushes business complexity. From increasing customer lifetime value to streamlining service to boosting efficiency, we help the world’s leading brands solve problems fast and transform for tomorrow. Our solutions save people time, so our clients’ employees and customers can get back to what matters most.</p>
+        <nav class="c-page-footer__nav c-page-footer__nav--socials" aria-label="Social Media Navigation">
+          <h3 class="c-page-footer__nav-heading">Join the conversation</h3>
+          <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Join the conversation<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
+          {{links_socials}}
+        </nav>
     </div>
     <nav class="c-page-footer__nav" aria-label="Footer Navigation">
       <div class="c-page-footer__nav-group">
@@ -365,7 +367,7 @@
       <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Legal<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
       {{links_collection_5}}
     </nav>
-    <span class="c-page-footer__copyrights">&copy;2021 Pegasystems Inc.</span>
+    <span class="c-page-footer__copyrights">&copy;{{ "now"|date("Y") }} Pegasystems Inc.</span>
   </aside>
   <span id="new-window" hidden>Opens in a new window</span>
 </footer>
