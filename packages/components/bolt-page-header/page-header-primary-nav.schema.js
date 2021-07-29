@@ -14,5 +14,11 @@ module.exports = {
       description:
         'Content of page header primary nav. Nav ul are expected here.',
     },
+    align_site_nav_items: {
+      type: 'string',
+      description:
+        'Set the site nav item alignment. This only applies to children nav ul with category set to "site", it has no effects on other categories.',
+      enum: ['start', 'center', 'end'],
+    },
   },
 };
