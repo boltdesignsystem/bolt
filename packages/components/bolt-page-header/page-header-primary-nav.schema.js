@@ -17,7 +17,7 @@ module.exports = {
     align_site_nav_items: {
       type: 'string',
       description:
-        'Set the site nav item alignment. This only applies to children nav ul with category set to "site", it has no effects on other categories.',
+        'Set the site nav item alignment. This only applies to child nav ul with the category prop set to "site", it has no effects on other categories.',
       enum: ['start', 'center', 'end'],
     },
   },

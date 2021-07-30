@@ -1,6 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Page Header Nav Ul',
+  title: 'Page Header Nav ul',
   type: 'object',
   required: ['content'],
   properties: {
@@ -21,7 +21,7 @@ module.exports = {
     popover_position: {
       type: 'string',
       description:
-        'Set the position of the nav ul if the parent nav li has popover set to "true". This only applies if the nav ul is a child of a nav li.',
+        'Set the position of the nav ul if the parent nav li has the popover prop set to "true". This only applies if the nav ul is a child of a nav li.',
       enum: ['edge-start', 'edge-end'],
     },
   },
