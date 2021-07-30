@@ -13,7 +13,6 @@
       <bolt-text slot="label">Brand Colors</bolt-text>
 
       {% for color_name, palette in bolt.data.colors.brand %}
-        {% if color_name != "indigo" %}
           <bolt-text headline font-size="xlarge" tag="h3">
             {{ color_name|capitalize }}
           </bolt-text>
@@ -42,7 +41,6 @@
               </tbody>
             </table>
           </bolt-table>
-        {% endif %}
       {% endfor %}
     </bolt-tab-panel>
 
@@ -50,7 +48,7 @@
       <bolt-text slot="label">Status Colors</bolt-text>
 
       {% for color_name, palette in bolt.data.colors.status %}
-        {% if color_name != "indigo" %}
+        {% if color_name != "navy" %}
           <bolt-text headline font-size="xlarge" tag="h3">
             {{ color_name|capitalize }}
           </bolt-text>
