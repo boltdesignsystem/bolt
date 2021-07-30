@@ -18,7 +18,40 @@
     <bolt-card-replacement-media {{ attributes }}>
       <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media">
         {% if _card_replacement_image %}
-          {% include '@bolt-components-image/image.twig' with _card_replacement_image only %}
+          {% if _card_replacement_image.src %}
+            {% set _image_attributes = _card_replacement_image.attributes|default({}) %}
+            {% set _image_attributes = _image_attributes|merge({
+              src: _card_replacement_image.src,
+              alt: _card_replacement_image.alt,
+              srcset: _card_replacement_image.srcset,
+              sizes: _card_replacement_image.sizes,
+            }) %}
+
+            {% if _card_replacement_image.lazyload == true %}
+              {% set _image_attributes = _image_attributes|merge({loading: 'lazy'}) %}
+            {% endif %}
+
+            {% if _card_replacement_image.max_width %}
+              {% set _image_attributes = _image_attributes|merge({
+                style: 'max-width: ' ~ _card_replacement_image.max_width ~ ';'
+              }) %}
+            {% endif %}
+
+            {% if _card_replacement_image.cover %}
+              {% set _image_attributes = _image_attributes|merge({class: 'c-bolt-image--cover'}) %}
+            {% endif %}
+
+            {% set _image_props = { attributes: _image_attributes } %}
+          {% else %}
+            {% set _image_attributes = _card_replacement_image.attributes|default({}) %}
+            {% set _image_props = { attributes: _image_attributes } %}
+
+            {% if _card_replacement_image.background %}
+              {% set _image_props = _image_props|merge({background: _card_replacement_image.background }) %}
+            {% endif %}
+          {% endif %}
+
+          {% include "@bolt-elements-image/image.twig" with _image_props only %}
         {% elseif block('media') is defined %}
           {{ block('media') }}
         {% endif %}

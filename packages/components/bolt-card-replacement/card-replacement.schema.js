@@ -71,7 +71,8 @@ module.exports = {
       properties: {
         image: {
           type: 'object',
-          ref: 'image',
+          description:
+            'Refer to the <a href="/pattern-lab/patterns/20-elements-image/index.html">image element schema</a> for options.',
         },
         video: {
           type: 'object',
