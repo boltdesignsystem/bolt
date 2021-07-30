@@ -108,12 +108,16 @@
                   {% set _image_props = { attributes: _image_attributes } %}
 
                   {% if author.image.cover %}
-                    {% set _image_attributes = _image_attributes|merge({class: 'c-bolt-image--cover'}) %}
+                    {% set _image_props = _image_props|merge({background: true}) %}
                   {% endif %}
                 {% else %}
                   {% set _image_attributes = author.image.attributes|default({}) %}
                   {% set _image_attributes = _image_attributes|merge({slot: 'author-image'}) %}
                   {% set _image_props = { attributes: _image_attributes } %}
+
+                  {% if author.image.cover %}
+                    {% set _image_props = _image_props|merge({background: true}) %}
+                  {% endif %}
 
                   {% if author.image.background %}
                     {% set _image_props = _image_props|merge({background: author.image.background }) %}
