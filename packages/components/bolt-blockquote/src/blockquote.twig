@@ -84,7 +84,47 @@
           <div class="c-bolt-blockquote__footer-item">
             <div class="c-bolt-blockquote__image">
               <ssr-keep for="bolt-blockquote">
-                {% include "@bolt-components-image/image.twig" with author.image|merge({ slot:"author-image"}) only %}
+                {% if author.image.src %}
+                  {% set _image_attributes = author.image.attributes|default({}) %}
+                  {% set _image_attributes = _image_attributes|merge({
+                    src: author.image.src,
+                    alt: author.image.alt,
+                    srcset: author.image.srcset,
+                    sizes: author.image.sizes,
+                  }) %}
+
+                  {% if author.image.lazyload == true %}
+                    {% set _image_attributes = _image_attributes|merge({loading: 'lazy'}) %}
+                  {% endif %}
+
+                  {% if author.image.max_width %}
+                    {% set _image_attributes = _image_attributes|merge({
+                      style: 'max-width: ' ~ author.image.max_width ~ ';'
+                    }) %}
+                  {% endif %}
+
+                  {% set _image_attributes = _image_attributes|merge({slot: 'author-image'}) %}
+
+                  {% set _image_props = { attributes: _image_attributes } %}
+
+                  {% if author.image.cover == true %}
+                    {% set _image_props = _image_props|merge({fill: true }) %}
+                  {% endif %}
+                {% else %}
+                  {% set _image_attributes = author.image.attributes|default({}) %}
+                  {% set _image_attributes = _image_attributes|merge({slot: 'author-image'}) %}
+                  {% set _image_props = { attributes: _image_attributes } %}
+
+                  {% if author.image.fill %}
+                    {% set _image_props = _image_props|merge({fill: author.image.fill }) %}
+                  {% endif %}
+
+                  {% if author.image.background %}
+                    {% set _image_props = _image_props|merge({background: author.image.background }) %}
+                  {% endif %}
+                {% endif %}
+
+                {% include "@bolt-elements-image/image.twig" with _image_props only %}
               </ssr-keep>
             </div>
           </div>
