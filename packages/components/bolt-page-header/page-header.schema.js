@@ -44,14 +44,9 @@ module.exports = {
       description: 'Text or other content to display next to the logo.',
     },
     cta: {
-      type: 'object',
+      type: 'any',
       description:
         'Set the main call-to-action. Button element is expected here.',
-    },
-    theme: {
-      type: 'string',
-      description: 'Set the color theme of the page header.',
-      enum: ['xlight', 'light', 'dark', 'xdark'],
     },
     static: {
       type: 'boolean',

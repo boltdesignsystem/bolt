@@ -14,12 +14,12 @@
   'js-bolt-page-header-nav-item',
   'c-bolt-page-header__nav-list-item',
   popover ? 'c-bolt-page-header__nav-list-item--popover',
-  flat ? 'c-bolt-page-header__nav-list-item--flat',
-  view_all ? 'c-bolt-page-header__nav-list-item--view-all',
-  full_width ? 'c-bolt-page-header__nav-list-item--full-width',
+  this.data.flat.value ? 'c-bolt-page-header__nav-list-item--flat',
+  this.data.view_all.value ? 'c-bolt-page-header__nav-list-item--view-all',
+  this.data.full_width.value ? 'c-bolt-page-header__nav-list-item--full-width',
+  this.data.selected.value ? 'is-selected',
+  this.data.current.value ? 'is-current',
   children ? 'has-children',
-  selected ? 'is-selected',
-  current ? 'is-current',
 ] %}
 
 {% set link_classes = [

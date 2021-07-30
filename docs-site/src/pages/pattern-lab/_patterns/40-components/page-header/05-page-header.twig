@@ -31,8 +31,8 @@
         <td><a href="{{ link['components-page-header-example-main-site-with-subnav'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
-        <th>Docs</th>
-        <td><a href="{{ link['components-page-header-example-docs'] }}" class="e-bolt-text-link">View</a></td>
+        <th>Documentations</th>
+        <td><a href="{{ link['components-page-header-example-documentations'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
         <th>Academy</th>
@@ -74,12 +74,12 @@
       href: 'https://pega.com',
     }
   },
+  subheadline: 'Subheadline text', // This appears next to the logo
   content: primary_nav_and_search_panel,
   secondary_content: secondary_nav,
   cta: cta_button,
   static: true, // Prevents page header from being sticky
   full_width: true, // Sets the width to span the full viewport
-  subheadline: 'Subheadline text', // This appears next to the logo
 } only %}
 
 // Search panel template (pass to main template's content prop)
@@ -90,6 +90,7 @@
 // Primary nav template (pass to main template's content prop)
 {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
   content: content,
+  align_site_nav_items: align_site_nav_items, // ['start', 'center', 'end']
 } only %}
 
 // Nav ul template (pass to primary nav template's content prop)
@@ -97,7 +98,6 @@
   content: content,
   category: category, // ['site', 'related-sites', 'user']
   popover_position: popover_position, // ['edge-start', 'edge-end']
-  wrap_site_nav_items: false, // This allows top level desktop site nav items to wrap
 } only %}
 
 // Nav li template (pass to nav ul template's content prop)
@@ -112,7 +112,7 @@
   content: content, // This overrides link and children
   view_all: false, // This is for general "view all" links
   full_width: false, // This is for "view all" and full-width links
-  popover: false, // This is for utility nav
+  popover: false, // This is for utility nav popovers
   flat: false, // This is for a top level desktop site nav item to render a single level flat dropdown
   selected: false, // This is for language select
   current: true, // This is for marking a top level desktop site nav item as the current page

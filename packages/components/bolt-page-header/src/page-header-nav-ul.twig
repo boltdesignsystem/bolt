@@ -10,11 +10,10 @@
 
 {% set classes = [
   'js-bolt-page-header-nav',
-  category ? 'js-bolt-page-header-nav--' ~ category,
   'c-bolt-page-header__nav-list',
-  category ? 'c-bolt-page-header__nav-list--' ~ category,
-  popover_position ? 'c-bolt-page-header__nav-list--' ~ popover_position,
-  wrap_site_nav_items and category == 'site' ? 'c-bolt-page-header__nav-list--wrap-items',
+  this.data.category.value ? 'js-bolt-page-header-nav--' ~ this.data.category.value,
+  this.data.category.value ? 'c-bolt-page-header__nav-list--' ~ this.data.category.value,
+  this.data.popover_position.value ? 'c-bolt-page-header__nav-list--' ~ this.data.popover_position.value,
 ] %}
 
 {# Template #}

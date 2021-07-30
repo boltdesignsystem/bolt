@@ -45,7 +45,6 @@
 {% set placeholder_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: placeholder_lv2_ul_content,
-    flat: true,
   } only %}
 {% endset %}
 
@@ -58,6 +57,7 @@
       }
     },
     children: placeholder_lv2,
+    flat: true,
   },
   {
     link: {
