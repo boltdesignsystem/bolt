@@ -10,7 +10,7 @@ module.exports = {
         'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
     content: {
-      type: ['string', 'array', 'object'],
+      type: 'any',
       description:
         'Content of page header primary nav. Nav ul are expected here.',
     },

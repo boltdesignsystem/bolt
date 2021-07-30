@@ -2,7 +2,7 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Page Header Nav Ul',
   type: 'object',
-  required: ['content', 'category'],
+  required: ['content'],
   properties: {
     attributes: {
       type: 'object',
@@ -10,7 +10,7 @@ module.exports = {
         'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
     content: {
-      type: ['string', 'array', 'object'],
+      type: 'any',
       description: 'Content of page header nav ul. Nav li are expected here.',
     },
     category: {

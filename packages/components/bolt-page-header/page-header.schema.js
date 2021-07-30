@@ -10,12 +10,12 @@ module.exports = {
         'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
     content: {
-      type: ['string', 'array', 'object'],
+      type: 'any',
       description:
         'Primary content of page header. Primary nav and search panel are expected here.',
     },
     secondary_content: {
-      type: ['string', 'array', 'object'],
+      type: 'any',
       description:
         'Secondary content of page header (sub nav, visible search bar, breadcrumbs, etc.).',
     },

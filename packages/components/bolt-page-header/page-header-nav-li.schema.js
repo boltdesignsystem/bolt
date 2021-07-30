@@ -19,7 +19,7 @@ module.exports = {
             'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
         },
         content: {
-          type: ['string', 'array', 'object'],
+          type: 'any',
           description: 'Content of the link.',
         },
         desktop_heading: {
@@ -30,12 +30,12 @@ module.exports = {
       },
     },
     children: {
-      type: 'object',
+      type: 'any',
       description:
         'Append children for the nav li. Nav ul can be passed here. This must be used in tandem with link.',
     },
     content: {
-      type: ['string', 'array', 'object'],
+      type: 'any',
       description:
         'Content of the nav li. Use this only if the nav li is not a link, instead it is some kind of layouts such as a card. This prop will override the link prop.',
     },
