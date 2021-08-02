@@ -1,7 +1,9 @@
 {% set image %}
-  {% include "@bolt-components-image/image.twig" with {
-    placeholder_color: "#151619",
-    src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+  {% include "@bolt-elements-image/image.twig" with {
+    attributes: {
+      src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+      loading: "lazy",
+    }
   } only %}
 {% endset %}
 
