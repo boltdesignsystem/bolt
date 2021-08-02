@@ -91,10 +91,15 @@
                     alt: author.image.alt,
                     srcset: author.image.srcset,
                     sizes: author.image.sizes,
+                    slot: 'author-image'
                   }) %}
 
                   {% if author.image.lazyload == true %}
                     {% set _image_attributes = _image_attributes|merge({loading: 'lazy'}) %}
+                  {% endif %}
+
+                  {% if no_lazy == true %}
+                    {% set _image_attributes = _image_attributes|merge({loading: 'eager'}) %}
                   {% endif %}
 
                   {% if author.image.max_width %}
@@ -103,25 +108,18 @@
                     }) %}
                   {% endif %}
 
-                  {% set _image_attributes = _image_attributes|merge({slot: 'author-image'}) %}
-
                   {% set _image_props = { attributes: _image_attributes } %}
+
+                  {% if author.image.max_width %}
+                    {% set _image_props = _image_props|merge({fill: true}) %}
+                  {% endif %}
 
                   {% if author.image.cover %}
                     {% set _image_props = _image_props|merge({background: true}) %}
                   {% endif %}
                 {% else %}
-                  {% set _image_attributes = author.image.attributes|default({}) %}
-                  {% set _image_attributes = _image_attributes|merge({slot: 'author-image'}) %}
-                  {% set _image_props = { attributes: _image_attributes } %}
-
-                  {% if author.image.cover %}
-                    {% set _image_props = _image_props|merge({background: true}) %}
-                  {% endif %}
-
-                  {% if author.image.background %}
-                    {% set _image_props = _image_props|merge({background: author.image.background }) %}
-                  {% endif %}
+                  {% set _image_props = author.image %}
+                  {% set _image_props = _image_props|merge({slot: 'author-image'}) %}
                 {% endif %}
 
                 {% include "@bolt-elements-image/image.twig" with _image_props only %}
