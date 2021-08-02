@@ -1,3 +1,5 @@
+import '@bolt/core-v3.x/utils/optimized-resize';
+
 export class BoltHolyGrail {
   constructor(el) {
     if (!el) return;
@@ -22,6 +24,10 @@ export class BoltHolyGrail {
         }
       });
     });
+
+    this.setOffsetTop = this.setOffsetTop.bind(this);
+    window.addEventListener('throttledResize', this.setOffsetTop);
+    this.setOffsetTop();
   }
 
   show(el) {
@@ -50,6 +56,25 @@ export class BoltHolyGrail {
   handleEscapeKeypress(e) {
     if (this.getKey(e) === 'Escape' || this.getKey(e) === 27) {
       this.hide(this.state.activeElement);
+    }
+  }
+
+  getHeaderHeight() {
+    const pageHeader = document.querySelectorAll(
+      '.js-bolt-sticky-page-header, .js-global-header.is-fixed',
+    ); // First selector covers new header, second covers old header
+
+    if (pageHeader.length) {
+      // Always round down, subpixel rendering can leave an unwanted gap below page header
+      return Math.floor(pageHeader[0].getBoundingClientRect().height);
+    }
+  }
+
+  setOffsetTop() {
+    const offset = this.getHeaderHeight();
+
+    if (offset) {
+      this.el.style.setProperty('--bolt-page-header-height', `${offset}px`);
     }
   }
 }
