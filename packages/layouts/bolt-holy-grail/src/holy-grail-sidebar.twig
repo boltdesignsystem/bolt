@@ -14,7 +14,7 @@
 ] %}
 
 {% spaceless %}<div {{ sidebar_attributes.addClass(sidebar_classes) }}>
-  <button type="button" aria-expanded="false" class="l-bolt-holy-grail__sidebar-trigger" data-bolt-holy-grail-toggle-trigger>
+  <button type="button" aria-expanded="false" class="l-bolt-holy-grail__sidebar-trigger js-bolt-holy-grail__toggle-trigger">
     <span class="l-bolt-holy-grail__sidebar-trigger__text">
       {% include '@bolt-components-icon/icon.twig' with {
         name: trigger_icon|default('documentation'),

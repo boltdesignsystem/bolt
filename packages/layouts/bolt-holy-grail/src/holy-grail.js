@@ -11,7 +11,7 @@ export class BoltHolyGrail {
 
   init() {
     const toggleTrigger = this.el.querySelectorAll(
-      '[data-bolt-holy-grail-toggle-trigger]',
+      '.js-bolt-holy-grail__toggle-trigger',
     );
     toggleTrigger.forEach(el => {
       el.addEventListener('click', event => {
@@ -53,11 +53,3 @@ export class BoltHolyGrail {
     }
   }
 }
-
-const holyGrailLayouts = document.querySelectorAll(
-  '[data-bolt-holy-grail-layout]',
-);
-
-holyGrailLayouts.forEach(el => {
-  const component = new BoltHolyGrail(el);
-});
