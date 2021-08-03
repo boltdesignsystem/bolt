@@ -10,12 +10,12 @@ module.exports = {
         'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
     content: {
-      type: ['string', 'array', 'object'],
+      type: 'any',
       description:
         'Primary content of page header. Primary nav and search panel are expected here.',
     },
     secondary_content: {
-      type: ['string', 'array', 'object'],
+      type: 'any',
       description:
         'Secondary content of page header (sub nav, visible search bar, breadcrumbs, etc.).',
     },
@@ -44,14 +44,9 @@ module.exports = {
       description: 'Text or other content to display next to the logo.',
     },
     cta: {
-      type: 'object',
+      type: 'any',
       description:
         'Set the main call-to-action. Button element is expected here.',
-    },
-    theme: {
-      type: 'string',
-      description: 'Set the color theme of the page header.',
-      enum: ['xlight', 'light', 'dark', 'xdark'],
     },
     static: {
       type: 'boolean',

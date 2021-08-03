@@ -1,8 +1,7 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Page Header Search Panel',
+  title: 'Holy Grail Secondary Sidebar',
   type: 'object',
-  required: ['content'],
   properties: {
     attributes: {
       type: 'object',
@@ -11,8 +10,7 @@ module.exports = {
     },
     content: {
       type: 'any',
-      description:
-        'Content of page header search panel. Typeahead or some kind of search input is expected here.',
+      description: 'Render content of the secondary sidebar.',
     },
   },
 };

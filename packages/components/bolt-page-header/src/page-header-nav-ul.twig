@@ -1,23 +1,19 @@
-{#
-  Schema Validation @todo: find a way to validate multiple schemas within one component.
-
-  {% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
-  {% if enable_json_schema_validation %}
-    {{ validate_data_schema(schema, _self)|raw }}
-  {% endif %}
-  {% set this = init(schema) %}
-#}
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-page-header'].schema['page-header-nav-ul'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
 
 {# Variables #}
+{% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% set classes = [
   'js-bolt-page-header-nav',
-  category ? 'js-bolt-page-header-nav--' ~ category,
   'c-bolt-page-header__nav-list',
-  category ? 'c-bolt-page-header__nav-list--' ~ category,
-  popover_position ? 'c-bolt-page-header__nav-list--' ~ popover_position,
-  wrap_site_nav_items and category == 'site' ? 'c-bolt-page-header__nav-list--wrap-items',
+  this.data.category.value ? 'js-bolt-page-header-nav--' ~ this.data.category.value,
+  this.data.category.value ? 'c-bolt-page-header__nav-list--' ~ this.data.category.value,
+  this.data.popover_position.value ? 'c-bolt-page-header__nav-list--' ~ this.data.popover_position.value,
 ] %}
 
 {# Template #}

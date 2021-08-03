@@ -1,8 +1,7 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Page Header Primary Nav',
+  title: 'Holy Grail Sidebar',
   type: 'object',
-  required: ['content'],
   properties: {
     attributes: {
       type: 'object',
@@ -11,14 +10,17 @@ module.exports = {
     },
     content: {
       type: 'any',
-      description:
-        'Content of page header primary nav. Nav ul are expected here.',
+      description: 'Render content of the primary sidebar.',
     },
-    align_site_nav_items: {
+    trigger_icon: {
       type: 'string',
       description:
-        'Set the site nav item alignment. This only applies to child nav ul with the category prop set to "site", it has no effects on other categories.',
-      enum: ['start', 'center', 'end'],
+        'Set the icon of the trigger button that is shown in smaller viewports.',
+    },
+    trigger_label: {
+      type: 'string',
+      description:
+        'Set the text of the trigger button that is shown in smaller viewports.',
     },
   },
 };

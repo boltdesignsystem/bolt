@@ -100,23 +100,22 @@ bolt-card-replacement[theme='xdark'] {
 }
 
 .t-bolt-orange {
-  --m-bolt-text: var(--bolt-color-black);
   --m-bolt-bg: var(--bolt-color-orange);
-  --m-bolt-headline: var(--bolt-color-black);
-  --m-bolt-link: var(--bolt-color-navy);
+  --m-bolt-link: var(--bolt-color-black);
   --m-bolt-primary: var(--bolt-color-navy);
   --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.08);
 }
 
 .t-bolt-yellow {
   --m-bolt-bg: var(--bolt-color-yellow);
+  --m-bolt-link: var(--bolt-color-black);
+  --m-bolt-primary: var(--bolt-color-navy);
+  --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.08);
 }
 
 .t-bolt-pink {
-  --m-bolt-text: var(--bolt-color-black);
   --m-bolt-bg: var(--bolt-color-pink);
-  --m-bolt-headline: var(--bolt-color-black);
-  --m-bolt-link: var(--bolt-color-navy);
+  --m-bolt-link: var(--bolt-color-black);
   --m-bolt-primary: var(--bolt-color-navy);
   --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.08);
 }
@@ -196,7 +195,8 @@ bolt-card-replacement[theme='xdark'] {
 // Declare text color and bg color
 // Dev note: add :root after bolt-theme() function usage is completely removed.
 [data-bolt-mode],
-[class^='t-bolt-'] {
+[class^='t-bolt-'],
+[class*=' t-bolt-'] {
   color: var(--m-bolt-text);
   background-color: var(--m-bolt-bg);
 }

@@ -1,8 +1,8 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Page Header Nav Ul',
+  title: 'Page Header Nav ul',
   type: 'object',
-  required: ['content', 'category'],
+  required: ['content'],
   properties: {
     attributes: {
       type: 'object',
@@ -10,7 +10,7 @@ module.exports = {
         'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
     content: {
-      type: ['string', 'array', 'object'],
+      type: 'any',
       description: 'Content of page header nav ul. Nav li are expected here.',
     },
     category: {
@@ -21,7 +21,7 @@ module.exports = {
     popover_position: {
       type: 'string',
       description:
-        'Set the position of the nav ul if the parent nav li has popover set to "true". This only applies if the nav ul is a child of a nav li.',
+        'Set the position of the nav ul if the parent nav li has the popover prop set to "true". This only applies if the nav ul is a child of a nav li.',
       enum: ['edge-start', 'edge-end'],
     },
     wrap_site_nav_items: {
