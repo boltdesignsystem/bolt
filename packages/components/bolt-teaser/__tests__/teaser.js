@@ -126,9 +126,11 @@ describe('Twig usage', () => {
     });
 
     // Image
-    const image16x19 = await render('@bolt-components-image/image.twig', {
-      src: '/fixtures/promo-16x9-ai.jpg',
-      alt: 'Alt text.',
+    const image16x19 = await render('@bolt-elements-image/image.twig', {
+      attributes: {
+        src: '/fixtures/promo-16x9-ai.jpg',
+        alt: 'Alt text.',
+      },
     });
 
     fixtures = {
