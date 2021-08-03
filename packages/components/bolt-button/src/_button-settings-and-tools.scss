@@ -26,7 +26,6 @@ $bolt-button-border-style: $bolt-border-style;
 
 @mixin bolt-button {
   @include bolt-button-reset;
-  @include bolt-no-select;
 
   display: flex;
   align-items: center;
@@ -36,6 +35,7 @@ $bolt-button-border-style: $bolt-border-style;
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
+  user-select: none;
   border-radius: bolt-border-radius(small);
   border-width: $bolt-button-border-width;
   border-style: $bolt-button-border-style;

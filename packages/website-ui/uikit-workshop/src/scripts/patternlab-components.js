@@ -5,6 +5,7 @@ import './lit-components/pl-button/pl-button';
 import './lit-components/pl-toggle-info/pl-toggle-info';
 import './lit-components/pl-toggle-layout/pl-toggle-layout';
 import './lit-components/pl-toggle-theme/pl-toggle-theme';
+import './lit-components/pl-toggle-test/pl-toggle-test';
 import './lit-components/pl-viewport-size/pl-viewport-size';
 import './lit-components/pl-logo/pl-logo';
 import './lit-components/pl-layout/pl-layout';
