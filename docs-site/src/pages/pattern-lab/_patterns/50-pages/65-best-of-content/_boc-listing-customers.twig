@@ -110,30 +110,42 @@
   {% endset %}
 
   {% set video_image %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: '/images/content/promos/promo-16x9-ai.jpg',
-      alt: 'Alt text.',
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/promos/promo-16x9-ai.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+      }
     } only %}
   {% endset %}
 
   {% set external_link_image %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: '/images/placeholders/signifier-external-link.jpg',
-      alt: 'Alt text.',
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/signifier-external-link.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+      }
     } only %}
   {% endset %}
 
   {% set pdf_image %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: '/images/placeholders/signifier-pdf.jpg',
-      alt: 'Alt text.',
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/signifier-pdf.jpg',
+        alt: 'Alt text.',
+        loading: 'lzy',
+      }
     } only %}
   {% endset %}
 
   {% set featured_image %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: '/images/content/promos/promo-16x9-mask.jpg',
-      alt: 'Alt text.',
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/promos/promo-16x9-mask.jpg',
+        alt: 'Alt text.',
+        laoding: 'lazy'
+      }
     } only %}
   {% endset %}
 
