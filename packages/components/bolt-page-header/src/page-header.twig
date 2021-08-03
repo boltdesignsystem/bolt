@@ -10,19 +10,15 @@
 {% set logo_attributes = create_attribute(logo.attributes|default({})) %}
 {% set logo_tag = logo_attributes.type ? 'button' : logo_attributes.href ? 'a' : 'span' %}
 
+{# Note: sticky page header requires JS in order for other sticky elements to offset its height. #}
 {% set classes = [
   'c-bolt-page-header',
   this.data.static.value ? 'c-bolt-page-header--static' : 'js-bolt-sticky-page-header',
-  this.data.theme.value ? 't-bolt-' ~ this.data.theme.value,
+  this.data.full_width.value ? 'c-bolt-page-header--full-width',
 ] %}
 
 {# Setting the desktop breakpoint to work with JS. See page-header.js #}
 {% set attributes = attributes.setAttribute('data-bolt-page-header-desktop-bp', bolt.data.breakpoints.large) %}
-
-{# Set data-attribute used by Navbar for calculating offset. #}
-{% if this.data.static.value is same as(false) %}
-  {% set attributes = attributes.setAttribute('data-bolt-sticky-header', '') %}
-{% endif %}
 
 {# Template #}
 <header {{ attributes.addClass(classes) }}>
