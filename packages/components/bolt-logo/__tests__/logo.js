@@ -47,7 +47,7 @@ describe('logo', () => {
       const logo = document.createElement('bolt-logo');
 
       // TODO: Use the actual logo web component once converted
-      logo.innerHTML = `<bolt-image src="/fixtures/logo-paypal.svg" alt="Paypal Logo" ratio="124/33"></bolt-image>`;
+      logo.innerHTML = `<img class="e-bolt-image" src="/fixtures/logo-paypal.svg" alt="Paypal Logo">`;
 
       document.body.appendChild(logo);
 
@@ -66,7 +66,7 @@ describe('logo', () => {
       const wrapper = document.createElement('div');
 
       // TODO: Use the actual logo web component once converted
-      logo.innerHTML = `<bolt-image src="/fixtures/logo-paypal.svg" alt="Paypal Logo" ratio="124/33"></bolt-image>`;
+      logo.innerHTML = `<img class="e-bolt-image" src="/fixtures/logo-paypal.svg" alt="Paypal Logo">`;
       logo.classList.add('c-bolt-logo--invert');
 
       wrapper.classList.add('t-bolt-dark');
@@ -81,7 +81,7 @@ describe('logo', () => {
       const selectors = Array.from(document.querySelectorAll('bolt-logo'));
       await Promise.all(
         selectors.map(logo => {
-          const logoImage = logo.querySelector('bolt-image');
+          const logoImage = logo.querySelector('.e-bolt-image');
           if (logoImage._wasInitiallyRendered === true) return;
           return new Promise((resolve, reject) => {
             logoImage.addEventListener('ready', resolve);

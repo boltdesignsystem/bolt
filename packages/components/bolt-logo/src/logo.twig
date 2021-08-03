@@ -3,5 +3,42 @@
 {% endif %}
 
 <bolt-logo {% if slot %} slot="{{ slot }}" {% endif %} {% if invert %} class="c-bolt-logo--invert" {% endif %}>
-  {{ include('@bolt-components-image/image.twig', with_context = true) }}
+  {% if src %}
+    {% set _image_attributes = attributes|default({}) %}
+    {% set _image_attributes = _image_attributes|merge({
+      src: src,
+      alt: alt,
+      srcset: srcset,
+      sizes: sizes,
+      class: 'u-bolt-block'
+    }) %}
+
+    {% if lazyload == true %}
+      {% set _image_attributes = _image_attributes|merge({loading: 'lazy'}) %}
+    {% endif %}
+
+    {% if no_lazy == true %}
+      {% set _image_attributes = _image_attributes|merge({loading: 'eager'}) %}
+    {% endif %}
+
+    {% if max_width %}
+      {% set _image_attributes = _image_attributes|merge({
+        style: 'max-width: ' ~ max_width ~ ';'
+      }) %}
+    {% endif %}
+
+    {% set _image_props = { attributes: _image_attributes } %}
+
+    {% if max_width %}
+      {% set _image_props = _image_props|merge({fill: true}) %}
+    {% endif %}
+
+    {% if cover %}
+      {% set _image_props = _image_props|merge({background: true}) %}
+    {% endif %}
+
+    {% include "@bolt-elements-image/image.twig" with _image_props only %}
+  {% else %}
+    {{ include('@bolt-elements-image/image.twig', with_context = true) }}
+  {% endif %}
 </bolt-logo>

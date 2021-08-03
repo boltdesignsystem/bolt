@@ -2,27 +2,9 @@
 
 exports[`logo Basic usage 1`] = `
 <bolt-logo>
-  <bolt-image no-lazy
-              ratio="124/33"
-              placeholder-color="hsl(233, 33%, 97%)"
-              placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-              src="/fixtures/logo-paypal.svg"
-              srcset="/fixtures/logo-paypal.svg"
+  <img src="/fixtures/logo-paypal.svg"
+       class="u-bolt-block e-bolt-image"
   >
-    <bolt-ratio ratio="124/33">
-      <ssr-keep for="bolt-ratio"
-                class="c-bolt-ratio"
-                style="padding-bottom: calc((33 / 124) * 100%); --aspect-ratio: 3.7575757575758;"
-      >
-        <img class="c-bolt-image__image"
-             alt
-             srcset="/fixtures/logo-paypal.svg"
-             sizes="auto"
-             src="/fixtures/logo-paypal.svg"
-        >
-      </ssr-keep>
-    </bolt-ratio>
-  </bolt-image>
 </bolt-logo>
 `;
 
@@ -30,9 +12,9 @@ exports[`logo Default <bolt-logo> renders 1`] = `
 <bolt-logo
   style=""
 >
-  <bolt-image
+  <img
     alt="Paypal Logo"
-    ratio="124/33"
+    class="e-bolt-image"
     src="/fixtures/logo-paypal.svg"
     style=""
   />
@@ -55,26 +37,8 @@ exports[`logo Inverted <bolt-logo> renders as inverted 1`] = `
 
 exports[`logo Logo with invert set to "true" renders properly 1`] = `
 <bolt-logo class="c-bolt-logo--invert">
-  <bolt-image no-lazy
-              ratio="124/33"
-              placeholder-color="hsl(233, 33%, 97%)"
-              placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-              src="/fixtures/logo-paypal.svg"
-              srcset="/fixtures/logo-paypal.svg"
+  <img src="/fixtures/logo-paypal.svg"
+       class="u-bolt-block e-bolt-image"
   >
-    <bolt-ratio ratio="124/33">
-      <ssr-keep for="bolt-ratio"
-                class="c-bolt-ratio"
-                style="padding-bottom: calc((33 / 124) * 100%); --aspect-ratio: 3.7575757575758;"
-      >
-        <img class="c-bolt-image__image"
-             alt
-             srcset="/fixtures/logo-paypal.svg"
-             sizes="auto"
-             src="/fixtures/logo-paypal.svg"
-        >
-      </ssr-keep>
-    </bolt-ratio>
-  </bolt-image>
 </bolt-logo>
 `;
