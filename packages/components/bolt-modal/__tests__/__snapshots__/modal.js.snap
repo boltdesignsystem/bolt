@@ -24,10 +24,10 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> at various viewp
   <div>
     This is very long content.
   </div>
-  <bolt-image src="/fixtures/1200x2500.jpg"
-              alt="Placeholder"
+  <img class="e-bolt-image"
+       src="/fixtures/1200x2500.jpg"
+       alt="Placeholder"
   >
-  </bolt-image>
   <div slot="footer">
     Footer slot
   </div>
@@ -158,17 +158,18 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> w/o Shadow DOM r
             </div>
             <!---->
             <!---->
-            <bolt-image
+            <img
               alt="Placeholder"
-              class="is-last-child"
+              class="e-bolt-image is-last-child"
               src="/fixtures/1200x2500.jpg"
               style=""
-            />
-            <!---->
-            <!---->
-            <!---->
-            
+            >
+              <!---->
+              <!---->
+              <!---->
               
+              
+            </img>
           </div>
           
               
@@ -237,15 +238,16 @@ exports[`<bolt-modal> Component Long content usage <bolt-modal> with Shadow DOM 
   </div>
   
       
-  <bolt-image
+  <img
     alt="Placeholder"
-    class="is-last-child"
+    class="e-bolt-image is-last-child"
     src="/fixtures/1200x2500.jpg"
     style=""
-  />
-  
+  >
+    
     
           
+  </img>
   <div
     class="is-first-child is-last-child"
     slot="footer"
@@ -276,10 +278,10 @@ exports[`<bolt-modal> Component Long content usage<bolt-modal> with band at vari
             <div>
               This is very long content.
             </div>
-            <bolt-image src="/fixtures/1200x2500.jpg"
-                        alt="Placeholder"
+            <img class="e-bolt-image"
+                 src="/fixtures/1200x2500.jpg"
+                 alt="Placeholder"
             >
-            </bolt-image>
           </div>
         </bolt-wrapper>
       </div>

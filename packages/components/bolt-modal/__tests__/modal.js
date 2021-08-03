@@ -33,7 +33,7 @@ const modalContent = [
     name: 'Long content usage',
     content: `
       <div>This is very long content.</div>
-      <bolt-image src="/fixtures/1200x2500.jpg" alt="Placeholder"></bolt-image>
+      <img class="e-bolt-image" src="/fixtures/1200x2500.jpg" alt="Placeholder">
     `,
   },
 ];
