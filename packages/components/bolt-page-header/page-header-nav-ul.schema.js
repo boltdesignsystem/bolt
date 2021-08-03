@@ -24,5 +24,11 @@ module.exports = {
         'Set the position of the nav ul if the parent nav li has the popover prop set to "true". This only applies if the nav ul is a child of a nav li.',
       enum: ['edge-start', 'edge-end'],
     },
+    wrap_site_nav_items: {
+      type: 'boolean',
+      description:
+        'Allow the site nav items to wrap once it runs out of available space. This only applies when category is set to "site", it has no effects on other categories.',
+      default: false,
+    },
   },
 };

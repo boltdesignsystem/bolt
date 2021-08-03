@@ -72,7 +72,7 @@ module.exports = {
     flat: {
       type: 'boolean',
       description:
-        'Indicate if the nav ul is a flat list (no nesting at all). This only applies  if its parent nav ul category is set to "site", it has no effects on other categories.',
+        'Indicate if the nav ul is a flat list (no nesting at all). This only applies if its parent nav ul category is set to "site", it has no effects on other categories.',
       default: false,
     },
   },
