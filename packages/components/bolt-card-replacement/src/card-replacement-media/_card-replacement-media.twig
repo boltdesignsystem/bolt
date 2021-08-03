@@ -31,6 +31,10 @@
               {% set _image_attributes = _image_attributes|merge({loading: 'lazy'}) %}
             {% endif %}
 
+            {% if no_lazy == true %}
+              {% set _image_attributes = _image_attributes|merge({loading: 'eager'}) %}
+            {% endif %}
+
             {% if _card_replacement_image.max_width %}
               {% set _image_attributes = _image_attributes|merge({
                 style: 'max-width: ' ~ _card_replacement_image.max_width ~ ';'
@@ -39,20 +43,15 @@
 
             {% set _image_props = { attributes: _image_attributes } %}
 
+            {% if _card_replacement_image.max_width %}
+              {% set _image_props = _image_props|merge({fill: true}) %}
+            {% endif %}
+
             {% if _card_replacement_image.cover %}
               {% set _image_props = _image_props|merge({background: true}) %}
             {% endif %}
           {% else %}
-            {% set _image_attributes = _card_replacement_image.attributes|default({}) %}
-            {% set _image_props = { attributes: _image_attributes } %}
-
-            {% if author.image.cover %}
-              {% set _image_props = _image_props|merge({background: true}) %}
-            {% endif %}
-
-            {% if _card_replacement_image.background %}
-              {% set _image_props = _image_props|merge({background: _card_replacement_image.background }) %}
-            {% endif %}
+            {% set _image_props = _card_replacement_image %}
           {% endif %}
 
           {% include "@bolt-elements-image/image.twig" with _image_props only %}
