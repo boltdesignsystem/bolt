@@ -62,10 +62,12 @@
   {% set hero %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--middle" %}
       {% cell "u-bolt-width-12/12 u-bolt-width-5/12@medium" %}
-        {% include "@bolt-components-image/image.twig" with {
-          src: featured_image,
-          alt: article_title,
-          lazyload: false,
+        {% include "@bolt-elements-image/image.twig" with {
+          attributes: {
+            src: featured_image,
+            alt: article_title,
+            loading: "lazy",
+          }
         } only %}
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-7/12@medium" %}

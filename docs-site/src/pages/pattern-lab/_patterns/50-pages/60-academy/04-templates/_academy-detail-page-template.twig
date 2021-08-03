@@ -48,10 +48,13 @@
             {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--border" %}
               {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
                 <div class="u-bolt-flex u-bolt-align-items-center u-bolt-justify-content-center u-bolt-height-full u-bolt-padding-xsmall">
-                  {% include '@bolt-components-image/image.twig' with {
-                    src: "/images/pega-community.svg",
-                    alt: "Pega Community logo",
-                    max_width: "250px",
+                  {% include '@bolt-elements-image/image.twig' with {
+                    attributes: {
+                      src: "/images/pega-community.svg",
+                      alt: "Pega Community logo",
+                      style: "max-width: 250px",
+                      loading: "lazy",
+                    }
                   } only %}
                 </div>
               {% endcell %}
