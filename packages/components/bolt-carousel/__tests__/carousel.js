@@ -37,15 +37,15 @@ const viewportSizes = [
 ];
 
 const carouselSlideImage = `
-    <bolt-image
+    <img
+      class="e-bolt-image"
       src="/fixtures/1200x660.jpg"
       srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
       sizes="auto"
-      ratio="1200/660"
       alt="A Rock Climber"
-      no-lazy
-      style="background-color: hsl(233, 33%, 97%); width: 100%;">
-    </bolt-image>
+      loading="eager"
+      style="background-color: hsl(233, 33%, 97%); width: 100%;"
+    >
 `;
 
 const carouselButtonControls = `
