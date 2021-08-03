@@ -69,5 +69,11 @@ module.exports = {
         'Set the nav li as the selected item. This only applies if nav ul category is set to "user" and the nav li is rendering the language select.',
       default: false,
     },
+    flat: {
+      type: 'boolean',
+      description:
+        'Indicate if the nav ul is a flat list (no nesting at all). This only applies when category is set to "site", it has no effects on other categories.',
+      default: false,
+    },
   },
 };
