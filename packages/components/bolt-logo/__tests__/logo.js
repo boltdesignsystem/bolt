@@ -77,20 +77,6 @@ describe('logo', () => {
       return logo.outerHTML;
     });
 
-    await page.evaluate(async () => {
-      const selectors = Array.from(document.querySelectorAll('bolt-logo'));
-      await Promise.all(
-        selectors.map(logo => {
-          const logoImage = logo.querySelector('.e-bolt-image');
-          if (logoImage._wasInitiallyRendered === true) return;
-          return new Promise((resolve, reject) => {
-            logoImage.addEventListener('ready', resolve);
-            logoImage.addEventListener('error', reject);
-          });
-        }),
-      );
-    });
-
     const renderedHTML = await html(renderedLogoHTML);
     await page.waitFor(500);
 
