@@ -51,7 +51,43 @@
             {% if content %}
               {{ content }}
             {% elseif image %}
-              {% include "@bolt-components-image/image.twig" with image only %}
+              {% if image.src %}
+                {% set _image_attributes = image.attributes|default({}) %}
+                {% set _image_attributes = _image_attributes|merge({
+                  src: image.src,
+                  alt: image.alt,
+                  srcset: image.srcset,
+                  sizes: image.sizes,
+                }) %}
+
+                {% if image.lazyload == true %}
+                  {% set _image_attributes = _image_attributes|merge({loading: 'lazy'}) %}
+                {% endif %}
+
+                {% if no_lazy == true %}
+                  {% set _image_attributes = _image_attributes|merge({loading: 'eager'}) %}
+                {% endif %}
+
+                {% if image.max_width %}
+                  {% set _image_attributes = _image_attributes|merge({
+                    style: 'max-width: ' ~ image.max_width ~ ';'
+                  }) %}
+                {% endif %}
+
+                {% set _image_props = { attributes: _image_attributes } %}
+
+                {% if image.max_width %}
+                  {% set _image_props = _image_props|merge({fill: true}) %}
+                {% endif %}
+
+                {% if image.cover %}
+                  {% set _image_props = _image_props|merge({background: true}) %}
+                {% endif %}
+              {% else %}
+                {% set _image_props = image %}
+              {% endif %}
+
+              {% include "@bolt-elements-image/image.twig" with _image_props only %}
             {% elseif icon %}
               {% include "@bolt-components-icon/icon.twig" with icon only %}
             {% elseif video %}
