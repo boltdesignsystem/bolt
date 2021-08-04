@@ -359,6 +359,7 @@
 
   {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
     content: primary_nav_content,
+    align_site_nav_items: 'end',
   } only %}
 {% endset %}
 
@@ -401,10 +402,5 @@
     }
   },
   content: page_header_content,
+  full_width: true,
 } only %}
-
-<style>
-  :root {
-    --c-bolt-page-header-logo-max-width: 250px;
-  }
-</style>
