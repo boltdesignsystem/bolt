@@ -28,31 +28,31 @@
     <tbody>
       <tr>
         <th>Pega.com</th>
-        <td><a href="{{ link['components-example-main-site-with-subnav'] }}" class="e-bolt-text-link">View</a></td>
+        <td><a href="{{ link['components-page-header-example-main-site-with-subnav'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
         <th>Academy</th>
-        <td><a href="{{ link['components-example-academy'] }}" class="e-bolt-text-link">View</a></td>
+        <td><a href="{{ link['components-page-header-example-academy'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
         <th>Community</th>
-        <td><a href="{{ link['components-example-community'] }}" class="e-bolt-text-link">View</a></td>
+        <td><a href="{{ link['components-page-header-example-community'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
         <th>Collaboration Center</th>
-        <td><a href="{{ link['components-example-collaboration-center'] }}" class="e-bolt-text-link">View</a></td>
+        <td><a href="{{ link['components-page-header-example-collaboration-center'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
         <th>SalesHub</th>
-        <td><a href="{{ link['components-example-saleshub'] }}" class="e-bolt-text-link">View</a></td>
+        <td><a href="{{ link['components-page-header-example-saleshub'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
         <th>Partners</th>
-        <td><a href="{{ link['components-example-partners'] }}" class="e-bolt-text-link">View</a></td>
+        <td><a href="{{ link['components-page-header-example-partners'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
         <th>PegaWorld</th>
-        <td><a href="{{ link['components-example-pegaworld'] }}" class="e-bolt-text-link">View</a></td>
+        <td><a href="{{ link['components-page-header-example-pegaworld'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
     </tbody>
   </table>
@@ -70,10 +70,12 @@
       href: 'https://pega.com',
     }
   },
+  subheadline: 'Subheadline text', // This appears next to the logo
   content: primary_nav_and_search_panel,
   secondary_content: secondary_nav,
   cta: cta_button,
-  static: true,
+  static: true, // Prevents page header from being sticky
+  full_width: true, // Sets the width to span the full viewport
   subheadline: 'Subheadline text', // This appears next to the logo
 } only %}
 
@@ -85,6 +87,7 @@
 // Primary nav template (pass to main template's content prop)
 {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
   content: content,
+  align_site_nav_items: align_site_nav_items, // ['start', 'center', 'end']
 } only %}
 
 // Nav ul template (pass to primary nav template's content prop)
@@ -92,7 +95,6 @@
   content: content,
   category: category, // ['site', 'related-sites', 'user']
   popover_position: popover_position, // ['edge-start', 'edge-end']
-  wrap_site_nav_items: false, // This allows top level desktop site nav items to wrap
 } only %}
 
 // Nav li template (pass to nav ul template's content prop)
@@ -108,6 +110,7 @@
   view_all: false, // This is for general "view all" links
   full_width: false, // This is for "view all" and full-width links
   popover: false, // This is for utility nav
+  flat: false, // This is for a top level desktop site nav item to render a single level flat dropdown
   selected: false, // This is for language select
   current: true, // This is for marking a top level desktop site nav item as the current page
 } only %}
