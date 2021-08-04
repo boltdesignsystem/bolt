@@ -64,6 +64,7 @@ class Nav extends BaseComponent {
     this.isOpenClass = 'is-open';
     const state = store.getState();
     this.layoutMode = state.app.layoutMode || '';
+    this.testMode = state.app.testMode || false;
     this.currentPattern = state.app.currentPattern || '';
     this.elem = this;
     this.previouslyActiveLinks = [];
@@ -94,12 +95,26 @@ class Nav extends BaseComponent {
       this.layoutMode = state.app.layoutMode || '';
     }
 
+    if (this.testMode !== state.app.testMode) {
+      this.testMode = state.app.testMode || false;
+    }
+
     if (
       state.app.currentPattern &&
       this.currentPattern !== state.app.currentPattern
     ) {
       this.currentPattern = state.app.currentPattern;
       this.handleURLChange(); // so the nav logic is always correct (ex. layout changes)
+    }
+
+    this.handleTestFolder();
+  }
+
+  handleTestFolder() {
+    if (this.testElem !== undefined) {
+      this.testMode
+        ? this.testElem.classList.remove('pl-c-nav__list-item--hidden')
+        : this.testElem.classList.add('pl-c-nav__list-item--hidden');
     }
   }
 
@@ -230,6 +245,9 @@ class Nav extends BaseComponent {
     if (this.layoutMode !== 'vertical' && window.innerWidth > 670) {
       this.cleanupActiveNav(true);
     }
+
+    this.testElem = document.querySelector('.pl-c-nav__list-item--tests');
+    this.handleTestFolder();
   }
 
   render({ layoutMode }) {
@@ -238,8 +256,11 @@ class Nav extends BaseComponent {
     return (
       <ol class="pl-c-nav__list">
         {patternTypes.map((item, i) => {
-          const classes = classNames('pl-c-nav__list-item');
           const patternItems = item.patternItems;
+          const classes = classNames(
+            'pl-c-nav__list-item',
+            `pl-c-nav__list-item--${item.patternTypeUC.toLowerCase()}`
+          );
 
           return (
             <li className={classes}>

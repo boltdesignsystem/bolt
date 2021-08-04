@@ -346,6 +346,7 @@ async function createWebpackConfig(buildConfig) {
               zindex: false, // don't alter `z-index` values
               mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
               reduceTransforms: false, // this will convert translate3d(0,0,0) to tranlateZ(0) which breaks animation transitions
+              calc: false, // don't optimize calc, can change calculations in unexpected ways, especially when CSS vars are involved
             },
           ],
         },

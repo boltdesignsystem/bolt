@@ -1,0 +1,1041 @@
+{% set holy_grail_content %}
+  {% set icon_search %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'search',
+    } only %}
+  {% endset %}
+  {% set icon_chevron_down %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-down',
+    } only %}
+  {% endset %}
+  {% set icon_chevron_right %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-right',
+    } only %}
+  {% endset %}
+  {% set share_menu %}
+    {% include '@bolt-components-share/share.twig' with {
+      display: 'menu',
+      size: 'small',
+      text: 'Share this article',
+      sources: [
+        {
+          name: 'facebook',
+          attributes: {
+            href: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+          }
+        },
+        {
+          name: 'twitter',
+          attributes: {
+            href: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+          }
+        },
+        {
+          name: 'linkedin',
+          attributes: {
+            href: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+          }
+        },
+        {
+          name: 'email',
+          attributes: {
+            href: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+          }
+        }
+      ],
+      copy_to_clipboard: {
+        text_to_copy: 'https://pega.com'
+      },
+    } only %}
+  {% endset %}
+  {% set chip_list %}
+    {% include '@bolt-components-chip-list/chip-list.twig' with {
+      size: 'xsmall',
+      items: [
+        {
+          text: 'Chip 1',
+          url: 'https://pega.com/test',
+        },
+        {
+          text: 'Chip 2',
+          url: 'https://pega.com/test',
+        },
+      ],
+    } only %}
+  {% endset %}
+  {% set version_popover %}
+    {% set trigger %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Pega platform 8.5',
+        icon_after: icon_chevron_down,
+        reversed_underline: true,
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    {% endset %}
+    {% set content %}
+      {% include '@bolt-components-menu/menu.twig' with {
+        title: 'Choose a version',
+        items: [
+          {
+            content: 'Pega platform 8.4',
+            url: 'https://pega.com',
+          },
+          {
+            content: 'Pega platform 8.5',
+            url: 'https://pega.com',
+          },
+          {
+            content: 'Pega platform 8.6',
+            url: 'https://pega.com',
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: trigger,
+      content: content,
+      spacing: 'none',
+      trigger_event: 'hover',
+    } only %}
+  {% endset %}
+  {% set number_items %}
+    {% include '@bolt-components-listing-teaser/listing-teaser-status-number.twig' with {
+      number: '167',
+      label: 'Replies',
+    } only %}
+    {% include '@bolt-components-listing-teaser/listing-teaser-status-number.twig' with {
+      number: '6k',
+      label: 'Views',
+    } only %}
+  {% endset %}
+
+  {% set product_result_1 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Product',
+      } only %}
+    {% endset %}
+    {% set signifier %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'platform',
+        color: 'teal',
+        background: 'circle',
+        size: 'large',
+      } only %}
+    {% endset %}
+    {% set callout_content %}
+      {% set headlines %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'Looking for deployment guides for your environment?',
+          tag: 'h4',
+          size: 'large',
+        } only %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Select your version to view documentation.',
+          tag: 'p',
+          size: 'small',
+        } only %}
+      {% endset %}
+      {% set popover %}
+        {% set popover_trigger %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Version 8.5',
+            size: 'small',
+            border_radius: 'full',
+            icon_after: icon_chevron_down,
+            attributes: {
+              type: 'button',
+              style: 'white-space: nowrap;',
+            }
+          } only %}
+        {% endset %}
+        {% set popover_content %}
+          {% include '@bolt-components-menu/menu.twig' with {
+            title: 'Choose a version',
+            items: [
+              {
+                content: 'Version 8.4',
+              },
+              {
+                content: 'Version 8.5',
+              },
+              {
+                content: 'Version 8.6',
+              },
+            ]
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-popover/popover.twig' with {
+          trigger: popover_trigger,
+          trigger_event: 'hover',
+          content: popover_content,
+          spacing: 'none',
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        valign: 'center',
+        gutter: 'small',
+        items: [
+          {
+            column_start: '1',
+            column_span: '12 11@small',
+            row_start: '1 1@small',
+            content: headlines,
+          },
+          {
+            column_start: '1 12@small',
+            column_span: '12 1@small',
+            row_start: '2 1@small',
+            content: popover,
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      gutter: 'medium',
+      signifier: signifier,
+      layout: 'responsive',
+      eyebrow_items: [
+        eyebrow_1,
+      ],
+      headline: {
+        text: 'This is a product',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      variant: 'card',
+      callout: {
+        attributes: {
+          class: 't-bolt-dark',
+        },
+        content: callout_content,
+      },
+    } only %}
+  {% endset %}
+
+  {% set com_result_1 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Documentation',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Article',
+      } only %}
+    {% endset %}
+    {% set icon_documentation %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'documentation',
+      } only %}
+    {% endset %}
+    {% set book_link %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Book name',
+        icon_before: icon_documentation,
+        reversed_underline: true,
+        attributes: {
+          href: 'https://pega.com',
+        }
+      } only %}
+    {% endset %}
+    {% set parent_link %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Parent name (one level up)',
+        reversed_underline: true,
+        attributes: {
+          href: 'https://pega.com',
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is a documentation',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        book_link,
+        parent_link,
+        version_popover,
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+  {% set com_result_2 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Community blog',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+      ],
+      headline: {
+        text: 'This is a blog post',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Author Name',
+        'August 29, 2021',
+        '3 min read',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+  {% set com_result_3 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Design pattern',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+      ],
+      headline: {
+        text: 'This is a design pattern',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+
+  {% set acd_result_1 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Pega Academy',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Mission',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is an Academy mission',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        '11 modules',
+        '10 challenges',
+        '10 hr 35 min',
+        version_popover,
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+  {% set acd_result_2 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Pega Academy',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Module',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is an Academy module',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        '5 topics',
+        '1 hr 20 min',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+  {% set acd_result_3 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Pega Academy',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Challenge',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is an Academy challenge',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        '9 tasks',
+        '45 min',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+
+  {% set cc_result_1 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Collaboration Center',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Question',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is a Collaboration Center question',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
+        'Last activity: 8 hr 26 min ago',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+      status: {
+        solved: true,
+        locked: true,
+        number_items: number_items,
+      },
+    } only %}
+  {% endset %}
+  {% set cc_result_2 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Collaboration Center',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Discussion',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is a Collaboration Center discussion',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
+        'Last activity: 8 hr 26 min ago',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+      status: {
+        locked: true,
+        number_items: number_items,
+      },
+    } only %}
+  {% endset %}
+  {% set cc_result_3 %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Collaboration Center',
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Challenge',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      eyebrow_items: [
+        eyebrow_1,
+        eyebrow_2,
+      ],
+      headline: {
+        text: 'This is a Collaboration Center idea',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      meta_items: [
+        'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">mikemai</a> on Apr 9, 2020',
+        'Last activity: 8 hr 26 min ago',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+      status: {
+        number_items: number_items,
+      },
+    } only %}
+  {% endset %}
+
+  {% set vid_result_1 %}
+    {% set modal_id = 'js-bolt-modal-' ~ random() %}
+    {% set video %}
+      {% set video_embed %}
+        <video-js
+          data-account='1900410236'
+          data-player='O3FkeBiaDz'
+          data-embed='default'
+          data-video-id='4892122320001'
+          controls
+          class="c-base-video"></video-js>
+      {% endset %}
+      {% include '@bolt-components-ratio/ratio.twig' with {
+        children: video_embed,
+        ratio: '16/9'
+      } only %}
+    {% endset %}
+    {% set modal_content %}
+      {{ video }}
+      <div class="u-bolt-padding-small">
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'View the video resource page',
+          icon_after: icon_chevron_right,
+          reversed_underline: true,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+      </div>
+    {% endset %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: modal_content,
+      width: 'optimal',
+      spacing: 'none',
+      theme: 'xlight',
+      scroll: 'overall',
+      attributes: {
+        id: modal_id,
+      },
+    } only %}
+    {% set signifier %}
+      {% set image %}
+        {% include '@bolt-components-image/image.twig' with {
+          src: '/images/placeholders/tout-4x3-climber.jpg',
+          alt: 'A Rock Climber',
+          ratio: false,
+          cover: true,
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+        content: image,
+        aspect_ratio: '16:9',
+        border_radius: 'small',
+      } only %}
+    {% endset %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Video',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      gutter: 'medium',
+      signifier: signifier,
+      layout: 'responsive',
+      eyebrow_items: [
+        eyebrow_1,
+      ],
+      headline: {
+        text: 'This is a video',
+        tag: 'h3',
+        size: 'xlarge',
+        link_attributes: {
+          type: 'button',
+          'data-bolt-modal-target': '#' ~ modal_id,
+        },
+      },
+      meta_items: [
+        'TechTalk',
+        'Apr 9, 2020',
+        '17:11',
+      ],
+      description: 'Tri-tip shank tongue fatback kevin. Venison frankfurter cupim picanha meatloaf ham hock beef ribs. Burgdoggen porchetta spare ribs bresaola chuck filet mignon. Spare ribs filet mignon pig pastrami&hellip;',
+      chip_list: chip_list,
+    } only %}
+  {% endset %}
+
+  {% set related_vids %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Related videos',
+      tag: 'h4',
+      size: 'large',
+      attributes: {
+        class: 'u-bolt-margin-bottom-xsmall',
+      },
+    } only %}
+    {% include '@bolt-components-list/list.twig' with {
+      spacing: 'small',
+      separator: 'solid',
+      items: [
+        vid_result_1,
+        vid_result_1,
+        vid_result_1,
+      ]
+    } only %}
+  {% endset %}
+
+  {% set search_archive %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Search the archive',
+      icon_before: icon_search,
+      hierarchy: 'tertiary',
+      display: 'block',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    } only %}
+  {% endset %}
+
+  {% set help_system_link %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Browse the help system',
+      icon_after: icon_chevron_right,
+      attributes: {
+        href: 'https://pega.com',
+      }
+    } only %}
+  {% endset %}
+
+  <bolt-stack spacing="small">
+    {% include '@bolt-components-chip-list/chip-list.twig' with {
+      size: 'xsmall',
+      items: [
+        {
+          text: 'Selected facet 1',
+          url: '#!',
+          icon: {
+            position: 'after',
+            name: 'close',
+          }
+        },
+        {
+          text: 'Selected facet 2',
+          url: '#!',
+          icon: {
+            position: 'after',
+            name: 'close',
+          }
+        },
+        {
+          text: 'Selected facet 3',
+          url: '#!',
+          icon: {
+            position: 'after',
+            name: 'close',
+          }
+        },
+        {
+          text: 'Clear all',
+          url: '#!',
+        },
+      ]
+    } only %}
+  </bolt-stack>
+  <bolt-stack>
+    <small>Found 9268 results. Looking for help? {{ help_system_link }}</small>
+  </bolt-stack>
+  <bolt-stack spacing="large">
+    {% include '@bolt-components-list/list.twig' with {
+      spacing: 'medium',
+      separator: 'solid',
+      items: [
+        product_result_1,
+        cc_result_1,
+        com_result_1,
+        acd_result_1,
+        related_vids,
+        acd_result_3,
+        cc_result_2,
+        com_result_3,
+        cc_result_3,
+        acd_result_2,
+        com_result_2,
+        search_archive,
+      ]
+    } only %}
+  </bolt-stack>
+  <bolt-stack>
+    {% include '@bolt-components-pagination/pagination.twig' with {
+      current: 5,
+      total: 10,
+      first: {
+        href: '#!'
+      },
+      previous: {
+        href: '#!'
+      },
+      pages: {
+        3: {
+          href: '#!'
+        },
+        4: {
+          href: '#!'
+        },
+        5: {
+          href: '#!'
+        },
+        6: {
+          href: '#!'
+        },
+        7: {
+          href: '#!'
+        }
+      },
+      next: {
+        href: '#!'
+      },
+      last: {
+        href: '#!'
+      }
+    } only %}
+  </bolt-stack>
+{% endset %}
+{% set sidebar_content %}
+  <div class="u-bolt-padding-right-small u-bolt-padding-left-small">
+    <form>
+      <fieldset class="c-bolt-fieldset">
+        <legend class="c-bolt-legend">
+          <h2 class="c-bolt-headline c-bolt-headline--small">
+            <span class="c-bolt-headline__text">
+              Search Facets
+            </span>
+          </h2>
+        </legend>
+        <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="facet" id="facet-choice-1" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="facet-choice-1">
+              Facet One (12)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="facet" id="facet-choice-2" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="facet-choice-2">
+              Facet Two (8)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="facet" id="facet-choice-3" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="facet-choice-3">
+              Facet Three (3)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="facet" id="facet-choice-4" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="facet-choice-4">
+              Facet Four (5)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="facet" id="facet-choice-5" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="facet-choice-5">
+              Facet Five (10)
+            </label>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="c-bolt-fieldset">
+        <legend class="c-bolt-legend">
+          <h2 class="c-bolt-headline c-bolt-headline--small">
+            <span class="c-bolt-headline__text">
+              Placeholder One
+            </span>
+          </h2>
+        </legend>
+        <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-1" value="Agile" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-1">
+              Agile (3)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-2" value="Analytics" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-2">
+              Analytics (4)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-3" value="Application Development" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-3">
+              Application Development (6)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-4" value="Artificial Intelligence" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-4">
+              Artificial Intelligence (7)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-5" value="BPM" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-5">
+              BPM (14)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-6" value="Case Management" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-6">
+              Case Management (10)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-7" value="Cloud" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-7">
+              Cloud (34)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-8" value="CRM" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-8">
+              CRM (1)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-9" value=" Customer Experience" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-9">
+                Customer Experience (23)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-10" value="Customer Service" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-10">
+              Customer Service (5)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-11" value="Decision Management" checked />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-11">
+              Decision Management (5)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Digital Transformation" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Digital Transformation (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Internet of Things" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Internet of Things (9)
+            </label>
+          </div>
+            <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Marketing Automation" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Marketing Automation (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Mobile" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Mobile (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Operations" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Operations (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Pega Platform" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Pega Platform (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="PegaWorld" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              PegaWorld (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Robotic Automation" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Robotic Automation (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Sales Automation" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              Sales Automation (9)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="UX & Design" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+              UX & Design (9)
+            </label>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="c-bolt-fieldset">
+        <legend class="c-bolt-legend">
+          <h2 class="c-bolt-headline c-bolt-headline--small">
+            <span class="c-bolt-headline__text">
+              Placeholder Two
+            </span>
+          </h2>
+        </legend>
+        <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-1" value="Communications & Media" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-1">
+              Communications & Media (12)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-2" value="Energy & Utilities" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-2">
+              Energy & Utilities (8)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-3" value="Financial Services" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-3">
+              Financial Services (3)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-4" value="Government" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-4">
+              Government (5)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-5" value="Healthcare" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-5">
+              Healthcare (10)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-6" value="Insurance" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-6">
+              Insurance (10)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-7" value="Life Sciences" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-7">
+              Life Sciences (10)
+            </label>
+          </div>
+          <div class="c-bolt-input-list__item">
+            <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-8" value="Manufacturing & High Technology" />
+            <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="industry-choice-8">
+              Manufacturing & High Technology (10)
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+{% endset %}
+
+{% set site_header %}
+  {% include '@pl/_demo-pega-docs-page-header.twig' %}
+{% endset %}
+{% set site_main %}
+  {% set holy_grail_sidebar %}
+    {% include '@bolt-layouts-holy-grail/holy-grail-sidebar.twig' with {
+      content: sidebar_content,
+      trigger_icon: 'filter',
+      trigger_label: 'Search Filters',
+      attributes: {
+        class: 't-bolt-gray-xlight',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+    content: holy_grail_content,
+    sidebar: holy_grail_sidebar,
+  } only %}
+{% endset %}
+{% set site_footer %}
+  <footer>
+    <bolt-banner status="warning">
+      <p>Footer placeholder.</p>
+    </bolt-banner>
+  </footer>
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  header: site_header,
+  main: {
+    content: site_main,
+    attributes: {
+      id: 'main-content',
+    }
+  },
+  footer: site_footer,
+} only %}
