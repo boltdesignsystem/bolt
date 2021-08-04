@@ -741,8 +741,8 @@ $bds-sidebar-width: 320px;
     font-weight: var(--bolt-type-font-weight-semibold);
     line-height: var(--bolt-type-line-height-xlarge);
     text-decoration: none;
-    text-shadow: 0 0 1em var(--bolt-color-black);
-    transition: text-shadow $bolt-transition;
+    text-shadow: 0 0 1em bolt-color(black);
+    transition: text-shadow var(--bolt-transition);
 
     &:hover,
     &:focus {

@@ -7,15 +7,15 @@
 // 4. Required so videos with intrinsic ratio (used in the <bolt-ratio> object) properly fill the space available in IE 11.
 // 5. [Denton] Hide the title when sharing to minimize the chances that you'll see a scrollbar, which is undesirable.  The description field will take its place.
 
+$base-video-js-button-transition: var(--bolt-transition);
 $base-video-js-button-text-color: var(--bolt-color-navy);
 $base-video-js-button-background-color: var(--bolt-color-yellow);
-$base-video-js-button-transition: $bolt-transition;
 $base-video-js-button-border-radius: $bolt-border-radius;
 $base-video-js-button-shadow-color: var(--bolt-color-black);
 $base-video-js-button-shadow-level: 'level-20';
 $base-video-js-button-shadow-level-hover: 'level-40';
 $base-video-meta-border-radius: $bolt-border-radius;
-$base-video-meta-transition: $bolt-transition;
+$base-video-meta-transition: var(--bolt-transition);
 
 @mixin bolt-video-js-button($opacity: bolt-opacity(100)) {
   opacity: $opacity;

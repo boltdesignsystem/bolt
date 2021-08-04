@@ -14,7 +14,7 @@ $bolt-share-block-link-inline-spacing: 'xsmall';
 @each $key, $value in $bolt-opacities {
   .c-bolt-share--opacity-#{$key} {
     @include bolt-opacity($key);
-    transition: opacity $bolt-transition;
+    transition: opacity var(--bolt-transition);
 
     &:hover {
       opacity: bolt-opacity(100);
@@ -44,7 +44,7 @@ $bolt-share-block-link-inline-spacing: 'xsmall';
   color: var(--m-bolt-link);
   text-decoration: none;
   white-space: nowrap;
-  transition: opacity $bolt-transition;
+  transition: opacity var(--bolt-transition);
 
   &:hover {
     opacity: $bolt-global-link-hover-opacity;
