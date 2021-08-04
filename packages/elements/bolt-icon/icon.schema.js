@@ -11,16 +11,18 @@ module.exports = {
     name: {
       type: 'string',
       description: 'Name of Icon',
-      default: 'none'
+      enum: [{}],
     },
     size: {
       type: 'string',
-      description: 'Controls the size of the icon. Each size is set to a specific pixel value: 16px, 24px, 32px, and 38px. However, this prop is optional. When no size is specified, the icon is expected to act as an inline icon, which will grow or shrink depending on the font-size of its parent container.',
-      enum: ['small', 'medium', 'large', 'xlarge']
+      description:
+        'Controls the size of the icon. Each size is set to a specific pixel value: 16px, 24px, 32px, and 38px. However, this prop is optional. When no size is specified, the icon is expected to act as an inline icon, which will grow or shrink depending on the font-size of its parent container.',
+      enum: ['small', 'medium', 'large', 'xlarge'],
     },
     color: {
       type: 'string',
-      description: 'Icon color palette. Picking an option other than `auto` will override the default colors based on the color theme is placed within.',
+      description:
+        'Icon color palette. Picking an option other than `auto` will override the default colors based on the color theme is placed within.',
       default: 'auto',
       enum: [
         'auto',
@@ -32,8 +34,8 @@ module.exports = {
         'pink',
         'berry',
         'wine',
-        'violet'
-      ]
-    }
+        'violet',
+      ],
+    },
   },
 };

@@ -41,6 +41,8 @@ async function build() {
 
     await generateSchemaFile(icons);
 
+    await generateElementSchemaFile();
+
     iconSpinner.succeed(
       chalk.green(
         initialBuild ? finishedBuildingIconsMsg : finishedRebuildingIconsMsg,
@@ -65,6 +67,42 @@ async function build() {
 
 build.description = 'Minify & convert raw SVG files to browser-friendly icons.';
 build.displayName = 'icons:build';
+
+// update bolt-icon element schema with newest icons from svgs folder
+async function generateElementSchemaFile(icons) {
+  const getElementNames = iconPath => {
+    let svgs = [];
+    const svgFiles = fs.readdirSync(iconPath);
+    svgFiles.forEach(svg => {
+      if (path.extname(svg) === '.twig') {
+        const svgName = svg.split('.svg.twig');
+        svgs.push(svgName[0]);
+      }
+    });
+    return svgs;
+  };
+  const elementSchema = require('@bolt/elements-icon/icon.schema.js');
+  const iconElemnentDir = path.dirname(
+    resolve.sync('@bolt/elements-icon/package.json'),
+  );
+  const iconElementIcons = path.join(iconElemnentDir, '/src/icons');
+  const elementNames = getElementNames(iconElementIcons);
+  // console.log(JSON.stringify(getElementNames(iconElementIcons)))
+  // console.log(JSON.stringify(elementNames))
+  elementSchema.properties.name.enum = elementNames;
+
+  console.log(elementSchema);
+
+  // await fs.writeFile(iconElementSchema, util.formatWithOptions({ compact: false }, 'module.exports = %O', elementSchema));
+
+  // schema.properties.name.anyOf[0].enum = names;
+
+  // const elementSchemaFormatted = prettier.format(elementSchema);
+  // console.log(typeof elementSchema)
+  // const formattedElementSchema = prettier.format(JSON.stringify(elementSchema), {
+  //   parser: 'json',
+  // });
+}
 
 async function generateSchemaFile(icons) {
   const config = await getConfig();
