@@ -2,18 +2,20 @@
 
 <bolt-list display="inline" spacing="large">
   {% for color in schema.properties.color.enum %}
-    <bolt-list-item>
-      <div style="white-space: nowrap">
-        <h3>{{ color }}</h3>
-        {% for background in schema.properties.background.enum %}
-          {% include "@bolt-components-icon/icon.twig" with {
-            name: "marketing-gray",
-            size: "large",
-            color: color,
-            background: background,
-          } only %}
-        {% endfor %}
-      </div>
-    </bolt-list-item>
+    {% if color != "indigo" %}
+      <bolt-list-item>
+        <div style="white-space: nowrap">
+          <h3>{{ color }}</h3>
+          {% for background in schema.properties.background.enum %}
+            {% include "@bolt-components-icon/icon.twig" with {
+              name: "marketing-gray",
+              size: "large",
+              color: color,
+              background: background,
+            } only %}
+          {% endfor %}
+        </div>
+      </bolt-list-item>
+    {% endif %}
   {% endfor %}
 </bolt-list>

@@ -13,38 +13,40 @@
       <bolt-text slot="label">Brand Colors</bolt-text>
 
       {% for color_name, palette in bolt.data.colors.brand %}
-        <bolt-text headline font-size="xlarge" tag="h3">
-          {{ color_name|capitalize }}
-        </bolt-text>
-        <bolt-table first-col-fixed-width>
-          <table>
-            <thead>
-              <tr>
-                <td></td>
-                <th>CSS custom property</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for shade, color_value in palette %}
-                {% if shade != "base" %}
-                  {% set shade_modifier = "-" ~ shade %}
-                  {% set shade_name = ", " ~ shade %}
-                {% else %}
-                  {% set shade_modifier = "" %}
-                  {% set shade_name = "" %}
-                {% endif %}
+        {% if color_name != "indigo" %}
+          <bolt-text headline font-size="xlarge" tag="h3">
+            {{ color_name|capitalize }}
+          </bolt-text>
+          <bolt-table first-col-fixed-width>
+            <table>
+              <thead>
                 <tr>
-                  <th>{{ color_name|capitalize }}{{ shade_name }}</th>
-                  <td>var(--bolt-color-{{ color_name }}{{ shade_modifier }})</td>
-                  <td style="white-space: nowrap">
-                    <span class="c-bds-color-chip" style="background: {{ color_value|rgb2hex }};"></span>&nbsp;&nbsp;{{ color_value|rgb2hex }}
-                  </td>
+                  <td></td>
+                  <th>CSS custom property</th>
+                  <th>Value</th>
                 </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </bolt-table>
+              </thead>
+              <tbody>
+                {% for shade, color_value in palette %}
+                  {% if shade != "base" %}
+                    {% set shade_modifier = "-" ~ shade %}
+                    {% set shade_name = ", " ~ shade %}
+                  {% else %}
+                    {% set shade_modifier = "" %}
+                    {% set shade_name = "" %}
+                  {% endif %}
+                  <tr>
+                    <th>{{ color_name|capitalize }}{{ shade_name }}</th>
+                    <td>var(--bolt-color-{{ color_name }}{{ shade_modifier }})</td>
+                    <td style="white-space: nowrap">
+                      <span class="c-bds-color-chip" style="background: {{ color_value|rgb2hex }};"></span>&nbsp;&nbsp;{{ color_value|rgb2hex }}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </bolt-table>
+        {% endif %}
       {% endfor %}
     </bolt-tab-panel>
 
@@ -52,7 +54,7 @@
       <bolt-text slot="label">Status Colors</bolt-text>
 
       {% for color_name, palette in bolt.data.colors.status %}
-        {% if color_name != "navy" %}
+        {% if color_name != "indigo" %}
           <bolt-text headline font-size="xlarge" tag="h3">
             {{ color_name|capitalize }}
           </bolt-text>
