@@ -1,10 +1,12 @@
 {% set schema = bolt.data.components["@bolt-components-modal"].schema %}
 
 {% set modal_content %}
-  {% include "@bolt-components-image/image.twig" with {
-    src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
-    alt: "Tall image",
-    lazyload: false,
+  {% include "@bolt-elements-image/image.twig" with {
+    attributes: {
+      src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+      alt: "Tall image",
+      loading: "lazy",
+    }
   } only %}
 {% endset %}
 

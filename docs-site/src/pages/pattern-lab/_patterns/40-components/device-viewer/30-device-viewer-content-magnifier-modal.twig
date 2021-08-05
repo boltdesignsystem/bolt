@@ -1,14 +1,18 @@
 {% set image %}
-  {% include "@bolt-components-image/image.twig" with {
-    placeholder_color: "#151619",
-    src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+  {% include "@bolt-elements-image/image.twig" with {
+    attributes: {
+      src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+      loading: "lazy",
+    }
   } only %}
 {% endset %}
 
 {% set thumbnail_image %}
-  {% include '@bolt-components-image/image.twig' with {
-    src: "/images/content/screenshots/device-screenshot--desktop.jpg",
-    max_width: "600px"
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+      style: "max-width: 600px"
+    }
   } only %}
 {% endset %}
 

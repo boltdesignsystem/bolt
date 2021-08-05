@@ -3,9 +3,11 @@
 {% for color in schema.properties.color.enum if (color != 'gold') %}
   <p>Color: {{ color }}<br />Orientation: 'portrait'</p>
   {% set image_tablet_portrait %}
-    {% include "@bolt-components-image/image.twig" with {
-      placeholder_color: "#1b1b1b",
-      src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+    {% include "@bolt-elements-image/image.twig" with {
+      attributes: {
+        src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+        loading: "lazy",
+      }
     } only %}
   {% endset %}
 
@@ -18,9 +20,11 @@
 
   <p>Color: {{ color }}<br />Orientation: 'landscape'</p>
   {% set image_tablet_landscape %}
-    {% include "@bolt-components-image/image.twig" with {
-      placeholder_color: "#1b1b1b",
-      src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+    {% include "@bolt-elements-image/image.twig" with {
+      attributes: {
+        src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+        loading: "lazy",
+      }
     } only %}
   {% endset %}
 
