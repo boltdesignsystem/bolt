@@ -28,6 +28,7 @@ describe('test-utils', () => {
     expect(dependents).toEqual([
       '@bolt/starter-kit',
       '@bolt/components-band',
+      '@bolt/generator-bolt',
       '@bolt/components-hero',
       '@bolt/components-page-footer',
     ]);
