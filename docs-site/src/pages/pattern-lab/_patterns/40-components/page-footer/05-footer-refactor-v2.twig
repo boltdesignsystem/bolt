@@ -24,7 +24,7 @@
 
 {% set icon_linkedin %}
   {% include '@bolt-components-icon/icon.twig' with {
-    name: 'linkedin',
+    name: 'linkedin-solid',
   } only %}
 {% endset %}
 
@@ -42,7 +42,7 @@
       target: '_blank',
       rel: 'noopener',
       'aria-label': 'Follow Us On Twitter',
-      'aria-describedby': 'new-window',
+      'aria-describedby': 'page-footer-new-window',
     }
   } only %}
 {% endset %}
@@ -55,7 +55,7 @@
       target: '_blank',
       rel: 'noopener',
       'aria-label': 'Follow Us On Facebook',
-      'aria-describedby': 'new-window',
+      'aria-describedby': 'page-footer-new-window',
     }
   } only %}
 {% endset %}
@@ -68,7 +68,7 @@
       target: '_blank',
       rel: 'noopener',
       'aria-label': 'Connect with us on LinkedIn',
-      'aria-describedby': 'new-window',
+      'aria-describedby': 'page-footer-new-window',
     }
   } only %}
 {% endset %}
@@ -81,326 +81,212 @@
       target: '_blank',
       rel: 'noopener',
       'aria-label': 'Check us out on YouTube',
-      'aria-describedby': 'new-window',
+      'aria-describedby': 'page-footer-new-window',
     }
   } only %}
 {% endset %}
 
-{% set link_1 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'About Pega',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://www.pega.com/about',
-    }
-  } only %}
-{% endset %}
-
-{% set link_2 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Office Locations',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://www.pega.com/about/office-locations',
-    }
-  } only %}
-{% endset %}
-
-{% set link_3 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Careers',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://www.pega.com/about/careers',
-    }
-  } only %}
-{% endset %}
-
-{% set link_4 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Contact Us',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: '/contact-us',
-    }
-  } only %}
-{% endset %}
-
-{% set link_5 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Community',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://community.pega.com/',
-    }
-  } only %}
-{% endset %}
-
-{% set link_6 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Pega Academy Training',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://academy.pega.com',
-    }
-  } only %}
-{% endset %}
-
-{% set link_7 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'PegaWorld Conference',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: '/events/pegaworld',
-    }
-  } only %}
-{% endset %}
-
-{% set link_8 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Pega Blog',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://www.pega.com/insights',
-    }
-  } only %}
-{% endset %}
-
-{% set link_9 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Pega Product Design',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://design.pega.com/',
-    }
-  } only %}
-{% endset %}
-
-{% set link_10 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Analyst Reports',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: '/insights/analyst-reports',
-    }
-  } only %}
-{% endset %}
-
-{% set link_11 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Demo Videos',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://www.pega.com/products/explore',
-    }
-  } only %}
-{% endset %}
-
-{% set link_12 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Pega Platform Trial',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://www.pega.com/services',
-    }
-  } only %}
-{% endset %}
-
-{% set link_13 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Trust Center',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://www.pega.com/products/cloud/pega-trust-center',
-    }
-  } only %}
-{% endset %}
-
-{% set link_14 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'English',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://www.pega.com',
-    }
-  } only %}
-{% endset %}
-
-{% set link_15 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Français',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://www.pega.com/fr',
-    }
-  } only %}
-{% endset %}
-
-{% set link_23 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Terms of Use',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://www.pega.com/terms',
-    }
-  } only %}
-{% endset %}
-
-{% set link_24 %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Privacy',
-    icon_after: icon_chevron_right,
-    reversed_underline: true,
-    attributes: {
-      href: '/privacy-and-security',
-    }
-  } only %}
-{% endset %}
-
-{# Social links list #}
-{% set links_socials %}
-  <ul class="c-page-footer__nav-list">
-    <li class="c-page-footer__nav-list-item">
-      <a href="" class="c-page-footer__nav-link">
-        <span class="c-page-footer__nav-link__icon">{{ icon_fb }}</span>
-        <span class="c-page-footer__nav-link__text">Facbook</span>
-      </a>
-    </li>
-    <li class="c-page-footer__nav-list-item">
-      <a href="" class="c-page-footer__nav-link">
-        <span class="c-page-footer__nav-link__icon">{{ icon_twitter }}</span>
-        <span class="c-page-footer__nav-link__text">Twiiter</span>
-      </a>
-    </li>
-    <li class="c-page-footer__nav-list-item">
-      <a href="" class="c-page-footer__nav-link">
-        <span class="c-page-footer__nav-link__icon">{{ icon_linkedin }}</span>
-        <span class="c-page-footer__nav-link__text">Linkedin</span>
-      </a>
-    </li>
-    <li class="c-page-footer__nav-list-item">
-      <a href="" class="c-page-footer__nav-link">
-        <span class="c-page-footer__nav-link__icon">{{ icon_youtube }}</span>
-        <span class="c-page-footer__nav-link__text">Youtube</span>
-      </a>
-    </li>
-  </ul>
-{% endset %}
-
-{# Company links list #}
-{% set links_collection_1 %}
-<ul class="c-page-footer__nav-list">
-  <li class="c-page-footer__nav-list-item"><a href="" class="c-page-footer__nav-link">Link 1</a></li>
-  <li class="c-page-footer__nav-list-item"><a href="" class="c-page-footer__nav-link">Link 2</a></li>
-  <li class="c-page-footer__nav-list-item"><a href="" class="c-page-footer__nav-link">Link 3</a></li>
-  <li class="c-page-footer__nav-list-item"><a href="" class="c-page-footer__nav-link">Link 4</a></li>
-</ul>
-{% endset %}
-
-{# Pega Sites links list #}
-{% set links_collection_2 %}
-<ul class="c-page-footer__nav-list">
-  <li class="c-page-footer__nav-list-item">{{link_5}}</li>
-  <li class="c-page-footer__nav-list-item">{{link_6}}</li>
-  <li class="c-page-footer__nav-list-item">{{link_7}}</li>
-  <li class="c-page-footer__nav-list-item">{{link_8}}</li>
-  <li class="c-page-footer__nav-list-item">{{link_9}}</li>
-</ul>
-{% endset %}
-
-{# Resources link list #}
-{% set links_collection_3 %}
-<ul class="c-page-footer__nav-list">
-  <li class="c-page-footer__nav-list-item">{{link_10}}</li>
-  <li class="c-page-footer__nav-list-item">{{link_11}}</li>
-  <li class="c-page-footer__nav-list-item">{{link_12}}</li>
-  <li class="c-page-footer__nav-list-item">{{link_13}}</li>
-</ul>
-{% endset %}
-
-{# Languages link list #}
-{% set links_collection_4 %}
-<ul class="c-page-footer__nav-list">
-  <li class="c-page-footer__nav-list-item">{{link_14}}</li>
-  <li class="c-page-footer__nav-list-item">{{link_15}}</li>
-  <li class="c-page-footer__nav-list-item">...</li>
-</ul>
-{% endset %}
-
-{# Policy Privacy link list #}
-{% set links_collection_5 %}
-<ul class="c-page-footer__nav-list">
-  <li class="c-page-footer__nav-list-item">{{link_23}}</li>
-  <li class="c-page-footer__nav-list-item">{{link_24}}</li>
-  <li class="c-page-footer__nav-list-item">...</li>
-</ul>
-{% endset %}
-
-<footer class="c-page-footer">
-  <div class="c-page-footer__main">
-    <div class="c-page-footer__description">
+{# Template #}
+<footer class="c-page-footer" data-bolt-page-footer>
+  <nav class="c-page-footer__nav c-page-footer__nav--main" aria-labelledby="page-footer-heading">
+    <div class="c-page-footer__nav-item c-page-footer__nav-item--description">
       {% include '@bolt-components-headline/headline.twig' with {
         text: 'About Pegasystems',
         tag: 'h2',
+        attributes: {
+          id: 'page-footer-heading',
+        },
       } only %}
-      {% include '@bolt-components-headline/text.twig' with {
-        text: 'Pega delivers innovative software that crushes business complexity. From increasing customer lifetime value to streamlining service to boosting efficiency, we help the world’s leading brands solve problems fast and transform for tomorrow. Our solutions save people time, so our clients’ employees and customers can get back to what matters most.',
-        tag: 'p',
-      } only %}
+      <p>Pega delivers innovative software that crushes business complexity. From increasing customer lifetime value to streamlining service to boosting efficiency, we help the world’s leading brands solve problems fast and transform for tomorrow. Our solutions save people time, so our clients’ employees and customers can get back to what matters most.</p>
     </div>
-    <nav data-bolt-page-footer-nav class="c-page-footer__nav" aria-label="Footer Navigation">
-      <div class="c-page-footer__nav-group">
-        <h3 class="c-page-footer__nav-heading">Join the conversation</h3>
-        <button type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger class="c-page-footer__nav-trigger">Join the conversation<span class="c-page-footer__nav-trigger-icon" aria-hidden="true">{{ icon_chevron_down }}</span></button>
-        {{links_socials}}
+    <div class="c-page-footer__nav-item c-page-footer__nav-item--social">
+      <h3 class="c-page-footer__nav-headline">Join the conversation</h3>
+      <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger" type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger>
+        Join the conversation
+        <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
+      </button>
+      <ul class="c-page-footer__nav-list">
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" target="_blank" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
+            <span class="c-page-footer__nav-link__icon">{{ icon_twitter }}</span>
+            <span class="c-page-footer__nav-link__text">Twitter</span>
+          </a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" target="_blank" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
+            <span class="c-page-footer__nav-link__icon">{{ icon_fb }}</span>
+            <span class="c-page-footer__nav-link__text">Facebook</span>
+          </a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" target="_blank" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
+            <span class="c-page-footer__nav-link__icon">{{ icon_linkedin }}</span>
+            <span class="c-page-footer__nav-link__text">LinkedIn</span>
+          </a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" target="_blank" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
+            <span class="c-page-footer__nav-link__icon">{{ icon_youtube }}</span>
+            <span class="c-page-footer__nav-link__text">YouTube</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="c-page-footer__nav-item">
+      <h3 class="c-page-footer__nav-headline">Company</h3>
+      <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger" type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger>
+        Company
+        <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
+      </button>
+      <ul class="c-page-footer__nav-list">
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link">About Pega</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link">Office Locations</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link">Careers</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link">Contact Us</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="tel: 1-888-PEGA-NOW" class="c-page-footer__nav-link">US: 1-888-PEGA-NOW</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="tel: +44 118 965 1600" class="c-page-footer__nav-link">UK: +44 118 965 1600</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="tel: +49 (0) 89 540320" class="c-page-footer__nav-link">DACH: +49 (0) 89 540320</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="tel: +61 2 9581 7000" class="c-page-footer__nav-link">AU: +61 2 9581 7000</a>
+        </li>
+      </ul>
+    </div>
+    <div class="c-page-footer__nav-item">
+      <h3 class="c-page-footer__nav-headline">Pega Sites</h3>
+      <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger" type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger>
+        Pega Sites
+        <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
+      </button>
+      <ul class="c-page-footer__nav-list">
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Community</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Support</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Pega Academy Training</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Product Design</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Partners</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">PegaWorld Conference</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Blog</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">MyPega</a>
+        </li>
+      </ul>
+    </div>
+    <div class="c-page-footer__nav-item">
+      <h3 class="c-page-footer__nav-headline">Resources</h3>
+      <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger" type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger>
+        Resources
+        <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
+      </button>
+      <ul class="c-page-footer__nav-list">
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Analyst Reports</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Demo Videos</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Pega Platform Trial</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Partners &amp; Consulting Services</a>
+        </li>
+        <li class="c-page-footer__nav-list-item">
+          <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Trust Center</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <aside>
+    <nav class="c-page-footer__nav c-page-footer__nav--aside">
+      <div class="c-page-footer__nav-item c-page-footer__nav-item--language">
+        <h3 class="c-page-footer__nav-headline u-bolt-visuallyhidden">Language</h3>
+        <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger" type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger>
+          Language
+          <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
+        </button>
+        <ul class="c-page-footer__nav-list">
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">English</a>
+          </li>
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Français</a>
+          </li>
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Deutsch</a>
+          </li>
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Italiano</a>
+          </li>
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">日本語</a>
+          </li>
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Português</a>
+          </li>
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Español</a>
+          </li>
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Türkçe</a>
+          </li>
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Pусский</a>
+          </li>
+        </ul>
       </div>
-      <div class="c-page-footer__nav-group">
-        <h3 class="c-page-footer__nav-heading">Company</h3>
-        <button type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger class="c-page-footer__nav-trigger">Company<span class="c-page-footer__nav-trigger-icon" aria-hidden="true">{{ icon_chevron_down }}</span></button>
-        {{links_collection_1}}
+      <div class="c-page-footer__nav-item c-page-footer__nav-item--legal">
+        <h3 class="c-page-footer__nav-headline u-bolt-visuallyhidden">Legal</h3>
+        <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger" type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger>
+          Legal
+          <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
+        </button>
+        <ul class="c-page-footer__nav-list">
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Terms of Use</a>
+          </li>
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Contact</a>
+          </li>
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Glossary</a>
+          </li>
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Trademarks</a>
+          </li>
+          <li class="c-page-footer__nav-list-item">
+            <a href="#!" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">Privacy</a>
+          </li>
+        </ul>
       </div>
-      <div class="c-page-footer__nav-group">
-        <h3 class="c-page-footer__nav-heading">Pega Sites</h3>
-        <button type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger class="c-page-footer__nav-trigger">Pega Sites<span class="c-page-footer__nav-trigger-icon" aria-hidden="true">{{ icon_chevron_down }}</span></button>
-        {{links_collection_2}}
-      </div>
-      <div class="c-page-footer__nav-group">
-        <h3 class="c-page-footer__nav-heading">Resources</h3>
-        <button type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger class="c-page-footer__nav-trigger">Resources<span class="c-page-footer__nav-trigger-icon" aria-hidden="true">{{ icon_chevron_down }}</span></button>
-        {{links_collection_3}}
-      </div>
+      <span class="c-page-footer__nav-item c-page-footer__nav-item--copyrights">&copy;{{ "now"|date("Y") }} Pegasystems Inc.</span>
     </nav>
-  </div>
-  <aside class="c-page-footer__aside">
-    <nav data-bolt-page-footer-nav class="c-page-footer__nav c-page-footer__nav--inline" aria-label="Utility Navigation">
-      <div class="c-page-footer__nav-group">
-        <h3 class="c-page-footer__nav-heading u-bolt-visuallyhidden">Language</h3>
-        <button type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger class="c-page-footer__nav-trigger">Language<span class="c-page-footer__nav-trigger-icon" aria-hidden="true">{{ icon_chevron_down }}</span></button>
-        {{links_collection_4}}
-      </div>
-      <div class="c-page-footer__nav-group">
-        <h3 class="c-page-footer__nav-heading u-bolt-visuallyhidden">Legal</h3>
-        <button type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger class="c-page-footer__nav-trigger">Legal<span class="c-page-footer__nav-trigger-icon" aria-hidden="true">{{ icon_chevron_down }}</span></button>
-        {{links_collection_5}}
-      </div>
-    </nav>
-    <span class="c-page-footer__copyrights">&copy;{{ "now"|date("Y") }} Pegasystems Inc.</span>
   </aside>
-  <span id="new-window" hidden>Opens in a new window</span>
+  <span id="page-footer-new-window" hidden>Opens in a new window</span>
 </footer>

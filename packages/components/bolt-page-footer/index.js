@@ -1,4 +1,1 @@
-import { BoltPageFooter } from './src/page-footer';
-
-const footer = document.querySelector('footer.c-page-footer');
-const footerComponent = new BoltPageFooter(footer);
+import(/* webpackChunkName: 'bolt-page-footer' */ './src/page-footer.js');
