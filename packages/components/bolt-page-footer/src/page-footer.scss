@@ -6,199 +6,187 @@
 
 .c-page-footer {
   @include bolt-full-bleed;
+  font-size: var(--bolt-type-font-size-small);
+  color: var(--m-bolt-text);
+  line-height: var(--bolt-type-line-height-small);
+}
 
-  &__main {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    grid-column-gap: var(--bolt-spacing-x-large);
-    padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
-    background-color: var(--m-bolt-bg);
+.c-page-footer__main {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-column-gap: var(--bolt-spacing-x-large);
+  padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
+  background-color: var(--m-bolt-bg);
 
-    @include bolt-mq($until: large) {
-      padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
-    }
+  @include bolt-mq($until: large) {
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  }
+
+  @include bolt-mq($until: medium) {
+    grid-template-columns: 1fr;
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium) 0;
+  }
+}
+
+.c-page-footer__nav {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: var(--bolt-spacing-x-medium);
+
+  @include bolt-mq($until: medium) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.c-page-footer__nav-group {
+  border-top: 1px solid var(--m-bolt-border);
+
+  &:last-child {
+    border-bottom: 1px solid var(--m-bolt-border);
+  }
+
+  &:nth-of-type(n + 4) {
+    margin-top: var(--bolt-spacing-y-medium);
 
     @include bolt-mq($until: medium) {
-      grid-template-columns: 1fr;
-      padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium) 0;
+      margin-top: 0;
     }
   }
+}
 
-  &__nav {
-    display: grid;
-    align-items: start;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: var(--bolt-spacing-x-medium);
+.c-page-footer__nav-heading {
+  color: var(--m-bolt-headline);
 
-    @include bolt-mq($until: medium) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &__nav--socials {
-    display: block;
-
-    .c-page-footer__nav-trigger {
-      border-top: 1px solid var(--bolt-color-gray-light);
-    }
-
-    .c-page-footer__nav-list {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .c-page-footer__nav-list-item {
-      display: flex;
-      align-items: center;
-      min-width: 44px;
-      margin-bottom: var(--bolt-spacing-y-small);
-
-      &:last-child {
-        margin-bottom: var(--bolt-spacing-y-small);
-      }
-    }
-  }
-
-  &__nav-group {
-    &:nth-of-type(n + 4) {
-      margin-top: var(--bolt-spacing-y-medium);
-
-      @include bolt-mq($until: medium) {
-        margin-top: 0;
-      }
-    }
-  }
-
-  &__nav-heading {
-    color: var(--m-bolt-headline);
-
-    @include bolt-mq($until: medium) {
-      display: none;
-    }
-  }
-
-  &__description {
-    color: var(--m-bolt-text);
-  }
-
-  &__nav-trigger {
+  @include bolt-mq($until: medium) {
     display: none;
+  }
+}
+
+.c-page-footer__description {
+  margin-bottom: var(--bolt-spacing-y-medium);
+}
+
+.c-page-footer__nav-trigger {
+  display: none;
+
+  @include bolt-mq($until: medium) {
+    @include bolt-button-native-styles-reset;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     min-height: 44px;
-    padding: 0;
+    font-family: var(--bolt-type-font-family-headline);
+    font-size: var(--bolt-type-font-size-medium);
     font-weight: var(--bolt-type-font-weight-bold);
     color: var(--m-bolt-headline);
-    border: none;
-    border-bottom: 1px solid var(--bolt-color-gray-light);
-    transition: border-color var(--bolt-transition);
+    line-height: var(--bolt-type-line-height-medium);
 
-    @include bolt-mq($until: medium) {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    &[aria-expanded='false'] ~ .c-page-footer__nav-list {
+      display: none;
     }
 
-    &[aria-expanded='true'] {
-      border-bottom-color: transparent;
-
-      .c-page-footer__nav-trigger-ic {
-        transform: rotate(45deg);
-      }
-
-      + .c-page-footer__nav-list {
-        opacity: 1;
-      }
+    &[aria-expanded='true'] ~ .c-page-footer__nav-list {
+      display: block;
     }
   }
+}
 
-  &__nav-trigger-ic {
-    transition: transform var(--bolt-transition);
-    transform-origin: center;
+.c-page-footer__nav-trigger-icon {
+  transition: transform var(--bolt-transition);
+  transform-origin: center;
+}
+
+.c-page-footer__nav-link {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: var(--bolt-spacing-x-xsmall);
+  align-items: center;
+  color: var(--m-bolt-text);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--m-bolt-link);
+    text-decoration: underline;
   }
+}
 
-  &__nav-list {
+.c-page-footer__nav-link__icon {
+  color: var(--m-bolt-link);
+}
+
+.c-page-footer__nav-list {
+  margin: 0;
+  padding: var(--bolt-spacing-y-small) 0;
+  list-style-type: none;
+}
+
+.c-page-footer__nav-list-item {
+  margin: 0 0 var(--bolt-spacing-y-small) 0;
+  padding: 0;
+  color: var(--m-bolt-text);
+
+  &:last-child {
     margin-bottom: 0;
-    margin-left: 0;
-    padding-left: 0;
-    list-style-type: none;
-
-    @include bolt-mq($until: medium) {
-      opacity: 0;
-      max-height: 0;
-      overflow: hidden;
-      border-bottom: 1px solid var(--bolt-color-gray-light);
-      transition: max-height var(--bolt-transition),
-        opacity calc(var(--bolt-transition-timing) * 2.5);
-    }
   }
+}
 
-  &__nav-list-item {
-    padding: var(--bolt-spacing-y-small) 0;
-    color: var(--m-bolt-text);
+.c-page-footer__aside {
+  padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
+  background-color: var(--m-bolt-bg);
 
-    @include bolt-mq($until: medium) {
-      &:last-child {
-        margin-bottom: var(--bolt-spacing-y-medium);
-      }
-    }
-  }
-
-  &__aside {
+  @include bolt-mq($until: medium) {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
-    padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
-    background-color: var(--m-bolt-bg);
-
-    @include bolt-mq($until: medium) {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 0 var(--bolt-spacing-x-medium) var(--bolt-spacing-y-medium);
-    }
+    align-items: flex-start;
+    padding: 0 var(--bolt-spacing-x-medium) var(--bolt-spacing-y-medium);
   }
+}
 
-  &__nav--inline {
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
+// .c-page-footer__nav--inline {
+//   display: flex;
+//   flex: 1;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   width: 100%;
 
-    @include bolt-mq($until: medium) {
-      flex-direction: column;
-      width: 100%;
-    }
+//   @include bolt-mq($until: medium) {
+//     flex-direction: column;
+//     width: 100%;
+//   }
 
-    .c-page-footer__nav-list {
-      display: flex;
-      padding: 0;
+//   .c-page-footer__nav-list {
+//     display: flex;
+//     padding: 0;
 
-      @include bolt-mq($until: medium) {
-        flex-direction: column;
-        width: 100%;
-      }
-    }
+//     @include bolt-mq($until: medium) {
+//       flex-direction: column;
+//       width: 100%;
+//     }
+//   }
 
-    .c-page-footer__nav-list-item {
-      margin-right: var(--bolt-spacing-x-small);
+//   .c-page-footer__nav-list-item {
+//     margin-right: var(--bolt-spacing-x-small);
 
-      @include bolt-mq($until: medium) {
-        margin-right: 0;
-      }
-    }
-  }
+//     @include bolt-mq($until: medium) {
+//       margin-right: 0;
+//     }
+//   }
+// }
 
-  &__copyrights {
-    align-self: center;
-    margin-bottom: 0;
-    padding: var(--bolt-spacing-y-small) 0;
-    font-size: var(--bolt-type-font-size-xsmall);
-    color: var(--m-bolt-text);
-    text-align: left;
+.c-page-footer__copyrights {
+  align-self: center;
+  margin-bottom: 0;
+  padding: var(--bolt-spacing-y-small) 0;
+  font-size: var(--bolt-type-font-size-xsmall);
+  color: var(--m-bolt-text);
+  text-align: left;
 
-    @include bolt-mq($until: medium) {
-      margin-top: var(--bolt-spacing-y-medium);
-    }
+  @include bolt-mq($until: medium) {
+    margin-top: var(--bolt-spacing-y-medium);
   }
 }

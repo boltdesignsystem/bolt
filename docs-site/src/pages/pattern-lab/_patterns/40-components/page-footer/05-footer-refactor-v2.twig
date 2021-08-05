@@ -4,6 +4,12 @@
   } only %}
 {% endset %}
 
+{% set icon_chevron_down %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'chevron-down',
+  } only %}
+{% endset %}
+
 {% set icon_fb %}
   {% include '@bolt-components-icon/icon.twig' with {
     name: 'facebook',
@@ -270,20 +276,40 @@
 {# Social links list #}
 {% set links_socials %}
   <ul class="c-page-footer__nav-list">
-    <li class="c-page-footer__nav-list-item">{{link_twitter}}</li>
-    <li class="c-page-footer__nav-list-item">{{link_fb}}</li>
-    <li class="c-page-footer__nav-list-item">{{link_linkedin}}</li>
-    <li class="c-page-footer__nav-list-item">{{link_youtube}}</li>
+    <li class="c-page-footer__nav-list-item">
+      <a href="" class="c-page-footer__nav-link">
+        <span class="c-page-footer__nav-link__icon">{{ icon_fb }}</span>
+        <span class="c-page-footer__nav-link__text">Facbook</span>
+      </a>
+    </li>
+    <li class="c-page-footer__nav-list-item">
+      <a href="" class="c-page-footer__nav-link">
+        <span class="c-page-footer__nav-link__icon">{{ icon_twitter }}</span>
+        <span class="c-page-footer__nav-link__text">Twiiter</span>
+      </a>
+    </li>
+    <li class="c-page-footer__nav-list-item">
+      <a href="" class="c-page-footer__nav-link">
+        <span class="c-page-footer__nav-link__icon">{{ icon_linkedin }}</span>
+        <span class="c-page-footer__nav-link__text">Linkedin</span>
+      </a>
+    </li>
+    <li class="c-page-footer__nav-list-item">
+      <a href="" class="c-page-footer__nav-link">
+        <span class="c-page-footer__nav-link__icon">{{ icon_youtube }}</span>
+        <span class="c-page-footer__nav-link__text">Youtube</span>
+      </a>
+    </li>
   </ul>
 {% endset %}
 
 {# Company links list #}
 {% set links_collection_1 %}
 <ul class="c-page-footer__nav-list">
-  <li class="c-page-footer__nav-list-item">{{link_1}}</li>
-  <li class="c-page-footer__nav-list-item">{{link_2}}</li>
-  <li class="c-page-footer__nav-list-item">{{link_3}}</li>
-  <li class="c-page-footer__nav-list-item">{{link_4}}</li>
+  <li class="c-page-footer__nav-list-item"><a href="" class="c-page-footer__nav-link">Link 1</a></li>
+  <li class="c-page-footer__nav-list-item"><a href="" class="c-page-footer__nav-link">Link 2</a></li>
+  <li class="c-page-footer__nav-list-item"><a href="" class="c-page-footer__nav-link">Link 3</a></li>
+  <li class="c-page-footer__nav-list-item"><a href="" class="c-page-footer__nav-link">Link 4</a></li>
 </ul>
 {% endset %}
 
@@ -333,39 +359,46 @@
         text: 'About Pegasystems',
         tag: 'h2',
       } only %}
-        <p class="c-page-footer__description-text">Pega delivers innovative software that crushes business complexity. From increasing customer lifetime value to streamlining service to boosting efficiency, we help the world’s leading brands solve problems fast and transform for tomorrow. Our solutions save people time, so our clients’ employees and customers can get back to what matters most.</p>
-        <nav class="c-page-footer__nav c-page-footer__nav--socials" aria-label="Social Media Navigation">
-          <h3 class="c-page-footer__nav-heading">Join the conversation</h3>
-          <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Join the conversation<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
-          {{links_socials}}
-        </nav>
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Pega delivers innovative software that crushes business complexity. From increasing customer lifetime value to streamlining service to boosting efficiency, we help the world’s leading brands solve problems fast and transform for tomorrow. Our solutions save people time, so our clients’ employees and customers can get back to what matters most.',
+        tag: 'p',
+      } only %}
     </div>
-    <nav class="c-page-footer__nav" aria-label="Footer Navigation">
+    <nav data-bolt-page-footer-nav class="c-page-footer__nav" aria-label="Footer Navigation">
+      <div class="c-page-footer__nav-group">
+        <h3 class="c-page-footer__nav-heading">Join the conversation</h3>
+        <button type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger class="c-page-footer__nav-trigger">Join the conversation<span class="c-page-footer__nav-trigger-icon" aria-hidden="true">{{ icon_chevron_down }}</span></button>
+        {{links_socials}}
+      </div>
       <div class="c-page-footer__nav-group">
         <h3 class="c-page-footer__nav-heading">Company</h3>
-        <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Company<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
+        <button type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger class="c-page-footer__nav-trigger">Company<span class="c-page-footer__nav-trigger-icon" aria-hidden="true">{{ icon_chevron_down }}</span></button>
         {{links_collection_1}}
       </div>
       <div class="c-page-footer__nav-group">
         <h3 class="c-page-footer__nav-heading">Pega Sites</h3>
-        <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Pega Sites<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
+        <button type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger class="c-page-footer__nav-trigger">Pega Sites<span class="c-page-footer__nav-trigger-icon" aria-hidden="true">{{ icon_chevron_down }}</span></button>
         {{links_collection_2}}
       </div>
       <div class="c-page-footer__nav-group">
         <h3 class="c-page-footer__nav-heading">Resources</h3>
-        <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Resources<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
+        <button type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger class="c-page-footer__nav-trigger">Resources<span class="c-page-footer__nav-trigger-icon" aria-hidden="true">{{ icon_chevron_down }}</span></button>
         {{links_collection_3}}
       </div>
     </nav>
   </div>
-  <aside class="c-page-footer__aside t-bolt-gray-xlight">
-    <nav class="c-page-footer__nav c-page-footer__nav--inline" aria-label="Utility Navigation">
-      <h3 class="c-page-footer__nav-heading u-bolt-visuallyhidden">Language</h3>
-      <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Language<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
-      {{links_collection_4}}
-      <h3 class="c-page-footer__nav-heading u-bolt-visuallyhidden">Legal</h3>
-      <button type="button" aria-expanded="false" class="c-page-footer__nav-trigger">Legal<span class="c-page-footer__nav-trigger-ic" aria-hidden="true">+</span></button>
-      {{links_collection_5}}
+  <aside class="c-page-footer__aside">
+    <nav data-bolt-page-footer-nav class="c-page-footer__nav c-page-footer__nav--inline" aria-label="Utility Navigation">
+      <div class="c-page-footer__nav-group">
+        <h3 class="c-page-footer__nav-heading u-bolt-visuallyhidden">Language</h3>
+        <button type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger class="c-page-footer__nav-trigger">Language<span class="c-page-footer__nav-trigger-icon" aria-hidden="true">{{ icon_chevron_down }}</span></button>
+        {{links_collection_4}}
+      </div>
+      <div class="c-page-footer__nav-group">
+        <h3 class="c-page-footer__nav-heading u-bolt-visuallyhidden">Legal</h3>
+        <button type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger class="c-page-footer__nav-trigger">Legal<span class="c-page-footer__nav-trigger-icon" aria-hidden="true">{{ icon_chevron_down }}</span></button>
+        {{links_collection_5}}
+      </div>
     </nav>
     <span class="c-page-footer__copyrights">&copy;{{ "now"|date("Y") }} Pegasystems Inc.</span>
   </aside>
