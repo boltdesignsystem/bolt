@@ -34,58 +34,6 @@
   } only %}
 {% endset %}
 
-{% set link_twitter %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: icon_twitter,
-    attributes: {
-      href: 'https://twitter.com/pega',
-      target: '_blank',
-      rel: 'noopener',
-      'aria-label': 'Follow Us On Twitter',
-      'aria-describedby': 'page-footer-new-window',
-    }
-  } only %}
-{% endset %}
-
-{% set link_fb %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: icon_fb,
-    attributes: {
-      href: 'https://www.facebook.com/pegasystems',
-      target: '_blank',
-      rel: 'noopener',
-      'aria-label': 'Follow Us On Facebook',
-      'aria-describedby': 'page-footer-new-window',
-    }
-  } only %}
-{% endset %}
-
-{% set link_linkedin %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: icon_linkedin,
-    attributes: {
-      href: 'https://www.linkedin.com/company/165426',
-      target: '_blank',
-      rel: 'noopener',
-      'aria-label': 'Connect with us on LinkedIn',
-      'aria-describedby': 'page-footer-new-window',
-    }
-  } only %}
-{% endset %}
-
-{% set link_youtube %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: icon_youtube,
-    attributes: {
-      href: 'https://www.youtube.com/user/Pegasystems',
-      target: '_blank',
-      rel: 'noopener',
-      'aria-label': 'Check us out on YouTube',
-      'aria-describedby': 'page-footer-new-window',
-    }
-  } only %}
-{% endset %}
-
 {# Template #}
 <footer class="c-page-footer" data-bolt-page-footer>
   <nav class="c-page-footer__nav c-page-footer__nav--main" aria-labelledby="page-footer-heading">
@@ -107,25 +55,25 @@
       </button>
       <ul class="c-page-footer__nav-list">
         <li class="c-page-footer__nav-list-item">
-          <a href="#!" target="_blank" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
+          <a href="#!" target="_blank" rel="noopener" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
             <span class="c-page-footer__nav-link__icon">{{ icon_twitter }}</span>
             <span class="c-page-footer__nav-link__text">Twitter</span>
           </a>
         </li>
         <li class="c-page-footer__nav-list-item">
-          <a href="#!" target="_blank" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
+          <a href="#!" target="_blank" rel="noopener" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
             <span class="c-page-footer__nav-link__icon">{{ icon_fb }}</span>
             <span class="c-page-footer__nav-link__text">Facebook</span>
           </a>
         </li>
         <li class="c-page-footer__nav-list-item">
-          <a href="#!" target="_blank" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
+          <a href="#!" target="_blank" rel="noopener" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
             <span class="c-page-footer__nav-link__icon">{{ icon_linkedin }}</span>
             <span class="c-page-footer__nav-link__text">LinkedIn</span>
           </a>
         </li>
         <li class="c-page-footer__nav-list-item">
-          <a href="#!" target="_blank" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
+          <a href="#!" target="_blank" rel="noopener" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
             <span class="c-page-footer__nav-link__icon">{{ icon_youtube }}</span>
             <span class="c-page-footer__nav-link__text">YouTube</span>
           </a>
