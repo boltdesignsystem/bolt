@@ -11,7 +11,12 @@ module.exports = {
     name: {
       type: 'string',
       description: 'Name of Icon',
-      enum: [{}],
+      anyOf: [
+        {
+          enum: [{}],
+        },
+        { type: 'string', pattern: '^custom-[a-z-]*$' },
+      ],
     },
     size: {
       type: 'string',

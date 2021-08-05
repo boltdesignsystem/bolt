@@ -87,11 +87,23 @@ async function generateElementSchemaFile(icons) {
   );
   const iconElementIcons = path.join(iconElemnentDir, '/src/icons');
   const elementNames = getElementNames(iconElementIcons);
+  //data.properties.name.anyOf[0].enum = elementNames;
+  console.log(elementSchema);
+
+  // fs.readFile(
+  //   path.join(iconElemnentDir, '/icon.schema.js'),
+  //   'utf8',
+  //   (err, data) => {
+  //     if (err) throw err;
+  //     //console.log(data);
+  //   },
+  // );
+  // const elementSchema = fs.readFileSync(
+  //   path.join(iconElemnentDir, '/icon.schema.js'),
+  //   'utf8',
+  // );
   // console.log(JSON.stringify(getElementNames(iconElementIcons)))
   // console.log(JSON.stringify(elementNames))
-  elementSchema.properties.name.enum = elementNames;
-
-  console.log(elementSchema);
 
   // await fs.writeFile(iconElementSchema, util.formatWithOptions({ compact: false }, 'module.exports = %O', elementSchema));
 
