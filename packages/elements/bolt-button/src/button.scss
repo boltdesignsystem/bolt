@@ -16,7 +16,7 @@
   --e-bolt-button-padding-y: calc(var(--bolt-spacing-y-medium) * 0.5);
   --e-bolt-button-padding-x: var(--bolt-spacing-x-medium);
   --e-bolt-button-font-size: var(--bolt-type-font-size-small);
-  --e-bolt-button-text-color: var(--m-bolt-bg);
+  --e-bolt-button-text-color: var(--m-bolt-text-on-primary);
   --e-bolt-button-line-height: var(--bolt-type-line-height-small);
   --e-bolt-button-border-radius: #{bolt-border-radius(small)};
   --e-bolt-button-bg-color: var(--m-bolt-primary);
@@ -155,7 +155,8 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
     $size-name ==
     medium or
     $size-name ==
-    large {
+    large
+  {
     .e-bolt-button--#{$size-name} {
       @if $size-name == large {
         --e-bolt-button-padding-y: calc(var(--bolt-spacing-y-medium) * 0.75);
