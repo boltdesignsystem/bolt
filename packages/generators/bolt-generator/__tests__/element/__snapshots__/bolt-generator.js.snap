@@ -84,13 +84,13 @@ exports[`Bolt component generator package.json file exist 1`] = `
 exports[`Bolt component generator pattern lab file exist 1`] = `
 "{% set usage %}{% verbatim %}
 {% include '@bolt-elements-test/test.twig' with {
-  content: \\"This is a test\\"
+  content: 'This is a test'
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include \\"@utils/docs.twig\\" with {
-  componentName: \\"test\\",
-  componentGroup: \\"elements\\",
+{% include '@utils/docs.twig' with {
+  componentName: 'test',
+  componentGroup: 'elements',
   usage: usage
 } only %}
 

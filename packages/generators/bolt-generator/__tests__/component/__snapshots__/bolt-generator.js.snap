@@ -128,8 +128,8 @@ exports[`Bolt component generator pattern lab file exist 1`] = `
 {% include '@bolt-components-test/test.twig' only %}
 {% endverbatim %}{% endset %}
 
-{% include \\"@utils/docs.twig\\" with {
-  componentName: \\"test\\",
+{% include '@utils/docs.twig' with {
+  componentName: 'test',
   usage: usage
 } only %}
 "
@@ -157,6 +157,14 @@ exports[`Bolt component generator schema file exist 1`] = `
       description:
         'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-test&gt; tag.',
     },
+    title: {
+      type: 'any',
+      description: 'Title of Example.',
+    },
+    content: {
+      type: 'any',
+      description: 'The main Example content.',
+    },
     disabled: {
       type: 'boolean',
       description:
@@ -172,7 +180,8 @@ exports[`Bolt component generator tests file exist 1`] = `
 "// Refer to https://github.com/boltdesignsystem/bolt/wiki/Jest-Test:-Example-Jest-Test for more testing examples
 import { render, renderWC, stopServer } from '../../../testing/testing-helpers';
 import schema from '../test.schema';
-const componentSelector = 'bolt-test'
+const componentSelector = 'bolt-test';
+//const { [PROP KEY], [PROP KEY]... } = schema.properties;
 let page, fixtures;
 
 afterAll(async () => {
@@ -199,15 +208,16 @@ beforeAll(async () => {
   fixtures = {
     defaultData,
   };
-
 });
 
 describe('Bolt Test component', () => {
   test('default', async () => {
     const results = await render(
-      '@bolt-components-test/test.twig', {
-      ...fixtures.defaultData,
-    });
+      '@bolt-components-test/test.twig',
+      {
+        ...fixtures.defaultData,
+      },
+    );
 
     /*
       Comment out if testing a Web Component
@@ -228,5 +238,28 @@ describe('Bolt Test component', () => {
     // await expect(outerHTML).toMatchSnapshot();
   });
 });
+
+/*
+  Uncomment and follow a pattern below if your schema has
+  enum to go thru. Do not forget to uncomment the consts
+  at the very top of this file.
+*/
+// describe('Bolt Test prop - , () => {
+//   // Target each of the schema keys with the following pattern
+//   [PROP KEY].enum.forEach(async (option) => {
+//     test(\`[PROP KEY] items: \${option}\`, async () => {
+//       const results = await render(
+//         '@bolt-components-test/test.twig',
+//         {
+//           ...fixtures.defaultData,
+//           [PROP KEY]: option,
+//         }
+//       );
+
+//       await expect(results.ok).toBe(true);
+//       await expect(results.html).toMatchSnapshot();
+//     });
+//   });
+// });
 "
 `;
