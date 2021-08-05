@@ -1,18 +1,18 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
-import styles from './<%= props.name.kebabCase %>.scss';
-import schema from '../<%= props.name.kebabCase %>.schema';
+import styles from './{{ kebabCase name }}.scss';
+import schema from '../{{ kebabCase name }}.schema';
 
 let cx = classNames.bind(styles);
 
-@customElement('bolt-<%= props.name.kebabCase %>')
-class Bolt<%= props.name.pascalCase %> extends BoltElement {
+@customElement('bolt-{{ kebabCase name }}')
+class Bolt{{ pascalCase name }} extends BoltElement {
   static schema = schema;
 
   static get properties() {
     return {
       ...this.props,
-    }
+    };
   }
 
   static get styles() {
@@ -20,8 +20,8 @@ class Bolt<%= props.name.pascalCase %> extends BoltElement {
   }
 
   render() {
-    const classes = cx('c-bolt-<%= props.name.kebabCase %>', {
-      [`c-bolt-<%= props.name.kebabCase %>--disabled`]: this.disabled,
+    const classes = cx('c-bolt-{{ kebabCase name }}', {
+      [`c-bolt-{{ kebabCase name }}--disabled`]: this.disabled,
     });
 
     return html`
@@ -32,4 +32,4 @@ class Bolt<%= props.name.pascalCase %> extends BoltElement {
   }
 }
 
-export { Bolt<%= props.name.pascalCase %> };
+export { Bolt{{ pascalCase name }} };

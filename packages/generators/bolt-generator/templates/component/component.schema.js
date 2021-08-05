@@ -1,12 +1,20 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: '<%= props.name.titleCase %>',
+  title: '{{ titleCase name }}',
   type: 'object',
   properties: {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-<%= props.name.kebabCase %>&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-{{ kebabCase name }}&gt; tag.',
+    },
+    title: {
+      type: 'any',
+      description: 'Title of Example.',
+    },
+    content: {
+      type: 'any',
+      description: 'The main Example content.',
     },
     disabled: {
       type: 'boolean',

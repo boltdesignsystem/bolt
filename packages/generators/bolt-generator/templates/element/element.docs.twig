@@ -1,0 +1,12 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-elements-{{ kebabCase name }}/{{ kebabCase name }}.twig' with {
+  content: 'This is a {{ lowerCase name }}'
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: '{{ kebabCase name }}',
+  componentGroup: 'elements',
+  usage: usage
+} only %}
+
