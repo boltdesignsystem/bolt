@@ -164,76 +164,46 @@
   } only %}
 {% endset %}
 
-{% set flat_lv2_ul_content %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Flat Level 2',
-      attributes: {
-        href: 'https://pega.com',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Flat Level 2',
-      attributes: {
-        href: 'https://pega.com',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Flat Level 2',
-      attributes: {
-        href: 'https://pega.com',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'View all',
-      attributes: {
-        href: 'https://pega.com',
-      }
-    },
-    view_all: true,
-  } only %}
-{% endset %}
-{% set flat_lv2 %}
-  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: flat_lv2_ul_content,
-    flat: true,
-  } only %}
-{% endset %}
-
 {% set site_nav_lv1_list_items = [
   {
     link: {
-      content: 'Programs',
-    },
-    children: flat_lv2,
-  },
-  {
-    link: {
-      content: 'My Tasks',
-    },
-    children: flat_lv2,
-  },
-  {
-    link: {
-      content: 'Connections',
+      content: 'Get Started',
     },
     children: placeholder_lv2,
   },
   {
     link: {
-      content: 'Resources',
+      content: 'Training',
+    },
+    children: placeholder_lv2,
+  },
+  {
+    link: {
+      content: 'Documentation',
+    },
+    children: placeholder_lv2,
+  },
+  {
+    link: {
+      content: 'Forums',
+    },
+    children: placeholder_lv2,
+  },
+  {
+    link: {
+      content: 'Content Hubs',
     },
     children: placeholder_lv2,
   },
   {
     link: {
       content: 'Support',
+    },
+    children: placeholder_lv2,
+  },
+  {
+    link: {
+      content: 'Marketplace',
     },
     children: placeholder_lv2,
   },
@@ -285,22 +255,6 @@
 {% set more_pega_sites_nav_lv3_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: 'Community',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Collaboration Center',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
       content: 'PegaWorld',
       attributes: {
         href: 'https://pega.com/',
@@ -318,6 +272,14 @@
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: 'Pega Cosmos',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Find a Partner',
       attributes: {
         href: 'https://pega.com/',
       },
@@ -351,22 +313,6 @@
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: 'Pega.com',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Academy',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'My Pega',
       attributes: {
         href: 'https://pega.com/',
       },
@@ -416,18 +362,49 @@
   } only %}
 {% endset %}
 
+{# Search Panel #}
+{% set search_panel_content %}
+  <bolt-stack spacing="small">
+    <form>
+      {% include '@bolt-components-typeahead/typeahead.demo.twig' only %}
+    </form>
+  </bolt-stack>
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Placeholder for helper text.',
+    size: 'small',
+    align: 'center',
+    icon: {
+      name: 'info-open',
+      position: 'before',
+    }
+  } only %}
+{% endset %}
+
+{% set search_panel %}
+  {% include '@bolt-components-page-header/page-header-search-panel.twig' with {
+    content: search_panel_content,
+  } only %}
+{% endset %}
+
 {# Page Header #}
 {% set page_header_content %}
+  {{ search_panel }}
   {{ primary_nav }}
 {% endset %}
 
 {% include '@bolt-components-page-header/page-header.twig' with {
   logo: {
-    image_src: '/images/logos/pega-logo-partners.svg',
-    label: 'Pega Partners',
+    image_src: '/images/logos/pega-logo-com.svg',
+    label: 'Pega Community',
     attributes: {
       href: 'https://community.pega.com',
     }
   },
   content: page_header_content,
 } only %}
+
+<style>
+  :root {
+    --c-bolt-page-header-logo-max-width: 250px;
+  }
+</style>

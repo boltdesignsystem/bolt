@@ -1,7 +1,10 @@
 {% set image_content %}
-  {% include '@bolt-components-image/image.twig' with {
-    src: "/images/placeholders/landscape-16x9-mountains.jpg",
-    alt: "Mountains",
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      alt: "Mountains",
+      loading: "lazy",
+    }
   } only %}
 {% endset %}
 

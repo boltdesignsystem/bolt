@@ -1,0 +1,21 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-layouts-holy-grail'].schema['holy-grail-secondary-sidebar'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set sidebar_attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set sidebar_classes = [
+  'l-bolt-holy-grail__sidebar',
+  'l-bolt-holy-grail__sidebar--secondary',
+] %}
+
+{% spaceless %}<div {{ sidebar_attributes.addClass(sidebar_classes) }}>
+  <div class="l-bolt-holy-grail__sidebar__content">
+    {{ content }}
+  </div>
+</div>{% endspaceless %}

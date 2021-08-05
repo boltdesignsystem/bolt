@@ -1,7 +1,10 @@
 {% set usage %}{% verbatim %}
 {% set content %}
-  {% include "@bolt-components-image/image.twig" with {
-    src: "/images/sample/product-device-screenshot--phone.jpg"
+  {% include "@bolt-elements-image/image.twig" with {
+    attributes: {
+      src: "/images/sample/product-device-screenshot--phone.jpg",
+      loading: "lazy",
+    }
   } only %}
 {% endset %}
 

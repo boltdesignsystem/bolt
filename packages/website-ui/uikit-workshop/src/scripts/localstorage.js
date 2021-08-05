@@ -51,6 +51,16 @@ export const loadState = () => {
       }
     }
 
+    if (state.app.testMode === undefined) {
+      try {
+        if (window.config.theme.test !== undefined) {
+          state.app.testMode = window.config.theme.test;
+        }
+      } catch (e) {
+        state.app.testMode = false;
+      }
+    }
+
     if (state.app.layoutMode === undefined) {
       try {
         if (window.config.theme.layout !== undefined) {

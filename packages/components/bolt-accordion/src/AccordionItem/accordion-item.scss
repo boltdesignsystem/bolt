@@ -42,7 +42,8 @@ bolt-accordion-item {
       bottom: 0;
       left: 0;
       pointer-events: none;
-      transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
+      transition: opacity calc(var(--bolt-transition-timing) / 2)
+        var(--bolt-transition-ease);
     }
 
     &:before {
@@ -128,7 +129,8 @@ bolt-accordion-item {
     left: 0;
     pointer-events: none;
     background-color: var(--m-bolt-primary);
-    transition: opacity ($bolt-transition-timing/2) $bolt-transition-ease;
+    transition: opacity calc(var(--bolt-transition-timing) / 2)
+      var(--bolt-transition-ease);
   }
 
   &:not(.c-bolt-accordion-item__trigger-label--inactive) {
@@ -230,7 +232,7 @@ bolt-accordion-item {
   display: block;
   transform: rotate(0deg);
   padding: var(--bolt-spacing-y-xxsmall) 0; // This is for aligning the icon with the text baseline.
-  transition: transform $bolt-transition;
+  transition: transform var(--bolt-transition);
   transform-origin: 50% 50%;
 }
 
@@ -258,8 +260,8 @@ bolt-accordion-item {
   transform: translateY(-1rem);
   width: 100%;
   height: 0;
-  transition: transform $bolt-transition-timing cubic-bezier(0, 0, 0.3, 1)
-    ($bolt-transition-timing / 2);
+  transition: transform var(--bolt-transition-timing) cubic-bezier(0, 0, 0.3, 1)
+    calc(var(--bolt-transition-timing) / 2);
 
   &[data-open]:not([style*='height']) {
     visibility: visible;
@@ -284,20 +286,21 @@ bolt-accordion-item {
   visibility: visible;
   transform: translate3d(0, 0, 0);
   max-height: none;
-  transition: transform $bolt-transition, height $bolt-transition;
+  transition: transform var(--bolt-transition), height var(--bolt-transition);
 }
 
 .c-bolt-accordion-item__content--open {
   display: block;
   transform: translate3d(0, 0, 0);
-  transition: height $bolt-transition;
+  transition: height var(--bolt-transition);
 }
 
 .c-bolt-accordion-item__content-inner {
   opacity: 0;
   position: relative;
   overflow: auto;
-  transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
+  transition: opacity calc(var(--bolt-transition-timing) / 2)
+    var(--bolt-transition-ease);
   -webkit-overflow-scrolling: touch;
 }
 
@@ -309,7 +312,7 @@ bolt-accordion-item {
   .c-bolt-accordion-item__content-inner,
 .c-bolt-accordion-item__content--opened .c-bolt-accordion-item__content-inner {
   opacity: 1;
-  transition: opacity $bolt-transition;
+  transition: opacity var(--bolt-transition);
 }
 
 .c-bolt-accordion-item__state

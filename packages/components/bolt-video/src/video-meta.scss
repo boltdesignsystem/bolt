@@ -1,7 +1,7 @@
 @import '@bolt/core-v3.x';
 
 $bolt-video-meta-border-radius: bolt-border-radius(small);
-$bolt-video-meta-transition: $bolt-transition;
+$bolt-video-meta-transition: var(--bolt-transition);
 
 #{$bolt-namespace}-video-meta {
   display: block;
@@ -28,7 +28,7 @@ $bolt-video-meta-transition: $bolt-transition;
   position: absolute;
   max-width: 100%;
   padding: calc(var(--bolt-spacing-x-xsmall) / 2) var(--bolt-spacing-x-xsmall);
-  color: bolt-color(white);
+  color: var(--bolt-color-white);
   border-radius: $bolt-video-meta-border-radius;
   background-color: rgba(bolt-color(black), 0.8);
   transition: opacity $bolt-video-meta-transition;

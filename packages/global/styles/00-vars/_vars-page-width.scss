@@ -1,0 +1,21 @@
+/* ------------------------------------ *\
+   Page Padding
+
+   Note: the padding alone will create a max-width for the content, there's no need for a wrapper element when using these vars. Once wrapper is fully removed from codebase, remove $bolt-wrapper-padding in global settings.
+\* ------------------------------------ */
+:root {
+  --bolt-page-padding-x-medium: 30px;
+  --bolt-page-padding-x-large: 60px;
+  --bolt-page-padding-x: var(--bolt-page-padding-x-medium);
+
+  @include bolt-mq(medium) {
+    --bolt-page-padding-x: var(--bolt-page-padding-x-large);
+  }
+
+  @include bolt-mq(xxlarge) {
+    --bolt-page-padding-x: calc(
+      (100vw - #{bolt-breakpoint(xxlarge)}) / 2 +
+        var(--bolt-page-padding-x-medium) * 2
+    );
+  }
+}

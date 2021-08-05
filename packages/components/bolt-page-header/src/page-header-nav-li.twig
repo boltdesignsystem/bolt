@@ -1,14 +1,11 @@
-{#
-  Schema Validation @todo: find a way to validate multiple schemas within one component.
-
-  {% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
-  {% if enable_json_schema_validation %}
-    {{ validate_data_schema(schema, _self)|raw }}
-  {% endif %}
-  {% set this = init(schema) %}
-#}
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-page-header'].schema['page-header-nav-li'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
 
 {# Variables #}
+{% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set link_attributes = create_attribute(link.attributes|default({})) %}
 {% set link_tag = link_attributes.type ? 'button' : link_attributes.href ? 'a' : 'span' %}
@@ -17,11 +14,12 @@
   'js-bolt-page-header-nav-item',
   'c-bolt-page-header__nav-list-item',
   popover ? 'c-bolt-page-header__nav-list-item--popover',
-  view_all ? 'c-bolt-page-header__nav-list-item--view-all',
-  full_width ? 'c-bolt-page-header__nav-list-item--full-width',
+  this.data.flat.value ? 'c-bolt-page-header__nav-list-item--flat',
+  this.data.view_all.value ? 'c-bolt-page-header__nav-list-item--view-all',
+  this.data.full_width.value ? 'c-bolt-page-header__nav-list-item--full-width',
+  this.data.selected.value ? 'is-selected',
+  this.data.current.value ? 'is-current',
   children ? 'has-children',
-  selected ? 'is-selected',
-  current ? 'is-current',
 ] %}
 
 {% set link_classes = [

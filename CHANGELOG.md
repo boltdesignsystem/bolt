@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/boltdesignsystem/bolt/compare/v4.1.1...v4.2.0) (2021-08-03)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+## [4.1.1](https://github.com/boltdesignsystem/bolt/compare/v4.1.0...v4.1.1) (2021-07-27)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+# [4.1.0](https://github.com/boltdesignsystem/bolt/compare/v4.0.2...v4.1.0) (2021-07-19)
+
+
+### Bug Fixes
+
+* update schema in twig ([331daaf](https://github.com/boltdesignsystem/bolt/commit/331daaf0b13d1f7742462df3e3c4395034d704b1))
+
+
+
+# [3.5.0-alpha-layout](https://github.com/boltdesignsystem/bolt/compare/v3.5.4...v3.5.0-alpha-layout) (2021-05-11)
+
+
+
+
+
 ## [4.0.2](https://github.com/boltdesignsystem/bolt/compare/v4.0.1...v4.0.2) (2021-07-15)
 
 **Note:** Version bump only for package bolt

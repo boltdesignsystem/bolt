@@ -2,11 +2,12 @@
   {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
     <h3>Passing free-form content inside the card-replacement body only</h3>
     {% set card_replacement_body_content %}
-      {% include "@bolt-components-image/image.twig" with {
-        src: "/images/placeholders/tout-4x3-climber.jpg",
-        alt: "A Rock Climber",
+      {% include '@bolt-elements-image/image.twig' with {
         attributes: {
-          class: "u-bolt-margin-bottom-medium"
+          src: "/images/placeholders/tout-4x3-climber.jpg",
+          alt: "A Rock Climber",
+          class: "u-bolt-margin-bottom-medium",
+          loading: "lazy"
         }
       } only %}
       {% include "@bolt-components-headline/headline.twig" with {
