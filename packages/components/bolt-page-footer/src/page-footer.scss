@@ -7,13 +7,15 @@
 .c-page-footer {
   @include bolt-full-bleed;
 
-  font-size: var(--bolt-type-font-size-xsmall);
+  padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
+  font-size: var(--bolt-type-font-size-small);
   color: var(--m-bolt-text);
   line-height: var(--bolt-type-line-height-small);
   border-top: 1px solid var(--m-bolt-border);
 
-  @include bolt-mq($until: medium) {
-    padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
+  @include bolt-mq(medium) {
+    padding: 0;
+    font-size: var(--bolt-type-font-size-xsmall);
   }
 }
 
