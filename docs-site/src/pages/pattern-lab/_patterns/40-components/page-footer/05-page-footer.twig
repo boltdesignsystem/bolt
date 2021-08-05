@@ -35,7 +35,7 @@
 {% endset %}
 
 {# Template #}
-<footer class="c-page-footer" data-bolt-page-footer>
+<footer class="c-page-footer js-bolt-page-footer">
   <nav class="c-page-footer__nav c-page-footer__nav--main" aria-labelledby="page-footer-heading">
     <div class="c-page-footer__nav-item c-page-footer__nav-item--description">
       {% include '@bolt-components-headline/headline.twig' with {
@@ -49,7 +49,7 @@
     </div>
     <div class="c-page-footer__nav-item c-page-footer__nav-item--social">
       <h3 class="c-page-footer__nav-headline">Join the conversation</h3>
-      <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger" type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger>
+      <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
         Join the conversation
         <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
       </button>
@@ -82,7 +82,7 @@
     </div>
     <div class="c-page-footer__nav-item">
       <h3 class="c-page-footer__nav-headline">Company</h3>
-      <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger" type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger>
+      <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
         Company
         <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
       </button>
@@ -115,7 +115,7 @@
     </div>
     <div class="c-page-footer__nav-item">
       <h3 class="c-page-footer__nav-headline">Pega Sites</h3>
-      <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger" type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger>
+      <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
         Pega Sites
         <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
       </button>
@@ -148,7 +148,7 @@
     </div>
     <div class="c-page-footer__nav-item">
       <h3 class="c-page-footer__nav-headline">Resources</h3>
-      <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger" type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger>
+      <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
         Resources
         <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
       </button>
@@ -172,10 +172,10 @@
     </div>
   </nav>
   <aside>
-    <nav class="c-page-footer__nav c-page-footer__nav--aside">
+    <nav class="c-page-footer__nav c-page-footer__nav--aside" aria-label="Utility Navigation">
       <div class="c-page-footer__nav-item c-page-footer__nav-item--language">
         <h3 class="c-page-footer__nav-headline u-bolt-visuallyhidden">Language</h3>
-        <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger" type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger>
+        <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
           Language
           <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
         </button>
@@ -211,7 +211,7 @@
       </div>
       <div class="c-page-footer__nav-item c-page-footer__nav-item--legal">
         <h3 class="c-page-footer__nav-headline u-bolt-visuallyhidden">Legal</h3>
-        <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger" type="button" aria-expanded="false" data-bolt-page-footer-toggle-trigger>
+        <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
           Legal
           <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
         </button>

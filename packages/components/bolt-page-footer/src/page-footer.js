@@ -7,7 +7,7 @@ export class BoltPageFooter {
 
   init() {
     const headlineToggleTrigger = this.el.querySelectorAll(
-      '[data-bolt-page-footer-toggle-trigger]',
+      '.js-bolt-page-footer-toggle-trigger',
     );
     headlineToggleTrigger.forEach(el => {
       el.addEventListener('click', event => {
@@ -21,7 +21,7 @@ export class BoltPageFooter {
   }
 }
 
-const pageFooters = document.querySelectorAll('[data-bolt-page-footer]');
+const pageFooters = document.querySelectorAll('.js-bolt-page-footer');
 
 pageFooters.forEach(el => {
   const component = new BoltPageFooter(el);
