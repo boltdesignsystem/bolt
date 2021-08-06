@@ -1,9 +1,5 @@
 import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 // @ts-ignore
-import buttonSchema from '@bolt/components-button/button.schema';
-// @ts-ignore
-import buttonElementSchema from '@bolt/elements-button/button.schema';
-// @ts-ignore
 import textSchema from '@bolt/components-text/text.schema';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
 // @ts-ignore
@@ -27,12 +23,6 @@ import linkSchema from '@bolt/components-link/link.schema';
 import { isChildOfEl, convertSchemaPropToTrait, getStepsLorem } from './utils';
 
 class EditorRegisterBoltError extends Error {}
-
-const smallButton = {
-  id: 'bolt-button--small',
-  title: 'Button',
-  content: `<bolt-button size="small">Button</bolt-button>`,
-};
 
 const basicText = {
   id: 'bolt-text',
@@ -132,7 +122,6 @@ const basicSlottableComponents = [
   statusBar,
   statusBarAlert,
   icon,
-  smallButton,
   basicText,
   cta,
   link,
@@ -360,83 +349,6 @@ export function setupBolt(editor) {
       block: null,
     };
   }
-
-  // schema has it as `style` but web component uses it as `color` since `style` is a reserved HTML attribute; see http://vjira2:8080/browse/BDS-721 & http://vjira2:8080/browse/BDS-1104
-  const colorTrait = convertSchemaPropToTrait({
-    prop: buttonSchema.properties.style,
-    name: 'color',
-  });
-  colorTrait.label = 'Color';
-
-  registerBoltComponent({
-    name: 'bolt-button',
-    registerBlock: true,
-    schema: buttonSchema,
-    extend: 'text',
-    initialContent: ['<span>Button</span>'],
-    propsToTraits: ['size', 'width', 'border_radius'],
-    extraTraits: [
-      colorTrait,
-      {
-        label: 'On Click',
-        name: 'on-click',
-        type: 'select',
-        options: ['none', 'show'],
-        default: 'none',
-      },
-      {
-        label: 'On Click Target',
-        name: 'on-click-target',
-        type: 'string',
-      },
-      {
-        label: 'Url',
-        name: 'url',
-        type: 'string',
-      },
-      {
-        label: 'Disabled',
-        name: 'disabled',
-        type: 'checkbox',
-        default: false,
-      },
-    ],
-  });
-
-  // @TODO: need to convert props to classes.
-  registerBoltComponent({
-    name: 'button',
-    registerBlock: true,
-    schema: buttonElementSchema,
-    extend: 'text',
-    initialContent: ['<span>Button</span>'],
-    propsToTraits: ['size', 'display', 'border_radius', 'hierarchy'],
-    extraTraits: [
-      {
-        label: 'On Click',
-        name: 'on-click',
-        type: 'select',
-        options: ['none', 'show'],
-        default: 'none',
-      },
-      {
-        label: 'On Click Target',
-        name: 'on-click-target',
-        type: 'string',
-      },
-      {
-        label: 'Url',
-        name: 'url',
-        type: 'string',
-      },
-      {
-        label: 'Disabled',
-        name: 'disabled',
-        type: 'checkbox',
-        default: false,
-      },
-    ],
-  });
 
   registerBoltComponent({
     name: 'bolt-text',
