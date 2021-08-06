@@ -21,11 +21,11 @@
     {% include "@bolt-components-headline/text.twig" with {
       text: "In March 2016, the GRU began hacking the email accounts of Clinton Campaign volunteers and employees, including campaign chairman John Podesta. In April 2016, the GRU hacked into the computer networks of the Democratic Congressional Campaign Committee (DCCC) and the Democratic National Committee (DNC). The GRU stole hundreds of thousands of documents from the compromised email accounts and networks. Around the time that the DNC announced in mid-June 2016 the Russian government’s role in hacking its network, the GRU began disseminating stolen materials through the fictitious online personas “DCLeaks” and “Guccifer 2.0.” The GRU later released additional materials through the organization WikiLeaks."
     } only %}
-    {% include "@bolt-components-image/image.twig" with {
-      src: "/images/placeholders/tout-4x3-climber.jpg",
-      alt: "A Rock Climber",
-      lazyload: false,
+    {% include "@bolt-elements-image/image.twig" with {
       attributes: {
+        src: "/images/placeholders/tout-4x3-climber.jpg",
+        alt: "A Rock Climber",
+        loading: "lazy",
         class: "u-bolt-margin-bottom-medium",
       }
     } only %}
@@ -299,9 +299,12 @@
 
 <div class="u-bolt-margin-bottom-medium">
   {% set modal_content %}
-    {% include "@bolt-components-image/image.twig" with {
-      src: "/images/content/backgrounds/background-robotics-customer-service.jpg",
-      alt: "This is the alt text.",
+    {% include "@bolt-elements-image/image.twig" with {
+      attributes: {
+        src: "/images/content/backgrounds/background-robotics-customer-service.jpg",
+        alt: "This is the alt text.",
+        loading: "lazy",
+      }
     } only %}
   {% endset %}
 
