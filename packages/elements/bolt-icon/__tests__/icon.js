@@ -1,5 +1,5 @@
 import { render, stopServer } from '../../../testing/testing-helpers';
-import schema from '../icon.schema';
+import schema from '../icon.schema.json';
 const { size, color, name } = schema.properties;
 let page, fixtures;
 
@@ -67,7 +67,7 @@ describe('Bolt Icon Props', () => {
 });
 
 describe('Bolt Icon SVG', () => {
-  name.forEach(async option => {
+  name.enum.forEach(async option => {
     test(`[SVG: ${option}`, async () => {
       const results = await render('@bolt-elements-icon/icon.twig', {
         name: option,
