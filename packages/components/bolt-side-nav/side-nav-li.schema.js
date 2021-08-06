@@ -1,8 +1,7 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Side Nav List Item',
+  title: 'Side Nav li',
   type: 'object',
-  required: ['content'],
   properties: {
     attributes: {
       type: 'object',

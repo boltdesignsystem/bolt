@@ -126,10 +126,13 @@
   {% set trigger_content %}
     {% include "@bolt-components-figure/figure.twig" with {
       media: {
-        content: macros.include("@bolt-components-image/image.twig", {
-          src: "/images/placeholders/1920x1200.jpg",
-          alt: "A placeholder image",
-          max_width: "450px",
+        content: macros.include("@bolt-elements-image/image.twig", {
+          attributes: {
+            src: "/images/placeholders/1920x1200.jpg",
+            alt: "A placeholder image",
+            style: "max-width: 450px",
+            loading: "lazy",
+          }
         }),
       },
       caption: "Example of an image with caption + modal.",
@@ -137,10 +140,13 @@
   {% endset %}
 
   {% set modal_content %}
-    {% include "@bolt-components-image/image.twig" with {
-      src: "/images/placeholders/1920x1200.jpg",
-      alt: "Example of a larger version of an image that can be viewed in a modal.",
-      max_width: "1920px",
+    {% include "@bolt-elements-image/image.twig" with {
+      attributes: {
+        src: "/images/placeholders/1920x1200.jpg",
+        alt: "Example of a larger version of an image that can be viewed in a modal.",
+        style: "max-width: 1920px",
+        loading: "lazy",
+      }
     } only %}
   {% endset %}
 
@@ -194,8 +200,11 @@
 
     {% include "@bolt-components-figure/figure.twig" with {
       media: {
-        content: macros.include("@bolt-components-image/image.twig", {
-          src: "/images/placeholders/1920x1440.jpg",
+        content: macros.include("@bolt-elements-image/image.twig", {
+          attributes: {
+            src: "/images/placeholders/1920x1440.jpg",
+            loading: "lazy",
+          }
         }),
       },
       caption: "Lorem ipsum caption for the thumbnail.",
@@ -234,8 +243,11 @@
 
     {% include "@bolt-components-figure/figure.twig" with {
       media: {
-        content: macros.include("@bolt-components-image/image.twig", {
-          src: "/images/placeholders/1920x960.jpg",
+        content: macros.include("@bolt-elements-image/image.twig", {
+          attributes: {
+            src: "/images/placeholders/1920x960.jpg",
+            loading: "lazy",
+          }
         }),
       },
       caption: "Lorem ipsum caption for the thumbnail.",

@@ -4,8 +4,8 @@
    Pagination
 \* ------------------------------------ */
 
-$bolt-pagination-transition: $bolt-transition;
-$bolt-pagination-item-size: bolt-border-radius(large);
+$bolt-pagination-transition: var(--bolt-transition);
+$bolt-pagination-item-size: calc(var(--bolt-type-line-height-medium) * 1em);
 
 // Register Custom Block Element
 @include bolt-custom-element('bolt-pagination', block, medium);
@@ -41,11 +41,10 @@ $bolt-pagination-item-size: bolt-border-radius(large);
   font-size: var(--bolt-type-font-size-small);
   font-weight: var(--bolt-type-font-weight-semibold);
   color: var(--m-bolt-link);
-  line-height: var(--bolt-type-line-height-small);
   line-height: $bolt-pagination-item-size;
   text-align: center;
   text-decoration: none;
-  border-radius: $bolt-pagination-item-size;
+  border-radius: bolt-border-radius(full);
   background-color: transparent;
   -webkit-backface-visibility: hidden; // Removes the 1px jump with opacity transition
   transition: opacity $bolt-pagination-transition;

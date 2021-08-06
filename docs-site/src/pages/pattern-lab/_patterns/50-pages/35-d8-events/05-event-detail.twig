@@ -359,8 +359,11 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt-components-image/image.twig" with {
-                src: "/images/placeholders/events--speakers--placeholder.jpg",
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/placeholders/events--speakers--placeholder.jpg",
+              loading: "lazy",
+            }
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
@@ -388,8 +391,11 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt-components-image/image.twig" with {
-                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/placeholders/events--speakers--placeholder.jpg",
+              loading: "lazy",
+            }
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
@@ -412,8 +418,11 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt-components-image/image.twig" with {
-                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/placeholders/events--speakers--placeholder.jpg",
+              loading: "lazy",
+            }
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
@@ -436,8 +445,11 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt-components-image/image.twig" with {
-                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/placeholders/events--speakers--placeholder.jpg",
+              loading: "lzy",
+            }
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
@@ -460,8 +472,11 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt-components-image/image.twig" with {
-                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/placeholders/events--speakers--placeholder.jpg",
+              loading: "lazy",
+            }
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
@@ -484,8 +499,11 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt-components-image/image.twig" with {
-                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/placeholders/events--speakers--placeholder.jpg",
+              loading: "lazy",
+            }
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
@@ -644,8 +662,11 @@
           {% set logoImages = ["logo-incessant.png", "logo-capgemini.svg", "logo-cognizant.png", "logo-merkle.png", "logo-infosys.png"] %}
           {% for logoImage in logoImages %}
             {% cell "u-bolt-width-1/2 u-bolt-width-1/5@small" %}
-              {% include "@bolt-components-image/image.twig" with {
-                src: "/images/content/logos/" ~ logoImage
+              {% include "@bolt-elements-image/image.twig" with {
+                attributes: {
+                  src: "/images/content/logos/" ~ logoImage,
+                  loading: "lazy",
+                }
               } only %}
             {% endcell %}
           {% endfor %}

@@ -190,11 +190,12 @@
 {# Background Video #}
 {% set background_video %}
   <div class="c-pega-careers-background-video">
-    {% include '@bolt-components-image/image.twig' with {
-      src: hero_background_video_poster,
-      lazyload: false,
-      ratio: false,
-      cover: true
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: hero_background_video_poster,
+        background: true,
+        loading: "lazy",
+      }
     } only %}
     <div class="c-pega-careers-background-video__video">
       {% set video %}
