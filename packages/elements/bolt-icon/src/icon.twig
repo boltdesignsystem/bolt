@@ -22,6 +22,7 @@
   size ? 'e-bolt-icon--' ~ size : ''
 ] %}
 
+{# The .svg.twig namespace allows for the passage of twig data #}
 {% if name %}
   {% set icon_path = '@bolt-elements-icon/icons/' ~ name ~ '.svg.twig' %}
 {% endif %}
