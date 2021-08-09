@@ -2,7 +2,7 @@
 import { render, renderWC, stopServer } from '../../../testing/testing-helpers';
 import schema from '../{{ kebabCase name }}.schema';
 const componentSelector = 'bolt-{{ kebabCase name }}';
-//const { [PROP KEY], [PROP KEY]... } = schema.properties;
+// const { [PROP KEY], [PROP KEY]... } = schema.properties;
 let page, fixtures;
 
 afterAll(async () => {
