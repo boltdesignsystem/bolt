@@ -11,11 +11,13 @@
 {% set demo %}
   <div style="max-width: 60ch">
     {% set image %}
-      {% include '@bolt-components-image/image.twig' with {
-        src: '/images/placeholders/tout-4x3-climber.jpg',
-        alt: 'A Rock Climber',
-        ratio: false,
-        cover: true,
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/tout-4x3-climber.jpg',
+          alt: 'A Rock Climber',
+          background: true,
+          loading: 'lazy',
+        }
       } only %}
     {% endset %}
     {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
@@ -28,11 +30,13 @@
 {% set twig_markup %}
 {% verbatim %}
 {% set image %}
-  {% include '@bolt-components-image/image.twig' with {
-    src: '/images/placeholders/tout-4x3-climber.jpg',
-    alt: 'A Rock Climber',
-    ratio: false,
-    cover: true,
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/tout-4x3-climber.jpg',
+      alt: 'A Rock Climber',
+      background: true,
+      loading: 'lazy',
+    }
   } only %}
 {% endset %}
 {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {

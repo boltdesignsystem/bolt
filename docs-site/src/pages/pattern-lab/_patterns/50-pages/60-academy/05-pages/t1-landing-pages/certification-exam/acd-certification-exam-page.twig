@@ -95,10 +95,11 @@
                     class: "u-bolt-margin-bottom-none",
                   }
                 }),
-                logo: macros.include("@bolt-components-image/image.twig", {
-                  src: "/images/pearson-logo.svg",
+                logo: macros.include("@bolt-elements-image/image.twig", {
                   attributes: {
+                    src: "/images/pearson-logo.svg",
                     style: "max-width: 170px;",
+                    loading: "lazy",
                     class: [
                       "u-bolt-margin-left-auto@small"
                     ]

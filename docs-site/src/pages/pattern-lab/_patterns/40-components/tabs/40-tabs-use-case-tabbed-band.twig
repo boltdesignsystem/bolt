@@ -52,9 +52,11 @@
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-7/12@small" %}
       {% set device_viewer_image %}
-        {% include '@bolt-components-image/image.twig' with {
-          src: "/images/content/screenshots/device-screenshot--tablet.jpg",
-          placeholder_color: "#ececec"
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+            loading: "lazy"
+          }
         } only %}
       {% endset %}
       {% include "@bolt-components-device-viewer/device-viewer.twig" with {
@@ -70,9 +72,11 @@
   {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
     {% cell "u-bolt-width-12/12 u-bolt-width-7/12@small" %}
       {% set device_viewer_image %}
-        {% include '@bolt-components-image/image.twig' with {
-          src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
-          placeholder_color: "#1c1c1c"
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+            loading: "lazy"
+          }
         } only %}
       {% endset %}
       {% include "@bolt-components-device-viewer/device-viewer.twig" with {
@@ -127,9 +131,11 @@
 {% set tab_content_3 %}
   {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
     {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
-      {% include "@bolt-components-image/image.twig" with {
-        src: "/images/content/charts/decision-hub-chart.png",
-        lazyload: true
+      {% include "@bolt-elements-image/image.twig" with {
+        attributes: {
+          src: "/images/content/charts/decision-hub-chart.png",
+          loading: "lazy"
+        }
       } only %}
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}

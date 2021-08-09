@@ -5,11 +5,11 @@
 
 {% include "@bolt-components-hero/hero.twig" with {
   content: [
-    macros.include("@bolt-components-image/image.twig", {
-      src: "/images/heros/hero-foreground--orange--logo.svg",
-      alt: "PegaWorld iNspire logo",
-      lazyload: false,
+    macros.include("@bolt-elements-image/image.twig", {
       attributes: {
+        src: "/images/heros/hero-foreground--orange--logo.svg",
+        alt: "PegaWorld iNspire logo",
+        loading: "eager",
         class: [
           "u-bolt-margin-bottom-medium",
         ]

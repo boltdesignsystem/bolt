@@ -3,17 +3,23 @@
 
 <div class="u-bolt-margin-bottom-medium">
   {% set thumbnail_content %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: "/images/placeholders/tout-4x3-climber.jpg",
-      alt: "A Rock Climber",
-      max_width: "200px"
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: "/images/placeholders/tout-4x3-climber.jpg",
+        alt: "A Rock Climber",
+        style: "max-width: 200px",
+        loading: 'lazy',
+      }
     } only %}
   {% endset %}
 
   {% set image_content %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: "/images/placeholders/tout-4x3-climber.jpg",
-      alt: "A Rock Climber",
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: "/images/placeholders/tout-4x3-climber.jpg",
+        alt: "A Rock Climber",
+        laoding: 'lazy',
+      }
     } only %}
   {% endset %}
 
