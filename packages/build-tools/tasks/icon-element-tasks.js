@@ -34,7 +34,7 @@ async function generateElementSchemaFile() {
     const svgFiles = fs.readdirSync(iconPath);
     svgFiles.forEach(svg => {
       if (path.extname(svg) === '.twig') {
-        const svgName = svg.split('.svg.twig');
+        const svgName = svg.split('.twig');
         svgs.push(svgName[0]);
       }
     });
@@ -95,9 +95,10 @@ async function watch() {
   // Used by watches
   const debouncedCompile = debounce(build, config.debounceRate);
 
+  // Revist this!
   const watchedFiles = await iconGenerator.getIconSourcePaths(
     '@bolt/elements-icon',
-    '.svg.twig',
+    '.twig',
   );
 
   // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar

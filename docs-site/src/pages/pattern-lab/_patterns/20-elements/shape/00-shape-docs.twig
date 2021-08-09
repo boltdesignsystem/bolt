@@ -1,0 +1,12 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-elements-shape/shape.twig" with {
+  variant: "circle",
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'shape',
+  componentGroup: 'elements',
+  usage: usage
+} only %}
+

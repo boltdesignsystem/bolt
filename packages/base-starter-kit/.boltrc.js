@@ -9,6 +9,7 @@ module.exports = {
       '@bolt/elements-printable',
       '@bolt/elements-text-link',
       '@bolt/elements-icon',
+      '@bolt/elements-shape',
       '@bolt/layouts-holy-grail',
       '@bolt/layouts-layout',
       '@bolt/layouts-site',

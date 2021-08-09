@@ -1,0 +1,11 @@
+{% set schema = bolt.data.components["@bolt-elements-shape"].schema %}
+{% set variants = schema.properties.variant.enum %}
+
+
+{# This is just for testing purposes, feel free to re-purpose these loops to demo individual props #}
+{% for variant in variants %}
+  {% include "@bolt-elements-shape/shape.twig" with {
+    content: "BDS",
+    variant: variant
+  } only %}
+{% endfor %}

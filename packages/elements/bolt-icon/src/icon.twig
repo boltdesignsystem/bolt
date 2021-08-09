@@ -19,12 +19,12 @@
 
 {% set classes = [
   'e-bolt-icon',
-  size ? 'e-bolt-icon--' ~ size : ''
+  this.data.size.value ? 'e-bolt-icon--' ~ this.data.size.value : ''
 ] %}
 
 {# The .svg.twig namespace allows for the passage of twig data #}
 {% if name %}
-  {% set icon_path = '@bolt-elements-icon/icons/' ~ name ~ '.svg.twig' %}
+  {% set icon_path = '@bolt-elements-icon/icons/' ~ name ~ '.twig' %}
 {% endif %}
 
 {% include icon_path %}
