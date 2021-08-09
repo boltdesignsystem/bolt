@@ -5,25 +5,25 @@ const dir = require('node-dir');
 
 const dirs = {
   global:
-    'packages/generators/yeoman-create-component/generators/component/tmp',
-  js: 'test.js',
+    'packages/generators/tmp',
   scss: 'test.scss',
   test: 'test.js',
   package: 'package.json',
   readme: 'README.md',
+  changelog: 'CHANGELOG.md',
   schema: 'test.schema.js',
   boltrc: '.boltrc.js',
 };
 
-dirs.component = `${dirs.global}/packages/components/bolt-test`;
+dirs.component = `${dirs.global}/packages/elements/bolt-test`;
 dirs.src = `${dirs.component}/src`;
 dirs.testing = `${dirs.component}/__tests__`;
-dirs.patternLab = `${dirs.global}/docs-site/src/pages/pattern-lab/_patterns/40-components/test/00-test-docs.twig`;
+dirs.patternLab = `${dirs.global}/docs-site/src/pages/pattern-lab/_patterns/20-elements/test/00-test-docs.twig`;
 
-describe('Yeoman component generator', () => {
+describe('Bolt component generator', () => {
   beforeAll(async () => {
     shell.exec(`rm -rf ${dirs.global}`);
-    shell.exec('yarn run cc -- -N Test -D "Test Description" -T');
+    shell.exec('yarn ce "Test" "Test Description"');
   });
 
   afterAll(async () => {
@@ -36,12 +36,6 @@ describe('Yeoman component generator', () => {
     expect(results).toMatchSnapshot();
   });
 
-  test('JS file exist', async () => {
-    const results = fs.readFileSync(`${dirs.src}/${dirs.js}`, 'utf8');
-
-    expect(results).toMatchSnapshot();
-  });
-
   test('SCSS file exist', async () => {
     const results = fs.readFileSync(`${dirs.src}/${dirs.scss}`, 'utf8');
 
@@ -50,12 +44,6 @@ describe('Yeoman component generator', () => {
 
   test('tests file exist', async () => {
     const results = fs.readFileSync(`${dirs.testing}/${dirs.test}`, 'utf8');
-
-    expect(results).toMatchSnapshot();
-  });
-
-  test('index JS file exist', async () => {
-    const results = fs.readFileSync(`${dirs.component}/index.js`, 'utf8');
 
     expect(results).toMatchSnapshot();
   });
@@ -81,6 +69,12 @@ describe('Yeoman component generator', () => {
     expect(results).toMatchSnapshot();
   });
 
+  test('changelog file exist', async () => {
+    const results = fs.readFileSync(`${dirs.component}/${dirs.changelog}`, 'utf8');
+
+    expect(results).toMatchSnapshot();
+  });
+
   test('schema file exist', async () => {
     const results = fs.readFileSync(`${dirs.component}/${dirs.schema}`, 'utf8');
 
@@ -90,13 +84,13 @@ describe('Yeoman component generator', () => {
   test('bolt package.json file is updated', async () => {
     const results = fs.readFileSync(`${dirs.global}/${dirs.package}`, 'utf8');
 
-    expect(results.includes('@bolt/components-test')).toBe(true);
+    expect(results.includes('@bolt/elements-test')).toBe(true);
   });
 
   test('.boltrc.js is updated', async () => {
     const results = fs.readFileSync(`${dirs.global}/${dirs.boltrc}`, 'utf8');
 
-    expect(results.includes('@bolt/components-test')).toBe(true);
+    expect(results.includes('@bolt/elements-test')).toBe(true);
   });
 
   test('folder structure of component package is correct', async () => {

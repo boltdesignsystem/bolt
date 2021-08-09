@@ -1,11 +1,11 @@
 /* ------------------------------------ *\
-   <%= props.name.titleCase %>
+   {{ titleCase name }}
 \* ------------------------------------ */
 
 @import '@bolt/core-v3.x';
 
 // Register Custom Block Element
-@include bolt-custom-element('bolt-<%= props.name.kebabCase %>', block, medium);
+@include bolt-custom-element('bolt-{{ kebabCase name }}', block, medium);
 
 /**
  * Long-form comment.
@@ -15,7 +15,7 @@
  *
  * 1. Provide line-comments like this.
  */
-.c-bolt-<%= props.name.kebabCase %> {
+.c-bolt-{{ kebabCase name }} {
   // Styles go here. /* [1] */
   display: block;
 }
