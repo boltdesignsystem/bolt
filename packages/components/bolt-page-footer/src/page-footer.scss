@@ -241,10 +241,8 @@
       opacity: 0;
       max-height: 0;
       padding: 0;
-      transition: max-height var(--bolt-transition-timing),
-        //delay animations by 0.2s
-          visibility var(--bolt-transition) 0.2s,
-        opacity var(--bolt-transition) 0.2s, padding var(--bolt-transition) 0.2s;
+      transition: max-height var(--bolt-transition-timing), visibility 0s 0.2s,
+        opacity var(--bolt-transition), padding var(--bolt-transition) 0.2s; //delay animation by 0.2s
     }
   }
 
