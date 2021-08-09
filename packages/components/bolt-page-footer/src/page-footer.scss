@@ -232,7 +232,7 @@
         max-height: 100%;
         padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-xsmall);
         transition: max-height var(--bolt-transition),
-          opacity var(--bolt-transition); //delay animation by 0.2s
+          opacity var(--bolt-transition) 0.05s; //delay animation by 0.05s
       }
     }
 
@@ -261,7 +261,6 @@
   list-style-type: none;
 
   @include bolt-mq($until: medium) {
-    overflow: hidden;
     padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-xsmall);
   }
 }
