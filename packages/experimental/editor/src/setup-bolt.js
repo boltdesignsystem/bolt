@@ -186,7 +186,7 @@ export function setupBolt(editor) {
 
   /**
    * @param {Object} opt
-   * @param {string} opt.name i.e. `bolt-button`
+   * @param {string} opt.name i.e. `bolt-link`
    * @param {string} [opt.blockTitle] only used if `registerBlock` is `true`
    * @param {import('./utils').JsonSchema} [opt.schema]
    * @param {string[]} [opt.initialContent] HTML for when block is added
@@ -202,7 +202,7 @@ export function setupBolt(editor) {
    * @param {string[]} [opt.propsToTraits=[]] Json Schema properties keys to auto-add to traits via `convertSchemaPropToTrait`
    * @param {grapesjs.GrapeTrait[]} [opt.extraTraits=[]] Full Trait objects that need more custom attention than `propsToTraits`
    * @param {(el: HTMLElement) => boolean} [opt.isComponent] - function to determine if an HTMLElement is this component. Defaults to seeing if tag name is component name
-   * @param {Object.<string, boolean|string>} [opt.slots={ default: true }] - Which slots are available and what can go in them. For example `{ default: true, top: 'bolt-text, bolt-button' }` would let any element be placed as a direct child (the `default` slot) and the `top` slot would only accept `<bolt-text>` or `<bolt-button>`. Those values are passed right to Grape JS's `droppable`.
+   * @param {Object.<string, boolean|string>} [opt.slots={ default: true }] - Which slots are available and what can go in them. For example `{ default: true, top: 'bolt-text, bolt-link' }` would let any element be placed as a direct child (the `default` slot) and the `top` slot would only accept `<bolt-text>` or `<bolt-link>`. Those values are passed right to Grape JS's `droppable`.
    * @param {SlotControl[]} [opt.slotControls]
    * @param {removalEventsToFireOnParents[]} [opt.removalEventsToFireOnParents=[]]
    * @returns {{ component: Object, block: Object }} instances from registering @todo fill out types
