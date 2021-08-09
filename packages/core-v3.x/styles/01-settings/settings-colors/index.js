@@ -5,7 +5,7 @@
 const boltColorDefault = 'base';
 
 const boltBrandColors = {
-  indigo: {
+  navy: {
     xdark: 'hsl(233, 71%, 8%)',
     dark: 'hsl(233, 47%, 16%)',
     base: 'hsl(233, 47%, 23%)',

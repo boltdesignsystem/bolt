@@ -239,8 +239,11 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
         {% set device_viewer_image %}
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+              loading: "lazy",
+            }
           } only %}
         {% endset %}
         {% include "@bolt/device-viewer.twig" with {
@@ -271,8 +274,11 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
         {% set device_viewer_image %}
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+              loading: "lazy",
+            }
           } only %}
         {% endset %}
         {% include "@bolt/device-viewer.twig" with {
@@ -393,8 +399,11 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
         {% set device_viewer_image %}
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/content/screenshots/device-screenshot--phone.jpg",
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/content/screenshots/device-screenshot--phone.jpg",
+              loading: "lazy",
+            }
           } only %}
         {% endset %}
         {% include "@bolt/device-viewer.twig" with {
@@ -407,8 +416,11 @@
 
        {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
          {% set device_viewer_image %}
-           {% include "@bolt-components-image/image.twig" with {
-             src: "/images/content/screenshots/device-screenshot--phone.jpg",
+           {% include "@bolt-elements-image/image.twig" with {
+             attributes: {
+                src: "/images/content/screenshots/device-screenshot--phone.jpg",
+                loading: "lazy",
+             }
            } only %}
          {% endset %}
         {% include "@bolt/device-viewer.twig" with {
@@ -421,8 +433,11 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
         {% set device_viewer_image %}
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/content/screenshots/device-screenshot--phone.jpg",
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/content/screenshots/device-screenshot--phone.jpg",
+              loading: "lazy",
+            }
           } only %}
         {% endset %}
         {% include "@bolt/device-viewer.twig" with {
@@ -436,8 +451,11 @@
 
        {% cell "u-bolt-width-1/1" %}
          {% set device_viewer_image %}
-           {% include "@bolt-components-image/image.twig" with {
-             src: "/images/content/screenshots/device-screenshot--phone.jpg",
+           {% include "@bolt-elements-image/image.twig" with {
+             attributes: {
+                src: "/images/content/screenshots/device-screenshot--phone.jpg",
+                loading: "lazy",
+             }
            } only %}
          {% endset %}
         {% include "@bolt/device-viewer.twig" with {
@@ -531,8 +549,11 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
         {% set device_viewer_image %}
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+              loading: "lazy",
+            }
           } only %}
         {% endset %}
         {% include "@bolt/device-viewer.twig" with {

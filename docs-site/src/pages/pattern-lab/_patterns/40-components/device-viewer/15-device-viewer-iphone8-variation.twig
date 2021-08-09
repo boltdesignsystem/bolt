@@ -3,9 +3,11 @@
 {% for color in schema.properties.color.enum %}
   <p>Color: {{ color }}<br />Orientation: 'portrait'</p>
   {% set image_portrait %}
-    {% include "@bolt-components-image/image.twig" with {
-      placeholder_color: "#ececec",
-      src: "/images/content/screenshots/device-screenshot--phone.jpg",
+    {% include "@bolt-elements-image/image.twig" with {
+      attributes: {
+        src: "/images/content/screenshots/device-screenshot--phone.jpg",
+        loading: "lazy",
+      }
     } only %}
   {% endset %}
 
@@ -18,9 +20,11 @@
 
   <p>Color: {{ color }}<br />Orientation: 'landscape'</p>
   {% set image_landscape %}
-    {% include "@bolt-components-image/image.twig" with {
-      placeholder_color: "#ececec",
-      src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+    {% include "@bolt-elements-image/image.twig" with {
+      attributes: {
+        src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+        loading: "lazy",
+      }
     } only %}
   {% endset %}
 

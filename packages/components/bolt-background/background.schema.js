@@ -38,7 +38,7 @@ module.exports = {
       type: 'string',
       description: 'Color of the fill to use in the overlay.',
       default: 'default',
-      enum: ['default', 'pink', 'navy', 'black', 'indigo'],
+      enum: ['default', 'pink', 'navy', 'black'],
     },
     focal_point: {
       type: 'object',

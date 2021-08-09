@@ -52,8 +52,11 @@
 
   {% include "@bolt-components-figure/figure.twig" with {
     media: {
-      content: macros.include("@bolt-components-image/image.twig", {
-        src: "/images/placeholders/500x500.jpg",
+      content: macros.include("@bolt-elements-image/image.twig", {
+        attributes: {
+          src: "/images/placeholders/500x500.jpg",
+          loading: "lazy",
+        }
       }),
     },
     caption: "Fig. 1: This is Bill. He is awesome."

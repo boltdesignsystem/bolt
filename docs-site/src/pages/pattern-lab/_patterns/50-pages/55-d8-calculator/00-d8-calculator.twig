@@ -248,11 +248,12 @@
 } only %}
   {% block band_background %}
     <div class="c-www-calculator-background" aria-hidden="true">
-      {% include "@bolt-components-image/image.twig" with {
-        src: "/images/backgrounds/calculator-landing-shapes-transparent.png",
-        alt: "Decorative shapes.",
+      {% include "@bolt-elements-image/image.twig" with {
         attributes: {
-          class: "c-www-calculator-background__image"
+          src: "/images/backgrounds/calculator-landing-shapes-transparent.png",
+          alt: "Decorative shapes.",
+          loading: "lazy",
+          class: "c-www-calculator-background__image",
         }
       } only %}
     </div>
