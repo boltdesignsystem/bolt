@@ -1,0 +1,35 @@
+{% set schema = bolt.data.components['@bolt-elements-icon'].schema %}
+{% set sizes = schema.properties.size.enum %}
+
+{% set description %}
+  An icon&rsquo;s size can be modified per use case.
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    {% for size in sizes %}
+      <bolt-list-item>
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'academy',
+          size: size, 
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-icon/icon.twig' with {
+  name: 'academy',
+  size: 'small',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Icon Size',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

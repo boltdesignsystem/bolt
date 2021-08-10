@@ -1,0 +1,12 @@
+{% set schema = bolt.data.components["@bolt-elements-icon"].schema %}
+{% set names = schema.properties.name.enum %}
+{% set sizes = schema.properties.size.enum %}
+
+{% for name in names %}
+  {% include "@bolt-elements-icon/icon.twig" with {
+    name: name,
+    size: "xlarge",
+  }%}
+  <br />{{ name }}
+{% endfor %}
+

@@ -1,0 +1,36 @@
+{% set description %}
+  An icon is generally svg inline vector graphic element <bolt-code-snippet display="inline" lang="html">&lt;svg class="e-bolt-icon"&gt;</bolt-code-snippet>.
+  The icon performs mainly a decorative function. The Twig template is the recommended usage for Drupal.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>An icon proper name should be passed to the <bolt-code-snippet display="inline">name</bolt-code-snippet> prop only.</bolt-li>
+    <bolt-li>Icon element is a replacement for the Icon component.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'academy',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-icon/icon.twig' with {
+  name: 'academy',
+  size: 'xlarge',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Icon',
+  description: description,
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+} only %}
