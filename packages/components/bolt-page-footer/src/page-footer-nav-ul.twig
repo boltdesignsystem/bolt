@@ -1,0 +1,24 @@
+{# Twig usage 
+
+{% include 'bolt-components-page-footer/page-footer-nav-ul.twig' with {
+  headline: {
+    text: 'Company',
+    tag: 'h3',
+  },
+  content: content, // page-footer-nav-li goes here
+  category: category, // [social, language, legal]
+} only %}
+
+ #}
+
+
+<div class="c-page-footer__nav-item c-page-footer__nav-item--social">
+  <{{ headline.tag }} class="c-page-footer__nav-headline">{{ headline.text }}</{{ headline.tag }}>
+  <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
+    {{ headline.text }}
+    <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
+  </button>
+  <ul class="c-page-footer__nav-list">
+    {{ content }}
+  </ul>
+</div>

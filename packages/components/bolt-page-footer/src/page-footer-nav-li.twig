@@ -1,0 +1,20 @@
+{# Twig usage 
+
+{% include 'bolt-components-page-footer/page-footer-nav-li.twig' with {
+  link: {
+    content: 'Facebook',
+    icon: icon_facebook,
+    attributes: {
+      href: 'https://pega.com/',
+    },
+  },
+} only %}
+
+ #}
+
+<li class="c-page-footer__nav-list-item">
+  <a href="#!" target="_blank" rel="noopener" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
+    <span class="c-page-footer__nav-link__icon">{{ link.icon }}</span>
+    <span class="c-page-footer__nav-link__text">{{ link.content }}</span>
+  </a>
+</li>
