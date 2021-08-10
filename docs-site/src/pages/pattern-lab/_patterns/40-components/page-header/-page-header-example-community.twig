@@ -164,12 +164,95 @@
   } only %}
 {% endset %}
 
+{% set teaser_lv3_ul_content %}
+  {% set teaser %}
+    {% set signifier %}
+      <img src="/images/placeholders/thumb-square-abstract.jpg" alt="" width=40 height=40 class="u-bolt-border-radius-full">
+    {% endset %}
+    {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+      signifier: signifier,
+      headline: {
+        text: 'Level 3 placeholder',
+        tag: 'p',
+        size: 'xsmall',
+        link_attributes: {
+          href: 'https://pega.com'
+        },
+      },
+      description: 'Placeholder description'
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    content: teaser,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    content: teaser,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    content: teaser,
+  } only %}
+{% endset %}
+{% set teaser_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: teaser_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set teaser_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 2',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    children: teaser_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 2',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    children: teaser_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 2',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    children: teaser_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'View all',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    },
+    view_all: true,
+    full_width: true,
+  } only %}
+{% endset %}
+{% set teaser_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: teaser_lv2_ul_content,
+  } only %}
+{% endset %}
+
 {% set site_nav_lv1_list_items = [
   {
     link: {
       content: 'Get Started',
     },
-    children: placeholder_lv2,
+    children: teaser_lv2,
   },
   {
     link: {
@@ -359,6 +442,7 @@
 
   {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
     content: primary_nav_content,
+    align_site_nav_items: 'end',
   } only %}
 {% endset %}
 
@@ -401,10 +485,5 @@
     }
   },
   content: page_header_content,
+  full_width: true,
 } only %}
-
-<style>
-  :root {
-    --c-bolt-page-header-logo-max-width: 250px;
-  }
-</style>

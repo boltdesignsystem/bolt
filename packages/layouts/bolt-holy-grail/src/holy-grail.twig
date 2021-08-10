@@ -8,6 +8,9 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
+{# Passing the breakpoint to use in JS. See holy-grail.js #}
+{% set attributes = attributes.setAttribute('data-bolt-holy-grail-bp', bolt.data.breakpoints.medium) %}
+
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'l-bolt-holy-grail',
