@@ -13,12 +13,24 @@ module.exports = {
       description:
         'A Drupal-style attributes object with extra attributes to append to this element.',
     },
-    variant: {
+    size: {
+      type: 'string',
+      description: 'Changes the size of the interior element',
+      enum: ['small', 'medium', 'large'],
+    },
+    border_radius: {
       type: 'string',
       description:
-        "Customizes the background that's displayed behind the SVG icon itself. Choosing any option other than `none` will automatically add a bit of space around the SVG so the background has the necessary space. Note, this option is now available to icons of all sizes!",
+        'Customizes the outside radius of the shape. "none" will render as a square shape, "small" and "large" will render as a rounded corners square and "full" will render as a circle.',
       default: 'none',
-      enum: ['none', 'circle', 'square'],
+      enum: ['none', 'small', 'large', 'full'],
+    },
+    spacing: {
+      type: 'string',
+      description:
+        'Customizes the spacing between the interior element and the outside of the shape',
+      default: 'none',
+      enum: ['none', 'xsmall', 'small', 'medium'],
     },
   },
 };

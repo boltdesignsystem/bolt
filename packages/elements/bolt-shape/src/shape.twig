@@ -19,12 +19,12 @@
 
 {% set classes = [
   'e-bolt-shape',
-  this.data.variant.value != schema.properties.variant.default ? 'e-bolt-shape--' ~ this.data.variant.value,
+  this.data.border_radius.value != schema.properties.border_radius.default ? 'e-bolt-shape--border_radius--' ~ this.data.border_radius.value,
+  size ? 'e-bolt-shape--size--' ~ size,
+  this.data.spacing.value != schema.properties.spacing.default ? 'e-bolt-shape--spacing--' ~ this.data.spacing.value
 ] %}
 
-<span class="{{ classes|join(' ')|trim }}">
-  {% if variant and variant != 'none' %}
-    <span class="e-bolt-shape__inner"></span>
-  {% endif %}
+<span {{ attributes.addClass(classes) }}>
+  <span class="e-bolt-shape__inner"></span>
   {{ content }}
 </span>
