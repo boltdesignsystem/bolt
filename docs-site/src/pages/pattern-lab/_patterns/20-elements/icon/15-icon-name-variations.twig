@@ -1,0 +1,45 @@
+{% set schema = bolt.data.components["@bolt-elements-icon"].schema %}
+{% set names = schema.properties.name.enum %}
+
+{% set description %}
+  A list of available icons. <bolt-code-snippet display="inline">Color</bolt-code-snippet> and <bolt-code-snippet display="inline">size</bolt-code-snippet> can be adjust.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use icon exact name to be able to display the choosen icon.
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <ul class="bolt-icon-list-demo">
+  {% for name in names %}
+    <li>
+    {% include "@bolt-elements-icon/icon.twig" with {
+      name: name,
+      size: "xlarge",
+    }%}
+    <br />{{ name }}
+    </li>
+  {% endfor %}
+  </ul>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-icon/icon.twig' with {
+  name: 'academy',
+  size: 'xlarge',
+  color: 'navy',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Available Icons',
+  description: description,
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+} only %}
