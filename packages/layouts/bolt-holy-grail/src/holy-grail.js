@@ -4,44 +4,57 @@ export class BoltHolyGrail {
   constructor(el) {
     if (!el) return;
     this.el = el;
-    this.handleEscapeKeypress = this.handleEscapeKeypress.bind(this);
+    this.toggleTrigger = this.el.querySelector(
+      '.js-bolt-holy-grail__toggle-trigger',
+    );
+
+    this.breakpoint = this.el.dataset.boltHolyGrailBp;
+
     this.state = {
       activeElement: null,
+      isMobile: null,
+      isExpanded: null,
     };
+
+    this.handleEscapeKeypress = this.handleEscapeKeypress.bind(this);
+    this.handleResize = this.handleResize.bind(this);
+
     this.init();
   }
 
   init() {
-    const toggleTrigger = this.el.querySelectorAll(
-      '.js-bolt-holy-grail__toggle-trigger',
-    );
-    toggleTrigger.forEach(el => {
-      el.addEventListener('click', event => {
-        if (el.getAttribute('aria-expanded') === 'true') {
-          this.hide(el);
-        } else {
-          this.show(el);
-        }
-      });
+    if (!this.toggleTrigger) return;
+
+    this.toggleTrigger.addEventListener('click', e => {
+      if (this.isExpanded) {
+        this.hide();
+      } else {
+        this.show();
+      }
     });
 
-    this.setOffsetTop = this.setOffsetTop.bind(this);
-    window.addEventListener('throttledResize', this.setOffsetTop);
     this.setOffsetTop();
+    this.checkScreenSize();
+
+    window.addEventListener('throttledResize', this.handleResize);
   }
 
-  show(el) {
-    this.state.activeElement = el;
-    el.setAttribute('aria-expanded', 'true');
-    document.body.classList.add('u-bolt-overflow-hidden');
+  show() {
+    this.toggleTrigger.setAttribute('aria-expanded', 'true');
+    this.isExpanded = true;
+    if (this.isMobile) {
+      document.body.classList.add('u-bolt-overflow-hidden');
+    }
     document.addEventListener('keydown', this.handleEscapeKeypress);
   }
 
-  hide(el) {
-    el.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('u-bolt-overflow-hidden');
-    this.state.activeElement.focus();
-    this.state.activeElement = null;
+  hide() {
+    this.toggleTrigger.setAttribute('aria-expanded', 'false');
+    this.isExpanded = false;
+    if (this.isMobile) {
+      document.body.classList.remove('u-bolt-overflow-hidden');
+    }
+    this.toggleTrigger.focus();
     document.removeEventListener('keydown', this.handleEscapeKeypress);
   }
 
@@ -55,7 +68,7 @@ export class BoltHolyGrail {
 
   handleEscapeKeypress(e) {
     if (this.getKey(e) === 'Escape' || this.getKey(e) === 27) {
-      this.hide(this.state.activeElement);
+      this.hide();
     }
   }
 
@@ -68,6 +81,27 @@ export class BoltHolyGrail {
       // Always round down, subpixel rendering can leave an unwanted gap below page header
       return Math.floor(pageHeader[0].getBoundingClientRect().height);
     }
+  }
+
+  checkScreenSize() {
+    if (window.matchMedia(`(max-width: ${this.breakpoint})`).matches) {
+      if (!this.isMobile && this.isExpanded) {
+        // Going from desktop to mobile, hide the expanded sidebar as it will be full-screen on mobile
+        this.hide();
+      }
+      this.isMobile = true;
+    } else {
+      if (this.isMobile && this.isExpanded) {
+        // Going from mobile to desktop, just remove the overflow hidden, allow sidebar to stay expanded
+        document.body.classList.remove('u-bolt-overflow-hidden');
+      }
+      this.isMobile = false;
+    }
+  }
+
+  handleResize() {
+    this.setOffsetTop();
+    this.checkScreenSize();
   }
 
   setOffsetTop() {
