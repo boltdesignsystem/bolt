@@ -5,6 +5,16 @@
   An icon&rsquo;s size can be modified per use case.
 {% endset %}
 
+{% set notes %}
+  <bolt-ul>
+    <bolt-li>Auto/undefined: 1em (same size as inline text)</bolt-li>
+    <bolt-li>Small: 16px</bolt-li>
+    <bolt-li>Medium: 24px</bolt-li>
+    <bolt-li>Large: 32px</bolt-li>
+    <bolt-li>Xlarge: 38px</bolt-li>
+  </bolt-ul>
+{% endset %}
+
 {% set demo %}
   <bolt-list display="inline" spacing="small">
     {% for size in sizes %}
@@ -30,6 +40,7 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Icon Size',
   description: description,
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
 } only %}
