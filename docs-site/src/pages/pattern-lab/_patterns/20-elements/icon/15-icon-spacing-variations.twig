@@ -9,15 +9,15 @@
 {% endset %}
 
 {% set description %}
-  An icon&rsquo;s spacing can be modified per use case. Spacing is a distance between outer content boundary and outer shape element border. 
+  An icon&rsquo;s spacing can be modified per use case. Spacing is a distance between outer icon boundary and outer shape element edges. 
 {% endset %}
 
 {% set notes %}
   <bolt-ul>
     <bolt-li>None: 0</bolt-li>
-    <bolt-li>Xsmall: tbc</bolt-li>
-    <bolt-li>Small: tbc</bolt-li>
-    <bolt-li>Medium: tbc</bolt-li>
+    <bolt-li>Xsmall: 6px</bolt-li>
+    <bolt-li>Small: 12px</bolt-li>
+    <bolt-li>Medium: 24px</bolt-li>
   </bolt-ul>
 {% endset %}
 
@@ -52,10 +52,8 @@
 
 {% set html_markup %}
 {% verbatim %}
-<span class="t-bolt-navy-dark e-bolt-shape e-bolt-shape--border_radius--full">
-  <span class="e-bolt-shape__inner"></span>
-      <svg class="ebolt-icon e-bolt-icon--size--xlarge" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="m0 0h24v24h-24z"/><g fill="var(--bolt-color-{{ color }}, var(--m-bolt-text))" transform="translate(1 1)"><path d="m11 20c-4.962 0-9-4.038-9-9s4.038-9 9-9 9 4.038 9 9-4.038 9-9 9m0-20c-6.063 0-11 4.938-11 11s4.938 11 11 11 11-4.938 11-11-4.938-11-11-11"/><path d="m15 10h-3v-3c0-.55-.45-1-1-1s-1 .45-1 1v3h-3c-.55 0-1 .45-1 1s.45 1 1 1h3v3c0 .55.45 1 1 1s1-.45 1-1v-3h3c.55 0 1-.45 1-1s-.45-1-1-1"/></g></g></svg>
-  </span>
+<span class="t-bolt-navy-dark e-bolt-shape e-bolt-shape--border_radius--full e-bolt-shape--spacing--medium">
+  <svg class="e-bolt-icon e-bolt-icon--xlarge" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="m0 0h24v24h-24z"/><g fill="var(--bolt-color-{{ color }}, var(--m-bolt-text))" transform="translate(1 1)"><path d="m11 20c-4.962 0-9-4.038-9-9s4.038-9 9-9 9 4.038 9 9-4.038 9-9 9m0-20c-6.063 0-11 4.938-11 11s4.938 11 11 11 11-4.938 11-11-4.938-11-11-11"/><path d="m15 10h-3v-3c0-.55-.45-1-1-1s-1 .45-1 1v3h-3c-.55 0-1 .45-1 1s.45 1 1 1h3v3c0 .55.45 1 1 1s1-.45 1-1v-3h3c.55 0 1-.45 1-1s-.45-1-1-1"/></g></g></svg>
 </span>
 {% endverbatim %}
 {% endset %}
