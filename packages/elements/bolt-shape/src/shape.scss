@@ -1,47 +1,104 @@
-// @import '@bolt/core-v3.x';
+@import '@bolt/core-v3.x';
 
-// .e-bolt-shape {
+.e-bolt-shape {
+  // display: grid;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  display: flex;
+  position: relative;
 
-  
+  // &__inner {
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  // }
 
-//   position: relative;
-//   padding:100px;
-//   text-align:center;
+  // .e-bolt-icon {
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  // }
 
-//   .e-bolt-icon{
-//     box-sizing: content-box;
-//     // position:absolute;
-    
-//   }
+  //   position: relative;
+  //   padding:100px;
+  //   text-align:center;
 
-//   &--circular{
-//     .e-bolt-shape__inner{
-//       background: #ddd;
-//       border-radius: 50%;
-//       height: 0;
-      
-//       padding-bottom: 100%;
-//       width: 100%;
-//       //border-radius: bolt-border-radius(full);
-//     }
-//   }
-  
-//   &--sqaure{
-//     .e-bolt-shape__inner{
-//       border-radius: bolt-border-radius(small);
-//       border-radius: #{var(--bolt-theme-radius, #{bolt-border-radius(small)})};
-//     }
-//   }
+  //   .e-bolt-icon{
+  //     box-sizing: content-box;
+  //     // position:absolute;
 
-//   &__inner{
-//     background-color:grey;
-//     position: absolute;
-//     display:block;
-//     width:100%;
-//     height:100%;
-//     top:0;
-//       right:0;
-//       bottom:0;
-//       left:0;
-//   }
-// }
+  //   }
+
+  //   &--circular{
+  //     .e-bolt-shape__inner{
+  //       background: #ddd;
+  //       border-radius: 50%;
+  //       height: 0;
+
+  //       padding-bottom: 100%;
+  //       width: 100%;
+  //       //border-radius: bolt-border-radius(full);
+  //     }
+  //   }
+
+  //   &--sqaure{
+  //     .e-bolt-shape__inner{
+  //       border-radius: bolt-border-radius(small);
+  //       border-radius: #{var(--bolt-theme-radius, #{bolt-border-radius(small)})};
+  //     }
+  //   }
+
+  //   &__inner{
+  //     background-color:grey;
+  //     position: absolute;
+  //     display:block;
+  //     width:100%;
+  //     height:100%;
+  //     top:0;
+  //       right:0;
+  //       bottom:0;
+  //       left:0;
+  //   }
+}
+
+.e-bolt-shape__inner {
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+}
+
+.e-bolt-shape--size--small {
+  width: 16px;
+  height: 16px;
+}
+
+.e-bolt-shape--size--medium {
+  width: 24px;
+  height: 24px;
+}
+
+.e-bolt-shape--size--large {
+  width: 32px;
+  height: 32px;
+}
+
+.e-bolt-shape--spacing--none {
+  padding: 0;
+}
+
+.e-bolt-shape--spacing--xsmall {
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+}
+
+.e-bolt-shape--spacing--small {
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+}
+
+.e-bolt-shape--spacing--medium {
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+}
