@@ -6,6 +6,8 @@
   // justify-content: center;
   // align-items: center;
   display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 
   // &__inner {
@@ -101,4 +103,20 @@
 
 .e-bolt-shape--spacing--medium {
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+}
+
+.e-bolt-shape--border_radius--none {
+  border-radius: none;
+}
+
+.e-bolt-shape--border_radius--small {
+  border-radius: bolt-border-radius(small);
+}
+
+.e-bolt-shape--border_radius--large {
+  border-radius: bolt-border-radius(large);
+}
+
+.e-bolt-shape--border_radius--full {
+  border-radius: bolt-border-radius(full);
 }

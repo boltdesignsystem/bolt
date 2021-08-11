@@ -1,5 +1,4 @@
 {% set schema = bolt.data.components['@bolt-elements-shape'].schema %}
-{% set sizes = schema.properties.size.enum %}
 {% set spacings = schema.properties.spacing.enum %}
 
 {% set svgIcon %}
@@ -10,16 +9,15 @@
 {% endset %}
 
 {% set description %}
-  An icon&rsquo;s size can be modified per use case.
+  An icon&rsquo;s spacing can be modified per use case. Spacing is a distance between outer content boundary and outer shape element border. 
 {% endset %}
 
 {% set notes %}
   <bolt-ul>
-    <bolt-li>Auto/undefined: 1em (same size as inline text)</bolt-li>
-    <bolt-li>Small: 16px</bolt-li>
-    <bolt-li>Medium: 24px</bolt-li>
-    <bolt-li>Large: 32px</bolt-li>
-    <bolt-li>Xlarge: 38px</bolt-li>
+    <bolt-li>None: 0</bolt-li>
+    <bolt-li>Xsmall: tbc</bolt-li>
+    <bolt-li>Small: tbc</bolt-li>
+    <bolt-li>Medium: tbc</bolt-li>
   </bolt-ul>
 {% endset %}
 
@@ -30,6 +28,7 @@
         {% include "@bolt-elements-shape/shape.twig" with {
           content: svgIcon,
           spacing: spacing,
+          border_radius: 'full',
           attributes: {
             class: [
               "t-bolt-navy-dark"
@@ -45,13 +44,19 @@
 {% verbatim %}
 {% include "@bolt-elements-shape/shape.twig" with {
   content: svgIcon,
+  spacing: 'medium',
+  border_radius: 'full',
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<svg class="ebolt-icon e-bolt-icon--size--xlarge" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="m0 0h24v24h-24z"/><g fill="var(--bolt-color-{{ color }}, var(--m-bolt-text))" transform="translate(1 1)"><path d="m11 20c-4.962 0-9-4.038-9-9s4.038-9 9-9 9 4.038 9 9-4.038 9-9 9m0-20c-6.063 0-11 4.938-11 11s4.938 11 11 11 11-4.938 11-11-4.938-11-11-11"/><path d="m15 10h-3v-3c0-.55-.45-1-1-1s-1 .45-1 1v3h-3c-.55 0-1 .45-1 1s.45 1 1 1h3v3c0 .55.45 1 1 1s1-.45 1-1v-3h3c.55 0 1-.45 1-1s-.45-1-1-1"/></g></g></svg>
+<span class="t-bolt-navy-dark e-bolt-shape e-bolt-shape--border_radius--full">
+  <span class="e-bolt-shape__inner"></span>
+      <svg class="ebolt-icon e-bolt-icon--size--xlarge" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="m0 0h24v24h-24z"/><g fill="var(--bolt-color-{{ color }}, var(--m-bolt-text))" transform="translate(1 1)"><path d="m11 20c-4.962 0-9-4.038-9-9s4.038-9 9-9 9 4.038 9 9-4.038 9-9 9m0-20c-6.063 0-11 4.938-11 11s4.938 11 11 11 11-4.938 11-11-4.938-11-11-11"/><path d="m15 10h-3v-3c0-.55-.45-1-1-1s-1 .45-1 1v3h-3c-.55 0-1 .45-1 1s.45 1 1 1h3v3c0 .55.45 1 1 1s1-.45 1-1v-3h3c.55 0 1-.45 1-1s-.45-1-1-1"/></g></g></svg>
+  </span>
+</span>
 {% endverbatim %}
 {% endset %}
 
