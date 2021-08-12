@@ -1,0 +1,53 @@
+{% set description %}
+Lorem
+{% endset %}
+
+{% set notes %}
+<bolt-ol>
+  <bolt-li>Lorem</bolt-li>
+</bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Demo Modal',
+  attributes: {
+    type: 'button',
+    'data-modal-trigger': 'modal-1',
+  }
+} only %}
+
+{% include "@bolt-components-modal-replacement/modal.twig" with {
+  content: "This is a modal",
+  attributes: {
+    class: "js-target-name"
+  },
+} only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Demo Modal',
+  attributes: {
+    type: 'button',
+    'data-modal-trigger': 'modal-1',
+  }
+} only %}
+
+{% include "@bolt-components-modal-replacement/modal.twig" with {
+  content: "This is a modal",
+  attributes: {
+    class: "js-target-name"
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Modal',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

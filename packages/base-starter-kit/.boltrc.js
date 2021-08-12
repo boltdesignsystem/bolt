@@ -47,6 +47,7 @@ module.exports = {
       '@bolt/components-logo',
       '@bolt/components-menu',
       '@bolt/components-modal',
+      '@bolt/components-modal-replacement',
       '@bolt/components-navbar',
       '@bolt/components-ol',
       '@bolt/components-pagination',
