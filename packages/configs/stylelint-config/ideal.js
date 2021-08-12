@@ -75,7 +75,12 @@ module.exports = {
     'block-no-empty': true,
     'block-opening-brace-newline-after': 'always-multi-line',
     'block-opening-brace-space-after': 'always-single-line',
-    'block-opening-brace-space-before': 'always',
+    'block-opening-brace-space-before': [
+      'always',
+      {
+        ignoreAtRules: ['if', 'else', 'elseif'],
+      },
+    ],
     'color-hex-case': 'lower',
     'color-hex-length': 'short',
     'color-no-invalid-hex': true,
@@ -91,6 +96,7 @@ module.exports = {
     'declaration-bang-space-before': 'always',
     'declaration-block-no-shorthand-property-overrides': true,
     'order/properties-order': [
+      'all',
       'content',
 
       // Display

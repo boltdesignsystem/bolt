@@ -43,9 +43,15 @@ module.exports = {
         },
       },
     },
+    subheadline: {
+      type: 'any',
+      description:
+        'Render the subheadline of the listing. This appears below the headline.',
+    },
     eyebrow_items: {
       type: 'array',
-      description: 'Render an array of eyebrow text for the listing.',
+      description:
+        'Render an array of eyebrow text for the listing. This appears above the headline',
     },
     meta_items: {
       type: 'array',
@@ -75,11 +81,28 @@ module.exports = {
         },
         replies: {
           type: 'string',
-          description: 'Set the count of replies.',
+          title: 'DEPRECATED',
+          description: 'Use number_items prop instead.',
+        },
+        replies_label: {
+          type: 'string',
+          title: 'DEPRECATED',
+          description: 'Use number_items prop instead.',
         },
         views: {
           type: 'string',
-          description: 'Set the count of views.',
+          title: 'DEPRECATED',
+          description: 'Use number_items prop instead.',
+        },
+        views_label: {
+          type: 'string',
+          title: 'DEPRECATED',
+          description: 'Use number_items prop instead.',
+        },
+        number_items: {
+          type: 'object',
+          description:
+            'Render custom number indicators. This will override reply count and view count.',
         },
       },
     },
@@ -92,6 +115,11 @@ module.exports = {
       type: 'any',
       description:
         'Render a popover share menu for the listing. Passing the Share component is mandatory.',
+    },
+    custom_menu: {
+      type: 'any',
+      description:
+        'Render a custom popover menu. This is completely freeform, unlike the pre-defined props like action_menu and share_menu. Assemble the popover and the menu components, and pass them to this prop.',
     },
     description: {
       type: 'any',

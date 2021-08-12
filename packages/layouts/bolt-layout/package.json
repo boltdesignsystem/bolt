@@ -1,0 +1,29 @@
+{
+  "name": "@bolt/layouts-layout",
+  "version": "4.2.0",
+  "description": "The foundational template of any given layout.",
+  "keywords": [
+    "bolt design system"
+  ],
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolt-design-system/bolt/tree/master/layouts/components/bolt-layout"
+  },
+  "license": "MIT",
+  "author": "Bolt Team",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/core-v3.x": "^4.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "schema": [
+    "layout.schema.js",
+    "layout-item.schema.js"
+  ],
+  "twig": "src/layout.twig"
+}

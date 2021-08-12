@@ -1,4 +1,4 @@
-{% if block("page_content") %}
+{% if block("page_content") is defined %}
   {% set mainContentBlock %}
     {{ block("page_content") }}
   {% endset %}
@@ -8,7 +8,7 @@
 
 <div class="c-bolt-site">
   {% block global_header %}
-    {% include '@pl/_main-site-page-header.twig' %}
+    {% include '@pl/_demo-main-site-page-header.twig' %}
   {% endblock %}
 
   <main class="c-bolt-site__content u-bolt-flex u-bolt-flex-col">

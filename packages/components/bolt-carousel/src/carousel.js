@@ -503,16 +503,19 @@ class BoltCarousel extends BoltElement {
       },
     );
 
-    const buttonTemplate = (text, iconName) => html`
-      <bolt-button
-        size="medium"
-        border-radius="full"
-        color="secondary"
-        icon-only
+    const buttonTemplate = iconName => html`
+      <span
+        class="e-bolt-button
+        e-bolt-button--medium
+        e-bolt-button--border-radius-full
+        e-bolt-button--secondary
+        e-bolt-button--icon-only"
+        aria-hidden="true"
       >
-        ${text}
-        <bolt-icon size="large" slot="before" name="${iconName}"></bolt-icon>
-      </bolt-button>
+        <span class="e-bolt-button__icon-center">
+          <bolt-icon size="large" name="${iconName}"></bolt-icon>
+        </span>
+      </span>
     `;
 
     return html`
@@ -543,7 +546,7 @@ class BoltCarousel extends BoltElement {
             >
               ${this.slotMap.get('previous-btn')
                 ? this.slotify('previous-btn')
-                : buttonTemplate('Previous', 'chevron-left')}
+                : buttonTemplate('chevron-left')}
             </div>
             <div
               class="${nextButton}"
@@ -552,7 +555,7 @@ class BoltCarousel extends BoltElement {
             >
               ${this.slotMap.get('next-btn')
                 ? this.slotify('next-btn')
-                : buttonTemplate('Next', 'chevron-right')}
+                : buttonTemplate('chevron-right')}
             </div>
           `}
     `;

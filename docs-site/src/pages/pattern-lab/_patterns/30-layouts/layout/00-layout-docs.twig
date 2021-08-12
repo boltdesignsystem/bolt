@@ -1,0 +1,24 @@
+<bolt-banner status="warning" class="u-bolt-margin-top-large">
+  <bolt-icon name="warning"></bolt-icon>&nbsp;<strong>This layout is in a testing phase, do not use any code examples from the docs for production sites.</strong>
+</bolt-banner>
+
+{# {% set usage %}{% verbatim %}
+{% set content %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: 'Layout item'
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: 'Layout item'
+  } only %}
+{% endset %}
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: content,
+  template: '75/25@from-small',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'layout',
+  componentGroup: 'layouts',
+  usage: usage
+} only %} #}

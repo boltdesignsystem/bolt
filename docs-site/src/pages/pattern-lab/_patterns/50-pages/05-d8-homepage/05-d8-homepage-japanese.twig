@@ -142,18 +142,34 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1@only-small" %}
-          {% include "@bolt/button-group.twig" with {
-            buttons: [
-              {
-                text: "会社概要",
-                hierarchy: "primary",
-                size: "small"
-              },
-              {
-                text: "ビジョンと主要な概念",
-                hierarchy: "secondary",
-                size: "small"
+
+          {% set button_cta_primary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: '会社概要',
+              hierarchy: "primary",
+              size: "small",
+              attributes: {
+                type: 'button'
               }
+            } only %}
+          {% endset %}
+
+          {% set button_cta_secondary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'ビジョンと主要な概念',
+              hierarchy: "secondary",
+              size: "small",
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: 'inline',
+            items: [
+              button_cta_primary,
+              button_cta_secondary,
             ]
           } only %}
         {% endcell %}
@@ -356,8 +372,11 @@
     {% block band_content %}
         {% grid "o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--center" %}
           {% cell "u-bolt-width-1/1 u-bolt-width-4/12@small" %}
-            {% include "@bolt/image.twig" with {
-              src: "/images/content/promos/promo-16x9-salesforce-vs-pega.png"
+            {% include "@bolt-elements-image/image.twig" with {
+              attributes: {
+                src: "/images/content/promos/promo-16x9-salesforce-vs-pega.png",
+                loading: "lazy",
+              }
             } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}

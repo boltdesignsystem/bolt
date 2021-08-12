@@ -1,4 +1,11 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-side-nav'].schema['side-nav-li'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
 {# Variables #}
+{% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set _link_attributes = create_attribute(link.attributes|default({})) %}
 
@@ -8,11 +15,7 @@
     {{ link.content }}
   </a>
   {% if children %}
-    <button type="button" {% if expanded == true %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %} aria-label="{{ 'Toggle children links'|t }}" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger" data-bolt-side-nav-toggle-trigger>
-      {% include '@bolt-components-icon/icon.twig' with {
-        name: 'chevron-down',
-      } only %}
-    </button>
+    <button type="button" {% if expanded == true %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %} aria-label="{{ 'Toggle children links'|t }}" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>
     {{ children }}
   {% endif %}
 </li>

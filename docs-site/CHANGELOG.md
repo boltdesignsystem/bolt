@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.1](https://github.com/bolt-design-system/bolt/compare/v4.2.0...v4.2.1) (2021-08-10)
+
+
+### Bug Fixes
+
+* side nav js classes and theme colors ([cc44f6c](https://github.com/bolt-design-system/bolt/commit/cc44f6c6aa7187a33dcea179da98ee14289f1631))
+
+
+
+
+
+# [4.2.0](https://github.com/bolt-design-system/bolt/compare/v4.1.1...v4.2.0) (2021-08-03)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [4.1.1](https://github.com/bolt-design-system/bolt/compare/v4.1.0...v4.1.1) (2021-07-27)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [4.1.0](https://github.com/bolt-design-system/bolt/compare/v4.0.2...v4.1.0) (2021-07-19)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [4.0.2](https://github.com/bolt-design-system/bolt/compare/v4.0.1...v4.0.2) (2021-07-15)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [4.0.1](https://github.com/bolt-design-system/bolt/compare/v4.0.0...v4.0.1) (2021-06-24)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
 # [4.0.0](https://github.com/bolt-design-system/bolt/compare/v4.0.0-beta-4...v4.0.0) (2021-06-23)
 
 **Note:** Version bump only for package @bolt/website

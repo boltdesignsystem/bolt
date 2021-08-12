@@ -93,6 +93,16 @@
       ]
     } only %}
   {% endset %}
+  {% set number_items %}
+    {% include '@bolt-components-listing-teaser/listing-teaser-status-number.twig' with {
+      number: '167',
+      label: 'Replies',
+    } only %}
+    {% include '@bolt-components-listing-teaser/listing-teaser-status-number.twig' with {
+      number: '6k',
+      label: 'Views',
+    } only %}
+  {% endset %}
   {% set listing_1 %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: icon_questions,
@@ -109,8 +119,7 @@
         'Last activity: 1 hour ago',
       ],
       status: {
-        replies: '5',
-        views: '216',
+        number_items: number_items,
       },
     } only %}
   {% endset %}
@@ -131,8 +140,7 @@
       ],
       status: {
         solved: true,
-        replies: '2',
-        views: '100',
+        number_items: number_items,
       },
     } only %}
   {% endset %}
@@ -153,8 +161,7 @@
       ],
       status: {
         locked: true,
-        replies: '12',
-        views: '561',
+        number_items: number_items,
       },
     } only %}
   {% endset %}
@@ -176,8 +183,7 @@
       status: {
         solved: true,
         locked: true,
-        replies: '35',
-        views: '1k',
+        number_items: number_items,
       },
     } only %}
   {% endset %}
@@ -214,8 +220,7 @@
         'Last activity: 8 hours 15 minutes ago',
       ],
       status: {
-        replies: '26',
-        views: '666',
+        number_items: number_items,
       },
       description: description
     } only %}
@@ -262,8 +267,7 @@
         'Last activity: 1 hour ago',
       ],
       status: {
-        replies: '5',
-        views: '216',
+        number_items: number_items,
       },
       reply: reply,
     } only %}
@@ -286,8 +290,7 @@
       status: {
         solved: true,
         locked: true,
-        replies: '2',
-        views: '56',
+        number_items: number_items,
       },
       action_menu: action_menu,
     } only %}
@@ -310,8 +313,7 @@
       status: {
         solved: true,
         locked: true,
-        replies: '2',
-        views: '56',
+        number_items: number_items,
       },
       action_menu: action_menu_alt,
     } only %}
@@ -383,8 +385,7 @@
     status: {
       solved: true,
       locked: true,
-      replies: '2',
-      views: '56',
+      number_items: number_items,
     },
     action_menu: demo_action_menu,
   } only %}

@@ -209,6 +209,13 @@ bolt-autosuggest {
   cursor: pointer;
   border: 0;
   transition: opacity 0.1s ease;
+
+  // overwrite .e-bolt-button--transparent hover and active transform
+  &:hover,
+  &:focus,
+  &:active:not(:disabled) {
+    transform: translateY(-50%);
+  }
 }
 
 .c-bolt-typeahead__button--clear {

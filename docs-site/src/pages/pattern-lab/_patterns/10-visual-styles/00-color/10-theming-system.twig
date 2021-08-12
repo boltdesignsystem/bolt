@@ -1,8 +1,17 @@
 {% set themes = [
-  "xlight",
-  "light",
-  "dark",
-  "xdark",
+  "white",
+  "black",
+  "gray-xlight",
+  "navy-dark",
+  "navy",
+  "navy-light",
+  "teal",
+  "yellow",
+  "orange",
+  "pink",
+  "wine",
+  "berry",
+  "violet",
 ] %}
 
 {% set content %}
@@ -36,113 +45,73 @@
             },
           } only %}
           <hr class="u-bolt-margin-top-none">
+          <bolt-text>
+            The theme colors are available for use within a container that has the <code>.t-bolt-{{ theme }}</code> class.
+          </bolt-text>
           <bolt-table>
             <table>
               <thead>
                 <tr>
                   <td></td>
-                  <th>Scss function</th>
-                  <th>Value</th>
+                  <th>CSS custom property</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th>Text</th>
-                  <td>var(--m-bolt-text)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--text"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}black{% else %}white{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--text"></span>&nbsp;&nbsp;var(--m-bolt-text)</td>
                 </tr>
                 <tr>
                   <th>Background</th>
-                  <td>var(--m-bolt-bg)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--background"></span>&nbsp;&nbsp;{% if theme == "xlight" %}white{% elseif theme == "light" %}gray, xlight{% elseif theme == "dark" %}navy{% else %}navy, dark{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--background"></span>&nbsp;&nbsp;var(--m-bolt-bg)</td>
                 </tr>
                 <tr>
                   <th>Primary</th>
-                  <td>var(--m-bolt-primary)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--primary"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy, light{% else %}yellow{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--primary"></span>&nbsp;&nbsp;var(--m-bolt-primary)</td>
                 </tr>
                 <tr>
                   <th>Text on Primary</th>
-                  <td>var(--m-bolt-text-on-primary)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--text-on-primary"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}white{% else %}black{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--text-on-primary"></span>&nbsp;&nbsp;var(--m-bolt-text-on-primary)</td>
                 </tr>
                 <tr>
                   <th>Secondary</th>
-                  <td>var(--m-bolt-secondary)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--secondary"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}white{% else %}white{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--secondary"></span>&nbsp;&nbsp;var(--m-bolt-secondary)</td>
                 </tr>
                 <tr>
                   <th>Text on Secondary</th>
-                  <td>var(--m-bolt-text-on-secondary)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--text-on-secondary"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy{% else %}navy{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--text-on-secondary"></span>&nbsp;&nbsp;var(--m-bolt-text-on-secondary)</td>
                 </tr>
                 <tr>
                   <th>Tertiary</th>
-                  <td>var(--m-bolt-tertiary)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--tertiary"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray, 15%{% else %}white, 15%{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--tertiary"></span>&nbsp;&nbsp;var(--m-bolt-tertiary)</td>
                 </tr>
                 <tr>
                   <th>Text on Tertiary</th>
-                  <td>var(--m-bolt-text-on-tertiary)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--text-on-tertiary"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy{% else %}white{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--text-on-tertiary"></span>&nbsp;&nbsp;var(--m-bolt-text-on-tertiary)</td>
                 </tr>
                 <tr>
                   <th>Link Text</th>
-                  <td>var(--m-bolt-link)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--link"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy, light{% else %}white{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--link"></span>&nbsp;&nbsp;var(--m-bolt-link)</td>
                 </tr>
                 <tr>
                   <th>Disabled</th>
-                  <td>var(--m-bolt-text-on-disabled)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--text-disabled"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray{% else %}gray{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--text-disabled"></span>&nbsp;&nbsp;var(--m-bolt-text-on-disabled)</td>
                 </tr>
                 <tr>
                   <th>Text on Disabled</th>
-                  <td>var(--m-bolt-disabled)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--disabled"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray, light{% else %}gray, light{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--disabled"></span>&nbsp;&nbsp;var(--m-bolt-disabled)</td>
                 </tr>
                 <tr>
                   <th>Headline Text</th>
-                  <td>var(--m-bolt-headline)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--headline"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}navy{% else %}white{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--headline"></span>&nbsp;&nbsp;var(--m-bolt-headline)</td>
                 </tr>
                 <tr>
                   <th>Border</th>
-                  <td>var(--m-bolt-border)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--border"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray, 15%{% else %}white, 15%{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--border"></span>&nbsp;&nbsp;var(--m-bolt-border)</td>
                 </tr>
                 <tr>
                   <th>Neutral</th>
-                  <td>var(--m-bolt-neutral)</td>
-                  <td>
-                    <span class="c-bds-color-chip c-bds-color-chip--neutral"></span>&nbsp;&nbsp;{% if theme == "xlight" or theme == "light" %}gray{% else %}gray{% endif %}
-                  </td>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--neutral"></span>&nbsp;&nbsp;var(--m-bolt-neutral)</td>
                 </tr>
               </tbody>
             </table>
@@ -178,10 +147,24 @@
                 size: "xxxlarge",
                 text: "Headline Text",
               } only %}
+              {% set link %}
+                {% set icon_chevron_right %}
+                  {% include "@bolt-components-icon/icon.twig" with {
+                    name: "chevron-right",
+                  } only %}
+                {% endset %}
+                {% include "@bolt-elements-text-link/text-link.twig" with {
+                  content: "Headline Text Link",
+                  reversed_underline: true,
+                  icon_after: icon_chevron_right,
+                  attributes: {
+                    href: "https://pega.com",
+                  }
+                } only %}
+              {% endset %}
               {% include "@bolt-components-headline/headline.twig" with {
                 size: "xxxlarge",
-                text: "Headline Text Link",
-                url: "https://pega.com",
+                text: link,
               } only %}
             </bolt-card-replacement-body>
           </bolt-card-replacement>
@@ -198,9 +181,16 @@
               {% include "@bolt-components-headline/text.twig" with {
                 text: "Body text",
               } only %}
+              {% set link %}
+                {% include "@bolt-elements-text-link/text-link.twig" with {
+                  content: "Body Text Link",
+                  attributes: {
+                    href: "https://pega.com",
+                  }
+                } only %}
+              {% endset %}
               {% include "@bolt-components-headline/text.twig" with {
-                text: "Body text link",
-                url: "https://pega.com",
+                text: link,
               } only %}
             </bolt-card-replacement-body>
           </bolt-card-replacement>

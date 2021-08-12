@@ -1,7 +1,5 @@
 import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 // @ts-ignore
-import buttonSchema from '@bolt/components-button/button.schema';
-// @ts-ignore
 import textSchema from '@bolt/components-text/text.schema';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
 // @ts-ignore
@@ -25,12 +23,6 @@ import linkSchema from '@bolt/components-link/link.schema';
 import { isChildOfEl, convertSchemaPropToTrait, getStepsLorem } from './utils';
 
 class EditorRegisterBoltError extends Error {}
-
-const smallButton = {
-  id: 'bolt-button--small',
-  title: 'Button',
-  content: `<bolt-button size="small">Button</bolt-button>`,
-};
 
 const basicText = {
   id: 'bolt-text',
@@ -130,7 +122,6 @@ const basicSlottableComponents = [
   statusBar,
   statusBarAlert,
   icon,
-  smallButton,
   basicText,
   cta,
   link,
@@ -195,7 +186,7 @@ export function setupBolt(editor) {
 
   /**
    * @param {Object} opt
-   * @param {string} opt.name i.e. `bolt-button`
+   * @param {string} opt.name i.e. `bolt-link`
    * @param {string} [opt.blockTitle] only used if `registerBlock` is `true`
    * @param {import('./utils').JsonSchema} [opt.schema]
    * @param {string[]} [opt.initialContent] HTML for when block is added
@@ -211,7 +202,7 @@ export function setupBolt(editor) {
    * @param {string[]} [opt.propsToTraits=[]] Json Schema properties keys to auto-add to traits via `convertSchemaPropToTrait`
    * @param {grapesjs.GrapeTrait[]} [opt.extraTraits=[]] Full Trait objects that need more custom attention than `propsToTraits`
    * @param {(el: HTMLElement) => boolean} [opt.isComponent] - function to determine if an HTMLElement is this component. Defaults to seeing if tag name is component name
-   * @param {Object.<string, boolean|string>} [opt.slots={ default: true }] - Which slots are available and what can go in them. For example `{ default: true, top: 'bolt-text, bolt-button' }` would let any element be placed as a direct child (the `default` slot) and the `top` slot would only accept `<bolt-text>` or `<bolt-button>`. Those values are passed right to Grape JS's `droppable`.
+   * @param {Object.<string, boolean|string>} [opt.slots={ default: true }] - Which slots are available and what can go in them. For example `{ default: true, top: 'bolt-text, bolt-link' }` would let any element be placed as a direct child (the `default` slot) and the `top` slot would only accept `<bolt-text>` or `<bolt-link>`. Those values are passed right to Grape JS's `droppable`.
    * @param {SlotControl[]} [opt.slotControls]
    * @param {removalEventsToFireOnParents[]} [opt.removalEventsToFireOnParents=[]]
    * @returns {{ component: Object, block: Object }} instances from registering @todo fill out types
@@ -358,48 +349,6 @@ export function setupBolt(editor) {
       block: null,
     };
   }
-
-  // schema has it as `style` but web component uses it as `color` since `style` is a reserved HTML attribute; see http://vjira2:8080/browse/BDS-721 & http://vjira2:8080/browse/BDS-1104
-  const colorTrait = convertSchemaPropToTrait({
-    prop: buttonSchema.properties.style,
-    name: 'color',
-  });
-  colorTrait.label = 'Color';
-
-  registerBoltComponent({
-    name: 'bolt-button',
-    registerBlock: true,
-    schema: buttonSchema,
-    extend: 'text',
-    initialContent: ['<span>Button</span>'],
-    propsToTraits: ['size', 'width', 'border_radius'],
-    extraTraits: [
-      colorTrait,
-      {
-        label: 'On Click',
-        name: 'on-click',
-        type: 'select',
-        options: ['none', 'show'],
-        default: 'none',
-      },
-      {
-        label: 'On Click Target',
-        name: 'on-click-target',
-        type: 'string',
-      },
-      {
-        label: 'Url',
-        name: 'url',
-        type: 'string',
-      },
-      {
-        label: 'Disabled',
-        name: 'disabled',
-        type: 'checkbox',
-        default: false,
-      },
-    ],
-  });
 
   registerBoltComponent({
     name: 'bolt-text',

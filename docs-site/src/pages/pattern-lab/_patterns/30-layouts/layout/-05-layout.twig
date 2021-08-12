@@ -1,0 +1,68 @@
+{% include '@pl/00-layout-docs.twig' %}
+
+{% set notes %}
+  Layout is versatile enough to handle a variety of page layouts. <a href="{{ link['layouts-layout-full-page-use-case'] }}" class="e-bolt-text-link">View full page use case<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+{% endset %}
+
+{% set demo %}
+  {% set layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: '<bolt-placeholder>Layout item</bolt-placeholder>'
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: '<bolt-placeholder>Layout item</bolt-placeholder>'
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_items,
+    template: [
+      '67/33@from-small',
+      '75/25@from-medium',
+    ],
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up the layout items
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: 'Layout item'
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: 'Layout item'
+  } only %}
+{% endset %}
+
+// Pass layout items to the content prop
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  template: [
+    '67/33@from-small',
+    '75/25@from-medium',
+  ],
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-layout template="67/33@from-small 75/25@from-medium">
+  <bolt-layout-item>
+    <!-- Content goes here -->
+  </bolt-layout-item>
+  <bolt-layout-item>
+    <!-- Content goes here -->
+  </bolt-layout-item>
+</bolt-layout>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Layout',
+  description: 'A layout is the core foundation of any given page. It creates the responsive framework for single-column and multi-column design.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
