@@ -586,7 +586,6 @@
 {% set flat_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: flat_lv2_ul_content,
-    flat: true,
   } only %}
 {% endset %}
 
@@ -614,6 +613,7 @@
       content: 'Why Pega?',
     },
     children: flat_lv2,
+    flat: true,
   },
   {
     link: {
@@ -626,6 +626,7 @@
       content: 'Events',
     },
     children: flat_lv2,
+    flat: true,
   },
   {
     link: {
@@ -654,6 +655,21 @@
 {% set notification_1 %}
   {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
     headline: {
+      text: 'You registered for PegaWorld 2022',
+      tag: 'p',
+      size: 'xsmall',
+      link_attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    meta_items: [
+      'Jun 9, 2021',
+    ],
+  } only %}
+{% endset %}
+{% set notification_2 %}
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    headline: {
       text: 'Joe Smith answered your question',
       tag: 'p',
       size: 'xsmall',
@@ -667,7 +683,7 @@
     reply: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus esse placeat tempore, odio...',
   } only %}
 {% endset %}
-{% set notification_2 %}
+{% set notification_3 %}
   {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
     headline: {
       text: 'Amy Smart replied to your comment',
@@ -683,7 +699,7 @@
     reply: 'Dignissimos qui deserunt, delectus incidunt cupiditate saepe soluta nisi architecto at...',
   } only %}
 {% endset %}
-{% set notification_3 %}
+{% set notification_4 %}
   {% set signifier %}
   {% endset %}
   {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
@@ -701,6 +717,24 @@
     ],
   } only %}
 {% endset %}
+{% set notification_5 %}
+  {% set signifier %}
+  {% endset %}
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    signifier: icon_academy,
+    headline: {
+      text: 'New Gartner CRM CEC Magic Quadrant analyst report published',
+      tag: 'p',
+      size: 'xsmall',
+      link_attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    meta_items: [
+      'Jan 23, 2020',
+    ],
+  } only %}
+{% endset %}
 
 {% set notifications_popover_lv2_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
@@ -714,6 +748,12 @@
   } only %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     content: notification_3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    content: notification_4,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    content: notification_5,
   } only %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
