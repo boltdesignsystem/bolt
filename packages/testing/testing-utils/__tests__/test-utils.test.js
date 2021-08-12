@@ -25,7 +25,6 @@ describe('test-utils', () => {
 
   test('getPkgDependents', () => {
     const dependents = tu.getPkgDependents('@bolt/components-grid');
-    console.log(dependents);
     expect(dependents).toEqual([
       '@bolt/starter-kit',
       '@bolt/components-band',
