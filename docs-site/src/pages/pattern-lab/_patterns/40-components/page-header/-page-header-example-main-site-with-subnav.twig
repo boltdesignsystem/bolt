@@ -14,6 +14,11 @@
     name: 'menu',
   } only %}
 {% endset %}
+{% set icon_bell_solid %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'bell-solid',
+  } only %}
+{% endset %}
 
 {# Site nav #}
 {% set demos_lv3_ul_content %}
@@ -646,6 +651,90 @@
 {% endset %}
 
 {# User nav #}
+{% set notification_1 %}
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    headline: {
+      text: 'Joe Smith answered your question',
+      tag: 'p',
+      size: 'xsmall',
+      link_attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    meta_items: [
+      'Apr 9, 2020',
+    ],
+    reply: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus esse placeat tempore, odio...',
+  } only %}
+{% endset %}
+{% set notification_2 %}
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    headline: {
+      text: 'Amy Smart replied to your comment',
+      tag: 'p',
+      size: 'xsmall',
+      link_attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    meta_items: [
+      'Apr 8, 2020',
+    ],
+    reply: 'Dignissimos qui deserunt, delectus incidunt cupiditate saepe soluta nisi architecto at...',
+  } only %}
+{% endset %}
+{% set notification_3 %}
+  {% set signifier %}
+  {% endset %}
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    signifier: icon_academy,
+    headline: {
+      text: 'You have earned the Awesome badge!',
+      tag: 'p',
+      size: 'xsmall',
+      link_attributes: {
+        href: 'https://pega.com',
+      },
+    },
+    meta_items: [
+      'Apr 7, 2020',
+    ],
+  } only %}
+{% endset %}
+
+{% set notifications_popover_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    content: '<strong>Notifications</strong> <span class="c-bolt-page-header__counter">10+</span>'
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    content: notification_1,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    content: notification_2,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    content: notification_3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Go to Notification Center',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+{% endset %}
+
+{% set notifications_popover_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: notifications_popover_lv2_ul_content,
+    popover_position: 'edge-end',
+    attributes: {
+      style: '--c-bolt-page-header-desktop-popover-width: 320px',
+    }
+  } only %}
+{% endset %}
+
 {% set user_flag %}
   <div class="c-bolt-page-header__user-flag">
     <img src="/images/docs/500x500.jpg" alt="Portrait of Alan" class="c-bolt-page-header__user-flag__img">
@@ -784,16 +873,41 @@
 {% endset %}
 
 {% set user_nav_lv1_ul_content %}
+  {% set user_settings_label %}
+    <span class="c-bolt-page-header__nav-link__content__icon">{{ icon_user }}</span>
+    <span class="c-bolt-page-header__nav-link__content__text"><span aria-hidden="true">Hello Alan</span> <span class="u-bolt-visuallyhidden">User settings</span></span>
+  {% endset %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: icon_user ~ '<span aria-hidden="true">Hello Alan</span>' ~ '<span class="u-bolt-visuallyhidden">User settings</span>',
+      content: user_settings_label,
     },
     children: user_popover_lv2,
     popover: true,
   } only %}
+  {% set counter %}
+    <span class="c-bolt-page-header__counter"></span>
+  {% endset %}
+
+  {% set notifications_label %}
+    <span class="c-bolt-page-header__nav-link__content__icon">{{ icon_bell_solid }}</span>
+    <span class="c-bolt-page-header__nav-link__content__text">Notifications</span>
+    <span class="c-bolt-page-header__counter"></span>
+  {% endset %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: icon_global ~ 'English',
+      content: notifications_label,
+    },
+    children: notifications_popover_lv2,
+    popover: true,
+  } only %}
+
+  {% set language_label %}
+    <span class="c-bolt-page-header__nav-link__content__icon">{{ icon_global }}</span>
+    <span class="c-bolt-page-header__nav-link__content__text">English</span>
+  {% endset %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: language_label,
     },
     children: language_popover_lv2,
     popover: true,
@@ -898,9 +1012,14 @@
       },
     },
   } only %}
+
+  {% set pega_sites_label %}
+    <span class="c-bolt-page-header__nav-link__content__icon">{{ icon_menu }}</span>
+    <span class="c-bolt-page-header__nav-link__content__text">Pega Sites</span>
+  {% endset %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: icon_menu ~ 'More' ~ ' <span class="u-bolt-visuallyhidden">Pega Sites</span>',
+      content: pega_sites_label,
     },
     children: more_pega_sites_nav_lv3,
     popover: true,

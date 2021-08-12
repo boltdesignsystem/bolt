@@ -135,14 +135,15 @@
     position: absolute;
     top: 0;
     font-family: var(--bolt-type-font-family-headline);
-    font-size: var(--bolt-type-font-size-xxsmall);
+    font-size: var(--bolt-type-font-size-xsmall);
     font-weight: var(--bolt-type-font-weight-semibold);
-    line-height: var(--bolt-type-line-height-xxsmall);
+    line-height: var(--bolt-type-line-height-xsmall);
 
     .c-bolt-page-header__nav-link {
       @include bolt-button-native-styles-reset;
 
       display: block;
+      min-height: $bolt-page-header-desktop-util-nav-height;
       padding: 0 var(--bolt-spacing-x-xsmall);
       font-family: var(--bolt-type-font-family-headline);
       color: var(--m-bolt-link);
@@ -161,7 +162,27 @@
     }
 
     .c-bolt-page-header__nav-link__content {
-      grid-gap: var(--bolt-spacing-x-xxsmall);
+      position: relative;
+      // grid-template-columns: none;
+
+      .c-bolt-page-header__nav-link__content__icon {
+        display: grid;
+        place-items: center;
+        font-size: var(--bolt-type-font-size-medium);
+        line-height: 1;
+      }
+
+      .c-bolt-page-header__nav-link__content__icon
+        + .c-bolt-page-header__nav-link__content__text {
+        margin-left: var(--bolt-spacing-x-xxsmall);
+      }
+
+      .c-bolt-page-header__counter {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate3d(0.75em, 50%, 0);
+      }
     }
 
     .c-bolt-page-header__nav-content {
@@ -213,8 +234,8 @@
 
           min-height: auto;
           padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
-          font-size: var(--bolt-type-font-size-xxsmall);
-          line-height: var(--bolt-type-line-height-xxsmall);
+          font-size: var(--bolt-type-font-size-xsmall);
+          line-height: var(--bolt-type-line-height-xsmall);
           border-radius: 0;
 
           &:hover,
@@ -252,7 +273,11 @@
         ~ .c-bolt-page-header__nav-list {
         visibility: visible;
         opacity: 1;
-        transform: translate3d(0, calc(var(--bolt-spacing-y-medium) - 2px), 0);
+        transform: translate3d(
+          0,
+          calc(#{$bolt-page-header-desktop-util-nav-height} - 2px),
+          0
+        );
       }
 
       > .c-bolt-page-header__nav-list--edge-start {
