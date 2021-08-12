@@ -1,0 +1,67 @@
+{% set schema = bolt.data.components["@bolt-elements-shape"].schema %}
+{% set radius = schema.properties.border_radius.enum %}
+
+{% set image_sample %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/400x225',
+      width: 200,
+      height: 100,
+    },
+  } only %}
+{% endset %}
+
+{% set description %}
+  A shape with an image as a content.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>An image can be set as a content inside a shape element.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    {% for border_radius in radius %}
+      <bolt-list-item>
+        {% include "@bolt-elements-shape/shape.twig" with {
+          content: image_sample,
+          border_radius: border_radius,
+          spacing: 'medium',
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include "@bolt-elements-shape/shape.twig" with {
+  content: image_sample,
+  spacing: 'medium',
+  border_radius: 'full',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<span class="e-bolt-shape e-bolt-shape--spacing--medium e-bolt-shape--border_radius--full">
+  <span class="e-bolt-shape__inner">
+    <img alt="Alt text." src="path/image.jpg" width=200 height=100 class="e-bolt-image">
+  </span>
+</span>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Shape With An Image',
+  description: description,
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

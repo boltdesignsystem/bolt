@@ -7,6 +7,12 @@
   position: relative;
   background-color: var(--m-bolt-bg);
 
+  &__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &:before {
     content: '';
     display: block;
@@ -22,20 +28,30 @@
   }
 }
 
+//shape inner sizes
+
 .e-bolt-shape--size--small {
-  width: 16px;
-  height: 16px;
+  .e-bolt-shape__inner {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .e-bolt-shape--size--medium {
-  width: 24px;
-  height: 24px;
+  .e-bolt-shape__inner {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .e-bolt-shape--size--large {
-  width: 32px;
-  height: 32px;
+  .e-bolt-shape__inner {
+    width: 32px;
+    height: 32px;
+  }
 }
+
+//shape spacings
 
 .e-bolt-shape--spacing--none {
   padding: 0;
@@ -53,6 +69,8 @@
   padding: var(--bolt-spacing-x-medium);
 }
 
+//shape border radiuses
+
 .e-bolt-shape--border_radius--none {
   border-radius: none;
 }
@@ -64,6 +82,10 @@
     content: '';
     border-radius: bolt-border-radius(small);
   }
+
+  .e-bolt-image {
+    border-radius: bolt-border-radius(small);
+  }
 }
 
 .e-bolt-shape--border_radius--large {
@@ -73,6 +95,10 @@
     content: '';
     border-radius: bolt-border-radius(large);
   }
+
+  .e-bolt-image {
+    border-radius: bolt-border-radius(large);
+  }
 }
 
 .e-bolt-shape--border_radius--full {
@@ -80,6 +106,10 @@
 
   &:before {
     content: '';
+    border-radius: bolt-border-radius(full);
+  }
+
+  .e-bolt-image {
     border-radius: bolt-border-radius(full);
   }
 }

@@ -1,0 +1,55 @@
+{% set schema = bolt.data.components['@bolt-elements-shape'].schema %}
+{% set spacings = schema.properties.spacing.enum %}
+
+{% set description %}
+  A shape&rsquo;s spacing can be modified per use case. Spacing is a distance between outer content boundary and outer shape element edges. 
+{% endset %}
+
+{% set notes %}
+  <bolt-ul>
+    <bolt-li>None: 0</bolt-li>
+    <bolt-li>Xsmall: 6px</bolt-li>
+    <bolt-li>Small: 12px</bolt-li>
+    <bolt-li>Medium: 24px</bolt-li>
+  </bolt-ul>
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    {% for spacing in spacings %}
+      <bolt-list-item>
+        {% include "@bolt-elements-shape/shape.twig" with {
+          content: 'This is a shape',
+          spacing: spacing,
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include "@bolt-elements-shape/shape.twig" with {
+  content: 'This is a shape',
+  spacing: 'medium',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<span class="e-bolt-shape e-bolt-shape--spacing--medium">
+  <span class="e-bolt-shape__inner">This is a shape</span>
+</span>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Shape Spacing Variations',
+  description: description,
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

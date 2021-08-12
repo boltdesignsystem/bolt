@@ -1,0 +1,28 @@
+{% set schema = bolt.data.components["@bolt-elements-shape"].schema %}
+{% set sizes = schema.properties.size.enum %}
+{% set border_radiuses = schema.properties.border_radius.enum %}
+{% set spacings = schema.properties.spacing.enum %}
+
+{# This is just for testing purposes, feel free to re-purpose these loops to demo individual props #}
+{% for spacing in spacings %}
+  {% include "@bolt-elements-shape/shape.twig" with {
+    content: "11",
+    spacing: spacing
+  } only %}
+{% endfor %}
+
+{# This is just for testing purposes, feel free to re-purpose these loops to demo individual props #}
+{% for size in sizes %}
+  {% include "@bolt-elements-shape/shape.twig" with {
+    content: "11",
+    size: size
+  } only %}
+{% endfor %}
+
+{# This is just for testing purposes, feel free to re-purpose these loops to demo individual props #}
+{% for border_radius in border_radiuses %}
+  {% include "@bolt-elements-shape/shape.twig" with {
+    content: "11",
+    border_radius: border_radius
+  } only %}
+{% endfor %}

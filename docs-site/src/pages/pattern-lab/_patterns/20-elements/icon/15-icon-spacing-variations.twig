@@ -1,7 +1,7 @@
 {% set schema = bolt.data.components['@bolt-elements-shape'].schema %}
 {% set spacings = schema.properties.spacing.enum %}
 
-{% set svgIcon %}
+{% set svg_icon %}
   {% include "@bolt-elements-icon/icon.twig" with {
     name: 'add-open',
     size: 'xlarge',
@@ -26,7 +26,7 @@
     {% for spacing in spacings %}
       <bolt-list-item>
         {% include "@bolt-elements-shape/shape.twig" with {
-          content: svgIcon,
+          content: svg_icon,
           spacing: spacing,
           border_radius: 'full',
           attributes: {
@@ -43,7 +43,7 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include "@bolt-elements-shape/shape.twig" with {
-  content: svgIcon,
+  content: svg_icon,
   spacing: 'medium',
   border_radius: 'full',
   attributes: {

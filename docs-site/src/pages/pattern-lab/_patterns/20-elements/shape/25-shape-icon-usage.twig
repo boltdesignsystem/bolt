@@ -1,0 +1,63 @@
+{% set schema = bolt.data.components["@bolt-elements-shape"].schema %}
+{% set radius = schema.properties.border_radius.enum %}
+
+{% set svg_icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'academy',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+
+{% set description %}
+  A shape with an icon as a content.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use icons form Pega icons library.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    {% for border_radius in radius %}
+      <bolt-list-item>
+        {% include "@bolt-elements-shape/shape.twig" with {
+          content: svg_icon,
+          border_radius: border_radius,
+          spacing: 'medium',
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include "@bolt-elements-shape/shape.twig" with {
+  content: svg_icon,
+  spacing: 'medium',
+  border_radius: 'full',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<span class="e-bolt-shape e-bolt-shape--spacing--medium e-bolt-shape--border_radius--full">
+  <span class="e-bolt-shape__inner">
+    <svg class="e-bolt-icon e-bolt-icon--xlarge" viewBox="0 0 28 32" xmlns="http://www.w3.org/2000/svg"><path d="m16 32a.37.37 0 0 1 -.3-.1c-.2 0-13.7-5.1-13.7-20.2v-10.8a.92.92 0 0 1 1-.9h26a1 1 0 0 1 1 .9v10.8c0 15.1-13.5 20.2-13.7 20.2a.37.37 0 0 1 -.3.1zm-12.1-30.1v9.8c0 12.5 10.1 17.5 12.1 18.3 2-.9 12.1-5.7 12.1-18.3v-9.8zm10.5 16.6a.91.91 0 0 1 -.7-.3l-3.7-3.7a.85.85 0 0 1 0-1.3 1 1 0 0 1 1.4 0l3 3 6.3-6.1a1 1 0 0 1 1.4 0 .85.85 0 0 1 0 1.3l-7 6.8a1.08 1.08 0 0 1 -.7.3z" fill="var(--bolt-color-{{ color }}, var(--m-bolt-text))" fill-rule="evenodd" transform="translate(-2)"/></svg>
+  </span>
+</span>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Shape With An Icon',
+  description: description,
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

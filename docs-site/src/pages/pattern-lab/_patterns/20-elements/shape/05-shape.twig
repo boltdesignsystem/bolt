@@ -1,28 +1,43 @@
 {% set schema = bolt.data.components["@bolt-elements-shape"].schema %}
-{% set sizes = schema.properties.size.enum %}
-{% set border_radiuses = schema.properties.border_radius.enum %}
-{% set spacings = schema.properties.spacing.enum %}
 
-{# This is just for testing purposes, feel free to re-purpose these loops to demo individual props #}
-{% for spacing in spacings %}
-  {% include "@bolt-elements-shape/shape.twig" with {
-    content: "11",
-    spacing: spacing
-  } only %}
-{% endfor %}
+{% set description %}
+  A shape can be used as with various border-radius, colors, spacings.
+{% endset %}
 
-{# This is just for testing purposes, feel free to re-purpose these loops to demo individual props #}
-{% for size in sizes %}
-  {% include "@bolt-elements-shape/shape.twig" with {
-    content: "11",
-    size: size
-  } only %}
-{% endfor %}
+{% set notes %}
+  <bolt-ol>
+    <bolt-li><bolt-code-snippet display="inline">Content</bolt-code-snippet> can be letter initials, icons or images etc.</bolt-li>
+  </bolt-ol>
+{% endset %}
 
-{# This is just for testing purposes, feel free to re-purpose these loops to demo individual props #}
-{% for border_radius in border_radiuses %}
-  {% include "@bolt-elements-shape/shape.twig" with {
-    content: "11",
-    border_radius: border_radius
+{% set demo %}
+  {% include '@bolt-elements-shape/shape.twig' with {
+    content: 'This is a shape',
   } only %}
-{% endfor %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-icon/icon.twig' with {
+  name: 'This is a shape',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<span class="e-bolt-shape">
+  <span class="e-bolt-shape__inner">This is a shape</span>
+</span>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Shape',
+  description: description,
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
