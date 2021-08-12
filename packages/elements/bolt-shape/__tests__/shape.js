@@ -1,6 +1,7 @@
 import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../shape.schema';
-const { variant } = schema.properties;
+// eslint-disable-next-line camelcase
+const { border_radius, spacing, size } = schema.properties;
 let page, fixtures;
 
 afterAll(async () => {
@@ -21,7 +22,7 @@ beforeAll(async () => {
   });
 
   const defaultData = {
-    content: 'BDS',
+    content: 'This is a shape',
   };
 
   fixtures = {
@@ -40,12 +41,34 @@ describe('Bolt Shape', () => {
   });
 });
 
-describe('Bolt Shape Props', () => {
-  variant.enum.forEach(async option => {
-    test(`variant items: ${option}`, async () => {
+describe('Bolt Shape Prop -', () => {
+  border_radius.enum.forEach(async option => {
+    test(`border_radius items: ${option}`, async () => {
       const results = await render('@bolt-elements-shape/shape.twig', {
         ...fixtures.defaultData,
-        variant: option,
+        border_radius: option,
+      });
+
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
+  });
+  spacing.enum.forEach(async option => {
+    test(`spacing: ${option}`, async () => {
+      const results = await render('@bolt-components-banner/banner.twig', {
+        ...fixtures.defaultData,
+        spacing: option,
+      });
+
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
+  });
+  size.enum.forEach(async option => {
+    test(`size: ${option}`, async () => {
+      const results = await render('@bolt-components-banner/banner.twig', {
+        ...fixtures.defaultData,
+        size: option,
       });
 
       await expect(results.ok).toBe(true);
