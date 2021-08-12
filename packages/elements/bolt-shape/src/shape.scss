@@ -1,11 +1,25 @@
 @import '@bolt/core-v3.x';
 
 .e-bolt-shape {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   position: relative;
   background-color: var(--m-bolt-bg);
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-color: var(--bolt-color-gray);
+  }
 }
 
 .e-bolt-shape--size--small {
@@ -45,12 +59,27 @@
 
 .e-bolt-shape--border_radius--small {
   border-radius: bolt-border-radius(small);
+
+  &:before {
+    content: '';
+    border-radius: bolt-border-radius(small);
+  }
 }
 
 .e-bolt-shape--border_radius--large {
   border-radius: bolt-border-radius(large);
+
+  &:before {
+    content: '';
+    border-radius: bolt-border-radius(large);
+  }
 }
 
 .e-bolt-shape--border_radius--full {
   border-radius: bolt-border-radius(full);
+
+  &:before {
+    content: '';
+    border-radius: bolt-border-radius(full);
+  }
 }
