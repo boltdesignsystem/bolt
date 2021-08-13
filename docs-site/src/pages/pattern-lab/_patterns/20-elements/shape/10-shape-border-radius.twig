@@ -1,0 +1,43 @@
+{% set schema = bolt.data.components['@bolt-elements-shape'].schema %}
+{% set border_radius_options = schema.properties.border_radius.enum %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    {% for border_radius in border_radius_options %}
+      <bolt-list-item>
+        {% include "@bolt-elements-shape/shape.twig" with {
+          content: 'MM',
+          border_radius: border_radius,
+          size: 'large',
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include "@bolt-elements-shape/shape.twig" with {
+  border_radius: 'full',
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<span class="e-bolt-shape e-bolt-shape--border-radius-full">
+  <span class="e-bolt-shape__content">
+    <!-- Letters, icon, or image go here -->
+  </span>
+</span>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Shape Border Radius',
+  description: 'A Shape&rsquo;s border radius can be modified to create various shapes.',
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

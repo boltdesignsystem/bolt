@@ -19,13 +19,13 @@
 
 {% set classes = [
   'e-bolt-shape',
-  this.data.border_radius.value != schema.properties.border_radius.default ? 'e-bolt-shape--border_radius--' ~ this.data.border_radius.value,
-  size ? 'e-bolt-shape--size--' ~ size,
-  this.data.spacing.value != schema.properties.spacing.default ? 'e-bolt-shape--spacing--' ~ this.data.spacing.value
+  this.data.size ? 'e-bolt-shape--' ~ this.data.size.value,
+  this.data.spacing ? 'e-bolt-shape--spacing-' ~ this.data.spacing.value,
+  this.data.border_radius ? 'e-bolt-shape--border-radius-' ~ this.data.border_radius.value,
 ] %}
 
 <span {{ attributes.addClass(classes) }}>
-  <span class="e-bolt-shape__inner">
+  <span class="e-bolt-shape__content">
     {{ content }}
   </span>
 </span>

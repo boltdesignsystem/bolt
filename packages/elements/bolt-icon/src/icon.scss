@@ -1,30 +1,25 @@
 @import '@bolt/core-v3.x';
 
 .e-bolt-icon {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9;
-  width: 1em;
-  height: 1em;
+  --e-bolt-icon-size: 1em;
+  display: inline-block;
+  width: var(--e-bolt-icon-size);
+  height: var(--e-bolt-icon-size);
+  vertical-align: middle;
 }
 
 .e-bolt-icon--small {
-  width: 16px;
-  height: 16px;
+  --e-bolt-icon-size: 1rem;
 }
 
 .e-bolt-icon--medium {
-  width: 24px;
-  height: 24px;
+  --e-bolt-icon-size: 1.5rem;
 }
 
 .e-bolt-icon--large {
-  width: 32px;
-  height: 32px;
+  --e-bolt-icon-size: 2rem;
 }
 
 .e-bolt-icon--xlarge {
-  width: 38px;
-  height: 38px;
+  --e-bolt-icon-size: 2.375rem;
 }
