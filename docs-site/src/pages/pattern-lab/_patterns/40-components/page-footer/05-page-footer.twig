@@ -80,7 +80,26 @@
         </li>
       </ul>
     </div>
+    {% set test %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Facebook',
+        icon: icon_fb,
+        attributes: {
+          href: 'https://pega.com/',
+        },
+      },
+    } only %}
+    {% endset %}
     <div class="c-page-footer__nav-item">
+      {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+        headline: {
+          text: 'headline',
+          tag: 'h6'
+        },
+        content: test,
+        category: 'social'
+      } only %}
       <h3 class="c-page-footer__nav-headline">Company</h3>
       <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
         Company

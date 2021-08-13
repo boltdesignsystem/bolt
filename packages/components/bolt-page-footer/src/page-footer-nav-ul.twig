@@ -11,14 +11,21 @@
 
  #}
 
-<div class="c-page-footer__nav-item
-  {% if category == 'social' %} c-page-footer__nav-item--social
+{% set schema = bolt.data.components['@bolt-components-page-footer'].schema['page-footer-nav-ul'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
 
-  {% elseif category == 'language' %} c-page-footer__nav-item--language
-  
-  {% elseif category == 'legal' %} c-page-footer__nav-item--language
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
 
-  {% endif %}">
+{% set classes = [
+  'c-bolt-page-footer-list',
+  this.data.category.value ? 'c-bolt-page-header__nav-list--' ~ this.data.category.value,
+] %}
+
+<div {{ attributes.addClass(classes) }}>
   <{{ headline.tag }} class="c-page-footer__nav-headline">{{ headline.text }}</{{ headline.tag }}>
   <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
     {{ headline.text }}
