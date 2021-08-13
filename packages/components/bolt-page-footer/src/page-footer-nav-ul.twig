@@ -11,8 +11,14 @@
 
  #}
 
+<div class="c-page-footer__nav-item
+  {% if category == 'social' %} c-page-footer__nav-item--social
 
-<div class="c-page-footer__nav-item c-page-footer__nav-item--social">
+  {% elseif category == 'language' %} c-page-footer__nav-item--language
+  
+  {% elseif category == 'legal' %} c-page-footer__nav-item--language
+
+  {% endif %}">
   <{{ headline.tag }} class="c-page-footer__nav-headline">{{ headline.text }}</{{ headline.tag }}>
   <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
     {{ headline.text }}

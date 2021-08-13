@@ -13,8 +13,10 @@
  #}
 
 <li class="c-page-footer__nav-list-item">
-  <a href="#!" target="_blank" rel="noopener" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
+  <a href="{{link.attributes.href}}" target="_blank" rel="noopener" class="c-page-footer__nav-link" aria-describedby="page-footer-new-window">
+    {% if link.icon %}
     <span class="c-page-footer__nav-link__icon">{{ link.icon }}</span>
+    {% endif %}
     <span class="c-page-footer__nav-link__text">{{ link.content }}</span>
   </a>
 </li>
