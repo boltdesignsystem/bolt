@@ -1,41 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Bolt component generator JS file exist 1`] = `
-"import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
-import classNames from 'classnames/bind';
-import styles from './test.scss';
-import schema from '../test.schema';
-
-let cx = classNames.bind(styles);
-
-@customElement('bolt-test')
-class BoltTest extends BoltElement {
-  static schema = schema;
-
-  static get properties() {
-    return {
-      ...this.props,
-    };
+"export class BoltTest {
+  constructor(el) {
+    if (!el) return;
+    this.el = el;
+    this.init();
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
-
-  render() {
-    const classes = cx('c-bolt-test', {
-      [\`c-bolt-test--disabled\`]: this.disabled,
-    });
-
-    return html\`
-      <div class=\\"\${classes}\\">
-        \${this.slotify('default')}
-      </div>
-    \`;
+  init() {
+    console.log('This is a Test');
   }
 }
-
-export { BoltTest };
 "
 `;
 
@@ -67,7 +43,8 @@ exports[`Bolt component generator SCSS file exist 1`] = `
 exports[`Bolt component generator folder structure of component package is correct 1`] = `
 Array [
   "packages/generators/tmp/.boltrc.js",
-  "packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/40-components/test/00-test-docs.twig",
+  "packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/40-components/test/00-test.twig",
+  "packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/40-components/test/05-test-docs.twig",
   "packages/generators/tmp/package.json",
   "packages/generators/tmp/packages/components/bolt-test/README.md",
   "packages/generators/tmp/packages/components/bolt-test/__tests__/test.js",
@@ -123,18 +100,6 @@ exports[`Bolt component generator package.json file exist 1`] = `
 "
 `;
 
-exports[`Bolt component generator pattern lab file exist 1`] = `
-"{% set usage %}{% verbatim %}
-{% include '@bolt-components-test/test.twig' only %}
-{% endverbatim %}{% endset %}
-
-{% include '@utils/docs.twig' with {
-  componentName: 'test',
-  usage: usage
-} only %}
-"
-`;
-
 exports[`Bolt component generator readme file exist 1`] = `
 "Test description
 
@@ -178,9 +143,8 @@ exports[`Bolt component generator schema file exist 1`] = `
 
 exports[`Bolt component generator tests file exist 1`] = `
 "// Refer to https://github.com/boltdesignsystem/bolt/wiki/Jest-Test:-Example-Jest-Test for more testing examples
-import { render, renderWC, stopServer } from '../../../testing/testing-helpers';
-import schema from '../test.schema';
-const componentSelector = 'bolt-test';
+import { render, stopServer } from '../../../testing/testing-helpers';
+// import schema from '../test.schema';
 // const { [PROP KEY], [PROP KEY]... } = schema.properties;
 let page, fixtures;
 
@@ -219,31 +183,11 @@ describe('Bolt Test component', () => {
       },
     );
 
-    /*
-      Comment out if testing a Web Component
-    */
-    // const { innerHTML, outerHTML } = await renderWC(
-    //   componentSelector,
-    //   results.html,
-    //   page
-    // );
-
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
-
-    /*
-      Comment out if testing a Web Component
-    */
-    // await expect(innerHTML).toMatchSnapshot();
-    // await expect(outerHTML).toMatchSnapshot();
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
   });
 });
 
-/*
-  Uncomment and follow a pattern below if your schema has
-  enum to go thru. Do not forget to uncomment the consts
-  at the very top of this file.
-*/
 // describe('Bolt Test prop - , () => {
 //   // Target each of the schema keys with the following pattern
 //   [PROP KEY].enum.forEach(async (option) => {

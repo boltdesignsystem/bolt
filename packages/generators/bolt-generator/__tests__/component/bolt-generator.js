@@ -4,8 +4,7 @@ const internalTasks = require('@bolt/build-tools/tasks/internal-tasks');
 const dir = require('node-dir');
 
 const dirs = {
-  global:
-    'packages/generators/tmp',
+  global: 'packages/generators/tmp',
   js: 'test.js',
   scss: 'test.scss',
   test: 'test.js',
@@ -23,18 +22,18 @@ dirs.patternLab = `${dirs.global}/docs-site/src/pages/pattern-lab/_patterns/40-c
 describe('Bolt component generator', () => {
   beforeAll(async () => {
     shell.exec(`rm -rf ${dirs.global}`);
-    shell.exec('yarn cc "Test" "Test Description"');
+    shell.exec('yarn cc "Test" "n" "Test Description"');
   });
 
   afterAll(async () => {
     await internalTasks.clean(dirs.global);
   });
 
-  test('pattern lab file exist', async () => {
-    const results = fs.readFileSync(dirs.patternLab, 'utf8');
+  // test('pattern lab file exist', async () => {
+  //   const results = fs.readFileSync(dirs.patternLab, 'utf8');
 
-    expect(results).toMatchSnapshot();
-  });
+  //   expect(results).toMatchSnapshot();
+  // });
 
   test('JS file exist', async () => {
     const results = fs.readFileSync(`${dirs.src}/${dirs.js}`, 'utf8');

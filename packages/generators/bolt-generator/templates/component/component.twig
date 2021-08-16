@@ -1,50 +1,20 @@
 {% set schema = bolt.data.components['@bolt-components-{{ kebabCase name }}'].schema %}
-
 {% if enable_json_schema_validation %}
-  \{{ validate_data_schema(schema, _self) | raw }}
+  \{{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# Variables #}
 {% set this = init(schema) %}
-{% set inner_attributes = create_attribute({}) %}
+{% set attributes = create_attribute(attributes|default({})) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  'c-bolt-{{ kebabCase name }}',
-  disabled ? 'c-bolt-{{ kebabCase name }}--disabled' : '',
+  'c-bolt-{{ kebabCase name }}'
 ] %}
 
-{#
-  Sort classes passed in via attributes into two groups:
-  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
-  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
-#}
-{% set outer_classes = [] %}
-{% set inner_classes = classes %}
-
-{% for class in this.props.class %}
-  {% if class starts with "is-" or class starts with "has-" %}
-    {% set inner_classes = inner_classes|merge([class]) %}
-  {% elseif class starts with "c-bolt-" == false %}
-    {% set outer_classes = outer_classes|merge([class]) %}
+<div \{{ attributes.addClass(classes) }}>
+  {% if content %}
+    \{{ content }}
   {% endif %}
-{% endfor %}
+</div>
 
-<bolt-{{ kebabCase name }}
-  {% if outer_classes %} class="\{{ outer_classes|join(' ') }}" {% endif %}
-  \{{ this.props|without('content')|without('title')|without('class') }}
->
-  <replace-with-children \{{ inner_attributes.addClass(inner_classes) }}>
-    {% if title %}
-      <div class="c-bolt-{{ kebabCase name }}__title">
-        {# `title` will go into "title" slot. This pattern may be used for any slotted content, can be renamed depending upon your needs. #}
-        <div slot="title">\{{ title }}</div>
-      </div>
-    {% endif %}
-
-    <div class="c-bolt-{{ kebabCase name }}__content">
-      {# `content` will go into "default" slot. Depending upon component, may be named something else, e.g. `text`, `items`, etc. #}
-      \{{ content }}
-    </div>
-  </replace-with-children>
-</bolt-{{ kebabCase name }}>
