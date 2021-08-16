@@ -16,7 +16,7 @@ module.exports = {
     category: {
       type: 'string',
       description: 'Indicate which set of navigation this nav ul is rendering.',
-      enum: ['social', 'language', 'legal'],
+      enum: ['description', 'social', 'language', 'legal'],
     },
     headline: {
       type: 'object',
@@ -24,6 +24,11 @@ module.exports = {
         text: {
           type: 'string',
           description: 'Title of the Ul Nav',
+        },
+        attributes: {
+          type: 'object',
+          description:
+            'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
         },
         tag: {
           type: 'string',

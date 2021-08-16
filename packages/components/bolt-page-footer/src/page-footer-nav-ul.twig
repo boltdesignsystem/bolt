@@ -19,14 +19,25 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set headline_attributes = create_attribute(headline.attributes|default({})) %}
+{% set icon_chevron_down %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'chevron-down',
+  } only %}
+{% endset %}
 
 {% set classes = [
-  'c-bolt-page-footer-list',
-  this.data.category.value ? 'c-bolt-page-header__nav-list--' ~ this.data.category.value,
+  'c-page-footer__nav-item',
+  this.data.category.value ? 'c-page-footer__nav-item--' ~ this.data.category.value,
+] %}
+
+{% set headline_classes = [
+  'c-page-footer__nav-headline',
+  this.data.headline.value ? this.data.headline.value : '',
 ] %}
 
 <div {{ attributes.addClass(classes) }}>
-  <{{ headline.tag }} class="c-page-footer__nav-headline">{{ headline.text }}</{{ headline.tag }}>
+  <{{ headline.tag }} {{ headline_attributes.addClass(headline_classes) }}>{{ headline.text }}</{{ headline.tag }}>
   <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
     {{ headline.text }}
     <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>
