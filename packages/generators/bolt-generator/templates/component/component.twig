@@ -9,7 +9,8 @@
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  'c-bolt-{{ kebabCase name }}'
+  'c-bolt-{{ kebabCase name }}',
+  this.data.disabled.value ? 'c-bolt-{{ kebabCase name }}--disabled' : '',
 ] %}
 
 <div \{{ attributes.addClass(classes) }}>
