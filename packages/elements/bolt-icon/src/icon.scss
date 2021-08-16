@@ -2,10 +2,16 @@
 
 .e-bolt-icon {
   --e-bolt-icon-size: 1em;
+  --e-bolt-icon-color: inherit;
   display: inline-block;
   width: var(--e-bolt-icon-size);
   height: var(--e-bolt-icon-size);
+  color: var(--e-bolt-icon-color);
   vertical-align: middle;
+
+  > * {
+    fill: currentColor;
+  }
 }
 
 .e-bolt-icon--small {
@@ -22,4 +28,12 @@
 
 .e-bolt-icon--xlarge {
   --e-bolt-icon-size: 2.375rem;
+}
+
+$_bolt-icon-color: teal, navy, yellow, orange, pink, berry, wine, violet;
+
+@each $color in $_bolt-icon-color {
+  .e-bolt-icon--#{$color} {
+    --e-bolt-icon-color: var(--bolt-color-#{$color});
+  }
 }

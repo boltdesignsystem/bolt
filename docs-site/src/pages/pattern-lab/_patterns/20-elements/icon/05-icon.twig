@@ -19,7 +19,7 @@
         {% include '@bolt-elements-icon/icon.twig' with {
           name: name,
           size: 'xlarge',
-        }%}
+        } only %}
         <br/>{{ name }}
       </li>
     {% endfor %}
@@ -45,6 +45,7 @@
   description: description,
   notes: notes,
   demo: demo,
+  demo_light_dark: true,
   demo_vertical_scroll: true,
   twig_markup: twig_markup,
   html_markup: html_markup,

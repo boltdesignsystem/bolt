@@ -150,7 +150,6 @@
         "support",
         "system-admin",
         "text-align-left",
-        "thumbs-up-circle",
         "transportation",
         "trash",
         "triangle",
@@ -170,20 +169,17 @@
     },
     "size": {
       "type": "string",
-      "description": "Controls the size of the icon. Each size is set to a specific pixel value: 16px, 24px, 32px, and 38px. However, this prop is optional. When no size is specified, the icon is expected to act as an inline icon, which will grow or shrink depending on the font-size of its parent container.",
+      "description": "Set icon size. If size is not set, the icon size will default to text sise.",
       "enum": ["small", "medium", "large", "xlarge"]
     },
     "color": {
       "type": "string",
-      "description": "Icon color palette. Picking an option other than `auto` will override the default colors based on the color theme the icon is placed within.",
-      "default": "auto",
+      "description": "Set the icon color. If color is not set, the icon will default to text color.",
       "enum": [
-        "auto",
         "teal",
         "navy",
         "yellow",
         "orange",
-        "gray",
         "pink",
         "berry",
         "wine",
