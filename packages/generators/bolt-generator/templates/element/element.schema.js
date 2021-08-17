@@ -9,8 +9,10 @@ module.exports = {
         'A Drupal-style attributes object with extra attributes to append to this element.',
     },
     content: {
-      type: 'any',
-      description: 'Content of the {{ lowerCase name }}.',
+      type: 'string',
+      description: 'Content of the {{ lowerCase name }}. ',
     },
   },
 };
+
+// @TODO: content is only a string for validation demonstration purposes, please adjust or remove this property for your new element.

@@ -1,24 +1,10 @@
-{% set usage %}{% verbatim %}
-{% include '@bolt-elements-{{ kebabCase name }}/{{ kebabCase name }}.twig' with {
-  content: 'This is a {{ lowerCase name }}'
-} only %}
-{% endverbatim %}{% endset %}
-
-{% include '@utils/docs.twig' with {
-  componentName: '{{ kebabCase name }}',
-  componentGroup: 'elements',
-  usage: usage
-} only %}
-
-
-
 {% set description %}
-  A description of the element and what it is used for
+  {{ sentenceCase description }}
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>List out important information about this element and it's usage</bolt-li>
+    <bolt-li>List out important information about this element and its usage.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -36,12 +22,14 @@
 
 {% set html_markup %}
 {% verbatim %}
-Print the non-twig version of this component (should be raw markup)
+<div class="e-bolt-{{ kebabCase name }}">
+  This is a {{ lowerCase name }}
+</div>
 {% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: '{{ kebabCase name }}',
+  title: 'Basic {{ titleCase name }}',
   description: description,
   notes: notes,
   demo: demo,
