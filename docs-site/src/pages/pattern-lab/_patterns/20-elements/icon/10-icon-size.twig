@@ -1,5 +1,4 @@
 {% set schema = bolt.data.components['@bolt-elements-icon'].schema %}
-{% set size_options = schema.properties.size.enum %}
 
 {% set description %}
   A Icon&rsquo;s size can be modified per use case.
@@ -14,7 +13,7 @@
 
 {% set demo %}
   <bolt-list display="inline" spacing="small">
-    {% for size in size_options %}
+    {% for size in schema.properties.size.enum %}
       <bolt-list-item>
         {% include '@bolt-elements-icon/icon.twig' with {
           name: 'pega-thumbs-up',

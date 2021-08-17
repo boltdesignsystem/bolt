@@ -1,5 +1,4 @@
 {% set schema = bolt.data.components['@bolt-elements-icon'].schema %}
-{% set color_options = schema.properties.color.enum %}
 
 {% set description %}
   A Icon&rsquo;s color can be modified per use case.
@@ -15,7 +14,7 @@
 
 {% set demo %}
   <bolt-list display="inline" spacing="small">
-    {% for color in color_options %}
+    {% for color in schema.properties.color.enum %}
       <bolt-list-item>
         {% include '@bolt-elements-icon/icon.twig' with {
           name: 'pega-thumbs-up',
