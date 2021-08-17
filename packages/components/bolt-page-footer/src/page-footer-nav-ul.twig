@@ -37,7 +37,7 @@
 ] %}
 
 <div {{ attributes.addClass(classes) }}>
-  <{{ headline.tag }} {{ headline_attributes.addClass(headline_classes) }}>{{ headline.text }}</{{ headline.tag }}>
+  <{{ headline.tag ? headline.tag : 'h3' }} {{ headline_attributes.addClass(headline_classes) }}>{{ headline.text }}</{{ headline.tag ? headline.tag : 'h3' }}>
   <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
     {{ headline.text }}
     <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">{{ icon_chevron_down }}</span>

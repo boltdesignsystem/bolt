@@ -473,23 +473,69 @@
 
 {% endset %}
 
-{# Template #}
-{# <footer class="c-page-footer js-bolt-page-footer">
-  <nav class="c-page-footer__nav c-page-footer__nav--main" aria-labelledby="page-footer-heading">
-    <div class="c-page-footer__nav-item c-page-footer__nav-item--description">
-      {% include '@bolt-components-headline/headline.twig' with {
-        text: 'About Pegasystems',
-        tag: 'h2',
-        attributes: {
-          id: 'page-footer-heading',
-        },
-      } only %}
-      <p>'Pega delivers innovative software that
-    </div> #}
+{% set description %}
+  Page Footer is the global footer that contains Pega description, main navigation, secondary navigation and social media links.
+{% endset %}
 
-    {% include '@bolt-components-page-footer/page-footer.twig' with {
-      description: 'Pega delivers innovative software that crushes business complexity. From increasing customer lifetime value to streamlining service to boosting efficiency, we help the world’s leading brands solve problems fast and transform for tomorrow. Our solutions save people time, so our clients’ employees and customers can get back to what matters most.',
-      primary_nav: primary_nav,
-      secondary_nav: secondary_nav
-    } only %}
-{# </footer> #}
+{% set demo %}
+{# Template #}
+{% include '@bolt-components-page-footer/page-footer.twig' with {
+  content: {
+    headline: {
+      text: 'Heading from 05-page-footer',
+      size: 'xlarge',
+      tag: 'h2',
+    },
+  description: 'Pega delivers innovative software that crushes business complexity. From increasing customer lifetime value to streamlining service to boosting efficiency, we help the world’s leading brands solve problems fast and transform for tomorrow. Our solutions save people time, so our clients’ employees and customers can get back to what matters most.',
+  },
+  primary_nav: primary_nav,
+  secondary_nav: secondary_nav
+} only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// The main template
+{% include 'bolt-components-page-footer/page-footer.twig' with {
+  content: {
+    headline: {
+      text: 'About Pegasystems',
+      size: 'xlarge',
+      tag: 'h2',
+    },
+    description: 'Description goes here.', // accept any types of value, plain text is the simplest usage
+  },
+  primary_nav: primary_nav, // page-footer-nav-ul goes here
+  secondary_nav: secondary_nav, // page-footer-nav-ul goes here
+} only %}
+
+// Nav ul template (pass to nav template's content prop)
+{% include 'bolt-components-page-footer/page-footer-nav-ul.twig' with {
+  headline: {
+    text: 'Company',
+    tag: 'h3',
+  },
+  content: content, // page-footer-nav-li goes here
+  category: category, // [description, social, language, legal]
+} only %}
+
+// Nav li template (pass to nav ul template's content prop)
+{% include 'bolt-components-page-footer/page-footer-nav-li.twig' with {
+  link: {
+    content: 'Facebook',
+    icon: icon_facebook,
+    attributes: {
+      href: 'https://pega.com/',
+    },
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Page Footer',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

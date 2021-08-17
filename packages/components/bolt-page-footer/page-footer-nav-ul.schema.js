@@ -15,7 +15,7 @@ module.exports = {
     },
     category: {
       type: 'string',
-      description: 'Indicate which set of navigation this nav ul is rendering.',
+      description: 'Indicate which set of navigation item is rendering.',
       enum: ['description', 'social', 'language', 'legal'],
     },
     headline: {
@@ -23,7 +23,7 @@ module.exports = {
       properties: {
         text: {
           type: 'string',
-          description: 'Title of the Ul Nav',
+          description: 'A title of the Nav list',
         },
         attributes: {
           type: 'object',
@@ -32,6 +32,7 @@ module.exports = {
         },
         tag: {
           type: 'string',
+          description: 'A semantic HTML tag can be chosen',
           default: 'h3',
           enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
         },

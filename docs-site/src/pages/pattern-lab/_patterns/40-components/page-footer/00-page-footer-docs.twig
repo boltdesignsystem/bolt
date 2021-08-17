@@ -1,3 +1,20 @@
-<bolt-banner status="warning" class="u-bolt-margin-top-large">
-  <strong>This is a placeholder element only used in Pattern Lab demos.</strong>
-</bolt-banner>
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-page-footer/page-footer.twig' with {
+  content: {
+    headline: {
+      text: 'Heading title',
+      size: 'xlarge',
+      tag: 'h2',
+    },
+  description: '...',
+  },
+  primary_nav: primary_nav,
+  secondary_nav: secondary_nav
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'page-footer',
+  usage: usage
+} only %}
+

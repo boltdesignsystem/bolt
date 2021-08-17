@@ -11,21 +11,21 @@ module.exports = {
     },
     content: {
       type: 'any',
-      description: 'Primary content of page footer.',
+      description: 'Headline of the page footer.',
     },
     description: {
       type: 'any',
-      description: 'Description.',
+      description:
+        'Accept any types of value, plain text is the simplest usage.',
     },
     primary_nav: {
       type: 'any',
-      description:
-        'Primary content of page footer (main nav with internal Pega.com links).',
+      description: 'Primary content of page footer (pega links, social links).',
     },
     secondary_nav: {
       type: 'any',
       description:
-        'Secondary content of page footer (utilitis, privacy policy, etc.).',
+        'Secondary content of page footer (utilitis links, privacy policy links, etc.).',
     },
   },
 };

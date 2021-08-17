@@ -18,17 +18,17 @@
 <footer class="c-page-footer js-bolt-page-footer">
   <nav class="c-page-footer__nav c-page-footer__nav--main" aria-labelledby="page-footer-heading">
     <div class="c-page-footer__nav-item c-page-footer__nav-item--description">
-      {# {% include '@bolt-components-headline/headline.twig' with {
-        text: content.headline.text,
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Navigation heading',
         size: content.headline.size,
         tag: content.headline.tag,
         attributes: {
-          class: 'u-bolt-margin-bottom-xsmall',
+          class: 'u-bolt-margin-bottom-medium',
           id: 'page-footer-heading',
         },
-      } only %} #}
+      } only %}
       <p>
-        {{ description }}
+        {{ content.description }}
       </p>
     </div>
     {{ primary_nav }}
@@ -41,3 +41,8 @@
   </aside>
   <span id="page-footer-new-window" hidden>{{ 'Open in new window'|t }}</span>
 </footer>
+<pre>
+  {{ dump(content.headline.text) }}
+  {{ dump(content.headline.size) }}
+  {{ dump(content.headline.tag) }}
+</pre>

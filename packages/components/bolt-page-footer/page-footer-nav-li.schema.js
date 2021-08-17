@@ -20,7 +20,7 @@ module.exports = {
         },
         content: {
           type: 'any',
-          description: 'Content of the link.',
+          description: 'Displays name of the link.',
         },
         icon: {
           type: 'object',
