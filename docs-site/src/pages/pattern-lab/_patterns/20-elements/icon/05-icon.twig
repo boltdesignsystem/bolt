@@ -12,18 +12,102 @@
 {% endset %}
 
 {% set demo %}
-  {% set name_options = schema.properties.name.enum %}
-  <ul class="bolt-icon-list-demo">
-    {% for name in name_options %}
-      <li>
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: name,
-          size: 'xlarge',
-        } only %}
-        <br/>{{ name }}
-      </li>
-    {% endfor %}
-  </ul>
+  <bolt-tabs inset="off">
+    <bolt-tab-panel>
+      <bolt-text slot="label">Brand Icons</bolt-text>
+      <bolt-accordion spacing="small" icon-valign="top" single>
+        {% for name in schema.properties.name.enum %}
+          {% if name starts with 'pega-' %}
+            <bolt-accordion-item>
+              <div slot="trigger">
+                {% include '@bolt-elements-icon/icon.twig' with {
+                  name: name,
+                } only %}
+                <span class="u-bolt-margin-left-xsmall">{{ name }}</span>
+              </div>
+              <div>
+                <bolt-grid gutter="small" row-gutter="small">
+                  <bolt-grid-item column-start="1" column-span="12 6@small">
+                    {% for size in schema.properties.size.enum %}
+                      {% include '@bolt-elements-icon/icon.twig' with {
+                        name: name,
+                        size: size,
+                      } only %}
+                    {% endfor %}
+                  </bolt-grid-item>
+                  <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
+                    {% for size in schema.properties.size.enum %}
+                      {% set icon %}
+                        {% include '@bolt-elements-icon/icon.twig' with {
+                          name: name,
+                        } only %}
+                      {% endset %}
+                      {% include '@bolt-elements-shape/shape.twig' with {
+                        content: icon,
+                        size: size,
+                        attributes: {
+                          class: [
+                            't-bolt-teal'
+                          ]
+                        }
+                      } only %}
+                    {% endfor %}
+                  </bolt-grid-item>
+                </bolt-grid>
+              </div>
+            </bolt-accordion-item>
+          {% endif %}
+        {% endfor %}
+      </bolt-accordion>
+    </bolt-tab-panel>
+    <bolt-tab-panel>
+      <bolt-text slot="label">Other Icons</bolt-text>
+      <bolt-accordion spacing="small" icon-valign="top" single>
+        {% for name in schema.properties.name.enum %}
+          {% if not (name starts with 'pega-') %}
+            <bolt-accordion-item>
+              <div slot="trigger">
+                {% include '@bolt-elements-icon/icon.twig' with {
+                  name: name,
+                } only %}
+                <span class="u-bolt-margin-left-xsmall">{{ name }}</span>
+              </div>
+              <div>
+                <bolt-grid gutter="small" row-gutter="small">
+                  <bolt-grid-item column-start="1" column-span="12 6@small">
+                    {% for size in schema.properties.size.enum %}
+                      {% include '@bolt-elements-icon/icon.twig' with {
+                        name: name,
+                        size: size,
+                      } only %}
+                    {% endfor %}
+                  </bolt-grid-item>
+                  <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
+                    {% for size in schema.properties.size.enum %}
+                      {% set icon %}
+                        {% include '@bolt-elements-icon/icon.twig' with {
+                          name: name,
+                        } only %}
+                      {% endset %}
+                      {% include '@bolt-elements-shape/shape.twig' with {
+                        content: icon,
+                        size: size,
+                        attributes: {
+                          class: [
+                            't-bolt-teal'
+                          ]
+                        }
+                      } only %}
+                    {% endfor %}
+                  </bolt-grid-item>
+                </bolt-grid>
+              </div>
+            </bolt-accordion-item>
+          {% endif %}
+        {% endfor %}
+      </bolt-accordion>
+    </bolt-tab-panel>
+  </bolt-tabs>
 {% endset %}
 
 {% set twig_markup %}
@@ -46,7 +130,6 @@
   notes: notes,
   demo: demo,
   demo_light_dark: true,
-  demo_vertical_scroll: true,
   twig_markup: twig_markup,
   html_markup: html_markup,
 } only %}
