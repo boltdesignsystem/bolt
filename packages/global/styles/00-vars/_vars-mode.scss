@@ -48,9 +48,7 @@
 // New themes
 .t-bolt-white,
 .t-bolt-gray-xlight,
-.t-bolt-orange,
-.t-bolt-yellow,
-.t-bolt-pink {
+.t-bolt-yellow {
   @include bolt-base-light-mode;
 }
 
@@ -65,6 +63,8 @@
 .t-bolt-navy,
 .t-bolt-navy-light,
 .t-bolt-teal,
+.t-bolt-orange,
+.t-bolt-pink,
 .t-bolt-wine,
 .t-bolt-berry,
 .t-bolt-violet {
@@ -101,9 +101,6 @@ bolt-card-replacement[theme='xdark'] {
 
 .t-bolt-orange {
   --m-bolt-bg: var(--bolt-color-orange);
-  --m-bolt-link: var(--bolt-color-black);
-  --m-bolt-primary: var(--bolt-color-navy-dark);
-  --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.08);
 }
 
 .t-bolt-yellow {
@@ -115,9 +112,6 @@ bolt-card-replacement[theme='xdark'] {
 
 .t-bolt-pink {
   --m-bolt-bg: var(--bolt-color-pink);
-  --m-bolt-link: var(--bolt-color-black);
-  --m-bolt-primary: var(--bolt-color-navy-dark);
-  --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.08);
 }
 
 .t-bolt-black {
