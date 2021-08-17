@@ -29,11 +29,11 @@ describe('Bolt component generator', () => {
     await internalTasks.clean(dirs.global);
   });
 
-  // test('pattern lab file exist', async () => {
-  //   const results = fs.readFileSync(dirs.patternLab, 'utf8');
+  test('pattern lab file exist', async () => {
+    const results = fs.readFileSync(dirs.patternLab, 'utf8');
 
-  //   expect(results).toMatchSnapshot();
-  // });
+    expect(results).toMatchSnapshot();
+  });
 
   test('JS file exist', async () => {
     const results = fs.readFileSync(`${dirs.src}/${dirs.js}`, 'utf8');

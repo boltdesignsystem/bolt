@@ -43,8 +43,8 @@ exports[`Bolt component generator SCSS file exist 1`] = `
 exports[`Bolt component generator folder structure of component package is correct 1`] = `
 Array [
   "packages/generators/tmp/.boltrc.js",
-  "packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/40-components/test/00-test.twig",
-  "packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/40-components/test/05-test-docs.twig",
+  "packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/40-components/test/00-test-docs.twig",
+  "packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/40-components/test/05-test.twig",
   "packages/generators/tmp/package.json",
   "packages/generators/tmp/packages/components/bolt-test/README.md",
   "packages/generators/tmp/packages/components/bolt-test/__tests__/test.js",
@@ -97,6 +97,18 @@ exports[`Bolt component generator package.json file exist 1`] = `
   \\"schema\\": \\"test.schema.js\\",
   \\"twig\\": \\"src/test.twig\\"
 }
+"
+`;
+
+exports[`Bolt component generator pattern lab file exist 1`] = `
+"{% set usage %}{% verbatim %}
+{% include '@bolt-components-test/test.twig' only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'test',
+  usage: usage
+} only %}
 "
 `;
 

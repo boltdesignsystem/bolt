@@ -112,12 +112,12 @@ module.exports = plop => {
         },
         {
           type: 'add',
-          path: `${data.root}/${data.component.patternLab}/{{ kebabCase name }}/00-{{ kebabCase name }}.twig`,
+          path: `${data.root}/${data.component.patternLab}/{{ kebabCase name }}/00-{{ kebabCase name }}-docs.twig`,
           templateFile: `${data.component.templates}/component.docs.twig`,
         },
         {
           type: 'add',
-          path: `${data.root}/${data.component.patternLab}/{{ kebabCase name }}/05-{{ kebabCase name }}-docs.twig`,
+          path: `${data.root}/${data.component.patternLab}/{{ kebabCase name }}/05-{{ kebabCase name }}.twig`,
           templateFile: `${data.component.templates}/05-component.docs.twig`,
         },
       ];
