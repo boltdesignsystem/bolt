@@ -12,13 +12,13 @@ if [ -n "$(git status --porcelain)" ]; then
 fi
 
 echo "Updating remote subsplit repos"
-./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/bolt-design-system/core-php.git
-./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/twig-integration/twig-extensions-shared:https://$GH_TOKEN@github.com/bolt-design-system/core-php.git \
+./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/boltdesignsystem/core-php.git
+./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/twig-integration/twig-extensions-shared:https://$GH_TOKEN@github.com/boltdesignsystem/core-php.git \
   --heads="$CURRENT_BRANCH" --update --tags="$CURRENT_VERSION"
 rm -rf .subsplit
 
-./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/bolt-design-system/bolt_connect.git
-./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/twig-integration/drupal-module:https://$GH_TOKEN@github.com/bolt-design-system/bolt_connect.git \
+./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/boltdesignsystem/bolt_connect.git
+./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/twig-integration/drupal-module:https://$GH_TOKEN@github.com/boltdesignsystem/bolt_connect.git \
   --heads="$CURRENT_BRANCH" --update --tags="$CURRENT_VERSION"
 rm -rf .subsplit
 
