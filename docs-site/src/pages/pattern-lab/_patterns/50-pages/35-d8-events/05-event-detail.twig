@@ -299,16 +299,31 @@
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Get Directions",
-              "hierarchy": "primary"
-            },
-            {
-              "text": "Make Reservations",
-              "hierarchy": "secondary"
+        {% set button_directions %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Get Directions',
+            hierarchy: "primary",
+            attributes: {
+              type: 'button'
             }
+          } only %}
+        {% endset %}
+
+        {% set button_reservations %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Make Reservations',
+            hierarchy: "secondary",
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: 'inline',
+          items: [
+            button_directions,
+            button_reservations,
           ]
         } only %}
       {% endcell %}
@@ -344,8 +359,11 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
-                src: "/images/placeholders/events--speakers--placeholder.jpg",
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/placeholders/events--speakers--placeholder.jpg",
+              loading: "lazy",
+            }
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
@@ -373,8 +391,11 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
-                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/placeholders/events--speakers--placeholder.jpg",
+              loading: "lazy",
+            }
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
@@ -397,8 +418,11 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
-                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/placeholders/events--speakers--placeholder.jpg",
+              loading: "lazy",
+            }
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
@@ -421,8 +445,11 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
-                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/placeholders/events--speakers--placeholder.jpg",
+              loading: "lzy",
+            }
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
@@ -445,8 +472,11 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
-                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/placeholders/events--speakers--placeholder.jpg",
+              loading: "lazy",
+            }
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
@@ -469,8 +499,11 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
-                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/placeholders/events--speakers--placeholder.jpg",
+              loading: "lazy",
+            }
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
@@ -629,8 +662,11 @@
           {% set logoImages = ["logo-incessant.png", "logo-capgemini.svg", "logo-cognizant.png", "logo-merkle.png", "logo-infosys.png"] %}
           {% for logoImage in logoImages %}
             {% cell "u-bolt-width-1/2 u-bolt-width-1/5@small" %}
-              {% include "@bolt/image.twig" with {
-                src: "/images/content/logos/" ~ logoImage
+              {% include "@bolt-elements-image/image.twig" with {
+                attributes: {
+                  src: "/images/content/logos/" ~ logoImage,
+                  loading: "lazy",
+                }
               } only %}
             {% endcell %}
           {% endfor %}

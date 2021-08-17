@@ -1,5 +1,7 @@
 {% extends "@pl/_default-page-template.twig" %}
 
+
+
 {% block main_content %}
   {% embed "@pl/_band--feature.twig" with {
     teaserPosition: "left",
@@ -231,24 +233,42 @@
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Call to action",
-              "hierarchy": "primary"
-            },
-            {
-              "text": "Call to action",
-              "hierarchy": "secondary"
+        {% set button_cta_primary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Call to action',
+            hierarchy: "primary",
+            attributes: {
+              type: 'button'
             }
+          } only %}
+        {% endset %}
+
+        {% set button_cta_secondary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Call to action',
+            hierarchy: "secondary",
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: 'inline',
+          items: [
+            button_cta_primary,
+            button_cta_secondary,
           ]
         } only %}
       {% endcell %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
         {% set device_viewer_image %}
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+              loading: "lazy",
+            }
           } only %}
         {% endset %}
         {% include "@bolt/device-viewer.twig" with {
@@ -278,8 +298,11 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
         {% set device_viewer_image %}
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+              loading: "lazy",
+            }
           } only %}
         {% endset %}
         {% include "@bolt/device-viewer.twig" with {
@@ -303,16 +326,31 @@
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Call to action",
-              "hierarchy": "primary"
-            },
-            {
-              "text": "Call to action",
-              "hierarchy": "secondary"
+        {% set button_cta_primary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Call to action',
+            hierarchy: "primary",
+            attributes: {
+              type: 'button'
             }
+          } only %}
+        {% endset %}
+
+        {% set button_cta_secondary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Call to action',
+            hierarchy: "secondary",
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: 'inline',
+          items: [
+            button_cta_primary,
+            button_cta_secondary,
           ]
         } only %}
       {% endcell %}
@@ -394,24 +432,42 @@
             size: "medium"
           } only %}
 
-          {% include "@bolt/button-group.twig" with {
-            "buttons": [
-              {
-                "text": "Call to action",
-                "hierarchy": "primary"
-              },
-              {
-                "text": "Call to action",
-                "hierarchy": "secondary"
+          {% set button_cta_primary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "primary",
+              attributes: {
+                type: 'button'
               }
+            } only %}
+          {% endset %}
+
+          {% set button_cta_secondary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "secondary",
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: 'inline',
+            items: [
+              button_cta_primary,
+              button_cta_secondary,
             ]
           } only %}
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
           {% set device_viewer_image %}
-            {% include "@bolt-components-image/image.twig" with {
-              src: "/images/content/screenshots/device-screenshot--phone.jpg",
+            {% include "@bolt-elements-image/image.twig" with {
+              attributes: {
+                src: "/images/content/screenshots/device-screenshot--phone.jpg",
+                loading: "lazy",
+              }
             } only %}
           {% endset %}
           {% include "@bolt/device-viewer.twig" with {
@@ -429,8 +485,11 @@
 
         {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
           {% set device_viewer_image %}
-            {% include "@bolt-components-image/image.twig" with {
-              src: "/images/content/screenshots/device-screenshot--phone.jpg",
+            {% include "@bolt-elements-image/image.twig" with {
+              attributes: {
+                src: "/images/content/screenshots/device-screenshot--phone.jpg",
+                loading: "lazy",
+              }
             } only %}
           {% endset %}
           {% include "@bolt/device-viewer.twig" with {
@@ -453,16 +512,31 @@
             size: "medium"
           } only %}
 
-          {% include "@bolt/button-group.twig" with {
-            "buttons": [
-              {
-                "text": "Call to action",
-                "hierarchy": "primary"
-              },
-              {
-                "text": "Call to action",
-                "hierarchy": "secondary"
+          {% set button_cta_primary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "primary",
+              attributes: {
+                type: 'button'
               }
+            } only %}
+          {% endset %}
+
+          {% set button_cta_secondary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "secondary",
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: 'inline',
+            items: [
+              button_cta_primary,
+              button_cta_secondary,
             ]
           } only %}
         {% endcell %}
@@ -485,24 +559,42 @@
             size: "medium"
           } only %}
 
-          {% include "@bolt/button-group.twig" with {
-            "buttons": [
-              {
-                "text": "Call to action",
-                "hierarchy": "primary"
-              },
-              {
-                "text": "Call to action",
-                "hierarchy": "secondary"
+          {% set button_cta_primary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "primary",
+              attributes: {
+                type: 'button'
               }
+            } only %}
+          {% endset %}
+
+          {% set button_cta_secondary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "secondary",
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: 'inline',
+            items: [
+              button_cta_primary,
+              button_cta_secondary,
             ]
           } only %}
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
           {% set device_viewer_image %}
-            {% include "@bolt-components-image/image.twig" with {
-              src: "/images/content/screenshots/device-screenshot--phone.jpg",
+            {% include "@bolt-elements-image/image.twig" with {
+              attributes: {
+                src: "/images/content/screenshots/device-screenshot--phone.jpg",
+                loading: "lazy",
+              }
             } only %}
           {% endset %}
           {% include "@bolt/device-viewer.twig" with {
@@ -521,8 +613,11 @@
 
         {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
           {% set device_viewer_image %}
-            {% include "@bolt-components-image/image.twig" with {
-              src: "/images/content/screenshots/device-screenshot--phone.jpg",
+            {% include "@bolt-elements-image/image.twig" with {
+              attributes: {
+                src: "/images/content/screenshots/device-screenshot--phone.jpg",
+                loading: "lazy",
+              }
             } only %}
           {% endset %}
           {% include "@bolt/device-viewer.twig" with {
@@ -545,16 +640,31 @@
             size: "medium"
           } only %}
 
-          {% include "@bolt/button-group.twig" with {
-            "buttons": [
-              {
-                "text": "Call to action",
-                "hierarchy": "primary"
-              },
-              {
-                "text": "Call to action",
-                "hierarchy": "secondary"
+          {% set button_cta_primary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "primary",
+              attributes: {
+                type: 'button'
               }
+            } only %}
+          {% endset %}
+
+          {% set button_cta_secondary %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Call to action',
+              hierarchy: "secondary",
+              attributes: {
+                type: 'button'
+              }
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: 'inline',
+            items: [
+              button_cta_primary,
+              button_cta_secondary,
             ]
           } only %}
         {% endcell %}
@@ -662,24 +772,42 @@
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Call to action",
-              "hierarchy": "primary"
-            },
-            {
-              "text": "Call to action",
-              "hierarchy": "secondary"
+        {% set button_cta_primary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Call to action',
+            hierarchy: "primary",
+            attributes: {
+              type: 'button'
             }
+          } only %}
+        {% endset %}
+
+        {% set button_cta_secondary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Call to action',
+            hierarchy: "secondary",
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: 'inline',
+          items: [
+            button_cta_primary,
+            button_cta_secondary,
           ]
         } only %}
       {% endcell %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
         {% set device_viewer_image %}
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+              loading: "lazy",
+            }
           } only %}
         {% endset %}
         {% include "@bolt/device-viewer.twig" with {

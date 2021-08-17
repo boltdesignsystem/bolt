@@ -1,0 +1,293 @@
+{# Icons #}
+{% set icon_user %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'user',
+  } only %}
+{% endset %}
+{% set icon_global %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'global',
+  } only %}
+{% endset %}
+{% set icon_menu %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'menu',
+  } only %}
+{% endset %}
+
+{# Site nav #}
+{% set placeholder_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Agenda',
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Replays',
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Call for presentations',
+      attributes: {
+        href: 'https://pega.com',
+      },
+    },
+  } only %}
+{% endset %}
+{% set placeholder_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: placeholder_lv2_ul_content,
+  } only %}
+{% endset %}
+
+{% set site_nav_lv1_list_items = [
+  {
+    link: {
+      content: 'Explore event',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    },
+    children: placeholder_lv2,
+    flat: true,
+  },
+  {
+    link: {
+      content: 'iNsiders',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    },
+  },
+  {
+    link: {
+      content: 'FAQ',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    },
+  },
+] %}
+
+{% set site_nav_lv1_ul_content = [] %}
+{% for list_item in site_nav_lv1_list_items %}
+  {% set site_nav_lv1_li %}
+    {% include '@bolt-components-page-header/page-header-nav-li.twig' with list_item only %}
+  {% endset %}
+  {% set site_nav_lv1_ul_content = site_nav_lv1_ul_content|merge([site_nav_lv1_li]) %}
+{% endfor %}
+
+{% set site_nav %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: site_nav_lv1_ul_content|join,
+    category: 'site',
+  } only %}
+{% endset %}
+
+{# User nav #}
+{% set user_nav_lv1_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Log in',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Sign up',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+{% endset %}
+
+{% set user_nav %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: user_nav_lv1_ul_content,
+    category: 'user',
+  } only %}
+{% endset %}
+
+{# Related sites nav #}
+{% set more_pega_sites_nav_lv3_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'PegaWorld',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Product Design',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Partners',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Consulting',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Blog',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Careers',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'My Pega',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+{% endset %}
+
+{% set more_pega_sites_nav_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: more_pega_sites_nav_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set pega_sites_nav_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Training',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Support',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Knowledgebase',
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: icon_menu ~ 'More' ~ ' <span class="u-bolt-visuallyhidden">Pega Sites</span>',
+    },
+    children: more_pega_sites_nav_lv3,
+    popover: true,
+  } only %}
+{% endset %}
+
+{% set pega_sites_nav_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: pega_sites_nav_lv2_ul_content,
+  } only %}
+{% endset %}
+
+{% set related_sites_nav_lv1_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Pega Sites',
+    },
+    children: pega_sites_nav_lv2,
+  } only %}
+{% endset %}
+
+{% set related_sites_nav %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: related_sites_nav_lv1_ul_content,
+    category: 'related-sites',
+  } only %}
+{% endset %}
+
+{# Put all the navs together #}
+{% set primary_nav %}
+  {% set primary_nav_content %}
+    {{ site_nav }}
+    {{ related_sites_nav }}
+    {{ user_nav }}
+  {% endset %}
+
+  {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
+    content: primary_nav_content,
+  } only %}
+{% endset %}
+
+{# Page Header #}
+{% set page_header_content %}
+  {{ primary_nav }}
+{% endset %}
+
+{% set subheadline %}
+  PegaWorld <strong class="u-bolt-color-teal">iN</strong>spire<br>
+  Virtual event<br>
+  May 4, 2021
+{% endset %}
+
+{% set cta %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Register free',
+    display: 'block',
+    size: 'small',
+    attributes: {
+      href: 'https://pega.com',
+    }
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-page-header/page-header.twig' with {
+  logo: {
+    image_src: '/images/logos/pega-logo.svg',
+    label: 'PegaWolrd',
+    attributes: {
+      href: 'https://pega.com',
+    }
+  },
+  content: page_header_content,
+  subheadline: subheadline,
+  cta: cta,
+  attributes: {
+    class: 't-bolt-navy-dark',
+  },
+} only %}

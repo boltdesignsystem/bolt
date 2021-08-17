@@ -25,31 +25,53 @@
   }
 ] %}
 
+{% set icon_prev %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    position: "before",
+    name: "chevron-left"
+  } only %}
+{% endset %}
+
+{% set button_prev %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Previous Topic',
+    hierarchy: "secondary",
+    size: "small",
+    border_radius: "full",
+    icon_before: icon_prev,
+    attributes: {
+      href: link["pages-acd-module-landing-page"]
+    }
+  } only %}
+{% endset %}
+
+{% set icon_next %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    position: "before",
+    name: "chevron-right"
+  } only %}
+{% endset %}
+
+{% set button_next %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Next Topic',
+    hierarchy: "secondary",
+    size: "small",
+    border_radius: "full",
+    icon_after: icon_next,
+    attributes: {
+      href: link["pages-acd-challenge-detail-page"]
+    }
+  } only %}
+{% endset %}
+
 {% block page_controls %}
-  {% include "@bolt-components-button-group/button-group.twig" with {
-    buttons: [
-      {
-        text: "Previous Topic",
-        url: link["pages-acd-module-landing-page"],
-        hierarchy: "secondary",
-        size: "small",
-        border_radius: "full",
-        icon: {
-          position: "before",
-          name: "chevron-left"
-        }
-      },
-      {
-        text: "Next Topic",
-        url: link["pages-acd-challenge-detail-page"],
-        hierarchy: "secondary",
-        size: "small",
-        border_radius: "full",
-        icon: {
-          position: "after",
-          name: "chevron-right"
-        }
-      }
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    align: "end",
+    items: [
+      button_prev,
+      button_next,
     ]
   } only %}
 {% endblock %}
@@ -104,10 +126,13 @@
   {% set trigger_content %}
     {% include "@bolt-components-figure/figure.twig" with {
       media: {
-        content: macros.include("@bolt-components-image/image.twig", {
-          src: "/images/placeholders/1920x1200.jpg",
-          alt: "A placeholder image",
-          max_width: "450px",
+        content: macros.include("@bolt-elements-image/image.twig", {
+          attributes: {
+            src: "/images/placeholders/1920x1200.jpg",
+            alt: "A placeholder image",
+            style: "max-width: 450px",
+            loading: "lazy",
+          }
         }),
       },
       caption: "Example of an image with caption + modal.",
@@ -115,10 +140,13 @@
   {% endset %}
 
   {% set modal_content %}
-    {% include "@bolt-components-image/image.twig" with {
-      src: "/images/placeholders/1920x1200.jpg",
-      alt: "Example of a larger version of an image that can be viewed in a modal.",
-      max_width: "1920px",
+    {% include "@bolt-elements-image/image.twig" with {
+      attributes: {
+        src: "/images/placeholders/1920x1200.jpg",
+        alt: "Example of a larger version of an image that can be viewed in a modal.",
+        style: "max-width: 1920px",
+        loading: "lazy",
+      }
     } only %}
   {% endset %}
 
@@ -172,8 +200,11 @@
 
     {% include "@bolt-components-figure/figure.twig" with {
       media: {
-        content: macros.include("@bolt-components-image/image.twig", {
-          src: "/images/placeholders/1920x1440.jpg",
+        content: macros.include("@bolt-elements-image/image.twig", {
+          attributes: {
+            src: "/images/placeholders/1920x1440.jpg",
+            loading: "lazy",
+          }
         }),
       },
       caption: "Lorem ipsum caption for the thumbnail.",
@@ -212,8 +243,11 @@
 
     {% include "@bolt-components-figure/figure.twig" with {
       media: {
-        content: macros.include("@bolt-components-image/image.twig", {
-          src: "/images/placeholders/1920x960.jpg",
+        content: macros.include("@bolt-elements-image/image.twig", {
+          attributes: {
+            src: "/images/placeholders/1920x960.jpg",
+            loading: "lazy",
+          }
         }),
       },
       caption: "Lorem ipsum caption for the thumbnail.",

@@ -93,7 +93,7 @@ module.exports = {
       description:
         'The optional background color of the Headline bullet. Uses inherited theme colors if unspecified.',
       type: 'string',
-      enum: ['teal', 'indigo', 'orange', 'purple'],
+      enum: ['teal', 'navy', 'orange', 'purple'],
     },
   },
 };

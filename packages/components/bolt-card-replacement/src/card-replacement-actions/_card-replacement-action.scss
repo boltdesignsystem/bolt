@@ -37,3 +37,15 @@ bolt-card-replacement-action {
     height: 100%;
   }
 }
+
+bolt-card-replacement-action,
+.c-bolt-card_replacement__action {
+  .e-bolt-button {
+    text-align: start;
+
+    &:focus,
+    &:active:not(:disabled) {
+      outline-offset: -4px;
+    }
+  }
+}

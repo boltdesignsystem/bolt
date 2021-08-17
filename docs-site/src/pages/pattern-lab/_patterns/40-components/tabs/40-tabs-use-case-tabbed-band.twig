@@ -20,24 +20,43 @@
         text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
         size: "medium"
       } only %}
-      {% include "@bolt-components-button-group/button-group.twig" with {
-        "buttons": [
-          {
-            "text": "Call to action",
-            "hierarchy": "primary"
-          },
-          {
-            "text": "Call to action",
-            "hierarchy": "secondary"
+
+      {% set button_cta_primary %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Call to action',
+          hierarchy: "primary",
+          attributes: {
+            type: 'button'
           }
+        } only %}
+      {% endset %}
+
+      {% set button_cta_secondary %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Call to action',
+          hierarchy: "secondary",
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+      {% endset %}
+
+      {% include "@bolt-components-list/list.twig" with {
+        display: 'inline',
+        items: [
+          button_cta_primary,
+          button_cta_secondary,
         ]
       } only %}
+
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-7/12@small" %}
       {% set device_viewer_image %}
-        {% include '@bolt-components-image/image.twig' with {
-          src: "/images/content/screenshots/device-screenshot--tablet.jpg",
-          placeholder_color: "#ececec"
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+            loading: "lazy"
+          }
         } only %}
       {% endset %}
       {% include "@bolt-components-device-viewer/device-viewer.twig" with {
@@ -53,9 +72,11 @@
   {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
     {% cell "u-bolt-width-12/12 u-bolt-width-7/12@small" %}
       {% set device_viewer_image %}
-        {% include '@bolt-components-image/image.twig' with {
-          src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
-          placeholder_color: "#1c1c1c"
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+            loading: "lazy"
+          }
         } only %}
       {% endset %}
       {% include "@bolt-components-device-viewer/device-viewer.twig" with {
@@ -75,27 +96,46 @@
         text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
         size: "medium"
       } only %}
-      {% include "@bolt-components-button-group/button-group.twig" with {
-        "buttons": [
-          {
-            "text": "Call to action",
-            "hierarchy": "primary"
-          },
-          {
-            "text": "Call to action",
-            "hierarchy": "secondary"
+
+      {% set button_cta_primary %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Call to action',
+          hierarchy: "primary",
+          attributes: {
+            type: 'button'
           }
+        } only %}
+      {% endset %}
+
+      {% set button_cta_secondary %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Call to action',
+          hierarchy: "secondary",
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+      {% endset %}
+
+      {% include "@bolt-components-list/list.twig" with {
+        display: 'inline',
+        items: [
+          button_cta_primary,
+          button_cta_secondary,
         ]
       } only %}
+
     {% endcell %}
   {% endgrid %}
 {% endset %}
 {% set tab_content_3 %}
   {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
     {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
-      {% include "@bolt-components-image/image.twig" with {
-        src: "/images/content/charts/decision-hub-chart.png",
-        lazyload: true
+      {% include "@bolt-elements-image/image.twig" with {
+        attributes: {
+          src: "/images/content/charts/decision-hub-chart.png",
+          loading: "lazy"
+        }
       } only %}
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}

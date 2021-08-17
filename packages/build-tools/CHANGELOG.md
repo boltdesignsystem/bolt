@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v4.1.1...v4.2.0) (2021-08-03)
+
+**Note:** Version bump only for package @bolt/build-tools
+
+
+
+
+
+## [4.1.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v4.1.0...v4.1.1) (2021-07-27)
+
+**Note:** Version bump only for package @bolt/build-tools
+
+
+
+
+
+# [4.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v4.0.2...v4.1.0) (2021-07-19)
+
+
+
+# [3.5.0-alpha-layout](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v3.5.4...v3.5.0-alpha-layout) (2021-05-11)
+
+**Note:** Version bump only for package @bolt/build-tools
+
+
+
+
+
 # [4.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v4.0.0-beta-4...v4.0.0) (2021-06-23)
 
 **Note:** Version bump only for package @bolt/build-tools

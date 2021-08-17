@@ -234,8 +234,8 @@
       {% endfor %}
 
       {% set content %}
-        {% include "@bolt-components-block-list/block-list.twig" with {
-          "items": children
+        {% include "@bolt-components-list/list.twig" with {
+          items: children
         } %}
       {% endset %}
       {% include "@bolt-components-dropdown/dropdown.twig" with {

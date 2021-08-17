@@ -1,7 +1,7 @@
 {% extends "@pl/_default-page-template.twig" %}
 
 {% block global_header %}
-  {% include '@pl/_main-site-page-header.twig' with { static_header: true } %}
+  {% include '@pl/_demo-main-site-page-header.twig' with { static_header: true } %}
 {% endblock %}
 
 {% block main_content %}
@@ -44,12 +44,12 @@
 
       {% set navbar_items %}
         {% for item in navbar_data %}
-          {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+          {% include '@bolt-components-navbar/navbar-li.twig' with item only %}
         {% endfor %}
       {% endset %}
 
       {% set navbar_list %}
-        {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+        {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}
       {% endset %}
 
       {% include '@bolt-components-navbar/navbar.twig' with {
@@ -83,21 +83,35 @@
         size: "xxlarge",
         text: "See the latest updates and media coverage about Pega from around the world."
       } only %}
-      {% include "@bolt-components-button-group/button-group.twig" with {
-        buttons: [
-          {
-            text: "Press Releases",
-            url: "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-press-browse--list-view/50-pages-100-d8-Press-and-Media-press-browse--list-view.html",
-            hierarchy: "secondary",
-            width: "full@small"
-          },
-          {
-            text: "Media Coverage",
-            url: "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-media-browse--list-view/50-pages-100-d8-Press-and-Media-d8-media-browse--list-view.html",
-            hierarchy: "secondary",
-            width: "full@small",
+
+      {% set button_press %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Press Releases',
+          hierarchy: "secondary",
+          display: 'inline@from-small',
+          attributes: {
+            href: '/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-press-browse--list-view/50-pages-100-d8-Press-and-Media-press-browse--list-view.html'
           }
-        ],
+        } only %}
+      {% endset %}
+
+      {% set button_media %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Media Coverage',
+          hierarchy: "secondary",
+          display: 'inline@from-small',
+          attributes: {
+            href: '/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-media-browse--list-view/50-pages-100-d8-Press-and-Media-d8-media-browse--list-view.html'
+          }
+        } only %}
+      {% endset %}
+
+      {% include "@bolt-components-list/list.twig" with {
+        display: 'inline',
+        items: [
+          button_press,
+          button_media,
+        ]
       } only %}
     {% endblock %}
   {% endembed %}

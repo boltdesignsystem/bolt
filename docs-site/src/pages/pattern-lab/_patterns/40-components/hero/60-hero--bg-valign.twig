@@ -28,11 +28,14 @@
 <bolt-text>This demo sets the image's <code>valign</code> prop to <code>top</code>.</bolt-text>
 
 {% set background_image_top %}
-  {% include '@bolt-components-image/image.twig' with {
-    src: "/images/placeholders/landscape-16x9-mountains.jpg",
-    alt: "A mountainous landscape",
-    valign: "top",
-    cover: true
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      alt: "A mountainous landscape",
+      style: "object-position: center top;",
+      background: true,
+      loading: "eager",
+    }
   } only %}
 {% endset %}
 
@@ -46,11 +49,14 @@
 <bolt-text>This demo sets the image's <code>valign</code> prop to <code>bottom</code>.</bolt-text>
 
 {% set background_image_btm %}
-  {% include '@bolt-components-image/image.twig' with {
-    src: "/images/placeholders/landscape-16x9-mountains.jpg",
-    alt: "A mountainous landscape",
-    valign: "bottom",
-    cover: true
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      alt: "A mountainous landscape",
+      style: "object-position: center bottom;",
+      background: true,
+      loading: "eager",
+    }
   } only %}
 {% endset %}
 

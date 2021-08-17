@@ -7,7 +7,7 @@
 \* ------------------------------------ */
 
 /// Helper functions for applying global color swatches stored in Sass Maps
-/// @param {string} $color - Bolt color base (e.g. indigo)
+/// @param {string} $color - Bolt color base (e.g. navy)
 /// @param {string} $tone [$bolt-color-default] - Bolt color tone (e.g. light)
 /// @return {HSL|RGB} The mapped bolt color value
 @function bolt-color($color, $tone: $bolt-color-default) {
@@ -15,7 +15,7 @@
 }
 
 /// Mixin to return color value
-/// @param {string} $color - Bolt color base (e.g. indigo)
+/// @param {string} $color - Bolt color base (e.g. navy)
 /// @param {string} $tone [$bolt-color-default] - Bolt color tone (e.g. light)
 /// @param {string} $important [null] - If 'important', then !important will be added onto the declaration string value
 /// @example scss - bolt-color mixin

@@ -5,6 +5,8 @@ module.exports = {
       '@bolt/global',
       '@bolt/elements-article',
       '@bolt/elements-button',
+      '@bolt/elements-image',
+      '@bolt/elements-printable',
       '@bolt/elements-text-link',
       '@bolt/layouts-holy-grail',
       '@bolt/layouts-layout',

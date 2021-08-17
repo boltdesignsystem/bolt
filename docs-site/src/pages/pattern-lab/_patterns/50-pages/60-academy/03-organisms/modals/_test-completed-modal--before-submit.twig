@@ -19,10 +19,11 @@
       macros.include("@bolt-components-card-replacement/_card-replacement-body.twig", {
         body: {
           content: [
-            macros.include("@bolt-components-image/image.twig", {
-              src: "/images/mission-test-badge-example.svg",
-              max_width: "200px",
+            macros.include("@bolt-elements-image/image.twig", {
               attributes: {
+                src: "/images/mission-test-badge-example.svg",
+                style: "max-width: 200px",
+                loading: "lazy",
                 class: [
                   "u-bolt-margin-top-medium",
                   "u-bolt-margin-left-auto",
