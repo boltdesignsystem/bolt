@@ -1,5 +1,8 @@
 {% set notes %}
-  Pass a <code>.t-bolt-*</code> theme class to the parent element to color a shape.</bolt-li>
+  <bolt-ol>
+    <bolt-li>Pass a <code>.t-bolt-*</code> theme class to the parent element to color a shape.</bolt-li>
+    <bolt-li>Reference the <a href="{{ link['visual-styles-theming-system'] }}" class="e-bolt-text-link">Theming System</a> for all available themes.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
@@ -18,20 +21,27 @@
     'berry',
     'violet'
   ] %}
+  {% set icon %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-thumbs-up',
+    } only %}
+  {% endset %}
   <ul class="bolt-icon-list-demo">
     {% for theme in theme_options %}
       <li>
-        {% include '@bolt-elements-shape/shape.twig' with {
-          content: 'MM',
-          size: 'large',
-          border_radius: 'full',
-          attributes: {
-            class: [
-              't-bolt-' ~ theme
-            ]
-          }
-        } only %}
-        <br>.t-bolt-{{ theme }}
+        <div class="u-bolt-margin-bottom-xsmall">
+          {% include '@bolt-elements-shape/shape.twig' with {
+            content: icon,
+            size: 'large',
+            border_radius: 'full',
+            attributes: {
+              class: [
+                't-bolt-' ~ theme
+              ]
+            }
+          } only %}
+        </div>
+        .t-bolt-{{ theme }}
       </li>
     {% endfor %}
   </ul>

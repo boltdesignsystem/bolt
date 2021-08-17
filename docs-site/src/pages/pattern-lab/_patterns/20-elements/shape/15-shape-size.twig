@@ -1,5 +1,4 @@
 {% set schema = bolt.data.components['@bolt-elements-shape'].schema %}
-{% set size_options = schema.properties.size.enum %}
 
 {% set description %}
   A Shape&rsquo;s size can be modified per use case.
@@ -7,6 +6,7 @@
 
 {% set notes %}
   <bolt-ol>
+    <bolt-li>Reference the <a href="{{ link['viewall-elements-shape'] }}?selected-tab=schema" class="e-bolt-text-link">schema</a> for all options.</bolt-li>
     <bolt-li>When passing letters to the content, text size scales with the shape size.</bolt-li>
     <bolt-li>When passing an icon to the content, icon size is ignored. Icon size scales with the shape size.</bolt-li>
     <bolt-li>When passing an image to the content, image size is ignored. Image size scales with the shape size.</bolt-li>
@@ -15,7 +15,7 @@
 
 {% set demo %}
   <bolt-list display="inline" spacing="small">
-    {% for size in size_options %}
+    {% for size in schema.properties.size.enum %}
       <bolt-list-item>
         {% include '@bolt-elements-shape/shape.twig' with {
           content: 'MM',

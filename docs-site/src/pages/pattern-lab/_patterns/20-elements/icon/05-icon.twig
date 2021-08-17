@@ -7,7 +7,8 @@
 {% set notes %}
   <bolt-ol>
     <bolt-li>Icon element is a replacement for the Icon component.</bolt-li>
-    <bolt-li>When writing inline SVG manually using <bolt-code-snippet display="inline" lang="html">&lt;svg class="e-bolt-icon"&gt;</bolt-code-snippet>, be sure to minifiy the SVG before adding the element class.</bolt-li>
+    <bolt-li>When writing inline SVG manually using <bolt-code-snippet display="inline" lang="html">&lt;svg&gt;</bolt-code-snippet> HTML element, be sure to minifiy the SVG and add the element class <bolt-code-snippet display="inline" lang="html">class="e-bolt-icon"</bolt-code-snippet>.</bolt-li>
+    <bolt-li>Icon element can be used in tandem with <a href="{{ link['viewall-elements-shape'] }}" class="e-bolt-text-link">Shape</a> element to create a square or circle container around the icon. In such scenario, size and color should not be set on the Icon, they should be set on the Shape instead.</bolt-li>
   </bolt-ol>
 {% endset %}
 
