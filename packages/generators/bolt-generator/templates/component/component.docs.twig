@@ -1,5 +1,7 @@
 {% set usage %}{% verbatim %}
-{% include '@bolt-components-{{ kebabCase name }}/{{ kebabCase name }}.twig' only %}
+{% include '@bolt-components-{{ kebabCase name }}/{{ kebabCase name }}.twig' with {
+  content: 'This is a {{ lowerCase name }} component.'
+} only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {

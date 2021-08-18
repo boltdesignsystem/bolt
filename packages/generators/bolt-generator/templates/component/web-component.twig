@@ -11,7 +11,7 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-{{ kebabCase name }}',
-  disabled ? 'c-bolt-{{ kebabCase name }}--disabled' : '',
+  this.data.disabled.value ? 'c-bolt-{{ kebabCase name }}--disabled' : '',
 ] %}
 
 {#

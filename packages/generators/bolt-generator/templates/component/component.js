@@ -6,6 +6,6 @@ export class Bolt{{ pascalCase name }} {
   }
 
   init() {
-    console.log('This is a {{ name }}');
+    console.log('This is a {{ name }} component.');
   }
 }

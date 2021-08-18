@@ -1,5 +1,5 @@
 {% set description %}
-  {{ sentenceCase description }}
+    A description of the element and what it is used for.
 {% endset %}
 
 {% set notes %}
@@ -10,20 +10,20 @@
 
 {% set demo %}
   {% include '@bolt-elements-{{ kebabCase name }}/{{ kebabCase name }}.twig' with {
-    content: 'This is a {{ lowerCase name }}'
+    content: 'This is a {{ lowerCase name }} element.'
   } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-elements-{{ kebabCase name }}/{{ kebabCase name }}.twig' with {
-  content: 'This is a {{ lowerCase name }}'
+  content: 'This is a {{ lowerCase name }} element.'
 } only %}
 {% endverbatim %}{% endset %}
 
 {% set html_markup %}
 {% verbatim %}
 <div class="e-bolt-{{ kebabCase name }}">
-  This is a {{ lowerCase name }}
+  This is a {{ lowerCase name }} element.
 </div>
 {% endverbatim %}
 {% endset %}
