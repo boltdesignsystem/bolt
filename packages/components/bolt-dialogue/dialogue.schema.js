@@ -16,5 +16,11 @@ module.exports = {
       type: 'any',
       description: 'The main Example content.',
     },
+    theme: {
+      type: 'string',
+      description: 'Controls the color theme of the modal container.',
+      enum: ['none', 'xlight', 'light', 'dark', 'xdark'],
+      default: 'light',
+    },
   },
 };

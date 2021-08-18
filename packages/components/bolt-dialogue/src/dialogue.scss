@@ -30,12 +30,9 @@
   Basic Dialogue Styles
 \**************************/
 
-.dialogue {
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
-    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
-}
-
 .dialogue__overlay {
+  @include bolt-z-index(modal);
+
   position: fixed;
   top: 0;
   left: 0;
@@ -48,7 +45,7 @@
 }
 
 .dialogue__container {
-  background-color: #fff;
+  // background-color: #fff;
   padding: 30px;
   max-width: 500px;
   max-height: 100vh;
@@ -68,8 +65,8 @@
   margin-bottom: 0;
   font-weight: 600;
   font-size: 1.25rem;
-  line-height: 1.25;
-  color: #00449e;
+  // line-height: 1.25;
+  // color: #00449e;
   box-sizing: border-box;
 }
 
@@ -86,7 +83,7 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.8);
+  // color: rgba(0, 0, 0, 0.8);
 }
 
 /**************************\
@@ -128,31 +125,31 @@
   }
 }
 
-.dialogue-slide {
+.c-bolt-dialogue {
   display: none;
 }
 
-.dialogue-slide.is-open {
+.c-bolt-dialogue.is-open {
   display: block;
 }
 
-.dialogue-slide[aria-hidden='false'] .dialogue__overlay {
+.c-bolt-dialogue[aria-hidden='false'] .dialogue__overlay {
   animation: mmfadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.dialogue-slide[aria-hidden='false'] .dialogue__container {
+.c-bolt-dialogue[aria-hidden='false'] .dialogue__container {
   animation: mmslideIn 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.dialogue-slide[aria-hidden='true'] .dialogue__overlay {
+.c-bolt-dialogue[aria-hidden='true'] .dialogue__overlay {
   animation: mmfadeOut 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.dialogue-slide[aria-hidden='true'] .dialogue__container {
+.c-bolt-dialogue[aria-hidden='true'] .dialogue__container {
   animation: mmslideOut 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.dialogue-slide .dialogue__container,
-.dialogue-slide .dialogue__overlay {
+.c-bolt-dialogue .dialogue__container,
+.c-bolt-dialogue .dialogue__overlay {
   will-change: transform;
 }
