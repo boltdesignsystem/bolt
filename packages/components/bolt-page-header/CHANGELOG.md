@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v4.2.1...v4.2.2) (2021-08-11)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
 # [4.2.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v4.1.1...v4.2.0) (2021-08-03)
 
 **Note:** Version bump only for package @bolt/components-page-header
