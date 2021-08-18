@@ -9,9 +9,9 @@
     name: 'global',
   } only %}
 {% endset %}
-{% set icon_menu %}
+{% set icon_grid %}
   {% include '@bolt-components-icon/icon.twig' with {
-    name: 'menu',
+    name: 'grid',
   } only %}
 {% endset %}
 {% set icon_bell_solid %}
@@ -1054,7 +1054,7 @@
   } only %}
 
   {% set pega_sites_label %}
-    <span class="c-bolt-page-header__nav-link__content__icon">{{ icon_menu }}</span>
+    <span class="c-bolt-page-header__nav-link__content__icon">{{ icon_grid }}</span>
     <span class="c-bolt-page-header__nav-link__content__text">Pega Sites</span>
   {% endset %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
