@@ -1,0 +1,43 @@
+{% set schema = bolt.data.components['@bolt-components-dialogue'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-dialogue',
+  'dialogue',
+  'dialogue-slide'
+] %}
+
+{# <div {{ attributes.addClass(classes) }}>
+  {% if content %}
+    {{ content }}
+  {% endif %}
+</div> #}
+
+<div {{ attributes.addClass(classes) }} aria-hidden="true">
+  <div class="dialogue__overlay" tabindex="-1" data-dialogue-close>
+    <div class="dialogue__container" role="dialog" aria-dialogue="true" aria-labelledby="{{ attributes.id.value }}-title">
+      <header class="dialogue__header">
+        <h2 class="dialogue__title" id="{{ attributes.id.value }}-title">
+          dialogue
+        </h2>
+        <button class="dialogue__close" aria-label="Close dialogue" data-dialogue-close></button>
+      </header>
+      <main class="dialogue__content" id="{{ attributes.id.value }}-content">
+        <p>
+          {{content}}
+        </p>
+      </main>
+      <footer class="dialogue__footer">
+        <button class="e-bolt-button">Continue</button>
+        <button class="e-bolt-button e-bolt-button--secondary" data-dialogue-close aria-label="Close this dialog window">Close</button>
+      </footer>
+    </div>
+  </div>
+</div>

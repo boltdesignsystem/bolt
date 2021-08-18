@@ -1,0 +1,51 @@
+{% set description %}
+    A description of the component and what it is used for.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Demo Dialogue',
+  attributes: {
+    type: 'button',
+    'data-dialogue-trigger': 'dialogue-1',
+  }
+} only %}
+
+{% include '@bolt-components-dialogue/dialogue.twig' with {
+  content: 'This is a dialogue',
+  attributes: {
+    id: 'dialogue-1'
+  },
+} only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Demo Dialogue',
+  attributes: {
+    type: 'button',
+    'data-dialogue-trigger': 'dialogue-1',
+  }
+} only %}
+
+{% include '@bolt-components-dialogue/dialogue.twig' with {
+  content: 'This is a dialogue',
+  attributes: {
+    id: 'dialogue-1'
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Dialogue',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup
+} only %}

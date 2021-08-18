@@ -1,4 +1,15 @@
-const MicroModal = (() => {
+// export class BoltDialogue {
+//   constructor(el) {
+//     if (!el) return;
+//     this.el = el;
+//     this.init();
+//   }
+
+//   init() {
+//     console.log('This is a dialogue component.');
+//   }
+// }
+const MicroDialogue = (() => {
   'use strict';
 
   const FOCUSABLE_ELEMENTS = [
@@ -15,14 +26,14 @@ const MicroModal = (() => {
     '[tabindex]:not([tabindex^="-"])',
   ];
 
-  class Modal {
+  class Dialogue {
     constructor({
-      targetModal,
+      targetDialogue,
       triggers = [],
       onShow = () => {},
       onClose = () => {},
-      openTrigger = 'data-modal-trigger',
-      closeTrigger = 'data-modal-close',
+      openTrigger = 'data-dialogue-trigger',
+      closeTrigger = 'data-dialogue-close',
       openClass = 'is-open',
       disableScroll = false,
       disableFocus = false,
@@ -30,8 +41,8 @@ const MicroModal = (() => {
       awaitOpenAnimation = false,
       debugMode = false,
     }) {
-      // Save a reference of the modal
-      this.modal = document.getElementById(targetModal);
+      // Save a reference of the dialogue
+      this.dialogue = document.getElementById(targetDialogue);
 
       // Save a reference to the passed config
       this.config = {
@@ -62,58 +73,58 @@ const MicroModal = (() => {
      */
     registerTriggers(...triggers) {
       triggers.filter(Boolean).forEach(trigger => {
-        trigger.addEventListener('click', event => this.showModal(event));
+        trigger.addEventListener('click', event => this.showDialogue(event));
       });
     }
 
-    showModal(event = null) {
+    showDialogue(event = null) {
       this.activeElement = document.activeElement;
-      this.modal.setAttribute('aria-hidden', 'false');
-      this.modal.classList.add(this.config.openClass);
+      this.dialogue.setAttribute('aria-hidden', 'false');
+      this.dialogue.classList.add(this.config.openClass);
       this.scrollBehaviour('disable');
       this.addEventListeners();
 
       if (this.config.awaitOpenAnimation) {
         const handler = () => {
-          this.modal.removeEventListener('animationend', handler, false);
+          this.dialogue.removeEventListener('animationend', handler, false);
           this.setFocusToFirstNode();
         };
-        this.modal.addEventListener('animationend', handler, false);
+        this.dialogue.addEventListener('animationend', handler, false);
       } else {
         this.setFocusToFirstNode();
       }
 
-      this.config.onShow(this.modal, this.activeElement, event);
+      this.config.onShow(this.dialogue, this.activeElement, event);
     }
 
-    closeModal(event = null) {
-      const modal = this.modal;
-      this.modal.setAttribute('aria-hidden', 'true');
+    closeDialogue(event = null) {
+      const dialogue = this.dialogue;
+      this.dialogue.setAttribute('aria-hidden', 'true');
       this.removeEventListeners();
       this.scrollBehaviour('enable');
       if (this.activeElement && this.activeElement.focus) {
         this.activeElement.focus();
       }
-      this.config.onClose(this.modal, this.activeElement, event);
+      this.config.onClose(this.dialogue, this.activeElement, event);
 
       if (this.config.awaitCloseAnimation) {
         let openClass = this.config.openClass; // <- old school ftw
-        this.modal.addEventListener(
+        this.dialogue.addEventListener(
           'animationend',
           function handler() {
-            modal.classList.remove(openClass);
-            modal.removeEventListener('animationend', handler, false);
+            dialogue.classList.remove(openClass);
+            dialogue.removeEventListener('animationend', handler, false);
           },
           false,
         );
       } else {
-        modal.classList.remove(this.config.openClass);
+        dialogue.classList.remove(this.config.openClass);
       }
     }
 
-    closeModalById(targetModal) {
-      this.modal = document.getElementById(targetModal);
-      if (this.modal) this.closeModal();
+    closeDialogueById(targetDialogue) {
+      this.dialogue = document.getElementById(targetDialogue);
+      if (this.dialogue) this.closeDialogue();
     }
 
     scrollBehaviour(toggle) {
@@ -131,30 +142,30 @@ const MicroModal = (() => {
     }
 
     addEventListeners() {
-      this.modal.addEventListener('touchstart', this.onClick);
-      this.modal.addEventListener('click', this.onClick);
+      this.dialogue.addEventListener('touchstart', this.onClick);
+      this.dialogue.addEventListener('click', this.onClick);
       document.addEventListener('keydown', this.onKeydown);
     }
 
     removeEventListeners() {
-      this.modal.removeEventListener('touchstart', this.onClick);
-      this.modal.removeEventListener('click', this.onClick);
+      this.dialogue.removeEventListener('touchstart', this.onClick);
+      this.dialogue.removeEventListener('click', this.onClick);
       document.removeEventListener('keydown', this.onKeydown);
     }
 
     onClick(event) {
       if (event.target.hasAttribute(this.config.closeTrigger)) {
-        this.closeModal(event);
+        this.closeDialogue(event);
       }
     }
 
     onKeydown(event) {
-      if (event.keyCode === 27) this.closeModal(event); // esc
+      if (event.keyCode === 27) this.closeDialogue(event); // esc
       if (event.keyCode === 9) this.retainFocus(event); // tab
     }
 
     getFocusableNodes() {
-      const nodes = this.modal.querySelectorAll(FOCUSABLE_ELEMENTS);
+      const nodes = this.dialogue.querySelectorAll(FOCUSABLE_ELEMENTS);
       return Array(...nodes);
     }
 
@@ -170,7 +181,7 @@ const MicroModal = (() => {
       // no focusable nodes
       if (focusableNodes.length === 0) return;
 
-      // remove nodes on whose click, the modal closes
+      // remove nodes on whose click, the dialogue closes
       // could not think of a better name :(
       const nodesWhichAreNotCloseTargets = focusableNodes.filter(node => {
         return !node.hasAttribute(this.config.closeTrigger);
@@ -189,14 +200,14 @@ const MicroModal = (() => {
 
       /**
        * Filters nodes which are hidden to prevent
-       * focus leak outside modal
+       * focus leak outside dialogue
        */
       focusableNodes = focusableNodes.filter(node => {
         return node.offsetParent !== null;
       });
 
       // if disableFocus is true
-      if (!this.modal.contains(document.activeElement)) {
+      if (!this.dialogue.contains(document.activeElement)) {
         focusableNodes[0].focus();
       } else {
         const focusedItemIndex = focusableNodes.indexOf(document.activeElement);
@@ -219,16 +230,16 @@ const MicroModal = (() => {
   }
 
   /**
-   * Modal prototype ends.
+   * Dialogue prototype ends.
    * Here on code is responsible for detecting and
-   * auto binding event handlers on modal triggers
+   * auto binding event handlers on dialogue triggers
    */
 
-  // Keep a reference to the opened modal
-  let activeModal = null;
+  // Keep a reference to the opened dialogue
+  let activeDialogue = null;
 
   /**
-   * Generates an associative array of modals and it's
+   * Generates an associative array of dialogues and it's
    * respective triggers
    * @param  {array} triggers     An array of all triggers
    * @param  {string} triggerAttr The data-attribute which triggers the module
@@ -238,38 +249,39 @@ const MicroModal = (() => {
     const triggerMap = [];
 
     triggers.forEach(trigger => {
-      const targetModal = trigger.attributes[triggerAttr].value;
-      if (triggerMap[targetModal] === undefined) triggerMap[targetModal] = [];
-      triggerMap[targetModal].push(trigger);
+      const targetDialogue = trigger.attributes[triggerAttr].value;
+      if (triggerMap[targetDialogue] === undefined)
+        triggerMap[targetDialogue] = [];
+      triggerMap[targetDialogue].push(trigger);
     });
 
     return triggerMap;
   };
 
   /**
-   * Validates whether a modal of the given id exists
+   * Validates whether a dialogue of the given id exists
    * in the DOM
-   * @param  {number} id  The id of the modal
+   * @param  {number} id  The id of the dialogue
    * @return {boolean}
    */
-  const validateModalPresence = id => {
+  const validateDialoguePresence = id => {
     if (!document.getElementById(id)) {
       console.warn(
-        `MicroModal: \u2757Seems like you have missed %c'${id}'`,
+        `MicroDialogue: \u2757Seems like you have missed %c'${id}'`,
         'background-color: #f8f9fa;color: #50596c;font-weight: bold;',
         'ID somewhere in your code. Refer example below to resolve it.',
       );
       console.warn(
         `%cExample:`,
         'background-color: #f8f9fa;color: #50596c;font-weight: bold;',
-        `<div class="modal" id="${id}"></div>`,
+        `<div class="dialogue" id="${id}"></div>`,
       );
       return false;
     }
   };
 
   /**
-   * Validates if there are modal triggers present
+   * Validates if there are dialogue triggers present
    * in the DOM
    * @param  {array} triggers An array of data-triggers
    * @return {boolean}
@@ -277,35 +289,35 @@ const MicroModal = (() => {
   const validateTriggerPresence = triggers => {
     if (triggers.length <= 0) {
       console.warn(
-        `MicroModal: \u2757Please specify at least one %c'micromodal-trigger'`,
+        `MicroDialogue: \u2757Please specify at least one %c'microdialogue-trigger'`,
         'background-color: #f8f9fa;color: #50596c;font-weight: bold;',
         'data attribute.',
       );
       console.warn(
         `%cExample:`,
         'background-color: #f8f9fa;color: #50596c;font-weight: bold;',
-        `<a href="#" data-modal-trigger="my-modal"></a>`,
+        `<a href="#" data-dialogue-trigger="my-dialogue"></a>`,
       );
       return false;
     }
   };
 
   /**
-   * Checks if triggers and their corresponding modals
+   * Checks if triggers and their corresponding dialogues
    * are present in the DOM
    * @param  {array} triggers   Array of DOM nodes which have data-triggers
-   * @param  {array} triggerMap Associative array of modals and their triggers
+   * @param  {array} triggerMap Associative array of dialogues and their triggers
    * @return {boolean}
    */
   const validateArgs = (triggers, triggerMap) => {
     validateTriggerPresence(triggers);
     if (!triggerMap) return true;
-    for (var id in triggerMap) validateModalPresence(id);
+    for (var id in triggerMap) validateDialoguePresence(id);
     return true;
   };
 
   /**
-   * Binds click handlers to all modal triggers
+   * Binds click handlers to all dialogue triggers
    * @param  {object} config [description]
    * @return void
    */
@@ -313,69 +325,69 @@ const MicroModal = (() => {
     // Create an config object with default openTrigger
     const options = Object.assign(
       {},
-      { openTrigger: 'data-modal-trigger' },
+      { openTrigger: 'data-dialogue-trigger' },
       config,
     );
 
     // Collects all the nodes with the trigger
     const triggers = [...document.querySelectorAll(`[${options.openTrigger}]`)];
 
-    // Makes a mappings of modals with their trigger nodes
+    // Makes a mappings of dialogues with their trigger nodes
     const triggerMap = generateTriggerMap(triggers, options.openTrigger);
 
-    // Checks if modals and triggers exist in dom
+    // Checks if dialogues and triggers exist in dom
     if (
       options.debugMode === true &&
       validateArgs(triggers, triggerMap) === false
     )
       return;
 
-    // For every target modal creates a new instance
+    // For every target dialogue creates a new instance
     for (var key in triggerMap) {
       let value = triggerMap[key];
-      options.targetModal = key;
+      options.targetDialogue = key;
       options.triggers = [...value];
-      activeModal = new Modal(options); // eslint-disable-line no-new
+      activeDialogue = new Dialogue(options); // eslint-disable-line no-new
     }
   };
 
   /**
-   * Shows a particular modal
-   * @param  {string} targetModal [The id of the modal to display]
+   * Shows a particular dialogue
+   * @param  {string} targetDialogue [The id of the dialogue to display]
    * @param  {object} config [The configuration object to pass]
    * @return {void}
    */
-  const show = (targetModal, config) => {
+  const show = (targetDialogue, config) => {
     const options = config || {};
-    options.targetModal = targetModal;
+    options.targetDialogue = targetDialogue;
 
-    // Checks if modals and triggers exist in dom
+    // Checks if dialogues and triggers exist in dom
     if (
       options.debugMode === true &&
-      validateModalPresence(targetModal) === false
+      validateDialoguePresence(targetDialogue) === false
     )
       return;
 
-    // clear events in case previous modal wasn't close
-    if (activeModal) activeModal.removeEventListeners();
+    // clear events in case previous dialogue wasn't close
+    if (activeDialogue) activeDialogue.removeEventListeners();
 
-    // stores reference to active modal
-    activeModal = new Modal(options); // eslint-disable-line no-new
-    activeModal.showModal();
+    // stores reference to active dialogue
+    activeDialogue = new Dialogue(options); // eslint-disable-line no-new
+    activeDialogue.showDialogue();
   };
 
   /**
-   * Closes the active modal
-   * @param  {string} targetModal [The id of the modal to close]
+   * Closes the active dialogue
+   * @param  {string} targetDialogue [The id of the dialogue to close]
    * @return {void}
    */
-  const close = targetModal => {
-    targetModal
-      ? activeModal.closeModalById(targetModal)
-      : activeModal.closeModal();
+  const close = targetDialogue => {
+    targetDialogue
+      ? activeDialogue.closeDialogueById(targetDialogue)
+      : activeDialogue.closeDialogue();
   };
 
   return { init, show, close };
 })();
 
-MicroModal.init();
+MicroDialogue.init();

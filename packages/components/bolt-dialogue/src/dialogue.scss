@@ -1,3 +1,25 @@
+// /* ------------------------------------ *\
+//    Dialogue
+// \* ------------------------------------ */
+
+// @import '@bolt/core-v3.x';
+
+// // Register Custom Block Element
+// @include bolt-custom-element('bolt-dialogue', block, medium);
+
+// /**
+//  * Long-form comment.
+//  *
+//  * This spans multiple lines and is also constrained to no longer than 80
+//  * characters in width.
+//  *
+//  * 1. Provide line-comments like this.
+//  */
+// .c-bolt-dialogue {
+//   // Styles go here. /* [1] */
+//   display: block;
+// }
+
 @import '@bolt/core-v3.x';
 @import '@bolt/global/styles/06-themes/_themes.all.scss'; // @todo: remove this once bolt-theme() function is completely deprecated and removed.
 @import '@bolt/global/styles/00-vars/_vars-mode.scss';
@@ -5,15 +27,15 @@
 /* stylelint-disable */
 
 /**************************\
-  Basic Modal Styles
+  Basic Dialogue Styles
 \**************************/
 
-.modal {
+.dialogue {
   font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
     helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
 }
 
-.modal__overlay {
+.dialogue__overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -25,7 +47,7 @@
   align-items: center;
 }
 
-.modal__container {
+.dialogue__container {
   background-color: #fff;
   padding: 30px;
   max-width: 500px;
@@ -35,13 +57,13 @@
   box-sizing: border-box;
 }
 
-.modal__header {
+.dialogue__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.modal__title {
+.dialogue__title {
   margin-top: 0;
   margin-bottom: 0;
   font-weight: 600;
@@ -51,16 +73,16 @@
   box-sizing: border-box;
 }
 
-.modal__close {
+.dialogue__close {
   background: transparent;
   border: 0;
 }
 
-.modal__header .modal__close:before {
+.dialogue__header .dialogue__close:before {
   content: '\2715';
 }
 
-.modal__content {
+.dialogue__content {
   margin-top: 2rem;
   margin-bottom: 2rem;
   line-height: 1.5;
@@ -106,31 +128,31 @@
   }
 }
 
-.modal-slide {
+.dialogue-slide {
   display: none;
 }
 
-.modal-slide.is-open {
+.dialogue-slide.is-open {
   display: block;
 }
 
-.modal-slide[aria-hidden='false'] .modal__overlay {
+.dialogue-slide[aria-hidden='false'] .dialogue__overlay {
   animation: mmfadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.modal-slide[aria-hidden='false'] .modal__container {
+.dialogue-slide[aria-hidden='false'] .dialogue__container {
   animation: mmslideIn 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.modal-slide[aria-hidden='true'] .modal__overlay {
+.dialogue-slide[aria-hidden='true'] .dialogue__overlay {
   animation: mmfadeOut 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.modal-slide[aria-hidden='true'] .modal__container {
+.dialogue-slide[aria-hidden='true'] .dialogue__container {
   animation: mmslideOut 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.modal-slide .modal__container,
-.modal-slide .modal__overlay {
+.dialogue-slide .dialogue__container,
+.dialogue-slide .dialogue__overlay {
   will-change: transform;
 }

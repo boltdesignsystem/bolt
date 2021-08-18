@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-dialogue/dialogue.twig' with {
+  content: 'This is a dialogue component.'
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'dialogue',
+  usage: usage
+} only %}
