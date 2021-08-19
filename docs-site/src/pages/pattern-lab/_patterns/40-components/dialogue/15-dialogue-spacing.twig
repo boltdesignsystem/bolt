@@ -12,20 +12,21 @@
 
 {% set demo %}
 <bolt-list display="inline" spacing="small">
-{% for theme in schema.properties.theme.enum %}
+{% for spacing in schema.properties.spacing.enum %}
   <bolt-list-item>
   {% include '@bolt-elements-button/button.twig' with {
-    content: '"' ~ theme ~ '" Theme',
+    content: spacing|title ~ ' Spacing',
     attributes: {
       type: 'button',
-      'data-dialogue-trigger': 'dialogue-theme-' ~ loop.index0,
+      'data-dialogue-trigger': 'dialogue-spacing-' ~ loop.index0,
     }
   } only %}
+
   {% include '@bolt-components-dialogue/dialogue.twig' with {
     content: 'This is a dialogue component.',
-    theme: theme,
+    spacing: spacing,
     attributes: {
-      id: 'dialogue-theme-' ~ loop.index0
+      id: 'dialogue-spacing-' ~ loop.index0
     },
   } only %}
   </bolt-list-item>
@@ -36,15 +37,15 @@
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialogue/dialogue.twig' with {
   content: 'This is a dialogue component.',
-  theme: 'dark',
+  spacing: 'full',
   attributes: {
-    id: 'dialogue-2'
+    id: 'dialogue-3'
   },
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Dialogue Themes',
+  title: 'Dialogue Spacing',
   description: description,
   notes: notes,
   demo: demo,
