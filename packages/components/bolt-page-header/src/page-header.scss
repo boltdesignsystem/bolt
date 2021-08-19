@@ -210,6 +210,20 @@
   }
 }
 
+.c-bolt-page-header__nav-link__content__signifier {
+  display: grid;
+  line-height: 1;
+  place-items: center;
+}
+
+.c-bolt-page-header__nav-link__content__signifier {
+  img {
+    width: 1em;
+    height: 1em;
+    border-radius: bolt-border-radius(full);
+  }
+}
+
 // Subheadline
 .c-bolt-page-header__subheadline {
   font-size: var(--bolt-type-font-size-xxsmall);
@@ -242,6 +256,44 @@
 .c-bolt-page-header__user-flag__content {
   word-break: break-word;
   hyphens: auto;
+}
+
+// Related Sites Popover
+.c-bolt-page-header__related-sites-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.c-bolt-page-header__related-sites-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .c-bolt-page-header__related-sites-list {
+    margin-left: var(--bolt-spacing-x-small);
+  }
+}
+
+.c-bolt-page-header__related-sites-list-item {
+  margin: 0;
+}
+
+.c-bolt-page-header__related-sites-list-item__link,
+.c-bolt-page-header__related-sites-list-item__description {
+  display: block;
+}
+
+.c-bolt-page-header__related-sites-list-item__link {
+  margin-bottom: var(--bolt-spacing-y-xxsmall);
+  font-family: var(--bolt-type-font-family-headline);
+  font-weight: var(--bolt-type-font-weight-semibold);
+}
+
+.c-bolt-page-header__related-sites-list-item__description {
+  margin-bottom: var(--bolt-spacing-y-small);
+  font-family: var(--bolt-type-font-family-body);
+  font-weight: var(--bolt-type-font-weight-regular);
 }
 
 // Counter

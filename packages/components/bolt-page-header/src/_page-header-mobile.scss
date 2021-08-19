@@ -161,6 +161,10 @@
         opacity: 1;
         transition-delay: calc(var(--bolt-transition-timing) / 2);
       }
+
+      > .c-bolt-page-header__nav-list-item:last-of-type {
+        margin-bottom: $bolt-page-header-click-target-size;
+      }
     }
   }
 
@@ -208,6 +212,10 @@
     grid-gap: var(--bolt-spacing-x-xsmall);
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .c-bolt-page-header__nav-link__content__signifier {
+    font-size: 1em;
   }
 
   .c-bolt-page-header__nav-link__nested-indicator {

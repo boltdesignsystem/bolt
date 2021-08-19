@@ -124,7 +124,38 @@ bolt-layout {
       grid-column: var(--l-bolt-layout-exclude-from-template);
     }
   }
+}
 
+// Sub-layout resets all defaults. Everything stays the same except for padding getting zeroed out.
+bolt-layout bolt-layout,
+.c-bolt-page-header bolt-layout,
+.c-bolt-page-footer bolt-layout,
+.c-bolt-band bolt-layout,
+.l-bolt-holy-grail bolt-layout {
+  --l-bolt-layout-template: 1fr;
+  --l-bolt-layout-gutter: var(--bolt-spacing-x-medium);
+  --l-bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
+  --l-bolt-layout-padding-top: 0;
+  --l-bolt-layout-padding-right: 0;
+  --l-bolt-layout-padding-bottom: 0;
+  --l-bolt-layout-padding-left: 0;
+  --l-bolt-layout-align-items: unset;
+  --l-bolt-layout-valign-items: unset;
+  --l-bolt-layout-item-valign-self: unset;
+  --l-bolt-layout-item-valign-self-start-offset: 0;
+  --l-bolt-layout-item-valign-self-end-offset: 0;
+  --l-bolt-layout-item-order: 1;
+  --l-bolt-layout-flag-media-width: #{$_bolt-layout-item-min-width};
+  --l-bolt-layout-tile-min-width: #{$_bolt-layout-item-min-width};
+
+  right: unset;
+  left: unset;
+  width: 100%;
+  margin: 0;
+}
+
+// Props must be defined after sub-layout rules
+bolt-layout {
   // loop through non-breakpoint-specific templates
   @each $template-name, $template-value in $_bolt-layout-templates {
     @if (
@@ -243,30 +274,6 @@ bolt-layout {
 
   &[row-gutter='none'] {
     --l-bolt-layout-row-gutter: 0;
-  }
-
-  // Sub-layout resets all defaults. Everything stays the same except for padding getting zeroed out.
-  bolt-layout {
-    --l-bolt-layout-template: 1fr;
-    --l-bolt-layout-gutter: var(--bolt-spacing-x-medium);
-    --l-bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
-    --l-bolt-layout-padding-top: 0;
-    --l-bolt-layout-padding-right: 0;
-    --l-bolt-layout-padding-bottom: 0;
-    --l-bolt-layout-padding-left: 0;
-    --l-bolt-layout-align-items: unset;
-    --l-bolt-layout-valign-items: unset;
-    --l-bolt-layout-item-valign-self: unset;
-    --l-bolt-layout-item-valign-self-start-offset: 0;
-    --l-bolt-layout-item-valign-self-end-offset: 0;
-    --l-bolt-layout-item-order: 1;
-    --l-bolt-layout-flag-media-width: #{$_bolt-layout-item-min-width};
-    --l-bolt-layout-tile-min-width: #{$_bolt-layout-item-min-width};
-
-    right: unset;
-    left: unset;
-    width: 100%;
-    margin: 0;
   }
 }
 
