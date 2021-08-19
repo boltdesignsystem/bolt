@@ -44,29 +44,30 @@
 }
 
 .c-bolt-dialogue__container {
-  padding: 30px;
   min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
   max-width: calc(100% - var(--bolt-spacing-x-medium) * 2);
   max-height: 100vh;
   border-radius: 4px;
-  overflow-y: auto;
   box-sizing: border-box;
+
+  .c-bolt-dialogue__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    @include bolt-mq('small') {
+      top: calc(var(--bolt-spacing-x-large) * -1);
+    }
+  }
 }
 
-.dialogue__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.dialogue__close {
-  background: transparent;
-  border: 0;
-}
-
-.dialogue__content {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+// Container spacing options
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+  .c-bolt-dialogue__container--spacing-#{$size-name} {
+    padding: var(--bolt-spacing-y-#{$size-name})
+      var(--bolt-spacing-x-#{$size-name});
+  }
 }
 
 /**************************\

@@ -22,9 +22,15 @@ module.exports = {
       default: 'optimal',
       enum: ['full', 'regular', 'optimal', 'auto'],
     },
+    spacing: {
+      type: 'string',
+      description: 'Controls the spacing around the dialogue container.',
+      default: 'medium',
+      enum: ['none', 'small', 'medium', 'large'],
+    },
     theme: {
       type: 'string',
-      description: 'Controls the color theme of the modal container.',
+      description: 'Controls the color theme of the dialogue container.',
       enum: ['none', 'xlight', 'light', 'dark', 'xdark'],
       default: 'light',
     },
