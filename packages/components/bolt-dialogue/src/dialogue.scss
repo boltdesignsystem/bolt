@@ -21,7 +21,6 @@
 // }
 
 @import '@bolt/core-v3.x';
-@import '@bolt/global/styles/06-themes/_themes.all.scss'; // @todo: remove this once bolt-theme() function is completely deprecated and removed.
 @import '@bolt/global/styles/00-vars/_vars-mode.scss';
 
 /* stylelint-disable */
@@ -44,10 +43,10 @@
   align-items: center;
 }
 
-.dialogue__container {
-  // background-color: #fff;
+.c-bolt-dialogue__container {
   padding: 30px;
-  max-width: 500px;
+  min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
+  max-width: calc(100% - var(--bolt-spacing-x-medium) * 2);
   max-height: 100vh;
   border-radius: 4px;
   overflow-y: auto;
@@ -60,30 +59,14 @@
   align-items: center;
 }
 
-.dialogue__title {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-weight: 600;
-  font-size: 1.25rem;
-  // line-height: 1.25;
-  // color: #00449e;
-  box-sizing: border-box;
-}
-
 .dialogue__close {
   background: transparent;
   border: 0;
 }
 
-.dialogue__header .dialogue__close:before {
-  content: '\2715';
-}
-
 .dialogue__content {
   margin-top: 2rem;
   margin-bottom: 2rem;
-  line-height: 1.5;
-  // color: rgba(0, 0, 0, 0.8);
 }
 
 /**************************\
@@ -137,7 +120,7 @@
   animation: mmfadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.c-bolt-dialogue[aria-hidden='false'] .dialogue__container {
+.c-bolt-dialogue[aria-hidden='false'] .c-bolt-dialogue__container {
   animation: mmslideIn 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
@@ -145,11 +128,26 @@
   animation: mmfadeOut 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.c-bolt-dialogue[aria-hidden='true'] .dialogue__container {
+.c-bolt-dialogue[aria-hidden='true'] .c-bolt-dialogue__container {
   animation: mmslideOut 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.c-bolt-dialogue .dialogue__container,
+.c-bolt-dialogue .c-bolt-dialogue__container,
 .c-bolt-dialogue .dialogue__overlay {
   will-change: transform;
+}
+
+// Content width options
+@include bolt-mq('small') {
+  .c-bolt-dialogue__container--width-regular {
+    width: 100% / 12 * 10;
+  }
+
+  .c-bolt-dialogue__container--width-optimal {
+    width: 75ch;
+  }
+
+  .c-bolt-dialogue__container--width-full {
+    width: calc(100% - var(--bolt-spacing-x-medium) * 2);
+  }
 }

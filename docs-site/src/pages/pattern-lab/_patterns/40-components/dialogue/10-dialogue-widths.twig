@@ -12,20 +12,21 @@
 
 {% set demo %}
 <bolt-list display="inline" spacing="small">
-{% for theme in schema.properties.theme.enum %}
+{% for width in schema.properties.width.enum %}
   <bolt-list-item>
   {% include '@bolt-elements-button/button.twig' with {
-    content: '"' ~ theme ~ '" Theme',
+    content: width|title ~ ' Width',
     attributes: {
       type: 'button',
-      'data-dialogue-trigger': 'dialogue-theme-' ~ loop.index0,
+      'data-dialogue-trigger': 'dialogue-width-' ~ loop.index0,
     }
   } only %}
+
   {% include '@bolt-components-dialogue/dialogue.twig' with {
     content: 'This is a dialogue',
-    theme: theme,
+    width: width,
     attributes: {
-      id: 'dialogue-theme-' ~ loop.index0
+      id: 'dialogue-width-' ~ loop.index0
     },
   } only %}
   </bolt-list-item>
@@ -36,7 +37,7 @@
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialogue/dialogue.twig' with {
   content: 'This is a dialogue',
-  theme: 'dark',
+  width: 'full',
   attributes: {
     id: 'dialogue-2'
   },
@@ -44,7 +45,7 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Dialogue Themes',
+  title: 'Dialogue Widths',
   description: description,
   notes: notes,
   demo: demo,

@@ -16,6 +16,12 @@ module.exports = {
       type: 'any',
       description: 'The main Example content.',
     },
+    width: {
+      type: 'string',
+      description: 'Controls the width of the dialogue container.',
+      default: 'optimal',
+      enum: ['full', 'regular', 'optimal', 'auto'],
+    },
     theme: {
       type: 'string',
       description: 'Controls the color theme of the modal container.',
