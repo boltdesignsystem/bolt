@@ -311,41 +311,18 @@ exports[`<bolt-headline> Component basic usage text 1`] = `
 
 exports[`<bolt-headline> Component headline with associated link 1`] = `
 <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xlarge c-bolt-headline--link">
-  <bolt-link url="www.testurl.com"
-             is-headline
+  <svg aria-hidden="true"
+       enable-background="new 0 0 32 32"
+       viewbox="0 0 32 32"
+       xmlns="http://www.w3.org/2000/svg"
   >
-    <a href="www.testurl.com"
-       target="_self"
-       class="c-bolt-link c-bolt-link--headline c-bolt-link--display-inline c-bolt-link--valign-center"
+    <path clip-rule="evenodd"
+          d="m30.3 4.3-2.6-2.6c-1.1-1.1-2.4-1.7-4-1.7s-2.9.5-4 1.6l-2.7 2.8c-.4.3-.6.7-.6 1.1s.2.8.5 1.2c.7.7 1.7.6 2.3 0l2.8-2.8c.4-.4 1-.6 1.7-.6s1.3.2 1.7.7l2.6 2.6c.5.4.7 1 .7 1.7s-.2 1.3-.7 1.7l-8.7 8.7c-.5.5-1.1.8-2 .8-.8 0-1.4-.1-1.8-.6l-1.1-1.1-.9-.9c-.4-.4-.8-.6-1.2-.6s-.8.2-1.1.5c-.4.3-.6.7-.6 1.1s.2.8.6 1.2l1.9 1.9.5.4c.9.8 2.1 1.1 3.4 1.1h.2c1.3 0 2.4-.4 3.3-1.1 0 0 .7-.4.7-.5l8.9-8.9c1-1.1 1.6-2.4 1.6-4 .3-1.3-.3-2.7-1.4-3.7m-15.3 20.9c.4.4.6.8.6 1.2s-.2.8-.5 1.2l-2.7 2.7c-1.1 1.1-2.4 1.6-4 1.6-1.5 0-2.9-.5-4-1.6l-2.8-2.8c-1.1-1.1-1.6-2.5-1.6-4s.5-2.9 1.6-3.9l9.1-9.1c1.1-1 2.4-1.5 3.9-1.5s2.9.5 3.9 1.6l2.1 2.1c.4.3.6.7.6 1.1s-.2.8-.6 1.2c-.6.6-1.7.6-2.3 0l-2.1-2.1c-.9-.9-2.4-.9-3.3 0l-9 9c-.4.5-.7 1-.7 1.7 0 .6.2 1.2.7 1.6l2.8 2.8c.9.9 2.4.9 3.3 0l2.7-2.8c.2-.2.6-.4 1.1-.4s.9.2 1.2.4"
+          fill="#151619"
+          fill-rule="evenodd"
     >
-      <ssr-keep for="bolt-link"
-                class="c-bolt-link__text"
-      >
-        this is a headline
-      </ssr-keep>
-      <ssr-keep for="bolt-link"
-                class="c-bolt-link__icon"
-      >
-        <bolt-icon slot="after"
-                   name="chevron-right"
-                   aria-hidden="true"
-        >
-          <span class="c-bolt-icon c-bolt-icon--chevron-right">
-            <svg class="c-bolt-icon__icon"
-                 xmlns="http://www.w3.org/2000/svg"
-                 viewbox="0 0 32 32"
-            >
-              <path fill="var(--bolt-theme-icon, currentColor)"
-                    fill-rule="evenodd"
-                    d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
-              >
-              </path>
-            </svg>
-          </span>
-        </bolt-icon>
-      </ssr-keep>
-    </a>
-  </bolt-link>
+    </path>
+  </svg>
 </h2>
 `;
 

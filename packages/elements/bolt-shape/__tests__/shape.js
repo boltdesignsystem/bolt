@@ -1,7 +1,7 @@
 import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../shape.schema';
 // eslint-disable-next-line camelcase
-const { border_radius, spacing, size } = schema.properties;
+const { border_radius, size } = schema.properties;
 let page, fixtures;
 
 afterAll(async () => {
@@ -41,7 +41,7 @@ describe('Bolt Shape', () => {
   });
 });
 
-describe('Bolt Shape Prop -', () => {
+describe('Bolt Shape Props', () => {
   border_radius.enum.forEach(async option => {
     test(`border_radius items: ${option}`, async () => {
       const results = await render('@bolt-elements-shape/shape.twig', {
@@ -53,19 +53,8 @@ describe('Bolt Shape Prop -', () => {
       await expect(results.html).toMatchSnapshot();
     });
   });
-  spacing.enum.forEach(async option => {
-    test(`spacing: ${option}`, async () => {
-      const results = await render('@bolt-components-banner/banner.twig', {
-        ...fixtures.defaultData,
-        spacing: option,
-      });
-
-      await expect(results.ok).toBe(true);
-      await expect(results.html).toMatchSnapshot();
-    });
-  });
   size.enum.forEach(async option => {
-    test(`size: ${option}`, async () => {
+    test(`size items: ${option}`, async () => {
       const results = await render('@bolt-components-banner/banner.twig', {
         ...fixtures.defaultData,
         size: option,
