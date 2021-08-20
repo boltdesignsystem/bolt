@@ -1,6 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Page Header Nav li',
+  title: 'Page Footer Nav li',
   type: 'object',
   properties: {
     attributes: {
@@ -11,7 +11,7 @@ module.exports = {
     link: {
       type: 'object',
       description:
-        'Link of the nav li. Passing the "href" attribute will turn it into a semantic link. This prop will be overridden by the content prop.',
+        'Link of the nav li. Passing the "href" attribute will turn it into a semantic link.',
       properties: {
         attributes: {
           type: 'object',
@@ -23,7 +23,7 @@ module.exports = {
           description: 'Displays name of the link.',
         },
         icon: {
-          type: 'object',
+          type: 'any',
           description: 'An icon can be passed to the link.',
         },
       },

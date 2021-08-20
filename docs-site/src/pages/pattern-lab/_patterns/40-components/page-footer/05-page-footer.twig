@@ -1,496 +1,471 @@
-{% set icon_chevron_right %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'chevron-right',
-  } only %}
-{% endset %}
-
-{% set icon_chevron_down %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'chevron-down',
-  } only %}
-{% endset %}
-
-{% set icon_fb %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'facebook',
-  } only %}
-{% endset %}
-
-{% set icon_twitter %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'twitter',
-  } only %}
-{% endset %}
-
-{% set icon_linkedin %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'linkedin-solid',
-  } only %}
-{% endset %}
-
-{% set icon_youtube %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'youtube-solid',
-  } only %}
-{% endset %}
-
-{# Company links #}
-{% set company %}
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'About Pega',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Office Locations',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Careers',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'US: 1-888-PEGA-NOW',
-    attributes: {
-      href: 'tel: 1-888-PEGA-NOW',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'UK: +44 118 965 1600',
-    attributes: {
-      href: 'tel: +44 118 965 1600',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'DACH: +49 (0) 89 540320',
-    attributes: {
-      href: 'tel: +49 (0) 89 540320',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'AU: +61 2 9581 7000',
-    attributes: {
-      href: 'tel: +61 2 9581 7000',
-    },
-  },
-} only %}
-{% endset %}
-
-{# Pega sites links  #}
-{% set pega_sites %}
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Community',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Support',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Product design',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Partners',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'PegaWorld Conference',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Blog',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'MyPega',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-{% endset %}
-
-{# Resources links #}
-{% set resources %}
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Analyst Reports',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Demo Videos',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Pega Platform Trial',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Trust Center',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-{% endset %}
-
-{# social links #}
-{% set socials %}
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Twitter',
-    icon: icon_twitter,
-    attributes: {
-      href: '!#',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Facebook',
-    icon: icon_fb,
-    attributes: {
-      href: '!#',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Linkedin',
-    icon: icon_linkedin,
-    attributes: {
-      href: '!#',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Youtube',
-    icon: icon_youtube,
-    attributes: {
-      href: '1#',
-    },
-  },
-} only %}
-{% endset %}
-
-{# language links #}
-{% set language %}
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'English',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Français',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Deutsch',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Italiano',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: '日本語',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Português',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Español',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Türkçe',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Pусский',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-{% endset %}
-
-{# legal links #}
-{% set legal %}
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Terms Of Use',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Contact',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Glossary',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Trademarks',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-
-{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Privacy',
-    attributes: {
-      href: '#!',
-    },
-  },
-} only %}
-{% endset %}
-
-{# language list #}
-{% set language_list %}
-{% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
-  headline: {
-    text: 'Languages',
-    tag: 'h3',
-    attributes: {
-      class: 'u-bolt-visuallyhidden',
-    }
-  },
-  category: 'language',
-  content: language
-} only %}
-{% endset %}
-
-{# legal list #}
-{% set legal_list %}
-  {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
-  headline: {
-    text: 'Legal',
-    tag: 'h3',
-    attributes: {
-      class: 'u-bolt-visuallyhidden',
-    }
-  },
-  category: 'legal',
-  content: legal
-} only %}
-{% endset %}
-
-{# Company list #}
-{% set company_list %}
-  {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
-  headline: {
-    text: 'Company',
-    tag: 'h3',
-  },
-  content: company
-} only %}
-{% endset %}
-
-{# Pega sites list #}
-{% set pega_sites_list %}
-  {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
-  headline: {
-    text: 'Pega sites',
-    tag: 'h3',
-  },
-  content: pega_sites
-} only %}
-{% endset %}
-
-{# Resources list #}
-{% set resources_list %}
-  {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
-  headline: {
-    text: 'Resources',
-    tag: 'h3',
-  },
-  content: resources
-} only %}
-{% endset %}
-
-{# social list #}
-{% set social_list %}
-  {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
-  headline: {
-    text: 'Join the conversation',
-    tag: 'h3',
-  },
-  category: 'social',
-  content: socials
-} only %}
-{% endset %}
-
-{# primary nav #}
-{% set primary_nav %}
-
-  {{ company_list }}
-  {{ pega_sites_list }}
-  {{ resources_list }}
-  {{ social_list }}
-
-{% endset %}
-
-{# secondary nav #}
-{% set secondary_nav %}
-
-  {{ language_list }}
-  {{ legal_list  }}
-
-{% endset %}
-
-{% set description %}
-  Page Footer is the global footer that contains Pega description, main navigation, secondary navigation and social media links.
-{% endset %}
-
 {% set demo %}
-{# Template #}
-{% include '@bolt-components-page-footer/page-footer.twig' with {
-  content: {
-    headline: {
+  {% set icon_chevron_right %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-right',
+    } only %}
+  {% endset %}
+
+  {% set icon_chevron_down %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-down',
+    } only %}
+  {% endset %}
+
+  {% set icon_fb %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'facebook',
+    } only %}
+  {% endset %}
+
+  {% set icon_twitter %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'twitter',
+    } only %}
+  {% endset %}
+
+  {% set icon_linkedin %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'linkedin-solid',
+    } only %}
+  {% endset %}
+
+  {% set icon_youtube %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'youtube-solid',
+    } only %}
+  {% endset %}
+
+  {# Company links #}
+  {% set company_list_items %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'About Pega',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Office Locations',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Careers',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'US: 1-888-PEGA-NOW',
+        attributes: {
+          href: 'tel: 1-888-PEGA-NOW',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'UK: +44 118 965 1600',
+        attributes: {
+          href: 'tel: +44 118 965 1600',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'DACH: +49 (0) 89 540320',
+        attributes: {
+          href: 'tel: +49 (0) 89 540320',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'AU: +61 2 9581 7000',
+        attributes: {
+          href: 'tel: +61 2 9581 7000',
+        },
+      },
+    } only %}
+  {% endset %}
+
+  {# Pega sites links  #}
+  {% set pega_sites_list_items %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Community',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Support',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Product design',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Partners',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'PegaWorld Conference',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Blog',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'MyPega',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+  {% endset %}
+
+  {# Resources links #}
+  {% set resources_list_items %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Analyst Reports',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Demo Videos',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Pega Platform Trial',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Trust Center',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+    {% endset %}
+
+    {# social links #}
+    {% set socials %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Twitter',
+        icon: icon_twitter,
+        attributes: {
+          href: '!#',
+          target: '_blank',
+          rel: 'noopener',
+          'aria-describedby': 'page-footer-new-window',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Facebook',
+        icon: icon_fb,
+        attributes: {
+          href: '!#',
+          target: '_blank',
+          rel: 'noopener',
+          'aria-describedby': 'page-footer-new-window',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Linkedin',
+        icon: icon_linkedin,
+        attributes: {
+          href: '!#',
+          target: '_blank',
+          rel: 'noopener',
+          'aria-describedby': 'page-footer-new-window',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Youtube',
+        icon: icon_youtube,
+        attributes: {
+          href: '!#',
+          target: '_blank',
+          rel: 'noopener',
+          'aria-describedby': 'page-footer-new-window',
+        },
+      },
+    } only %}
+  {% endset %}
+
+  {# language links #}
+  {% set language_list_items %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'English',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Français',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Deutsch',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Italiano',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: '日本語',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Português',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Español',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Türkçe',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Pусский',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+  {% endset %}
+
+  {# legal links #}
+  {% set legal_list_items %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Terms Of Use',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Contact',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Glossary',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Trademarks',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Privacy',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+  {% endset %}
+
+  {# primary nav #}
+  {% set primary_nav %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        text: 'Company',
+        tag: 'h3',
+      },
+      content: company_list_items
+    } only %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        text: 'Pega sites',
+        tag: 'h3',
+      },
+      content: pega_sites_list_items
+    } only %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        text: 'Resources',
+        tag: 'h3',
+      },
+      content: resources_list_items
+    } only %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        text: 'Join the conversation',
+        tag: 'h3',
+      },
+      category: 'social',
+      content: socials
+    } only %}
+  {% endset %}
+
+  {# secondary nav #}
+  {% set secondary_nav %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        text: 'Languages',
+        tag: 'h3',
+        attributes: {
+          class: 'u-bolt-visuallyhidden',
+        }
+      },
+      category: 'language',
+      content: language_list_items
+    } only %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        text: 'Legal',
+        tag: 'h3',
+        attributes: {
+          class: 'u-bolt-visuallyhidden',
+        }
+      },
+      category: 'legal',
+      content: legal_list_items
+    } only %}
+  {% endset %}
+
+  {% set footer_description %}
+    {% include '@bolt-components-headline/headline.twig' with {
       text: 'About Pegasystems',
       size: 'xlarge',
       tag: 'h2',
-    },
-  description: 'Pega delivers innovative software that crushes business complexity. From increasing customer lifetime value to streamlining service to boosting efficiency, we help the world’s leading brands solve problems fast and transform for tomorrow. Our solutions save people time, so our clients’ employees and customers can get back to what matters most.',
-  },
-  primary_nav: primary_nav,
-  secondary_nav: secondary_nav
-} only %}
+    } only %}
+    <p>Pega delivers innovative software that crushes business complexity. From increasing customer lifetime value to streamlining service to boosting efficiency, we help the world’s leading brands solve problems fast and transform for tomorrow. Our solutions save people time, so our clients’ employees and customers can get back to what matters most.</p>
+  {% endset %}
+
+  {% include '@bolt-components-page-footer/page-footer.twig' with {
+    description: footer_description,
+    primary_nav: primary_nav,
+    secondary_nav: secondary_nav
+  } only %}
 {% endset %}
 
 {% set twig_markup %}
@@ -534,7 +509,7 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Basic Page Footer',
-  description: description,
+  description: 'Page Footer is the global footer that contains Pega description, main navigation, secondary navigation and social media links.',
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,

@@ -15,21 +15,24 @@
 
 #}
 
-<footer class="c-page-footer js-bolt-page-footer">
-  <nav class="c-page-footer__nav c-page-footer__nav--main" aria-labelledby="page-footer-heading">
+{% set schema = bolt.data.components['@bolt-components-page-footer'].schema['page-footer'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'c-page-footer',
+  'js-bolt-page-footer',
+] %}
+
+<footer {{ attributes.addClass(classes) }}>
+  <nav class="c-page-footer__nav c-page-footer__nav--main" aria-label="About Pegasystems">
     <div class="c-page-footer__nav-item c-page-footer__nav-item--description">
-      {% include '@bolt-components-headline/headline.twig' with {
-        text: 'Navigation heading',
-        size: content.headline.size,
-        tag: content.headline.tag,
-        attributes: {
-          class: 'u-bolt-margin-bottom-medium',
-          id: 'page-footer-heading',
-        },
-      } only %}
-      <p>
-        {{ content.description }}
-      </p>
+      {{ description }}
     </div>
     {{ primary_nav }}
   </nav>
@@ -41,8 +44,3 @@
   </aside>
   <span id="page-footer-new-window" hidden>{{ 'Open in new window'|t }}</span>
 </footer>
-<pre>
-  {{ dump(content.headline.text) }}
-  {{ dump(content.headline.size) }}
-  {{ dump(content.headline.tag) }}
-</pre>

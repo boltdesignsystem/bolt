@@ -137,6 +137,10 @@
 
 .c-page-footer__nav-item--language,
 .c-page-footer__nav-item--legal {
+  .c-page-footer__nav-headline {
+    @include bolt-visuallyhidden;
+  }
+
   @include bolt-mq(medium) {
     .c-page-footer__nav-list {
       display: flex;
