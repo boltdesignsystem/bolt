@@ -1,7 +1,12 @@
-{# Icons #}
-{% set icon_user %}
-  <img src="/images/docs/500x500.jpg" alt="Portrait of Alan" width=16 height=16>
+{# Images #}
+{% set user_avatar %}
+  <img src="/images/docs/500x500.jpg" alt="CEO Alan" width=16 height=16>
 {% endset %}
+{% set thumbnail %}
+  <img src="https://via.placeholder.com/100x100" alt="" width=48 height=48>
+{% endset %}
+
+{# Icons #}
 {% set icon_global %}
   {% include '@bolt-components-icon/icon.twig' with {
     name: 'global',
@@ -775,7 +780,7 @@
 
 {% set user_flag %}
   <div class="c-bolt-page-header__user-flag">
-    <img src="/images/docs/500x500.jpg" alt="Portrait of Alan" class="c-bolt-page-header__user-flag__img">
+    <img src="/images/docs/500x500.jpg" alt="CEO Alan" class="c-bolt-page-header__user-flag__img">
     <div class="c-bolt-page-header__user-flag__content">
       {% include '@bolt-components-headline/eyebrow.twig' with {
         text: 'Hello',
@@ -912,7 +917,7 @@
 
 {% set user_nav_lv1_ul_content %}
   {% set user_settings_label %}
-    <span class="c-bolt-page-header__nav-link__content__signifier">{{ icon_user }}</span>
+    <span class="c-bolt-page-header__nav-link__content__signifier">{{ user_avatar }}</span>
     <span class="c-bolt-page-header__nav-link__content__text"><span aria-hidden="true">Hello Alan</span> <span class="u-bolt-visuallyhidden">User settings</span></span>
   {% endset %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
@@ -966,24 +971,28 @@
       <div class="c-bolt-page-header__related-sites__item">
         <ul class="c-bolt-page-header__related-sites-list">
           <li class="c-bolt-page-header__related-sites-list-item">
+            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
             <strong class="c-bolt-page-header__related-sites-list-item__link">
               <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega.com</a>
             </strong>
             <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
             <ul class="c-bolt-page-header__related-sites-list">
-              <li class="c-bolt-page-header__related-sites-list">
+              <li class="c-bolt-page-header__related-sites-list-item">
+                <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
                 <strong class="c-bolt-page-header__related-sites-list-item__link">
                   <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Blog</a>
                 </strong>
                 <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
               </li>
-              <li class="c-bolt-page-header__related-sites-list">
+              <li class="c-bolt-page-header__related-sites-list-item">
+                <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
                 <strong class="c-bolt-page-header__related-sites-list-item__link">
                   <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">PegaWorld</a>
                 </strong>
                 <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
               </li>
-              <li class="c-bolt-page-header__related-sites-list">
+              <li class="c-bolt-page-header__related-sites-list-item">
+                <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
                 <strong class="c-bolt-page-header__related-sites-list-item__link">
                   <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Careers</a>
                 </strong>
@@ -992,18 +1001,21 @@
             </ul>
           </li>
           <li class="c-bolt-page-header__related-sites-list-item">
+            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
             <strong class="c-bolt-page-header__related-sites-list-item__link">
               <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Portal</a>
             </strong>
             <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
           </li>
           <li class="c-bolt-page-header__related-sites-list-item">
+            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
             <strong class="c-bolt-page-header__related-sites-list-item__link">
               <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Marketplace</a>
             </strong>
             <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
           </li>
           <li class="c-bolt-page-header__related-sites-list-item">
+            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
             <strong class="c-bolt-page-header__related-sites-list-item__link">
               <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">My Pega</a>
             </strong>
@@ -1014,18 +1026,21 @@
       <div class="c-bolt-page-header__related-sites__item">
         <ul class="c-bolt-page-header__related-sites-list">
           <li class="c-bolt-page-header__related-sites-list-item">
+            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
             <strong class="c-bolt-page-header__related-sites-list-item__link">
               <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Community</a>
             </strong>
             <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
             <ul class="c-bolt-page-header__related-sites-list">
-              <li class="c-bolt-page-header__related-sites-list">
+              <li class="c-bolt-page-header__related-sites-list-item">
+                <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
                 <strong class="c-bolt-page-header__related-sites-list-item__link">
                   <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Collaboration Center</a>
                 </strong>
                 <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
               </li>
-              <li class="c-bolt-page-header__related-sites-list">
+              <li class="c-bolt-page-header__related-sites-list-item">
+                <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
                 <strong class="c-bolt-page-header__related-sites-list-item__link">
                   <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Documentation</a>
                 </strong>
@@ -1034,24 +1049,28 @@
             </ul>
           </li>
           <li class="c-bolt-page-header__related-sites-list-item">
+            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
             <strong class="c-bolt-page-header__related-sites-list-item__link">
               <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Academy</a>
             </strong>
             <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
           </li>
           <li class="c-bolt-page-header__related-sites-list-item">
+            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
             <strong class="c-bolt-page-header__related-sites-list-item__link">
               <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Support</a>
             </strong>
             <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
           </li>
           <li class="c-bolt-page-header__related-sites-list-item">
+            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
             <strong class="c-bolt-page-header__related-sites-list-item__link">
               <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Community Wiki</a>
             </strong>
             <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
           </li>
           <li class="c-bolt-page-header__related-sites-list-item">
+            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
             <strong class="c-bolt-page-header__related-sites-list-item__link">
               <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Cosmos Design System</a>
             </strong>
@@ -1070,7 +1089,7 @@
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: more_pega_sites_nav_lv3_ul_content,
     attributes: {
-      style: '--c-bolt-page-header-desktop-popover-width: 50vw',
+      style: '--c-bolt-page-header-desktop-popover-width: max(600px, 40vw)',
     }
   } only %}
 {% endset %}
