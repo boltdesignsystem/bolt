@@ -252,7 +252,7 @@ async function watch() {
         watchTasks.push(extraTasks.patternLab.watch());
         watchTasks.push(extraTasks.api.watch());
         watchTasks.push(extraTasks.static.watch());
-        //TODO: Remove when the Icon/Icons Component is removed
+        // TODO: Remove `iconTasks` when the Icon/Icons Component is removed
         watchTasks.push(iconTasks.watch());
         watchTasks.push(iconElementTasks.watch());
         break;

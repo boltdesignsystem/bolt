@@ -66,7 +66,6 @@ async function build() {
   ).start();
 
   try {
-    // const config = await getConfig();
     await generateElementSchemaFile();
     iconSpinner.succeed(
       chalk.green(
