@@ -459,7 +459,7 @@
   secondary_nav: secondary_nav, // Use page-footer-nav-ul.twig to render each set of navigation list
 } only %}
 
-// Nav ul template (pass to nav template's content prop)
+// Nav list template
 {% include 'bolt-components-page-footer/page-footer-nav-ul.twig' with {
   headline: {
     content: 'Company',
@@ -469,11 +469,11 @@
   category: category, // Set the category for a particular list of navigation
 } only %}
 
-// Nav li template (pass to nav ul template's content prop)
+// Nav list item template
 {% include 'bolt-components-page-footer/page-footer-nav-li.twig' with {
   link: {
     content: 'Facebook',
-    icon_before: icon_facebook, // Only render an icon if page-footer-nav-ul.twig's category is set to social
+    icon_before: icon_facebook, // Only render an icon if page-footer-nav-ul.twig category is set to social
     attributes: {
       href: 'https://www.facebook.com/pegasystems',
     },
