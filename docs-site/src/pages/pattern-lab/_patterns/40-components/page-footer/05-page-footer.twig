@@ -1,16 +1,4 @@
 {% set demo %}
-  {% set icon_chevron_right %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'chevron-right',
-    } only %}
-  {% endset %}
-
-  {% set icon_chevron_down %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'chevron-down',
-    } only %}
-  {% endset %}
-
   {% set icon_fb %}
     {% include '@bolt-components-icon/icon.twig' with {
       name: 'facebook',
@@ -397,32 +385,32 @@
   {% set primary_nav %}
     {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
       headline: {
-        text: 'Company',
+        content: 'Join the conversation',
+        tag: 'h3',
+      },
+      category: 'social',
+      content: socials
+    } only %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        content: 'Company',
         tag: 'h3',
       },
       content: company_list_items
     } only %}
     {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
       headline: {
-        text: 'Pega sites',
+        content: 'Pega sites',
         tag: 'h3',
       },
       content: pega_sites_list_items
     } only %}
     {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
       headline: {
-        text: 'Resources',
+        content: 'Resources',
         tag: 'h3',
       },
       content: resources_list_items
-    } only %}
-    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
-      headline: {
-        text: 'Join the conversation',
-        tag: 'h3',
-      },
-      category: 'social',
-      content: socials
     } only %}
   {% endset %}
 
@@ -430,22 +418,16 @@
   {% set secondary_nav %}
     {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
       headline: {
-        text: 'Languages',
+        content: 'Languages',
         tag: 'h3',
-        attributes: {
-          class: 'u-bolt-visuallyhidden',
-        }
       },
       category: 'language',
       content: language_list_items
     } only %}
     {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
       headline: {
-        text: 'Legal',
+        content: 'Legal',
         tag: 'h3',
-        attributes: {
-          class: 'u-bolt-visuallyhidden',
-        }
       },
       category: 'legal',
       content: legal_list_items
@@ -472,35 +454,28 @@
 {% verbatim %}
 // The main template
 {% include 'bolt-components-page-footer/page-footer.twig' with {
-  content: {
-    headline: {
-      text: 'About Pegasystems',
-      size: 'xlarge',
-      tag: 'h2',
-    },
-    description: 'Description goes here.', // accept any types of value, plain text is the simplest usage
-  },
-  primary_nav: primary_nav, // page-footer-nav-ul goes here
-  secondary_nav: secondary_nav, // page-footer-nav-ul goes here
+  description: description, // Heading and description text goes here
+  primary_nav: primary_nav, // Use page-footer-nav-ul.twig to render each set of navigation list
+  secondary_nav: secondary_nav, // Use page-footer-nav-ul.twig to render each set of navigation list
 } only %}
 
 // Nav ul template (pass to nav template's content prop)
 {% include 'bolt-components-page-footer/page-footer-nav-ul.twig' with {
   headline: {
-    text: 'Company',
+    content: 'Company',
     tag: 'h3',
   },
-  content: content, // page-footer-nav-li goes here
-  category: category, // [description, social, language, legal]
+  content: content, // Use page-footer-nav-li.twig to render each link
+  category: category, // Set the category for a particular list of navigation
 } only %}
 
 // Nav li template (pass to nav ul template's content prop)
 {% include 'bolt-components-page-footer/page-footer-nav-li.twig' with {
   link: {
     content: 'Facebook',
-    icon: icon_facebook,
+    icon_before: icon_facebook, // Only render an icon if page-footer-nav-ul.twig's category is set to social
     attributes: {
-      href: 'https://pega.com/',
+      href: 'https://www.facebook.com/pegasystems',
     },
   },
 } only %}
@@ -509,7 +484,7 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Basic Page Footer',
-  description: 'Page Footer is the global footer that contains Pega description, main navigation, secondary navigation and social media links.',
+  description: 'Page Footer is the global footer that contains site description, social media links, and a subset of the site navigation.',
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,

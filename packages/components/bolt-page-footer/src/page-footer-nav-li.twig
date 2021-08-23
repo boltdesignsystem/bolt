@@ -1,17 +1,3 @@
-{# Twig usage 
-
-{% include 'bolt-components-page-footer/page-footer-nav-li.twig' with {
-  link: {
-    content: 'Facebook',
-    icon: icon_facebook,
-    attributes: {
-      href: 'https://pega.com/',
-    },
-  },
-} only %}
-
- #}
-
 {% set schema = bolt.data.components['@bolt-components-page-footer'].schema['page-footer-nav-li'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
@@ -21,17 +7,17 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set link_attributes = create_attribute(link.attributes|default({})) %}
-{% set link_tag = link_attributes.type ? 'button' : link_attributes.href ? 'a' : 'span' %}
+{% set _link_tag = link_attributes.type ? 'button' : link_attributes.href ? 'a' : 'span' %}
 
 {% set classes = [
   'c-page-footer__nav-list-item',
 ] %}
 
 <li {{ attributes.addClass(classes) }}>
-  <{{ link_tag }} {{ link_attributes.addClass('c-page-footer__nav-link') }}>
+  <{{ _link_tag }} {{ link_attributes.addClass('c-page-footer__nav-link') }}>
     <span class="c-page-footer__nav-link__text">{{ link.content }}</span>
-    {% if link.icon %}
-      <span class="c-page-footer__nav-link__icon">{{ link.icon }}</span>
+    {% if link.icon_before %}
+      <span class="c-page-footer__nav-link__icon">{{ link.icon_before }}</span>
     {% endif %}
-  </{{ link_tag }}>
+  </{{ _link_tag }}>
 </li>

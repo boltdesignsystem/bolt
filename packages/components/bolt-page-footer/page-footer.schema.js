@@ -1,6 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Page footer',
+  title: 'Page Footer',
   type: 'object',
   properties: {
     attributes: {
@@ -15,12 +15,13 @@ module.exports = {
     },
     primary_nav: {
       type: 'any',
-      description: 'Primary content of page footer (pega links, social links).',
+      description:
+        'Render the primary navigation. Use page-footer-nav-ul.twig to render each set of navigation list.',
     },
     secondary_nav: {
       type: 'any',
       description:
-        'Secondary content of page footer (utilitis links, privacy policy links, etc.).',
+        'Render the secondary navigation. Use page-footer-nav-ul.twig to render each set of navigation list.',
     },
   },
 };

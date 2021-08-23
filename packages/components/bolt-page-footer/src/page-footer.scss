@@ -137,15 +137,15 @@
 
 .c-page-footer__nav-item--language,
 .c-page-footer__nav-item--legal {
-  .c-page-footer__nav-headline {
-    @include bolt-visuallyhidden;
-  }
-
   @include bolt-mq(medium) {
     .c-page-footer__nav-list {
       display: flex;
       gap: var(--bolt-spacing-x-xsmall);
       white-space: nowrap;
+    }
+
+    .c-page-footer__nav-headline:not(.c-page-footer__nav-headline--trigger) {
+      @include bolt-visuallyhidden;
     }
   }
 }

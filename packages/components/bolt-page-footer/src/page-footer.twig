@@ -1,20 +1,3 @@
-{# Twig usage 
-
-{% include 'bolt-components-page-footer/page-footer.twig' with {
-  content: {
-    headline: {
-      text: 'About Pegasystems',
-      size: 'xlarge',
-      tag: 'h2',
-    },
-    description: 'Description goes here.', // accept any types of value, plain text is the simplest usage
-  },
-  primary_nav: primary_nav, // page-footer-nav-ul goes here
-  secondary_nav: secondary_nav, // page-footer-nav-ul goes here
-} only %}
-
-#}
-
 {% set schema = bolt.data.components['@bolt-components-page-footer'].schema['page-footer'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
@@ -39,7 +22,7 @@
   <aside>
     <nav class="c-page-footer__nav c-page-footer__nav--aside" aria-label="Utility Navigation">
       {{ secondary_nav }}
-      <span class="c-page-footer__nav-item c-page-footer__nav-item--copyrights">&copy;{{ "now"|date("Y") }} Pegasystems Inc.</span>
+      <span class="c-page-footer__nav-item c-page-footer__nav-item--copyrights">&copy;{{ 'now'|date('Y') }} Pegasystems Inc.</span>
     </nav>
   </aside>
   <span id="page-footer-new-window" hidden>{{ 'Open in new window'|t }}</span>

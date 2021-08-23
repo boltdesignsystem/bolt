@@ -11,7 +11,7 @@ module.exports = {
     link: {
       type: 'object',
       description:
-        'Link of the nav li. Passing the "href" attribute will turn it into a semantic link.',
+        'Link of the nav list item. Passing the "href" attribute will turn it into a semantic link and passing the "type" attribute will turn it into a semantic button.',
       properties: {
         attributes: {
           type: 'object',
@@ -20,11 +20,11 @@ module.exports = {
         },
         content: {
           type: 'any',
-          description: 'Displays name of the link.',
+          description: 'Set the label text for the link.',
         },
-        icon: {
+        icon_before: {
           type: 'any',
-          description: 'An icon can be passed to the link.',
+          description: 'Set an icon before a social link.',
         },
       },
     },

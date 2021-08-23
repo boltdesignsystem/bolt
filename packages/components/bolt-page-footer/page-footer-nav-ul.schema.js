@@ -11,28 +11,32 @@ module.exports = {
     },
     content: {
       type: 'any',
-      description: 'Content of page footer nav ul. Nav li are expected here.',
+      description:
+        'Content of the nav list. Use page-footer-nav-li.twig to render each link.',
     },
     category: {
       type: 'string',
-      description: 'Indicate which set of navigation item is rendering.',
-      enum: ['description', 'social', 'language', 'legal'],
+      description:
+        'Set the category for the nav list. Only needed for social links, language links, and legal links.',
+      enum: ['social', 'language', 'legal'],
     },
     headline: {
       type: 'object',
+      description:
+        'Headline of the nav list. This must be set for each nav list.',
       properties: {
-        text: {
-          type: 'string',
-          description: 'A title of the Nav list',
-        },
         attributes: {
           type: 'object',
           description:
             'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
         },
+        content: {
+          type: 'string',
+          description: 'Set the headline for the nav list.',
+        },
         tag: {
           type: 'string',
-          description: 'A semantic HTML tag can be chosen',
+          description: 'Set the semantic HTML tag for the headline.',
           default: 'h3',
           enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
         },
