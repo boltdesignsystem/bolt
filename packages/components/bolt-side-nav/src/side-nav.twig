@@ -9,8 +9,13 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set _side_nav_label_id = bolt.data.config.env == 'test' ? 'side-nav-label-test' : 'side-nav-label-' ~ random() %}
 
+{% set classes = [
+  'c-bolt-side-nav',
+  'js-bolt-side-nav',
+] %}
+
 {# Template #}
-<div {{ attributes.addClass('c-bolt-side-nav') }} data-bolt-side-nav>
+<div {{ attributes.addClass(classes) }}>
   <nav class="c-bolt-side-nav__content" {% if headline %} aria-labelledby="{{ _side_nav_label_id }}" {% endif %}>
     {% if headline %}
       <strong class="c-bolt-side-nav__headline" id="{{ _side_nav_label_id }}">
