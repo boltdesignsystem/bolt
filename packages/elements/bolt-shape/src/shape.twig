@@ -3,7 +3,7 @@
  * Background Shape Element
  *
  * Available variables:
- * - Reference background-shape.schema.js
+ * - Reference shape.schema.js
  */
 #}
 
@@ -19,9 +19,9 @@
 
 {% set classes = [
   'e-bolt-shape',
-  this.data.size ? 'e-bolt-shape--' ~ this.data.size.value,
-  this.data.spacing ? 'e-bolt-shape--spacing-' ~ this.data.spacing.value,
-  this.data.border_radius ? 'e-bolt-shape--border-radius-' ~ this.data.border_radius.value,
+  this.data.size.value ? 'e-bolt-shape--' ~ this.data.size.value,
+  this.data.spacing.value ? 'e-bolt-shape--spacing-' ~ this.data.spacing.value,
+  this.data.border_radius.value ? 'e-bolt-shape--border-radius-' ~ this.data.border_radius.value,
 ] %}
 
 <span {{ attributes.addClass(classes) }}>

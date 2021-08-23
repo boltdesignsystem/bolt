@@ -3,7 +3,7 @@
  * Icon Element
  *
  * Available variables:
- * - Reference icon.schema.js
+ * - Reference icon.schema.json
  */
 #}
 
@@ -19,8 +19,8 @@
 
 {% set classes = [
   'e-bolt-icon',
-  this.data.size ? 'e-bolt-icon--' ~ this.data.size.value,
-  this.data.color ? 'e-bolt-icon--' ~ this.data.color.value
+  this.data.size.value ? 'e-bolt-icon--' ~ this.data.size.value,
+  this.data.color.value ? 'e-bolt-icon--' ~ this.data.color.value
 ] %}
 
 {# Template #}
