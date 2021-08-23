@@ -147,6 +147,13 @@
           ]
         } only %}
 
+        {% include "@bolt-elements-button/button.twig" with {
+          content: "Add more links to your list",
+          attributes: {
+            type: "button"
+          }
+        } only %}
+
       {% endset %}
       {% include "@bolt-components-card-replacement/card-replacement.twig" with {
         body: {
