@@ -9,7 +9,7 @@
 //     console.log('This is a dialogue component.');
 //   }
 // }
-const MicroDialogue = (() => {
+const BoltDialogue = (() => {
   'use strict';
 
   const FOCUSABLE_ELEMENTS = [
@@ -160,8 +160,12 @@ const MicroDialogue = (() => {
     }
 
     onKeydown(event) {
-      if (event.keyCode === 27) this.closeDialogue(event); // esc
       if (event.keyCode === 9) this.retainFocus(event); // tab
+      if (typeof this.dialogue.dataset.dialoguePersistent === 'undefined') {
+        if (event.keyCode === 27) this.closeDialogue(event); // esc
+      } else {
+        console.log('Cannot close a persistent dialogue.');
+      }
     }
 
     getFocusableNodes() {
@@ -390,4 +394,4 @@ const MicroDialogue = (() => {
   return { init, show, close };
 })();
 
-MicroDialogue.init();
+BoltDialogue.init();

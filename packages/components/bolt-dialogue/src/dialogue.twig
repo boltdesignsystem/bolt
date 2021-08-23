@@ -32,10 +32,6 @@
   't-bolt-' ~ this.data.theme.value
 ] %}
 
-<script>
-  // console.log({{ this.data|json_encode() }})
-</script>
-
 {% set _icon_close %}
   {% include '@bolt-components-icon/icon.twig' with {
     name: 'close',
@@ -57,10 +53,16 @@
   } only %}
 {% endset %}
 
-<div {{ attributes.addClass(_outer_classes) }} aria-hidden="true">
-  <div class="{{ _overlay_classes|join(' ') }}" tabindex="-1" data-dialogue-close>
+<script>
+  // console.log({{ this.data.persistent.value|json_encode() }})
+</script>
+
+<div {{ attributes.addClass(_outer_classes) }} aria-hidden="true" {{ this.data.persistent.value ? 'data-dialogue-persistent' : '' }}>
+  <div class="{{ _overlay_classes|join(' ') }}" tabindex="-1" {{ this.data.persistent.value ? '' : 'data-dialogue-close' }}>
     <div class="{{ _container_classes|join(' ') }}" role="dialog" aria-dialogue="true" aria-labelledby="{{ _uuid }}-title">
+      {% if not this.data.persistent.value %}
       <div class="c-bolt-dialogue__close t-bolt-{{ _overlay_theme }}">{{ _close_button }}</div>
+      {% endif %}
       <div class="c-bolt-dialogue__content" id="{{ _uuid }}-content">
         {{content}}
       </div>
