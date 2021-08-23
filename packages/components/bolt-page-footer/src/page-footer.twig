@@ -13,14 +13,14 @@
 ] %}
 
 <footer {{ attributes.addClass(classes) }}>
-  <nav class="c-page-footer__nav c-page-footer__nav--main" aria-label="About Pegasystems">
+  <nav class="c-page-footer__nav c-page-footer__nav--main" aria-label="{{ 'About Pegasystems'|t }}">
     <div class="c-page-footer__nav-item c-page-footer__nav-item--description">
       {{ description }}
     </div>
     {{ primary_nav }}
   </nav>
   <aside>
-    <nav class="c-page-footer__nav c-page-footer__nav--aside" aria-label="Utility Navigation">
+    <nav class="c-page-footer__nav c-page-footer__nav--aside" aria-label="{{ 'Utilities'|t }}">
       {{ secondary_nav }}
       <span class="c-page-footer__nav-item c-page-footer__nav-item--copyrights">&copy;{{ 'now'|date('Y') }} Pegasystems Inc.</span>
     </nav>

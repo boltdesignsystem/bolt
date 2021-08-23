@@ -14,7 +14,7 @@
 ] %}
 
 <li {{ attributes.addClass(classes) }}>
-  <{{ _link_tag }} {{ link_attributes.addClass('c-page-footer__nav-link') }}>
+  <{{ _link_tag }} {{ link_attributes.addClass('c-page-footer__nav-link')|without('aria-describedby') }} {% if link_attributes.target == '_blank' %}aria-describedby="page-footer-new-window"{% endif %}>
     <span class="c-page-footer__nav-link__text">{{ link.content }}</span>
     {% if link.icon_before %}
       <span class="c-page-footer__nav-link__icon">{{ link.icon_before }}</span>
