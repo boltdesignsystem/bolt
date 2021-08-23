@@ -267,7 +267,7 @@ const MicroDialogue = (() => {
   const validateDialoguePresence = id => {
     if (!document.getElementById(id)) {
       console.warn(
-        `MicroDialogue: \u2757Seems like you have missed %c'${id}'`,
+        `Dialogue: \u2757Seems like you have missed %c'${id}'`,
         'background-color: #f8f9fa;color: #50596c;font-weight: bold;',
         'ID somewhere in your code. Refer example below to resolve it.',
       );
@@ -289,7 +289,7 @@ const MicroDialogue = (() => {
   const validateTriggerPresence = triggers => {
     if (triggers.length <= 0) {
       console.warn(
-        `MicroDialogue: \u2757Please specify at least one %c'microdialogue-trigger'`,
+        `Dialogue: \u2757Please specify at least one %c dialogue-trigger'`,
         'background-color: #f8f9fa;color: #50596c;font-weight: bold;',
         'data attribute.',
       );

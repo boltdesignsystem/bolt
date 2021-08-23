@@ -7,13 +7,25 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
+{% if this.data.theme.value == 'dark' or this.data.theme.value == 'xdark' %}
+  {% set _overlay_theme = 'light' %}
+{% else %}
+  {% set _overlay_theme = 'dark' %}
+{% endif %}
+
 {# Array of classes based on the defined + default props #}
 {% set _outer_classes = [
   'c-bolt-dialogue',
 ] %}
 
 {# Array of classes based on the defined + default props #}
-{% set _inner_classes = [
+{% set _overlay_classes = [
+  'c-bolt-dialogue__overlay',
+  'c-bolt-dialogue__overlay-' ~ _overlay_theme,
+] %}
+
+{# Array of classes based on the defined + default props #}
+{% set _container_classes = [
   'c-bolt-dialogue__container',
   'c-bolt-dialogue__container--width-' ~ this.data.width.value,
   'c-bolt-dialogue__container--spacing-' ~ this.data.spacing.value,
@@ -34,12 +46,11 @@
   {% include '@bolt-elements-button/button.twig' with {
     content: 'Close',
     icon_only: _icon_close,
-    hierarchy: 'secondary',
+    hierarchy: 'transparent',
     size: 'small',
     border_radius: 'full',
     attributes: {
       type: 'button',
-      class: 'c-bolt-dialogue__close',
       'data-dialogue-close': true,
       'aria-label': 'Close dialogue',
     }
@@ -47,9 +58,9 @@
 {% endset %}
 
 <div {{ attributes.addClass(_outer_classes) }} aria-hidden="true">
-  <div class="dialogue__overlay" tabindex="-1" data-dialogue-close>
-    <div class="{{ _inner_classes|join(' ') }}" role="dialog" aria-dialogue="true" aria-labelledby="{{ _uuid }}-title">
-      {{ _close_button }}
+  <div class="{{ _overlay_classes|join(' ') }}" tabindex="-1" data-dialogue-close>
+    <div class="{{ _container_classes|join(' ') }}" role="dialog" aria-dialogue="true" aria-labelledby="{{ _uuid }}-title">
+      <div class="c-bolt-dialogue__close t-bolt-{{ _overlay_theme }}">{{ _close_button }}</div>
       <div class="c-bolt-dialogue__content" id="{{ _uuid }}-content">
         {{content}}
       </div>
