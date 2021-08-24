@@ -40,12 +40,12 @@ async function generateElementSchemaFile() {
     });
     return svgs;
   };
-  const iconElemnentDir = path.dirname(
+  const iconElementDir = path.dirname(
     resolve.sync('@bolt/elements-icon/package.json'),
   );
-  const elementSchema = path.join(iconElemnentDir, 'icon.schema.json');
+  const elementSchema = path.join(iconElementDir, 'icon.schema.json');
   const schema = await fs.readJson(elementSchema);
-  const iconElementIcons = path.join(iconElemnentDir, '/src/icons');
+  const iconElementIcons = path.join(iconElementDir, '/src/icons');
   const elementNames = getElementNames(iconElementIcons);
   schema.properties.name.enum = elementNames;
   const formattedSchema = prettier.format(JSON.stringify(schema), {
