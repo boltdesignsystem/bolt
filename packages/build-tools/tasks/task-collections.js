@@ -203,7 +203,7 @@ async function build(shouldReturnTime = false) {
       case 'pl':
       case 'static':
       case 'pwa':
-        //TODO: Remove when the Icon/Icons Component is removed
+        // TODO: Remove `iconTasks` when the Icon/Icons Component is removed
         await iconTasks.build();
         await iconElementTasks.build();
     }
