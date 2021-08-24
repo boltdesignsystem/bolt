@@ -1,0 +1,26 @@
+{% set secondary_cta_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: 'Left Column'
+  } only %}
+{% endset %}
+
+{% set secondary_cta_layout %}
+  {% set background %}
+    {% include '@bolt-components-background/background.twig' with {
+      fill: 'color',
+      fill_color: 'navy'
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: secondary_cta_items,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    background: background
+  } only %}
+{% endset %}
+
+{% include '@pl/_oclp-template.twig' with {
+  primary_cta: "Primary",
+  secondary_cta: secondary_cta_layout
+} %}

@@ -1,0 +1,199 @@
+{% set logo %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Pegasystems.',
+      src: '/images/logos/pega-logo.svg',
+      width: 139,
+      height: 30,
+      lazy: 'eager'
+    },
+  } only %}
+{% endset %}
+
+{% set header_content %}
+  <a class="c-bolt-page-header__logo" href="/" aria-label="Pegasystems">
+    <span class="c-bolt-page-header__logo__img" aria-hidden="true">
+      {{ logo }}
+    </span>
+  </a>
+{% endset %}
+
+{% set header_layout %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: header_content
+  } only %}
+{% endset %}
+
+{% set footer_layout %}
+  {% set icon_linkedin %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'linkedin-solid',
+    } only %}
+  {% endset %}
+  
+  {% set icon_twitter %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'twitter',
+    } only %}
+  {% endset %}
+
+  {% set icon_fb %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'facebook',
+    } only %}
+  {% endset %}
+
+  {% set icon_youtube %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'youtube-solid',
+    } only %}
+  {% endset %}
+
+  {% set button_linkedin %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Linkedin',
+      icon_only: icon_linkedin,
+      hierarchy: 'transparent',
+      size: 'xsmall',
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  {% endset %}
+  
+  {% set button_twitter %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Twitter',
+      icon_only: icon_twitter,
+      hierarchy: 'transparent',
+      size: 'xsmall',
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  {% endset %}
+
+  {% set button_fb %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Facebook',
+      icon_only: icon_fb,
+      hierarchy: 'transparent',
+      size: 'xsmall',
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  {% endset %}
+
+  {% set button_youtube %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Youtube',
+      icon_only: icon_youtube,
+      hierarchy: 'transparent',
+      size: 'xsmall',
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  {% endset %}
+
+  {% set social %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      spacing: 'small',
+      align: 'start',
+      valign: 'center',
+      items: [
+        '<h3>Connect with us: </h3>',
+        button_linkedin,
+        button_twitter,
+        button_fb,
+        button_youtube,
+      ]
+    } only %}
+  {% endset %}
+
+  {% set terms_of_use %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Terms of Use',
+      reversed_underline: true,
+      attributes: {
+        href: 'https://www.pega.com/terms'
+      }
+    } only %}
+  {% endset %}
+
+  {% set privacy %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Privacy',
+      reversed_underline: true,
+      attributes: {
+        href: 'https://www.pega.com/privacy-and-security'
+      }
+    } only %}
+  {% endset %}
+
+  {% set contact %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Contact',
+      reversed_underline: true,
+      attributes: {
+        href: 'https://www.pega.com/contact-us'
+      }
+    } only %}
+  {% endset %}
+
+  {% set pega_com %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: '@pega.com',
+      reversed_underline: true,
+      attributes: {
+        href: 'https://pega.com'
+      }
+    } only %}
+  {% endset %}
+
+  {% set links %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      align: 'start',
+      valign: 'center',
+      spacing: 'medium',
+      items: [
+        terms_of_use,
+        privacy,
+        contact,
+        pega_com
+      ]
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: social
+  } only %}
+
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: links
+  } only %}
+
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: '©2021 Pegasystems Inc.'
+  } only %}
+
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: header_layout,
+} only %}
+
+{{ primary_cta }}
+
+{{ secondary_cta }}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: footer_layout,
+  template: [
+    'halves@from-small',
+    'thirds@from-medium'
+  ]
+} only %}
