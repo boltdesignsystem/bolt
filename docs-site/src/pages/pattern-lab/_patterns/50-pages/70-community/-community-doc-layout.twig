@@ -228,46 +228,7 @@
       } only %}
     {% endset %}
     {% set item_current %}
-      {% set version_popover %}
-        {% set trigger %}
-          {% include '@bolt-elements-button/button.twig' with {
-            content: 'Version 8.5',
-            size: 'xsmall',
-            hierarchy: 'secondary',
-            border_radius: 'full',
-            icon_after: icon_chevron_down,
-            attributes: {
-              type: 'button',
-            }
-          } only %}
-        {% endset %}
-        {% set content %}
-          {% include '@bolt-components-menu/menu.twig' with {
-            title: 'Choose a version',
-            items: [
-              {
-                content: 'Version 8.4',
-                url: 'https://pega.com',
-              },
-              {
-                content: 'Version 8.5',
-                url: 'https://pega.com',
-              },
-              {
-                content: 'Version 8.6',
-                url: 'https://pega.com',
-              },
-            ]
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-popover/popover.twig' with {
-          trigger: trigger,
-          content: content,
-          spacing: 'none',
-          trigger_event: 'hover',
-        } only %}
-      {% endset %}
-      Book title goes here &ndash; {{ version_popover|spaceless }}
+      Book title goes here
     {% endset %}
 
     {% include '@bolt-components-breadcrumb/breadcrumb.twig' with {
@@ -592,6 +553,7 @@
         content: 'Level 1 page (with nested links)',
         attributes: {
           href: 'https://pega.com',
+          style: 'font-weight: var(--bolt-type-font-weight-semibold)',
         },
       },
       children: level_2_list,
@@ -601,6 +563,7 @@
         content: 'Level 1 page (current)',
         attributes: {
           href: 'https://pega.com',
+          style: 'font-weight: var(--bolt-type-font-weight-semibold)',
         },
       },
       current: true,
@@ -610,6 +573,7 @@
         content: 'Level 1 page',
         attributes: {
           href: 'https://pega.com',
+          style: 'font-weight: var(--bolt-type-font-weight-semibold)',
         },
       },
     } only %}
@@ -618,6 +582,7 @@
         content: 'Level 1 page',
         attributes: {
           href: 'https://pega.com',
+          style: 'font-weight: var(--bolt-type-font-weight-semibold)',
         },
       },
     } only %}
@@ -626,6 +591,7 @@
         content: 'Level 1 page',
         attributes: {
           href: 'https://pega.com',
+          style: 'font-weight: var(--bolt-type-font-weight-semibold)',
         },
       },
     } only %}
@@ -634,6 +600,7 @@
         content: 'Level 1 page',
         attributes: {
           href: 'https://pega.com',
+          style: 'font-weight: var(--bolt-type-font-weight-semibold)',
         },
       },
     } only %}
@@ -643,14 +610,78 @@
       content: level_1_items,
     } only %}
   {% endset %}
+  
+  {% set form_children %}
+    <div class="u-bolt-margin-bottom-xsmall">
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Name',
+          displayType: 'floating',
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include('@bolt-components-form/form-select.twig') with {
+          title: 'Select',
+          options: [
+            {
+              type: 'option',
+              value: 'book-1',
+              label: 'Release/Book Name',
+            },
+            {
+              type: 'option',
+              value: 'book-2',
+              label: 'Another Release/Book with long name',
+            }
+          ]
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+    </div>
+    <div class="u-bolt-margin-bottom-medium">
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Version',
+          displayType: 'floating',
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include('@bolt-components-form/form-select.twig') with {
+          title: 'Select',
+          options: [
+            {
+              type: 'option',
+              value: 'version-8-5',
+              label: '8.5',
+            },
+            {
+              type: 'option',
+              value: 'version-8-6',
+              label: '8.6',
+            }
+          ]
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+    </div>
+  {% endset %}
+  {% include '@bolt-components-form/form.twig' with {
+    children: form_children,
+    attributes: {
+      class: [
+        'u-bolt-padding-right-small',
+        'u-bolt-padding-left-small',
+      ],
+    },
+  } only %}
 
   {% include '@bolt-components-side-nav/side-nav.twig' with {
-    headline: {
-      content: 'Book title goes here',
-      link_attributes: {
-        href: 'https://pega.com',
-      },
-    },
     content: level_1_list,
   } only %}
 {% endset %}
