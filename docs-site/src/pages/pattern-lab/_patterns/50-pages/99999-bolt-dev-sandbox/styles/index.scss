@@ -12,14 +12,20 @@
     grid-column-gap: var(--bolt-spacing-x-medium);
   }
 
-  &__col {
-    margin-bottom: var(--bolt-spacing-y-medium);
+  .c-quick-links__col {
     padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
     border: 1px solid var(--m-bolt-border);
     border-radius: bolt-border-radius(small);
+
+    &:first-of-type {
+      margin-bottom: var(--bolt-spacing-y-medium);
+      @include bolt-mq($from: medium) {
+        margin-bottom: 0;
+      }
+    }
   }
 
-  &__col-title {
+  .c-quick-links__col-title {
     position: relative;
     padding-bottom: var(--bolt-spacing-y-medium);
 
@@ -35,7 +41,7 @@
     }
   }
 
-  &__col-inner {
+  .c-quick-links__col-inner {
     height: 25vh;
     overflow: auto;
     padding-top: var(--bolt-spacing-y-medium);
