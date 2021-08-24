@@ -17,19 +17,20 @@
   }
 } only %}
 
-{% set _return_element %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'No thanks! Return to Dialogue Demo.',
+{% set _content %}
+  <p>This is a dialogue component.</p>
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Close Dialogue Button',
     attributes: {
-      href: link['viewall-components-dialogue']
+      type: 'button',
+      'data-dialogue-close': '',
     }
   } only %}
 {% endset %}
 
 {% include '@bolt-components-dialogue/dialogue.twig' with {
-  content: 'This is a dialogue component.',
+  content: _content,
   persistent: true,
-  persistent_return_element: _return_element,
   attributes: {
     id: 'dialogue-4'
   },
@@ -37,19 +38,20 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% set _return_element %}
-  {% include '@bolt-elements-link/link.twig' with {
-    content: 'No thanks! Return to last page.',
+{% set _content %}
+  <p>This is a dialogue component.</p>
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Close Dialogue Button',
     attributes: {
-      href: 'google.com'
+      type: 'button',
+      'data-dialogue-close': '',
     }
   } only %}
 {% endset %}
 
 {% include '@bolt-components-dialogue/dialogue.twig' with {
-  content: 'This is a dialogue component.',
+  content: _content,
   persistent: true,
-  persistent_return_element: _return_element,
   attributes: {
     id: 'dialogue-4'
   },

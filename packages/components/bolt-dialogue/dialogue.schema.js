@@ -34,6 +34,11 @@ module.exports = {
         'Enables the modal to be persistent. This will eliminate ways to close the modal and it is up to the author to provide a custom link to close the modal or redirect to another page within the modal content. Must be used in tandem with the <code>persistent_return_url</code> prop.',
       default: false,
     },
+    persistent_return_element: {
+      type: 'any',
+      description:
+        'The button or link to be used to return to the previous page. If a modal is persistent, a return element is required to provide the user a way out. Must be used in tandem with the <code>persistent</code> prop.',
+    },
     theme: {
       type: 'string',
       description: 'Controls the color theme of the dialogue container.',
