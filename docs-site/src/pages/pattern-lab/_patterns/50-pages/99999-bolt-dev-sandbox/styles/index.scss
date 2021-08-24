@@ -14,7 +14,7 @@
 }
 
 .c-quick-links__col {
-  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  padding-bottom: var(--bolt-spacing-y-medium);
   border: 1px solid var(--m-bolt-border);
   border-radius: bolt-border-radius(small);
 
@@ -27,25 +27,14 @@
 }
 
 .c-quick-links__col-title {
-  position: relative;
-  padding-bottom: var(--bolt-spacing-y-medium);
-
-  &:before {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: calc(-1 * var(--bolt-spacing-x-medium));
-    width: calc(100% + 2 * (var(--bolt-spacing-x-medium)));
-    height: 1px;
-    background-color: var(--m-bolt-border);
-  }
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  border-bottom: 1px solid var(--m-bolt-border);
 }
 
 .c-quick-links__col-inner {
   height: 25vh;
   overflow: auto;
-  padding-top: var(--bolt-spacing-y-medium);
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
 
   @include bolt-mq($from: medium) {
     height: 40vh;
