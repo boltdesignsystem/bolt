@@ -1,16 +1,14 @@
-{% extends "@pl/_default-page-template.twig" %}
+{% extends '@pl/_default-page-template.twig' %}
 
 {% set icon_add %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "add-solid",
-    size: "medium",
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'add-solid',
   } only %}
 {% endset %}
 
 {% set icon_trash %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "trash",
-    size: "medium",
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'trash',
   } only %}
 {% endset %}
 
@@ -18,6 +16,7 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Agenda Manager',
     icon_before: icon_trash,
+    reversed_underline: true,
     attributes: {
       href: '#!',
       'aria-describedby': 'delete-option',
@@ -29,6 +28,7 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Agile Studio',
     icon_before: icon_trash,
+    reversed_underline: true,
     attributes: {
       href: '#!',
       'aria-describedby': 'delete-option',
@@ -40,6 +40,7 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'App Factory',
     icon_before: icon_trash,
+    reversed_underline: true,
     attributes: {
       href: '#!',
       'aria-describedby': 'delete-option',
@@ -51,6 +52,7 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Atlas',
     icon_before: icon_add,
+    reversed_underline: true,
     attributes: {
       href: '#!',
       'aria-describedby': 'add-option',
@@ -62,6 +64,7 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Attestation Manager/Survey Manager',
     icon_before: icon_add,
+    reversed_underline: true,
     attributes: {
       href: '#!',
       'aria-describedby': 'add-option',
@@ -73,6 +76,7 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Box',
     icon_before: icon_add,
+    reversed_underline: true,
     attributes: {
       href: '#!',
       'aria-describedby': 'add-option',
@@ -84,6 +88,7 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Credit Memo',
     icon_before: icon_add,
+    reversed_underline: true,
     attributes: {
       href: '#!',
       'aria-describedby': 'add-option',
@@ -95,6 +100,7 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Expenses',
     icon_before: icon_add,
+    reversed_underline: true,
     attributes: {
       href: '#!',
       'aria-describedby': 'add-option',
@@ -103,7 +109,6 @@
 {% endset %}
 
 {% block main_content %}
-
   {% set header %}
     {% include '@bolt/headline.twig' with {
       text: 'My quick links 2.0 static page (mockup)',
@@ -112,89 +117,98 @@
     } only %}
   {% endset %}
 
-  {% set div %}
+  {% set quick_links_header %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'My Quick Links',
+    } only %}
 
-  {% grid "o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix" %}
-
-    {% cell "o-bolt-grid__cell u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-
-      {% set demo %}
-
-        {% include '@bolt-components-headline/headline.twig' with {
-          text: 'My Quick Links',
-        } only %}
-
-        {% include '@bolt-components-headline/subheadline.twig' with {
-          text: 'This options will be available in your sidebar on Pega Portal. You can remove the quick links here.',
-          size: 'small'
-        } only %}
-
-        {% include '@bolt-components-list/list.twig' with {
-          tag: 'ul',
-          items: [
-            quick_link_1,
-            quick_link_2,
-            quick_link_3,
-          ]
-        } only %}
-
-      {% endset %}
-      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-        body: {
-          content: demo,
-        },
-        theme: 'xlight'
-      } only %}
-    {% endcell %}
-
-    {% cell "o-bolt-grid__cell u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-      {% set demo %}
-
-        {% include '@bolt-components-headline/headline.twig' with {
-          text: 'Add Links',
-        } only %}
-
-        {% include '@bolt-components-headline/subheadline.twig' with {
-          text: 'Choose options from the list below',
-          size: 'small'
-        } only %}
-
-        {% include '@bolt-components-list/list.twig' with {
-          tag: 'ul',
-          items: [
-            add_link_1,
-            add_link_2,
-            add_link_3,
-            add_link_4,
-            add_link_5,
-            '...',
-          ]
-        } only %}
-
-      {% endset %}
-      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-        body: {
-          content: demo,
-        },
-        theme: 'xlight'
-      } only %}
-    {% endcell %}
-
-  {% endgrid %}
-
-  <span id="delete-option" hidden>delete this item</span>
-  <span id="add-option" hidden>add this item</span>
-
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'These options will be available in your sidebar on Pega Portal. You can remove the quick links below.',
+      size: 'small'
+    } only %}
   {% endset %}
+
+  {% set quick_links_list %}
+    {% include '@bolt-components-list/list.twig' with {
+      tag: 'ul',
+      items: [
+        quick_link_1,
+        quick_link_2,
+        quick_link_3,
+      ]
+    } only %}
+  {% endset %}
+
+  {% set add_links_header %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Add Links',
+    } only %}
+
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'Choose options from the list below. Chosen items will be added to your quick links.',
+      size: 'small'
+    } only %}
+  {% endset %}
+
+  {% set add_links_list %}
+    {% include '@bolt-components-list/list.twig' with {
+      tag: 'ul',
+      items: [
+        add_link_1,
+        add_link_2,
+        add_link_3,
+        add_link_4,
+        add_link_5,
+        add_link_1,
+        add_link_2,
+        add_link_3,
+        add_link_4,
+        add_link_5,
+        add_link_1,
+        add_link_2,
+        add_link_3,
+        add_link_4,
+        add_link_5,
+        add_link_1,
+        add_link_2,
+        add_link_3,
+        add_link_4,
+        add_link_5,
+        add_link_1,
+        add_link_2,
+        add_link_3,
+        add_link_4,
+        add_link_5,
+        '...',
+      ]
+    } only %}
+  {% endset %}
+
   {% include '@bolt-components-band/band.twig' with {
     theme: 'dark',
     size: 'large',
-    content: header
-  } only %}
-  {% include '@bolt-components-band/band.twig' with {
-    theme: 'xlight',
-    content: div,
+    content: header,
   } only %}
 
+  <div class="c-quick-links">
+    <div class="c-quick-links__col">
+      <div class="c-quick-links__col-title">
+        {{ quick_links_header  }}
+      </div>
+      <div class="c-quick-links__col-inner">
+        {{ quick_links_list }}
+      </div>
+    </div>
+    <div class="c-quick-links__col">
+      <div class="c-quick-links__col-title">
+        {{ add_links_header  }}
+      </div>
+      <div class="c-quick-links__col-inner">
+        {{ add_links_list }}
+      </div>
+    </div>
+    <span id='delete-option' hidden>delete this item</span>
+    <span id='add-option' hidden>add this item</span>
+  </div>
 {% endblock %}
 

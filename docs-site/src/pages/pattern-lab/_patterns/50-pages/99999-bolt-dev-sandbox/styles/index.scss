@@ -1,3 +1,47 @@
 /**
  * Add imports here
  */
+@import '@bolt/core-v3.x';
+
+.c-quick-links {
+  padding-top: var(--bolt-spacing-y-medium);
+
+  @include bolt-mq($from: medium) {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    grid-column-gap: var(--bolt-spacing-x-medium);
+  }
+
+  &__col {
+    margin-bottom: var(--bolt-spacing-y-medium);
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+    border: 1px solid var(--m-bolt-border);
+    border-radius: bolt-border-radius(small);
+  }
+
+  &__col-title {
+    position: relative;
+    padding-bottom: var(--bolt-spacing-y-medium);
+
+    &:before {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: calc(-1 * var(--bolt-spacing-x-medium));
+      width: calc(100% + 2 * (var(--bolt-spacing-x-medium)));
+      height: 1px;
+      background-color: var(--m-bolt-border);
+    }
+  }
+
+  &__col-inner {
+    height: 25vh;
+    overflow: auto;
+    padding-top: var(--bolt-spacing-y-medium);
+
+    @include bolt-mq($from: medium) {
+      height: 50vh;
+    }
+  }
+}
