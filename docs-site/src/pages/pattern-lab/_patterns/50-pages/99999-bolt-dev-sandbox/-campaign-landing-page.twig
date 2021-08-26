@@ -1,0 +1,210 @@
+{% set header %}
+  <header>
+    {% set logo %}
+      <a href="https://pega.com">
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            alt: 'Pegasystems, Inc.',
+            src: '/images/logos/pega-logo.svg',
+            width: 139,
+            height: 30,
+          },
+        } only %}
+      </a>
+    {% endset %}
+    {% set layout_content %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: logo,
+      } only %}
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layout_content,
+    } only %}
+  </header>
+{% endset %}
+
+{% set main_content %}
+  {% set page_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'This is a headline',
+      tag: 'h1',
+      size: 'xxxlarge',
+    } only %}
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'This is the body. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta, unde incidunt omnis officiis eos aut quae culpa laudantium consequatur! Quasi repellat odit doloremque rerum.',
+    } only %}
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta.',
+    } only %}
+
+    {% set sub_layout_content %}
+      {% set carousel %}
+        <div style="width: 250px">
+          {# todo: carousel width is not correct once the extra div is removed. #}
+          {% set slide %}
+            {% include '@bolt-elements-image/image.twig' with {
+              attributes: {
+                alt: 'Alt text.',
+                src: 'https://via.placeholder.com/400x225',
+                width: 400,
+                height: 225,
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-carousel/carousel.twig' with {
+            slides: [
+              slide,
+              slide,
+              slide,
+              slide,
+              slide,
+            ],
+            nav_button_position: 'outside',
+          } only %}
+        </div>
+      {% endset %}
+      {% set list %}
+        List goes here
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: carousel,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: list,
+      } only %}
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: sub_layout_content,
+      template: [
+        'halves@from-medium',
+      ],
+    } only %}
+  {% endset %}
+  {% set form %}
+    <div class="u-bolt-padding-medium u-bolt-shadow-level-20 u-bolt-border-radius-small t-bolt-white">
+      Form goes here
+    </div>
+  {% endset %}
+  {% set layout_content %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: page_content,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: form,
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_content,
+    gutter: 'large',
+    padding_top: 'large',
+    padding_bottom: 'large',
+    template: [
+      '67/33@from-medium',
+    ],
+  } only %}
+{% endset %}
+
+{% set footer %}
+  <footer>
+    {% set layout_content %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Suggested Content',
+        tag: 'h2',
+        size: 'xxlarge',
+      } only %}
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layout_content,
+      padding_top: 'large',
+      padding_bottom: 'small',
+      attributes: {
+        class: 't-bolt-white',
+      }
+    } only %}
+
+    {% set layout_content %}
+      {% set icon_documentation %}
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'documentation',
+          size: 'xlarge',
+          color: 'teal',
+          background: 'circle',
+        } only %}
+      {% endset %}
+      {% set eyebrow %}
+        {% include '@bolt-components-headline/eyebrow.twig' with {
+          text: 'Eyebrow',
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+        gutter: 'medium',
+        signifier: icon_documentation,
+        eyebrow_items: [
+          eyebrow,
+        ],
+        headline: {
+          text: 'This is a listing teaser',
+          tag: 'h3',
+          size: 'xlarge',
+          link_attributes: {
+            href: 'https://pega.com'
+          },
+        },
+        description: 'This is the description. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layout_content,
+      padding_top: 'none',
+      padding_bottom: 'large',
+      attributes: {
+        class: 't-bolt-white',
+      }
+    } only %}
+
+    {% set cpl_footer %}
+      <div class="c-base-cpl-footer">
+        <div class="c-base-cpl-footer__item">
+          Social
+        </div>
+        <div class="c-base-cpl-footer__item">
+          Legal
+        </div>
+        <div class="c-base-cpl-footer__item">
+          &copy;2021 Pegasystems, Inc.
+        </div>
+      </div>
+    {% endset %}
+    {% set layout_content %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: cpl_footer,
+      } only %}
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layout_content,
+      attributes: {
+        class: 't-bolt-white',
+      }
+    } only %}
+  </footer>
+{% endset %}
+
+{% include '@bolt-elements-image/image.twig' with {
+  background: true,
+  attributes: {
+    src: '/images/backgrounds/clp-bg-1.svg',
+    sizes: '100vw',
+    style: '--e-bolt-image-position: 67vw -40vw;'
+  },
+} only %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  header: header,
+  main: {
+    content: main_content,
+  },
+  footer: footer,
+  attributes: {
+    class: 't-bolt-gray-xlight',
+  }
+} only %}

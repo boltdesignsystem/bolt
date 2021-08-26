@@ -1,3 +1,20 @@
 /**
  * Add imports here
  */
+
+.c-base-cpl-footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(100% / 3), 1fr));
+}
+
+.c-base-cpl-footer__item {
+  text-align: center;
+}
+
+.c-base-cpl-footer__item:first-child {
+  text-align: start;
+}
+
+.c-base-cpl-footer__item:last-child {
+  text-align: end;
+}
