@@ -37,8 +37,8 @@
 
 {% set twig_markup %}
 {% verbatim %}
-{% include '@bolt-elements-icon/icon.twig' with {
-  name: 'MM',
+{% include '@bolt-elements-shape/shape.twig' with {
+  content: 'MM',
 } only %}
 {% endverbatim %}
 {% endset %}
@@ -46,7 +46,7 @@
 {% set html_markup %}
 {% verbatim %}
 <span class="e-bolt-shape">
-  <span class="e-bolt-shape__inner">
+  <span class="e-bolt-shape__content">
     <!-- Letters, icon, or image go here -->
   </span>
 </span>

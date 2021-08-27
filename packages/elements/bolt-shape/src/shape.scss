@@ -1,6 +1,7 @@
 @import '@bolt/core-v3.x';
 
 .e-bolt-shape {
+  --e-bolt-shape-border-radius: #{bolt-border-radius(full)};
   display: inline-block;
   position: relative;
   width: calc(var(--e-bolt-shape-content-size) * 2);
@@ -82,8 +83,4 @@
 
 .e-bolt-shape--border-radius-large {
   --e-bolt-shape-border-radius: #{bolt-border-radius(large)};
-}
-
-.e-bolt-shape--border-radius-full {
-  --e-bolt-shape-border-radius: #{bolt-border-radius(full)};
 }
