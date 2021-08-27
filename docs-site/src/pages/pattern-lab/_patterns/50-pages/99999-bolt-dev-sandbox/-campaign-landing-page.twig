@@ -34,37 +34,93 @@
       text: 'This is the body. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta, unde incidunt omnis officiis eos aut quae culpa laudantium consequatur! Quasi repellat odit doloremque rerum.',
     } only %}
     {% include '@bolt-components-headline/text.twig' with {
-      text: 'Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta.',
+      text: 'Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta.',
     } only %}
 
-    {% set sub_layout_content %}
+    {% set carousel_and_list %}
       {% set carousel %}
-        <div style="width: 250px">
-          {# todo: carousel width is not correct once the extra div is removed. #}
-          {% set slide %}
-            {% include '@bolt-elements-image/image.twig' with {
-              attributes: {
-                alt: 'Alt text.',
-                src: 'https://via.placeholder.com/400x225',
-                width: 400,
-                height: 225,
-              },
-            } only %}
-          {% endset %}
-          {% include '@bolt-components-carousel/carousel.twig' with {
-            slides: [
-              slide,
-              slide,
-              slide,
-              slide,
-              slide,
-            ],
-            nav_button_position: 'outside',
+        {% set slide %}
+          {% include '@bolt-elements-image/image.twig' with {
+            fill: true,
+            attributes: {
+              alt: 'Alt text.',
+              src: 'https://via.placeholder.com/400x225',
+              width: 400,
+              height: 225,
+            },
           } only %}
-        </div>
+        {% endset %}
+        {% include '@bolt-components-carousel/carousel.twig' with {
+          slides: [
+            slide,
+            slide,
+            slide,
+            slide,
+            slide,
+          ],
+          nav_button_position: 'outside',
+        } only %}
       {% endset %}
       {% set list %}
-        List goes here
+        {% set list_content %}
+          {% set icon_check_solid %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'check-solid',
+              size: 'medium',
+              color: 'teal',
+            } only %}
+          {% endset %}
+          {% set list_text %}
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Check list item. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+              size: 'small',
+              attributes: {
+                class: 'u-bolt-margin-top-xxsmall',
+              }
+            } only %}
+          {% endset %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: icon_check_solid,
+          } only %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: list_text,
+          } only %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: icon_check_solid,
+          } only %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: list_text,
+          } only %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: icon_check_solid,
+          } only %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: list_text,
+          } only %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: icon_check_solid,
+          } only %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: list_text,
+          } only %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: icon_check_solid,
+          } only %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: list_text,
+          } only %}
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout.twig' with {
+          content: list_content,
+          gutter: 'small',
+          row_gutter: 'small',
+          template: [
+            'flag',
+          ],
+          attributes: {
+            style: '--l-bolt-layout-flag-media-width: 24px',
+          },
+        } only %}
       {% endset %}
       {% include '@bolt-layouts-layout/layout-item.twig' with {
         content: carousel,
@@ -74,14 +130,31 @@
       } only %}
     {% endset %}
     {% include '@bolt-layouts-layout/layout.twig' with {
-      content: sub_layout_content,
+      content: carousel_and_list,
+      gutter: 'large',
+      padding_top: 'small',
+      padding_bottom: 'small',
       template: [
-        'halves@from-medium',
+        'tiles@from-medium',
       ],
+      attributes: {
+        style: '--l-bolt-layout-tile-min-width: 300px',
+      }
     } only %}
+
+    <div class="c-base-clp-form-trigger t-bolt-navy-light">
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Download the report',
+        display: 'block',
+        attributes: {
+          type: 'button',
+          'data-bolt-modal-target': '.js-bolt-modal',
+        },
+      } only %}
+    </div>
   {% endset %}
   {% set form %}
-    <div class="u-bolt-padding-medium u-bolt-shadow-level-20 u-bolt-border-radius-small t-bolt-white">
+    <div class="c-base-clp-form t-bolt-white">
       Form goes here
     </div>
   {% endset %}
@@ -106,27 +179,11 @@
 
 {% set footer %}
   <footer>
-    {% set layout_content %}
-      {% include '@bolt-components-headline/headline.twig' with {
-        text: 'Suggested Content',
-        tag: 'h2',
-        size: 'xxlarge',
-      } only %}
-    {% endset %}
-    {% include '@bolt-layouts-layout/layout.twig' with {
-      content: layout_content,
-      padding_top: 'large',
-      padding_bottom: 'small',
-      attributes: {
-        class: 't-bolt-white',
-      }
-    } only %}
-
-    {% set layout_content %}
+    {% set suggested_content %}
       {% set icon_documentation %}
         {% include '@bolt-components-icon/icon.twig' with {
           name: 'documentation',
-          size: 'xlarge',
+          size: 'large',
           color: 'teal',
           background: 'circle',
         } only %}
@@ -136,6 +193,12 @@
           text: 'Eyebrow',
         } only %}
       {% endset %}
+
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Suggested Content',
+        tag: 'h2',
+        size: 'xlarge',
+      } only %}
       {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
         gutter: 'medium',
         signifier: icon_documentation,
@@ -153,22 +216,109 @@
         description: 'This is the description. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
       } only %}
     {% endset %}
+    {% set layout_content %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: suggested_content,
+      } only %}
+    {% endset %}
     {% include '@bolt-layouts-layout/layout.twig' with {
       content: layout_content,
-      padding_top: 'none',
+      padding_top: 'large',
       padding_bottom: 'large',
+      template: [
+        '67@from-medium',
+      ],
       attributes: {
         class: 't-bolt-white',
-      }
+      },
     } only %}
 
     {% set cpl_footer %}
       <div class="c-base-cpl-footer">
         <div class="c-base-cpl-footer__item">
-          Social
+          <strong class="u-bolt-margin-right-xsmall">Connect with us</strong>
+
+          {% set icon_linkedin %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'linkedin',
+            } only %}
+          {% endset %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: '<span class="u-bolt-visuallyhidden">LinkedIn</span>',
+            icon_before: icon_linkedin,
+            attributes: {
+              href: 'https://pega.com',
+            }
+          } only %}
+          
+          {% set icon_twitter %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'twitter',
+            } only %}
+          {% endset %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: '<span class="u-bolt-visuallyhidden">Twitter</span>',
+            icon_before: icon_twitter,
+            attributes: {
+              href: 'https://pega.com',
+            }
+          } only %}
+          
+          {% set icon_facebook %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'facebook',
+            } only %}
+          {% endset %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: '<span class="u-bolt-visuallyhidden">Facebook</span>',
+            icon_before: icon_facebook,
+            attributes: {
+              href: 'https://pega.com',
+            }
+          } only %}
+          
+          {% set icon_youtube %}
+            {% include '@bolt-components-icon/icon.twig' with {
+              name: 'youtube-solid',
+            } only %}
+          {% endset %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: '<span class="u-bolt-visuallyhidden">YouTube</span>',
+            icon_before: icon_youtube,
+            attributes: {
+              href: 'https://pega.com',
+            }
+          } only %}
         </div>
         <div class="c-base-cpl-footer__item">
-          Legal
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: 'Terms of Use',
+            reversed_underline: true,
+            attributes: {
+              href: 'https://pega.com',
+            }
+          } only %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: 'Privacy',
+            reversed_underline: true,
+            attributes: {
+              href: 'https://pega.com',
+            }
+          } only %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: 'Contact',
+            reversed_underline: true,
+            attributes: {
+              href: 'https://pega.com',
+            }
+          } only %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: 'Pega.com',
+            reversed_underline: true,
+            attributes: {
+              href: 'https://pega.com',
+            }
+          } only %}
         </div>
         <div class="c-base-cpl-footer__item">
           &copy;2021 Pegasystems, Inc.
@@ -184,7 +334,7 @@
       content: layout_content,
       attributes: {
         class: 't-bolt-white',
-      }
+      },
     } only %}
   </footer>
 {% endset %}
@@ -194,7 +344,8 @@
   attributes: {
     src: '/images/backgrounds/clp-bg-1.svg',
     sizes: '100vw',
-    style: '--e-bolt-image-position: 67vw -40vw;'
+    style: '--e-bolt-image-position: 65vw -30vw',
+    class: 'c-base-clp-bg-image',
   },
 } only %}
 
@@ -207,4 +358,16 @@
   attributes: {
     class: 't-bolt-gray-xlight',
   }
+} only %}
+
+{% set modal_content %}
+  <div>
+    Form goes here
+  </div>
+{% endset %}
+{% include '@bolt-components-modal/modal.twig' with {
+  content: modal_content,
+  attributes: {
+    class: 'js-bolt-modal',
+  },
 } only %}
