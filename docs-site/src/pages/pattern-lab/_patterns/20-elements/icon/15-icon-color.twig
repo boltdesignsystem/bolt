@@ -1,0 +1,51 @@
+{% set schema = bolt.data.components['@bolt-elements-icon'].schema %}
+
+{% set description %}
+  A Icon&rsquo;s color can be modified per use case.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Reference the <a href="{{ link['viewall-elements-icon'] }}?selected-tab=schema" class="e-bolt-text-link">schema</a> for all options.</bolt-li>
+    <bolt-li>Additionally, a CSS custom property is available to change the icon color to any brand color. Define <code>--e-bolt-icon-color</code> inline style rule to set the desired color. Reference <a href="{{ link['visual-styles-color-tokens'] }}" class="e-bolt-text-link">Color Tokens</a> for all available brand colors.</bolt-li>
+    <bolt-li>Again, Icon element can be used in tandem with <a href="{{ link['viewall-elements-shape'] }}" class="e-bolt-text-link">Shape</a> element to create a square or circle container around the icon. In such scenario, size and color should not be set on the Icon, they should be set on the Shape instead.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    {% for color in schema.properties.color.enum %}
+      <bolt-list-item>
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'pega-thumbs-up',
+          size: 'xlarge',
+          color: color,
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-icon/icon.twig' with {
+  color: 'navy',
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<svg class="e-bolt-icon e-bolt-icon--navy" aria-hidden="true">...</svg>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Icon Color',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

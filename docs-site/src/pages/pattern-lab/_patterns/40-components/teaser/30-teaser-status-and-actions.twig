@@ -13,9 +13,12 @@
 
 {% set demo %}
   {% set wide_image %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: '/images/placeholders/signifier-pdf.jpg',
-      alt: 'Alt text.',
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/signifier-pdf.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+      }
     } only %}
   {% endset %}
   {% set like %}

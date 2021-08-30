@@ -14,9 +14,12 @@ A teaser is an interactive block element. Its main purpose is to display relevan
 {% set demo %}
   <div style="max-width: 60ch;">
     {% set image %}
-      {% include '@bolt-components-image/image.twig' with {
-        src: '/images/placeholders/signifier-pdf.jpg',
-        alt: 'Alt text.',
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/signifier-pdf.jpg',
+          alt: 'Alt text.',
+          loading: 'lazy',
+        }
       } only %}
     {% endset %}
     {% include '@bolt-components-teaser/teaser.twig' with {

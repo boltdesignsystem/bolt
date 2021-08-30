@@ -88,9 +88,12 @@
 } only %}
 
 {% set image_content %}
-  {% include "@bolt-components-image/image.twig" with {
-    src: "/images/placeholders/tout-4x3-climber.jpg",
-    alt: "A Rock Climber",
+  {% include "@bolt-elements-image/image.twig" with {
+    attributes: {
+      src: "/images/placeholders/tout-4x3-climber.jpg",
+      alt: "A Rock Climber",
+      loading: "lazy",
+    }
   } only %}
 {% endset %}
 
@@ -281,7 +284,8 @@
       controls
       data-media-title
       data-media-duration
-      data-video-id="3974147489001"
+      data-use-page-lang
+      data-video-id="6250883560001"
       class="c-base-video"></video-js>
   {% endset %}
 

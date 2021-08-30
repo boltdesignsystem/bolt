@@ -248,11 +248,12 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
         {% set device_viewer_image %}
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/content/screenshots/device-screenshot--tablet.jpg",
-            lazyload: true,
-            _sizes: "(min-width: 1400px) 40.64285714vw, (min-width: 600px) 41vw, 72.5vw",
-            placeholder_color: "#ececec",
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+              sizes: "(min-width: 1400px) 40.64285714vw, (min-width: 600px) 41vw, 72.5vw",
+              loading: "lazy",
+            }
           } only %}
         {% endset %}
         {% include "@bolt/device-viewer.twig" with {
@@ -277,9 +278,11 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
         {% set device_viewer_image %}
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
-            placeholder_color: "#1c1c1c"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+              loading: "lazy",
+            }
           } only %}
         {% endset %}
         {% include "@bolt/device-viewer.twig" with {
@@ -392,9 +395,11 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
         {% set device_viewer_image %}
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/content/screenshots/device-screenshot--phone.jpg",
-            placeholder_color: "#1c1c1c"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/content/screenshots/device-screenshot--phone.jpg",
+              loading: "lazy",
+            }
           } only %}
         {% endset %}
         {% include "@bolt/device-viewer.twig" with {
@@ -466,9 +471,11 @@
 
       {% cell "u-bolt-width-1/1" %}
         {% set device_viewer_image %}
-          {% include "@bolt-components-image/image.twig" with {
-            src: "/images/content/screenshots/device-screenshot--desktop.jpg",
-            placeholder_color: "#ececec"
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+              loading: "lazy",
+            }
           } only %}
         {% endset %}
         {% include "@bolt/device-viewer.twig" with {

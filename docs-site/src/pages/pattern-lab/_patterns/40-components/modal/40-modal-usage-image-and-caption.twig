@@ -3,10 +3,12 @@
 
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
   {% set image_content %}
-    {% include "@bolt-components-image/image.twig" with {
-      src: "/images/placeholders/tout-4x3-climber.jpg",
-      alt: "Image description.",
-      ratio: "none",
+    {% include "@bolt-elements-image/image.twig" with {
+      attributes: {
+        src: "/images/placeholders/tout-4x3-climber.jpg",
+        alt: "Image description.",
+        loading: "lazy",
+      }
     } only %}
   {% endset %}
   {% set caption %}
@@ -18,10 +20,12 @@
     </div>
   {% endset %}
   {% set modal_image_1 %}
-    {% include "@bolt-components-image/image.twig" with {
-      src: "/images/placeholders/tout-4x3-climber.jpg",
-      alt: "Image description.",
-      max_width: "1000px",
+    {% include "@bolt-eleemnts-image/image.twig" with {
+      attributes: {
+        src: "/images/placeholders/tout-4x3-climber.jpg",
+        alt: "Image description.",
+        styles: "max-width: 1000px",
+      }
     } only %}
   {% endset %}
   {% set modal_content %}
@@ -81,10 +85,12 @@
 
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
   {% set image_content %}
-    {% include "@bolt-components-image/image.twig" with {
-      src: "/images/content/screenshots/device-screenshot--desktop.jpg",
-      alt: "Image description.",
-      ratio: "none",
+    {% include "@bolt-elements-image/image.twig" with {
+      attributes: {
+        src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+        alt: "Image description.",
+        loading: "lazy",
+      }
     } only %}
   {% endset %}
   {% set caption %}
@@ -96,9 +102,12 @@
     </div>
   {% endset %}
   {% set modal_image_2 %}
-    {% include "@bolt-components-image/image.twig" with {
-      src: "/images/content/screenshots/device-screenshot--desktop.jpg",
-      alt: "Image description.",
+    {% include "@bolt-elements-image/image.twig" with {
+      attributes: {
+        src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+        alt: "Image description.",
+        loading: "lazy",
+      }
     } only %}
   {% endset %}
   {% set modal_content %}
