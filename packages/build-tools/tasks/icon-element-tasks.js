@@ -12,20 +12,53 @@ const prettier = require('prettier');
 
 let initialBuild = true;
 
-const startBuildingIconsMsg =
-  'Generating the Bolt Component Icon JSON schema...';
+const startBuildingIconsMsg = 'Generating the Bolt Element Icon JSON schema...';
 const startRebuildingIconsMsg =
-  'Regenerating the Bolt Component Icon JSON schema...';
+  'Regenerating the Bolt Element Icon JSON schema...';
 
 const finishedBuildingIconsMsg =
-  'Finished generating the Bolt Component Icon schema!';
+  'Finished generating the Bolt Element Icon schema!';
 const finishedRebuildingIconsMsg =
-  'Finished regenerating the Bolt Component Icon schema!';
+  'Finished regenerating the Bolt Element Icon schema!';
 
 const failedBuildingIconsMsg =
-  'Initially generating the Bolt Component Icon schema failed!';
+  'Initially generating the Bolt Element Icon schema failed!';
 const failedRebuildingIconsMsg =
-  'Failed to regenerate the Bolt Component Icon schema!';
+  'Failed to regenerate the Bolt Element Icon schema!';
+
+// update bolt-icon element schema with newest icons from the local svgs folder
+async function generateElementSchemaFile() {
+  const config = await getConfig();
+  const getElementNames = iconPath => {
+    let svgs = [];
+    const svgFiles = fs.readdirSync(iconPath);
+    svgFiles.forEach(svg => {
+      if (path.extname(svg) === '.twig') {
+        const svgName = svg.split('.twig');
+        svgs.push(svgName[0]);
+      }
+    });
+    return svgs;
+  };
+  const iconElementDir = path.dirname(
+    resolve.sync('@bolt/elements-icon/package.json'),
+  );
+  const elementSchema = path.join(iconElementDir, 'icon.schema.json');
+  const schema = await fs.readJson(elementSchema);
+  const iconElementIcons = path.join(iconElementDir, '/src/icons');
+  const elementNames = getElementNames(iconElementIcons);
+  schema.properties.name.enum = elementNames;
+  const formattedSchema = prettier.format(JSON.stringify(schema), {
+    parser: 'json',
+  });
+  await fs.writeFile(elementSchema, formattedSchema);
+
+  // generate `element-icons.bolt.json` file with newest icons array
+  await fs.writeFile(
+    path.join(config.dataDir, 'element-icons.bolt.json'),
+    JSON.stringify(elementNames, null, 4),
+  );
+}
 
 async function build() {
   const iconSpinner = new Ora(
@@ -33,25 +66,12 @@ async function build() {
   ).start();
 
   try {
-    const config = await getConfig();
-    const extendedIconDirs = config.iconDir ? config.iconDir : [];
-
-    const icons = await iconGenerator.generate(
-      '@bolt/components-icons',
-      extendedIconDirs,
-    );
-
-    await generateSchemaFile(icons);
-
+    await generateElementSchemaFile();
     iconSpinner.succeed(
       chalk.green(
         initialBuild ? finishedBuildingIconsMsg : finishedRebuildingIconsMsg,
       ),
     );
-
-    if (config.verbosity > 2) {
-      log.dim(`Built ${iconPaths.length} icons.`);
-    }
   } catch (error) {
     iconSpinner.fail(
       chalk.red(
@@ -68,42 +88,16 @@ async function build() {
 build.description = 'Minify & convert raw SVG files to browser-friendly icons.';
 build.displayName = 'icons:build';
 
-async function generateSchemaFile(icons) {
-  const config = await getConfig();
-  const iconComponentDir = path.dirname(
-    resolve.sync('@bolt/components-icon/package.json'),
-  );
-  const iconComponentSchema = path.join(iconComponentDir, 'icon.schema.json');
-  const names = icons.map(icon => icon.id);
-  const schema = await fs.readJson(iconComponentSchema);
-  schema.properties.name.anyOf[0].enum = names;
-
-  const formattedSchema = prettier.format(JSON.stringify(schema), {
-    parser: 'json',
-  });
-
-  // update bolt-icon schema with newest icons from svgs folder
-  await fs.writeFile(iconComponentSchema, formattedSchema);
-
-  // generate `icons.bolt.json` file with newest icons array
-  await fs.writeFile(
-    path.join(config.dataDir, 'icons.bolt.json'),
-    JSON.stringify(names, null, 4),
-  );
-}
-
 async function watch() {
   const config = await getConfig();
-
-  // for now, only watch the main @bolt/components-icons folder for .svg file changes.
-  const extendedIconDirs = config.iconDir ? config.iconDir : [];
 
   // Used by watches
   const debouncedCompile = debounce(build, config.debounceRate);
 
+  // Revist this!
   const watchedFiles = await iconGenerator.getIconSourcePaths(
-    '@bolt/components-icons',
-    extendedIconDirs,
+    '@bolt/elements-icon',
+    '.twig',
   );
 
   // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
@@ -122,7 +116,7 @@ async function watch() {
   });
 }
 
-watch.description = 'Watch and rebuild Bolt Component Icons';
+watch.description = 'Watch and rebuild Bolt Element Icons';
 watch.displayName = 'icons:watch';
 
 module.exports = {
