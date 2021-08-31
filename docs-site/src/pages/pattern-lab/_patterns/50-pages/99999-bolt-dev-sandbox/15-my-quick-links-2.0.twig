@@ -12,6 +12,32 @@
   } only %}
 {% endset %}
 
+{% set skip_button_to_add_links %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Skip to add links',
+    attributes: {
+      href: '#add-links',
+      class: [
+        'c-quick-links__skip-button',
+        'u-bolt-margin-bottom-medium'
+      ],
+    }
+  } only %}
+{% endset %}
+
+{% set skip_button_to_my_quick_links %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Skip to my quick links',
+    attributes: {
+      href: '#my-quick-links',
+      class: [
+        'c-quick-links__skip-button',
+        'u-bolt-margin-bottom-medium'
+      ],
+    }
+  } only %}
+{% endset %}
+
 {% set quick_link_1 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Agenda Manager',
@@ -191,19 +217,21 @@
   } only %}
 
   <div class="c-quick-links">
-    <div class="c-quick-links__col">
+    <div id="my-quick-links" class="c-quick-links__col">
       <div class="c-quick-links__col-title">
         {{ quick_links_header  }}
       </div>
       <div class="c-quick-links__col-inner">
+        {{ skip_button_to_add_links }}
         {{ quick_links_list }}
       </div>
     </div>
-    <div class="c-quick-links__col">
+    <div id="add-links" class="c-quick-links__col">
       <div class="c-quick-links__col-title">
         {{ add_links_header  }}
       </div>
       <div class="c-quick-links__col-inner">
+        {{ skip_button_to_my_quick_links }}
         {{ add_links_list }}
       </div>
     </div>

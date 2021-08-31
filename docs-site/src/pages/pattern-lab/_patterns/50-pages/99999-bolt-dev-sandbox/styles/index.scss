@@ -5,6 +5,7 @@
 
 .c-quick-links {
   padding-top: var(--bolt-spacing-y-medium);
+  background-color: var(--m-bolt-bg);
 
   @include bolt-mq($from: medium) {
     display: grid;
@@ -30,6 +31,18 @@
 .c-quick-links__col-title {
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
   border-bottom: 1px solid var(--m-bolt-border);
+}
+
+.c-quick-links__skip-button {
+  position: absolute;
+  transform: translateY(-100%);
+  z-index: -1;
+
+  &:focus {
+    position: relative;
+    transform: translateY(0);
+    z-index: 999;
+  }
 }
 
 .c-quick-links__col-inner {
