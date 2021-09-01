@@ -1,0 +1,55 @@
+{% set schema = bolt.data.components['@bolt-elements-shape'].schema %}
+
+{% set description %}
+  A Shape&rsquo;s size can be modified per use case.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Reference the <a href="{{ link['viewall-elements-shape'] }}?selected-tab=schema" class="e-bolt-text-link">schema</a> for all options.</bolt-li>
+    <bolt-li>When passing letters to the content, text size scales with the shape size.</bolt-li>
+    <bolt-li>When passing an icon to the content, icon size is ignored. Icon size scales with the shape size.</bolt-li>
+    <bolt-li>When passing an image to the content, image size is ignored. Image size scales with the shape size.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    {% for size in schema.properties.size.enum %}
+      <bolt-list-item>
+        {% include '@bolt-elements-shape/shape.twig' with {
+          content: 'MM',
+          size: size,
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-shape/shape.twig' with {
+  size: 'large',
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<span class="e-bolt-shape e-bolt-shape--large">
+  <span class="e-bolt-shape__content">
+    <!-- Letters, icon, or image go here -->
+  </span>
+</span>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Shape Size',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

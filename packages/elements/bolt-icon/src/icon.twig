@@ -1,0 +1,30 @@
+{#
+/**
+ * Icon Element
+ *
+ * Available variables:
+ * - Reference icon.schema.json
+ */
+#}
+
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-elements-icon'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'e-bolt-icon',
+  this.data.size.value ? 'e-bolt-icon--' ~ this.data.size.value,
+  this.data.color.value ? 'e-bolt-icon--' ~ this.data.color.value
+] %}
+
+{# Template #}
+{% if name %}
+  {% set icon_path = '@bolt-elements-icon/icons/' ~ name ~ '.twig' %}
+{% endif %}
+{% include icon_path %}
