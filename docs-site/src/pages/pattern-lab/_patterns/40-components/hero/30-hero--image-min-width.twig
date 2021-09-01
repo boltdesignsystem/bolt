@@ -3,17 +3,22 @@
 
 <bolt-text>This demo creatively uses the <code>imageMinWidth</code> prop to "pin" the image to the right side of the screen on larger devices.</bolt-text>
 
+{% set icon %}
+  {% include "@bolt-elements-icon/icon.twig" with {
+    name: "pega-compass",
+  } only %}
+{% endset %}
+
 {% include "@bolt-components-hero/hero.twig" with {
   theme: "none",
   content: [
-    macros.include("@bolt-components-icon/icon.twig", {
-      size: "xlarge",
-      name: "brand-operations",
-      color: "teal",
-      background: "circle",
+    macros.include("@bolt-elements-shape/shape.twig", {
+      content: icon,
+      size: "large",
       attributes: {
         class: [
           "u-bolt-margin-bottom-medium",
+          "t-bolt-teal"
         ]
       }
     }),
