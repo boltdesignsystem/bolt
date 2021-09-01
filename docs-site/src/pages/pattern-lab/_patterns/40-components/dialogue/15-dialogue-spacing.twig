@@ -36,11 +36,8 @@
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialogue/dialogue.twig' with {
-  content: 'This is a dialogue component.',
   spacing: 'full',
-  attributes: {
-    id: 'dialogue-3'
-  },
+  ...
 } only %}
 {% endverbatim %}{% endset %}
 

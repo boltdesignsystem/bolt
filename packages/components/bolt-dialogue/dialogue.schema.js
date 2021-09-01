@@ -45,5 +45,11 @@ module.exports = {
       enum: ['none', 'xlight', 'light', 'dark', 'xdark'],
       default: 'light',
     },
+    scroll: {
+      type: 'string',
+      description: 'Controls the scrolling area.',
+      default: 'container',
+      enum: ['container', 'overall'],
+    },
   },
 };

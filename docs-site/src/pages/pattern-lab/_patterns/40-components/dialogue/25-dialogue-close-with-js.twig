@@ -13,7 +13,7 @@
   content: 'Persistent Dialogue',
   attributes: {
     type: 'button',
-    'data-dialogue-trigger': 'dialogue-4',
+    'data-dialogue-trigger': 'dialogue-5',
   }
 } only %}
 
@@ -32,14 +32,14 @@
   content: _content,
   persistent: true,
   attributes: {
-    id: 'dialogue-4'
+    id: 'dialogue-5'
   },
 } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
 {% set _content %}
-  <p>This is a dialogue component.</p>
+  ...
   {% include '@bolt-elements-button/button.twig' with {
     content: 'Close Dialogue Button',
     attributes: {
@@ -52,9 +52,7 @@
 {% include '@bolt-components-dialogue/dialogue.twig' with {
   content: _content,
   persistent: true,
-  attributes: {
-    id: 'dialogue-4'
-  },
+  ...
 } only %}
 {% endverbatim %}{% endset %}
 

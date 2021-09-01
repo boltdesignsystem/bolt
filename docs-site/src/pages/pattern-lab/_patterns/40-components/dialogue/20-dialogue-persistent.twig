@@ -47,12 +47,9 @@
 {% endset %}
 
 {% include '@bolt-components-dialogue/dialogue.twig' with {
-  content: 'This is a dialogue component.',
   persistent: true,
   persistent_return_element: _return_element,
-  attributes: {
-    id: 'dialogue-4'
-  },
+  ...
 } only %}
 {% endverbatim %}{% endset %}
 

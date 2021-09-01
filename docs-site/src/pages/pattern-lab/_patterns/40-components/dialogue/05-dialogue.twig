@@ -17,8 +17,14 @@
   }
 } only %}
 
+{% set _content %}
+  <h3>This is a dialogue.</h3>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <button type="button" class="e-bolt-button">Button</button>
+{% endset %}
+
 {% include '@bolt-components-dialogue/dialogue.twig' with {
-  content: 'This is a dialogue component.',
+  content: _content,
   attributes: {
     id: 'dialogue-1'
   },
@@ -34,8 +40,14 @@
   }
 } only %}
 
+{% set _content %}
+  <h3>This is a dialogue.</h3>
+  <p>...</p>
+  <button type="button" class="e-bolt-button">Button</button>
+{% endset %}
+
 {% include '@bolt-components-dialogue/dialogue.twig' with {
-  content: 'This is a dialogue component.',
+  content: _content,
   attributes: {
     id: 'dialogue-1'
   },

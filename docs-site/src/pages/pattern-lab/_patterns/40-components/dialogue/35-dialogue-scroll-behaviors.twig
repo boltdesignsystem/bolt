@@ -1,0 +1,66 @@
+{% set schema = bolt.data.components['@bolt-components-dialogue'].schema %}
+
+{% set description %}
+    A description of the component and what it is used for.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+<bolt-list display="inline" spacing="small">
+{% set _content %}
+<h3>This is a dialogue.</h3>
+<p>Cupidatat aute occaecat commodo eu Lorem ut sint non exercitation sint sit velit ea. Nostrud fugiat mollit ut voluptate sit eu ullamco mollit labore elit sit eiusmod minim. Aliquip exercitation duis eu nostrud quis aliquip cupidatat. Est nostrud nostrud anim mollit consequat in dolor minim sunt sint consectetur anim quis. Mollit cillum officia adipisicing mollit duis in. Sit labore ad Lorem fugiat irure culpa ad commodo enim.</p>
+<p>Id irure aliqua do esse. Culpa esse ea do ullamco labore non excepteur. Ea adipisicing deserunt minim et ipsum laboris. Reprehenderit elit duis dolor laboris non qui do nisi. Cupidatat mollit sint in nulla reprehenderit aute. Ut sint qui veniam culpa anim irure velit ut nulla fugiat ea.</p>
+<p>Adipisicing deserunt aliqua dolor cupidatat laborum voluptate sit excepteur Lorem. Fugiat dolore tempor anim Lorem enim. Enim eiusmod eiusmod adipisicing qui ex aute sint. Ipsum aute eu ullamco eu nulla consequat exercitation velit velit et laboris voluptate. Labore veniam occaecat quis fugiat quis nisi.</p>
+<p>Culpa exercitation in dolore occaecat cillum cupidatat reprehenderit irure. Ex exercitation occaecat velit esse. Dolor nulla cillum laboris incididunt deserunt do occaecat quis nostrud cillum. Ex ipsum minim mollit proident.</p>
+<p>Nisi minim et aliquip amet exercitation tempor. Magna cillum duis aute exercitation. Cupidatat sint aliquip id non. Consequat ea culpa voluptate nostrud. In incididunt ea pariatur ad eiusmod quis mollit adipisicing irure fugiat pariatur irure occaecat laboris. Lorem aliquip qui sint occaecat proident culpa quis mollit. Sunt aliqua deserunt elit est ut proident minim officia labore.</p>
+<p>Dolore voluptate nulla anim amet elit anim id. Consectetur voluptate commodo cupidatat aliqua labore ea aliqua minim fugiat excepteur mollit cillum. Non anim proident occaecat commodo aliqua ex ex cillum cillum enim Lorem. Dolore veniam aliqua dolor quis cupidatat aute voluptate ea occaecat reprehenderit.</p>
+<p>Magna nostrud ea aliqua minim reprehenderit in mollit nulla mollit veniam duis reprehenderit ex. Ut reprehenderit et dolor reprehenderit. Proident velit proident nostrud minim aute.</p>
+<p>Aliquip nulla incididunt non tempor ut. Tempor qui eu ipsum quis deserunt excepteur qui tempor. Aliqua magna proident dolore non mollit esse aute exercitation esse cillum. Sint eiusmod ut elit pariatur. Excepteur incididunt consequat laboris esse. Minim ullamco aute nisi anim cillum voluptate.</p>
+<p>Sint laborum in ex occaecat sit sit aute anim adipisicing cupidatat. Labore occaecat occaecat adipisicing nulla et cillum ad labore reprehenderit labore reprehenderit deserunt. Sit labore commodo esse aliquip veniam mollit dolore velit. Ipsum duis adipisicing officia labore Lorem aute laborum deserunt esse. Ipsum sint sint consequat irure aute adipisicing. Dolore Lorem eu ut deserunt enim non nisi ut aute voluptate consequat elit fugiat laborum.</p>
+<p>Minim magna aliquip in qui dolore sit proident. Amet pariatur amet quis esse proident minim quis. Sit est sint deserunt pariatur ex ea quis ut aute officia ut aliquip. Cupidatat culpa ea nostrud commodo ad consequat commodo ut. Enim officia irure duis elit ullamco culpa dolor magna cillum mollit elit. Ullamco enim consectetur cupidatat consectetur do do do tempor. Ad sunt eiusmod officia id sunt fugiat ut ad quis id id.</p>
+<p>Ut incididunt consectetur eu veniam commodo nisi veniam minim esse velit duis velit. Exercitation do voluptate sunt proident sunt voluptate enim. Tempor cillum ad culpa do tempor sunt nisi occaecat officia. Occaecat ut voluptate ea reprehenderit eu aliquip do cupidatat enim consectetur. Elit ipsum incididunt ipsum non quis veniam mollit est. Reprehenderit tempor ullamco do mollit incididunt voluptate duis veniam amet. Minim ut eu fugiat adipisicing ipsum tempor duis elit pariatur eu pariatur laborum nisi pariatur.</p>
+<p>Commodo sunt sint sunt fugiat ex. Laboris dolor magna proident non velit Lorem tempor do exercitation. Labore velit labore laborum nisi cupidatat id enim amet enim cillum sint in ea.</p>
+<button type="button" class="e-bolt-button">Button</button>
+{% endset %}
+{% for scroll in schema.properties.scroll.enum %}
+  <bolt-list-item>
+  {% include '@bolt-elements-button/button.twig' with {
+    content: '"' ~ scroll ~ '" Scroll Behavior',
+    attributes: {
+      type: 'button',
+      'data-dialogue-trigger': 'dialogue-scroll-' ~ loop.index0,
+    }
+  } only %}
+
+  {% include '@bolt-components-dialogue/dialogue.twig' with {
+    content: _content,
+    scroll: scroll,
+    attributes: {
+      id: 'dialogue-scroll-' ~ loop.index0
+    },
+  } only %}
+  </bolt-list-item>
+{% endfor %}
+</bolt-list>
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-dialogue/dialogue.twig' with {
+  scroll: 'overall',
+  ...
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Dialogue Scroll Behaviors',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup
+} only %}

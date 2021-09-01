@@ -5,16 +5,37 @@
 @import '@bolt/core-v3.x';
 @import '@bolt/global/styles/00-vars/_vars-mode.scss';
 
-.c-bolt-dialogue__overlay {
+.c-bolt-dialogue {
   @include bolt-z-index(modal);
+  opacity: bolt-opacity(0);
+  position: relative;
+  pointer-events: none;
+  transition: opacity var(--bolt-transition);
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  &.is-open {
+    opacity: bolt-opacity(100);
+    cursor: pointer;
+    pointer-events: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &[data-dialogue-persistent] {
+      cursor: default;
+    }
+  }
+}
+
+.c-bolt-dialogue__overlay {
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
+  width: 100%;
+  height: 100vh;
 
   &:before {
     content: '';
@@ -37,17 +58,16 @@
 }
 
 .c-bolt-dialogue__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
   min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
   max-width: calc(100% - var(--bolt-spacing-x-medium) * 2);
-  max-height: 100vh;
-  border-radius: bolt-border-radius(small);
 
-  .c-bolt-dialogue__close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate3d(0, -100%, 0);
-    background-color: transparent;
+  .c-bolt-dialogue__body {
+    width: 100%;
+    border-radius: bolt-border-radius(small);
   }
 }
 
@@ -69,7 +89,7 @@
 // Container spacing options
 @each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
-  .c-bolt-dialogue__container--spacing-#{$size-name} {
+  .c-bolt-dialogue__body--spacing-#{$size-name} {
     padding: var(--bolt-spacing-y-#{$size-name})
       var(--bolt-spacing-x-#{$size-name});
 
@@ -79,72 +99,26 @@
   }
 }
 
-// Demo Animation Style
-@keyframes mmfadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
+// Scroll options
+.c-bolt-dialogue__scroll-container {
+  .c-bolt-dialogue__body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    max-height: 80vh;
   }
 }
 
-@keyframes mmfadeOut {
-  from {
-    opacity: 1;
+.c-bolt-dialogue__scroll-overall {
+  .c-bolt-dialogue__overlay {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+
+    .c-bolt-dialogue__container {
+      left: 50%;
+      transform: translateX(-50%);
+      padding-top: var(--bolt-spacing-y-medium);
+      padding-bottom: var(--bolt-spacing-y-large);
+    }
   }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes mmslideIn {
-  from {
-    transform: translateY(15%);
-  }
-
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes mmslideOut {
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(-10%);
-  }
-}
-
-.c-bolt-dialogue {
-  display: none;
-}
-
-.c-bolt-dialogue.is-open {
-  display: block;
-}
-
-.c-bolt-dialogue[aria-hidden='false'] .c-bolt-dialogue__overlay {
-  animation: mmfadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
-}
-
-.c-bolt-dialogue[aria-hidden='false'] .c-bolt-dialogue__container {
-  animation: mmslideIn 0.3s cubic-bezier(0, 0, 0.2, 1);
-}
-
-.c-bolt-dialogue[aria-hidden='true'] .c-bolt-dialogue__overlay {
-  animation: mmfadeOut 0.3s cubic-bezier(0, 0, 0.2, 1);
-}
-
-.c-bolt-dialogue[aria-hidden='true'] .c-bolt-dialogue__container {
-  animation: mmslideOut 0.3s cubic-bezier(0, 0, 0.2, 1);
-}
-
-.c-bolt-dialogue .c-bolt-dialogue__container,
-.c-bolt-dialogue .c-bolt-dialogue__overlay {
-  will-change: transform;
 }

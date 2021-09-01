@@ -12,6 +12,11 @@
 
 {% set demo %}
 <bolt-list display="inline" spacing="small">
+{% set _content %}
+<h3>This is a dialogue.</h3>
+<p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+<button type="button" class="e-bolt-button">Button</button>
+{% endset %}
 {% for theme in schema.properties.theme.enum %}
   <bolt-list-item>
   {% include '@bolt-elements-button/button.twig' with {
@@ -21,8 +26,9 @@
       'data-dialogue-trigger': 'dialogue-theme-' ~ loop.index0,
     }
   } only %}
+
   {% include '@bolt-components-dialogue/dialogue.twig' with {
-    content: 'This is a dialogue component.',
+    content: _content,
     theme: theme,
     attributes: {
       id: 'dialogue-theme-' ~ loop.index0
@@ -35,11 +41,8 @@
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialogue/dialogue.twig' with {
-  content: 'This is a dialogue component.',
   theme: 'dark',
-  attributes: {
-    id: 'dialogue-5'
-  },
+  ...
 } only %}
 {% endverbatim %}{% endset %}
 

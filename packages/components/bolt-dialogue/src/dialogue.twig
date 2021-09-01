@@ -16,6 +16,7 @@
 {# Array of classes based on the defined + default props #}
 {% set _outer_classes = [
   'c-bolt-dialogue',
+  'c-bolt-dialogue__scroll-' ~ this.data.scroll.value
 ] %}
 
 {# Array of classes based on the defined + default props #}
@@ -28,7 +29,12 @@
 {% set _container_classes = [
   'c-bolt-dialogue__container',
   'c-bolt-dialogue__container--width-' ~ this.data.width.value,
-  'c-bolt-dialogue__container--spacing-' ~ this.data.spacing.value,
+] %}
+
+{# Array of classes based on the defined + default props #}
+{% set _body_classes = [
+  'c-bolt-dialogue__body',
+  'c-bolt-dialogue__body--spacing-' ~ this.data.spacing.value,
   't-bolt-' ~ this.data.theme.value
 ] %}
 
@@ -43,9 +49,8 @@
     content: 'Close',
     icon_only: _icon_close,
     hierarchy: 'transparent',
-    size: 'small',
-    border_radius: 'full',
     attributes: {
+      class: 'c-bolt-dialogue__close-button',
       type: 'button',
       'data-dialogue-close': '',
       'aria-label': 'Close dialogue',
@@ -53,24 +58,25 @@
   } only %}
 {% endset %}
 
-<script>
-  // console.log({{ this.data.persistent.value|json_encode() }})
-</script>
-
-<div {{ attributes.addClass(_outer_classes) }} aria-hidden="true" {{ this.data.persistent.value ? 'data-dialogue-persistent' : '' }}>
+<div
+  {{ attributes.addClass(_outer_classes) }}
+  {{ this.data.persistent.value ? 'data-dialogue-persistent' : '' }}
+  aria-hidden="true">
   <div class="{{ _overlay_classes|join(' ') }}" tabindex="-1" {{ this.data.persistent.value ? '' : 'data-dialogue-close' }}>
-    <div class="{{ _container_classes|join(' ') }}" role="dialog" aria-dialogue="true" aria-labelledby="{{ _uuid }}-title">
+    <div class="{{ _container_classes|join(' ') }}" role="dialog" aria-dialogue="true">
       {% if not this.data.persistent.value %}
       <div class="c-bolt-dialogue__close t-bolt-{{ _overlay_theme }}">{{ _close_button }}</div>
       {% endif %}
-      <div class="c-bolt-dialogue__content">
-        {{ content }}
+      <div class="{{ _body_classes|join(' ') }}">
+        <div class="c-bolt-dialogue__content">
+          {{ content }}
+        </div>
+        {% if persistent_return_element %}
+        <div class="c-bolt-dialogue__footer">
+          {{ persistent_return_element }}
+        </div>
+        {% endif %}
       </div>
-      {% if persistent_return_element %}
-      <div class="c-bolt-dialogue__footer">
-        {{ persistent_return_element }}
-      </div>
-      {% endif %}
     </div>
   </div>
 </div>
