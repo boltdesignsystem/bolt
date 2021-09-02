@@ -27,11 +27,17 @@
   } only %}
 {% endset %}
 {% set icon_academy %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'academy',
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'certification',
+  } only %}
+{% endset %}
+{% set icon_academy_shape %}
+  {% include '@bolt-elements-shape/shape.twig' with {
+    content: icon_academy,
     size: 'small',
-    background: 'circle',
-    color: 'yellow',
+    attributes: {
+      class: 't-bolt-yellow'
+    }
   } only %}
 {% endset %}
 
@@ -282,7 +288,7 @@
   {% set signifier %}
   {% endset %}
   {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
-    signifier: icon_academy,
+    signifier: icon_academy_shape,
     headline: {
       text: 'You have earned the Awesome badge!',
       tag: 'p',
