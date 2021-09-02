@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-dialogue'].schema %}
+{% set schema = bolt.data.components['@bolt-components-dialog'].schema %}
 
 {% set description %}
     A description of the component and what it is used for.
@@ -12,21 +12,21 @@
 
 {% set demo %}
 <bolt-list display="inline" spacing="small">
-{% for spacing in schema.properties.spacing.enum %}
+{% for width in schema.properties.width.enum %}
   <bolt-list-item>
   {% include '@bolt-elements-button/button.twig' with {
-    content: spacing|title ~ ' Spacing',
+    content: width|title ~ ' Width',
     attributes: {
       type: 'button',
-      'data-dialogue-trigger': 'dialogue-spacing-' ~ loop.index0,
+      'data-dialog-trigger': 'dialog-width-' ~ loop.index0,
     }
   } only %}
 
-  {% include '@bolt-components-dialogue/dialogue.twig' with {
-    content: 'This is a dialogue component.',
-    spacing: spacing,
+  {% include '@bolt-components-dialog/dialog.twig' with {
+    content: 'This is a dialog component.',
+    width: width,
     attributes: {
-      id: 'dialogue-spacing-' ~ loop.index0
+      id: 'dialog-width-' ~ loop.index0
     },
   } only %}
   </bolt-list-item>
@@ -35,14 +35,14 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% include '@bolt-components-dialogue/dialogue.twig' with {
-  spacing: 'full',
+{% include '@bolt-components-dialog/dialog.twig' with {
+  width: 'full',
   ...
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Dialogue Spacing',
+  title: 'Dialog Widths',
   description: description,
   notes: notes,
   demo: demo,

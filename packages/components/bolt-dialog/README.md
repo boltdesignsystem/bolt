@@ -3,5 +3,5 @@ A content container that usually presents users with a short task or gathered in
 ###### Install via NPM
 
 ```
-npm install @bolt/components-dialogue
+npm install @bolt/components-dialog
 ```

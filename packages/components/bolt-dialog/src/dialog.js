@@ -1,8 +1,8 @@
-export class BoltDialogue {
+export class BoltDialog {
   constructor(el) {
     if (!el) return;
     this.el = el;
-    this.dialogue = document.getElementById(this.el.id);
+    this.dialog = document.getElementById(this.el.id);
     this.init();
   }
 
@@ -31,9 +31,9 @@ export class BoltDialogue {
     // no focusable nodes
     if (focusableNodes.length === 0) return;
 
-    // remove nodes on whose click, the dialogue closes
+    // remove nodes on whose click, the dialog closes
     const nonCloseNodes = focusableNodes.filter(node => {
-      return !node.hasAttribute('data-dialogue-close');
+      return !node.hasAttribute('data-dialog-close');
     });
 
     if (nonCloseNodes.length > 0) nonCloseNodes[0].focus();
@@ -46,27 +46,27 @@ export class BoltDialogue {
     // no focusable nodes
     if (focusableNodes.length === 0) return;
 
-    // Filters nodes which are hidden to prevent focus leak outside dialogue
+    // Filters nodes which are hidden to prevent focus leak outside dialog
     focusableNodes = focusableNodes.filter(node => {
       return node.offsetParent !== null;
     });
   }
 
-  showDialogue() {
+  showDialog() {
     this.el.setAttribute('aria-hidden', 'false');
     this.el.classList.add('is-open');
     this.addEventListeners();
     document.body.classList.add('u-bolt-overflow-hidden');
     this.setFocusToFirstNode();
-    // scroll to the top of the scrollable section of the dialogue
-    if (this.el.classList.contains('c-bolt-dialogue__scroll-overall')) {
-      this.el.querySelector('.c-bolt-dialogue__overlay').scrollTop = 0;
+    // scroll to the top of the scrollable section of the dialog
+    if (this.el.classList.contains('c-bolt-dialog__scroll-overall')) {
+      this.el.querySelector('.c-bolt-dialog__overlay').scrollTop = 0;
     } else {
-      this.el.querySelector('.c-bolt-dialogue__body').scrollTop = 0;
+      this.el.querySelector('.c-bolt-dialog__body').scrollTop = 0;
     }
   }
 
-  closeDialogue() {
+  closeDialog() {
     this.el.setAttribute('aria-hidden', 'true');
     this.el.classList.remove('is-open');
     this.removeEventListeners();
@@ -77,82 +77,82 @@ export class BoltDialogue {
   }
 
   addEventListeners() {
-    this.dialogue.addEventListener('touchstart', event => this.onClick(event));
-    this.dialogue.addEventListener('click', event => this.onClick(event));
+    this.dialog.addEventListener('touchstart', event => this.onClick(event));
+    this.dialog.addEventListener('click', event => this.onClick(event));
     document.addEventListener('keydown', this.onKeydown);
   }
 
   removeEventListeners() {
-    this.dialogue.removeEventListener('touchstart', this.onClick);
-    this.dialogue.removeEventListener('click', this.onClick);
+    this.dialog.removeEventListener('touchstart', this.onClick);
+    this.dialog.removeEventListener('click', this.onClick);
     document.removeEventListener('keydown', this.onKeydown);
   }
 
   onClick(event) {
-    if (event.target.hasAttribute('data-dialogue-close')) {
-      this.closeDialogue();
+    if (event.target.hasAttribute('data-dialog-close')) {
+      this.closeDialog();
     }
     // @TODO: make this more generic?s
     // add support for the icon child of the close button
-    if (event.target.closest('.c-bolt-dialogue__close-button')) {
-      this.closeDialogue();
+    if (event.target.closest('.c-bolt-dialog__close-button')) {
+      this.closeDialog();
     }
   }
 
   onKeydown(event) {
     if (event.keyCode === 9) this.retainFocus(event); // tab
-    if (typeof this.el.dataset.dialoguePersistent === 'undefined') {
-      if (event.keyCode === 27) this.closeDialogue(event); // esc
+    if (typeof this.el.dataset.dialogPersistent === 'undefined') {
+      if (event.keyCode === 27) this.closeDialog(event); // esc
     } else {
-      console.log('Cannot close a persistent dialogue.');
+      console.log('Cannot close a persistent dialog.');
     }
   }
 
   init() {
     const trigger = document.querySelector(
-      '[data-dialogue-trigger="' + this.el.id + '"]',
+      '[data-dialog-trigger="' + this.el.id + '"]',
     );
-    trigger.addEventListener('click', event => this.showDialogue());
+    trigger.addEventListener('click', event => this.showDialog());
   }
 }
 
-//     closeDialogueById(targetDialogue) {
-//       this.dialogue = document.getElementById(targetDialogue);
-//       if (this.dialogue) this.closeDialogue();
+//     closeDialogById(targetDialog) {
+//       this.dialog = document.getElementById(targetDialog);
+//       if (this.dialog) this.closeDialog();
 //     }
 
 //   /**
-//    * Shows a particular dialogue
-//    * @param  {string} targetDialogue [The id of the dialogue to display]
+//    * Shows a particular dialog
+//    * @param  {string} targetDialog [The id of the dialog to display]
 //    * @param  {object} config [The configuration object to pass]
 //    * @return {void}
 //    */
-//   const show = (targetDialogue, config) => {
+//   const show = (targetDialog, config) => {
 //     const options = config || {};
-//     options.targetDialogue = targetDialogue;
+//     options.targetDialog = targetDialog;
 
-//     // Checks if dialogues and triggers exist in dom
+//     // Checks if dialogs and triggers exist in dom
 //     if (
 //       options.debugMode === true &&
-//       validateDialoguePresence(targetDialogue) === false
+//       validateDialogPresence(targetDialog) === false
 //     )
 //       return;
 
-//     // clear events in case previous dialogue wasn't close
-//     if (activeDialogue) activeDialogue.removeEventListeners();
+//     // clear events in case previous dialog wasn't close
+//     if (activeDialog) activeDialog.removeEventListeners();
 
-//     // stores reference to active dialogue
-//     activeDialogue = new Dialogue(options); // eslint-disable-line no-new
-//     activeDialogue.showDialogue();
+//     // stores reference to active dialog
+//     activeDialog = new Dialog(options); // eslint-disable-line no-new
+//     activeDialog.showDialog();
 //   };
 
 //   /**
-//    * Closes the active dialogue
-//    * @param  {string} targetDialogue [The id of the dialogue to close]
+//    * Closes the active dialog
+//    * @param  {string} targetDialog [The id of the dialog to close]
 //    * @return {void}
 //    */
-//   const close = targetDialogue => {
-//     targetDialogue
-//       ? activeDialogue.closeDialogueById(targetDialogue)
-//       : activeDialogue.closeDialogue();
+//   const close = targetDialog => {
+//     targetDialog
+//       ? activeDialog.closeDialogById(targetDialog)
+//       : activeDialog.closeDialog();
 //   };

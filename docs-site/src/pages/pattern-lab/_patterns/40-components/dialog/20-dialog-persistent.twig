@@ -10,28 +10,28 @@
 
 {% set demo %}
 {% include '@bolt-elements-button/button.twig' with {
-  content: 'Persistent Dialogue',
+  content: 'Persistent Dialog',
   attributes: {
     type: 'button',
-    'data-dialogue-trigger': 'dialogue-4',
+    'data-dialog-trigger': 'dialog-4',
   }
 } only %}
 
 {% set _return_element %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'No thanks! Return to Dialogue Demo.',
+    content: 'No thanks! Return to Dialog Demo.',
     attributes: {
-      href: link['viewall-components-dialogue']
+      href: link['viewall-components-dialog']
     }
   } only %}
 {% endset %}
 
-{% include '@bolt-components-dialogue/dialogue.twig' with {
-  content: 'This is a dialogue component.',
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: 'This is a dialog component.',
   persistent: true,
   persistent_return_element: _return_element,
   attributes: {
-    id: 'dialogue-4'
+    id: 'dialog-4'
   },
 } only %}
 {% endset %}
@@ -46,7 +46,7 @@
   } only %}
 {% endset %}
 
-{% include '@bolt-components-dialogue/dialogue.twig' with {
+{% include '@bolt-components-dialog/dialog.twig' with {
   persistent: true,
   persistent_return_element: _return_element,
   ...
@@ -54,7 +54,7 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Persistent Dialogue',
+  title: 'Persistent Dialog',
   description: description,
   notes: notes,
   demo: demo,

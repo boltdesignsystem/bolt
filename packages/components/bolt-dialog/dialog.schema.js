@@ -1,12 +1,12 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Dialogue',
+  title: 'Dialog',
   type: 'object',
   properties: {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-dialogue&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-dialog&gt; tag.',
     },
     title: {
       type: 'any',
@@ -18,13 +18,13 @@ module.exports = {
     },
     width: {
       type: 'string',
-      description: 'Controls the width of the dialogue container.',
+      description: 'Controls the width of the dialog container.',
       enum: ['full', 'regular', 'optimal', 'auto'],
       default: 'optimal',
     },
     spacing: {
       type: 'string',
-      description: 'Controls the spacing around the dialogue container.',
+      description: 'Controls the spacing around the dialog container.',
       enum: ['none', 'small', 'medium', 'large'],
       default: 'medium',
     },
@@ -41,7 +41,7 @@ module.exports = {
     },
     theme: {
       type: 'string',
-      description: 'Controls the color theme of the dialogue container.',
+      description: 'Controls the color theme of the dialog container.',
       enum: ['none', 'xlight', 'light', 'dark', 'xdark'],
       default: 'light',
     },

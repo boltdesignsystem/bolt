@@ -1,7 +1,7 @@
 module.exports = {
   components: {
     global: [
-      '@bolt/components-dialogue',
+      '@bolt/components-dialog',
       '@bolt/core-v3.x',
       '@bolt/global',
       '@bolt/elements-article',

@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-dialogue'].schema %}
+{% set schema = bolt.data.components['@bolt-components-dialog'].schema %}
 
 {% set description %}
     A description of the component and what it is used for.
@@ -13,7 +13,7 @@
 {% set demo %}
 <bolt-list display="inline" spacing="small">
 {% set _content %}
-<h3>This is a dialogue.</h3>
+<h3>This is a dialog.</h3>
 <p>Cupidatat aute occaecat commodo eu Lorem ut sint non exercitation sint sit velit ea. Nostrud fugiat mollit ut voluptate sit eu ullamco mollit labore elit sit eiusmod minim. Aliquip exercitation duis eu nostrud quis aliquip cupidatat. Est nostrud nostrud anim mollit consequat in dolor minim sunt sint consectetur anim quis. Mollit cillum officia adipisicing mollit duis in. Sit labore ad Lorem fugiat irure culpa ad commodo enim.</p>
 <p>Id irure aliqua do esse. Culpa esse ea do ullamco labore non excepteur. Ea adipisicing deserunt minim et ipsum laboris. Reprehenderit elit duis dolor laboris non qui do nisi. Cupidatat mollit sint in nulla reprehenderit aute. Ut sint qui veniam culpa anim irure velit ut nulla fugiat ea.</p>
 <p>Adipisicing deserunt aliqua dolor cupidatat laborum voluptate sit excepteur Lorem. Fugiat dolore tempor anim Lorem enim. Enim eiusmod eiusmod adipisicing qui ex aute sint. Ipsum aute eu ullamco eu nulla consequat exercitation velit velit et laboris voluptate. Labore veniam occaecat quis fugiat quis nisi.</p>
@@ -34,15 +34,15 @@
     content: '"' ~ scroll ~ '" Scroll Behavior',
     attributes: {
       type: 'button',
-      'data-dialogue-trigger': 'dialogue-scroll-' ~ loop.index0,
+      'data-dialog-trigger': 'dialog-scroll-' ~ loop.index0,
     }
   } only %}
 
-  {% include '@bolt-components-dialogue/dialogue.twig' with {
+  {% include '@bolt-components-dialog/dialog.twig' with {
     content: _content,
     scroll: scroll,
     attributes: {
-      id: 'dialogue-scroll-' ~ loop.index0
+      id: 'dialog-scroll-' ~ loop.index0
     },
   } only %}
   </bolt-list-item>
@@ -51,14 +51,14 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% include '@bolt-components-dialogue/dialogue.twig' with {
+{% include '@bolt-components-dialog/dialog.twig' with {
   scroll: 'overall',
   ...
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Dialogue Scroll Behaviors',
+  title: 'Dialog Scroll Behaviors',
   description: description,
   notes: notes,
   demo: demo,

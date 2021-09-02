@@ -1,11 +1,11 @@
 // /* ------------------------------------ *\
-//    Dialogue
+//    Dialog
 // \* ------------------------------------ */
 
 @import '@bolt/core-v3.x';
 @import '@bolt/global/styles/00-vars/_vars-mode.scss';
 
-.c-bolt-dialogue {
+.c-bolt-dialog {
   @include bolt-z-index(modal);
   opacity: bolt-opacity(0);
   position: relative;
@@ -21,13 +21,13 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 
-    &[data-dialogue-persistent] {
+    &[data-dialog-persistent] {
       cursor: default;
     }
   }
 }
 
-.c-bolt-dialogue__overlay {
+.c-bolt-dialog__overlay {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,7 +57,7 @@
   }
 }
 
-.c-bolt-dialogue__container {
+.c-bolt-dialog__container {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -65,7 +65,7 @@
   min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
   max-width: calc(100% - var(--bolt-spacing-x-medium) * 2);
 
-  .c-bolt-dialogue__body {
+  .c-bolt-dialog__body {
     width: 100%;
     border-radius: bolt-border-radius(small);
   }
@@ -73,15 +73,15 @@
 
 // Content width options
 @include bolt-mq('small') {
-  .c-bolt-dialogue__container--width-regular {
+  .c-bolt-dialog__container--width-regular {
     width: 100% / 12 * 10;
   }
 
-  .c-bolt-dialogue__container--width-optimal {
+  .c-bolt-dialog__container--width-optimal {
     width: 75ch;
   }
 
-  .c-bolt-dialogue__container--width-full {
+  .c-bolt-dialog__container--width-full {
     width: calc(100% - var(--bolt-spacing-x-medium) * 2);
   }
 }
@@ -89,32 +89,32 @@
 // Container spacing options
 @each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
-  .c-bolt-dialogue__body--spacing-#{$size-name} {
+  .c-bolt-dialog__body--spacing-#{$size-name} {
     padding: var(--bolt-spacing-y-#{$size-name})
       var(--bolt-spacing-x-#{$size-name});
 
-    .c-bolt-dialogue__footer {
+    .c-bolt-dialog__footer {
       padding-top: var(--bolt-spacing-y-#{$size-name});
     }
   }
 }
 
 // Scroll options
-.c-bolt-dialogue__scroll-container {
-  .c-bolt-dialogue__body {
+.c-bolt-dialog__scroll-container {
+  .c-bolt-dialog__body {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     max-height: 80vh;
   }
 }
 
-.c-bolt-dialogue__scroll-overall {
-  .c-bolt-dialogue__overlay {
+.c-bolt-dialog__scroll-overall {
+  .c-bolt-dialog__overlay {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     display: block;
 
-    .c-bolt-dialogue__container {
+    .c-bolt-dialog__container {
       left: 50%;
       transform: translateX(-50%);
       padding-top: var(--bolt-spacing-y-medium);

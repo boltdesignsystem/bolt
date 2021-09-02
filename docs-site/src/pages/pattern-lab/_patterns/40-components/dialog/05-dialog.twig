@@ -10,52 +10,52 @@
 
 {% set demo %}
 {% include '@bolt-elements-button/button.twig' with {
-  content: 'Demo Dialogue',
+  content: 'Demo Dialog',
   attributes: {
     type: 'button',
-    'data-dialogue-trigger': 'dialogue-1',
+    'data-dialog-trigger': 'dialog-1',
   }
 } only %}
 
 {% set _content %}
-  <h3>This is a dialogue.</h3>
+  <h3>This is a dialog.</h3>
   <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
   <button type="button" class="e-bolt-button">Button</button>
 {% endset %}
 
-{% include '@bolt-components-dialogue/dialogue.twig' with {
+{% include '@bolt-components-dialog/dialog.twig' with {
   content: _content,
   attributes: {
-    id: 'dialogue-1'
+    id: 'dialog-1'
   },
 } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-elements-button/button.twig' with {
-  content: 'Demo Dialogue',
+  content: 'Demo Dialog',
   attributes: {
     type: 'button',
-    'data-dialogue-trigger': 'dialogue-1',
+    'data-dialog-trigger': 'dialog-1',
   }
 } only %}
 
 {% set _content %}
-  <h3>This is a dialogue.</h3>
+  <h3>This is a dialog.</h3>
   <p>...</p>
   <button type="button" class="e-bolt-button">Button</button>
 {% endset %}
 
-{% include '@bolt-components-dialogue/dialogue.twig' with {
+{% include '@bolt-components-dialog/dialog.twig' with {
   content: _content,
   attributes: {
-    id: 'dialogue-1'
+    id: 'dialog-1'
   },
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Dialogue',
+  title: 'Basic Dialog',
   description: description,
   notes: notes,
   demo: demo,

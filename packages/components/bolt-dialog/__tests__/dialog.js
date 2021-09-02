@@ -1,6 +1,6 @@
 // Refer to https://github.com/boltdesignsystem/bolt/wiki/Jest-Test:-Example-Jest-Test for more testing examples
 import { render, stopServer } from '../../../testing/testing-helpers';
-// import schema from '../dialogue.schema';
+// import schema from '../dialog.schema';
 // const { [PROP KEY], [PROP KEY]... } = schema.properties;
 let page, fixtures;
 
@@ -22,7 +22,7 @@ beforeAll(async () => {
   });
 
   const defaultData = {
-    content: 'This is a dialogue',
+    content: 'This is a dialog',
   };
 
   fixtures = {
@@ -30,26 +30,23 @@ beforeAll(async () => {
   };
 });
 
-describe('Bolt Dialogue component', () => {
+describe('Bolt Dialog component', () => {
   test('default', async () => {
-    const results = await render(
-      '@bolt-components-dialogue/dialogue.twig',
-      {
-        ...fixtures.defaultData,
-      },
-    );
+    const results = await render('@bolt-components-dialog/dialog.twig', {
+      ...fixtures.defaultData,
+    });
 
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
   });
 });
 
-// describe('Bolt Dialogue prop - , () => {
+// describe('Bolt Dialog prop - , () => {
 //   // Target each of the schema keys with the following pattern
 //   [PROP KEY].enum.forEach(async (option) => {
 //     test(`[PROP KEY] items: ${option}`, async () => {
 //       const results = await render(
-//         '@bolt-components-dialogue/dialogue.twig',
+//         '@bolt-components-dialog/dialog.twig',
 //         {
 //           ...fixtures.defaultData,
 //           [PROP KEY]: option,

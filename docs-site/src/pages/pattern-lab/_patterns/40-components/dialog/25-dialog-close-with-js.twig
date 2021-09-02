@@ -10,29 +10,29 @@
 
 {% set demo %}
 {% include '@bolt-elements-button/button.twig' with {
-  content: 'Persistent Dialogue',
+  content: 'Persistent Dialog',
   attributes: {
     type: 'button',
-    'data-dialogue-trigger': 'dialogue-5',
+    'data-dialog-trigger': 'dialog-5',
   }
 } only %}
 
 {% set _content %}
-  <p>This is a dialogue component.</p>
+  <p>This is a dialog component.</p>
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'Close Dialogue Button',
+    content: 'Close Dialog Button',
     attributes: {
       type: 'button',
-      'data-dialogue-close': '',
+      'data-dialog-close': '',
     }
   } only %}
 {% endset %}
 
-{% include '@bolt-components-dialogue/dialogue.twig' with {
+{% include '@bolt-components-dialog/dialog.twig' with {
   content: _content,
   persistent: true,
   attributes: {
-    id: 'dialogue-5'
+    id: 'dialog-5'
   },
 } only %}
 {% endset %}
@@ -41,15 +41,15 @@
 {% set _content %}
   ...
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'Close Dialogue Button',
+    content: 'Close Dialog Button',
     attributes: {
       type: 'button',
-      'data-dialogue-close': '',
+      'data-dialog-close': '',
     }
   } only %}
 {% endset %}
 
-{% include '@bolt-components-dialogue/dialogue.twig' with {
+{% include '@bolt-components-dialog/dialog.twig' with {
   content: _content,
   persistent: true,
   ...
@@ -57,7 +57,7 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Persistent Dialogue',
+  title: 'Persistent Dialog',
   description: description,
   notes: notes,
   demo: demo,
