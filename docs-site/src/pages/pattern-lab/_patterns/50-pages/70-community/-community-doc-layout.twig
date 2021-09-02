@@ -1,11 +1,11 @@
 {% set scroll_to_top %}
   {% set icon_chevron_up %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'chevron-up',
     } only %}
   {% endset %}
   {% set icon_chevron_down %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'chevron-down',
     } only %}
   {% endset %}
@@ -27,7 +27,7 @@
 {% endset %}
 {% set download %}
   {% set icon_download %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'download',
     } only %}
   {% endset %}
@@ -85,7 +85,7 @@
   {% endset %}
   {% set share_popover_trigger %}
     {% set icon_share %}
-      {% include '@bolt-components-icon/icon.twig' with {
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: 'share',
       } only %}
     {% endset %}
@@ -108,7 +108,7 @@
 {% endset %}
 {% set suggest %}
   {% set icon_pencil %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'pencil',
     } only %}
   {% endset %}
@@ -347,7 +347,7 @@
     {% set banner_content %}
       <bolt-stack spacing="medium">
         {% set icon %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'documentation',
           } only %}
         {% endset %}
