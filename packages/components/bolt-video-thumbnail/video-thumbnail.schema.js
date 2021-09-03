@@ -30,5 +30,10 @@ module.exports = {
       description:
         'Display the video duration that overlays the video thumbnail.',
     },
+    center_component: {
+      type: 'any',
+      description:
+        'Displays a vertically and horizontally centered component that overlays the video thumbnail.',
+    },
   },
 };

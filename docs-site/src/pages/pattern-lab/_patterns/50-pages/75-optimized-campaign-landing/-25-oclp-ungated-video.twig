@@ -149,9 +149,17 @@
             }
           } only %}
         {% endset %}
+        {% set center_component %}
+          {% include '@bolt-components-chip/chip.twig' with {
+            text: 'Preview',
+            size: 'small',
+            color: 'yellow'
+          } only %}
+        {% endset %}
         {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
           content: image,
           duration: '4:55',
+          center_component: center_component
         } only %}
       {% endset %}
       {% include '@bolt-components-trigger/trigger.twig' with {
@@ -229,8 +237,8 @@
       {% include '@bolt-elements-image/image.twig' with {
         background: true,
         attributes: {
-          src: '/images/backgrounds/ocpl-contact-bg-1.svg',
-          style: '--e-bolt-image-position: 20vw 34%',
+          src: '/images/backgrounds/ocpl-contact-bg-2.svg',
+          style: '--e-bolt-image-position: 5vw 3vw',
         },
       } only %}
       {% include '@bolt-layouts-layout/layout-item.twig' with {
@@ -241,9 +249,6 @@
       content: layout_content,
       padding_top: 'xlarge',
       padding_bottom: 'xlarge',
-      attributes: {
-        class: 't-bolt-navy',
-      },
     } only %}
 
     <div class="c-base-ocpl-footer t-bolt-white">

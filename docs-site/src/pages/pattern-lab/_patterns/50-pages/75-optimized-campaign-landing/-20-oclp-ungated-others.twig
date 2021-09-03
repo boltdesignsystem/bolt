@@ -251,13 +251,13 @@
     {% endset %}
 
     {% set layout_content %}
-      {# {% include '@bolt-elements-image/image.twig' with {
+      {% include '@bolt-elements-image/image.twig' with {
         background: true,
         attributes: {
           src: '/images/backgrounds/ocpl-contact-bg-1.svg',
           style: '--e-bolt-image-position: 20vw 34%',
         },
-      } only %} #}
+      } only %}
       {% include '@bolt-layouts-layout/layout-item.twig' with {
         content: customer_service_content,
       } only %}
@@ -273,7 +273,7 @@
         'halves@from-medium'
       ],
       attributes: {
-        class: 't-bolt-yellow',
+        class: 't-bolt-navy',
         style: 'justify-items: center;'
       },
     } only %}
