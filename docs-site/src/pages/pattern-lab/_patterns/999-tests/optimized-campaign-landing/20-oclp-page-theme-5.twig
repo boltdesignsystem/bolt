@@ -25,37 +25,17 @@
 {% endset %}
 
 {% set main_content %}
-  {% set headline_content %}
-    {% include '@bolt-components-headline/eyebrow.twig' with {
-      text: 'Eyebrow',
-      tag: 'div',
-    } only %}
+  {% set page_content %}
     {% include '@bolt-components-headline/headline.twig' with {
-      text: 'This is a headline',
+      text: 'Optimized Campaign Landing Page Theme 5',
       tag: 'h1',
       size: 'xxxlarge',
     } only %}
-  {% endset %}
-  {% set headline_layout_content %}
-    {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: headline_content,
-    } only %}
-  {% endset %}
-  {% include '@bolt-layouts-layout/layout.twig' with {
-    content: headline_layout_content,
-    padding_top: 'large',
-    padding_bottom: 'small',
-    template: [
-      '67@from-medium',
-    ],
-  } only %}
-
-  {% set page_content %}
     {% include '@bolt-components-headline/text.twig' with {
-      text: 'This is the body. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis numquam quidem vitae minus deserunt, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta, unde incidunt omnis officiis eos aut quae culpa laudantium consequatur! Quasi repellat odit doloremque rerum.',
+      text: 'This is the body. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta, unde incidunt omnis officiis eos aut quae culpa laudantium consequatur! Quasi repellat odit doloremque rerum.',
     } only %}
     {% include '@bolt-components-headline/text.twig' with {
-      text: 'Modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta.',
+      text: 'Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta.',
     } only %}
     {% set list_content %}
       {% set icon_check_solid %}
@@ -106,10 +86,9 @@
       } only %}
     {% endset %}
     {% include '@bolt-layouts-layout/layout.twig' with {
-      content: list_content,
+        content: list_content,
       gutter: 'small',
       row_gutter: 'small',
-      padding_bottom: 'medium',
       template: [
         'flag',
       ],
@@ -118,74 +97,7 @@
       },
     } only %}
   {% endset %}
-
-  {% set video_content %}
-    <div class="c-base-oclp-video">
-      {% set modal_id = 'js-bolt-modal-' ~ random() %}
-      {% set video %}
-        {% set video_embed %}
-          <video-js
-            data-account='1900410236'
-            data-player='O3FkeBiaDz'
-            data-embed='default'
-            data-video-id='4892122320001'
-            controls
-            class="c-base-video"></video-js>
-        {% endset %}
-        {% include '@bolt-components-ratio/ratio.twig' with {
-          children: video_embed,
-          ratio: '16/9'
-        } only %}
-      {% endset %}
-      {% set video_thumbnail %}
-        {% set image %}
-          {% include '@bolt-elements-image/image.twig' with {
-            attributes: {
-              src: '/images/placeholders/tout-4x3-climber.jpg',
-              alt: 'A Rock Climber',
-              ratio: false,
-              background: true,
-              loading: 'lazy',
-            }
-          } only %}
-        {% endset %}
-        {% set center_component %}
-          {% include '@bolt-components-chip/chip.twig' with {
-            text: 'Preview',
-            size: 'small',
-            color: 'yellow'
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
-          content: image,
-          duration: '4:55',
-          center_component: center_component
-        } only %}
-      {% endset %}
-      {% include '@bolt-components-trigger/trigger.twig' with {
-        content: video_thumbnail,
-        display: 'block',
-        attributes: {
-          'data-bolt-modal-target': '#' ~ modal_id,
-        }
-      } only %}
-      {% include '@bolt-components-modal/modal.twig' with {
-        content: video,
-        width: 'optimal',
-        spacing: 'none',
-        scroll: 'overall',
-        attributes: {
-          id: modal_id,
-        },
-      } only %}
-    </div>
-  {% endset %}
-  
   {% set layout_content %}
-    {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: video_content,
-      order: 'last@from-medium'
-    } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: page_content,
     } only %}
@@ -193,10 +105,10 @@
   {% include '@bolt-layouts-layout/layout.twig' with {
     content: layout_content,
     gutter: 'large',
-    padding_top: 'none',
+    padding_top: 'large',
     padding_bottom: 'large',
     template: [
-      'halves@from-medium',
+      '67/33@from-medium',
     ],
   } only %}
 {% endset %}
@@ -250,8 +162,7 @@
       padding_top: 'xlarge',
       padding_bottom: 'xlarge',
     } only %}
-
-    <div class="c-base-ocpl-footer t-bolt-white">
+    <div class="c-base-ocpl-footer c-base-ocpl-footer--offset-bottom-cta t-bolt-white">
       <div class="c-base-ocpl-footer__item">
         <strong class="u-bolt-margin-right-xsmall">Connect with us</strong>
 
@@ -347,8 +258,8 @@
 {% include '@bolt-elements-image/image.twig' with {
   background: true,
   attributes: {
-    src: '/images/backgrounds/ocpl-bg-6.svg',
-    style: '--e-bolt-image-position: 54vw 8vw; --e-bolt-image-fit: contain; transform:scale(1.5, 1.5);',
+    src: '/images/backgrounds/ocpl-bg-5.svg',
+    style: '--e-bolt-image-position: 66vw -31vw',
     class: 'c-base-ocpl-bg-image',
   },
 } only %}
@@ -363,3 +274,4 @@
     class: 't-bolt-gray-xlight',
   }
 } only %}
+
