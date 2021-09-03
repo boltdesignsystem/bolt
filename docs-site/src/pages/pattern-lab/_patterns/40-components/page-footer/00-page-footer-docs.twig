@@ -1,13 +1,13 @@
 {% set usage %}{% verbatim %}
 // The main template
-{% include 'bolt-components-page-footer/page-footer.twig' with {
+{% include '@bolt-components-page-footer/page-footer.twig' with {
   description: description, // Heading and description text goes here
   primary_nav: primary_nav, // Use page-footer-nav-ul.twig to render each set of navigation list
   secondary_nav: secondary_nav, // Use page-footer-nav-ul.twig to render each set of navigation list
 } only %}
 
 // Nav list template
-{% include 'bolt-components-page-footer/page-footer-nav-ul.twig' with {
+{% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
   headline: {
     content: 'Company',
     tag: 'h3',
@@ -17,7 +17,7 @@
 } only %}
 
 // Nav list item template
-{% include 'bolt-components-page-footer/page-footer-nav-li.twig' with {
+{% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
   link: {
     content: 'Facebook',
     icon_before: icon_facebook, // Only render an icon if page-footer-nav-ul.twig category is set to social

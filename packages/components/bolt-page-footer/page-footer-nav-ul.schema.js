@@ -31,7 +31,7 @@ module.exports = {
             'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
         },
         content: {
-          type: 'string',
+          type: 'any',
           description: 'Set the headline for the nav list.',
         },
         tag: {
