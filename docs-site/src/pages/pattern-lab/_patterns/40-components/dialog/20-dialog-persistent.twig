@@ -1,11 +1,10 @@
 {% set description %}
-    A description of the component and what it is used for.
+Persistent modal is useful when creating subscription based content. To create one, two props are required: <code>persistent</code> and <code>persistent_return_element</code>. When a modal is persistent, the default close button is not shown, the only ways to close the modal is through filling out the form or triggering the return element.<br /><br />
+Activate the modal to see more instructions on setting up the twig template.
 {% endset %}
 
 {% set notes %}
-  <bolt-ol>
-    <bolt-li>List out important information about this component and its usage.</bolt-li>
-  </bolt-ol>
+The <code>persistent_return_element</code> or another item with the <code>data-dialog-close</code> attribute is required when using this option.
 {% endset %}
 
 {% set demo %}

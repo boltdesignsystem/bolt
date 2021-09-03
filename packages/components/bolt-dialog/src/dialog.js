@@ -92,7 +92,7 @@ export class BoltDialog {
     if (event.target.hasAttribute('data-dialog-close')) {
       this.closeDialog();
     }
-    // @TODO: make this more generic?s
+    // @TODO: make this more generic?
     // add support for the icon child of the close button
     if (event.target.closest('.c-bolt-dialog__close-button')) {
       this.closeDialog();

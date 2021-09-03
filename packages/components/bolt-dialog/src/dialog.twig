@@ -35,7 +35,7 @@
 {% set _body_classes = [
   'c-bolt-dialog__body',
   'c-bolt-dialog__body--spacing-' ~ this.data.spacing.value,
-  't-bolt-' ~ this.data.theme.value
+  this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : '',
 ] %}
 
 {% set _icon_close %}
