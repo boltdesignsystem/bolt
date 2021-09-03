@@ -50,6 +50,22 @@ export class BoltDialog {
     focusableNodes = focusableNodes.filter(node => {
       return node.offsetParent !== null;
     });
+
+    const focusedItemIndex = focusableNodes.indexOf(document.activeElement);
+
+    if (event.shiftKey && focusedItemIndex === 0) {
+      focusableNodes[focusableNodes.length - 1].focus();
+      event.preventDefault();
+    }
+
+    if (
+      !event.shiftKey &&
+      focusableNodes.length > 0 &&
+      focusedItemIndex === focusableNodes.length - 1
+    ) {
+      focusableNodes[0].focus();
+      event.preventDefault();
+    }
   }
 
   showDialog() {
@@ -79,7 +95,7 @@ export class BoltDialog {
   addEventListeners() {
     this.dialog.addEventListener('touchstart', event => this.onClick(event));
     this.dialog.addEventListener('click', event => this.onClick(event));
-    document.addEventListener('keydown', this.onKeydown);
+    document.addEventListener('keydown', event => this.onKeydown(event));
   }
 
   removeEventListeners() {
@@ -100,11 +116,15 @@ export class BoltDialog {
   }
 
   onKeydown(event) {
-    if (event.keyCode === 9) this.retainFocus(event); // tab
-    if (typeof this.el.dataset.dialogPersistent === 'undefined') {
-      if (event.keyCode === 27) this.closeDialog(event); // esc
-    } else {
-      console.log('Cannot close a persistent dialog.');
+    // tab
+    if (event.keyCode === 9) this.retainFocus(event);
+    // esc
+    if (event.keyCode === 27) {
+      if (typeof this.el.dataset.dialogPersistent === 'undefined') {
+        this.closeDialog(event);
+      } else {
+        console.log('Cannot close a persistent dialog.');
+      }
     }
   }
 

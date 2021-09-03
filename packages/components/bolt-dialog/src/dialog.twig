@@ -68,14 +68,7 @@
       <div class="c-bolt-dialog__close t-bolt-{{ _overlay_theme }}">{{ _close_button }}</div>
       {% endif %}
       <div class="{{ _body_classes|join(' ') }}">
-        <div class="c-bolt-dialog__content">
-          {{ content }}
-        </div>
-        {% if persistent_return_element %}
-        <div class="c-bolt-dialog__footer">
-          {{ persistent_return_element }}
-        </div>
-        {% endif %}
+        {{ content }}
       </div>
     </div>
   </div>

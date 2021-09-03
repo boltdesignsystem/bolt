@@ -4,7 +4,7 @@ Activate the modal to see more instructions on setting up the twig template.
 {% endset %}
 
 {% set notes %}
-The <code>persistent_return_element</code> or another item with the <code>data-dialog-close</code> attribute is required when using this option.
+You will need to add an item with the <code>data-dialog-close</code> attribute to close persistent dialogs, or provide a link to another page.
 {% endset %}
 
 {% set demo %}
@@ -16,19 +16,28 @@ The <code>persistent_return_element</code> or another item with the <code>data-d
   }
 } only %}
 
-{% set _return_element %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'No thanks! Return to Dialog Demo.',
+{% set _content %}
+  <h3>This is a dialog.</h3>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Go to pega.com',
     attributes: {
-      href: link['viewall-components-dialog']
+      href: 'https://www.pega.com',
+    }
+  } only %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Close the dialog',
+    hierarchy: 'secondary',
+    attributes: {
+      type: 'button',
+      'data-dialog-close': '',
     }
   } only %}
 {% endset %}
 
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: 'This is a dialog component.',
+  content: _content,
   persistent: true,
-  persistent_return_element: _return_element,
   attributes: {
     id: 'dialog-4'
   },
@@ -36,18 +45,27 @@ The <code>persistent_return_element</code> or another item with the <code>data-d
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% set _return_element %}
-  {% include '@bolt-elements-link/link.twig' with {
-    content: 'No thanks! Return to last page.',
+{% set _content %}
+  ...
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Close the dialog',
     attributes: {
-      href: 'google.com'
+      type: 'button',
+      'data-dialog-close': '',
+    }
+  } only %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Return to the dialog demo',
+    hierarchy: 'secondary',
+    attributes: {
+      href: link['viewall-components-dialog']
     }
   } only %}
 {% endset %}
 
 {% include '@bolt-components-dialog/dialog.twig' with {
+  content: _content,
   persistent: true,
-  persistent_return_element: _return_element,
   ...
 } only %}
 {% endverbatim %}{% endset %}
