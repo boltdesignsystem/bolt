@@ -11,40 +11,17 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1;
 fi
 
-if [[ $TRAVIS_TAG ]]; then
-  echo "This is a tagged git release so we will update read-only git repos...";
+echo "Updating remote subsplit repos"
+./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/boltdesignsystem/core-php.git
+./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/twig-integration/twig-extensions-shared:https://$GH_TOKEN@github.com/boltdesignsystem/core-php.git \
+  --heads="$CURRENT_BRANCH" --update --tags="$CURRENT_VERSION"
+rm -rf .subsplit
 
-  ./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/bolt-design-system/core-php.git
-  ./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/twig-integration/twig-extensions-shared:https://$GH_TOKEN@github.com/bolt-design-system/core-php.git \
-    --no-heads --update --tags="$CURRENT_VERSION"
-  rm -rf .subsplit
+./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/boltdesignsystem/bolt_connect.git
+./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/twig-integration/drupal-module:https://$GH_TOKEN@github.com/boltdesignsystem/bolt_connect.git \
+  --heads="$CURRENT_BRANCH" --update --tags="$CURRENT_VERSION"
+rm -rf .subsplit
 
-  ./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/bolt-design-system/bolt_connect.git
-  ./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/twig-integration/drupal-module:https://$GH_TOKEN@github.com/bolt-design-system/bolt_connect.git \
-    --no-heads --update --tags="$CURRENT_VERSION"
-  rm -rf .subsplit
-
-  git checkout $CURRENT_BRANCH # return back to the branch you started on before exiting
-  echo "Finished syncing up the remote git repos!";
-  exit;
-
-#@todo: update to support future major releases
-elif [[ $CURRENT_BRANCH != 'release/2.x' && $CURRENT_BRANCH != 'release/1.x' && $CURRENT_BRANCH != 'master' && $CURRENT_BRANCH != 'next' ]]; then
-  echo "This is not a tagged git release or a release-related branch -- skipped updating remote repos!";
-  exit;
-else
-  echo "This is not a tagged git release but it IS a release-related branch -- updating remote repos!"
-  ./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/bolt-design-system/core-php.git
-  ./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/twig-integration/twig-extensions-shared:https://$GH_TOKEN@github.com/bolt-design-system/core-php.git \
-    --heads="$CURRENT_BRANCH" --update --tags="$CURRENT_VERSION"
-  rm -rf .subsplit
-
-  ./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/bolt-design-system/bolt_connect.git
-  ./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/twig-integration/drupal-module:https://$GH_TOKEN@github.com/bolt-design-system/bolt_connect.git \
-    --heads="$CURRENT_BRANCH" --update --tags="$CURRENT_VERSION"
-  rm -rf .subsplit
-
-  git checkout $CURRENT_BRANCH # return back to the branch you started on before exiting
-  echo "Finished syncing up the remote git repos!";
-  exit;
-fi
+git checkout $CURRENT_BRANCH # return back to the branch you started on before exiting
+echo "Finished syncing to the remote git repos";
+exit;
