@@ -1,10 +1,3 @@
-{# 
-  TODO
-
-  Layout
-  - layout-item order prop does not render, it only works when passed via attributes
- #}
-
 {% set header %}
   <header>
     {% set logo %}
@@ -43,13 +36,13 @@
       size: 'xxxlarge',
     } only %}
   {% endset %}
-  {% set layout_content %}
+  {% set headline_layout_content %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: headline_content,
     } only %}
   {% endset %}
   {% include '@bolt-layouts-layout/layout.twig' with {
-    content: layout_content,
+    content: headline_layout_content,
     padding_top: 'large',
     padding_bottom: 'small',
     template: [
@@ -183,9 +176,7 @@
   {% set layout_content %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: video_content,
-      attributes: {
-        order: 'last@from-medium',
-      }
+      order: 'last@from-medium'
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: page_content,
