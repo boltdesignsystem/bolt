@@ -101,3 +101,17 @@ const quickFiltersScrollEl = document.querySelector(
 if (quickFiltersScrollEl) {
   quickFiltersScroll(quickFiltersScrollEl);
 }
+
+customElements.whenDefined('bolt-modal').then(() => {
+  const oclpBreakpointControl = e => {
+    const oclpBreakpointControlTarget = document.querySelector(
+      '.js-oclp-breakpoint-control',
+    );
+
+    if (window.matchMedia(`(min-width: 800px)`).matches) {
+      oclpBreakpointControlTarget.hide();
+    }
+  };
+
+  window.addEventListener('throttledResize', oclpBreakpointControl);
+});

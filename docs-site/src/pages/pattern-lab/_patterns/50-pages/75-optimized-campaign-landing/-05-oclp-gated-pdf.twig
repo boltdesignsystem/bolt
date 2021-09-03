@@ -1,12 +1,3 @@
-{# 
-  TODO
-
-  Carousel issues:
-  - width is not rendering correctly if inside a layout-item that is in a multi-column layout template
-  - outside nav buttons are creating overflow on mobile
-
- #}
-
 {% set form %}
   {% set children %}
     {% include '@pl/10-form-element-demo-input-element.twig' with {
@@ -55,7 +46,7 @@
     } only %}
 
     {% set icon_download %}
-      {% include '@bolt-components-icon/icon.twig' with {
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: 'download',
       } only %}
     {% endset %}
@@ -151,7 +142,7 @@
       {% set list %}
         {% set list_content %}
           {% set icon_check_solid %}
-            {% include '@bolt-components-icon/icon.twig' with {
+            {% include '@bolt-elements-icon/icon.twig' with {
               name: 'check-solid',
               size: 'medium',
               color: 'teal',
@@ -231,8 +222,9 @@
 
     <div class="c-base-ocpl-form-trigger t-bolt-navy-light">
       {% set icon_download %}
-        {% include '@bolt-components-icon/icon.twig' with {
-          name: 'download',
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'pega-download-pdf',
+          size: 'medium'
         } only %}
       {% endset %}
       {% include '@bolt-elements-button/button.twig' with {
@@ -274,11 +266,17 @@
   <footer>
     {% set suggested_content %}
       {% set icon_documentation %}
-        {% include '@bolt-components-icon/icon.twig' with {
+        {% include '@bolt-elements-icon/icon.twig' with {
           name: 'documentation',
+        } only %}
+      {% endset %}
+      {% set shape_documentation %}
+        {% include '@bolt-elements-shape/shape.twig' with {
+          content: icon_documentation,
           size: 'large',
-          color: 'teal',
-          background: 'circle',
+          attributes: {
+            class: 't-bolt-teal',
+          }
         } only %}
       {% endset %}
       {% set eyebrow %}
@@ -294,7 +292,7 @@
       } only %}
       {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
         gutter: 'medium',
-        signifier: icon_documentation,
+        signifier: shape_documentation,
         eyebrow_items: [
           eyebrow,
         ],
@@ -331,7 +329,7 @@
         <strong class="u-bolt-margin-right-xsmall">Connect with us</strong>
 
         {% set icon_linkedin %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'linkedin',
           } only %}
         {% endset %}
@@ -344,7 +342,7 @@
         } only %}
         
         {% set icon_twitter %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'twitter',
           } only %}
         {% endset %}
@@ -357,7 +355,7 @@
         } only %}
         
         {% set icon_facebook %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'facebook',
           } only %}
         {% endset %}
@@ -370,7 +368,7 @@
         } only %}
         
         {% set icon_youtube %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'youtube-solid',
           } only %}
         {% endset %}
@@ -417,6 +415,22 @@
       </div>
     </div>
   </footer>
+  
+  <script>
+    customElements.whenDefined('bolt-modal').then(() => {
+    const oclpBreakpointControl = e => {
+      const oclpBreakpointControlTarget = document.querySelector(
+        '.js-oclp-breakpoint-control',
+      );
+
+      if (window.matchMedia(`(min-width: 800px)`).matches) {
+        oclpBreakpointControlTarget.hide();
+      }
+    };
+
+    window.addEventListener('throttledResize', oclpBreakpointControl);
+  });
+  </script>
 {% endset %}
 
 {% include '@bolt-elements-image/image.twig' with {
@@ -445,6 +459,6 @@
 {% include '@bolt-components-modal/modal.twig' with {
   content: modal_content,
   attributes: {
-    class: 'js-bolt-modal',
+    class: 'js-bolt-modal js-oclp-breakpoint-control',
   },
 } only %}

@@ -1,3 +1,3 @@
 ---
-title: Ungated (video)
+title: Ungated (Video)
 ---
