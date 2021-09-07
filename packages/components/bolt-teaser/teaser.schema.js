@@ -104,6 +104,10 @@ module.exports = {
       type: 'object',
       description: 'Render the share button. Share menu is expected here.',
     },
+    download_cta: {
+      type: 'object',
+      description: 'Render the download link. Link element is expected here.',
+    },
     chip_list: {
       type: 'object',
       description:

@@ -1,5 +1,5 @@
 {% set description %}
-  The <bolt-code-snippet display="inline">status</bolt-code-snippet> prop can be used to display status information about a resource such as locked and view count. Like and share buttons can be generated via the <bolt-code-snippet display="inline">actions</bolt-code-snippet> prop.
+  The <bolt-code-snippet display="inline">status</bolt-code-snippet> prop can be used to display status information about a resource such as locked and view count. Like, share and download buttons can be generated via the <bolt-code-snippet display="inline">actions</bolt-code-snippet> prop.
 {% endset %}
 
 {% set notes %}
@@ -8,6 +8,7 @@
   <bolt-li>Locked status can be set via the <bolt-code-snippet display="inline">status.locked</bolt-code-snippet> prop. If this is set, a lock icon will appear with the signifier.</bolt-li>
   <bolt-li>Pass a like button into the <bolt-code-snippet display="inline">like</bolt-code-snippet> prop. Example code snippet is shown below.</bolt-li>
   <bolt-li>Pass a share popover menu into the <bolt-code-snippet display="inline">share</bolt-code-snippet> prop. Boundary is required on the popover. Example code snippet is shown below.</bolt-li>
+  <bolt-li>Pass a download cta button into the <bolt-code-snippet display="inline">download_cta</bolt-code-snippet> prop. Example code snippet is shown below.</bolt-li>
 </bolt-ol>
 {% endset %}
 
@@ -95,6 +96,31 @@
       boundary: '.js-bolt-target-teaser',
     } only %}
   {% endset %}
+  {% set download_cta %}
+    {% set icon_download %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'download',
+      } only %}
+    {% endset %}
+    {% set sr_only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Opens in a new window",
+        attributes: {
+          class: 'u-bolt-visuallyhidden'
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Download slides (PDF)' ~ sr_only,
+      icon_before: icon_download,
+      reversed_underline: true,
+      attributes: {
+        href: 'https://www.pega.com/sample.pdf',
+        target: '_blank',
+        rel: 'noopener'
+      },
+    } only %}
+  {% endset %}
 
   <div style="max-width: 60ch;">
     {% include '@bolt-components-teaser/teaser.twig' with {
@@ -112,6 +138,7 @@
       },
       like: like,
       share: share,
+      download_cta: download_cta,
       status: {
         views: '28k',
         locked: true,
@@ -174,11 +201,37 @@
     boundary: '.js-bolt-target-teaser', // JS target for containing the popover within the teaser.
   } only %}
 {% endset %}
+{% set download_cta %}
+  {% set icon_download %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'download',
+    } only %}
+  {% endset %}
+  {% set sr_only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Opens in a new window",
+      attributes: {
+        class: 'u-bolt-visuallyhidden'
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Download slides (PDF)' ~ sr_only,
+    icon_before: icon_download,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://www.pega.com/sample.pdf',
+      target: '_blank',
+      rel: 'noopener'
+    },
+  } only %}
+{% endset %}
 
 // Set up the component
 {% include '@bolt-components-teaser/teaser.twig' with {
   like: like,
   share: share,
+  download_cta: download_cta,
   status: {
     views: '28k',
     locked: true,
