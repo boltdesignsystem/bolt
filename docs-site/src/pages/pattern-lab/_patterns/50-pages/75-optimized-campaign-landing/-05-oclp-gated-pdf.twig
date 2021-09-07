@@ -239,9 +239,13 @@
     </div>
   {% endset %}
   {% set form_content %}
-    <div class="c-base-ocpl-form t-bolt-white">
-      {{ form }}
-    </div>
+    {% embed "@bolt-components-sticky/sticky.twig" %}
+      {% block sticky_content %}
+        <div class="c-base-ocpl-form t-bolt-white">
+          {{ form }}
+        </div>
+      {% endblock %}
+    {% endembed %}
   {% endset %}
   {% set layout_content %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
