@@ -9,7 +9,7 @@ exports[`Bolt component generator JS file exist 1`] = `
   }
 
   init() {
-    console.log('This is a Test');
+    console.log('This is a Test component.');
   }
 }
 "
@@ -59,7 +59,17 @@ Array [
 `;
 
 exports[`Bolt component generator index JS file exist 1`] = `
-"import './src/test';
+"const tests = document.querySelectorAll('.c-bolt-test');
+
+if (tests.length) {
+  import(/* webpackChunkName: 'bolt-test' */ './src/test').then(
+    ({ BoltTest }) => {
+      tests.forEach(el => {
+        const testComponent = new BoltTest(el);
+      });
+    },
+  );
+}
 "
 `;
 
@@ -72,10 +82,8 @@ exports[`Bolt component generator package.json file exist 1`] = `
 "{
   \\"name\\": \\"@bolt/components-test\\",
   \\"version\\": \\"0.0.0\\",
-  \\"description\\": \\"Test description\\",
-  \\"keywords\\": [
-    \\"bolt design system\\"
-  ],
+  \\"description\\": \\"Test Description\\",
+  \\"keywords\\": [\\"bolt design system\\"],
   \\"homepage\\": \\"https://boltdesignsystem.com\\",
   \\"bugs\\": {
     \\"url\\": \\"https://github.com/bolt-design-system/bolt/issues\\"
@@ -102,7 +110,9 @@ exports[`Bolt component generator package.json file exist 1`] = `
 
 exports[`Bolt component generator pattern lab file exist 1`] = `
 "{% set usage %}{% verbatim %}
-{% include '@bolt-components-test/test.twig' only %}
+{% include '@bolt-components-test/test.twig' with {
+  content: 'This is a test component.'
+} only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {
@@ -113,7 +123,7 @@ exports[`Bolt component generator pattern lab file exist 1`] = `
 `;
 
 exports[`Bolt component generator readme file exist 1`] = `
-"Test description
+"Test Description
 
 ###### Install via NPM
 
