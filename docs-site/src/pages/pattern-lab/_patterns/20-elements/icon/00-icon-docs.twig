@@ -1,0 +1,12 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-elements-icon/icon.twig' with {
+  name: 'bell-solid',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'icon',
+  componentGroup: 'elements',
+  usage: usage
+} only %}
+
