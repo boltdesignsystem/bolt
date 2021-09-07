@@ -12,18 +12,20 @@ const prettier = require('prettier');
 
 let initialBuild = true;
 
-const startBuildingIconsMsg = 'Generating the Bolt SVG Icon JSON schema...';
-const startRebuildingIconsMsg = 'Regenerating the Bolt SVG Icon JSON schema...';
+const startBuildingIconsMsg =
+  'Generating the Bolt Component Icon JSON schema...';
+const startRebuildingIconsMsg =
+  'Regenerating the Bolt Component Icon JSON schema...';
 
 const finishedBuildingIconsMsg =
-  'Finished generating the Bolt SVG Icon schema!';
+  'Finished generating the Bolt Component Icon schema!';
 const finishedRebuildingIconsMsg =
-  'Finished regenerating the Bolt SVG Icon schema!';
+  'Finished regenerating the Bolt Component Icon schema!';
 
 const failedBuildingIconsMsg =
-  'Initially generating the Bolt SVG Icon schema failed!';
+  'Initially generating the Bolt Component Icon schema failed!';
 const failedRebuildingIconsMsg =
-  'Failed to regenerate the Bolt SVG Icon schema!';
+  'Failed to regenerate the Bolt Component Icon schema!';
 
 async function build() {
   const iconSpinner = new Ora(
@@ -120,7 +122,7 @@ async function watch() {
   });
 }
 
-watch.description = 'Watch and rebuild Bolt SVG Icons';
+watch.description = 'Watch and rebuild Bolt Component Icons';
 watch.displayName = 'icons:watch';
 
 module.exports = {
