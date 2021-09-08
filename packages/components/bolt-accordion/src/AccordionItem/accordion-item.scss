@@ -231,9 +231,15 @@ bolt-accordion-item {
 .c-bolt-accordion-item__trigger-icons-inner {
   display: block;
   transform: rotate(0deg);
+  width: $bolt-accordion-icon-size;
+  height: $bolt-accordion-icon-size;
   padding: var(--bolt-spacing-y-xxsmall) 0; // This is for aligning the icon with the text baseline.
   transition: transform var(--bolt-transition);
   transform-origin: 50% 50%;
+
+  svg path {
+    fill: var(--m-bolt-link);
+  }
 }
 
 [aria-expanded='false'] {
