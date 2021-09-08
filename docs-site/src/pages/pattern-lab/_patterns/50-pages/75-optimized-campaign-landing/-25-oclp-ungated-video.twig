@@ -57,66 +57,6 @@
     {% include '@bolt-components-headline/text.twig' with {
       text: 'Modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta.',
     } only %}
-    {% set list_content %}
-      {% set icon_check_solid %}
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'check-solid',
-          size: 'medium',
-          color: 'teal',
-        } only %}
-      {% endset %}
-      {% set list_text %}
-        {% include '@bolt-components-headline/text.twig' with {
-          text: 'Check list item. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-          size: 'small',
-          attributes: {
-            class: 'u-bolt-margin-top-xxsmall',
-          }
-        } only %}
-      {% endset %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: icon_check_solid,
-      } only %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: list_text,
-      } only %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: icon_check_solid,
-      } only %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: list_text,
-      } only %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: icon_check_solid,
-      } only %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: list_text,
-      } only %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: icon_check_solid,
-      } only %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: list_text,
-      } only %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: icon_check_solid,
-      } only %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: list_text,
-      } only %}
-    {% endset %}
-    {% include '@bolt-layouts-layout/layout.twig' with {
-      content: list_content,
-      gutter: 'small',
-      row_gutter: 'small',
-      padding_bottom: 'medium',
-      template: [
-        'flag',
-      ],
-      attributes: {
-        style: '--l-bolt-layout-flag-media-width: 24px',
-      },
-    } only %}
   {% endset %}
 
   {% set video_content %}
@@ -149,17 +89,9 @@
             }
           } only %}
         {% endset %}
-        {% set center_component %}
-          {% include '@bolt-components-chip/chip.twig' with {
-            text: 'Preview',
-            size: 'small',
-            color: 'yellow'
-          } only %}
-        {% endset %}
         {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
           content: image,
           duration: '4:55',
-          center_component: center_component
         } only %}
       {% endset %}
       {% include '@bolt-components-trigger/trigger.twig' with {
@@ -192,7 +124,7 @@
   {% endset %}
   {% include '@bolt-layouts-layout/layout.twig' with {
     content: layout_content,
-    gutter: 'large',
+    gutter: 'xlarge',
     padding_top: 'none',
     padding_bottom: 'large',
     template: [
@@ -214,6 +146,7 @@
         {% set icon_chevron_right %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'chevron-right',
+            size: 'small',
           } only %}
         {% endset %}
         {% include '@bolt-elements-text-link/text-link.twig' with {
@@ -238,7 +171,7 @@
         background: true,
         attributes: {
           src: '/images/backgrounds/ocpl-contact-bg-2.svg',
-          style: '--e-bolt-image-position: 5vw 3vw',
+          style: '--e-bolt-image-position: 5vw 2vw',
         },
       } only %}
       {% include '@bolt-layouts-layout/layout-item.twig' with {
@@ -347,8 +280,8 @@
 {% include '@bolt-elements-image/image.twig' with {
   background: true,
   attributes: {
-    src: '/images/backgrounds/ocpl-bg-6.svg',
-    style: '--e-bolt-image-position: 62vw -29vw;',
+    src: '/images/backgrounds/ocpl-bg-3.svg',
+    style: '--e-bolt-image-position: 50vw -34vw;',
     class: 'c-base-ocpl-bg-image',
   },
 } only %}

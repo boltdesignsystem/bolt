@@ -1,7 +1,6 @@
-{% set icon_download_pdf %}
+{% set icon_external_link %}
   {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'pega-download-pdf',
-    size: 'medium'
+    name: 'external-link',
   } only %}
 {% endset %}
 
@@ -53,9 +52,9 @@
     } only %}
 
     {% include '@bolt-elements-button/button.twig' with {
-      content: 'Download the report',
+      content: 'Get the report via Gartner',
       display: 'block',
-      icon_before: icon_download_pdf,
+      icon_before: icon_external_link,
       attributes: {
         type: 'button',
         'data-bolt-modal-target': '.js-bolt-modal',
@@ -114,32 +113,42 @@
     {% include '@bolt-components-headline/text.twig' with {
       text: 'This is the body. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta, unde incidunt omnis officiis eos aut quae culpa laudantium consequatur! Quasi repellat odit doloremque rerum.',
     } only %}
-    {% include '@bolt-components-headline/text.twig' with {
-      text: 'Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta.',
-    } only %}
 
-    {% set carousel_and_list %}
-      {% set carousel %}
-        {% set slide %}
+    {% set preview_and_list %}
+      {% set preview %}
+        {% set preview_image %}
           {% include '@bolt-elements-image/image.twig' with {
             fill: true,
             attributes: {
-              alt: 'Alt text.',
-              src: 'https://via.placeholder.com/400x225',
-              width: 400,
-              height: 225,
-            },
+              src: 'https://via.placeholder.com/2400x1800',
+              alt: 'Image alt.',
+              width: 2400,
+              height: 1800,
+            }
           } only %}
         {% endset %}
-        {% include '@bolt-components-carousel/carousel.twig' with {
-          slides: [
-            slide,
-            slide,
-            slide,
-            slide,
-            slide,
-          ],
-          nav_button_position: 'outside',
+        {% include '@bolt-components-trigger/trigger.twig' with {
+          content: preview_image,
+          display: 'block',
+          cursor: 'zoom-in',
+          attributes: {
+            'data-bolt-modal-target': '.js-bolt-modal--preview-image',
+          },
+        } only %}
+        {% include '@bolt-components-modal/modal.twig' with {
+          content: preview_image,
+          theme: 'none',
+          spacing: 'none',
+          width: 'regular',
+          scroll: 'overall',
+          attributes: {
+            class: 'js-bolt-modal--preview-image',
+          },
+        } only %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Click to enlarge',
+          size: 'xsmall',
+          align: 'center',
         } only %}
       {% endset %}
       {% set list %}
@@ -204,14 +213,14 @@
         } only %}
       {% endset %}
       {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: carousel,
+        content: preview,
       } only %}
       {% include '@bolt-layouts-layout/layout-item.twig' with {
         content: list,
       } only %}
     {% endset %}
     {% include '@bolt-layouts-layout/layout.twig' with {
-      content: carousel_and_list,
+      content: preview_and_list,
       gutter: 'large',
       padding_top: 'small',
       padding_bottom: 'small',
@@ -223,12 +232,16 @@
       }
     } only %}
 
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta.',
+    } only %}
+
     <div class="c-base-ocpl-form-trigger t-bolt-teal">
       {% include '@bolt-elements-button/button.twig' with {
-        content: 'Download the report',
+        content: 'Get the report via Gartner',
         display: 'block',
         hierarchy: 'secondary',
-        icon_before: icon_download_pdf,
+        icon_before: icon_external_link,
         attributes: {
           type: 'button',
           'data-bolt-modal-target': '.js-bolt-modal',
@@ -434,8 +447,8 @@
 {% include '@bolt-elements-image/image.twig' with {
   background: true,
   attributes: {
-    src: '/images/backgrounds/ocpl-bg-1.svg',
-    style: '--e-bolt-image-position: 65vw -34vw',
+    src: '/images/backgrounds/ocpl-bg-5.svg',
+    style: '--e-bolt-image-position: 54vw -48vw',
     class: 'c-base-ocpl-bg-image',
   },
 } only %}

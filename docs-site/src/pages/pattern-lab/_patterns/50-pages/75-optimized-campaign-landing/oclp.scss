@@ -60,8 +60,11 @@
 
   @include bolt-mq(medium) {
     @include bolt-shadow('level-20');
+    @include bolt-vertical-scroll;
 
     display: block;
+    position: sticky;
+    top: var(--bolt-spacing-y-medium);
     padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
     color: var(--m-bolt-text);
     border-radius: bolt-border-radius(small);
@@ -77,7 +80,7 @@
   bottom: 0;
   left: 0;
   z-index: bolt-z-index(modal);
-  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-small);
+  padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
   color: var(--m-bolt-text);
   background-color: var(--m-bolt-bg);
 
@@ -97,6 +100,10 @@
 }
 
 @include bolt-mq(medium) {
+  .c-base-ocpl-bg-image {
+    position: fixed;
+  }
+
   .c-base-oclp-image,
   .c-base-oclp-video {
     margin-top: calc(var(--bolt-spacing-y-xlarge) * -1);
