@@ -20,6 +20,16 @@
     {{ content }}
   </div>
   <div class="c-bolt-video-thumbnail__play-icon" aria-hidden="true"></div>
+  {% if chip %}
+    <div class="c-bolt-video-thumbnail__chip">
+      {{ chip }}
+    </div>
+  {% endif %}
+  {% if this.data.video_title.value %}
+    <div class="c-bolt-video-thumbnail__title">
+      {{ this.data.video_title.value }}
+    </div>
+  {% endif %}
   {% if this.data.duration.value %}
     <div class="c-bolt-video-thumbnail__duration">
       <span class="u-bolt-visuallyhidden">{{ 'Video duration'|t }}:</span> {{ duration }}

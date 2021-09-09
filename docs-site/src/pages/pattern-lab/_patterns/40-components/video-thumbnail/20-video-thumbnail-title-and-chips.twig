@@ -1,0 +1,58 @@
+
+{% set notes %}
+  When using Chip alongside Title, please use its default <code>size</code> as <code>small</code>, and set <code>border_radius</code> to <code>small</code> in order to match styles.
+{% endset %}
+
+{% set demo %}
+  <div style="max-width: 60ch">
+    {% set _chip %}
+      {% include '@bolt-components-chip/chip.twig' with {
+        text: 'Preview',
+        size: 'small',
+        border_radius: 'small',
+        color: 'violet',
+      } only %}
+    {% endset %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/tout-4x3-climber.jpg',
+          alt: 'A Rock Climber',
+          background: true,
+          loading: 'lazy',
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: image,
+      video_title: 'This is a Video Title',
+      chip: _chip,
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set _chip %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Preview',
+    size: 'medium',
+    border_radius: 'small',
+    ...
+  } only %}
+{% endset %}
+{% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+  video_title: 'This is a Video Title',
+  chip: _chip,
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Video Thumbnail Title & Chips',
+  description: 'Title & Chips can be added or removed per use case.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

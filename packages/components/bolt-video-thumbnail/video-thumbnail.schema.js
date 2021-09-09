@@ -30,5 +30,14 @@ module.exports = {
       description:
         'Display the video duration that overlays the video thumbnail.',
     },
+    video_title: {
+      type: 'string',
+      description: 'Set the video title that overlays the video thumbnail.',
+    },
+    chip: {
+      type: 'any',
+      description:
+        'Set the chip or chip-list content to display in the top-left corner of the overlay.',
+    },
   },
 };

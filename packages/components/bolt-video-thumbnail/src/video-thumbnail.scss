@@ -107,6 +107,40 @@
   }
 }
 
+.c-bolt-video-thumbnail__title {
+  display: inline-block;
+  position: relative;
+  margin: var(--bolt-spacing-y-xsmall) 0 0 var(--bolt-spacing-x-xsmall);
+  padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-regular);
+  color: var(--bolt-color-white);
+  line-height: calc(
+    var(--bolt-type-line-height-xsmall) *
+      var(--bolt-type-line-height-multiplier-tight)
+  );
+  border-radius: var(
+    --c-bolt-video-thumbnail-border-radius,
+    #{bolt-border-radius(small)}
+  );
+  background-color: rgba(black, 0.6);
+
+  @include bolt-mq(small) {
+    margin: var(--bolt-spacing-y-small) 0 0 var(--bolt-spacing-x-small);
+  }
+}
+
+.c-bolt-video-thumbnail__chip {
+  display: inline-block;
+  position: relative;
+  margin: var(--bolt-spacing-y-xsmall) 0 0 var(--bolt-spacing-x-xsmall);
+
+  @include bolt-mq(small) {
+    margin: var(--bolt-spacing-y-small) 0 0 var(--bolt-spacing-x-small);
+  }
+}
+
 .c-bolt-video-thumbnail__duration {
   position: absolute;
   right: var(--bolt-spacing-x-xsmall);
