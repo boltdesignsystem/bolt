@@ -104,20 +104,18 @@
     {% endset %}
     {% set sr_only %}
       {% include "@bolt-components-headline/text.twig" with {
-        text: "Opens in a new window",
+        text: "Downloads a PDF file.",
         attributes: {
           class: 'u-bolt-visuallyhidden'
         }
       } only %}
     {% endset %}
     {% include '@bolt-elements-text-link/text-link.twig' with {
-      content: 'Download slides (PDF)' ~ sr_only,
+      content: 'Download slides (PDF, 3 pages, 2.3mb)' ~ sr_only,
       icon_before: icon_download,
       reversed_underline: true,
       attributes: {
-        href: 'https://www.pega.com/sample.pdf',
-        target: '_blank',
-        rel: 'noopener'
+        href: 'https://www.pega.com/',
       },
     } only %}
   {% endset %}
@@ -209,7 +207,7 @@
   {% endset %}
   {% set sr_only %}
     {% include "@bolt-components-headline/text.twig" with {
-      text: "Opens in a new window",
+      text: "Downloads a PDF file.",
       attributes: {
         class: 'u-bolt-visuallyhidden'
       }
@@ -220,9 +218,7 @@
     icon_before: icon_download,
     reversed_underline: true,
     attributes: {
-      href: 'https://www.pega.com/sample.pdf',
-      target: '_blank',
-      rel: 'noopener'
+      href: 'https://www.pega.com',
     },
   } only %}
 {% endset %}
