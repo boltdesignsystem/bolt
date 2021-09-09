@@ -1,11 +1,11 @@
 
 {% set notes %}
-  When using Chip alongside Title, please use its default <code>size</code> as <code>small</code>, and set <code>border_radius</code> to <code>small</code> in order to match styles.
+  When using Chip alongside Title, please set its <code>size</code> as <code>small</code>, and its <code>border_radius</code> to match the Video Thumbnail&rsquo;s <code>border_radius</code>.
 {% endset %}
 
 {% set demo %}
   <div style="max-width: 60ch">
-    {% set _chip %}
+    {% set chip %}
       {% include '@bolt-components-chip/chip.twig' with {
         text: 'Preview',
         size: 'small',
@@ -18,32 +18,33 @@
         attributes: {
           src: '/images/placeholders/tout-4x3-climber.jpg',
           alt: 'A Rock Climber',
-          background: true,
           loading: 'lazy',
+          width: 400,
+          height: 300,
         }
       } only %}
     {% endset %}
     {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
       content: image,
       video_title: 'This is a Video Title',
-      chip: _chip,
+      chip: chip,
     } only %}
   </div>
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
-{% set _chip %}
+{% set chip %}
   {% include '@bolt-components-chip/chip.twig' with {
     text: 'Preview',
-    size: 'medium',
+    size: 'small',
     border_radius: 'small',
     ...
   } only %}
 {% endset %}
 {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
   video_title: 'This is a Video Title',
-  chip: _chip,
+  chip: chip,
   ...
 } only %}
 {% endverbatim %}
