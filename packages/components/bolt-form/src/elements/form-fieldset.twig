@@ -19,7 +19,7 @@ Available variables:
 
 <fieldset{{ fieldsetAttributes.addClass('c-bolt-fieldset') }}>
   <legend{{ legendAttributes.addClass('c-bolt-legend') }}>
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       "text": legendTitle,
       "attributes": legendInnerAttributes,
       "size": legendSize|default('small')

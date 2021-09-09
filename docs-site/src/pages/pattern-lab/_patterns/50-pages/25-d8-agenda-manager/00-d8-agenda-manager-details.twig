@@ -22,7 +22,7 @@
   } %}
     {% block band_content  %}
 
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         text: "2018 Agenda",
         size: "small",
         tag: "span",
@@ -41,7 +41,7 @@
         text: "Session: spark talk"
       } only %}
 
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         text: pageTitle|default("Insert Page Title Here"),
         size: "xxxlarge",
         tag: "h1"
@@ -50,7 +50,7 @@
       {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             size: "xsmall",
             transform: "uppercase",
             tag: "h3",
@@ -76,7 +76,7 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-2/3@medium" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             size: "xsmall",
             transform: "uppercase",
             tag: "h3",
@@ -106,7 +106,7 @@
             {% for speaker in speakers %}
 
               {% cell "u-bolt-width-1/1 u-bolt-width-1/3@xsmall" %}
-                {% include "@bolt/headline.twig" with {
+                {% include "@bolt-components-headline/headline.twig" with {
                   size: "xsmall",
                   tag: "h3",
                   text: speaker.name,
@@ -147,7 +147,7 @@
             text: eventDescription|default("Insert Event Description Here. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum.")
           } only %}
 
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             size: "small",
             text: "What you'll learn"
           } only %}
@@ -177,7 +177,7 @@
       {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Topics",
             size: "small"
           } only %}
@@ -221,7 +221,7 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Industries",
             size: "small"
           } only %}
@@ -245,7 +245,7 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Products",
             size: "small"
           } only %}
@@ -281,7 +281,7 @@
 
       <hr>
 
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         size: "xlarge",
         tag: "h2",
         text: "Related Sessions",
@@ -294,7 +294,7 @@
             text: "Spark Talk"
           } only %}
 
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "What Aflac is learning about consumer expectations through monitoring tech disruptions",
             size: "large",
             tag: "h3",
@@ -307,7 +307,7 @@
             text: "Spark Talk"
           } only %}
 
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Leverage Mobile and Collaboration to Increase Revenue and Decrease Order-to-Cash Cycle Time",
             size: "large",
             tag: "h3",
@@ -320,7 +320,7 @@
             text: "Spark Talk"
           } only %}
 
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "PayPal Delivers World Class Customer Service, Worldwide",
             size: "large",
             tag: "h3",
@@ -373,12 +373,12 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Connect to start a conversation",
             size: "large"
           } only %}
 
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "#PegaWorld18",
             size: "xxlarge",
             weight: "regular",

@@ -184,7 +184,7 @@
     full_bleed: true
   } only %}
     {% block band_content %}
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         text: "今日はどんなお手伝いをしましょうか？",
         size: "xlarge",
         align: "center",
@@ -353,7 +353,7 @@
     ]
   } %}
     {% block band_content %}
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         text: "トレンドとは",
         size: "xlarge",
         align: "center",
@@ -380,7 +380,7 @@
             } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "誇大広告のSalesforce.comの本当に代わりとなるもの：Pega CRM",
               size: "xlarge",
               tag: "h3"

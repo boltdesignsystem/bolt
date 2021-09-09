@@ -32,7 +32,7 @@
           {% include "@bolt-components-eyebrow/eyebrow.twig" with {
             text: "White Paper"
           } only %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: page_title|default("Insert Page Title Here"),
             size: "xxxlarge"
           } only %}
@@ -101,7 +101,7 @@
 
         <hr>
 
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
           text: "Category:",
           size: "small",
           transform: "uppercase"
@@ -142,7 +142,7 @@
 } %}
   {% block band_content %}
 
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       text: "Related resources",
       size: "xlarge",
       tag: "h3"
