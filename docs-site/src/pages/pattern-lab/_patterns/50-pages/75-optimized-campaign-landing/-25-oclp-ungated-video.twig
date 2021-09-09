@@ -61,7 +61,6 @@
 
   {% set video_content %}
     <div class="c-base-oclp-video">
-      {% set modal_id = 'js-bolt-modal-' ~ random() %}
       {% set video %}
         {% set video_embed %}
           <video-js
@@ -98,16 +97,16 @@
         content: video_thumbnail,
         display: 'block',
         attributes: {
-          'data-bolt-modal-target': '#' ~ modal_id,
+          'data-bolt-modal-target': '#js-bolt-modal-video',
         }
       } only %}
       {% include '@bolt-components-modal/modal.twig' with {
         content: video,
-        width: 'optimal',
+        width: 'regular',
         spacing: 'none',
         scroll: 'overall',
         attributes: {
-          id: modal_id,
+          id: 'js-bolt-modal-video',
         },
       } only %}
     </div>
