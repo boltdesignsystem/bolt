@@ -26,18 +26,19 @@ module.exports = {
       default: '16:9',
     },
     duration: {
-      type: 'string',
+      type: 'any',
       description:
-        'Display the video duration that overlays the video thumbnail.',
+        'Display the video duration that overlays the video thumbnail. This should only be plain text.',
     },
     video_title: {
-      type: 'string',
-      description: 'Set the video title that overlays the video thumbnail.',
+      type: 'any',
+      description:
+        'Display the video title that overlays the video thumbnail. This should only be plain text.',
     },
     chip: {
       type: 'any',
       description:
-        'Set the chip or chip-list content to display in the top-left corner of the overlay.',
+        'Display a chip (or chip-list) that overlays the video thumbnail. Positioned before the video title. Chip or Chip-list component is expected here.',
     },
   },
 };
