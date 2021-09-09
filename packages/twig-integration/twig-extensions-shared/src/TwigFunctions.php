@@ -254,7 +254,7 @@ class TwigFunctions {
         case 'button_group':
           return '@bolt-components-button-group/button-group.twig';
         case 'button':
-          return '@bolt/button.twig';
+          return '@bolt-components-button/button.twig';
         case 'card':
           return '@bolt/card.twig';
         case 'card-w-teaser':
@@ -280,7 +280,7 @@ class TwigFunctions {
       }
 
       // the full list of `$patternName` that uses this is:
-      //button - @bolt/button.twig
+      //button - @bolt-components-button/button.twig
       //button_group - @bolt-button-group/button-group.twig
       //card - @bolt-card/card.twig
       //eyebrow - @bolt-headline/eyebrow.twig
