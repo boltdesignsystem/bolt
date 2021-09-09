@@ -262,7 +262,7 @@ class TwigFunctions {
         case 'eyebrow':
           return '@bolt-components-eyebrow/eyebrow.twig';
         case 'flag':
-          return '@bolt/flag.twig';
+          return '@bolt-components-flag/flag.twig';
         case 'headline':
           return '@bolt/headline.twig';
         case 'image':
