@@ -256,7 +256,7 @@ class TwigFunctions {
         case 'button':
           return '@bolt-components-button/button.twig';
         case 'card':
-          return '@bolt/card.twig';
+          return '@bolt-components-card/card.twig';
         case 'card-w-teaser':
           return '@bolt/card-w-teaser.twig';
         case 'eyebrow':
