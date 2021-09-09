@@ -70,6 +70,14 @@
   }
 }
 
+.c-base-ocpl-form-modal {
+  display: block;
+
+  @include bolt-mq(medium) {
+    display: none;
+  }
+}
+
 .c-base-ocpl-form-trigger {
   @include bolt-shadow('level-20');
 

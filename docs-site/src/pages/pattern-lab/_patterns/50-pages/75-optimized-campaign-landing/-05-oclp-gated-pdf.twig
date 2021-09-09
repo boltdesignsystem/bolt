@@ -58,24 +58,23 @@
       icon_before: icon_download_pdf,
       attributes: {
         type: 'button',
-        'data-bolt-modal-target': '.js-bolt-modal',
       },
     } only %}
   {% endset %}
 
-  {% include "@bolt-components-headline/headline.twig" with {
-    text: "Get the Report",
-    size: "xlarge"
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Get the Report',
+    size: 'xlarge'
   } only %}
 
-  {% include "@bolt-components-headline/text.twig" with {
-    text: "(all fields are required)",
-    size: "small"
+  {% include '@bolt-components-headline/text.twig' with {
+    text: '(all fields are required)',
+    size: 'small'
   } only %}
 
-  {% include "@bolt/form.twig" with {
+  {% include '@bolt-components-form/form.twig' with {
     children: children
-  } only  %}
+  } only %}
 {% endset %}
 
 {% set header %}
@@ -222,19 +221,6 @@
         style: '--l-bolt-layout-tile-min-width: 300px',
       }
     } only %}
-
-    <div class="c-base-ocpl-form-trigger t-bolt-teal">
-      {% include '@bolt-elements-button/button.twig' with {
-        content: 'Download the report',
-        display: 'block',
-        hierarchy: 'secondary',
-        icon_before: icon_download_pdf,
-        attributes: {
-          type: 'button',
-          'data-bolt-modal-target': '.js-bolt-modal',
-        },
-      } only %}
-    </div>
   {% endset %}
   {% set form_content %}
     <div class="c-base-ocpl-form t-bolt-white">
@@ -289,6 +275,7 @@
         size: 'xlarge',
       } only %}
       {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+        layout: 'responsive',
         gutter: 'medium',
         signifier: shape_documentation,
         eyebrow_items: [
@@ -413,28 +400,13 @@
       </div>
     </div>
   </footer>
-  
-  <script>
-    customElements.whenDefined('bolt-modal').then(() => {
-    const oclpBreakpointControl = e => {
-      const oclpBreakpointControlTarget = document.querySelector(
-        '.js-oclp-breakpoint-control',
-      );
-
-      if (window.matchMedia(`(min-width: 800px)`).matches) {
-        oclpBreakpointControlTarget.hide();
-      }
-    };
-
-    window.addEventListener('throttledResize', oclpBreakpointControl);
-  });
-  </script>
 {% endset %}
 
 {% include '@bolt-elements-image/image.twig' with {
   background: true,
   attributes: {
     src: '/images/backgrounds/ocpl-bg-1.svg',
+    alt: '',
     style: '--e-bolt-image-position: 65vw -34vw',
     class: 'c-base-ocpl-bg-image',
   },
@@ -451,12 +423,27 @@
   }
 } only %}
 
-{% set modal_content %}
-  {{ form }}
-{% endset %}
-{% include '@bolt-components-modal/modal.twig' with {
-  content: modal_content,
-  attributes: {
-    class: 'js-bolt-modal js-oclp-breakpoint-control',
-  },
-} only %}
+<div class="c-base-ocpl-form-trigger t-bolt-teal">
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Download the report',
+    display: 'block',
+    hierarchy: 'secondary',
+    icon_before: icon_download_pdf,
+    attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '#js-bolt-modal-form',
+    },
+  } only %}
+</div>
+
+<div class="c-base-ocpl-form-modal">
+  {% set modal_content %}
+    {{ form }}
+  {% endset %}
+  {% include '@bolt-components-modal/modal.twig' with {
+    content: modal_content,
+    attributes: {
+      id: 'js-bolt-modal-form',
+    }
+  } only %}
+</div>

@@ -57,24 +57,24 @@
       icon_before: icon_external_link,
       attributes: {
         type: 'button',
-        'data-bolt-modal-target': '.js-bolt-modal',
       },
     } only %}
   {% endset %}
 
-  {% include "@bolt-components-headline/headline.twig" with {
-    text: "Get the Report",
-    size: "xlarge"
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Get the Report',
+    size: 'xlarge',
+    tag: 'h2',
   } only %}
 
-  {% include "@bolt-components-headline/text.twig" with {
-    text: "(all fields are required)",
-    size: "small"
+  {% include '@bolt-components-headline/text.twig' with {
+    text: '(all fields are required)',
+    size: 'small'
   } only %}
 
-  {% include "@bolt/form.twig" with {
+  {% include '@bolt-components-form/form.twig' with {
     children: children
-  } only  %}
+  } only %}
 {% endset %}
 
 {% set header %}
@@ -121,7 +121,7 @@
             fill: true,
             attributes: {
               src: 'https://via.placeholder.com/2400x1800',
-              alt: 'Image alt.',
+              alt: 'Alt text.',
               width: 2400,
               height: 1800,
             }
@@ -132,7 +132,7 @@
           display: 'block',
           cursor: 'zoom-in',
           attributes: {
-            'data-bolt-modal-target': '.js-bolt-modal--preview-image',
+            'data-bolt-modal-target': '#js-bolt-modal-preview-image',
           },
         } only %}
         {% include '@bolt-components-modal/modal.twig' with {
@@ -142,7 +142,7 @@
           width: 'regular',
           scroll: 'overall',
           attributes: {
-            class: 'js-bolt-modal--preview-image',
+            id: 'js-bolt-modal-preview-image',
           },
         } only %}
         {% include '@bolt-components-headline/text.twig' with {
@@ -235,19 +235,6 @@
     {% include '@bolt-components-headline/text.twig' with {
       text: 'Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta.',
     } only %}
-
-    <div class="c-base-ocpl-form-trigger t-bolt-teal">
-      {% include '@bolt-elements-button/button.twig' with {
-        content: 'Get the report via Gartner',
-        display: 'block',
-        hierarchy: 'secondary',
-        icon_before: icon_external_link,
-        attributes: {
-          type: 'button',
-          'data-bolt-modal-target': '.js-bolt-modal',
-        },
-      } only %}
-    </div>
   {% endset %}
   {% set form_content %}
     <div class="c-base-ocpl-form t-bolt-white">
@@ -275,61 +262,79 @@
 
 {% set footer %}
   <footer>
-    {% set suggested_content %}
-      {% set icon_documentation %}
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'documentation',
-        } only %}
-      {% endset %}
-      {% set shape_documentation %}
-        {% include '@bolt-elements-shape/shape.twig' with {
-          content: icon_documentation,
-          size: 'large',
-          attributes: {
-            class: 't-bolt-teal',
-          }
-        } only %}
-      {% endset %}
-      {% set eyebrow %}
-        {% include '@bolt-components-headline/eyebrow.twig' with {
-          text: 'Eyebrow',
-        } only %}
-      {% endset %}
+    {% set contact_content %}
+      {% set customer_service_link %}
+        {% set signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'intelligent-virtual-assistant',
+            size: 'xlarge',
+          } only %}
+        {% endset %}
 
-      {% include '@bolt-components-headline/headline.twig' with {
-        text: 'Suggested Content',
-        tag: 'h2',
-        size: 'xlarge',
-      } only %}
-      {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
-        gutter: 'medium',
-        signifier: shape_documentation,
-        eyebrow_items: [
-          eyebrow,
-        ],
-        headline: {
-          text: 'This is a listing teaser',
-          tag: 'h3',
-          size: 'xlarge',
-          link_attributes: {
-            href: 'https://pega.com'
+        {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+          layout: 'responsive',
+          gutter: 'medium',
+          signifier: signifier,
+          headline: {
+            text: 'Pega Customer Service',
+            tag: 'h2',
+            size: 'xlarge',
+            link_attributes: {
+              href: 'https://pega.com'
+            },
           },
-        },
-        description: 'This is the description. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+          subheadline: 'Learn more about our award winning solution',
+        } only %}
+      {% endset %}
+      {% set contact_link %}
+        {% set signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'customer-service',
+            size: 'xlarge',
+          } only %}
+        {% endset %}
+
+        {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+          layout: 'responsive',
+          gutter: 'medium',
+          signifier: signifier,
+          headline: {
+            text: 'Contact Sales',
+            tag: 'h2',
+            size: 'xlarge',
+            link_attributes: {
+              href: 'https://pega.com'
+            },
+          },
+          subheadline: 'Get in touch with us',
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline@medium',
+        align: 'center',
+        spacing: 'xlarge',
+        items: [
+          customer_service_link,
+          contact_link,
+        ],
       } only %}
     {% endset %}
     {% set layout_content %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: '/images/backgrounds/ocpl-contact-bg-3.jpg',
+          alt: '',
+        },
+      } only %}
       {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: suggested_content,
+        content: contact_content,
       } only %}
     {% endset %}
     {% include '@bolt-layouts-layout/layout.twig' with {
       content: layout_content,
       padding_top: 'large',
       padding_bottom: 'large',
-      template: [
-        '67@from-medium',
-      ],
       attributes: {
         class: 't-bolt-white',
       },
@@ -426,28 +431,13 @@
       </div>
     </div>
   </footer>
-  
-  <script>
-    customElements.whenDefined('bolt-modal').then(() => {
-    const oclpBreakpointControl = e => {
-      const oclpBreakpointControlTarget = document.querySelector(
-        '.js-oclp-breakpoint-control',
-      );
-
-      if (window.matchMedia(`(min-width: 800px)`).matches) {
-        oclpBreakpointControlTarget.hide();
-      }
-    };
-
-    window.addEventListener('throttledResize', oclpBreakpointControl);
-  });
-  </script>
 {% endset %}
 
 {% include '@bolt-elements-image/image.twig' with {
   background: true,
   attributes: {
     src: '/images/backgrounds/ocpl-bg-5.svg',
+    alt: '',
     style: '--e-bolt-image-position: 54vw -48vw',
     class: 'c-base-ocpl-bg-image',
   },
@@ -464,12 +454,27 @@
   }
 } only %}
 
-{% set modal_content %}
-  {{ form }}
-{% endset %}
-{% include '@bolt-components-modal/modal.twig' with {
-  content: modal_content,
-  attributes: {
-    class: 'js-bolt-modal js-oclp-breakpoint-control',
-  },
-} only %}
+<div class="c-base-ocpl-form-trigger t-bolt-teal">
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Get the report via Gartner',
+    display: 'block',
+    hierarchy: 'secondary',
+    icon_before: icon_external_link,
+    attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '#js-bolt-modal-form',
+    },
+  } only %}
+</div>
+
+<div class="c-base-ocpl-form-modal">
+  {% set modal_content %}
+    {{ form }}
+  {% endset %}
+  {% include '@bolt-components-modal/modal.twig' with {
+    content: modal_content,
+    attributes: {
+      id: 'js-bolt-modal-form',
+    }
+  } only %}
+</div>
