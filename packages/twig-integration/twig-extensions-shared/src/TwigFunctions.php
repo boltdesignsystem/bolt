@@ -268,7 +268,7 @@ class TwigFunctions {
         case 'image':
           return '@bolt-components-image/image.twig';
         case 'link':
-          return '@bolt/link.twig';
+          return '@bolt-components-link/link.twig';
         case 'teaser':
           return '@bolt/teaser.twig';
         case 'text':
