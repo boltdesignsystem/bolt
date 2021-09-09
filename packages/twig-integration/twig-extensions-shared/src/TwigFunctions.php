@@ -272,7 +272,7 @@ class TwigFunctions {
         case 'teaser':
           return '@bolt-components-teaser/teaser.twig';
         case 'text':
-          return '@bolt/text.twig';
+          return '@bolt-components-text/text.twig';
         case 'video':
           return '@bolt/video.twig';
         default:
