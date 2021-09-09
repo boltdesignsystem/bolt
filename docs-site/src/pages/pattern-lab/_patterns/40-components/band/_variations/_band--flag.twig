@@ -25,7 +25,7 @@
     {# TODO: only allow max of 2 buttons #}
     {% if buttons %}
       {% cell "u-bolt-width-1/1@only-small" %}
-        {{ include('@bolt/button-group.twig', { buttons: buttons }, with_context = false) }}
+        {{ include('@bolt-components-button-group/button-group.twig', { buttons: buttons }, with_context = false) }}
       {% endcell %}
     {% endif %}
   {% endgrid %}

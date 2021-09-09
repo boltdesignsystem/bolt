@@ -252,7 +252,7 @@ class TwigFunctions {
 
       switch ($patternName) {
         case 'button_group':
-          return '@bolt/button-group.twig';
+          return '@bolt-components-button-group/button-group.twig';
         case 'button':
           return '@bolt/button.twig';
         case 'card':
