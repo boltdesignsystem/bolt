@@ -1,0 +1,87 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>If using Twig, use <code>hide_title</code> and <code>hide_copy</code> props to hide one or both of these Code Snippet header items.</bolt-li>
+    <bolt-li>If using HTML, use the <code>data-bolt-hide-title</code> and <code>data-bolt-hide-copy</code> attributes.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% set code_snippet %}
+display: block;
+margin: 0 0 1.65rem 0;
+{% endset %}
+
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: code_snippet,
+    lang: 'css',
+    hide_title: true,
+  } only %}
+
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: code_snippet,
+    lang: 'css',
+    hide_copy: true,
+  } only %}
+
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: code_snippet,
+    lang: 'css',
+    hide_title: true,
+    hide_copy: true,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set code_snippet %}
+display: block;
+margin: 0 0 1.65rem 0;
+{% endset %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'css',
+  hide_title: true,
+} only %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'css',
+  hide_copy: true,
+} only %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'css',
+  hide_title: true,
+  hide_copy: true,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+<div class="e-bolt-code-snippet e-bolt-code-snippet--light" data-bolt-lang="css" data-bolt-hide-title>
+<pre><code>display: block;
+margin: 0 0 1.65rem 0;</code></pre>
+</div>
+
+<div class="e-bolt-code-snippet e-bolt-code-snippet--light" data-bolt-lang="css" data-bolt-hide-copy>
+<pre><code>display: block;
+margin: 0 0 1.65rem 0;</code></pre>
+</div>
+
+<div class="e-bolt-code-snippet e-bolt-code-snippet--light" data-bolt-lang="css" data-bolt-hide-title data-bolt-hide-copy>
+<pre><code>display: block;
+margin: 0 0 1.65rem 0;</code></pre>
+</div>
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Code Snippet Header Display',
+  description: 'Language title and copy to clipboard button are shown by default but can be turned off individually.',
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

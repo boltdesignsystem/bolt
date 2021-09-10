@@ -1,11 +1,6 @@
-{% set description %}
-  Code snippet displays a block of syntax-highlighted code with support for several programming languages. See schema for all language options.
-{% endset %}
-
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Code snippet only dislays block. If you need to display code inline, simply use the <code>{{ '<code>'|e }}</code> element.</bolt-li>
-    <bolt-li>Use Twig if possible. If using HTML be sure to trim leading and trailing whitespace inside the <code>{{ '<code>'|e }}</code> element as shown below.</bolt-li>
+    <bolt-li>Twig defaults to "light" syntax. If using HTML you must add a syntax class, <code>c-bolt-snippet--light</code> or <code>c-bolt-snippet--dark</code>, or there will be no syntax highlighting.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -17,7 +12,8 @@ margin: 0 0 1.65rem 0;
 
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
     content: code_snippet,
-    lang: 'css'
+    lang: 'css',
+    syntax: 'dark'
   } only %}
 {% endset %}
 
@@ -30,21 +26,22 @@ margin: 0 0 1.65rem 0;
 
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
   content: code_snippet,
-  lang: 'css'
+  lang: 'css',
+  syntax: 'dark'
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
-<div class="e-bolt-code-snippet e-bolt-code-snippet--light" data-bolt-lang="css">
+<div class="e-bolt-code-snippet e-bolt-code-snippet--dark" data-bolt-lang="css">
 <pre><code>display: block;
 margin: 0 0 1.65rem 0;</code></pre>
 </div>
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Code Snippet',
-  description: description,
+  title: 'Code Snippet Syntax',
+  description: 'Choose from two different syntax styles, light or dark.',
   notes: notes,
   demo: demo,
   demo_light_dark: true,

@@ -1,0 +1,315 @@
+{% set schema = bolt.data.components["@bolt-components-code-snippet"].schema %}
+
+{% for item in schema.properties.lang.enum %}
+<h2><code>{{item}}</code></h2>
+<div class="c-bolt-code-snippet" data-bolt-lang="{{item}}"><pre><code>//</code></pre></div>
+{% endfor %}
+
+
+
+
+{# <h2>JavaScript - <code>js</code></h2>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="js"><pre><code>// Promise ensures Modal is defined before calling hide/show
+customElements.whenDefined('bolt-modal').then(() => {
+  showButton.addEventListener('click', () => {
+    modal.show();
+  })
+  hideButton.addEventListener('click', () => {
+    modal.hide();
+  })
+});</code></pre></div>
+
+<h2>Java - <code>java</code></h2>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="java"><pre><code>/* HelloWorld.java
+ */
+
+public class HelloWorld
+{
+	public static void main(String[] args) {
+		System.out.println("Hello World!");
+	}
+}</code></pre></div>
+
+<h2>CSS - <code>css</code></h2>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="js"><pre><code>display: block;
+margin: 0 0 1.65rem 0;</code></pre></div>
+
+<h2>JSON - <code>json</code></h2>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="json"><pre><code>{
+    "glossary": {
+        "title": "example glossary",
+		"GlossDiv": {
+            "title": "S",
+			"GlossList": {
+                "GlossEntry": {
+                    "ID": "SGML",
+					"SortAs": "SGML",
+					"GlossTerm": "Standard Generalized Markup Language",
+					"Acronym": "SGML",
+					"Abbrev": "ISO 8879:1986",
+					"GlossDef": {
+                        "para": "A meta-markup language, used to create markup languages such as DocBook.",
+						"GlossSeeAlso": ["GML", "XML"]
+                    },
+					"GlossSee": "markup"
+                }
+            }
+        }
+    }
+}</code></pre></div>
+
+<h2>Bash - <code>bash</code></h2>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="bash"><pre><code>$ echo "Hello World"</code></pre></div>
+
+<h2>CSV - <code>csv</code></h2>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="bash"><pre><code>John,Doe,120 jefferson st.,Riverside, NJ, 08075
+Jack,McGinnis,220 hobo Av.,Phila, PA,09119
+"John ""Da Man""",Repici,120 Jefferson St.,Riverside, NJ,08075
+Stephen,Tyler,"7452 Terrace ""At the Plaza"" road",SomeTown,SD, 91234
+,Blankman,,SomeTown, SD, 00298
+"Joan ""the bone"", Anne",Jet,"9th, at Terrace plc",Desert City,CO,00123</code></pre></div>
+
+<h2>Docker - <code>docker</code></h2>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="docker"><pre><code># syntax=docker/dockerfile:1
+FROM ubuntu:18.04
+COPY . /app
+RUN make /app
+CMD python /app/app.py</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+<h2>Markup - <code>svg</code></h2>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="html"><pre><code><p>Hello World!</p></code></pre></div>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="xml"><pre><code><?xml version="1.0" encoding="utf-8"?>
+<svg></svg></code></pre></div>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="svg"><pre><code><?xml version="1.0" encoding="utf-8"?>
+<svg></svg></code></pre></div>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="mathml"><pre><code>∑ i = 1 p ∑ j = 1 q ∑ k = 1 r a i j b j k c k i
+</code></pre></div>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="ssml"><pre><code><speak>
+  Here are <say-as interpret-as="characters">SSML</say-as> samples.
+  I can pause <break time="3s"/>.
+  I can play a sound
+  <audio src="https://www.example.com/MY_MP3_FILE.mp3">didn't get your MP3 audio file</audio>.
+  I can speak in cardinals. Your number is <say-as interpret-as="cardinal">10</say-as>.
+</speak></code></pre></div>
+
+<div class="c-bolt-code-snippet" data-bolt-lang="rss"><pre><code><title>Earth Invaded</title>
+  <link>http://news.example.com/2004/12/17/invasion</link>
+  <description>The earth was attacked by an invasion fleet
+    from halfway across the galaxy; luckily, a fatal
+    miscalculation of scale resulted in the entire armada
+    being eaten by a small dog.
+  </description></code></pre></div>
+
+
+
+CSS
+
+markup
+
+JSON
+
+REST
+
+bash
+
+CSV
+
+Docker
+
+HTTP
+
+React
+
+SQL
+
+XML
+
+HTML #}
+
+{# <h2>Twig - <code>twig</code></h2>
+<pre class="e-bolt-code-snippet e-bolt-code-snippet--dark"><code class="language-twig e-bolt-code-snippet--dark">{% verbatim %}{% include '@bolt-elements-button/button.twig' with {
+  content: 'This is a button',
+  attributes: {
+    type: 'button'
+  }
+} only %}{% endverbatim %}</code></pre>
+
+<h2>HTML - <code>html</code></h2>
+<pre class="e-bolt-code-snippet e-bolt-code-snippet--dark"><code class="language-html e-bolt-code-snippet--dark">&#x3C;!DOCTYPE html&#x3E;
+&#x3C;html&#x3E;
+&#x3C;body&#x3E;
+
+&#x3C;p&#x3E;This is a paragraph.&#x3C;/p&#x3E;
+
+&#x3C;/body&#x3E;
+&#x3C;/html&#x3E;</code></pre>
+
+
+ #}
+
+
+
+{# <h2>bash</h2>
+<bolt-code-snippet copy lang="bash"></bolt-code-snippet>
+
+<h2>c</h2>
+<bolt-code-snippet copy lang="c">typedef struct {
+  void* arg_socket;
+  zmq_msg_t* arg_msg;
+  char* arg_string;
+  unsigned long arg_len;
+  int arg_int, arg_command;
+
+  int signal_fd;
+  int pad;
+  void* context;
+  sem_t sem;
+} acl_zmq_context;
+</bolt-code-snippet>
+
+
+<h2>css</h2>
+<bolt-code-snippet copy lang="css">p {
+  color: red;
+  text-align: center;
+}
+</bolt-code-snippet>
+
+
+<h2>csv</h2>
+<bolt-code-snippet lang="csv">John,Doe,120 jefferson st.,Riverside, NJ, 08075
+Jack,McGinnis,220 hobo Av.,Phila, PA,09119
+"John ""Da Man""",Repici,120 Jefferson St.,Riverside, NJ,08075
+Stephen,Tyler,"7452 Terrace ""At the Plaza"" road",SomeTown,SD, 91234
+,Blankman,,SomeTown, SD, 00298
+"Joan ""the bone"", Anne",Jet,"9th, at Terrace plc",Desert City,CO,00123
+</bolt-code-snippet>
+
+
+<h2>docker</h2>
+<bolt-code-snippet lang="docker"># syntax=docker/dockerfile:1
+FROM ubuntu:18.04
+COPY . /app
+RUN make /app
+CMD python /app/app.py
+</bolt-code-snippet>
+
+
+<h2>html</h2>
+<bolt-code-snippet lang="html"><h1>Headline</h1>
+</bolt-code-snippet>
+
+
+<h2>http</h2>
+<bolt-code-snippet lang="http">HTTP/1.1 200 OK
+Date: Mon, 27 Jul 2009 12:28:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+Content-Length: 88
+Content-Type: text/html
+Connection: Closed
+</bolt-code-snippet>
+
+
+
+
+
+<h2>json</h2>
+<bolt-code-snippet lang="json">
+</bolt-code-snippet>
+
+
+<h2>jsx</h2>
+<bolt-code-snippet lang="jsx">const element = <h1>Hello, world!</h1>;
+</bolt-code-snippet>
+
+
+<h2>markdown</h2>
+<bolt-code-snippet lang="markdown"># Heading level 1
+</bolt-code-snippet>
+
+
+<h2>rest</h2>
+<bolt-code-snippet lang="rest">[
+	["field", ":scale:"], " 50 %\r\n\t",
+	["field", ":alt:"], " map to buried treasure\r\n\r\n",
+
+	["field", ":width:"], " 11\r\n",
+	["field", ":height:"], " 11"
+]
+</bolt-code-snippet>
+
+
+<h2>scss</h2>
+<bolt-code-snippet lang="scss">nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+</bolt-code-snippet>
+
+
+<h2>sql</h2>
+<bolt-code-snippet lang="sql">SELECT * FROM table_name;
+</bolt-code-snippet>
+
+
+<h2>tsx</h2>
+<bolt-code-snippet lang="tsx">interface Nothing {}
+</bolt-code-snippet>
+
+
+<h2>twig</h2>
+<bolt-code-snippet lang="twig">{% verbatim %}{{ var }}{% endverbatim %}
+</bolt-code-snippet>
+
+
+<h2>xml</h2>
+<bolt-code-snippet lang="xml"><note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
+</bolt-code-snippet>
+
+
+<h2>yaml</h2>
+<bolt-code-snippet lang="yaml"># An employee record
+martin:
+  name: Martin D'vloper
+  job: Developer
+  skill: Elite
+</bolt-code-snippet> #}
