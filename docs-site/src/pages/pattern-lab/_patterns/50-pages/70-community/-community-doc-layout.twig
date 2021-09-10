@@ -207,9 +207,6 @@
 {% endset %}
 
 {% set holy_grail_content %}
-  {# <bolt-stack spacing="medium">
-    {{ state_select }}
-  </bolt-stack> #}
   <bolt-stack spacing="large">
     {% set item_1 %}
       {% include '@bolt-elements-text-link/text-link.twig' with {
@@ -402,16 +399,11 @@
   </bolt-stack>
 {% endset %}
 {% set sidebar_content %}
-  {# <bolt-stack>
-    <div class="u-bolt-padding-right-small u-bolt-padding-left-small">
-      <form>
-        {% include '@bolt-components-typeahead/typeahead.twig' with {
-          input_placeholder: 'Search in book',
-        } only %}
-      </form>
-    </div>
-  </bolt-stack> #}
-
+  {% set icon_external_link %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'external-link',
+    } only %}
+  {% endset %}
   {% set level_9_items %}
     {% include '@bolt-components-side-nav/side-nav-li.twig' with {
       link: {
@@ -553,7 +545,6 @@
         content: 'Level 1 page (with nested links)',
         attributes: {
           href: 'https://pega.com',
-          style: 'font-weight: var(--bolt-type-font-weight-semibold)',
         },
       },
       children: level_2_list,
@@ -563,7 +554,6 @@
         content: 'Level 1 page (current)',
         attributes: {
           href: 'https://pega.com',
-          style: 'font-weight: var(--bolt-type-font-weight-semibold)',
         },
       },
       current: true,
@@ -573,7 +563,6 @@
         content: 'Level 1 page',
         attributes: {
           href: 'https://pega.com',
-          style: 'font-weight: var(--bolt-type-font-weight-semibold)',
         },
       },
     } only %}
@@ -582,7 +571,6 @@
         content: 'Level 1 page',
         attributes: {
           href: 'https://pega.com',
-          style: 'font-weight: var(--bolt-type-font-weight-semibold)',
         },
       },
     } only %}
@@ -591,7 +579,6 @@
         content: 'Level 1 page',
         attributes: {
           href: 'https://pega.com',
-          style: 'font-weight: var(--bolt-type-font-weight-semibold)',
         },
       },
     } only %}
@@ -600,7 +587,17 @@
         content: 'Level 1 page',
         attributes: {
           href: 'https://pega.com',
-          style: 'font-weight: var(--bolt-type-font-weight-semibold)',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 external link',
+        icon: icon_external_link,
+        attributes: {
+          href: 'https://pega.com',
+          target: '_blank',
+          rel: 'noopener',
         },
       },
     } only %}
@@ -727,7 +724,6 @@
       trigger_label: 'Book Navigation',
       attributes: {
         class: 't-bolt-gray-xlight',
-        style: '-webkit-hyphens: none; -ms-hyphens: none; hyphens: none;',
       },
     } only %}
   {% endset %}
