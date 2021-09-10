@@ -42,7 +42,7 @@
 
       {% if status.locked %}
         <div class="c-bolt-teaser__signifier-locked">
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'lock-solid',
           } only %}
         </div>
@@ -98,12 +98,12 @@
     {% if status.views or like or share or download %}
       <div class="c-bolt-teaser__actions-and-views">
         {% if status.views %}
-          <div class="c-bolt-teaser__views">
-            {% include '@bolt-components-icon/icon.twig' with {
+          {% set _icon_eye %}
+            {% include '@bolt-elements-icon/icon.twig' with {
               name: 'eye',
             } only %}
-            {{ status.views }} {{ 'views'|t }}
-          </div>
+          {% endset %}
+          <div class="c-bolt-teaser__views"><span class="c-bolt-teaser__views--icon">{{ _icon_eye|spaceless }}</span>{{ status.views }} {{ 'views'|t }}</div>
         {% endif %}
         {% if like or share or download %}
           <ul class="c-bolt-teaser__action-list">
