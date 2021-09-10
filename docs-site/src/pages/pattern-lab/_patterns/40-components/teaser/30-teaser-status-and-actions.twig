@@ -102,14 +102,17 @@
         name: 'download',
       } only %}
     {% endset %}
-    {% include '@bolt-elements-text-link/text-link.twig' with {
-      content: 'Download slides',
-      icon_before: icon_download,
-      reversed_underline: true,
-      attributes: {
-        href: 'https://www.pega.com/',
-      },
-    } only %}
+    <bolt-tooltip>
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Download slides',
+        icon_before: icon_download,
+        reversed_underline: true,
+        attributes: {
+          href: 'https://www.pega.com/',
+        },
+      } only %}
+      <span slot="content">PDF, 3 pages, 2.3mb</span>
+    </bolt-tooltip>
   {% endset %}
 
   <div style="max-width: 60ch;">
