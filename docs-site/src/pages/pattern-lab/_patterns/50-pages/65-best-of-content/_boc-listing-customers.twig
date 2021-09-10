@@ -109,6 +109,22 @@
     } only %}
   {% endset %}
 
+  {% set download %}
+    {% set icon_download %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'download',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Download slides',
+      icon_before: icon_download,
+      reversed_underline: true,
+      attributes: {
+        href: 'https://www.pega.com/',
+      },
+    } only %}
+  {% endset %}
+
   {% set video_image %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
@@ -251,6 +267,7 @@
     {% set video_teaser_props = video_teaser_props|merge({
       like: like,
       share: share,
+      download: download
     }) %}
     {% set external_link_teaser_props = external_link_teaser_props|merge({
       like: like,
@@ -263,6 +280,7 @@
     {% set featured_teaser_props = featured_teaser_props|merge({
       like: like,
       share: share,
+      download: download
     }) %}
   {% endif %}
 
