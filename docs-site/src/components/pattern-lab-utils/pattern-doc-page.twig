@@ -1,16 +1,3 @@
-{% macro code_example(code, lang) %}
-  <bolt-code-snippet syntax="dark" lang="{{ lang }}">{% spaceless %}
-    {{ code|replace({
-      '<': '&lt;',
-      '>': '&gt;',
-      '{': '&lbrace;',
-      '}': '&rbrace;',
-      '%': '&percnt;',
-    })|trim|raw }}
-  {% endspaceless %}</bolt-code-snippet>
-{% endmacro %}
-{% import _self as snippet %}
-
 {% set band_content %}
   <bolt-text headline tag="h2" font-size="xlarge">
     {{ title|default('Insert title') }}
@@ -39,7 +26,7 @@
             {{ demo }}
           </div>
         {% else %}
-          {{ demo }}       
+          {{ demo }}
         {% endif %}
       {% endset %}
       {% if demo_light_dark %}
@@ -62,7 +49,11 @@
       <bolt-tab-panel>
         <div slot="label">Twig</div>
         {% if twig_markup %}
-          {% include snippet.code_example(twig_markup, 'twig') %}
+          {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+            content: twig_markup,
+            lang: 'twig',
+            syntax: 'dark'
+          } only %}
         {% else %}
           <bolt-banner align="start" status="warning">
             <bolt-icon name="warning" size="small" aria-hidden="true"></bolt-icon>
@@ -73,7 +64,11 @@
       <bolt-tab-panel {% if html_markup and not twig_markup %}selected{% endif %}>
         <div slot="label">HTML</div>
         {% if html_markup %}
-          {% include snippet.code_example(html_markup, 'html') %}
+          {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+            content: html_markup,
+            lang: 'html',
+            syntax: 'dark'
+          } only %}
         {% else %}
           <bolt-banner align="start" status="warning">
             <bolt-icon name="warning" size="small" aria-hidden="true"></bolt-icon>
