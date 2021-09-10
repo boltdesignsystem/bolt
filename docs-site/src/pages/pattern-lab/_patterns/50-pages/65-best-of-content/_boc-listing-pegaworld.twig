@@ -263,49 +263,36 @@
     time: '4:55',
   } %}
 
-  {% if phase1 or phase2 %}
-    {% set video_teaser_props = video_teaser_props|merge({
-      like: like,
-      share: share,
-      download: download
-    }) %}
-    {% set external_link_teaser_props = external_link_teaser_props|merge({
-      like: like,
-      share: share,
-    }) %}
-    {% set pdf_teaser_props = pdf_teaser_props|merge({
-      like: like,
-      share: share,
-    }) %}
-    {% set featured_teaser_props = featured_teaser_props|merge({
-      like: like,
-      share: share,
-      download: download
-    }) %}
-  {% endif %}
-
-  {% if phase2 %}
-    {% set video_teaser_props = video_teaser_props|merge({
-      status: {
-        views: '27',
-      }
-    }) %}
-    {% set external_link_teaser_props = external_link_teaser_props|merge({
-      status: {
-        views: '3k',
-      }
-    }) %}
-    {% set pdf_teaser_props = pdf_teaser_props|merge({
-      status: {
-        views: '66',
-      }
-    }) %}
-    {% set featured_teaser_props = featured_teaser_props|merge({
-      status: {
-        views: '20k',
-      }
-    }) %}
-  {% endif %}
+  {% set video_teaser_props = video_teaser_props|merge({
+    like: like,
+    share: share,
+    download: download,
+    status: {
+      views: '27',
+    }
+  }) %}
+  {% set external_link_teaser_props = external_link_teaser_props|merge({
+    like: like,
+    share: share,
+    status: {
+      views: '3k',
+    }
+  }) %}
+  {% set pdf_teaser_props = pdf_teaser_props|merge({
+    like: like,
+    share: share,
+    status: {
+      views: '66',
+    }
+  }) %}
+  {% set featured_teaser_props = featured_teaser_props|merge({
+    like: like,
+    share: share,
+    download: download,
+    status: {
+      views: '20k',
+    }
+  }) %}
 
   {% set item_video %}
     {% include '@bolt-components-teaser/teaser.twig' with video_teaser_props only %}
@@ -577,34 +564,26 @@
       } only %}
     {% endset %}
 
-    {% if phase1 or phase2 %}
-      <form class="c-bolt-form">
-        {% if phase1 %}
-          {% set form_items = [year_select, filter_button] %}
-        {% else %}
-          {% set form_items = []  %}
-        {% endif %}
+    <form class="c-bolt-form">
+      {% set form_items = [year_select, filter_button] %}
 
-        {% set form_list %}
-          {% include '@bolt-components-list/list.twig' with {
-            display: 'inline',
-            align: 'start',
-            items: form_items,
-          } only %}
-        {% endset %}
+      {% set form_list %}
+        {% include '@bolt-components-list/list.twig' with {
+          display: 'inline',
+          align: 'start',
+          items: form_items,
+        } only %}
+      {% endset %}
 
-        <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small">
-          <div class="o-bolt-grid__cell u-bolt-width-6/12@small u-bolt-flex-grow">
-            {{ form_list }}
-          </div>
-          <div class="o-bolt-grid__cell u-bolt-flex-shrink">
-            {% if phase2 %}
-              {{ sort_select }}
-            {% endif %}
-          </div>
+      <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small">
+        <div class="o-bolt-grid__cell u-bolt-width-6/12@small u-bolt-flex-grow">
+          {{ form_list }}
         </div>
-      </form>
-    {% endif %}
+        <div class="o-bolt-grid__cell u-bolt-flex-shrink">
+          {{ sort_select }}
+        </div>
+      </div>
+    </form>
 
     <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
@@ -641,7 +620,6 @@
     theme: 'xlight',
   } only %}
 
-  {% if phase1 or phase2 %}
     {% include '@pl/_boc-like-button-js.twig' %}
-  {% endif %}
+    
 {% endblock %}
