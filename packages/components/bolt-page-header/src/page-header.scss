@@ -202,7 +202,8 @@
   align-items: center;
 
   @include bolt-mq(xlarge) {
-    > bolt-icon {
+    > bolt-icon,
+    > .e-bolt-icon {
       transform: translateY(
         0.5px
       ); // Temporary fix for icon + text bad vertical alignment above xlarge breakpoint.
