@@ -80,11 +80,10 @@
         {% set image %}
           {% include '@bolt-elements-image/image.twig' with {
             attributes: {
-              src: '/images/placeholders/tout-4x3-climber.jpg',
-              alt: 'A Rock Climber',
-              ratio: false,
-              background: true,
-              loading: 'lazy',
+              src: 'https://via.placeholder.com/800x450',
+              alt: 'Alt text.',
+              width: 800,
+              height: 450,
             }
           } only %}
         {% endset %}
@@ -170,6 +169,8 @@
         background: true,
         attributes: {
           src: '/images/backgrounds/ocpl-contact-bg-2.svg',
+          alt: '',
+          loading: 'lazy',
           style: '--e-bolt-image-position: 5vw 2vw',
         },
       } only %}
@@ -280,6 +281,7 @@
   background: true,
   attributes: {
     src: '/images/backgrounds/ocpl-bg-3.svg',
+    alt: '',
     style: '--e-bolt-image-position: 50vw -34vw;',
     class: 'c-base-ocpl-bg-image',
   },

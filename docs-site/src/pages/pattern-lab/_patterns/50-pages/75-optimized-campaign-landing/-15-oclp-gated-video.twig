@@ -173,20 +173,30 @@
         } only %}
       {% endset %}
       {% set video_thumbnail %}
+        {% set chip %}
+          {% include '@bolt-components-chip/chip.twig' with {
+            text: 'Preview',
+            size: 'small',
+            border_radius: 'small',
+            color: 'violet',
+          } only %}
+        {% endset %}
         {% set image %}
           {% include '@bolt-elements-image/image.twig' with {
             attributes: {
-              src: '/images/placeholders/tout-4x3-climber.jpg',
-              alt: 'A Rock Climber',
-              ratio: false,
-              background: true,
+              src: 'https://via.placeholder.com/800x450',
+              alt: 'Alt text.',
               loading: 'lazy',
+              width: 800,
+              height: 450,
             }
           } only %}
         {% endset %}
         {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
           content: image,
           duration: '4:55',
+          video_title: 'This is a Video Title',
+          chip: chip,
         } only %}
       {% endset %}
       {% include '@bolt-components-trigger/trigger.twig' with {
