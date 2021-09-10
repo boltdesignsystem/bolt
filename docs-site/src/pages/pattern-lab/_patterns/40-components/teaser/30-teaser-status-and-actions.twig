@@ -8,7 +8,7 @@
   <bolt-li>Locked status can be set via the <bolt-code-snippet display="inline">status.locked</bolt-code-snippet> prop. If this is set, a lock icon will appear with the signifier.</bolt-li>
   <bolt-li>Pass a like button into the <bolt-code-snippet display="inline">like</bolt-code-snippet> prop. Example code snippet is shown below.</bolt-li>
   <bolt-li>Pass a share popover menu into the <bolt-code-snippet display="inline">share</bolt-code-snippet> prop. Boundary is required on the popover. Example code snippet is shown below.</bolt-li>
-  <bolt-li>Pass a download cta button into the <bolt-code-snippet display="inline">download_cta</bolt-code-snippet> prop. Example code snippet is shown below.</bolt-li>
+  <bolt-li>Pass a download cta button into the <bolt-code-snippet display="inline">download</bolt-code-snippet> prop. Example code snippet is shown below.</bolt-li>
 </bolt-ol>
 {% endset %}
 
@@ -96,22 +96,14 @@
       boundary: '.js-bolt-target-teaser',
     } only %}
   {% endset %}
-  {% set download_cta %}
+  {% set download %}
     {% set icon_download %}
       {% include '@bolt-elements-icon/icon.twig' with {
         name: 'download',
       } only %}
     {% endset %}
-    {% set sr_only %}
-      {% include "@bolt-components-headline/text.twig" with {
-        text: "Downloads a PDF file.",
-        attributes: {
-          class: 'u-bolt-visuallyhidden'
-        }
-      } only %}
-    {% endset %}
     {% include '@bolt-elements-text-link/text-link.twig' with {
-      content: 'Download slides (PDF, 3 pages, 2.3mb)' ~ sr_only,
+      content: 'Download slides',
       icon_before: icon_download,
       reversed_underline: true,
       attributes: {
@@ -136,7 +128,7 @@
       },
       like: like,
       share: share,
-      download_cta: download_cta,
+      download: download,
       status: {
         views: '28k',
         locked: true,
@@ -199,22 +191,14 @@
     boundary: '.js-bolt-target-teaser', // JS target for containing the popover within the teaser.
   } only %}
 {% endset %}
-{% set download_cta %}
+{% set download %}
   {% set icon_download %}
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'download',
     } only %}
   {% endset %}
-  {% set sr_only %}
-    {% include "@bolt-components-headline/text.twig" with {
-      text: "Downloads a PDF file.",
-      attributes: {
-        class: 'u-bolt-visuallyhidden'
-      }
-    } only %}
-  {% endset %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Download slides (PDF, 3 pages, 2.3mb)' ~ sr_only,
+    content: 'Download slides',
     icon_before: icon_download,
     reversed_underline: true,
     attributes: {
@@ -227,7 +211,7 @@
 {% include '@bolt-components-teaser/teaser.twig' with {
   like: like,
   share: share,
-  download_cta: download_cta,
+  download: download,
   status: {
     views: '28k',
     locked: true,

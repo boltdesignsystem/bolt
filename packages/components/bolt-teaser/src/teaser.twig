@@ -95,7 +95,7 @@
       </div>
     {% endif %}
 
-    {% if status.views or like or share or download_cta %}
+    {% if status.views or like or share or download %}
       <div class="c-bolt-teaser__actions-and-views">
         {% if status.views %}
           <div class="c-bolt-teaser__views">
@@ -105,7 +105,7 @@
             {{ status.views }} {{ 'views'|t }}
           </div>
         {% endif %}
-        {% if like or share or download_cta %}
+        {% if like or share or download %}
           <ul class="c-bolt-teaser__action-list">
             {% if like %}
               <li class="c-bolt-teaser__action-list-item">
@@ -117,9 +117,9 @@
                 {{ share }}
               </li>
             {% endif %}
-            {% if download_cta %}
+            {% if download %}
               <li class="c-bolt-teaser__action-list-item">
-                {{ download_cta }}
+                {{ download }}
               </li>
             {% endif %}
           </ul>
