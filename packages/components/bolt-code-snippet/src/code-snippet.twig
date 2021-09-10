@@ -1,56 +1,34 @@
-{% set schema = bolt.data.components['@bolt-components-code-snippet'].schema %}
+{% set schema = bolt.data.components["@bolt-components-code-snippet"].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set attributes = create_attribute(attributes | default({})) %}
-{% set code_attributes = create_attribute({}) %}
-{% set base_class = "c-bolt-code-snippet" %}
-{% set attributes = create_attribute(attributes | default({})) %}
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
 
-{% set display_options = schema.properties.display.enum %}
-{% set display = display in display_options ? display : schema.properties.display.default %}
-
-{% set lang_options = schema.properties.lang.enum %}
-{% set lang = lang in lang_options ? lang : schema.properties.lang.default %}
-
-{% set syntax_options = schema.properties.syntax.enum %}
-{% set syntax = syntax in syntax_options ? syntax : schema.properties.syntax.default %}
-
+{# Array of classes based on the defined + default props #}
 {% set classes = [
-  base_class,
-  "#{base_class}-syntax--#{syntax}",
-  "language-#{lang}"
+  'c-bolt-code-snippet',
+  'c-bolt-code-snippet--'  ~ this.data.syntax.value,
 ] %}
 
-{% set code_classes = [
-  "#{base_class}__code",
-  "#{base_class}__code--#{display}",
-  "#{base_class}-syntax--#{syntax}",
-  "language-#{lang}",
-  "nohighlight"
-] %}
+{% set attributes = attributes.setAttribute('data-bolt-lang', this.data.lang.value) %}
 
-{% set updated_content %}{% if display == "inline" %}
-{% spaceless %}{{ content }}{% endspaceless %}
-{% else %}{{ content }}{% endif %}
-{% endset %}
+{% if this.data.hide_copy.value %}
+  {% set attributes = attributes.setAttribute('data-bolt-hide-copy', '') %}
+{% endif %}
 
-{% set code_content %}
-  <code {{ code_attributes.addClass(code_classes) }} is="shadow-root">{{ updated_content | e }}</code>
-{% endset %}
+{% if this.data.hide_title.value %}
+  {% set attributes = attributes.setAttribute('data-bolt-hide-title', '') %}
+{% endif %}
 
-<bolt-code-snippet
-  {% if display %} display="{{ display }}" {% endif %}
-  {% if lang %} lang="{{ lang }}" {% endif %}
-  {% if syntax %} syntax="{{ syntax }}" {% endif %}
->
-  {% if display == "inline" %}
-    {% spaceless %}
-      {{ code_content }}
-    {% endspaceless %}
-  {% else %}
-    <pre {{ attributes.addClass(classes) }}>{{ code_content }}</pre>
-  {% endif %}
-</bolt-code-snippet>
+{% if lang_title %}
+  {% set attributes = attributes.setAttribute('data-bolt-lang-title', lang_title) %}
+{% endif %}
+
+{# Template #}
+<div {{ attributes.addClass(classes)}}>
+<pre><code>{% spaceless %}{{ content|e }}{% endspaceless %}</code></pre>
+</div>

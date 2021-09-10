@@ -4,60 +4,61 @@
     Bolt Code Snippet
 \* ------------------------------------ */
 
-$bolt-code-snippet-border-radius: bolt-border-radius(small);
-$bolt-code-snippet-border: 1px solid var(--bolt-color-white);
-$bolt-code-snippet-background-color: var(--bolt-color-gray-xlight);
-$bolt-code-snippet-shadow: 0 0 6px var(--bolt-color-gray-xlight);
+.c-bolt-code-snippet {
+  overflow: hidden;
+  margin: 0 0 var(--bolt-spacing-y-medium) 0;
+  border-radius: bolt-border-radius(small);
 
-// Custom element default styles
-bolt-code-snippet {
   &:last-child {
-    .c-bolt-code-snippet {
-      margin-bottom: 0;
-    }
+    margin-bottom: 0;
+  }
+
+  pre {
+    max-height: 50vh;
+    border: none;
+    box-shadow: none; // @todo: fix box-shadow in dark syntax mode, turning off for now
   }
 }
 
-.c-bolt-code-snippet,
-.c-bolt-code-snippet__code {
-  font-family: var(--bolt-type-font-family-code);
-  font-size: var(--bolt-type-font-size-small);
-  font-weight: var(--bolt-type-font-weight-regular);
-  white-space: pre-wrap;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: break-word;
-  color: var(--bolt-color-black);
-  text-align: left;
-  border-radius: $bolt-code-snippet-border-radius;
-}
-
-.c-bolt-code-snippet {
-  @include bolt-horizontal-scroll;
-  display: block;
-  margin: 0 0 var(--bolt-spacing-y-medium) 0;
+.c-bolt-code-snippet__header,
+.c-bolt-code-snippet:before {
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
-  border: $bolt-code-snippet-border;
-  box-shadow: $bolt-code-snippet-shadow;
-  background-color: $bolt-code-snippet-background-color;
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
+  border-bottom: 1px solid var(--bolt-color-gray-light);
+  background: inherit;
 }
 
-.c-bolt-code-snippet__code {
-  margin: 0;
-  letter-spacing: 0.05rem;
+.c-bolt-code-snippet__header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom-color: var(--bolt-color-gray-light);
+  @at-root .c-bolt-code-snippet--dark & {
+    border-bottom-color: var(--bolt-color-gray-dark);
+  }
 }
 
-.c-bolt-code-snippet__code--block {
+.c-bolt-code-snippet.c-bolt-code-snippet--dark:before {
+  border-bottom-color: var(--bolt-color-gray-dark);
+}
+
+.c-bolt-code-snippet:not([data-bolt-hide-title][data-bolt-hide-copy]):not([data-bolt-ready]):before {
+  content: '\00a0'; // non-breaking space, provides same height as header once JS loads, otherwise won't match
   display: block;
-  padding: 0;
-  line-height: var(--bolt-type-line-height-small);
-  background-color: transparent;
 }
 
-.c-bolt-code-snippet__code--inline {
-  display: inline;
-  padding: 2px 0.25rem 2px 0.3rem; // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
-  border: $bolt-code-snippet-border;
-  box-shadow: $bolt-code-snippet-shadow;
-  background-color: $bolt-code-snippet-background-color;
+.c-bolt-code-snippet__copy {
+  margin-left: auto;
+}
+
+.c-bolt-code-snippet__copy--copied {
+  .c-bolt-code-snippet__copy-trigger {
+    display: none;
+  }
+}
+
+.js-bolt-code-snippet__copy:not(.js-bolt-code-snippet__copy--copied) {
+  .c-bolt-code-snippet__copy-confirmation {
+    display: none;
+  }
 }

@@ -3,11 +3,7 @@
   "version": "4.3.0",
   "description": "Text container in a style that is best fit for a monospace font.",
   "keywords": [
-    "bolt design system",
-    "bolt",
-    "css framework",
-    "design system",
-    "components"
+    "bolt design system"
   ],
   "homepage": "https://boltdesignsystem.com",
   "bugs": {
@@ -15,30 +11,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt/"
+    "url": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-code-snippet"
   },
   "license": "MIT",
-  "main": "src/code-snippet.js",
-  "style": "src/code-snippet.scss",
+  "main": "index.js",
+  "style": "index.scss",
   "dependencies": {
     "@bolt/core-v3.x": "^4.3.0",
-    "@bolt/lazy-queue": "^4.3.0",
-    "prismjs": "^1.17.1"
+    "clipboard": "^2.0.8",
+    "prismjs": "^1.24.1"
   },
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
   "maintainers": [
-    {
-      "name": "Salem Ghoweri",
-      "email": "me@salemghoweri.com",
-      "web": "https://github.com/sghoweri"
-    },
     {
       "name": "Mike Mai",
       "email": "boss@mikemai.net",
       "web": "http://mikemai.net/"
+    },
+    {
+      "name": "Dan Morse",
+      "web": "https://github.com/danielamorse"
     }
   ],
   "schema": "code-snippet.schema.js",

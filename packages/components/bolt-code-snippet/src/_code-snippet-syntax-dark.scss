@@ -1,28 +1,27 @@
 // Dark Syntax
 
-$bolt-syntax-dark: 'c-bolt-code-snippet-syntax--dark';
+.c-bolt-code-snippet--dark {
+  &,
+  code,
+  pre {
+    color: var(--bolt-color-gray-xlight);
+    background: var(--bolt-color-navy-xdark);
+  }
 
-code.#{$bolt-syntax-dark},
-pre.#{$bolt-syntax-dark} {
-  color: var(--bolt-color-gray-xlight);
-  background: var(--bolt-color-navy-xdark);
-}
+  pre::-moz-selection,
+  pre ::-moz-selection,
+  code::-moz-selection,
+  code ::-moz-selection {
+    background: var(--bolt-color-navy-xlight);
+  }
 
-pre.#{$bolt-syntax-dark}::-moz-selection,
-pre.#{$bolt-syntax-dark} ::-moz-selection,
-code.#{$bolt-syntax-dark}::-moz-selection,
-code.#{$bolt-syntax-dark} ::-moz-selection {
-  background: var(--bolt-color-navy-xlight);
-}
+  pre::selection,
+  pre ::selection,
+  code::selection,
+  code ::selection {
+    background: var(--bolt-color-navy-xlight);
+  }
 
-pre.#{$bolt-syntax-dark}::selection,
-pre.#{$bolt-syntax-dark} ::selection,
-code.#{$bolt-syntax-dark}::selection,
-code.#{$bolt-syntax-dark} ::selection {
-  background: var(--bolt-color-navy-xlight);
-}
-
-.#{$bolt-syntax-dark} {
   .token.comment,
   .token.prolog,
   .token.doctype,

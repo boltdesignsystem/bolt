@@ -1,28 +1,27 @@
 // Light Syntax
 
-$bolt-syntax-light: 'c-bolt-code-snippet-syntax--light';
+.c-bolt-code-snippet--light {
+  &,
+  code,
+  pre {
+    color: var(--bolt-color-black);
+    background: var(--bolt-color-gray-xlight);
+  }
 
-code.#{$bolt-syntax-light},
-pre.#{$bolt-syntax-light} {
-  color: var(--bolt-color-black);
-  background: var(--bolt-color-gray-xlight);
-}
+  pre::-moz-selection,
+  pre ::-moz-selection,
+  code::-moz-selection,
+  code ::-moz-selection {
+    background: var(--bolt-color-navy-xlight);
+  }
 
-pre.#{$bolt-syntax-light}::-moz-selection,
-pre.#{$bolt-syntax-light} ::-moz-selection,
-code.#{$bolt-syntax-light}::-moz-selection,
-code.#{$bolt-syntax-light} ::-moz-selection {
-  background: var(--bolt-color-navy-xlight);
-}
+  pre::selection,
+  pre ::selection,
+  code::selection,
+  code ::selection {
+    background: var(--bolt-color-navy-xlight);
+  }
 
-pre.#{$bolt-syntax-light}::selection,
-pre.#{$bolt-syntax-light} ::selection,
-code.#{$bolt-syntax-light}::selection,
-code.#{$bolt-syntax-light} ::selection {
-  background: var(--bolt-color-navy-xlight);
-}
-
-.#{$bolt-syntax-light} {
   .token.comment,
   .token.prolog,
   .token.doctype,
