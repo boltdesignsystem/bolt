@@ -102,7 +102,7 @@
         name: 'download',
       } only %}
     {% endset %}
-    <bolt-tooltip>
+    {% set tooltip_trigger %}
       {% include '@bolt-elements-text-link/text-link.twig' with {
         content: 'Download slides',
         icon_before: icon_download,
@@ -111,8 +111,11 @@
           href: 'https://www.pega.com/',
         },
       } only %}
-      <span slot="content">PDF, 3 pages, 2.3mb</span>
-    </bolt-tooltip>
+    {% endset %}
+    {% include "@bolt-components-tooltip/tooltip.twig" with {
+      trigger: tooltip_trigger,
+      content: "PDF, 3 pages, 2.3mb",
+    } only %}
   {% endset %}
 
   <div style="max-width: 60ch;">
@@ -200,13 +203,19 @@
       name: 'download',
     } only %}
   {% endset %}
-  {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Download slides',
-    icon_before: icon_download,
-    reversed_underline: true,
-    attributes: {
-      href: 'https://www.pega.com',
-    },
+  {% set tooltip_trigger %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Download slides',
+      icon_before: icon_download,
+      reversed_underline: true,
+      attributes: {
+        href: 'https://www.pega.com/',
+      },
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: tooltip_trigger,
+    content: "PDF, 3 pages, 2.3mb",
   } only %}
 {% endset %}
 
