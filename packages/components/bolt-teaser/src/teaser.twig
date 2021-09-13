@@ -42,7 +42,7 @@
 
       {% if status.locked %}
         <div class="c-bolt-teaser__signifier-locked">
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'lock-solid',
           } only %}
         </div>
@@ -55,7 +55,7 @@
       <div class="c-bolt-teaser__headline">
         {% if headline.link_attributes %}
           {% set _icon_chevron_right %}
-            {% include '@bolt-components-icon/icon.twig' with {
+            {% include '@bolt-elements-icon/icon.twig' with {
               name: 'chevron-right',
             } only %}
           {% endset %}
@@ -99,7 +99,7 @@
       <div class="c-bolt-teaser__actions-and-views">
         {% if status.views %}
           <div class="c-bolt-teaser__views">
-            {% include '@bolt-components-icon/icon.twig' with {
+            {% include '@bolt-elements-icon/icon.twig' with {
               name: 'eye',
             } only %}
             {{ status.views }} {{ 'views'|t }}

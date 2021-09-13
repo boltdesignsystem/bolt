@@ -32,7 +32,7 @@ module.exports = {
     signifier: {
       type: 'object',
       description:
-        'Set the signifier for the teaser. It accepts plain <img> element, the Image component, and the Icon component.',
+        'Set the signifier for the teaser. It accepts plain <img> element, the Image component, and the Icon element.',
     },
     eyebrow_text: {
       type: 'string',
