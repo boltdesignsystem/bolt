@@ -94,7 +94,7 @@ export class BoltCodeSnippet {
 
   setupClipboard() {
     const clipboardTrigger = this.header.querySelector(
-      '.js-bolt-code-snippet__copy-trigger',
+      '.js-bolt-code-snippet-copy-trigger',
     );
 
     if (!clipboardTrigger) return;
@@ -127,21 +127,19 @@ export class BoltCodeSnippet {
   renderHeader() {
     const copyClasses = cx(
       'c-bolt-code-snippet__copy',
-      'js-bolt-code-snippet__copy',
+      'js-bolt-code-snippet-copy',
     );
 
     const copyButtonClasses = cx(
       'e-bolt-text-link',
       'e-bolt-text-link--reversed-underline',
-      'js-bolt-code-snippet__copy-trigger',
+      'js-bolt-code-snippet-copy-trigger',
       { 'u-bolt-hidden': this.copied },
     );
 
     const copyConfirmationClasses = cx(
-      'u-bolt-color-gray',
-      'e-bolt-text-link--reversed-underline',
-      'js-bolt-code-snippet__copy-confirmation',
-      { 'js-bolt-code-snippet__copy--copied': this.copied },
+      'js-bolt-code-snippet-copy-confirmation',
+      { 'u-bolt-hidden': this.copied === false },
     );
 
     render(
@@ -164,9 +162,7 @@ export class BoltCodeSnippet {
                         class="${copyConfirmationClasses}"
                         aria-live="polite"
                       >
-                        <span class="e-bolt-text-link__icon-before"
-                          ><bolt-icon name="check"></bolt-icon></span
-                        >Copied
+                        Copied
                       </span>
                     `
                   : ``}
