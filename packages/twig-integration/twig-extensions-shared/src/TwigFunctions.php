@@ -260,7 +260,7 @@ class TwigFunctions {
         case 'card-w-teaser':
           return '@bolt-components-card-w-teaser/card-w-teaser.twig';
         case 'eyebrow':
-          return '@bolt-components-eyebrow/eyebrow.twig';
+          return '@bolt-components-headline/eyebrow.twig';
         case 'flag':
           return '@bolt-components-flag/flag.twig';
         case 'headline':
