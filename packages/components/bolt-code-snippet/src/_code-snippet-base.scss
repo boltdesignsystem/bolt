@@ -15,8 +15,8 @@
 
   pre {
     max-height: 50vh;
-    border: none;
-    box-shadow: none; // @todo: fix box-shadow in dark syntax mode, turning off for now
+    border: 0;
+    box-shadow: none;
   }
 }
 
@@ -32,14 +32,16 @@
 .c-bolt-code-snippet__header {
   display: flex;
   justify-content: space-between;
-  border-bottom-color: var(--bolt-color-gray-light);
-  @at-root .c-bolt-code-snippet--dark & {
-    border-bottom-color: var(--bolt-color-gray-dark);
-  }
 }
 
-.c-bolt-code-snippet.c-bolt-code-snippet--dark:before {
-  border-bottom-color: var(--bolt-color-gray-dark);
+.c-bolt-code-snippet--dark {
+  &:before {
+    border-bottom-color: var(--bolt-color-gray-dark);
+  }
+
+  .c-bolt-code-snippet__header {
+    border-bottom-color: var(--bolt-color-gray-dark);
+  }
 }
 
 .c-bolt-code-snippet:not([data-bolt-hide-title][data-bolt-hide-copy]):not([data-bolt-ready]):before {

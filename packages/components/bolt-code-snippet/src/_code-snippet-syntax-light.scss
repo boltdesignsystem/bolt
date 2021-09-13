@@ -1,6 +1,14 @@
 // Light Syntax
 
 .c-bolt-code-snippet--light {
+  // Redefine vars that text link styles are depended on.
+  --m-bolt-text: var(--bolt-color-black);
+  --m-bolt-headline: var(--bolt-color-navy);
+  --m-bolt-link: var(--bolt-color-navy-light);
+
+  border: 1px solid var(--bolt-color-white);
+  box-shadow: 0 0 6px rgba(bolt-color(gray, light), 0.8); // Sass function is used due to transparency needed.
+
   &,
   code,
   pre {
