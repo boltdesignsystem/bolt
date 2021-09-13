@@ -1,0 +1,31 @@
+{% set schema = bolt.data.components['@bolt-components-page-footer'].schema['page-footer-nav-ul'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set headline_attributes = create_attribute(headline.attributes|default({})) %}
+
+{% set classes = [
+  'c-page-footer__nav-item',
+  this.data.category.value ? 'c-page-footer__nav-item--' ~ this.data.category.value,
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+  <{{ headline.tag }} {{ headline_attributes.addClass('c-page-footer__nav-headline') }}>
+    {{ headline.content }}
+  </{{ headline.tag }}>
+  <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
+    {{ headline.content }}
+    <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'chevron-down',
+      } only %}
+    </span>
+  </button>
+  <ul class="c-page-footer__nav-list">
+    {{ content }}
+  </ul>
+</div>
