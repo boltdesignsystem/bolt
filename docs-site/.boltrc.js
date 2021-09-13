@@ -88,7 +88,6 @@ const config = deepmerge(baseConfig, {
        */
 
       '@bolt/components-radio-switch',
-      '@bolt/components-page-footer',
       '@bolt/docs-search',
       // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/shadow-toggle',

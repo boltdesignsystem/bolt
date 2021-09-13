@@ -15,7 +15,7 @@ iconSchema.description =
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Navbar item',
+  title: 'Navbar li',
   type: 'object',
   required: ['link'],
   properties: {

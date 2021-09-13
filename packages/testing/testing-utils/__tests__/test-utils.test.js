@@ -29,7 +29,6 @@ describe('test-utils', () => {
       '@bolt/starter-kit',
       '@bolt/components-band',
       '@bolt/components-hero',
-      '@bolt/components-page-footer',
     ]);
   });
 
