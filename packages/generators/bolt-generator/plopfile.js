@@ -82,11 +82,6 @@ module.exports = plop => {
       const basicActions = [
         {
           type: 'add',
-          path: `${data.root}/${data.component.dest}/index.js`,
-          templateFile: `${data.component.templates}/component.index.js`,
-        },
-        {
-          type: 'add',
           path: `${data.root}/${data.component.dest}/index.scss`,
           templateFile: `${data.component.templates}/component.index.scss`,
         },
@@ -126,6 +121,11 @@ module.exports = plop => {
         basicActions.push(
           {
             type: 'add',
+            path: `${data.root}/${data.component.dest}/index.js`,
+            templateFile: `${data.component.templates}/web-component.index.js`,
+          },
+          {
+            type: 'add',
             path: `${data.root}/${data.component.dest}/${data.component.test}/{{ kebabCase name }}.js`,
             templateFile: `${data.component.templates}/web-component.test.js`,
           },
@@ -142,6 +142,11 @@ module.exports = plop => {
         );
       } else {
         basicActions.push(
+          {
+            type: 'add',
+            path: `${data.root}/${data.component.dest}/index.js`,
+            templateFile: `${data.component.templates}/component.index.js`,
+          },
           {
             type: 'add',
             path: `${data.root}/${data.component.dest}/${data.component.test}/{{ kebabCase name }}.js`,
