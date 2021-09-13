@@ -23,7 +23,10 @@
 .c-bolt-code-snippet__header,
 .c-bolt-code-snippet:before {
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
+  font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--bolt-color-gray-dark);
   line-height: var(--bolt-type-line-height-xsmall);
   border-bottom: 1px solid var(--bolt-color-gray-light);
   background: inherit;
@@ -40,6 +43,7 @@
   }
 
   .c-bolt-code-snippet__header {
+    color: var(--bolt-color-gray);
     border-bottom-color: var(--bolt-color-gray-dark);
   }
 }
