@@ -85,29 +85,50 @@
         {% endcell %}
 
         {% set icon_1 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "app-development",
-            size: "xlarge",
-            background: "circle",
-            color: "teal"
           } only %}
         {% endset %}
 
         {% set icon_2 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "sales-automation",
-            size: "xlarge",
-            background: "circle",
-            color: "teal"
           } only %}
         {% endset %}
 
         {% set icon_3 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "customer-service",
+          } only %}
+        {% endset %}
+
+        {% set icon_shape_1 %}
+          {% include "@bolt-elements-shape/shape.twig" with {
+            content: icon_1,
             size: "xlarge",
-            background: "circle",
-            color: "teal"
+            attributes: {
+              class: "t-bolt-teal"
+            }
+          } only %}
+        {% endset %}
+
+        {% set icon_shape_2 %}
+          {% include "@bolt-elements-shape/shape.twig" with {
+            content: icon_2,
+            size: "xlarge",
+            attributes: {
+              class: "t-bolt-teal"
+            }
+          } only %}
+        {% endset %}
+
+        {% set icon_shape_3 %}
+          {% include "@bolt-elements-shape/shape.twig" with {
+            content: icon_3,
+            size: "xlarge",
+            attributes: {
+              class: "t-bolt-teal"
+            }
           } only %}
         {% endset %}
 
@@ -117,7 +138,7 @@
               valign: "middle",
               url: "#!",
               figure: {
-                content: icon_1
+                content: icon_shape_1
               },
               items: [
                 {
@@ -138,7 +159,7 @@
               valign: "middle",
               url: "#!",
               figure: {
-                content: icon_2
+                content: icon_shape_2
               },
               items: [
                 {
@@ -158,7 +179,7 @@
               valign: "middle",
               url: "#!",
               figure: {
-                content: icon_3
+                content: icon_shape_3
               },
               items: [
                 {

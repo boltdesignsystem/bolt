@@ -28,9 +28,8 @@
 
 {% set default_trigger %}
   <div class="{{ base_class }}__action">
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'asset-link',
-      position: 'before',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'link',
     } only %}
     <span class="{{ base_class }}__action-text">
       {{ trigger_text }}
@@ -40,7 +39,7 @@
 
 {% set default_transition %}
   <span class="{{ base_class }}__transition-animation">
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'refresh',
     } only %}
   </span>
@@ -48,9 +47,8 @@
 
 {% set default_confirmation %}
   <div class="{{ base_class }}__info js-bolt-copy-to-clipboard__trigger">
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'check',
-      position: 'before',
     } only %}
     {{ copiedText }}
   </div>
