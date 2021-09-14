@@ -11,7 +11,7 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-code-snippet',
-  'c-bolt-code-snippet--'  ~ this.data.syntax.value,
+  this.data.syntax.value != 'none' ? 'c-bolt-code-snippet--'  ~ this.data.syntax.value : '',
 ] %}
 
 {% set attributes = attributes.setAttribute('data-bolt-lang', this.data.lang.value) %}
