@@ -6,9 +6,9 @@
   } only %}
 {% endset %}
 
-{% set icon_trash %}
+{% set icon_delete %}
   {% include '@bolt-components-icon/icon.twig' with {
-    name: 'trash',
+    name: 'minus-solid',
   } only %}
 {% endset %}
 
@@ -41,7 +41,7 @@
 {% set quick_link_1 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Agenda Manager',
-    icon_before: icon_trash,
+    icon_before: icon_delete,
     reversed_underline: true,
     attributes: {
       href: '#!',
@@ -53,7 +53,7 @@
 {% set quick_link_2 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Agile Studio',
-    icon_before: icon_trash,
+    icon_before: icon_delete,
     reversed_underline: true,
     attributes: {
       href: '#!',
@@ -65,7 +65,7 @@
 {% set quick_link_3 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'App Factory',
-    icon_before: icon_trash,
+    icon_before: icon_delete,
     reversed_underline: true,
     attributes: {
       href: '#!',
