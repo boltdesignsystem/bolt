@@ -109,6 +109,22 @@
     } only %}
   {% endset %}
 
+  {% set download %}
+    {% set icon_download %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'download',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Download slides',
+      icon_before: icon_download,
+      reversed_underline: true,
+      attributes: {
+        href: 'https://www.pega.com/',
+      },
+    } only %}
+  {% endset %}
+
   {% set video_image %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
@@ -247,51 +263,36 @@
     chip_list: chip_list_content,
   } %}
 
-  {% if phase1 or phase2 %}
-    {% set video_teaser_props = video_teaser_props|merge({ 
-      like: like,
-      share: share, 
-    }) %}
-    {% set external_link_teaser_props = external_link_teaser_props|merge({ 
-      like: like,
-      share: share, 
-    }) %}
-    {% set pdf_teaser_props = pdf_teaser_props|merge({ 
-      like: like,
-      share: share, 
-    }) %}
-    {% set locked_teaser_props = locked_teaser_props|merge({ 
-      like: like,
-      share: share, 
-      status: {
-        locked: true,
-      } 
-    }) %}
-  {% endif %}
-
-  {% if phase2 %}
-    {% set video_teaser_props = video_teaser_props|merge({ 
-      status: {
-        views: '27',
-      } 
-    }) %}
-    {% set external_link_teaser_props = external_link_teaser_props|merge({ 
-      status: {
-        views: '3k',
-      } 
-    }) %}
-    {% set pdf_teaser_props = pdf_teaser_props|merge({ 
-      status: {
-        views: '66',
-      } 
-    }) %}
-    {% set locked_teaser_props = locked_teaser_props|merge({ 
-      status: {
-        views: '20k',
-        locked: true,
-      } 
-    }) %}
-  {% endif %}
+  {% set video_teaser_props = video_teaser_props|merge({ 
+    like: like,
+    share: share,
+    download: download,
+    status: {
+      views: '27',
+    } 
+  }) %}
+  {% set external_link_teaser_props = external_link_teaser_props|merge({ 
+    like: like,
+    share: share,
+    status: {
+      views: '3k',
+    } 
+  }) %}
+  {% set pdf_teaser_props = pdf_teaser_props|merge({ 
+    like: like,
+    share: share,
+    status: {
+      views: '66',
+    } 
+  }) %}
+  {% set locked_teaser_props = locked_teaser_props|merge({ 
+    like: like,
+    share: share, 
+    status: {
+      views: '20k',
+      locked: true,
+    } 
+  }) %}
 
   {% set item_video %}
     {% include '@bolt-components-teaser/teaser.twig' with video_teaser_props only %}
@@ -326,9 +327,7 @@
         } only %}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12">
-        {% if phase1 or phase2 %}
-          {% include '_boc-quick-filters.twig' %}
-        {% endif %}
+        {% include '_boc-quick-filters.twig' %}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
         {{ item_video }}
@@ -498,7 +497,6 @@
     theme: 'xlight',
   } only %}
 
-  {% if phase1 or phase2 %}
-    {% include '@pl/_boc-like-button-js.twig' %}
-  {% endif %}
+  {% include '@pl/_boc-like-button-js.twig' %}
+
 {% endblock %}

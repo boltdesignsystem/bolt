@@ -95,17 +95,17 @@
       </div>
     {% endif %}
 
-    {% if status.views or like or share %}
+    {% if status.views or like or share or download %}
       <div class="c-bolt-teaser__actions-and-views">
         {% if status.views %}
-          <div class="c-bolt-teaser__views">
+          {% set _icon_eye %}
             {% include '@bolt-elements-icon/icon.twig' with {
               name: 'eye',
             } only %}
-            {{ status.views }} {{ 'views'|t }}
-          </div>
+          {% endset %}
+          <div class="c-bolt-teaser__views"><span class="c-bolt-teaser__views--icon">{{ _icon_eye|spaceless }}</span>{{ status.views }} {{ 'views'|t }}</div>
         {% endif %}
-        {% if like or share %}
+        {% if like or share or download %}
           <ul class="c-bolt-teaser__action-list">
             {% if like %}
               <li class="c-bolt-teaser__action-list-item">
@@ -115,6 +115,11 @@
             {% if share %}
               <li class="c-bolt-teaser__action-list-item">
                 {{ share }}
+              </li>
+            {% endif %}
+            {% if download %}
+              <li class="c-bolt-teaser__action-list-item">
+                {{ download }}
               </li>
             {% endif %}
           </ul>

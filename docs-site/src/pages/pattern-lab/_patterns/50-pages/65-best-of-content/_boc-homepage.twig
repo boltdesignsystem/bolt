@@ -106,6 +106,21 @@
   } only %}
 {% endset %}
 
+{% set download %}
+  {% set icon_download %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'download',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Download slides',
+    icon_before: icon_download,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://www.pega.com/',
+    },
+  } only %}
+{% endset %}
 {% set wide_image %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
@@ -218,36 +233,36 @@
   chip_list: chip_list_content,
 } %}
 
-{% if phase2 %}
-  {% set main_teaser_props = main_teaser_props|merge({ 
-    like: like,
-    share: share, 
-    status: {
-      views: '27',
-    } 
-  }) %}
-  {% set side_teaser_1_props = side_teaser_1_props|merge({ 
-    like: like,
-    share: share, 
-    status: {
-      views: '35',
-    } 
-  }) %}
-  {% set side_teaser_2_props = side_teaser_2_props|merge({ 
-    like: like,
-    share: share, 
-    status: {
-      views: '66',
-    } 
-  }) %}
-  {% set side_teaser_3_props = side_teaser_3_props|merge({ 
-    like: like,
-    share: share, 
-    status: {
-      views: '14',
-    } 
-  }) %}
-{% endif %}
+{% set main_teaser_props = main_teaser_props|merge({ 
+  like: like,
+  share: share, 
+  status: {
+    views: '27',
+  },
+  download: download
+}) %}
+{% set side_teaser_1_props = side_teaser_1_props|merge({ 
+  like: like,
+  share: share, 
+  status: {
+    views: '35',
+  },
+  download: download
+}) %}
+{% set side_teaser_2_props = side_teaser_2_props|merge({ 
+  like: like,
+  share: share, 
+  status: {
+    views: '66',
+  } 
+}) %}
+{% set side_teaser_3_props = side_teaser_3_props|merge({ 
+  like: like,
+  share: share, 
+  status: {
+    views: '14',
+  } 
+}) %}
 
 {% set band_content %}
   {% set icon_eye %}
@@ -307,6 +322,4 @@
   },
 } only %}
 
-{% if phase1 or phase2 %}
-  {% include '@pl/_boc-like-button-js.twig' %}
-{% endif %}
+{% include '@pl/_boc-like-button-js.twig' %}
