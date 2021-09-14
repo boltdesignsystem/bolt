@@ -1,20 +1,21 @@
 {% set notes %}
   <bolt-ol>
-    <bolt-li>If using Twig, use <code>hide_title</code> and <code>hide_copy</code> props to hide one or both of these Code Snippet header items.</bolt-li>
-    <bolt-li>If using HTML, use the <code>data-bolt-hide-title</code> and <code>data-bolt-hide-copy</code> attributes.</bolt-li>
+    <bolt-li>If using Twig, use <code>hide_lang_label</code> and <code>hide_copy</code> props to hide one or both of these Code Snippet header items.</bolt-li>
+    <bolt-li>If using HTML, use the <code>data-bolt-hide-lang-label</code> and <code>data-bolt-hide-copy</code> attributes.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
 {% set code_snippet %}
-display: block;
-margin: 0 0 1.65rem 0;
+.my-css {
+  display: block;
+}
 {% endset %}
 
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
     content: code_snippet,
     lang: 'css',
-    hide_title: true,
+    hide_lang_label: true,
   } only %}
 
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
@@ -26,7 +27,7 @@ margin: 0 0 1.65rem 0;
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
     content: code_snippet,
     lang: 'css',
-    hide_title: true,
+    hide_lang_label: true,
     hide_copy: true,
   } only %}
 {% endset %}
@@ -34,14 +35,15 @@ margin: 0 0 1.65rem 0;
 {% set twig_markup %}
 {% verbatim %}
 {% set code_snippet %}
-display: block;
-margin: 0 0 1.65rem 0;
+.my-css {
+  display: block;
+}
 {% endset %}
 
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
   content: code_snippet,
   lang: 'css',
-  hide_title: true,
+  hide_lang_label: true,
 } only %}
 
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
@@ -53,26 +55,29 @@ margin: 0 0 1.65rem 0;
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
   content: code_snippet,
   lang: 'css',
-  hide_title: true,
+  hide_lang_label: true,
   hide_copy: true,
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
-<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="css" data-bolt-hide-title>
-<pre><code>display: block;
-margin: 0 0 1.65rem 0;</code></pre>
+<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="css" data-bolt-hide-lang-label>
+<pre><code>.my-css {
+  display: block;
+}</code></pre>
 </div>
 
 <div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="css" data-bolt-hide-copy>
-<pre><code>display: block;
-margin: 0 0 1.65rem 0;</code></pre>
+<pre><code>.my-css {
+  display: block;
+}</code></pre>
 </div>
 
-<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="css" data-bolt-hide-title data-bolt-hide-copy>
-<pre><code>display: block;
-margin: 0 0 1.65rem 0;</code></pre>
+<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="css" data-bolt-hide-lang-label data-bolt-hide-copy>
+<pre><code>.my-css {
+  display: block;
+}</code></pre>
 </div>
 {% endset %}
 
@@ -81,7 +86,6 @@ margin: 0 0 1.65rem 0;</code></pre>
   description: 'Language title and copy to clipboard button are shown by default but can be turned off individually.',
   notes: notes,
   demo: demo,
-  demo_light_dark: true,
   twig_markup: twig_markup,
   html_markup: html_markup
 } only %}

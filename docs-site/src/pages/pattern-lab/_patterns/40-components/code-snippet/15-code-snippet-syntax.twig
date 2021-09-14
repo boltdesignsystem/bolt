@@ -1,64 +1,60 @@
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Twig defaults to "light" syntax. If using HTML you must add a syntax class, <code>c-bolt-snippet--light</code> or <code>c-bolt-snippet--dark</code>, or there will be no syntax highlighting.</bolt-li>
+    <bolt-li>When using HTML, make sure to use either <code>c-bolt-snippet--light</code> or <code>c-bolt-snippet--dark</code> modifier class, otherwise there will be no syntax highlights.</bolt-li>
+    <bolt-li>Mode works independently of Bolt color themes.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
 {% set code_snippet %}
-<h1>Hello world!</h1>
-<p>This is a code snippet.</p>
+import { props } from '@bolt/core-v3.x/utils';
 {% endset %}
 
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
   content: code_snippet,
-  lang: 'html',
+  lang: 'javascript',
 } only %}
 
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
   content: code_snippet,
-  lang: 'html',
-  syntax: 'dark',
+  lang: 'javascript',
+  mode: 'dark',
 } only %}
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
 {% set code_snippet %}
-<h1>Hello world!</h1>
-<p>This is a code snippet.</p>
+import { props } from '@bolt/core-v3.x/utils';
 {% endset %}
 
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
   content: code_snippet,
-  lang: 'html',
+  lang: 'javascript',
 } only %}
 
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
   content: code_snippet,
-  lang: 'html',
-  syntax: 'dark',
+  lang: 'javascript',
+  mode: 'dark',
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
 <div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="html">
-<pre><code>&lt;h1&gt;Hello world!&lt;/h1&gt;
-&lt;p&gt;This is a code snippet.&lt;/p&gt;</code></pre>
+<pre><code>import { props } from '@bolt/core-v3.x/utils';</code></pre>
 </div>
 <div class="c-bolt-code-snippet c-bolt-code-snippet--dark" data-bolt-lang="html">
-<pre><code>&lt;h1&gt;Hello world!&lt;/h1&gt;
-&lt;p&gt;This is a code snippet.&lt;/p&gt;</code></pre>
+<pre><code>import { props } from '@bolt/core-v3.x/utils';</code></pre>
 </div>
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Code Snippet Syntax',
-  description: 'Choose from two different syntax styles, light or dark.',
+  title: 'Code Snippet Syntax Highlights',
+  description: 'Choose from two modes of syntax highlights, light or dark.',
   notes: notes,
   demo: demo,
-  demo_light_dark: true,
   twig_markup: twig_markup,
   html_markup: html_markup
 } only %}

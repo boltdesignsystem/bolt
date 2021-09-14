@@ -28,7 +28,7 @@
   font-weight: var(--bolt-type-font-weight-semibold);
   color: var(--bolt-color-gray-dark);
   line-height: var(--bolt-type-line-height-xsmall);
-  border-bottom: 1px solid var(--bolt-color-gray-light);
+  border-bottom: 1px solid var(--bolt-color-white);
   background: inherit;
 }
 
@@ -48,11 +48,16 @@
   }
 }
 
-.c-bolt-code-snippet:not([data-bolt-hide-title][data-bolt-hide-copy]):not([data-bolt-ready]):before {
-  content: '\00a0'; // non-breaking space, provides same height as header once JS loads, otherwise won't match
+.c-bolt-code-snippet:not([data-bolt-hide-lang-label][data-bolt-hide-copy]):not([data-bolt-ready]):before {
+  content: '\00a0'; // Non-breaking space provides same height as header (with text) once JS loads, preventing layout shift.
   display: block;
 }
 
 .c-bolt-code-snippet__copy {
   margin-left: auto;
+
+  .e-bolt-text-link:focus {
+    box-shadow: 0 0 0 1px var(--bolt-color-navy-light);
+    outline: none; // Fix a Safari bug which the focus outline does not appear.
+  }
 }

@@ -1,7 +1,7 @@
-{% set schema = bolt.data.components["@bolt-components-code-snippet"].schema %}
+{% set schema = bolt.data.components['@bolt-components-code-snippet'].schema %}
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# Variables #}
@@ -11,7 +11,7 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-code-snippet',
-  this.data.syntax.value != 'none' ? 'c-bolt-code-snippet--'  ~ this.data.syntax.value : '',
+  this.data.mode.value != 'none' ? 'c-bolt-code-snippet--'  ~ this.data.mode.value : '',
 ] %}
 
 {% set attributes = attributes.setAttribute('data-bolt-lang', this.data.lang.value) %}
@@ -20,12 +20,12 @@
   {% set attributes = attributes.setAttribute('data-bolt-hide-copy', '') %}
 {% endif %}
 
-{% if this.data.hide_title.value %}
-  {% set attributes = attributes.setAttribute('data-bolt-hide-title', '') %}
+{% if this.data.hide_lang_label.value %}
+  {% set attributes = attributes.setAttribute('data-bolt-hide-lang-label', '') %}
 {% endif %}
 
-{% if lang_title %}
-  {% set attributes = attributes.setAttribute('data-bolt-lang-title', lang_title) %}
+{% if custom_lang_label %}
+  {% set attributes = attributes.setAttribute('data-bolt-custom-lang-label', custom_lang_label) %}
 {% endif %}
 
 {# Template #}

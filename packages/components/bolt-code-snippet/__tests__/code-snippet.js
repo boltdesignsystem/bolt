@@ -115,18 +115,18 @@ describe('Bolt Code Snippet Props', () => {
 
   lang.enum.forEach(async option => {
     test(`lang: ${option}`, async () => {
-      // Tests that every lang option has a corresponding title in the languages file
-      const title = languages[option];
-      await expect(title).toMatchSnapshot();
+      // Tests that every lang option has a corresponding label in the languages file
+      const label = languages[option];
+      await expect(label).toMatchSnapshot();
     });
   });
 
-  test(`hide_title`, async () => {
+  test(`hide_lang_label`, async () => {
     const results = await render(
       '@bolt-components-code-snippet/code-snippet.twig',
       {
         ...fixtures.defaultData,
-        hide_title: true,
+        hide_lang_label: true,
       },
     );
 
@@ -147,12 +147,12 @@ describe('Bolt Code Snippet Props', () => {
     await expect(results.html).toMatchSnapshot();
   });
 
-  test(`hide_title and hide_copy`, async () => {
+  test(`hide_lang_label and hide_copy`, async () => {
     const results = await render(
       '@bolt-components-code-snippet/code-snippet.twig',
       {
         ...fixtures.defaultData,
-        hide_title: true,
+        hide_lang_label: true,
         hide_copy: true,
       },
     );
@@ -161,12 +161,12 @@ describe('Bolt Code Snippet Props', () => {
     await expect(results.html).toMatchSnapshot();
   });
 
-  test(`lang_title`, async () => {
+  test(`custom_lang_label`, async () => {
     const results = await render(
       '@bolt-components-code-snippet/code-snippet.twig',
       {
         ...fixtures.defaultData,
-        lang_title: 'Foo',
+        custom_lang_label: 'Foo',
       },
     );
 

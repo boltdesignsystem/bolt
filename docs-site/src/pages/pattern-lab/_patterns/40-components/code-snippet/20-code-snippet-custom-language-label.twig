@@ -1,7 +1,7 @@
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Pass a custom language title with the <code>lang_title</code> prop or the <code>data-bolt-lang-title</code> attribute if using HTML.</bolt-li>
-    <bolt-li>Use the default language title whenever possible.</bolt-li>
+    <bolt-li>Pass a custom language label with the <code>custom_lang_label</code> prop or the <code>data-bolt-custom-lang-label</code> attribute if using HTML.</bolt-li>
+    <bolt-li>Only use this if the actual language label is not desired.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -13,7 +13,7 @@ $ echo "Hello World"
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
     content: code_snippet,
     lang: 'bash',
-    lang_title: 'Terminal'
+    custom_lang_label: 'Terminal'
   } only %}
 {% endset %}
 
@@ -26,23 +26,22 @@ $ echo "Hello World"
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
   content: code_snippet,
   lang: 'bash',
-  lang_title: 'Terminal'
+  custom_lang_label: 'Terminal'
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
-<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="bash" data-bolt-lang-title="Terminal">
+<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="bash" data-bolt-custom-lang-label="Terminal">
 <pre><code>$ echo "Hello World"</code></pre>
 </div>
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Code Snippet Language Title',
+  title: 'Code Snippet Custom Language Label',
   description: description,
   notes: notes,
   demo: demo,
-  demo_light_dark: true,
   twig_markup: twig_markup,
   html_markup: html_markup
 } only %}

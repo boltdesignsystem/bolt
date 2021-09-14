@@ -1,5 +1,5 @@
 /*
-Language map, converts language id to readable title.
+Language map, converts language id to readable label.
 */
 
 export const languages = {

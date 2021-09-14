@@ -10,12 +10,12 @@ module.exports = {
     },
     content: {
       type: 'any',
-      description: 'Content of the code-snippet.',
+      description: 'Content of the code snippet.',
     },
     lang: {
       type: 'string',
-      title: 'Language',
-      description: 'Language of the code text.',
+      description:
+        'Code language of the content. Each language comes with its unique syntax highlights.',
       default: 'html',
       enum: [
         'markup',
@@ -49,29 +49,25 @@ module.exports = {
         'yaml',
       ],
     },
-    lang_title: {
+    custom_lang_label: {
       type: 'any',
-      title: 'Language title',
       description:
-        'Optional custom language title. Use default language titles whenever possible.',
+        'Custom language label. Only use this if the actual language label is not desired.',
     },
-    syntax: {
+    mode: {
       type: 'string',
-      title: 'Syntax Highlighting',
       description:
-        'Toggle between a light and dark syntax highlighting, or turn it off. Separate from Bolt theming.',
+        'Toggle between light and dark syntax highlights, or turn it off. This works independently of Bolt color themes.',
       default: 'light',
       enum: ['light', 'dark', 'none'],
     },
     hide_copy: {
       type: 'boolean',
-      title: 'Hide copy to clipboard',
-      description: 'Hide copy to clipboard from the toolbar.',
+      description: 'Hide copy to clipboard from the code snippet header.',
     },
-    hide_title: {
+    hide_lang_label: {
       type: 'boolean',
-      title: 'Hide language',
-      description: 'Hide the language title from the toolbar.',
+      description: 'Hide the language label from the code snippet header.',
     },
   },
 };

@@ -1,5 +1,5 @@
 import Prism from 'prismjs';
-import { html, render } from '@bolt/element';
+import { html, render, ifDefined } from '@bolt/element';
 import cx from 'classnames/bind';
 import ClipboardJS from 'clipboard';
 
@@ -38,16 +38,16 @@ export class BoltCodeSnippet {
     this.preElement = this.el.querySelector('pre');
     this.codeElement = this.el.querySelector('code');
     this.lang = this.el.dataset.boltLang;
-    this.langTitle = this.el.dataset.boltLangTitle;
+    this.customLangLabel = this.el.dataset.boltCustomLangLabel;
 
     if (!(this.preElement && this.codeElement && this.lang)) return;
 
     this.originalHTML = this.codeElement.innerHTML;
     this.filteredHTML = this.replaceEntities(this.originalHTML);
-    this.hideTitle = this.el.hasAttribute('data-bolt-hide-title');
+    this.hideLangLabel = this.el.hasAttribute('data-bolt-hide-lang-label');
     this.hideCopy = this.el.hasAttribute('data-bolt-hide-copy');
 
-    if (!(this.hideTitle && this.hideCopy)) {
+    if (!(this.hideLangLabel && this.hideCopy)) {
       this.setupHeader();
     }
 
@@ -80,8 +80,8 @@ export class BoltCodeSnippet {
 
     this.el.prepend(this.header);
 
-    // Custom language title overrides default
-    this.title = this.langTitle || languages[this.lang];
+    // Custom language label overrides default
+    this.langLabel = this.customLangLabel || languages[this.lang];
     this.copied = false;
 
     this.renderHeader();
@@ -99,7 +99,7 @@ export class BoltCodeSnippet {
 
     if (!clipboardTrigger) return;
 
-    this.preElement?.setAttribute('tabindex', '0');
+    this.codeElement?.setAttribute('tabindex', '-1');
 
     const clip = new ClipboardJS(clipboardTrigger, {
       text: () => {
@@ -111,7 +111,7 @@ export class BoltCodeSnippet {
       this.copied = true;
 
       this.renderHeader();
-      this.preElement?.focus();
+      this.codeElement?.focus();
 
       setTimeout(() => {
         this.copied = false;
@@ -125,38 +125,39 @@ export class BoltCodeSnippet {
   }
 
   renderHeader() {
-    const copyClasses = cx('c-bolt-code-snippet__copy');
-
     const copyButtonClasses = cx(
       'e-bolt-text-link',
       'e-bolt-text-link--reversed-underline',
       'js-bolt-code-snippet-copy-trigger',
-      { 'u-bolt-hidden': this.copied },
     );
-
-    const copyConfirmationClasses = cx({ 'u-bolt-hidden': !this.copied });
 
     render(
       html`
-        ${!this.hideTitle
+        ${!this.hideLangLabel
           ? html`
-              <span class="c-bolt-code-snippet__title">${this.title}</span>
+              <span class="c-bolt-code-snippet__lang-label"
+                >${this.langLabel}</span
+              >
             `
           : ``}
         ${!this.hideCopy
           ? html`
-              <div class="${copyClasses}">
-                <button type="button" class="${copyButtonClasses}">
+              <div class="c-bolt-code-snippet__copy">
+                <button
+                  type="button"
+                  class="${copyButtonClasses}"
+                  hidden=${ifDefined(this.copied || undefined)}
+                >
                   <span class="e-bolt-text-link__icon-before"
                     ><bolt-icon name="copy-to-clipboard"></bolt-icon></span
                   >Copy</button
                 >${this.copied
                   ? html`
-                      <span
-                        class="${copyConfirmationClasses}"
-                        aria-live="polite"
-                      >
-                        Copied
+                      <span aria-live="assertive">
+                        <span aria-hidden="true">Copied!</span>
+                        <span class="u-bolt-visuallyhidden"
+                          >Text is copied to clipboard.</span
+                        >
                       </span>
                     `
                   : ``}

@@ -112,7 +112,7 @@
         {% include '@bolt-components-code-snippet/code-snippet.twig' with {
           content: usage_content,
           lang: 'twig',
-          syntax: 'dark',
+          mode: 'dark',
         } only %}
       </bolt-tab-panel>
     {% endif %}
@@ -133,10 +133,10 @@
       <bolt-text headline font-size="xlarge" tag="h3">
         Install
       </bolt-text>
-      {% include "@bolt-components-code-snippet/code-snippet.twig" with {
-        display: "block",
-        syntax: "dark",
-        content: "npm install #{component_title}"
+      {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+        content: 'npm install ' ~ component_title,
+        mode: 'dark',
+        lang: 'bash',
       } only %}
 
       {% if pkg.dependencies %}
