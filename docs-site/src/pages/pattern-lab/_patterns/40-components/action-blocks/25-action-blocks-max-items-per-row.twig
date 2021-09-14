@@ -1,90 +1,90 @@
-{% set schema = bolt.data.components["@bolt-components-action-blocks"].schema %}
+{% set schema = bolt.data.components['@bolt-components-action-blocks'].schema %}
 
 {% set icon_1 %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "download",
-    size: "large"
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'download',
+    size: 'large'
   } %}
 {% endset %}
 
 {% set icon_2 %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "copy-to-clipboard",
-    size: "large"
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'copy-to-clipboard',
+    size: 'large'
   } %}
 {% endset %}
 
 {% set icon_3 %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "calendar",
-    size: "large"
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'calendar',
+    size: 'large'
   }%}
 {% endset %}
 
 {% for max_items_per_row in schema.properties.max_items_per_row.enum %}
   <h3>Max items per row: {{ max_items_per_row }}</h3>
   <div class="u-bolt-margin-bottom-medium">
-    {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+    {% include '@bolt-components-action-blocks/action-blocks.twig' with {
       max_items_per_row: max_items_per_row,
       items: [
         {
-          text: "Item 1",
-          url: "#!",
+          text: 'Item 1',
+          url: '#!',
           media: icon_1,
         },
         {
-          text: "Item 2",
-          url: "#!",
+          text: 'Item 2',
+          url: '#!',
           media: icon_2,
         },
         {
-          text: "Item 3",
-          url: "#!",
+          text: 'Item 3',
+          url: '#!',
           media: icon_3,
         },
         {
-          text: "Item 4",
-          url: "#!",
+          text: 'Item 4',
+          url: '#!',
           media: icon_2,
         },
         {
-          text: "Item 5",
-          url: "#!",
+          text: 'Item 5',
+          url: '#!',
           media: icon_1,
         },
         {
-          text: "Item 6",
-          url: "#!",
+          text: 'Item 6',
+          url: '#!',
           media: icon_2,
         },
         {
-          text: "Item 7",
-          url: "#!",
+          text: 'Item 7',
+          url: '#!',
           media: icon_1,
         },
         {
-          text: "Item 8",
-          url: "#!",
+          text: 'Item 8',
+          url: '#!',
           media: icon_2,
         },
         {
-          text: "Item 9",
-          url: "#!",
+          text: 'Item 9',
+          url: '#!',
           media: icon_3,
         },
         {
-          text: "Item 10",
-          url: "#!",
+          text: 'Item 10',
+          url: '#!',
           media: icon_2,
         },
         {
-          text: "Item 11",
-          url: "#!",
+          text: 'Item 11',
+          url: '#!',
           media: icon_1,
         },
         {
-          text: "Item 12",
-          url: "#!",
+          text: 'Item 12',
+          url: '#!',
           media: icon_2,
         }
       ]

@@ -1,81 +1,81 @@
-{% set schema = bolt.data.components["@bolt-components-action-blocks"].schema %}
+{% set schema = bolt.data.components['@bolt-components-action-blocks'].schema %}
 
 {% set icon_1 %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "download",
-    size: "large"
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'download',
+    size: 'large'
   } %}
 {% endset %}
 
 {% set icon_2 %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "copy-to-clipboard",
-    size: "large"
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'copy-to-clipboard',
+    size: 'large'
   } %}
 {% endset %}
 
 {% set icon_3 %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "calendar",
-    size: "large"
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'calendar',
+    size: 'large'
   }%}
 {% endset %}
 
 {% set icon_4 %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "download",
-    size: "large"
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'download',
+    size: 'large'
   } %}
 {% endset %}
 
 {% set icon_5 %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "copy-to-clipboard",
-    size: "large"
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'copy-to-clipboard',
+    size: 'large'
   } %}
 {% endset %}
 
 {% set icon_6 %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "calendar",
-    size: "large"
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'calendar',
+    size: 'large'
   }%}
 {% endset %}
 
 {% for spacing in schema.properties.spacing.enum %}
   <h3>Spacing: {{ spacing }}</h3>
   <div class="u-bolt-margin-bottom-medium">
-    {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+    {% include '@bolt-components-action-blocks/action-blocks.twig' with {
       spacing: spacing,
       items: [
         {
-          text: "Item 1 with a long line of text",
-          url: "#!",
+          text: 'Item 1 with a long line of text',
+          url: '#!',
           media: icon_1,
         },
         {
-          text: "Item 2 with a long line of text",
-          url: "#!",
+          text: 'Item 2 with a long line of text',
+          url: '#!',
           media: icon_2,
         },
         {
-          text: "Item 3 with a long line of text",
-          url: "#!",
+          text: 'Item 3 with a long line of text',
+          url: '#!',
           media: icon_3,
         },
         {
-          text: "Item 4 with a long line of text",
-          url: "#!",
+          text: 'Item 4 with a long line of text',
+          url: '#!',
           media: icon_4,
         },
         {
-          text: "Item 5 with a long line of text",
-          url: "#!",
+          text: 'Item 5 with a long line of text',
+          url: '#!',
           media: icon_5,
         },
         {
-          text: "Item 6 with a long line of text",
-          url: "#!",
+          text: 'Item 6 with a long line of text',
+          url: '#!',
           media: icon_6,
         },
       ]

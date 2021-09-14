@@ -1,34 +1,34 @@
 {% set usage %}{% verbatim %}
 {% set icon %}
-  {% include "@bolt-components-icon/icon.twig" with {
-    name: "icon-name",
-    background: "circle",
-    size: "large"
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'icon-name',
+    background: 'circle',
+    size: 'large'
   }%}
 {% endset %}
 
-{% include "@bolt-components-action-blocks/action-blocks.twig" with {
+{% include '@bolt-components-action-blocks/action-blocks.twig' with {
   items: [
     {
-      text: "Item 1",
-      url: "#!",
+      text: 'Item 1',
+      url: '#!',
       media: icon,
     },
     {
-      text: "Item 2",
-      url: "#!",
+      text: 'Item 2',
+      url: '#!',
       media: icon,
     },
     {
-      text: "Item 3",
-      url: "#!",
+      text: 'Item 3',
+      url: '#!',
       media: icon,
     }
   ]
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "action-blocks",
+{% include '@utils/docs.twig' with {
+  componentName: 'action-blocks',
   usage: usage
 } only %}
