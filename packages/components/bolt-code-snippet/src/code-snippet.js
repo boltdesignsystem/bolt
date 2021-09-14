@@ -125,10 +125,7 @@ export class BoltCodeSnippet {
   }
 
   renderHeader() {
-    const copyClasses = cx(
-      'c-bolt-code-snippet__copy',
-      'js-bolt-code-snippet-copy',
-    );
+    const copyClasses = cx('c-bolt-code-snippet__copy');
 
     const copyButtonClasses = cx(
       'e-bolt-text-link',
@@ -137,10 +134,7 @@ export class BoltCodeSnippet {
       { 'u-bolt-hidden': this.copied },
     );
 
-    const copyConfirmationClasses = cx(
-      'js-bolt-code-snippet-copy-confirmation',
-      { 'u-bolt-hidden': this.copied === false },
-    );
+    const copyConfirmationClasses = cx({ 'u-bolt-hidden': !this.copied });
 
     render(
       html`
