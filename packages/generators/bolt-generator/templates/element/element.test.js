@@ -43,7 +43,7 @@ describe('Bolt {{ titleCase name }} element', () => {
   });
 });
 
-// describe('Bolt {{ titleCase name }} prop - , () => {
+// describe('Bolt {{ titleCase name }} prop -', () => {
 //   // Target each of the schema keys with the following pattern
 //   [PROP KEY].enum.forEach(async (option) => {
 //     test(`[PROP KEY] items: ${option}`, async () => {
