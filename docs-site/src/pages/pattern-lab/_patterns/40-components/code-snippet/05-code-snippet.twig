@@ -1,44 +1,48 @@
 {% set description %}
-  Code snippet displays a block of syntax-highlighted code with support for several programming languages. See schema for all language options.
+  Code Snippet displays a block of syntax-highlighted code with support for several programming languages. See schema for all language options.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Code snippet only dislays block. If you need to display code inline, simply use the <code>{{ '<code>'|e }}</code> element.</bolt-li>
-    <bolt-li>Use Twig if possible. If using HTML be sure to trim leading and trailing whitespace inside the <code>{{ '<code>'|e }}</code> element as shown below.</bolt-li>
+    <bolt-li>The component is only intended for code blocks. If you need to display code inline, simply use the HTML <code>{{ '<code>'|e }}</code> element.</bolt-li>
+    <bolt-li>Use Twig whenver possible, but if you must use HTML, be sure to do the following to work with standard HTML behaviors:
+      <bolt-ol>
+        <bolt-li>Trim leading and trailing whitespace inside the <code>{{ '<code>'|e }}</code> element to rid of any undesired indents or whitespace.</bolt-li>
+        <bolt-li>Certain special characters (such as &lt; and &gt;) must be converted to HTML entities.</bolt-li>
+      </bolt-ol>
+    </bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
 {% set code_snippet %}
-display: block;
-margin: 0 0 1.65rem 0;
+<h1>Hello world!</h1>
+<p>This is a code snippet.</p>
 {% endset %}
-
-  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-    content: code_snippet,
-    lang: 'css'
-  } only %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'html',
+} only %}
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
 {% set code_snippet %}
-display: block;
-margin: 0 0 1.65rem 0;
+<h1>Hello world!</h1>
+<p>This is a code snippet.</p>
 {% endset %}
 
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
   content: code_snippet,
-  lang: 'css'
+  lang: 'html',
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
-<div class="e-bolt-code-snippet e-bolt-code-snippet--light" data-bolt-lang="css">
-<pre><code>display: block;
-margin: 0 0 1.65rem 0;</code></pre>
+<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="html">
+<pre><code>&lt;h1&gt;Hello world!&lt;/h1&gt;
+&lt;p&gt;This is a code snippet.&lt;/p&gt;</code></pre>
 </div>
 {% endset %}
 
@@ -47,7 +51,6 @@ margin: 0 0 1.65rem 0;</code></pre>
   description: description,
   notes: notes,
   demo: demo,
-  demo_light_dark: true,
   twig_markup: twig_markup,
   html_markup: html_markup
 } only %}

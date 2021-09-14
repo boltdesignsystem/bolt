@@ -22,11 +22,7 @@
 
 {% set is_private = pkg.private or not has_changelog ? true : false %}
 
-{% set usage_content %}
-{% spaceless %}
-  {{ usage }}
-{% endspaceless %}
-{% endset %}
+{% set usage_content %}{{ usage }}{% endset %}
 
 
 {% set component_status %}
@@ -113,11 +109,10 @@
       <bolt-tab-panel id="twig-usage">
         <bolt-text slot="label" tag="h2">Twig Usage</bolt-text>
 
-        {% include "@bolt-components-code-snippet/code-snippet.twig" with {
-          display: "block",
-          lang: "twig",
-          syntax: "dark",
-          content: usage_content
+        {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+          content: usage_content,
+          lang: 'twig',
+          syntax: 'dark',
         } only %}
       </bolt-tab-panel>
     {% endif %}

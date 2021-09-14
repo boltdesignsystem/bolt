@@ -1,6 +1,6 @@
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Only the languages listed in the schema are supported. Contact the Design System team to request additional language support.</bolt-li>
+    <bolt-li>Only the languages listed in the <a href="{{ link['viewall-components-code-snippet'] }}?selected-tab=schema" class="e-bolt-text-link">schema</a> are supported. Contact the Design System team to request additional language support.</bolt-li>
     <bolt-li>Twig Code Snippets must be wrapped in <code>{{ '{% verbatim %}' }}</code> tag or they will be parsed by Twig itself.</bolt-li>
   </bolt-ol>
 {% endset %}
@@ -17,28 +17,24 @@ import { props } from '@bolt/core-v3.x/utils';
 {% endset %}
 
 {% set twig_code %}{% verbatim %}
-{% include '@bolt-components-code-snippet/code-snippet.twig' with {
-  lang: 'html',
-  content: '<p>Hello world!</p>'
+{% include '@bolt-components-banner/banner.twig' with {
+  content: 'This is the banner content.'
 } only %}
 {% endverbatim %}{% endset %}
 
-  <h3>CSS</h3>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: css_code,
     lang: 'css',
-    content: css_code
   } only %}
 
-  <h3>JavaScript</h3>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: js_code,
     lang: 'js',
-    content: js_code
   } only %}
 
-  <h3>Twig</h3>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: twig_code,
     lang: 'twig',
-    content: twig_code
   } only %}
 {% endset %}
 
@@ -56,33 +52,29 @@ import { props } from '@bolt/core-v3.x/utils';
 {% endset %}
 
 {% set twig_code %}{% verbatim %}
-{% include '@bolt-components-code-snippet/code-snippet.twig' with {
-  lang: 'html',
-  content: '<p>Hello world!</p>'
+{% include '@bolt-components-banner/banner.twig' with {
+  content: 'This is the banner content.'
 } only %}{% endverbatim %}{% endset %}
 
-<h3>CSS</h3>
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: css_code,
   lang: 'css',
-  content: css_code
 } only %}
 
-<h3>JavaScript</h3>
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: js_code,
   lang: 'js',
-  content: js_code
 } only %}
 
-<h3>Twig</h3>
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: twig_code,
   lang: 'twig',
-  content: twig_code
 } only %}
 {% endraw %}
 {% endset %}
 
 {% set html_markup %}
-<div class="e-bolt-code-snippet e-bolt-code-snippet--light" data-bolt-lang="js">
+<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="js">
 <pre><code>import { props } from '@bolt/core-v3.x/utils';</code></pre>
 </div>
 {% endset %}
@@ -92,7 +84,6 @@ import { props } from '@bolt/core-v3.x/utils';
   description: 'The Code Snippet will be syntax highlighted based on the chosen language.',
   demo: demo,
   notes: notes,
-  demo_light_dark: true,
   twig_markup: twig_markup,
   html_markup: html_markup,
 } only %}

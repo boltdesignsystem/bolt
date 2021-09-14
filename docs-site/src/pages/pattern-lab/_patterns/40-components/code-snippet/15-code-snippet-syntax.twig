@@ -6,36 +6,50 @@
 
 {% set demo %}
 {% set code_snippet %}
-display: block;
-margin: 0 0 1.65rem 0;
+<h1>Hello world!</h1>
+<p>This is a code snippet.</p>
 {% endset %}
 
-  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-    content: code_snippet,
-    lang: 'css',
-    syntax: 'dark'
-  } only %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'html',
+} only %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'html',
+  syntax: 'dark',
+} only %}
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
 {% set code_snippet %}
-display: block;
-margin: 0 0 1.65rem 0;
+<h1>Hello world!</h1>
+<p>This is a code snippet.</p>
 {% endset %}
 
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
   content: code_snippet,
-  lang: 'css',
-  syntax: 'dark'
+  lang: 'html',
+} only %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'html',
+  syntax: 'dark',
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
-<div class="e-bolt-code-snippet e-bolt-code-snippet--dark" data-bolt-lang="css">
-<pre><code>display: block;
-margin: 0 0 1.65rem 0;</code></pre>
+<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="html">
+<pre><code>&lt;h1&gt;Hello world!&lt;/h1&gt;
+&lt;p&gt;This is a code snippet.&lt;/p&gt;</code></pre>
+</div>
+<div class="c-bolt-code-snippet c-bolt-code-snippet--dark" data-bolt-lang="html">
+<pre><code>&lt;h1&gt;Hello world!&lt;/h1&gt;
+&lt;p&gt;This is a code snippet.&lt;/p&gt;</code></pre>
 </div>
 {% endset %}
 
