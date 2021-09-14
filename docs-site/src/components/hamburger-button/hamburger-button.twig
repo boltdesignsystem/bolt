@@ -3,18 +3,18 @@
     <div class="c-bds-hamburger__button c-bds-hamburger__button--open">
       {% set _icon_menu %}
         {% include '@bolt-components-icon/icon.twig' with {
-          name: "menu",
-          size: "medium",
+          name: 'menu',
+          size: 'medium',
         } only %}
       {% endset %}
-      {% include "@bolt-elements-button/button.twig" with {
+      {% include '@bolt-elements-button/button.twig' with {
         content: 'Open Menu',
         icon_only: _icon_menu,
-        hierarchy: "primary",
-        size: "medium",
-        border_radius: "full",
+        hierarchy: 'primary',
+        size: 'medium',
+        border_radius: 'full',
         attributes: {
-          href: "#nav",
+          href: '#nav',
         }
       } %}
     </div>
@@ -22,18 +22,18 @@
     <div class="c-bds-hamburger__button c-bds-hamburger__button--close">
       {% set _icon_close %}
         {% include '@bolt-components-icon/icon.twig' with {
-          name: "close",
-          size: "medium",
+          name: 'close',
+          size: 'medium',
         } only %}
       {% endset %}
-      {% include "@bolt-elements-button/button.twig" with {
+      {% include '@bolt-elements-button/button.twig' with {
         content: 'Close Menu',
         icon_only: _icon_close,
-        hierarchy: "primary",
-        size: "medium",
-        border_radius: "full",
+        hierarchy: 'primary',
+        size: 'medium',
+        border_radius: 'full',
         attributes: {
-          href: "#",
+          href: '#',
         }
       } %}
     </div>
