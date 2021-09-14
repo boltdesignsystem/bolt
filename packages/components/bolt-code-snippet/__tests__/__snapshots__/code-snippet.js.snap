@@ -1,181 +1,203 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<bolt-snippet> Component Snippet display: block 1`] = `
-<bolt-code-snippet display="block"
-                   lang="html"
-                   syntax="light"
+exports[`Bolt Code Snippet Props hide_copy 1`] = `
+<div data-bolt-lang="css"
+     data-bolt-hide-copy
+     class="c-bolt-code-snippet c-bolt-code-snippet--light"
 >
-  <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
-    <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight"
-          is="shadow-root"
-    >
-      some snippet code
+  <pre>
+    <code>
+      .my-css {
+      display: block;
+    }
     </code>
   </pre>
-</bolt-code-snippet>
+</div>
 `;
 
-exports[`<bolt-snippet> Component Snippet display: inline 1`] = `
-<bolt-code-snippet display="inline"
-                   lang="html"
-                   syntax="light"
+exports[`Bolt Code Snippet Props hide_title 1`] = `
+<div data-bolt-lang="css"
+     data-bolt-hide-title
+     class="c-bolt-code-snippet c-bolt-code-snippet--light"
 >
-  <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--inline c-bolt-code-snippet-syntax--light language-html nohighlight"
-        is="shadow-root"
-  >
-    some snippet code
-  </code>
-</bolt-code-snippet>
-`;
-
-exports[`<bolt-snippet> Component Snippet language: css 1`] = `
-<bolt-code-snippet display="block"
-                   lang="css"
-                   syntax="light"
->
-  <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-css">
-    <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-css nohighlight"
-          is="shadow-root"
-    >
-      This is css
+  <pre>
+    <code>
+      .my-css {
+      display: block;
+    }
     </code>
   </pre>
-</bolt-code-snippet>
+</div>
 `;
 
-exports[`<bolt-snippet> Component Snippet language: html 1`] = `
-<bolt-code-snippet display="block"
-                   lang="html"
-                   syntax="light"
+exports[`Bolt Code Snippet Props hide_title and hide_copy 1`] = `
+<div data-bolt-lang="css"
+     data-bolt-hide-copy
+     data-bolt-hide-title
+     class="c-bolt-code-snippet c-bolt-code-snippet--light"
 >
-  <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
-    <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight"
-          is="shadow-root"
-    >
-      This is html
+  <pre>
+    <code>
+      .my-css {
+      display: block;
+    }
     </code>
   </pre>
-</bolt-code-snippet>
+</div>
 `;
 
-exports[`<bolt-snippet> Component Snippet language: js 1`] = `
-<bolt-code-snippet display="block"
-                   lang="js"
-                   syntax="light"
+exports[`Bolt Code Snippet Props lang: atom 1`] = `"Atom"`;
+
+exports[`Bolt Code Snippet Props lang: bash 1`] = `"Bash"`;
+
+exports[`Bolt Code Snippet Props lang: clike 1`] = `"C-like"`;
+
+exports[`Bolt Code Snippet Props lang: css 1`] = `"CSS"`;
+
+exports[`Bolt Code Snippet Props lang: csv 1`] = `"CSV"`;
+
+exports[`Bolt Code Snippet Props lang: docker 1`] = `"Docker"`;
+
+exports[`Bolt Code Snippet Props lang: dockerfile 1`] = `"Docker"`;
+
+exports[`Bolt Code Snippet Props lang: html 1`] = `"HTML"`;
+
+exports[`Bolt Code Snippet Props lang: http 1`] = `"HTTP"`;
+
+exports[`Bolt Code Snippet Props lang: java 1`] = `"Java"`;
+
+exports[`Bolt Code Snippet Props lang: javascript 1`] = `"JavaScript"`;
+
+exports[`Bolt Code Snippet Props lang: js 1`] = `"JavaScript"`;
+
+exports[`Bolt Code Snippet Props lang: json 1`] = `"JSON"`;
+
+exports[`Bolt Code Snippet Props lang: jsx 1`] = `"React JSX"`;
+
+exports[`Bolt Code Snippet Props lang: markdown 1`] = `"Markdown"`;
+
+exports[`Bolt Code Snippet Props lang: markup 1`] = `"Markup"`;
+
+exports[`Bolt Code Snippet Props lang: mathml 1`] = `"MathML"`;
+
+exports[`Bolt Code Snippet Props lang: md 1`] = `"Markdown"`;
+
+exports[`Bolt Code Snippet Props lang: rest 1`] = `"reST (reStructuredText)"`;
+
+exports[`Bolt Code Snippet Props lang: rss 1`] = `"RSS"`;
+
+exports[`Bolt Code Snippet Props lang: scss 1`] = `"Sass (Scss)"`;
+
+exports[`Bolt Code Snippet Props lang: shell 1`] = `"Bash"`;
+
+exports[`Bolt Code Snippet Props lang: ssml 1`] = `"SSML"`;
+
+exports[`Bolt Code Snippet Props lang: svg 1`] = `"SVG"`;
+
+exports[`Bolt Code Snippet Props lang: tsx 1`] = `"React TSX"`;
+
+exports[`Bolt Code Snippet Props lang: twig 1`] = `"Twig"`;
+
+exports[`Bolt Code Snippet Props lang: xml 1`] = `"XML"`;
+
+exports[`Bolt Code Snippet Props lang: yaml 1`] = `"YAML"`;
+
+exports[`Bolt Code Snippet Props lang: yml 1`] = `"YAML"`;
+
+exports[`Bolt Code Snippet Props lang_title 1`] = `
+<div data-bolt-lang="css"
+     data-bolt-lang-title="Foo"
+     class="c-bolt-code-snippet c-bolt-code-snippet--light"
 >
-  <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-js">
-    <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-js nohighlight"
-          is="shadow-root"
-    >
-      This is js
+  <pre>
+    <code>
+      .my-css {
+      display: block;
+    }
     </code>
   </pre>
-</bolt-code-snippet>
+</div>
 `;
 
-exports[`<bolt-snippet> Component Snippet language: scss 1`] = `
-<bolt-code-snippet display="block"
-                   lang="scss"
-                   syntax="light"
+exports[`Bolt Code Snippet Props syntax: dark 1`] = `
+<div data-bolt-lang="css"
+     class="c-bolt-code-snippet c-bolt-code-snippet--dark"
 >
-  <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-scss">
-    <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-scss nohighlight"
-          is="shadow-root"
-    >
-      This is scss
+  <pre>
+    <code>
+      .my-css {
+      display: block;
+    }
     </code>
   </pre>
-</bolt-code-snippet>
+</div>
 `;
 
-exports[`<bolt-snippet> Component Snippet language: twig 1`] = `
-<bolt-code-snippet display="block"
-                   lang="twig"
-                   syntax="light"
+exports[`Bolt Code Snippet Props syntax: light 1`] = `
+<div data-bolt-lang="css"
+     class="c-bolt-code-snippet c-bolt-code-snippet--light"
 >
-  <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-twig">
-    <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-twig nohighlight"
-          is="shadow-root"
-    >
-      This is twig
+  <pre>
+    <code>
+      .my-css {
+      display: block;
+    }
     </code>
   </pre>
-</bolt-code-snippet>
+</div>
 `;
 
-exports[`<bolt-snippet> Component Snippet syntax: dark 1`] = `
-<bolt-code-snippet display="block"
-                   lang="html"
-                   syntax="dark"
+exports[`Bolt Code Snippet Props syntax: none 1`] = `
+<div data-bolt-lang="css"
+     class="c-bolt-code-snippet"
 >
-  <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--dark language-html">
-    <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--dark language-html nohighlight"
-          is="shadow-root"
-    >
-      some snippet code
+  <pre>
+    <code>
+      .my-css {
+      display: block;
+    }
     </code>
   </pre>
-</bolt-code-snippet>
+</div>
 `;
 
-exports[`<bolt-snippet> Component Snippet syntax: light 1`] = `
-<bolt-code-snippet display="block"
-                   lang="html"
-                   syntax="light"
+exports[`Bolt Code Snippet default 1`] = `
+<div data-bolt-lang="css"
+     class="c-bolt-code-snippet c-bolt-code-snippet--light"
 >
-  <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
-    <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight"
-          is="shadow-root"
-    >
-      some snippet code
+  <pre>
+    <code>
+      .my-css {
+      display: block;
+    }
     </code>
   </pre>
-</bolt-code-snippet>
+</div>
 `;
 
-exports[`<bolt-snippet> Component Snippet syntax: none 1`] = `
-<bolt-code-snippet display="block"
-                   lang="html"
-                   syntax="none"
+exports[`Bolt Code Snippet default with JS code 1`] = `
+<div data-bolt-lang="js"
+     class="c-bolt-code-snippet c-bolt-code-snippet--light"
 >
-  <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--none language-html">
-    <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--none language-html nohighlight"
-          is="shadow-root"
-    >
-      some snippet code
+  <pre>
+    <code>
+      import { props } from &#039;@bolt/core-v3.x/utils&#039;;
     </code>
   </pre>
-</bolt-code-snippet>
+</div>
 `;
 
-exports[`<bolt-snippet> Component basic usage 1`] = `
-<bolt-code-snippet display="block"
-                   lang="html"
-                   syntax="light"
+exports[`Bolt Code Snippet default with Twig code 1`] = `
+<div data-bolt-lang="twig"
+     class="c-bolt-code-snippet c-bolt-code-snippet--light"
 >
-  <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
-    <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight"
-          is="shadow-root"
-    >
-      some snippet code
+  <pre>
+    <code>
+      {% include &#039;@bolt-components-code-snippet/code-snippet.twig&#039; with {
+      lang: &#039;html&#039;,
+      content: &#039;&lt;p&gt;Hello world!&lt;/p&gt;&#039;
+    } only %}
     </code>
   </pre>
-</bolt-code-snippet>
-`;
-
-exports[`<bolt-snippet> Component basic usage with attributes 1`] = `
-<bolt-code-snippet display="block"
-                   lang="html"
-                   syntax="light"
->
-  <pre data-foo="baz"
-       class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html"
-  >
-    <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight"
-          is="shadow-root"
-    >
-      some snippet code
-    </code>
-  </pre>
-</bolt-code-snippet>
+</div>
 `;
