@@ -13,7 +13,7 @@
   {% if parent %}
     <li class="c-bolt-content-pagination__item c-bolt-content-pagination__item--parent">
       {% set _icon_arrow_left %}
-        {% include '@bolt-components-icon/icon.twig' with {
+        {% include '@bolt-elements-icon/icon.twig' with {
           name: 'arrow-left',
         } only %}
       {% endset %}
@@ -34,7 +34,7 @@
   {% if previous %}
     <li class="c-bolt-content-pagination__item c-bolt-content-pagination__item--prev">
       {% set _icon_chevron_left %}
-        {% include '@bolt-components-icon/icon.twig' with {
+        {% include '@bolt-elements-icon/icon.twig' with {
           name: 'chevron-left',
         } only %}
       {% endset %}
@@ -55,7 +55,7 @@
   {% if next %}
     <li class="c-bolt-content-pagination__item c-bolt-content-pagination__item--next">
       {% set _icon_chevron_right %}
-        {% include '@bolt-components-icon/icon.twig' with {
+        {% include '@bolt-elements-icon/icon.twig' with {
           name: 'chevron-right',
         } only %}
       {% endset %}

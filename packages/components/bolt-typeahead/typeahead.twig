@@ -50,7 +50,7 @@
 {% set uuid = this.data.name.value|default(bolt.data.config.env == "test" ? "12345" : random() ~ "") %}
 
 {% set search_icon %}
-{% embed "@bolt-components-icon/icon.twig" with {
+{% embed "@bolt-elements-icon/icon.twig" with {
     name: "search",
     preload: true,
     attributes: {
@@ -67,7 +67,7 @@
 
 
 {% set clear_icon %}
-{% embed "@bolt-components-icon/icon.twig" with {
+{% embed "@bolt-elements-icon/icon.twig" with {
     name: "close-solid",
     preload: true,
     attributes: {

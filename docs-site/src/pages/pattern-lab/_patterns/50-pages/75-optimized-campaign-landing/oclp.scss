@@ -1,0 +1,117 @@
+.c-base-ocpl-footer {
+  @include bolt-shadow('level-10');
+
+  display: grid;
+  grid-row-gap: var(--bolt-spacing-y-small);
+  position: relative;
+  padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
+}
+
+.c-base-ocpl-footer--offset-bottom-cta {
+  padding-bottom: var(--bolt-spacing-y-xxlarge);
+
+  @include bolt-mq(medium) {
+    padding-bottom: var(--bolt-spacing-y-medium);
+  }
+}
+
+.c-base-ocpl-footer__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  gap: var(--bolt-spacing-x-small);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.c-base-ocpl-footer__item:first-child {
+  gap: var(--bolt-spacing-x-xxsmall);
+}
+
+.c-base-ocpl-footer__item:last-child {
+  font-weight: var(--bolt-type-font-weight-regular);
+}
+
+@include bolt-mq(medium) {
+  .c-base-ocpl-footer {
+    grid-template-columns: auto 1fr auto;
+    grid-gap: var(--bolt-spacing-x-small);
+    white-space: nowrap;
+  }
+
+  .c-base-ocpl-footer__item:first-child {
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .c-base-ocpl-footer__item:last-child {
+    justify-content: flex-end;
+    text-align: end;
+  }
+}
+
+.c-base-ocpl-form {
+  display: none;
+
+  @include bolt-mq(medium) {
+    @include bolt-shadow('level-20');
+    @include bolt-vertical-scroll;
+
+    display: block;
+    position: sticky;
+    top: var(--bolt-spacing-y-medium);
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+    color: var(--m-bolt-text);
+    border-radius: bolt-border-radius(small);
+    background-color: var(--m-bolt-bg);
+  }
+}
+
+.c-base-ocpl-form-modal {
+  display: block;
+
+  @include bolt-mq(medium) {
+    display: none;
+  }
+}
+
+.c-base-ocpl-form-trigger {
+  @include bolt-shadow('level-20');
+
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: bolt-z-index(modal);
+  padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
+  color: var(--m-bolt-text);
+  background-color: var(--m-bolt-bg);
+
+  @include bolt-mq(medium) {
+    display: none;
+  }
+}
+
+.c-base-ocpl-logo {
+  filter: var(--m-bolt-img-filter);
+}
+
+@include bolt-mq($until: medium) {
+  .c-base-ocpl-bg-image {
+    display: none;
+  }
+}
+
+@include bolt-mq(medium) {
+  .c-base-ocpl-bg-image {
+    position: fixed;
+  }
+
+  .c-base-oclp-image,
+  .c-base-oclp-video {
+    margin-top: calc(var(--bolt-spacing-y-xlarge) * -1);
+  }
+}

@@ -1,11 +1,11 @@
 {% set scroll_to_top %}
   {% set icon_chevron_up %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'chevron-up',
     } only %}
   {% endset %}
   {% set icon_chevron_down %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'chevron-down',
     } only %}
   {% endset %}
@@ -27,7 +27,7 @@
 {% endset %}
 {% set download %}
   {% set icon_download %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'download',
     } only %}
   {% endset %}
@@ -85,7 +85,7 @@
   {% endset %}
   {% set share_popover_trigger %}
     {% set icon_share %}
-      {% include '@bolt-components-icon/icon.twig' with {
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: 'share',
       } only %}
     {% endset %}
@@ -108,7 +108,7 @@
 {% endset %}
 {% set suggest %}
   {% set icon_pencil %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'pencil',
     } only %}
   {% endset %}
@@ -207,9 +207,6 @@
 {% endset %}
 
 {% set holy_grail_content %}
-  {# <bolt-stack spacing="medium">
-    {{ state_select }}
-  </bolt-stack> #}
   <bolt-stack spacing="large">
     {% set item_1 %}
       {% include '@bolt-elements-text-link/text-link.twig' with {
@@ -228,46 +225,7 @@
       } only %}
     {% endset %}
     {% set item_current %}
-      {% set version_popover %}
-        {% set trigger %}
-          {% include '@bolt-elements-button/button.twig' with {
-            content: 'Version 8.5',
-            size: 'xsmall',
-            hierarchy: 'secondary',
-            border_radius: 'full',
-            icon_after: icon_chevron_down,
-            attributes: {
-              type: 'button',
-            }
-          } only %}
-        {% endset %}
-        {% set content %}
-          {% include '@bolt-components-menu/menu.twig' with {
-            title: 'Choose a version',
-            items: [
-              {
-                content: 'Version 8.4',
-                url: 'https://pega.com',
-              },
-              {
-                content: 'Version 8.5',
-                url: 'https://pega.com',
-              },
-              {
-                content: 'Version 8.6',
-                url: 'https://pega.com',
-              },
-            ]
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-popover/popover.twig' with {
-          trigger: trigger,
-          content: content,
-          spacing: 'none',
-          trigger_event: 'hover',
-        } only %}
-      {% endset %}
-      Book title goes here &ndash; {{ version_popover|spaceless }}
+      Book title goes here
     {% endset %}
 
     {% include '@bolt-components-breadcrumb/breadcrumb.twig' with {
@@ -347,7 +305,7 @@
     {% set banner_content %}
       <bolt-stack spacing="medium">
         {% set icon %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'documentation',
           } only %}
         {% endset %}
@@ -441,16 +399,11 @@
   </bolt-stack>
 {% endset %}
 {% set sidebar_content %}
-  {# <bolt-stack>
-    <div class="u-bolt-padding-right-small u-bolt-padding-left-small">
-      <form>
-        {% include '@bolt-components-typeahead/typeahead.twig' with {
-          input_placeholder: 'Search in book',
-        } only %}
-      </form>
-    </div>
-  </bolt-stack> #}
-
+  {% set icon_external_link %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'external-link',
+    } only %}
+  {% endset %}
   {% set level_9_items %}
     {% include '@bolt-components-side-nav/side-nav-li.twig' with {
       link: {
@@ -637,20 +590,95 @@
         },
       },
     } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 external link',
+        icon: icon_external_link,
+        attributes: {
+          href: 'https://pega.com',
+          target: '_blank',
+          rel: 'noopener',
+        },
+      },
+    } only %}
   {% endset %}
   {% set level_1_list %}
     {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
       content: level_1_items,
     } only %}
   {% endset %}
+  
+  {% set form_children %}
+    <div class="u-bolt-margin-bottom-xsmall">
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Name',
+          displayType: 'floating',
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include('@bolt-components-form/form-select.twig') with {
+          title: 'Select',
+          options: [
+            {
+              type: 'option',
+              value: 'book-1',
+              label: 'Book or Release Title',
+            },
+            {
+              type: 'option',
+              value: 'book-2',
+              label: 'Another Book or Release with Long Title',
+            }
+          ]
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+    </div>
+    <div class="u-bolt-margin-bottom-medium">
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Version',
+          displayType: 'floating',
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include('@bolt-components-form/form-select.twig') with {
+          title: 'Select',
+          options: [
+            {
+              type: 'option',
+              value: 'version-8-5',
+              label: '8.5',
+            },
+            {
+              type: 'option',
+              value: 'version-8-6',
+              label: '8.6',
+            }
+          ]
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+    </div>
+  {% endset %}
+  {% include '@bolt-components-form/form.twig' with {
+    children: form_children,
+    attributes: {
+      class: [
+        'u-bolt-padding-right-small',
+        'u-bolt-padding-left-small',
+      ],
+    },
+  } only %}
 
   {% include '@bolt-components-side-nav/side-nav.twig' with {
-    headline: {
-      content: 'Book title goes here',
-      link_attributes: {
-        href: 'https://pega.com',
-      },
-    },
     content: level_1_list,
   } only %}
 {% endset %}
