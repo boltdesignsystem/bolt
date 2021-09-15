@@ -1,24 +1,24 @@
 {% set japanese = true %}
 
-{% extends "@pl/_default-page-template.twig" %}
+{% extends '@pl/_default-page-template.twig' %}
 
 {% block main_content %}
   {% set feature_band_content %}
-    {% include "@bolt/ui-list.twig" with {
+    {% include '@bolt/ui-list.twig' with {
       contentItems : [
         {
           contentItems: [
             {
-              pattern: "eyebrow",
-              text: "オペレーショナルエクセレンス"
+              pattern: 'eyebrow',
+              text: 'オペレーショナルエクセレンス'
             },
             {
-              pattern: "headline",
-              text: "コーディングをやめます。設計を始めます。",
-              size: "large",
-              url: "https://www.google.com",
+              pattern: 'headline',
+              text: 'コーディングをやめます。設計を始めます。',
+              size: 'large',
+              url: 'https://www.google.com',
               icon: {
-                name: "chevron-right"
+                name: 'chevron-right'
               }
             }
           ]
@@ -26,16 +26,16 @@
         {
           contentItems: [
             {
-              pattern: "eyebrow",
-              text: "顧客維持"
+              pattern: 'eyebrow',
+              text: '顧客維持'
             },
             {
-              pattern: "headline",
-              text: "個別の対応を、違和感なく。",
-              size: "large",
-              url: "https://www.google.com",
+              pattern: 'headline',
+              text: '個別の対応を、違和感なく。',
+              size: 'large',
+              url: 'https://www.google.com',
               icon: {
-                name: "chevron-right"
+                name: 'chevron-right'
               }
             }
           ]
@@ -43,16 +43,16 @@
         {
           contentItems: [
             {
-              pattern: "eyebrow",
-              text: "顧客サービス"
+              pattern: 'eyebrow',
+              text: '顧客サービス'
             },
             {
-              pattern: "headline",
-              text: "シームレス性。オムニチャネル。",
-              size: "large",
-              url: "https://www.google.com",
+              pattern: 'headline',
+              text: 'シームレス性。オムニチャネル。',
+              size: 'large',
+              url: 'https://www.google.com',
               icon: {
-                name: "chevron-right"
+                name: 'chevron-right'
               }
             }
           ]
@@ -67,51 +67,51 @@
   }) %}
 
 
-  {% embed "@pl/_band--feature.twig" with {
-    size: "large",
-    theme: "dark",
-    teaserPosition: "left",
-    teaserWidth: "2/3",
+  {% embed '@pl/_band--feature.twig' with {
+    size: 'large',
+    theme: 'dark',
+    teaserPosition: 'left',
+    teaserWidth: '2/3',
     primaryTeaser: {
       eyebrow: {
-        text: "営業効率"
+        text: '営業効率'
       },
       headlines: [
         {
-          type: "headline",
-          text: "「ペガは管理者が、すぐ目の前にあるかもしれないオポチュニティーについて代理店と話せるようにします。」",
-          size: "xxxlarge",
-          tag: "h1"
+          type: 'headline',
+          text: '「ペガは管理者が、すぐ目の前にあるかもしれないオポチュニティーについて代理店と話せるようにします。」',
+          size: 'xxxlarge',
+          tag: 'h1'
         }
       ],
       logo: {
-        src: "/images/content/logos/logo-paypal.svg",
+        src: '/images/content/logos/logo-paypal.svg',
         invert: true,
         lazyload: false
       },
-      content: "最高販売配信責任者Larik Hall",
+      content: '最高販売配信責任者Larik Hall',
       buttons: [
         {
-          text: "今すぐ営業目標を上げる",
-          hierarchy: "primary",
-          url: "https://www.google.com",
+          text: '今すぐ営業目標を上げる',
+          hierarchy: 'primary',
+          url: 'https://www.google.com',
           icon: {
-            name: "chevron-right"
+            name: 'chevron-right'
           }
         }
       ]
     },
     content: feature_band.content | default(content),
     background: {
-      opacity: "heavy",
-      fill: "gradient",
+      opacity: 'heavy',
+      fill: 'gradient',
       focal_point: {
-        vertical: "center"
+        vertical: 'center'
       },
       content_items: [
         {
-          pattern: "image",
-          src: "/images/backgrounds/pw19-hp-bg2.jpg",
+          pattern: 'image',
+          src: '/images/backgrounds/pw19-hp-bg2.jpg',
           lazyload: false
         }
       ]
@@ -119,35 +119,35 @@
   } only %}{% endembed %}
 
 
-  {% embed "@bolt-components-band/band.twig" with {
-    size: "small",
-    theme: "xdark",
+  {% embed '@bolt-components-band/band.twig' with {
+    size: 'small',
+    theme: 'xdark',
     full_bleed: true
   } only %}
     {% block band_content %}
-      {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-flex-grow" %}
+      {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix' %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-flex-grow' %}
           {% grid %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-              {% include "@bolt/eyebrow.twig" with {
-                text: "ペガジャパン株式会社とは？",
+            {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
+              {% include '@bolt/eyebrow.twig' with {
+                text: 'ペガジャパン株式会社とは？',
               } only %}
-              {% include "@bolt-components-headline/text.twig" with {
-                text: "Pega は顧客の仕事とデジタル プロセス オートメーションをつなぐナンバーワン ソフトウェアです。",
-                size: "large",
-                weight: "regular"
+              {% include '@bolt-components-headline/text.twig' with {
+                text: 'Pega は顧客の仕事とデジタル プロセス オートメーションをつなぐナンバーワン ソフトウェアです。',
+                size: 'large',
+                weight: 'regular'
               } only %}
             {% endcell %}
           {% endgrid %}
         {% endcell %}
 
-        {% cell "u-bolt-width-1/1@only-small" %}
+        {% cell 'u-bolt-width-1/1@only-small' %}
 
           {% set button_cta_primary %}
             {% include '@bolt-elements-button/button.twig' with {
               content: '会社概要',
-              hierarchy: "primary",
-              size: "small",
+              hierarchy: 'primary',
+              size: 'small',
               attributes: {
                 type: 'button'
               }
@@ -157,15 +157,15 @@
           {% set button_cta_secondary %}
             {% include '@bolt-elements-button/button.twig' with {
               content: 'ビジョンと主要な概念',
-              hierarchy: "secondary",
-              size: "small",
+              hierarchy: 'secondary',
+              size: 'small',
               attributes: {
                 type: 'button'
               }
             } only %}
           {% endset %}
 
-          {% include "@bolt-components-list/list.twig" with {
+          {% include '@bolt-components-list/list.twig' with {
             display: 'inline',
             items: [
               button_cta_primary,
@@ -178,92 +178,92 @@
   {% endembed %}
 
 
-  {% embed "@bolt-components-band/band.twig" with {
-    size: "large",
-    theme: "light",
+  {% embed '@bolt-components-band/band.twig' with {
+    size: 'large',
+    theme: 'light',
     full_bleed: true
   } only %}
     {% block band_content %}
-      {% include "@bolt/headline.twig" with {
-        text: "今日はどんなお手伝いをしましょうか？",
-        size: "xlarge",
-        align: "center",
-        tag: "h3"
+      {% include '@bolt/headline.twig' with {
+        text: '今日はどんなお手伝いをしましょうか？',
+        size: 'xlarge',
+        align: 'center',
+        tag: 'h3'
       } only %}
 
       {% set icon_1 %}
-        {% include "@bolt-components-icon/icon.twig" with {
-          name: "product",
-          size: "xlarge"
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'product',
+          size: 'xlarge'
         } %}
       {% endset %}
 
       {% set icon_2 %}
-        {% include "@bolt-components-icon/icon.twig" with {
-          name: "industries",
-          size: "xlarge"
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'industries',
+          size: 'xlarge'
         } %}
       {% endset %}
 
       {% set icon_3 %}
-        {% include "@bolt-components-icon/icon.twig" with {
-          name: "training",
-          size: "xlarge"
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'training',
+          size: 'xlarge'
         }%}
       {% endset %}
 
       {% set icon_4 %}
-        {% include "@bolt-components-icon/icon.twig" with {
-          name: "vision",
-          size: "xlarge"
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'vision',
+          size: 'xlarge'
         } %}
       {% endset %}
 
       {% set icon_5 %}
-        {% include "@bolt-components-icon/icon.twig" with {
-          name: "partners",
-          size: "xlarge"
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'partners',
+          size: 'xlarge'
         } %}
       {% endset %}
 
       {% set icon_6 %}
-        {% include "@bolt-components-icon/icon.twig" with {
-          name: "careers",
-          size: "xlarge"
+        {% include '@bolt-components-icon/icon.twig' with {
+          name: 'careers',
+          size: 'xlarge'
         }%}
       {% endset %}
 
-      {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+      {% include '@bolt-components-action-blocks/action-blocks.twig' with {
         max_items_per_row: 8,
         items: [
         {
-          text: "製品情報",
-          url: "http://google.com",
+          text: '製品情報',
+          url: 'http://google.com',
           media: icon_1,
         },
         {
-          text: "業種ソリューション",
-          url: "http://google.com",
+          text: '業種ソリューション',
+          url: 'http://google.com',
           media: icon_2,
         },
         {
-          text: "トレーニングと証明書",
-          url: "http://google.com",
+          text: 'トレーニングと証明書',
+          url: 'http://google.com',
           media: icon_3,
         },
         {
-          text: "ビジョンとテクノロジー",
-          url: "http://google.com",
+          text: 'ビジョンとテクノロジー',
+          url: 'http://google.com',
           media: icon_4,
         },
         {
-          text: "サービスとパートナー",
-          url: "http://google.com",
+          text: 'サービスとパートナー',
+          url: 'http://google.com',
           media: icon_5,
         },
         {
-          text: "採用情報",
-          url: "http://google.com",
+          text: '採用情報',
+          url: 'http://google.com',
           media: icon_6,
         }]
       } only %}
@@ -271,127 +271,127 @@
   {% endembed %}
 
 
-  {% embed "@pl/_band--collection.twig" with {
-    theme: "xlight",
-    size: "large",
+  {% embed '@pl/_band--collection.twig' with {
+    theme: 'xlight',
+    size: 'large',
     contentItems: [
       {
-        pattern: "card",
+        pattern: 'card',
         contentItems: [
           {
-            pattern: "image",
-            src: "/images/content/promos/promo-16x9-forrester.jpg"
+            pattern: 'image',
+            src: '/images/content/promos/promo-16x9-forrester.jpg'
           },
           {
-            pattern: "headline",
-            text: "iBPMSでの2017MAGIC QUADRANT",
-            size: "large",
-            tag: "h3"
+            pattern: 'headline',
+            text: 'iBPMSでの2017MAGIC QUADRANT',
+            size: 'large',
+            tag: 'h3'
           },
           {
-            pattern: "text",
-            text: "Gartnerは、最新のiBPMSレポートにおいてペガがトップであることを認めています。"
+            pattern: 'text',
+            text: 'Gartnerは、最新のiBPMSレポートにおいてペガがトップであることを認めています。'
           },
           {
-            pattern: "button",
-            width: "full",
-            text: "レポートを読む",
-            hierarchy: "text"
+            pattern: 'button',
+            width: 'full',
+            text: 'レポートを読む',
+            hierarchy: 'text'
           }
         ]
       },
       {
-        pattern: "card",
+        pattern: 'card',
         contentItems: [
           {
-            pattern: "image",
-            src: "/images/content/promos/promo-16x9-anthem.jpg"
+            pattern: 'image',
+            src: '/images/content/promos/promo-16x9-anthem.jpg'
           },
           {
-            pattern: "headline",
-            text: "Robotics and AI Are Changing the World of Work",
-            size: "large",
-            tag: "h3"
+            pattern: 'headline',
+            text: 'Robotics and AI Are Changing the World of Work',
+            size: 'large',
+            tag: 'h3'
           },
           {
-            pattern: "text",
-            text: "Marketforce の最近の調査によると、上級管理者の 69% が労働力の一環として知能機械の導入を考えていることがわかりました。"
+            pattern: 'text',
+            text: 'Marketforce の最近の調査によると、上級管理者の 69% が労働力の一環として知能機械の導入を考えていることがわかりました。'
           },
           {
-            pattern: "button",
-            width: "full",
-            text: "発見を探索",
-            hierarchy: "text"
+            pattern: 'button',
+            width: 'full',
+            text: '発見を探索',
+            hierarchy: 'text'
           }
         ]
       },
       {
-        pattern: "card",
+        pattern: 'card',
         contentItems: [
           {
-            pattern: "image",
-            src: "/images/content/promos/promo-16x9-ai.jpg"
+            pattern: 'image',
+            src: '/images/content/promos/promo-16x9-ai.jpg'
           },
           {
-            pattern: "headline",
-            text: "トランサヴィア：エンドツーエンドのカスタマージャーニー",
-            size: "large",
-            tag: "h3"
+            pattern: 'headline',
+            text: 'トランサヴィア：エンドツーエンドのカスタマージャーニー',
+            size: 'large',
+            tag: 'h3'
           },
           {
-            pattern: "text",
-            text: "トランサヴィアはPega CRMのカスタマージャーニー全体を通じて同社のサービスやセールスを提供しています。"
+            pattern: 'text',
+            text: 'トランサヴィアはPega CRMのカスタマージャーニー全体を通じて同社のサービスやセールスを提供しています。'
           },
           {
-            pattern: "button",
-            width: "full",
-            text: "事例を見る",
-            hierarchy: "text"
+            pattern: 'button',
+            width: 'full',
+            text: '事例を見る',
+            hierarchy: 'text'
           }
         ]
       }
     ]
   } %}
     {% block band_content %}
-      {% include "@bolt/headline.twig" with {
-        text: "トレンドとは",
-        size: "xlarge",
-        align: "center",
-        tag: "h3"
+      {% include '@bolt/headline.twig' with {
+        text: 'トレンドとは',
+        size: 'xlarge',
+        align: 'center',
+        tag: 'h3'
       } only %}
       {{ parent() }}
     {% endblock band_content %}
   {% endembed %}
 
 
-  {% embed "@bolt-components-band/band.twig" with {
-    size: "medium",
-    theme: "dark",
+  {% embed '@bolt-components-band/band.twig' with {
+    size: 'medium',
+    theme: 'dark',
     full_bleed: true
   } only %}
     {% block band_content %}
-        {% grid "o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--center" %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-4/12@small" %}
-            {% include "@bolt-elements-image/image.twig" with {
+        {% grid 'o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--center' %}
+          {% cell 'u-bolt-width-1/1 u-bolt-width-4/12@small' %}
+            {% include '@bolt-elements-image/image.twig' with {
               attributes: {
-                src: "/images/content/promos/promo-16x9-salesforce-vs-pega.png",
-                loading: "lazy",
+                src: '/images/content/promos/promo-16x9-salesforce-vs-pega.png',
+                loading: 'lazy',
               }
             } only %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
-            {% include "@bolt/headline.twig" with {
-              text: "誇大広告のSalesforce.comの本当に代わりとなるもの：Pega CRM",
-              size: "xlarge",
-              tag: "h3"
+          {% cell 'u-bolt-width-1/1 u-bolt-width-6/12@small' %}
+            {% include '@bolt/headline.twig' with {
+              text: '誇大広告のSalesforce.comの本当に代わりとなるもの：Pega CRM',
+              size: 'xlarge',
+              tag: 'h3'
             } only %}
-            {% include "@bolt-components-headline/text.twig" with {
-              text: "Salesforce.comをご検討中ですか？誇大宣伝を信じてはいけません。現代のトップ企業がぺガを選ぶ理由をご覧ください。"
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Salesforce.comをご検討中ですか？誇大宣伝を信じてはいけません。現代のトップ企業がぺガを選ぶ理由をご覧ください。'
             } only %}
-            {% include "@bolt/button.twig" with {
-              text: "本物を知る",
-              hierarchy: "primary",
-              size: "small"
+            {% include '@bolt/button.twig' with {
+              text: '本物を知る',
+              hierarchy: 'primary',
+              size: 'small'
             } only %}
           {% endcell %}
         {% endgrid %}
