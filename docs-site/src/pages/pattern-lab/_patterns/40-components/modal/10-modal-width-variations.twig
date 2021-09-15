@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components["@bolt-components-modal"].schema %}
+{% set schema = bolt.data.components['@bolt-components-modal'].schema %}
 
 <bolt-text>The modal container's width can be adjusted by the <code>width</code> prop. The default is set to <code>optimal</code>.</bolt-text>
 
@@ -10,31 +10,31 @@
       {% for width in schema.properties.width.enum %}
         <tr>
           <th>
-            {% include "@bolt-elements-button/button.twig" with {
+            {% include '@bolt-elements-button/button.twig' with {
               content: width|capitalize,
-              size: "small",
-              display: "block",
+              size: 'small',
+              display: 'block',
               attributes: {
                 type: 'button',
-                "data-bolt-modal-target": ".js-bolt-modal--width-" ~ width,
+                'data-bolt-modal-target': '.js-bolt-modal--width-' ~ width,
               }
             } only %}
-            {% include "@bolt-components-modal/modal.twig" with {
-              content: "This is a modal set to " ~ width ~ " width.",
+            {% include '@bolt-components-modal/modal.twig' with {
+              content: 'This is a modal set to ' ~ width ~ ' width.',
               width: width,
               attributes: {
-                class: "js-bolt-modal--width-" ~ width,
+                class: 'js-bolt-modal--width-' ~ width,
               },
             } only %}
           </th>
           <td>
-            {% if width == "full" %}
+            {% if width == 'full' %}
               This is taking up the full width of the screen minus the gutters (about 2rem on left and right).
-            {% elseif width == "regular" %}
+            {% elseif width == 'regular' %}
               This is 10 out 12 columns wide, about 80% of the screen width.
-            {% elseif width == "optimal" %}
+            {% elseif width == 'optimal' %}
               This is about 75 characters wide, close to optimal reading length.
-            {% elseif width == "auto" %}
+            {% elseif width == 'auto' %}
               This adjusts to the width of the modal content. In most cases, the user must define a max-width in absolute value (do not use relative value such as %) on the modal content to get the desired results. Recommended for advanced usage.
             {% endif %}
           </td>

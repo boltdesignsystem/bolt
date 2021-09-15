@@ -1,105 +1,105 @@
-<div class="u-bolt-margin-bottom-medium">
+<div class='u-bolt-margin-bottom-medium'>
   {% set primary %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "Primary",
+    {% include '@bolt-components-button/button.twig' with {
+      text: 'Primary',
     } only %}
   {% endset %}
   {% set secondary %}
-    {% include "@bolt-components-button/button.twig" with {
-      text: "Secondary",
-      hierarchy: "secondary",
+    {% include '@bolt-components-button/button.twig' with {
+      text: 'Secondary',
+      hierarchy: 'secondary',
     } only %}
   {% endset %}
   {% set modal_content %}
-    {% include "@bolt-components-headline/headline.twig" with {
-      size: "xlarge",
-      text: "Long Form Content"
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xlarge',
+      text: 'Long Form Content'
     } only %}
-    {% include "@bolt-components-headline/text.twig" with {
-      text: "At the same time that the IRA operation began to focus on supporting candidate Trump in early 2016, the Russian government employed a second form of interference: cyber intrusions (hacking) and releases of hacked materials damaging to the Clinton Campaign. The Russian intelligence service known as the Main Intelligence Directorate of the General Staff of the Russian Army (GRU) carried out these operations."
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'At the same time that the IRA operation began to focus on supporting candidate Trump in early 2016, the Russian government employed a second form of interference: cyber intrusions (hacking) and releases of hacked materials damaging to the Clinton Campaign. The Russian intelligence service known as the Main Intelligence Directorate of the General Staff of the Russian Army (GRU) carried out these operations.'
     } only %}
-    {% include "@bolt-components-headline/text.twig" with {
-      text: "In March 2016, the GRU began hacking the email accounts of Clinton Campaign volunteers and employees, including campaign chairman John Podesta. In April 2016, the GRU hacked into the computer networks of the Democratic Congressional Campaign Committee (DCCC) and the Democratic National Committee (DNC). The GRU stole hundreds of thousands of documents from the compromised email accounts and networks. Around the time that the DNC announced in mid-June 2016 the Russian government’s role in hacking its network, the GRU began disseminating stolen materials through the fictitious online personas “DCLeaks” and “Guccifer 2.0.” The GRU later released additional materials through the organization WikiLeaks."
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'In March 2016, the GRU began hacking the email accounts of Clinton Campaign volunteers and employees, including campaign chairman John Podesta. In April 2016, the GRU hacked into the computer networks of the Democratic Congressional Campaign Committee (DCCC) and the Democratic National Committee (DNC). The GRU stole hundreds of thousands of documents from the compromised email accounts and networks. Around the time that the DNC announced in mid-June 2016 the Russian government’s role in hacking its network, the GRU began disseminating stolen materials through the fictitious online personas “DCLeaks” and “Guccifer 2.0.” The GRU later released additional materials through the organization WikiLeaks.'
     } only %}
-    {% include "@bolt-elements-image/image.twig" with {
+    {% include '@bolt-elements-image/image.twig' with {
       attributes: {
-        src: "/images/placeholders/tout-4x3-climber.jpg",
-        alt: "A Rock Climber",
-        loading: "lazy",
-        class: "u-bolt-margin-bottom-medium",
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        loading: 'lazy',
+        class: 'u-bolt-margin-bottom-medium',
       }
     } only %}
-    {% include "@bolt-components-headline/text.twig" with {
-      text: "On May 17, 2017, Deputy Attorney General Rod J. Rosenstein — then serving as Acting Attorney General for the Russia investigation following the recusal of former Attorney General Jeff Sessions on March 2, 2016 — appointed the Special Counsel “to investigate Russian interference with the 2016 presidential election and related matters.” Office of the Deputy Atty Gen., Order No. 3915-2017, Appointment of Special Counsel to Investigate Russian Interference with the 2016 Presidential Election and Related Matters, May 17, 2017)."
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'On May 17, 2017, Deputy Attorney General Rod J. Rosenstein — then serving as Acting Attorney General for the Russia investigation following the recusal of former Attorney General Jeff Sessions on March 2, 2016 — appointed the Special Counsel “to investigate Russian interference with the 2016 presidential election and related matters.” Office of the Deputy Atty Gen., Order No. 3915-2017, Appointment of Special Counsel to Investigate Russian Interference with the 2016 Presidential Election and Related Matters, May 17, 2017).'
     } only %}
-    {% include "@bolt-components-list/list.twig" with {
-      display: "inline",
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
       items: [
         primary,
         secondary,
       ],
       attributes: {
-        slot: "footer",
+        slot: 'footer',
       }
     } only %}
   {% endset %}
 
   <h3>Long Form Content</h3>
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Open Modal",
-    size: "small",
+  {% include '@bolt-components-button/button.twig' with {
+    text: 'Open Modal',
+    size: 'small',
     attributes: {
-      onclick: "this.nextElementSibling.show()",
+      onclick: 'this.nextElementSibling.show()',
     }
   } only %}
-  {% include "@bolt-components-modal/modal.twig" with {
+  {% include '@bolt-components-modal/modal.twig' with {
     content: modal_content,
-    width: "optimal",
+    width: 'optimal',
   } only %}
 </div>
 
 <div class="u-bolt-margin-bottom-medium">
   {% set hero_band_content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
+    {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix' %}
+      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@small' %}
         {# This is a standard teaser #}
-        {% include "@bolt-components-headline/eyebrow.twig" with {
-          text: "This Is an Eyebrow",
+        {% include '@bolt-components-headline/eyebrow.twig' with {
+          text: 'This Is an Eyebrow',
         } only %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          size: "xxxlarge",
-          text: "This Is a Headline",
+        {% include '@bolt-components-headline/headline.twig' with {
+          size: 'xxxlarge',
+          text: 'This Is a Headline',
         } only %}
-        {% include "@bolt-components-headline/subheadline.twig" with {
-          size: "xxlarge",
-          text: "This Is a Subheadline",
+        {% include '@bolt-components-headline/subheadline.twig' with {
+          size: 'xxlarge',
+          text: 'This Is a Subheadline',
         } only %}
-        {% include "@bolt-components-headline/text.twig" with {
-          text: "This is a paragraph.",
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'This is a paragraph.',
         } only %}
-        {% include "@bolt-components-button/button.twig" with {
-          text: "This is a button",
+        {% include '@bolt-components-button/button.twig' with {
+          text: 'This is a button',
         } only %}
       {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-list/list.twig" with {
-          separator: "solid",
-          spacing: "medium",
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        {% include '@bolt-components-list/list.twig' with {
+          separator: 'solid',
+          spacing: 'medium',
           items: [
             include('@bolt-elements-text-link/text-link.twig', {
-              content: "Block List Item 1",
+              content: 'Block List Item 1',
               attributes: {
                 href: '#!'
               }
             }),
             include('@bolt-elements-text-link/text-link.twig', {
-              content: "Block List Item 2",
+              content: 'Block List Item 2',
               attributes: {
                 href: '#!'
               }
             }),
             include('@bolt-elements-text-link/text-link.twig', {
-              content: "Block List Item 3",
+              content: 'Block List Item 3',
               attributes: {
                 href: '#!'
               }
@@ -110,72 +110,72 @@
     {% endgrid %}
   {% endset %}
   {% set card_band_content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-card/card.twig" with {
+    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        {% include '@bolt-components-card/card.twig' with {
           contentItems: [
             {
-              pattern: "image",
-              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              pattern: 'image',
+              src: '/images/placeholders/landscape-16x9-mountains.jpg',
               lazyload: false,
-              alt: "Image description"
+              alt: 'Image description'
             },
             {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Collection 1"
+              pattern: 'headline',
+              tag: 'h3',
+              size: 'large',
+              text: 'Collection 1'
             },
             {
-              pattern: "button",
-              text: "This is a button",
-              url: "http://pega.com",
+              pattern: 'button',
+              text: 'This is a button',
+              url: 'http://pega.com',
             }
           ]
         } only %}
       {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-card/card.twig" with {
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        {% include '@bolt-components-card/card.twig' with {
           contentItems: [
             {
-              pattern: "image",
-              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              pattern: 'image',
+              src: '/images/placeholders/landscape-16x9-mountains.jpg',
               lazyload: false,
-              alt: "Image description"
+              alt: 'Image description'
             },
             {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Collection 2"
+              pattern: 'headline',
+              tag: 'h3',
+              size: 'large',
+              text: 'Collection 2'
             },
             {
-              pattern: "button",
-              text: "This is a button",
-              url: "http://pega.com",
+              pattern: 'button',
+              text: 'This is a button',
+              url: 'http://pega.com',
             }
           ]
         } only %}
       {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-card/card.twig" with {
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        {% include '@bolt-components-card/card.twig' with {
           contentItems: [
             {
-              pattern: "image",
-              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              pattern: 'image',
+              src: '/images/placeholders/landscape-16x9-mountains.jpg',
               lazyload: false,
-              alt: "Image description"
+              alt: 'Image description'
             },
             {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Collection 3"
+              pattern: 'headline',
+              tag: 'h3',
+              size: 'large',
+              text: 'Collection 3'
             },
             {
-              pattern: "button",
-              text: "This is a button",
-              url: "http://pega.com",
+              pattern: 'button',
+              text: 'This is a button',
+              url: 'http://pega.com',
             }
           ]
         } only %}
@@ -183,33 +183,33 @@
     {% endgrid %}
   {% endset %}
   {% set flag_band_content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-12/12@only-small u-bolt-flex-grow" %}
-        {% include "@bolt-components-headline/eyebrow.twig" with {
-          text: "This Is a Flag",
+    {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix' %}
+      {% cell 'u-bolt-width-12/12@only-small u-bolt-flex-grow' %}
+        {% include '@bolt-components-headline/eyebrow.twig' with {
+          text: 'This Is a Flag',
         } only %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          size: "large",
-          text: "With text on the left and CTAs on the right.",
+        {% include '@bolt-components-headline/headline.twig' with {
+          size: 'large',
+          text: 'With text on the left and CTAs on the right.',
         } only %}
       {% endcell %}
-      {% cell "u-bolt-width-12/12@only-small" %}
+      {% cell 'u-bolt-width-12/12@only-small' %}
         {% set button_1 %}
-          {% include "@bolt-components-button/button.twig" with {
-            size: "small",
-            hierarchy: "primary",
-            text: "Primary action",
+          {% include '@bolt-components-button/button.twig' with {
+            size: 'small',
+            hierarchy: 'primary',
+            text: 'Primary action',
           } only %}
         {% endset %}
         {% set button_2 %}
-          {% include "@bolt-components-button/button.twig" with {
-            size: "small",
-            hierarchy: "secondary",
-            text: "Secondary action",
+          {% include '@bolt-components-button/button.twig' with {
+            size: 'small',
+            hierarchy: 'secondary',
+            text: 'Secondary action',
           } only %}
         {% endset %}
-        {% include "@bolt-components-list/list.twig" with {
-          display: "inline",
+        {% include '@bolt-components-list/list.twig' with {
+          display: 'inline',
           items: [
             button_1,
             button_2,
@@ -220,41 +220,41 @@
   {% endset %}
   {% set action_band_content %}
     {% set icon_1 %}
-      {% include "@bolt-components-icon/icon.twig" with {
-        name: "download",
-        size: "large"
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'download',
+        size: 'large'
       } %}
     {% endset %}
 
     {% set icon_2 %}
-      {% include "@bolt-components-icon/icon.twig" with {
-        name: "copy-to-clipboard",
-        size: "large"
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'copy-to-clipboard',
+        size: 'large'
       } %}
     {% endset %}
 
     {% set icon_3 %}
-      {% include "@bolt-components-icon/icon.twig" with {
-        name: "calendar",
-        size: "large"
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'calendar',
+        size: 'large'
       }%}
     {% endset %}
 
-    {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+    {% include '@bolt-components-action-blocks/action-blocks.twig' with {
       items: [
         {
-          text: "Item 1",
-          url: "#!",
+          text: 'Item 1',
+          url: '#!',
           media: icon_1,
         },
         {
-          text: "Item 2",
-          url: "#!",
+          text: 'Item 2',
+          url: '#!',
           media: icon_2,
         },
         {
-          text: "Item 3",
-          url: "#!",
+          text: 'Item 3',
+          url: '#!',
           media: icon_3,
         }
       ]
@@ -262,78 +262,78 @@
   {% endset %}
 
   {% set modal_content %}
-    {% include "@bolt-components-band/band.twig" with {
-      theme: "dark",
+    {% include '@bolt-components-band/band.twig' with {
+      theme: 'dark',
       content: hero_band_content,
     } only %}
-    {% include "@bolt-components-band/band.twig" with {
-      theme: "light",
+    {% include '@bolt-components-band/band.twig' with {
+      theme: 'light',
       content: card_band_content,
     } only %}
-    {% include "@bolt-components-band/band.twig" with {
-      theme: "xdark",
-      size: "small",
+    {% include '@bolt-components-band/band.twig' with {
+      theme: 'xdark',
+      size: 'small',
       content: flag_band_content,
     } only %}
-    {% include "@bolt-components-band/band.twig" with {
-      theme: "dark",
+    {% include '@bolt-components-band/band.twig' with {
+      theme: 'dark',
       content: action_band_content,
     } only %}
   {% endset %}
 
   <h3>Page Layout</h3>
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Open Modal",
-    size: "small",
+  {% include '@bolt-components-button/button.twig' with {
+    text: 'Open Modal',
+    size: 'small',
     attributes: {
-      onclick: "this.nextElementSibling.show()",
+      onclick: 'this.nextElementSibling.show()',
     }
   } only %}
-  {% include "@bolt-components-modal/modal.twig" with {
+  {% include '@bolt-components-modal/modal.twig' with {
     content: modal_content,
-    width: "full",
-    spacing: "none",
-    theme: "none",
+    width: 'full',
+    spacing: 'none',
+    theme: 'none',
   } only %}
 </div>
 
 <div class="u-bolt-margin-bottom-medium">
   {% set modal_content %}
-    {% include "@bolt-elements-image/image.twig" with {
+    {% include '@bolt-elements-image/image.twig' with {
       attributes: {
-        src: "/images/content/backgrounds/background-robotics-customer-service.jpg",
-        alt: "This is the alt text.",
-        loading: "lazy",
+        src: '/images/content/backgrounds/background-robotics-customer-service.jpg',
+        alt: 'This is the alt text.',
+        loading: 'lazy',
       }
     } only %}
   {% endset %}
 
   <h3>Image</h3>
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Open Modal",
-    size: "small",
+  {% include '@bolt-components-button/button.twig' with {
+    text: 'Open Modal',
+    size: 'small',
     attributes: {
-      onclick: "this.nextElementSibling.show()",
+      onclick: 'this.nextElementSibling.show()',
     }
   } only %}
-  {% include "@bolt-components-modal/modal.twig" with {
+  {% include '@bolt-components-modal/modal.twig' with {
     content: modal_content,
-    spacing: "none",
-    theme: "none",
-    scroll: "overall",
+    spacing: 'none',
+    theme: 'none',
+    scroll: 'overall',
   } only %}
 </div>
 
 
 {# @todo: device viewer has z-index conflicts with modal.
-<div class="u-bolt-margin-bottom-medium">
+<div class='u-bolt-margin-bottom-medium'>
   {% set modal_content %}
-    {% include "@bolt-components-device-viewer/device-viewer.twig" with {
-      device: "ipad",
-      orientation: "landscape",
-      color: "silver",
+    {% include '@bolt-components-device-viewer/device-viewer.twig' with {
+      device: 'ipad',
+      orientation: 'landscape',
+      color: 'silver',
       image: {
-        src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+        src: '/images/content/screenshots/device-screenshot--tablet.jpg',
         lazyload: false
       },
       magnify: true
@@ -341,18 +341,18 @@
   {% endset %}
 
   <h3>Device Viewer</h3>
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Open Modal",
-    size: "small",
+  {% include '@bolt-components-button/button.twig' with {
+    text: 'Open Modal',
+    size: 'small',
     attributes: {
-      onclick: "this.nextElementSibling.show()",
+      onclick: 'this.nextElementSibling.show()',
     }
   } only %}
-  {% include "@bolt-components-modal/modal.twig" with {
+  {% include '@bolt-components-modal/modal.twig' with {
     content: modal_content,
-    width: "optimal",
-    spacing: "none",
-    theme: "none",
+    width: 'optimal',
+    spacing: 'none',
+    theme: 'none',
   } only %}
 </div>
 #}
