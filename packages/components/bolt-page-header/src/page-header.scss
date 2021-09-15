@@ -130,7 +130,7 @@
 .c-bolt-page-header__action-trigger__icon {
   display: grid;
   transform: scale(1) rotate(0deg);
-  font-size: var(--bolt-type-font-size-xxlarge);
+  font-size: var(--bolt-type-font-size-xlarge);
   line-height: 1;
   transition: transform ease-out 500ms;
   place-items: center;
@@ -258,7 +258,7 @@
   hyphens: auto;
 }
 
-// Related Sites Popover
+// Related Sites Grid View Lists
 .c-bolt-page-header__related-sites-list {
   display: block;
   margin: 0;
@@ -331,12 +331,13 @@
   color: var(--bolt-color-white);
   line-height: 1;
   text-decoration: none;
+  border: 1px solid var(--m-bolt-bg);
   border-radius: bolt-border-radius(full);
   background-color: var(--bolt-color-error);
 
   &:empty {
-    width: 0.6em;
-    height: 0.6em;
+    width: 0.8em;
+    height: 0.8em;
     padding: 0;
   }
 }

@@ -7,18 +7,23 @@
 {% endset %}
 
 {# Icons #}
-{% set icon_global %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'global',
+{% set icon_phone_call %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-phone-call',
+  } only %}
+{% endset %}
+{% set icon_network %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-network',
   } only %}
 {% endset %}
 {% set icon_grid %}
-  {% include '@bolt-components-icon/icon.twig' with {
+  {% include '@bolt-elements-icon/icon.twig' with {
     name: 'grid',
   } only %}
 {% endset %}
 {% set icon_bell_solid %}
-  {% include '@bolt-components-icon/icon.twig' with {
+  {% include '@bolt-elements-icon/icon.twig' with {
     name: 'bell-solid',
   } only %}
 {% endset %}
@@ -773,7 +778,7 @@
     content: notifications_popover_lv2_ul_content,
     popover_position: 'edge-end',
     attributes: {
-      style: '--c-bolt-page-header-desktop-popover-width: 320px',
+      style: '--c-bolt-page-header-desktop-popover-width: 25rem',
     }
   } only %}
 {% endset %}
@@ -917,12 +922,12 @@
 
 {% set user_nav_lv1_ul_content %}
   {% set user_settings_label %}
-    <span class="c-bolt-page-header__nav-link__content__signifier">{{ user_avatar }}</span>
-    <span class="c-bolt-page-header__nav-link__content__text"><span aria-hidden="true">Hello Alan</span> <span class="u-bolt-visuallyhidden">User settings</span></span>
+    <span aria-hidden="true">Hello Alan</span> <span class="u-bolt-visuallyhidden">User settings</span>
   {% endset %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: user_settings_label,
+      signifier_before: user_avatar,
     },
     children: user_popover_lv2,
     popover: true,
@@ -931,26 +936,20 @@
     <span class="c-bolt-page-header__counter"></span>
   {% endset %}
 
-  {% set notifications_label %}
-    <span class="c-bolt-page-header__nav-link__content__signifier">{{ icon_bell_solid }}</span>
-    <span class="c-bolt-page-header__nav-link__content__text">Notifications</span>
-    <span class="c-bolt-page-header__counter"></span>
-  {% endset %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: notifications_label,
+      content: 'Notifications',
+      signifier_only: icon_bell_solid,
+      counter: true,
     },
     children: notifications_popover_lv2,
     popover: true,
   } only %}
 
-  {% set language_label %}
-    <span class="c-bolt-page-header__nav-link__content__signifier">{{ icon_global }}</span>
-    <span class="c-bolt-page-header__nav-link__content__text">English</span>
-  {% endset %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
-      content: language_label,
+      content: 'English',
+      signifier_only: icon_network,
     },
     children: language_popover_lv2,
     popover: true,
@@ -965,7 +964,7 @@
 {% endset %}
 
 {# Related sites nav #}
-{% set more_pega_sites_nav_lv3_ul_content %}
+{% set pega_sites_nav_lv2_ul_content %}
   {% set more_pega_sites_www %}
     <div class="c-bolt-page-header__related-sites">
       <div class="c-bolt-page-header__related-sites__item">
@@ -1003,21 +1002,7 @@
           <li class="c-bolt-page-header__related-sites-list-item">
             <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
             <strong class="c-bolt-page-header__related-sites-list-item__link">
-              <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Portal</a>
-            </strong>
-            <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
-          </li>
-          <li class="c-bolt-page-header__related-sites-list-item">
-            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
-            <strong class="c-bolt-page-header__related-sites-list-item__link">
               <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Marketplace</a>
-            </strong>
-            <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
-          </li>
-          <li class="c-bolt-page-header__related-sites-list-item">
-            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
-            <strong class="c-bolt-page-header__related-sites-list-item__link">
-              <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">My Pega</a>
             </strong>
             <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
           </li>
@@ -1055,6 +1040,10 @@
             </strong>
             <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
           </li>
+        </ul>
+      </div>
+      <div class="c-bolt-page-header__related-sites__item">
+        <ul class="c-bolt-page-header__related-sites-list">
           <li class="c-bolt-page-header__related-sites-list-item">
             <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
             <strong class="c-bolt-page-header__related-sites-list-item__link">
@@ -1065,7 +1054,21 @@
           <li class="c-bolt-page-header__related-sites-list-item">
             <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
             <strong class="c-bolt-page-header__related-sites-list-item__link">
-              <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Community Wiki</a>
+              <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">My Pega</a>
+            </strong>
+            <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
+          </li>
+          <li class="c-bolt-page-header__related-sites-list-item">
+            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
+            <strong class="c-bolt-page-header__related-sites-list-item__link">
+              <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Portal</a>
+            </strong>
+            <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
+          </li>
+          <li class="c-bolt-page-header__related-sites-list-item">
+            <div class="c-bolt-page-header__related-sites-list-item__signifier">{{ thumbnail }}</div>
+            <strong class="c-bolt-page-header__related-sites-list-item__link">
+              <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Pega Wiki</a>
             </strong>
             <div class="c-bolt-page-header__related-sites-list-item__description">Site description goes here</div>
           </li>
@@ -1085,57 +1088,13 @@
   } only %}
 {% endset %}
 
-{% set more_pega_sites_nav_lv3 %}
-  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
-    content: more_pega_sites_nav_lv3_ul_content,
-    attributes: {
-      style: '--c-bolt-page-header-desktop-popover-width: max(600px, 40vw)',
-    }
-  } only %}
-{% endset %}
-
-{% set pega_sites_nav_lv2_ul_content %}
-  {# {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Training',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Support',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Knowledgebase',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %} #}
-
-  {% set pega_sites_label %}
-    <span class="c-bolt-page-header__nav-link__content__signifier">{{ icon_grid }}</span>
-    <span class="c-bolt-page-header__nav-link__content__text">Pega Sites</span>
-  {% endset %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: pega_sites_label,
-    },
-    children: more_pega_sites_nav_lv3,
-    popover: true,
-  } only %}
-{% endset %}
-
 {% set pega_sites_nav_lv2 %}
   {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
     content: pega_sites_nav_lv2_ul_content,
+    popover_position: 'edge-start',
+    attributes: {
+      style: '--c-bolt-page-header-desktop-popover-width: max(56rem, 40vw)',
+    }
   } only %}
 {% endset %}
 
@@ -1143,8 +1102,19 @@
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: 'Pega Sites',
+      signifier_before: icon_grid,
     },
     children: pega_sites_nav_lv2,
+    popover: true,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Contact',
+      signifier_before: icon_phone_call,
+      attributes: {
+        href: 'https://pega.com/',
+      },
+    },
   } only %}
 {% endset %}
 

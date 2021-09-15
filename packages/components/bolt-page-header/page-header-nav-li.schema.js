@@ -27,6 +27,26 @@ module.exports = {
           description:
             'Indicate if the link should also act as a heading for the children in desktop view. This has no effects in mobile view. This only applies if flat is "false", child nav ul is passed, and its category is set to "site".',
         },
+        signifier_before: {
+          type: 'any',
+          description:
+            'Append an signifier before the link content. Icon element is expected here.',
+        },
+        signifier_after: {
+          type: 'any',
+          description:
+            'Append an signifier after the link content. Icon element is expected here.',
+        },
+        signifier_only: {
+          type: 'any',
+          description:
+            'Append an signifier to the link content and visually hide the text content. Icon element is expected here. This prop trumps signifier_before and signifier_after.',
+        },
+        counter: {
+          type: 'boolean',
+          description:
+            'Display a red dot counter. Only use this when there is a signifier.',
+        },
       },
     },
     children: {

@@ -34,12 +34,33 @@
       {{ content }}
     </div>
   {% elseif link and not content %}
+    {% set _link_content %}
+      {% if link.signifier_only or link.signifier_before or link.signifier_after %}
+        {% if link.signifier_only %}
+          <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--only">{{ link.signifier_only }}</span>
+          <span class="c-bolt-page-header__nav-link__content__text">{{ link.content }}</span>
+        {% else %}
+          {% if link.signifier_before %}
+            <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--before">{{ link.signifier_before }}</span>
+          {% endif %}
+          <span class="c-bolt-page-header__nav-link__content__text">{{ link.content }}</span>
+          {% if link.signifier_after %}
+            <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--after">{{ link.signifier_after }}</span>
+          {% endif %}
+        {% endif %}
+        {% if link.counter %}
+          <span class="c-bolt-page-header__counter"></span>
+        {% endif %}
+      {% else %}
+        {{ link.content }}
+      {% endif %}
+    {% endset %}
     {% if link and children %}
       {# Visible desktop heading #}
       {% if link.desktop_heading %}
         <{{ link_tag }} {{ link_attributes.addClass(link_classes) }}>
           <strong class="c-bolt-page-header__nav-link__content">
-            {{ link.content }}
+            {{ _link_content }}
           </strong>
         </{{ link_tag }}>
       {% endif %}
@@ -48,7 +69,7 @@
       <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
         <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
         <span class="c-bolt-page-header__nav-link__content">
-          {{ link.content }}
+          {{ _link_content }}
         </span>
         <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
       </button>
@@ -57,7 +78,7 @@
       {# Simple link without children #}
       <{{ link_tag }} {{ link_attributes.addClass(link_classes)|without('aria-current') }} {% if selected and not current %}aria-current="true"{% endif %}>
         <span class="c-bolt-page-header__nav-link__content">
-          {{ link.content }}
+          {{ _link_content }}
         </span>
       </{{ link_tag }}>
     {% endif %}

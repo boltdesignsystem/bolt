@@ -173,11 +173,26 @@
         margin-left: var(--bolt-spacing-x-xxsmall);
       }
 
+      .c-bolt-page-header__nav-link__content__signifier--only
+        + .c-bolt-page-header__nav-link__content__text {
+        @include bolt-visuallyhidden;
+      }
+
       .c-bolt-page-header__counter {
         position: absolute;
         top: 0;
+      }
+
+      .c-bolt-page-header__nav-link__content__signifier--only
+        ~ .c-bolt-page-header__counter {
+        right: 0;
+        transform: translate3d(25%, -20%, 0);
+      }
+
+      .c-bolt-page-header__nav-link__content__signifier--before
+        ~ .c-bolt-page-header__counter {
         left: 0;
-        transform: translate3d(0.75em, 50%, 0);
+        transform: translate3d(125%, 40%, 0);
       }
     }
 
@@ -277,11 +292,11 @@
       }
 
       > .c-bolt-page-header__nav-list--edge-start {
-        left: 0;
+        left: -1ch;
       }
 
       > .c-bolt-page-header__nav-list--edge-end {
-        right: 0;
+        right: -1ch;
       }
     }
   }
@@ -297,15 +312,15 @@
     order: 2;
     left: calc(var(--bolt-page-padding-x) - var(--bolt-spacing-x-xsmall));
 
-    > .c-bolt-page-header__nav-list-item {
-      > .c-bolt-page-header__nav-link {
-        display: none;
-      }
+    // > .c-bolt-page-header__nav-list-item {
+    //   > .c-bolt-page-header__nav-link {
+    //     display: none;
+    //   }
 
-      > .c-bolt-page-header__nav-list {
-        display: flex;
-      }
-    }
+    //   > .c-bolt-page-header__nav-list {
+    //     display: flex;
+    //   }
+    // }
   }
 
   .c-bolt-page-header__nav-list--site {
@@ -524,7 +539,10 @@
         & > .c-bolt-page-header__nav-list {
           display: block;
           position: absolute;
-          top: calc(var(--bolt-page-header-height) / 2 - 0.1rem);
+          top: calc(
+            (#{$bolt-page-header-click-target-size} / 1.45) +
+              var(--c-bolt-page-header-desktop-padding-bottom)
+          );
           right: auto;
           left: 50%;
           transform: translate3d(-50%, 0, 0);
@@ -613,10 +631,10 @@
     align-items: center;
   }
 
-  // Related Sites Popover
+  // Related Sites Grid View
   .c-bolt-page-header__related-sites {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: var(--bolt-spacing-x-small);
   }
 }
