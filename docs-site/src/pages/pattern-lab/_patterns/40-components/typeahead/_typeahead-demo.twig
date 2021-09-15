@@ -8,16 +8,16 @@
   {% include twig_path %}
 {% endset %}
 
-{% include "@bolt-components-band/band.twig" with {
+{% include '@bolt-components-band/band.twig' with {
   content: demo_content,
-  theme: "none",
-  size: "none"
+  theme: 'none',
+  size: 'none'
 } only %}
 
 <bolt-code-snippet syntax="light" lang="twig" class="u-bolt-block u-bolt-margin-top-medium">
   {% spaceless %}
     <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
-<code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight" is="shadow-root">
+<code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight' is='shadow-root">
 {{ source(twig_path) | replace({
 '<': '&lt;',
 '>': '&gt;',
@@ -27,10 +27,10 @@
   {% endspaceless %}
 </bolt-code-snippet>
 
-<bolt-code-snippet syntax="light" lang="js" class="u-bolt-block u-bolt-margin-top-medium">
+<bolt-code-snippet syntax="light" lang="js" class='u-bolt-block u-bolt-margin-top-medium'>
   {% spaceless %}
     <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
-<code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight" is="shadow-root">
+<code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight' is='shadow-root">
 {{ source(js_path) | replace({
 '<': '&lt;',
 '>': '&gt;',
