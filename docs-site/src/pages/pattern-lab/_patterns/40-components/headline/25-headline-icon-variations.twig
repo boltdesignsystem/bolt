@@ -1,23 +1,23 @@
 {% set sizeExamples = {
-  h1: "xxxlarge",
-  h2: "xxlarge",
-  h3: "xlarge",
-  h4: "large",
-  h5: "small",
-  h6: "xsmall",
+  h1: 'xxxlarge',
+  h2: 'xxlarge',
+  h3: 'xlarge',
+  h4: 'large',
+  h5: 'small',
+  h6: 'xsmall',
 } %}
 
 <bolt-stack spacing="large">
   <h3>Headline w/ Icon Position <code>before</code></h3>
   {% for tag, size in sizeExamples %}
-    <bolt-stack spacing="small">
-      {% include "@bolt-components-headline/headline.twig" with {
-        text: "What we do at Pega is brilliant!",
+    <bolt-stack spacing='small'>
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'What we do at Pega is brilliant!',
         tag: tag,
         size: size,
         icon: {
-          name: "arrow-left",
-          position: "before"
+          name: 'arrow-left',
+          position: 'before'
         }
       } only %}
     </bolt-stack>
@@ -25,28 +25,28 @@
 </bolt-stack>
 <bolt-stack spacing="large">
   <h3>Headline w/ Icon Position <code>after</code></h3>
-  {% include "@bolt-components-headline/headline.twig" with {
-    text: "What we do at Pega is brilliant!",
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'What we do at Pega is brilliant!',
     icon: {
-      name: "chevron-right",
-      position: "after"
+      name: 'chevron-right',
+      position: 'after'
     }
   } only %}
 </bolt-stack>
 <bolt-stack spacing="large">
   <h3>Headline w/ Default Icon Position</h3>
-  {% include "@bolt-components-headline/headline.twig" with {
-    text: "What we do at Pega is brilliant!",
-    icon: "chevron-right",
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'What we do at Pega is brilliant!',
+    icon: 'chevron-right',
   } only %}
 </bolt-stack>
 <bolt-stack spacing="large">
   <h3>Headline w/ Icon Options</h3>
-  {% include "@bolt-components-headline/headline.twig" with {
-    text: "What we do at Pega is brilliant!",
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'What we do at Pega is brilliant!',
     icon: {
-      name: "energy",
-      color: "navy",
+      name: 'energy',
+      color: 'navy',
     }
   } only %}
 </bolt-stack>
@@ -56,19 +56,19 @@
 </bolt-banner>
 
 <h3>(Deprecated) Headline w/ <code>Left</code> Icon Position</h3>
-{% include "@bolt-components-headline/headline.twig" with {
-  text: "What we do at Pega is brilliant!",
+{% include '@bolt-components-headline/headline.twig' with {
+  text: 'What we do at Pega is brilliant!',
   icon: {
-    name: "arrow-left",
-    position: "left"
+    name: 'arrow-left',
+    position: 'left'
   }
 } only %}
 
 <h3>(Deprecated) Headline w/ <code>Right</code> Icon Position</h3>
-{% include "@bolt-components-headline/headline.twig" with {
-  text: "What we do at Pega is brilliant!",
+{% include '@bolt-components-headline/headline.twig' with {
+  text: 'What we do at Pega is brilliant!',
   icon: {
-    name: "chevron-right",
-    position: "right"
+    name: 'chevron-right',
+    position: 'right'
   }
 } only %}
