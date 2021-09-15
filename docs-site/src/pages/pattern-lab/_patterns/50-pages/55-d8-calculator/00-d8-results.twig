@@ -59,12 +59,9 @@
       </div>
       {% if not loop.last %}
         <div class="c-www-results-graph__icon">
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'arrow-left',
             size: 'small',
-            attributes: {
-              'aria-hidden': 'true',
-            }
           } only %}
         </div>
       {% endif %}
@@ -83,7 +80,7 @@
 #}
 {% set pinned_recalculate_link %}
   {% set refresh_icon %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'refresh'
     } only %}
   {% endset %}
@@ -104,7 +101,7 @@
 {% endset %}
 {% set pinned_email_results_link %}
   {% set email_icon %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'email'
     } only %}
   {% endset %}
@@ -175,8 +172,8 @@
     </div>
   {% endset %}
   {% set info_icon %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'info-open',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'info-circle',
       size: 'small',
     } only %}
   {% endset %}
@@ -230,13 +227,10 @@
 
         {# Flag 1 #}
         {% set flag_1_figure %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'partners',
             size: 'large',
             color: 'teal',
-            attributes: {
-              'aria-hidden': 'true',
-            }
           } only %}
         {% endset %}
         {% set flag_1_content %}
@@ -255,13 +249,10 @@
 
         {# Flag 2 #}
         {% set flag_2_figure %}
-          {% include '@bolt-components-icon/icon.twig' with {
-            name: 'dollar-open',
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'dollar-circle',
             size: 'large',
             color: 'teal',
-            attributes: {
-              'aria-hidden': 'true',
-            }
           } only %}
         {% endset %}
         {% set flag_2_content %}
@@ -280,13 +271,10 @@
 
         {# Flag 3 #}
         {% set flag_3_figure %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'reporting',
             size: 'large',
             color: 'teal',
-            attributes: {
-              'aria-hidden': 'true',
-            }
           } only %}
         {% endset %}
         {% set flag_3_content %}
@@ -337,13 +325,10 @@
 
         {# Flag 1 #}
         {% set flag_1_figure %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'reporting',
             size: 'large',
             color: 'teal',
-            attributes: {
-              'aria-hidden': 'true',
-            }
           } only %}
         {% endset %}
         {% set flag_1_content %}

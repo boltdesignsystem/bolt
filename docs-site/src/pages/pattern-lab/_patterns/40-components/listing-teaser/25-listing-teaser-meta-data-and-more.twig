@@ -9,8 +9,8 @@
 
 {% set demo %}
   {% set icon_questions %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'questions',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-chat-question',
       size: 'large',
       color: 'teal',
     } only %}
@@ -18,7 +18,7 @@
   {% set description %}
     {% set more_link %}
       {% spaceless %}{% set icon_chevron_right %}
-        {% include '@bolt-components-icon/icon.twig' with {
+        {% include '@bolt-elements-icon/icon.twig' with {
           name: 'chevron-right',
         } only %}
       {% endset %}
@@ -54,7 +54,7 @@
 {% set description %}
   {% set more_link %}
     {% set icon_chevron_right %}
-      {% include '@bolt-components-icon/icon.twig' with {
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: 'chevron-right',
       } only %}
     {% endset %}

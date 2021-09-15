@@ -1,9 +1,14 @@
 {% set usage %}{% verbatim %}
+
 {% set icon %}
-  {% include '@bolt-components-icon/icon.twig' with {
+  {% include '@bolt-elements-icon/icon.twig' with {
     name: 'icon-name',
-    background: 'circle',
-    size: 'large'
+  }%}
+{% endset %}
+
+{% set shape %}
+  {% include '@bolt-elements-shape/shape.twig' with {
+    content: icon,
   }%}
 {% endset %}
 

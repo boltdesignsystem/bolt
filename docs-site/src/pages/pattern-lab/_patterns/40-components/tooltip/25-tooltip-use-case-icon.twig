@@ -1,7 +1,7 @@
 {# Setting variables for demo purposes #}
 {% set lock_icon %}
   <span class="u-bolt-color-gray">
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'lock',
       attributes: {
         'aria-label': 'Locked',
@@ -11,7 +11,7 @@
 {% endset %}
 {% set check_icon %}
   <span class="u-bolt-color-success">
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'check-solid',
       attributes: {
         'aria-label': 'Yay',
@@ -21,7 +21,7 @@
 {% endset %}
 {% set close_icon %}
   <span class="u-bolt-color-error">
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'close-solid',
       attributes: {
         'aria-label': 'Nay',

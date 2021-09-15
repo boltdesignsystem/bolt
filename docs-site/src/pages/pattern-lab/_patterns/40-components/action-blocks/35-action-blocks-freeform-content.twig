@@ -1,8 +1,13 @@
 {% set media_1 %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'add-open',
-    background: 'circle',
-    size: 'medium'
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'add-circle',
+  }%}
+{% endset %}
+
+{% set shape_for_media_1 %}
+  {% include '@bolt-elements-shape/shape.twig' with {
+    content: media_1,
+    size: 'large'
   }%}
 {% endset %}
 

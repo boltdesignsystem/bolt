@@ -2,9 +2,9 @@
   <div class="c-bds-hamburger__inner">
     <div class="c-bds-hamburger__button c-bds-hamburger__button--open">
       {% set _icon_menu %}
-        {% include '@bolt-components-icon/icon.twig' with {
-          name: 'menu',
-          size: 'medium',
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: "menu",
+          size: "medium",
         } only %}
       {% endset %}
       {% include '@bolt-elements-button/button.twig' with {
@@ -21,9 +21,9 @@
 
     <div class="c-bds-hamburger__button c-bds-hamburger__button--close">
       {% set _icon_close %}
-        {% include '@bolt-components-icon/icon.twig' with {
-          name: 'close',
-          size: 'medium',
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: "close",
+          size: "medium",
         } only %}
       {% endset %}
       {% include '@bolt-elements-button/button.twig' with {
