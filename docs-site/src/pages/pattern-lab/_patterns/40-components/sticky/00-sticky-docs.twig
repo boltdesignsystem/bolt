@@ -1,5 +1,5 @@
 {% set usage %}{% verbatim %}
-{% embed "@bolt-components-sticky/sticky.twig" %}
+{% embed '@bolt-components-sticky/sticky.twig' %}
   {% block sticky_content %}
 
     // Sticky content
@@ -8,7 +8,7 @@
 {% endembed %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "sticky",
+{% include '@utils/docs.twig' with {
+  componentName: 'sticky',
   usage: usage
 } only %}
