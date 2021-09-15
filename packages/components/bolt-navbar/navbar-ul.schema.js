@@ -1,6 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Navbar list',
+  title: 'Navbar ul',
   type: 'object',
   required: ['content'],
   properties: {

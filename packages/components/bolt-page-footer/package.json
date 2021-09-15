@@ -1,18 +1,24 @@
 {
   "name": "@bolt/components-page-footer",
-  "version": "4.2.0",
-  "description": "Placeholder element only used in Pattern Lab demos.",
+  "version": "4.4.0",
+  "description": "Global footer that contains Pega description, main navigation, secondary navigation and social media links",
   "homepage": "https://boltdesignsystem.com",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-footer",
   "license": "MIT",
-  "style": "page-footer.scss",
+  "main": "index.js",
+  "style": "index.scss",
   "dependencies": {
-    "@bolt/components-band": "^4.2.0",
-    "@bolt/core-v3.x": "^4.2.0"
+    "@bolt/components-icon": "^4.4.0",
+    "@bolt/core-v3.x": "^4.4.0"
   },
   "publishConfig": {
     "access": "public"
   },
-  "schema": "page-footer.schema.js"
+  "schema": [
+    "page-footer.schema.js",
+    "page-footer-nav-ul.schema.js",
+    "page-footer-nav-li.schema.js"
+  ],
+  "twig": "src/page-footer.twig"
 }

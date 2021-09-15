@@ -1,0 +1,79 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Pass a <code>.t-bolt-*</code> theme class to the parent element to color a shape.</bolt-li>
+    <bolt-li>Reference the <a href="{{ link['visual-styles-theming-system'] }}" class="e-bolt-text-link">Theming System</a> for all available themes.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set theme_options = [
+    'white',
+    'black',
+    'gray-xlight',
+    'navy-dark',
+    'navy',
+    'navy-light',
+    'teal',
+    'yellow',
+    'orange',
+    'pink',
+    'wine',
+    'berry',
+    'violet'
+  ] %}
+  {% set icon %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-thumbs-up',
+    } only %}
+  {% endset %}
+  <ul class="bolt-icon-list-demo">
+    {% for theme in theme_options %}
+      <li>
+        <div class="u-bolt-margin-bottom-xsmall">
+          {% include '@bolt-elements-shape/shape.twig' with {
+            content: icon,
+            size: 'large',
+            border_radius: 'full',
+            attributes: {
+              class: [
+                't-bolt-' ~ theme
+              ]
+            }
+          } only %}
+        </div>
+        .t-bolt-{{ theme }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-shape/shape.twig' with {
+  attributes: {
+    class: 't-bolt-navy',
+  }
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<span class="e-bolt-shape t-bolt-navy">
+  <span class="t-bolt-shape__content">
+    <!-- Letters, icon, or image go here -->
+  </span>
+</span>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Shape Theming',
+  description: 'A Shape can accept all existing themes.',
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

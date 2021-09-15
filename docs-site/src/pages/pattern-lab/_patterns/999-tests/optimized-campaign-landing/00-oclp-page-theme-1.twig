@@ -1,0 +1,277 @@
+{% set header %}
+  <header>
+    {% set logo %}
+      <a href="https://pega.com">
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            alt: 'Pegasystems, Inc.',
+            src: '/images/logos/pega-logo.svg',
+            width: 139,
+            height: 30,
+            class: 'c-base-ocpl-logo',
+          },
+        } only %}
+      </a>
+    {% endset %}
+    {% set layout_content %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: logo,
+      } only %}
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layout_content,
+    } only %}
+  </header>
+{% endset %}
+
+{% set main_content %}
+  {% set page_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Optimized Campaign Landing Page Theme 1',
+      tag: 'h1',
+      size: 'xxxlarge',
+    } only %}
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'This is the body. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta, unde incidunt omnis officiis eos aut quae culpa laudantium consequatur! Quasi repellat odit doloremque rerum.',
+    } only %}
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta.',
+    } only %}
+    {% set list_content %}
+      {% set icon_check_solid %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'check-solid',
+          size: 'medium',
+          color: 'teal',
+        } only %}
+      {% endset %}
+      {% set list_text %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Check list item. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+          size: 'small',
+          attributes: {
+            class: 'u-bolt-margin-top-xxsmall',
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: icon_check_solid,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: list_text,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: icon_check_solid,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: list_text,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: icon_check_solid,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: list_text,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: icon_check_solid,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: list_text,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: icon_check_solid,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: list_text,
+      } only %}
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+        content: list_content,
+      gutter: 'small',
+      row_gutter: 'small',
+      template: [
+        'flag',
+      ],
+      attributes: {
+        style: '--l-bolt-layout-flag-media-width: 24px',
+      },
+    } only %}
+  {% endset %}
+  {% set layout_content %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: page_content,
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_content,
+    gutter: 'large',
+    padding_top: 'large',
+    padding_bottom: 'large',
+    template: [
+      '67/33@from-medium',
+    ],
+  } only %}
+{% endset %}
+
+{% set footer %}
+  <footer>
+    {% set contact_content %}
+      {% set contact_link %}
+        {% set icon_customer_service %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'customer-service',
+            size: 'large',
+          } only %}
+        {% endset %}
+        {% set icon_chevron_right %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'chevron-right',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Contact Sales',
+          icon_before: icon_customer_service,
+          icon_after: icon_chevron_right,
+          reversed_underline: true,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: contact_link,
+        tag: 'p',
+        size: 'xlarge',
+        align: 'center',
+      } only %}
+    {% endset %}
+    {% set layout_content %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: '/images/backgrounds/ocpl-contact-bg-2.svg',
+          style: '--e-bolt-image-position: 5vw 3vw',
+        },
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: contact_content,
+      } only %}
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layout_content,
+      padding_top: 'xlarge',
+      padding_bottom: 'xlarge',
+    } only %}
+    <div class="c-base-ocpl-footer c-base-ocpl-footer--offset-bottom-cta t-bolt-white">
+      <div class="c-base-ocpl-footer__item">
+        <strong class="u-bolt-margin-right-xsmall">Connect with us</strong>
+
+        {% set icon_linkedin %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'linkedin',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: '<span class="u-bolt-visuallyhidden">LinkedIn</span>',
+          icon_before: icon_linkedin,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+        
+        {% set icon_twitter %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'twitter',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: '<span class="u-bolt-visuallyhidden">Twitter</span>',
+          icon_before: icon_twitter,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+        
+        {% set icon_facebook %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'facebook',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: '<span class="u-bolt-visuallyhidden">Facebook</span>',
+          icon_before: icon_facebook,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+        
+        {% set icon_youtube %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'youtube-solid',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: '<span class="u-bolt-visuallyhidden">YouTube</span>',
+          icon_before: icon_youtube,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+      </div>
+      <div class="c-base-ocpl-footer__item">
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Terms of Use',
+          reversed_underline: true,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Privacy',
+          reversed_underline: true,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Contact',
+          reversed_underline: true,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Pega.com',
+          reversed_underline: true,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+      </div>
+      <div class="c-base-ocpl-footer__item">
+        &copy;2021 Pegasystems, Inc.
+      </div>
+    </div>
+  </footer>
+{% endset %}
+
+{% include '@bolt-elements-image/image.twig' with {
+  background: true,
+  attributes: {
+    src: '/images/backgrounds/ocpl-bg-1.svg',
+    style: '--e-bolt-image-position: 67vw -35vw;',
+    class: 'c-base-ocpl-bg-image',
+  },
+} only %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  header: header,
+  main: {
+    content: main_content,
+  },
+  footer: footer,
+  attributes: {
+    class: 't-bolt-gray-xlight',
+  }
+} only %}
+

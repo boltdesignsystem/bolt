@@ -39,7 +39,7 @@ $_bolt-layout-item-min-width: calc(#{bolt-breakpoint(xxsmall)} / 3);
  */
 bolt-layout {
   // Setting up vars to be customized
-  --l-bolt-layout-template: 1fr;
+  --l-bolt-layout-template: minmax(0, 1fr);
   --l-bolt-layout-gutter: var(--bolt-spacing-x-medium);
   --l-bolt-layout-row-gutter: var(--bolt-spacing-y-medium);
   --l-bolt-layout-padding-top: var(--bolt-spacing-y-medium);
@@ -130,7 +130,6 @@ bolt-layout {
 bolt-layout bolt-layout,
 .c-bolt-page-header bolt-layout,
 .c-bolt-page-footer bolt-layout,
-.c-bolt-band bolt-layout,
 .l-bolt-holy-grail bolt-layout {
   --l-bolt-layout-template: 1fr;
   --l-bolt-layout-gutter: var(--bolt-spacing-x-medium);
@@ -195,7 +194,7 @@ bolt-layout {
 
   // Special sub-layout that pushes last item to the bottom
   &[template~='full-vertical-push-last-item'] {
-    --l-bolt-layout-template: 1fr;
+    --l-bolt-layout-template: minmax(0, 1fr);
     height: 100%;
 
     > bolt-layout-item:last-of-type {

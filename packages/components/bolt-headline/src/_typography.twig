@@ -117,7 +117,7 @@
     {% if icon %}
       {% set linkVars = linkVars | merge({ icon: icon }) %}
     {% endif %}
-    {% include "@bolt/link.twig" with linkVars only %}
+    {% include "@bolt-components-link/link.twig" with linkVars only %}
   {%- else -%}
     {% if hasIcon or quoted %}<span class="c-bolt-headline__text">{% endif %}
       {{- iconBefore -}}

@@ -1,13 +1,19 @@
 {% grid "o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--middle u-bolt-flex-nowrap" %}
   {% cell "u-bolt-flex-grow u-bolt-margin-right-auto u-bolt-flex u-bolt-align-items-center" %}
-    {% include "@bolt-components-icon/icon.twig" with {
-      name: "list",
-      background: "square",
-      color: "teal",
+    {% set icon %}
+      {% include "@bolt-elements-icon/icon.twig" with {
+        name: "list",
+      } only %}
+    {% endset %}
+
+    {% include "@bolt-elements-shape/shape.twig" with {
+      content: icon,
+      border_radius: "large",
       size: "xlarge",
       attributes: {
         style: "transform: scale(-0.5); --bolt-theme-icon-radius: 0.75rem;",
         class: [
+          "t-bolt-teal",
           "u-bolt-negative-margin-top-small",
           "u-bolt-negative-margin-right-xsmall",
           "u-bolt-negative-margin-bottom-small",
@@ -42,8 +48,9 @@
     } only %}
 
     {% if status == 'passed' or status == 'failed' %}
-      {% include "@bolt-components-icon/icon.twig" with {
+      {% include "@bolt-elements-icon/icon.twig" with {
         name: status == 'passed' ? "check-solid" : "close-solid",
+        size: "medium",
         attributes: {
           class: [
             status == 'passed' ? "u-bolt-color-success" : "u-bolt-color-error",

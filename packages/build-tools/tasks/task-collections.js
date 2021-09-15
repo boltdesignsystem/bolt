@@ -9,6 +9,7 @@ const webpackTasks = require('./webpack-tasks');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
 const iconTasks = require('./icon-tasks');
+const iconElementTasks = require('./icon-element-tasks');
 
 const { writeBoltVersions } = require('./api-tasks/bolt-versions');
 const extraTasks = [];
@@ -202,7 +203,9 @@ async function build(shouldReturnTime = false) {
       case 'pl':
       case 'static':
       case 'pwa':
+        // TODO: Remove `iconTasks` when the Icon/Icons Component is removed
         await iconTasks.build();
+        await iconElementTasks.build();
     }
 
     config.prod || config.watch === false ? await webpackTasks.compile() : '';
@@ -249,7 +252,9 @@ async function watch() {
         watchTasks.push(extraTasks.patternLab.watch());
         watchTasks.push(extraTasks.api.watch());
         watchTasks.push(extraTasks.static.watch());
+        // TODO: Remove `iconTasks` when the Icon/Icons Component is removed
         watchTasks.push(iconTasks.watch());
+        watchTasks.push(iconElementTasks.watch());
         break;
     }
 

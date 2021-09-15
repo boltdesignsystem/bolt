@@ -6,7 +6,7 @@
     {% set icon = icon | merge({
       size: icon.size | default('xlarge')
     }) %}
-    {% include '@bolt/icon.twig' with icon only %}
+    {% include '@bolt-components-icon/icon.twig' with icon only %}
   {% endset %}
   {% set media = icon %}
 {% endif %}
