@@ -20,7 +20,7 @@
    * Logo
    */
   #}
-  <div class="c-www-calculator-logo" aria-hidden="true">
+  <div class="c-www-calculator-logo' aria-hidden='true">
     <span>&#43;</span>
     <span>&#8722;</span>
     <span>&#215;</span>
@@ -34,16 +34,16 @@
      */
     #}
     <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-9/12@small">
-      {% include "@bolt-components-headline/headline.twig" with {
-        text: "Real-time Decisioning Revenue Calculator",
-        size: "xxxlarge",
-        tag: "h1"
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Real-time Decisioning Revenue Calculator',
+        size: 'xxxlarge',
+        tag: 'h1'
       } only %}
 
-      {% include "@bolt-components-headline/subheadline.twig" with {
-        text: "Find out the total revenue benefit of taking a real-time, next-best-action approach to customer engagement, focused on retention and cross-sell.",
-        size: "xlarge",
-        tag: "h2",
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: 'Find out the total revenue benefit of taking a real-time, next-best-action approach to customer engagement, focused on retention and cross-sell.',
+        size: 'xlarge',
+        tag: 'h2',
       } only %}
     </div>
 
@@ -63,30 +63,30 @@
         <div role="list" class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--top">
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             <div class="c-bolt-input-list__item">
-              {% set for_value = "www-calculator-total-revenue" %}
+              {% set for_value = 'www-calculator-total-revenue' %}
               {% set label %}
-                {% include "@bolt-components-form/form-label.twig" with {
-                  title: "What is your company&rsquo;s total revenue?",
+                {% include '@bolt-components-form/form-label.twig' with {
+                  title: 'What is your company&rsquo;s total revenue?',
                   attributes: {
                     for: for_value
                   },
-                  displayType: "block"
+                  displayType: 'block'
                 } only %}
               {% endset %}
               {% set input %}
-                {% include "@bolt-components-form/form-input.twig" with {
+                {% include '@bolt-components-form/form-input.twig' with {
                   attributes: {
-                    placeholder: "E.g. 25000000000",
+                    placeholder: 'E.g. 25000000000',
                     required: true,
-                    type: "number",
+                    type: 'number',
                     id: for_value,
-                    pattern: "/\d/",
-                    "data-bolt-format-input": "currency-us"
+                    pattern: '/\d/',
+                    'data-bolt-format-input': 'currency-us'
                   },
                 } only %}
               {% endset %}
-              {% include "@bolt-components-form/form-element.twig" with {
-                labelDisplay: "before",
+              {% include '@bolt-components-form/form-element.twig' with {
+                labelDisplay: 'before',
                 label: label,
                 children: input
               } only %}
@@ -94,32 +94,32 @@
           </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             <div class="c-bolt-input-list__item">
-              {% set for_value = "www-calculator-churn-rate" %}
+              {% set for_value = 'www-calculator-churn-rate' %}
               {% set label %}
-                {% include "@bolt-components-form/form-label.twig" with {
-                  title: "What is your company&rsquo;s churn rate?",
+                {% include '@bolt-components-form/form-label.twig' with {
+                  title: 'What is your company&rsquo;s churn rate?',
                   attributes: {
                     for: for_value
                   },
-                  displayType: "block"
+                  displayType: 'block'
                 } only %}
               {% endset %}
               {% set input %}
-                {% include "@bolt-components-form/form-input.twig" with {
+                {% include '@bolt-components-form/form-input.twig' with {
                   attributes: {
-                    placeholder: "E.g. 10",
+                    placeholder: 'E.g. 10',
                     required: true,
-                    type: "number",
+                    type: 'number',
                     id: for_value,
-                    pattern: "/\d/",
-                    "data-bolt-format-input": "percent",
+                    pattern: '/\d/',
+                    'data-bolt-format-input': 'percent',
                     min: 0,
                     max: 100
                   },
                 } only %}
               {% endset %}
-              {% include "@bolt-components-form/form-element.twig" with {
-                labelDisplay: "before",
+              {% include '@bolt-components-form/form-element.twig' with {
+                labelDisplay: 'before',
                 label: label,
                 children: input
               } only %}
@@ -127,30 +127,30 @@
           </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             <div class="c-bolt-input-list__item">
-              {% set for_value = "www-calculator-customers" %}
+              {% set for_value = 'www-calculator-customers' %}
               {% set label %}
-                {% include "@bolt-components-form/form-label.twig" with {
-                  title: "How many customers does your company have?",
+                {% include '@bolt-components-form/form-label.twig' with {
+                  title: 'How many customers does your company have?',
                   attributes: {
                     for: for_value
                   },
-                  displayType: "block"
+                  displayType: 'block'
                 } only %}
               {% endset %}
               {% set input %}
-                {% include "@bolt-components-form/form-input.twig" with {
+                {% include '@bolt-components-form/form-input.twig' with {
                   attributes: {
-                    placeholder: "E.g. 10000000",
+                    placeholder: 'E.g. 10000000',
                     required: true,
-                    type: "number",
+                    type: 'number',
                     id: for_value,
-                    pattern: "/\d/",
-                    "data-bolt-format-input": "number"
+                    pattern: '/\d/',
+                    'data-bolt-format-input': 'number'
                   },
                 } only %}
               {% endset %}
-              {% include "@bolt-components-form/form-element.twig" with {
-                labelDisplay: "before",
+              {% include '@bolt-components-form/form-element.twig' with {
+                labelDisplay: 'before',
                 label: label,
                 children: input,
               } only %}
@@ -158,30 +158,30 @@
           </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             <div class="c-bolt-input-list__item">
-              {% set for_value = "www-calculator-average-cost" %}
+              {% set for_value = 'www-calculator-average-cost' %}
               {% set label %}
-                {% include "@bolt-components-form/form-label.twig" with {
-                  title: "What is your company&rsquo;s average cost of customer acquisition?",
+                {% include '@bolt-components-form/form-label.twig' with {
+                  title: 'What is your company&rsquo;s average cost of customer acquisition?',
                   attributes: {
                     for: for_value
                   },
-                  displayType: "block"
+                  displayType: 'block'
                 } only %}
               {% endset %}
               {% set input %}
-                {% include "@bolt-components-form/form-input.twig" with {
+                {% include '@bolt-components-form/form-input.twig' with {
                   attributes: {
-                    placeholder: "E.g. 2000",
+                    placeholder: 'E.g. 2000',
                     required: true,
-                    type: "number",
+                    type: 'number',
                     id: for_value,
-                    pattern: "/\d/",
-                    "data-bolt-format-input": "currency-us"
+                    pattern: '/\d/',
+                    'data-bolt-format-input': 'currency-us'
                   },
                 } only %}
               {% endset %}
-              {% include "@bolt-components-form/form-element.twig" with {
-                labelDisplay: "before",
+              {% include '@bolt-components-form/form-element.twig' with {
+                labelDisplay: 'before',
                 label: label,
                 children: input
               } only %}
@@ -189,48 +189,48 @@
           </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
             <div class="c-bolt-input-list__item">
-              {% set for_value = "www-calculator-customer-worth" %}
+              {% set for_value = 'www-calculator-customer-worth' %}
               {% set label %}
-                {% include "@bolt-components-form/form-label.twig" with {
-                  title: "How much is each customer worth (per year)?",
+                {% include '@bolt-components-form/form-label.twig' with {
+                  title: 'How much is each customer worth (per year)?',
                   attributes: {
                     for: for_value
                   },
-                  displayType: "block"
+                  displayType: 'block'
                 } only %}
               {% endset %}
               {% set input %}
-                {% include "@bolt-components-form/form-input.twig" with {
+                {% include '@bolt-components-form/form-input.twig' with {
                   attributes: {
-                    placeholder: "E.g. 2000",
+                    placeholder: 'E.g. 2000',
                     required: true,
-                    type: "number",
+                    type: 'number',
                     id: for_value,
-                    pattern: "/\d/",
-                    "data-bolt-format-input": "currency-us"
+                    pattern: '/\d/',
+                    'data-bolt-format-input': 'currency-us'
                   },
                 } only %}
               {% endset %}
-              {% include "@bolt-components-form/form-element.twig" with {
-                labelDisplay: "before",
+              {% include '@bolt-components-form/form-element.twig' with {
+                labelDisplay: 'before',
                 label: label,
                 children: input
               } only %}
             </div>
           </div>
           <div role="listitem" class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-margin-top-auto">
-            {% include "@bolt-components-form/form-button.twig" with {
-              text: "Calculate my result",
-              width: "full",
+            {% include '@bolt-components-form/form-button.twig' with {
+              text: 'Calculate my result',
+              width: 'full',
               attributes: {
-                type: "submit",
+                type: 'submit',
               }
             } only %}
           </div>
         </div>
       {% endset %}
 
-      {% include "@bolt-components-form/form.twig" with {
+      {% include '@bolt-components-form/form.twig' with {
         children: form_children
       } only %}
       {#
@@ -241,19 +241,19 @@
     </div>
   </div>
 {% endset %}
-{% embed "@bolt-components-band/band.twig" with {
-  size: "large",
-  theme: "dark",
+{% embed '@bolt-components-band/band.twig' with {
+  size: 'large',
+  theme: 'dark',
   content: content,
 } only %}
   {% block band_background %}
     <div class="c-www-calculator-background" aria-hidden="true">
-      {% include "@bolt-elements-image/image.twig" with {
+      {% include '@bolt-elements-image/image.twig' with {
         attributes: {
-          src: "/images/backgrounds/calculator-landing-shapes-transparent.png",
-          alt: "Decorative shapes.",
-          loading: "lazy",
-          class: "c-www-calculator-background__image",
+          src: '/images/backgrounds/calculator-landing-shapes-transparent.png',
+          alt: 'Decorative shapes.',
+          loading: 'lazy',
+          class: 'c-www-calculator-background__image',
         }
       } only %}
     </div>
