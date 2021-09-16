@@ -22,7 +22,6 @@
 
 <div class="c-bolt-billboard">
   <bolt-layout
-  {# template="halves@from-small" #}
   template="{{ this.data.template.value }}"
   class="t-bolt-{{ this.data.theme.value }}"
   valign-items="center"
@@ -30,11 +29,14 @@
   row-gutter="large"
   padding-top="large"
   padding-bottom="large"
-  {{ center_content ? 'align-items="center"' : '' }}
+  {{ this.data.center_content.value ? 'align-items="center"' : '' }}
   >
     {{ background_image }}
 
-    <bolt-layout-item {{ center_content ? 'class="u-bolt-text-align-center"' : '' }}>
+    <bolt-layout-item
+    {{ this.data.center_content.value ? 'class="u-bolt-text-align-center"' : '' }}
+    {{ this.data.reverse_order.value ? 'order="last"' : '' }}
+    >
       {{ content }}
     </bolt-layout-item>
 

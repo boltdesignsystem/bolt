@@ -25,5 +25,13 @@ module.exports = {
       type: 'string',
       default: 'start',
     },
+    center_content: {
+      type: 'boolean',
+      default: false,
+    },
+    reverse_order: {
+      type: 'boolean',
+      default: false,
+    },
   },
 };

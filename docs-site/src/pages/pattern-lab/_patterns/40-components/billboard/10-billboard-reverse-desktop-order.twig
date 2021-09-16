@@ -1,0 +1,66 @@
+{% set description %}
+    A description of the component and what it is used for.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% set _content %}
+  <img class="u-bolt-margin-bottom-medium" src="/images/heros/hero-foreground--orange--logo.svg" alt="PegaWorld iNspire logo">
+  <bolt-text font-size="xlarge">
+    Boston Convention & Exhibition Center May&nbsp;31&nbsp;-&nbsp;June&nbsp;2,&nbsp;2020
+  </bolt-text>
+  {% include '@bolt-elements-button/button.twig' with {
+    content: "See full agenda",
+    hierarchy: "secondary",
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% set _image %}
+    <img src="/images/heros/hero-foreground--orange--animated-gif.gif" alt="">
+{% endset %}
+{% set _bg_image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/heros/hero-background--orange.jpg',
+      sizes: '100vw',
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-components-billboard/billboard.twig' with {
+  content: _content,
+  image: _image,
+  image_valign: 'middle',
+  background_image: _bg_image,
+  reverse_order: true,
+  theme: 'dark'
+} only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-billboard/billboard.twig' with {
+  content: _content
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<div class="c-bolt-billboard">
+  This is a billboard component.
+</div>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Centered Billboard',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}
