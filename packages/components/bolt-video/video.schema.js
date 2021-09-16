@@ -33,7 +33,7 @@ module.exports = {
         'A unique identifying string, randomly generated if not provided.',
     },
     share_description: {
-      type: 'string',
+      type: 'any',
       description: 'A custom title to use in the share overlay',
       default: 'Share This Video',
     },
