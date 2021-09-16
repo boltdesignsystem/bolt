@@ -4,7 +4,7 @@ module.exports = {
   type: 'object',
   properties: {
     title: {
-      type: 'string',
+      type: 'any',
       description: 'The toggle title text',
     },
     center: {

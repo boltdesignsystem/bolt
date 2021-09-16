@@ -67,7 +67,7 @@ module.exports = {
           description: 'Mark the listing as solved.',
         },
         solved_label: {
-          type: 'string',
+          type: 'any',
           description: 'Set a custom label for the "solved indicator".',
         },
         locked: {
@@ -76,26 +76,26 @@ module.exports = {
           description: 'Mark the listing as locked.',
         },
         locked_label: {
-          type: 'string',
+          type: 'any',
           description: 'Set a custom label for the "locked indicator".',
         },
         replies: {
-          type: 'string',
+          type: 'any',
           title: 'DEPRECATED',
           description: 'Use number_items prop instead.',
         },
         replies_label: {
-          type: 'string',
+          type: 'any',
           title: 'DEPRECATED',
           description: 'Use number_items prop instead.',
         },
         views: {
-          type: 'string',
+          type: 'any',
           title: 'DEPRECATED',
           description: 'Use number_items prop instead.',
         },
         views_label: {
-          type: 'string',
+          type: 'any',
           title: 'DEPRECATED',
           description: 'Use number_items prop instead.',
         },
