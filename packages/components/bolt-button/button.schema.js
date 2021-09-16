@@ -44,7 +44,7 @@ module.exports = {
     },
     text: {
       description: 'Text inside the button.',
-      type: 'string',
+      type: 'any',
     },
     transform: {
       type: 'string',
