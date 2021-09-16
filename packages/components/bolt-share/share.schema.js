@@ -19,7 +19,7 @@ module.exports = {
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
     text: {
-      type: 'string',
+      type: 'any',
       default: 'Share this page',
       description: 'Defines the label text in front of the social icons.',
     },
