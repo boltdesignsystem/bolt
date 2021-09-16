@@ -9,13 +9,13 @@ module.exports = {
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
     trigger_text: {
-      type: 'string',
+      type: 'any',
       description:
         'Text to use for the inital copy button.  Ignored if the custom_trigger property is used.',
       default: 'Copy Link',
     },
     text_to_copy: {
-      type: 'string',
+      type: 'any',
       description: 'The text to copy to the clipboard.',
     },
     custom_trigger: {
@@ -33,27 +33,27 @@ module.exports = {
       description: '(optional) Custom content to show after a successful copy.',
     },
     text: {
-      type: 'string',
+      type: 'any',
       title: 'DEPRECATED',
       description: 'This property has been renamed <em>trigger_text</em>',
       default: 'Copy Link',
     },
     copiedText: {
-      type: 'string',
+      type: 'any',
       title: 'DEPRECATED',
       description:
         'Use the custom_confirmation property instead if you need to change the confirmation text.',
       default: 'Copied!',
     },
     iconSize: {
-      type: 'string',
+      type: 'any',
       title: 'DEPRECATED',
       description:
         'Use custom_trigger, custom_transition, and custom_confirmation properties if you need to change icon size.',
       default: 'medium',
     },
     url: {
-      type: 'string',
+      type: 'any',
       title: 'DEPRECATED',
       description: 'This property has been renamed <em>text_to_copy</em>',
     },
