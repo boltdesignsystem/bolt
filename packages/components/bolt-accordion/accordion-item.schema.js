@@ -28,12 +28,12 @@ module.exports = {
         'Unique identifier for each item, may be used for deep linking.',
     },
     open_label: {
-      type: 'string',
+      type: 'any',
       description: 'Accessible label for the open trigger to expand an item.',
       default: 'Open Accordion',
     },
     close_label: {
-      type: 'string',
+      type: 'any',
       description:
         'Accessible label for the close trigger to collapse an item.',
       default: 'Close Accordion',
