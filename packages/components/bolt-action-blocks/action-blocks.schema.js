@@ -78,10 +78,10 @@ module.exports = {
               'A Drupal-style attributes object with extra attributes to append to this component.',
           },
           text: {
-            type: 'string',
+            type: 'any',
           },
           url: {
-            type: 'string',
+            type: 'any',
           },
           media: {
             type: ['string', 'object', 'array'],
