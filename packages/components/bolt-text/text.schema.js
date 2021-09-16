@@ -10,7 +10,7 @@ module.exports = {
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
     text: {
-      type: 'string',
+      type: 'any',
       description: 'Text content of the headline.',
     },
     tag: {
