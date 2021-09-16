@@ -129,9 +129,9 @@
       {% endset %}
 
       {% if iconPosition == 'before' %}
-        {% set _link_props = _link_props | merge({ icon_before: _icon_rendered }) %}
+        {% set _link_props = _link_props|merge({ icon_before: _icon_rendered }) %}
       {% else %}
-        {% set _link_props = _link_props | merge({ icon_after: _icon_rendered }) %}
+        {% set _link_props = _link_props|merge({ icon_after: _icon_rendered }) %}
       {% endif %}
     {% endif %}
 
