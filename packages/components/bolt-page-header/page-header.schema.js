@@ -34,7 +34,7 @@ module.exports = {
           description: 'Set the path to the logo image.',
         },
         label: {
-          type: 'string',
+          type: 'any',
           description: 'Set a label (visually hidden) for the logo.',
         },
       },
