@@ -107,13 +107,13 @@ module.exports = {
       },
     },
     previousText: {
-      type: 'string',
+      type: 'any',
       title: 'Previous text',
       description: 'Text to be displayed for the previous anchor',
       default: 'Previous',
     },
     nextText: {
-      type: 'string',
+      type: 'any',
       title: 'Next text',
       description: 'Text to be displayed for the next anchor',
       default: 'Next',
