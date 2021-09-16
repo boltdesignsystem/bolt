@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Bolt component generator SCSS file exist 1`] = `
+exports[`Bolt element generator SCSS file exist 1`] = `
 "/* ------------------------------------ *\\\\
    Test
 \\\\* ------------------------------------ */
@@ -23,7 +23,7 @@ exports[`Bolt component generator SCSS file exist 1`] = `
 "
 `;
 
-exports[`Bolt component generator changelog file exist 1`] = `
+exports[`Bolt element generator changelog file exist 1`] = `
 "# Change Log
 
 All notable changes to this project will be documented in this file.
@@ -31,29 +31,27 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 "
 `;
 
-exports[`Bolt component generator folder structure of component package is correct 1`] = `
+exports[`Bolt element generator folder structure of component package is correct 1`] = `
 Array [
-  "packages/generators/tmp/.boltrc.js",
-  "packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/20-elements/test/00-test-docs.twig",
-  "packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/20-elements/test/05-test.twig",
-  "packages/generators/tmp/package.json",
-  "packages/generators/tmp/packages/elements/bolt-test/CHANGELOG.md",
-  "packages/generators/tmp/packages/elements/bolt-test/README.md",
-  "packages/generators/tmp/packages/elements/bolt-test/__tests__/test.js",
-  "packages/generators/tmp/packages/elements/bolt-test/index.scss",
-  "packages/generators/tmp/packages/elements/bolt-test/package.json",
-  "packages/generators/tmp/packages/elements/bolt-test/src/test.scss",
-  "packages/generators/tmp/packages/elements/bolt-test/src/test.twig",
-  "packages/generators/tmp/packages/elements/bolt-test/test.schema.js",
+  "packages/generators/tmp/elements/docs-site/src/pages/pattern-lab/_patterns/20-elements/test/00-test-docs.twig",
+  "packages/generators/tmp/elements/docs-site/src/pages/pattern-lab/_patterns/20-elements/test/05-test.twig",
+  "packages/generators/tmp/elements/packages/bolt-test/CHANGELOG.md",
+  "packages/generators/tmp/elements/packages/bolt-test/README.md",
+  "packages/generators/tmp/elements/packages/bolt-test/__tests__/test.js",
+  "packages/generators/tmp/elements/packages/bolt-test/index.scss",
+  "packages/generators/tmp/elements/packages/bolt-test/package.json",
+  "packages/generators/tmp/elements/packages/bolt-test/src/test.scss",
+  "packages/generators/tmp/elements/packages/bolt-test/src/test.twig",
+  "packages/generators/tmp/elements/packages/bolt-test/test.schema.js",
 ]
 `;
 
-exports[`Bolt component generator index SCSS file exist 1`] = `
+exports[`Bolt element generator index SCSS file exist 1`] = `
 "@import 'src/test.scss';
 "
 `;
 
-exports[`Bolt component generator package.json file exist 1`] = `
+exports[`Bolt element generator package.json file exist 1`] = `
 "{
   \\"name\\": \\"@bolt/elements-test\\",
   \\"version\\": \\"0.0.0\\",
@@ -80,7 +78,7 @@ exports[`Bolt component generator package.json file exist 1`] = `
 "
 `;
 
-exports[`Bolt component generator pattern lab file exist 1`] = `
+exports[`Bolt element generator pattern lab file exist 1`] = `
 "{% set usage %}{% verbatim %}
 {% include '@bolt-elements-test/test.twig' with {
   content: 'This is a test'
@@ -96,7 +94,7 @@ exports[`Bolt component generator pattern lab file exist 1`] = `
 "
 `;
 
-exports[`Bolt component generator readme file exist 1`] = `
+exports[`Bolt element generator readme file exist 1`] = `
 "Test Description
 
 ###### Install via NPM
@@ -107,7 +105,7 @@ npm install @bolt/elements-test
 "
 `;
 
-exports[`Bolt component generator schema file exist 1`] = `
+exports[`Bolt element generator schema file exist 1`] = `
 "module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Test',
@@ -129,7 +127,7 @@ exports[`Bolt component generator schema file exist 1`] = `
 "
 `;
 
-exports[`Bolt component generator tests file exist 1`] = `
+exports[`Bolt element generator tests file exist 1`] = `
 "// Refer to https://github.com/boltdesignsystem/bolt/wiki/Jest-Test:-Example-Jest-Test for more testing examples
 import { render, stopServer } from '../../../testing/testing-helpers';
 // import schema from '../test.schema';

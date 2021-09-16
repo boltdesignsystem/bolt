@@ -15,19 +15,19 @@ const dirs = {
   boltrc: '.boltrc.js',
 };
 
-dirs.component = `${dirs.global}/packages/elements/bolt-test`;
+dirs.component = `${dirs.global}/elements/packages/bolt-test`;
 dirs.src = `${dirs.component}/src`;
 dirs.testing = `${dirs.component}/__tests__`;
-dirs.patternLab = `${dirs.global}/docs-site/src/pages/pattern-lab/_patterns/20-elements/test/00-test-docs.twig`;
+dirs.patternLab = `${dirs.global}/elements/docs-site/src/pages/pattern-lab/_patterns/20-elements/test/00-test-docs.twig`;
 
-describe('Bolt component generator', () => {
+describe('Bolt element generator', () => {
   beforeAll(async () => {
-    shell.exec(`rm -rf ${dirs.global}`);
+    shell.exec(`rm -rf ${dirs.global}/elements`);
     shell.exec('yarn ce "Test" "Test Description"');
   });
 
   afterAll(async () => {
-    await internalTasks.clean(dirs.global);
+    await internalTasks.clean(`${dirs.global}/elements`);
   });
 
   test('pattern lab file exist', async () => {
@@ -94,7 +94,7 @@ describe('Bolt component generator', () => {
   });
 
   test('folder structure of component package is correct', async () => {
-    const results = await dir.files(dirs.global, { sync: true });
+    const results = await dir.files(`${dirs.global}/elements`, { sync: true });
 
     expect(results).toMatchSnapshot();
   });
