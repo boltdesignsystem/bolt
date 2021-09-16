@@ -41,7 +41,7 @@ module.exports = {
           'Renders a linked item that points to the beginning of a particular section.',
         properties: {
           text: {
-            type: 'string',
+            type: 'any',
             description: 'Renders the text for the linked item.',
           },
           url: {
@@ -58,7 +58,7 @@ module.exports = {
       },
     },
     header: {
-      type: 'string',
+      type: 'any',
       description: 'Renders a header for the table of contents.',
     },
     uuid: {
