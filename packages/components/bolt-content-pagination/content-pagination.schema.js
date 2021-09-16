@@ -13,11 +13,11 @@ module.exports = {
       description: 'Set the parent page link.',
       properties: {
         content: {
-          type: 'string',
+          type: 'any',
           description: 'Text content of the link.',
         },
         tooltip_content: {
-          type: 'string',
+          type: 'any',
           description: 'Text content of the tooltip.',
         },
         link_attributes: {
@@ -32,11 +32,11 @@ module.exports = {
       description: 'Set the previous page link.',
       properties: {
         content: {
-          type: 'string',
+          type: 'any',
           description: 'Text content of the link.',
         },
         tooltip_content: {
-          type: 'string',
+          type: 'any',
           description: 'Text content of the tooltip.',
         },
         link_attributes: {
@@ -51,11 +51,11 @@ module.exports = {
       description: 'Set the next page link.',
       properties: {
         content: {
-          type: 'string',
+          type: 'any',
           description: 'Text content of the link.',
         },
         tooltip_content: {
-          type: 'string',
+          type: 'any',
           description: 'Text content of the tooltip.',
         },
         link_attributes: {
