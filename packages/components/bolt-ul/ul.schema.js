@@ -19,7 +19,7 @@ module.exports = {
           'A single list item object with either a `text` or `contentItems` key',
         properties: {
           text: {
-            type: 'string',
+            type: 'any',
             description: 'Item text',
           },
           contentItems: {
