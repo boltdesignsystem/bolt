@@ -12,7 +12,7 @@ module.exports = {
     content: {
       description:
         'Text to appear in blockquote (Twig only). May be plain text or text wrapped in <p> tags.',
-      type: 'string',
+      type: 'any',
     },
     size: {
       description: 'Text size.',
@@ -56,7 +56,7 @@ module.exports = {
     lang: {
       description:
         'Set language-specific quotation marks. By default, inherits the value of the closest `lang` attribute. While any valid `lang` valid is accepted, choosing `en`, `de`, `fr`, or `ja` will optimize how quotes are displayed in these languages.',
-      type: 'string',
+      type: 'any',
     },
     logo: {
       description: 'Add a logo component.',
@@ -68,11 +68,11 @@ module.exports = {
       type: 'object',
       properties: {
         name: {
-          type: 'string',
+          type: 'any',
           description: "Author's name.",
         },
         title: {
-          type: 'string',
+          type: 'any',
           description: "Author's title.",
         },
         image: {
