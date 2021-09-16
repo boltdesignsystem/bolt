@@ -11,7 +11,7 @@ module.exports = {
         type: 'object',
         properties: {
           label: {
-            type: 'string',
+            type: 'any',
             description: 'Tab label used in the navigation. Twig only.',
             default: 'Tab',
           },
