@@ -49,11 +49,11 @@ module.exports = {
         'Providing a link will make the whole card-replacement clickable.',
       properties: {
         url: {
-          type: 'string',
+          type: 'any',
           description: 'Address for the link.',
         },
         text: {
-          type: 'string',
+          type: 'any',
           description:
             'Visually hidden text for link, included for accessibility.',
         },
@@ -95,15 +95,15 @@ module.exports = {
         'Body section of the card-replacement, accepts pre-configured eyebrow, headline, and paragraph or custom content.',
       properties: {
         eyebrow: {
-          type: 'string',
+          type: 'any',
           description: 'Regular eyebrow.',
         },
         headline: {
-          type: 'string',
+          type: 'any',
           description: 'Headline pre-defined to size large.',
         },
         paragraph: {
-          type: 'string',
+          type: 'any',
           description: 'Regular paragraph of text.',
         },
         content: {
@@ -125,11 +125,11 @@ module.exports = {
         type: 'object',
         properties: {
           text: {
-            type: 'string',
+            type: 'any',
             description: 'Action link text.',
           },
           url: {
-            type: 'string',
+            type: 'any',
             description: 'Action link url.',
           },
           external: {
@@ -138,7 +138,7 @@ module.exports = {
               'Indicate if this is an external link. If true, the link will open in a new tab.',
           },
           icon: {
-            type: 'string',
+            type: 'any',
             description:
               'Allows user to specify the icon showed on the action button. If no icon is provided in this prop, the default behavior will take place and the icon shown will depend on if the URL is internal or external. Alternatively, providing "none" as the value can show no icon.',
           },
