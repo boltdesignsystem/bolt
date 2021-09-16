@@ -35,7 +35,7 @@ module.exports = {
         'Set the signifier for the teaser. It accepts plain <img> element, the Image component, and the Icon component.',
     },
     eyebrow_text: {
-      type: 'string',
+      type: 'any',
       description: 'Set the helper info above the headline.',
     },
     headline: {
@@ -58,7 +58,7 @@ module.exports = {
       description: 'Set the subheadline text and size.',
       properties: {
         text: {
-          type: 'string',
+          type: 'any',
           description: 'Set the subheadline text content.',
         },
         size: {
@@ -80,7 +80,7 @@ module.exports = {
       description: 'Set a brief description of the resource.',
       properties: {
         content: {
-          type: 'string',
+          type: 'any',
           description: 'Content of the description..',
         },
         show_on_hover: {
@@ -92,7 +92,7 @@ module.exports = {
       },
     },
     time: {
-      type: 'string',
+      type: 'any',
       description:
         'Render time data (video duration or read time) for the resouce.',
     },
@@ -124,7 +124,7 @@ module.exports = {
           default: false,
         },
         views: {
-          type: 'string',
+          type: 'any',
           description: 'Render the view count.',
         },
       },
