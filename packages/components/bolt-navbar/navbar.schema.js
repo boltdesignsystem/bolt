@@ -23,7 +23,7 @@ module.exports = {
           type: 'object',
           properties: {
             name: {
-              type: 'string',
+              type: 'any',
               description: 'Name of the (optional) icon to be used.',
             },
           },
