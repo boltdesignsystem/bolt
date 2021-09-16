@@ -1,0 +1,46 @@
+{% set description %}
+    A description of the component and what it is used for.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% set _content %}
+  <bolt-text headline tag="h1" font-size="xxxlarge">
+    Billboard Title
+  </bolt-text>
+{% endset %}
+{% set _image %}
+    <img src="/images/heros/hero-foreground--yellow.png" alt="">
+{% endset %}
+{% include '@bolt-components-billboard/billboard.twig' with {
+  content: _content,
+  image: _image,
+  image_valign: 'end-offset',
+} only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-billboard/billboard.twig' with {
+  content: _content
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<div class="c-bolt-billboard">
+  This is a billboard component.
+</div>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Billboard',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

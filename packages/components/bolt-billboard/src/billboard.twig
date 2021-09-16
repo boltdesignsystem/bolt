@@ -1,0 +1,48 @@
+{% set schema = bolt.data.components['@bolt-components-billboard'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-billboard',
+  this.data.disabled.value ? 'c-bolt-billboard--disabled' : '',
+] %}
+
+{# <div {{ attributes.addClass(classes) }}>
+  {% if content %}
+    {{ content }}
+  {% endif %}
+</div>
+ #}
+
+<div class="c-bolt-billboard">
+  <bolt-layout
+  {# template="halves@from-small" #}
+  template="{{ this.data.template.value }}"
+  class="t-bolt-{{ this.data.theme.value }}"
+  valign-items="center"
+  gutter="large"
+  row-gutter="large"
+  padding-top="large"
+  padding-bottom="large"
+  {{ center_content ? 'align-items="center"' : '' }}
+  >
+    {{ background_image }}
+
+    <bolt-layout-item {{ center_content ? 'class="u-bolt-text-align-center"' : '' }}>
+      {{ content }}
+    </bolt-layout-item>
+
+    {% if image %}
+    <bolt-layout-item valign-self="{{ this.data.image_valign.value }}">
+      {{ image }}
+    </bolt-layout-item>
+    {% endif %}
+
+  </bolt-layout>
+</div>
