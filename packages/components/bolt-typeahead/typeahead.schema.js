@@ -20,34 +20,34 @@ module.exports = {
         "An array of objects that's used to populate the suggestion list that appears below the input as the users type. This array of objects can be asynchronously fetched and should contain a `label`, `url`, and optionally `description`.",
     },
     clear_input_text: {
-      type: 'string',
+      type: 'any',
       description:
         "Screenreader-specific text for the clear search button, intended to provide a longer, more descriptive explanation of the clear button's behavior.",
       default: 'Clear search results',
     },
     submit_button_text: {
-      type: 'string',
+      type: 'any',
       description:
         "Screenreader-specific text for the submit button, intended to provide a longer, more descriptive explanation of the submit button's behavior.",
       default: 'Submit',
     },
     input_label: {
-      type: 'string',
+      type: 'any',
       description:
         'Screenreader-specific label text associated with the search input.',
     },
     input_placeholder: {
-      type: 'string',
+      type: 'any',
       description:
         'The placeholder text to display inside the Typeahead search input.',
       default: 'Search',
     },
     input_value: {
-      type: 'string',
+      type: 'any',
       description: 'Initial value to pre-populate the input field',
     },
     input_name: {
-      type: 'string',
+      type: 'any',
       description:
         "Input element's name attribute used when pre-rendering the component",
     },
