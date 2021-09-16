@@ -52,7 +52,7 @@ module.exports = {
       description: 'Custom content for menu items.',
     },
     title: {
-      type: 'string',
+      type: 'any',
       description: 'Controls the inset spacing of each menu item.',
     },
     spacing: {
