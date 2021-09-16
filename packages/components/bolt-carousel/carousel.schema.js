@@ -118,29 +118,29 @@ module.exports = {
       default: false,
     },
     prev_slide_message: {
-      type: 'string',
+      type: 'any',
       description: 'Accessible label for previous button.',
       default: 'Previous slide',
     },
     next_slide_message: {
-      type: 'string',
+      type: 'any',
       description: 'Accessible label for next button.',
       default: 'Next slide',
     },
     first_slide_message: {
-      type: 'string',
+      type: 'any',
       description:
         'Accessible label for the previous button when the carousel is on the first slide.',
       default: 'This is the first slide',
     },
     last_slide_message: {
-      type: 'string',
+      type: 'any',
       description:
         'Accessible label for previous button when the carousel is on the last slide.',
       default: 'This is the last slide',
     },
     pagination_bullet_message: {
-      type: 'string',
+      type: 'any',
       description: 'Accessible label for a single pagination bullet.',
       default: 'Go to slide {{index}}',
     },
