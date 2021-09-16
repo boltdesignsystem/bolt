@@ -19,7 +19,7 @@ module.exports = {
       description: 'Set the title of the side nav.',
       properties: {
         content: {
-          type: 'string',
+          type: 'any',
           description: 'Text content of the headline.',
         },
         link_attributes: {

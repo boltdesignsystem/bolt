@@ -18,7 +18,7 @@ module.exports = {
             'A Drupal attributes object. Applies extra HTML attributes to the link element.',
         },
         content: {
-          type: 'string',
+          type: 'any',
           description: 'Text content of the link.',
         },
         icon: {
