@@ -50,7 +50,7 @@ export class BoltCodeSnippet {
     if (!(this.preElement && this.codeElement)) return;
 
     this.originalHTML = this.codeElement.innerHTML;
-    this.filteredHTML = this.replaceEntities(this.originalHTML);
+    this.decodedHTML = this.replaceEntities(this.originalHTML);
 
     if (!(this.hideLangLabel && this.hideCopy)) {
       this.setupHeader();
@@ -64,17 +64,18 @@ export class BoltCodeSnippet {
   }
 
   replaceEntities(string) {
-    // Twig encodes HTML entities. Replace them before syntax highlighting.
+    // HTML entities are encoded to display properly  in `<code>`. Decode them before syntax highlighting.
+    // Note: Replace `&` last or regex will match entities that should remain encoded, e.g. `&amp;lt;code&amp;gt;`
     return string
-      .replace(/&amp;/g, '&')
       .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>');
+      .replace(/&gt;/g, '>')
+      .replace(/&amp;/g, '&');
   }
 
   highlightHTML() {
     try {
       this.codeElement.innerHTML = Prism.highlight(
-        this.filteredHTML,
+        this.decodedHTML,
         Prism.languages[this.lang],
       );
     } catch (error) {
@@ -111,7 +112,7 @@ export class BoltCodeSnippet {
 
     const clip = new ClipboardJS(clipboardTrigger, {
       text: () => {
-        return this.filteredHTML;
+        return this.decodedHTML;
       },
     });
 
