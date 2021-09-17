@@ -40,7 +40,7 @@
       {{ content }}
     </bolt-layout-item>
 
-    {% if image %}
+    {% if image or this.data.reverse_order.value %}
     <bolt-layout-item valign-self="{{ this.data.image_valign.value }}">
       {{ image }}
     </bolt-layout-item>
