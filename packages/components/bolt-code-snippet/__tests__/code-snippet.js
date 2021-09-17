@@ -3,7 +3,7 @@ import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../code-snippet.schema';
 import { languages } from '../src/_code-snippet-languages';
 
-const { lang, syntax } = schema.properties;
+const { lang, mode } = schema.properties;
 let page, fixtures;
 
 afterAll(async () => {
@@ -98,13 +98,13 @@ describe('Bolt Code Snippet', () => {
 
 describe('Bolt Code Snippet Props', () => {
   // Target each of the schema keys with the following pattern
-  syntax.enum.forEach(async option => {
-    test(`syntax: ${option}`, async () => {
+  mode.enum.forEach(async option => {
+    test(`mode: ${option}`, async () => {
       const results = await render(
         '@bolt-components-code-snippet/code-snippet.twig',
         {
           ...fixtures.defaultData,
-          syntax: option,
+          mode: option,
         },
       );
 
