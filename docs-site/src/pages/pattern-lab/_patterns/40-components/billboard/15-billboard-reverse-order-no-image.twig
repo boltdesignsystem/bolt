@@ -1,0 +1,56 @@
+{% set description %}
+    A description of the component and what it is used for.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% set _content %}
+  <bolt-text font-size="xxxlarge">
+    Consequat eiusmod sunt...
+  </bolt-text>
+  <bolt-text font-size="large">
+    Qui eiusmod id mollit amet est cillum ea officia eu amet.
+  </bolt-text>
+  {% include '@bolt-elements-button/button.twig' with {
+      content: 'Band Component Docs',
+      hierarchy: 'secondary',
+      attributes: {
+        href: link['viewall-components-band'],
+      }
+  } only %}
+{% endset %}
+{% set _bg_image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/content/backgrounds/background-night-sky.jpg',
+      sizes: '100vw',
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-components-billboard/billboard.twig' with {
+  content: _content,
+  image_valign: 'middle',
+  background_image: _bg_image,
+  reverse_order: true,
+  theme: 'dark'
+} only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-billboard/billboard.twig' with {
+  content: _content
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Reverse Order (No Image) Billboard',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

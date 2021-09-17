@@ -9,18 +9,43 @@
 {% endset %}
 
 {% set demo %}
+{% set _icon %}
+  {% include "@bolt-elements-icon/icon.twig" with {
+    name: "speed-dial",
+  } only %}
+{% endset %}
 {% set _content %}
+  {% include "@bolt-elements-shape/shape.twig" with {
+      content: _icon,
+      size: "large",
+      attributes: {
+        class: [
+          "u-bolt-margin-bottom-medium",
+          "t-bolt-teal"
+        ]
+      }
+  } only %}
   <bolt-text headline tag="h1" font-size="xxxlarge">
-    Billboard Title
+    A Prominent Headline Certainly Helps
   </bolt-text>
+  <bolt-text font-size="xlarge">
+    This one even includes a tagline.
+  </bolt-text>
+    {% include '@bolt-elements-button/button.twig' with {
+    content: "Learn More",
+    attributes: {
+      type: 'button'
+    }
+  } only %}
 {% endset %}
 {% set _image %}
-    <img src="/images/heros/hero-foreground--yellow.png" alt="" style="max-width: 415px;">
+    <img src="/images/heros/responsive-web-design.svg" alt=""  style="min-width:60vw; margin-right: -40vw;">
 {% endset %}
 {% include '@bolt-components-billboard/billboard.twig' with {
   content: _content,
   image: _image,
   image_valign: 'end-offset',
+  theme: 'white'
 } only %}
 {% endset %}
 
@@ -31,9 +56,8 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Billboard',
+  title: 'Image Min-Width Billboard',
   description: description,
-  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
 } only %}

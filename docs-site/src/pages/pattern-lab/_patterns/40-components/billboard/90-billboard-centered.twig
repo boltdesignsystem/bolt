@@ -37,17 +37,9 @@
 } only %}
 {% endverbatim %}{% endset %}
 
-{% set html_markup %}{% verbatim %}
-<div class="c-bolt-billboard">
-  This is a billboard component.
-</div>
-{% endverbatim %}{% endset %}
-
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Centered Billboard',
   description: description,
-  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
-  html_markup: html_markup
 } only %}

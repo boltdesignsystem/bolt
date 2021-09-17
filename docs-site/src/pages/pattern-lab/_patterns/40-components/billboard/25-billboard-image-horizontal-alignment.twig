@@ -1,0 +1,62 @@
+{% set description %}
+    A description of the component and what it is used for.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% set _content %}
+  <bolt-text headline tag="h1" font-size="xxxlarge">
+    It's show time.
+  </bolt-text>
+  <bolt-text font-size="xlarge" class="u-bolt-line-length-medium">
+    Please join us for PegaWorld 2019 event at MGM Grand in Las&nbsp;Vegas
+  </bolt-text>
+  <bolt-text weight="bold">
+    Monday, June 3rd, 2019 <br>10AM - 3PM EST
+  </bolt-text>
+  {% include '@bolt-elements-button/button.twig' with {
+    content: "Watch livestream",
+    hierarchy: "secondary",
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% set _image %}
+    <img class="u-bolt-margin-left-auto" src="/images/heros/hero-foreground--yellow.png" alt="" style="max-width: 375px;">
+{% endset %}
+{% set _bg_image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/heros/hero-background--yellow.svg',
+      sizes: '100vw',
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-components-billboard/billboard.twig' with {
+  content: _content,
+  image: _image,
+  background_image: _bg_image,
+  image_valign: 'end-offset',
+  theme: 'light'
+} only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-billboard/billboard.twig' with {
+  content: _content
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Image Horizontal Align Billboard',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
