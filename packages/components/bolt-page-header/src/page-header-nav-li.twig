@@ -35,19 +35,13 @@
     </div>
   {% elseif link and not content %}
     {% set _link_content %}
-      {% if link.signifier_only or link.signifier_before or link.signifier_after %}
+      {% if link.signifier_only or link.signifier_before %}
         {% if link.signifier_only %}
           <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--only">{{ link.signifier_only }}</span>
-          <span class="c-bolt-page-header__nav-link__content__text">{{ link.content }}</span>
-        {% else %}
-          {% if link.signifier_before %}
-            <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--before">{{ link.signifier_before }}</span>
-          {% endif %}
-          <span class="c-bolt-page-header__nav-link__content__text">{{ link.content }}</span>
-          {% if link.signifier_after %}
-            <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--after">{{ link.signifier_after }}</span>
-          {% endif %}
+        {% elseif link.signifier_before %}
+          <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--before">{{ link.signifier_before }}</span>
         {% endif %}
+        <span class="c-bolt-page-header__nav-link__content__text">{{ link.content }}</span>
         {% if link.counter %}
           <span class="c-bolt-page-header__counter"></span>
         {% endif %}

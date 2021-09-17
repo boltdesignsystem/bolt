@@ -32,15 +32,10 @@ module.exports = {
           description:
             'Append an signifier before the link content. Icon element is expected here.',
         },
-        signifier_after: {
-          type: 'any',
-          description:
-            'Append an signifier after the link content. Icon element is expected here.',
-        },
         signifier_only: {
           type: 'any',
           description:
-            'Append an signifier to the link content and visually hide the text content. Icon element is expected here. This prop trumps signifier_before and signifier_after.',
+            'Append an signifier to the link content and visually hide the text. Icon element is expected here. This prop trumps signifier_before.',
         },
         counter: {
           type: 'boolean',
