@@ -37,7 +37,7 @@
   justify-content: space-between;
 }
 
-.c-bolt-code-snippet--dark {
+.c-bolt-code-snippet[data-mode='dark'] {
   &:before {
     border-bottom-color: var(--bolt-color-gray-dark);
   }
@@ -48,7 +48,7 @@
   }
 }
 
-.c-bolt-code-snippet:not([data-bolt-hide-lang-label][data-bolt-hide-copy]):not([data-bolt-ready]):before {
+.c-bolt-code-snippet:not([data-hide-lang-label][data-hide-copy]):not([data-bolt-ready]):before {
   content: '\00a0'; // Non-breaking space provides same height as header (with text) once JS loads, preventing layout shift.
   display: block;
 }

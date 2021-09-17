@@ -37,21 +37,29 @@ export class BoltCodeSnippet {
   init() {
     this.preElement = this.el.querySelector('pre');
     this.codeElement = this.el.querySelector('code');
-    this.lang = this.el.dataset.boltLang;
-    this.customLangLabel = this.el.dataset.boltCustomLangLabel;
+    this.lang =
+      this.el.dataset.lang && this.el.dataset.lang !== 'none'
+        ? this.el.dataset.lang
+        : null;
+    this.customLangLabel = this.el.dataset.customLangLabel;
+    this.hideLangLabel =
+      this.el.hasAttribute('data-hide-lang-label') ||
+      (!this.lang && !this.customLangLabel);
+    this.hideCopy = this.el.hasAttribute('data-hide-copy');
 
-    if (!(this.preElement && this.codeElement && this.lang)) return;
+    if (!(this.preElement && this.codeElement)) return;
 
     this.originalHTML = this.codeElement.innerHTML;
     this.filteredHTML = this.replaceEntities(this.originalHTML);
-    this.hideLangLabel = this.el.hasAttribute('data-bolt-hide-lang-label');
-    this.hideCopy = this.el.hasAttribute('data-bolt-hide-copy');
 
     if (!(this.hideLangLabel && this.hideCopy)) {
       this.setupHeader();
     }
 
-    this.highlightHTML();
+    if (this.lang) {
+      this.highlightHTML();
+    }
+
     this.el.setAttribute('data-bolt-ready', '');
   }
 

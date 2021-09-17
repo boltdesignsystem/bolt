@@ -16,8 +16,9 @@ module.exports = {
       type: 'string',
       description:
         'Code language of the content. Each language comes with its unique syntax highlights.',
-      default: 'html',
+      default: 'none',
       enum: [
+        'none',
         'markup',
         'html',
         'xml',

@@ -10,22 +10,27 @@
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  'c-bolt-code-snippet',
-  this.data.mode.value != 'none' ? 'c-bolt-code-snippet--'  ~ this.data.mode.value : '',
+  'c-bolt-code-snippet'
 ] %}
 
-{% set attributes = attributes.setAttribute('data-bolt-lang', this.data.lang.value) %}
+{% if this.data.lang.value and this.data.lang.value != 'none' %}
+  {% set attributes = attributes.setAttribute('data-lang', this.data.lang.value) %}
+{% endif %}
+
+{% if this.data.mode.value and this.data.mode.value != 'none' %}
+  {% set attributes = attributes.setAttribute('data-mode', this.data.mode.value) %}
+{% endif %}
 
 {% if this.data.hide_copy.value %}
-  {% set attributes = attributes.setAttribute('data-bolt-hide-copy', '') %}
+  {% set attributes = attributes.setAttribute('data-hide-copy', '') %}
 {% endif %}
 
 {% if this.data.hide_lang_label.value %}
-  {% set attributes = attributes.setAttribute('data-bolt-hide-lang-label', '') %}
+  {% set attributes = attributes.setAttribute('data-hide-lang-label', '') %}
 {% endif %}
 
 {% if custom_lang_label %}
-  {% set attributes = attributes.setAttribute('data-bolt-custom-lang-label', custom_lang_label) %}
+  {% set attributes = attributes.setAttribute('data-custom-lang-label', custom_lang_label) %}
 {% endif %}
 
 {# Template #}
