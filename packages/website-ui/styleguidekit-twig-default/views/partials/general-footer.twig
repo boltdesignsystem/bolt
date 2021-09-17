@@ -13,9 +13,9 @@
 <script>
   var players = document.querySelectorAll('.c-base-video');
   // EXTERNAL CONTROLS
-  // Button requires a 'js-base-video-toggle' class (how the functionality will be hooked up)
-  // Button requires 'data-video-target' attribute (this is how the video is targeted on click)
-  var externalControlButtons = document.querySelectorAll(".js-base-video-toggle");
+  // Button requires a "js-base-video-toggle" class (how the functionality will be hooked up)
+  // Button requires "data-video-target" attribute (this is how the video is targeted on click)
+  var externalControlButtons = document.querySelectorAll('.js-base-video-toggle');
   for(var eb = 0; eb < externalControlButtons.length; eb++){
     externalControlButtons[eb].addEventListener('click', function(e){
       e.preventDefault();
@@ -40,7 +40,7 @@
       // OPTIONS
       // data-playback-rates (optional) [array]: Sets the playback rates on the player controls
       if(this.el().dataset.playbackRates){
-        var playbackRateOptions = this.getAttribute('data-playback-rates').replace(/(\[*\]*)/g, "")
+        var playbackRateOptions = this.getAttribute('data-playback-rates').replace(/(\[*\]*)/g, '')
         playbackRateOptions = playbackRateOptions.split(',')
         thisPlayer.controlBar.playbackRateMenuButton = thisPlayer.controlBar.addChild('PlaybackRateMenuButton', {
           playbackRates: playbackRateOptions
@@ -49,8 +49,8 @@
       // OPTIONS
       // data-default-resolution (optional) [string]: Adjusts the default resolution for the videos (ex. 720p)
       qualityOptions = {
-        "useResolutionLabels": true,
-        "defaultResolution": this.getAttribute('data-default-resolution') || "720p",
+        'useResolutionLabels': true,
+        'defaultResolution': this.getAttribute('data-default-resolution') || '720p',
       };
       this.qualityMenu(qualityOptions);
       // OPTIONS
@@ -63,19 +63,19 @@
       // data-social-pinterest (optional [default: false]) [boolean]: Displays the Pinterest button
       // data-social-linkedin (optional [default: true]) [boolean]: Displays the Linkedin button
       socialOptions = {
-        "title": this.getAttribute('data-social-title') || "Share This Video",
-        "description": "Share This Video",
-        "url": this.getAttribute('data-social-url') || window.location.href,
-        "removeEmbed": true,
-        "services": {
-          "facebook": this.el_.hasAttribute('data-social-facebook') ? true : false,
-          "twitter": this.el_.hasAttribute('data-social-twitter') ? true : false,
-          "tumblr": this.el_.hasAttribute('data-social-tumblr') ? true : false,
-          "pinterest": this.el_.hasAttribute('data-social-pinterest') ? true : false,
-          "linkedin": this.el_.hasAttribute('data-social-linkedin') ? true : false
+        'title': this.getAttribute('data-social-title') || 'Share This Video',
+        'description': 'Share This Video',
+        'url': this.getAttribute('data-social-url') || window.location.href,
+        'removeEmbed': true,
+        'services': {
+          'facebook': this.el_.hasAttribute('data-social-facebook') ? true : false,
+          'twitter': this.el_.hasAttribute('data-social-twitter') ? true : false,
+          'tumblr': this.el_.hasAttribute('data-social-tumblr') ? true : false,
+          'pinterest': this.el_.hasAttribute('data-social-pinterest') ? true : false,
+          'linkedin': this.el_.hasAttribute('data-social-linkedin') ? true : false
         },
-        "displayAfterVideo": true,
-        "buttonParent": "controlBar"
+        'displayAfterVideo': true,
+        'buttonParent': 'controlBar'
       };
       this.social(socialOptions);
       this.ga();
@@ -88,14 +88,15 @@
       // data-email-videourl (optional) [string]: Video URL to share in email
       this.emailSocialShare(this.el_.hasAttribute('data-social-email') ? true : false);
       // Move the fullscreen button to the far right of the controlbar
-      var fullScreenButton = thisPlayer.controlBar.getChild("FullscreenToggle").el_;
+      var fullScreenButton = thisPlayer.controlBar.getChild('FullscreenToggle').el_;
       thisPlayer.controlBar.el_.appendChild(fullScreenButton)
     });
     thisPlayer.on('loadstart', function(player) {
       // OPTIONS
       // data-media-title (optional [default: true]) [boolean]: hide the title
       // data-media-duration (optional [default: true]) [boolean]: hide the duration
-      this.metaData(this.el_.hasAttribute('data-media-title') ? this.mediainfo.name : "", this.el_.hasAttribute('data-media-duration') ? this.mediainfo.duration : "", this);
+      // data-media-preview (optional [default: false]) [boolean]: show the preview label
+      this.metaData(this.el_.hasAttribute('data-media-title') ? this.mediainfo.name : '', this.el_.hasAttribute('data-media-duration') ? this.mediainfo.duration : '', this.el_.hasAttribute('data-media-preview') ? true : false, this);
     })
     thisPlayer.on('loadedmetadata', function(player) {
       //OPTIONS
@@ -115,58 +116,70 @@
 
   players.forEach(function(player) {
     // Initialize the player if it hasn't already been.
-    var playerId = player.getAttribute("data-player");
+    var playerId = player.getAttribute('data-player');
     if (
-      !player.classList.contains("bc-player-" + playerId + "_default") &&
-      !player.hasAttribute("data-video-delayed")
+      !player.classList.contains('bc-player-' + playerId + '_default') &&
+      !player.hasAttribute('data-video-delayed')
     ) {
       bc(player);
     }
 
     // [data-video-modal] prevents the video from being loaded on page load
-    if (!player.hasAttribute("data-video-delayed")) {
+    if (!player.hasAttribute('data-video-delayed')) {
       const myPlayer = videojs.getPlayer(player.id);
       // Initialize the Brigthcove video functionality
       videoInit(myPlayer);
+      // If this video is in a modal, it should ideally be using "data-video-delayed".
+      // However, there are cases where that's overkill, like when there's only one or two
+      // such videos on a page and the video isn't in a place where 'is_delayed' can be easily/reliably
+      // added (such as in an advanced modal).
+      const modal = player.closest('bolt-modal');
+      if (modal) {
+        modal.addEventListener('modal:hide', (e) => {
+          if (myPlayer) {
+            myPlayer.pause();
+          }
+        });
+      }
     } else {
-      // Find all videos that have the 'data-video-modal' data attribute
+      // Find all videos that have the "data-video-modal" data attribute
       const videoModals = document.querySelectorAll(
-        "video-js[data-video-delayed]"
+        'video-js[data-video-delayed]'
       );
       videoModals.forEach((video) => {
         // Find the closest bolt-modal for each of the modal videos
-        const modal = video.closest("bolt-modal");
+        const modal = video.closest('bolt-modal');
         if (modal) {
           let myPlayer;
-          // Target the modal's 'modal:show' event (as defined in "packages/components/bolt-modal/src/modal.js")
-          modal.addEventListener("modal:show", (e) => {
-            if (video.hasAttribute("data-video-delayed")) {
+          // Target the modal's "modal:show" event (as defined in 'packages/components/bolt-modal/src/modal.js')
+          modal.addEventListener('modal:show', (e) => {
+            if (video.hasAttribute('data-video-delayed')) {
               // Using the temporary data attribute ("data-modal..." attributes), create the Brightcove atttributes required for init
               video.setAttribute(
-                "data-account",
+                'data-account',
                 video.dataset.delayedAccount
               );
               video.setAttribute(
-                "data-player",
+                'data-player',
                 video.dataset.delayedPlayer
               );
               video.setAttribute(
-                "data-video-id",
+                'data-video-id',
                 video.dataset.delayedVideoId
               );
               // Initialize thse Brightcove video
               myPlayer = bc(video);
               // Pass in the initialized video into the Pega custom videoInit function
               videoInit(myPlayer);
-              //Remove the 'data-video-modal'
-              video.removeAttribute("data-video-delayed");
+              //Remove the "data-video-modal"
+              video.removeAttribute('data-video-delayed');
             }
-            if (myPlayer) {
+            if (myPlayer && !video.hasAttribute('data-video-delayed-no-autoplay')) {
               myPlayer.play();
             }
           });
-          // Target the modal's 'modal:hide' event (as defined in "packages/components/bolt-modal/src/modal.js")
-          modal.addEventListener("modal:hide", (e) => {
+          // Target the modal's "modal:hide" event (as defined in "packages/components/bolt-modal/src/modal.js")
+          modal.addEventListener('modal:hide', (e) => {
             if (myPlayer) {
               // Pause the video automatically
               myPlayer.pause();
