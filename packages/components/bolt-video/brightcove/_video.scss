@@ -53,6 +53,11 @@ video-js.c-base-video {
     border: none;
     border-radius: $base-video-js-button-border-radius;
 
+    @include bolt-mq(small) {
+      bottom: var(--bolt-spacing-y-small);
+      left: var(--bolt-spacing-x-small);
+    }
+
     .vjs-icon-placeholder {
       display: block;
       position: absolute;
@@ -483,14 +488,21 @@ video-js.c-base-video {
 
   .video-meta-container {
     display: flex;
+    align-items: flex-start;
     gap: var(--bolt-spacing-x-xsmall);
     position: absolute;
-    top: var(--bolt-spacing-y-small);
-    right: var(--bolt-spacing-x-small);
-    left: var(--bolt-spacing-y-small);
+    top: var(--bolt-spacing-y-xsmall);
+    right: var(--bolt-spacing-x-xsmall);
+    left: var(--bolt-spacing-y-xsmall);
     z-index: 10;
     max-width: calc(100% - (var(--bolt-spacing-x-small)));
     color: var(--bolt-color-white);
+
+    @include bolt-mq(small) {
+      top: var(--bolt-spacing-y-small);
+      right: var(--bolt-spacing-x-small);
+      left: var(--bolt-spacing-y-small);
+    }
 
     &__item {
       display: inline-block;
