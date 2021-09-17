@@ -1,6 +1,6 @@
 {% set notes %}
   <bolt-ol>
-    <bolt-li>When using HTML, make sure to use either <code>c-bolt-snippet--light</code> or <code>c-bolt-snippet--dark</code> modifier class, otherwise there will be no syntax highlights.</bolt-li>
+    <bolt-li>When using HTML, make sure to use either the <code>[data-mode="light"]</code> or <code>[data-mode="dark"]</code> attribute. Otherwise, there will be no syntax highlighting.</bolt-li>
     <bolt-li>Mode works independently of Bolt color themes.</bolt-li>
   </bolt-ol>
 {% endset %}
@@ -42,11 +42,11 @@ import { props } from '@bolt/core-v3.x/utils';
 {% endset %}
 
 {% set html_markup %}
-<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="html">
-<pre><code>import { props } from '@bolt/core-v3.x/utils';</code></pre>
+<div class="c-bolt-code-snippet" data-lang="js" data-mode="light">
+<pre><code>{{ code_snippet|trim }}</code></pre>
 </div>
-<div class="c-bolt-code-snippet c-bolt-code-snippet--dark" data-bolt-lang="html">
-<pre><code>import { props } from '@bolt/core-v3.x/utils';</code></pre>
+<div class="c-bolt-code-snippet" data-lang="js" data-mode="dark">
+<pre><code>{{ code_snippet|trim }}</code></pre>
 </div>
 {% endset %}
 

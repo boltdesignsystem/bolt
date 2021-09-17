@@ -1,7 +1,7 @@
 {% set notes %}
   <bolt-ol>
     <bolt-li>If using Twig, use <code>hide_lang_label</code> and <code>hide_copy</code> props to hide one or both of these Code Snippet header items.</bolt-li>
-    <bolt-li>If using HTML, use the <code>data-bolt-hide-lang-label</code> and <code>data-bolt-hide-copy</code> attributes.</bolt-li>
+    <bolt-li>If using HTML, use the <code>data-hide-lang-label</code> and <code>data-hide-copy</code> attributes.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -62,22 +62,16 @@
 {% endset %}
 
 {% set html_markup %}
-<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="css" data-bolt-hide-lang-label>
-<pre><code>.my-css {
-  display: block;
-}</code></pre>
+<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-lang="css" data-hide-lang-label>
+<pre><code>{{ code_snippet|trim }}</code></pre>
 </div>
 
-<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="css" data-bolt-hide-copy>
-<pre><code>.my-css {
-  display: block;
-}</code></pre>
+<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-lang="css" data-hide-copy>
+<pre><code>{{ code_snippet|trim }}</code></pre>
 </div>
 
-<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="css" data-bolt-hide-lang-label data-bolt-hide-copy>
-<pre><code>.my-css {
-  display: block;
-}</code></pre>
+<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-lang="css" data-hide-lang-label data-hide-copy>
+<pre><code>{{ code_snippet|trim }}</code></pre>
 </div>
 {% endset %}
 

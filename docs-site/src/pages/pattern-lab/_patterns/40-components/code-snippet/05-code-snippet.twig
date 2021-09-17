@@ -5,9 +5,9 @@
 {% set notes %}
   <bolt-ol>
     <bolt-li>The component is only intended for code blocks. If you need to display code inline, simply use the HTML <code>{{ '<code>'|e }}</code> element.</bolt-li>
-    <bolt-li>Use Twig whenver possible, but if you must use HTML, be sure to do the following to work with standard HTML behaviors:
+    <bolt-li>Use Twig whenever possible, but if you must use HTML, be sure to do the following to work with standard HTML behaviors:
       <bolt-ol>
-        <bolt-li>Trim leading and trailing whitespace inside the <code>{{ '<code>'|e }}</code> element to rid of any undesired indents or whitespace.</bolt-li>
+        <bolt-li>Trim leading and trailing whitespace inside the <code>{{ '<code>'|e }}</code> element to remove any undesired indents or whitespace.</bolt-li>
         <bolt-li>Certain special characters (such as &amp;, &lt;, and &gt;) must be converted to HTML entities.</bolt-li>
       </bolt-ol>
     </bolt-li>
@@ -38,8 +38,8 @@ import { props } from '@bolt/core-v3.x/utils';
 {% endset %}
 
 {% set html_markup %}
-<div class="c-bolt-code-snippet c-bolt-code-snippet--light" data-bolt-lang="html">
-<pre><code>import { props } from '@bolt/core-v3.x/utils';</code></pre>
+<div class="c-bolt-code-snippet" data-lang="js" data-mode="light">
+<pre><code>{{ code_snippet|trim }}</code></pre>
 </div>
 {% endset %}
 
