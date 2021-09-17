@@ -34,7 +34,7 @@
       } only %}
 
       <div class="u-bolt-margin-bottom-small">
-        <img src='{{ thumbnailPath|default('http://dummyimage.com/250x250/4d494d/686a82.gif&text=placeholder+image') }}'>
+        <img src="{{ thumbnailPath|default('http://dummyimage.com/250x250/4d494d/686a82.gif&text=placeholder+image') }}">
       </div>
 
       {% include '@bolt/eyebrow.twig' with {
