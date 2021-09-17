@@ -85,7 +85,7 @@
 
     {% for inset in schema.properties.inset.enum %}
       {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@medium' %}
-        <bolt-text font-size='small' class="u-bolt-margin-bottom-small">Inset: <code>{{ inset }}</code></bolt-text>
+        <bolt-text font-size="small" class="u-bolt-margin-bottom-small">Inset: <code>{{ inset }}</code></bolt-text>
         {% include '@bolt-components-tabs/tabs.twig' with {
           panel_spacing: spacing,
           inset: inset,
