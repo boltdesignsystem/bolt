@@ -1,5 +1,6 @@
 // Refer to https://github.com/boltdesignsystem/bolt/wiki/Jest-Test:-Example-Jest-Test for more testing examples
-import { render, stopServer } from '../../../testing/testing-helpers';
+import { render, renderWC, stopServer } from '../../../testing/testing-helpers';
+const componentSelector = 'bolt-{{ kebabCase name }}';
 // import schema from '../{{ kebabCase name }}.schema';
 // const { [PROP KEY], [PROP KEY]... } = schema.properties;
 let page, fixtures;
@@ -30,16 +31,37 @@ beforeAll(async () => {
   };
 });
 
-describe('Bolt {{ titleCase name }} element', () => {
+describe('Bolt {{ titleCase name }} component', () => {
   test('default', async () => {
     const results = await render(
-      '@bolt-elements-{{ kebabCase name }}/{{ kebabCase name }}.twig',
+      '@bolt-components-{{ kebabCase name }}/{{ kebabCase name }}.twig',
       {
         ...fixtures.defaultData,
       },
     );
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  test('default web component', async () => {
+    const results = await render(
+      '@bolt-components-{{ kebabCase name }}/{{ kebabCase name }}.twig',
+      {
+        ...fixtures.defaultData,
+      },
+    );
+
+    const { innerHTML, outerHTML } = await renderWC(
+      componentSelector,
+      results.html,
+      page,
+    );
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+    await expect(innerHTML).toMatchSnapshot();
+    await expect(outerHTML).toMatchSnapshot();
   });
 });
 
