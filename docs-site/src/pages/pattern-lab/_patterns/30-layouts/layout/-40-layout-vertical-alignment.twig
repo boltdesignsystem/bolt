@@ -9,7 +9,7 @@
 {% endset %}
 
 {% set demo %}
-  {% set schema = bolt.data.components['@bolt-layouts-layout'].schema %}
+  {% set schema = bolt.data.components['@bolt-layouts-layout'].schema['layout'] %}
   {% for alignment in schema.properties.valign_items.enum %}
     <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Vertically aligned {{ alignment }}</bolt-text>
     <bolt-layout template="halves" valign-items="{{ alignment }}" padding-top="none">
@@ -30,7 +30,9 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-layouts-layout/layout.twig' with {
-  template: 'halves',
+  template: [
+    'halves',
+  ],
   valign_items: 'center',
   ...
 } only %}
