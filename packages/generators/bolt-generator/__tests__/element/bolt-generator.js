@@ -4,8 +4,7 @@ const internalTasks = require('@bolt/build-tools/tasks/internal-tasks');
 const dir = require('node-dir');
 
 const dirs = {
-  global:
-    'packages/generators/tmp',
+  global: 'packages/generators/bolt-generator/__tests__/element/_tmp',
   scss: 'test.scss',
   test: 'test.js',
   package: 'package.json',
@@ -20,7 +19,7 @@ dirs.src = `${dirs.component}/src`;
 dirs.testing = `${dirs.component}/__tests__`;
 dirs.patternLab = `${dirs.global}/docs-site/src/pages/pattern-lab/_patterns/20-elements/test/00-test-docs.twig`;
 
-describe('Bolt component generator', () => {
+describe('Bolt element generator', () => {
   beforeAll(async () => {
     shell.exec(`rm -rf ${dirs.global}`);
     shell.exec('yarn ce "Test" "Test Description"');

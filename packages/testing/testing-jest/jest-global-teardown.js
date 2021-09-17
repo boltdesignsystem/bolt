@@ -22,7 +22,10 @@ module.exports = async function() {
     item => !item.includes('__tests__/fixtures'),
   );
 
-  await internalTasks.clean('packages/generators/tmp'); // cleaning bolt-generator temp files after error
+  await internalTasks.clean([
+    'packages/generators/bolt-generator/__tests__/component/_tmp',
+    'packages/generators/bolt-generator/__tests__/element/_tmp',
+  ]); // cleaning bolt-generator temp files after error
   await iconTasks.build(); // cleaning icons after all tests
   await teardownDevServer();
   await buildPrep(true); // clear out all built www folders when complete
