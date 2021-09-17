@@ -4,12 +4,12 @@
 
 {% set demo %}
   {% set icon_chevron_down %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'chevron-down',
     } only %}
   {% endset %}
   {% set icon_chevron_right %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'chevron-right',
     } only %}
   {% endset %}
@@ -118,12 +118,18 @@
         text: 'Product',
       } only %}
     {% endset %}
-    {% set signifier %}
-      {% include '@bolt-components-icon/icon.twig' with {
+    {% set icon %}
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: 'platform',
-        color: 'teal',
-        background: 'circle',
+      } only %}
+    {% endset %}
+    {% set signifier %}
+      {% include '@bolt-elements-shape/shape.twig' with {
+        content: icon,
         size: 'large',
+        attributes: {
+          class: 't-bolt-teal'
+        }
       } only %}
     {% endset %}
     {% set callout_content %}
@@ -241,7 +247,7 @@
       } only %}
     {% endset %}
     {% set icon_documentation %}
-      {% include '@bolt-components-icon/icon.twig' with {
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: 'documentation',
       } only %}
     {% endset %}

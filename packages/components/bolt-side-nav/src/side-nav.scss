@@ -133,12 +133,17 @@
 .c-bolt-side-nav__list {
   margin: 0;
   padding: 0;
+  font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-small);
   list-style: none;
   line-height: var(--bolt-type-line-height-small);
 
   .c-bolt-side-nav__list {
     grid-column: 1/3;
+
+    .c-bolt-side-nav__link {
+      font-weight: var(--bolt-type-font-weight-regular);
+    }
 
     .c-bolt-side-nav__list-item {
       .c-bolt-side-nav__link:not(.c-bolt-side-nav__link--toggle-trigger) {
@@ -199,15 +204,19 @@
 .c-bolt-side-nav__link {
   @include bolt-button-native-styles-reset;
 
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
   position: relative;
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+  font-weight: var(--bolt-type-font-weight-semibold);
   color: var(--m-bolt-link);
   text-decoration: none;
   transition: color var(--bolt-transition);
 
   @include bolt-mq(small) {
-    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
+    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall)
+      var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
   }
 
   &:before {

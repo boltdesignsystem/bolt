@@ -53,6 +53,7 @@ module.exports = {
       '@bolt/components-ol',
       '@bolt/components-pagination',
       '@bolt/components-page-header',
+      '@bolt/components-page-footer',
       '@bolt/components-placeholder',
       '@bolt/components-popover',
       '@bolt/components-progress-bar',
