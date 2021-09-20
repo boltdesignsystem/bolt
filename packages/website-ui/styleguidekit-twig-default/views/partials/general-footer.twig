@@ -96,7 +96,7 @@
       // data-media-title (optional [default: true]) [boolean]: hide the title
       // data-media-duration (optional [default: true]) [boolean]: hide the duration
       // data-media-preview (optional [default: false]) [boolean]: show the preview label
-      this.metaData(this.el_.hasAttribute('data-media-title') ? this.mediainfo.name : '', this.el_.hasAttribute('data-media-duration') ? this.mediainfo.duration : '', this.el_.hasAttribute('data-media-preview') ? true : false, this);
+      this.metaData(this.el_.hasAttribute('data-media-title') ? this.mediainfo.name : '', this.el_.hasAttribute('data-media-duration') ? this.mediainfo.duration : '', this, this.el_.hasAttribute('data-media-preview') ? true : false);
     })
     thisPlayer.on('loadedmetadata', function(player) {
       //OPTIONS
