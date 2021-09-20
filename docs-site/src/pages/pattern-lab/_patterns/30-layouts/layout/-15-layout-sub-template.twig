@@ -55,7 +55,9 @@
   {% endset %}
   {% include '@bolt-layouts-layout/layout.twig' with {
     content: layout_items,
-    template: 'full-vertical-push-last-item',
+    template: [
+      'full-vertical-push-last-item',
+    ],
   } only %}
 {% endset %}
 
@@ -70,7 +72,9 @@
 {% endset %}
 {% include '@bolt-layouts-layout/layout.twig' with {
   content: layout_items,
-  template: 'halves@from-small',
+  template: [
+    'halves@from-small',
+  ],
 } only %}
 {% endverbatim %}
 {% endset %}

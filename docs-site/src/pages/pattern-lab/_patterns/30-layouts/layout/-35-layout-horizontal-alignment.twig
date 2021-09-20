@@ -8,7 +8,7 @@
 {% endset %}
 
 {% set demo %}
-  {% set schema = bolt.data.components['@bolt-layouts-layout'].schema %}
+  {% set schema = bolt.data.components['@bolt-layouts-layout'].schema['layout'] %}
   {% for alignment in schema.properties.align_items.enum %}
     <bolt-layout template="75" align-items="{{ alignment }}">
       <bolt-layout-item>
@@ -21,7 +21,9 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-layouts-layout/layout.twig' with {
-  template: '75',
+  template: [
+    '75',
+  ],
   align_items: 'center',
   ...
 } only %}
