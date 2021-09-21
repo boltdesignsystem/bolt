@@ -39,13 +39,16 @@
   z-index: -1;
 
   &:focus {
-    position: relative;
+    position: absolute;
+    top: var(--bolt-spacing-y-medium);
+    right: var(--bolt-spacing-x-medium);
     transform: translateY(0);
     z-index: 999;
   }
 }
 
 .c-quick-links__col-inner {
+  position: relative;
   height: 25vh;
   overflow: auto;
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
