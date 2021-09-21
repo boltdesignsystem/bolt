@@ -18,11 +18,13 @@
   border: 1px solid var(--m-bolt-border);
   border-radius: bolt-border-radius(small);
 
-  &:first-of-type {
-    margin-bottom: var(--bolt-spacing-y-medium);
+  &:nth-of-type(2) {
+    // margin-bottom: var(--bolt-spacing-y-medium);
+    display: none;
 
     @include bolt-mq($from: medium) {
-      margin-bottom: 0;
+      // margin-bottom: 0;
+      display: block;
     }
   }
 }
@@ -34,13 +36,13 @@
 
 .c-quick-links__skip-button {
   position: absolute;
+  top: var(--bolt-spacing-y-medium);
+  right: var(--bolt-spacing-x-medium);
   transform: translateY(-100%);
   z-index: -1;
 
   &:focus {
     position: absolute;
-    top: var(--bolt-spacing-y-medium);
-    right: var(--bolt-spacing-x-medium);
     transform: translateY(0);
     z-index: 999;
   }
@@ -70,5 +72,30 @@
 
   .e-bolt-text-link {
     display: inline-flex; //If the link is very long prevent from wrapping around icon
+  }
+}
+
+.c-quick-links__trigger {
+  @include bolt-shadow('level-20');
+
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: bolt-z-index(modal);
+  padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
+  color: var(--m-bolt-text);
+  background-color: var(--m-bolt-bg);
+
+  @include bolt-mq(medium) {
+    display: none;
+  }
+}
+
+.c-quick-links__modal {
+  display: block;
+
+  @include bolt-mq(medium) {
+    display: none;
   }
 }
