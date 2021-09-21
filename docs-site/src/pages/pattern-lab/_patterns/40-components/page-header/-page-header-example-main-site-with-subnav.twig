@@ -4,9 +4,9 @@
 {% endset %}
 
 {# Icons #}
-{% set icon_phone_call %}
+{% set icon_contact %}
   {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'pega-phone-call',
+    name: 'intelligent-virtual-assistant',
   } only %}
 {% endset %}
 {% set icon_network %}
@@ -982,7 +982,7 @@
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
       content: 'Contact',
-      signifier_only: icon_phone_call,
+      signifier_only: icon_contact,
     },
     children: contact_popover_lv2,
     popover: true,
@@ -1101,7 +1101,9 @@
 {% set search_panel_content %}
   <bolt-stack spacing="small">
     <form>
-      {% include '@bolt-components-typeahead/typeahead.demo.twig' only %}
+      {% include '@bolt-components-typeahead/typeahead.twig' with {
+        input_placeholder: 'Search pega.com',
+      } only %}
     </form>
   </bolt-stack>
   {% include '@bolt-components-headline/text.twig' with {

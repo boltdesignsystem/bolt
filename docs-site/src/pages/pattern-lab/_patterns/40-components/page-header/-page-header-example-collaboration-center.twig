@@ -358,7 +358,9 @@
 {% set search_panel_content %}
   <bolt-stack spacing="small">
     <form>
-      {% include '@bolt-components-typeahead/typeahead.demo.twig' only %}
+      {% include '@bolt-components-typeahead/typeahead.twig' with {
+        input_placeholder: 'Search Pega Collaboration Center',
+      } only %}
     </form>
   </bolt-stack>
   {% include '@bolt-components-headline/text.twig' with {
