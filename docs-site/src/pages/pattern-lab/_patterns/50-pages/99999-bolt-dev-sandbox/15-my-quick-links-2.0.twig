@@ -134,31 +134,6 @@
   } only %}
 {% endset %}
 
-{# Links with tooltip option #}
-{% set link_with_tooltip_1 %}
-  {% include '@bolt-components-tooltip/tooltip.twig' with {
-    trigger: quick_link_1,
-    content: 'Delete the item from this list.',
-    placement: 'right',
-  } only %}
-{% endset %}
-
-{% set link_with_tooltip_2 %}
-  {% include '@bolt-components-tooltip/tooltip.twig' with {
-    trigger: quick_link_2,
-    content: 'Delete the item from this list.',
-    placement: 'right',
-  } only %}
-{% endset %}
-
-{% set link_with_tooltip_3 %}
-  {% include '@bolt-components-tooltip/tooltip.twig' with {
-    trigger: quick_link_3,
-    content: 'Delete the item from this list.',
-    placement: 'right',
-  } only %}
-{% endset %}
-
 {% block main_content %}
   {% set header %}
     {% include '@bolt/headline.twig' with {
@@ -186,10 +161,6 @@
         quick_link_1,
         quick_link_2,
         quick_link_3,
-        'Below, for comparison, links with tooltip',
-        link_with_tooltip_1,
-        link_with_tooltip_2,
-        link_with_tooltip_3,
       ]
     } only %}
   {% endset %}
