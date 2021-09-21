@@ -17,12 +17,14 @@
     content: '\FEFF'; /* [2] */
   }
 
-  > img {
+  > img,
+  > svg {
     width: 1em; /* [1] */
     height: 1em; /* [1] */
   }
 
   > img,
+  > svg,
   > bolt-icon:not([size]) {
     display: inline-flex;
     transform: translateY(0.18em); /* [3] */

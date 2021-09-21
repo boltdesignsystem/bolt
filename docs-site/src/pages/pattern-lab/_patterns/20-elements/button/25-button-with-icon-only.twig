@@ -7,7 +7,7 @@
     <bolt-list-item>
       <bolt-tooltip>
         {% set icon_download %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'download',
           } only %}
         {% endset %}
@@ -24,7 +24,7 @@
     <bolt-list-item>
       <bolt-tooltip>
         {% set icon_add %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'add',
           } only %}
         {% endset %}
@@ -53,7 +53,7 @@
 {% verbatim %}
 // Icon only button combined with tooltip
 {% set icon_download %}
-  {% include '@bolt-components-icon/icon.twig' with {
+  {% include '@bolt-elements-icon/icon.twig' with {
     name: 'download',
   } only %}
 {% endset %}
