@@ -1,0 +1,80 @@
+{% set description %}
+    A description of the component and what it is used for.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% set _content %}
+  <bolt-text eyebrow>
+    This Is the Eyebrow
+  </bolt-text>
+  <bolt-text headline font-size="xxxlarge">
+    This Is the XXXLarge Headline
+  </bolt-text>
+  <bolt-text>
+    This is regular text, and some lorem ipsum. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante.
+  </bolt-text>
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "This is a button",
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+
+{% set background_image_top %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      alt: "A mountainous landscape",
+      style: "object-position: center top;",
+      background: true,
+      loading: "eager",
+    }
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-billboard/billboard.twig' with {
+  content: _content,
+  background_image: background_image_top,
+  theme: 'dark'
+} only %}
+
+<br>
+
+{% set background_image_btm %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      alt: "A mountainous landscape",
+      style: "object-position: center bottom;",
+      background: true,
+      loading: "eager",
+    }
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-billboard/billboard.twig' with {
+  content: _content,
+  background_image: background_image_btm,
+  theme: 'dark'
+} only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-billboard/billboard.twig' with {
+  content: _content
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Image Vertical Align Billboard',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

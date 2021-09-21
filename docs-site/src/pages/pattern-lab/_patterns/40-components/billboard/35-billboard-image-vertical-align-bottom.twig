@@ -10,24 +10,41 @@
 
 {% set demo %}
 {% set _content %}
-  <bolt-text headline tag="h1" font-size="xxxlarge">
-    Billboard Title
-  </bolt-text>
+  {% include '@bolt-components-blockquote/blockquote.twig' with {
+    size: 'xxlarge',
+    weight: 'bold',
+    border: 'none',
+    author: {
+      name: 'Oliver Zeeb',
+      title: 'Team Lead, Application Development <br>W&W-Gruppe'
+    },
+    content: '<p>Pega is one of the key technologies that we are using to rebuild our application landscape.</p>'
+  } only %}
 {% endset %}
 {% set _image %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
       alt: 'Image alt text',
-      src: '/images/heros/hero-foreground--yellow.png',
-      width: 415,
-      style: 'display: block;'
+      src: '/images/heros/hero-foreground--teal.png',
+      style: 'display: block;',
+    },
+  } only %}
+{% endset %}
+{% set _bg_image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/heros/hero-background--teal.jpg',
+      sizes: '100vw',
     },
   } only %}
 {% endset %}
 {% include '@bolt-components-billboard/billboard.twig' with {
   content: _content,
   image: _image,
+  background_image: _bg_image,
   image_valign: 'end-offset',
+  theme: 'dark'
 } only %}
 {% endset %}
 
@@ -38,9 +55,8 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Billboard',
+  title: 'Image Vertical Align Billboard',
   description: description,
-  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
 } only %}

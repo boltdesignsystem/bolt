@@ -10,17 +10,21 @@
 
 {% set demo %}
 {% set _content %}
-  <bolt-text headline tag="h1" font-size="xxxlarge">
-    It's show time.
-  </bolt-text>
+  {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: "/images/heros/hero-foreground--orange--logo.svg",
+        alt: "PegaWorld iNspire logo",
+        loading: "eager",
+        class: [
+          "u-bolt-margin-bottom-medium",
+        ]
+      }
+  } only %}
   <bolt-text font-size="xlarge" class="u-bolt-line-length-medium">
-    Please join us for PegaWorld 2019 event at MGM Grand in Las&nbsp;Vegas
-  </bolt-text>
-  <bolt-text weight="bold">
-    Monday, June 3rd, 2019 <br>10AM - 3PM EST
+    Boston Convention & Exhibition Center May&nbsp;31&nbsp;-&nbsp;June&nbsp;2,&nbsp;2020
   </bolt-text>
   {% include '@bolt-elements-button/button.twig' with {
-    content: "Watch livestream",
+    content: "See full agenda",
     hierarchy: "secondary",
     attributes: {
       type: 'button'
@@ -31,10 +35,13 @@
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
       alt: 'Image alt text',
-      src: '/images/heros/hero-foreground--yellow.png',
+      src: '/images/heros/hero-foreground--indigo.png',
       width: 375,
       style: 'display: block;',
-      class: 'u-bolt-margin-left-auto'
+      class: [
+        'u-bolt-margin-left-auto',
+        'u-bolt-margin-right-auto'
+      ]
     },
   } only %}
 {% endset %}
@@ -42,7 +49,7 @@
   {% include '@bolt-elements-image/image.twig' with {
     background: true,
     attributes: {
-      src: '/images/heros/hero-background--yellow.svg',
+      src: '/images/heros/hero-background--indigo.jpg',
       sizes: '100vw',
     },
   } only %}
@@ -51,8 +58,8 @@
   content: _content,
   image: _image,
   background_image: _bg_image,
-  image_valign: 'end-offset',
-  theme: 'light'
+  image_valign: 'start-offset',
+  theme: 'dark'
 } only %}
 {% endset %}
 
@@ -63,7 +70,7 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Image Horizontal Align Billboard',
+  title: 'Image Vertical Align Billboard',
   description: description,
   demo: demo,
   twig_markup: twig_markup,
