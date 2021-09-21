@@ -19,11 +19,9 @@
   border-radius: bolt-border-radius(small);
 
   &:nth-of-type(2) {
-    // margin-bottom: var(--bolt-spacing-y-medium);
     display: none;
 
     @include bolt-mq($from: medium) {
-      // margin-bottom: 0;
       display: block;
     }
   }
@@ -38,8 +36,7 @@
   position: absolute;
   top: var(--bolt-spacing-y-medium);
   right: var(--bolt-spacing-x-medium);
-  transform: translateY(-100%);
-  z-index: -1;
+  transform: translateY(calc(-100% - var(--bolt-spacing-y-large)));
 
   &:focus {
     position: absolute;
