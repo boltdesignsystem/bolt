@@ -5,12 +5,14 @@
 
 .c-quick-links {
   padding-top: var(--bolt-spacing-y-medium);
+  padding-bottom: var(--bolt-spacing-y-xxlarge);
   background-color: var(--m-bolt-bg);
 
   @include bolt-mq(medium) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: var(--bolt-spacing-x-medium);
+    padding-bottom: 0;
   }
 }
 
@@ -63,7 +65,7 @@
 
 .c-quick-links__col-inner {
   position: relative;
-  height: 30vh;
+  height: 45vh;
   overflow-y: scroll;
   overflow-x: auto;
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
@@ -77,10 +79,6 @@
 
   &::-webkit-scrollbar-thumb {
     background-color: var(--m-bolt-primary);
-  }
-
-  @include bolt-mq(medium) {
-    height: 45vh;
   }
 
   .e-bolt-text-link {
