@@ -4,15 +4,17 @@
 @import '@bolt/core-v3.x';
 
 .c-quick-links {
+  margin-bottom: var(--bolt-spacing-y-medium);
   padding-top: var(--bolt-spacing-y-medium);
-  padding-bottom: var(--bolt-spacing-y-xxlarge);
+  padding-bottom: var(--bolt-spacing-y-xlarge);
   background-color: var(--m-bolt-bg);
 
   @include bolt-mq(medium) {
     display: grid;
+    margin-bottom: 0;
+    padding-bottom: 0;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: var(--bolt-spacing-x-medium);
-    padding-bottom: 0;
   }
 }
 
