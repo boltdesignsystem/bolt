@@ -7,7 +7,7 @@
   padding-top: var(--bolt-spacing-y-medium);
   background-color: var(--m-bolt-bg);
 
-  @include bolt-mq($from: medium) {
+  @include bolt-mq(medium) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: var(--bolt-spacing-x-medium);
@@ -21,7 +21,7 @@
   &:nth-of-type(2) {
     display: none;
 
-    @include bolt-mq($from: medium) {
+    @include bolt-mq(medium) {
       display: block;
     }
   }
@@ -33,21 +33,21 @@
 }
 
 .c-quick-links__skip-button {
-  position: absolute;
-  top: var(--bolt-spacing-y-medium);
-  right: var(--bolt-spacing-x-medium);
-  transform: translateY(calc(-100% - var(--bolt-spacing-y-large)));
+  // position: absolute;
+  // top: var(--bolt-spacing-y-medium);
+  // right: var(--bolt-spacing-x-medium);
+  // transform: translateY(calc(-100% - var(--bolt-spacing-y-large)));
 
   &:focus {
-    position: absolute;
-    transform: translateY(0);
-    z-index: 999;
+    // position: absolute;
+    // transform: translateY(0);
+    // z-index: 999;
   }
 }
 
 .c-quick-links__col-inner {
   position: relative;
-  height: 25vh;
+  height: 38vh;
   overflow-y: scroll;
   overflow-x: auto;
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
@@ -63,8 +63,8 @@
     background-color: var(--m-bolt-primary);
   }
 
-  @include bolt-mq($from: medium) {
-    height: 40vh;
+  @include bolt-mq(medium) {
+    height: 45vh;
   }
 
   .e-bolt-text-link {
@@ -94,5 +94,13 @@
 
   @include bolt-mq(medium) {
     display: none;
+  }
+
+  .c-quick-links__col-inner {
+    height: 65vh;
+
+    @include bolt-mq(small) {
+      height: 38vh;
+    }
   }
 }
