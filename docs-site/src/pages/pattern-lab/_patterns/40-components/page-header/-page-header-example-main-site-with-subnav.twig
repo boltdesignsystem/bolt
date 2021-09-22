@@ -999,31 +999,98 @@
 {# Related sites nav #}
 {% set pega_sites_nav_lv2_ul_content %}
   {% set more_pega_sites_www %}
-    {% set thumbnail %}
-      <img src="https://via.placeholder.com/100x100" alt="" width=35 height=35 class="u-bolt-border-radius-full">
+    {% set site_signifier %}
+      <img src="https://via.placeholder.com/100x100" alt="" width=35 height=35 class="u-bolt-block u-bolt-border-radius-full">
+    {% endset %}
+    {% set site_name_link %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Site Name',
+        reversed_underline: true,
+        icon_after: icon_chevron_right,
+        attributes: {
+          href: 'https://pega.com',
+        }
+      } only %}
     {% endset %}
     {% set pega_sites_teaser %}
-      {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
-        signifier: thumbnail,
-        headline: {
-          text: 'Site Name',
-          tag: 'p',
-          size: 'xsmall',
-          link_attributes: {
-            href: 'https://pega.com'
-          },
+      {% set layout_content %}
+        {% set site_name %}
+          <bolt-stack spacing="xxsmall">
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: site_name_link,
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+          <bolt-stack>
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Site description goes here',
+              tag: 'p',
+              size: 'small',
+            } only %}
+          </bolt-stack>
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'center',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
         },
-        description: 'Site description goes here'
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_no_description %}
+      {% set layout_content %}
+        {% set site_name %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: site_name_link,
+            tag: 'p',
+            size: 'xsmall',
+          } only %}
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'center',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
+        },
       } only %}
     {% endset %}
     {% set pega_sites_teaser_list %}
+      {% set category_heading %}
+        {% include '@bolt-components-headline/eyebrow.twig' with {
+          text: 'Category',
+        } only %}
+      {% endset %}
       {% include '@bolt-components-list/list.twig' with {
         items: [
+          category_heading,
           pega_sites_teaser,
           pega_sites_teaser,
           pega_sites_teaser,
-          pega_sites_teaser,
-          pega_sites_teaser,
+          pega_sites_teaser_no_description,
+          pega_sites_teaser_no_description,
         ],
         spacing: 'small',
       } only %}
