@@ -33,21 +33,37 @@
 }
 
 .c-quick-links__skip-button {
-  // position: absolute;
-  // top: var(--bolt-spacing-y-medium);
-  // right: var(--bolt-spacing-x-medium);
-  // transform: translateY(calc(-100% - var(--bolt-spacing-y-large)));
+  position: absolute;
+  top: var(--bolt-spacing-y-medium);
+  right: var(--bolt-spacing-x-medium);
+  transform: translateY(calc(-100% - var(--bolt-spacing-y-large)));
 
   &:focus {
-    // position: absolute;
-    // transform: translateY(0);
-    // z-index: 999;
+    position: absolute;
+    transform: translateY(0);
+    z-index: 999;
+  }
+}
+
+.c-quick-links__skip-button--open {
+  display: none;
+
+  @include bolt-mq(medium) {
+    display: inline-block;
+  }
+}
+
+.c-quick-links__skip-button--mobile {
+  display: block;
+
+  @include bolt-mq(medium) {
+    display: none;
   }
 }
 
 .c-quick-links__col-inner {
   position: relative;
-  height: 38vh;
+  height: 30vh;
   overflow-y: scroll;
   overflow-x: auto;
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
