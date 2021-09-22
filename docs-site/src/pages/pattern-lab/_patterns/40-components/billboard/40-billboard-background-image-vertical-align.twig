@@ -27,7 +27,7 @@
   } only %}
 {% endset %}
 
-{% set background_image_top %}
+{% set background_top %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
       src: "/images/placeholders/landscape-16x9-mountains.jpg",
@@ -42,13 +42,13 @@
 
 {% include '@bolt-components-billboard/billboard.twig' with {
   content: _content,
-  background_image: background_image_top,
+  background: background_top,
   theme: 'dark'
 } only %}
 
 <br>
 
-{% set background_image_btm %}
+{% set background_btm %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
       src: "/images/placeholders/landscape-16x9-mountains.jpg",
@@ -63,7 +63,7 @@
 
 {% include '@bolt-components-billboard/billboard.twig' with {
   content: _content,
-  background_image: background_image_btm,
+  background: background_btm,
   theme: 'dark'
 } only %}
 {% endset %}

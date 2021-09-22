@@ -37,7 +37,7 @@ module.exports = {
       enum: ['none', 'small', 'medium', 'large', 'xlarge'],
       default: 'large',
     },
-    background_image: {
+    background: {
       type: 'any',
       description:
         'An object to be used as a background that displays underneath the content / foreground in the Billboard.',
