@@ -1,0 +1,72 @@
+{% set description %}
+    A description of the component and what it is used for.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% set _content %}
+  {% set form_children %}
+    {% set label %}
+      {% include "@bolt-components-form/form-label.twig" with {
+        title: "This is the label",
+        displayType: "block"
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include "@bolt-components-form/form-input.twig" with {
+        attributes: {
+          placeholder: "This is the placeholder text.",
+          required: true,
+          type: "text",
+        },
+      } only %}
+    {% endset %}
+    {% set _form %}
+      {% include "@bolt-components-form/form-element.twig" with {
+        labelDisplay: "before",
+        label: label,
+        children: input
+      } only %}
+      {% include "@bolt-components-form/form-button.twig" with {
+        text: "Submit",
+        attributes: {
+          type: "submit",
+        }
+      } only %}
+    {% endset %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+        body: {
+          content: _form,
+        },
+      theme: 'light'
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-form/form.twig" with {
+    children: form_children
+  } only %}
+{% endset %}
+{% include '@bolt-components-billboard/billboard.twig' with {
+  template: ['67'],
+  content: _content,
+  center_content: true,
+  theme: 'dark',
+} only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-billboard/billboard.twig' with {
+  content: _content
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Centered Form Billboard',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

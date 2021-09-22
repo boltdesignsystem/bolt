@@ -6,31 +6,35 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set layout_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-billboard',
-  this.data.disabled.value ? 'c-bolt-billboard--disabled' : '',
 ] %}
 
-{# <div {{ attributes.addClass(classes) }}>
-  {% if content %}
-    {{ content }}
-  {% endif %}
-</div>
- #}
+{# Array of classes based on the defined + default props #}
+{% set layout_classes = [
+  't-bolt-' ~ this.data.theme.value,
+] %}
 
-<div class="c-bolt-billboard">
-  <bolt-layout
-  template="{{ this.data.template.value }}"
-  class="t-bolt-{{ this.data.theme.value }}"
-  valign-items="center"
-  gutter="large"
-  row-gutter="large"
-  padding-top="large"
-  padding-bottom="large"
-  {{ this.data.center_content.value ? 'align-items="center"' : '' }}
-  >
+{% if not template|length %}
+  {% set template = ['halves@from-small'] %}
+{% endif %}
+
+{% set layout_attributes = layout_attributes.setAttribute('template', template|join(' ')) %}
+{% set layout_attributes = layout_attributes.setAttribute('gutter', this.data.size.value) %}
+{% set layout_attributes = layout_attributes.setAttribute('row-gutter', this.data.size.value) %}
+{% set layout_attributes = layout_attributes.setAttribute('padding-top', this.data.size.value) %}
+{% set layout_attributes = layout_attributes.setAttribute('padding-bottom', this.data.size.value) %}
+{% set layout_attributes = layout_attributes.setAttribute('valign-items', 'center') %}
+
+{% if this.data.center_content.value %}
+  {% set layout_attributes = layout_attributes.setAttribute('align-items', 'center') %}
+{% endif %}
+
+<div {{ attributes.addClass(classes) }}>
+  <bolt-layout {{ layout_attributes.addClass(layout_classes) }} {{ layout_attributes }}">
     {{ background_image }}
 
     <bolt-layout-item
@@ -40,9 +44,9 @@
       {{ content }}
     </bolt-layout-item>
 
-    {% if image or this.data.reverse_order.value %}
-    <bolt-layout-item valign-self="{{ this.data.image_valign.value }}">
-      {{ image }}
+    {% if supplement or this.data.reverse_order.value %}
+    <bolt-layout-item valign-self="{{ this.data.supplement_valign.value }}">
+      {{ supplement }}
     </bolt-layout-item>
     {% endif %}
 

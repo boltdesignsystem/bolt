@@ -29,13 +29,13 @@
     background: true,
     attributes: {
       src: '/images/content/backgrounds/background-night-sky.jpg',
+      loading: 'eager',
       sizes: '100vw',
     },
   } only %}
 {% endset %}
 {% include '@bolt-components-billboard/billboard.twig' with {
   content: _content,
-  image_valign: 'middle',
   background_image: _bg_image,
   reverse_order: true,
   theme: 'dark'

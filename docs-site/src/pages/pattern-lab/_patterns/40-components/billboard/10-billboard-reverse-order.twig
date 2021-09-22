@@ -23,21 +23,22 @@
   } only %}
 {% endset %}
 {% set _image %}
-    <img src="/images/heros/hero-foreground--orange--animated-gif.gif" alt="">
+    <img src="/images/heros/hero-foreground--orange--animated-gif.gif" loading="eager" alt="">
 {% endset %}
 {% set _bg_image %}
   {% include '@bolt-elements-image/image.twig' with {
     background: true,
     attributes: {
       src: '/images/heros/hero-background--orange.jpg',
+      loading: 'eager',
       sizes: '100vw',
     },
   } only %}
 {% endset %}
 {% include '@bolt-components-billboard/billboard.twig' with {
   content: _content,
-  image: _image,
-  image_valign: 'middle',
+  supplement: _image,
+  supplement_valign: 'center',
   background_image: _bg_image,
   reverse_order: true,
   theme: 'dark'

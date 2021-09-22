@@ -26,6 +26,7 @@
     attributes: {
       alt: 'Image alt text',
       src: '/images/heros/hero-foreground--teal.png',
+      loading: 'eager',
       style: 'display: block;',
     },
   } only %}
@@ -35,15 +36,16 @@
     background: true,
     attributes: {
       src: '/images/heros/hero-background--teal.jpg',
+      loading: 'eager',
       sizes: '100vw',
     },
   } only %}
 {% endset %}
 {% include '@bolt-components-billboard/billboard.twig' with {
   content: _content,
-  image: _image,
+  supplement: _image,
   background_image: _bg_image,
-  image_valign: 'end-offset',
+  supplement_valign: 'end-offset',
   theme: 'dark'
 } only %}
 {% endset %}

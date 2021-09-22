@@ -37,6 +37,7 @@
       alt: 'Image alt text',
       src: '/images/heros/hero-foreground--indigo.png',
       width: 375,
+      loading: 'eager',
       style: 'display: block;',
       class: [
         'u-bolt-margin-left-auto',
@@ -50,15 +51,16 @@
     background: true,
     attributes: {
       src: '/images/heros/hero-background--indigo.jpg',
+      loading: 'eager',
       sizes: '100vw',
     },
   } only %}
 {% endset %}
 {% include '@bolt-components-billboard/billboard.twig' with {
   content: _content,
-  image: _image,
+  supplement: _image,
   background_image: _bg_image,
-  image_valign: 'start-offset',
+  supplement_valign: 'start-offset',
   theme: 'dark'
 } only %}
 {% endset %}

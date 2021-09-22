@@ -1,3 +1,5 @@
+{% set schema = bolt.data.components["@bolt-components-billboard"].schema %}
+
 {% set description %}
     A description of the component and what it is used for.
 {% endset %}
@@ -9,26 +11,22 @@
 {% endset %}
 
 {% set demo %}
-{% set _content %}
-  <bolt-text eyebrow font-weight="bold">
-    Billboard Eyebrow
-  </bolt-text>
-  <bolt-text headline tag="h1" font-size="xxxlarge">
-    Billboard Title
-  </bolt-text>
+{% for size in schema.properties.size.enum %}
+  {% set _content %}
+    <bolt-text headline tag="h1" font-size="xxxlarge">
+      Billboard Size {{ size|title }}
+    </bolt-text>
     <bolt-text>
       Et in dolor qui dolore irure magna tempor ex esse non.
     </bolt-text>
-    <a href="https://pega.com" class="e-bolt-button">
-      Nulla
-    </a>
-{% endset %}
-{% include '@bolt-components-billboard/billboard.twig' with {
-  template: ['67'],
-  content: _content,
-  center_content: true,
-  theme: 'dark',
-} only %}
+  {% endset %}
+  {% include '@bolt-components-billboard/billboard.twig' with {
+    content: _content,
+    theme: 'dark',
+    size: size
+  } only %}
+  <br>
+{% endfor %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
@@ -38,7 +36,7 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Centered Billboard',
+  title: 'Size Billboard',
   description: description,
   demo: demo,
   twig_markup: twig_markup,

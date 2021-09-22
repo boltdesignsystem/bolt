@@ -39,12 +39,12 @@
   } only %}
 {% endset %}
 {% set _image %}
-    <img src="/images/heros/responsive-web-design.svg" alt=""  style="min-width:60vw; margin-right: -40vw;">
+    <img src="/images/heros/responsive-web-design.svg" alt="" loading="eager" style="min-width:60vw; margin-right: -40vw;">
 {% endset %}
 {% include '@bolt-components-billboard/billboard.twig' with {
   content: _content,
-  image: _image,
-  image_valign: 'end-offset',
+  supplement: _image,
+  supplement_valign: 'end-offset',
   theme: 'white'
 } only %}
 {% endset %}
