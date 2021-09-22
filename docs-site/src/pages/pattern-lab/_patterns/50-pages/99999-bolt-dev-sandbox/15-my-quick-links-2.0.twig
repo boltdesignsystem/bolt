@@ -27,7 +27,7 @@
   } only %}
 {% endset %}
 
-{# I use this btn to fall into 'my quick links' column after clicking and hiding the modal. If I use already existing desktop trigger, when I click 'skip to add links',focus falls on the fixed trigger btn rather on the links column. This is whay I did it like this. #}
+{# I use this btn to go to 'add links' column. If I use already existing desktop trigger, and then want to go back by clicking 'skip to my quick links list', focus falls on the fixed trigger btn rather on the columns with quick links. This is why I did it like this. #}
 {% set skip_button_to_add_links_mobile %}
   {% include '@bolt-elements-button/button.twig' with {
     content: 'Skip to add links list',
