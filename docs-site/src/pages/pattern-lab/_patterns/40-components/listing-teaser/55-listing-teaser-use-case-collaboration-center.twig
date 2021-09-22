@@ -4,53 +4,53 @@
 
 {% set demo %}
   {% set icon_questions %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'questions',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-chat-question',
       size: 'large',
       color: 'teal',
     } only %}
   {% endset %}
   {% set icon_discussions %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'discussions',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-chat-typing',
       size: 'large',
       color: 'orange',
     } only %}
   {% endset %}
   {% set icon_ideas %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'ideas',
       size: 'large',
       color: 'berry',
     } only %}
   {% endset %}
   {% set icon_reply %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'reply',
       size: 'small',
     } only %}
   {% endset %}
   {% set icon_heart %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'heart',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'heart-solid',
       size: 'small',
     } only %}
   {% endset %}
   {% set icon_heart_pink %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'heart',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'heart-solid',
       size: 'small',
       color: 'pink',
     } only %}
   {% endset %}
   {% set icon_eye %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'eye',
       size: 'small',
     } only %}
   {% endset %}
   {% set icon_eye_off %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'eye-off',
       size: 'small',
     } only %}
@@ -191,7 +191,7 @@
     {% set description %}
       {% set more_link %}
         {% set icon_chevron_right %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'chevron-right',
           } only %}
         {% endset %}
@@ -234,7 +234,7 @@
       <p>If you can't find the Patch for 8.2.6, please reach out to your Account Executive.</p>
       {% set reply_link %}
         {% set icon_chevron_right %}
-          {% include '@bolt-components-icon/icon.twig' with {
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'chevron-right',
           } only %}
         {% endset %}
@@ -340,8 +340,8 @@
 {% verbatim %}
 // Set up a particular post
 {% set demo_icon %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'questions',
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-chat-question',
     size: 'large',
     color: 'teal',
   } only %}

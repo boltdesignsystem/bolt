@@ -12,14 +12,18 @@
         }
       } only %}
       {% if locked %}
-        {% include "@bolt-components-icon/icon.twig" with {
-          name: "lock",
-          background: "circle",
-          color: "orange",
+        {% set icon %}
+          {% include "@bolt-elements-icon/icon.twig" with {
+            name: "lock",
+          } only %}
+        {% endset %}
+        {% include "@bolt-elements-shape/shape.twig" with {
+          content: icon,
           size: "large",
           attributes: {
             class: [
-              "c-acd-badge__lock"
+              "c-acd-badge__lock",
+              "t-bolt-orange"
             ]
           }
         } only %}

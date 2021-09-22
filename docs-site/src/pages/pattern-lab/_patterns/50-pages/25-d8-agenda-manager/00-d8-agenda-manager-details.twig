@@ -58,7 +58,7 @@
           } only %}
 
           <div class="u-bolt-margin-bottom-small">
-            {% include "@bolt/icon.twig" with {
+            {% include "@bolt-elements-icon/icon.twig" with {
               name: "calendar",
               size: "medium"
             } only %}
@@ -66,7 +66,7 @@
           </div>
 
           <div>
-            {% include "@bolt/icon.twig" with {
+            {% include "@bolt-elements-icon/icon.twig" with {
               name: "map-pin",
               size: "medium"
             } only %}
@@ -409,7 +409,7 @@
 
           {% for icon in socialIcons %}
             <a class="u-bolt-margin-right-small" href="{{ icon.url }}">
-              {% include "@bolt/icon.twig" with {
+              {% include "@bolt-elements-icon/icon.twig" with {
                 name: icon.name,
                 size: "medium"
               } only %}
