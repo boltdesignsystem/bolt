@@ -164,16 +164,25 @@
     {% set preview_and_list %}
       {% set preview %}
         {% set preview_image %}
-          {% include '@bolt-elements-image/image.twig' with {
-            fill: true,
-            attributes: {
-              src: 'https://via.placeholder.com/2400x1800',
-              alt: 'Alt text.',
-              width: 2400,
-              height: 1800,
-              loading: 'lazy',
-            }
-          } only %}
+          <div class="c-base-ocpl-image-preview">
+            {% include '@bolt-elements-image/image.twig' with {
+              fill: true,
+              attributes: {
+                src: 'https://via.placeholder.com/2400x1800',
+                alt: 'Alt text.',
+                width: 2400,
+                height: 1800,
+                loading: 'lazy',
+              }
+            } only %}
+            <div class="c-base-ocpl-image-preview__chip">
+              {% include '@bolt-components-chip/chip.twig' with {
+                text: 'Preview',
+                border_radius: 'small',
+                color: 'violet',
+              } only %}
+            </div>
+          </div>
         {% endset %}
         {% include '@bolt-components-trigger/trigger.twig' with {
           content: preview_image,

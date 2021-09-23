@@ -167,16 +167,25 @@
     {% set carousel_and_list %}
       {% set carousel %}
         {% set slide %}
-          {% include '@bolt-elements-image/image.twig' with {
-            fill: true,
-            attributes: {
-              alt: 'Alt text.',
-              src: 'https://via.placeholder.com/400x225',
-              width: 400,
-              height: 225,
-              loading: 'lazy',
-            },
-          } only %}
+          <div class="c-base-ocpl-image-preview">
+            {% include '@bolt-elements-image/image.twig' with {
+              fill: true,
+              attributes: {
+                alt: 'Alt text.',
+                src: 'https://via.placeholder.com/400x225',
+                width: 400,
+                height: 225,
+                loading: 'lazy',
+              },
+            } only %}
+            <div class="c-base-ocpl-image-preview__chip">
+              {% include '@bolt-components-chip/chip.twig' with {
+                text: 'Preview',
+                border_radius: 'small',
+                color: 'violet',
+              } only %}
+            </div>
+          </div>
         {% endset %}
         {% include '@bolt-components-carousel/carousel.twig' with {
           slides: [
