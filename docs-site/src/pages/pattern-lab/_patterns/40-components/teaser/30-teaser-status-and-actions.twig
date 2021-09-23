@@ -1,5 +1,5 @@
 {% set description %}
-  The <bolt-code-snippet display="inline">status</bolt-code-snippet> prop can be used to display status information about a resource such as locked and view count. Like and share buttons can be generated via the <bolt-code-snippet display="inline">actions</bolt-code-snippet> prop.
+  The <bolt-code-snippet display="inline">status</bolt-code-snippet> prop can be used to display status information about a resource such as locked and view count. Like, share and download buttons can be generated via the <bolt-code-snippet display="inline">actions</bolt-code-snippet> prop.
 {% endset %}
 
 {% set notes %}
@@ -8,6 +8,7 @@
   <bolt-li>Locked status can be set via the <bolt-code-snippet display="inline">status.locked</bolt-code-snippet> prop. If this is set, a lock icon will appear with the signifier.</bolt-li>
   <bolt-li>Pass a like button into the <bolt-code-snippet display="inline">like</bolt-code-snippet> prop. Example code snippet is shown below.</bolt-li>
   <bolt-li>Pass a share popover menu into the <bolt-code-snippet display="inline">share</bolt-code-snippet> prop. Boundary is required on the popover. Example code snippet is shown below.</bolt-li>
+  <bolt-li>Pass a download link into the <bolt-code-snippet display="inline">download</bolt-code-snippet> prop. Example code snippet is shown below.</bolt-li>
 </bolt-ol>
 {% endset %}
 
@@ -23,8 +24,8 @@
   {% endset %}
   {% set like %}
     {% set icon_heart %}
-      {% include '@bolt-components-icon/icon.twig' with {
-        name: 'heart-open',
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'heart',
       } only %}
     {% endset %}
     {% include '@bolt-elements-text-link/text-link.twig' with {
@@ -75,7 +76,7 @@
     {% endset %}
     {% set share_popover_trigger %}
       {% set icon_share %}
-        {% include '@bolt-components-icon/icon.twig' with {
+        {% include '@bolt-elements-icon/icon.twig' with {
           name: 'share',
         } only %}
       {% endset %}
@@ -95,6 +96,27 @@
       boundary: '.js-bolt-target-teaser',
     } only %}
   {% endset %}
+  {% set download %}
+    {% set icon_download %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'download',
+      } only %}
+    {% endset %}
+    {% set tooltip_trigger %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Download slides',
+        icon_before: icon_download,
+        reversed_underline: true,
+        attributes: {
+          href: 'https://www.pega.com/',
+        },
+      } only %}
+    {% endset %}
+    {% include "@bolt-components-tooltip/tooltip.twig" with {
+      trigger: tooltip_trigger,
+      content: "PDF, 3 pages, 2.3mb",
+    } only %}
+  {% endset %}
 
   <div style="max-width: 60ch;">
     {% include '@bolt-components-teaser/teaser.twig' with {
@@ -112,6 +134,7 @@
       },
       like: like,
       share: share,
+      download: download,
       status: {
         views: '28k',
         locked: true,
@@ -128,8 +151,8 @@
 // Set up the like and share buttons
 {% set like %}
   {% set icon_heart %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'heart-open',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'heart',
     } only %}
   {% endset %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
@@ -154,7 +177,7 @@
   {% endset %}
   {% set share_popover_trigger %}
     {% set icon_share %}
-      {% include '@bolt-components-icon/icon.twig' with {
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: 'share',
       } only %}
     {% endset %}
@@ -174,11 +197,33 @@
     boundary: '.js-bolt-target-teaser', // JS target for containing the popover within the teaser.
   } only %}
 {% endset %}
+{% set download %}
+  {% set icon_download %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'download',
+    } only %}
+  {% endset %}
+  {% set tooltip_trigger %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Download slides',
+      icon_before: icon_download,
+      reversed_underline: true,
+      attributes: {
+        href: 'https://www.pega.com/',
+      },
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: tooltip_trigger,
+    content: "PDF, 3 pages, 2.3mb",
+  } only %}
+{% endset %}
 
 // Set up the component
 {% include '@bolt-components-teaser/teaser.twig' with {
   like: like,
   share: share,
+  download: download,
   status: {
     views: '28k',
     locked: true,

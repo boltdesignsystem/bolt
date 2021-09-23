@@ -1,3 +1,3 @@
 ---
-title: (Phase 2) PegaWorld Replays
+title: PegaWorld Replays
 ---

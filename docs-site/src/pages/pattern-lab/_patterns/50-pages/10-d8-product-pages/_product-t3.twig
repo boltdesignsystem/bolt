@@ -114,13 +114,43 @@
           } only %}
         {% endset %}
 
+        {% set shape_1 %}
+          {% include "@bolt-elements-shape/shape.twig" with {
+            content: icon_1,
+            size: "large",
+            attributes: {
+              class: "t-bolt-teal"
+            }
+          } only %}
+        {% endset %}
+
+        {% set shape_2 %}
+          {% include "@bolt-elements-shape/shape.twig" with {
+            content: icon_2,
+            size: "large",
+            attributes: {
+              class: "t-bolt-teal"
+            }
+          } only %}
+        {% endset %}
+
+        {% set shape_3 %}
+          {% include "@bolt-elements-shape/shape.twig" with {
+            content: icon_3,
+            size: "large",
+            attributes: {
+              class: "t-bolt-teal"
+            }
+          } only %}
+        {% endset %}
+
         {% set flag_item_1 %}
           {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
           {% include "@bolt/flag.twig" with {
             valign: "middle",
             url: "#!",
             figure: {
-              content: icon_1
+              content: shape_1
             },
             items: [
               {
@@ -142,7 +172,7 @@
             valign: "middle",
             url: "#!",
             figure: {
-              content: icon_2
+              content: shape_2
             },
             items: [
               {
@@ -163,7 +193,7 @@
             valign: "middle",
             url: "#!",
             figure: {
-              content: icon_3
+              content: shape_3
             },
             items: [
               {

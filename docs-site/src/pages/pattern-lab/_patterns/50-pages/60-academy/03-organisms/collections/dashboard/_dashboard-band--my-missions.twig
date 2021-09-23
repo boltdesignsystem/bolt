@@ -1,23 +1,23 @@
 {% import "@bolt-academy/_macros.twig" as macros %}
 
 {% set _chevron_icon %}
-  {% include '@bolt-components-icon/icon.twig' with {
+  {% include '@bolt-elements-icon/icon.twig' with {
     name: "chevron-down"
   } only %}
 {% endset %}
 {% set _share_icon %}
-  {% include '@bolt-components-icon/icon.twig' with {
+  {% include '@bolt-elements-icon/icon.twig' with {
     name: "share"
   } only %}
 {% endset %}
 {% set _close_icon %}
-  {% include '@bolt-components-icon/icon.twig' with {
+  {% include '@bolt-elements-icon/icon.twig' with {
     name: "close"
   } only %}
 {% endset %}
 {% set _add_icon %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: "add-open"
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: "add-circle"
   } only %}
 {% endset %}
 
@@ -769,7 +769,7 @@
 {% if addMission %}
   {% set content %}
     <div class="u-bolt-padding-medium u-bolt-padding-top-xlarge u-bolt-padding-bottom-xlarge u-bolt-text-align-center">
-      {% include "@bolt-components-icon/icon.twig" with {
+      {% include "@bolt-elements-icon/icon.twig" with {
         name: "add",
         size: "large",
         attributes: {

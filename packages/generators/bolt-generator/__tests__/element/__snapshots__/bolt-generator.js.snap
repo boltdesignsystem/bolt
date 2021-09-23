@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Bolt component generator SCSS file exist 1`] = `
+exports[`Bolt element generator SCSS file exist 1`] = `
 "/* ------------------------------------ *\\\\
    Test
 \\\\* ------------------------------------ */
@@ -23,7 +23,7 @@ exports[`Bolt component generator SCSS file exist 1`] = `
 "
 `;
 
-exports[`Bolt component generator changelog file exist 1`] = `
+exports[`Bolt element generator changelog file exist 1`] = `
 "# Change Log
 
 All notable changes to this project will be documented in this file.
@@ -31,35 +31,34 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 "
 `;
 
-exports[`Bolt component generator folder structure of component package is correct 1`] = `
+exports[`Bolt element generator folder structure of component package is correct 1`] = `
 Array [
-  "packages/generators/tmp/.boltrc.js",
-  "packages/generators/tmp/docs-site/src/pages/pattern-lab/_patterns/20-elements/test/00-test-docs.twig",
-  "packages/generators/tmp/package.json",
-  "packages/generators/tmp/packages/elements/bolt-test/CHANGELOG.md",
-  "packages/generators/tmp/packages/elements/bolt-test/README.md",
-  "packages/generators/tmp/packages/elements/bolt-test/__tests__/test.js",
-  "packages/generators/tmp/packages/elements/bolt-test/index.scss",
-  "packages/generators/tmp/packages/elements/bolt-test/package.json",
-  "packages/generators/tmp/packages/elements/bolt-test/src/test.scss",
-  "packages/generators/tmp/packages/elements/bolt-test/src/test.twig",
-  "packages/generators/tmp/packages/elements/bolt-test/test.schema.js",
+  "packages/generators/bolt-generator/__tests__/element/_tmp/.boltrc.js",
+  "packages/generators/bolt-generator/__tests__/element/_tmp/docs-site/src/pages/pattern-lab/_patterns/20-elements/test/00-test-docs.twig",
+  "packages/generators/bolt-generator/__tests__/element/_tmp/docs-site/src/pages/pattern-lab/_patterns/20-elements/test/05-test.twig",
+  "packages/generators/bolt-generator/__tests__/element/_tmp/package.json",
+  "packages/generators/bolt-generator/__tests__/element/_tmp/packages/elements/bolt-test/CHANGELOG.md",
+  "packages/generators/bolt-generator/__tests__/element/_tmp/packages/elements/bolt-test/README.md",
+  "packages/generators/bolt-generator/__tests__/element/_tmp/packages/elements/bolt-test/__tests__/test.js",
+  "packages/generators/bolt-generator/__tests__/element/_tmp/packages/elements/bolt-test/index.scss",
+  "packages/generators/bolt-generator/__tests__/element/_tmp/packages/elements/bolt-test/package.json",
+  "packages/generators/bolt-generator/__tests__/element/_tmp/packages/elements/bolt-test/src/test.scss",
+  "packages/generators/bolt-generator/__tests__/element/_tmp/packages/elements/bolt-test/src/test.twig",
+  "packages/generators/bolt-generator/__tests__/element/_tmp/packages/elements/bolt-test/test.schema.js",
 ]
 `;
 
-exports[`Bolt component generator index SCSS file exist 1`] = `
+exports[`Bolt element generator index SCSS file exist 1`] = `
 "@import 'src/test.scss';
 "
 `;
 
-exports[`Bolt component generator package.json file exist 1`] = `
+exports[`Bolt element generator package.json file exist 1`] = `
 "{
   \\"name\\": \\"@bolt/elements-test\\",
   \\"version\\": \\"0.0.0\\",
-  \\"description\\": \\"Test description\\",
-  \\"keywords\\": [
-    \\"bolt design system\\"
-  ],
+  \\"description\\": \\"Test Description\\",
+  \\"keywords\\": [\\"bolt design system\\"],
   \\"homepage\\": \\"https://boltdesignsystem.com\\",
   \\"bugs\\": \\"https://github.com/bolt-design-system/bolt/issues\\",
   \\"repository\\": {
@@ -81,24 +80,24 @@ exports[`Bolt component generator package.json file exist 1`] = `
 "
 `;
 
-exports[`Bolt component generator pattern lab file exist 1`] = `
+exports[`Bolt element generator pattern lab file exist 1`] = `
 "{% set usage %}{% verbatim %}
 {% include '@bolt-elements-test/test.twig' with {
-  content: \\"This is a test\\"
+  content: 'This is a test'
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include \\"@utils/docs.twig\\" with {
-  componentName: \\"test\\",
-  componentGroup: \\"elements\\",
+{% include '@utils/docs.twig' with {
+  componentName: 'test',
+  componentGroup: 'elements',
   usage: usage
 } only %}
 
 "
 `;
 
-exports[`Bolt component generator readme file exist 1`] = `
-"Test description
+exports[`Bolt element generator readme file exist 1`] = `
+"Test Description
 
 ###### Install via NPM
 
@@ -108,7 +107,7 @@ npm install @bolt/elements-test
 "
 `;
 
-exports[`Bolt component generator schema file exist 1`] = `
+exports[`Bolt element generator schema file exist 1`] = `
 "module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Test',
@@ -120,18 +119,21 @@ exports[`Bolt component generator schema file exist 1`] = `
         'A Drupal-style attributes object with extra attributes to append to this element.',
     },
     content: {
-      type: 'any',
-      description: 'Content of the test.',
+      type: 'string',
+      description: 'Content of the test. ',
     },
   },
 };
+
+// @TODO: content is only a string for validation demonstration purposes, please adjust or remove this property for your new element.
 "
 `;
 
-exports[`Bolt component generator tests file exist 1`] = `
+exports[`Bolt element generator tests file exist 1`] = `
 "// Refer to https://github.com/boltdesignsystem/bolt/wiki/Jest-Test:-Example-Jest-Test for more testing examples
 import { render, stopServer } from '../../../testing/testing-helpers';
-import schema from '../test.schema';
+// import schema from '../test.schema';
+// const { [PROP KEY], [PROP KEY]... } = schema.properties;
 let page, fixtures;
 
 afterAll(async () => {
@@ -158,18 +160,37 @@ beforeAll(async () => {
   fixtures = {
     defaultData,
   };
-
 });
 
 describe('Bolt Test element', () => {
   test('default', async () => {
     const results = await render(
-      '@bolt-elements-test/test.twig', {
-      ...fixtures.defaultData,
-    });
+      '@bolt-elements-test/test.twig',
+      {
+        ...fixtures.defaultData,
+      },
+    );
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 });
+
+// describe('Bolt Test prop -', () => {
+//   // Target each of the schema keys with the following pattern
+//   [PROP KEY].enum.forEach(async (option) => {
+//     test(\`[PROP KEY] items: \${option}\`, async () => {
+//       const results = await render(
+//         '@bolt-components-test/test.twig',
+//         {
+//           ...fixtures.defaultData,
+//           [PROP KEY]: option,
+//         }
+//       );
+
+//       await expect(results.ok).toBe(true);
+//       await expect(results.html).toMatchSnapshot();
+//     });
+//   });
+// });
 "
 `;

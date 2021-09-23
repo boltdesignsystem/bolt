@@ -73,7 +73,7 @@
   {% if source_text %}
     {% set source_inline_items %}
       <a {{ source_attributes.addClass(base_class ~ '__link js-bolt-share__link--' ~ source_name).setAttribute('target', '_blank') }}>
-        {% include '@bolt-components-icon/icon.twig' with {
+        {% include '@bolt-elements-icon/icon.twig' with {
           name: source_icon,
           size: size,
         } only %}
@@ -85,7 +85,7 @@
     {% set inline_items = inline_items|merge([source_inline_items]) %}
 
     {% set icon_before %}
-      {% include '@bolt-components-icon/icon.twig' with {
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: source_icon,
         size: 'small',
       } only %}
@@ -127,8 +127,8 @@
   {# Custom content is used here because the icon size and text styles are all different than the defaults from Copy to Clipboard. #}
   {% set inline_custom_trigger %}
     <span class="{{ base_class }}__link">
-      {% include '@bolt-components-icon/icon.twig' with {
-        name: 'asset-link',
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'link',
         size: size,
       } only %}
       <span class="{{ base_class }}__link-text">
@@ -138,7 +138,7 @@
   {% endset %}
   {% set inline_custom_transition %}
     <span class="{{ base_class }}__link">
-      {% include '@bolt-components-icon/icon.twig' with {
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: 'refresh',
         size: size,
         attributes: {
@@ -152,7 +152,7 @@
   {% endset %}
   {% set inline_custom_confirmation %}
     <div class="{{ base_class }}__link">
-      {% include '@bolt-components-icon/icon.twig' with {
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: 'check',
         size: size,
       } only %}
@@ -176,8 +176,8 @@
   {% set menu_custom_trigger %}
     <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small">
       <span class="c-bolt-menu-item__icon-before" aria-hidden="true">
-        {% include '@bolt-components-icon/icon.twig' with {
-          name: 'asset-link',
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'link',
           size: 'small',
         } only %}
       </span>
@@ -187,8 +187,8 @@
   {% set menu_custom_transition %}
     <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small">
       <span class="c-bolt-menu-item__icon-before u-bolt-opacity-0" aria-hidden="true">
-        {% include '@bolt-components-icon/icon.twig' with {
-          name: 'asset-link',
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'link',
           size: 'small',
         } only %}
       </span>
@@ -198,7 +198,7 @@
   {% set menu_custom_confirmation %}
     <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small">
       <span class="c-bolt-menu-item__icon-before" aria-hidden="true">
-        {% include '@bolt-components-icon/icon.twig' with {
+        {% include '@bolt-elements-icon/icon.twig' with {
           name: 'check',
           size: 'small',
         } only %}

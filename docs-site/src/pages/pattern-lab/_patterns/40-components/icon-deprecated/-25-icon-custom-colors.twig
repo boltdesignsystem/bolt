@@ -1,0 +1,156 @@
+{% include '@pl/00-deprecated-icon-docs.twig' %}
+
+<bolt-banner status="error" align="start">
+  <svg class="e-bolt-icon" enable-background="new 0 0 32 32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill="#151619" fill-rule="evenodd" transform="translate(1 1)"><path d="m15 28.1c-7.2 0-13.1-5.9-13.1-13.1s5.9-13.1 13.1-13.1 13.1 5.9 13.1 13.1-5.9 13.1-13.1 13.1m0-29.1c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16-7.2-16-16-16"/><path d="m20.1 18.1-3-3.1 3.1-3.1c.6-.6.6-1.5 0-2.1s-1.5-.6-2.1 0l-3.1 3.1-3.1-3.1c-.6-.6-1.5-.6-2.1 0s-.6 1.5 0 2.1l3.1 3.1-3.1 3.1c-.6.6-.6 1.5 0 2.1s1.5.6 2.1 0l3.1-3.1 3.1 3.1c.6.6 1.5.6 2.1 0 .5-.6.5-1.5-.1-2.1"/></g></svg><strong> Colorful background shape has no equivlance in the Icon element. Now Icon and Shape are two different separate elements. Pass a theme class to the parent element to color a <a href="{{ link['visual-styles-theming-system'] }}" class="e-bolt-text-link"> Shape</a>. Reference the <a href="{{ link['viewall-elements-shape'] }}" class="e-bolt-text-link"> Theming system</a> for all available themes.</strong>
+</bolt-banner>
+
+<p>Bolt's SVG icon system provides the ability to customize an individual icon's color (the shape itself), background color, and background opacity levels, in both the Twig and Custom Element formats the design system ships.</p>
+
+
+<h2>via Web Component:</h2>
+
+{% set customElementExample %}{%- verbatim -%}
+<bolt-icon
+  size="xlarge"
+  background="circle"
+  name="marketing-gray"
+  style="
+    color: #a65388;
+    --bolt-theme-icon-background: #a65388;
+    --bolt-theme-icon: #FFF;
+    --bolt-theme-icon-background-opacity: 1;
+  "></bolt-icon>
+{%- endverbatim -%}{% endset %}
+
+{% embed "@bolt-components-code-snippet/code-snippet.twig" with {
+  lang: "html",
+  content: customElementExample
+} %}
+{% endembed %}
+
+<bolt-icon
+  size="xlarge"
+  background="circle"
+  name="marketing-gray"
+  style="
+    color: #a65388;
+    --bolt-theme-icon-background: #a65388;
+    --bolt-theme-icon: #FFF;
+    --bolt-theme-icon-background-opacity: 1;
+  "></bolt-icon>
+
+<bolt-icon
+  size="xlarge"
+  background="circle"
+  name="customer-service"
+  style="
+    color: #e64b18;
+    --bolt-theme-icon-background: #e64b18;
+    --bolt-theme-icon: #FFF;
+    --bolt-theme-icon-background-opacity: 1;
+  "></bolt-icon>
+
+<bolt-icon
+  size="xlarge"
+  background="circle"
+  name="sales-automation"
+  style="
+    color: #535da6;
+    --bolt-theme-icon-background: #535da6;
+    --bolt-theme-icon: #FFF;
+    --bolt-theme-icon-background-opacity: 1;
+  "></bolt-icon>
+
+<bolt-icon
+  size="xlarge"
+  background="circle"
+  name="brand-operations"
+  style="
+    color: #209952;
+    --bolt-theme-icon-background: #209952;
+    --bolt-theme-icon: #FFF;
+    --bolt-theme-icon-background-opacity: 1;
+  "></bolt-icon>
+
+
+<hr>
+
+<h2>via Twig Include:</h2>
+
+{% set twigIncludeExample %}{%- verbatim -%}
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "customer-service",
+  background: "circle",
+  size: "xlarge",
+  attributes: {
+    style: [
+      "color: #e64b18;",
+      "--bolt-theme-icon-background: #e64b18;",
+      "--bolt-theme-icon: #FFF;",
+      "--bolt-theme-icon-background-opacity: 1;"
+    ]
+  }
+} only %}
+{%- endverbatim -%}{% endset %}
+
+{% embed "@bolt-components-code-snippet/code-snippet.twig" with {
+  lang: "twig",
+  content: twigIncludeExample
+} %}
+{% endembed %}
+
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "marketing-gray",
+  background: "circle",
+  size: "xlarge",
+  attributes: {
+    style: [
+      "color: #a65388;",
+      "--bolt-theme-icon-background: #a65388;",
+      "--bolt-theme-icon: #FFF;",
+      "--bolt-theme-icon-background-opacity: 1;"
+    ]
+  }
+} only %}
+
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "customer-service",
+  background: "circle",
+  size: "xlarge",
+  attributes: {
+    style: [
+      "color: #e64b18;",
+      "--bolt-theme-icon-background: #e64b18;",
+      "--bolt-theme-icon: #FFF;",
+      "--bolt-theme-icon-background-opacity: 1;"
+    ]
+  }
+} only %}
+
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "sales-automation",
+  background: "circle",
+  size: "xlarge",
+  attributes: {
+    style: [
+      "color: #535da6;",
+      "--bolt-theme-icon-background: #535da6;",
+      "--bolt-theme-icon: #FFF;",
+      "--bolt-theme-icon-background-opacity: 1;"
+    ]
+  }
+} only %}
+
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "brand-operations",
+  background: "circle",
+  size: "xlarge",
+  attributes: {
+    style: [
+      "color: #209952;",
+      "--bolt-theme-icon-background: #209952;",
+      "--bolt-theme-icon: #FFF;",
+      "--bolt-theme-icon-background-opacity: 1;"
+    ]
+  }
+} only %}
