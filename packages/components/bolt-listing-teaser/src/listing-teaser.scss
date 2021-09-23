@@ -65,6 +65,14 @@
   @at-root .c-bolt-listing-teaser--gutter-medium #{&} {
     margin-right: var(--bolt-spacing-x-medium);
   }
+
+  a,
+  button,
+  bolt-chip,
+  bolt-trigger {
+    position: relative; // This raises the stacking order of the signifier link above the main heading link.
+    pointer-events: all;
+  }
 }
 
 .c-bolt-listing-teaser__flag-eyebrow {
@@ -136,7 +144,8 @@
 
   a,
   button,
-  bolt-chip {
+  bolt-chip,
+  bolt-trigger {
     position: relative; // This raises the stacking order of the meta link above the main heading link.
     pointer-events: all;
   }

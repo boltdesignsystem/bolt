@@ -21,11 +21,6 @@
 
 <article {{ attributes.addClass(classes) }}>
   <div class="c-bolt-listing-teaser__flag">
-    {% if signifier %}
-      <div class="c-bolt-listing-teaser__flag-signifier" aria-hidden="true">
-        {{ signifier }}
-      </div>
-    {% endif %}
     <div class="c-bolt-listing-teaser__flag-heading">
       {% if headline.link_attributes %}
         {% set _linked_text %}
@@ -48,6 +43,11 @@
         </div>
       {% endif %}
     </div>
+    {% if signifier %}
+      <div class="c-bolt-listing-teaser__flag-signifier" aria-hidden="true">
+        {{ signifier }}
+      </div>
+    {% endif %}
     {% if eyebrow_items %}
       <div class="c-bolt-listing-teaser__flag-eyebrow">
         {% spaceless %}<ul class="c-bolt-listing-teaser__meta">{% for item in eyebrow_items %}<li class="c-bolt-listing-teaser__meta__item">{{ item }}</li>{% endfor %}</ul>{% endspaceless %}
