@@ -114,79 +114,79 @@
           } only %}
         {% endset %}
 
-        {% include "@bolt/ui-list.twig" with {
-          size: "small",
-          contentItems : [
-            {
-              contentItems: [
-                {
-                  pattern: "flag",
-                  valign: "middle",
-                  url: "#!",
-                  figure: {
-                    content: icon_1
-                  },
-                  items: [
-                    {
-                      "pattern": "headline",
-                      "size": "small",
-                      "text": "Download the data Sheet",
-                      "url": "https://www.google.com",
-                      "icon": {
-                        name: "chevron-right"
-                      },
-                      tag: "h3"
-                    }
-                  ]
-                }
-              ]
+        {% set flag_item_1 %}
+          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
+          {% include "@bolt/flag.twig" with {
+            valign: "middle",
+            url: "#!",
+            figure: {
+              content: icon_1
             },
-            {
-              contentItems: [
-                {
-                  pattern: "flag",
-                  valign: "middle",
-                  url: "#!",
-                  figure: {
-                    content: icon_2
-                  },
-                  items: [
-                    {
-                      "pattern": "headline",
-                      "size": "small",
-                      "text": "Download the Overview document",
-                      "url": "https://www.google.com",
-                      "icon": {
-                        name: "chevron-right"
-                      }
-                    }
-                  ]
-                }
-              ]
+            items: [
+              {
+                pattern: "headline",
+                size: "small",
+                text: "Download the data Sheet",
+                url: "https://www.google.com",
+                icon: {
+                  name: "chevron-right"
+                },
+                tag: "h3"
+              }
+            ]
+          } only %}
+        {% endset %}
+        {% set flag_item_2 %}
+          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
+          {% include "@bolt/flag.twig" with {
+            valign: "middle",
+            url: "#!",
+            figure: {
+              content: icon_2
             },
-            {
-              contentItems: [
-                {
-                  pattern: "flag",
-                  valign: "middle",
-                  url: "#!",
-                  figure: {
-                    content: icon_3
-                  },
-                  items: [
-                    {
-                      "pattern": "headline",
-                      "size": "small",
-                      "text": "View Pricing for Pega Marketing",
-                      "url": "https://www.google.com",
-                      "icon": {
-                        name: "chevron-right"
-                      }
-                    }
-                  ]
+            items: [
+              {
+                pattern: "headline",
+                size: "small",
+                text: "Download the Overview document",
+                url: "https://www.google.com",
+                icon: {
+                  name: "chevron-right"
                 }
-              ]
-            }
+              }
+            ]
+          } only %}
+        {% endset %}
+        {% set flag_item_3 %}
+          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
+          {% include "@bolt/flag.twig" with {
+            valign: "middle",
+            url: "#!",
+            figure: {
+              content: icon_3
+            },
+            items: [
+              {
+                pattern: "headline",
+                size: "small",
+                text: "View Pricing for Pega Marketing",
+                url: "https://www.google.com",
+                icon: {
+                  name: "chevron-right"
+                }
+              }
+            ]
+          } only %}
+        {% endset %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: "block",
+          separator: "solid",
+          spacing: "small",
+          items: [
+            flag_item_1,
+            flag_item_2,
+            flag_item_3,
           ]
         } only %}
       {% endcell %}

@@ -113,7 +113,8 @@
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
           {% set flag_item_1 %}
-            {% include "@bolt-components-flag/flag.twig" with {
+            {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
+            {% include "@bolt/flag.twig" with {
               valign: "middle",
               url: "#!",
               figure: {
@@ -134,7 +135,8 @@
             } only %}
           {% endset %}
           {% set flag_item_2 %}
-            {% include "@bolt-components-flag/flag.twig" with {
+          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
+            {% include "@bolt/flag.twig" with {
               valign: "middle",
               url: "#!",
               figure: {
@@ -154,7 +156,8 @@
             } only %}
           {% endset %}
           {% set flag_item_3 %}
-            {% include "@bolt-components-flag/flag.twig" with {
+            {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
+            {% include "@bolt/flag.twig" with {
               valign: "middle",
               url: "#!",
               figure: {
