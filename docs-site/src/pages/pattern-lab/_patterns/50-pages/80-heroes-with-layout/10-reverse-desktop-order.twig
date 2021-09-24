@@ -1,0 +1,50 @@
+<bolt-layout
+  gutter="large"
+  row-gutter="large"
+  padding-top="large"
+  padding-bottom="large"
+  class="t-bolt-dark"
+  template="halves@from-small"
+  valign-items="center"
+>
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/heros/hero-background--orange.jpg',
+      loading: 'eager',
+      width: '100vw'
+    },
+    } only %}
+
+  <bolt-layout-item order="last@from-small">
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/hero-foreground--orange--logo.svg',
+        loading: 'eager',
+        class: 'u-bolt-margin-bottom-medium'
+      },
+    } only %}
+    <bolt-text font-size="xlarge" class="u-bolt-line-length-medium">
+      Boston Convention & Exhibition Center May&nbsp;31&nbsp;-&nbsp;June&nbsp;2,&nbsp;2020
+    </bolt-text>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: "See full agenda",
+      hierarchy: "secondary",
+      attributes: {
+        type: 'button'
+      }
+    } %}
+  </bolt-layout-item>
+
+  <bolt-layout-item valign-self="center">
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/hero-foreground--orange--animated-gif.gif',
+        loading: 'eager',
+      },
+    } only %}
+  </bolt-layout-item>
+</bolt-layout>

@@ -1,0 +1,38 @@
+<bolt-layout
+  gutter="large"
+  row-gutter="large"
+  padding-top="large"
+  padding-bottom="large"
+  class="t-bolt-dark"
+  template="halves@from-small"
+  valign-items="center"
+>
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/content/backgrounds/background-night-sky.jpg',
+      loading: 'eager',
+      width: '100vw'
+    },
+    } only %}
+
+  <bolt-layout-item order="last@from-small">
+    <bolt-text headline font-size="xxxlarge">
+      Excepteur Lorem occaecat.
+    </bolt-text>
+    <bolt-text subheadline font-size="large">
+      Nostrud est labore nisi et ut eu aute laboris quis anim ipsum non.
+    </bolt-text>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: "See more",
+      hierarchy: "secondary",
+      attributes: {
+        type: 'button'
+      }
+    } %}
+  </bolt-layout-item>
+
+  <bolt-layout-item valign-self="center">
+  </bolt-layout-item>
+</bolt-layout>

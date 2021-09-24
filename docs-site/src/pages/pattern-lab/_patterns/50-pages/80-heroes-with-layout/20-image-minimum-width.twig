@@ -1,0 +1,53 @@
+<bolt-layout
+  gutter="large"
+  row-gutter="large"
+  padding-top="large"
+  padding-bottom="large"
+  class="t-bolt-light"
+  template="halves@from-small"
+  valign-items="center"
+  {# align-items="center" #}
+>
+
+  {# {{ this.data.center_content.value ? 'class="u-bolt-text-align-center"' : '' }} #}
+  <bolt-layout-item>
+    {% set _icon %}
+      {% include "@bolt-elements-icon/icon.twig" with {
+        name: "speed-dial",
+      } only %}
+    {% endset %}
+    {% include "@bolt-elements-shape/shape.twig" with {
+        content: _icon,
+        size: "large",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-medium",
+            "t-bolt-teal"
+          ]
+        }
+    } only %}
+    <bolt-text headline font-size="xxxlarge">
+      A Prominent Headline Certainly Helps
+    </bolt-text>
+    <bolt-text subheadline font-size="xlarge">
+      This one even includes a tagline.
+    </bolt-text>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: "Learn More",
+      attributes: {
+        type: 'button'
+      }
+    } %}
+  </bolt-layout-item>
+
+  <bolt-layout-item valign-self="end-offset">
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/responsive-web-design.svg',
+        loading: 'eager',
+        style: 'display: block; min-width:60vw; margin-right: -40vw;'
+      },
+    } only %}
+  </bolt-layout-item>
+</bolt-layout>
