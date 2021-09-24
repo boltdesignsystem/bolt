@@ -256,13 +256,13 @@ class TwigFunctions {
         case 'button':
           return '@bolt-components-button/button.twig';
         case 'card':
-          return '@bolt-components-card/card.twig';
+          return '@bolt-components-card-replacement/card-replacement.twig';
         case 'card-w-teaser':
           return '@bolt-components-card-w-teaser/card-w-teaser.twig';
         case 'eyebrow':
           return '@bolt-components-headline/eyebrow.twig';
         case 'flag':
-          return '@bolt-components-flag/flag.twig';
+          return '@bolt/flag.twig';
         case 'headline':
           return '@bolt-components-headline/headline.twig';
         case 'image':
