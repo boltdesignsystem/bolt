@@ -8,7 +8,7 @@
 {% set item_attributes = create_attribute(attributes|default({})) %}
 
 <bolt-layout-item
-  {{ source_order ? 'source-order="' ~ source_order ~ '"' : '' }}
+  {{ order ? 'order="' ~ order ~ '"' : '' }}
   {{ valign_self ? 'valign-self="' ~ valign_self ~ '"' : '' }}
   {{ item_attributes }}
 >

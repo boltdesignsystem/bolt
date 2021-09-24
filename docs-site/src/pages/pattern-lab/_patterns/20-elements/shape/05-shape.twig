@@ -1,0 +1,64 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Content can be letters, icons, or images.</bolt-li>
+    <bolt-li>When passing letters to the content, it can accept up to 2 letters.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set icon %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-thumbs-up',
+    } only %}
+  {% endset %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Alt text.',
+        src: '/images/placeholders/500x500.jpg',
+        width: 16,
+        height: 16,
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-shape/shape.twig' with {
+    content: 'MM',
+    size: 'large',
+  } only %}
+  {% include '@bolt-elements-shape/shape.twig' with {
+    content: icon,
+    size: 'large',
+  } only %}
+  {% include '@bolt-elements-shape/shape.twig' with {
+    content: image,
+    size: 'large',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-shape/shape.twig' with {
+  content: 'MM',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<span class="e-bolt-shape">
+  <span class="e-bolt-shape__content">
+    <!-- Letters, icon, or image go here -->
+  </span>
+</span>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Shape',
+  description: 'A Shape is a 1:1 ratio container that displays decorative content.',
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

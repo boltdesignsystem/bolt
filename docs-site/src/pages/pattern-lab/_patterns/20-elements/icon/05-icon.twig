@@ -1,0 +1,136 @@
+{% set schema = bolt.data.components['@bolt-elements-icon'].schema %}
+
+{% set description %}
+  An Icon is an inline SVG element. <bolt-code-snippet display="inline" lang="html">&lt;svg class="e-bolt-icon"&gt;</bolt-code-snippet> is acceptable at rendering an icon, though the Twig template is the recommended usage for Drupal.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Icon element is a replacement for the Icon component.</bolt-li>
+    <bolt-li>When writing inline SVG manually using <bolt-code-snippet display="inline" lang="html">&lt;svg&gt;</bolt-code-snippet> HTML element, be sure to minifiy the SVG, add the element class <bolt-code-snippet display="inline" lang="html">class="e-bolt-icon"</bolt-code-snippet>, and add the attribute <bolt-code-snippet display="inline" lang="html">aria-hidden="true"</bolt-code-snippet>.</bolt-li>
+    <bolt-li>Icon element can be used in tandem with <a href="{{ link['viewall-elements-shape'] }}" class="e-bolt-text-link">Shape</a> element to create a square or circle container around the icon. In such scenario, size and color should not be set on the Icon, they should be set on the Shape instead.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-tabs inset="off">
+    <bolt-tab-panel>
+      <bolt-text slot="label">Brand Icons</bolt-text>
+      <bolt-accordion spacing="small" icon-valign="top" single>
+        {% for name in schema.properties.name.enum %}
+          {% if name starts with 'pega-' %}
+            <bolt-accordion-item>
+              <div slot="trigger">
+                {% include '@bolt-elements-icon/icon.twig' with {
+                  name: name,
+                } only %}
+                <span class="u-bolt-margin-left-xsmall">{{ name }}</span>
+              </div>
+              <div>
+                <bolt-grid gutter="small" row-gutter="small">
+                  <bolt-grid-item column-start="1" column-span="12 6@small">
+                    {% for size in schema.properties.size.enum %}
+                      {% include '@bolt-elements-icon/icon.twig' with {
+                        name: name,
+                        size: size,
+                      } only %}
+                    {% endfor %}
+                  </bolt-grid-item>
+                  <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
+                    {% for size in schema.properties.size.enum %}
+                      {% set icon %}
+                        {% include '@bolt-elements-icon/icon.twig' with {
+                          name: name,
+                        } only %}
+                      {% endset %}
+                      {% include '@bolt-elements-shape/shape.twig' with {
+                        content: icon,
+                        size: size,
+                        attributes: {
+                          class: [
+                            't-bolt-teal'
+                          ]
+                        }
+                      } only %}
+                    {% endfor %}
+                  </bolt-grid-item>
+                </bolt-grid>
+              </div>
+            </bolt-accordion-item>
+          {% endif %}
+        {% endfor %}
+      </bolt-accordion>
+    </bolt-tab-panel>
+    <bolt-tab-panel>
+      <bolt-text slot="label">Other Icons</bolt-text>
+      <bolt-accordion spacing="small" icon-valign="top" single>
+        {% for name in schema.properties.name.enum %}
+          {% if not (name starts with 'pega-') %}
+            <bolt-accordion-item>
+              <div slot="trigger">
+                {% include '@bolt-elements-icon/icon.twig' with {
+                  name: name,
+                } only %}
+                <span class="u-bolt-margin-left-xsmall">{{ name }}</span>
+              </div>
+              <div>
+                <bolt-grid gutter="small" row-gutter="small">
+                  <bolt-grid-item column-start="1" column-span="12 6@small">
+                    {% for size in schema.properties.size.enum %}
+                      {% include '@bolt-elements-icon/icon.twig' with {
+                        name: name,
+                        size: size,
+                      } only %}
+                    {% endfor %}
+                  </bolt-grid-item>
+                  <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
+                    {% for size in schema.properties.size.enum %}
+                      {% set icon %}
+                        {% include '@bolt-elements-icon/icon.twig' with {
+                          name: name,
+                        } only %}
+                      {% endset %}
+                      {% include '@bolt-elements-shape/shape.twig' with {
+                        content: icon,
+                        size: size,
+                        attributes: {
+                          class: [
+                            't-bolt-teal'
+                          ]
+                        }
+                      } only %}
+                    {% endfor %}
+                  </bolt-grid-item>
+                </bolt-grid>
+              </div>
+            </bolt-accordion-item>
+          {% endif %}
+        {% endfor %}
+      </bolt-accordion>
+    </bolt-tab-panel>
+  </bolt-tabs>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-icon/icon.twig' with {
+  name: 'bell-solid',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<svg class="e-bolt-icon" aria-hidden="true">...</svg>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Icon',
+  description: description,
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
