@@ -51,11 +51,12 @@
   {% endif %}
 
   <div class="c-bolt-teaser__content">
+  
     {% if headline %}
       <div class="c-bolt-teaser__headline">
         {% if headline.link_attributes %}
           {% set _icon_chevron_right %}
-            {% include '@bolt-components-icon/icon.twig' with {
+            {% include '@bolt-elements-icon/icon.twig' with {
               name: 'chevron-right',
             } only %}
           {% endset %}
@@ -98,6 +99,7 @@
     {% if status.views or like or share or download %}
       <div class="c-bolt-teaser__actions-and-views">
         {% if status.views %}
+          <div class="c-bolt-teaser__views">
           {% set _icon_eye %}
             {% include '@bolt-elements-icon/icon.twig' with {
               name: 'eye',

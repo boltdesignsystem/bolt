@@ -12,22 +12,19 @@ exports[`Twig usage adds class via Drupal Attributes 1`] = `
           <span class="e-bolt-text-link__icon-after"
                 aria-hidden="true"
           >
-            <bolt-icon name="chevron-right"
-                       aria-hidden="true"
+            <svg class="e-bolt-icon"
+                 aria-hidden="true"
+                 enable-background="new 0 0 32 32"
+                 viewbox="0 0 32 32"
+                 xmlns="http://www.w3.org/2000/svg"
             >
-              <span class="c-bolt-icon c-bolt-icon--chevron-right">
-                <svg class="c-bolt-icon__icon"
-                     xmlns="http://www.w3.org/2000/svg"
-                     viewbox="0 0 32 32"
-                >
-                  <path fill="var(--bolt-theme-icon, currentColor)"
-                        fill-rule="evenodd"
-                        d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
-                  >
-                  </path>
-                </svg>
-              </span>
-            </bolt-icon>
+              <path clip-rule="evenodd"
+                    d="m12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+                    fill="#151619"
+                    fill-rule="evenodd"
+              >
+              </path>
+            </svg>
           </span>
         </a>
       </h2>
@@ -39,30 +36,31 @@ exports[`Twig usage adds class via Drupal Attributes 1`] = `
     </div>
     <div class="c-bolt-teaser__actions-and-views">
       <div class="c-bolt-teaser__views">
-        <span class="c-bolt-teaser__views--icon">
-          <svg class="e-bolt-icon"
-               aria-hidden="true"
-               enable-background="new 0 0 32 32"
-               viewbox="0 0 32 32"
-               xmlns="http://www.w3.org/2000/svg"
-          >
-            <g clip-rule="evenodd"
-               fill="#151619"
-               fill-rule="evenodd"
-               transform="translate(0 2)"
+        <div class="c-bolt-teaser__views">
+          <span class="c-bolt-teaser__views--icon">
+            <svg class="e-bolt-icon"
+                 aria-hidden="true"
+                 enable-background="new 0 0 32 32"
+                 viewbox="0 0 32 32"
+                 xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="m25.8 18.5c-3 3.2-6.3 4.9-9.8 4.9s-6.8-1.6-9.8-4.9c-1.7-1.8-2.8-3.6-3.3-4.5.5-.9 1.7-2.7 3.3-4.5 3-3.2 6.3-4.9 9.8-4.9s6.8 1.6 9.8 4.9c1.7 1.8 2.8 3.6 3.3 4.5-.5.9-1.6 2.7-3.3 4.5m6.1-5.1c-.1-.1-1.4-2.9-4-5.6-3.6-3.8-7.7-5.8-11.9-5.8s-8.3 2-11.8 5.8c-2.6 2.8-4 5.5-4 5.6-.2.4-.2.8 0 1.2.1.1 1.4 2.9 4 5.6 3.5 3.8 7.6 5.8 11.8 5.8s8.3-2 11.8-5.8c2.6-2.8 4-5.5 4-5.6.2-.4.2-.8.1-1.2">
-              </path>
-              <path d="m16 16.7c-1.5 0-2.7-1.2-2.7-2.7s1.2-2.7 2.7-2.7 2.7 1.2 2.7 2.7-1.2 2.7-2.7 2.7m0-8c-2.9 0-5.3 2.4-5.3 5.3s2.4 5.3 5.3 5.3 5.3-2.4 5.3-5.3-2.4-5.3-5.3-5.3">
-              </path>
-            </g>
-          </svg>
-        </span>
-        28k views
+              <g clip-rule="evenodd"
+                 fill-rule="evenodd"
+                 transform="translate(0 2)"
+              >
+                <path d="m25.8 18.5c-3 3.2-6.3 4.9-9.8 4.9s-6.8-1.6-9.8-4.9c-1.7-1.8-2.8-3.6-3.3-4.5.5-.9 1.7-2.7 3.3-4.5 3-3.2 6.3-4.9 9.8-4.9s6.8 1.6 9.8 4.9c1.7 1.8 2.8 3.6 3.3 4.5-.5.9-1.6 2.7-3.3 4.5m6.1-5.1c-.1-.1-1.4-2.9-4-5.6-3.6-3.8-7.7-5.8-11.9-5.8s-8.3 2-11.8 5.8c-2.6 2.8-4 5.5-4 5.6-.2.4-.2.8 0 1.2.1.1 1.4 2.9 4 5.6 3.5 3.8 7.6 5.8 11.8 5.8s8.3-2 11.8-5.8c2.6-2.8 4-5.5 4-5.6.2-.4.2-.8.1-1.2">
+                </path>
+                <path d="m16 16.7c-1.5 0-2.7-1.2-2.7-2.7s1.2-2.7 2.7-2.7 2.7 1.2 2.7 2.7-1.2 2.7-2.7 2.7m0-8c-2.9 0-5.3 2.4-5.3 5.3s2.4 5.3 5.3 5.3 5.3-2.4 5.3-5.3-2.4-5.3-5.3-5.3">
+                </path>
+              </g>
+            </svg>
+          </span>
+          28k views
+        </div>
       </div>
-    </div>
-    <div class="c-bolt-teaser__description ">
-      Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.
+      <div class="c-bolt-teaser__description ">
+        Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.
+      </div>
     </div>
   </div>
 </article>
@@ -117,9 +115,7 @@ exports[`Twig usage basic usage 1`] = `
            viewbox="0 0 32 32"
            xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="m25.5 13.1h-.9v-4.4c0-4.8-4-8.7-8.7-8.7s-8.8 3.8-8.8 8.5v4.4h-.4c-1.6 0-2.9 1.3-2.9 2.9v13.2c0 1.6 1.3 2.9 2.9 2.9h18.6c1.6 0 2.9-1.3 2.9-2.9v-13.1c.2-1.5-1.1-2.8-2.7-2.8zm-4.1 0h-11.2v-4.4c0-3.1 2.5-5.6 5.6-5.6s5.6 2.5 5.6 5.6z"
-              fill="#151619"
-        >
+        <path d="m25.5 13.1h-.9v-4.4c0-4.8-4-8.7-8.7-8.7s-8.8 3.8-8.8 8.5v4.4h-.4c-1.6 0-2.9 1.3-2.9 2.9v13.2c0 1.6 1.3 2.9 2.9 2.9h18.6c1.6 0 2.9-1.3 2.9-2.9v-13.1c.2-1.5-1.1-2.8-2.7-2.8zm-4.1 0h-11.2v-4.4c0-3.1 2.5-5.6 5.6-5.6s5.6 2.5 5.6 5.6z">
         </path>
       </svg>
     </div>
@@ -134,22 +130,19 @@ exports[`Twig usage basic usage 1`] = `
           <span class="e-bolt-text-link__icon-after"
                 aria-hidden="true"
           >
-            <bolt-icon name="chevron-right"
-                       aria-hidden="true"
+            <svg class="e-bolt-icon"
+                 aria-hidden="true"
+                 enable-background="new 0 0 32 32"
+                 viewbox="0 0 32 32"
+                 xmlns="http://www.w3.org/2000/svg"
             >
-              <span class="c-bolt-icon c-bolt-icon--chevron-right">
-                <svg class="c-bolt-icon__icon"
-                     xmlns="http://www.w3.org/2000/svg"
-                     viewbox="0 0 32 32"
-                >
-                  <path fill="var(--bolt-theme-icon, currentColor)"
-                        fill-rule="evenodd"
-                        d="M13 7c-.6-.5-1.4-.5-2 0-.5.6-.5 1.4 0 2l7.1 7-7 7a1.3 1.3 0 00.9 2.3c.3 0 .7-.1 1-.4l8-8c.5-.5.5-1.3 0-1.8l-8-8z"
-                  >
-                  </path>
-                </svg>
-              </span>
-            </bolt-icon>
+              <path clip-rule="evenodd"
+                    d="m12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+                    fill="#151619"
+                    fill-rule="evenodd"
+              >
+              </path>
+            </svg>
           </span>
         </a>
       </h2>
@@ -161,414 +154,339 @@ exports[`Twig usage basic usage 1`] = `
     </div>
     <div class="c-bolt-teaser__actions-and-views">
       <div class="c-bolt-teaser__views">
-        <span class="c-bolt-teaser__views--icon">
-          <svg class="e-bolt-icon"
-               aria-hidden="true"
-               enable-background="new 0 0 32 32"
-               viewbox="0 0 32 32"
-               xmlns="http://www.w3.org/2000/svg"
-          >
-            <g clip-rule="evenodd"
-               fill="#151619"
-               fill-rule="evenodd"
-               transform="translate(0 2)"
+        <div class="c-bolt-teaser__views">
+          <span class="c-bolt-teaser__views--icon">
+            <svg class="e-bolt-icon"
+                 aria-hidden="true"
+                 enable-background="new 0 0 32 32"
+                 viewbox="0 0 32 32"
+                 xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="m25.8 18.5c-3 3.2-6.3 4.9-9.8 4.9s-6.8-1.6-9.8-4.9c-1.7-1.8-2.8-3.6-3.3-4.5.5-.9 1.7-2.7 3.3-4.5 3-3.2 6.3-4.9 9.8-4.9s6.8 1.6 9.8 4.9c1.7 1.8 2.8 3.6 3.3 4.5-.5.9-1.6 2.7-3.3 4.5m6.1-5.1c-.1-.1-1.4-2.9-4-5.6-3.6-3.8-7.7-5.8-11.9-5.8s-8.3 2-11.8 5.8c-2.6 2.8-4 5.5-4 5.6-.2.4-.2.8 0 1.2.1.1 1.4 2.9 4 5.6 3.5 3.8 7.6 5.8 11.8 5.8s8.3-2 11.8-5.8c2.6-2.8 4-5.5 4-5.6.2-.4.2-.8.1-1.2">
-              </path>
-              <path d="m16 16.7c-1.5 0-2.7-1.2-2.7-2.7s1.2-2.7 2.7-2.7 2.7 1.2 2.7 2.7-1.2 2.7-2.7 2.7m0-8c-2.9 0-5.3 2.4-5.3 5.3s2.4 5.3 5.3 5.3 5.3-2.4 5.3-5.3-2.4-5.3-5.3-5.3">
-              </path>
-            </g>
-          </svg>
-        </span>
-        28k views
-      </div>
-      <ul class="c-bolt-teaser__action-list">
-        <li class="c-bolt-teaser__action-list-item">
-          <button type="button"
-                  class="js-bolt-like-button e-bolt-text-link e-bolt-text-link--reversed-underline"
-          >
-            <span class="e-bolt-text-link__icon-before"
-                  aria-hidden="true"
-            >
-              <bolt-icon name="heart-open"
-                         aria-hidden="true"
+              <g clip-rule="evenodd"
+                 fill-rule="evenodd"
+                 transform="translate(0 2)"
               >
-                <span class="c-bolt-icon c-bolt-icon--heart-open">
-                  <svg class="c-bolt-icon__icon"
-                       xmlns="http://www.w3.org/2000/svg"
-                       baseprofile="full"
-                       viewbox="0 0 24 24"
-                  >
-                    <path fill="var(--bolt-theme-icon, currentColor)"
-                          d="M16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.9-3.1 5.7-7.9 10.1H12l-.1-.1C6.9 14 3.7 11.1 4 8c.1-.7.4-1.4.9-1.9 1.6-1.7 4.2-1.3 5.6.3l1.2 1.4c.2.2.5.2.7 0l1.2-1.4c.7-.9 1.8-1.4 2.9-1.4m0-2A6 6 0 0012 5.1 6 6 0 007.5 3 5.4 5.4 0 002 8.5c0 3.8 3.4 6.9 8.6 11.5l1.4 1.3 1.4-1.3c5.1-4.7 8.6-7.8 8.6-11.5C22 5.4 19.6 3 16.5 3z"
-                    >
-                    </path>
-                  </svg>
-                </span>
-              </bolt-icon>
-            </span>
-            Like
-          </button>
-        </li>
-        <li class="c-bolt-teaser__action-list-item">
-          <bolt-popover spacing="none"
-                        boundary=".js-bolt-target-teaser"
-                        uuid="12345"
-          >
+                <path d="m25.8 18.5c-3 3.2-6.3 4.9-9.8 4.9s-6.8-1.6-9.8-4.9c-1.7-1.8-2.8-3.6-3.3-4.5.5-.9 1.7-2.7 3.3-4.5 3-3.2 6.3-4.9 9.8-4.9s6.8 1.6 9.8 4.9c1.7 1.8 2.8 3.6 3.3 4.5-.5.9-1.6 2.7-3.3 4.5m6.1-5.1c-.1-.1-1.4-2.9-4-5.6-3.6-3.8-7.7-5.8-11.9-5.8s-8.3 2-11.8 5.8c-2.6 2.8-4 5.5-4 5.6-.2.4-.2.8 0 1.2.1.1 1.4 2.9 4 5.6 3.5 3.8 7.6 5.8 11.8 5.8s8.3-2 11.8-5.8c2.6-2.8 4-5.5 4-5.6.2-.4.2-.8.1-1.2">
+                </path>
+                <path d="m16 16.7c-1.5 0-2.7-1.2-2.7-2.7s1.2-2.7 2.7-2.7 2.7 1.2 2.7 2.7-1.2 2.7-2.7 2.7m0-8c-2.9 0-5.3 2.4-5.3 5.3s2.4 5.3 5.3 5.3 5.3-2.4 5.3-5.3-2.4-5.3-5.3-5.3">
+                </path>
+              </g>
+            </svg>
+          </span>
+          28k views
+        </div>
+        <ul class="c-bolt-teaser__action-list">
+          <li class="c-bolt-teaser__action-list-item">
             <button type="button"
-                    class="e-bolt-text-link e-bolt-text-link--reversed-underline"
+                    class="js-bolt-like-button e-bolt-text-link e-bolt-text-link--reversed-underline"
             >
               <span class="e-bolt-text-link__icon-before"
                     aria-hidden="true"
               >
-                <bolt-icon name="share"
-                           aria-hidden="true"
+                <svg class="e-bolt-icon"
+                     aria-hidden="true"
+                     enable-background="new 0 0 32 32"
+                     viewbox="0 0 32 32"
+                     xmlns="http://www.w3.org/2000/svg"
                 >
-                  <span class="c-bolt-icon c-bolt-icon--share">
-                    <svg class="c-bolt-icon__icon"
-                         xmlns="http://www.w3.org/2000/svg"
-                         data-name="Layer 1"
-                         viewbox="0 0 28 30"
-                    >
-                      <path fill="var(--bolt-theme-icon, currentColor)"
-                            d="M22 18a6 6 0 00-4.8 2.4L12 17.3A6.2 6.2 0 0012 16a6 6 0 00-.3-1.8l6.4-3.7A6 6 0 0022 12a6 6 0 10-6-6 6.4 6.4 0 00.1 1l-6.8 4A6 6 0 106 22a6 6 0 003.7-1.3l6.3 3.6a6 6 0 106-6.3zm0-14a2 2 0 11-2 2 2 2 0 012-2zM6 18a2 2 0 112-2 2 2 0 01-2 2zm16 8a2 2 0 112-2 2 2 0 01-2 2z"
-                      >
-                      </path>
-                    </svg>
-                  </span>
-                </bolt-icon>
+                  <path d="m23.2 4.6c3.2 0 5.6 2.4 5.6 5.6 0 4.6-5 9.1-12.6 16.2h-.2l-.2-.2c-8-7.2-13.1-11.9-12.6-16.8.2-1.1.6-2.2 1.4-3 2.6-2.7 6.7-2.1 9 .5l1.9 2.1c.3.3.8.3 1.1 0l1.9-2.2c1.2-1.4 2.9-2.2 4.7-2.2m0-3.2c-2.7 0-5.4 1.3-7.2 3.4-1.8-2.1-4.5-3.4-7.2-3.4-5 0-8.8 3.8-8.8 8.8 0 6.1 5.4 11 13.8 18.4l2.2 2.1 2.2-2.1c8.2-7.6 13.8-12.5 13.8-18.4 0-5-3.8-8.8-8.8-8.8z">
+                  </path>
+                </svg>
               </span>
-              Share
+              Like
             </button>
-            <span slot="content">
-              <bolt-share size="medium"
-                          opacity="100"
-                          align="start"
-                          display="menu"
+          </li>
+          <li class="c-bolt-teaser__action-list-item">
+            <bolt-popover spacing="none"
+                          boundary=".js-bolt-target-teaser"
+                          uuid="12345"
+            >
+              <button type="button"
+                      class="e-bolt-text-link e-bolt-text-link--reversed-underline"
               >
-                <div class="c-bolt-share c-bolt-share--opacity-100">
-                  <bolt-menu spacing="medium"
-                             role="menu"
+                <span class="e-bolt-text-link__icon-before"
+                      aria-hidden="true"
+                >
+                  <svg class="e-bolt-icon"
+                       aria-hidden="true"
+                       enable-background="new 0 0 32 32"
+                       viewbox="0 0 32 32"
+                       xmlns="http://www.w3.org/2000/svg"
                   >
-                    <div role="presentation"
-                         class="c-bolt-menu c-bolt-menu--spacing-medium"
+                    <path d="m24.5 19.2c-2 0-3.9 1-5.1 2.6l-5.7-3.3c.1-.5.2-.9.2-1.4 0-.6-.1-1.3-.3-1.9l6.8-4c1.1 1 2.6 1.6 4.1 1.6 3.5 0 6.4-2.9 6.4-6.4s-2.8-6.4-6.4-6.4-6.4 2.9-6.4 6.4c0 .4 0 .8.1 1.2l-7.2 4.1c-2.9-2-6.9-1.1-8.9 1.8s-1.1 6.9 1.8 8.9c1 .7 2.3 1.1 3.5 1.1 1.4 0 2.8-.5 4-1.4l6.7 3.9c.2 3.5 3.2 6.2 6.8 6s6.2-3.2 6-6.8c-.2-3.3-3-6-6.4-6zm0-14.9c1.2 0 2.1 1 2.1 2.1s-1 2.1-2.1 2.1c-1.2 0-2.1-1-2.1-2.1s1-2.1 2.1-2.1zm-17 14.9c-1.2 0-2.1-1-2.1-2.1s1-2.1 2.1-2.1 2.1 1 2.1 2.1-1 2.1-2.1 2.1zm17 8.5c-1.2 0-2.1-1-2.1-2.1 0-1.2 1-2.1 2.1-2.1 1.2 0 2.1 1 2.1 2.1.1 1.2-.9 2.1-2.1 2.1z">
+                    </path>
+                  </svg>
+                </span>
+                Share
+              </button>
+              <span slot="content">
+                <bolt-share size="medium"
+                            opacity="100"
+                            align="start"
+                            display="menu"
+                >
+                  <div class="c-bolt-share c-bolt-share--opacity-100">
+                    <bolt-menu spacing="medium"
+                               role="menu"
                     >
-                      <ssr-keep for="bolt-menu"
-                                class="c-bolt-menu__title c-bolt-menu__title--spacing-medium"
+                      <div role="presentation"
+                           class="c-bolt-menu c-bolt-menu--spacing-medium"
                       >
-                        <span slot="title">
-                          Share this content
-                        </span>
-                      </ssr-keep>
-                      <ssr-keep for="bolt-menu"
-                                role="presentation"
-                      >
-                        <bolt-menu-item target="_blank"
-                                        url="https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;amp;src=sdkpreparse"
-                                        role="presentation"
+                        <ssr-keep for="bolt-menu"
+                                  class="c-bolt-menu__title c-bolt-menu__title--spacing-medium"
                         >
-                          <bolt-trigger class="js-bolt-share__link--facebook"
-                                        target="_blank"
-                                        role="menuitem"
-                                        url="https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;amp;src=sdkpreparse"
-                                        display="block"
-                                        no-outline
-                          >
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;amp;src=sdkpreparse"
-                               target="_blank"
-                               class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
-                               is="shadow-root"
-                            >
-                              <ssr-keep for="bolt-menu-item"
-                                        role="presentation"
-                                        class="c-bolt-menu-item"
-                              >
-                                <replace-with-children class="c-bolt-menu-item__icon-before"
-                                                       aria-hidden="true"
-                                >
-                                  <span slot="icon-before">
-                                    <bolt-icon name="facebook-solid"
-                                               size="small"
-                                               aria-hidden="true"
-                                    >
-                                      <span class="c-bolt-icon c-bolt-icon--facebook-solid c-bolt-icon--small">
-                                        <svg class="c-bolt-icon__icon c-bolt-icon__icon--small"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             data-name="Layer 1"
-                                             viewbox="0 0 32 32"
-                                        >
-                                          <path fill="var(--bolt-theme-icon, currentColor)"
-                                                d="M26 0a6 6 0 016 6v20a6 6 0 01-6 6h-4V19.6h4.2l.6-4.8h-4.7v-3.1c0-1.4.4-2.3 2.4-2.3H27V5a33.8 33.8 0 00-3.7-.2c-3.7 0-6.2 2.3-6.2 6.4v3.6h-4.2v4.8h4.2V32H6a6 6 0 01-6-6V6a6 6 0 016-6z"
-                                          >
-                                          </path>
-                                        </svg>
-                                      </span>
-                                    </bolt-icon>
-                                  </span>
-                                </replace-with-children>
-                                Share via Facebook
-                              </ssr-keep>
-                            </a>
-                          </bolt-trigger>
-                        </bolt-menu-item>
-                        <bolt-menu-item target="_blank"
-                                        url="https://twitter.com/intent/tweet?url=https://pega.com&amp;text=Sample%20Share%20Text&amp;via=pega&amp;hashtags=boltDesignSystemRocks!"
-                                        role="presentation"
-                        >
-                          <bolt-trigger class="js-bolt-share__link--twitter"
-                                        target="_blank"
-                                        role="menuitem"
-                                        url="https://twitter.com/intent/tweet?url=https://pega.com&amp;text=Sample%20Share%20Text&amp;via=pega&amp;hashtags=boltDesignSystemRocks!"
-                                        display="block"
-                                        no-outline
-                          >
-                            <a href="https://twitter.com/intent/tweet?url=https://pega.com&amp;text=Sample%20Share%20Text&amp;via=pega&amp;hashtags=boltDesignSystemRocks!"
-                               target="_blank"
-                               class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
-                               is="shadow-root"
-                            >
-                              <ssr-keep for="bolt-menu-item"
-                                        role="presentation"
-                                        class="c-bolt-menu-item"
-                              >
-                                <replace-with-children class="c-bolt-menu-item__icon-before"
-                                                       aria-hidden="true"
-                                >
-                                  <span slot="icon-before">
-                                    <bolt-icon name="twitter"
-                                               size="small"
-                                               aria-hidden="true"
-                                    >
-                                      <span class="c-bolt-icon c-bolt-icon--twitter c-bolt-icon--small">
-                                        <svg class="c-bolt-icon__icon c-bolt-icon__icon--small"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             data-name="Layer 1"
-                                             viewbox="0 0 32 26"
-                                        >
-                                          <path fill="var(--bolt-theme-icon, currentColor)"
-                                                d="M32 3a14 14 0 01-3.3 3.5v.8C28.7 16 22.1 26 10.1 26A18.5 18.5 0 010 23a13.8 13.8 0 001.6.1 13.1 13.1 0 008.1-2.8 6.6 6.6 0 01-6.1-4.5 8.5 8.5 0 001.2 0 7 7 0 001.8-.1 6.6 6.6 0 01-5.3-6.5 6.5 6.5 0 003 .8 6.6 6.6 0 01-2-8.8 18.6 18.6 0 0013.5 6.9 7.4 7.4 0 01-.1-1.5A6.6 6.6 0 0122 0 6.5 6.5 0 0127 2 13 13 0 0031.1.6 6.6 6.6 0 0128.2 4a13 13 0 003.8-1z"
-                                          >
-                                          </path>
-                                        </svg>
-                                      </span>
-                                    </bolt-icon>
-                                  </span>
-                                </replace-with-children>
-                                Share via Twitter
-                              </ssr-keep>
-                            </a>
-                          </bolt-trigger>
-                        </bolt-menu-item>
-                        <bolt-menu-item target="_blank"
-                                        url="https://www.linkedin.com/shareArticle?url=https://pega.com"
-                                        role="presentation"
-                        >
-                          <bolt-trigger class="js-bolt-share__link--linkedin"
-                                        target="_blank"
-                                        role="menuitem"
-                                        url="https://www.linkedin.com/shareArticle?url=https://pega.com"
-                                        display="block"
-                                        no-outline
-                          >
-                            <a href="https://www.linkedin.com/shareArticle?url=https://pega.com"
-                               target="_blank"
-                               class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
-                               is="shadow-root"
-                            >
-                              <ssr-keep for="bolt-menu-item"
-                                        role="presentation"
-                                        class="c-bolt-menu-item"
-                              >
-                                <replace-with-children class="c-bolt-menu-item__icon-before"
-                                                       aria-hidden="true"
-                                >
-                                  <span slot="icon-before">
-                                    <bolt-icon name="linkedin"
-                                               size="small"
-                                               aria-hidden="true"
-                                    >
-                                      <span class="c-bolt-icon c-bolt-icon--linkedin c-bolt-icon--small">
-                                        <svg class="c-bolt-icon__icon c-bolt-icon__icon--small"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             data-name="Layer 1"
-                                             viewbox="0 0 32 30.6"
-                                        >
-                                          <path fill="var(--bolt-theme-icon, currentColor)"
-                                                d="M7.3 10v20.6H.4V9.9zm.4-6.4A3.6 3.6 0 013.8 7a3.6 3.6 0 110-7.1 3.5 3.5 0 014 3.6zM32 18.8v11.8h-6.9v-11c0-2.8-1-4.7-3.4-4.7a3.8 3.8 0 00-3.6 2.5 5.1 5.1 0 00-.2 1.7v11.5h-6.8V9.9h6.8v3A6.8 6.8 0 0124 9.5c4.5 0 7.9 3 7.9 9.3z"
-                                          >
-                                          </path>
-                                        </svg>
-                                      </span>
-                                    </bolt-icon>
-                                  </span>
-                                </replace-with-children>
-                                Share via LinkedIn
-                              </ssr-keep>
-                            </a>
-                          </bolt-trigger>
-                        </bolt-menu-item>
-                        <bolt-menu-item target="_blank"
-                                        url="mailto:?&amp;body=Sample%20Text%20--%20https%3A//pega.com"
-                                        role="presentation"
-                        >
-                          <bolt-trigger class="js-bolt-share__link--email"
-                                        target="_blank"
-                                        role="menuitem"
-                                        url="mailto:?&amp;body=Sample%20Text%20--%20https%3A//pega.com"
-                                        display="block"
-                                        no-outline
-                          >
-                            <a href="mailto:?&amp;body=Sample%20Text%20--%20https%3A//pega.com"
-                               target="_blank"
-                               class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
-                               is="shadow-root"
-                            >
-                              <ssr-keep for="bolt-menu-item"
-                                        role="presentation"
-                                        class="c-bolt-menu-item"
-                              >
-                                <replace-with-children class="c-bolt-menu-item__icon-before"
-                                                       aria-hidden="true"
-                                >
-                                  <span slot="icon-before">
-                                    <bolt-icon name="email"
-                                               size="small"
-                                               aria-hidden="true"
-                                    >
-                                      <span class="c-bolt-icon c-bolt-icon--email c-bolt-icon--small">
-                                        <svg class="c-bolt-icon__icon c-bolt-icon__icon--small"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             viewbox="0 0 24 24"
-                                        >
-                                          <g fill="none"
-                                             fill-rule="evenodd"
-                                          >
-                                            <path>
-                                            </path>
-                                            <path fill="var(--bolt-theme-icon, currentColor)"
-                                                  d="M20 19H4a1 1 0 01-1-1V8l8.4 5.8.6.2c.2 0 .4 0 .6-.2L21 8V18c0 .6-.4 1-1 1zM4 5h16c.4 0 .7.2.9.6L12 11.8 3.1 5.6c.2-.4.5-.6.9-.6zm19 1a3 3 0 00-3-3H4a3 3 0 00-3 3v12a3 3 0 003 3h16a3 3 0 003-3V6z"
-                                            >
-                                            </path>
-                                          </g>
-                                        </svg>
-                                      </span>
-                                    </bolt-icon>
-                                  </span>
-                                </replace-with-children>
-                                Share via Email
-                              </ssr-keep>
-                            </a>
-                          </bolt-trigger>
-                        </bolt-menu-item>
-                        <bolt-copy-to-clipboard role="menu-item">
-                          <span class="c-bolt-copy-to-clipboard js-bolt-copy-to-clipboard">
-                            <button class="c-bolt-copy-to-clipboard__trigger"
-                                    data-clipboard-text="https://pega.com"
-                            >
-                              <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small">
-                                <span class="c-bolt-menu-item__icon-before"
-                                      aria-hidden="true"
-                                >
-                                  <bolt-icon name="asset-link"
-                                             size="small"
-                                             aria-hidden="true"
-                                  >
-                                    <span class="c-bolt-icon c-bolt-icon--asset-link c-bolt-icon--small">
-                                      <svg class="c-bolt-icon__icon c-bolt-icon__icon--small"
-                                           xmlns="http://www.w3.org/2000/svg"
-                                           viewbox="0 0 24 24"
-                                      >
-                                        <g fill="none"
-                                           fill-rule="evenodd"
-                                        >
-                                          <path fill="var(--bolt-theme-icon, currentColor)"
-                                                d="M22.7 3.2l-1.9-2a4 4 0 00-3-1.2c-1.2 0-2.2.4-3 1.2l-2 2c-.3.3-.5.6-.5 1l.4.8c.5.5 1.3.5 1.8 0l2-2c.4-.4.8-.5 1.3-.5s1 .1 1.3.5l2 2c.3.3.5.7.5 1.2s-.2 1-.5 1.3L14.5 14c-.3.4-.8.6-1.4.6-.6 0-1 0-1.3-.4l-.8-.8-.7-.7c-.3-.3-.6-.4-1-.4a1 1 0 00-.7.4c-.3.2-.5.5-.5.8 0 .3.2.6.5 1l1.4 1.4v.3h.4a4 4 0 002.7.8c1 0 1.8-.3 2.5-.8v.1l.4-.3.1-.2 6.7-6.6c.8-.8 1.2-1.8 1.2-3a4 4 0 00-1.3-3M11.3 18.9c.3.3.4.6.4 1 0 .2-.1.5-.4.8l-2 2a4 4 0 01-3 1.3c-1.2 0-2.2-.4-3-1.2l-2-2a4.2 4.2 0 01-1.3-3 4 4 0 011.2-3L8 8a4 4 0 013-1.3A4 4 0 0114 8l1.5 1.5c.3.3.4.6.4.9 0 .3-.1.6-.4.9-.5.4-1.3.4-1.7 0l-1.6-1.6c-.7-.7-1.8-.7-2.5 0L3 16.5c-.3.3-.5.7-.5 1.2s.2 1 .5 1.3L5 21c.7.7 1.8.7 2.5 0l2-2c.2-.2.5-.4 1-.4l.8.3"
-                                                mask="url(#mask-2)"
-                                          >
-                                          </path>
-                                        </g>
-                                      </svg>
-                                    </span>
-                                  </bolt-icon>
-                                </span>
-                                Copy share link
-                              </span>
-                            </button>
-                            <span class="c-bolt-copy-to-clipboard__transition">
-                              <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small">
-                                <span class="c-bolt-menu-item__icon-before u-bolt-opacity-0"
-                                      aria-hidden="true"
-                                >
-                                  <bolt-icon name="asset-link"
-                                             size="small"
-                                             aria-hidden="true"
-                                  >
-                                    <span class="c-bolt-icon c-bolt-icon--asset-link c-bolt-icon--small">
-                                      <svg class="c-bolt-icon__icon c-bolt-icon__icon--small"
-                                           xmlns="http://www.w3.org/2000/svg"
-                                           viewbox="0 0 24 24"
-                                      >
-                                        <g fill="none"
-                                           fill-rule="evenodd"
-                                        >
-                                          <path fill="var(--bolt-theme-icon, currentColor)"
-                                                d="M22.7 3.2l-1.9-2a4 4 0 00-3-1.2c-1.2 0-2.2.4-3 1.2l-2 2c-.3.3-.5.6-.5 1l.4.8c.5.5 1.3.5 1.8 0l2-2c.4-.4.8-.5 1.3-.5s1 .1 1.3.5l2 2c.3.3.5.7.5 1.2s-.2 1-.5 1.3L14.5 14c-.3.4-.8.6-1.4.6-.6 0-1 0-1.3-.4l-.8-.8-.7-.7c-.3-.3-.6-.4-1-.4a1 1 0 00-.7.4c-.3.2-.5.5-.5.8 0 .3.2.6.5 1l1.4 1.4v.3h.4a4 4 0 002.7.8c1 0 1.8-.3 2.5-.8v.1l.4-.3.1-.2 6.7-6.6c.8-.8 1.2-1.8 1.2-3a4 4 0 00-1.3-3M11.3 18.9c.3.3.4.6.4 1 0 .2-.1.5-.4.8l-2 2a4 4 0 01-3 1.3c-1.2 0-2.2-.4-3-1.2l-2-2a4.2 4.2 0 01-1.3-3 4 4 0 011.2-3L8 8a4 4 0 013-1.3A4 4 0 0114 8l1.5 1.5c.3.3.4.6.4.9 0 .3-.1.6-.4.9-.5.4-1.3.4-1.7 0l-1.6-1.6c-.7-.7-1.8-.7-2.5 0L3 16.5c-.3.3-.5.7-.5 1.2s.2 1 .5 1.3L5 21c.7.7 1.8.7 2.5 0l2-2c.2-.2.5-.4 1-.4l.8.3"
-                                                mask="url(#mask-2)"
-                                          >
-                                          </path>
-                                        </g>
-                                      </svg>
-                                    </span>
-                                  </bolt-icon>
-                                </span>
-                                Copying...
-                              </span>
-                            </span>
-                            <span class="c-bolt-copy-to-clipboard__confirmation">
-                              <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small">
-                                <span class="c-bolt-menu-item__icon-before"
-                                      aria-hidden="true"
-                                >
-                                  <bolt-icon name="check"
-                                             size="small"
-                                             aria-hidden="true"
-                                  >
-                                    <span class="c-bolt-icon c-bolt-icon--check c-bolt-icon--small">
-                                      <svg class="c-bolt-icon__icon c-bolt-icon__icon--small"
-                                           xmlns="http://www.w3.org/2000/svg"
-                                           viewbox="0 0 24 24"
-                                      >
-                                        <g fill="none"
-                                           fill-rule="evenodd"
-                                        >
-                                          <path>
-                                          </path>
-                                          <path fill="var(--bolt-theme-icon, currentColor)"
-                                                d="M19.3 6.3L9 16.6l-4.3-4.3a1 1 0 00-1.4 0 1 1 0 000 1.4l5 5a1 1 0 001.4 0l11-11c.4-.4.4-1 0-1.4a1 1 0 00-1.4 0z"
-                                          >
-                                          </path>
-                                        </g>
-                                      </svg>
-                                    </span>
-                                  </bolt-icon>
-                                </span>
-                                Copied!
-                              </span>
-                            </span>
+                          <span slot="title">
+                            Share this content
                           </span>
-                        </bolt-copy-to-clipboard>
-                      </ssr-keep>
-                    </div>
-                  </bolt-menu>
-                </div>
-              </bolt-share>
-            </span>
-          </bolt-popover>
-        </li>
-      </ul>
-    </div>
-    <div class="c-bolt-teaser__description ">
-      Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.
+                        </ssr-keep>
+                        <ssr-keep for="bolt-menu"
+                                  role="presentation"
+                        >
+                          <bolt-menu-item target="_blank"
+                                          url="https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;amp;src=sdkpreparse"
+                                          role="presentation"
+                          >
+                            <bolt-trigger class="js-bolt-share__link--facebook"
+                                          target="_blank"
+                                          role="menuitem"
+                                          url="https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;amp;src=sdkpreparse"
+                                          display="block"
+                                          no-outline
+                            >
+                              <a href="https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;amp;src=sdkpreparse"
+                                 target="_blank"
+                                 class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                                 is="shadow-root"
+                              >
+                                <ssr-keep for="bolt-menu-item"
+                                          role="presentation"
+                                          class="c-bolt-menu-item"
+                                >
+                                  <replace-with-children class="c-bolt-menu-item__icon-before"
+                                                         aria-hidden="true"
+                                  >
+                                    <span slot="icon-before">
+                                      <svg class="e-bolt-icon e-bolt-icon--small"
+                                           aria-hidden="true"
+                                           enable-background="new 0 0 32 32"
+                                           viewbox="0 0 32 32"
+                                           xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path d="m26 0c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6h-3.9v-12.4h4.2l.6-4.8h-4.8v-3.1c0-1.4.4-2.3 2.4-2.3h2.5v-4.4c-1.2-.1-2.5-.2-3.7-.2-3.7 0-6.2 2.2-6.2 6.4v3.6h-4.2v4.9h4.2v12.3h-11.1c-3.3 0-6-2.7-6-6v-20c0-3.3 2.7-6 6-6z">
+                                        </path>
+                                      </svg>
+                                    </span>
+                                  </replace-with-children>
+                                  Share via Facebook
+                                </ssr-keep>
+                              </a>
+                            </bolt-trigger>
+                          </bolt-menu-item>
+                          <bolt-menu-item target="_blank"
+                                          url="https://twitter.com/intent/tweet?url=https://pega.com&amp;text=Sample%20Share%20Text&amp;via=pega&amp;hashtags=boltDesignSystemRocks!"
+                                          role="presentation"
+                          >
+                            <bolt-trigger class="js-bolt-share__link--twitter"
+                                          target="_blank"
+                                          role="menuitem"
+                                          url="https://twitter.com/intent/tweet?url=https://pega.com&amp;text=Sample%20Share%20Text&amp;via=pega&amp;hashtags=boltDesignSystemRocks!"
+                                          display="block"
+                                          no-outline
+                            >
+                              <a href="https://twitter.com/intent/tweet?url=https://pega.com&amp;text=Sample%20Share%20Text&amp;via=pega&amp;hashtags=boltDesignSystemRocks!"
+                                 target="_blank"
+                                 class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                                 is="shadow-root"
+                              >
+                                <ssr-keep for="bolt-menu-item"
+                                          role="presentation"
+                                          class="c-bolt-menu-item"
+                                >
+                                  <replace-with-children class="c-bolt-menu-item__icon-before"
+                                                         aria-hidden="true"
+                                  >
+                                    <span slot="icon-before">
+                                      <svg class="e-bolt-icon e-bolt-icon--small"
+                                           aria-hidden="true"
+                                           enable-background="new 0 0 32 32"
+                                           viewbox="0 0 32 32"
+                                           xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path d="m32 6.1c-.9 1.3-2 2.5-3.3 3.4v.9c0 8.6-6.6 18.6-18.6 18.6-3.6 0-7.1-1-10.1-2.9.5.1 1.1.1 1.6.1 3 0 5.8-1 8.1-2.8-2.8-.1-5.3-1.9-6.1-4.6.4.1.8.1 1.2.1.6 0 1.2-.1 1.7-.2-3.1-.6-5.3-3.3-5.3-6.4v-.1c.9.5 1.9.8 3 .8-2.9-1.9-3.7-5.8-2-8.8 3.3 4.1 8.3 6.6 13.5 6.9-.1-.5-.2-1-.2-1.5.2-3.6 3.1-6.6 6.6-6.6 1.8 0 3.6.7 4.8 2.1 1.5-.3 2.9-.8 4.2-1.6-.5 1.5-1.5 2.8-2.9 3.6 1.3-.1 2.6-.5 3.8-1z">
+                                        </path>
+                                      </svg>
+                                    </span>
+                                  </replace-with-children>
+                                  Share via Twitter
+                                </ssr-keep>
+                              </a>
+                            </bolt-trigger>
+                          </bolt-menu-item>
+                          <bolt-menu-item target="_blank"
+                                          url="https://www.linkedin.com/shareArticle?url=https://pega.com"
+                                          role="presentation"
+                          >
+                            <bolt-trigger class="js-bolt-share__link--linkedin"
+                                          target="_blank"
+                                          role="menuitem"
+                                          url="https://www.linkedin.com/shareArticle?url=https://pega.com"
+                                          display="block"
+                                          no-outline
+                            >
+                              <a href="https://www.linkedin.com/shareArticle?url=https://pega.com"
+                                 target="_blank"
+                                 class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                                 is="shadow-root"
+                              >
+                                <ssr-keep for="bolt-menu-item"
+                                          role="presentation"
+                                          class="c-bolt-menu-item"
+                                >
+                                  <replace-with-children class="c-bolt-menu-item__icon-before"
+                                                         aria-hidden="true"
+                                  >
+                                    <span slot="icon-before">
+                                      <svg class="e-bolt-icon e-bolt-icon--small"
+                                           aria-hidden="true"
+                                           enable-background="new 0 0 32 32"
+                                           viewbox="0 0 32 32"
+                                           xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path d="m7.3 10.7v20.6h-6.9v-20.6zm.4-6.4c0 2-1.6 3.6-3.5 3.6-.1 0-.2 0-.3 0-2 .1-3.8-1.4-3.9-3.4s1.3-3.7 3.3-3.8h.5c2-.2 3.7 1.3 3.9 3.3zm24.3 15.2v11.8h-6.9v-11c0-2.8-1-4.7-3.5-4.7-1.6 0-3 1-3.5 2.5-.2.5-.2 1.1-.2 1.7v11.5h-6.9c.1-18.7 0-20.6 0-20.6h6.9v3h-.1c1.3-2.2 3.7-3.6 6.2-3.5 4.6 0 8 3 8 9.3z">
+                                        </path>
+                                      </svg>
+                                    </span>
+                                  </replace-with-children>
+                                  Share via LinkedIn
+                                </ssr-keep>
+                              </a>
+                            </bolt-trigger>
+                          </bolt-menu-item>
+                          <bolt-menu-item target="_blank"
+                                          url="mailto:?&amp;body=Sample%20Text%20--%20https%3A//pega.com"
+                                          role="presentation"
+                          >
+                            <bolt-trigger class="js-bolt-share__link--email"
+                                          target="_blank"
+                                          role="menuitem"
+                                          url="mailto:?&amp;body=Sample%20Text%20--%20https%3A//pega.com"
+                                          display="block"
+                                          no-outline
+                            >
+                              <a href="mailto:?&amp;body=Sample%20Text%20--%20https%3A//pega.com"
+                                 target="_blank"
+                                 class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+                                 is="shadow-root"
+                              >
+                                <ssr-keep for="bolt-menu-item"
+                                          role="presentation"
+                                          class="c-bolt-menu-item"
+                                >
+                                  <replace-with-children class="c-bolt-menu-item__icon-before"
+                                                         aria-hidden="true"
+                                  >
+                                    <span slot="icon-before">
+                                      <svg class="e-bolt-icon e-bolt-icon--small"
+                                           aria-hidden="true"
+                                           enable-background="new 0 0 32 32"
+                                           viewbox="0 0 32 32"
+                                           xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path clip-rule="evenodd"
+                                              d="m27.6 26.2h-23.2c-.8 0-1.5-.7-1.5-1.5v-14.6l12.3 8.6c.3.2.5.3.8.3s.6-.1.8-.3l12.3-8.6v14.7c0 .7-.7 1.4-1.5 1.4zm-23.2-20.4h23.3c.6 0 1.1.3 1.3.8l-13 9.1-12.9-9.1c.2-.5.7-.8 1.3-.8zm27.6 1.4c0-2.4-2-4.3-4.4-4.3h-23.2c-2.4 0-4.4 1.9-4.4 4.3v17.4c0 2.4 2 4.4 4.4 4.4h23.3c2.4 0 4.4-2 4.4-4.4v-17.4z"
+                                              fill-rule="evenodd"
+                                        >
+                                        </path>
+                                      </svg>
+                                    </span>
+                                  </replace-with-children>
+                                  Share via Email
+                                </ssr-keep>
+                              </a>
+                            </bolt-trigger>
+                          </bolt-menu-item>
+                          <bolt-copy-to-clipboard role="menu-item">
+                            <span class="c-bolt-copy-to-clipboard js-bolt-copy-to-clipboard">
+                              <button class="c-bolt-copy-to-clipboard__trigger"
+                                      data-clipboard-text="https://pega.com"
+                              >
+                                <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small">
+                                  <span class="c-bolt-menu-item__icon-before"
+                                        aria-hidden="true"
+                                  >
+                                    <svg class="e-bolt-icon e-bolt-icon--small"
+                                         aria-hidden="true"
+                                         enable-background="new 0 0 32 32"
+                                         viewbox="0 0 32 32"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path clip-rule="evenodd"
+                                            d="m30.3 4.3-2.6-2.6c-1.1-1.1-2.4-1.7-4-1.7s-2.9.5-4 1.6l-2.7 2.8c-.4.3-.6.7-.6 1.1s.2.8.5 1.2c.7.7 1.7.6 2.3 0l2.8-2.8c.4-.4 1-.6 1.7-.6s1.3.2 1.7.7l2.6 2.6c.5.4.7 1 .7 1.7s-.2 1.3-.7 1.7l-8.7 8.7c-.5.5-1.1.8-2 .8-.8 0-1.4-.1-1.8-.6l-1.1-1.1-.9-.9c-.4-.4-.8-.6-1.2-.6s-.8.2-1.1.5c-.4.3-.6.7-.6 1.1s.2.8.6 1.2l1.9 1.9.5.4c.9.8 2.1 1.1 3.4 1.1h.2c1.3 0 2.4-.4 3.3-1.1 0 0 .7-.4.7-.5l8.9-8.9c1-1.1 1.6-2.4 1.6-4 .3-1.3-.3-2.7-1.4-3.7m-15.3 20.9c.4.4.6.8.6 1.2s-.2.8-.5 1.2l-2.7 2.7c-1.1 1.1-2.4 1.6-4 1.6-1.5 0-2.9-.5-4-1.6l-2.8-2.8c-1.1-1.1-1.6-2.5-1.6-4s.5-2.9 1.6-3.9l9.1-9.1c1.1-1 2.4-1.5 3.9-1.5s2.9.5 3.9 1.6l2.1 2.1c.4.3.6.7.6 1.1s-.2.8-.6 1.2c-.6.6-1.7.6-2.3 0l-2.1-2.1c-.9-.9-2.4-.9-3.3 0l-9 9c-.4.5-.7 1-.7 1.7 0 .6.2 1.2.7 1.6l2.8 2.8c.9.9 2.4.9 3.3 0l2.7-2.8c.2-.2.6-.4 1.1-.4s.9.2 1.2.4"
+                                            fill-rule="evenodd"
+                                      >
+                                      </path>
+                                    </svg>
+                                  </span>
+                                  Copy share link
+                                </span>
+                              </button>
+                              <span class="c-bolt-copy-to-clipboard__transition">
+                                <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small">
+                                  <span class="c-bolt-menu-item__icon-before u-bolt-opacity-0"
+                                        aria-hidden="true"
+                                  >
+                                    <svg class="e-bolt-icon e-bolt-icon--small"
+                                         aria-hidden="true"
+                                         enable-background="new 0 0 32 32"
+                                         viewbox="0 0 32 32"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path clip-rule="evenodd"
+                                            d="m30.3 4.3-2.6-2.6c-1.1-1.1-2.4-1.7-4-1.7s-2.9.5-4 1.6l-2.7 2.8c-.4.3-.6.7-.6 1.1s.2.8.5 1.2c.7.7 1.7.6 2.3 0l2.8-2.8c.4-.4 1-.6 1.7-.6s1.3.2 1.7.7l2.6 2.6c.5.4.7 1 .7 1.7s-.2 1.3-.7 1.7l-8.7 8.7c-.5.5-1.1.8-2 .8-.8 0-1.4-.1-1.8-.6l-1.1-1.1-.9-.9c-.4-.4-.8-.6-1.2-.6s-.8.2-1.1.5c-.4.3-.6.7-.6 1.1s.2.8.6 1.2l1.9 1.9.5.4c.9.8 2.1 1.1 3.4 1.1h.2c1.3 0 2.4-.4 3.3-1.1 0 0 .7-.4.7-.5l8.9-8.9c1-1.1 1.6-2.4 1.6-4 .3-1.3-.3-2.7-1.4-3.7m-15.3 20.9c.4.4.6.8.6 1.2s-.2.8-.5 1.2l-2.7 2.7c-1.1 1.1-2.4 1.6-4 1.6-1.5 0-2.9-.5-4-1.6l-2.8-2.8c-1.1-1.1-1.6-2.5-1.6-4s.5-2.9 1.6-3.9l9.1-9.1c1.1-1 2.4-1.5 3.9-1.5s2.9.5 3.9 1.6l2.1 2.1c.4.3.6.7.6 1.1s-.2.8-.6 1.2c-.6.6-1.7.6-2.3 0l-2.1-2.1c-.9-.9-2.4-.9-3.3 0l-9 9c-.4.5-.7 1-.7 1.7 0 .6.2 1.2.7 1.6l2.8 2.8c.9.9 2.4.9 3.3 0l2.7-2.8c.2-.2.6-.4 1.1-.4s.9.2 1.2.4"
+                                            fill-rule="evenodd"
+                                      >
+                                      </path>
+                                    </svg>
+                                  </span>
+                                  Copying...
+                                </span>
+                              </span>
+                              <span class="c-bolt-copy-to-clipboard__confirmation">
+                                <span class="c-bolt-menu-item c-bolt-menu-item--spacing-small">
+                                  <span class="c-bolt-menu-item__icon-before"
+                                        aria-hidden="true"
+                                  >
+                                    <svg class="e-bolt-icon e-bolt-icon--small"
+                                         aria-hidden="true"
+                                         enable-background="new 0 0 32 32"
+                                         viewbox="0 0 32 32"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path clip-rule="evenodd"
+                                            d="m29 5-18.3 18.3-7.7-7.7c-.7-.7-1.8-.7-2.5 0s-.7 1.8 0 2.5l8.9 8.9c.3.3.8.5 1.3.5s.9-.2 1.3-.5l19.5-19.5c.7-.7.7-1.8 0-2.5s-1.8-.7-2.5 0z"
+                                            fill-rule="evenodd"
+                                      >
+                                      </path>
+                                    </svg>
+                                  </span>
+                                  Copied!
+                                </span>
+                              </span>
+                            </span>
+                          </bolt-copy-to-clipboard>
+                        </ssr-keep>
+                      </div>
+                    </bolt-menu>
+                  </div>
+                </bolt-share>
+              </span>
+            </bolt-popover>
+          </li>
+        </ul>
+      </div>
+      <div class="c-bolt-teaser__description ">
+        Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.
+      </div>
     </div>
   </div>
 </article>

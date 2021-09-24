@@ -33,8 +33,8 @@
 
 {% set like %}
   {% set icon_heart %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'heart-open',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'heart',
     } only %}
   {% endset %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
@@ -86,7 +86,7 @@
   {% endset %}
   {% set share_popover_trigger %}
     {% set icon_share %}
-      {% include '@bolt-components-icon/icon.twig' with {
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: 'share',
       } only %}
     {% endset %}
@@ -266,7 +266,7 @@
 
 {% set band_content %}
   {% set icon_eye %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'eye',
     } only %}
   {% endset %}

@@ -8,22 +8,22 @@
 
 {% set demo %}
   {% set icon_orbit %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'brand-orbit',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'orbit',
       size: 'large',
       color: 'teal',
     } only %}
   {% endset %}
   {% set icon_meteor %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'brand-meteor',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'meteor',
       size: 'large',
       color: 'orange',
     } only %}
   {% endset %}
   {% set icon_launchpad %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'launchpad',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'rocket',
       size: 'large',
       color: 'navy',
     } only %}
@@ -155,8 +155,8 @@
 {% verbatim %}
 // Set up a particular training
 {% set demo_icon %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'brand-orbit',
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'orbit',
     size: 'large',
     color: 'teal',
   } only %}
