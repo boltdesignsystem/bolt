@@ -1,0 +1,83 @@
+<bolt-layout
+  gutter="large"
+  row-gutter="large"
+  padding-top="large"
+  padding-bottom="large"
+  class="t-bolt-dark"
+  template="halves@from-small"
+  valign-items="center"
+  {# align-items="center" #}
+>
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      loading: 'eager',
+      alt: "A mountainous landscape",
+      style: "object-position: center top;",
+      background: true,
+      loading: "eager",
+    }
+  } only %}
+
+  {# {{ this.data.center_content.value ? 'class="u-bolt-text-align-center"' : '' }} #}
+  <bolt-layout-item>
+    <bolt-text eyebrow>
+      This Is the Eyebrow
+    </bolt-text>
+    <bolt-text headline font-size="xxxlarge">
+      This Is the XXXLarge Headline
+    </bolt-text>
+    <bolt-text>
+      This is regular text, and some lorem ipsum. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante.
+    </bolt-text>
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "This is a button",
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  </bolt-layout-item>
+</bolt-layout>
+
+<br>
+
+<bolt-layout
+  gutter="large"
+  row-gutter="large"
+  padding-top="large"
+  padding-bottom="large"
+  class="t-bolt-dark"
+  template="halves@from-small"
+  valign-items="center"
+  {# align-items="center" #}
+>
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      loading: 'eager',
+      alt: "A mountainous landscape",
+      style: "object-position: center bottom;",
+      background: true,
+      loading: "eager",
+    }
+  } only %}
+
+  {# {{ this.data.center_content.value ? 'class="u-bolt-text-align-center"' : '' }} #}
+  <bolt-layout-item>
+    <bolt-text eyebrow>
+      This Is the Eyebrow
+    </bolt-text>
+    <bolt-text headline font-size="xxxlarge">
+      This Is the XXXLarge Headline
+    </bolt-text>
+    <bolt-text>
+      This is regular text, and some lorem ipsum. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante.
+    </bolt-text>
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "This is a button",
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  </bolt-layout-item>
+</bolt-layout>

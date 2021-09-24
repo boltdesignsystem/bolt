@@ -1,0 +1,46 @@
+<bolt-layout
+  gutter="large"
+  row-gutter="large"
+  padding-top="large"
+  padding-bottom="large"
+  class="t-bolt-dark"
+  template="halves@from-small"
+  valign-items="center"
+  {# align-items="center" #}
+>
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/heros/hero-background--teal.jpg',
+      loading: 'eager',
+      sizes: '100vw',
+    },
+  } only %}
+
+  {# {{ this.data.center_content.value ? 'class="u-bolt-text-align-center"' : '' }} #}
+  <bolt-layout-item>
+    {% include '@bolt-components-blockquote/blockquote.twig' with {
+      size: 'xxlarge',
+      weight: 'bold',
+      border: 'none',
+      author: {
+        name: 'Oliver Zeeb',
+        title: 'Team Lead, Application Development <br>W&W-Gruppe'
+      },
+      content: '<p>Pega is one of the key technologies that we are using to rebuild our application landscape.</p>'
+    } only %}
+  </bolt-layout-item>
+
+  <bolt-layout-item valign-self="end-offset">
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/hero-foreground--teal.png',
+        width: 450,
+        loading: 'eager',
+        style: 'display: block;',
+        class: 'u-bolt-margin-left-auto'
+      },
+    } only %}
+  </bolt-layout-item>
+</bolt-layout>
