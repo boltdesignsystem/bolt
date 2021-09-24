@@ -112,7 +112,7 @@ describe('Twig usage', () => {
 
     // Like
     const iconHeart = await render('@bolt-elements-icon/icon.twig', {
-      name: 'heart-open',
+      name: 'heart',
     });
 
     const like = await render('@bolt-elements-text-link/text-link.twig', {
