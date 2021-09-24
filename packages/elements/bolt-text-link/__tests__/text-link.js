@@ -26,7 +26,7 @@ beforeAll(async () => {
     },
   };
 
-  const icon = await render('@bolt-components-icon/icon.twig', {
+  const icon = await render('@bolt-elements-icon/icon.twig', {
     name: 'chevron-right',
   });
 
