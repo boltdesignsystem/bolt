@@ -15,14 +15,14 @@
 {% endset %}
 
 {% set description %}
-  Icons can be used in tandem with a button. An icon can be placed before and/or after the button text. <a href="{{ link['viewall-components-icon'] }}">The icon component</a> is recommended for appending icons. However, an <bolt-code-snippet display="inline" lang="html">&lt;img&gt;</bolt-code-snippet> element is also acceptable.
+  Icons can be used in tandem with a button. An icon can be placed before and/or after the button text. <a href="{{ link['viewall-components-icon'] }}">The icon component</a> is recommended for appending icons. However, an <code>&lt;img&gt;</code> element is also acceptable.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Icons are set inline with text so icon size will grow or shrink with text size. The <bolt-code-snippet display="inline">size</bolt-code-snippet> and <bolt-code-snippet display="inline">background</bolt-code-snippet> props for the icon component are not well supported in this scenario.</bolt-li>
+    <bolt-li>Icons are set inline with text so icon size will grow or shrink with text size. The <code>size</code> and <code>background</code> props for the icon component are not well supported in this scenario.</bolt-li>
     <bolt-li>When writing in plain HTML, all white space must be eliminated to have the icon display correctly next to text (in terms of spacing and wrapping). The markup must be written all in one line and spaces between HTML elements must be removed.</bolt-li>
-    <bolt-li>When writing in plain HTML, <bolt-code-snippet display="inline" lang="html">&lt;span class="e-bolt-button__icon-before"&gt;</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">&lt;span class="e-bolt-button__icon-after"&gt;</bolt-code-snippet> are required to wrap around the icon markup. The wrapper ensures that the icon will always wrap with the final word of the text. It will never wrap to the next line on its own.</bolt-li>
+    <bolt-li>When writing in plain HTML, <code>&lt;span class="e-bolt-button__icon-before"&gt;</code> and <code>&lt;span class="e-bolt-button__icon-after"&gt;</code> are required to wrap around the icon markup. The wrapper ensures that the icon will always wrap with the final word of the text. It will never wrap to the next line on its own.</bolt-li>
   </bolt-ol>
 {% endset %}
 
