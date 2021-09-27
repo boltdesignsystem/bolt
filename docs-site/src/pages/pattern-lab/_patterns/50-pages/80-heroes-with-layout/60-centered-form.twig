@@ -1,0 +1,52 @@
+<bolt-layout
+  gutter="large"
+  row-gutter="large"
+  padding-top="large"
+  padding-bottom="large"
+  class="t-bolt-dark"
+  template="67"
+  valign-items="center"
+  align-items="center"
+>
+  <bolt-layout-item class="u-bolt-text-align-center">
+    {% set form_children %}
+      {% set label %}
+        {% include "@bolt-components-form/form-label.twig" with {
+          title: "This is the label",
+          displayType: "block"
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include "@bolt-components-form/form-input.twig" with {
+          attributes: {
+            placeholder: "This is the placeholder text.",
+            required: true,
+            type: "text",
+          },
+        } only %}
+      {% endset %}
+      {% set _form %}
+        {% include "@bolt-components-form/form-element.twig" with {
+          labelDisplay: "before",
+          label: label,
+          children: input
+        } only %}
+        {% include "@bolt-components-form/form-button.twig" with {
+          text: "Submit",
+          attributes: {
+            type: "submit",
+          }
+        } only %}
+      {% endset %}
+      {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          body: {
+            content: _form,
+          },
+        theme: 'light'
+      } only %}
+    {% endset %}
+    {% include "@bolt-components-form/form.twig" with {
+      children: form_children
+    } only %}
+  </bolt-layout-item>
+</bolt-layout>

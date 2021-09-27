@@ -1,0 +1,42 @@
+<bolt-layout
+  gutter="large"
+  row-gutter="large"
+  padding-top="large"
+  padding-bottom="large"
+  class="t-bolt-dark"
+  template="halves@from-small"
+  valign-items="center"
+>
+  <bolt-layout-item order="last@from-small">
+    <bolt-text font-size="xxxlarge">
+      Incididunt Lorem qui.
+    </bolt-text>
+    <bolt-text font-size="xlarge">
+      Labore aute anim duis excepteur tempor velit deserunt.
+    </bolt-text>
+    <bolt-ol>
+      <bolt-li>List Item</bolt-li>
+      <bolt-li>List Item</bolt-li>
+      <bolt-li>List Item</bolt-li>
+    </bolt-ol>
+  </bolt-layout-item>
+
+  <bolt-layout-item valign-self="center">
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="4892122320001"
+        data-media-title
+        data-media-duration
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+
+    {% include "@bolt-components-ratio/ratio.twig" with {
+      children: video,
+      ratio: "16/9"
+    } only %}
+  </bolt-layout-item>
+</bolt-layout>
