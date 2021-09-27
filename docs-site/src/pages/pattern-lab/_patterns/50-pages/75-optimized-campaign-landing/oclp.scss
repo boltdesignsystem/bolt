@@ -115,3 +115,17 @@
     margin-top: calc(var(--bolt-spacing-y-xlarge) * -1);
   }
 }
+
+.c-base-ocpl-image-preview {
+  display: block;
+  position: relative;
+}
+
+.c-base-ocpl-image-preview__chip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+  pointer-events: none;
+}

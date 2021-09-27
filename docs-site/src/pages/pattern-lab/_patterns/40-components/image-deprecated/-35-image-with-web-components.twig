@@ -1,3 +1,5 @@
+{% include '@pl/00-deprecated-image-docs.twig' %}
+
 {% macro code_example(code, copy) %}
   <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
     {{ code | replace({
@@ -40,8 +42,8 @@
       Bolt Image is a web component that renders a semantic <bolt-code-snippet display="inline" lang="html">&lt;img&gt;</bolt-code-snippet> tag with Bolt styles. All that's required to make a <bolt-code-snippet display="inline" lang="html">&lt;bolt-image&gt;</bolt-code-snippet> are the <bolt-code-snippet display="inline" lang="html">src</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">alt</bolt-code-snippet> attributes.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
+      {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@large' %}
           {{ image_demo_basic }}
         {% endcell %}
       {% endgrid %}
@@ -56,8 +58,8 @@
       Optionally, pass <bolt-code-snippet display="inline" lang="html">srcset</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">sizes</bolt-code-snippet> to <bolt-code-snippet display="inline" lang="html">&lt;bolt-image&gt;</bolt-code-snippet> for responsive images.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
+      {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@large' %}
           {{ image_demo_responsive }}
         {% endcell %}
       {% endgrid %}
@@ -72,8 +74,8 @@
       Setting the aspect ratio on an image provides a placeholder while the image is loading. Do this by adding the <bolt-code-snippet display="inline" lang="html">ratio</bolt-code-snippet> attribute with the image's aspect-ratio as slash-separated values, e.g. "4/3" or "400/300".
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
+      {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@large' %}
           {{ image_demo_ratio }}
         {% endcell %}
       {% endgrid %}
@@ -88,8 +90,8 @@
       Lazyloading is on by default. Turn it off with the <bolt-code-snippet display="inline" lang="html">no-lazy</bolt-code-snippet> attribute.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
+      {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@large' %}
           {{ image_demo_lazy }}
         {% endcell %}
       {% endgrid %}
@@ -104,8 +106,8 @@
       Placeholder image and color options can be set via the attributes <bolt-code-snippet display="inline" lang="html">placeholder-image</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">placeholder-color</bolt-code-snippet> where "image" is an image path and "color" is a valid CSS background-color. Note: the <bolt-code-snippet display="inline" lang="html">ratio</bolt-code-snippet> attribute must be provided for placholder image or color to display.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
+      {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@large' %}
           {{ image_demo_placeholder }}
         {% endcell %}
       {% endgrid %}
