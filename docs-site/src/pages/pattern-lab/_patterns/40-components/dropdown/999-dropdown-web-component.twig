@@ -6,14 +6,6 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  <div class="u-bolt-margin-bottom-large">
-    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-      {{ code | replace({
-        '<': '&lt;',
-        '>': '&gt;',
-      }) | trim | raw }}
-    {% endspaceless %}</bolt-code-snippet>
-  </div>
 {% endmacro %}
 
 {% import _self as dropdown_example %}
@@ -52,12 +44,22 @@
 
 <bolt-text headline>Web Component Usage</bolt-text>
 <bolt-text>
-  Bolt Dropdown is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-dropdown&gt;</bolt-code-snippet> in the markup to make it render.
+  Bolt Dropdown is a web component, you can simply use <code>&lt;bolt-dropdown&gt;</code> in the markup to make it render.
 </bolt-text>
 {% include dropdown_example.code_example(dropdown_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: dropdown_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}
 
 <bolt-text headline>Prop Usage</bolt-text>
 <bolt-text>
   Configure the dropdown with the properties specified in the schema.
 </bolt-text>
 {% include dropdown_example.code_example(dropdown_prop_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: dropdown_prop_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}
