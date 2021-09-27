@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/boltdesignsystem/bolt/compare/v4.4.0...v4.5.0) (2021-09-24)
+
+
+### Bug Fixes
+
+* layout demo typos ([630f702](https://github.com/boltdesignsystem/bolt/commit/630f702f5e4a5112c3ceaf3a49752b04bef4bfaf))
+
+
+### Reverts
+
+* Revert "DS-489: Fix update forked basalt twig renderer to support twig 2.x" ([65ab4a5](https://github.com/boltdesignsystem/bolt/commit/65ab4a580bd4124301f0d05af9f5a873e0d129f7))
+
+
+
+
+
 # [4.4.0](https://github.com/boltdesignsystem/bolt/compare/v4.3.0...v4.4.0) (2021-09-13)
 
 **Note:** Version bump only for package bolt
