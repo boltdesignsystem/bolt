@@ -341,7 +341,12 @@
 
 @mixin _c-bolt-listing-teaser-vertical {
   .c-bolt-listing-teaser__flag {
-    display: block;
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      width: 100%;
+    }
   }
 
   .c-bolt-listing-teaser__flag-signifier {
