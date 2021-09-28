@@ -1,4 +1,4 @@
-{% extends "@pl/_default-page-template.twig" %}
+{% extends '@pl/_default-page-template.twig' %}
 
 {% block global_header %}
   {% include '@pl/_demo-main-site-page-header.twig' %}
@@ -7,46 +7,46 @@
 {% block main_content %}
 
   {# hero band #}
-  {% embed "@bolt-components-band/band.twig" with {
-    size: "large",
-    theme: "dark",
+  {% embed '@bolt-components-band/band.twig' with {
+    size: 'large',
+    theme: 'dark',
     full_bleed: true,
     background: {
-      "opacity": "medium",
-      "fill": "color",
-      "focal_point": {
-        "vertical": "center",
-        "horizontal": "center"
+      'opacity': 'medium',
+      'fill': 'color',
+      'focal_point': {
+        'vertical': 'center',
+        'horizontal': 'center'
       },
-      "content_items": [
+      'content_items': [
         {
-          "pattern": "image",
-          "src": "/images/content/backgrounds/background-robotics-customer-service.jpg",
-          "lazyload": true
+          'pattern': 'image',
+          'src': '/images/content/backgrounds/background-robotics-customer-service.jpg',
+          'lazyload': true
         }
       ]
     }
   } only %}
 
     {% block band_content  %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+    {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
       {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
-        {% include "@bolt/headline.twig" with {
-            text: "ROBOTIC AUTOMATION",
-            size: "xsmall",
-            tag: "span",
+        {% include '@bolt/headline.twig' with {
+            text: 'ROBOTIC AUTOMATION',
+            size: 'xsmall',
+            tag: 'span',
         } only %}
 
-        {% include "@bolt/headline.twig" with {
-            text: "Automation to Get Work Done",
-            size: "xxxlarge",
-            tag: "h1",
+        {% include '@bolt/headline.twig' with {
+            text: 'Automation to Get Work Done',
+            size: 'xxxlarge',
+            tag: 'h1',
         } only %}
 
-        {% include "@bolt/subheadline.twig" with {
-            text: "Robotic Process Automation (RPA) is not going to transform your business by itself. Up to half of initial RPA projects fail. Combine robotics with powerful end-to-end automation and you can jump on the RPA bandwagon without becoming a statistic.",
-            size: "xlarge",
-            tag: "p",
+        {% include '@bolt/subheadline.twig' with {
+            text: 'Robotic Process Automation (RPA) is not going to transform your business by itself. Up to half of initial RPA projects fail. Combine robotics with powerful end-to-end automation and you can jump on the RPA bandwagon without becoming a statistic.',
+            size: 'xlarge',
+            tag: 'p',
         } only %}
 
 
@@ -135,47 +135,47 @@
 
 
 {# Automation #}
-{% embed "@bolt-components-band/band.twig" with {
-  size: "large",
-  theme: "xlight",
+{% embed '@bolt-components-band/band.twig' with {
+  size: 'large',
+  theme: 'xlight',
   full_bleed: true,
   attributes: {
     id: [
-      "automation"
+      'automation'
     ]
   }
 } %}
 
       {% block band_content  %}
-        {% grid "o-bolt-grid--large o-bolt-grid--matrix" %}
+        {% grid 'o-bolt-grid--large o-bolt-grid--matrix' %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
-            text: "Automation is a Journey",
-            size: "xxlarge",
-            tag: "h2"
+            {% include '@bolt/headline.twig' with {
+            text: 'Automation is a Journey',
+            size: 'xxlarge',
+            tag: 'h2'
             } only %}
             <p>At Pega, we’re obsessed with being unified. Our mobility, real-time AI, robotic automation, BPM, and case management are best in breed – go ask the analysts. But we didn’t cobble this together from pieces of dead companies – we built it from the ground up on a unified, enterprise-ready architecture.</p>
 
-            <p>When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market."</p>
+            <p>When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market.'</p>
           {% endcell %}
 
-          {% cell "u-bolt-width-1/1 u-bolt-width-2/5@medium" %}
-            {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          {% cell 'u-bolt-width-1/1 u-bolt-width-2/5@medium' %}
+            {% include '@bolt-components-card-replacement/card-replacement.twig' with {
               media: {
                 image: {
-                  src: "/images/content/backgrounds/background-short-1.jpg",
-                  alt: "Anthem Video",
+                  src: '/images/content/backgrounds/background-short-1.jpg',
+                  alt: 'Anthem Video',
                 },
               },
               body: {
-                eyebrow: "Whitepaper",
-                headline: "Anthem: Service Desktop",
-                paragraph: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+                eyebrow: 'Whitepaper',
+                headline: 'Anthem: Service Desktop',
+                paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
               },
               actions: [
                 {
-                  text: "Get the report",
-                  url: "https://pega.com",
+                  text: 'Get the report',
+                  url: 'https://pega.com',
                 },
               ],
             } only %}
@@ -186,24 +186,24 @@
 {# End Automation #}
 
 {# Transformational Results #}
-{% embed "@bolt-components-band/band.twig" with {
-  size: "large",
-  theme: "xlight",
+{% embed '@bolt-components-band/band.twig' with {
+  size: 'large',
+  theme: 'xlight',
   full_bleed: true,
   attributes: {
     id: [
-      "transformation"
+      'transformation'
     ]
   }
 } %}
 
       {% block band_content  %}
-        {% grid "o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev" %}
+        {% grid 'o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev' %}
             {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
-            text: "Transformational Results",
-            size: "xxlarge",
-            tag: "h2"
+            {% include '@bolt/headline.twig' with {
+            text: 'Transformational Results',
+            size: 'xxlarge',
+            tag: 'h2'
             } only %}
             <p>321% ROI in less than 12 months. 75% cost savings. 75% productivity improvements. These are transformational outcomes. Getting there takes more than just a few robots. You need one unified automation engine.</p>
 
@@ -213,23 +213,23 @@
 
             <p>Why? Because Pega’s capabilities are unified on one platform. No duct tape. No wiring a bunch of things together. You think about outcomes from end to end. Your technology should be able to get that end to end work done.</p>
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-2/5@small" %}
-            {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          {% cell 'u-bolt-width-1/1 u-bolt-width-2/5@small' %}
+            {% include '@bolt-components-card-replacement/card-replacement.twig' with {
               media: {
                 image: {
-                  src: "/images/content/backgrounds/background-tall-2.jpg",
-                  alt: "Anthem Video",
+                  src: '/images/content/backgrounds/background-tall-2.jpg',
+                  alt: 'Anthem Video',
                 },
               },
               body: {
-                eyebrow: "Whitepaper",
-                headline: "Anthem: Service Desktop",
-                paragraph: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+                eyebrow: 'Whitepaper',
+                headline: 'Anthem: Service Desktop',
+                paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
               },
               actions: [
                 {
-                  text: "Get the report",
-                  url: "https://pega.com",
+                  text: 'Get the report',
+                  url: 'https://pega.com',
                 },
               ],
             } only %}
@@ -240,24 +240,24 @@
 {# End Transformational Results #}
 
 {# Employee Productivity #}
-{% embed "@bolt-components-band/band.twig" with {
-  size: "large",
-  theme: "xlight",
+{% embed '@bolt-components-band/band.twig' with {
+  size: 'large',
+  theme: 'xlight',
   full_bleed: true,
   attributes: {
     id: [
-      "productivity"
+      'productivity'
     ]
   }
 } %}
 
       {% block band_content  %}
-        {% grid "o-bolt-grid--large o-bolt-grid--matrix" %}
+        {% grid 'o-bolt-grid--large o-bolt-grid--matrix' %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
-            text: "Give Your Employees a Robot",
-            size: "xxlarge",
-            tag: "h2"
+            {% include '@bolt/headline.twig' with {
+            text: 'Give Your Employees a Robot',
+            size: 'xxlarge',
+            tag: 'h2'
             } only %}
             <p>Imagine if you could give back five minutes of every employee’s day. You can if you free them from wrangling across systems and process siloes for information. How? Software robots that automate the desktop tasks that frustrate your people and slow them down. We call these “productivity bots.”</p>
 
@@ -265,23 +265,23 @@
 
             <p>Leveraging productivity bots that simplify the employee experience injects instant ROI into your business. In just two to three weeks you'll turn all your service agents, back-office workers, or front-line sellers into productivity ninjas. They’ll be happier. You’ll be happier. And your customers will be happier.</p>
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-2/5@medium" %}
-            {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          {% cell 'u-bolt-width-1/1 u-bolt-width-2/5@medium' %}
+            {% include '@bolt-components-card-replacement/card-replacement.twig' with {
               media: {
                 image: {
-                  src: "/images/content/backgrounds/background-tall-3.jpg",
-                  alt: "Anthem Video",
+                  src: '/images/content/backgrounds/background-tall-3.jpg',
+                  alt: 'Anthem Video',
                 },
               },
               body: {
-                eyebrow: "Whitepaper",
-                headline: "Anthem: Service Desktop",
-                paragraph: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+                eyebrow: 'Whitepaper',
+                headline: 'Anthem: Service Desktop',
+                paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
               },
               actions: [
                 {
-                  text: "Get the report",
-                  url: "https://pega.com",
+                  text: 'Get the report',
+                  url: 'https://pega.com',
                 },
               ],
             } only %}
@@ -293,24 +293,24 @@
 
 
 {# Intelligence #}
-{% embed "@bolt-components-band/band.twig" with {
-  size: "large",
-  theme: "xlight",
+{% embed '@bolt-components-band/band.twig' with {
+  size: 'large',
+  theme: 'xlight',
   full_bleed: true,
   attributes: {
     id: [
-      "intelligence"
+      'intelligence'
     ]
   }
 } %}
 
       {% block band_content  %}
-        {% grid "o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev" %}
+        {% grid 'o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev' %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
-            text: "Find Improvement Opportunities",
-            size: "xxlarge",
-            tag: "h2"
+            {% include '@bolt/headline.twig' with {
+            text: 'Find Improvement Opportunities',
+            size: 'xxlarge',
+            tag: 'h2'
             } only %}
             <p>It’s 3 p.m. Do you know how your employees are doing? What are they struggling with? What best practices have they discovered? How do you help them be more effective?</p>
 
@@ -320,23 +320,23 @@
 
             <p>Because once you know the details, you can act. And that makes all the difference.</p>
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-2/5@small" %}
-             {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          {% cell 'u-bolt-width-1/1 u-bolt-width-2/5@small' %}
+             {% include '@bolt-components-card-replacement/card-replacement.twig' with {
               media: {
                 image: {
-                  src: "/images/content/backgrounds/background-tall-2.jpg",
-                  alt: "Anthem Video",
+                  src: '/images/content/backgrounds/background-tall-2.jpg',
+                  alt: 'Anthem Video',
                 },
               },
               body: {
-                eyebrow: "Whitepaper",
-                headline: "Anthem: Service Desktop",
-                paragraph: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+                eyebrow: 'Whitepaper',
+                headline: 'Anthem: Service Desktop',
+                paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
               },
               actions: [
                 {
-                  text: "Get the report",
-                  url: "https://pega.com",
+                  text: 'Get the report',
+                  url: 'https://pega.com',
                 },
               ],
             } only %}
@@ -347,24 +347,24 @@
 {# End Intelligence #}
 
 {# Integration #}
-{% embed "@bolt-components-band/band.twig" with {
-  size: "large",
-  theme: "xlight",
+{% embed '@bolt-components-band/band.twig' with {
+  size: 'large',
+  theme: 'xlight',
   full_bleed: true,
   attributes: {
     id: [
-      "integration"
+      'integration'
     ]
   }
 } %}
 
       {% block band_content  %}
-        {% grid "o-bolt-grid--large o-bolt-grid--matrix" %}
+        {% grid 'o-bolt-grid--large o-bolt-grid--matrix' %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
-            text: "The Last Mile of Integration",
-            size: "xxlarge",
-            tag: "h2"
+            {% include '@bolt/headline.twig' with {
+            text: 'The Last Mile of Integration',
+            size: 'xxlarge',
+            tag: 'h2'
             } only %}
             <p>Mainframes without APIs? CRM and other mission critical apps? You can’t automate if you can’t connect to the systems that matter. Pega gives you the tools you need to bridge the last mile of integration. It’s everything you need to wrap and renew your enterprise applications.</p>
 
@@ -372,23 +372,23 @@
 
             <p>Leveraging productivity bots that simplify the employee experience injects instant ROI into your business. In just two to three weeks you'll turn all your service agents, back-office workers, or front-line sellers into productivity ninjas. They’ll be happier. You’ll be happier. And your customers will be happier.</p>
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-2/5@medium" %}
-            {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          {% cell 'u-bolt-width-1/1 u-bolt-width-2/5@medium' %}
+            {% include '@bolt-components-card-replacement/card-replacement.twig' with {
               media: {
                 image: {
-                  src: "/images/content/backgrounds/background-tall-3.jpg",
-                  alt: "Anthem Video",
+                  src: '/images/content/backgrounds/background-tall-3.jpg',
+                  alt: 'Anthem Video',
                 },
               },
               body: {
-                eyebrow: "Whitepaper",
-                headline: "Anthem: Service Desktop",
-                paragraph: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+                eyebrow: 'Whitepaper',
+                headline: 'Anthem: Service Desktop',
+                paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
               },
               actions: [
                 {
-                  text: "Get the report",
-                  url: "https://pega.com",
+                  text: 'Get the report',
+                  url: 'https://pega.com',
                 },
               ],
             } only %}
@@ -400,24 +400,24 @@
 
 
 {# governance #}
-{% embed "@bolt-components-band/band.twig" with {
-  size: "large",
-  theme: "xlight",
+{% embed '@bolt-components-band/band.twig' with {
+  size: 'large',
+  theme: 'xlight',
   full_bleed: true,
   attributes: {
     id: [
-      "governance"
+      'governance'
     ]
   }
 } %}
 
       {% block band_content  %}
-        {% grid "o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev" %}
+        {% grid 'o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev' %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
-            text: "Ensure Governance and Oversight",
-            size: "xxlarge",
-            tag: "h2"
+            {% include '@bolt/headline.twig' with {
+            text: 'Ensure Governance and Oversight',
+            size: 'xxlarge',
+            tag: 'h2'
             } only %}
             <p>As organizations continue to collect software robots, the speed of application updates accelerates, and the application of artificial intelligence broadens. Sooner or later, you’ll get caught up in a management nightmare if you have not considered how to provide consistent oversight and governance over bots, cognitive or not.</p>
 
@@ -425,23 +425,23 @@
 
             <p>Capabilities such as auto self-documentation ensure an audit trail is maintained of all activities so compliance risk is minimized and required reporting is streamlined and automated.</p>
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-2/5@small u-bolt-margin---small" %}
-            {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          {% cell 'u-bolt-width-1/1 u-bolt-width-2/5@small u-bolt-margin---small' %}
+            {% include '@bolt-components-card-replacement/card-replacement.twig' with {
               media: {
                 image: {
-                  src: "/images/content/backgrounds/background-tall-2.jpg",
-                  alt: "Anthem Video",
+                  src: '/images/content/backgrounds/background-tall-2.jpg',
+                  alt: 'Anthem Video',
                 },
               },
               body: {
-                eyebrow: "Whitepaper",
-                headline: "Anthem: Service Desktop",
-                paragraph: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+                eyebrow: 'Whitepaper',
+                headline: 'Anthem: Service Desktop',
+                paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
               },
               actions: [
                 {
-                  text: "Get the report",
-                  url: "https://pega.com",
+                  text: 'Get the report',
+                  url: 'https://pega.com',
                 },
               ],
             } only %}
@@ -456,27 +456,27 @@
       text: 'Custom label',
       sources: [
         {
-          name: "facebook",
+          name: 'facebook',
           attributes: {
-            href: "https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse"
+            href: 'https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse'
           }
         },
         {
-          name: "twitter",
+          name: 'twitter',
           attributes: {
-            href: "https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}"
+            href: 'https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}'
           }
         },
         {
-          name: "linkedin",
+          name: 'linkedin',
           attributes: {
-            href: "https://www.linkedin.com/shareArticle?url={url}&title={title}"
+            href: 'https://www.linkedin.com/shareArticle?url={url}&title={title}'
           }
         },
         {
-          name: "email",
+          name: 'email',
           attributes: {
-            href: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+            href: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
           }
         }
       ]
@@ -486,20 +486,20 @@
     {% include '@bolt-components-share/share.twig' with {
       sources: [
         {
-          name: "facebook",
-          url: "https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse"
+          name: 'facebook',
+          url: 'https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse'
         },
         {
-          name: "twitter",
-          url: "https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}"
+          name: 'twitter',
+          url: 'https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}'
         },
         {
-          name: "linkedin",
-          url: "https://www.linkedin.com/shareArticle?url={url}&title={title}"
+          name: 'linkedin',
+          url: 'https://www.linkedin.com/shareArticle?url={url}&title={title}'
         },
         {
-          name: "email",
-          url: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+          name: 'email',
+          url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
         }
       ]
     } only %}

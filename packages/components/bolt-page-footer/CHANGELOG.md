@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-footer/compare/v4.4.0...v4.5.0) (2021-09-24)
+
+**Note:** Version bump only for package @bolt/components-page-footer
+
+
+
+
+
 # [4.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-footer/compare/v4.3.0...v4.4.0) (2021-09-13)
 
 **Note:** Version bump only for package @bolt/components-page-footer

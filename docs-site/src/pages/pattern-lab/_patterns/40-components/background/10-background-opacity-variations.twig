@@ -2,17 +2,17 @@
 
 {% for opacity in schema.properties.opacity.enum %}
 <p>Opacity: {{ opacity|capitalize }}</p>
-{% include "./_00-background-band-demo.twig" with {
+{% include './_00-background-band-demo.twig' with {
   background: {
     opacity: opacity,
     focal_point: {
-      vertical: "center",
-      horizontal: "center"
+      vertical: 'center',
+      horizontal: 'center'
     },
     content_items: [
       {
-        pattern: "image",
-        src: "/images/content/backgrounds/background-tall-2.jpg"
+        pattern: 'image',
+        src: '/images/content/backgrounds/background-tall-2.jpg'
       }
     ]
   }

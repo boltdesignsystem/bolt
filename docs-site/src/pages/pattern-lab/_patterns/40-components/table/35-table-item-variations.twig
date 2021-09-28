@@ -1,41 +1,41 @@
 {% set inline_image %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      src: "/images/placeholders/tout-4x3-climber.jpg",
-      alt: "A Rock Climber",
-      loading: "lazy"
+      src: '/images/placeholders/tout-4x3-climber.jpg',
+      alt: 'A Rock Climber',
+      loading: 'lazy'
     }
   } only %}
 {% endset %}
 
 <h3>Pass different items into cells</h3>
-{% include "@bolt-components-table/table.twig" with {
-  format: "regular",
+{% include '@bolt-components-table/table.twig' with {
+  format: 'regular',
   first_col_fixed_width: true,
   headers: {
     top: {
       cells: [
-        "Item number",
-        "Description",
-        "Assemblies",
+        'Item number',
+        'Description',
+        'Assemblies',
       ]
     },
     side: {
       cells: [
-        include("@bolt-components-headline/headline.twig", {
-          size: "small",
-          text: "Build 2.0.1.0 — SR-49969",
+        include('@bolt-components-headline/headline.twig', {
+          size: 'small',
+          text: 'Build 2.0.1.0 — SR-49969',
         }),
-        "Build 2.0.1.0 — SR-49969",
+        'Build 2.0.1.0 — SR-49969',
         {
-          content: "Build 1.1.360 — SR-44891",
+          content: 'Build 1.1.360 — SR-44891',
           attributes: {
             rowspan: 2,
           }
         },
         {},
         include('@bolt-elements-text-link/text-link.twig', {
-          content: "Build 1.1.354 — SR-44889",
+          content: 'Build 1.1.354 — SR-44889',
           attributes: {
             href: '#!'
           }
@@ -46,47 +46,47 @@
   rows: [
     {
       cells: [
-        include("@bolt-elements-button/button.twig", {
-          content: "SR-49941",
-          size: "small",
+        include('@bolt-elements-button/button.twig', {
+          content: 'SR-49941',
+          size: 'small',
           attributes: {
-            href: "#!",
+            href: '#!',
           }
         }),
-        "This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.",
-        "OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe",
+        'This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.',
+        'OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe',
       ]
     },
     {
       cells: [
-        "SR-44869",
+        'SR-44869',
         {
           content: inline_image,
         },
-        "OpenSpan.Updater.Git.dll",
+        'OpenSpan.Updater.Git.dll',
       ]
     },
     {
       cells: [
-        "SR-43163",
-        "This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.",
-        include("@bolt-elements-image/image.twig", {
+        'SR-43163',
+        'This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.',
+        include('@bolt-elements-image/image.twig', {
           attributes: {
-            src: "/images/placeholders/tout-4x3-climber.jpg",
-            alt: "A Rock Climber",
-            loading: "lazy",
+            src: '/images/placeholders/tout-4x3-climber.jpg',
+            alt: 'A Rock Climber',
+            loading: 'lazy',
           }
         }),
       ]
     },
     {
       cells: [
-        include("@bolt-components-chip/chip.twig", {
-          text: "SR-44850",
-          url: "#!",
+        include('@bolt-components-chip/chip.twig', {
+          text: 'SR-44850',
+          url: '#!',
         }),
-        "This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.",
-        "ManagedOpenSsl.dll",
+        'This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.',
+        'ManagedOpenSsl.dll',
       ]
     },
   ],
