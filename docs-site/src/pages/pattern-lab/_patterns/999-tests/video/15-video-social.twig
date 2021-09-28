@@ -1,0 +1,66 @@
+{% set main_content %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with Default Social Options</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+
+  {% set video1 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-social-description="Custom Social Title"
+      muted
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with Custom Social Description (Title)</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video1,
+    ratio: '16/9'
+  } only %}
+
+  {% set video2 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-social-url="http://pega.com"
+      muted
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with Custom Social URL</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video2,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}
+
+
+                        // data-social-title (optional) [string]: CURRENT NOT BEING DISPLAYED
+                                // data-social-description (optional) [string]: Social Panel title
+                    // data-social-url (optional[default: the page url]) [string]: change the shared social url
+        // data-social-facebook (optional [default: true]) [boolean]: Displays the Facebook button
+        // data-social-twitter (optional [default: true]) [boolean]: Displays the Twitter button
+        // data-social-tumblr (optional [default: false]) [boolean]: Displays the tumblr button
+        // data-social-pinterest (optional [default: false]) [boolean]: Displays the Pinterest button
+        // data-social-linkedin (optional [default: true]) [boolean]: Displays the Linkedin button

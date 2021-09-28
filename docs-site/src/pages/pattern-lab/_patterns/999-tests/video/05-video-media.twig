@@ -1,0 +1,140 @@
+{% set main_content %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with No Meta Data</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+
+  {% set video1 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-preview
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with Preview</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video1,
+    ratio: '16/9'
+  } only %}
+
+  {% set video2 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-title
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with Title</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video2,
+    ratio: '16/9'
+  } only %}
+
+  {% set video3 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-duration
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  <h2>Video with Duration</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video3,
+    ratio: '16/9'
+  } only %}
+
+  {% set video4 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-title
+      data-media-duration
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with Title and Duration</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video4,
+    ratio: '16/9'
+  } only %}
+
+  {% set video5 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-preview
+      data-media-duration
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with Preview and Duration</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video5,
+    ratio: '16/9'
+  } only %}
+
+  {% set video6 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-preview
+      data-media-title
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with Preview and Title</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video6,
+    ratio: '16/9'
+  } only %}
+
+  {% set video7 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-preview
+      data-media-title
+      data-media-duration
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with Preview, Title and Duration</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video7,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}

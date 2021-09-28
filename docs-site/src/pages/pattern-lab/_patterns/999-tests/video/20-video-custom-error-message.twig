@@ -1,0 +1,61 @@
+{% set main_content %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="489212232000"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with No Custom Error Message</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+
+  {% set video1 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="489212232000"
+      data-custom-error-message="This is a test for a short Custom Error Message"
+      muted
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with Short Custom Error Message</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video1,
+    ratio: '16/9'
+  } only %}
+
+  {% set video2 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="489212232000"
+      data-custom-error-message="This is a test for a long Custom Error Message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere leo non nunc imperdiet pulvinar. Vivamus elementum ex ac diam scelerisque, nec congue risus molestie. Suspendisse malesuada nulla dolor, in gravida ipsum aliquet ac. Sed porta id libero eu ullamcorper. Etiam dignissim sem diam, non fringilla lectus condimentum sit amet. Curabitur lacinia lobortis urna, viverra elementum sapien faucibus vitae. Aliquam maximus"
+      muted
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with Long Custom Error Message</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video2,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}
+
+
+
+
+data-custom-error-message

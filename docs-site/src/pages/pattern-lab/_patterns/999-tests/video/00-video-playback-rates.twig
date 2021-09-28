@@ -1,0 +1,54 @@
+{% set main_content %}
+{% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with No Playback Rates</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+
+  {% set video1 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-playback-rates="[1,1.5,1.75]"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with [1,1.5,1.75] Playback Rates</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video1,
+    ratio: '16/9'
+  } only %}
+
+  {% set video2 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-playback-rates="[2,2.5,3]"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with [2,2.5,3] Playback Rates</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video2,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}

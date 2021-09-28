@@ -5,27 +5,48 @@
       data-player="O3FkeBiaDz"
       data-embed="default"
       data-video-id="4892122320001"
-      data-media-preview
       controls
       class="c-base-video"></video-js>
   {% endset %}
+  <h2>Video with No Autoplay</h2>
   {% include '@bolt-components-ratio/ratio.twig' with {
     children: video,
     ratio: '16/9'
   } only %}
+
   {% set video1 %}
     <video-js
       data-account="1900410236"
       data-player="O3FkeBiaDz"
       data-embed="default"
       data-video-id="4892122320001"
-      data-media-title
-      data-media-preview
+      data-autoplay-on-viewport
+      muted
       controls
       class="c-base-video"></video-js>
   {% endset %}
+  <h2>Video with Autoplay in Viewport</h2>
   {% include '@bolt-components-ratio/ratio.twig' with {
     children: video1,
+    ratio: '16/9'
+  } only %}
+
+  <div style="position:relative;height:1000px;"></div>
+
+  {% set video2 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-autoplay-on-viewport
+      muted
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with Autoplay Outside Viewport</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video2,
     ratio: '16/9'
   } only %}
 {% endset %}
