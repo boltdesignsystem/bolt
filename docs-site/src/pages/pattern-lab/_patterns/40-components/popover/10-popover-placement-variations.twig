@@ -1,5 +1,5 @@
 {% set description %}
-  Adjust the placement of the content by using the <bolt-code-snippet display="inline">placement</bolt-code-snippet> prop. It can be set to a specific placement or automatically calculated. It is recommended to use the <bolt-code-snippet display="inline">boundary</bolt-code-snippet> prop in tandem with auto placement. This ensures that the auto placement will happen within a specific container instead of the entire page. The <bolt-code-snippet display="inline">boundary</bolt-code-snippet> prop accepts all selector names (eg: .class, #id, and [attribute]).
+  Adjust the placement of the content by using the <code>placement</code> prop. It can be set to a specific placement or automatically calculated. It is recommended to use the <code>boundary</code> prop in tandem with auto placement. This ensures that the auto placement will happen within a specific container instead of the entire page. The <code>boundary</code> prop accepts all selector names (eg: .class, #id, and [attribute]).
 {% endset %}
 
 {% set demo %}
@@ -73,7 +73,7 @@
   {% endset %}
 
   <bolt-banner align="start">
-    <bolt-text><strong>Auto placement with a boundary (recommended): </strong>The following container has the <bolt-code-snippet display="inline">.js-bolt-popover-boundary</bolt-code-snippet> class and the popover&rsquo;s <bolt-code-snippet display="inline">boundary</bolt-code-snippet> prop is set to said class. The popover&rsquo;s auto placement will always appear within the container.</bolt-text>
+    <bolt-text><strong>Auto placement with a boundary (recommended): </strong>The following container has the <code>.js-bolt-popover-boundary</code> class and the popover&rsquo;s <code>boundary</code> prop is set to said class. The popover&rsquo;s auto placement will always appear within the container.</bolt-text>
   </bolt-banner>
 
   <div class="t-bolt-light u-bolt-padding-small u-bolt-margin-bottom-large js-bolt-popover-boundary">
@@ -348,7 +348,7 @@
   {% endset %}
 
   <bolt-banner align="start">
-    <bolt-text><strong>Specific placement: </strong>When setting a specific placement, it will ignore the <bolt-code-snippet display="inline">boundary</bolt-code-snippet> prop and always render the placement stated. This feature will cause undesired overflow issues in smaller screens, use with caution.</bolt-text>
+    <bolt-text><strong>Specific placement: </strong>When setting a specific placement, it will ignore the <code>boundary</code> prop and always render the placement stated. This feature will cause undesired overflow issues in smaller screens, use with caution.</bolt-text>
   </bolt-banner>
 
   {% include '@bolt-components-grid/grid.twig' with {
