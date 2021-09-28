@@ -66,12 +66,17 @@
     margin-right: var(--bolt-spacing-x-medium);
   }
 
-  a,
-  button,
-  bolt-chip,
-  bolt-trigger {
+  > a,
+  > button,
+  > bolt-trigger {
+    display: block;
     position: relative; // This raises the stacking order of the signifier link above the main heading link.
+    width: 100%; // If the signifier is clickable, the wrapping action element must take up full width of the signifier container.
     pointer-events: all;
+  }
+
+  > button {
+    @include bolt-button-native-styles-reset; // Rest browser defaults if semantic button is used as the wrapping action element for the signifier.
   }
 }
 
