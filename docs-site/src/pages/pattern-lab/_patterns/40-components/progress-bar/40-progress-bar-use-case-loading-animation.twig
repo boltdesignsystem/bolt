@@ -69,9 +69,8 @@
 </bolt-stack>
 
 <bolt-text headline>Custom JavaScript</bolt-text>
-<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-  {{ loadingJS | replace({
-    '<': '&lt;',
-    '>': '&gt;',
-  }) | trim | raw }}
-{% endspaceless %}</bolt-code-snippet>
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: loadingJS,
+  lang: 'js',
+  mode: 'dark',
+} only %}
