@@ -1,13 +1,13 @@
 <bolt-text headline font-size="xlarge">Toggle the Modal</bolt-text>
-<bolt-text>You can toggle a modal either by adding the <bolt-code-snippet display="inline" lang="html">data-bolt-modal-target</bolt-code-snippet> data attribute to a trigger element, or by calling the Modal's <bolt-code-snippet display="inline" lang="html">show()</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">hide()</bolt-code-snippet> methods directly via JavaScript.</bolt-text>
+<bolt-text>You can toggle a modal either by adding the <code>data-bolt-modal-target</code> data attribute to a trigger element, or by calling the Modal's <code>show()</code> and <code>hide()</code> methods directly via JavaScript.</bolt-text>
 
 <bolt-text headline font-size="large">Data attribute</bolt-text>
-<bolt-text>Use the data attribute <bolt-code-snippet display="inline" lang="html">data-bolt-modal-target</bolt-code-snippet> on a <a href="/pattern-lab/?p=components-modal-trigger-variations" class="e-bolt-text-link">trigger element</a> to toggle a modal. The value of the data attribute must be a valid CSS selector that matches your target modal. When you click the trigger the modal will show if currently hidden or it will hide if currently shown.
+<bolt-text>Use the data attribute <code>data-bolt-modal-target</code> on a <a href="/pattern-lab/?p=components-modal-trigger-variations" class="e-bolt-text-link">trigger element</a> to toggle a modal. The value of the data attribute must be a valid CSS selector that matches your target modal. When you click the trigger the modal will show if currently hidden or it will hide if currently shown.
 </bolt-text>
 
 <bolt-text headline font-size="medium">Demo</bolt-text>
 {% set modal_content %}
-  <bolt-text>This modal was shown via the <bolt-code-snippet display="inline" lang="html">data-bolt-modal-target</bolt-code-snippet> data attribute.</bolt-text>
+  <bolt-text>This modal was shown via the <code>data-bolt-modal-target</code> data attribute.</bolt-text>
   <bolt-text>The same data attribute is used on the button below to hide the modal.</bolt-text>
   {% include "@bolt-elements-button/button.twig" with {
     content: "Close Modal",
@@ -36,14 +36,14 @@
 } only %}
 
 <bolt-text headline font-size="large">JavaScript</bolt-text>
-<bolt-text>Use the Modal's <bolt-code-snippet display="inline" lang="html">show()</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">hide()</bolt-code-snippet> methods to toggle a modal. Before calling any methods on the modal you must first wait for the Modal component to be ready. See the demo below for reference.
+<bolt-text>Use the Modal's <code>show()</code> and <code>hide()</code> methods to toggle a modal. Before calling any methods on the modal you must first wait for the Modal component to be ready. See the demo below for reference.
 </bolt-text>
 
 <bolt-text headline font-size="medium">Demo</bolt-text>
 
 {% set js_modal_content %}
-  <bolt-text>This modal was shown by calling the <bolt-code-snippet display="inline" lang="html">show()</bolt-code-snippet> method.</bolt-text>
-  <bolt-text>The <bolt-code-snippet display="inline" lang="html">hide()</bolt-code-snippet> method will be called when you click the button below.</bolt-text>
+  <bolt-text>This modal was shown by calling the <code>show()</code> method.</bolt-text>
+  <bolt-text>The <code>hide()</code> method will be called when you click the button below.</bolt-text>
   {% include "@bolt-elements-button/button.twig" with {
     content: "Close Modal",
     size: "small",
@@ -94,9 +94,8 @@
 {% endset %}
 {{ javascript_modal }}
 <bolt-text headline font-size="large">Custom JavaScript</bolt-text>
-<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-  {{ javascript_modal | replace({
-    '<': '&lt;',
-    '>': '&gt;',
-  }) | trim | raw }}
-{% endspaceless %}</bolt-code-snippet>
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: javascript_modal,
+  lang: 'js',
+  mode: 'dark',
+} only %}
