@@ -1,30 +1,30 @@
-{% set themes = get_data("@bolt/themes.schema.json") %}
+{% set themes = get_data('@bolt/themes.schema.json') %}
 
 {% for theme in themes.properties.colors.enum %}
   <div class="t-bolt-{{ theme }} u-bolt-padding-small">
-    {% embed "@bolt-components-dropdown/dropdown.twig" with {
-      title: "Dropdown Menu, Theme: " ~ theme,
+    {% embed '@bolt-components-dropdown/dropdown.twig' with {
+      title: 'Dropdown Menu, Theme: ' ~ theme,
       center: true
     } %}
       {% block content %}
-        {% include "@bolt-components-list/list.twig" with {
+        {% include '@bolt-components-list/list.twig' with {
           inset: true,
-          spacing: "small",
+          spacing: 'small',
           items: [
             include('@bolt-elements-text-link/text-link.twig', {
-              content: "Link 1",
+              content: 'Link 1',
               attributes: {
                 href: '#!'
               }
             }),
             include('@bolt-elements-text-link/text-link.twig', {
-              content: "Link 2",
+              content: 'Link 2',
               attributes: {
                 href: '#!'
               }
             }),
             include('@bolt-elements-text-link/text-link.twig', {
-              content: "Link 3",
+              content: 'Link 3',
               attributes: {
                 href: '#!'
               }

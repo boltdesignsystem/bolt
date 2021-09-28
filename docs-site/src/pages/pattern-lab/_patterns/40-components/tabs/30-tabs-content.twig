@@ -1,99 +1,99 @@
 {% set image_content %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      src: "/images/placeholders/landscape-16x9-mountains.jpg",
-      alt: "Mountains",
-      loading: "lazy",
+      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+      alt: 'Mountains',
+      loading: 'lazy',
     }
   } only %}
 {% endset %}
 
 {% set table_content %}
-  {% include "@bolt-components-table/table.twig" with {
+  {% include '@bolt-components-table/table.twig' with {
     headers: {
       top: {
         cells: [
-          "Column 1",
-          "Column 2",
-          "Column 3",
+          'Column 1',
+          'Column 2',
+          'Column 3',
         ]
       },
       side: {
         cells: [
-          "Row 1",
-          "Row 2",
-          "Row 3",
-          "Footer",
+          'Row 1',
+          'Row 2',
+          'Row 3',
+          'Footer',
         ]
       }
     },
     rows: [
       {
         cells: [
-          "R1C1",
-          "R1C2",
-          "R1C3",
+          'R1C1',
+          'R1C2',
+          'R1C3',
         ]
       },
       {
         cells: [
-          "R2C1",
-          "R2C2",
-          "R2C3",
+          'R2C1',
+          'R2C2',
+          'R2C3',
         ]
       },
       {
         cells: [
-          "R3C1",
-          "R3C2",
-          "R3C3",
+          'R3C1',
+          'R3C2',
+          'R3C3',
         ]
       }
     ],
     footer: {
       cells: [
-        "FC1",
-        "FC2",
-        "FC3",
+        'FC1',
+        'FC2',
+        'FC3',
       ]
     }
   } only %}
 {% endset %}
 
 {% set text_group_content %}
-  {% include "@bolt/eyebrow.twig" with {
-    text: "Eyebrow"
+  {% include '@bolt/eyebrow.twig' with {
+    text: 'Eyebrow'
   } only %}
 
-  {% include "@bolt-components-headline/headline.twig" with {
-    text: "This is a headline.",
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'This is a headline.',
   } only %}
 
-  {% include "@bolt-components-headline/text.twig" with {
-    text: "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    tag: "p"
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    tag: 'p'
   } only %}
 
   {% set button_1 %}
-    {% include "@bolt-elements-button/button.twig" with {
-      content: "CTA 1",
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'CTA 1',
       attributes: {
-        href: "www.google.com"
+        href: 'www.google.com'
       }
     } only %}
   {% endset %}
 
   {% set button_2 %}
-    {% include "@bolt-elements-button/button.twig" with {
-      content: "CTA 12",
-      hierarchy: "secondary",
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'CTA 12',
+      hierarchy: 'secondary',
       attributes: {
-        href: "www.google.com"
+        href: 'www.google.com'
       }
     } only %}
   {% endset %}
 
-  {% include "@bolt-components-list/list.twig" with {
+  {% include '@bolt-components-list/list.twig' with {
     display: 'inline',
     items: [
       button_1,
@@ -103,64 +103,64 @@
 {% endset %}
 
 {% set accordion_content %}
-  {% include "@bolt-components-accordion/accordion.twig" with {
+  {% include '@bolt-components-accordion/accordion.twig' with {
     items: [
       {
-        trigger: "Accordion item 1",
-        content: "This is the accordion content.",
+        trigger: 'Accordion item 1',
+        content: 'This is the accordion content.',
       },
       {
-        trigger: "Accordion item 2",
-        content: "This is the accordion content.",
+        trigger: 'Accordion item 2',
+        content: 'This is the accordion content.',
       },
       {
-        trigger: "Accordion item 3",
-        content: "This is the accordion content.",
+        trigger: 'Accordion item 3',
+        content: 'This is the accordion content.',
       }
     ]
   } only %}
 {% endset %}
 
 {% set placeholder_content %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-      text: "Tab panel",
-      size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel',
+      size: 'large',
     } only %}
 {% endset %}
 
 {% set slide_1 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 1",
-    size: "xlarge",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 1',
+    size: 'xlarge',
   } only %}
 {% endset %}
 {% set slide_2 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 2",
-    size: "xlarge",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 2',
+    size: 'xlarge',
   } only %}
 {% endset %}
 {% set slide_3 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 3",
-    size: "xlarge",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 3',
+    size: 'xlarge',
   } only %}
 {% endset %}
 {% set slide_4 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 4",
-    size: "xlarge",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 4',
+    size: 'xlarge',
   } only %}
 {% endset %}
 {% set slide_5 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 5",
-    size: "xlarge",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 5',
+    size: 'xlarge',
   } only %}
 {% endset %}
 
 {% set carousel_content %}
-  {% include "@bolt-components-carousel/carousel.twig" with {
+  {% include '@bolt-components-carousel/carousel.twig' with {
     slides_per_view: 2,
     slides: [
       slide_1,
@@ -185,44 +185,44 @@
       class="c-base-video"></video-js>
   {% endset %}
 
-  {% include "@bolt-components-ratio/ratio.twig" with {
+  {% include '@bolt-components-ratio/ratio.twig' with {
     children: video,
-    ratio: "16/9"
+    ratio: '16/9'
   } only %}
 {% endset %}
 
 {% set tab_content_1 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-      text: "Tab panel 1",
-      size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel 1',
+      size: 'large',
     } only %}
 {% endset %}
 {% set tab_content_2 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-      text: "Tab panel 2",
-      size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel 2',
+      size: 'large',
     } only %}
 {% endset %}
 {% set tab_content_3 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-      text: "Tab panel 3",
-      size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel 3',
+      size: 'large',
     } only %}
 {% endset %}
 
 {% set tabs_content %}
-  {% include "@bolt-components-tabs/tabs.twig" with {
+  {% include '@bolt-components-tabs/tabs.twig' with {
     panels: [
       {
-        label: "Tab label 1",
+        label: 'Tab label 1',
         content: tab_content_1,
       },
       {
-        label: "Tab label 2",
+        label: 'Tab label 2',
         content: tab_content_2,
       },
       {
-        label: "Tab label 3",
+        label: 'Tab label 3',
         content: tab_content_3,
       }
     ]
@@ -230,36 +230,36 @@
 {% endset %}
 
 <div class="u-bolt-margin-bottom-small">
-  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
-      {% include "@bolt-components-tabs/tabs.twig" with {
+  {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center' %}
+    {% cell 'u-bolt-width-12/12 u-bolt-width-9/12@small' %}
+      {% include '@bolt-components-tabs/tabs.twig' with {
         panels: [
           {
-            label: "A text group",
+            label: 'A text group',
             content: text_group_content
           },
           {
-            label: "A table",
+            label: 'A table',
             content: table_content
           },
           {
-            label: "An image",
+            label: 'An image',
             content: image_content
           },
           {
-            label: "A video",
+            label: 'A video',
             content: video_content,
           },
           {
-            label: "Tabs",
+            label: 'Tabs',
             content: tabs_content,
           },
           {
-            label: "An accordion",
+            label: 'An accordion',
             content: accordion_content,
           },
           {
-            label: "A carousel",
+            label: 'A carousel',
             content: carousel_content,
           },
         ]
@@ -269,32 +269,32 @@
 </div>
 
 <div class="u-bolt-margin-bottom-small">
-  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
-      {% include "@bolt-components-tabs/tabs.twig" with {
+  {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center' %}
+    {% cell 'u-bolt-width-12/12 u-bolt-width-9/12@small' %}
+      {% include '@bolt-components-tabs/tabs.twig' with {
         panels: [
           {
-            label: "Tab label 1",
+            label: 'Tab label 1',
             content: placeholder_content
           },
           {
-            label: "Tab label 2",
+            label: 'Tab label 2',
             content: placeholder_content
           },
           {
-            label: "A very long tab label",
+            label: 'A very long tab label',
             content: placeholder_content
           },
           {
-            label: "Tab label 4",
+            label: 'Tab label 4',
             content: placeholder_content
           },
           {
-            label: "Tab label 5",
+            label: 'Tab label 5',
             content: placeholder_content
           },
           {
-            label: "Tab label 6",
+            label: 'Tab label 6',
             content: placeholder_content
           },
         ]
@@ -304,36 +304,36 @@
 </div>
 
 {% set basic_tabs %}
-  {% include "@bolt-components-tabs/tabs.twig" with {
+  {% include '@bolt-components-tabs/tabs.twig' with {
     panels: [
       {
-        label: "Tab label 1",
+        label: 'Tab label 1',
         content: placeholder_content
       },
       {
-        label: "Tab label 2",
+        label: 'Tab label 2',
         content: placeholder_content
       },
       {
-        label: "Tab label 3",
+        label: 'Tab label 3',
         content: placeholder_content
       },
       {
-        label: "Tab label 4",
+        label: 'Tab label 4',
         content: placeholder_content
       },
       {
-        label: "Tab label 5",
+        label: 'Tab label 5',
         content: placeholder_content
       },
       {
-        label: "Tab label 6",
+        label: 'Tab label 6',
         content: placeholder_content
       },
     ]
   } only %}
 {% endset %}
 
-{% include "@bolt-components-band/band.twig" with {
+{% include '@bolt-components-band/band.twig' with {
   content: basic_tabs,
 } only %}
