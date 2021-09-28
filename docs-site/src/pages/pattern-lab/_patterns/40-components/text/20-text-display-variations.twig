@@ -15,7 +15,12 @@
     Display Usage
   </bolt-text>
   <bolt-text>
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> can be defined as a paragraph of text (block display) or a piece of inline text (inline display).
+    <code>&lt;bolt-text&gt;</code> can be defined as a paragraph of text (block display) or a piece of inline text (inline display).
   </bolt-text>
   {% include text_code.code_example(text_demo, true) %}
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: text_demo,
+    lang: 'html',
+    mode: 'dark',
+  } only %}
 {% endblock %}
