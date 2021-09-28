@@ -24,8 +24,8 @@
     Bolt Figure is a web component. Use the custom element <bolt-code-snippet display="inline" lang="html">&lt;bolt-figure&gt;</bolt-code-snippet> to wrap your figure media and caption. The figure media must have the attribute <bolt-code-snippet display="inline" lang="html">slot="media"</bolt-code-snippet> or be wrapped by an element with that attribute. Everything else inside the <bolt-code-snippet display="inline" lang="html">&lt;bolt-figure&gt;</bolt-code-snippet> tag is considered the caption. We recommend simply using text with optional inline markup (as seen below).
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+      {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
         {{ figure_web_component_demo }}
       {% endcell %}
     {% endgrid %}

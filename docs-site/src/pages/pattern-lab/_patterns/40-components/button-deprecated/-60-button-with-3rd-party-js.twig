@@ -1,16 +1,16 @@
 {% include '@pl/00-deprecated-button-docs.twig' %}
 
-{% set themes = get_data("@bolt/themes.schema.json") %}
+{% set themes = get_data('@bolt/themes.schema.json') %}
 
 <h3>Add a js- target class for the button to perform something through javascript</h3>
-{% embed "@utils/theme-demo.twig" %}
+{% embed '@utils/theme-demo.twig' %}
   {% block demo_content %}
-    {% include "@bolt-components-button/button.twig" with {
-      theme: "xdark",
-      text: "Toggle theme with javascript",
+    {% include '@bolt-components-button/button.twig' with {
+      theme: 'xdark',
+      text: 'Toggle theme with javascript',
       attributes: {
         class: [
-          "js-button-theme-xdark"
+          'js-button-theme-xdark'
         ]
       }
     } %}

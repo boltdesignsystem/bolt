@@ -15,21 +15,21 @@ describe('<bolt-action-blocks> Component', () => {
   test('Basic usage', async () => {
     const results = await renderString(`
       {% set icon_1 %}
-        {% include "@bolt-components-icon/icon.twig" with {
+        {% include "@bolt-elements-icon/icon.twig" with {
           name: "download",
           size: "large"
         } %}
       {% endset %}
-      
+
       {% set icon_2 %}
-        {% include "@bolt-components-icon/icon.twig" with {
+        {% include "@bolt-elements-icon/icon.twig" with {
           name: "copy-to-clipboard",
           size: "large"
         } %}
       {% endset %}
-      
+
       {% set icon_3 %}
-        {% include "@bolt-components-icon/icon.twig" with {
+        {% include "@bolt-elements-icon/icon.twig" with {
           name: "calendar",
           size: "large"
         }%}
@@ -62,12 +62,12 @@ describe('<bolt-action-blocks> Component', () => {
   test('Subcomponent renders as expected', async () => {
     const results = await renderString(`
       {% set icon %}
-        {% include "@bolt-components-icon/icon.twig" with {
+        {% include "@bolt-elements-icon/icon.twig" with {
           name: "download",
           size: "large"
         } %}
       {% endset %}
-      
+
       {% include '@bolt-components-action-blocks/action-block.twig' with {
         text: 'Item 1',
         url: '#!',
@@ -83,21 +83,21 @@ describe('<bolt-action-blocks> Component', () => {
     test(`Vertical alignment of each block's content: ${spacingChoice}`, async () => {
       const results = await renderString(`
         {% set icon_1 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "download",
             size: "large"
           } %}
         {% endset %}
-        
+
         {% set icon_2 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "copy-to-clipboard",
             size: "large"
           } %}
         {% endset %}
-        
+
         {% set icon_3 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "calendar",
             size: "large"
           }%}
@@ -132,21 +132,21 @@ describe('<bolt-action-blocks> Component', () => {
     test(`Vertical alignment of each block's content: ${valignChoice}`, async () => {
       const results = await renderString(`
         {% set icon_1 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "download",
             size: "large"
           } %}
         {% endset %}
-        
+
         {% set icon_2 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "copy-to-clipboard",
             size: "large"
           } %}
         {% endset %}
-        
+
         {% set icon_3 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "calendar",
             size: "large"
           }%}
@@ -181,21 +181,21 @@ describe('<bolt-action-blocks> Component', () => {
     test(`Border in between each block: ${borderlessChoice}`, async () => {
       const results = await renderString(`
         {% set icon_1 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "download",
             size: "large"
           } %}
         {% endset %}
-        
+
         {% set icon_2 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "copy-to-clipboard",
             size: "large"
           } %}
         {% endset %}
-        
+
         {% set icon_3 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "calendar",
             size: "large"
           }%}

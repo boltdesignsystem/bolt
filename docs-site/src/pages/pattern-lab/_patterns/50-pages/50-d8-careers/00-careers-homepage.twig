@@ -8,11 +8,11 @@
 
 
 {# Variables that are editable by the content editor #}
-{% set hero_headline = "Powerful software. Powered by you." %}
-{# {% set hero_text = "We are on a mission to change the way the world builds software to create unprecedented business outcomes in customer engagement and operational excellence." %} #}
-{% set hero_background_video_poster = "/images/placeholders/landscape-16x9-mountains.jpg" %}
-{% set hero_background_video_id = "5999324539001" %}
-{% set themes = ["light", "dark"] %}
+{% set hero_headline = 'Powerful software. Powered by you.' %}
+{# {% set hero_text = 'We are on a mission to change the way the world builds software to create unprecedented business outcomes in customer engagement and operational excellence.' %} #}
+{% set hero_background_video_poster = '/images/placeholders/landscape-16x9-mountains.jpg' %}
+{% set hero_background_video_id = '5999324539001' %}
+{% set themes = ['light', 'dark'] %}
 
 
 {# Snowflake Styles #}
@@ -73,19 +73,19 @@
 {# Headline and Text #}
 {% set headline_and_text %}
   {% if hero_headline %}
-    {% include "@bolt-components-headline/headline.twig" with {
+    {% include '@bolt-components-headline/headline.twig' with {
       text: hero_headline,
-      size: "xxxlarge",
-      tag: "h1",
-      align: "center",
+      size: 'xxxlarge',
+      tag: 'h1',
+      align: 'center',
     } only %}
   {% endif %}
   {% if hero_text %}
-    {% include "@bolt-components-headline/text.twig" with {
+    {% include '@bolt-components-headline/text.twig' with {
       text: hero_text,
-      size: "large",
-      tag: "h2",
-      align: "center",
+      size: 'large',
+      tag: 'h2',
+      align: 'center',
     } only %}
   {% endif %}
 {% endset %}
@@ -93,68 +93,68 @@
 
 {# Form #}
 {% set form_children %}
-  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--center" %}
-    {% cell "c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--first u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-flex-grow" %}
-      {% include "@pl/10-form-element-demo-input-element.twig" with {
-        title: "Search",
+  {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--center' %}
+    {% cell 'c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--first u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-flex-grow' %}
+      {% include '@pl/10-form-element-demo-input-element.twig' with {
+        title: 'Search',
         inputAttributes: {
-          placeholder: "Search All Jobs",
+          placeholder: 'Search All Jobs',
           required: false,
-          type: "search"
+          type: 'search'
         },
-        labelDisplayType: "floating"
+        labelDisplayType: 'floating'
       } only %}
     {% endcell %}
 
-    {% cell "c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--third u-bolt-width-1/1" %}
+    {% cell 'c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--third u-bolt-width-1/1' %}
       <div class="gsc-careers-cta">
-        {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--center" %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-            {% include "@pl/40-form-element-demo-select.twig" with {
-              title: "Country",
+        {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--center' %}
+          {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
+            {% include '@pl/40-form-element-demo-select.twig' with {
+              title: 'Country',
               selectAttributes: {
                 required: false
               },
               options: [
                 {
-                  type: "option",
-                  value: "",
-                  label: "- Select a Country -"
+                  type: 'option',
+                  value: '',
+                  label: '- Select a Country -'
                 },
                 {
-                  type: "option",
-                  value: "a",
-                  label: "Argentina"
+                  type: 'option',
+                  value: 'a',
+                  label: 'Argentina'
                 },
                 {
-                  type: "option",
-                  value: "b",
-                  label: "Belgium"
+                  type: 'option',
+                  value: 'b',
+                  label: 'Belgium'
                 },
                 {
-                  type: "option",
-                  value: "c",
-                  label: "Croatia"
+                  type: 'option',
+                  value: 'c',
+                  label: 'Croatia'
                 }
               ]
             } only %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-            {% include "@pl/40-form-element-demo-select.twig" with {
-              title: "Categories",
+          {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
+            {% include '@pl/40-form-element-demo-select.twig' with {
+              title: 'Categories',
               selectAttributes: {
                 required: false
               },
               options: [
                 {
-                  type: "option",
-                  value: "",
-                  label: "- Select a Category -"
+                  type: 'option',
+                  value: '',
+                  label: '- Select a Category -'
                 },
                 {
-                  type: "option",
-                  value: "sales",
-                  label: "Sales"
+                  type: 'option',
+                  value: 'sales',
+                  label: 'Sales'
                 }
               ]
             } only %}
@@ -163,23 +163,23 @@
       </div>
     {% endcell %}
 
-    {% cell "u-bolt-flex-grow u-bolt-flex-shrink c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--third c-pega-careers-reorderable-form-field--second@small" %}
-      {% include "@bolt-components-form/form-button.twig" with {
-        text: "Search",
-        width: "full",
+    {% cell 'u-bolt-flex-grow u-bolt-flex-shrink c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--third c-pega-careers-reorderable-form-field--second@small' %}
+      {% include '@bolt-components-form/form-button.twig' with {
+        text: 'Search',
+        width: 'full',
       } only %}
     {% endcell %}
   {% endgrid %}
 {% endset %}
 
 {% set form %}
-  {% include "@bolt-components-form/form.twig" with {
+  {% include '@bolt-components-form/form.twig' with {
     children: form_children
   } only %}
 {% endset %}
 
 {% set card_with_form %}
-  {% embed "@bolt-components-card-replacement/card-replacement.twig" %}
+  {% embed '@bolt-components-card-replacement/card-replacement.twig' %}
     {% block body %}
       {{ form }}
     {% endblock %}
@@ -194,7 +194,7 @@
       attributes: {
         src: hero_background_video_poster,
         background: true,
-        loading: "lazy",
+        loading: 'lazy',
       }
     } only %}
     <div class="c-pega-careers-background-video__video">
@@ -209,9 +209,9 @@
           class="c-base-video"></video-js>
       {% endset %}
 
-      {% include "@bolt-components-ratio/ratio.twig" with {
+      {% include '@bolt-components-ratio/ratio.twig' with {
         children: video,
-        ratio: "16/9"
+        ratio: '16/9'
       } only %}
     </div>
   </div>
@@ -221,12 +221,12 @@
 <div>
   {# Hero Band #}
   {% for theme in themes %}
-    {% embed "@bolt-components-band/band.twig" with {
-      size: "large",
+    {% embed '@bolt-components-band/band.twig' with {
+      size: 'large',
       theme: theme,
       background: {
-        opacity: "heavy",
-        fill: "color",
+        opacity: 'heavy',
+        fill: 'color',
       },
       attributes: {
         class: "u-bolt-margin-bottom-large"
@@ -238,11 +238,11 @@
       {% endblock %}
 
       {% block band_content %}
-        {% grid "o-bolt-grid--matrix o-bolt-grid--center" %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small u-bolt-width-7/12@medium u-bolt-width-6/12@large u-bolt-margin-bottom-large" %}
+        {% grid 'o-bolt-grid--matrix o-bolt-grid--center' %}
+          {% cell 'u-bolt-width-1/1 u-bolt-width-8/12@small u-bolt-width-7/12@medium u-bolt-width-6/12@large u-bolt-margin-bottom-large' %}
             {{ headline_and_text }}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
+          {% cell 'u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large' %}
             {{ card_with_form }}
           {% endcell %}
         {% endgrid %}
@@ -250,12 +250,12 @@
         {{ parent() }}
       {% endblock band_content %}
     {% endembed %}
-    {% embed "@bolt-components-band/band.twig" with {
-      size: "large",
+    {% embed '@bolt-components-band/band.twig' with {
+      size: 'large',
       theme: theme,
       background: {
-        opacity: "heavy",
-        fill: "color",
+        opacity: 'heavy',
+        fill: 'color',
       },
       attributes: {
         class: "u-bolt-margin-bottom-large"
@@ -267,8 +267,8 @@
       {% endblock %}
 
       {% block band_content %}
-        {% grid "o-bolt-grid--matrix o-bolt-grid--center" %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
+        {% grid 'o-bolt-grid--matrix o-bolt-grid--center' %}
+          {% cell 'u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large' %}
             {{ card_with_form }}
           {% endcell %}
         {% endgrid %}
@@ -281,58 +281,58 @@
 
   {# Rest of the page #}
   {% set cards_in_band %}
-    {% include "@bolt-components-headline/headline.twig" with {
-      text: "Placeholder for rest of the page",
-      size: "xxlarge",
-      align: "center",
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Placeholder for rest of the page',
+      size: 'xxlarge',
+      align: 'center',
     } only %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        {% include '@bolt-components-card-replacement/card-replacement.twig' with {
           media: {
             image: {
-              src: "/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
+              src: '/images/content/promos/promo-16x9-anthem.jpg',
+              alt: 'Anthem Video',
               lazyload: false,
             },
           },
           body: {
-            eyebrow: "Eyebrow",
-            headline: "Headline",
+            eyebrow: 'Eyebrow',
+            headline: 'Headline',
           },
           actions: [
             {
-              text: "Button",
-              url: "https://pega.com",
+              text: 'Button',
+              url: 'https://pega.com',
             },
           ],
         } only %}
       {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        {% include '@bolt-components-card-replacement/card-replacement.twig' with {
           media: {
             image: {
-              src: "/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
+              src: '/images/content/promos/promo-16x9-anthem.jpg',
+              alt: 'Anthem Video',
               lazyload: false,
             },
           },
           body: {
-            headline: "TAnthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+            headline: 'TAnthem debuts its next-generation service desktop, driving frictionless customer experiences.',
           },
         } only %}
       {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        {% include '@bolt-components-card-replacement/card-replacement.twig' with {
           body: {
-            headline: "TAnthem debuts its next-generation service desktop, driving frictionless customer experiences.",
+            headline: 'TAnthem debuts its next-generation service desktop, driving frictionless customer experiences.',
           },
         } only %}
       {% endcell %}
     {% endgrid %}
   {% endset %}
 
-  {% include "@bolt-components-band/band.twig" with {
+  {% include '@bolt-components-band/band.twig' with {
     content: cards_in_band,
   } only %}
 </div>

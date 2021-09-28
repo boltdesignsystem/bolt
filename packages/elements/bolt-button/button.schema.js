@@ -16,12 +16,12 @@ module.exports = {
     icon_before: {
       type: 'any',
       description:
-        'Append an icon before the button content. Icon component is recommended. However, &lt;img&gt; elements are also acceptable.',
+        'Append an icon before the button content. Icon element is recommended. However, &lt;img&gt; elements are also acceptable.',
     },
     icon_after: {
       type: 'any',
       description:
-        'Append an icon after the button content. Icon component is recommended. However, &lt;img&gt; elements are also acceptable.',
+        'Append an icon after the button content. Icon element is recommended. However, &lt;img&gt; elements are also acceptable.',
     },
     icon_only: {
       type: 'any',

@@ -44,25 +44,25 @@
 {{ loadingJS }}
 <bolt-text headline>Loading animation</bolt-text>
 <bolt-stack>
-  {% include "@bolt-components-progress-bar/progress-bar.twig" with {
+  {% include '@bolt-components-progress-bar/progress-bar.twig' with {
     value: 50,
     animated: true,
     attributes: {
       class: [
-        "js-bolt-progress-bar-loading"
+        'js-bolt-progress-bar-loading'
       ]
     }
   } only %}
 </bolt-stack>
 <bolt-stack>
-  {% include "@bolt-elements-button/button.twig" with {
-    content: "Hang tight before resetting...",
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Hang tight before resetting...',
     disabled: true,
     attributes: {
       type: 'button',
       disabled: 'disabled',
       class: [
-        "js-bolt-progress-bar-loading-reset"
+        'js-bolt-progress-bar-loading-reset'
       ]
     }
   } only %}

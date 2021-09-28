@@ -1,5 +1,5 @@
-{% set video_uuid1 = "js-bolt-video-uuid-card-replacement" %}
-{% set video_uuid2 = "js-bolt-video-uuid-card-replacement-with-link" %}
+{% set video_uuid1 = 'js-bolt-video-uuid-card-replacement' %}
+{% set video_uuid2 = 'js-bolt-video-uuid-card-replacement-with-link' %}
 
 {% set video_1 %}
   {% set video %}
@@ -15,9 +15,9 @@
       class="c-base-video"></video-js>
   {% endset %}
 
-  {% include "@bolt-components-ratio/ratio.twig" with {
+  {% include '@bolt-components-ratio/ratio.twig' with {
     children: video,
-    ratio: "16/9"
+    ratio: '16/9'
   } only %}
 {% endset %}
 
@@ -27,7 +27,7 @@
       data-account="1900410236"
       data-player="O3FkeBiaDz"
       data-embed="default"
-      data-video-id="5609376179001"
+      data-video-id="609376179001"
       id="{{ video_uuid2 }}"
       data-media-title
       data-media-duration
@@ -35,46 +35,46 @@
       class="c-base-video"></video-js>
   {% endset %}
 
-  {% include "@bolt-components-ratio/ratio.twig" with {
+  {% include '@bolt-components-ratio/ratio.twig' with {
     children: video,
-    ratio: "16/9"
+    ratio: '16/9'
   } only %}
 {% endset %}
 
-{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
-    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
-      tag: "article",
+{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      tag: 'article',
       media: {
         video: video_1
       },
       body: {
-        headline: "With a video as the media",
-        paragraph: "This card has a video as the media and the card action can also play/pause the video.",
+        headline: 'With a video as the media',
+        paragraph: 'This card has a video as the media and the card action can also play/pause the video.',
       },
       actions: [
         {
-          text: "Play or Pause",
+          text: 'Play or Pause',
           attributes: {
-            "data-video-target": video_uuid1,
-            class: "js-base-video-toggle"
+            'data-video-target': video_uuid1,
+            class: 'js-base-video-toggle'
           }
         },
       ],
     } only %}
   {% endcell %}
-  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
-    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
       link: {
-        url: "https://pega.com",
-        text: "Go to pega.com",
+        url: 'https://pega.com',
+        text: 'Go to pega.com',
       },
       media: {
         video: video_2
       },
       body: {
-        headline: "With a video as the media and an overall link",
-        paragraph: "This card has a link, which makes the whole card clickable. The link navigates to another page. The video in this card can still play/pause inline. The link does not cover it.",
+        headline: 'With a video as the media and an overall link',
+        paragraph: 'This card has a link, which makes the whole card clickable. The link navigates to another page. The video in this card can still play/pause inline. The link does not cover it.',
       }
     } only %}
   {% endcell %}

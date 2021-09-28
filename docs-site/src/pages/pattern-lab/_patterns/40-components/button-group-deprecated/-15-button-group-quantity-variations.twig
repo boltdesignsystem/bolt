@@ -1,9 +1,9 @@
 {% set exampleButtonQuantities = [1, 2, 3, 4, 5] %}
 
 {% set example_button %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Learn More",
-    hierarchy: "primary"
+  {% include '@bolt-components-button/button.twig' with {
+    text: 'Learn More',
+    hierarchy: 'primary'
   } only %}
 {% endset %}
 
@@ -14,7 +14,7 @@
   {% endfor %}
 
   <p>{{ quantity }} Button(s)</p>
-  {% include "@bolt-components-button-group/button-group.twig" with {
+  {% include '@bolt-components-button-group/button-group.twig' with {
     buttons: buttons
   } %}
 {% endfor %}

@@ -87,7 +87,7 @@ describe('Twig usage', () => {
       },
     });
 
-    const iconShare = await render('@bolt-components-icon/icon.twig', {
+    const iconShare = await render('@bolt-elements-icon/icon.twig', {
       name: 'share',
     });
 
@@ -111,8 +111,8 @@ describe('Twig usage', () => {
     });
 
     // Like
-    const iconHeart = await render('@bolt-components-icon/icon.twig', {
-      name: 'heart-open',
+    const iconHeart = await render('@bolt-elements-icon/icon.twig', {
+      name: 'heart',
     });
 
     const like = await render('@bolt-elements-text-link/text-link.twig', {

@@ -1,5 +1,5 @@
 {% set usage %}{% verbatim %}
-{% include "@bolt-components-pagination/pagination.twig" with {
+{% include '@bolt-components-pagination/pagination.twig' with {
   current: 5,
   total: 10,
   first: {
@@ -34,7 +34,7 @@
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "pagination",
+{% include '@utils/docs.twig' with {
+  componentName: 'pagination',
   usage: usage
 } only %}

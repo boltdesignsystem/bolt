@@ -3,9 +3,11 @@
 namespace Drupal\bolt_connect;
 
 use \BasaltInc\TwigTools;
+use Drupal\Core\Messenger\MessengerInterface;
 use \Webmozart\PathUtil\Path;
+use \Twig\Loader\FilesystemLoader;
 
-class BoltConnectTwigNamespaces extends \Twig_Loader_Filesystem {
+class BoltConnectTwigNamespaces extends FilesystemLoader {
 
   /**
    * The cahce ID to use for storing paths.
@@ -14,9 +16,11 @@ class BoltConnectTwigNamespaces extends \Twig_Loader_Filesystem {
    */
   const CID_TWIG_NAMESPACE_PATH = 'bolt_connect.twig_loader.paths';
 
+  protected $messenger;
   public $twigLoaderConfig = [];
 
-  public function __construct() {
+  public function __construct(MessengerInterface $messenger) {
+    $this->messenger = $messenger;
     $config = \Drupal::config('bolt_connect.settings');
     $log = \Drupal::logger('bolt_connect');
     $cache = \Drupal::cache('default');
@@ -30,7 +34,7 @@ class BoltConnectTwigNamespaces extends \Twig_Loader_Filesystem {
       if (!$config->get('twig_namespaces_file_path') || !$config->get('boltrc_file_path')) {
         $msg = 'Bolt Twig Namespaces has not been configured yet.';
         $log->info($msg);
-        drupal_set_message($msg, 'warning');
+        $this->messenger->addWarning($msg);
         return;
       }
 
@@ -39,7 +43,7 @@ class BoltConnectTwigNamespaces extends \Twig_Loader_Filesystem {
       if (!file_exists($filePath)) {
         $msg = 'Bolt Twig Namespace file does not exist; perhaps you need to compile Bolt? Looking for it at: ' . $filePath;
         $log->error($msg);
-        drupal_set_message($msg, 'error');
+        $this->messenger->addError($msg);
         return;
       }
 
@@ -57,7 +61,7 @@ class BoltConnectTwigNamespaces extends \Twig_Loader_Filesystem {
             else {
               $message = 'Twig Namespace path does not exist: ' . $path;
               $log->warning($message);
-              drupal_set_message($message, 'error');
+              $this->messenger->addError($message);
             }
           }
         }
@@ -68,7 +72,7 @@ class BoltConnectTwigNamespaces extends \Twig_Loader_Filesystem {
       catch (\Exception $exception) {
         $errorMsg = 'Error adding Twig Namespaces from: ' . $filePath;
         $log->error($errorMsg);
-        drupal_set_message($errorMsg, 'error');
+        $this->messenger->addError($errorMsg);
       }
     }
 

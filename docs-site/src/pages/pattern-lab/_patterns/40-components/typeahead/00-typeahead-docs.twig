@@ -1,13 +1,13 @@
 {% set usage %}{% verbatim %}
-{% include "@bolt-components-typeahead/typeahead.twig" %}
+{% include '@bolt-components-typeahead/typeahead.twig' %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "typeahead",
+{% include '@utils/docs.twig' with {
+  componentName: 'typeahead',
   usage: usage,
   schemaForm: {
     template: '@bolt-components-typeahead/typeahead.twig',
-    layout: "horizontal",
+    layout: 'horizontal',
     initialData: {},
   },
 } only %}
