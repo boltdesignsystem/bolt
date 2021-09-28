@@ -1,4 +1,4 @@
-{% import "@bolt/macros.twig" as macros %}
+{% import '@bolt/macros.twig' as macros %}
 {# ^ allows us to use inline includes that also work in Drupal #}
 
 <bolt-text>This demo passes an image into the <code>custom_background</code> prop. This allows you to customize any of the available Image component props, such as <code>align</code> or <code>valign</code>.</bolt-text>
@@ -17,8 +17,8 @@
     <bolt-text>
       This is regular text, and some lorem ipsum. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante.
     </bolt-text>
-    {% include "@bolt-elements-button/button.twig" with {
-      content: "This is a button",
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This is a button',
       attributes: {
         type: 'button'
       }
@@ -30,18 +30,18 @@
 {% set background_image_top %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      src: "/images/placeholders/landscape-16x9-mountains.jpg",
-      alt: "A mountainous landscape",
-      style: "object-position: center top;",
+      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+      alt: 'A mountainous landscape',
+      style: 'object-position: center top;',
       background: true,
-      loading: "eager",
+      loading: 'eager',
     }
   } only %}
 {% endset %}
 
-{% include "@bolt-components-hero/hero.twig" with {
+{% include '@bolt-components-hero/hero.twig' with {
   content: content,
-  theme: "dark",
+  theme: 'dark',
   custom_background: background_image_top
 } %}
 
@@ -51,17 +51,17 @@
 {% set background_image_btm %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      src: "/images/placeholders/landscape-16x9-mountains.jpg",
-      alt: "A mountainous landscape",
-      style: "object-position: center bottom;",
+      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+      alt: 'A mountainous landscape',
+      style: 'object-position: center bottom;',
       background: true,
-      loading: "eager",
+      loading: 'eager',
     }
   } only %}
 {% endset %}
 
-{% include "@bolt-components-hero/hero.twig" with {
+{% include '@bolt-components-hero/hero.twig' with {
   content: content,
-  theme: "dark",
+  theme: 'dark',
   custom_background: background_image_btm
 } %}

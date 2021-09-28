@@ -8,16 +8,16 @@
 </bolt-ul>
 
 {% set exampleContent %}
-  {% include "@bolt-components-headline/headline.twig" with {
-    size: "xxxlarge",
-    text: "Hero Title",
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxxlarge',
+    text: 'Hero Title',
   } %}
 {% endset %}
 
-{% include "@bolt-components-hero/hero.twig" with {
+{% include '@bolt-components-hero/hero.twig' with {
   content: exampleContent,
-  image: "/images/heros/hero-foreground--yellow.png",
-  theme: "light",
-  imageValign: "bottom",
+  image: '/images/heros/hero-foreground--yellow.png',
+  theme: 'light',
+  imageValign: 'bottom',
 } only %}
 
