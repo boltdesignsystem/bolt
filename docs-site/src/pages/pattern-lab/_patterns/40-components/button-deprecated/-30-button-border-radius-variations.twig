@@ -4,13 +4,13 @@
   <bolt-icon name="documentation" size="medium"></bolt-icon> Please reference <a href="{{ link['elements-button-border-radius'] }}" class="e-bolt-text-link"> element doc</a> instead.
 </bolt-banner>
 
-{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+{% set schema = bolt.data.components['@bolt-components-button'].schema %}
 
 {% for radius in schema.properties.border_radius.enum %}
   <p>
-    {% include "@bolt-components-button/button.twig" with {
+    {% include '@bolt-components-button/button.twig' with {
       border_radius: radius,
-      text: "This button has " ~ radius ~ " border radius"
+      text: 'This button has ' ~ radius ~ ' border radius'
     } only %}
   </p>
 {% endfor %}

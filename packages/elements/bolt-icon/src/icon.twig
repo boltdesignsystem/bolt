@@ -26,5 +26,7 @@
 {# Template #}
 {% if name %}
   {% set icon_path = '@bolt-elements-icon/icons/' ~ name ~ '.twig' %}
+{% elseif custom_icon_path %}
+  {% set icon_path = custom_icon_path %}
 {% endif %}
 {% include icon_path %}

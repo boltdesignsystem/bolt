@@ -4,17 +4,17 @@
   <bolt-icon name="documentation" size="medium"></bolt-icon> Please reference <a href="{{ link['elements-button-hierarchy'] }}" class="e-bolt-text-link"> element doc</a> instead.
 </bolt-banner>
 
-{% set schema = bolt.data.components["@bolt-components-button"].schema %}
-{% set themes = get_data("@bolt/themes.schema.json") %}
+{% set schema = bolt.data.components['@bolt-components-button'].schema %}
+{% set themes = get_data('@bolt/themes.schema.json') %}
 
 {% for theme in themes.properties.colors.enum %}
   <h3>Buttons inside a {{ theme }} theme</h3>
   <div class="u-bolt-margin-bottom-medium">
-    {% embed "@utils/theme-demo.twig" %}
+    {% embed '@utils/theme-demo.twig' %}
       {% block demo_content %}
         {% for hierarchy in schema.properties.hierarchy.enum %}
-          {% include "@bolt-components-button/button.twig" with {
-            text: hierarchy|capitalize ~ " button",
+          {% include '@bolt-components-button/button.twig' with {
+            text: hierarchy|capitalize ~ ' button',
             hierarchy: hierarchy
           } only %}
         {% endfor %}

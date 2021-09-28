@@ -1,31 +1,31 @@
-{% extends "@pl/_default-page-template.twig" %}
+{% extends '@pl/_default-page-template.twig' %}
 
 {% block main_content %}
   {# Hero #}
   {% set hero_text %}
-    {% include "@bolt-components-headline/headline.twig" with {
-      text: "Future Proof",
-      size: "xxxlarge",
-      tag: "h1",
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Future Proof',
+      size: 'xxxlarge',
+      tag: 'h1',
     } only %}
-    {% include "@bolt-components-headline/subheadline.twig" with {
-      text: "The next best ideas in digital transformation.",
-      size: "xxlarge",
-      tag: "h2",
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'The next best ideas in digital transformation.',
+      size: 'xxlarge',
+      tag: 'h2',
     } only %}
   {% endset %}
 
   {% set hero_content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large" %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@large" %}
+    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large' %}
+      {% cell 'u-bolt-width-12/12 u-bolt-width-8/12@large' %}
         {{ hero_text }}
       {% endcell %}
     {% endgrid %}
   {% endset %}
 
-  {% include "@bolt-components-band/band.twig" with {
-    size: "medium",
-    theme: "xdark",
+  {% include '@bolt-components-band/band.twig' with {
+    size: 'medium',
+    theme: 'xdark',
     full_bleed: true,
     content: hero_content,
   } only %}
@@ -54,19 +54,19 @@
   {% endset %}
 
   {% set search_content %}
-    {% include "@bolt-components-headline/text.twig" with {
+    {% include '@bolt-components-headline/text.twig' with {
       text: search_summary,
     } only %}
     {% grid %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-3/12@medium" %}
+      {% cell 'u-bolt-width-1/1 u-bolt-width-3/12@medium' %}
         <form action="#" method="post" class="c-bolt-form">
-          {% include "@pl/10-form-element-demo-input-element.twig" with {
-            "title": "Search",
-            "inputAttributes": {
-              "placeholder": "Enter text to search",
-              "type": "search"
+          {% include '@pl/10-form-element-demo-input-element.twig' with {
+            'title': 'Search',
+            'inputAttributes': {
+              'placeholder': 'Enter text to search',
+              'type': 'search'
             },
-            "labelDisplayType": "floating"
+            'labelDisplayType': 'floating'
           } only %}
         </form>
 
@@ -456,7 +456,7 @@
               {% set button_apply %}
                 {% include '@bolt-elements-button/button.twig' with {
                   content: 'Apply',
-                  hierarchy: "primary",
+                  hierarchy: 'primary',
                   attributes: {
                     type: 'submit'
                   }
@@ -466,14 +466,14 @@
               {% set button_cancel %}
                 {% include '@bolt-elements-button/button.twig' with {
                   content: 'Cancel',
-                  hierarchy: "secondary",
+                  hierarchy: 'secondary',
                   attributes: {
                     href: '#!'
                   }
                 } only %}
               {% endset %}
 
-              {% include "@bolt-components-list/list.twig" with {
+              {% include '@bolt-components-list/list.twig' with {
                 items: [
                   button_apply,
                   button_cancel,
@@ -503,171 +503,171 @@
         </div>
       {% endcell %}
 
-      {% cell "u-bolt-width-12/12 u-bolt-width-9/12@medium" %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-medium" %}
-          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge" %}
-            {% embed "@bolt-components-card-replacement/card-replacement.twig" with {
-              theme: "xlight",
+      {% cell 'u-bolt-width-12/12 u-bolt-width-9/12@medium' %}
+        {% grid 'o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-medium' %}
+          {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge' %}
+            {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
+              theme: 'xlight',
               media: {
                 image: {
-                  src: "/images/content/promos/promo-blog-1.jpg",
-                  alt: "",
+                  src: '/images/content/promos/promo-blog-1.jpg',
+                  alt: '',
                 },
               },
               actions: [
                 {
-                  text: "Continue Reading",
-                  url: "https://pega.com",
+                  text: 'Continue Reading',
+                  url: 'https://pega.com',
                 },
               ],
             } only %}
               {% block body %}
-                {% include "@bolt-components-headline/eyebrow.twig" with {
-                  text: "Matthew Nolan",
+                {% include '@bolt-components-headline/eyebrow.twig' with {
+                  text: 'Matthew Nolan',
                 } only %}
-                {% include "@bolt-components-headline/headline.twig" with {
-                  tag: "h3",
-                  size: "large",
-                  text: "A one-to-one approach to managing customer lifetime value",
+                {% include '@bolt-components-headline/headline.twig' with {
+                  tag: 'h3',
+                  size: 'large',
+                  text: 'A one-to-one approach to managing customer lifetime value',
                   attributes: {
-                    class: "u-bolt-margin-bottom-small",
+                    class: 'u-bolt-margin-bottom-small',
                   },
                 } only %}
               {% endblock %}
             {% endembed %}
           {% endcell %}
-          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge" %}
-            {% embed "@bolt-components-card-replacement/card-replacement.twig" with {
-              theme: "xlight",
+          {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge' %}
+            {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
+              theme: 'xlight',
               media: {
                 image: {
-                  src: "/images/content/promos/promo-blog-2.jpg",
-                  alt: "",
+                  src: '/images/content/promos/promo-blog-2.jpg',
+                  alt: '',
                 },
               },
               actions: [
                 {
-                  text: "Continue Reading",
-                  url: "https://pega.com",
+                  text: 'Continue Reading',
+                  url: 'https://pega.com',
                 },
               ],
             } only %}
               {% block body %}
-                {% include "@bolt-components-headline/eyebrow.twig" with {
-                  text: "Gerry McCool",
+                {% include '@bolt-components-headline/eyebrow.twig' with {
+                  text: 'Gerry McCool',
                 } only %}
-                {% include "@bolt-components-headline/headline.twig" with {
-                  tag: "h3",
-                  size: "large",
-                  text: "Why smart factories need digital prescriptive maintenance",
+                {% include '@bolt-components-headline/headline.twig' with {
+                  tag: 'h3',
+                  size: 'large',
+                  text: 'Why smart factories need digital prescriptive maintenance',
                   attributes: {
-                    class: "u-bolt-margin-bottom-small",
+                    class: 'u-bolt-margin-bottom-small',
                   },
                 } only %}
               {% endblock %}
             {% endembed %}
           {% endcell %}
-          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge" %}
-            {% embed "@bolt-components-card-replacement/card-replacement.twig" with {
-              theme: "xlight",
+          {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge' %}
+            {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
+              theme: 'xlight',
               media: {
                 image: {
-                  src: "/images/content/promos/promo-blog-3.jpg",
-                  alt: "",
+                  src: '/images/content/promos/promo-blog-3.jpg',
+                  alt: '',
                 },
               },
               actions: [
                 {
-                  text: "Continue Reading",
-                  url: "https://pega.com",
+                  text: 'Continue Reading',
+                  url: 'https://pega.com',
                 },
               ],
             } only %}
               {% block body %}
-                {% include "@bolt-components-headline/eyebrow.twig" with {
-                  text: "Gerry McCool",
+                {% include '@bolt-components-headline/eyebrow.twig' with {
+                  text: 'Gerry McCool',
                 } only %}
-                {% include "@bolt-components-headline/headline.twig" with {
-                  tag: "h3",
-                  size: "large",
-                  text: "Is Lean still relevant in the Digital Age?",
+                {% include '@bolt-components-headline/headline.twig' with {
+                  tag: 'h3',
+                  size: 'large',
+                  text: 'Is Lean still relevant in the Digital Age?',
                   attributes: {
-                    class: "u-bolt-margin-bottom-small",
+                    class: 'u-bolt-margin-bottom-small',
                   },
                 } only %}
               {% endblock %}
             {% endembed %}
           {% endcell %}
           {% for i in 0..2 %}
-            {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge" %}
-              {% include "@bolt-components-card-replacement/card-replacement.twig" with {
-                theme: "xlight",
+            {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge' %}
+              {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+                theme: 'xlight',
                 media: {
                   image: {
-                    src: "/images/content/promos/promo-16x9-ai.jpg",
-                    alt: "",
+                    src: '/images/content/promos/promo-16x9-ai.jpg',
+                    alt: '',
                   },
                 },
                 body: {
-                  eyebrow: "Kate Fowler",
-                  headline: "3 capabilities insurers need for outstanding customer engagement",
+                  eyebrow: 'Kate Fowler',
+                  headline: '3 capabilities insurers need for outstanding customer engagement',
                 },
                 actions: [
                   {
-                    text: "Continue Reading",
-                    url: "https://pega.com",
+                    text: 'Continue Reading',
+                    url: 'https://pega.com',
                   },
                 ],
               } only %}
             {% endcell %}
-            {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge" %}
-              {% include "@bolt-components-card-replacement/card-replacement.twig" with {
-                theme: "xlight",
+            {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge' %}
+              {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+                theme: 'xlight',
                 media: {
                   image: {
-                    src: "/images/content/promos/promo-16x9-ai.jpg",
-                    alt: "",
+                    src: '/images/content/promos/promo-16x9-ai.jpg',
+                    alt: '',
                   },
                 },
                 body: {
-                  eyebrow: "Anthony Abdulla",
-                  headline: "7 reasons why you should embrace low-code development right now",
+                  eyebrow: 'Anthony Abdulla',
+                  headline: '7 reasons why you should embrace low-code development right now',
                 },
                 actions: [
                   {
-                    text: "Continue Reading",
-                    url: "https://pega.com",
+                    text: 'Continue Reading',
+                    url: 'https://pega.com',
                   },
                 ],
               } only %}
             {% endcell %}
-            {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge" %}
-              {% include "@bolt-components-card-replacement/card-replacement.twig" with {
-                theme: "xlight",
+            {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium u-bolt-width-4/12@xxlarge' %}
+              {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+                theme: 'xlight',
                 media: {
                   image: {
-                    src: "/images/content/promos/promo-16x9-ai.jpg",
-                    alt: "",
+                    src: '/images/content/promos/promo-16x9-ai.jpg',
+                    alt: '',
                   },
                 },
                 body: {
-                  eyebrow: "Baruch Sachs and Leanne Russell",
-                  headline: "Pega Catalyst™: Applying design thinking principles to speed digital transformation",
+                  eyebrow: 'Baruch Sachs and Leanne Russell',
+                  headline: 'Pega Catalyst™: Applying design thinking principles to speed digital transformation',
                 },
                 actions: [
                   {
-                    text: "Continue Reading",
-                    url: "https://pega.com",
+                    text: 'Continue Reading',
+                    url: 'https://pega.com',
                   },
                 ],
               } only %}
             {% endcell %}
           {% endfor %}
         {% endgrid %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-          {% cell "u-bolt-width-12/12" %}
-            {% include "@bolt-components-pagination/pagination.twig" with {
-              align: "center",
+        {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
+          {% cell 'u-bolt-width-12/12' %}
+            {% include '@bolt-components-pagination/pagination.twig' with {
+              align: 'center',
               current: 5,
               total: 10,
               first: {
@@ -706,9 +706,9 @@
     {% endgrid %}
   {% endset %}
 
-  {% include "@bolt-components-band/band.twig" with {
-    theme: "light",
-    size: "medium",
+  {% include '@bolt-components-band/band.twig' with {
+    theme: 'light',
+    size: 'medium',
     content: search_content,
   } only %}
   {# End Search #}

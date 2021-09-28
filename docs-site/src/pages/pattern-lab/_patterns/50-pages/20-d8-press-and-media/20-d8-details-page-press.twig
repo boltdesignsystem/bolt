@@ -1,32 +1,32 @@
-{% extends "@pl/_default-page-template.twig" %}
+{% extends '@pl/_default-page-template.twig' %}
 
 {% block main_content %}
 
-  {% embed "@bolt-components-band/band.twig" with {
-    "theme": "xlight",
-    "size": "medium"
+  {% embed '@bolt-components-band/band.twig' with {
+    'theme': 'xlight',
+    'size': 'medium'
   } %}
     {% block band_content %}
-      {% include "@bolt-components-headline/eyebrow.twig" with {
-        "text": "Press Releases",
-        "url": "/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-press-browse--list-view/50-pages-100-d8-Press-and-Media-d8-press-browse--list-view.html",
-        "icon": {
-          "name": "arrow-left",
-          "position": "before"
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        'text': 'Press Releases',
+        'url': '/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-press-browse--list-view/50-pages-100-d8-Press-and-Media-d8-press-browse--list-view.html',
+        'icon': {
+          'name': 'arrow-left',
+          'position': 'before'
         }
       } only %}
 
-      {% include "@bolt-components-headline/headline.twig" with {
-        "text": "Pegasystems Launches Pega Community to Empower Anyone to Create Better Software",
-        "size": "xxxlarge"
+      {% include '@bolt-components-headline/headline.twig' with {
+        'text': 'Pegasystems Launches Pega Community to Empower Anyone to Create Better Software',
+        'size': 'xxxlarge'
       } only %}
 
-      {% include "@bolt-components-headline/subheadline.twig" with {
-        "text": "New community fosters collaborative approach to developing Pega apps for both experienced and new developers",
-        "size": "xxlarge"
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        'text': 'New community fosters collaborative approach to developing Pega apps for both experienced and new developers',
+        'size': 'xxlarge'
       } only %}
 
-      {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
+      {% grid 'o-bolt-grid--matrix o-bolt-grid--large' %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-8/12@medium' %}
 
           <p>
@@ -36,32 +36,32 @@
         <div class="u-bolt-margin-bottom-medium">
           {% include '@bolt-elements-image/image.twig' with {
             attributes: {
-              src: "https://pbs.twimg.com/media/De8QS1iUwAEHfJu.jpg",
-              alt: "Pega Community homepage",
-              loading: "lazy",
+              src: 'https://pbs.twimg.com/media/De8QS1iUwAEHfJu.jpg',
+              alt: 'Pega Community homepage',
+              loading: 'lazy',
             }
           } only %}
         </div>
 
-          {% include "@bolt-components-headline/text.twig" with {
-            "text": "As organizations race to digitally transform their businesses, people with the skills to rapidly create the required solutions are in high demand. Pega Community aims to change how software gets built and redefine who gets to build it by providing an engaging educational resource for Pega’s no-code development environment. From business users to veteran developers, the site offers valuable resources to quickly drive successful digital transformation projects from start to finish. Members can stay current with Pega technology, enhance existing skills, and take their careers to the next level. Pega Community allows developers to network with each other to share ideas and discuss projects, while providing Pega clients with a prime resource to find people with the necessary skills needed for their next project."
+          {% include '@bolt-components-headline/text.twig' with {
+            'text': 'As organizations race to digitally transform their businesses, people with the skills to rapidly create the required solutions are in high demand. Pega Community aims to change how software gets built and redefine who gets to build it by providing an engaging educational resource for Pega’s no-code development environment. From business users to veteran developers, the site offers valuable resources to quickly drive successful digital transformation projects from start to finish. Members can stay current with Pega technology, enhance existing skills, and take their careers to the next level. Pega Community allows developers to network with each other to share ideas and discuss projects, while providing Pega clients with a prime resource to find people with the necessary skills needed for their next project.'
           } only %}
 
-          {% include "@bolt-components-headline/headline.twig" with {
-            "text": "Find out what's new",
-            "size": "large"
+          {% include '@bolt-components-headline/headline.twig' with {
+            'text': 'Find out what\'s new',
+            'size': 'large'
           } only %}
 
-          {% include "@bolt-components-headline/text.twig" with {
-            "text": "Pega Community is open today and offers the following:"
+          {% include '@bolt-components-headline/text.twig' with {
+            'text': 'Pega Community is open today and offers the following:'
           } only %}
 
           <div class="u-bolt-margin-bottom-medium">
-            {% include "@bolt-components-ul/ul.twig" with {
-              "items" : [
-                "Pega Launchpad: New Pega users can engage with several core ‘missions’ to help familiarize them with Pega and accelerate their learning – at their own pace. These missions include a look at key Pega capabilities such as artificial intelligence (AI) and robotics; designing effective applications to meet users’ goals; tips on leveraging Pega Community; and more. Users will soon be able to earn badges they can attach to their profiles as they complete courses, learn new skills, and quickly gain confidence to develop solutions on their own.",
-                "Pega Community Profiles and ”Find a Pega Pro”: Newly expanded profile pages enable Pega Community members to build their personal Pega brand and connect with other developers and potential employers. Profiles include project history, areas of expertise, and availability status for new projects. Additionally, users can showcase their achievements with their official verified Pega certifications, as well as badges earned from completing courses, attending events and seminars, demonstrating product knowledge, and more. Through the new “Find a Pega Pro” tool, Pega’s industry-leading clients – representing some of the most successful companies in the world – can search within their own organizations to find available Pega developers who match the skills and qualifications they’re seeking. This tool will help Pega Community members looking for their next project to market their skills and find exciting new career opportunities.",
-                "Project Hub: Project Hub gives users a comprehensive, centralized source of information, guidance, and tools needed to run successful Pega projects. These continuously updated resources – from basic to advanced articles, to templates and role-specific resources – bolster success by helping users accelerate projects, ensure app quality and relevance, and drive agility. The information is structured around the project lifecycle and key capabilities for fast and easy reference. For the first time, users have access to all the delivery insights cultivated from more than 35 years of Pega consulting projects."
+            {% include '@bolt-components-ul/ul.twig' with {
+              'items' : [
+                'Pega Launchpad: New Pega users can engage with several core ‘missions’ to help familiarize them with Pega and accelerate their learning – at their own pace. These missions include a look at key Pega capabilities such as artificial intelligence (AI) and robotics; designing effective applications to meet users’ goals; tips on leveraging Pega Community; and more. Users will soon be able to earn badges they can attach to their profiles as they complete courses, learn new skills, and quickly gain confidence to develop solutions on their own.',
+                'Pega Community Profiles and ”Find a Pega Pro”: Newly expanded profile pages enable Pega Community members to build their personal Pega brand and connect with other developers and potential employers. Profiles include project history, areas of expertise, and availability status for new projects. Additionally, users can showcase their achievements with their official verified Pega certifications, as well as badges earned from completing courses, attending events and seminars, demonstrating product knowledge, and more. Through the new “Find a Pega Pro” tool, Pega’s industry-leading clients – representing some of the most successful companies in the world – can search within their own organizations to find available Pega developers who match the skills and qualifications they’re seeking. This tool will help Pega Community members looking for their next project to market their skills and find exciting new career opportunities.',
+                'Project Hub: Project Hub gives users a comprehensive, centralized source of information, guidance, and tools needed to run successful Pega projects. These continuously updated resources – from basic to advanced articles, to templates and role-specific resources – bolster success by helping users accelerate projects, ensure app quality and relevance, and drive agility. The information is structured around the project lifecycle and key capabilities for fast and easy reference. For the first time, users have access to all the delivery insights cultivated from more than 35 years of Pega consulting projects.'
               ]
             } only %}
           </div>
@@ -69,18 +69,18 @@
           {% set complexText %}
               Pega Community will be debuted during today’s keynote presentation at PegaWorld — Pega’s annual conference being held through June 6 in Las Vegas. To join Pega Community, please visit <a href="https://community.pega.com/">https://community.pega.com/</a>.
           {% endset %}
-          {% include "@bolt-components-headline/text.twig" with {
-            "text": complexText,
+          {% include '@bolt-components-headline/text.twig' with {
+            'text': complexText,
           } only %}
 
 
-          {% include "@bolt-components-headline/headline.twig" with {
-            "text": "Quotes & Commentary",
-            "size": "large"
+          {% include '@bolt-components-headline/headline.twig' with {
+            'text': 'Quotes & Commentary',
+            'size': 'large'
           } only %}
 
-          {% include "@bolt-components-headline/text.twig" with {
-            "text": "“AI and automation technologies have generated tremendous hype, but the potential within the enterprise remains largely untapped,“ said Don Schuerman, chief technology officer and vice president, product marketing, Pegasystems. “Organizations must augment their human intelligence with AI across the entire organization in order to move beyond basic efficiency improvements. By deploying AI and automation with an end-to-end view in mind, businesses can move closer to fulfilling their customer centric vision.”"
+          {% include '@bolt-components-headline/text.twig' with {
+            'text': '“AI and automation technologies have generated tremendous hype, but the potential within the enterprise remains largely untapped,“ said Don Schuerman, chief technology officer and vice president, product marketing, Pegasystems. “Organizations must augment their human intelligence with AI across the entire organization in order to move beyond basic efficiency improvements. By deploying AI and automation with an end-to-end view in mind, businesses can move closer to fulfilling their customer centric vision.”'
           } only %}
 
           {% set download_icon %}
@@ -99,47 +99,47 @@
           <hr>
 
 
-          {% include "@bolt-components-headline/text.twig" with {
-            "text": "All trademarks are the property of their respective owners.",
-            "size": "xsmall"
+          {% include '@bolt-components-headline/text.twig' with {
+            'text': 'All trademarks are the property of their respective owners.',
+            'size': 'xsmall'
           } only %}
 
-          {% include "@bolt-components-headline/text.twig" with {
-            "text": "The information contained in this press release is not a commitment, promise, or legal obligation to deliver any material, code or functionality. The development, release and timing of any features or functionality described remains at the sole discretion of Pegasystems, Pegasystems specifically disclaims any liability with respect to this information.",
-            "size": "xsmall"
+          {% include '@bolt-components-headline/text.twig' with {
+            'text': 'The information contained in this press release is not a commitment, promise, or legal obligation to deliver any material, code or functionality. The development, release and timing of any features or functionality described remains at the sole discretion of Pegasystems, Pegasystems specifically disclaims any liability with respect to this information.',
+            'size': 'xsmall'
           } only %}
 
         {% endcell %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-4/12@medium' %}
-          {% grid "o-bolt-grid--matrix" %}
-            {% cell "u-bolt-width-1/1" %}
+          {% grid 'o-bolt-grid--matrix' %}
+            {% cell 'u-bolt-width-1/1' %}
               {# share widget #}
               <div class="u-bolt-margin-bottom-medium">
                 {% include '@bolt-components-share/share.twig' with {
                   text: 'Share this page',
                   sources: [
                     {
-                      name: "facebook",
+                      name: 'facebook',
                       attributes: {
-                        href: "https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse"
+                        href: 'https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse'
                       }
                     },
                     {
-                      name: "twitter",
+                      name: 'twitter',
                       attributes: {
-                        href: "https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}"
+                        href: 'https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}'
                       }
                     },
                     {
-                      name: "linkedin",
+                      name: 'linkedin',
                       attributes: {
-                        href: "https://www.linkedin.com/shareArticle?url={url}&title={title}"
+                        href: 'https://www.linkedin.com/shareArticle?url={url}&title={title}'
                       }
                     },
                     {
-                      name: "email",
+                      name: 'email',
                       attributes: {
-                        href: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+                        href: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
                       }
                     }
                   ]
@@ -149,64 +149,64 @@
               <div class="c-bolt-card">
                 <div class="c-bolt-card__body">
                   <div class="u-bolt-margin-bottom-xsmall">
-                    {% include "@bolt-components-headline/headline.twig" with {
-                      "text": "Press Kit",
-                      "size": "large",
+                    {% include '@bolt-components-headline/headline.twig' with {
+                      'text': 'Press Kit',
+                      'size': 'large',
                     } only %}
                   </div>
 
 
-                  {% include "@bolt/ui-list.twig" with {
-                    "size": "small",
-                    "contentItems": [
+                  {% include '@bolt/ui-list.twig' with {
+                    'size': 'small',
+                    'contentItems': [
                       {
-                        "contentItems": [
+                        'contentItems': [
                           {
-                            "pattern": "headline",
-                            "text": "Corporate Fact Sheet",
-                            "size": "xsmall",
-                            "url": "#",
-                            "icon": {
-                              "name": "chevron-right"
+                            'pattern': 'headline',
+                            'text': 'Corporate Fact Sheet',
+                            'size': 'xsmall',
+                            'url': '#',
+                            'icon': {
+                              'name': 'chevron-right'
                             }
                           }
                         ]
                       },
                       {
-                        "contentItems": [
+                        'contentItems': [
                           {
-                            "pattern": "headline",
-                            "text": "Management Team",
-                            "size": "xsmall",
-                            "url": "#",
-                            "icon": {
-                              "name": "chevron-right"
+                            'pattern': 'headline',
+                            'text': 'Management Team',
+                            'size': 'xsmall',
+                            'url': '#',
+                            'icon': {
+                              'name': 'chevron-right'
                             }
                           }
                         ]
                       },
                       {
-                        "contentItems": [
+                        'contentItems': [
                           {
-                            "pattern": "headline",
-                            "text": "YouTube Channel",
-                            "size": "xsmall",
-                            "url": "#",
-                            "icon": {
-                              "name": "chevron-right"
+                            'pattern': 'headline',
+                            'text': 'YouTube Channel',
+                            'size': 'xsmall',
+                            'url': '#',
+                            'icon': {
+                              'name': 'chevron-right'
                             }
                           }
                         ]
                       },
                       {
-                        "contentItems": [
+                        'contentItems': [
                           {
-                            "pattern": "headline",
-                            "text": "Analyst Coverage",
-                            "size": "xsmall",
-                            "url": "#",
-                            "icon": {
-                              "name": "chevron-right"
+                            'pattern': 'headline',
+                            'text': 'Analyst Coverage',
+                            'size': 'xsmall',
+                            'url': '#',
+                            'icon': {
+                              'name': 'chevron-right'
                             }
                           }
                         ]
@@ -216,10 +216,10 @@
                 </div>
               </div>
             {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-headline/headline.twig" with {
-                "text": "Media Contacts",
-                "size": "large"
+            {% cell 'u-bolt-width-1/1' %}
+              {% include '@bolt-components-headline/headline.twig' with {
+                'text': 'Media Contacts',
+                'size': 'large'
               } only %}
 
               <p class="c-bolt-text">
@@ -232,9 +232,9 @@
                 +1 617-866-6022
               </p>
 
-              {% include "@bolt-components-headline/headline.twig" with {
-                "text": "North America",
-                "size": "small"
+              {% include '@bolt-components-headline/headline.twig' with {
+                'text': 'North America',
+                'size': 'small'
               } only %}
 
               <p class="c-bolt-text">
@@ -257,9 +257,9 @@
                 +1 617-866-6722
               </p>
 
-              {% include "@bolt-components-headline/headline.twig" with {
-                "text": "Europe",
-                "size": "small"
+              {% include '@bolt-components-headline/headline.twig' with {
+                'text': 'Europe',
+                'size': 'small'
               } only %}
 
               <p class="c-bolt-text">
@@ -284,9 +284,9 @@
             {% endcell %}
 
             {% cell 'u-bolt-width-1/1' %}
-              {% include "@bolt-components-headline/headline.twig" with {
-                "text": "Pegasystems Inc.",
-                "size": "large"
+              {% include '@bolt-components-headline/headline.twig' with {
+                'text': 'Pegasystems Inc.',
+                'size': 'large'
               } only %}
 
               <p class="c-bolt-text">

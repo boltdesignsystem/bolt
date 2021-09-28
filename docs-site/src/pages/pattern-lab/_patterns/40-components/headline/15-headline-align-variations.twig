@@ -1,8 +1,8 @@
 {% set schema = bolt.data.components['@bolt-components-headline'].schema %}
 
 {% for align in schema.properties.align.enum %}
-  {% include "@bolt-components-headline/headline.twig" with {
-    text: "This headline is aligned " ~ align,
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'This headline is aligned ' ~ align,
     align: align
   } only %}
 {% endfor %}
