@@ -1,53 +1,65 @@
-<bolt-layout
-  gutter="large"
-  row-gutter="large"
-  padding-top="large"
-  padding-bottom="large"
-  class="t-bolt-light"
-  template="halves@from-small"
-  valign-items="center"
-  {# align-items="center" #}
->
-
-  {# {{ this.data.center_content.value ? 'class="u-bolt-text-align-center"' : '' }} #}
-  <bolt-layout-item>
-    {% set _icon %}
-      {% include "@bolt-elements-icon/icon.twig" with {
-        name: "speed-dial",
-      } only %}
-    {% endset %}
-    {% include "@bolt-elements-shape/shape.twig" with {
-        content: _icon,
-        size: "large",
-        attributes: {
-          class: [
-            "u-bolt-margin-bottom-medium",
-            "t-bolt-teal"
-          ]
-        }
+{% set _content %}
+  {% set _icon %}
+    {% include "@bolt-elements-icon/icon.twig" with {
+      name: "speed-dial",
     } only %}
-    <bolt-text headline font-size="xxxlarge">
-      A Prominent Headline Certainly Helps
-    </bolt-text>
-    <bolt-text subheadline font-size="xlarge">
-      This one even includes a tagline.
-    </bolt-text>
-    {% include '@bolt-elements-button/button.twig' with {
-      content: "Learn More",
+  {% endset %}
+  {% include "@bolt-elements-shape/shape.twig" with {
+      content: _icon,
+      size: "large",
       attributes: {
-        type: 'button'
+        class: [
+          "u-bolt-margin-bottom-medium",
+          "t-bolt-teal"
+        ]
       }
-    } %}
-  </bolt-layout-item>
+  } only %}
+  <bolt-text headline font-size="xxxlarge">
+    A Prominent Headline Certainly Helps
+  </bolt-text>
+  <bolt-text subheadline font-size="xlarge">
+    This one even includes a tagline.
+  </bolt-text>
+  {% include '@bolt-elements-button/button.twig' with {
+    content: "Learn More",
+    attributes: {
+      type: 'button'
+    }
+  } %}
+{% endset %}
 
-  <bolt-layout-item valign-self="end-offset">
-    {% include '@bolt-elements-image/image.twig' with {
-      attributes: {
-        alt: 'Image alt text',
-        src: '/images/heros/responsive-web-design.svg',
-        loading: 'eager',
-        style: 'display: block; min-width:60vw; margin-right: -40vw;'
-      },
-    } only %}
-  </bolt-layout-item>
-</bolt-layout>
+{% set _supplement %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/heros/responsive-web-design.svg',
+      loading: 'eager',
+      style: 'display: block; min-width:60vw; margin-right: -40vw;'
+    },
+  } only %}
+{% endset %}
+
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: _content
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    valign_self: 'end-offset',
+    content: _supplement
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  gutter: 'large',
+  row_gutter: 'large',
+  padding_top: 'large',
+  padding_bottom: 'large',
+  valign_items: 'center',
+  template: [
+    'halves@from-small'
+  ],
+  attributes: {
+    class: 't-bolt-light'
+  }
+} only %}
