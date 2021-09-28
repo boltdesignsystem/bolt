@@ -213,12 +213,11 @@ inset: "off",
 label_spacing: "medium",
 panel_spacing: "medium",
 {% endset %}
-<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-  {{ code | replace({
-    '<': '&lt;',
-    '>': '&gt;',
-  }) | trim | raw }}
-{% endspaceless %}</bolt-code-snippet>
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code,
+  lang: 'html',
+  mode: 'dark',
+} only %}
 {# Demo UI #}
 
 {# Tabbed Band #}
