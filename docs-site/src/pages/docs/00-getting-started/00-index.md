@@ -7,7 +7,7 @@ category: Quick Start
 
 Create a file called `.boltrc.js` with:
 
-<bolt-code-snippet lang="javascript">
+<code>
 module.exports = {
   buildDir: 'www/build',
   components: {
@@ -17,7 +17,7 @@ module.exports = {
     ],
   },
 };
-</bolt-code-snippet>
+</code>
 
 ## Install Build Tools
 
