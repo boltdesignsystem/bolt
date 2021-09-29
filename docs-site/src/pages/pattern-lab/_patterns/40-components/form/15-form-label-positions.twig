@@ -1,42 +1,42 @@
-{% extends "@bolt-components-form/form.twig" %}
+{% extends '@bolt-components-form/form.twig' %}
 
 {% set children %}
 
   {% set form_field_float %}
-    {% include "@pl/10-form-element-demo-input-element.twig" with {
-      title: "Email Address",
+    {% include '@pl/10-form-element-demo-input-element.twig' with {
+      title: 'Email Address',
       inputAttributes: {
-        placeholder: "Enter Email Address",
+        placeholder: 'Enter Email Address',
         required: true,
-        type: "email"
+        type: 'email'
       },
-      labelDisplayType: "floating"
+      labelDisplayType: 'floating'
     } only %}
   {% endset %}
 
   {% set form_field_block %}
-    {% include "@pl/10-form-element-demo-input-element.twig" with {
-      title: "Email Address",
+    {% include '@pl/10-form-element-demo-input-element.twig' with {
+      title: 'Email Address',
       inputAttributes: {
-        placeholder: "Enter Email Address",
+        placeholder: 'Enter Email Address',
         required: true,
-        type: "email"
+        type: 'email'
       },
-      labelDisplayType: "block",
-      labelDisplay: "before"
+      labelDisplayType: 'block',
+      labelDisplay: 'before'
     } only %}
   {% endset %}
 
   <div class="u-bolt-margin-bottom-medium">
-    <h3>labelDisplayType: "floating"</h3>
-    {% include "@bolt-components-form/form.twig" with {
+    <h3>labelDisplayType: 'floating'</h3>
+    {% include '@bolt-components-form/form.twig' with {
       children: form_field_float
     } only %}
   </div>
 
   <div class="u-bolt-margin-bottom-medium">
-    <h3>labelDisplayType: "block", labelDisplay: "before"</h3>
-    {% include "@bolt-components-form/form.twig" with {
+    <h3>labelDisplayType: 'block', labelDisplay: 'before'</h3>
+    {% include '@bolt-components-form/form.twig' with {
       children: form_field_block
     } only %}
   </div>

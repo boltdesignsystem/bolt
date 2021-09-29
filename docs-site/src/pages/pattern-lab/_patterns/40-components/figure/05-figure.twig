@@ -1,15 +1,15 @@
 {% set image %}
-  {% include "@bolt-elements-image/image.twig" with {
+  {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      src: "/images/placeholders/500x500.jpg",
-      loading: "lazy",
+      src: '/images/placeholders/500x500.jpg',
+      loading: 'lazy',
     }
   } only %}
 {% endset %}
 
-{% include "@bolt-components-figure/figure.twig" with {
+{% include '@bolt-components-figure/figure.twig' with {
   media: {
     content: image
   },
-  caption: "Fig. 1: This is Bill. He is awesome."
+  caption: 'Fig. 1: This is Bill. He is awesome.'
 } only %}

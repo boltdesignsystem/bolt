@@ -1,22 +1,22 @@
-{% extends "@pl/_default-page-template.twig" %}
+{% extends '@pl/_default-page-template.twig' %}
 
 {% block main_content %}
-  {% embed "@pl/_band--feature.twig" with {
-    teaserPosition: "left",
-    teaserWidth: "2/3",
-    size: "large",
+  {% embed '@pl/_band--feature.twig' with {
+    teaserPosition: 'left',
+    teaserWidth: '2/3',
+    size: 'large',
     full: true,
-    theme: "dark",
+    theme: 'dark',
     background: {
-      opacity: "medium",
-      fill: "gradient",
+      opacity: 'medium',
+      fill: 'gradient',
       focal_point: {
-        vertical: "center",
-        horizontal: "right"
+        vertical: 'center',
+        horizontal: 'right'
       },
       content_items: [{
-        pattern: "image",
-        src: "/images/placeholders/landscape-16x9-mountains.jpeg"
+        pattern: 'image',
+        src: '/images/placeholders/landscape-16x9-mountains.jpeg'
       }]
 
 
@@ -24,28 +24,28 @@
     primaryTeaser: {
       headlines: [
         {
-          type: "eyebrow",
-          text: "Partner Overview",
-          url: "pega.com",
+          type: 'eyebrow',
+          text: 'Partner Overview',
+          url: 'pega.com',
           icon: {
-            name: "arrow-left",
-            position: "before"
+            name: 'arrow-left',
+            position: 'before'
           }
         },
         {
-          type: "headline",
-          text: "Find a Partner",
-          size: "xxxlarge",
-          tag: "h1"
+          type: 'headline',
+          text: 'Find a Partner',
+          size: 'xxxlarge',
+          tag: 'h1'
         }
       ]
     }
   } only %}{% endembed %}
 
 
-  {% embed "@bolt-components-band/band.twig" with {
-    size: "small",
-    theme: "light",
+  {% embed '@bolt-components-band/band.twig' with {
+    size: 'small',
+    theme: 'light',
     full_bleed: true,
   } only %}
 
@@ -103,9 +103,9 @@
                         </label>
                         <div class="c-bolt-input-icons">
                           <button class="c-bolt-input-icon c-bolt-input-icon--link">
-                            {% include "@bolt-elements-icon/icon.twig" with {
-                              "name": "search",
-                              "size": "medium"
+                            {% include '@bolt-elements-icon/icon.twig' with {
+                              'name': 'search',
+                              'size': 'medium'
                             } only %}
                           </button>
                         </div>
@@ -283,7 +283,7 @@
                 {% set button_apply %}
                   {% include '@bolt-elements-button/button.twig' with {
                     content: 'Apply',
-                    hierarchy: "primary",
+                    hierarchy: 'primary',
                     attributes: {
                       type: 'submit'
                     }
@@ -293,14 +293,14 @@
                 {% set button_cancel %}
                   {% include '@bolt-elements-button/button.twig' with {
                     content: 'Cancel',
-                    hierarchy: "secondary",
+                    hierarchy: 'secondary',
                     attributes: {
                       href: '#!'
                     }
                   } only %}
                 {% endset %}
 
-                {% include "@bolt-components-list/list.twig" with {
+                {% include '@bolt-components-list/list.twig' with {
                   items: [
                     button_apply,
                     button_cancel,
@@ -331,30 +331,30 @@
         {% endcell %}
 
         {% cell 'u-bolt-width-1/1 u-bolt-width-9/12@medium' %}
-          {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+          {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
             {% for i in 1..12 %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-                {% include "@bolt-components-card-replacement/card-replacement.twig" with {
-                  theme: "xlight",
+              {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
+                {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+                  theme: 'xlight',
                   media: {
                     image: {
-                      src: "/images/placeholders/landscape-16x9-mountains.jpg",
-                      alt: "Image alt.",
+                      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+                      alt: 'Image alt.',
                     },
                   },
                   body: {
-                    eyebrow: "Systems Integrator",
-                    headline: "Partner Name",
-                    paragraph: "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                    eyebrow: 'Systems Integrator',
+                    headline: 'Partner Name',
+                    paragraph: 'Overall excellence in driving client success across Pega\'s applications portfolio, including Pega robotics and articial intellegence (AI).',
                   },
                   actions: [
                     {
-                      text: "Partner Website",
-                      url: "https://pega.com",
+                      text: 'Partner Website',
+                      url: 'https://pega.com',
                     },
                     {
-                      text: "App Exchange",
-                      url: "https://pega.com",
+                      text: 'App Exchange',
+                      url: 'https://pega.com',
                     },
                   ],
                 } only %}
@@ -363,9 +363,9 @@
           {% endgrid %}
 
           <div class="u-bolt-margin-top-large u-bolt-margin-bottom-medium">
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell "o-bolt-grid__cell" %}
-                {% include "@bolt-components-pagination/pagination.twig" with {
+            {% grid 'o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix' %}
+              {% cell 'o-bolt-grid__cell' %}
+                {% include '@bolt-components-pagination/pagination.twig' with {
                   current: 5,
                   total: 10,
                   first: {

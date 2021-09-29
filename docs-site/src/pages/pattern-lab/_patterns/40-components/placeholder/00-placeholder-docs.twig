@@ -1,12 +1,12 @@
 {% set usage %}{% verbatim %}
-{% include "@bolt-components-placeholder/placeholder.twig" with {
-  text: "Bolt Placeholder Example",
-  size: "large",
+{% include '@bolt-components-placeholder/placeholder.twig' with {
+  text: 'Bolt Placeholder Example',
+  size: 'large',
   animated: true
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "placeholder",
+{% include '@utils/docs.twig' with {
+  componentName: 'placeholder',
   usage: usage
 } only %}

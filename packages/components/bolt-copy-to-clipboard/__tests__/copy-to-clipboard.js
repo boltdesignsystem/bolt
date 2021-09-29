@@ -52,8 +52,8 @@ describe('<bolt-copy-to-clipboard> Component', () => {
   });
 
   test('custom trigger component', async () => {
-    const customTrigger = await render('@bolt-components-icon/icon.twig', {
-      name: 'add-open',
+    const customTrigger = await render('@bolt-elements-icon/icon.twig', {
+      name: 'add-circle',
       background: 'circle',
       size: 'medium',
     });
