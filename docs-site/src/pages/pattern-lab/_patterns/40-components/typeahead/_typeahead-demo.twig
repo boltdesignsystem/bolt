@@ -14,18 +14,18 @@
   size: "none"
 } only %}
 
-<bolt-code-snippet syntax="light" lang="twig" class="u-bolt-block u-bolt-margin-top-medium">
-  {% spaceless %}
-    <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
 <code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight" is="shadow-root">
 {{ source(twig_path) | replace({
 '<': '&lt;',
 '>': '&gt;',
 }) | trim | raw }}
 </code>
-</pre>
-  {% endspaceless %}
-</bolt-code-snippet>
+
+{# {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: twig_path,
+  lang: 'twig',
+  mode: 'dark',
+} only %} #}
 
 <bolt-code-snippet syntax="light" lang="js" class="u-bolt-block u-bolt-margin-top-medium">
   {% spaceless %}

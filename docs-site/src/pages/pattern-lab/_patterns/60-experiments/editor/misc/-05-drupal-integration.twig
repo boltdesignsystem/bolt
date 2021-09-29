@@ -2,7 +2,7 @@
 
 <h3>Install package</h3>
 
-<bolt-code-snippet lang="bash" syntax="dark">npm install --save @bolt/components-editor</bolt-code-snippet>
+<code>npm install --save @bolt/components-editor</code>
 
 Then add to <code>.boltrc.js</code> file <a href="/docs/guides/install-component.html">like so.</a>
 
@@ -12,7 +12,7 @@ Then add to <code>.boltrc.js</code> file <a href="/docs/guides/install-component
 
 <bolt-blockquote>Be sure to check it with CSS & JS Aggregation on & off!</bolt-blockquote>
 
-<bolt-code-snippet lang="twig" syntax="dark">
+{% set example_content %}
 {% verbatim %}
 {# Just some example content #}
 {% set content %}
@@ -41,13 +41,19 @@ Then add to <code>.boltrc.js</code> file <a href="/docs/guides/install-component
 {% endif %}
 
 {% endverbatim %}
-</bolt-code-snippet>
+{% endset %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: example_content,
+  lang: 'twig',
+  mode: 'dark',
+} only %}
 
 <h3>Listen for "editor:save" event</h3>
 
 <p>Here's some JavaScript that will listen for the <code>editor:save</code> event after the user clicks the "Save" button. This is when you should save the HTML to Drupal.</p>
 
-<bolt-code-snippet lang="js" syntax="dark">
+{% set code_example %}
 document.querySelectorAll('.js-pega-editor').forEach((pegaEditor) => {
   pegaEditor.addEventListener('editor:save', (event) => {
     console.log('An editor just saved and we have new HTML to send to Drupal!', {
@@ -57,7 +63,13 @@ document.querySelectorAll('.js-pega-editor').forEach((pegaEditor) => {
     });
   });
 });
-</bolt-code-snippet>
+{% endset %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_example,
+  lang: 'js',
+  mode: 'dark',
+} only %}
 
 
 <h3>Handling editor save</h3>
@@ -70,27 +82,32 @@ document.querySelectorAll('.js-pega-editor').forEach((pegaEditor) => {
   to simulate both events. The <code>setTimeout()</code> is only necessary for simulating async, the production function should not include this.
 </p>
 
-<p>
-  <bolt-code-snippet lang="js" syntax="dark">
-  //@TODO: actual Drupal http request code
-  window.__handleEditorSave = () => {
-    return new Promise((resolve, reject) => {
-      // faking async delay
-      setTimeout(() => {
-        if (shouldThisFailToDemo) {
-          console.log('exampleHandleEditorSave failed');
-          resolve({
-            ok: false,
-            message: 'This is a demonstration of how to fail the save'
-          });
-        } else {
-          console.log('exampleHandleEditorSave ok!');
-          resolve({
-            ok: true,
-            message: 'Saved ok!',
-          });
-        }
-      }, 2000);
-    })
-  }
-  </bolt-code-snippet>
+
+{% set code_example_2 %}
+//@TODO: actual Drupal http request code
+window.__handleEditorSave = () => {
+  return new Promise((resolve, reject) => {
+    // faking async delay
+    setTimeout(() => {
+      if (shouldThisFailToDemo) {
+        console.log('exampleHandleEditorSave failed');
+        resolve({
+          ok: false,
+          message: 'This is a demonstration of how to fail the save'
+        });
+      } else {
+        console.log('exampleHandleEditorSave ok!');
+        resolve({
+          ok: true,
+          message: 'Saved ok!',
+        });
+      }
+    }, 2000);
+  })
+}
+{% endset %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_example_2,
+  lang: 'js',
+  mode: 'dark',
+} only %}
