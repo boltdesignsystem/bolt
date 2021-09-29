@@ -28,8 +28,8 @@
     Bolt Link is a web component that renders a semantic blockquote with Bolt styles. For a simple blockquote, wrap your quote content in the <code>&lt;bolt-blockquote&gt;</code> custom element. Note: you must wrap your quote text in <code>&lt;p&gt;</code> tags for the appropriate quotation marks to appear. Add attribution to the quote by adding the <code>author-name</code>, <code>author-title</code>, and <code>author-image</code> attributes to <code>&lt;bolt-blockquote&gt;</code>. 
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% cell "u-bolt-width-12/12" %}
+    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+      {% cell 'u-bolt-width-12/12' %}
         {{ blockquote_demo_simple }}
       {% endcell %}
     {% endgrid %}
@@ -51,8 +51,8 @@
     Apply additional configuration options via attributes on the <code>&lt;bolt-blockquote&gt;</code> element. Attribute names and values match the Twig schema but use "kebab-case" instead of "camelCase". For example, <code>alignItems</code> becomes <code>align-items</code>.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% cell "u-bolt-width-12/12" %}
+    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+      {% cell 'u-bolt-width-12/12' %}
         {{ blockquote_demo_attributes }}
       {% endcell %}
     {% endgrid %}
@@ -74,8 +74,8 @@
     To add a logo to <code>&lt;bolt-blockquote&gt;</code> place logo content (for example: <code>&lt;bolt-logo&gt;</code> or <code>&lt;img&gt;</code>) next to blockquote text, and add the attribute <code>slot="logo"</code> to the logo's outermost container.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% cell "u-bolt-width-12/12" %}
+    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+      {% cell 'u-bolt-width-12/12' %}
         {{ blockquote_demo_logo }}
       {% endcell %}
     {% endgrid %}

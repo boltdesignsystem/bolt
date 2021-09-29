@@ -1,14 +1,14 @@
 {% set widths = [
-  "80px",
-  "150px",
-  "25%",
-  "50%",
+  '80px',
+  '150px',
+  '25%',
+  '50%',
 ] %}
 
 {% set mediaWidthDemo %}{% verbatim %}media: {
   image: image,
   attributes: {
-    style: "min-width: 25%",
+    style: 'min-width: 25%',
   }
 }{% endverbatim %}
 {% endset %}
@@ -18,30 +18,30 @@
 }{% endverbatim %}
 {% endset %}
 
-{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center u-bolt-margin-bottom-large" %}
-  {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center u-bolt-margin-bottom-large' %}
+  {% cell 'u-bolt-width-12/12 u-bolt-width-8/12@small' %}
     <bolt-text headline>
       Default horizontal card
     </bolt-text>
-    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
       horizontal: true,
-      height: "auto",
+      height: 'auto',
       media: {
         image: {
-          src: "/images/placeholders/landscape-16x9-mountains.jpg",
-          alt: "Image alt.",
-          placeholder_color: "#afcde6",
+          src: '/images/placeholders/landscape-16x9-mountains.jpg',
+          alt: 'Image alt.',
+          placeholder_color: '#afcde6',
         },
       },
       body: {
-        eyebrow: "This is an eyebrow",
-        headline: "This Is a Headline",
-        paragraph: "This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
+        eyebrow: 'This is an eyebrow',
+        headline: 'This Is a Headline',
+        paragraph: 'This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.',
       },
       actions: [
         {
-          text: "This is a button",
-          url: "https://pega.com",
+          text: 'This is a button',
+          url: 'https://pega.com',
         },
       ],
     } only %}
@@ -51,8 +51,8 @@
   {% endcell %}
 {% endgrid %}
 
-{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center u-bolt-margin-bottom-large" %}
-  {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center u-bolt-margin-bottom-large' %}
+  {% cell 'u-bolt-width-12/12 u-bolt-width-8/12@small' %}
     <bolt-text headline>
       Advanced usage: manually override horizontal media size
     </bolt-text>
@@ -65,27 +65,27 @@
       mode: 'dark',
     } only %}
     {% for width in widths %}
-      {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
         horizontal: true,
-        height: "auto",
+        height: 'auto',
         media: {
           image: {
-            src: "/images/placeholders/landscape-16x9-mountains.jpg",
-            alt: "Image alt.",
-            placeholder_color: "#afcde6",
+            src: '/images/placeholders/landscape-16x9-mountains.jpg',
+            alt: 'Image alt.',
+            placeholder_color: '#afcde6',
           },
           attributes: {
-            style: "min-width:" ~ width,
+            style: 'min-width:' ~ width,
           }
         },
         body: {
-          headline: "This card's media is " ~ width ~ " wide",
-          paragraph: "This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
+          headline: 'This card\'s media is ' ~ width ~ ' wide',
+          paragraph: 'This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.',
         },
         actions: [
           {
-            text: "This is a button",
-            url: "https://pega.com",
+            text: 'This is a button',
+            url: 'https://pega.com',
           },
         ],
       } only %}
@@ -93,8 +93,8 @@
   {% endcell %}
 {% endgrid %}
 
-{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-  {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+  {% cell 'u-bolt-width-12/12 u-bolt-width-8/12@small' %}
     <bolt-text headline>
       DIY horizontal card
     </bolt-text>
@@ -112,75 +112,75 @@
   {% endcell %}
 
   {% for width in widths %}
-    {% if width == "80px" or width == "150px" %}
+    {% if width == '80px' or width == '150px' %}
       {% set altHorizontalCardContent %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-          {% cell "o-bolt-grid__cell" %}
+        {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
+          {% cell 'o-bolt-grid__cell' %}
             {% include '@bolt-elements-image/image.twig' with {
               attributes: {      
-                src: "/images/placeholders/thumb-square-abstract.jpg",
-                alt: "Image alt",
-                style: "max-width:" ~ width,
-                loading: "lazy",
+                src: '/images/placeholders/thumb-square-abstract.jpg',
+                alt: 'Image alt',
+                style: 'max-width:' ~ width,
+                loading: 'lazy',
               }
             } only %}
           {% endcell %}
-          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall u-bolt-flex-grow u-bolt-margin-top-auto u-bolt-margin-bottom-auto" %}
-            {% include "@bolt-components-headline/headline.twig" with {
-              text: "This card's media is " ~ width ~ " wide",
-              size: "large",
+          {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@xsmall u-bolt-flex-grow u-bolt-margin-top-auto u-bolt-margin-bottom-auto' %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'This card\'s media is ' ~ width ~ ' wide',
+              size: 'large',
             } only %}
-            {% include "@bolt-components-headline/text.twig" with {
-              text: "This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.',
             } only %}
           {% endcell %}
         {% endgrid %}
       {% endset %}
     {% else %}
-      {% if width == "25%" %}
-        {% set percentWidth = "u-bolt-width-4/12@xsmall" %}
+      {% if width == '25%' %}
+        {% set percentWidth = 'u-bolt-width-4/12@xsmall' %}
       {% else %}
-        {% set percentWidth = "u-bolt-width-6/12@xsmall" %}
+        {% set percentWidth = 'u-bolt-width-6/12@xsmall' %}
       {% endif %}
       {% set altHorizontalCardContent %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+        {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
           {% cell with {
             attributes: {
               class: [
-                "o-bolt-grid__cell",
-                "u-bolt-width-12/12",
+                'o-bolt-grid__cell',
+                'u-bolt-width-12/12',
                 percentWidth,
               ]
             }
           } %}
-            {% include "@bolt-elements-image/image.twig" with {
+            {% include '@bolt-elements-image/image.twig' with {
               attributes: {
-                src: "/images/placeholders/thumb-square-abstract.jpg",
-                alt: "Image alt",
+                src: '/images/placeholders/thumb-square-abstract.jpg',
+                alt: 'Image alt',
                 loading: 'lazy',
               }
             } only %}
           {% endcell %}
-          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall u-bolt-flex-grow u-bolt-margin-top-auto u-bolt-margin-bottom-auto" %}
-            {% include "@bolt-components-headline/headline.twig" with {
-              text: "This card's media is " ~ width ~ " wide",
-              size: "large",
+          {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@xsmall u-bolt-flex-grow u-bolt-margin-top-auto u-bolt-margin-bottom-auto' %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'This card\'s media is ' ~ width ~ ' wide',
+              size: 'large',
             } only %}
-            {% include "@bolt-components-headline/text.twig" with {
-              text: "This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.",
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.',
             } only %}
           {% endcell %}
         {% endgrid %}
       {% endset %}
     {% endif %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
-      {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+    {% cell 'u-bolt-width-12/12 u-bolt-width-8/12@small' %}
+      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
         link: {
-          url: "https://pega.com",
-          text: "Visit the Pega website"
+          url: 'https://pega.com',
+          text: 'Visit the Pega website'
         },
-        spacing: "small",
-        height: "auto",
+        spacing: 'small',
+        height: 'auto',
         body: {
           content: altHorizontalCardContent,
         }

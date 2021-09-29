@@ -1,43 +1,43 @@
-{% import "@bolt/macros.twig" as macros %}
+{% import '@bolt/macros.twig' as macros %}
 {# ^ allows us to use inline includes that also work in Drupal #}
 
 <bolt-text>This demo creatively uses the <code>imageMinWidth</code> prop to "pin" the image to the right side of the screen on larger devices.</bolt-text>
 
 {% set icon %}
-  {% include "@bolt-elements-icon/icon.twig" with {
-    name: "speed-dial",
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'speed-dial',
   } only %}
 {% endset %}
 
-{% include "@bolt-components-hero/hero.twig" with {
-  theme: "none",
+{% include '@bolt-components-hero/hero.twig' with {
+  theme: 'none',
   content: [
-    macros.include("@bolt-elements-shape/shape.twig", {
+    macros.include('@bolt-elements-shape/shape.twig', {
       content: icon,
-      size: "large",
+      size: 'large',
       attributes: {
         class: [
-          "u-bolt-margin-bottom-medium",
-          "t-bolt-teal"
+          'u-bolt-margin-bottom-medium',
+          't-bolt-teal'
         ]
       }
     }),
-    macros.include("@bolt-components-headline/headline.twig", {
-      size: "xxxlarge",
-      text: "A Prominent Headline Certainly Helps",
+    macros.include('@bolt-components-headline/headline.twig', {
+      size: 'xxxlarge',
+      text: 'A Prominent Headline Certainly Helps',
     }),
-    macros.include("@bolt-components-headline/subheadline.twig", {
-      size: "xlarge",
-      text: "This one even includes a tagline.",
+    macros.include('@bolt-components-headline/subheadline.twig', {
+      size: 'xlarge',
+      text: 'This one even includes a tagline.',
     }),
-    macros.include("@bolt-elements-button/button.twig", {
-      content: "Learn More",
-      hierarchy: "primary",
+    macros.include('@bolt-elements-button/button.twig', {
+      content: 'Learn More',
+      hierarchy: 'primary',
       attributes: {
         type: 'button'
       }
     }),
   ]|join(''),
   imageMinWidth: '60vw',
-  image: "/images/heros/responsive-web-design.svg"
+  image: '/images/heros/responsive-web-design.svg'
 } %}

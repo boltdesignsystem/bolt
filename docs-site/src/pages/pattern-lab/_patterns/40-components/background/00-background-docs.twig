@@ -1,21 +1,21 @@
 {% set usage %}{% verbatim %}
-{% include "@bolt-components-background/background.twig" with {
-  opacity: "heavy",
-  fill: "gradient",
+{% include '@bolt-components-background/background.twig' with {
+  opacity: 'heavy',
+  fill: 'gradient',
   focal_point: {
-    vertical: "center",
-    horizontal: "center"
+    vertical: 'center',
+    horizontal: 'center'
   },
   content_items: [
     {
-      pattern: "image",
-      src: "/images/content/backgrounds/background-tall-4.jpg"
+      pattern: 'image',
+      src: '/images/content/backgrounds/background-tall-4.jpg'
     }
   ]
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "background",
+{% include '@utils/docs.twig' with {
+  componentName: 'background',
   usage: usage
 } only %}

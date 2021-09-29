@@ -1,8 +1,8 @@
 {% set tooltip %}
   {# Start component specific code #}
-  {% include "@bolt-components-tooltip/tooltip.twig" with {
-    trigger: "this example",
-    content: "This is an inverted tooltip.",
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    trigger: 'this example',
+    content: 'This is an inverted tooltip.',
     inverted: true
   } only %}
   {# End component specific code #}
@@ -17,8 +17,8 @@
   </bolt-text>
 {% endset %}
 
-{% include "@bolt-components-band/band.twig" with {
-  theme: "xdark",
+{% include '@bolt-components-band/band.twig' with {
+  theme: 'xdark',
   content: content,
 } only %}
 

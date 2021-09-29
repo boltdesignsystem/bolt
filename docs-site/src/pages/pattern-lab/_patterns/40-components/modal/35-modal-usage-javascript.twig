@@ -9,29 +9,29 @@
 {% set modal_content %}
   <bolt-text>This modal was shown via the <code>data-bolt-modal-target</code> data attribute.</bolt-text>
   <bolt-text>The same data attribute is used on the button below to hide the modal.</bolt-text>
-  {% include "@bolt-elements-button/button.twig" with {
-    content: "Close Modal",
-    size: "small",
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Close Modal',
+    size: 'small',
     attributes: {
       type: 'button',
-      "data-bolt-modal-target": ".js-bolt-modal",
+      'data-bolt-modal-target': '.js-bolt-modal',
     },
   } only %}
 {% endset %}
 
-{% include "@bolt-elements-button/button.twig" with {
-  content: "Open Modal",
-  size: "small",
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Open Modal',
+  size: 'small',
   attributes: {
     type: 'button',
-    "data-bolt-modal-target": ".js-bolt-modal",
+    'data-bolt-modal-target': '.js-bolt-modal',
   },
 } only %}
 
-{% include "@bolt-components-modal/modal.twig" with {
+{% include '@bolt-components-modal/modal.twig' with {
   content: modal_content,
   attributes: {
-    class: "js-bolt-modal",
+    class: 'js-bolt-modal',
   },
 } only %}
 
@@ -44,33 +44,33 @@
 {% set js_modal_content %}
   <bolt-text>This modal was shown by calling the <code>show()</code> method.</bolt-text>
   <bolt-text>The <code>hide()</code> method will be called when you click the button below.</bolt-text>
-  {% include "@bolt-elements-button/button.twig" with {
-    content: "Close Modal",
-    size: "small",
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Close Modal',
+    size: 'small',
     attributes: {
       type: 'button',
       class: [
-        "js-bolt-modal-trigger--close"
+        'js-bolt-modal-trigger--close'
       ]
     },
   } only %}
 {% endset %}
 
-{% include "@bolt-elements-button/button.twig" with {
-  content: "Open Modal",
-  size: "small",
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Open Modal',
+  size: 'small',
   attributes: {
     type:'button',
     class: [
-      "js-bolt-modal-trigger--open"
+      'js-bolt-modal-trigger--open'
     ]
   },
 } only %}
 
-{% include "@bolt-components-modal/modal.twig" with {
+{% include '@bolt-components-modal/modal.twig' with {
   content: js_modal_content,
   attributes: {
-    class: "js-bolt-modal--js-demo",
+    class: 'js-bolt-modal--js-demo',
   },
 } only %}
 

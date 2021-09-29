@@ -2,7 +2,7 @@
 {# It should NOT be considered an example of Bolt best-practices. #}
 
 <div class="event-sponsors-proof-of-concept">
-  {% set logoImages = ["logo-atos.png", "logo-capgemini.png", "logo-ey.png", "logo-merkle.png", "logo-tata.png"] %}
+  {% set logoImages = ['logo-atos.png', 'logo-capgemini.png', 'logo-ey.png', 'logo-merkle.png', 'logo-tata.png'] %}
 
   {% set items = [] %}
   {% for logoImage in logoImages %}
@@ -14,7 +14,7 @@
     {% set items = items|merge([{ media: media }]) %}
   {% endfor %}
 
-  {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+  {% include '@bolt-components-action-blocks/action-blocks.twig' with {
     max_items_per_row: 3,
     items: items,
   } only %}

@@ -1,29 +1,29 @@
-{% grid "o-bolt-grid--center" %}
+{% grid 'o-bolt-grid--center' %}
   {% cell %}
     <bolt-list display="inline" spacing="large">
       <bolt-list-item>
         {# Start component specific code #}
-        {% include "@bolt-components-tooltip/tooltip.twig" with {
+        {% include '@bolt-components-tooltip/tooltip.twig' with {
           trigger: include('@bolt-elements-text-link/text-link.twig', {
             content: 'CRM',
             attributes: {
               href: 'https://pega.com/glossary#crm'
             }
           }),
-          content: "Customer relationship management",
+          content: 'Customer relationship management',
         } only %}
         {# End component specific code #}
       </bolt-list-item>
       <bolt-list-item>
         {# Start component specific code #}
-        {% include "@bolt-components-tooltip/tooltip.twig" with {
-          trigger: include("@bolt-elements-button/button.twig", {
-            content: "Download",
+        {% include '@bolt-components-tooltip/tooltip.twig' with {
+          trigger: include('@bolt-elements-button/button.twig', {
+            content: 'Download',
             attributes: {
               type: 'button'
             }
           }),
-          content: "File size: 25MB",
+          content: 'File size: 25MB',
         } only %}
         {# End component specific code #}
       </bolt-list-item>

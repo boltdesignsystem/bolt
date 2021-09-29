@@ -1,39 +1,39 @@
 {% set modal_content %}
-  {% include "@bolt-components-headline/text.twig" with {
-    text: "This is the modal container's header.",
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'This is the modal container\'s header.',
     attributes: {
-      slot: "header",
+      slot: 'header',
     }
   } only %}
   <div>
-    {% include "@bolt-components-headline/headline.twig" with {
-      size: "xlarge",
-      text: "This is the modal container's body"
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xlarge',
+      text: 'This is the modal container\'s body'
     } only %}
-    {% include "@bolt-components-headline/text.twig" with {
-      text: "This is the modal container's body."
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'This is the modal container\'s body.'
     } only %}
   </div>
-  {% include "@bolt-components-headline/text.twig" with {
-    text: "This is the modal container's footer.",
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'This is the modal container\'s footer.',
     attributes: {
-      slot: "footer",
+      slot: 'footer',
     }
   } only %}
 {% endset %}
 
-{% include "@bolt-elements-button/button.twig" with {
-  content: "Open Modal",
-  size: "small",
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Open Modal',
+  size: 'small',
   attributes: {
     type: 'button',
-    "data-bolt-modal-target": ".js-bolt-modal",
+    'data-bolt-modal-target': '.js-bolt-modal',
   },
 } only %}
 
-{% include "@bolt-components-modal/modal.twig" with {
+{% include '@bolt-components-modal/modal.twig' with {
   content: modal_content,
   attributes: {
-    class: "js-bolt-modal",
+    class: 'js-bolt-modal',
   },
 } only %}

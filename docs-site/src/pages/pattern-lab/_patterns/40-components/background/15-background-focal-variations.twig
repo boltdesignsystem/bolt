@@ -2,18 +2,18 @@
 
 {% for horz in schema.properties.focal_point.properties.horizontal.enum if horz != 'center' %}{# @todo: bolt background currently only reverses gradient on horz = 'left' #}
   <p>Heavy Opacity with {{  horz|capitalize }} Focal Point</p>
-  {% include "./_00-background-band-demo.twig" with {
+  {% include './_00-background-band-demo.twig' with {
     background: {
-      opacity: "heavy",
-      fill: "gradient",
+      opacity: 'heavy',
+      fill: 'gradient',
       focal_point: {
-        vertical: "center",
+        vertical: 'center',
         horizontal: horz
       },
       content_items: [
         {
-          pattern: "image",
-          src: "/images/content/backgrounds/background-tall-4.jpg"
+          pattern: 'image',
+          src: '/images/content/backgrounds/background-tall-4.jpg'
         }
       ]
     },

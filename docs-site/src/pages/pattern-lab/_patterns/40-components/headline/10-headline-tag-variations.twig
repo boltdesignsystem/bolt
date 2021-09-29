@@ -1,24 +1,24 @@
 {% set sizeExamples = {
-  h1: "xxxlarge",
-  h2: "xxlarge",
-  h3: "xlarge",
-  h4: "large",
-  h5: "small",
-  h6: "xsmall",
+  h1: 'xxxlarge',
+  h2: 'xxlarge',
+  h3: 'xlarge',
+  h4: 'large',
+  h5: 'small',
+  h6: 'xsmall',
 } %}
 
 {% for tag, size in sizeExamples %}
-  {% include "@bolt-components-headline/headline.twig" with {
-    text: "This headline is &lt;" ~ tag ~ "&gt; and " ~ size ~ " size",
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'This headline is &lt;' ~ tag ~ '&gt; and ' ~ size ~ ' size',
     tag: tag,
     size: size,
   } only %}
 {% endfor %}
 
-{% include "@bolt-components-headline/text.twig" with {
-  text: "This text is &lt;p&gt; and medium size.",
-  tag: "p",
-  size: "medium",
+{% include '@bolt-components-headline/text.twig' with {
+  text: 'This text is &lt;p&gt; and medium size.',
+  tag: 'p',
+  size: 'medium',
 } only %}
 
 <bolt-banner align="start" status="warning">
