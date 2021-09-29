@@ -76,26 +76,12 @@
 
 .c-bolt-banner--status-information {
   position: relative;
-  color: var(--m-bolt-text);
-  border-left-color: var(--m-bolt-link);
+  color: var(--bolt-color-info-dark);
+  border-left-color: var(--bolt-color-info-dark);
   border-left-style: $bolt-border-style;
   border-left-width: $bolt-border-width * 3;
   box-shadow: 0 0 var(--bolt-spacing-y-xsmall) var(--m-bolt-border);
-  background-color: var(--m-bolt-bg);
-
-  &:before {
-    content: '';
-    display: block;
-    opacity: 0.2;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    pointer-events: none;
-    user-select: none;
-    background-color: var(--bolt-color-white);
-  }
+  background-color: var(--bolt-color-info-light);
 }
 
 /**
