@@ -4,15 +4,15 @@
   <bolt-icon name="documentation" size="medium"></bolt-icon> Please reference <a href="{{ link['elements-button-display'] }}" class="e-bolt-text-link"> element doc</a> instead.
 </bolt-banner>
 
-{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+{% set schema = bolt.data.components['@bolt-components-button'].schema %}
 
 <p><mark>Note: full@small means that the button will go from auto width to full width when the browser goes below the small breakpoint.</mark></p>
 
 {% for width in schema.properties.width.enum %}
   <p>
-    {% include "@bolt-components-button/button.twig" with {
+    {% include '@bolt-components-button/button.twig' with {
       width: width,
-      text: "This is a " ~ width ~ " width button"
+      text: 'This is a ' ~ width ~ ' width button'
     } only %}
   </p>
 {% endfor %}

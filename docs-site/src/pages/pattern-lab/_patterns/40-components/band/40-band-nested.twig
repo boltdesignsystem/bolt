@@ -1,36 +1,36 @@
 {% set parent_band_content %}
-  {% include "@bolt-components-headline/headline.twig" with {
-    size: "xxxlarge",
-    text: "This Band Has 2 Bands Nested Inside",
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxxlarge',
+    text: 'This Band Has 2 Bands Nested Inside',
   } only %}
-  {% include "@bolt-components-band/band.twig" with {
-    size: "xsmall",
-    theme: "light",
+  {% include '@bolt-components-band/band.twig' with {
+    size: 'xsmall',
+    theme: 'light',
     full_bleed: false,
-    content: "Nested band 1",
+    content: 'Nested band 1',
   } only %}
-  {% include "@bolt-components-band/band.twig" with {
-    size: "large",
-    theme: "xlight",
+  {% include '@bolt-components-band/band.twig' with {
+    size: 'large',
+    theme: 'xlight',
     full_bleed: false,
-    content: "Nested band 2",
+    content: 'Nested band 2',
   } only %}
 {% endset %}
 
 
-{% include "@bolt-components-band/band.twig" with {
-  theme: "xdark",
+{% include '@bolt-components-band/band.twig' with {
+  theme: 'xdark',
   background: {
-    opacity: "heavy",
-    fill: "color",
+    opacity: 'heavy',
+    fill: 'color',
     focal_point: {
-      vertical: "center",
-      horizontal: "center"
+      vertical: 'center',
+      horizontal: 'center'
     },
     content_items: [
       {
-        pattern: "image",
-        src: "/images/content/backgrounds/background-short-1.jpg",
+        pattern: 'image',
+        src: '/images/content/backgrounds/background-short-1.jpg',
         lazyload: false
       },
     ]

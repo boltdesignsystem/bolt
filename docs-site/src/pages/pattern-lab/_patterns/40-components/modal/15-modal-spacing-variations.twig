@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components["@bolt-components-modal"].schema %}
+{% set schema = bolt.data.components['@bolt-components-modal'].schema %}
 
 <bolt-text>The modal container's spacing can be adjusted by the <code>spacing</code> prop. The default is set to <code>medium</code>.</bolt-text>
 
@@ -10,25 +10,25 @@
       {% for spacing in schema.properties.spacing.enum %}
         <tr>
           <th>
-            {% include "@bolt-elements-button/button.twig" with {
+            {% include '@bolt-elements-button/button.twig' with {
               content: spacing|capitalize,
-              size: "small",
-              display: "block",
+              size: 'small',
+              display: 'block',
               attributes: {
                 type: 'button',
-                "data-bolt-modal-target": ".js-bolt-modal--spacing-" ~ spacing,
+                'data-bolt-modal-target': '.js-bolt-modal--spacing-' ~ spacing,
               }
             } only %}
-            {% include "@bolt-components-modal/modal.twig" with {
-              content: "This is a modal set to " ~ spacing ~ " spacing.",
+            {% include '@bolt-components-modal/modal.twig' with {
+              content: 'This is a modal set to ' ~ spacing ~ ' spacing.',
               spacing: spacing,
               attributes: {
-                class: "js-bolt-modal--spacing-" ~ spacing,
+                class: 'js-bolt-modal--spacing-' ~ spacing,
               },
             } only %}
           </th>
           <td>
-            {% if spacing == "none" %}
+            {% if spacing == 'none' %}
               This removes the spacing inside the modal container.
             {% else %}
               This sets {{ spacing }} inset spacing on the modal container.

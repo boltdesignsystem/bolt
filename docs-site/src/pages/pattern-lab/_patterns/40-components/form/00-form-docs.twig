@@ -1,38 +1,38 @@
 {% set usage %}{% verbatim %}
 {% set form_children %}
   {% set label %}
-    {% include "@bolt-components-form/form-label.twig" with {
-      title: "This is the label",
-      displayType: "block"
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'This is the label',
+      displayType: 'block'
     } only %}
   {% endset %}
   {% set input %}
-    {% include "@bolt-components-form/form-input.twig" with {
+    {% include '@bolt-components-form/form-input.twig' with {
       attributes: {
-        placeholder: "This is the placeholder text.",
+        placeholder: 'This is the placeholder text.',
         required: true,
-        type: "text",
+        type: 'text',
       },
     } only %}
   {% endset %}
-  {% include "@bolt-components-form/form-element.twig" with {
-    labelDisplay: "before",
+  {% include '@bolt-components-form/form-element.twig' with {
+    labelDisplay: 'before',
     label: label,
     children: input
   } only %}
-  {% include "@bolt-components-form/form-button.twig" with {
-    text: "Submit",
+  {% include '@bolt-components-form/form-button.twig' with {
+    text: 'Submit',
     attributes: {
-      type: "submit",
+      type: 'submit',
     }
   } only %}
 {% endset %}
-{% include "@bolt-components-form/form.twig" with {
+{% include '@bolt-components-form/form.twig' with {
   children: form_children
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "form",
+{% include '@utils/docs.twig' with {
+  componentName: 'form',
   usage: usage
 } only %}
