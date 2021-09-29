@@ -17,7 +17,7 @@
     size: "xxlarge",
   } only %}
 
-  <p>Note: make sure your custom SVG icon <i>starts</i> with <bolt-code-snippet display="inline" lang="html">custom-</bolt-code-snippet> as this is required to ensure names of built-in icons don't collide with custom SVG icons added.</p>
+  <p>Note: make sure your custom SVG icon <i>starts</i> with <code>custom-</code> as this is required to ensure names of built-in icons don't collide with custom SVG icons added.</p>
 
   {% include "@bolt-components-headline/headline.twig" with {
     text: "Step 1. Import your custom SVG Icon in a .js file that's compiled by the Bolt build tools. Note: make sure your SVG icon has been already exported for the web (docs coming soon!).",
@@ -25,7 +25,7 @@
     tag: "p"
   } only %}
 
-  <bolt-code-snippet lang="javascript">import './assets/icons/custom-users.svg';</bolt-code-snippet>
+  <code>import './assets/icons/custom-users.svg';</code>
 
   {% include "@bolt-components-headline/headline.twig" with {
     text: "Step 2. After recompiling the site's JavaScript, your custom SVG can now be used in Twig, JS, or HTML!",
@@ -35,14 +35,22 @@
 
   <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
     <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
-<bolt-code-snippet lang="twig">{% verbatim %}{% include "@bolt-components-icon/icon.twig" with {
+    {# For proper render indentation is changed #}
+    {% set custom_icon_1 %}
+      {% verbatim %}{% include "@bolt-components-icon/icon.twig" with {
   name: "custom-users",
-  size: "xlarge"
-} only %}{% endverbatim %}</bolt-code-snippet>
+  size: "xlarge",
+} %}{% endverbatim %}
+    {% endset %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: custom_icon_1,
+      lang: 'twig',
+      mode: 'dark',
+    } only %}
     </div>
 
     <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
-      <bolt-code-snippet lang="html">{% verbatim %}&lt;bolt-icon name="custom-users" size="xlarge"&gt;&lt;/bolt-icon&gt;{% endverbatim %}</bolt-code-snippet>
+      <code>{% verbatim %}&lt;bolt-icon name="custom-users" size="xlarge"&gt;&lt;/bolt-icon&gt;{% endverbatim %}</code>
     </div>
   </div>
 
@@ -63,12 +71,12 @@
   <p>This advanced use case is rarely recommended since it can limit the number of places an SVG icon can get used and prevents the icon's color palette from adjusting based on the location it's used.</p>
 
   {% include "@bolt-components-headline/headline.twig" with {
-    text: "Step 1. Import your SVG Icon in a .js file, making sure your icon ends in <bolt-code-snippet display=\"inline\" lang=\"html\">-colored.svg</bolt-code-snippet>",
+    text: "Step 1. Import your SVG Icon in a .js file, making sure your icon ends in <code>-colored.svg</code>",
     size: "large",
     tag: "p"
   } only %}
 
-<bolt-code-snippet lang="javascript">import './assets/icons/custom-arrow-left-colored.svg';</bolt-code-snippet>
+<code>import './assets/icons/custom-arrow-left-colored.svg';</code>
 
   {% include "@bolt-components-headline/headline.twig" with {
     text: "Step 2. After recompiling the site's JavaScript, your custom colored SVG can now be used in Twig, JS, or HTML!",
@@ -78,14 +86,22 @@
 
   <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
     <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
-<bolt-code-snippet lang="twig">{% verbatim %}{% include "@bolt-components-icon/icon.twig" with {
+    {# For proper render indentation is changed #}
+    {% set custom_icon_2 %}
+      {% verbatim %}{% include "@bolt-components-icon/icon.twig" with {
   name: "custom-arrow-left-colored",
   size: "xlarge",
-} %}{% endverbatim %}</bolt-code-snippet>
+} %}{% endverbatim %}
+    {% endset %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: custom_icon_2,
+      lang: 'twig',
+      mode: 'dark',
+    } only %}
     </div>
 
     <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
-      <bolt-code-snippet lang="html">{% verbatim %}&lt;bolt-icon name="custom-arrow-left-colored" size="xlarge"&gt;&lt;/bolt-icon&gt;{% endverbatim %}</bolt-code-snippet>
+      <code>{% verbatim %}&lt;bolt-icon name="custom-arrow-left-colored" size="xlarge"&gt;&lt;/bolt-icon&gt;{% endverbatim %}</code>
     </div>
   </div>
 

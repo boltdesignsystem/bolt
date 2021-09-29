@@ -8,14 +8,6 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  <div class="u-bolt-margin-bottom-large">
-    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-      {{ code | replace({
-        '<': '&lt;',
-        '>': '&gt;',
-      }) | trim | raw }}
-    {% endspaceless %}</bolt-code-snippet>
-  </div>
 {% endmacro %}
 
 {% import _self as icon_example %}
@@ -30,12 +22,22 @@
 
 <bolt-text headline>Web Component Usage</bolt-text>
 <bolt-text>
-  Bolt Icon is a web component. You can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet> in the markup to make it render.
+  Bolt Icon is a web component. You can simply use <code>&lt;bolt-icon&gt;</code> in the markup to make it render.
 </bolt-text>
 {% include icon_example.code_example(icon_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: icon_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}
 
 <bolt-text headline>Prop Usage</bolt-text>
 <bolt-text>
   Configure the icon with the properties specified in the schema.
 </bolt-text>
 {% include icon_example.code_example(icon_prop_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: icon_prop_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}
