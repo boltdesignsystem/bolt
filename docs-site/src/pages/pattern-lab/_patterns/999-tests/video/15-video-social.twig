@@ -21,7 +21,6 @@
       data-embed="default"
       data-video-id="4892122320001"
       data-social-description="Custom Social Title"
-      muted
       controls
       class="c-base-video"></video-js>
   {% endset %}
@@ -38,13 +37,92 @@
       data-embed="default"
       data-video-id="4892122320001"
       data-social-url="http://pega.com"
-      muted
       controls
       class="c-base-video"></video-js>
   {% endset %}
   <h2>Video with Custom Social URL</h2>
   {% include '@bolt-components-ratio/ratio.twig' with {
     children: video2,
+    ratio: '16/9'
+  } only %}
+
+  {% set video3 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-social-facebook="false"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with No Facebook</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video3,
+    ratio: '16/9'
+  } only %}
+
+  {% set video4 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-social-twitter="false"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with No Twitter</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video4,
+    ratio: '16/9'
+  } only %}
+
+  {% set video5 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-social-tumblr
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with No Tumblr</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video5,
+    ratio: '16/9'
+  } only %}
+
+  {% set video6 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-social-pinterest
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with No Pinterest</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video6,
+    ratio: '16/9'
+  } only %}
+
+  {% set video7 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-social-linkedin="false"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  <h2>Video with No Linkedin</h2>
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video7,
     ratio: '16/9'
   } only %}
 {% endset %}
@@ -54,13 +132,3 @@
     content: main_content,
   }
 } only %}
-
-
-                        // data-social-title (optional) [string]: CURRENT NOT BEING DISPLAYED
-                                // data-social-description (optional) [string]: Social Panel title
-                    // data-social-url (optional[default: the page url]) [string]: change the shared social url
-        // data-social-facebook (optional [default: true]) [boolean]: Displays the Facebook button
-        // data-social-twitter (optional [default: true]) [boolean]: Displays the Twitter button
-        // data-social-tumblr (optional [default: false]) [boolean]: Displays the tumblr button
-        // data-social-pinterest (optional [default: false]) [boolean]: Displays the Pinterest button
-        // data-social-linkedin (optional [default: true]) [boolean]: Displays the Linkedin button
