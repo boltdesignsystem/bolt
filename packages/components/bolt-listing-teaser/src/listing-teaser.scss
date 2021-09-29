@@ -71,6 +71,7 @@
   > bolt-trigger {
     display: block;
     position: relative; // This raises the stacking order of the signifier link above the main heading link.
+    z-index: 1; // z-index is needed because CSS order is moving the signifier before the heading. This is a Firefox specific fix.
     width: 100%; // If the signifier is clickable, the wrapping action element must take up full width of the signifier container.
     pointer-events: all;
   }
@@ -128,24 +129,6 @@
   > *:not(:last-child) {
     margin-bottom: var(--bolt-spacing-y-xsmall);
   }
-}
-
-.c-bolt-listing-teaser__flag-content__item:not(.c-bolt-listing-teaser__flag-content__item--chips) {
-  --bolt-spacing-y-xxsmall: 0.0625rem;
-  --bolt-spacing-y-xsmall: 0.125rem;
-  --bolt-spacing-y-small: 0.25rem;
-  --bolt-spacing-y-medium: 0.5rem;
-  --bolt-spacing-y-large: 0.75rem;
-  --bolt-spacing-y-xlarge: 1rem;
-  --bolt-spacing-y-xxlarge: 1.25rem;
-  --bolt-spacing-y-xxxlarge: 1.5rem;
-}
-
-.c-bolt-listing-teaser__flag-content__item {
-  display: block;
-  font-size: var(--bolt-type-font-size-small);
-  line-height: var(--bolt-type-line-height-small);
-  pointer-events: none;
 
   a,
   button,
@@ -164,6 +147,24 @@
       text-underline-offset: 2px;
     }
   }
+}
+
+.c-bolt-listing-teaser__flag-content__item:not(.c-bolt-listing-teaser__flag-content__item--chips) {
+  --bolt-spacing-y-xxsmall: 0.0625rem;
+  --bolt-spacing-y-xsmall: 0.125rem;
+  --bolt-spacing-y-small: 0.25rem;
+  --bolt-spacing-y-medium: 0.5rem;
+  --bolt-spacing-y-large: 0.75rem;
+  --bolt-spacing-y-xlarge: 1rem;
+  --bolt-spacing-y-xxlarge: 1.25rem;
+  --bolt-spacing-y-xxxlarge: 1.5rem;
+}
+
+.c-bolt-listing-teaser__flag-content__item {
+  display: block;
+  font-size: var(--bolt-type-font-size-small);
+  line-height: var(--bolt-type-line-height-small);
+  pointer-events: none;
 
   &--reply {
     padding-left: var(--bolt-spacing-x-medium);
