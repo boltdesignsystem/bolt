@@ -79,13 +79,21 @@
       {% if css %}
         <bolt-tab-panel>
           <div slot="label">CSS</div>
-          {% include snippet.code_example(css, 'scss') %}
+          {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+            content: css,
+            lang: 'scss',
+            mode: 'dark'
+          } only %}
         </bolt-tab-panel>
       {% endif %}
       {% if js %}
         <bolt-tab-panel>
           <div slot="label">JavaScript</div>
-          {% include snippet.code_example(js, 'js') %}
+          {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+            content: js,
+            lang: 'js',
+            mode: 'dark'
+          } only %}
         </bolt-tab-panel>
       {% endif %}
     </bolt-tabs>

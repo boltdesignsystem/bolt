@@ -49,8 +49,7 @@ import { props } from '@bolt/core-v3.x/utils';
 {% endset %}
 
 {# Note: we use `raw` tag here because we don't want Twig to parse `verbatim`. Normally, use `verbatim`, not `raw`. #}
-{% set twig_markup %}
-{% raw %}
+{% set twig_markup %}{% verbatim %}
 {% set css_code %}
 .my-css {
   display: block;
@@ -65,10 +64,14 @@ import { props } from '@bolt/core-v3.x/utils';
 <p>Hello World!</p>
 {% endset %}
 
-{% set twig_code %}{% verbatim %}
+{% set twig_code %}
+{# Twig does not allow nested verbatim tags, so the required verbatim tag placement for Twig language code snippets is shown in comments below #}
+{# verbatim goes here #}
 {% include '@bolt-components-banner/banner.twig' with {
   content: 'This is the banner content.'
-} only %}{% endverbatim %}{% endset %}
+} only %}
+{# endverbatim goes here #}
+{% endset %}
 
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
   content: css_code,
@@ -89,8 +92,7 @@ import { props } from '@bolt/core-v3.x/utils';
   content: twig_code,
   lang: 'twig',
 } only %}
-{% endraw %}
-{% endset %}
+{% endverbatim %}{% endset %}
 
 {% set html_markup %}
 <div class="c-bolt-code-snippet" data-lang="css" data-mode="light">
