@@ -6,14 +6,6 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  <div class="u-bolt-margin-bottom-large">
-    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-      {{ code | replace({
-        '<': '&lt;',
-        '>': '&gt;',
-      }) | trim | raw }}
-    {% endspaceless %}</bolt-code-snippet>
-  </div>
 {% endmacro %}
 
 {% import _self as carousel_code %}
@@ -66,7 +58,7 @@
 {% endset %}
 
 {% set carousel_ssr_demo %}
-&lbrace;&percnt; filter bolt_ssr &percnt;&rbrace;
+{% verbatim %} {% filter bolt_ssr %} {% endverbatim %}
 <bolt-carousel>
   <bolt-carousel-slide>
     <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -78,7 +70,7 @@
     <div class="u-bolt-padding-large t-bolt-light">Slide 3</div>
   </bolt-carousel-slide>
 </bolt-carousel>
-&lbrace;&percnt; endfilter &percnt;&rbrace;
+{% verbatim %} {% endfilter %} {% endverbatim %}
 {% endset %}
 
 
@@ -88,9 +80,14 @@
       Web Component Usage
     </bolt-text>
     <bolt-text>
-      Bolt carousel is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-carousel&gt;</bolt-code-snippet> in the markup to make it render. For each slide, you must use <bolt-code-snippet display="inline" lang="html">&lt;bolt-carousel-slide&gt;</bolt-code-snippet> to wrap around the slide content.
+      Bolt carousel is a web component, you can simply use <code>&lt;bolt-carousel&gt;</code> in the markup to make it render. For each slide, you must use <code>&lt;bolt-carousel-slide&gt;</code> to wrap around the slide content.
     </bolt-text>
     {% include carousel_code.code_example(carousel_demo) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: carousel_demo,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   </div>
 
   <div class="u-bolt-margin-bottom-large">
@@ -98,9 +95,14 @@
       Basic Usage
     </bolt-text>
     <bolt-text>
-      The web component has all the options shown in the schema table. You can define each prop within the <bolt-code-snippet display="inline" lang="html">&lt;bolt-carousel&gt;</bolt-code-snippet> element. Use unique combinations to customize a carousel to your liking.
+      The web component has all the options shown in the schema table. You can define each prop within the <code>&lt;bolt-carousel&gt;</code> element. Use unique combinations to customize a carousel to your liking.
     </bolt-text>
     {% include carousel_code.code_example(carousel_basic_demo) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: carousel_basic_demo,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   </div>
 
   <div class="u-bolt-margin-bottom-large">
@@ -108,7 +110,7 @@
       Server-side Rendered Web Components (Experimental)
     </bolt-text>
     <bolt-text>
-      The <bolt-code-snippet display="inline" lang="html">&lt;bolt-carousel&gt;</bolt-code-snippet> component, among many other web components in Bolt, will support server-side rendering via the new upcoming <bolt-code-snippet display="inline" lang="twig">{% verbatim %}{% filter bolt_ssr %}{% endverbatim %}</bolt-code-snippet> custom Twig filter. Check out the docs on <a href="https://master.boltdesignsystem.com/docs/development/server-side-rendering.html">server-side rendering</a> for information!
+      The <code>&lt;bolt-carousel&gt;</code> component, among many other web components in Bolt, will support server-side rendering via the new upcoming <code>{% verbatim %}{% filter bolt_ssr %}{% endverbatim %}</code> custom Twig filter. Check out the docs on <a href="https://master.boltdesignsystem.com/docs/development/server-side-rendering.html">server-side rendering</a> for information!
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
       {% grid %}
@@ -118,12 +120,11 @@
       {% endgrid %}
     </div>
     <div class="u-bolt-margin-bottom-large">
-      <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-        {{ carousel_ssr_demo | replace({
-          '<': '&lt;',
-          '>': '&gt;',
-        }) | trim | raw }}
-      {% endspaceless %}</bolt-code-snippet>
+      {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+        content: carousel_ssr_demo,
+        lang: 'html',
+        mode: 'dark',
+      } only %}
     </div>
   </div>
 </div>

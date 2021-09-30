@@ -1,14 +1,5 @@
 {% include '@pl/00-deprecated-link-docs.twig' %}
 
-{% macro code_example(code, copy) %}
-  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
-    {{ code | replace({
-      '<': '&lt;',
-      '>': '&gt;',
-    }) | trim | raw }}
-  {% endspaceless %}</bolt-code-snippet>
-{% endmacro %}
-
 {% import _self as link_demo %}
 
 
@@ -43,7 +34,11 @@
         <p>{{ link_with_data_attributes }}</p>
       </div>
 
-      {% include link_demo.code_example(link_with_data_attributes, true) %}
+      {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+        content: link_with_data_attributes,
+        lang: 'html',
+        mode: 'dark',
+      } only %}
     {% endcell %}
 
     {% cell "u-bolt-width-12/12" %}
@@ -57,7 +52,11 @@
         <p>{{ link_with_prop_conflict }}</p>
       </div>
 
-      {% include link_demo.code_example(link_with_prop_conflict, true) %}
+      {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+        content: link_with_prop_conflict,
+        lang: 'html',
+        mode: 'dark',
+      } only %}
     {% endcell %}
   {% endgrid %}
 </div>
