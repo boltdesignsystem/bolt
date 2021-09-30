@@ -6,7 +6,7 @@
     Align Usage
   </bolt-text>
   <bolt-text>
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> can be aligned horizontally. This only applies if display is set to block.
+    <code>&lt;bolt-text&gt;</code> can be aligned horizontally. This only applies if display is set to block.
   </bolt-text>
   {% for align in schema.properties.align.enum %}
 
@@ -18,5 +18,10 @@
 {% endset %}
 
     {% include text_code.code_example(text_demo, true) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: text_demo,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   {% endfor %}
 {% endblock %}

@@ -6,7 +6,7 @@
     Text-transform Usage
   </bolt-text>
   <bolt-text>
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> has a few options for transforming letter case. It can be adjusted for legibility. The default is regular.
+    <code>&lt;bolt-text&gt;</code> has a few options for transforming letter case. It can be adjusted for legibility. The default is regular.
   </bolt-text>
   {% for text_transform in schema.properties["text-transform"].enum %}
 
@@ -18,5 +18,10 @@
 {% endset %}
 
     {% include text_code.code_example(text_demo, true) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: text_demo,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   {% endfor %}
 {% endblock %}

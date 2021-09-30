@@ -1,12 +1,3 @@
-{% macro code_example(code) %}
-  <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-    {{ code | replace({
-      '<': '&lt;',
-      '>': '&gt;',
-    }) | trim | raw }}
-  {% endspaceless %}</bolt-code-snippet>
-{% endmacro %}
-
 {% import _self as accordion_demo %}
 
 {% set basic_usage %}
@@ -66,7 +57,7 @@
     Web Component Usage
   </bolt-text>
   <bolt-text>
-    Bolt Accordion is a fully client-side renderable web component. Add the <bolt-code-snippet display="inline" lang="html">bolt-accordion</bolt-code-snippet> element containing any number of <bolt-code-snippet display="inline" lang="html">bolt-accordion-item</bolt-code-snippet> elements to create an accordion. Inside each <bolt-code-snippet display="inline" lang="html">bolt-accordion-item</bolt-code-snippet> mark the "trigger" content with the attribute <bolt-code-snippet display="inline" lang="html">slot="trigger"</bolt-code-snippet>. Everything else is considered accordion "content".
+    Bolt Accordion is a fully client-side renderable web component. Add the <code>bolt-accordion</code> element containing any number of <code>bolt-accordion-item</code> elements to create an accordion. Inside each <code>bolt-accordion-item</code> mark the "trigger" content with the attribute <code>slot="trigger"</code>. Everything else is considered accordion "content".
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
@@ -76,7 +67,11 @@
     {% endgrid %}
   </div>
   <div class="u-bolt-margin-bottom-large">
-    {% include accordion_demo.code_example(basic_usage) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: basic_usage,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   </div>
 </div>
 
@@ -85,7 +80,7 @@
     Prop Usage
   </bolt-text>
   <bolt-text>
-    Configure the accordion with the properties specified in the schema. One property that is unique to the Web component is <bolt-code-snippet display="inline" lang="html">no-separator</bolt-code-snippet>. Use this prop rather than the <bolt-code-snippet display="inline" lang="html">separator</bolt-code-snippet> prop used in Twig.
+    Configure the accordion with the properties specified in the schema. One property that is unique to the Web component is <code>no-separator</code>. Use this prop rather than the <code>separator</code> prop used in Twig.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
@@ -95,7 +90,11 @@
     {% endgrid %}
   </div>
   <div class="u-bolt-margin-bottom-large">
-    {% include accordion_demo.code_example(prop_usage) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: prop_usage,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   </div>
 </div>
 
@@ -104,7 +103,7 @@
     Advanced Usage
   </bolt-text>
   <bolt-text>
-    Two advanced options are shown below. Automatically show an <bolt-code-snippet display="inline" lang="html">bolt-accordion-item</bolt-code-snippet> by adding the <bolt-code-snippet display="inline" lang="html">open</bolt-code-snippet> prop.
+    Two advanced options are shown below. Automatically show an <code>bolt-accordion-item</code> by adding the <code>open</code> prop.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
@@ -114,6 +113,10 @@
     {% endgrid %}
   </div>
   <div class="u-bolt-margin-bottom-large">
-    {% include accordion_demo.code_example(advanced_usage) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: advanced_usage,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   </div>
 </div>

@@ -1,12 +1,3 @@
-{% macro code_example(code, copy) %}
-  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
-    {{ code | replace({
-      '<': '&lt;',
-      '>': '&gt;',
-    }) | trim | raw }}
-  {% endspaceless %}</bolt-code-snippet>
-{% endmacro %}
-
 {% import _self as blockquote_demo %}
 
 {% set blockquote_demo_simple %}
@@ -34,7 +25,7 @@
     Web Component Usage
   </bolt-text>
   <bolt-text>
-    Bolt Link is a web component that renders a semantic blockquote with Bolt styles. For a simple blockquote, wrap your quote content in the <bolt-code-snippet display="inline" lang="html">&lt;bolt-blockquote&gt;</bolt-code-snippet> custom element. Note: you must wrap your quote text in <bolt-code-snippet display="inline" lang="html">&lt;p&gt;</bolt-code-snippet> tags for the appropriate quotation marks to appear. Add attribution to the quote by adding the <bolt-code-snippet display="inline" lang="html">author-name</bolt-code-snippet>, <bolt-code-snippet display="inline" lang="html">author-title</bolt-code-snippet>, and <bolt-code-snippet display="inline" lang="html">author-image</bolt-code-snippet> attributes to <bolt-code-snippet display="inline" lang="html">&lt;bolt-blockquote&gt;</bolt-code-snippet>. 
+    Bolt Link is a web component that renders a semantic blockquote with Bolt styles. For a simple blockquote, wrap your quote content in the <code>&lt;bolt-blockquote&gt;</code> custom element. Note: you must wrap your quote text in <code>&lt;p&gt;</code> tags for the appropriate quotation marks to appear. Add attribution to the quote by adding the <code>author-name</code>, <code>author-title</code>, and <code>author-image</code> attributes to <code>&lt;bolt-blockquote&gt;</code>. 
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
@@ -44,7 +35,11 @@
     {% endgrid %}
   </div>
   <div class="u-bolt-margin-bottom-large">
-    {% include blockquote_demo.code_example(blockquote_demo_simple, true) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: blockquote_demo_simple,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   </div>
 </div>
 
@@ -53,7 +48,7 @@
     Additional Options
   </bolt-text>
   <bolt-text>
-    Apply additional configuration options via attributes on the <bolt-code-snippet display="inline" lang="html">&lt;bolt-blockquote&gt;</bolt-code-snippet> element. Attribute names and values match the Twig schema but use "kebab-case" instead of "camelCase". For example, <bolt-code-snippet display="inline" lang="html">alignItems</bolt-code-snippet> becomes <bolt-code-snippet display="inline" lang="html">align-items</bolt-code-snippet>.
+    Apply additional configuration options via attributes on the <code>&lt;bolt-blockquote&gt;</code> element. Attribute names and values match the Twig schema but use "kebab-case" instead of "camelCase". For example, <code>alignItems</code> becomes <code>align-items</code>.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
@@ -63,7 +58,11 @@
     {% endgrid %}
   </div>
   <div class="u-bolt-margin-bottom-large">
-    {% include blockquote_demo.code_example(blockquote_demo_attributes, true) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: blockquote_demo_attributes,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   </div>
 </div>
 
@@ -72,7 +71,7 @@
     Advanced Usage
   </bolt-text>
   <bolt-text>
-    To add a logo to <bolt-code-snippet display="inline" lang="html">&lt;bolt-blockquote&gt;</bolt-code-snippet> place logo content (for example: <bolt-code-snippet display="inline" lang="html">&lt;bolt-logo&gt;</bolt-code-snippet> or <bolt-code-snippet display="inline" lang="html">&lt;img&gt;</bolt-code-snippet>) next to blockquote text, and add the attribute <bolt-code-snippet display="inline" lang="html">slot="logo"</bolt-code-snippet> to the logo's outermost container.
+    To add a logo to <code>&lt;bolt-blockquote&gt;</code> place logo content (for example: <code>&lt;bolt-logo&gt;</code> or <code>&lt;img&gt;</code>) next to blockquote text, and add the attribute <code>slot="logo"</code> to the logo's outermost container.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
@@ -82,6 +81,10 @@
     {% endgrid %}
   </div>
   <div class="u-bolt-margin-bottom-large">
-    {% include blockquote_demo.code_example(blockquote_demo_logo, true) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: blockquote_demo_logo,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   </div>
 </div>

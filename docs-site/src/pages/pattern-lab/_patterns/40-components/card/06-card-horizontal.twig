@@ -57,11 +57,13 @@
       Advanced usage: manually override horizontal media size
     </bolt-text>
     <bolt-text>
-      To finely control the width of the card media based on your use case, set inline style of <bolt-code-snippet display="inline" lang="html">min-width</bolt-code-snippet> to the card media. Please use your best judgment when doing this, because absolute units such as px, em, and rem will break responsive layouts. % is the recommended unit to use.
+      To finely control the width of the card media based on your use case, set inline style of <code>min-width</code> to the card media. Please use your best judgment when doing this, because absolute units such as px, em, and rem will break responsive layouts. % is the recommended unit to use.
     </bolt-text>
-    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-      {{ mediaWidthDemo | trim | raw }}
-    {% endspaceless %}</bolt-code-snippet>
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: mediaWidthDemo,
+      lang: 'twig',
+      mode: 'dark',
+    } only %}
     {% for width in widths %}
       {% include '@bolt-components-card-replacement/card-replacement.twig' with {
         horizontal: true,
@@ -99,9 +101,11 @@
     <bolt-text>
       Utilize the custom body content to create a custom card that has horizontal content. A grid is used to create the content with an image on the side.
     </bolt-text>
-    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-      {{ customBodyDemo | trim | raw }}
-    {% endspaceless %}</bolt-code-snippet>
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: customBodyDemo,
+      lang: 'twig',
+      mode: 'dark',
+    } only %}
     <bolt-banner align="start">
       <bolt-icon name="info-open"></bolt-icon> <strong>Design recommendations:</strong> 1) use a square image or video; 2) make the headline and/or the whole card clickable; 3) set spacing prop to small.
     </bolt-banner>

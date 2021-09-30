@@ -6,7 +6,7 @@
     Color Usage
   </bolt-text>
   <bolt-text>
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> can be colored accordingly based on theming. It can either take on a particular theme's headline color or body text color.
+    <code>&lt;bolt-text&gt;</code> can be colored accordingly based on theming. It can either take on a particular theme's headline color or body text color.
   </bolt-text>
   {% for color in schema.properties.color.enum %}
 
@@ -18,5 +18,10 @@
 {% endset %}
 
     {% include text_code.code_example(text_demo, true) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: text_demo,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   {% endfor %}
 {% endblock %}

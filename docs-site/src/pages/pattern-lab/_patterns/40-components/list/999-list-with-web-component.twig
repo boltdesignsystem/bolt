@@ -1,12 +1,3 @@
-{% macro code_example(code, copy) %}
-  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
-    {{ code | replace({
-      '<': '&lt;',
-      '>': '&gt;',
-    }) | trim | raw }}
-  {% endspaceless %}</bolt-code-snippet>
-{% endmacro %}
-
 {% import _self as list_code %}
 
 {% set list_demo %}
@@ -56,7 +47,7 @@
     Web Component Usage
   </bolt-text>
   <bolt-text>
-    Bolt Button is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-list&gt;</bolt-code-snippet> in the markup to make it render.
+    Bolt Button is a web component, you can simply use <code>&lt;bolt-list&gt;</code> in the markup to make it render.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid %}
@@ -65,7 +56,11 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  {% include list_code.code_example(list_demo, true) %}
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: list_demo,
+    lang: 'html',
+    mode: 'dark',
+  } only %}
 </div>
 
 <div class="u-bolt-margin-bottom-large">
@@ -73,7 +68,7 @@
     Basic Usage
   </bolt-text>
   <bolt-text>
-    All the props defined in the schema table can be used directly on the <bolt-code-snippet display="inline" lang="html">&lt;bolt-list&gt;</bolt-code-snippet> element.
+    All the props defined in the schema table can be used directly on the <code>&lt;bolt-list&gt;</code> element.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid %}
@@ -82,7 +77,11 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  {% include list_code.code_example(list_basic_demo, true) %}
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: list_basic_demo,
+    lang: 'html',
+    mode: 'dark',
+  } only %}
 </div>
 
 <div class="u-bolt-margin-bottom-large">
@@ -99,5 +98,9 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  {% include list_code.code_example(list_advanced_demo, true) %}
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: list_advanced_demo,
+    lang: 'html',
+    mode: 'dark',
+  } only %}
 </div>

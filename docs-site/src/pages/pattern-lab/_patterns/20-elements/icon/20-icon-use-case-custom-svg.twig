@@ -17,12 +17,12 @@
     <bolt-ol>
       <bolt-li>If you choose a Twig usage:
         <bolt-ul>
-          <bolt-li>Add the element relevant attributes <bolt-code-snippet display="inline" lang="twig">{% verbatim %}{{ attributes.addClass(classes)|without('aria-hidden') }} aria-hidden="true"{% endverbatim %}</bolt-code-snippet> to the <bolt-code-snippet display="inline" lang="html">&lt;svg&gt;</bolt-code-snippet> HTML element and save it as a Twig file. Then you can display the icon using include statement by passing the icon source path to the <bolt-code-snippet display="inline" lang="twig">custom_icon_path</bolt-code-snippet> prop.</bolt-li>
+          <bolt-li>Add the element relevant attributes <code>{% verbatim %}{{ attributes.addClass(classes)|without('aria-hidden') }} aria-hidden="true"{% endverbatim %}</code> to the <code>&lt;svg&gt;</code> HTML element and save it as a Twig file. Then you can display the icon using include statement by passing the icon source path to the <code>custom_icon_path</code> prop.</bolt-li>
         </bolt-ul>
       </bolt-li>
       <bolt-li>If you choose a HTML usage:
         <bolt-ul>
-          <bolt-li>Add the element class <bolt-code-snippet display="inline" lang="html">class="e-bolt-icon"</bolt-code-snippet> and relevant modifier classes, and add the attribute <bolt-code-snippet display="inline" lang="html">aria-hidden="true"</bolt-code-snippet> to the <bolt-code-snippet display="inline" lang="html">&lt;svg&gt;</bolt-code-snippet> HTML element. Then you can display the icon using the modified <bolt-code-snippet display="inline" lang="html">&lt;svg&gt;</bolt-code-snippet> markup.</bolt-li>
+          <bolt-li>Add the element class <code>class="e-bolt-icon"</code> and relevant modifier classes, and add the attribute <code>aria-hidden="true"</code> to the <code>&lt;svg&gt;</code> HTML element. Then you can display the icon using the modified <code>&lt;svg&gt;</code> markup.</bolt-li>
         </bolt-ul>
       </bolt-li>
     </bolt-ol>
