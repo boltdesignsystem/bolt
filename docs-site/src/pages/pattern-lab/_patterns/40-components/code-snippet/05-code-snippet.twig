@@ -1,45 +1,54 @@
-<p>
-  Code snippet can be a block of code, and
-  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-    display: 'inline',
-    content: 'display'
-  } only %}
-  is set to
-  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-    display: 'inline',
-    content: 'block'
-  } only %}
-  by default.
-</p>
-
-{% set blockSnippet %}
-display: block;
-margin: 0 0 1.65rem 0;
+{% set description %}
+  Code Snippet displays a block of syntax highlighted code with support for several programming languages. See <a href="{{ link['viewall-components-code-snippet'] }}?selected-tab=schema" class="e-bolt-text-link">schema</a> for all language options.
 {% endset %}
 
-{% embed '@bolt-components-code-snippet/code-snippet.twig' with {
-  display: 'block',
-  lang: 'scss',
-  content: blockSnippet
-} only %}
-{% endembed %}
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The component is only intended for code blocks. If you need to display code inline, simply use the HTML <code>{{ '<code>'|e }}</code> element.</bolt-li>
+    <bolt-li>Use Twig whenever possible, but if you must use HTML, be sure to do the following to work with standard HTML behaviors:
+      <bolt-ol>
+        <bolt-li>Trim leading and trailing whitespace inside the <code>{{ '<code>'|e }}</code> element to remove any undesired indents or whitespace.</bolt-li>
+        <bolt-li>Certain special characters (such as &amp;, &lt;, and &gt;) must be converted to HTML entities.</bolt-li>
+      </bolt-ol>
+    </bolt-li>
+  </bolt-ol>
+{% endset %}
 
-<p>
-  Well, code snippet can also be inline like this
-  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-    display: 'inline',
-    lang: 'scss',
-    content: 'display:inline;'
-  } only %}
-  when you set
-  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-    display: 'inline',
-    content: 'display'
-  } only %}
-  to be
-  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-    display: 'inline',
-    content: 'inline'
-  } only %}
-  instead.
-</p>
+{% set demo %}
+{% set code_snippet %}
+import { props } from '@bolt/core-v3.x/utils';
+{% endset %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'javascript',
+} only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set code_snippet %}
+import { props } from '@bolt/core-v3.x/utils';
+{% endset %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'javascript',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+<div class="c-bolt-code-snippet" data-lang="js" data-mode="light">
+<pre><code>{{ code_snippet|trim }}</code></pre>
+</div>
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Code Snippet',
+  description: description,
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

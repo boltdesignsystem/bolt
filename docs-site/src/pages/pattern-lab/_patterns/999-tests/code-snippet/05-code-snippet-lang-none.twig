@@ -1,0 +1,37 @@
+{% set code_snippet = '<p>Hello World!</p>' %}
+
+<h2>Lang: <code>none</code></h2>
+<h3>HTML</h3>
+<div class="c-bolt-code-snippet" data-mode="light"><pre><code>{{ code_snippet|e }}</code></pre></div>
+
+<h3>Twig</h3>
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+} only %}
+
+<br>
+
+<h2>Lang: <code>none</code>, custom label</h2>
+
+<h3>HTML</h3>
+<div class="c-bolt-code-snippet" data-mode="light" data-custom-lang-label="FooBar"><pre><code>{{ code_snippet|e }}</code></pre></div>
+
+<h3>Twig</h3>
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  custom_lang_label: 'FooBar'
+} only %}
+
+<br>
+
+<h2>Lang: <code>none</code>, custom label, hide label</h2>
+
+<h3>HTML</h3>
+<div class="c-bolt-code-snippet" data-mode="light" data-custom-lang-label="FooBar" data-hide-lang-label><pre><code>{{ code_snippet|e }}</code></pre></div>
+
+<h3>Twig</h3>
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  custom_lang_label: 'FooBar',
+  hide_lang_label: true
+} only %}
