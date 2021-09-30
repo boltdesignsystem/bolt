@@ -1188,7 +1188,7 @@
           </bolt-stack>
         {% endset %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
-          content: site_signifier,
+          content: '',
         } only %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
           content: site_name,
@@ -1235,7 +1235,7 @@
           </bolt-stack>
         {% endset %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
-          content: site_signifier,
+          content: '',
         } only %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
           content: site_name,
@@ -1282,7 +1282,7 @@
           </bolt-stack>
         {% endset %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
-          content: site_signifier,
+          content: '',
         } only %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
           content: site_name,
@@ -1329,7 +1329,7 @@
           </bolt-stack>
         {% endset %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
-          content: site_signifier,
+          content: '',
         } only %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
           content: site_name,
@@ -1395,14 +1395,8 @@
       } only %}
     {% endset %}
     {% set pega_sites_teaser_list_1 %}
-      {% set category_heading %}
-        {% include '@bolt-components-headline/eyebrow.twig' with {
-          text: 'Category',
-        } only %}
-      {% endset %}
       {% include '@bolt-components-list/list.twig' with {
         items: [
-          category_heading,
           pega_sites_teaser_pega,
           pega_sites_teaser_pegaworld,
           pega_sites_teaser_partner,
@@ -1413,14 +1407,8 @@
       } only %}
     {% endset %}
     {% set pega_sites_teaser_list_2 %}
-      {% set category_heading %}
-        {% include '@bolt-components-headline/eyebrow.twig' with {
-          text: 'Category',
-        } only %}
-      {% endset %}
       {% include '@bolt-components-list/list.twig' with {
         items: [
-          category_heading,
           pega_sites_teaser_community,
           pega_sites_teaser_documentation,
           pega_sites_teaser_academy,
