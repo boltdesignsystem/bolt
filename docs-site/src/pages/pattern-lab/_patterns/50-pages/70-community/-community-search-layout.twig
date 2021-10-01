@@ -544,7 +544,37 @@
 
   {% set vid_result_1 %}
     {% set modal_id = 'js-bolt-modal-' ~ random() %}
-    {% set video %}
+    {% set signifier %}
+      {% set video_thumbnail %}
+        {% set image %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              src: '/images/placeholders/tout-4x3-climber.jpg',
+              alt: 'A Rock Climber',
+              loading: 'lazy',
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+          content: image,
+          aspect_ratio: '16:9',
+          border_radius: 'small',
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-trigger/trigger.twig' with {
+        content: video_thumbnail,
+        display: 'block',
+        attributes: {
+          'data-bolt-modal-target': '#' ~ modal_id,
+        }
+      } only %}
+    {% endset %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Video',
+      } only %}
+    {% endset %}
+    {% set modal_content %}
       {% set video_embed %}
         <video-js
           data-account='1900410236'
@@ -559,19 +589,6 @@
         ratio: '16/9'
       } only %}
     {% endset %}
-    {% set modal_content %}
-      {{ video }}
-      <div class="u-bolt-padding-small">
-        {% include '@bolt-elements-text-link/text-link.twig' with {
-          content: 'View the video resource page',
-          icon_after: icon_chevron_right,
-          reversed_underline: true,
-          attributes: {
-            href: 'https://pega.com',
-          }
-        } only %}
-      </div>
-    {% endset %}
     {% include '@bolt-components-modal/modal.twig' with {
       content: modal_content,
       width: 'optimal',
@@ -582,26 +599,6 @@
         id: modal_id,
       },
     } only %}
-    {% set signifier %}
-      {% set image %}
-        {% include '@bolt-components-image/image.twig' with {
-          src: '/images/placeholders/tout-4x3-climber.jpg',
-          alt: 'A Rock Climber',
-          ratio: false,
-          cover: true,
-        } only %}
-      {% endset %}
-      {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
-        content: image,
-        aspect_ratio: '16:9',
-        border_radius: 'small',
-      } only %}
-    {% endset %}
-    {% set eyebrow_1 %}
-      {% include '@bolt-components-headline/eyebrow.twig' with {
-        text: 'Video',
-      } only %}
-    {% endset %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       gutter: 'medium',
       signifier: signifier,
@@ -614,8 +611,7 @@
         tag: 'h3',
         size: 'xlarge',
         link_attributes: {
-          type: 'button',
-          'data-bolt-modal-target': '#' ~ modal_id,
+          href: 'https://pega.com',
         },
       },
       meta_items: [
