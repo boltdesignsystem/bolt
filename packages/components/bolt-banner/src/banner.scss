@@ -56,6 +56,14 @@
   --m-bolt-link: var(--bolt-color-black); /* [2] */
 }
 
+@include bolt-repeat-rule(
+  ('bolt-banner[status=information]', ':host(bolt-banner[status=information])')
+) {
+  --m-bolt-text: var(--bolt-color-info-dark); /* [2] */
+  --m-bolt-headline: var(--bolt-color-info-dark); /* [2] */
+  --m-bolt-link: var(--bolt-color-info-dark); /* [2] */
+}
+
 .c-bolt-banner--status-error,
 .c-bolt-banner--status-success {
   color: var(--bolt-color-white);
@@ -77,7 +85,7 @@
 .c-bolt-banner--status-information {
   position: relative;
   color: var(--bolt-color-info-dark);
-  border-left-color: var(--bolt-color-info-dark);
+  border-left-color: var(--bolt-color-info);
   border-left-style: $bolt-border-style;
   border-left-width: $bolt-border-width * 3;
   box-shadow: 0 0 var(--bolt-spacing-y-xsmall) var(--m-bolt-border);
