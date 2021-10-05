@@ -1,5 +1,5 @@
-import { lazyQueue } from '@bolt/lazy-queue';
+// import { lazyQueue } from '@bolt/lazy-queue';
 
-lazyQueue(['bds-docs-search'], async () => {
-  await import(/* webpackChunkName: "bolt-docs-search" */ './docs-search.js');
-});
+// lazyQueue(['bds-docs-search'], async () => {
+//   await import(/* webpackChunkName: "bolt-docs-search" */ './docs-search.js');
+// });
