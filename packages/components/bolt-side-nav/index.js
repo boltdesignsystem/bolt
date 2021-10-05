@@ -1,1 +1,1 @@
-import(/* webpackChunkName: 'bolt-side-nav' */ './src/side-nav.js');
+// import(/* webpackChunkName: 'bolt-side-nav' */ './src/side-nav.js');

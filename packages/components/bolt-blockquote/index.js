@@ -1,5 +1,5 @@
-import { lazyQueue } from '@bolt/lazy-queue';
+// import { lazyQueue } from '@bolt/lazy-queue';
 
-lazyQueue(['bolt-blockquote'], async () => {
-  await import(/* webpackChunkName: 'bolt-blockquote' */ './src/blockquote');
-});
+// lazyQueue(['bolt-blockquote'], async () => {
+//   await import(/* webpackChunkName: 'bolt-blockquote' */ './src/blockquote');
+// });

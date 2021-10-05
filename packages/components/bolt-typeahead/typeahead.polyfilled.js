@@ -1,5 +1,5 @@
-import { lazyQueue } from '@bolt/lazy-queue';
+// import { lazyQueue } from '@bolt/lazy-queue';
 
-lazyQueue(['bolt-typeahead'], async () => {
-  await import(/* webpackChunkName: 'bolt-typeahead' */ './typeahead.js');
-});
+// lazyQueue(['bolt-typeahead'], async () => {
+//   await import(/* webpackChunkName: 'bolt-typeahead' */ './typeahead.js');
+// });

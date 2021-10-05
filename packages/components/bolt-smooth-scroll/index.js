@@ -1,7 +1,7 @@
-import { lazyQueue } from '@bolt/lazy-queue';
+// import { lazyQueue } from '@bolt/lazy-queue';
 
-lazyQueue(['a'], async () => {
-  await import(
-    /* webpackChunkName: "bolt-smooth-scroll" */ './src/smooth-scroll'
-  );
-});
+// lazyQueue(['a'], async () => {
+//   await import(
+//     /* webpackChunkName: "bolt-smooth-scroll" */ './src/smooth-scroll'
+//   );
+// });

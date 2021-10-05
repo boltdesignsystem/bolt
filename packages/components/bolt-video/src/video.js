@@ -1,1 +1,1 @@
-import(/* webpackChunkName: 'bolt-video' */ './video.standalone.js');
+// import(/* webpackChunkName: 'bolt-video' */ './video.standalone.js');

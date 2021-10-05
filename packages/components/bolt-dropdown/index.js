@@ -1,5 +1,5 @@
-import { lazyQueue } from '@bolt/lazy-queue';
+// import { lazyQueue } from '@bolt/lazy-queue';
 
-lazyQueue(['bolt-dropdown'], async () => {
-  await import(/* webpackChunkName: 'bolt-dropdown' */ './dropdown');
-});
+// lazyQueue(['bolt-dropdown'], async () => {
+//   await import(/* webpackChunkName: 'bolt-dropdown' */ './dropdown');
+// });

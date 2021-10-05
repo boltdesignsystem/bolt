@@ -1,1 +1,1 @@
-import(/* webpackChunkName: 'bolt-page-footer' */ './src/page-footer.js');
+// import(/* webpackChunkName: 'bolt-page-footer' */ './src/page-footer.js');

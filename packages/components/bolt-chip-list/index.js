@@ -1,1 +1,1 @@
-import(/*  webpackChunkName: 'bolt-chip-list' */ './src/chip-list');
+// import(/*  webpackChunkName: 'bolt-chip-list' */ './src/chip-list');
