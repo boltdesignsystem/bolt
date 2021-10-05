@@ -1,39 +1,39 @@
-{% import "@bolt/macros.twig" as macros %}
+{% import '@bolt/macros.twig' as macros %}
 {# ^ allows us to use inline includes that also work in Drupal #}
 
 <bolt-text>This demo sets the <code>imageValign</code> prop to <code>top</code> so the image is always flush with the top-edge of the Hero container.</bolt-text>
 
-{% include "@bolt-components-hero/hero.twig" with {
+{% include '@bolt-components-hero/hero.twig' with {
   content: [
-    macros.include("@bolt-elements-image/image.twig", {
+    macros.include('@bolt-elements-image/image.twig', {
       attributes: {
-        src: "/images/heros/hero-foreground--orange--logo.svg",
-        alt: "PegaWorld iNspire logo",
-        loading: "eager",
+        src: '/images/heros/hero-foreground--orange--logo.svg',
+        alt: 'PegaWorld iNspire logo',
+        loading: 'eager',
         class: [
-          "u-bolt-margin-bottom-medium",
+          'u-bolt-margin-bottom-medium',
         ]
       }
     }),
-    macros.include("@bolt-components-headline/subheadline.twig", {
-      size: "xlarge",
-      text: "Boston Convention & Exhibition Center May&nbsp;31&nbsp;-&nbsp;June&nbsp;2,&nbsp;2020",
+    macros.include('@bolt-components-headline/subheadline.twig', {
+      size: 'xlarge',
+      text: 'Boston Convention & Exhibition Center May&nbsp;31&nbsp;-&nbsp;June&nbsp;2,&nbsp;2020',
       attributes: {
         class: [
-          "u-bolt-line-length-medium"
+          'u-bolt-line-length-medium'
         ]
       }
     }),
-    macros.include("@bolt-elements-button/button.twig", {
-      content: "See full agenda",
-      hierarchy: "secondary",
+    macros.include('@bolt-elements-button/button.twig', {
+      content: 'See full agenda',
+      hierarchy: 'secondary',
       attributes: {
         type: 'button'
       }
     }),
   ]|join(''),
-  background: "/images/heros/hero-background--indigo.jpg",
-  image: "/images/heros/hero-foreground--indigo.png",
-  imageValign: "top",
-  theme: "dark",
+  background: '/images/heros/hero-background--indigo.jpg',
+  image: '/images/heros/hero-foreground--indigo.png',
+  imageValign: 'top',
+  theme: 'dark',
 } %}

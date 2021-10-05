@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar-item'] %}
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar-li'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}

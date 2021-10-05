@@ -1,31 +1,31 @@
 {# Background Image #}
 <div class="u-bolt-margin-bottom-small">
   {% set content_image %}
-    {% include "@bolt-components-headline/headline.twig" with {
-      size: "xxxlarge",
-      text: "This Band Has a Backround Image",
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xxxlarge',
+      text: 'This Band Has a Backround Image',
     } only %}
-    {% include "@bolt-elements-button/button.twig" with {
-      content: "This is a button",
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This is a button',
       attributes: {
         type: 'button'
       }
     } only %}
   {% endset %}
 
-  {% include "@bolt-components-band/band.twig" with {
-    size: "large",
+  {% include '@bolt-components-band/band.twig' with {
+    size: 'large',
     background: {
-      opacity: "heavy",
-      fill: "color",
+      opacity: 'heavy',
+      fill: 'color',
       focal_point: {
-        vertical: "center",
-        horizontal: "center"
+        vertical: 'center',
+        horizontal: 'center'
       },
       content_items: [
         {
-          pattern: "image",
-          src: "/images/content/backgrounds/background-short-1.jpg",
+          pattern: 'image',
+          src: '/images/content/backgrounds/background-short-1.jpg',
           lazyload: false
         },
       ]

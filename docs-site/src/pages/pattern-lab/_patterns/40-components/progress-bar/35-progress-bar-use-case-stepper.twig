@@ -59,12 +59,12 @@
   {% include '@bolt-elements-button/button.twig' with {
     content: 'Go Back',
     icon_only: icon_left,
-    size: "small",
+    size: 'small',
     attributes: {
       type: 'button',
       disabled: 'disabled',
       class: [
-        "js-bolt-progress-bar-stepper-back"
+        'js-bolt-progress-bar-stepper-back'
       ]
     }
   } only %}
@@ -79,25 +79,25 @@
   {% include '@bolt-elements-button/button.twig' with {
     content: 'Go Forward',
     icon_only: icon_right,
-    size: "small",
+    size: 'small',
     attributes: {
       type: 'button',
       class: [
-        "js-bolt-progress-bar-stepper-forward"
+        'js-bolt-progress-bar-stepper-forward'
       ]
     }
   } only %}
 {% endset %}
 
 {% set progressBar %}
-  {% include "@bolt-components-progress-bar/progress-bar.twig" with {
-    title: "Step",
+  {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+    title: 'Step',
     value: 1,
     max: 5,
-    valueFormat: "step",
+    valueFormat: 'step',
     attributes: {
       class: [
-        "js-bolt-progress-bar-stepper"
+        'js-bolt-progress-bar-stepper'
       ]
     }
   } only %}
@@ -106,10 +106,10 @@
 {# Demo Layout #}
 {{ stepperJS }}
 <bolt-text headline>Stepper progress</bolt-text>
-{% include "@bolt-components-list/list.twig" with {
-  display: "inline",
+{% include '@bolt-components-list/list.twig' with {
+  display: 'inline',
   nowrap: true,
-  spacing: "small",
+  spacing: 'small',
   items: [
     prevButton,
     progressBar,
@@ -118,9 +118,8 @@
 } only %}
 
 <bolt-text headline>Custom JavaScript</bolt-text>
-<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-  {{ stepperJS | replace({
-    '<': '&lt;',
-    '>': '&gt;',
-  }) | trim | raw }}
-{% endspaceless %}</bolt-code-snippet>
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: stepperJS,
+  lang: 'js',
+  mode: 'dark',
+} only %}

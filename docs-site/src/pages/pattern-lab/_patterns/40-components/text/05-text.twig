@@ -1,5 +1,5 @@
-{% extends "@pl/_text-doc-template.twig" %}
-{% import "@pl/_text-doc-template.twig" as text_code %}
+{% extends '@pl/_text-doc-template.twig' %}
+{% import '@pl/_text-doc-template.twig' as text_code %}
 
 {% set text_demo %}
 <bolt-text>
@@ -12,7 +12,12 @@
     Web Component Usage
   </bolt-text>
   <bolt-text>
-    Bolt Text is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> in the markup to make it render.
+    Bolt Text is a web component, you can simply use <code>&lt;bolt-text&gt;</code> in the markup to make it render.
   </bolt-text>
   {% include text_code.code_example(text_demo, true) %}
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: text_demo,
+    lang: 'html',
+    mode: 'dark',
+  } only %}
 {% endblock %}

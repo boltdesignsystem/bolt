@@ -12,7 +12,7 @@ yarn add @bolt/components-carousel
 <details open>
   <summary><strong>Via Web Component</strong></summary>
   <section>
-    <bolt-code-snippet markdown="0" lang="html">
+    <code>
       <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light"><code is="shadow-root">&lt;bolt-carousel&gt;
   &lt;bolt-carousel-slide&gt;
     Slide 1
@@ -24,13 +24,13 @@ yarn add @bolt/components-carousel
     Slide 3
   &lt;/bolt-carousel-slide&gt;
 &lt;/bolt-carousel&gt;</code></pre>
-    </bolt-code-snippet>
+    </code>
   </section>
 </details>
 <details>
   <summary><strong>Via Twig</strong></summary>
   <section>
-    <bolt-code-snippet markdown="0" lang="twig">
+    <code>
       <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light"><code is="shadow-root">{% include "@bolt-components-carousel/carousel.twig" with {
   slides: [
     'Slide 1',
@@ -38,7 +38,7 @@ yarn add @bolt/components-carousel
     'Slide 3',
   ]
 } only %}</code></pre>
-    </bolt-code-snippet>
+    </code>
   </section>
 </details>
 

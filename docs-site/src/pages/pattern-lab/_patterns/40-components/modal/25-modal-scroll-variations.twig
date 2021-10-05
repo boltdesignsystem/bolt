@@ -1,11 +1,11 @@
-{% set schema = bolt.data.components["@bolt-components-modal"].schema %}
+{% set schema = bolt.data.components['@bolt-components-modal'].schema %}
 
 {% set modal_content %}
-  {% include "@bolt-elements-image/image.twig" with {
+  {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
-      alt: "Tall image",
-      loading: "lazy",
+      src: '/images/content/screenshots/device-screenshot--tablet-portrait.jpg',
+      alt: 'Tall image',
+      loading: 'lazy',
     }
   } only %}
 {% endset %}
@@ -20,27 +20,27 @@
       {% for scroll in schema.properties.scroll.enum %}
         <tr>
           <th>
-            {% include "@bolt-elements-button/button.twig" with {
+            {% include '@bolt-elements-button/button.twig' with {
               content: scroll|capitalize,
-              size: "small",
-              display: "block",
+              size: 'small',
+              display: 'block',
               attributes: {
                 type: 'button',
-                "data-bolt-modal-target": ".js-bolt-modal--scroll-" ~ scroll,
+                'data-bolt-modal-target': '.js-bolt-modal--scroll-' ~ scroll,
               }
             } only %}
-            {% include "@bolt-components-modal/modal.twig" with {
+            {% include '@bolt-components-modal/modal.twig' with {
               content: modal_content,
               scroll: scroll,
-              spacing: "none",
-              theme: "none",
+              spacing: 'none',
+              theme: 'none',
               attributes: {
-                class: "js-bolt-modal--scroll-" ~ scroll,
+                class: 'js-bolt-modal--scroll-' ~ scroll,
               },
             } only %}
           </th>
           <td>
-            {% if scroll == "overall" %}
+            {% if scroll == 'overall' %}
               This makes the overall viewport area scrollable.
             {% else %}
               This makes the modal container itself scrollable.
