@@ -129,6 +129,11 @@
       opacity: 1;
     }
   }
+
+  &:focus {
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
 }
 
 .c-bolt-notifications__content__message__callout {

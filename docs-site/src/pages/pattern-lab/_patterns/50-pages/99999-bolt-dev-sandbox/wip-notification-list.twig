@@ -115,11 +115,27 @@
   </div>
 {% endset %}
 
-<div style="max-width: calc(320px + 8rem); margin: 4rem auto; padding: 4rem; background: var(--bolt-color-black);">
-  <div class="t-bolt-white">
-    {{ notifications }}
-  </div>
-</div>
+<bolt-layout>
+  <bolt-layout-item>
+    {% set trigger %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'See notifications popover',
+        attributes: {
+          type: 'button'
+        }
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: trigger,
+      content: notifications,
+      spacing: 'none',
+      attributes: {
+        style: '--c-bolt-popover-bubble-width: 320px;'
+      },
+    } only %}
+  </bolt-layout-item>
+</bolt-layout>
 
 <bolt-layout class="t-bolt-gray-xlight">
   <bolt-layout-item>
