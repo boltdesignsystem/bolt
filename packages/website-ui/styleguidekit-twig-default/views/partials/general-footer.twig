@@ -74,7 +74,7 @@
           'pinterest': this.el_.hasAttribute('data-social-pinterest') ? true : false,
           'linkedin': this.el_.hasAttribute('data-social-linkedin') ? true : false
         },
-        'displayAfterVideo': true,
+        'displayAfterVideo': this.el_.classList.contains('vjs-controls-disabled') ? false : true,
         'buttonParent': 'controlBar'
       };
       this.social(socialOptions);

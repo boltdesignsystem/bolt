@@ -69,11 +69,7 @@ async function createWebpackConfig(buildConfig) {
     if (components.global) {
       entry[globalEntryName] = ['@bolt/core-v3.x/styles/main.scss'];
 
-      if (config.env !== 'drupal') {
-        entry['brightcove'] = ['@bolt/components-video/brightcove.scss'];
-      }
-
-      components.global.forEach(component => {
+      components.global.forEach((component) => {
         if (component.assets.style) {
           entry[globalEntryName].push(component.assets.style);
         }
@@ -85,7 +81,7 @@ async function createWebpackConfig(buildConfig) {
     }
 
     if (components.individual) {
-      components.individual.forEach(component => {
+      components.individual.forEach((component) => {
         const files = [];
         if (component.assets.style) files.push(component.assets.style);
         if (component.assets.main) files.push(component.assets.main);
@@ -112,13 +108,13 @@ async function createWebpackConfig(buildConfig) {
     // Merge together global Sass data overrides specified in a .boltrc config
     if (config.globalData.scss && config.globalData.scss.length !== 0) {
       const overrideItems = [];
-      config.globalData.scss.forEach(item => {
+      config.globalData.scss.forEach((item) => {
         try {
           const file = fs.readFileSync(item, 'utf8');
           file
             .split('\n')
-            .filter(x => x)
-            .forEach(x => overrideItems.push(x));
+            .filter((x) => x)
+            .forEach((x) => overrideItems.push(x));
         } catch (err) {
           log.errorAndExit(`Could not find ${item}`, err);
         }
@@ -253,7 +249,7 @@ async function createWebpackConfig(buildConfig) {
                 {
                   loader: 'svg-sprite-loader',
                   options: {
-                    spriteFilename: svgPath =>
+                    spriteFilename: (svgPath) =>
                       `bolt-svg-sprite${svgPath.substr(-4)}`,
                   },
                 },
@@ -403,7 +399,7 @@ async function createWebpackConfig(buildConfig) {
     // Merge together any global JS data overrides
     if (config.globalData.js && config.globalData.js.length !== 0) {
       const overrideJsItems = [];
-      config.globalData.js.forEach(item => {
+      config.globalData.js.forEach((item) => {
         try {
           const overrideFile = require(path.resolve(process.cwd(), item));
           overrideJsItems.push(overrideFile);
@@ -533,12 +529,12 @@ async function assignLangToWebpackConfig(config, lang) {
     langSpecificConfig,
   );
 
-  langSpecificWebpackConfigs.forEach(langSpecificWebpackConfig => {
+  langSpecificWebpackConfigs.forEach((langSpecificWebpackConfig) => {
     webpackConfigs.push(langSpecificWebpackConfig);
   });
 }
 
-module.exports = async function() {
+module.exports = async function () {
   const config = await getConfig();
 
   return new Promise(async (resolve, reject) => {

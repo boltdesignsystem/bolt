@@ -8,13 +8,15 @@
       controls
       class="c-base-video"></video-js>
   {% endset %}
+
   <h2>Video with No Quality Default</h2>
+
   {% include '@bolt-components-ratio/ratio.twig' with {
     children: video,
     ratio: '16/9'
   } only %}
 
-  {% set video1 %}
+  {% set video_1 %}
     <video-js
       data-account="1900410236"
       data-player="O3FkeBiaDz"
@@ -24,13 +26,15 @@
       controls
       class="c-base-video"></video-js>
   {% endset %}
+
   <h2>Video with 540p Quality Resolution</h2>
+
   {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video1,
+    children: video_1,
     ratio: '16/9'
   } only %}
 
-  {% set video2 %}
+  {% set video_2 %}
     <video-js
       data-account="1900410236"
       data-player="O3FkeBiaDz"
@@ -40,13 +44,15 @@
       controls
       class="c-base-video"></video-js>
   {% endset %}
+
   <h2>Video with 360p Quality Resolution</h2>
+
   {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video2,
+    children: video_2,
     ratio: '16/9'
   } only %}
 
-  {% set video3 %}
+  {% set video_3 %}
     <video-js
       data-account="1900410236"
       data-player="O3FkeBiaDz"
@@ -56,13 +62,15 @@
       controls
       class="c-base-video"></video-js>
   {% endset %}
+
   <h2>Video with 270p Quality Resolution</h2>
+
   {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video3,
+    children: video_3,
     ratio: '16/9'
   } only %}
 
-  {% set video4 %}
+  {% set video_4 %}
     <video-js
       data-account="1900410236"
       data-player="O3FkeBiaDz"
@@ -72,9 +80,11 @@
       controls
       class="c-base-video"></video-js>
   {% endset %}
+
   <h2>Video with Wrong Quality Resolution</h2>
+
   {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video4,
+    children: video_4,
     ratio: '16/9'
   } only %}
 {% endset %}

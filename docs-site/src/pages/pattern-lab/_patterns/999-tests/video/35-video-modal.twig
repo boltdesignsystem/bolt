@@ -1,16 +1,156 @@
-{# {% set main_content %}
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="4892122320001"
-      controls
-      class="c-base-video vjs-controls-disabled"></video-js>
+{% set main_content %}
+  {% set modal_content %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="4892122320001"
+        data-social-url="https://pega.com"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+
+    {% include '@bolt-components-ratio/ratio.twig' with {
+      children: video,
+      ratio: '16/9'
+    } only %}
   {% endset %}
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video,
-    ratio: '16/9'
+
+  <h2>Video in Modal without Delayed Loading</h2>
+
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Play the video",
+    attributes: {
+      type: 'button',
+      "data-bolt-modal-target": ".js-bolt-modal--demo",
+    }
+  } only %}
+
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: modal_content,
+    width: "optimal",
+    spacing: "none",
+    theme: "none",
+    scroll: "overall",
+    attributes: {
+      class: "js-bolt-modal--demo",
+    },
+  } only %}
+
+  {% set modal_content_1 %}
+    {% set video_1 %}
+      <video-js
+        data-delayed-account="1900410236"
+        data-delayed-player="O3FkeBiaDz"
+        data-embed="default"
+        data-delayed-video-id="4892122320001"
+        data-video-delayed
+        controls
+        class="c-base-video vjs-controls-disabled"></video-js>
+    {% endset %}
+    {% include '@bolt-components-ratio/ratio.twig' with {
+      children: video_1,
+      ratio: '16/9'
+    } only %}
+  {% endset %}
+
+  <h2>Video in Modal with Delayed Loading</h2>
+
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Play the video",
+    attributes: {
+      type: 'button',
+      "data-bolt-modal-target": ".js-bolt-modal--demo-1",
+    }
+  } only %}
+
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: modal_content_1,
+    width: "optimal",
+    spacing: "none",
+    theme: "none",
+    scroll: "overall",
+    attributes: {
+      class: "js-bolt-modal--demo-1",
+    },
+  } only %}
+
+  {% set modal_content_2 %}
+    {% set video_2 %}
+      <video-js
+        data-delayed-account="1900410236"
+        data-delayed-player="O3FkeBiaDz"
+        data-embed="default"
+        data-delayed-video-id="973396455001"
+        data-video-delayed
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-components-ratio/ratio.twig' with {
+      children: video_2,
+      ratio: '16/9'
+    } only %}
+  {% endset %}
+
+  <h2>Video in Modal with Autoplay</h2>
+
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Play the video",
+    attributes: {
+      type: 'button',
+      "data-bolt-modal-target": ".js-bolt-modal--demo-2",
+    }
+  } only %}
+
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: modal_content_2,
+    width: "optimal",
+    spacing: "none",
+    theme: "none",
+    scroll: "overall",
+    attributes: {
+      class: "js-bolt-modal--demo-2",
+    },
+  } only %}
+
+  {% set modal_content_3 %}
+    {% set video_3 %}
+      <video-js
+        data-delayed-account="1900410236"
+        data-delayed-player="O3FkeBiaDz"
+        data-embed="default"
+        data-delayed-video-id="973396455001"
+        data-video-delayed
+        data-video-delayed-no-autoplay
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-components-ratio/ratio.twig' with {
+      children: video_3,
+      ratio: '16/9'
+    } only %}
+  {% endset %}
+
+  <h2>Video in Modal without Autoplay</h2>
+
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Play the video",
+    attributes: {
+      type: 'button',
+      "data-bolt-modal-target": ".js-bolt-modal--demo-3",
+    }
+  } only %}
+
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: modal_content_3,
+    width: "optimal",
+    spacing: "none",
+    theme: "none",
+    scroll: "overall",
+    attributes: {
+      class: "js-bolt-modal--demo-3",
+    },
   } only %}
 {% endset %}
 
@@ -19,26 +159,3 @@
     content: main_content,
   }
 } only %}
-
-
-{% set main_content %}
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="4892122320001"
-      controls
-      class="c-base-video vjs-controls-disabled"></video-js>
-  {% endset %}
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video,
-    ratio: '16/9'
-  } only %}
-{% endset %}
-
-{% include '@bolt-layouts-site/site.twig' with {
-  main: {
-    content: main_content,
-  }
-} only %} #}
