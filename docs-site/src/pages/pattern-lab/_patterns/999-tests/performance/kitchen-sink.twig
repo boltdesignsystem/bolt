@@ -1,0 +1,722 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+
+{# BEGIN: Navbar #}
+{% set custom_content %}
+  {% set link_1 %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Link 1',
+      size: 'small',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    } only %}
+  {% endset %}
+  {% set link_2 %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Link 2',
+      size: 'small',
+      hierarchy: 'secondary',
+      attributes: {
+        href: 'https://pega.com',
+      }
+    } only %}
+  {% endset %}
+
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--small u-bolt-padding-top-xsmall u-bolt-padding-bottom-xsmall u-bolt-padding-top-medium@xsmall u-bolt-padding-bottom-medium@xsmall" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-1/2@xxsmall u-bolt-flex-grow" %}
+      {% include '@bolt/headline.twig' with {
+        text: 'Navbar title',
+        size: 'large'
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-padding-top-xsmall u-bolt-padding-top-none@xxsmall" %}
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        items: [
+          link_1,
+          link_2
+        ]
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% set section_content %}
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nesciunt necessitatibus, nostrum aliquam sed qui et totam deserunt quasi. Quae fugit aliquam velit aperiam at quibusdam tempore repellat commodi sapiente!</p>
+{% endset %}
+
+{% for spacing in schema.properties.spacing.enum %}
+  {% include '@bolt-components-navbar/navbar.twig' with {
+    content: custom_content,
+  } only %}
+  <br>
+{% endfor %}
+
+{# BEGIN: List #}
+{% set placeholder_1 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Item 1',
+    size: 'xsmall',
+  } only %}
+{% endset %}
+{% set placeholder_2 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Item 2',
+    size: 'xsmall',
+  } only %}
+{% endset %}
+{% set placeholder_3 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Item 3',
+    size: 'xsmall',
+  } only %}
+{% endset %}
+
+{% for i in range(1, 3) %}
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'block',
+    items: [
+      placeholder_1,
+      placeholder_2,
+      placeholder_3,
+    ]
+  } only %}
+{% endfor %}
+
+{# BEGIN: Card #}
+{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+  {% cell 'u-bolt-width-6/12' %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      media: {
+        image: {
+          src: '/images/placeholders/landscape-16x9-mountains.jpg',
+          alt: 'Image alt.',
+        },
+      },
+      body: {
+        eyebrow: 'This is an eyebrow',
+        headline: 'This card\'s `action` is an internal link',
+        paragraph: 'This is a paragraph.',
+      },
+      actions: [
+        {
+          text: 'This is an internal button',
+          url: 'http://pega.com',
+        },
+      ],
+    } only %}
+  {% endcell %}
+
+  {% cell 'u-bolt-width-6/12' %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      media: {
+        image: {
+          src: '/images/placeholders/landscape-16x9-mountains.jpg',
+          alt: 'Image alt.',
+        },
+      },
+      body: {
+        eyebrow: 'This is an eyebrow',
+        headline: 'This card\'s `action` is an external link',
+        paragraph: 'This is a paragraph.',
+      },
+      actions: [
+        {
+          text: 'This is an external button',
+          url: 'http://pega.com',
+          external: true,
+        },
+      ],
+    } only %}
+  {% endcell %}
+
+  {% cell 'u-bolt-width-6/12' %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      media: {
+        image: {
+          src: '/images/placeholders/landscape-16x9-mountains.jpg',
+          alt: 'Image alt.',
+        },
+      },
+      body: {
+        eyebrow: 'This is an eyebrow',
+        headline: 'This card\'s `action` has the `download` icon',
+        paragraph: 'This is a paragraph.',
+      },
+      actions: [
+        {
+          text: 'This is a button with a different icon',
+          url: 'http://pega.com',
+          icon: 'download',
+        },
+      ],
+    } only %}
+  {% endcell %}
+
+  {% cell 'u-bolt-width-6/12' %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      media: {
+        image: {
+          src: '/images/placeholders/landscape-16x9-mountains.jpg',
+          alt: 'Image alt.',
+        },
+      },
+      body: {
+        eyebrow: 'This is an eyebrow',
+        headline: 'This card\'s `action` has no icon',
+        paragraph: 'This is a paragraph.',
+      },
+      actions: [
+        {
+          text: 'This is a button with no icon',
+          url: 'http://pega.com',
+          icon: 'none',
+        },
+      ],
+    } only %}
+  {% endcell %}
+
+{% endgrid %}
+
+
+{# BEGIN: Tabs #}
+{% set image_content %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+      alt: 'Mountains',
+      loading: 'lazy',
+    }
+  } only %}
+{% endset %}
+
+{% set table_content %}
+  {% include '@bolt-components-table/table.twig' with {
+    headers: {
+      top: {
+        cells: [
+          'Column 1',
+          'Column 2',
+          'Column 3',
+        ]
+      },
+      side: {
+        cells: [
+          'Row 1',
+          'Row 2',
+          'Row 3',
+          'Footer',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          'R1C1',
+          'R1C2',
+          'R1C3',
+        ]
+      },
+      {
+        cells: [
+          'R2C1',
+          'R2C2',
+          'R2C3',
+        ]
+      },
+      {
+        cells: [
+          'R3C1',
+          'R3C2',
+          'R3C3',
+        ]
+      }
+    ],
+    footer: {
+      cells: [
+        'FC1',
+        'FC2',
+        'FC3',
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% set text_group_content %}
+  {% include '@bolt/eyebrow.twig' with {
+    text: 'Eyebrow'
+  } only %}
+
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'This is a headline.',
+  } only %}
+
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    tag: 'p'
+  } only %}
+
+  {% set button_1 %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'CTA 1',
+      attributes: {
+        href: 'www.google.com'
+      }
+    } only %}
+  {% endset %}
+
+  {% set button_2 %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'CTA 12',
+      hierarchy: 'secondary',
+      attributes: {
+        href: 'www.google.com'
+      }
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    items: [
+      button_1,
+      button_2,
+    ]
+  } only %}
+{% endset %}
+
+{% set accordion_content %}
+  {% include '@bolt-components-accordion/accordion.twig' with {
+    items: [
+      {
+        trigger: 'Accordion item 1',
+        content: 'This is the accordion content.',
+      },
+      {
+        trigger: 'Accordion item 2',
+        content: 'This is the accordion content.',
+      },
+      {
+        trigger: 'Accordion item 3',
+        content: 'This is the accordion content.',
+      }
+    ]
+  } only %}
+{% endset %}
+
+{% set placeholder_content %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel',
+      size: 'large',
+    } only %}
+{% endset %}
+
+{% set slide_1 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 1',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+{% set slide_2 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 2',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+{% set slide_3 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 3',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+{% set slide_4 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 4',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+{% set slide_5 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 5',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+
+{% set carousel_content %}
+  {% include '@bolt-components-carousel/carousel.twig' with {
+    slides_per_view: 2,
+    slides: [
+      slide_1,
+      slide_2,
+      slide_3,
+      slide_4,
+      slide_5,
+    ]
+  } only %}
+{% endset %}
+
+{% set video_content %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-title
+      data-media-duration
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+
+{% set tab_content_1 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel 1',
+      size: 'large',
+    } only %}
+{% endset %}
+{% set tab_content_2 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel 2',
+      size: 'large',
+    } only %}
+{% endset %}
+{% set tab_content_3 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel 3',
+      size: 'large',
+    } only %}
+{% endset %}
+
+{% set tabs_content %}
+  {% include '@bolt-components-tabs/tabs.twig' with {
+    panels: [
+      {
+        label: 'Tab label 1',
+        content: tab_content_1,
+      },
+      {
+        label: 'Tab label 2',
+        content: tab_content_2,
+      },
+      {
+        label: 'Tab label 3',
+        content: tab_content_3,
+      }
+    ]
+  } only %}
+{% endset %}
+
+<div class="u-bolt-margin-bottom-small">
+  {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center' %}
+    {% cell 'u-bolt-width-12/12 u-bolt-width-9/12@small' %}
+      {% include '@bolt-components-tabs/tabs.twig' with {
+        panels: [
+          {
+            label: 'A text group',
+            content: text_group_content
+          },
+          {
+            label: 'A table',
+            content: table_content
+          },
+          {
+            label: 'An image',
+            content: image_content
+          },
+          {
+            label: 'A video',
+            content: video_content,
+          },
+          {
+            label: 'Tabs',
+            content: tabs_content,
+          },
+          {
+            label: 'An accordion',
+            content: accordion_content,
+          },
+          {
+            label: 'A carousel',
+            content: carousel_content,
+          },
+        ]
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+</div>
+
+{# BEGIN: Accordion #}
+{% set image_content %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/tout-4x3-climber.jpg',
+      alt: 'A Rock Climber',
+      loading: 'lazy',
+    }
+  } only %}
+{% endset %}
+
+{% set table_content %}
+  {% include '@bolt-components-table/table.twig' with {
+    headers: {
+      top: {
+        cells: [
+          'Column 1',
+          'Column 2',
+          'Column 3',
+        ]
+      },
+      side: {
+        cells: [
+          'Row 1',
+          'Row 2',
+          'Row 3',
+          'Footer',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          'R1C1',
+          'R1C2',
+          'R1C3',
+        ]
+      },
+      {
+        cells: [
+          'R2C1',
+          'R2C2',
+          'R2C3',
+        ]
+      },
+      {
+        cells: [
+          'R3C1',
+          'R3C2',
+          'R3C3',
+        ]
+      }
+    ],
+    footer: {
+      cells: [
+        'FC1',
+        'FC2',
+        'FC3',
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% set share_content %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'This is a headline',
+    size: 'xlarge',
+  } only %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'This is regular text. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et.',
+  } only %}
+  {% include '@bolt-components-share/share.twig' with {
+    size: 'small',
+    sources: [
+      {
+        name: 'facebook',
+        attributes: {
+          href: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse'
+        }
+      },
+      {
+        name: 'twitter',
+        attributes: {
+          href: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+        }
+      },
+      {
+        name: 'linkedin',
+        attributes: {
+          href: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com'
+        }
+      },
+      {
+        name: 'email',
+        attributes: {
+          href: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+        }
+      }
+    ],
+    copy_to_clipboard: {
+      text_to_copy: 'https://boltdesignsystem.com'
+    },
+  } only %}
+{% endset %}
+
+{% set placeholder_content_s %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel',
+      size: 'small',
+    } only %}
+{% endset %}
+
+{% set placeholder_content_m %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel',
+      size: 'medium',
+    } only %}
+{% endset %}
+
+{% set placeholder_content_l %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel',
+      size: 'large',
+    } only %}
+{% endset %}
+
+{% set tabs_content %}
+  {% include '@bolt-components-tabs/tabs.twig' with {
+    panels: [
+      {
+        label: 'Tab label 1',
+        content: placeholder_content_s
+      },
+      {
+        label: 'Tab label 2',
+        content: placeholder_content_m
+      },
+      {
+        label: 'Tab label 3',
+        content: placeholder_content_l
+      },
+    ]
+  } only %}
+{% endset %}
+
+{% set slide_1 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 1',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+{% set slide_2 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 2',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+{% set slide_3 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 3',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+{% set slide_4 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 4',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+{% set slide_5 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 5',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+
+{% set carousel_content %}
+  {% include '@bolt-components-carousel/carousel.twig' with {
+    slides_per_view: 2,
+    slides: [
+      slide_1,
+      slide_2,
+      slide_3,
+      slide_4,
+      slide_5,
+    ]
+  } only %}
+{% endset %}
+
+{% set video_content %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      controls
+      data-media-title
+      data-media-duration
+      data-use-page-lang
+      data-video-id="6250883560001"
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+
+{% set accordion_content %}
+  {% include '@bolt-components-accordion/accordion.twig' with {
+    items: [
+      {
+        trigger: 'Accordion item 1',
+        content: 'This is the accordion content.',
+      },
+      {
+        trigger: 'Accordion item 2',
+        content: 'This is the accordion content.',
+      },
+      {
+        trigger: 'Accordion item 3',
+        content: 'This is the accordion content.',
+      }
+    ]
+  } only %}
+{% endset %}
+
+<h3>Pass various components into the content</h3>
+{% include '@bolt-components-accordion/accordion.twig' with {
+  box_shadow: true,
+  items: [
+    {
+      trigger: 'Expand this to see an image',
+      content: image_content
+    },
+    {
+      trigger: 'Expand this to see a table',
+      content: table_content
+    },
+    {
+      trigger: 'Expand this to see a share tool and a paragraph of text',
+      content: share_content
+    },
+    {
+      trigger: 'Expand this to see a video',
+      content: video_content
+    },
+    {
+      trigger: 'Expand this to see a nested accordion',
+      content: accordion_content
+    },
+    {
+      trigger: 'Expand this to see tabs',
+      content: tabs_content
+    },
+    {
+      trigger: 'Expand this to see a carousel',
+      content: carousel_content
+    },
+  ]
+} only %}
+
+{% endblock %}
