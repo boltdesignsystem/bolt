@@ -1,0 +1,134 @@
+{% set placeholder_item %}
+  <li class="c-bolt-notifications__list-item">
+    <div class="c-bolt-notifications__signifier">
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'info-circle',
+        size: 'medium',
+      } only %}
+    </div>
+    <div class="c-bolt-notifications__content">
+      <div class="c-bolt-notifications__content__eyebrow">
+        Site Name
+      </div>
+      <div class="c-bolt-notifications__content__timestamp">
+        2 days ago
+      </div>
+      <a href="https://pega.com" class="c-bolt-notifications__content__message">
+        The notificatoin message goes here. It may have <span class="c-bolt-notifications__content__message__callout">1 callout that looks like a link</span>, but the entire row is clickable and points to a single link.
+      </a>
+    </div>
+  </li>
+{% endset %}
+{% set placeholder_item_read %}
+  <li class="c-bolt-notifications__list-item c-bolt-notifications__list-item--read">
+    <div class="c-bolt-notifications__signifier">
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'info-circle',
+        size: 'medium',
+      } only %}
+    </div>
+    <div class="c-bolt-notifications__content">
+      <div class="c-bolt-notifications__content__eyebrow">
+        Site Name
+      </div>
+      <div class="c-bolt-notifications__content__timestamp">
+        2 days ago
+      </div>
+      <a href="https://pega.com" class="c-bolt-notifications__content__message">
+        Each message can have a read or unread state. This one is read.
+      </a>
+    </div>
+  </li>
+{% endset %}
+
+{% set notifications %}    
+  <div class="c-bolt-notifications">
+    <header class="c-bolt-notifications__header">
+    </header>
+    <ul class="c-bolt-notifications__list">
+      <li class="c-bolt-notifications__list-item c-bolt-notifications__list-item--section-heading">
+        <strong>Latest</strong>
+      </li>
+      <li class="c-bolt-notifications__list-item">
+        <div class="c-bolt-notifications__signifier">
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-thumbs-up',
+            size: 'medium',
+          } only %}
+        </div>
+        <div class="c-bolt-notifications__content">
+          <div class="c-bolt-notifications__content__eyebrow">
+            Collaboration Center
+          </div>
+          <div class="c-bolt-notifications__content__timestamp">
+            2 minutes ago
+          </div>
+          <a href="https://pega.com" class="c-bolt-notifications__content__message">
+            Aneesh Borah, Matt Alley and 2 others liked your idea, <span class="c-bolt-notifications__content__message__callout">Multi-datacenter setup in 8.6.1 with two Openshift clusters</span>.
+          </a>
+        </div>
+      </li>
+      <li class="c-bolt-notifications__list-item">
+        <div class="c-bolt-notifications__signifier">
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'info-circle',
+            size: 'medium',
+          } only %}
+        </div>
+        <div class="c-bolt-notifications__content">
+          <div class="c-bolt-notifications__content__eyebrow">
+            Community
+          </div>
+          <div class="c-bolt-notifications__content__timestamp">
+            5 minutes ago
+          </div>
+          <a href="https://pega.com" class="c-bolt-notifications__content__message">
+            There will be a site-wide maintenance scheduled for Wednesday, September 15, 2021 from 1&ndash;4PM EST.
+          </a>
+        </div>
+      </li>
+      <li class="c-bolt-notifications__list-item c-bolt-notifications__list-item--section-heading">
+        <strong>Earlier</strong>
+      </li>
+      {{ placeholder_item }}
+      {{ placeholder_item_read }}
+      {{ placeholder_item_read }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+    </ul>
+    <footer class="c-bolt-notifications__footer">
+      <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline e-bolt-text-link--expand-click-target">View all notificatoins</a>
+    </footer>
+  </div>
+{% endset %}
+
+<div style="max-width: calc(320px + 8rem); margin: 4rem auto; padding: 4rem; background: var(--bolt-color-black);">
+  <div class="t-bolt-white">
+    {{ notifications }}
+  </div>
+</div>
+
+<bolt-layout class="t-bolt-gray-xlight">
+  <bolt-layout-item>
+    {{ notifications }}
+  </bolt-layout-item>
+</bolt-layout>
+
+<bolt-layout class="t-bolt-navy-dark">
+  <bolt-layout-item>
+    {{ notifications }}
+  </bolt-layout-item>
+</bolt-layout>
