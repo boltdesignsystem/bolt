@@ -108,7 +108,7 @@
       spacing: 'none',
     } only %}
   {% endset %}
-  
+
   {% set download %}
     {% set icon_download %}
       {% include '@bolt-elements-icon/icon.twig' with {
@@ -366,26 +366,17 @@
             {
               type: 'option',
               value: 'pegaworld-2020',
-              label: 'Pegaworld 2020',
-              attributes: {
-                disabled: true,
-              },
+              label: 'Pegaworld 2020'
             },
             {
               type: 'option',
               value: 'pegaworld-2019',
-              label: 'Pegaworld 2019',
-              attributes: {
-                disabled: true,
-              },
+              label: 'Pegaworld 2019'
             },
             {
               type: 'option',
               value: 'pegaworld-2018',
-              label: 'Pegaworld 2018',
-              attributes: {
-                disabled: true,
-              },
+              label: 'Pegaworld 2018'
             },
           ],
           attributes: {
@@ -548,25 +539,16 @@
               type: 'option',
               value: 'most-viewed',
               label: 'Most viewed',
-              attributes: {
-                disabled: true,
-              },
             },
             {
               type: 'option',
               value: 'most-recent',
               label: 'Most recent',
-              attributes: {
-                disabled: true,
-              },
             },
             {
               type: 'option',
               value: 'by-type',
               label: 'By type',
-              attributes: {
-                disabled: true,
-              },
             }
           ],
           attributes: {
@@ -639,5 +621,5 @@
   } only %}
 
     {% include '@pl/_boc-like-button-js.twig' %}
-    
+
 {% endblock %}
