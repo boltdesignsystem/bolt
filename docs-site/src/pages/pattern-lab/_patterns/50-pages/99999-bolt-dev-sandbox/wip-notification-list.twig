@@ -1,40 +1,40 @@
 {% set placeholder_item %}
-  <li class="c-bolt-notifications__list-item">
-    <div class="c-bolt-notifications__signifier">
+  <li class="c-base-notifications__list-item">
+    <div class="c-base-notifications__signifier">
       {% include '@bolt-elements-icon/icon.twig' with {
         name: 'info-circle',
         size: 'medium',
       } only %}
     </div>
-    <div class="c-bolt-notifications__content">
-      <div class="c-bolt-notifications__content__eyebrow">
+    <div class="c-base-notifications__content">
+      <div class="c-base-notifications__content__eyebrow">
         Site Name
       </div>
-      <div class="c-bolt-notifications__content__timestamp">
+      <div class="c-base-notifications__content__timestamp">
         2 days ago
       </div>
-      <a href="https://pega.com" class="c-bolt-notifications__content__message">
-        The notificatoin message goes here. It may have <span class="c-bolt-notifications__content__message__callout">1 callout that looks like a link</span>, but the entire row is clickable and points to a single link.
+      <a href="https://pega.com" class="c-base-notifications__content__message">
+        The notificatoin message goes here. It may have <span class="c-base-notifications__content__message__callout">1 callout that looks like a link</span>, but the entire row is clickable and points to a single link.
       </a>
     </div>
   </li>
 {% endset %}
 {% set placeholder_item_read %}
-  <li class="c-bolt-notifications__list-item c-bolt-notifications__list-item--read">
-    <div class="c-bolt-notifications__signifier">
+  <li class="c-base-notifications__list-item c-base-notifications__list-item--read">
+    <div class="c-base-notifications__signifier">
       {% include '@bolt-elements-icon/icon.twig' with {
         name: 'info-circle',
         size: 'medium',
       } only %}
     </div>
-    <div class="c-bolt-notifications__content">
-      <div class="c-bolt-notifications__content__eyebrow">
+    <div class="c-base-notifications__content">
+      <div class="c-base-notifications__content__eyebrow">
         Site Name
       </div>
-      <div class="c-bolt-notifications__content__timestamp">
+      <div class="c-base-notifications__content__timestamp">
         2 days ago
       </div>
-      <a href="https://pega.com" class="c-bolt-notifications__content__message">
+      <a href="https://pega.com" class="c-base-notifications__content__message">
         Each message can have a read or unread state. This one is read.
       </a>
     </div>
@@ -42,52 +42,90 @@
 {% endset %}
 
 {% set notifications %}    
-  <div class="c-bolt-notifications">
-    <header class="c-bolt-notifications__header">
+  <div class="c-base-notifications">
+    <header class="c-base-notifications__header">
+      <div class="c-base-notifications__header__switch">
+        <label class="c-bolt-switch-button" for="unread-toggle">
+          <span class="c-bolt-switch-button__label">Only show unread</span>
+          <button class="c-bolt-switch-button__button" type="button" id="unread-toggle" role="switch" aria-checked="false">
+            <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--checked">on</span>
+            <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--unchecked ">off</span>  
+          </button>
+        </label>
+      </div>
+      <div class="c-base-notifications__header__actions">
+        {% set icon_check_solid %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'check-solid',
+            size: 'medium',
+          } only %}
+        {% endset %}
+        {% set tooltip_trigger %}
+          <button class="c-base-notifications__header__actions__icon-button" type="button">{{ icon_check_solid }}</button>
+        {% endset %}
+        {% include '@bolt-components-tooltip/tooltip.twig' with {
+          trigger: tooltip_trigger,
+          content: 'Mark all as read',
+        } only %}
+
+        {% set icon_pega_setting %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-setting',
+            size: 'medium',
+          } only %}
+        {% endset %}
+        {% set tooltip_trigger %}
+          <a class="c-base-notifications__header__actions__icon-button" href="https://pega.com">{{ icon_pega_setting }}</a>
+        {% endset %}
+        {% include '@bolt-components-tooltip/tooltip.twig' with {
+          trigger: tooltip_trigger,
+          content: 'Notification Settings',
+        } only %}
+      </div>
     </header>
-    <ul class="c-bolt-notifications__list">
-      <li class="c-bolt-notifications__list-item c-bolt-notifications__list-item--section-heading">
+    <ul class="c-base-notifications__list">
+      <li class="c-base-notifications__list-item c-base-notifications__list-item--section-heading">
         <strong>Latest</strong>
       </li>
-      <li class="c-bolt-notifications__list-item">
-        <div class="c-bolt-notifications__signifier">
+      <li class="c-base-notifications__list-item">
+        <div class="c-base-notifications__signifier">
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'pega-thumbs-up',
             size: 'medium',
           } only %}
         </div>
-        <div class="c-bolt-notifications__content">
-          <div class="c-bolt-notifications__content__eyebrow">
+        <div class="c-base-notifications__content">
+          <div class="c-base-notifications__content__eyebrow">
             Collaboration Center
           </div>
-          <div class="c-bolt-notifications__content__timestamp">
+          <div class="c-base-notifications__content__timestamp">
             2 minutes ago
           </div>
-          <a href="https://pega.com" class="c-bolt-notifications__content__message">
-            Aneesh Borah, Matt Alley and 2 others liked your idea, <span class="c-bolt-notifications__content__message__callout">Multi-datacenter setup in 8.6.1 with two Openshift clusters</span>.
+          <a href="https://pega.com" class="c-base-notifications__content__message">
+            Aneesh Borah, Matt Alley and 2 others liked your idea, <span class="c-base-notifications__content__message__callout">Multi-datacenter setup in 8.6.1 with two Openshift clusters</span>.
           </a>
         </div>
       </li>
-      <li class="c-bolt-notifications__list-item">
-        <div class="c-bolt-notifications__signifier">
+      <li class="c-base-notifications__list-item">
+        <div class="c-base-notifications__signifier">
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'info-circle',
             size: 'medium',
           } only %}
         </div>
-        <div class="c-bolt-notifications__content">
-          <div class="c-bolt-notifications__content__eyebrow">
+        <div class="c-base-notifications__content">
+          <div class="c-base-notifications__content__eyebrow">
             Community
           </div>
-          <div class="c-bolt-notifications__content__timestamp">
+          <div class="c-base-notifications__content__timestamp">
             5 minutes ago
           </div>
-          <a href="https://pega.com" class="c-bolt-notifications__content__message">
+          <a href="https://pega.com" class="c-base-notifications__content__message">
             There will be a site-wide maintenance scheduled for Wednesday, September 15, 2021 from 1&ndash;4PM EST.
           </a>
         </div>
       </li>
-      <li class="c-bolt-notifications__list-item c-bolt-notifications__list-item--section-heading">
+      <li class="c-base-notifications__list-item c-base-notifications__list-item--section-heading">
         <strong>Earlier</strong>
       </li>
       {{ placeholder_item }}
@@ -109,17 +147,17 @@
       {{ placeholder_item }}
       {{ placeholder_item }}
     </ul>
-    <footer class="c-bolt-notifications__footer">
+    <footer class="c-base-notifications__footer">
       <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline e-bolt-text-link--expand-click-target">View all notificatoins</a>
     </footer>
   </div>
 {% endset %}
 
-<bolt-layout>
+<bolt-layout template="tiles">
   <bolt-layout-item>
     {% set trigger %}
       {% include '@bolt-elements-button/button.twig' with {
-        content: 'See notifications popover',
+        content: 'See notifications popover (light)',
         attributes: {
           type: 'button'
         }
@@ -135,15 +173,45 @@
       },
     } only %}
   </bolt-layout-item>
+  <bolt-layout-item>
+    {% set trigger %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'See notifications popover (dark)',
+        attributes: {
+          type: 'button'
+        }
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: trigger,
+      content: notifications,
+      spacing: 'none',
+      theme: 'dark',
+      attributes: {
+        style: '--c-bolt-popover-bubble-width: 320px;'
+      },
+    } only %}
+  </bolt-layout-item>
 </bolt-layout>
 
 <bolt-layout class="t-bolt-gray-xlight">
+  <bolt-layout-item>
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Notifications',
+    } only %}
+  </bolt-layout-item>
   <bolt-layout-item>
     {{ notifications }}
   </bolt-layout-item>
 </bolt-layout>
 
 <bolt-layout class="t-bolt-navy-dark">
+  <bolt-layout-item>
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Notifications',
+    } only %}
+  </bolt-layout-item>
   <bolt-layout-item>
     {{ notifications }}
   </bolt-layout-item>

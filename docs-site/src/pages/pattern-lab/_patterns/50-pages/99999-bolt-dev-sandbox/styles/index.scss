@@ -2,7 +2,7 @@
  * Add imports here
  */
 
-.c-bolt-notifications__list {
+.c-base-notifications__list {
   @include bolt-vertical-scroll;
 
   max-height: 80vh;
@@ -17,7 +17,7 @@
   background-color: var(--m-bolt-bg);
 }
 
-.c-bolt-notifications__list-item {
+.c-base-notifications__list-item {
   display: grid;
   position: relative;
   margin: 0;
@@ -29,42 +29,47 @@
   & + #{&} {
     border-top: 1px solid var(--m-bolt-border);
   }
+
+  &:first-of-type {
+    border-top: 0;
+  }
 }
 
-.c-bolt-notifications__list-item--read {
+.c-base-notifications__list-item--read {
   // background-color: transparent;
 
-  .c-bolt-notifications__signifier {
-    color: var(--m-bolt-disabled);
+  .c-base-notifications__signifier {
+    color: var(--m-bolt-neutral);
   }
 
-  .c-bolt-notifications__content__eyebrow,
-  .c-bolt-notifications__content__timestamp,
-  .c-bolt-notifications__content__message {
+  .c-base-notifications__content__eyebrow,
+  .c-base-notifications__content__timestamp,
+  .c-base-notifications__content__message {
     font-weight: var(--bolt-type-font-weight-regular);
     color: var(--m-bolt-neutral);
   }
 
-  .c-bolt-notifications__content__timestamp:after {
+  .c-base-notifications__content__timestamp:after {
     display: none;
   }
 }
 
-.c-bolt-notifications__list-item--section-heading {
+.c-base-notifications__list-item--section-heading {
   &,
   * {
     font-family: var(--bolt-type-font-family-headline);
     font-size: var(--bolt-type-font-size-small);
     font-weight: var(--bolt-type-font-weight-semibold);
+    color: var(--m-bolt-neutral);
     line-height: var(--bolt-type-line-height-small);
   }
 }
 
-.c-bolt-notifications__signifier {
+.c-base-notifications__signifier {
   color: var(--m-bolt-link);
 }
 
-.c-bolt-notifications__content {
+.c-base-notifications__content {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -76,17 +81,17 @@
   }
 }
 
-.c-bolt-notifications__content__eyebrow,
-.c-bolt-notifications__content__timestamp {
+.c-base-notifications__content__eyebrow,
+.c-base-notifications__content__timestamp {
   font-family: var(--bolt-type-font-family-headline);
   color: var(--m-bolt-link);
 }
 
-.c-bolt-notifications__content__eyebrow {
+.c-base-notifications__content__eyebrow {
   white-space: nowrap;
 }
 
-.c-bolt-notifications__content__timestamp {
+.c-base-notifications__content__timestamp {
   &:after {
     content: '';
     display: inline-block;
@@ -95,12 +100,12 @@
     margin-left: var(--bolt-spacing-x-xxsmall);
     line-height: 1;
     border-radius: bolt-border-radius(full);
-    box-shadow: 0 0 0 2px var(--m-bolt-border);
+    box-shadow: 0 0 0 3px var(--m-bolt-border);
     background-color: var(--m-bolt-link);
   }
 }
 
-.c-bolt-notifications__content__message {
+.c-base-notifications__content__message {
   width: 100%;
   color: inherit;
   text-decoration: none;
@@ -125,7 +130,7 @@
     background-color: var(--m-bolt-link);
     transition: opacity var(--bolt-transition);
 
-    @at-root .c-bolt-notifications__content:hover #{&} {
+    @at-root .c-base-notifications__content:hover #{&} {
       opacity: 1;
     }
   }
@@ -136,24 +141,117 @@
   }
 }
 
-.c-bolt-notifications__content__message__callout {
+.c-base-notifications__content__message__callout {
   color: var(--m-bolt-link);
 
-  @at-root .c-bolt-notifications__content:hover #{&} {
+  @at-root .c-base-notifications__content:hover #{&} {
     text-decoration: underline;
   }
 }
 
-.c-bolt-notifications__footer {
+.c-base-notifications__header,
+.c-base-notifications__footer {
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+}
+
+.c-base-notifications__header {
+  display: grid;
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: var(--bolt-type-line-height-xsmall);
+  border-bottom: 1px solid var(--m-bolt-border);
+  grid-template-columns: 1fr auto;
+}
+
+.c-base-notifications__header__actions {
+  display: flex;
+  gap: var(--bolt-spacing-x-xsmall);
+}
+
+.c-base-notifications__header__actions__icon-button {
+  @include bolt-button-native-styles-reset;
+  @include bolt-text-link;
+
+  text-decoration: none;
+}
+
+.c-base-notifications__footer {
   position: sticky;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   font-family: var(--bolt-type-font-family-body);
   font-size: var(--bolt-type-font-size-small);
   font-weight: var(--bolt-type-font-weight-semibold);
   line-height: var(--bolt-type-line-height-small);
   text-align: center;
   border-top: 1px solid var(--m-bolt-border);
+}
+
+.c-bolt-switch-button {
+  display: inline-flex;
+  gap: var(--bolt-spacing-x-xsmall);
+  align-items: center;
+}
+
+.c-bolt-switch-button__button {
+  @include bolt-button-native-styles-reset;
+
+  display: inline-flex;
+  position: relative;
+  width: 3rem;
+  color: var(--m-bolt-text-on-disabled);
+  border-radius: bolt-border-radius(full);
+  box-shadow: 0 0 0 2px var(--m-bolt-border);
+  background-color: var(--m-bolt-disabled);
+  transition: color var(--bolt-transition),
+    background-color var(--bolt-transition);
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0.125rem;
+    bottom: 0.125rem;
+    width: calc(50% - 0.25rem);
+    border-radius: inherit;
+    background-color: var(--bolt-color-white);
+    transition: all var(--bolt-transition);
+  }
+
+  &[aria-checked='true'] {
+    color: var(--bolt-color-white);
+    background-color: var(--bolt-color-success);
+
+    &:after {
+      right: 0.125rem;
+    }
+
+    .c-bolt-switch-button__button-text--unchecked {
+      visibility: hidden;
+    }
+  }
+
+  &[aria-checked='false'] {
+    &:after {
+      left: 0.125rem;
+    }
+
+    .c-bolt-switch-button__button-text--checked {
+      visibility: hidden;
+    }
+  }
+}
+
+.c-bolt-switch-button__button-text {
+  display: grid;
+  place-items: center;
+  flex: 1;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-xxsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: 1.5rem;
+  text-align: center;
 }
