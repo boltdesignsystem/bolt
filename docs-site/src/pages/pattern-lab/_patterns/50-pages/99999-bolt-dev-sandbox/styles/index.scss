@@ -173,7 +173,13 @@
   @include bolt-button-native-styles-reset;
   @include bolt-text-link;
 
+  display: block;
   text-decoration: none;
+
+  &:focus {
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
 }
 
 .c-base-notifications__footer {
@@ -203,17 +209,21 @@
   width: 3rem;
   color: var(--m-bolt-text-on-disabled);
   border-radius: bolt-border-radius(full);
-  box-shadow: 0 0 0 2px var(--m-bolt-border);
   background-color: var(--m-bolt-disabled);
   transition: color var(--bolt-transition),
     background-color var(--bolt-transition);
 
+  &:focus {
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
+
   &:after {
     content: '';
     position: absolute;
-    top: 0.125rem;
-    bottom: 0.125rem;
-    width: calc(50% - 0.25rem);
+    top: 0.25rem;
+    bottom: 0.25rem;
+    width: calc(50% - 0.5rem);
     border-radius: inherit;
     background-color: var(--bolt-color-white);
     transition: all var(--bolt-transition);
@@ -224,7 +234,7 @@
     background-color: var(--bolt-color-success);
 
     &:after {
-      right: 0.125rem;
+      right: 0.25rem;
     }
 
     .c-bolt-switch-button__button-text--unchecked {
@@ -234,7 +244,7 @@
 
   &[aria-checked='false'] {
     &:after {
-      left: 0.125rem;
+      left: 0.25rem;
     }
 
     .c-bolt-switch-button__button-text--checked {
@@ -247,11 +257,18 @@
   display: grid;
   place-items: center;
   flex: 1;
-  width: 1.5rem;
   height: 1.5rem;
   font-family: var(--bolt-type-font-family-body);
   font-size: var(--bolt-type-font-size-xxsmall);
   font-weight: var(--bolt-type-font-weight-semibold);
   line-height: 1.5rem;
   text-align: center;
+}
+
+.c-bolt-switch-button__button-text--checked {
+  padding-left: 0.25rem;
+}
+
+.c-bolt-switch-button__button-text--unchecked {
+  padding-right: 0.25rem;
 }
