@@ -52,20 +52,29 @@ $bolt-band-sizes: (
   $size-name: nth($size, 1);
   $size-value: nth($size, 2);
 
-  .c-bolt-band--#{$size-name} {
-    padding-top: $size-value;
-    padding-bottom: $size-value;
+  @if (
+    $size-name !=
+      'xxsmall' and
+      $size-name !=
+      'xlarge' and
+      $size-name !=
+      'xxlarge'
+  ) {
+    .c-bolt-band--#{$size-name} {
+      padding-top: $size-value;
+      padding-bottom: $size-value;
 
-    .c-bolt-band__content--pinned {
-      min-height: $size-value;
-    }
+      .c-bolt-band__content--pinned {
+        min-height: $size-value;
+      }
 
-    .c-bolt-band__content--pinned-upper {
-      margin-top: calc(#{$size-value} * -1);
-    }
+      .c-bolt-band__content--pinned-upper {
+        margin-top: calc(#{$size-value} * -1);
+      }
 
-    .c-bolt-band__content--pinned-lower {
-      margin-bottom: calc(#{$size-value} * -1);
+      .c-bolt-band__content--pinned-lower {
+        margin-bottom: calc(#{$size-value} * -1);
+      }
     }
   }
 }

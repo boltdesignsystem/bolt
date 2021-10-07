@@ -44,8 +44,10 @@
   @each $family in $bolt-type-font-family-system {
     $family-name: nth($family, 1);
 
-    &--#{$family-name} {
-      --c-bolt-text-font-family: var(--bolt-type-font-family-#{$family-name});
+    @if ($family-name != 'bodySubset') {
+      &--#{$family-name} {
+        --c-bolt-text-font-family: var(--bolt-type-font-family-#{$family-name});
+      }
     }
   }
 
@@ -53,17 +55,27 @@
   @each $weight in $bolt-type-font-weight-system {
     $weight-name: nth($weight, 1);
 
-    &--font-weight-#{$weight-name} {
-      --c-bolt-text-font-weight: var(--bolt-type-font-weight-#{$weight-name});
+    @if (
+      $weight-name !=
+        'light' and
+        $weight-name !=
+        'normal' and
+        $weight-name !=
+        'extrabold'
+    ) {
+      &--font-weight-#{$weight-name} {
+        --c-bolt-text-font-weight: var(--bolt-type-font-weight-#{$weight-name});
+      }
     }
   }
 
   // Font size
   @each $size in $bolt-type-font-size-system {
     $size-name: nth($size, 1);
-
-    &--font-size-#{$size-name} {
-      --c-bolt-text-font-size: var(--bolt-type-font-size-#{$size-name});
+    @if ($size-name != 'xxsmall') {
+      &--font-size-#{$size-name} {
+        --c-bolt-text-font-size: var(--bolt-type-font-size-#{$size-name});
+      }
     }
   }
 
@@ -81,18 +93,19 @@
   // Line height
   @each $size in $bolt-type-font-size-system {
     $size-name: nth($size, 1);
+    @if ($size-name != 'xxsmall') {
+      &--font-size-#{$size-name} {
+        --c-bolt-text-line-height: var(--bolt-type-line-height-#{$size-name});
 
-    &--font-size-#{$size-name} {
-      --c-bolt-text-line-height: var(--bolt-type-line-height-#{$size-name});
+        @each $height in $bolt-type-line-height-multiplier-system {
+          $height-name: nth($height, 1);
 
-      @each $height in $bolt-type-line-height-multiplier-system {
-        $height-name: nth($height, 1);
-
-        &.c-bolt-text-v2--line-height-#{$height-name} {
-          --c-bolt-text-line-height: calc(
-            var(--bolt-type-line-height-#{$size-name}) *
-              var(--bolt-type-line-height-multiplier-#{$height-name})
-          );
+          &.c-bolt-text-v2--line-height-#{$height-name} {
+            --c-bolt-text-line-height: calc(
+              var(--bolt-type-line-height-#{$size-name}) *
+                var(--bolt-type-line-height-multiplier-#{$height-name})
+            );
+          }
         }
       }
     }
@@ -179,8 +192,10 @@
 
   // Opacity
   @each $key, $value in $bolt-opacities {
-    &--opacity-#{$key} {
-      opacity: bolt-opacity($key);
+    @if ($key != '0') {
+      &--opacity-#{$key} {
+        opacity: bolt-opacity($key);
+      }
     }
   }
 
