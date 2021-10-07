@@ -1,0 +1,47 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Pass a custom language label with the <code>custom_lang_label</code> prop or the <code>data-custom-lang-label</code> attribute if using HTML.</bolt-li>
+    <bolt-li>Only use a custom label if the default label is not desired.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% set code_snippet %}
+$ echo "Hello World"
+{% endset %}
+
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: code_snippet,
+    lang: 'bash',
+    custom_lang_label: 'Terminal',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set code_snippet %}
+$ echo "Hello World"
+{% endset %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'bash',
+  custom_lang_label: 'Terminal',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+<div class="c-bolt-code-snippet" data-lang="bash" data-mode="light" data-custom-lang-label="Terminal">
+<pre><code>{{ code_snippet|trim }}</code></pre>
+</div>
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Code Snippet Custom Language Label',
+  description: 'Customize the language label shown with your Code Snippet.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

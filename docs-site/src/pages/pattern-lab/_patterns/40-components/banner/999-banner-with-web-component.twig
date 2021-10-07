@@ -1,18 +1,10 @@
 {% macro code_example(code) %}
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid %}
-      {% cell "u-bolt-width-12/12" %}
+      {% cell 'u-bolt-width-12/12' %}
         {{ code }}
       {% endcell %}
     {% endgrid %}
-  </div>
-  <div class="u-bolt-margin-bottom-large">
-    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-      {{ code | replace({
-        '<': '&lt;',
-        '>': '&gt;',
-      }) | trim | raw }}
-    {% endspaceless %}</bolt-code-snippet>
   </div>
 {% endmacro %}
 
@@ -32,12 +24,22 @@
 
 <bolt-text headline>Web Component Usage</bolt-text>
 <bolt-text>
-  Bolt Banner is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-banner&gt;</bolt-code-snippet> in the markup to make it render.
+  Bolt Banner is a web component, you can simply use <code>&lt;bolt-banner&gt;</code> in the markup to make it render.
 </bolt-text>
 {% include banner_example.code_example(banner_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: banner_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}
 
 <bolt-text headline>Prop Usage</bolt-text>
 <bolt-text>
   Configure the banner with the properties specified in the schema.
 </bolt-text>
 {% include banner_example.code_example(banner_prop_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: banner_prop_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}

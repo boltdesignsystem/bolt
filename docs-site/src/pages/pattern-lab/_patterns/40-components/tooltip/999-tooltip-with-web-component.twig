@@ -6,14 +6,6 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  <div class="u-bolt-margin-bottom-large">
-    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-      {{ code | replace({
-        '<': '&lt;',
-        '>': '&gt;',
-      }) | trim | raw }}
-    {% endspaceless %}</bolt-code-snippet>
-  </div>
 {% endmacro %}
 
 {% import _self as tooltip_example %}
@@ -44,18 +36,33 @@
 
 <bolt-text headline>Web Component Usage</bolt-text>
 <bolt-text>
-  Bolt Tooltip is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-tooltip&gt;</bolt-code-snippet> in the markup to make it render.
+  Bolt Tooltip is a web component, you can simply use <code>&lt;bolt-tooltip&gt;</code> in the markup to make it render.
 </bolt-text>
 {% include tooltip_example.code_example(tooltip_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: tooltip_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}
 
 <bolt-text headline>Prop Usage</bolt-text>
 <bolt-text>
   Configure the tooltip with the properties specified in the schema.
 </bolt-text>
 {% include tooltip_example.code_example(tooltip_prop_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: tooltip_prop_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}
 
 <bolt-text headline>Advanced Usage</bolt-text>
 <bolt-text>
   Any element can be passed as the trigger.
 </bolt-text>
 {% include tooltip_example.code_example(tooltip_advanced_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: tooltip_prop_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}

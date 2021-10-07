@@ -1,18 +1,10 @@
 {% macro code_example(code) %}
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--center" %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+    {% grid 'o-bolt-grid--center' %}
+      {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium' %}
         {{ code }}
       {% endcell %}
     {% endgrid %}
-  </div>
-  <div class="u-bolt-margin-bottom-large">
-    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-      {{ code | replace({
-        '<': '&lt;',
-        '>': '&gt;',
-      }) | trim | raw }}
-    {% endspaceless %}</bolt-code-snippet>
   </div>
 {% endmacro %}
 
@@ -95,59 +87,75 @@
   </bolt-text>
   <bolt-text>
     Bolt Text is a web component, you can simply use
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-replacement&gt;</bolt-code-snippet>
+    <code>&lt;bolt-card-replacement&gt;</code>
     in the markup to make it render. Its inner content is comprised of
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-replacement-media&gt;</bolt-code-snippet>,
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-replacement-body&gt;</bolt-code-snippet>, and
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-replacement-actions&gt;</bolt-code-snippet>.
+    <code>&lt;bolt-card-replacement-media&gt;</code>,
+    <code>&lt;bolt-card-replacement-body&gt;</code>, and
+    <code>&lt;bolt-card-replacement-actions&gt;</code>.
   </bolt-text>
-  {% include card_replacement_code.code_example(card_replacement_web_component_demo) %}
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: card_replacement_web_component_demo,
+    lang: 'html',
+    mode: 'dark',
+  } only %}
 
   <bolt-text headline>
     Simple Link Usage
   </bolt-text>
   <bolt-text>
     The simplest way to make the whole card-replacement clickable is by passing a link address to the
-    <bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet>
+    <code>url</code>
     prop on the main
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-replacement&gt;</bolt-code-snippet>
+    <code>&lt;bolt-card-replacement&gt;</code>
     component itself. Also include the
-    <bolt-code-snippet display="inline" lang="html">url-text</bolt-code-snippet>
+    <code>url-text</code>
     prop for accessibility.
   </bolt-text>
-  {% include card_replacement_code.code_example(simple_link_demo) %}
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: simple_link_demo,
+    lang: 'html',
+    mode: 'dark',
+  } only %}
 
   <bolt-text headline>
     Advanced Link Usage
   </bolt-text>
   <bolt-text>
     Insert a
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-replacement-link&gt;</bolt-code-snippet>
+    <code>&lt;bolt-card-replacement-link&gt;</code>
     inside
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-replacement&gt;</bolt-code-snippet>
+    <code>&lt;bolt-card-replacement&gt;</code>
     and you can pass more than just
-    <bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet>.
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-replacement-link&gt;</bolt-code-snippet>
+    <code>url</code>.
+    <code>&lt;bolt-card-replacement-link&gt;</code>
     is similar to
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>. You can add custom attributes to
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-replacement-link&gt;</bolt-code-snippet>
+    <code>&lt;bolt-link&gt;</code>. You can add custom attributes to
+    <code>&lt;bolt-card-replacement-link&gt;</code>
     and insert a semantic
-    <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet>
+    <code>&lt;a&gt;</code>
     or
-    <bolt-code-snippet display="inline" lang="html">&lt;button&gt;</bolt-code-snippet>
+    <code>&lt;button&gt;</code>
     element inside.
   </bolt-text>
-  {% include card_replacement_code.code_example(advanced_link_demo) %}
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: advanced_link_demo,
+    lang: 'html',
+    mode: 'dark',
+  } only %}
 
   <bolt-text headline>
     Nested Links
   </bolt-text>
   <bolt-text>
     While making the whole card-replacement clickable, you are still able to insert nested links as needed. Any
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>,
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-replacement-link&gt;</bolt-code-snippet>, and
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-replacement-action&gt;</bolt-code-snippet>
+    <code>&lt;bolt-link&gt;</code>,
+    <code>&lt;bolt-card-replacement-link&gt;</code>, and
+    <code>&lt;bolt-card-replacement-action&gt;</code>
     will work as expected.
   </bolt-text>
-  {% include card_replacement_code.code_example(nested_links_demo) %}
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: nested_links_demo,
+    lang: 'html',
+    mode: 'dark',
+  } only %}
 </div>

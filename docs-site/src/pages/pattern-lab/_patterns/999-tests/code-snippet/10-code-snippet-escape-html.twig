@@ -1,0 +1,21 @@
+
+{% set code_snippet %}
+The <code>&lt;code&gt;</code> element defines inline code.
+{% endset %}
+
+{% set code_snippet_manual %}
+The &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; element defines inline code.
+{% endset %}
+
+<h2>HTML escape</h2>
+<h3>HTML (manual escape)</h3>
+<div class="c-bolt-code-snippet" data-lang="html" data-mode="light"><pre><code>{{ code_snippet_manual }}</code></pre></div>
+
+<h3>HTML (Twig <code>|e</code> escape)</h3>
+<div class="c-bolt-code-snippet" data-lang="html" data-mode="light"><pre><code>{{ code_snippet|e }}</code></pre></div>
+
+<h3>Twig (Default template)</h3>
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'html',
+} only %}

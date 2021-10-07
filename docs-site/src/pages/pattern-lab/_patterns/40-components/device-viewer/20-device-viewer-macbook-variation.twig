@@ -1,13 +1,13 @@
 {% set image %}
-  {% include "@bolt-elements-image/image.twig" with {
+  {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      src: "/images/content/screenshots/device-screenshot--desktop.jpg",
-      loading: "lazy",
+      src: '/images/content/screenshots/device-screenshot--desktop.jpg',
+      loading: 'lazy',
     }
   } only %}
 {% endset %}
 
-{% include "@bolt-components-device-viewer/device-viewer.twig" with {
-  device: "macbook",
+{% include '@bolt-components-device-viewer/device-viewer.twig' with {
+  device: 'macbook',
   content: image,
 } only %}

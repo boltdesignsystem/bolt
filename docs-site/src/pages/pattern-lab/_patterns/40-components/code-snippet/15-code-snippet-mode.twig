@@ -1,0 +1,60 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>When using HTML, make sure to use either the <code>[data-mode="light"]</code> or <code>[data-mode="dark"]</code> attribute. Otherwise, there will be no syntax highlighting.</bolt-li>
+    <bolt-li>Mode works independently of Bolt color themes.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% set code_snippet %}
+import { props } from '@bolt/core-v3.x/utils';
+{% endset %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'javascript',
+} only %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'javascript',
+  mode: 'dark',
+} only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set code_snippet %}
+import { props } from '@bolt/core-v3.x/utils';
+{% endset %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'javascript',
+} only %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: code_snippet,
+  lang: 'javascript',
+  mode: 'dark',
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+<div class="c-bolt-code-snippet" data-lang="js" data-mode="light">
+<pre><code>{{ code_snippet|trim }}</code></pre>
+</div>
+<div class="c-bolt-code-snippet" data-lang="js" data-mode="dark">
+<pre><code>{{ code_snippet|trim }}</code></pre>
+</div>
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Code Snippet Syntax Highlights',
+  description: 'Choose from two modes of syntax highlights, light or dark.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
