@@ -400,7 +400,7 @@
             href: 'https://pega.com',
           }
         } only %}
-        
+
         {% set icon_twitter %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'twitter',
@@ -413,7 +413,7 @@
             href: 'https://pega.com',
           }
         } only %}
-        
+
         {% set icon_facebook %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'facebook',
@@ -426,7 +426,7 @@
             href: 'https://pega.com',
           }
         } only %}
-        
+
         {% set icon_youtube %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'youtube-solid',
@@ -457,6 +457,13 @@
         } only %}
         {% include '@bolt-elements-text-link/text-link.twig' with {
           content: 'Contact',
+          reversed_underline: true,
+          attributes: {
+            href: 'https://pega.com',
+          }
+        } only %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Cookie Preference',
           reversed_underline: true,
           attributes: {
             href: 'https://pega.com',
