@@ -1,47 +1,47 @@
-{% set placeholder_item %}
-  <li class="c-base-notifications__list-item">
-    <div class="c-base-notifications__signifier">
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'info-circle',
-        size: 'medium',
-      } only %}
-    </div>
-    <div class="c-base-notifications__content">
-      <div class="c-base-notifications__content__eyebrow">
-        Site Name
-      </div>
-      <div class="c-base-notifications__content__timestamp">
-        2 days ago
-      </div>
-      <a href="https://pega.com" class="c-base-notifications__content__message">
-        The notificatoin message goes here. It may have <span class="c-base-notifications__content__message__callout">1 callout that looks like a link</span>, but the entire row is clickable and points to a single link.
-      </a>
-    </div>
-  </li>
-{% endset %}
-{% set placeholder_item_read %}
-  <li class="c-base-notifications__list-item c-base-notifications__list-item--read">
-    <div class="c-base-notifications__signifier">
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'info-circle',
-        size: 'medium',
-      } only %}
-    </div>
-    <div class="c-base-notifications__content">
-      <div class="c-base-notifications__content__eyebrow">
-        Site Name
-      </div>
-      <div class="c-base-notifications__content__timestamp">
-        2 days ago
-      </div>
-      <a href="https://pega.com" class="c-base-notifications__content__message">
-        Each message can have a read or unread state. This one is read.
-      </a>
-    </div>
-  </li>
-{% endset %}
-
 {% set notifications %}    
+  {% set placeholder_item %}
+    <li class="c-base-notifications__list-item">
+      <div class="c-base-notifications__signifier">
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'info-circle',
+          size: 'medium',
+        } only %}
+      </div>
+      <div class="c-base-notifications__content">
+        <div class="c-base-notifications__content__eyebrow">
+          Site Name
+        </div>
+        <div class="c-base-notifications__content__timestamp">
+          2 days ago
+        </div>
+        <a href="https://pega.com" class="c-base-notifications__content__message">
+          The notificatoin message goes here. It may have <span class="c-base-notifications__content__message__callout">1 callout that looks like a link</span>, but the entire row is clickable and points to a single link.
+        </a>
+      </div>
+    </li>
+  {% endset %}
+  {% set placeholder_item_read %}
+    <li class="c-base-notifications__list-item c-base-notifications__list-item--read">
+      <div class="c-base-notifications__signifier">
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'info-circle',
+          size: 'medium',
+        } only %}
+      </div>
+      <div class="c-base-notifications__content">
+        <div class="c-base-notifications__content__eyebrow">
+          Site Name
+        </div>
+        <div class="c-base-notifications__content__timestamp">
+          2 days ago
+        </div>
+        <a href="https://pega.com" class="c-base-notifications__content__message">
+          Each message can have a read or unread state. This one is read.
+        </a>
+      </div>
+    </li>
+  {% endset %}
+  
   <div class="c-base-notifications">
     <header class="c-base-notifications__header">
       <div class="c-base-notifications__header__switch">
@@ -90,6 +90,25 @@
       <li class="c-base-notifications__list-item">
         <div class="c-base-notifications__signifier">
           {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-announce',
+            size: 'medium',
+          } only %}
+        </div>
+        <div class="c-base-notifications__content">
+          <div class="c-base-notifications__content__eyebrow">
+            Pega.com
+          </div>
+          <div class="c-base-notifications__content__timestamp">
+            1 minute ago
+          </div>
+          <a href="https://pega.com" class="c-base-notifications__content__message">
+             <span class="c-base-notifications__content__message__callout">New Gartner CRM CEC Magic Quadrant analyst report</span> is published.
+          </a>
+        </div>
+      </li>
+      <li class="c-base-notifications__list-item">
+        <div class="c-base-notifications__signifier">
+          {% include '@bolt-elements-icon/icon.twig' with {
             name: 'pega-thumbs-up',
             size: 'medium',
           } only %}
@@ -122,6 +141,25 @@
           </div>
           <a href="https://pega.com" class="c-base-notifications__content__message">
             There will be a site-wide maintenance scheduled for Wednesday, September 15, 2021 from 1&ndash;4PM EST.
+          </a>
+        </div>
+      </li>
+      <li class="c-base-notifications__list-item">
+        <div class="c-base-notifications__signifier">
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'info-circle',
+            size: 'medium',
+          } only %}
+        </div>
+        <div class="c-base-notifications__content">
+          <div class="c-base-notifications__content__eyebrow">
+            Academy
+          </div>
+          <div class="c-base-notifications__content__timestamp">
+            6 minutes ago
+          </div>
+          <a href="https://pega.com" class="c-base-notifications__content__message">
+            A mission you follow has been updated: <span class="c-base-notifications__content__message__callout">Pega Robotic Automation</span>.
           </a>
         </div>
       </li>

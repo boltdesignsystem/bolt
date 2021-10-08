@@ -3,9 +3,6 @@
  */
 
 .c-base-notifications__list {
-  @include bolt-vertical-scroll;
-
-  max-height: 80vh;
   margin: 0;
   padding: 0;
   font-family: var(--bolt-type-font-family-body);
@@ -24,7 +21,6 @@
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   grid-template-columns: auto 1fr;
   grid-gap: var(--bolt-spacing-x-small);
-  // background-color: rgba(bolt-color(navy, light), 0.12);
 
   & + #{&} {
     border-top: 1px solid var(--m-bolt-border);
@@ -36,8 +32,6 @@
 }
 
 .c-base-notifications__list-item--read {
-  // background-color: transparent;
-
   .c-base-notifications__signifier {
     color: var(--m-bolt-neutral);
   }
@@ -152,6 +146,8 @@
 .c-base-notifications__header,
 .c-base-notifications__footer {
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+  color: var(--m-bolt-text);
+  background-color: var(--m-bolt-bg);
 }
 
 .c-base-notifications__header {

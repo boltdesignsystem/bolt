@@ -657,108 +657,197 @@
 {% endset %}
 
 {# User nav #}
-{% set notification_1 %}
-  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
-    headline: {
-      text: 'You registered for PegaWorld 2022',
-      tag: 'p',
-      size: 'xsmall',
-      link_attributes: {
-        href: 'https://pega.com',
-      },
-    },
-    meta_items: [
-      'Jun 9, 2021',
-    ],
-  } only %}
-{% endset %}
-{% set notification_2 %}
-  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
-    headline: {
-      text: 'Joe Smith answered your question',
-      tag: 'p',
-      size: 'xsmall',
-      link_attributes: {
-        href: 'https://pega.com',
-      },
-    },
-    meta_items: [
-      'Apr 9, 2020',
-    ],
-    reply: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus esse placeat tempore, odio...',
-  } only %}
-{% endset %}
-{% set notification_3 %}
-  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
-    headline: {
-      text: 'Amy Smart replied to your comment',
-      tag: 'p',
-      size: 'xsmall',
-      link_attributes: {
-        href: 'https://pega.com',
-      },
-    },
-    meta_items: [
-      'Apr 8, 2020',
-    ],
-    reply: 'Dignissimos qui deserunt, delectus incidunt cupiditate saepe soluta nisi architecto at...',
-  } only %}
-{% endset %}
-{% set notification_4 %}
-  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
-    headline: {
-      text: 'You have earned the Awesome badge!',
-      tag: 'p',
-      size: 'xsmall',
-      link_attributes: {
-        href: 'https://pega.com',
-      },
-    },
-    meta_items: [
-      'Apr 7, 2020',
-    ],
-  } only %}
-{% endset %}
-{% set notification_5 %}
-  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
-    headline: {
-      text: 'New Gartner CRM CEC Magic Quadrant analyst report published',
-      tag: 'p',
-      size: 'xsmall',
-      link_attributes: {
-        href: 'https://pega.com',
-      },
-    },
-    meta_items: [
-      'Jan 23, 2020',
-    ],
-  } only %}
-{% endset %}
-
 {% set notifications_popover_lv2_ul_content %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    content: notification_1,
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    content: notification_2,
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    content: notification_3,
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    content: notification_4,
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    content: notification_5,
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'Go to Notification Center',
-      attributes: {
-        href: 'https://pega.com/',
-      },
-    },
-  } only %}
+  {% set placeholder_item %}
+    <li class="c-base-notifications__list-item">
+      <div class="c-base-notifications__signifier">
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'info-circle',
+          size: 'medium',
+        } only %}
+      </div>
+      <div class="c-base-notifications__content">
+        <div class="c-base-notifications__content__eyebrow">
+          Site Name
+        </div>
+        <div class="c-base-notifications__content__timestamp">
+          2 days ago
+        </div>
+        <a href="https://pega.com" class="c-base-notifications__content__message">
+          The notificatoin message goes here. It may have <span class="c-base-notifications__content__message__callout">1 callout that looks like a link</span>, but the entire row is clickable and points to a single link.
+        </a>
+      </div>
+    </li>
+  {% endset %}
+  {% set placeholder_item_read %}
+    <li class="c-base-notifications__list-item c-base-notifications__list-item--read">
+      <div class="c-base-notifications__signifier">
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'info-circle',
+          size: 'medium',
+        } only %}
+      </div>
+      <div class="c-base-notifications__content">
+        <div class="c-base-notifications__content__eyebrow">
+          Site Name
+        </div>
+        <div class="c-base-notifications__content__timestamp">
+          2 days ago
+        </div>
+        <a href="https://pega.com" class="c-base-notifications__content__message">
+          Each message can have a read or unread state. This one is read.
+        </a>
+      </div>
+    </li>
+  {% endset %}
+  
+  <div class="c-base-notifications">
+    <header class="c-base-notifications__header">
+      <div class="c-base-notifications__header__switch">
+        <label class="c-bolt-switch-button" for="unread-toggle">
+          <span class="c-bolt-switch-button__label">Only show unread</span>
+          <button class="c-bolt-switch-button__button" type="button" id="unread-toggle" role="switch" aria-checked="false">
+            <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--checked">on</span>
+            <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--unchecked ">off</span>  
+          </button>
+        </label>
+      </div>
+      <div class="c-base-notifications__header__actions">
+        {% set icon_check_solid %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'check-solid',
+            size: 'medium',
+          } only %}
+        {% endset %}
+        {% set tooltip_trigger %}
+          <button class="c-base-notifications__header__actions__icon-button" type="button">{{ icon_check_solid }}</button>
+        {% endset %}
+        {% include '@bolt-components-tooltip/tooltip.twig' with {
+          trigger: tooltip_trigger,
+          content: 'Mark all as read',
+        } only %}
+
+        {% set icon_pega_setting %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-setting',
+            size: 'medium',
+          } only %}
+        {% endset %}
+        {% set tooltip_trigger %}
+          <a class="c-base-notifications__header__actions__icon-button" href="https://pega.com">{{ icon_pega_setting }}</a>
+        {% endset %}
+        {% include '@bolt-components-tooltip/tooltip.twig' with {
+          trigger: tooltip_trigger,
+          content: 'Notification Settings',
+        } only %}
+      </div>
+    </header>
+    <ul class="c-base-notifications__list">
+      <li class="c-base-notifications__list-item c-base-notifications__list-item--section-heading">
+        <strong>Latest</strong>
+      </li>
+      <li class="c-base-notifications__list-item">
+        <div class="c-base-notifications__signifier">
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-announce',
+            size: 'medium',
+          } only %}
+        </div>
+        <div class="c-base-notifications__content">
+          <div class="c-base-notifications__content__eyebrow">
+            Pega.com
+          </div>
+          <div class="c-base-notifications__content__timestamp">
+            1 minute ago
+          </div>
+          <a href="https://pega.com" class="c-base-notifications__content__message">
+             <span class="c-base-notifications__content__message__callout">New Gartner CRM CEC Magic Quadrant analyst report</span> is published.
+          </a>
+        </div>
+      </li>
+      <li class="c-base-notifications__list-item">
+        <div class="c-base-notifications__signifier">
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-thumbs-up',
+            size: 'medium',
+          } only %}
+        </div>
+        <div class="c-base-notifications__content">
+          <div class="c-base-notifications__content__eyebrow">
+            Collaboration Center
+          </div>
+          <div class="c-base-notifications__content__timestamp">
+            2 minutes ago
+          </div>
+          <a href="https://pega.com" class="c-base-notifications__content__message">
+            Aneesh Borah, Matt Alley and 2 others liked your idea, <span class="c-base-notifications__content__message__callout">Multi-datacenter setup in 8.6.1 with two Openshift clusters</span>.
+          </a>
+        </div>
+      </li>
+      <li class="c-base-notifications__list-item">
+        <div class="c-base-notifications__signifier">
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'info-circle',
+            size: 'medium',
+          } only %}
+        </div>
+        <div class="c-base-notifications__content">
+          <div class="c-base-notifications__content__eyebrow">
+            Community
+          </div>
+          <div class="c-base-notifications__content__timestamp">
+            5 minutes ago
+          </div>
+          <a href="https://pega.com" class="c-base-notifications__content__message">
+            There will be a site-wide maintenance scheduled for Wednesday, September 15, 2021 from 1&ndash;4PM EST.
+          </a>
+        </div>
+      </li>
+      <li class="c-base-notifications__list-item">
+        <div class="c-base-notifications__signifier">
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'info-circle',
+            size: 'medium',
+          } only %}
+        </div>
+        <div class="c-base-notifications__content">
+          <div class="c-base-notifications__content__eyebrow">
+            Academy
+          </div>
+          <div class="c-base-notifications__content__timestamp">
+            6 minutes ago
+          </div>
+          <a href="https://pega.com" class="c-base-notifications__content__message">
+            A mission you follow has been updated: <span class="c-base-notifications__content__message__callout">Pega Robotic Automation</span>.
+          </a>
+        </div>
+      </li>
+      <li class="c-base-notifications__list-item c-base-notifications__list-item--section-heading">
+        <strong>Earlier</strong>
+      </li>
+      {{ placeholder_item }}
+      {{ placeholder_item_read }}
+      {{ placeholder_item_read }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+      {{ placeholder_item }}
+    </ul>
+    <footer class="c-base-notifications__footer">
+      <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline e-bolt-text-link--expand-click-target">View all notificatoins</a>
+    </footer>
+  </div>
 {% endset %}
 
 {% set notifications_popover_lv2 %}
@@ -1049,7 +1138,7 @@
         template: [
           'flag'
         ],
-        valign_items: 'center',
+        valign_items: 'start',
         gutter: 'small',
         content: layout_content,
         attributes: {
@@ -1096,7 +1185,7 @@
         template: [
           'flag'
         ],
-        valign_items: 'center',
+        valign_items: 'start',
         gutter: 'small',
         content: layout_content,
         attributes: {
@@ -1143,7 +1232,7 @@
         template: [
           'flag'
         ],
-        valign_items: 'center',
+        valign_items: 'start',
         gutter: 'small',
         content: layout_content,
         attributes: {
@@ -1190,7 +1279,7 @@
         template: [
           'flag'
         ],
-        valign_items: 'center',
+        valign_items: 'start',
         gutter: 'small',
         content: layout_content,
         attributes: {
@@ -1237,7 +1326,7 @@
         template: [
           'flag'
         ],
-        valign_items: 'center',
+        valign_items: 'start',
         gutter: 'small',
         content: layout_content,
         attributes: {
@@ -1284,7 +1373,7 @@
         template: [
           'flag'
         ],
-        valign_items: 'center',
+        valign_items: 'start',
         gutter: 'small',
         content: layout_content,
         attributes: {
@@ -1331,7 +1420,7 @@
         template: [
           'flag'
         ],
-        valign_items: 'center',
+        valign_items: 'start',
         gutter: 'small',
         content: layout_content,
         attributes: {
@@ -1378,7 +1467,7 @@
         template: [
           'flag'
         ],
-        valign_items: 'center',
+        valign_items: 'start',
         gutter: 'small',
         content: layout_content,
         attributes: {
@@ -1425,7 +1514,7 @@
         template: [
           'flag'
         ],
-        valign_items: 'center',
+        valign_items: 'start',
         gutter: 'small',
         content: layout_content,
         attributes: {
@@ -1472,7 +1561,7 @@
         template: [
           'flag'
         ],
-        valign_items: 'center',
+        valign_items: 'start',
         gutter: 'small',
         content: layout_content,
         attributes: {
@@ -1519,7 +1608,7 @@
         template: [
           'flag'
         ],
-        valign_items: 'center',
+        valign_items: 'start',
         gutter: 'small',
         content: layout_content,
         attributes: {

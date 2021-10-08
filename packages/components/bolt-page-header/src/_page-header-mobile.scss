@@ -390,4 +390,15 @@
       visibility: visible;
     }
   }
+
+  // Overrides nofitications to account for the mobile CTA
+  .c-bolt-page-header {
+    .c-base-notifications {
+      padding-bottom: $bolt-page-header-click-target-size;
+    }
+
+    .c-base-notifications__footer {
+      position: relative;
+    }
+  }
 }
