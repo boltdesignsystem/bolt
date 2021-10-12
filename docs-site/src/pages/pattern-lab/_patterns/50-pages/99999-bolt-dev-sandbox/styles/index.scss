@@ -78,7 +78,7 @@
 .c-base-notifications__content__eyebrow,
 .c-base-notifications__content__timestamp {
   font-family: var(--bolt-type-font-family-headline);
-  color: var(--m-bolt-link);
+  color: var(--m-bolt-primary);
 }
 
 .c-base-notifications__content__eyebrow {
@@ -95,7 +95,7 @@
     line-height: 1;
     border-radius: bolt-border-radius(full);
     box-shadow: 0 0 0 3px var(--m-bolt-border);
-    background-color: var(--m-bolt-link);
+    background-color: var(--m-bolt-primary);
   }
 }
 
@@ -121,7 +121,7 @@
   &:after {
     opacity: 0;
     width: 3px;
-    background-color: var(--m-bolt-link);
+    background-color: var(--m-bolt-primary);
     transition: opacity var(--bolt-transition);
 
     @at-root .c-base-notifications__content:hover #{&} {

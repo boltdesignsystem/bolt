@@ -41,7 +41,7 @@
       </div>
     </li>
   {% endset %}
-  
+
   <div class="c-base-notifications">
     <header class="c-base-notifications__header">
       <div class="c-base-notifications__header__switch">
@@ -54,14 +54,14 @@
         </label>
       </div>
       <div class="c-base-notifications__header__actions">
-        {% set icon_check_solid %}
+        {% set icon_check_circle %}
           {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'check-solid',
+            name: 'check-circle',
             size: 'medium',
           } only %}
         {% endset %}
         {% set tooltip_trigger %}
-          <button class="c-base-notifications__header__actions__icon-button" type="button">{{ icon_check_solid }}</button>
+          <button class="c-base-notifications__header__actions__icon-button" type="button">{{ icon_check_circle }}</button>
         {% endset %}
         {% include '@bolt-components-tooltip/tooltip.twig' with {
           trigger: tooltip_trigger,
@@ -191,7 +191,7 @@
   </div>
 {% endset %}
 
-<bolt-layout template="tiles">
+<bolt-layout padding-top="large" padding-bottom="large" template="tiles">
   <bolt-layout-item>
     {% set trigger %}
       {% include '@bolt-elements-button/button.twig' with {
@@ -233,7 +233,7 @@
   </bolt-layout-item>
 </bolt-layout>
 
-<bolt-layout class="t-bolt-gray-xlight">
+<bolt-layout padding-top="large" padding-bottom="large" class="t-bolt-gray-xlight">
   <bolt-layout-item>
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Notifications',
@@ -244,7 +244,7 @@
   </bolt-layout-item>
 </bolt-layout>
 
-<bolt-layout class="t-bolt-navy-dark">
+<bolt-layout padding-top="large" padding-bottom="large" class="t-bolt-navy-dark">
   <bolt-layout-item>
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Notifications',

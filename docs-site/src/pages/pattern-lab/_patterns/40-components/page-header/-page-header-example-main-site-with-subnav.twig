@@ -713,14 +713,14 @@
         </label>
       </div>
       <div class="c-base-notifications__header__actions">
-        {% set icon_check_solid %}
+        {% set icon_check_circle %}
           {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'check-solid',
+            name: 'check-circle',
             size: 'medium',
           } only %}
         {% endset %}
         {% set tooltip_trigger %}
-          <button class="c-base-notifications__header__actions__icon-button" type="button">{{ icon_check_solid }}</button>
+          <button class="c-base-notifications__header__actions__icon-button" type="button">{{ icon_check_circle }}</button>
         {% endset %}
         {% include '@bolt-components-tooltip/tooltip.twig' with {
           trigger: tooltip_trigger,
