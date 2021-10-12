@@ -1,4 +1,5 @@
-import { html } from '@bolt/element';
+import { html, unsafeHTML } from '@bolt/element';
+import { chevronDown } from '@bolt/elements-icon';
 import classNames from 'classnames/bind';
 import styles from './accordion-item.scss';
 
@@ -20,7 +21,7 @@ export const AccordionItemTrigger = (children, self) => {
       </div>
       <span class="c-bolt-accordion-item__trigger-icons">
         <div class="c-bolt-accordion-item__trigger-icons-inner">
-          <bolt-icon name="chevron-down"></bolt-icon>
+          ${unsafeHTML(chevronDown())}
         </div>
       </span>
     `;
