@@ -47,21 +47,24 @@
             type: 'option',
             value: '',
             label: 'Select a Country',
+            attributes: {
+              disabled: true,
+            },
           },
           {
             type: 'option',
             value: 'a',
-            label: 'Argentina',
+            label: 'Argentina'
           },
           {
             type: 'option',
             value: 'b',
-            label: 'Belgium',
+            label: 'Belgium'
           },
           {
             type: 'option',
             value: 'c',
-            label: 'Croatia',
+            label: 'Croatia'
           }
         ],
         attributes: {
@@ -400,7 +403,7 @@
             href: 'https://pega.com',
           }
         } only %}
-        
+
         {% set icon_twitter %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'twitter',
@@ -413,7 +416,7 @@
             href: 'https://pega.com',
           }
         } only %}
-        
+
         {% set icon_facebook %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'facebook',
@@ -426,7 +429,7 @@
             href: 'https://pega.com',
           }
         } only %}
-        
+
         {% set icon_youtube %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'youtube-solid',
