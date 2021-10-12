@@ -14,9 +14,9 @@
 {% set media_2 %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      src: "/images/placeholders/tout-4x3-climber.jpg",
-      alt: "A Rock Climber",
-      loading: "lazy",
+      src: '/images/placeholders/tout-4x3-climber.jpg',
+      alt: 'A Rock Climber',
+      loading: 'lazy',
     }
   } only %}
 {% endset %}
@@ -25,21 +25,21 @@
   <img src="https://www.fillmurray.com/300/200" alt="Bill Murray"/>
 {% endset %}
 
-{% include "@bolt-components-action-blocks/action-blocks.twig" with {
+{% include '@bolt-components-action-blocks/action-blocks.twig' with {
   items: [
     {
-      text: "Item 1",
-      url: "#!",
-      media: shape_for_media_1,
+      text: 'Item 1',
+      url: '#!',
+      media: media_1,
     },
     {
-      text: "Item 2",
-      url: "#!",
+      text: 'Item 2',
+      url: '#!',
       media: media_2,
     },
     {
-      text: "Item 3",
-      url: "#!",
+      text: 'Item 3',
+      url: '#!',
       media: media_3
     }
   ]

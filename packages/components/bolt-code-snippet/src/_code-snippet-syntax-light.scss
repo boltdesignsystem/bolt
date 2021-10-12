@@ -1,28 +1,35 @@
 // Light Syntax
 
-$bolt-syntax-light: 'c-bolt-code-snippet-syntax--light';
+.c-bolt-code-snippet[data-mode='light'] {
+  // Redefine vars that text link styles are dependent on.
+  --m-bolt-text: var(--bolt-color-black);
+  --m-bolt-headline: var(--bolt-color-navy);
+  --m-bolt-link: var(--bolt-color-navy-light);
 
-code.#{$bolt-syntax-light},
-pre.#{$bolt-syntax-light} {
-  color: var(--bolt-color-black);
-  background: var(--bolt-color-gray-xlight);
-}
+  border: 1px solid var(--bolt-color-white);
+  box-shadow: 0 0 6px rgba(bolt-color(gray, light), 0.8); // Sass function is used due to transparency needed.
 
-pre.#{$bolt-syntax-light}::-moz-selection,
-pre.#{$bolt-syntax-light} ::-moz-selection,
-code.#{$bolt-syntax-light}::-moz-selection,
-code.#{$bolt-syntax-light} ::-moz-selection {
-  background: var(--bolt-color-navy-xlight);
-}
+  &,
+  code,
+  pre {
+    color: var(--bolt-color-black);
+    background: var(--bolt-color-gray-xlight);
+  }
 
-pre.#{$bolt-syntax-light}::selection,
-pre.#{$bolt-syntax-light} ::selection,
-code.#{$bolt-syntax-light}::selection,
-code.#{$bolt-syntax-light} ::selection {
-  background: var(--bolt-color-navy-xlight);
-}
+  pre::-moz-selection,
+  pre ::-moz-selection,
+  code::-moz-selection,
+  code ::-moz-selection {
+    background: var(--bolt-color-navy-xlight);
+  }
 
-.#{$bolt-syntax-light} {
+  pre::selection,
+  pre ::selection,
+  code::selection,
+  code ::selection {
+    background: var(--bolt-color-navy-xlight);
+  }
+
   .token.comment,
   .token.prolog,
   .token.doctype,

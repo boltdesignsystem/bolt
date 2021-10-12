@@ -1,0 +1,40 @@
+{% set japanese = true %}
+
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="6250883560001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  <h2>Video with Captions</h2>
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+
+  {% set video_1 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="6250883560001"
+      data-use-page-lang
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  <h2>Video with Captions Use Page Lang</h2>
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video_1,
+    ratio: '16/9'
+  } only %}
+{% endblock %}

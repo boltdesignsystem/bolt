@@ -6,17 +6,20 @@
 {% spaceless %}
   <select{{ attributes.addClass(classes) }}>
     {% for option in options %}
+      {% set form_select_attributes = option.attributes|default({}) %}
+      {% set option_attributes = create_attribute(form_select_attributes) %}
       {% if option.type == 'optgroup' %}
         <optgroup label="{{ option.label }}">
           {% for sub_option in option.options %}
-            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }} {{ option_attributes }}>{{ sub_option.label }}</option>
           {% endfor %}
         </optgroup>
       {% elseif option.type == 'option' %}
-        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }} {{ option_attributes }}>{{ option.label }}</option>
       {% endif %}
     {% endfor %}
   </select>
+
 
   {% if not attributes.multiple %}
 

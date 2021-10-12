@@ -8,14 +8,6 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  <div class="u-bolt-margin-bottom-large">
-    <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
-      {{ code | replace({
-        '<': '&lt;',
-        '>': '&gt;',
-      }) | trim | raw }}
-    {% endspaceless %}</bolt-code-snippet>
-  </div>
 {% endmacro %}
 
 {% import _self as text_code %}

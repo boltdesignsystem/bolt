@@ -1,57 +1,57 @@
 {# Setting variables for demo purposes #}
-{% set schema = bolt.data.components["@bolt-components-carousel"].schema %}
+{% set schema = bolt.data.components['@bolt-components-carousel'].schema %}
 {% set slide_1 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 1",
-    size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 1',
+    size: 'large',
   } only %}
 {% endset %}
 {% set slide_2 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 2",
-    size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 2',
+    size: 'large',
   } only %}
 {% endset %}
 {% set slide_3 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 3",
-    size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 3',
+    size: 'large',
   } only %}
 {% endset %}
 {% set slide_4 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 4",
-    size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 4',
+    size: 'large',
   } only %}
 {% endset %}
 {% set slide_5 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 5",
-    size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 5',
+    size: 'large',
   } only %}
 {% endset %}
 {% set slide_6 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 6",
-    size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 6',
+    size: 'large',
   } only %}
 {% endset %}
 {% set slide_7 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 7",
-    size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 7',
+    size: 'large',
   } only %}
 {% endset %}
 {% set slide_8 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 8",
-    size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 8',
+    size: 'large',
   } only %}
 {% endset %}
 {% set slide_9 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Slide 9",
-    size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Slide 9',
+    size: 'large',
   } only %}
 {% endset %}
 
@@ -59,7 +59,7 @@
   {# Start component specific code #}
   {% for slides_per_view in schema.properties.slides_per_view.enum %}
     <h3>Slides Per View: {{ slides_per_view|capitalize }}</h3>
-    {% include "@bolt-components-carousel/carousel.twig" with {
+    {% include '@bolt-components-carousel/carousel.twig' with {
       slides_per_view: slides_per_view,
       slides: [
         slide_1,
