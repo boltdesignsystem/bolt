@@ -132,69 +132,53 @@
                 size: 'xxlarge'
               } only %}
 
-                {% set listItems %}
-
+                {% set list_item_1 %}
+                  {% include '@bolt-components-headline/headline.twig' with {
+                    text: 'Mobil World Congress, 2/26-3/1',
+                    url: '#',
+                    icon: 'external-link',
+                    size: 'large'
+                  } only %}
                 {% endset %}
 
-                {% include '@bolt/ui-list.twig' with {
-                  size: 'small',
-                  contentItems : [
-                    {
-                      contentItems: [
-                        {
-                          'pattern': 'headline',
-                          'size': 'large',
-                          'text': 'Mobil World Congress, 2/26-3/1',
-                          'url': '#',
-                          'icon': {
-                            name: 'external-link'
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      contentItems: [
-                        {
-                          'pattern': 'headline',
-                          'size': 'large',
-                          'text': 'CCW 2018, 2/27 - 3/1',
-                          'url': '#',
-                          'icon': {
-                            name: 'external-link'
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      contentItems: [
-                        {
-                          'pattern': 'headline',
-                          'size': 'large',
-                          'text': 'HIMSS18, 3/5 - 3/10',
-                          'url': '#',
-                          'icon': {
-                            name: 'external-link'
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      contentItems: [
-                        {
-                          'pattern': 'headline',
-                          'size': 'large',
-                          'text': 'ACAMS 2018, 4/9',
-                          'url': '#',
-                          'icon': {
-                            name: 'external-link'
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                } only %}
+                {% set list_item_2 %}
+                  {% include '@bolt-components-headline/headline.twig' with {
+                    text: 'CCW 2018, 2/27 - 3/1',
+                    url: '#',
+                    icon: 'external-link',
+                    size: 'large'
+                  } only %}
+                {% endset %}
 
+                {% set list_item_3 %}
+                  {% include '@bolt-components-headline/headline.twig' with {
+                    text: 'HIMSS18, 3/5 - 3/10',
+                    url: '#',
+                    icon: 'external-link',
+                    size: 'large'
+                  } only %}
+                {% endset %}
 
+                {% set list_item_4 %}
+                  {% include '@bolt-components-headline/headline.twig' with {
+                    text: 'ACAMS 2018, 4/9',
+                    url: '#',
+                    icon: 'external-link',
+                    size: 'large'
+                  } only %}
+                {% endset %}
+
+                {% include "@bolt-components-list/list.twig" with {
+                  items: [
+                    list_item_1,
+                    list_item_2,
+                    list_item_3,
+                    list_item_4,
+                  ],
+                  spacing: 'small',
+                  separator: 'solid'
+                } %}
+                
             {% endcell %}
           {% endgrid %}
         {% endblock %}
@@ -296,7 +280,7 @@
                           text: 'Conference | Rebruary 26 - March 1 2018 | Barcelona, Spain'
                         } only %}
 
-                        {% include '@bolt/headline.twig' with {
+                        {% include '@bolt-components-headline/headline.twig' with {
                           text: 'Mobile World Congress',
                           size: 'xlarge'
                         } only %}
