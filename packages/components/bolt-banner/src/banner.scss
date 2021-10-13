@@ -57,7 +57,12 @@
 }
 
 @include bolt-repeat-rule(
-  ('bolt-banner[status=information]', ':host(bolt-banner[status=information])')
+  (
+    'bolt-banner:not([status])',
+    'bolt-banner[status=information]',
+    ':host(bolt-banner:not([status]))',
+    ':host(bolt-banner[status=information])'
+  )
 ) {
   --m-bolt-text: var(--bolt-color-info-dark); /* [2] */
   --m-bolt-headline: var(--bolt-color-info-dark); /* [2] */
