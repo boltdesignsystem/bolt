@@ -86,7 +86,11 @@
       // data-email-body (required) [string]: Video email body
       // data-email-subject (required) [string]: Video email subject line
       // data-email-videourl (optional) [string]: Video URL to share in email
-      this.emailSocialShare(this.el_.hasAttribute('data-social-email') ? true : false);
+      if (this.el_.classList.contains('vjs-controls-disabled')) {
+        this.emailSocialShare(false);
+      } else {
+        this.emailSocialShare(true);
+      }
       // Move the fullscreen button to the far right of the controlbar
       var fullScreenButton = thisPlayer.controlBar.getChild('FullscreenToggle').el_;
       thisPlayer.controlBar.el_.appendChild(fullScreenButton)
