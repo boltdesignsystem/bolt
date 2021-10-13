@@ -4,60 +4,53 @@
 
 {% block main_content %}
   {% set feature_band_content %}
-    {% include '@bolt/ui-list.twig' with {
-      contentItems : [
-        {
-          contentItems: [
-            {
-              pattern: 'eyebrow',
-              text: 'オペレーショナルエクセレンス'
-            },
-            {
-              pattern: 'headline',
-              text: 'コーディングをやめます。設計を始めます。',
-              size: 'large',
-              url: 'https://www.google.com',
-              icon: {
-                name: 'chevron-right'
-              }
-            }
-          ]
-        },
-        {
-          contentItems: [
-            {
-              pattern: 'eyebrow',
-              text: '顧客維持'
-            },
-            {
-              pattern: 'headline',
-              text: '個別の対応を、違和感なく。',
-              size: 'large',
-              url: 'https://www.google.com',
-              icon: {
-                name: 'chevron-right'
-              }
-            }
-          ]
-        },
-        {
-          contentItems: [
-            {
-              pattern: 'eyebrow',
-              text: '顧客サービス'
-            },
-            {
-              pattern: 'headline',
-              text: 'シームレス性。オムニチャネル。',
-              size: 'large',
-              url: 'https://www.google.com',
-              icon: {
-                name: 'chevron-right'
-              }
-            }
-          ]
-        }
-      ]
+    {% set list_item_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'オペレーショナルエクセレンス',
+      } only %}
+
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'コーディングをやめます。設計を始めます。',
+        url: 'https://www.google.com',
+        icon: 'chevron-right',
+        size: 'large'
+      } only %}
+    {% endset %}
+
+    {% set list_item_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: '顧客維持',
+      } only %}
+
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: '個別の対応を、違和感なく。',
+        url: 'https://www.google.com',
+        icon: 'chevron-right',
+        size: 'large'
+      } only %}
+    {% endset %}
+
+    {% set list_item_3 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: '顧客サービス',
+      } only %}
+
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'シームレス性。オムニチャネル。',
+        url: 'https://www.google.com',
+        icon: 'chevron-right',
+        size: 'large'
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-list/list.twig' with {
+      items: [
+        list_item_1,
+        list_item_2,
+        list_item_3,
+      ],
+      spacing: 'medium',
+      separator: 'solid'
     } %}
   {% endset %}
 
