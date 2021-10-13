@@ -239,6 +239,7 @@
             <span class="c-www-results-stat__headline">{{ number_of_additional_customers_retained|number_format }}</span>
           </p>
         {% endset %}
+        {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
         {% include '@bolt/flag.twig' with {
           valign: 'middle',
           figure: {
@@ -261,6 +262,7 @@
             <span class="c-www-results-stat__headline">{{ cost_avoidance_of_replacing_churned_customers|number_format }}</span>
           </p>
         {% endset %}
+        {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
         {% include '@bolt/flag.twig' with {
           valign: 'middle',
           figure: {
@@ -283,6 +285,7 @@
             <span class="c-www-results-stat__headline">{{ revenue_loss_avoidance_with_pega|number_format }}</span>
           </p>
         {% endset %}
+        {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
         {% include '@bolt/flag.twig' with {
           valign: 'middle',
           figure: {
@@ -337,6 +340,7 @@
             <span class="c-www-results-stat__headline">{{ customer_value_increase|number_format(0, 'ceil') }}%</span>
           </p>
         {% endset %}
+        {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
         {% include '@bolt/flag.twig' with {
           valign: 'middle',
           figure: {

@@ -10,7 +10,7 @@
       } only %}
 
         {% block body %}
-          {% include '@bolt/headline.twig' with {
+          {% include '@bolt-components-headline/headline.twig' with {
             text: 'Register now',
             size: 'xlarge'
           } only %}
@@ -24,7 +24,7 @@
           } only %}
 
           <p class="u-bolt-margin-bottom-small">
-            {% include '@bolt/link.twig' with {
+            {% include '@bolt-components-link/link.twig' with {
               'text': 'Fill out this form with LinkedIn'|t,
               'icon': {
                 'position': 'before',

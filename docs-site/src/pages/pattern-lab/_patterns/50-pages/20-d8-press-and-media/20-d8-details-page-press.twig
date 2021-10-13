@@ -154,65 +154,52 @@
                       'size': 'large',
                     } only %}
                   </div>
+                  {% set list_item_1 %}
+                    {% include '@bolt-components-headline/headline.twig' with {
+                      text: 'Corporate Fact Sheet',
+                      url: '#',
+                      icon: 'chevron-right',
+                      size: 'xsmall'
+                    } only %}
+                  {% endset %}
 
+                  {% set list_item_2 %}
+                    {% include '@bolt-components-headline/headline.twig' with {
+                      text: 'Management Team',
+                      url: '#',
+                      icon: 'chevron-right',
+                      size: 'xsmall'
+                    } only %}
+                  {% endset %}
 
-                  {% include '@bolt/ui-list.twig' with {
-                    'size': 'small',
-                    'contentItems': [
-                      {
-                        'contentItems': [
-                          {
-                            'pattern': 'headline',
-                            'text': 'Corporate Fact Sheet',
-                            'size': 'xsmall',
-                            'url': '#',
-                            'icon': {
-                              'name': 'chevron-right'
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        'contentItems': [
-                          {
-                            'pattern': 'headline',
-                            'text': 'Management Team',
-                            'size': 'xsmall',
-                            'url': '#',
-                            'icon': {
-                              'name': 'chevron-right'
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        'contentItems': [
-                          {
-                            'pattern': 'headline',
-                            'text': 'YouTube Channel',
-                            'size': 'xsmall',
-                            'url': '#',
-                            'icon': {
-                              'name': 'chevron-right'
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        'contentItems': [
-                          {
-                            'pattern': 'headline',
-                            'text': 'Analyst Coverage',
-                            'size': 'xsmall',
-                            'url': '#',
-                            'icon': {
-                              'name': 'chevron-right'
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  } only %}
+                  {% set list_item_3 %}
+                    {% include '@bolt-components-headline/headline.twig' with {
+                      text: 'YouTube Channel',
+                      url: '#',
+                      icon: 'chevron-right',
+                      size: 'xsmall'
+                    } only %}
+                  {% endset %}
+
+                  {% set list_item_4 %}
+                    {% include '@bolt-components-headline/headline.twig' with {
+                      text: 'Analyst Coverage',
+                      url: '#',
+                      icon: 'chevron-right',
+                      size: 'xsmall'
+                    } only %}
+                  {% endset %}
+
+                  {% include "@bolt-components-list/list.twig" with {
+                    items: [
+                      list_item_1,
+                      list_item_2,
+                      list_item_3,
+                      list_item_4,
+                    ],
+                    spacing: 'small',
+                    separator: 'solid'
+                  } %}
                 </div>
               </div>
             {% endcell %}
