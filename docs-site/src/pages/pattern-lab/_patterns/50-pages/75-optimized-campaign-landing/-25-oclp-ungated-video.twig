@@ -46,7 +46,7 @@
     padding_top: 'large',
     padding_bottom: 'small',
     template: [
-      '67@from-medium',
+      'halves@from-medium',
     ],
   } only %}
 
@@ -111,7 +111,7 @@
       } only %}
     </div>
   {% endset %}
-  
+
   {% set layout_content %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: video_content,
@@ -201,7 +201,7 @@
             href: 'https://pega.com',
           }
         } only %}
-        
+
         {% set icon_twitter %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'twitter',
@@ -214,7 +214,7 @@
             href: 'https://pega.com',
           }
         } only %}
-        
+
         {% set icon_facebook %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'facebook',
@@ -227,7 +227,7 @@
             href: 'https://pega.com',
           }
         } only %}
-        
+
         {% set icon_youtube %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'youtube-solid',
