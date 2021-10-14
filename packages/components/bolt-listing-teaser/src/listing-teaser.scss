@@ -65,6 +65,20 @@
   @at-root .c-bolt-listing-teaser--gutter-medium #{&} {
     margin-right: var(--bolt-spacing-x-medium);
   }
+
+  > a,
+  > button,
+  > bolt-trigger {
+    display: block;
+    position: relative; // This raises the stacking order of the signifier link above the main heading link.
+    z-index: 1; // z-index is needed because CSS order is moving the signifier before the heading. This is a Firefox specific fix.
+    width: 100%; // If the signifier is clickable, the wrapping action element must take up full width of the signifier container.
+    pointer-events: all;
+  }
+
+  > button {
+    @include bolt-button-native-styles-reset; // Rest browser defaults if semantic button is used as the wrapping action element for the signifier.
+  }
 }
 
 .c-bolt-listing-teaser__flag-eyebrow {
@@ -115,6 +129,24 @@
   > *:not(:last-child) {
     margin-bottom: var(--bolt-spacing-y-xsmall);
   }
+
+  a,
+  button,
+  bolt-chip,
+  bolt-trigger {
+    position: relative; // This raises the stacking order of the meta link above the main heading link.
+    pointer-events: all;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+  }
 }
 
 .c-bolt-listing-teaser__flag-content__item:not(.c-bolt-listing-teaser__flag-content__item--chips) {
@@ -133,23 +165,6 @@
   font-size: var(--bolt-type-font-size-small);
   line-height: var(--bolt-type-line-height-small);
   pointer-events: none;
-
-  a,
-  button,
-  bolt-chip {
-    position: relative; // This raises the stacking order of the meta link above the main heading link.
-    pointer-events: all;
-  }
-
-  a {
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 2px;
-    }
-  }
 
   &--reply {
     padding-left: var(--bolt-spacing-x-medium);
@@ -333,7 +348,12 @@
 
 @mixin _c-bolt-listing-teaser-vertical {
   .c-bolt-listing-teaser__flag {
-    display: block;
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      width: 100%;
+    }
   }
 
   .c-bolt-listing-teaser__flag-signifier {

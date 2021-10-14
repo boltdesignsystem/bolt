@@ -5,14 +5,14 @@
 
 
 
-{% include '@bolt/headline.twig' with {
+{% include '@bolt-components-headline/headline.twig' with {
   'tag': 'h3',
   'size': 'large',
   'text': 'Figure and Figcaption'
 } only %}
 
 {% set video %}
-  {% include '@bolt/video.twig' with {
+  {% include '@bolt-components-video/video.twig' with {
     'videoId': '5813325981001',
     'accountId': '1900410236',
     'playerId': 'r1CAdLzTW',
@@ -44,18 +44,18 @@
 
 
 
-{% include '@bolt/headline.twig' with {
+{% include '@bolt-components-headline/headline.twig' with {
   'tag': 'h3',
   'size': 'large',
   'text': 'Headline with Video'
 } only %}
 
 {% set content %}
-  {% include '@bolt/headline.twig' with {
+  {% include '@bolt-components-headline/headline.twig' with {
     'size': 'xxlarge',
     'text': 'Pega Adaptive Decision Manager'
   } only %}
-  {% include '@bolt/video.twig' with {
+  {% include '@bolt-components-video/video.twig' with {
     'videoId': '3974147489001',
     'accountId': '1900410236',
     'playerId': 'r1CAdLzTW',

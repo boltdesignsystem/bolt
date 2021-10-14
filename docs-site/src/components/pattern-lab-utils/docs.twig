@@ -22,11 +22,7 @@
 
 {% set is_private = pkg.private or not has_changelog ? true : false %}
 
-{% set usage_content %}
-{% spaceless %}
-  {{ usage }}
-{% endspaceless %}
-{% endset %}
+{% set usage_content %}{{ usage }}{% endset %}
 
 
 {% set component_status %}
@@ -113,11 +109,10 @@
       <bolt-tab-panel id="twig-usage">
         <bolt-text slot="label" tag="h2">Twig Usage</bolt-text>
 
-        {% include "@bolt-components-code-snippet/code-snippet.twig" with {
-          display: "block",
-          lang: "twig",
-          syntax: "dark",
-          content: usage_content
+        {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+          content: usage_content,
+          lang: 'twig',
+          mode: 'dark',
         } only %}
       </bolt-tab-panel>
     {% endif %}
@@ -138,10 +133,10 @@
       <bolt-text headline font-size="xlarge" tag="h3">
         Install
       </bolt-text>
-      {% include "@bolt-components-code-snippet/code-snippet.twig" with {
-        display: "block",
-        syntax: "dark",
-        content: "npm install #{component_title}"
+      {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+        content: 'npm install ' ~ component_title,
+        mode: 'dark',
+        lang: 'bash',
       } only %}
 
       {% if pkg.dependencies %}

@@ -6,7 +6,7 @@
     Font-size Usage
   </bolt-text>
   <bolt-text>
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet>
+    <code>&lt;bolt-text&gt;</code>
     has font-size options to indicate information hierarchy.
   </bolt-text>
   {% for font_size in schema.properties["font-size"].enum %}
@@ -19,5 +19,10 @@
 {% endset %}
 
     {% include text_code.code_example(text_demo, true) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: text_demo,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   {% endfor %}
 {% endblock %}

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.1](https://github.com/boltdesignsystem/bolt/compare/v4.6.0...v4.6.1) (2021-10-13)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
+# [4.6.0](https://github.com/boltdesignsystem/bolt/compare/v4.5.1...v4.6.0) (2021-10-12)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
+## [4.5.1](https://github.com/boltdesignsystem/bolt/compare/v4.5.0...v4.5.1) (2021-09-30)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
 # [4.5.0](https://github.com/boltdesignsystem/bolt/compare/v4.4.0...v4.5.0) (2021-09-24)
 
 **Note:** Version bump only for package @bolt/starter-kit

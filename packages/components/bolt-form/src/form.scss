@@ -616,8 +616,13 @@ $bolt-strength-indicator-transition: var(--bolt-transition);
 
     .c-bolt-input.is-filled,
     .c-bolt-input:focus {
-      padding-top: var(--bolt-spacing-y-small);
-      padding-bottom: var(--bolt-spacing-y-small);
+      padding: calc(var(--bolt-spacing-y-medium) / 2 - 1px)
+        var(--bolt-spacing-x-small); // [Mai] medium/2 matches button vertical spacing.
+
+      @include bolt-mq($until: small) {
+        padding-top: calc(var(--bolt-spacing-y-medium) / 2 - 0.1875rem);
+        padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 0.25rem);
+      }
     }
   }
 }

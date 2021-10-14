@@ -1,12 +1,3 @@
-{% macro code_example(code) %}
-  <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-    {{ code | replace({
-      '<': '&lt;',
-      '>': '&gt;',
-    }) | trim | raw }}
-  {% endspaceless %}</bolt-code-snippet>
-{% endmacro %}
-
 {% import _self as tabs_demo %}
 
 {% set basic_usage %}
@@ -83,7 +74,7 @@
     Web Component Usage
   </bolt-text>
   <bolt-text>
-    Tabs is a web component. Add the <bolt-code-snippet display="inline" lang="html">&lt;bolt-tabs&gt;</bolt-code-snippet> element containing multiple <bolt-code-snippet display="inline" lang="html">&lt;bolt-tabs-panel&gt;</bolt-code-snippet> elements to create a set of tabs. Inside each <bolt-code-snippet display="inline" lang="html">&lt;bolt-tab-panel&gt;</bolt-code-snippet> mark the "label" content with the attribute <bolt-code-snippet display="inline" lang="html">slot="label"</bolt-code-snippet>. Everything else is considered tab "content".
+    Tabs is a web component. Add the <code>&lt;bolt-tabs&gt;</code> element containing multiple <code>&lt;bolt-tabs-panel&gt;</code> elements to create a set of tabs. Inside each <code>&lt;bolt-tab-panel&gt;</code> mark the "label" content with the attribute <code>slot="label"</code>. Everything else is considered tab "content".
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -93,7 +84,11 @@
     {% endgrid %}
   </div>
   <div class="u-bolt-margin-bottom-large">
-    {% include tabs_demo.code_example(basic_usage) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: basic_usage,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   </div>
 </div>
 
@@ -112,7 +107,11 @@
     {% endgrid %}
   </div>
   <div class="u-bolt-margin-bottom-large">
-    {% include tabs_demo.code_example(prop_usage) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: prop_usage,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   </div>
 </div>
 
@@ -121,7 +120,7 @@
     Advanced Usage
   </bolt-text>
   <bolt-text>
-    Two advanced options are shown below. Automatically show a <bolt-code-snippet display="inline" lang="html">&lt;bolt-tab-panel&gt;</bolt-code-snippet> by setting <bolt-code-snippet display="inline" lang="html">selected-tab</bolt-code-snippet> on <bolt-code-snippet display="inline" lang="html">&lt;bolt-tabs&gt;</bolt-code-snippet> or by adding <bolt-code-snippet display="inline" lang="html">selected</bolt-code-snippet> to a single <bolt-code-snippet display="inline" lang="html">&lt;bolt-tab-panel&gt;</bolt-code-snippet>.
+    Two advanced options are shown below. Automatically show a <code>&lt;bolt-tab-panel&gt;</code> by setting <code>selected-tab</code> on <code>&lt;bolt-tabs&gt;</code> or by adding <code>selected</code> to a single <code>&lt;bolt-tab-panel&gt;</code>.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -131,6 +130,10 @@
     {% endgrid %}
   </div>
   <div class="u-bolt-margin-bottom-large">
-    {% include tabs_demo.code_example(advanced_usage) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: advanced_usage,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   </div>
 </div>

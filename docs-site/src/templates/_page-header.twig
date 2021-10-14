@@ -1,0 +1,72 @@
+{# This is used in the deprecated Docs section, not on the homepage. Refer to homepage.twig for everything on the homepage. #}
+
+{% set navbar %}
+  {% set navbar_data = [
+    {
+      text: "Visual Styles",
+      url: "/pattern-lab/?p=viewall-visual-styles-color",
+    },
+    {
+      text: "Elements",
+      url: "/pattern-lab/?p=viewall-elements-all",
+    },
+    {
+      text: "Components",
+      url: "/pattern-lab/index.html",
+    },
+    {
+      text: "Guidelines",
+      url: "https://github.com/boltdesignsystem/bolt/wiki",
+      attributes: {
+        target: "_blank",
+      },
+    },
+    {
+      text: "Github",
+      url: "https://github.com/bolt-design-system/bolt",
+      attributes: {
+        target: "_blank",
+      },
+      icon: {
+        name: "github",
+        position: "after",
+      }
+    },
+  ] %}
+{#
+  {% set navbar_content %}
+    {% for item in navbar_data %}
+      {% include "@bolt-components-navbar/navbar-item.twig" with item only %}
+    {% endfor %}
+  {% endset %}
+
+  {% set version_selector %}
+    {% include "@bolt-site/version-selector.twig" only %}
+  {% endset %} #}
+
+  {# {% include "@bolt-components-navbar/navbar.twig" with {
+    theme: "light",
+    static: true,
+    title: {
+      tag: "h1",
+      text: "<span aria-label='Bolt Design System'>Bolt</span>",
+      url: "/",
+      icon: {
+        name: "bolt-logo-colored"
+      },
+      content: version_selector
+    },
+    content: navbar_content
+  } only %} #}
+{% endset %}
+
+{% include "@bolt-components-sticky/sticky.twig" with {
+  attributes: {
+    class: [
+      "c-bolt-site__header",
+      "c-bds-layout__header"
+    ]
+  },
+  content: navbar
+} %}
+

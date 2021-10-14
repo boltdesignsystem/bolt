@@ -46,21 +46,24 @@
             type: 'option',
             value: '',
             label: 'Select a Country',
+            attributes: {
+              disabled: true,
+            },
           },
           {
             type: 'option',
             value: 'a',
-            label: 'Argentina',
+            label: 'Argentina'
           },
           {
             type: 'option',
             value: 'b',
-            label: 'Belgium',
+            label: 'Belgium'
           },
           {
             type: 'option',
             value: 'c',
-            label: 'Croatia',
+            label: 'Croatia'
           }
         ],
         attributes: {
@@ -157,7 +160,7 @@
       tag: 'h1',
       size: 'xxxlarge',
     } only %}
-    
+
     {% set text_content %}
       {% include '@bolt-components-headline/text.twig' with {
         text: 'This is the body. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta, unde incidunt omnis officiis eos aut quae culpa laudantium consequatur! Quasi repellat odit doloremque rerum.',
@@ -437,7 +440,7 @@
             href: 'https://pega.com',
           }
         } only %}
-        
+
         {% set icon_twitter %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'twitter',
@@ -450,7 +453,7 @@
             href: 'https://pega.com',
           }
         } only %}
-        
+
         {% set icon_facebook %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'facebook',
@@ -463,7 +466,7 @@
             href: 'https://pega.com',
           }
         } only %}
-        
+
         {% set icon_youtube %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'youtube-solid',

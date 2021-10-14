@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.1](https://github.com/bolt-design-system/bolt/compare/v4.6.0...v4.6.1) (2021-10-13)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [4.6.0](https://github.com/bolt-design-system/bolt/compare/v4.5.1...v4.6.0) (2021-10-12)
+
+
+### Bug Fixes
+
+* remove obsolete template files ([5634c37](https://github.com/bolt-design-system/bolt/commit/5634c37cc01190a6b51c2ec28cbad2b34c90bf01))
+
+
+
+
+
+## [4.5.1](https://github.com/bolt-design-system/bolt/compare/v4.5.0...v4.5.1) (2021-09-30)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
 # [4.5.0](https://github.com/bolt-design-system/bolt/compare/v4.4.0...v4.5.0) (2021-09-24)
 
 

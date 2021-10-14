@@ -1,0 +1,59 @@
+{% set main_content %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-social-url="https://pega.com"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  <h2>Video with Custom Social URL</h2>
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+
+  {% set video_1 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="973396455001"
+      controls
+      class="c-base-video vjs-controls-disabled"></video-js>
+  {% endset %}
+
+  <h2>Video with No Social End Panel</h2>
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video_1,
+    ratio: '16/9'
+  } only %}
+
+  {% set video_2 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="973396455001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  <h2>Video with Social End Panel</h2>
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video_2,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}
