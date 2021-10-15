@@ -1,0 +1,61 @@
+{% set description %}
+    A description of the component and what it is used for.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-components-switch-button/switch-button.twig' with {
+    label: 'Toggle me',
+    attributes: {
+      class: 'js-bolt-switch-button'
+    },
+  } only %}
+  <script>
+    const switchButton = document.querySelector(
+      '.js-bolt-switch-button button[role="switch"]',
+    );
+
+    switchButton.addEventListener('click', e => {
+      const el = e.target;
+      const isChecked = el.getAttribute('aria-checked') === 'true';
+
+      el.setAttribute('aria-checked', isChecked ? false : true);
+    });
+  </script>
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-switch-button/switch-button.twig' with {
+  label: 'Toggle me',
+  attributes: {
+    class: 'js-bolt-switch-button'
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set js %}
+const switchButton = document.querySelector(
+  '.js-bolt-switch-button button[role="switch"]',
+);
+
+switchButton.addEventListener('click', e => {
+  const el = e.target;
+  const isChecked = el.getAttribute('aria-checked') === 'true';
+
+  el.setAttribute('aria-checked', isChecked ? false : true);
+});
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Switch Button',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  js: js,
+} only %}

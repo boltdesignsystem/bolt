@@ -1,0 +1,22 @@
+{% set schema = bolt.data.components['@bolt-components-switch-button'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-switch-button',
+] %}
+
+<label {{ attributes.addClass(classes) }} for="bolt-switch-button">
+  <div class="c-bolt-switch-button__label">{% if label %}{{ label }}{% else %}{{ 'Switch'|t }}{% endif %}</div>
+  <button class="c-bolt-switch-button__button" type="button" id="bolt-switch-button" role="switch" aria-checked="false">
+    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--checked">{{ 'on'|t }}</span>
+    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--unchecked ">{{ 'off'|t }}</span>  
+  </button>
+</label>
+
