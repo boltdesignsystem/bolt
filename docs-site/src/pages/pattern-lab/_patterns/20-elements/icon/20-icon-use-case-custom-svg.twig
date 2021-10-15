@@ -19,7 +19,7 @@
         <strong>If you choose Twig usage:</strong> Add the relevant attributes <code>{% verbatim %}{{ attributes.addClass(classes)|without('aria-hidden') }} aria-hidden="true"{% endverbatim %}</code> to the <code>&lt;svg&gt;</code> HTML element and save it as a Twig file. Then you can display the icon using include statement by passing the icon source path to the <code>custom_icon_path</code> prop.
       </bolt-li>
       <bolt-li>
-        <strong>If you choose HTML usage:</strong> Add the element class <code>class="e-bolt-icon"</code>, relevant modifier classes, and the attribute <code>aria-hidden="true"</code> to the <code>&lt;svg&gt;</code> HTML element. Then you can display the icon using the modified <code>&lt;svg&gt;</code> markup.
+        <strong>If you choose HTML usage:</strong> Add <code>class="e-bolt-icon"</code> along with relevant modifier class for each prop, and the attribute <code>aria-hidden="true"</code> to the <code>&lt;svg&gt;</code> HTML element. Then you can display the icon using the modified <code>&lt;svg&gt;</code> markup.
       </bolt-li>
     </bolt-ol>
 {% endset %}
