@@ -14,7 +14,7 @@ describe('chip', () => {
   test('url usage', async () => {
     const results = await render('@bolt-components-chip/chip.twig', {
       text: 'Has URL',
-      url: 'https://pega.com',
+      url: 'https://google.com',
       target: '_blank',
     });
     expect(results.ok).toBe(true);
