@@ -1,6 +1,6 @@
 import { stringify } from 'svgson';
 
-export function getSVG(data, props = {}) {
+export function getSvg(data, props = {}) {
   const { size, color } = props;
   const classes = ['e-bolt-icon'];
 
