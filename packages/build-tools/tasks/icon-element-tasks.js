@@ -45,7 +45,7 @@ async function generateElementSchemaFile() {
   );
   const elementSchema = path.join(iconElementDir, 'icon.schema.json');
   const schema = await fs.readJson(elementSchema);
-  const iconElementIcons = path.join(iconElementDir, '/src/icons');
+  const iconElementIcons = path.join(iconElementDir, '/src/icons/twig');
   const elementNames = getElementNames(iconElementIcons);
   schema.properties.name.enum = elementNames;
   const formattedSchema = prettier.format(JSON.stringify(schema), {
