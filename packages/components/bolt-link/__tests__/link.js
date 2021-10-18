@@ -33,7 +33,7 @@ describe('link', () => {
   test('basic link', async () => {
     const results = await render('@bolt-components-link/link.twig', {
       text: 'Hello World',
-      url: 'https://pega.com',
+      url: 'https://google.com',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -43,7 +43,7 @@ describe('link', () => {
     test(`link display: ${option}`, async () => {
       const results = await render('@bolt-components-link/link.twig', {
         text: 'Hello World',
-        url: 'https://pega.com',
+        url: 'https://google.com',
         display: option,
       });
       expect(results.ok).toBe(true);
@@ -55,7 +55,7 @@ describe('link', () => {
     test(`link valign: ${option}`, async () => {
       const results = await render('@bolt-components-link/link.twig', {
         text: 'Hello World',
-        url: 'https://pega.com',
+        url: 'https://google.com',
         valign: option,
       });
       expect(results.ok).toBe(true);
@@ -66,7 +66,7 @@ describe('link', () => {
   test('Link with outer classes via Drupal Attributes', async () => {
     const results = await render('@bolt-components-link/link.twig', {
       text: 'Link with outer classes',
-      url: 'https://pega.com',
+      url: 'https://google.com',
       attributes: {
         class: ['u-bolt-padding-medium'],
       },
@@ -78,7 +78,7 @@ describe('link', () => {
   test('Link with inner classes via Drupal Attributes', async () => {
     const results = await render('@bolt-components-link/link.twig', {
       text: 'Link with inner classes',
-      url: 'https://pega.com',
+      url: 'https://google.com',
       attributes: {
         class: ['is-active'],
       },
@@ -90,7 +90,7 @@ describe('link', () => {
   test('Link with outer JS-class via Drupal Attributes', async () => {
     const results = await render('@bolt-components-link/link.twig', {
       text: 'Link with outer JS-prefixed class',
-      url: 'https://pega.com',
+      url: 'https://google.com',
       attributes: {
         class: ['js-click-me'],
       },
@@ -102,7 +102,7 @@ describe('link', () => {
   test('Link with c-bolt- class is thrown out', async () => {
     const results = await render('@bolt-components-link/link.twig', {
       text: 'Link with outer JS-prefixed class',
-      url: 'https://pega.com',
+      url: 'https://google.com',
       attributes: {
         class: ['c-bolt-link--secondary'],
       },
@@ -114,7 +114,7 @@ describe('link', () => {
   test('Link with an on_click param renders properly', async () => {
     const results = await render('@bolt-components-link/link.twig', {
       text: 'Link with on_click via param',
-      url: 'https://pega.com',
+      url: 'https://google.com',
       on_click: 'on-click-test',
     });
     expect(results.ok).toBe(true);
@@ -124,7 +124,7 @@ describe('link', () => {
   test('Link with an on_click attributes renders properly', async () => {
     const results = await render('@bolt-components-link/link.twig', {
       text: 'Link w/ on_click via attributes',
-      url: 'https://pega.com',
+      url: 'https://google.com',
       attributes: {
         'on-click': 'on-click-test',
       },
@@ -137,7 +137,7 @@ describe('link', () => {
     const renderedLinkHTML = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
-        '<div><bolt-link url="http://pega.com" no-shadow>This is a link</bolt-link></div>',
+        '<div><bolt-link url="http://google.com" no-shadow>This is a link</bolt-link></div>',
       );
       const link = document.querySelector('bolt-link');
       await customElements.whenDefined('bolt-link');
@@ -161,7 +161,7 @@ describe('link', () => {
     const defaultLinkShadowRoot = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
-        '<bolt-link url="http://pega.com">Link Test -- Shadow Root HTML</bolt-link>',
+        '<bolt-link url="http://google.com">Link Test -- Shadow Root HTML</bolt-link>',
       );
       const link = document.querySelector('bolt-link');
       await customElements.whenDefined('bolt-link');
@@ -172,7 +172,7 @@ describe('link', () => {
 
     const defaultLinkOuter = await page.evaluate(async () => {
       const link = document.createElement('bolt-link');
-      link.setAttribute('url', 'http://pega.com');
+      link.setAttribute('url', 'http://google.com');
       link.textContent = 'Link Test -- Outer HTML';
       document.body.appendChild(link);
       await customElements.whenDefined('bolt-link');
@@ -246,7 +246,7 @@ describe('link', () => {
       // Include huge inline font-size style to increase visibility of any unexpected whitespace
       document.body.insertAdjacentHTML(
         'beforeend',
-        '<div style="font-size: 300%;">(<bolt-link url="http://pega.com">Link Test -- No extra whitespace</bolt-link>)</div>',
+        '<div style="font-size: 300%;">(<bolt-link url="http://google.com">Link Test -- No extra whitespace</bolt-link>)</div>',
       );
       const link = document.querySelector('bolt-link').parentNode;
       await customElements.whenDefined('bolt-link');
@@ -270,7 +270,7 @@ describe('link', () => {
     const template = await renderString(`
       {% include "@bolt-components-link/link.twig" with {
         text: "Test link -- Has id attribute",
-        url: "https://pega.com",
+        url: "https://google.com",
         attributes: {
           id: 'my-link'
          }
