@@ -5,5 +5,5 @@ NOTE: as of this writing, this component is used only for internal Bolt demos an
 ###### Install via NPM
 
 ```
-npm install @bolt/search-filter
+npm install @bolt/components-search-filter
 ```
