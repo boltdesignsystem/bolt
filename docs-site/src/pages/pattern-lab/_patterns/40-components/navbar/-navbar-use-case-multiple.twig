@@ -10,7 +10,7 @@
             href: '#section-1'
           }
         }
-      } only %} 
+      } only %}
       {% include '@bolt-components-navbar/navbar-li.twig' with {
         link: {
           content: 'Section 2',
@@ -18,7 +18,7 @@
             href: '#section-2'
           }
         }
-      } only %} 
+      } only %}
       {% include '@bolt-components-navbar/navbar-li.twig' with {
         link: {
           content: 'Section 3',
@@ -26,19 +26,19 @@
             href: '#section-3'
           }
         }
-      } only %} 
+      } only %}
     {% endset %}
     {% set navbar_list %}
-      {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+      {% include '@bolt-components-navbar/navbar-ul.twig' with {
         content: navbar_items,
-      } only %}  
+      } only %}
     {% endset %}
 
     {% include '@bolt-components-navbar/navbar.twig' with {
       title: {
         content: 'First Navbar',
         icon: {
-          name: 'academy'
+          name: 'check-circle'
         }
       },
       links: navbar_list,
@@ -75,7 +75,7 @@
             href: '#section-4'
           }
         }
-      } only %} 
+      } only %}
       {% include '@bolt-components-navbar/navbar-li.twig' with {
         link: {
           content: 'Section 5',
@@ -83,7 +83,7 @@
             href: '#section-5'
           }
         }
-      } only %} 
+      } only %}
       {% include '@bolt-components-navbar/navbar-li.twig' with {
         link: {
           content: 'Section 6',
@@ -91,19 +91,19 @@
             href: '#section-6'
           }
         }
-      } only %} 
+      } only %}
     {% endset %}
     {% set navbar_list %}
-      {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+      {% include '@bolt-components-navbar/navbar-ul.twig' with {
         content: navbar_items,
-      } only %}  
+      } only %}
     {% endset %}
 
     {% include '@bolt-components-navbar/navbar.twig' with {
       title: {
         content: 'Second navbar pushes off the first',
         icon: {
-          name: 'info-open'
+          name: 'info-circle'
         }
       },
       links: navbar_list,

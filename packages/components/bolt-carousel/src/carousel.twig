@@ -39,10 +39,16 @@
 
   {% block controls %}
     <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only" aria-hidden="true" slot="previous-btn">
-      <span class="e-bolt-button__icon-center"><bolt-icon name="chevron-left"size="large"></bolt-icon></span>
+      <span class="e-bolt-button__icon-center">{% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-left',
+        size: 'large'
+      } only %}</span>
     </span>
     <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only" aria-hidden="true" slot="next-btn">
-      <span class="e-bolt-button__icon-center"><bolt-icon name="chevron-right"size="large"></bolt-icon></span>
+      <span class="e-bolt-button__icon-center">{% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-right',
+        size: 'large'
+      } only %}</span>
     </span>
   {% endblock %}
 </bolt-carousel>

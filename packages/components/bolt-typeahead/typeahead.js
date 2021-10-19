@@ -1,10 +1,18 @@
 // @ts-nocheck
-import { html, customElement, ifDefined } from '@bolt/element';
+import {
+  html,
+  customElement,
+  ifDefined,
+  unsafeCSS,
+  unsafeHTML,
+} from '@bolt/element';
+import { iconSearch, iconCloseSolid } from '@bolt/elements-icon';
 import { props } from 'skatejs';
 import { withLitEvents } from '@bolt/core-v3.x/renderers/with-events';
+import iconStyles from '@bolt/elements-icon/index.scss';
+import styles from './typeahead.scoped.scss';
 import { bind } from './classnames';
 import './typeahead.autosuggest'; // main Preact logic split from lit-html wrapper
-import styles from './typeahead.scoped.scss';
 
 const cx = bind(styles);
 
@@ -38,6 +46,10 @@ class BoltTypeahead extends withLitEvents {
     self.submit = self.submit.bind(self);
     self.on = self.on.bind(self);
     return self;
+  }
+
+  static get styles() {
+    return [unsafeCSS(iconStyles)];
   }
 
   connected() {
@@ -88,6 +100,7 @@ class BoltTypeahead extends withLitEvents {
   }
 
   render() {
+    // prettier-ignore
     return html`
       ${this.addStyles([styles])}
       <bolt-autosuggest
@@ -113,7 +126,7 @@ class BoltTypeahead extends withLitEvents {
         disabled=${ifDefined(this.disabled === true ? true : undefined)}
       >
         <span class="e-bolt-button__icon-center" aria-hidden="true">
-          <bolt-icon name="search" class=${cx('c-bolt-typeahead__icon')} />
+          <span class=${cx('c-bolt-typeahead__icon')}>${unsafeHTML(iconSearch())}</span>
         </span>
       </button>
 
@@ -134,7 +147,7 @@ class BoltTypeahead extends withLitEvents {
         disabled=${ifDefined(this.disabled === true ? true : undefined)}
       >
         <span class="e-bolt-button__icon-center" aria-hidden="true">
-          <bolt-icon name="close-solid" class=${cx('c-bolt-typeahead__icon')} />
+          <span class=${cx('c-bolt-typeahead__icon')}>${unsafeHTML(iconCloseSolid())}</span>
         </span>
       </button>
     `;

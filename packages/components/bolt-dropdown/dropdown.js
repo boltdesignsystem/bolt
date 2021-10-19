@@ -1,6 +1,14 @@
-import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
+import {
+  unsafeCSS,
+  unsafeHTML,
+  BoltElement,
+  customElement,
+  html,
+} from '@bolt/element';
 import Handorgel from 'handorgel';
+import { iconChevronDown, iconChevronUp } from '@bolt/elements-icon';
 import classNames from 'classnames/bind';
+import iconStyles from '@bolt/elements-icon/index.scss';
 import styles from './dropdown.scss';
 import schema from './dropdown.schema';
 
@@ -26,7 +34,7 @@ class BoltDropdown extends BoltElement {
   }
 
   static get styles() {
-    return [unsafeCSS(styles)];
+    return [unsafeCSS(styles), unsafeCSS(iconStyles)];
   }
 
   constructor() {
@@ -124,13 +132,13 @@ class BoltDropdown extends BoltElement {
               <span
                 class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--open"
               >
-                <bolt-icon name="chevron-down"></bolt-icon>
+                ${unsafeHTML(iconChevronDown())}
               </span>
 
               <span
                 class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--close"
               >
-                <bolt-icon name="chevron-up"></bolt-icon>
+                ${unsafeHTML(iconChevronUp())}
               </span>
             </div>
           </span>

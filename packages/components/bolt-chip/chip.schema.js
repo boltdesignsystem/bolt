@@ -59,7 +59,7 @@ module.exports = {
     icon: {
       type: 'object',
       description:
-        "Bolt icon. Accepts the same options as Bolt Icon Component `@bolt-components-icon` plus an additional 'position' parameter that determines placement within the button.",
+        "Bolt icon. Accepts the same options as Bolt Icon Element `@bolt-elements-icon` plus an additional 'position' parameter that determines placement within the button.",
       properties: {
         position: {
           type: 'string',

@@ -4,9 +4,12 @@ import {
   customElement,
   BoltElement,
   unsafeCSS,
+  unsafeHTML,
 } from '@bolt/element';
 import { render } from 'lit-html';
+import { iconMore } from '@bolt/elements-icon';
 import classNames from 'classnames/bind';
+import iconStyles from '@bolt/elements-icon/index.scss';
 import styles from './chip-list.scss';
 import schema from '../chip-list.schema';
 
@@ -29,7 +32,7 @@ class BoltChipList extends BoltElement {
   }
 
   static get styles() {
-    return [unsafeCSS(styles)];
+    return [unsafeCSS(styles), unsafeCSS(iconStyles)];
   }
 
   get items() {
@@ -106,11 +109,7 @@ class BoltChipList extends BoltElement {
                     icon-only
                     size="${ifDefined(this.size ? this.size : undefined)}"
                   >
-                    <bolt-icon
-                      slot="after"
-                      name="${this.expanded ? 'chevron-left' : 'more'}"
-                    >
-                    </bolt-icon>
+                    <span slot="after">${unsafeHTML(iconMore())}</span>
                   </bolt-chip>
                 </bolt-trigger>
               `

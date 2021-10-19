@@ -113,7 +113,7 @@ describe('Bolt Navbar Props', () => {
       title: {
         content: 'This is the navbar title',
         icon: {
-          name: 'marketing-gray',
+          name: 'bullseye',
         },
         link: {
           attributes: {

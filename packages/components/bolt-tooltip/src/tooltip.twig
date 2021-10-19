@@ -68,7 +68,7 @@
     {# Start adapter for old trigger data #}
     {% if trigger.type == "text" %}
       {% if trigger.icon %}
-        {% include "@bolt-components-icon/icon.twig" with trigger.icon %}
+        {% include "@bolt-elements-icon/icon.twig" with trigger.icon %}
       {% endif %}
       {% if trigger.text %}
         {{ trigger.text }}
