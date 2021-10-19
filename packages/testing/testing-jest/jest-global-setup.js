@@ -9,6 +9,7 @@ const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
 const { buildPrep } = require('@bolt/build-tools/tasks/task-collections.js');
 const imageTasks = require('@bolt/build-tools/tasks/image-tasks');
+const iconComponentTasks = require('@bolt/build-tools/tasks/icon-component-tasks');
 const iconTasks = require('@bolt/build-tools/tasks/icon-tasks');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
 
@@ -24,6 +25,7 @@ module.exports = async function globalSetup() {
 
   await buildPrep(true); // clear out all folders before running
   await imageTasks.processImages(true); // process image fixtures used by any tests, but don't optimize
+  await iconComponentTasks.build(); // Deprecated: remove with Icon component
   await iconTasks.build(); // process icons used by any tests
 
   await setupDevServer({
