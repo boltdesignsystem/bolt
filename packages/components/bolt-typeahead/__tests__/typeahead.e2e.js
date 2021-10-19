@@ -35,6 +35,6 @@
 //       .click('.c-bolt-typeahead__result') // click on the first result
 //       .waitForElementVisible('.c-page-header', 3000);
 
-//     browser.assert.urlContains('google.com');
+//     browser.assert.urlContains('https://www.pega.com');
 //   },
 // };
