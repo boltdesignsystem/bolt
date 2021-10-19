@@ -39,7 +39,7 @@ describe('<bolt-typeahead> Component', () => {
           max_results: 5,
         }),
         attributes: {
-          action: "https://www.pega.com/search",
+          action: "#!/search",
           target: "_blank",
           method: "GET"
         }
