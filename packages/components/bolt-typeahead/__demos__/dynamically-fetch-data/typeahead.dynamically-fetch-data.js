@@ -35,10 +35,10 @@ const setupEventHandlers = () => {
       if (exactMatch.url) {
         navigateTo(exactMatch.url);
       } else {
-        navigateTo(`#!/search?q=${itemSelected.label}`);
+        navigateTo(`https://www.pega.com/search?q=${itemSelected.label}`);
       }
     } else if (suggestion.suggestionValue !== '') {
-      navigateTo(`#!/search?q=${suggestion.suggestionValue}`);
+      navigateTo(`https://www.pega.com/search?q=${suggestion.suggestionValue}`);
     }
   });
 };
