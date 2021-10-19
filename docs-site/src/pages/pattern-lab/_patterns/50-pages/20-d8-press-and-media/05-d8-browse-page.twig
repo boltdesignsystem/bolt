@@ -78,14 +78,14 @@
     {% block band_content  %}
       {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-1/1@medium' %}
-          {% include '@bolt/headline.twig' with {
+          {% include '@bolt-components-headline/headline.twig' with {
             text: page_title,
             size: 'xxxlarge',
             tag: 'h1',
           } only %}
 
           <div class="u-bolt-margin-bottom-medium">
-            {% include '@bolt/subheadline.twig' with {
+            {% include '@bolt-components-headline/subheadline.twig' with {
               text: 'Newsworthy is an understatement. Our industry-leading solutions help the world\'s largest companies build applications engineered for the future.',
               size: 'xxlarge',
               tag: 'h2',
@@ -536,7 +536,7 @@
             {% for i in 0..4 %}
               {% cell 'u-bolt-width-1/1' %}
                 {% set text_group %}
-                  {% include '@bolt/eyebrow.twig' with {
+                  {% include '@bolt-components-headline/eyebrow.twig' with {
                     text: 'June 5, 2018'
                   } only %}
                   {% include '@bolt-components-headline/headline.twig' with {
@@ -557,7 +557,7 @@
               {% endcell %}
               {% cell 'u-bolt-width-1/1' %}
                 {% set text_group %}
-                  {% include '@bolt/eyebrow.twig' with {
+                  {% include '@bolt-components-headline/eyebrow.twig' with {
                     text: 'Jan 18, 2018'
                   } only %}
                   {% include '@bolt-components-headline/headline.twig' with {
@@ -578,7 +578,7 @@
               {% endcell %}
               {% cell 'u-bolt-width-1/1' %}
                 {% set text_group %}
-                  {% include '@bolt/eyebrow.twig' with {
+                  {% include '@bolt-components-headline/eyebrow.twig' with {
                     text: 'Jan 18, 2018'
                   } only %}
                   {% include '@bolt-components-headline/headline.twig' with {
@@ -599,7 +599,7 @@
               {% endcell %}
               {% cell 'u-bolt-width-1/1' %}
                 {% set text_group %}
-                  {% include '@bolt/eyebrow.twig' with {
+                  {% include '@bolt-components-headline/eyebrow.twig' with {
                     text: 'Jan 18, 2018'
                   } only %}
                   {% include '@bolt-components-headline/headline.twig' with {
@@ -620,7 +620,7 @@
               {% endcell %}
               {% cell 'u-bolt-width-1/1' %}
                 {% set text_group %}
-                  {% include '@bolt/eyebrow.twig' with {
+                  {% include '@bolt-components-headline/eyebrow.twig' with {
                     text: 'Date'
                   } only %}
                   {% include '@bolt-components-headline/headline.twig' with {
