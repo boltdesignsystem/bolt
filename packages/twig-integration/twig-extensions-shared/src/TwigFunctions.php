@@ -252,35 +252,35 @@ class TwigFunctions {
 
       switch ($patternName) {
         case 'button_group':
-          return '@bolt/button-group.twig';
+          return '@bolt-components-button-group/button-group.twig';
         case 'button':
-          return '@bolt/button.twig';
+          return '@bolt-components-button/button.twig';
         case 'card':
-          return '@bolt/card.twig';
+          return '@bolt-components-card-replacement/card-replacement.twig';
         case 'card-w-teaser':
-          return '@bolt/card-w-teaser.twig';
+          return '@bolt-components-card-w-teaser/card-w-teaser.twig';
         case 'eyebrow':
-          return '@bolt/eyebrow.twig';
+          return '@bolt-components-headline/eyebrow.twig';
         case 'flag':
           return '@bolt/flag.twig';
         case 'headline':
-          return '@bolt/headline.twig';
+          return '@bolt-components-headline/headline.twig';
         case 'image':
-          return '@bolt/image.twig';
+          return '@bolt-components-image/image.twig';
         case 'link':
-          return '@bolt/link.twig';
+          return '@bolt-components-link/link.twig';
         case 'teaser':
-          return '@bolt/teaser.twig';
+          return '@bolt-components-teaser/teaser.twig';
         case 'text':
-          return '@bolt/text.twig';
+          return '@bolt-components-text/text.twig';
         case 'video':
-          return '@bolt/video.twig';
+          return '@bolt-components-video/video.twig';
         default:
           return 'ERROR: Template not found: '. $patternName;
       }
 
       // the full list of `$patternName` that uses this is:
-      //button - @bolt/button.twig
+      //button - @bolt-components-button/button.twig
       //button_group - @bolt-button-group/button-group.twig
       //card - @bolt-card/card.twig
       //eyebrow - @bolt-headline/eyebrow.twig

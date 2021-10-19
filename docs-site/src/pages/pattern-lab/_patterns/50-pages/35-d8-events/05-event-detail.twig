@@ -9,7 +9,7 @@
     {% block band_content  %}
     {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
       {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
-        {% include '@bolt/headline.twig' with {
+        {% include '@bolt-components-headline/headline.twig' with {
             text: 'Pega Events',
             size: 'xsmall',
             tag: 'span',
@@ -20,13 +20,13 @@
             }
         } only %}
 
-        {% include '@bolt/headline.twig' with {
+        {% include '@bolt-components-headline/headline.twig' with {
             text: 'CRM Applications for Real-Time Engagement',
             size: 'xxxlarge',
             tag: 'h1',
         } only %}
 
-        {% include '@bolt/subheadline.twig' with {
+        {% include '@bolt-components-headline/subheadline.twig' with {
             text: 'Pega’s AI powered CRM Suite is transforming the way enterprises drive greater engagement across the entire customer journey.',
             size: 'xlarge',
             tag: 'p',
@@ -34,7 +34,7 @@
 
         <ul class="o-bolt-inline-list o-bolt-inline-list--medium">
           <li class="o-bolt-inline-list__item">
-            {% include '@bolt/headline.twig' with {
+            {% include '@bolt-components-headline/headline.twig' with {
               text: 'January 25, 2018',
               size: 'large',
               tag: 'span',
@@ -47,7 +47,7 @@
             } only %}
           </li>
           <li class="o-bolt-inline-list__item">
-            {% include '@bolt/headline.twig' with {
+            {% include '@bolt-components-headline/headline.twig' with {
               text: '10:00 AM EST',
               size: 'large',
               tag: 'span',
@@ -60,7 +60,7 @@
             } only %}
           </li>
           <li class="o-bolt-inline-list__item">
-            {% include '@bolt/headline.twig' with {
+            {% include '@bolt-components-headline/headline.twig' with {
               text: 'New York, NY',
               size: 'large',
               tag: 'span',
@@ -99,7 +99,7 @@
             ]
           } only %}
 
-        {% include '@bolt/headline.twig' with {
+        {% include '@bolt-components-headline/headline.twig' with {
           text: 'Event Agenda',
           size: 'xxlarge',
           tag: 'h2',
@@ -222,7 +222,7 @@
           } only %}
 
             {% block body %}
-              {% include '@bolt/headline.twig' with {
+              {% include '@bolt-components-headline/headline.twig' with {
                 text: 'Register now',
                 size: 'xlarge'
               } only %}
@@ -236,7 +236,7 @@
               } only %}
 
               <p class="u-bolt-margin-bottom-small">
-                {% include '@bolt/link.twig' with {
+                {% include '@bolt-components-link/link.twig' with {
                   'text': 'Fill out this form with LinkedIn'|t,
                   'icon': {
                     'position': 'before',
@@ -268,7 +268,7 @@
     {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
 
       {% cell 'u-bolt-width-1/1 u-bolt-width-5/12@small' %}
-        {% include '@bolt/headline.twig' with {
+        {% include '@bolt-components-headline/headline.twig' with {
           text: 'Location Details',
           size: 'xxlarge',
           tag: 'h2',
@@ -345,7 +345,7 @@
   full_bleed: true
   } only %}
     {% block band_content %}
-      {% include '@bolt/headline.twig' with {
+      {% include '@bolt-components-headline/headline.twig' with {
         text: 'Hear From Our Industry Leaders',
         size: 'xxlarge',
         tag: 'h2',
@@ -367,7 +367,7 @@
           } only %}
           {% endcell %}
           {% cell 'u-bolt-width-1/2' %}
-            {% include '@bolt/headline.twig' with {
+            {% include '@bolt-components-headline/headline.twig' with {
               text: 'Stanley Wheeler',
               size: 'large',
               tag: 'h3'
@@ -399,7 +399,7 @@
           } only %}
           {% endcell %}
           {% cell 'u-bolt-width-1/2' %}
-            {% include '@bolt/headline.twig' with {
+            {% include '@bolt-components-headline/headline.twig' with {
               text: 'Stanley Wheeler',
               size: 'large',
               tag: 'h3'
@@ -426,7 +426,7 @@
           } only %}
           {% endcell %}
           {% cell 'u-bolt-width-1/2' %}
-            {% include '@bolt/headline.twig' with {
+            {% include '@bolt-components-headline/headline.twig' with {
               text: 'Stanley Wheeler',
               size: 'large',
               tag: 'h3'
@@ -453,7 +453,7 @@
           } only %}
           {% endcell %}
           {% cell 'u-bolt-width-1/2' %}
-            {% include '@bolt/headline.twig' with {
+            {% include '@bolt-components-headline/headline.twig' with {
               text: 'Stanley Wheeler',
               size: 'large',
               tag: 'h3'
@@ -480,7 +480,7 @@
           } only %}
           {% endcell %}
           {% cell 'u-bolt-width-1/2' %}
-            {% include '@bolt/headline.twig' with {
+            {% include '@bolt-components-headline/headline.twig' with {
               text: 'Stanley Wheeler',
               size: 'large',
               tag: 'h3'
@@ -507,7 +507,7 @@
           } only %}
           {% endcell %}
           {% cell 'u-bolt-width-1/2' %}
-            {% include '@bolt/headline.twig' with {
+            {% include '@bolt-components-headline/headline.twig' with {
               text: 'Stanley Wheeler',
               size: 'large',
               tag: 'h3'
@@ -531,94 +531,73 @@
 
 {# Start 2017 Highlights section #}
   {% embed '@pl/_band--collection.twig' with {
-  'theme': 'xlight',
-  'size': 'large',
-  'contentItems': [
+  theme: 'xlight',
+  size: 'large',
+  contentItems: [
     {
-      'pattern': 'card',
-      'image': {
-          'src': '/images/placeholders/1200x660.jpg'
-        },
-        'teaser': {
-        'eyebrow': {
-          text: 'Article'
-        },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Headline #2',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Call to action',
-            'hierarchy': 'secondary',
-            'url': '#',
-            'width': 'full'
-          }
-        ]
-      }
-    },
-    {
-      'pattern': 'card',
-      'image': {
-        'src': '/images/content/promos/promo-16x9-anthem.jpg'
+      pattern: 'card',
+      media: {
+        image: {
+            src: '/images/placeholders/1200x660.jpg'
+          },
       },
-      'teaser': {
-        'eyebrow': {
-          text: 'Article'
-        },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Headline #2',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Call to action',
-            'hierarchy': 'secondary',
-            'url': '#',
-            'width': 'full'
-          }
-        ]
-      }
+      body: {
+        eyebrow: 'Article',
+        headline: 'Headline #2',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Call to action',
+          hierarchy: 'secondary',
+          url: '#',
+        }
+      ]
     },
     {
-      'pattern': 'card',
-        'image': {
-          'src': '/images/content/promos/promo-16x9-ai.jpg'
+      pattern: 'card',
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-anthem.jpg'
         },
-        'teaser': {
-          'eyebrow': {
-          text: 'Article'
-        },
-        'headlines': [
-            {
-              'type': 'headline',
-              'text': 'Headline #3',
-              'size': 'large'
-            }
-          ],
-          'content': 'Simplify and automate to reduce costs and improve agility.',
-          'buttons': [
-            {
-              'text': 'Call to action',
-              'hierarchy': 'text',
-              'url': '#',
-              'width': 'full'
-            }
-          ]
+      },
+      body: {
+        eyebrow: 'Article',
+        headline:  'Headline #2',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Call to action',
+          hierarchy: 'secondary',
+          url: '#',
         }
+      ]
+    },
+    {
+      pattern: 'card',
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-ai.jpg'
+        },
+      },
+      body: {
+        eyebrow: 'Article',
+        headline: 'Headline #3',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Call to action',
+          hierarchy: 'text',
+          url: '#',
+        }
+      ]
     }
   ]
 } %}
   {% block band_content %}
-    {% include '@bolt/headline.twig' with {
+    {% include '@bolt-components-headline/headline.twig' with {
       text: 'Highlights from 2017',
       size: 'xxlarge',
       tag: 'h2',
@@ -638,7 +617,7 @@
   full_bleed: true
   } only %}
     {% block band_content  %}
-      {% include '@bolt/headline.twig' with {
+      {% include '@bolt-components-headline/headline.twig' with {
           text: 'Event Sponsors',
           align: 'center',
           size: 'xxlarge',
@@ -680,94 +659,73 @@
 
 {# Start Related Resources section #}
   {% embed '@pl/_band--collection.twig' with {
-  'theme': 'dark',
-  'size': 'large',
-  'contentItems': [
+  theme: 'dark',
+  size: 'large',
+  contentItems: [
     {
-      'pattern': 'card',
-      'image': {
-          'src': '/images/placeholders/1200x660.jpg'
-        },
-        'teaser': {
-        'eyebrow': {
-          text: 'Article'
-        },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Headline #2',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Call to action',
-            'hierarchy': 'secondary',
-            'url': '#',
-            'width': 'full'
-          }
-        ]
-      }
-    },
-    {
-      'pattern': 'card',
-      'image': {
-        'src': '/images/content/promos/promo-16x9-anthem.jpg'
+      pattern: 'card',
+      media: {
+        image: {
+            src: '/images/placeholders/1200x660.jpg'
+          },
       },
-      'teaser': {
-        'eyebrow': {
-          text: 'Article'
-        },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Headline #2',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Call to action',
-            'hierarchy': 'secondary',
-            'url': '#',
-            'width': 'full'
-          }
-        ]
-      }
+      body: {
+        eyebrow: 'Article',
+        headline: 'Headline #2',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Call to action',
+          hierarchy: 'secondary',
+          url: '#',
+        }
+      ]
     },
     {
-      'pattern': 'card',
-        'image': {
-          'src': '/images/content/promos/promo-16x9-ai.jpg'
+      pattern: 'card',
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-anthem.jpg'
         },
-        'teaser': {
-          'eyebrow': {
-          text: 'Article'
-        },
-        'headlines': [
-            {
-              'type': 'headline',
-              'text': 'Headline #3',
-              'size': 'large'
-            }
-          ],
-          'content': 'Simplify and automate to reduce costs and improve agility.',
-          'buttons': [
-            {
-              'text': 'Call to action',
-              'hierarchy': 'text',
-              'url': '#',
-              'width': 'full'
-            }
-          ]
+      },
+      body: {
+        eyebrow: 'Article',
+        headline: 'Headline #2',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Call to action',
+          hierarchy: 'secondary',
+          url: '#',
         }
+      ]
+    },
+    {
+      pattern: 'card',
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-ai.jpg'
+        },
+      },
+      body: {
+        eyebrow: 'Article',
+        headline: 'Headline #3',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Call to action',
+          hierarchy: 'text',
+          url: '#',
+        }
+      ]
     }
   ]
   } %}
   {% block band_content %}
-    {% include '@bolt/headline.twig' with {
+    {% include '@bolt-components-headline/headline.twig' with {
       text: 'Related Resources',
       size: 'xxlarge',
       tag: 'h3',

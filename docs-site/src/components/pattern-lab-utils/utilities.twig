@@ -1,7 +1,7 @@
 <div class="c-bds-docs t-bolt-xlight">
   <div class="c-bds-docs__page-content">
     {% if utility_name %}
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         size: "xxxlarge",
         tag: "h1",
         text: utility_name
@@ -9,7 +9,7 @@
     {% endif %}
 
     <div class="c-bds-docs__readme">
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         size: "xxlarge",
         tag: "h2",
         url: "#utility-description",
@@ -31,7 +31,7 @@
     </div>
 
     <div class="c-bds-docs__utility-demo">
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         size: "xlarge",
         tag: "h2",
         url: "#demo",

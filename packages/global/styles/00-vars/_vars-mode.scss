@@ -6,7 +6,7 @@
 
 // Light and dark mode
 @mixin bolt-base-light-mode {
-  --m-bolt-neutral: var(--bolt-color-gray);
+  --m-bolt-neutral: var(--bolt-color-gray-dark);
   --m-bolt-text: var(--bolt-color-black);
   --m-bolt-bg: var(--bolt-color-white);
   --m-bolt-headline: var(--bolt-color-navy);
@@ -18,13 +18,13 @@
   --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.15);
   --m-bolt-text-on-tertiary: var(--m-bolt-headline);
   --m-bolt-disabled: var(--bolt-color-gray-light);
-  --m-bolt-text-on-disabled: var(--bolt-color-gray);
+  --m-bolt-text-on-disabled: var(--bolt-color-gray-xdark);
   --m-bolt-border: var(--m-bolt-tertiary);
   --m-bolt-img-filter: none;
 }
 
 @mixin bolt-base-dark-mode {
-  --m-bolt-neutral: var(--bolt-color-gray);
+  --m-bolt-neutral: var(--bolt-color-gray-light);
   --m-bolt-text: var(--bolt-color-white);
   --m-bolt-bg: var(--bolt-color-navy-xdark);
   --m-bolt-headline: var(--bolt-color-white);
@@ -35,8 +35,8 @@
   --m-bolt-text-on-secondary: var(--bolt-color-navy);
   --m-bolt-tertiary: hsla(0, 0%, 100%, 0.15);
   --m-bolt-text-on-tertiary: var(--m-bolt-headline);
-  --m-bolt-disabled: var(--bolt-color-gray-light);
-  --m-bolt-text-on-disabled: var(--bolt-color-gray);
+  --m-bolt-disabled: var(--bolt-color-gray-dark);
+  --m-bolt-text-on-disabled: var(--bolt-color-gray-light);
   --m-bolt-border: var(--m-bolt-tertiary);
   --m-bolt-img-filter: grayscale(100%) invert(100%) brightness(150%);
 }
