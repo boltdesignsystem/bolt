@@ -8,15 +8,14 @@ const typeaheadDemoItems = [
     label: 'AI and improving the customer experience',
     description:
       '“Artificial intelligence” (AI) presents both distracting hype and powerful opportunities to drive customer engagement.',
-    url: 'https://www.pega.com/ai-and-improving-customer-experience',
+    url: '#!',
   },
   {
     label:
       'Gartner Magic Quadrant for Enterprise Low-Code Application Platforms 2019',
     description:
       'Pega was cited as a Visionary in Gartner’s new 2019 Magic Quadrant for Enterprise Low-Code Application Platforms.',
-    url:
-      'https://www.pega.com/insights/resources/gartner-magic-quadrant-enterprise-low-code-application-platforms-2019',
+    url: '#!',
   },
 ];
 
@@ -41,10 +40,10 @@ const setupEventHandlers = () => {
       if (exactMatch.url) {
         navigateTo(exactMatch.url);
       } else {
-        navigateTo(`https://www.pega.com/search?q=${itemSelected.label}`);
+        navigateTo(`#!/search?q=${itemSelected.label}`);
       }
     } else if (suggestion.suggestionValue !== '') {
-      navigateTo(`https://www.pega.com/search?q=${suggestion.suggestionValue}`);
+      navigateTo(`#!/search?q=${suggestion.suggestionValue}`);
     }
   });
 };
