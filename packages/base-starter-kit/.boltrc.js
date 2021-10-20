@@ -20,7 +20,6 @@ module.exports = {
       '@bolt/components-background',
       '@bolt/components-band',
       '@bolt/components-banner',
-      '@bolt/components-block-list',
       '@bolt/components-blockquote',
       '@bolt/components-breadcrumb',
       '@bolt/components-button-group',
