@@ -94,12 +94,12 @@
 //   }
 //
 //   .c-bolt-shadow-toggle__input:checked ~ & {
-//     color: bolt-theme(primary);
+//     color: var(--m-bolt-primary);
 //   }
 //
 //   .c-bolt-shadow-toggle__input:focus ~ & {
 //     // focus effect if :focus-within is not supported
-//     outline: 2px solid bolt-theme(primary, 0.2);
+//     outline: 2px solid var(--m-bolt-primary);
 //     outline-offset: 2px;
 //   }
 //
@@ -136,7 +136,7 @@
 //   width: calc(var(--shadow-toggle-height) - var(--shadow-toggle-padding) * 2);
 //   height: calc(var(--shadow-toggle-height) - var(--shadow-toggle-padding) * 2);
 //   border-radius: 50%;
-//   background-color: bolt-theme(primary);
+//   background-color: var(--m-bolt-primary);
 //   will-change: left;
 //   transition: opacity var(--shadow-toggle-animation-duration),
 //     left var(--shadow-toggle-animation-duration);

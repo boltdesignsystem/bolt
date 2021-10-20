@@ -11,7 +11,7 @@
 
 /*
 
-$bolt-search-field-placeholder-color: bolt-theme(text, 0.4);
+$bolt-search-field-placeholder-color: var(--m-bolt-text);
 $bolt-search-field-border-width: $bolt-border-width;
 $bolt-search-field-border-style: $bolt-border-style;
 $bolt-search-field-icon-only-button-width: calc(
@@ -43,7 +43,7 @@ $bolt-search-field-icon-only-button-width: calc(
   padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-small)
     calc(var(--bolt-spacing-y-medium) / 2)
     $bolt-search-field-icon-only-button-width;
-  color: bolt-theme(text);
+  color: var(--m-bolt-text);
   border-radius: bolt-border-radius(small);
   border-width: $bolt-search-field-border-width;
   border-style: $bolt-search-field-border-style;
@@ -51,8 +51,8 @@ $bolt-search-field-icon-only-button-width: calc(
   transition: all $bolt-transition;
 
   @at-root .c-bolt-search-field[class*='t-bolt'] #{&} {
-    border-color: bolt-theme(link, 0.2);
-    background-color: bolt-theme(background);
+    border-color: var(--m-bolt-link);
+    background-color: var(--m-bolt-bg);
 
     &:focus {
       border-color: rgba(bolt-color(navy, light), 0.8);
@@ -61,12 +61,12 @@ $bolt-search-field-icon-only-button-width: calc(
   }
 
   @at-root .c-bolt-search-field:not([class*='t-bolt']) #{&} {
-    border-color: bolt-theme(link, 0.2);
+    border-color: var(--m-bolt-link);
     background-color: rgba(bolt-color(white), 0.1);
 
     &:focus {
-      border-color: bolt-theme(link, 0.8);
-      box-shadow: 0 0 0 3px bolt-theme(link, 0.2);
+      border-color: var(--m-bolt-link);
+      box-shadow: 0 0 0 3px var(--m-bolt-link);
     }
   }
 
@@ -238,7 +238,7 @@ $bolt-search-field-icon-only-button-width: calc(
   width: 1rem;
   height: 1rem;
   pointer-events: none;
-  background-color: bolt-theme(background);
+  background-color: var(--m-bolt-bg);
   transition: all $bolt-transition;
 
   @at-root .c-page-header--global-search-active #{&} {
