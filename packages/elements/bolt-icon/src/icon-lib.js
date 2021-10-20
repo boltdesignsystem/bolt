@@ -1,15 +1,19 @@
 import { stringify } from 'svgson';
+import schema from '../icon.schema.json';
 
+// Example: iconChevronDown({ size: 'medium', attributes: { foo: 'bar' } })
 export function getSvg(data, props = {}) {
-  const { size, color } = props;
-  const classes = ['e-bolt-icon'];
+  const { size, color, attributes = {} } = props;
+  const classes = data.attributes.class ? data.attributes.class.split(' ') : [];
 
-  // @TODO: Validate using schema here
-  if (size) {
+  classes.push('e-bolt-icon');
+
+  // @TODO: This type of prop validation should be refactored into a non-WC base class helper function once we have a few more use cases.
+  if (size && schema.properties.size.enum.includes(size)) {
     classes.push(`e-bolt-icon--${size}`);
   }
 
-  if (color) {
+  if (color && schema.properties.color.enum.includes(color)) {
     classes.push(`e-bolt-icon--${color}`);
   }
 
@@ -18,7 +22,7 @@ export function getSvg(data, props = {}) {
     ...{
       attributes: {
         ...data.attributes,
-        // Note: this currently overrides any initial classes
+        ...attributes,
         ...{ class: classes.join(' ') },
       },
     },
