@@ -7,7 +7,7 @@
 
 <bolt-button size="small" color="secondary" on-click="show" on-click-target="js-bolt-modal-debug-panel" icon-only style="position: fixed; bottom: 0.5rem; right: 0.5rem;" border-radius="full">
   <replace-with-children class="u-bolt-visuallyhidden">Debug Panel</replace-with-children>
-  <bolt-icon slot="before" name="java"></bolt-icon>
+  <span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'java' } only %}</span>
 </bolt-button>
 
 <bolt-modal scroll="overall" class="js-bolt-modal-debug-panel" width="auto">
