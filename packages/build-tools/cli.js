@@ -8,7 +8,6 @@ const configStore = require('@bolt/build-utils/config-store');
 const log = require('@bolt/build-utils/log');
 const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const { getPort } = require('@bolt/build-utils/get-port');
-const boxen = require('boxen');
 const chalk = require('chalk');
 
 const configSchema = readYamlFileSync(
@@ -151,26 +150,9 @@ program
       const defaultConfigLog = chalk.white(`
 Logging Verbosity: ${config.verbosity}
 Environment: ${config.prod ? 'Production' : 'Development'}
-Multi-lang: ${config.i18n}
 `);
 
-      console.log(
-        boxen(defaultConfigLog, {
-          padding: {
-            top: 0,
-            bottom: 0,
-            left: 3,
-            right: 3,
-          },
-          margin: {
-            top: 1,
-            bottom: 0,
-            left: 1,
-            right: 1,
-          },
-          borderStyle: 'double',
-        }),
-      );
+      console.log(defaultConfigLog);
 
       // @todo: re-enable once JS-based SSR gets re-enabled and ships
       // log.dim(
