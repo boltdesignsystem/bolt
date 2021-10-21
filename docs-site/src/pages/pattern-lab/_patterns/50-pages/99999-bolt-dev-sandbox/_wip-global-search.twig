@@ -30,7 +30,7 @@
             <bolt-text font-size="xsmall">
               <a href="#" class="e-bolt-text-link">
                 More
-                <bolt-icon name="chevron-down"></bolt-icon>
+                {% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-down' } only %}
               </a>
             </bolt-text>
           </bolt-list-item>
@@ -111,7 +111,7 @@
           <bolt-list-item>
             <div class="c-bolt-global-search-trigger">
               <a href="#" class="e-bolt-text-link">
-                <bolt-icon name="search" size="medium"></bolt-icon>
+                {% include '@bolt-elements-icon/icon.twig' with { name: 'search', size: 'medium' } only %}
               </a>
             </div>
           </bolt-list-item>
@@ -132,12 +132,12 @@
         <input class="c-bolt-search-field__input" type="search" name="search-bar" placeholder="Enter to search" required autofocus>
         <div class="c-bolt-search-field__button">
           <bolt-button color="text" type="submit" icon-only>
-            <bolt-icon name="search" slot="before"></bolt-icon>
+            <span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'search' } only %}</span>
           </bolt-button>
         </div>
         <div class="c-bolt-search-field__button c-bolt-search-field__button--reset">
           <bolt-button color="text" type="reset" icon-only>
-            <bolt-icon name="close-solid" slot="before"></bolt-icon>
+            <span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'close-solid' } only %}</span>
           </bolt-button>
         </div>
       </label>
@@ -151,12 +151,12 @@
         <input class="c-bolt-search-field__input" type="search" name="search-bar" placeholder="Enter to search" required autofocus>
         <div class="c-bolt-search-field__button">
           <bolt-button color="text" type="submit" icon-only>
-            <bolt-icon name="search" slot="before"></bolt-icon>
+            <span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'search' } only %}</span>
           </bolt-button>
         </div>
         <div class="c-bolt-search-field__button c-bolt-search-field__button--reset">
           <bolt-button color="text" type="reset" icon-only>
-            <bolt-icon name="close-solid" slot="before"></bolt-icon>
+            <span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'close-solid' } only %}</span>
           </bolt-button>
         </div>
       </label>

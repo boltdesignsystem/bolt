@@ -7,7 +7,7 @@
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--middle u-bolt-flex-nowrap" %}
         {% if icon %}
           {% cell %}
-            {% include "@bolt-components-icon/icon.twig" with icon only %}
+            {% include "@bolt-elements-icon/icon.twig" with icon only %}
           {% endcell %}
         {% endif %}
         {% cell %}
@@ -80,8 +80,8 @@
           {% if badge %}
             {% cell %}
               <div class="u-bolt-text-align-center u-bolt-padding-right-xsmall">
-                {% include "@bolt-components-icon/icon.twig" with {
-                  name: "academy",
+                {% include "@bolt-elements-icon/icon.twig" with {
+                  name: "check-circle",
                   attributes: {
                     class: ["u-bolt-color-navy-light"],
                     style: "font-size: 1.8rem; width: 1.8rem; height: 1.8rem;"
@@ -94,10 +94,10 @@
             {% cell %}
               <div class="u-bolt-text-align-center u-bolt-padding-left-small" style="border-left: 1px solid rgba(var(--bolt-theme-border), 0.2);">
                 {# @todo: replace "lock" with "archived" icon once provided #}
-                {% include "@bolt-components-icon/icon.twig" with {
+                {% include "@bolt-elements-icon/icon.twig" with {
                   name: "lock",
-                  color: "gray",
                   attributes: {
+                    class: 'u-bolt-color-gray',
                     style: "font-size: 1.2rem; width: 1.2rem; height: 1.2rem;"
                   }
                 } only %}

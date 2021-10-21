@@ -14,10 +14,10 @@
 
 {% if horizontal %}
   <div style="background: linear-gradient(180deg, {{ gradientStart }} 0%, {{ gradientEnd }} 100%); position: relative;" class="u-bolt-height-full u-bolt-padding-small">
-    <bolt-icon name="{{ cardIcon }}" style="font-size: 3.125rem; color: white; height: 3rem; width: 3rem; position: absolute; left: 50%; transform: translateX(-50%);"></bolt-icon>
+    {% include '@bolt-elements-icon/icon.twig' with { name: cardIcon, attributes: { style: 'font-size: 3.125rem; color: white; height: 3rem; width: 3rem; position: absolute; left: 50%; transform: translateX(-50%);' } } only %}
   </div>
 {% else %}
   <div style="background: linear-gradient(180deg, {{ gradientStart }} 0%, {{ gradientEnd }} 100%); position: absolute; width: 100%; top: 0; left: 0;" class="u-bolt-height-full u-bolt-padding-small u-bolt-z-index-background">
-    <bolt-icon class="u-bolt-margin-small u-bolt-negative-margin-top-small" name="{{ cardIcon }}" style="font-size: 10rem; color: white; height: 10rem; width: 10rem; position: absolute; left: 0; top: 0; opacity: 0.15; filter: drop-shadow(0 0 11px rgba(0,0,0,0.5);"></bolt-icon>
+    {% include '@bolt-elements-icon/icon.twig' with { name: cardIcon, attributes: { class: 'u-bolt-margin-small u-bolt-negative-margin-top-small', style: 'font-size: 10rem; color: white; height: 10rem; width: 10rem; position: absolute; left: 0; top: 0; opacity: 0.15; filter: drop-shadow(0 0 11px rgba(0,0,0,0.5);' } } only %}
   </div>
 {% endif %}
