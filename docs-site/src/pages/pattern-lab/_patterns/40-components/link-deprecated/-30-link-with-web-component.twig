@@ -9,17 +9,33 @@
 {% endset %}
 
 {% set link_demo_icon %}
-
+{% spaceless %}
 <p>
-  <bolt-link><a href="https://pega.com"><bolt-icon slot="before" name="info-open"></bolt-icon>This is a link with icon</a></bolt-link>
+  <bolt-link><a href="https://pega.com"><span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'info-circle' } only %}</span>This is a link with icon</a></bolt-link>
 </p>
 <p>
-  <bolt-link><a href="https://pega.com">This is a link with icon<bolt-icon slot="after" name="info-open"></bolt-icon></a></bolt-link>
+  <bolt-link><a href="https://pega.com">This is a link with icon<span slot="after">{% include '@bolt-elements-icon/icon.twig' with { name: 'info-circle' } only %}</span></a></bolt-link>
+</p>
+{% endspaceless %}
+{% endset %}
+
+{% set link_demo_icon_code %}
+<p>
+  <bolt-link><a href="https://pega.com"><span slot="before"><!--- Icon Markup ---></span>This is a link with icon</a></bolt-link>
+</p>
+<p>
+  <bolt-link><a href="https://pega.com">This is a link with icon<span slot="after"><!--- Icon Markup ---></span></a></bolt-link>
 </p>
 {% endset %}
 
 {% set link_demo_inline %}
-<p>This is an <bolt-link><a href="https://pega.com">inline link</a></bolt-link>, and this is an <bolt-link><a href="https://pega.com"><bolt-icon slot="before" name="info-open"></bolt-icon>inline link with an icon</a></bolt-link>. Inline links are truly inline, which means the text can wrap to a second line and the icon falls on the baseline either before or after the text.</p>
+{% spaceless %}
+<p>This is an <bolt-link><a href="https://pega.com">inline link</a></bolt-link>, and this is an <bolt-link><a href="https://pega.com"><span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'info-circle' } only %}</span>inline link with an icon</a></bolt-link>. Inline links are truly inline, which means the text can wrap to a second line and the icon falls on the baseline either before or after the text.</p>
+{% endspaceless %}
+{% endset %}
+
+{% set link_demo_inline_code %}
+<p>This is an <bolt-link><a href="https://pega.com">inline link</a></bolt-link>, and this is an <bolt-link><a href="https://pega.com"><span slot="after"><!--- Icon Markup ---></span>inline link with an icon</a></bolt-link>. Inline links are truly inline, which means the text can wrap to a second line and the icon falls on the baseline either before or after the text.</p>
 {% endset %}
 
 <div class="o-bolt-wrapper">
@@ -59,7 +75,7 @@
       {% endgrid %}
     </div>
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-      content: link_demo_inline,
+      content: link_demo_inline_code,
       lang: 'html',
       mode: 'dark',
     } only %}
@@ -79,7 +95,7 @@
     {% endgrid %}
   </div>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-    content: link_demo_icon,
+    content: link_demo_icon_code,
     lang: 'html',
     mode: 'dark',
   } only %}
