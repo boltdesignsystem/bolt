@@ -1,10 +1,9 @@
-{% set description %}
-    A description of the component and what it is used for.
-{% endset %}
-
 {% set notes %}
   <bolt-ol>
-    <bolt-li>List out important information about this component and its usage.</bolt-li>
+    <bolt-li>Switch Button should be used to handle changes that happen instantly, it is not to be used in a form which requires a submit action. For rendering boolean options within a form, use a checkbox input instead.</bolt-li>
+    <bolt-li>The <code>label</code> prop can accept anything. For better control of text styling, pass the <a href="{{ link['viewall-components-headline'] }}" class="e-bolt-text-link">headline component</a>.</bolt-li>
+    <bolt-li>The component does not ship with JavaScript, reference the sample code snippet below to see how to toggle on/off state with the <code>aria-checked</code> attribute.</bolt-li>
+    <bolt-li>When writing HTML, make sure to follow the sample code snippet below and render all neccessary id, class, and attributes on the <code>&lt;label&gt;</code> and the <code>&lt;button&gt;</code> elements.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -12,12 +11,12 @@
   {% include '@bolt-components-switch-button/switch-button.twig' with {
     label: 'Toggle me',
     attributes: {
-      class: 'js-bolt-switch-button'
+      class: 'js-target-the-switch-button-container'
     },
   } only %}
   <script>
     const switchButton = document.querySelector(
-      '.js-bolt-switch-button button[role="switch"]',
+      '.js-target-the-switch-button-container button[role="switch"]',
     );
 
     switchButton.addEventListener('click', e => {
@@ -33,14 +32,24 @@
 {% include '@bolt-components-switch-button/switch-button.twig' with {
   label: 'Toggle me',
   attributes: {
-    class: 'js-bolt-switch-button'
+    class: 'js-target-the-switch-button-container'
   },
 } only %}
 {% endverbatim %}{% endset %}
 
+{% set html_markup %}{% verbatim %}
+<label class="js-target-the-switch-button-container c-bolt-switch-button" for="bolt-switch-button-123">
+  <div class="c-bolt-switch-button__label">Toggle me</div>
+  <button class="c-bolt-switch-button__button" type="button" id="bolt-switch-button-123" role="switch" aria-checked="false">
+    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--checked">on</span>
+    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--unchecked ">off</span>  
+  </button>
+</label>
+{% endverbatim %}{% endset %}
+
 {% set js %}
 const switchButton = document.querySelector(
-  '.js-bolt-switch-button button[role="switch"]',
+  '.js-target-the-switch-button-container button[role="switch"]',
 );
 
 switchButton.addEventListener('click', e => {
@@ -53,9 +62,10 @@ switchButton.addEventListener('click', e => {
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Basic Switch Button',
-  description: description,
+  description: 'A switch button handles boolean functions that happens instantly.',
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,
+  html_markup: html_markup,
   js: js,
 } only %}
