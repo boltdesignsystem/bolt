@@ -4,16 +4,12 @@
 
 @import '@bolt/core-v3.x';
 
-/**
- * Long-form comment.
- *
- * This spans multiple lines and is also constrained to no longer than 80
- * characters in width.
- *
- * 1. Provide line-comments like this.
- */
 .c-bolt-switch-button {
-  display: inline-flex;
+  --c-bolt-switch-button-spacing: 0.25rem;
+  --c-bolt-switch-button-min-width: 3rem;
+
+  display: inline-grid;
+  grid-template-columns: 1fr auto;
   gap: var(--bolt-spacing-x-small);
   row-gap: var(--bolt-spacing-y-small);
   align-items: center;
@@ -23,9 +19,10 @@
 .c-bolt-switch-button__button {
   @include bolt-button-native-styles-reset;
 
-  display: inline-flex;
+  display: inline-grid;
+  grid-template-columns: repeat(2, 1fr);
   position: relative;
-  width: 3rem;
+  min-width: var(--c-bolt-switch-button-min-width);
   color: var(--m-bolt-text-on-disabled);
   border-radius: bolt-border-radius(full);
   background-color: var(--m-bolt-disabled);
@@ -40,11 +37,11 @@
   &:after {
     content: '';
     position: absolute;
-    top: 0.25rem;
-    bottom: 0.25rem;
-    left: 0.25rem;
+    top: var(--c-bolt-switch-button-spacing);
+    bottom: var(--c-bolt-switch-button-spacing);
+    left: var(--c-bolt-switch-button-spacing);
     transform: translate3d(0, 0, 0);
-    width: calc(50% - 0.5rem);
+    width: calc(50% - var(--c-bolt-switch-button-spacing) * 2);
     border-radius: inherit;
     background-color: var(--bolt-color-white);
     transition: transform var(--bolt-transition);
@@ -55,7 +52,11 @@
     background-color: var(--bolt-color-success);
 
     &:after {
-      transform: translate3d(calc(100% + 0.5rem), 0, 0);
+      transform: translate3d(
+        calc(100% + var(--c-bolt-switch-button-spacing) * 2),
+        0,
+        0
+      );
     }
 
     .c-bolt-switch-button__button-text--unchecked {
@@ -72,21 +73,20 @@
 
 .c-bolt-switch-button__button-text {
   display: grid;
-  place-items: center;
-  flex: 1;
-  height: 1.5rem;
+  height: calc(var(--c-bolt-switch-button-min-width) / 2);
   font-family: var(--bolt-type-font-family-body);
   font-size: var(--bolt-type-font-size-xxsmall);
   font-weight: var(--bolt-type-font-weight-semibold);
-  line-height: 1.5rem;
+  line-height: calc(var(--c-bolt-switch-button-min-width) / 2);
   text-align: center;
   pointer-events: none;
+  place-items: center;
 }
 
 .c-bolt-switch-button__button-text--checked {
-  padding-left: 0.25rem;
+  padding-left: var(--c-bolt-switch-button-spacing);
 }
 
 .c-bolt-switch-button__button-text--unchecked {
-  padding-right: 0.25rem;
+  padding-right: var(--c-bolt-switch-button-spacing);
 }
