@@ -704,13 +704,24 @@
   <div class="c-base-notifications">
     <header class="c-base-notifications__header">
       <div class="c-base-notifications__header__switch">
-        <label class="c-bolt-switch-button" for="unread-toggle">
-          <span class="c-bolt-switch-button__label">Only show unread notifications</span>
-          <button class="c-bolt-switch-button__button" type="button" id="unread-toggle" role="switch" aria-checked="false">
-            <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--checked">on</span>
-            <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--unchecked ">off</span>  
-          </button>
-        </label>
+        {% include '@bolt-components-switch-button/switch-button.twig' with {
+          label: 'Only show unread notifications',
+          attributes: {
+            class: 'js-target-page-header-notifications-unread-switch'
+          },
+        } only %}
+        <script>
+          const switchButton = document.querySelector(
+            '.js-target-page-header-notifications-unread-switch button[role="switch"]',
+          );
+
+          switchButton.addEventListener('click', e => {
+            const el = e.target;
+            const isChecked = el.getAttribute('aria-checked') === 'true';
+
+            el.setAttribute('aria-checked', isChecked ? false : true);
+          });
+        </script>
       </div>
       <div class="c-base-notifications__header__actions">
         {% set icon_check_circle %}
@@ -720,7 +731,10 @@
           } only %}
         {% endset %}
         {% set tooltip_trigger %}
-          <button class="c-base-notifications__header__actions__icon-button" type="button">{{ icon_check_circle }}</button>
+          <button class="c-base-notifications__header__action-button" type="button">
+            {{ icon_check_circle }}
+            <span class="c-base-notifications__header__action-button__text">Mark all as read</span>
+          </button>
         {% endset %}
         {% include '@bolt-components-tooltip/tooltip.twig' with {
           trigger: tooltip_trigger,
@@ -734,7 +748,10 @@
           } only %}
         {% endset %}
         {% set tooltip_trigger %}
-          <a class="c-base-notifications__header__actions__icon-button" href="https://pega.com">{{ icon_pega_setting }}</a>
+          <a class="c-base-notifications__header__action-button" href="https://pega.com">
+            {{ icon_pega_setting }}
+            <span class="c-base-notifications__header__action-button__text">Notification Settings</span>
+          </a>
         {% endset %}
         {% include '@bolt-components-tooltip/tooltip.twig' with {
           trigger: tooltip_trigger,
