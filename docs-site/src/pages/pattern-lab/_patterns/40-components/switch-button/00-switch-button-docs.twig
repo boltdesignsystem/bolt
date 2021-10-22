@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-switch-button/switch-button.twig' with {
+  label: 'This is the label for the switch button'
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'switch-button',
+  usage: usage
+} only %}
