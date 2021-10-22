@@ -33,7 +33,6 @@ module.exports = {
       '@bolt/components-content-pagination',
       '@bolt/components-copy-to-clipboard',
       '@bolt/components-device-viewer',
-      '@bolt/components-dropdown',
       '@bolt/components-editor',
       '@bolt/components-figure',
       '@bolt/components-form',
