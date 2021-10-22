@@ -705,7 +705,7 @@
     <header class="c-base-notifications__header">
       <div class="c-base-notifications__header__switch">
         <label class="c-bolt-switch-button" for="unread-toggle">
-          <span class="c-bolt-switch-button__label">Only show unread</span>
+          <span class="c-bolt-switch-button__label">Only show unread notifications</span>
           <button class="c-bolt-switch-button__button" type="button" id="unread-toggle" role="switch" aria-checked="false">
             <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--checked">on</span>
             <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--unchecked ">off</span>  
@@ -765,6 +765,8 @@
           </a>
         </div>
       </li>
+      {{ placeholder_item_read }}
+      {{ placeholder_item_read }}
       <li class="c-base-notifications__list-item">
         <div class="c-base-notifications__signifier">
           {% include '@bolt-elements-icon/icon.twig' with {
@@ -826,16 +828,11 @@
         <strong>Earlier</strong>
       </li>
       {{ placeholder_item }}
+      {{ placeholder_item }}
       {{ placeholder_item_read }}
       {{ placeholder_item_read }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
+      {{ placeholder_item_read }}
+      {{ placeholder_item_read }}
       {{ placeholder_item }}
       {{ placeholder_item }}
       {{ placeholder_item }}
