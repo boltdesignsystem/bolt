@@ -1,7 +1,7 @@
-{% set container_themes = get_data('@bolt/themes.schema.json') %}
+{% set container_themes = ['dark', 'light'] %}
 {% set schema = bolt.data.components['@bolt-components-card-replacement'].schema %}
 
-{% for container_theme in container_themes.properties.colors.enum %}
+{% for container_theme in container_themes %}
   {% set card_replacements %}
     {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
       {% cell 'u-bolt-width-12/12' %}
