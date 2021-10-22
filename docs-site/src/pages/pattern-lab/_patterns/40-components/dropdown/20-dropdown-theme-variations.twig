@@ -1,6 +1,6 @@
-{% set themes = get_data('@bolt/themes.schema.json') %}
+{% set themes = ['dark', 'light'] %}
 
-{% for theme in themes.properties.colors.enum %}
+{% for theme in themes %}
   <div class="t-bolt-{{ theme }} u-bolt-padding-small">
     {% embed '@bolt-components-dropdown/dropdown.twig' with {
       title: 'Dropdown Menu, Theme: ' ~ theme,
