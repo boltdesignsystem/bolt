@@ -29,10 +29,10 @@
 
         {% cell 'u-bolt-width-1/1 u-bolt-width-7/12@medium' %}
 
-          {% include '@bolt/eyebrow.twig' with {
+          {% include '@bolt-components-headline/eyebrow.twig' with {
             text: 'White Paper'
           } only %}
-          {% include '@bolt/headline.twig' with {
+          {% include '@bolt-components-headline/headline.twig' with {
             text: page_title|default('Insert Page Title Here'),
             size: 'xxxlarge'
           } only %}
@@ -51,7 +51,7 @@
             ]
           } only %}
 
-          {% include '@bolt/button.twig' with {
+          {% include '@bolt-components-button/button.twig' with {
             text: 'Download Now',
             url: 'https://www.pega.com/download-now',
             hierarchy: 'primary'
@@ -79,7 +79,7 @@
     {% grid %}
       {% cell 'u-bolt-width-1/1 u-bolt-width-9/12@medium' %}
 
-        {% include '@bolt/subheadline.twig' with {
+        {% include '@bolt-components-headline/subheadline.twig' with {
           text: 'The foundational use cases that are unifying the worlds of adtech and martech.',
           size: 'xxlarge'
         } only %}
@@ -101,13 +101,13 @@
 
         <hr>
 
-        {% include '@bolt/headline.twig' with {
+        {% include '@bolt-components-headline/headline.twig' with {
           text: 'Category:',
           size: 'small',
           transform: 'uppercase'
         } only %}
 
-        {% include '@bolt/chip-list.twig' with {
+        {% include '@bolt-components-chip-list/chip-list.twig' with {
           'contentItems': [
             {
               'text': 'First tag',
@@ -142,7 +142,7 @@
 } %}
   {% block band_content %}
 
-    {% include '@bolt/headline.twig' with {
+    {% include '@bolt-components-headline/headline.twig' with {
       text: 'Related resources',
       size: 'xlarge',
       tag: 'h3'
@@ -152,7 +152,7 @@
       {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@medium' %}
 
 
-        {% include '@bolt/card-w-teaser-list.twig' with {
+        {% include '@bolt-components-card-w-teaser/card-w-teaser-list.twig' with {
           teasers: [
             {
               eyebrow: {
@@ -197,7 +197,7 @@
       {% endcell %}
 
       {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@medium' %}
-         {% include '@bolt/card-w-teaser.twig' with {
+         {% include '@bolt-components-card-w-teaser/card-w-teaser.twig' with {
             'image': {
               'src': '/images/placeholders/1200x660.jpg',
             },

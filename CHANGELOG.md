@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.1](https://github.com/boltdesignsystem/bolt/compare/v4.6.0...v4.6.1) (2021-10-13)
+
+
+### Bug Fixes
+
+* make Image element public ([214b071](https://github.com/boltdesignsystem/bolt/commit/214b0713f58a22f02481ec8b3fc64aff786b93a9))
+
+
+
+
+
 # [4.6.0](https://github.com/boltdesignsystem/bolt/compare/v4.5.1...v4.6.0) (2021-10-12)
 
 
