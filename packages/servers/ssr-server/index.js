@@ -81,7 +81,7 @@ async function run() {
   console.log('Test the server by running:');
   console.log('');
   console.log(
-    'curl http://localhost -v --http2-prior-knowledge -X POST -d "<bolt-button>hello world</bolt-button><bolt-icon name=\'close\'></bolt-icon>"',
+    'curl http://localhost -v --http2-prior-knowledge -X POST -d "<bolt-button>hello world</bolt-button>"',
   );
 }
 
