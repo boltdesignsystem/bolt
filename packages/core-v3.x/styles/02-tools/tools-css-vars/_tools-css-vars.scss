@@ -1,7 +1,6 @@
 //// VARIABLES ////
 @import '../tools-themes/_tools.themes.scss';
 
-
 // global map to be filled via variables
 $bolt-css-variables: ();
 
@@ -27,7 +26,12 @@ $bolt-css-vars-debug-log: false !default;
   @if ($bolt-css-vars-debug-log and map-get($bolt-css-variables, $name)) {
     @debug "'#{$name}' variable is reassigned";
   }
-  @return map-merge($bolt-css-variables, ($name: $value));
+  @return map-merge(
+    $bolt-css-variables,
+    (
+      $name: $value,
+    )
+  );
 }
 
 /// Emulates var() CSS native function behavior
@@ -54,7 +58,9 @@ $bolt-css-vars-debug-log: false !default;
   @if str-slice($varName, 0, 5) == 'theme' {
     $varNameSansTheme: str-slice($varName, 7, str-length($varName));
 
-    @if bolt-is-theme-var($varNameSansTheme) and bolt-is-shimmable-theme-prop($varNameSansTheme) {
+    @if bolt-is-theme-var($varNameSansTheme) and
+      bolt-is-shimmable-theme-prop($varNameSansTheme)
+    {
       @return bolt-theme($varNameSansTheme, $opacity);
     } @else {
       // @warn "The `#{$varNameSansTheme}` theme-specific CSS variable used isn't a registered theme variable in Bolt. Be carefull as these will not work as expected in IE 11...";
@@ -65,12 +71,12 @@ $bolt-css-vars-debug-log: false !default;
   @return var($args);
 }
 
-
-@function var($args...) { /* stylelint-disable-line */
+@function var($args...) {
+  /* stylelint-disable-line */
   $var: '';
   $opacity: 1;
 
-  @if (length($args)==0) {
+  @if (length($args) ==0) {
     @error "Variable name is expected to be passed to the var() function";
   }
 
@@ -90,9 +96,12 @@ $bolt-css-vars-debug-log: false !default;
 
   $value: map-get($bolt-css-variables, $name);
 
-  @if ($bolt-css-vars-debug-log or not $bolt-css-vars-use-native) { // Sass or debug
-    @if ($value==null) { // variable is not provided so far
-      @if (length($args)==2) { // the default value is passed
+  @if ($bolt-css-vars-debug-log or not $bolt-css-vars-use-native) {
+    // Sass or debug
+    @if ($value==null) {
+      // variable is not provided so far
+      @if (length($args) ==2) {
+        // the default value is passed
         @if ($bolt-css-vars-debug-log) {
           @debug "Provided default value is used for the variable: '#{$name}'";
         }
@@ -106,7 +115,8 @@ $bolt-css-vars-debug-log: false !default;
     }
   }
 
-  @if ($bolt-css-vars-use-native) { // CSS variables
+  @if ($bolt-css-vars-use-native) {
+    // CSS variables
     // Native CSS: don't process function in case of native
     @return unquote('var(' + $args + ')');
   } @else {
@@ -133,31 +143,36 @@ $bolt-css-vars-debug-log: false !default;
     @error "Map of variables is expected, instead got another type passed: #{type_of($varMap)}";
   }
   // PROCESS
-  @if ($bolt-css-vars-debug-log or not $bolt-css-vars-use-native) { // Sass or debug
+  @if ($bolt-css-vars-debug-log or not $bolt-css-vars-use-native) {
+    // Sass or debug
     // merge variables and values to the global map (provides no output)
     @each $name, $value in $varMap {
-      $bolt-css-vars: bolt-css-vars-assign($name, $value) !global; // store in global variable
+      $bolt-css-vars: bolt-css-vars-assign(
+        $name,
+        $value
+      ) !global; // store in global variable
     }
   }
 
-  @if ($bolt-css-vars-use-native) { // CSS variables
+  @if ($bolt-css-vars-use-native) {
+    // CSS variables
     // Native CSS: assign CSS custom properties to the global scope
     @if $root == true {
       @at-root :root {
         @each $name, $value in $varMap {
           @if (type_of($value) == string) {
-            #{$name}: $value // to prevent quotes interpolation
+            #{$name}: $value; // to prevent quotes interpolation
           } @else {
-            #{$name}: #{$value}
+            #{$name}: #{$value};
           }
         }
       }
     } @else {
       @each $name, $value in $varMap {
         @if (type_of($value) == string) {
-          #{$name}: $value // to prevent quotes interpolation
+          #{$name}: $value; // to prevent quotes interpolation
         } @else {
-          #{$name}: #{$value}
+          #{$name}: #{$value};
         }
       }
     }
