@@ -3,24 +3,24 @@
 bolt-dropdown {
   display: block;
 
-  @include bolt-css-vars(
-    (
-      --c-bolt-nav-item-opacity: 0,
-      --c-bolt-nav-item-transform:
-        translateY(calc(var(--bolt-spacing-y-large) * -1)),
-      --c-bolt-nav-indicator-opacity: 0,
-    )
-  );
+  // @include bolt-css-vars(
+  //   (
+  //     --c-bolt-nav-item-opacity: 0,
+  //     --c-bolt-nav-item-transform:
+  //       translateY(calc(var(--bolt-spacing-y-large) * -1)),
+  //     --c-bolt-nav-indicator-opacity: 0,
+  //   )
+  // );
 
   &[collapse] {
     @include bolt-mq(small) {
-      @include bolt-css-vars(
-        (
-          --c-bolt-nav-item-opacity: 1,
-          --c-bolt-nav-item-transform: none,
-          --c-bolt-nav-indicator-opacity: 1,
-        )
-      );
+      // @include bolt-css-vars(
+      //   (
+      //     --c-bolt-nav-item-opacity: 1,
+      //     --c-bolt-nav-item-transform: none,
+      //     --c-bolt-nav-indicator-opacity: 1,
+      //   )
+      // );
     }
   }
 }
@@ -406,34 +406,7 @@ bolt-dropdown {
   }
 }
 
-.c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-nav__item,
-.c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-nav__item,
-.c-bolt-dropdown__content--opened .c-bolt-nav__item {
-  @include bolt-css-vars(
-    (
-      --c-bolt-nav-item-opacity: 1,
-      --c-bolt-nav-item-transform: none,
-    )
-  );
-}
-
-.c-bolt-dropdown__content--opened {
-  @include bolt-css-vars(
-    (
-      --c-bolt-nav-item-opacity: 1,
-      --c-bolt-nav-item-transform: none,
-      --c-bolt-nav-indicator-opacity: 1,
-    )
-  );
-}
-
-.c-bolt-dropdown__content:not(.c-bolt-dropdown__content--open):not(.c-bolt-dropdown__content--opened) {
-  @include bolt-css-vars(
-    (
-      --c-bolt-nav-indicator-transform: -100px,
-    )
-  );
-}
+//THIS BOLT DROPDOWN COMPONENT IS DELETED IN ANOTHER TICKET
 
 // Using component-specific class instead of utility class so we don't have to include the whole height utils library
 .c-bolt-dropdown--height-auto {

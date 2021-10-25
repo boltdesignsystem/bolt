@@ -116,9 +116,6 @@ $bolt-video-background-max-height: 50.625vw;
   z-index: bolt-z-index('tooltip');
   color: var(--bolt-color-orange);
   transition: all 0.3s ease;
-  @include bolt-css-vars(
-    (--#{$bolt-namespace}-theme-icon: var(--bolt-color-orange))
-  );
 
   @include bolt-mq(small) {
     right: calc(
