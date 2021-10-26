@@ -71,17 +71,6 @@
   overflow-y: scroll;
   overflow-x: auto;
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
-  scrollbar-color: var(--m-bolt-primary) var(--m-bolt-bg);
-  scrollbar-width: thin;
-
-  &::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--m-bolt-primary);
-  }
 
   .e-bolt-text-link {
     display: inline-flex; //If the link is very long prevent from wrapping around icon
