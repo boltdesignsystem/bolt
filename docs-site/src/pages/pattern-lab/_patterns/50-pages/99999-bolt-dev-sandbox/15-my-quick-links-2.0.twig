@@ -175,15 +175,11 @@
   {% endset %}
 
   {% set quick_links_list %}
-    {% include '@bolt-components-list/list.twig' with {
-      tag: 'ul',
-      items: [
-        quick_link_1,
-        quick_link_2,
-        quick_link_3,
-      ],
-      spacing: 'small'
-    } only %}
+    <ul class="c-portal__list">
+      <li class="c-portal__list-el">{{ quick_link_1 }}</li>
+      <li class="c-portal__list-el">{{ quick_link_2 }}</li>
+      <li class="c-portal__list-el">{{ quick_link_3 }}</li>
+    </ul>
   {% endset %}
 
   {% set add_links_header %}
@@ -198,38 +194,34 @@
   {% endset %}
 
   {% set add_links_list %}
-    {% include '@bolt-components-list/list.twig' with {
-      tag: 'ul',
-      items: [
-        add_link_1,
-        add_link_2,
-        add_link_3,
-        add_link_4,
-        add_link_5,
-        add_link_1,
-        add_link_2,
-        add_link_3,
-        add_link_4,
-        add_link_5,
-        add_link_1,
-        add_link_2,
-        add_link_3,
-        add_link_4,
-        add_link_5,
-        add_link_1,
-        add_link_2,
-        add_link_3,
-        add_link_4,
-        add_link_5,
-        add_link_1,
-        add_link_2,
-        add_link_3,
-        add_link_4,
-        add_link_5,
-        '...',
-      ],
-      spacing: 'small'
-    } only %}
+    <ul class="c-portal__list">
+      <li class="c-portal__list-el">{{ add_link_1 }}</li>
+      <li class="c-portal__list-el">{{ add_link_2 }}</li>
+      <li class="c-portal__list-el">{{ add_link_3 }}</li>
+      <li class="c-portal__list-el">{{ add_link_4 }}</li>
+      <li class="c-portal__list-el">{{ add_link_5 }}</li>
+      <li class="c-portal__list-el">{{ add_link_1 }}</li>
+      <li class="c-portal__list-el">{{ add_link_2 }}</li>
+      <li class="c-portal__list-el">{{ add_link_3 }}</li>
+      <li class="c-portal__list-el">{{ add_link_4 }}</li>
+      <li class="c-portal__list-el">{{ add_link_5 }}</li>
+      <li class="c-portal__list-el">{{ add_link_1 }}</li>
+      <li class="c-portal__list-el">{{ add_link_2 }}</li>
+      <li class="c-portal__list-el">{{ add_link_3 }}</li>
+      <li class="c-portal__list-el">{{ add_link_4 }}</li>
+      <li class="c-portal__list-el">{{ add_link_5 }}</li>
+      <li class="c-portal__list-el">{{ add_link_1 }}</li>
+      <li class="c-portal__list-el">{{ add_link_2 }}</li>
+      <li class="c-portal__list-el">{{ add_link_3 }}</li>
+      <li class="c-portal__list-el">{{ add_link_4 }}</li>
+      <li class="c-portal__list-el">{{ add_link_5 }}</li>
+      <li class="c-portal__list-el">{{ add_link_1 }}</li>
+      <li class="c-portal__list-el">{{ add_link_2 }}</li>
+      <li class="c-portal__list-el">{{ add_link_3 }}</li>
+      <li class="c-portal__list-el">{{ add_link_4 }}</li>
+      <li class="c-portal__list-el">{{ add_link_5 }}</li>
+      <li class="c-portal__list-el">...</li>
+    </ul>
   {% endset %}
 
   {% set quick_links_content %}

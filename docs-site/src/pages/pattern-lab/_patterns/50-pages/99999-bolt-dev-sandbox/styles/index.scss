@@ -77,6 +77,30 @@
   }
 }
 
+// List base styles
+//
+// 1. Reset typography so it doesn't inherit from a higher level container.
+// 2. Reset text-align so it doesn't conflict with the align prop which handles the horizontal alignment of inline items in a list, not the text-align within.
+
+.c-portal__list {
+  margin: 0 0 var(--bolt-spacing-y-medium) 0;
+  padding: 0;
+  font-family: var(--bolt-type-font-family-body); // [1]
+  font-size: var(--bolt-type-font-size-medium); // [1]
+  font-weight: var(--bolt-type-font-weight-regular); // [1]
+  list-style: none;
+  line-height: var(--bolt-type-line-height-medium);
+  text-align: start; // [2]
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.c-portal__list-el {
+  margin-bottom: var(--bolt-spacing-y-small);
+}
+
 .c-portal__trigger {
   @include bolt-shadow('level-20');
 
