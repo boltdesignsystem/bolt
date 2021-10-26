@@ -117,7 +117,6 @@ async function setupWebpack(config) {
           !item.includes('bolt-placeholder') &&
           !item.includes('bolt-li') &&
           !item.includes('packages/core') &&
-          !item.includes('bolt-dropdown') &&
           !item.includes('global/styles/index.js') &&
           !item.includes('bolt-copy-to-clipboard') &&
           !item.includes('bolt-icons') &&
@@ -135,9 +134,6 @@ async function setupWebpack(config) {
       });
     }
   });
-
-  console.log('webpack ready...');
-  return webpackStatsGenerated;
 }
 
 run();
