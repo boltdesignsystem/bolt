@@ -27,27 +27,28 @@ beforeAll(async () => {
     timeout: 0,
   });
 
-  const carouselSlideImage = `<img class="e-bolt-image" src="/fixtures/1200x660.jpg" alt="Image alt text" width="1200" height="660" />`;
+  const carouselSlideImage =
+    '<img class="e-bolt-image" src="/fixtures/1200x660.jpg" alt="Image alt text" width="1200" height="660" />';
 
   const defaultData = {
     slides: [
-      '' + carouselSlideImage + ' Slide 1',
-      '' + carouselSlideImage + ' Slide 2',
-      '' + carouselSlideImage + ' Slide 3',
+      `${carouselSlideImage} Slide 1`,
+      `${carouselSlideImage} Slide 2`,
+      `${carouselSlideImage} Slide 3`,
     ],
   };
 
   const largeData = {
     slides: [
-      '' + carouselSlideImage + ' Slide 1',
-      '' + carouselSlideImage + ' Slide 2',
-      '' + carouselSlideImage + ' Slide 3',
-      '' + carouselSlideImage + ' Slide 4',
-      '' + carouselSlideImage + ' Slide 5',
-      '' + carouselSlideImage + ' Slide 6',
-      '' + carouselSlideImage + ' Slide 7',
-      '' + carouselSlideImage + ' Slide 8',
-      '' + carouselSlideImage + ' Slide 9',
+      `${carouselSlideImage} Slide 1`,
+      `${carouselSlideImage} Slide 2`,
+      `${carouselSlideImage} Slide 3`,
+      `${carouselSlideImage} Slide 4`,
+      `${carouselSlideImage} Slide 5`,
+      `${carouselSlideImage} Slide 6`,
+      `${carouselSlideImage} Slide 7`,
+      `${carouselSlideImage} Slide 8`,
+      `${carouselSlideImage} Slide 9`,
     ],
   };
 
