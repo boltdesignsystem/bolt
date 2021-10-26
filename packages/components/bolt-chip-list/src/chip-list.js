@@ -109,7 +109,7 @@ class BoltChipList extends BoltElement {
                     icon-only
                     size="${ifDefined(this.size ? this.size : undefined)}"
                   >
-                    <span slot="after">${unsafeHTML(iconMore())}</span>
+                    ${unsafeHTML(iconMore({ attributes: { slot: 'after' } }))}
                   </bolt-chip>
                 </bolt-trigger>
               `
