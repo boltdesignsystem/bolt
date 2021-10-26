@@ -45,15 +45,8 @@
 /*
 ** Our floating navigation needs to have an overflow when items expand beyond viewer-height
 * [1] Floating nav receives 4rem from .c-bds-docs__page-nav-list and we add .5 rem to reach the bottom
-* [2] The overflow added in the parent wrapper removes hides the shadow so we bring it back here
  */
 .o-bolt-ui-list--sassdoc {
   max-height: calc(100vh - 4.5rem); // [1]
   overflow-y: auto;
-
-  bolt-dropdown {
-    // [2]
-    width: calc(100% - 6px);
-    margin: 0 auto;
-  }
 }
