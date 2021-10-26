@@ -152,7 +152,7 @@ Logging Verbosity: ${config.verbosity}
 Environment: ${config.prod ? 'Production' : 'Development'}
 `);
 
-      console.log(defaultConfigLog);
+      // console.log(defaultConfigLog);
 
       // @todo: re-enable once JS-based SSR gets re-enabled and ships
       // log.dim(
