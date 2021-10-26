@@ -1,6 +1,5 @@
 import { html, render, unsafeCSS, unsafeHTML } from '@bolt/element';
 import { iconChevronDown } from '@bolt/elements-icon';
-import iconStyles from '@bolt/elements-icon/index.scss';
 import '@bolt/core-v3.x/utils/optimized-resize';
 
 // @todo this JS could be shared between Navbar and Tabs, nothing Navbar-specific here
@@ -21,10 +20,6 @@ export class BoltOverflowMenu {
     };
 
     this.init();
-  }
-
-  static get styles() {
-    return [unsafeCSS(iconStyles)];
   }
 
   get open() {
