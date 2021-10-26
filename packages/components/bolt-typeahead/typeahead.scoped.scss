@@ -229,16 +229,11 @@ bolt-autosuggest {
 }
 
 .c-bolt-typeahead__icon {
-  display: inline-flex;
-
-  > * {
-    font-size: 1.5rem;
-    color: var(--bolt-color-navy-light);
-    line-height: 1;
-  }
+  color: var(--bolt-color-navy-light);
+  line-height: 1;
 }
 
-.c-bolt-typeahead__icon--clear > * {
+.c-bolt-typeahead__icon--clear {
   fill: currentColor;
   position: absolute;
   top: 50%;

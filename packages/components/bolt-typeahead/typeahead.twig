@@ -50,35 +50,21 @@
 {% set uuid = this.data.name.value|default(bolt.data.config.env == "test" ? "12345" : random() ~ "") %}
 
 {% set search_icon %}
-<span class="{{ classNames.icon }}">
-  {% embed "@bolt-elements-icon/icon.twig" with {
-      name: "search",
-      preload: true,
-      attributes: {
-        class: [
-          classNames.icon
-        ]
-      }
-    } only %}
-    {% block icon_inner %}
-      {{ source("@bolt-components-typeahead/search.min.svg") }}
-    {% endblock icon_inner %}
-  {% endembed %}
-</span>
+  {% include "@bolt-elements-icon/icon.twig" with {
+    name: "search",
+    attributes: {
+      class: [
+        classNames.icon
+      ]
+    }
+  } only %}
 {% endset %}
 
 
 {% set clear_icon %}
-<span class="{{ classNames.icon }}">
-  {% embed "@bolt-elements-icon/icon.twig" with {
-      name: "close-solid",
-      preload: true,
-    } only %}
-    {% block icon_inner %}
-      {{ source("@bolt-components-typeahead/close-solid.min.svg") }}
-    {% endblock icon_inner %}
-  {% endembed %}
-</span>
+  {% include "@bolt-elements-icon/icon.twig" with {
+    name: "close-solid",
+  } only %}
 {% endset %}
 
 {% spaceless %}
@@ -118,7 +104,7 @@
             type: 'submit',
             onclick: "this.previousElementSibling.focus()",
             class: [
-              classNames.clearButton | join(' ')
+              classNames.submitButton | join(' ')
             ],
           }
         } only %}
