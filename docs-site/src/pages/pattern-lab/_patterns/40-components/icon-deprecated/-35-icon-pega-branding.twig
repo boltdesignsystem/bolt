@@ -22,8 +22,23 @@
       {% if 'pega-' in name %}
         <bolt-accordion-item>
           <div slot="trigger">
-            {% include '@bolt-components-headline/text.twig' with {
-              text: name,
+            {% set icon %}
+              {% include '@bolt-components-icon/icon.twig' with {
+                name: name,
+                size: 'small',
+              } only %}
+            {% endset %}
+            {% set title %}
+              {% include '@bolt-components-headline/text.twig' with {
+                text: name,
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-list/list.twig' with {
+              display: 'inline',
+              items: [
+                icon,
+                title,
+              ]
             } only %}
           </div>
           <div>
