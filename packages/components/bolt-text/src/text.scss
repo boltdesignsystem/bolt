@@ -44,10 +44,8 @@
   @each $family in $bolt-type-font-family-system {
     $family-name: nth($family, 1);
 
-    @if ($family-name != 'bodySubset') {
-      &--#{$family-name} {
-        --c-bolt-text-font-family: var(--bolt-type-font-family-#{$family-name});
-      }
+    &--#{$family-name} {
+      --c-bolt-text-font-family: var(--bolt-type-font-family-#{$family-name});
     }
   }
 
@@ -55,17 +53,8 @@
   @each $weight in $bolt-type-font-weight-system {
     $weight-name: nth($weight, 1);
 
-    @if (
-      $weight-name !=
-        'light' and
-        $weight-name !=
-        'normal' and
-        $weight-name !=
-        'extrabold'
-    ) {
-      &--font-weight-#{$weight-name} {
-        --c-bolt-text-font-weight: var(--bolt-type-font-weight-#{$weight-name});
-      }
+    &--font-weight-#{$weight-name} {
+      --c-bolt-text-font-weight: var(--bolt-type-font-weight-#{$weight-name});
     }
   }
 
