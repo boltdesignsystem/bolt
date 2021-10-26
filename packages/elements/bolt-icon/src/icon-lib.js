@@ -5,7 +5,7 @@ import schema from '../icon.schema.json';
 export function getSvg(data, props = {}) {
   const { size, color, attributes = {} } = props;
   const classes = data.attributes.class ? data.attributes.class.split(' ') : [];
-  const userClasses = attributes.class.split(' ');
+  const userClasses = attributes.class ? attributes.class.split(' ') : [];
 
   classes.push('e-bolt-icon');
 
