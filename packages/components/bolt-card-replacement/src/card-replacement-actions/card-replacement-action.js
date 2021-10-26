@@ -59,8 +59,8 @@ class BoltCardReplacementAction extends withContext(BoltElement) {
           this.spacing && this.spacing !== 'none',
       },
     );
+    let renderedIcon;
 
-    let renderedIcon = '';
     if (this.slotMap.get('icon')) {
       renderedIcon = this.slotify('icon');
     } else if (this.external) {
@@ -81,13 +81,9 @@ class BoltCardReplacementAction extends withContext(BoltElement) {
                   this.url ? (this.external ? '_blank' : '_self') : undefined,
                 )}"
               >
-                ${this.slotify('default')}
-                ${renderedIcon !== null
-                  ? html`
-                      <span class="e-bolt-button__icon-after"
-                        >${renderedIcon}</span
-                      >
-                    `
+                ${this.slotify('default')}${renderedIcon
+                  ? // prettier-ignore
+                    html`<span class="e-bolt-button__icon-after">${renderedIcon}</span>`
                   : ''}
               </a>
             `
