@@ -26,7 +26,7 @@ describe('figure', () => {
     });
   });
 
-  test("A Figures without any `default` slotted content won't render a <figcaption>", async function () {
+  test("Figures without any `default` slotted content won't render a <figcaption>", async function() {
     const renderedFigureHTML = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
@@ -58,7 +58,7 @@ describe('figure', () => {
     expect(renderedInnerHTML).toMatchSnapshot();
   });
 
-  test('Figures renders slotted `default` and `media` content', async function () {
+  test('Figures renders slotted `default` and `media` content', async function() {
     const renderedFigureHTML = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
