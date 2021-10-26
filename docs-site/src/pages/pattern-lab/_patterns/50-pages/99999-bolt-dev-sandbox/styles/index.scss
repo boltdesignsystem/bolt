@@ -3,7 +3,7 @@
  */
 @import '@bolt/core-v3.x';
 
-.c-quick-links {
+.c-portal {
   margin-bottom: var(--bolt-spacing-y-medium);
   padding-top: var(--bolt-spacing-y-medium);
   padding-bottom: var(--bolt-spacing-y-xlarge);
@@ -18,7 +18,7 @@
   }
 }
 
-.c-quick-links__col {
+.c-portal__col {
   border: 1px solid var(--m-bolt-border);
   border-radius: bolt-border-radius(small);
 
@@ -31,12 +31,12 @@
   }
 }
 
-.c-quick-links__col-title {
+.c-portal__col-title {
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
   border-bottom: 1px solid var(--m-bolt-border);
 }
 
-.c-quick-links__skip-button {
+.c-portal__skip-button {
   position: absolute;
   top: var(--bolt-spacing-y-medium);
   right: var(--bolt-spacing-x-medium);
@@ -49,7 +49,7 @@
   }
 }
 
-.c-quick-links__skip-button--open {
+.c-portal__skip-button--open {
   display: none;
 
   @include bolt-mq(medium) {
@@ -57,7 +57,7 @@
   }
 }
 
-.c-quick-links__skip-button--mobile {
+.c-portal__skip-button--mobile {
   display: block;
 
   @include bolt-mq(medium) {
@@ -65,7 +65,7 @@
   }
 }
 
-.c-quick-links__col-inner {
+.c-portal__col-inner {
   position: relative;
   height: 45vh;
   overflow-y: scroll;
@@ -88,7 +88,7 @@
   }
 }
 
-.c-quick-links__trigger {
+.c-portal__trigger {
   @include bolt-shadow('level-20');
 
   position: fixed;
@@ -105,14 +105,14 @@
   }
 }
 
-.c-quick-links__modal {
+.c-portal__modal {
   display: block;
 
   @include bolt-mq(medium) {
     display: none;
   }
 
-  .c-quick-links__col-inner {
+  .c-portal__col-inner {
     height: 65vh;
 
     @include bolt-mq(small) {

@@ -19,9 +19,9 @@
       href: '#add-links',
       'data-bolt-modal-target': '.js-bolt-modal-content',
       class: [
-        'c-quick-links__skip-button',
+        'c-portal__skip-button',
         'u-bolt-margin-bottom-medium',
-        'c-quick-links__skip-button--open'
+        'c-portal__skip-button--open'
       ],
     }
   } only %}
@@ -35,9 +35,9 @@
       type: 'button',
       'data-bolt-modal-target': '.js-bolt-modal-content',
       class: [
-        'c-quick-links__skip-button',
+        'c-portal__skip-button',
         'u-bolt-margin-bottom-medium',
-        'c-quick-links__skip-button--mobile'
+        'c-portal__skip-button--mobile'
       ],
     }
   } only %}
@@ -50,7 +50,7 @@
       href: '#my-quick-links',
       'data-bolt-modal-target': '.js-bolt-modal-content',
       class: [
-        'c-quick-links__skip-button',
+        'c-portal__skip-button',
         'u-bolt-margin-bottom-medium',
       ],
     }
@@ -233,11 +233,11 @@
   {% endset %}
 
   {% set quick_links_content %}
-  <div id="my-quick-links" class="c-quick-links__col">
-    <div class="c-quick-links__col-title">
+  <div id="my-quick-links" class="c-portal__col">
+    <div class="c-portal__col-title">
       {{ quick_links_header  }}
     </div>
-    <div class="c-quick-links__col-inner">
+    <div class="c-portal__col-inner">
       {{ skip_button_to_add_links }}
       {{ skip_button_to_add_links_mobile }}
       {{ quick_links_list }}
@@ -246,11 +246,11 @@
   {% endset %}
 
   {% set add_links_content %}
-  <div id="add-links" class="c-quick-links__col">
-    <div class="c-quick-links__col-title">
+  <div id="add-links" class="c-portal__col">
+    <div class="c-portal__col-title">
       {{ add_links_header  }}
     </div>
-    <div class="c-quick-links__col-inner">
+    <div class="c-portal__col-inner">
       {{ skip_button_to_my_quick_links }}
       {{ add_links_list }}
     </div>
@@ -258,7 +258,7 @@
   {% endset %}
 
   {% set modal_trigger %}
-  <div class="c-quick-links__trigger t-bolt-navy">
+  <div class="c-portal__trigger t-bolt-navy">
     {% include '@bolt-elements-button/button.twig' with {
       content: 'Add items to My Quick Links',
       display: 'block',
@@ -272,7 +272,7 @@
   {% endset %}
 
   {% set modal_content %}
-  <div class="c-quick-links__modal">
+  <div class="c-portal__modal">
     {% set modal_content %}
       {{ add_links_content }}
     {% endset %}
@@ -291,7 +291,7 @@
     content: header,
   } only %}
 
-  <div class="c-quick-links">
+  <div class="c-portal">
     {{ quick_links_content }}
     {{ add_links_content }}
     {{ modal_trigger }}
