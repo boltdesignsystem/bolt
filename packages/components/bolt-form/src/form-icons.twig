@@ -5,7 +5,10 @@
     {# The invalid icon is always added; it's simply shown or hidden using CSS and javascript #}
     <li class="o-bolt-inline-list__item">
       <div class="c-bolt-input-icon--invalid">
-        <bolt-icon name="warning" size="medium"></bolt-icon>
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'warning',
+          size: 'medium'
+        } only %}
       </div>
     </li>
 
@@ -17,7 +20,10 @@
         {# The search icon is a special case; the icon itself needs to be a submit button #}
         <li class="o-bolt-inline-list__item">
           <button class="c-bolt-input-icon c-bolt-input-icon--link" type="submit">
-            <bolt-icon name="{{ icon }}" size="{{ icon_size }}"></bolt-icon>
+            {% include '@bolt-elements-icon/icon.twig' with {
+              name: icon,
+              size: icon_size
+            } only %}
           </button>
         </li>
 
@@ -25,7 +31,10 @@
 
         <li class="o-bolt-inline-list__item">
           <div class="c-bolt-input-icon">
-            <bolt-icon name="{{ icon }}" size="{{ icon_size }}"></bolt-icon>
+            {% include '@bolt-elements-icon/icon.twig' with {
+              name: icon,
+              size: icon_size
+            } only %}
           </div>
         </li>
 

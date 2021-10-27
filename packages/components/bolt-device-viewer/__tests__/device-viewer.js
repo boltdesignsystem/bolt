@@ -14,9 +14,8 @@ describe('<bolt-device-viewer> Component', () => {
         device: 'iphone8',
         orientation: 'portrait',
         color: 'white',
-        image: {
-          src: '/fixtures/device-screenshot--phone.jpg',
-        },
+        content:
+          '<img class="e-bolt-image" src="/fixtures/device-screenshot--phone.jpg" alt="alt text">',
       },
     );
     expect(results.ok).toBe(true);
@@ -62,22 +61,5 @@ describe('<bolt-device-viewer> Component', () => {
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });
-  });
-
-  test('usage with magnification', async () => {
-    const results = await render(
-      '@bolt-components-device-viewer/device-viewer.twig',
-      {
-        device: 'ipad',
-        orientation: 'portrait',
-        color: 'white',
-        image: {
-          src: '/fixtures/device-screenshot--tablet-portrait.jpg',
-        },
-        magnify: true,
-      },
-    );
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
   });
 });

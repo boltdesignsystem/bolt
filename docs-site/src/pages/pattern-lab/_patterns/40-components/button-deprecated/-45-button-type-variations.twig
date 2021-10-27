@@ -1,7 +1,7 @@
 {% include '@pl/00-deprecated-button-docs.twig' %}
 
 <bolt-banner status="success" align="start">
-  <bolt-icon name="documentation" size="medium"></bolt-icon> Please reference <a href="{{ link['elements-button-attributes'] }}" class="e-bolt-text-link"> element doc</a> instead.
+  {% include '@bolt-elements-icon/icon.twig' with { name: 'documentation', size: 'medium' } only %} Please reference <a href="{{ link['elements-button-attributes'] }}" class="e-bolt-text-link"> element doc</a> instead.
 </bolt-banner>
 
 {% set schema = bolt.data.components['@bolt-components-button'].schema %}
