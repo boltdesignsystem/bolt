@@ -41,7 +41,7 @@ describe('button', () => {
   test('Button adds target if passed via attributes', async () => {
     const results = await render('@bolt-components-button/button.twig', {
       text: 'This is a button',
-      url: 'http://google.com',
+      url: 'https://google.com',
       attributes: {
         target: '_blank',
       },
@@ -96,7 +96,7 @@ describe('button', () => {
   test('Button with "disabled" adds attr to <a>', async () => {
     const results = await render('@bolt-components-button/button.twig', {
       text: 'This is a button',
-      url: 'http://google.com',
+      url: 'https://google.com',
       disabled: true,
     });
 

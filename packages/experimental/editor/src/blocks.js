@@ -41,7 +41,7 @@ export function setupBlocks(editor) {
   //     </li>
   //     <li class="c-bolt-action-blocks__item">
   //       <bolt-action-block bolt-component="">
-  //         <a href="google.com" id="p-ade4ed2a-e1ed-41ff-9c6e-2a062fb2f237" data-google-analytics-et-processed="true" class="c-bolt-action-block"><div class="c-bolt-action-block__item c-bolt-action-block__icon">
+  //         <a href="https://google.com" id="p-ade4ed2a-e1ed-41ff-9c6e-2a062fb2f237" data-google-analytics-et-processed="true" class="c-bolt-action-block"><div class="c-bolt-action-block__item c-bolt-action-block__icon">
   //           <bolt-icon name="training" size="xlarge" background="none">
   //           </bolt-icon>
   //         </div><div class="c-bolt-action-block__item c-bolt-action-block__text">

@@ -36,7 +36,7 @@ describe('trigger', () => {
   test('Trigger with "url" renders as link', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
       content: 'Hello World',
-      url: 'http://google.com',
+      url: 'https://google.com',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -45,7 +45,7 @@ describe('trigger', () => {
   test('Trigger with "no_outline"', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
       content: 'Hello World',
-      url: 'http://google.com',
+      url: 'https://google.com',
       no_outline: true,
     });
     expect(results.ok).toBe(true);
@@ -57,7 +57,7 @@ describe('trigger', () => {
   test('Trigger with "target" attribute renders same value on <bolt-trigger> and inner <a>', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
       content: 'Hello World',
-      url: 'http://google.com',
+      url: 'https://google.com',
       attributes: {
         target: '_blank',
       },
@@ -80,7 +80,7 @@ describe('trigger', () => {
   test('Trigger with "disabled" does not add attr to <a>', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
       content: 'Hello World',
-      url: 'http://google.com',
+      url: 'https://google.com',
       disabled: true,
     });
     expect(results.ok).toBe(true);

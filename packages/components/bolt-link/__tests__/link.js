@@ -137,7 +137,7 @@ describe('link', () => {
     const renderedLinkHTML = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
-        '<div><bolt-link url="http://google.com" no-shadow>This is a link</bolt-link></div>',
+        '<div><bolt-link url="https://google.com" no-shadow>This is a link</bolt-link></div>',
       );
       const link = document.querySelector('bolt-link');
       await customElements.whenDefined('bolt-link');
@@ -161,7 +161,7 @@ describe('link', () => {
     const defaultLinkShadowRoot = await page.evaluate(async () => {
       document.body.insertAdjacentHTML(
         'beforeend',
-        '<bolt-link url="http://google.com">Link Test -- Shadow Root HTML</bolt-link>',
+        '<bolt-link url="https://google.com">Link Test -- Shadow Root HTML</bolt-link>',
       );
       const link = document.querySelector('bolt-link');
       await customElements.whenDefined('bolt-link');
@@ -172,7 +172,7 @@ describe('link', () => {
 
     const defaultLinkOuter = await page.evaluate(async () => {
       const link = document.createElement('bolt-link');
-      link.setAttribute('url', 'http://google.com');
+      link.setAttribute('url', 'https://google.com');
       link.textContent = 'Link Test -- Outer HTML';
       document.body.appendChild(link);
       await customElements.whenDefined('bolt-link');
@@ -246,7 +246,7 @@ describe('link', () => {
       // Include huge inline font-size style to increase visibility of any unexpected whitespace
       document.body.insertAdjacentHTML(
         'beforeend',
-        '<div style="font-size: 300%;">(<bolt-link url="http://google.com">Link Test -- No extra whitespace</bolt-link>)</div>',
+        '<div style="font-size: 300%;">(<bolt-link url="https://google.com">Link Test -- No extra whitespace</bolt-link>)</div>',
       );
       const link = document.querySelector('bolt-link').parentNode;
       await customElements.whenDefined('bolt-link');
