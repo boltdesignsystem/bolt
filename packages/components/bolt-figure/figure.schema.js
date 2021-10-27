@@ -33,39 +33,11 @@ module.exports = {
           type: 'any',
           description: 'Figure media content, e.g image, icon, video, etc.',
         },
-        image: {
-          title: 'DEPRECATED',
-          type: 'object',
-          description: 'Use the `content` prop instead.',
-          ref: 'image',
-        },
-        icon: {
-          title: 'DEPRECATED',
-          type: 'object',
-          description: 'Use the `content` prop instead.',
-          ref: 'icon',
-        },
-        video: {
-          title: 'DEPRECATED',
-          type: 'object',
-          description: 'Use the `content` prop instead.',
-          ref: 'video',
-        },
-        table: {
-          title: 'DEPRECATED',
-          type: 'object',
-          description: 'Use the `content` prop instead.',
-          ref: 'table',
-        },
       },
     },
     caption: {
       type: ['string', 'object', 'array'],
       description: 'Caption for the figure.',
-    },
-    content: {
-      title: 'DEPRECATED',
-      description: 'Figure contains no content. Only media and caption.',
     },
   },
 };

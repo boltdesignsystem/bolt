@@ -4,9 +4,20 @@
 @import '@bolt/core-v3.x';
 
 /**
+ * Status prop
+ * @todo: we don't have a good way to create more themes on the fly. We should consider creating 'Light Mode' and 'Dark Mode', then background-color can be set separately.
+ * 1. Overriding the old theme colors.
+ * 2. Overriding the new mode colors. These will take effect once we convert all things to use mode colors instead of theme.
+ */
+
+/**
  * Register custom element
  */
 @include bolt-repeat-rule(('bolt-banner', ':host(bolt-banner)')) {
+  --m-bolt-text: var(--bolt-color-info-dark); /* [2] */
+  --m-bolt-headline: var(--bolt-color-info-dark); /* [2] */
+  --m-bolt-link: var(--bolt-color-info-dark); /* [2] */
+
   display: block;
 
   &:not(:last-child) {
@@ -19,12 +30,6 @@
   padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
 }
 
-/**
- * Status prop
- * @todo: we don't have a good way to create more themes on the fly. We should consider creating 'Light Mode' and 'Dark Mode', then background-color can be set separately.
- * 1. Overriding the old theme colors.
- * 2. Overriding the new mode colors. These will take effect once we convert all things to use mode colors instead of theme.
- */
 @include bolt-repeat-rule(
   (
     'bolt-banner[status=error]',

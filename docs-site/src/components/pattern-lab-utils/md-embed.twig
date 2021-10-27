@@ -1,7 +1,7 @@
 {# `file` - path to markdown content, like `@bolt-footer/readme.md` #}
 <div class="c-bds-md-embed">
   <a href="{{ github_url(file) }}" class="c-bds-md-embed__edit" target="_blank">
-    <bolt-icon name="pencil"></bolt-icon>
+    {% include '@bolt-elements-icon/icon.twig' with { name: 'pencil' } only %}
     Edit this on GitHub
   </a>
   <div class="c-bds-md-embed__content">

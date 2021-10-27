@@ -4,60 +4,53 @@
 
 {% block main_content %}
   {% set feature_band_content %}
-    {% include '@bolt/ui-list.twig' with {
-      contentItems : [
-        {
-          contentItems: [
-            {
-              pattern: 'eyebrow',
-              text: 'オペレーショナルエクセレンス'
-            },
-            {
-              pattern: 'headline',
-              text: 'コーディングをやめます。設計を始めます。',
-              size: 'large',
-              url: 'https://www.google.com',
-              icon: {
-                name: 'chevron-right'
-              }
-            }
-          ]
-        },
-        {
-          contentItems: [
-            {
-              pattern: 'eyebrow',
-              text: '顧客維持'
-            },
-            {
-              pattern: 'headline',
-              text: '個別の対応を、違和感なく。',
-              size: 'large',
-              url: 'https://www.google.com',
-              icon: {
-                name: 'chevron-right'
-              }
-            }
-          ]
-        },
-        {
-          contentItems: [
-            {
-              pattern: 'eyebrow',
-              text: '顧客サービス'
-            },
-            {
-              pattern: 'headline',
-              text: 'シームレス性。オムニチャネル。',
-              size: 'large',
-              url: 'https://www.google.com',
-              icon: {
-                name: 'chevron-right'
-              }
-            }
-          ]
-        }
-      ]
+    {% set list_item_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'オペレーショナルエクセレンス',
+      } only %}
+
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'コーディングをやめます。設計を始めます。',
+        url: 'https://www.google.com',
+        icon: 'chevron-right',
+        size: 'large'
+      } only %}
+    {% endset %}
+
+    {% set list_item_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: '顧客維持',
+      } only %}
+
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: '個別の対応を、違和感なく。',
+        url: 'https://www.google.com',
+        icon: 'chevron-right',
+        size: 'large'
+      } only %}
+    {% endset %}
+
+    {% set list_item_3 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: '顧客サービス',
+      } only %}
+
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'シームレス性。オムニチャネル。',
+        url: 'https://www.google.com',
+        icon: 'chevron-right',
+        size: 'large'
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-list/list.twig' with {
+      items: [
+        list_item_1,
+        list_item_2,
+        list_item_3,
+      ],
+      spacing: 'medium',
+      separator: 'solid'
     } %}
   {% endset %}
 
@@ -129,7 +122,7 @@
         {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-flex-grow' %}
           {% grid %}
             {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-              {% include '@bolt/eyebrow.twig' with {
+              {% include '@bolt-components-headline/eyebrow.twig' with {
                 text: 'ペガジャパン株式会社とは？',
               } only %}
               {% include '@bolt-components-headline/text.twig' with {
@@ -184,7 +177,7 @@
     full_bleed: true
   } only %}
     {% block band_content %}
-      {% include '@bolt/headline.twig' with {
+      {% include '@bolt-components-headline/headline.twig' with {
         text: '今日はどんなお手伝いをしましょうか？',
         size: 'xlarge',
         align: 'center',
@@ -277,83 +270,65 @@
     contentItems: [
       {
         pattern: 'card',
-        contentItems: [
-          {
-            pattern: 'image',
+        media: {
+          image: {
             src: '/images/content/promos/promo-16x9-forrester.jpg'
           },
+        },
+        body: {
+          headline: 'iBPMSでの2017MAGIC QUADRANT',
+          paragraph: 'Gartnerは、最新のiBPMSレポートにおいてペガがトップであることを認めています。',
+        },
+        actions: [
           {
-            pattern: 'headline',
-            text: 'iBPMSでの2017MAGIC QUADRANT',
-            size: 'large',
-            tag: 'h3'
-          },
-          {
-            pattern: 'text',
-            text: 'Gartnerは、最新のiBPMSレポートにおいてペガがトップであることを認めています。'
-          },
-          {
-            pattern: 'button',
-            width: 'full',
             text: 'レポートを読む',
-            hierarchy: 'text'
-          }
+            hierarchy: 'secondary',
+            url: '#!',
+          },
         ]
       },
       {
         pattern: 'card',
-        contentItems: [
-          {
-            pattern: 'image',
+        media: {
+          image: {
             src: '/images/content/promos/promo-16x9-anthem.jpg'
           },
+        },
+        body: {
+          headline: 'Robotics and AI Are Changing the World of Work',
+          paragraph: 'Marketforce の最近の調査によると、上級管理者の 69% が労働力の一環として知能機械の導入を考えていることがわかりました。',
+        },
+        actions: [
           {
-            pattern: 'headline',
-            text: 'Robotics and AI Are Changing the World of Work',
-            size: 'large',
-            tag: 'h3'
-          },
-          {
-            pattern: 'text',
-            text: 'Marketforce の最近の調査によると、上級管理者の 69% が労働力の一環として知能機械の導入を考えていることがわかりました。'
-          },
-          {
-            pattern: 'button',
-            width: 'full',
             text: '発見を探索',
-            hierarchy: 'text'
-          }
+            hierarchy: 'secondary',
+            url: '#!',
+          },
         ]
       },
       {
         pattern: 'card',
-        contentItems: [
-          {
-            pattern: 'image',
+        media: {
+          image: {
             src: '/images/content/promos/promo-16x9-ai.jpg'
           },
+        },
+        body: {
+          headline: 'トランサヴィア：エンドツーエンドのカスタマージャーニー',
+          paragraph: 'Marketforce の最近の調査によると、上級管理者の 69% が労働力の一環として知能機械の導入を考えていることがわかりました。',
+        },
+        actions: [
           {
-            pattern: 'headline',
-            text: 'トランサヴィア：エンドツーエンドのカスタマージャーニー',
-            size: 'large',
-            tag: 'h3'
-          },
-          {
-            pattern: 'text',
-            text: 'トランサヴィアはPega CRMのカスタマージャーニー全体を通じて同社のサービスやセールスを提供しています。'
-          },
-          {
-            pattern: 'button',
-            width: 'full',
             text: '事例を見る',
-            hierarchy: 'text'
-          }
+            hierarchy: 'secondary',
+            url: '#!',
+          },
         ]
-      }
+      },
     ]
   } %}
     {% block band_content %}
-      {% include '@bolt/headline.twig' with {
+      {% include '@bolt-components-headline/headline.twig' with {
         text: 'トレンドとは',
         size: 'xlarge',
         align: 'center',
@@ -380,7 +355,7 @@
             } only %}
           {% endcell %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-6/12@small' %}
-            {% include '@bolt/headline.twig' with {
+            {% include '@bolt-components-headline/headline.twig' with {
               text: '誇大広告のSalesforce.comの本当に代わりとなるもの：Pega CRM',
               size: 'xlarge',
               tag: 'h3'
@@ -388,7 +363,7 @@
             {% include '@bolt-components-headline/text.twig' with {
               text: 'Salesforce.comをご検討中ですか？誇大宣伝を信じてはいけません。現代のトップ企業がぺガを選ぶ理由をご覧ください。'
             } only %}
-            {% include '@bolt/button.twig' with {
+            {% include '@bolt-components-button/button.twig' with {
               text: '本物を知る',
               hierarchy: 'primary',
               size: 'small'

@@ -42,7 +42,7 @@
           {% endif %}
 
           {% set _icon %}
-            {% include '@bolt-components-icon/icon.twig' with _icon_props only %}
+            {% include '@bolt-elements-icon/icon.twig' with _icon_props only %}
           {% endset %}
 
           {% set _button_props = _button_props|merge({ icon_after: _icon }) %}

@@ -1,20 +1,22 @@
 {% include '@pl/00-layout-docs.twig' %}
 
 {% set notes %}
+{% spaceless %}
   <bolt-ol>
     <bolt-li>If vertical alignment is set, layout items cannot match each other&rsquo;s height even if 100% height is used. Do not use this prop if equal height layout items are desired.</bolt-li>
     <bolt-li>This prop is only effective in a multi-column layout.</bolt-li>
     <bolt-li>For regular options, they are only effective when applied to the shorter item.</bolt-li>
     <bolt-li>For advanced usage, the offset options can even offset the top or bottom padding of the layout. This is useful when a design calls for a layout item to touch the edge of the layout.</bolt-li>
-    <bolt-li>If you intend to vertically align all layout items uniformly, please use the prop on the layout level. <a href="{{ link['layouts-layout-vertical-alignment'] }}" class="e-bolt-text-link">View layout vertical alignment<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+    <bolt-li>If you intend to vertically align all layout items uniformly, please use the prop on the layout level. <a href="{{ link['layouts-layout-vertical-alignment'] }}" class="e-bolt-text-link">View layout vertical alignment<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a></bolt-li>
   </bolt-ol>
+{% endspaceless %}
 {% endset %}
 
 {% set demo %}
   <bolt-tabs inset="off">
     <bolt-tab-panel>
       <bolt-text slot="label">Regular Alignments</bolt-text>
-      
+
       <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Vertically aligned itself start</bolt-text>
       <bolt-layout template="halves" padding-top="none">
         <bolt-layout-item valign-self="start">

@@ -82,7 +82,7 @@
 {% set iconBefore %}{% apply spaceless %}
   {% if icon and not url and iconPosition == "before" %}
     <span class="c-bolt-headline__icon c-bolt-headline__icon--position-before">
-      {% include "@bolt-components-icon/icon.twig" with icon only %}
+      {% include "@bolt-elements-icon/icon.twig" with icon only %}
     </span>
   {% endif %}
 {% endapply %}{% endset %}
@@ -90,7 +90,7 @@
 {% set iconAfter %}{% apply spaceless %}
   {% if icon and not url and iconPosition != "before" %}
     <span class="c-bolt-headline__icon c-bolt-headline__icon--position-after">
-      {% include "@bolt-components-icon/icon.twig" with icon only %}
+      {% include "@bolt-elements-icon/icon.twig" with icon only %}
     </span>
   {% endif %}
 {% endapply %}{% endset %}
@@ -125,7 +125,7 @@
 
     {% if icon %}
       {% set _icon_rendered %}
-        {% include '@bolt-components-icon/icon.twig' with icon only %}
+        {% include '@bolt-elements-icon/icon.twig' with icon only %}
       {% endset %}
 
       {% if iconPosition == 'before' %}

@@ -14,5 +14,5 @@
 {% endfor %}
 
 <bolt-banner align="start" status="warning">
-  <bolt-icon name="warning"></bolt-icon> Headline and subheadline have predefined weights, do not modify them without consulting a designer.
+  {% include '@bolt-elements-icon/icon.twig' with { name: 'warning' } only %} Headline and subheadline have predefined weights, do not modify them without consulting a designer.
 </bolt-banner>

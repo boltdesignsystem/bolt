@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/boltdesignsystem/bolt/tree/master/packages/elements/bolt-printable/compare/v4.5.1...v4.6.0) (2021-10-12)
+
+**Note:** Version bump only for package @bolt/elements-printable
+
+
+
+
+
 # [4.4.0](https://github.com/boltdesignsystem/bolt/tree/master/packages/elements/bolt-printable/compare/v4.3.0...v4.4.0) (2021-09-13)
 
 **Note:** Version bump only for package @bolt/elements-printable
