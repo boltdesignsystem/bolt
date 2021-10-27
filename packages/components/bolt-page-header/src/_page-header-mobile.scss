@@ -391,15 +391,10 @@
     }
   }
 
-  // Overrides nofitications to account for the mobile CTA
+  // Notifications specific overrides
   .c-bolt-page-header {
     .c-base-notifications {
-      padding-bottom: $bolt-page-header-click-target-size;
-    }
-
-    .c-base-notifications__header,
-    .c-base-notifications__footer {
-      position: relative;
+      padding-bottom: $bolt-page-header-click-target-size; // Overrides spacing to account for the mobile CTA in page
     }
   }
 }

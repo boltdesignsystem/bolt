@@ -637,6 +637,30 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: var(--bolt-spacing-x-small);
   }
+
+  // Notifications specific overrides
+  .c-bolt-page-header {
+    .c-base-notifications__list {
+      z-index: 0; // Lower stacking order than header and footer.
+    }
+
+    // Make notifications header and footer sticky in the desktop popover
+    .c-base-notifications__header,
+    .c-base-notifications__footer {
+      position: sticky;
+      right: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .c-base-notifications__header {
+      top: 0;
+    }
+
+    .c-base-notifications__footer {
+      bottom: 0;
+    }
+  }
 }
 
 @include bolt-mq($from: xlarge) {

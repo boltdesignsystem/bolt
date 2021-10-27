@@ -188,57 +188,49 @@
       {{ placeholder_item }}
     </ul>
     <footer class="c-base-notifications__footer">
-      <a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline e-bolt-text-link--expand-click-target">View all notificatoins</a>
+      {% include '@bolt-components-pagination/pagination.twig' with {
+        current: 5,
+        total: 10,
+        first: {
+          href: '#!'
+        },
+        previous: {
+          href: '#!'
+        },
+        pages: {
+          3: {
+            href: '#!'
+          },
+          4: {
+            href: '#!'
+          },
+          5: {
+            href: '#!'
+          },
+          6: {
+            href: '#!'
+          },
+          7: {
+            href: '#!'
+          }
+        },
+        next: {
+          href: '#!'
+        },
+        last: {
+          href: '#!'
+        }
+      } only %}
     </footer>
   </div>
 {% endset %}
-
-<bolt-layout padding-top="large" padding-bottom="large" template="tiles">
-  <bolt-layout-item>
-    {% set trigger %}
-      {% include '@bolt-elements-button/button.twig' with {
-        content: 'See notifications popover (light)',
-        attributes: {
-          type: 'button'
-        }
-      } only %}
-    {% endset %}
-
-    {% include '@bolt-components-popover/popover.twig' with {
-      trigger: trigger,
-      content: notifications,
-      spacing: 'none',
-      attributes: {
-        style: '--c-bolt-popover-bubble-width: 320px;'
-      },
-    } only %}
-  </bolt-layout-item>
-  <bolt-layout-item>
-    {% set trigger %}
-      {% include '@bolt-elements-button/button.twig' with {
-        content: 'See notifications popover (dark)',
-        attributes: {
-          type: 'button'
-        }
-      } only %}
-    {% endset %}
-
-    {% include '@bolt-components-popover/popover.twig' with {
-      trigger: trigger,
-      content: notifications,
-      spacing: 'none',
-      theme: 'dark',
-      attributes: {
-        style: '--c-bolt-popover-bubble-width: 320px;'
-      },
-    } only %}
-  </bolt-layout-item>
-</bolt-layout>
 
 <bolt-layout padding-top="large" padding-bottom="large" class="t-bolt-gray-xlight">
   <bolt-layout-item>
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Notifications',
+      size: 'xxlarge',
+      tag: 'h2',
     } only %}
   </bolt-layout-item>
   <bolt-layout-item>
@@ -250,6 +242,8 @@
   <bolt-layout-item>
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Notifications',
+      size: 'xxlarge',
+      tag: 'h2',
     } only %}
   </bolt-layout-item>
   <bolt-layout-item>

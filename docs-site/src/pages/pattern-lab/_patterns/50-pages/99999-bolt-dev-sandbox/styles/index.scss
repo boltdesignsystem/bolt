@@ -3,8 +3,8 @@
  */
 
 .c-base-notifications__list {
+  display: block;
   position: relative;
-  z-index: 0; // Lower stacking order than header and footer.
   margin: 0;
   padding: 0;
   font-family: var(--bolt-type-font-family-body);
@@ -170,10 +170,6 @@
 
 .c-base-notifications__header,
 .c-base-notifications__footer {
-  position: sticky;
-  right: 0;
-  left: 0;
-  z-index: 1;
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   font-family: var(--bolt-type-font-family-headline);
   font-size: var(--bolt-type-font-size-small);
@@ -188,7 +184,6 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  top: 0;
   border-bottom: 1px solid var(--m-bolt-border);
   gap: var(--bolt-spacing-x-medium);
   row-gap: var(--bolt-spacing-x-small);
@@ -219,6 +214,7 @@
   @include bolt-text-link;
 
   display: flex;
+  position: relative;
   text-decoration: none;
   gap: var(--bolt-spacing-x-xsmall);
 
@@ -230,12 +226,37 @@
 
 .c-base-notifications__action-button-text {
   @include bolt-mq(large) {
-    @include bolt-visuallyhidden;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    transform: translate3d(var(--bolt-spacing-x-xxsmall), -100%, 0);
+    z-index: bolt-z-index(popover);
+    padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xsmall);
+    font-family: var(--bolt-type-font-family-headline);
+    font-size: var(--bolt-type-font-size-xsmall);
+    font-weight: var(--bolt-type-font-weight-semibold);
+    color: var(--m-bolt-bg);
+    line-height: var(--bolt-type-line-height-xsmall);
+    border-radius: bolt-border-radius(small);
+    background-color: var(--m-bolt-text);
+    transition: transform var(--bolt-transition), opacity var(--bolt-transition);
+    white-space: nowrap;
+
+    @at-root .c-base-notifications__action-button:hover #{&} {
+      visibility: visible;
+      opacity: 1;
+      transform: translate3d(
+        var(--bolt-spacing-x-xxsmall),
+        var(--bolt-spacing-y-xxsmall),
+        0
+      );
+    }
   }
 }
 
 .c-base-notifications__footer {
-  bottom: 0;
   text-align: center;
   border-top: 1px solid var(--m-bolt-border);
 }
