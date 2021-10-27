@@ -595,7 +595,7 @@ class BoltTabs extends withContext(BoltElement) {
             @keyup=${e => this.handleOnKeyup(e)}
           >
             <span class="${cx('c-bolt-tabs__show-text')}">
-              ${this.moreText ? this.moreText : 'More'}
+              ${this.dataset.boltMoreText || 'More'}
             </span>
             <span class="${cx('c-bolt-tabs__show-icon')}">
               <bolt-icon name="chevron-down"></bolt-icon>

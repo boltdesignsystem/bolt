@@ -3,5 +3,5 @@ Stylistic video. Part of the Bolt “Components” CSS framework that powers the
 ###### Install via NPM
 
 ```
-npm install @bolt/video
+npm install @bolt/components-video
 ```
