@@ -51,17 +51,17 @@
     color: var(--m-bolt-neutral);
   }
 
-  .c-base-notifications__content__eyebrow,
-  .c-base-notifications__content__timestamp,
-  .c-base-notifications__content__message {
+  .c-base-notifications__eyebrow,
+  .c-base-notifications__timestamp,
+  .c-base-notifications__message {
     font-weight: var(--bolt-type-font-weight-regular);
   }
 
-  .c-base-notifications__content__timestamp {
+  .c-base-notifications__timestamp {
     color: var(--m-bolt-neutral);
   }
 
-  .c-base-notifications__content__timestamp:after {
+  .c-base-notifications__timestamp:after {
     visibility: hidden;
   }
 }
@@ -98,17 +98,17 @@
   }
 }
 
-.c-base-notifications__content__eyebrow,
-.c-base-notifications__content__timestamp {
+.c-base-notifications__eyebrow,
+.c-base-notifications__timestamp {
   font-family: var(--bolt-type-font-family-headline);
 }
 
-.c-base-notifications__content__eyebrow {
+.c-base-notifications__eyebrow {
   white-space: nowrap;
   color: var(--m-bolt-neutral);
 }
 
-.c-base-notifications__content__timestamp {
+.c-base-notifications__timestamp {
   color: var(--m-bolt-primary);
 
   &:after {
@@ -124,7 +124,7 @@
   }
 }
 
-.c-base-notifications__content__message {
+.c-base-notifications__message {
   width: 100%;
   color: inherit;
   text-decoration: none;
@@ -160,7 +160,7 @@
   }
 }
 
-.c-base-notifications__content__message__callout {
+.c-base-notifications__callout {
   color: var(--m-bolt-link);
 
   @at-root .c-base-notifications__content:hover #{&} {
@@ -193,18 +193,18 @@
   gap: var(--bolt-spacing-x-medium);
   row-gap: var(--bolt-spacing-x-small);
 
-  @include bolt-mq(medium) {
+  @include bolt-mq(large) {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: var(--bolt-spacing-x-small);
   }
 }
 
-.c-base-notifications__header__switch {
+.c-base-notifications__switch {
   white-space: nowrap;
 }
 
-.c-base-notifications__header__actions {
+.c-base-notifications__actions {
   display: grid;
   justify-items: center;
   gap: var(--bolt-spacing-x-small);
@@ -214,7 +214,7 @@
   }
 }
 
-.c-base-notifications__header__action-button {
+.c-base-notifications__action-button {
   @include bolt-button-native-styles-reset;
   @include bolt-text-link;
 
@@ -228,7 +228,7 @@
   }
 }
 
-.c-base-notifications__header__action-button__text {
+.c-base-notifications__action-button-text {
   @include bolt-mq(large) {
     @include bolt-visuallyhidden;
   }

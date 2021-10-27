@@ -667,14 +667,14 @@
         } only %}
       </div>
       <div class="c-base-notifications__content">
-        <div class="c-base-notifications__content__eyebrow">
+        <div class="c-base-notifications__eyebrow">
           Site Name
         </div>
-        <div class="c-base-notifications__content__timestamp">
+        <div class="c-base-notifications__timestamp">
           2 days ago
         </div>
-        <a href="https://pega.com" class="c-base-notifications__content__message">
-          The notificatoin message goes here. It may have <span class="c-base-notifications__content__message__callout">1 callout that looks like a link</span>, but the entire row is clickable and points to a single link.
+        <a href="https://pega.com" class="c-base-notifications__message">
+          The notificatoin message goes here. It may have <span class="c-base-notifications__callout">1 callout that looks like a link</span>, but the entire row is clickable and points to a single link.
         </a>
       </div>
     </li>
@@ -688,13 +688,13 @@
         } only %}
       </div>
       <div class="c-base-notifications__content">
-        <div class="c-base-notifications__content__eyebrow">
+        <div class="c-base-notifications__eyebrow">
           Site Name
         </div>
-        <div class="c-base-notifications__content__timestamp">
+        <div class="c-base-notifications__timestamp">
           2 days ago
         </div>
-        <a href="https://pega.com" class="c-base-notifications__content__message">
+        <a href="https://pega.com" class="c-base-notifications__message">
           Each message can have a read or unread state. This one is read.
         </a>
       </div>
@@ -703,7 +703,7 @@
   
   <div class="c-base-notifications">
     <header class="c-base-notifications__header">
-      <div class="c-base-notifications__header__switch">
+      <div class="c-base-notifications__switch">
         {% include '@bolt-components-switch-button/switch-button.twig' with {
           label: 'Only show unread notifications',
           attributes: {
@@ -723,23 +723,17 @@
           });
         </script>
       </div>
-      <div class="c-base-notifications__header__actions">
+      <div class="c-base-notifications__actions">
         {% set icon_check_circle %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'check-circle',
             size: 'medium',
           } only %}
         {% endset %}
-        {% set tooltip_trigger %}
-          <button class="c-base-notifications__header__action-button" type="button">
-            {{ icon_check_circle }}
-            <span class="c-base-notifications__header__action-button__text">Mark all as read</span>
-          </button>
-        {% endset %}
-        {% include '@bolt-components-tooltip/tooltip.twig' with {
-          trigger: tooltip_trigger,
-          content: 'Mark all as read',
-        } only %}
+        <button class="c-base-notifications__action-button" type="button">
+          {{ icon_check_circle }}
+          <span class="c-base-notifications__action-button-text">Mark all as read</span>
+        </button>
 
         {% set icon_pega_setting %}
           {% include '@bolt-elements-icon/icon.twig' with {
@@ -747,16 +741,10 @@
             size: 'medium',
           } only %}
         {% endset %}
-        {% set tooltip_trigger %}
-          <a class="c-base-notifications__header__action-button" href="https://pega.com">
-            {{ icon_pega_setting }}
-            <span class="c-base-notifications__header__action-button__text">Notification Settings</span>
-          </a>
-        {% endset %}
-        {% include '@bolt-components-tooltip/tooltip.twig' with {
-          trigger: tooltip_trigger,
-          content: 'Notification Settings',
-        } only %}
+        <a class="c-base-notifications__action-button" href="https://pega.com">
+          {{ icon_pega_setting }}
+          <span class="c-base-notifications__action-button-text">Notification Settings</span>
+        </a>
       </div>
     </header>
     <ul class="c-base-notifications__list">
@@ -771,14 +759,14 @@
           } only %}
         </div>
         <div class="c-base-notifications__content">
-          <div class="c-base-notifications__content__eyebrow">
+          <div class="c-base-notifications__eyebrow">
             Pega.com
           </div>
-          <div class="c-base-notifications__content__timestamp">
+          <div class="c-base-notifications__timestamp">
             1 minute ago
           </div>
-          <a href="https://pega.com" class="c-base-notifications__content__message">
-             <span class="c-base-notifications__content__message__callout">New Gartner CRM CEC Magic Quadrant analyst report</span> is published.
+          <a href="https://pega.com" class="c-base-notifications__message">
+             <span class="c-base-notifications__callout">New Gartner CRM CEC Magic Quadrant analyst report</span> is published.
           </a>
         </div>
       </li>
@@ -792,14 +780,14 @@
           } only %}
         </div>
         <div class="c-base-notifications__content">
-          <div class="c-base-notifications__content__eyebrow">
+          <div class="c-base-notifications__eyebrow">
             Collaboration Center
           </div>
-          <div class="c-base-notifications__content__timestamp">
+          <div class="c-base-notifications__timestamp">
             2 minutes ago
           </div>
-          <a href="https://pega.com" class="c-base-notifications__content__message">
-            Aneesh Borah, Matt Alley and 2 others liked your idea, <span class="c-base-notifications__content__message__callout">Multi-datacenter setup in 8.6.1 with two Openshift clusters</span>.
+          <a href="https://pega.com" class="c-base-notifications__message">
+            Aneesh Borah, Matt Alley and 2 others liked your idea, <span class="c-base-notifications__callout">Multi-datacenter setup in 8.6.1 with two Openshift clusters</span>.
           </a>
         </div>
       </li>
@@ -811,13 +799,13 @@
           } only %}
         </div>
         <div class="c-base-notifications__content">
-          <div class="c-base-notifications__content__eyebrow">
+          <div class="c-base-notifications__eyebrow">
             Community
           </div>
-          <div class="c-base-notifications__content__timestamp">
+          <div class="c-base-notifications__timestamp">
             5 minutes ago
           </div>
-          <a href="https://pega.com" class="c-base-notifications__content__message">
+          <a href="https://pega.com" class="c-base-notifications__message">
             There will be a site-wide maintenance scheduled for Wednesday, September 15, 2021 from 1&ndash;4PM EST.
           </a>
         </div>
@@ -830,14 +818,14 @@
           } only %}
         </div>
         <div class="c-base-notifications__content">
-          <div class="c-base-notifications__content__eyebrow">
+          <div class="c-base-notifications__eyebrow">
             Academy
           </div>
-          <div class="c-base-notifications__content__timestamp">
+          <div class="c-base-notifications__timestamp">
             6 minutes ago
           </div>
-          <a href="https://pega.com" class="c-base-notifications__content__message">
-            A mission you follow has been updated: <span class="c-base-notifications__content__message__callout">Pega Robotic Automation</span>.
+          <a href="https://pega.com" class="c-base-notifications__message">
+            A mission you follow has been updated: <span class="c-base-notifications__callout">Pega Robotic Automation</span>.
           </a>
         </div>
       </li>
