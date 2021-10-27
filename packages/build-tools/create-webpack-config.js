@@ -18,6 +18,8 @@ const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 const {
   webpackStats,
   statsPreset,
@@ -319,6 +321,7 @@ async function createWebpackConfig(buildConfig) {
       }),
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
       new webpack.NoEmitOnErrorsPlugin(),
+      new BundleAnalyzerPlugin(),
     ],
   };
 
