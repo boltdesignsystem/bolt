@@ -39,12 +39,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>Bolt Design System</title>
 
-    <link rel="preconnect" href="https://www.google-analytics.com">
-    <link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/>
+    <!-- link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/ -->
 
     <!-- async load PL's CSS -->
     <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
-    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'" -->
 
     {# shared critical path scripts #}
     <script>
@@ -62,9 +62,9 @@
 
     <script type="module" src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
 
-    <noscript>
+    <!-- noscript>
       <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
-    </noscript>
+    </noscript -->
 
     <link rel="image_src" href="/images/bolt-logo-480.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=LbyzAXRqNz">
