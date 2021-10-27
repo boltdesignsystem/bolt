@@ -5,6 +5,7 @@ import schema from '../icon.schema.json';
 export function getSvg(data, props = {}) {
   const { size, color, attributes = {} } = props;
   const classes = data.attributes.class ? data.attributes.class.split(' ') : [];
+  const userClasses = attributes.class ? attributes.class.split(' ') : [];
 
   classes.push('e-bolt-icon');
 
@@ -15,6 +16,10 @@ export function getSvg(data, props = {}) {
 
   if (color && schema.properties.color.enum.includes(color)) {
     classes.push(`e-bolt-icon--${color}`);
+  }
+
+  if (userClasses.length) {
+    classes.push(...userClasses);
   }
 
   const svgData = {

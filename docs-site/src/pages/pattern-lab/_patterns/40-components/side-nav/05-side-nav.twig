@@ -3,16 +3,18 @@
 {% endset %}
 
 {% set notes %}
+{% spaceless %}
   <bolt-ol>
     <bolt-li>Although nesting is possible, it is not recommended to go more than 4 levels deep.</bolt-li>
     <bolt-li>Side nav is intended to be used as the left sidebar of a <a href="{{ link['viewall-layouts-holy-grail'] }}" class="e-bolt-text-link">Holy Grail layout</a>.</bolt-li>
-    <bolt-li>Tech Doc is a great example of using Holy Grail layout, Site layout, Side Nav, Content Pagination, and Article element together. <a href="{{ link['pages-community-doc-layout'] }}" class="e-bolt-text-link">View demo<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+    <bolt-li>Tech Doc is a great example of using Holy Grail layout, Site layout, Side Nav, Content Pagination, and Article element together. <a href="{{ link['pages-community-doc-layout'] }}" class="e-bolt-text-link">View demo<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a></bolt-li>
   </bolt-ol>
+{% endspaceless %}
 {% endset %}
 
 {% set demo %}
   {% set icon_external_link %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'external-link',
     } only %}
   {% endset %}
@@ -102,7 +104,7 @@
 // List item template
 {% set list_items %}
   {% set icon_external_link %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'external-link',
     } only %}
   {% endset %}

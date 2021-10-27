@@ -1,4 +1,10 @@
-import { customElement, BoltElement, html, unsafeCSS } from '@bolt/element';
+import {
+  customElement,
+  BoltElement,
+  html,
+  unsafeCSS,
+  unsafeHTML,
+} from '@bolt/element';
 import {
   containsTagName,
   getUniqueId,
@@ -9,7 +15,9 @@ import { withContext } from 'wc-context/lit-element';
 
 import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
+import { iconChevronDown } from '@bolt/elements-icon';
 import classNames from 'classnames/bind';
+import iconStyles from '@bolt/elements-icon/index.scss';
 import styles from './tabs.scss';
 import schema from '../tabs.schema';
 
@@ -49,7 +57,7 @@ class BoltTabs extends withContext(BoltElement) {
   }
 
   static get styles() {
-    return [unsafeCSS(styles)];
+    return [unsafeCSS(styles), unsafeCSS(iconStyles)];
   }
 
   connectedCallback() {
@@ -598,7 +606,7 @@ class BoltTabs extends withContext(BoltElement) {
               ${this.dataset.boltMoreText || 'More'}
             </span>
             <span class="${cx('c-bolt-tabs__show-icon')}">
-              <bolt-icon name="chevron-down"></bolt-icon>
+              ${unsafeHTML(iconChevronDown())}
             </span>
           </button>
           <div class="${cx('c-bolt-tabs__dropdown')}">

@@ -46,7 +46,7 @@
       ],
     } only %}
     <bolt-banner align="start" status="warning">
-      <bolt-icon name="warning"></bolt-icon> The media container will crop the image and video is not supported.
+      {% include '@bolt-elements-icon/icon.twig' with { name: 'warning' } only %} The media container will crop the image and video is not supported.
     </bolt-banner>
   {% endcell %}
 {% endgrid %}
@@ -107,7 +107,7 @@
       mode: 'dark',
     } only %}
     <bolt-banner align="start">
-      <bolt-icon name="info-open"></bolt-icon> <strong>Design recommendations:</strong> 1) use a square image or video; 2) make the headline and/or the whole card clickable; 3) set spacing prop to small.
+      {% include '@bolt-elements-icon/icon.twig' with { name: 'info-circle' } only %} <strong>Design recommendations:</strong> 1) use a square image or video; 2) make the headline and/or the whole card clickable; 3) set spacing prop to small.
     </bolt-banner>
   {% endcell %}
 
@@ -117,7 +117,7 @@
         {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
           {% cell 'o-bolt-grid__cell' %}
             {% include '@bolt-elements-image/image.twig' with {
-              attributes: {      
+              attributes: {
                 src: '/images/placeholders/thumb-square-abstract.jpg',
                 alt: 'Image alt',
                 style: 'max-width:' ~ width,
