@@ -15,7 +15,7 @@ import { withContext } from 'wc-context/lit-element';
 
 import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
-import { iconChevronDown } from '@bolt/elements-icon';
+import { iconChevronDown } from '@bolt/elements-icon/src/icons/js/chevron-down';
 import classNames from 'classnames/bind';
 import iconStyles from '@bolt/elements-icon/index.scss';
 import styles from './tabs.scss';

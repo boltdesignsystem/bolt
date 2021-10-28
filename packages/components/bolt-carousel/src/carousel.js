@@ -19,7 +19,8 @@ import {
 // Install modules
 Swiper.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
-import { iconChevronLeft, iconChevronRight } from '@bolt/elements-icon';
+import { iconChevronLeft } from '@bolt/elements-icon/src/icons/js/chevron-left';
+import { iconChevronRight } from '@bolt/elements-icon/src/icons/js/chevron-right';
 import iconStyles from '@bolt/elements-icon/index.scss';
 import styles from '../index.scss';
 import schema from '../carousel.schema';

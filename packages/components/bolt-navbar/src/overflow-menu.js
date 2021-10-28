@@ -1,5 +1,5 @@
 import { html, render, unsafeCSS, unsafeHTML } from '@bolt/element';
-import { iconChevronDown } from '@bolt/elements-icon';
+import { iconChevronDown } from '@bolt/elements-icon/src/icons/js/chevron-down';
 import '@bolt/core-v3.x/utils/optimized-resize';
 
 // @todo this JS could be shared between Navbar and Tabs, nothing Navbar-specific here

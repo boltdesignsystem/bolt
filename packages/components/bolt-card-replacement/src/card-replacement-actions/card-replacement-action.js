@@ -7,7 +7,8 @@ import {
 } from '@bolt/element';
 import { withContext } from 'wc-context/lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { iconChevronRight, iconExternalLink } from '@bolt/elements-icon';
+import { iconChevronRight } from '@bolt/elements-icon/src/icons/js/chevron-right';
+import { iconExternalLink } from '@bolt/elements-icon/src/icons/js/external-link';
 import classNames from 'classnames/bind';
 import globalStyles from '@bolt/global/styles/03-generic/_generic-global.scss';
 import iconStyles from '@bolt/elements-icon/index.scss';

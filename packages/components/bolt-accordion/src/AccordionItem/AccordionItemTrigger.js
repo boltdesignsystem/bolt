@@ -1,5 +1,5 @@
 import { html, unsafeHTML } from '@bolt/element';
-import { iconChevronDown } from '@bolt/elements-icon';
+import { iconChevronDown } from '@bolt/elements-icon/src/icons/js/chevron-down';
 import classNames from 'classnames/bind';
 import styles from './accordion-item.scss';
 
