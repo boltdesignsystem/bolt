@@ -12,9 +12,9 @@
 
 {% set demo %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Click me to go to pega.com',
+    content: 'Click me to go to google.com',
     attributes: {
-      href: 'https://pega.com',
+      href: 'https://google.com',
       target: '_blank',
     }
   } only %}
@@ -23,9 +23,9 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-elements-text-link/text-link.twig' with {
-  content: 'Click me to go to pega.com',
+  content: 'Click me to go to google.com',
   attributes: {
-    href: 'https://pega.com',
+    href: 'https://google.com',
     target: '_blank',
   }
 } only %}
@@ -34,7 +34,7 @@
 
 {% set html_markup %}
 {% verbatim %}
-<a href="https://pega.com" target="_blank" class="e-bolt-text-link">Click me to go to pega.com</a>
+<a href="https://google.com" target="_blank" class="e-bolt-text-link">Click me to go to google.com</a>
 {% endverbatim %}
 {% endset %}
 

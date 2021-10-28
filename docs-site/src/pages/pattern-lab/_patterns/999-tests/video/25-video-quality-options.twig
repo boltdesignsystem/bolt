@@ -1,0 +1,100 @@
+{% set main_content %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  <h2>Video with No Quality Default</h2>
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+
+  {% set video_1 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-default-resolution="540p"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  <h2>Video with 540p Quality Resolution</h2>
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video_1,
+    ratio: '16/9'
+  } only %}
+
+  {% set video_2 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-default-resolution="360p"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  <h2>Video with 360p Quality Resolution</h2>
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video_2,
+    ratio: '16/9'
+  } only %}
+
+  {% set video_3 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-default-resolution="270p"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  <h2>Video with 270p Quality Resolution</h2>
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video_3,
+    ratio: '16/9'
+  } only %}
+
+  {% set video_4 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-default-resolution="1000p"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  <h2>Video with Wrong Quality Resolution</h2>
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video_4,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}
+
+
+
+

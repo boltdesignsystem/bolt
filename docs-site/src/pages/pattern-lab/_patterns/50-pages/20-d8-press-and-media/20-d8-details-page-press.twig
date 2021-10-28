@@ -17,7 +17,7 @@
       } only %}
 
       {% include '@bolt-components-headline/headline.twig' with {
-        'text': 'Pegasystems Launches Pega Community to Empower Anyone to Create Better Software',
+        'text': 'Launches to Empower Anyone to Create Better Software',
         'size': 'xxxlarge'
       } only %}
 
@@ -67,7 +67,7 @@
           </div>
 
           {% set complexText %}
-              Pega Community will be debuted during today’s keynote presentation at PegaWorld — Pega’s annual conference being held through June 6 in Las Vegas. To join Pega Community, please visit <a href="https://community.pega.com/">https://community.pega.com/</a>.
+              Pega Community will be debuted during today’s keynote presentation at PegaWorld — Pega’s annual conference being held through June 6 in Las Vegas. To join Pega Community, please visit <a href="https://community.google.com/">https://community.google.com/</a>.
           {% endset %}
           {% include '@bolt-components-headline/text.twig' with {
             'text': complexText,
@@ -154,65 +154,52 @@
                       'size': 'large',
                     } only %}
                   </div>
+                  {% set list_item_1 %}
+                    {% include '@bolt-components-headline/headline.twig' with {
+                      text: 'Corporate Fact Sheet',
+                      url: '#',
+                      icon: 'chevron-right',
+                      size: 'xsmall'
+                    } only %}
+                  {% endset %}
 
+                  {% set list_item_2 %}
+                    {% include '@bolt-components-headline/headline.twig' with {
+                      text: 'Management Team',
+                      url: '#',
+                      icon: 'chevron-right',
+                      size: 'xsmall'
+                    } only %}
+                  {% endset %}
 
-                  {% include '@bolt/ui-list.twig' with {
-                    'size': 'small',
-                    'contentItems': [
-                      {
-                        'contentItems': [
-                          {
-                            'pattern': 'headline',
-                            'text': 'Corporate Fact Sheet',
-                            'size': 'xsmall',
-                            'url': '#',
-                            'icon': {
-                              'name': 'chevron-right'
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        'contentItems': [
-                          {
-                            'pattern': 'headline',
-                            'text': 'Management Team',
-                            'size': 'xsmall',
-                            'url': '#',
-                            'icon': {
-                              'name': 'chevron-right'
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        'contentItems': [
-                          {
-                            'pattern': 'headline',
-                            'text': 'YouTube Channel',
-                            'size': 'xsmall',
-                            'url': '#',
-                            'icon': {
-                              'name': 'chevron-right'
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        'contentItems': [
-                          {
-                            'pattern': 'headline',
-                            'text': 'Analyst Coverage',
-                            'size': 'xsmall',
-                            'url': '#',
-                            'icon': {
-                              'name': 'chevron-right'
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  } only %}
+                  {% set list_item_3 %}
+                    {% include '@bolt-components-headline/headline.twig' with {
+                      text: 'YouTube Channel',
+                      url: '#',
+                      icon: 'chevron-right',
+                      size: 'xsmall'
+                    } only %}
+                  {% endset %}
+
+                  {% set list_item_4 %}
+                    {% include '@bolt-components-headline/headline.twig' with {
+                      text: 'Analyst Coverage',
+                      url: '#',
+                      icon: 'chevron-right',
+                      size: 'xsmall'
+                    } only %}
+                  {% endset %}
+
+                  {% include "@bolt-components-list/list.twig" with {
+                    items: [
+                      list_item_1,
+                      list_item_2,
+                      list_item_3,
+                      list_item_4,
+                    ],
+                    spacing: 'small',
+                    separator: 'solid'
+                  } %}
                 </div>
               </div>
             {% endcell %}
@@ -227,7 +214,7 @@
                 <br>
                 VP, Corporate Communications
                 <br>
-                <a href="mailto:Lisa.Pintchman@pega.com">Lisa.Pintchman@pega.com</a>
+                <a href="mailto:Lisa.Pintchman@mail.com">Lisa.Pintchman@mail.com</a>
                 <br>
                 +1 617-866-6022
               </p>
@@ -242,7 +229,7 @@
                 <br>
                 Director, Corporate Communications
                 <br>
-                <a href="mailto:Sean.Audet@pega.com">Sean.Audet@pega.com</a>
+                <a href="mailto:Sean.Audet@mail.com">Sean.Audet@mail.com</a>
                 <br>
                 +1 617-528-5230
               </p>
@@ -252,7 +239,7 @@
                 <br>
                 Sr. Manager, Public Relations
                 <br>
-                <a href="mailto:Ilena.Ryan@pega.com">Ilena.Ryan@pega.com</a>
+                <a href="mailto:Ilena.Ryan@mail.com">Ilena.Ryan@mail.com</a>
                 <br>
                 +1 617-866-6722
               </p>
@@ -267,7 +254,7 @@
                 <br>
                 Director, Corporate Communications
                 <br>
-                <a href="mailto:Joanna.Richardson@pega.com">Joanna.Richardson@pega.com</a>
+                <a href="mailto:Joanna.Richardson@mail.com">Joanna.Richardson@mail.com</a>
                 <br>
                 +44 (0) 118 9651 660
               </p>
@@ -277,7 +264,7 @@
                 <br>
                 PR &amp; Communications Manager
                 <br>
-                <a href="mailto:Jon.Brigden@pega.com">Jon.Brigden@pega.com</a>
+                <a href="mailto:Jon.Brigden@mail.com">Jon.Brigden@mail.com</a>
                 <br>
                 +44 (0) 118 9398 584
               </p>
