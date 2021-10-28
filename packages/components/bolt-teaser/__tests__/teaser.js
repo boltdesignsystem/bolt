@@ -33,7 +33,7 @@ describe('Twig usage', () => {
         tag: 'h2',
         size: 'xlarge',
         link_attributes: {
-          href: 'https://www.pega.com',
+          href: 'https://www.google.com',
         },
       },
       description: {
@@ -58,32 +58,30 @@ describe('Twig usage', () => {
         {
           name: 'facebook',
           attributes: {
-            href:
-              'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse',
+            href: 'https://www.facebook.com/',
           },
         },
         {
           name: 'twitter',
           attributes: {
-            href:
-              'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
+            href: 'https://twitter.com/',
           },
         },
         {
           name: 'linkedin',
           attributes: {
-            href: 'https://www.linkedin.com/shareArticle?url=https://pega.com',
+            href: 'https://www.linkedin.com/',
           },
         },
         {
           name: 'email',
           attributes: {
-            href: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com',
+            href: 'mailto:?&body=Sample%20Text%20--%20https%3A//mail.com',
           },
         },
       ],
       copy_to_clipboard: {
-        text_to_copy: 'https://pega.com',
+        text_to_copy: 'https://google.com',
       },
     });
 

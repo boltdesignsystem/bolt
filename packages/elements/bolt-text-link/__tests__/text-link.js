@@ -21,7 +21,7 @@ beforeAll(async () => {
   const defaultData = {
     content: 'This is a text link',
     attributes: {
-      href: 'https://pega.com',
+      href: 'https://google.com',
       target: '_blank',
     },
   };
