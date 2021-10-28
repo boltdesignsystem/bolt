@@ -97,16 +97,7 @@
 }
 
 .c-portal__trigger {
-  @include bolt-shadow('level-20');
-
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: bolt-z-index(modal);
-  padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
-  color: var(--m-bolt-text);
-  background-color: var(--m-bolt-bg);
+  margin-bottom: var(--bolt-spacing-y-medium);
 
   @include bolt-mq(medium) {
     display: none;
