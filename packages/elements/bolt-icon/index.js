@@ -1,1 +1,2 @@
-export * from './src/icon';
+// TODO: Save for Webpack 5
+// export * from './src/icon';
