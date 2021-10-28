@@ -70,6 +70,12 @@
   .e-bolt-text-link {
     display: inline-flex; //If the link is very long prevent from wrapping around icon
   }
+
+  .e-bolt-button--icon-only {
+    margin-left: calc(
+      var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xsmall) * 1em
+    );
+  }
 }
 
 // List base styles
@@ -93,6 +99,7 @@
 }
 
 .c-portal__list-el {
+  display: flex;
   margin-bottom: var(--bolt-spacing-y-small);
 }
 

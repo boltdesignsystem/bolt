@@ -12,6 +12,12 @@
   } only %}
 {% endset %}
 
+{% set icon_external_link %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'external-link',
+  } only %}
+{% endset %}
+
 {% set skip_button_to_add_links %}
   {% include '@bolt-elements-button/button.twig' with {
     content: 'Skip to add links list',
@@ -53,6 +59,21 @@
   } only %}
 {% endset %}
 
+{% set quick_link_1_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Agenda Manager',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+      'aria-describedby': 'new-window',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'tertiary',
+    size: 'xsmall'
+  } only %}
+{% endset %}
+
 {% set quick_link_2 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Agile Studio',
@@ -62,6 +83,21 @@
       href: '#!',
       'aria-describedby': 'delete-option',
     },
+  } only %}
+{% endset %}
+
+{% set quick_link_2_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Agile Studio',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+      'aria-describedby': 'new-window',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'tertiary',
+    size: 'xsmall'
   } only %}
 {% endset %}
 
@@ -77,6 +113,21 @@
   } only %}
 {% endset %}
 
+{% set quick_link_3_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'App Factory',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+      'aria-describedby': 'new-window',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'tertiary',
+    size: 'xsmall'
+  } only %}
+{% endset %}
+
 {% set add_link_1 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Atlas',
@@ -86,6 +137,21 @@
       href: '#!',
       'aria-describedby': 'add-option',
     },
+  } only %}
+{% endset %}
+
+{% set add_link_1_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Atlas',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+      'aria-describedby': 'new-window',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'tertiary',
+    size: 'xsmall'
   } only %}
 {% endset %}
 
@@ -101,6 +167,21 @@
   } only %}
 {% endset %}
 
+{% set add_link_2_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Attestation Manager/Survey Manager',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+      'aria-describedby': 'new-window',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'tertiary',
+    size: 'xsmall'
+  } only %}
+{% endset %}
+
 {% set add_link_3 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Box',
@@ -110,6 +191,21 @@
       href: '#!',
       'aria-describedby': 'add-option',
     },
+  } only %}
+{% endset %}
+
+{% set add_link_3_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Box',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+      'aria-describedby': 'new-window',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'tertiary',
+    size: 'xsmall'
   } only %}
 {% endset %}
 
@@ -125,6 +221,21 @@
   } only %}
 {% endset %}
 
+{% set add_link_4_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Credit Memo',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+      'aria-describedby': 'new-window',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'tertiary',
+    size: 'xsmall'
+  } only %}
+{% endset %}
+
 {% set add_link_5 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Expenses',
@@ -133,8 +244,22 @@
     attributes: {
       href: '#!',
       'aria-describedby': 'add-option',
-      
     },
+  } only %}
+{% endset %}
+
+{% set add_link_5_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Expenses',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+      'aria-describedby': 'new-window',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'tertiary',
+    size: 'xsmall'
   } only %}
 {% endset %}
 
@@ -154,7 +279,7 @@
 {% block main_content %}
   {% set header %}
     {% include '@bolt/headline.twig' with {
-      text: 'My quick links 2.0 static page (mockup)',
+      text: 'My quick links 2.0',
       size: 'xxxlarge',
       tag: 'h1'
     } only %}
@@ -166,7 +291,7 @@
     } only %}
 
     {% include '@bolt-components-headline/subheadline.twig' with {
-      text: 'These options will be available in your sidebar on Pega Portal. You can remove the quick links below by clicking on them.',
+      text: 'These options will be available in your sidebar on Pega Portal. You can remove the quick links below by clicking on them or go to their external pages by clicking on the icon with an arrow.',
       size: 'small'
     } only %}
   {% endset %}
@@ -174,9 +299,9 @@
   {% set quick_links_list %}
     {{ modal_trigger }}
     <ul class="c-portal__list">
-      <li class="c-portal__list-el">{{ quick_link_1 }}</li>
-      <li class="c-portal__list-el">{{ quick_link_2 }}</li>
-      <li class="c-portal__list-el">{{ quick_link_3 }}</li>
+      <li class="c-portal__list-el">{{ quick_link_1 }} {{ quick_link_1_external }}</li>
+      <li class="c-portal__list-el">{{ quick_link_2 }} {{ quick_link_2_external }}</li>
+      <li class="c-portal__list-el">{{ quick_link_3 }} {{ quick_link_3_external }}</li>
     </ul>
   {% endset %}
 
@@ -186,38 +311,38 @@
     } only %}
 
     {% include '@bolt-components-headline/subheadline.twig' with {
-      text: 'Choose options from the list below by clicking on them. Chosen items will be added to your quick links.',
+      text: 'Choose options from the list below by clicking on them. Chosen items will be added to your quick links. You can go to their external pages by clicking on the icon with an arrow.',
       size: 'small'
     } only %}
   {% endset %}
 
   {% set add_links_list %}
     <ul class="c-portal__list">
-      <li class="c-portal__list-el">{{ add_link_1 }}</li>
-      <li class="c-portal__list-el">{{ add_link_2 }}</li>
-      <li class="c-portal__list-el">{{ add_link_3 }}</li>
-      <li class="c-portal__list-el">{{ add_link_4 }}</li>
-      <li class="c-portal__list-el">{{ add_link_5 }}</li>
-      <li class="c-portal__list-el">{{ add_link_1 }}</li>
-      <li class="c-portal__list-el">{{ add_link_2 }}</li>
-      <li class="c-portal__list-el">{{ add_link_3 }}</li>
-      <li class="c-portal__list-el">{{ add_link_4 }}</li>
-      <li class="c-portal__list-el">{{ add_link_5 }}</li>
-      <li class="c-portal__list-el">{{ add_link_1 }}</li>
-      <li class="c-portal__list-el">{{ add_link_2 }}</li>
-      <li class="c-portal__list-el">{{ add_link_3 }}</li>
-      <li class="c-portal__list-el">{{ add_link_4 }}</li>
-      <li class="c-portal__list-el">{{ add_link_5 }}</li>
-      <li class="c-portal__list-el">{{ add_link_1 }}</li>
-      <li class="c-portal__list-el">{{ add_link_2 }}</li>
-      <li class="c-portal__list-el">{{ add_link_3 }}</li>
-      <li class="c-portal__list-el">{{ add_link_4 }}</li>
-      <li class="c-portal__list-el">{{ add_link_5 }}</li>
-      <li class="c-portal__list-el">{{ add_link_1 }}</li>
-      <li class="c-portal__list-el">{{ add_link_2 }}</li>
-      <li class="c-portal__list-el">{{ add_link_3 }}</li>
-      <li class="c-portal__list-el">{{ add_link_4 }}</li>
-      <li class="c-portal__list-el">{{ add_link_5 }}</li>
+      <li class="c-portal__list-el">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal__list-el">{{ add_link_5 }} {{ add_link_5_external }}</li>
       <li class="c-portal__list-el">...</li>
     </ul>
   {% endset %}
@@ -272,6 +397,7 @@
     {{ modal_content }}
     <span id='delete-option' hidden>delete this item</span>
     <span id='add-option' hidden>add this item</span>
+    <span id='new-window' hidden>opens in a new window</span>
   </div>
 {% endblock %}
 
