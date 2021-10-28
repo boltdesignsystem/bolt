@@ -7,7 +7,7 @@ import {
   unsafeHTML,
 } from '@bolt/element';
 import { render } from 'lit-html';
-import { iconMore } from '@bolt/elements-icon';
+import { iconMore } from '@bolt/elements-icon/src/icons/js/more';
 import classNames from 'classnames/bind';
 import iconStyles from '@bolt/elements-icon/index.scss';
 import styles from './chip-list.scss';

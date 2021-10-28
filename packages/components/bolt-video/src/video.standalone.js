@@ -1,7 +1,7 @@
 import { customElement, unsafeCSS, unsafeHTML } from '@bolt/element';
 import { props, css } from '@bolt/core-v3.x/utils';
 import { h, withPreact } from '@bolt/core-v3.x/renderers';
-import { iconClose } from '@bolt/elements-icon';
+import { iconClose } from '@bolt/elements-icon/src/icons/js/close';
 import iconStyles from '@bolt/elements-icon/index.scss';
 import Mousetrap from 'mousetrap';
 import classNames from 'classnames';
