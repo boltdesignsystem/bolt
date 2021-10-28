@@ -1,6 +1,6 @@
 // webpack.config.js
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
+// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
 const TerserPlugin = require('terser-webpack-plugin');
 const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -248,17 +248,22 @@ module.exports = function(apiConfig) {
       mode: config.prod ? 'production' : 'development',
       optimization: {
         minimize: config.prod,
-        occurrenceOrder: true,
-        namedChunks: true,
+        // occurrenceOrder: true,
+        chunkIds: 'named',
         removeAvailableModules: true,
         removeEmptyChunks: true,
         nodeEnv: 'production',
         mergeDuplicateChunks: true,
         concatenateModules: true,
+        emitOnErrors: false,
+
+        // chunkIds: 'total-size',
+        moduleIds: 'size',
+
         splitChunks: {
           chunks: 'async',
           cacheGroups: {
-            vendors: {
+            defaultVendors: {
               test: /[\\/]node_modules[\\/]/,
               name: 'vendors',
               chunks: 'async',
@@ -282,20 +287,20 @@ module.exports = function(apiConfig) {
         new WebpackBar(),
         new CopyPlugin(config.copy),
         new NoEmitPlugin(['css/pattern-lab.js']),
-        new HardSourceWebpackPlugin({
-          info: {
-            level: 'warn',
-          },
-          // Clean up large, old caches automatically.
-          cachePrune: {
-            // Caches younger than `maxAge` are not considered for deletion. They must
-            // be at least this (default: 2 days) old in milliseconds.
-            maxAge: 2 * 24 * 60 * 60 * 1000,
-            // All caches together must be larger than `sizeThreshold` before any
-            // caches will be deleted. Together they must be at least 300MB in size
-            sizeThreshold: 300 * 1024 * 1024,
-          },
-        }),
+        // new HardSourceWebpackPlugin({
+        //   info: {
+        //     level: 'warn',
+        //   },
+        //   // Clean up large, old caches automatically.
+        //   cachePrune: {
+        //     // Caches younger than `maxAge` are not considered for deletion. They must
+        //     // be at least this (default: 2 days) old in milliseconds.
+        //     maxAge: 2 * 24 * 60 * 60 * 1000,
+        //     // All caches together must be larger than `sizeThreshold` before any
+        //     // caches will be deleted. Together they must be at least 300MB in size
+        //     sizeThreshold: 300 * 1024 * 1024,
+        //   },
+        // }),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
           config.watch
@@ -343,7 +348,7 @@ module.exports = function(apiConfig) {
         new MiniCssExtractPlugin({
           filename: `[name].css`,
           chunkFilename: `[id].css`,
-          allChunks: true,
+          // allChunks: true,
         }),
       ],
     };

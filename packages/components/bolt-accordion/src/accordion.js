@@ -1,6 +1,7 @@
 import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import { withContext } from 'wc-context/lit-element';
 import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
+import { thingA } from '@bolt/elements-icon';
 import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import classNames from 'classnames/bind';
 import styles from './accordion.scss';
@@ -104,6 +105,8 @@ class BoltAccordion extends withContext(BoltElement) {
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
+
+    thingA();
 
     const urlParams = new URLSearchParams(window.location.search);
     const selectedItemParam = urlParams.get('selected-accordion-item');

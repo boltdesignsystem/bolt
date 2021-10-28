@@ -1,12 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
+// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const fs = require('fs');
 const deepmerge = require('deepmerge');
 const resolve = require('resolve');
@@ -69,7 +69,7 @@ async function createWebpackConfig(buildConfig) {
     if (components.global) {
       entry[globalEntryName] = ['@bolt/core-v3.x/styles/main.scss'];
 
-      components.global.forEach((component) => {
+      components.global.forEach(component => {
         if (component.assets.style) {
           entry[globalEntryName].push(component.assets.style);
         }
@@ -81,7 +81,7 @@ async function createWebpackConfig(buildConfig) {
     }
 
     if (components.individual) {
-      components.individual.forEach((component) => {
+      components.individual.forEach(component => {
         const files = [];
         if (component.assets.style) files.push(component.assets.style);
         if (component.assets.main) files.push(component.assets.main);
@@ -108,13 +108,13 @@ async function createWebpackConfig(buildConfig) {
     // Merge together global Sass data overrides specified in a .boltrc config
     if (config.globalData.scss && config.globalData.scss.length !== 0) {
       const overrideItems = [];
-      config.globalData.scss.forEach((item) => {
+      config.globalData.scss.forEach(item => {
         try {
           const file = fs.readFileSync(item, 'utf8');
           file
             .split('\n')
-            .filter((x) => x)
-            .forEach((x) => overrideItems.push(x));
+            .filter(x => x)
+            .forEach(x => overrideItems.push(x));
         } catch (err) {
           log.errorAndExit(`Could not find ${item}`, err);
         }
@@ -249,7 +249,7 @@ async function createWebpackConfig(buildConfig) {
                 {
                   loader: 'svg-sprite-loader',
                   options: {
-                    spriteFilename: (svgPath) =>
+                    spriteFilename: svgPath =>
                       `bolt-svg-sprite${svgPath.substr(-4)}`,
                   },
                 },
@@ -295,6 +295,7 @@ async function createWebpackConfig(buildConfig) {
     optimization: {
       sideEffects: true,
       usedExports: true,
+      emitOnErrors: false,
       minimizer: config.prod
         ? [
             new TerserPlugin({
@@ -317,8 +318,8 @@ async function createWebpackConfig(buildConfig) {
           style: 'position: absolute; width: 0; height: 0',
         },
       }),
-      new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
-      new webpack.NoEmitOnErrorsPlugin(),
+      // new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
+      // new webpack.NoEmitOnErrorsPlugin(),
     ],
   };
 
@@ -350,13 +351,13 @@ async function createWebpackConfig(buildConfig) {
     );
 
     // @todo evaluate best source map approach for production builds -- particularly source-map vs hidden-source-map
-    sharedWebpackConfig.devtool =
-      config.sourceMaps === false ? '' : 'hidden-source-map';
+    // sharedWebpackConfig.devtool =
+    //   config.sourceMaps === false ? '' : 'hidden-source-map';
   } else {
     // not prod
     // @todo fix source maps
-    sharedWebpackConfig.devtool =
-      config.sourceMaps === false ? '' : 'eval-source-map';
+    // sharedWebpackConfig.devtool =
+    //   config.sourceMaps === false ? '' : 'eval-source-map';
   }
 
   // Simple Configuration
@@ -399,7 +400,7 @@ async function createWebpackConfig(buildConfig) {
     // Merge together any global JS data overrides
     if (config.globalData.js && config.globalData.js.length !== 0) {
       const overrideJsItems = [];
-      config.globalData.js.forEach((item) => {
+      config.globalData.js.forEach(item => {
         try {
           const overrideFile = require(path.resolve(process.cwd(), item));
           overrideJsItems.push(overrideFile);
@@ -420,7 +421,7 @@ async function createWebpackConfig(buildConfig) {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
     },
     output: {
-      futureEmitAssets: true,
+      // futureEmitAssets: true,
       path: path.resolve(process.cwd(), config.buildDir),
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
       filename: `[name]${langSuffix}${
@@ -436,8 +437,9 @@ async function createWebpackConfig(buildConfig) {
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
       }),
+      // new MiniCssExtractPlugin(),
       // @todo This needs to be in `config.dataDir`
-      new ManifestPlugin({
+      new WebpackManifestPlugin({
         fileName: `bolt-webpack-manifest${langSuffix}${
           config.mode === 'client' ? '' : `.${config.mode}`
         }.json`,
@@ -491,23 +493,23 @@ async function createWebpackConfig(buildConfig) {
 
   // cache mode significantly speeds up subsequent build times
   if (config.enableCache) {
-    webpackConfig.plugins.push(
-      new HardSourceWebpackPlugin({
-        info: {
-          level: 'warn',
-        },
-        cacheDirectory: path.join(process.cwd(), `./cache/webpack`),
-        // Clean up large, old caches automatically.
-        cachePrune: {
-          // Caches younger than `maxAge` are not considered for deletion. They must
-          // be at least this (default: 2 days) old in milliseconds.
-          maxAge: 2 * 24 * 60 * 60 * 1000,
-          // All caches together must be larger than `sizeThreshold` before any
-          // caches will be deleted. Together they must be at least 300MB in size
-          sizeThreshold: 300 * 1024 * 1024,
-        },
-      }),
-    );
+    // webpackConfig.plugins.push(
+    //   new HardSourceWebpackPlugin({
+    //     info: {
+    //       level: 'warn',
+    //     },
+    //     cacheDirectory: path.join(process.cwd(), `./cache/webpack`),
+    //     // Clean up large, old caches automatically.
+    //     cachePrune: {
+    //       // Caches younger than `maxAge` are not considered for deletion. They must
+    //       // be at least this (default: 2 days) old in milliseconds.
+    //       maxAge: 2 * 24 * 60 * 60 * 1000,
+    //       // All caches together must be larger than `sizeThreshold` before any
+    //       // caches will be deleted. Together they must be at least 300MB in size
+    //       sizeThreshold: 300 * 1024 * 1024,
+    //     },
+    //   }),
+    // );
   }
 
   let outputConfig = [];
@@ -529,12 +531,12 @@ async function assignLangToWebpackConfig(config, lang) {
     langSpecificConfig,
   );
 
-  langSpecificWebpackConfigs.forEach((langSpecificWebpackConfig) => {
+  langSpecificWebpackConfigs.forEach(langSpecificWebpackConfig => {
     webpackConfigs.push(langSpecificWebpackConfig);
   });
 }
 
-module.exports = async function () {
+module.exports = async function() {
   const config = await getConfig();
 
   return new Promise(async (resolve, reject) => {
