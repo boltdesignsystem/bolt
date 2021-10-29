@@ -7,7 +7,7 @@ import {
 } from '@bolt/element';
 import { render } from 'lit-html';
 import classNames from 'classnames/bind';
-import styles from './chip.scss';
+// import styles from './chip.scss';
 import schema from '../chip.schema';
 
 let cx = classNames.bind(styles);
@@ -23,9 +23,9 @@ class BoltChip extends BoltActionElement {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   render() {
     // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline chips

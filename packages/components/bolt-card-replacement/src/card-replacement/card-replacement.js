@@ -1,7 +1,7 @@
 import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import { withContext } from 'wc-context/lit-element';
 import classNames from 'classnames/bind';
-import cardReplacementStyles from './card-replacement.scss';
+// import cardReplacementStyles from './card-replacement.scss';
 import schema from '../../card-replacement.schema';
 
 let cx = classNames.bind(cardReplacementStyles);
@@ -10,9 +10,9 @@ let cx = classNames.bind(cardReplacementStyles);
 class BoltCardReplacement extends withContext(BoltElement) {
   static schema = schema;
 
-  static get styles() {
-    return [unsafeCSS(cardReplacementStyles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(cardReplacementStyles)];
+  // }
 
   static get properties() {
     return {

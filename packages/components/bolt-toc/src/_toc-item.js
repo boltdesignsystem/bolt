@@ -11,7 +11,7 @@ import {
   scrollOptions,
 } from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import classNames from 'classnames/bind';
-import styles from './_toc-item.scss';
+// import styles from './_toc-item.scss';
 import schema from '../toc.schema';
 
 let cx = classNames.bind(styles);
@@ -47,9 +47,9 @@ class BoltTocItem extends withContext(BoltElement) {
     this.role = 'presentation';
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   static get observedContexts() {
     return ['activeItem', 'scrollOffsetSelector', 'scrollOffset'];

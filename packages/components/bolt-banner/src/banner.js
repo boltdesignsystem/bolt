@@ -1,6 +1,6 @@
 import { customElement, BoltElement, html, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/dedupe';
-import styles from './banner.scss';
+// import styles from './banner.scss';
 import schema from '../banner.schema';
 
 let cx = classNames.bind(styles);
@@ -15,9 +15,9 @@ class BoltBanner extends BoltElement {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   render() {
     const classes = cx('c-bolt-banner', {

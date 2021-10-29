@@ -10,7 +10,7 @@ import { withContext } from 'wc-context/lit-element';
 import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import classNames from 'classnames/bind';
-import styles from './tabs.scss';
+// import styles from './tabs.scss';
 import schema from '../tabs.schema';
 
 import '@bolt/core-v3.x/utils/optimized-resize';
@@ -48,9 +48,9 @@ class BoltTabs extends withContext(BoltElement) {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();

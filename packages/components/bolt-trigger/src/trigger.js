@@ -8,7 +8,7 @@ import {
 import { render } from 'lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
-import styles from './trigger.scss';
+// import styles from './trigger.scss';
 import schema from '../trigger.schema';
 
 let cx = classNames.bind(styles);
@@ -24,9 +24,9 @@ class BoltTrigger extends BoltActionElement {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   _handleFocus() {
     this.dispatchEvent(new CustomEvent('trigger:focus', { bubbles: true }));

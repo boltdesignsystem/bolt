@@ -6,7 +6,7 @@ import {
   unsafeHTML,
 } from '@bolt/element';
 
-import styles from './block-list.scss';
+// import styles from './block-list.scss';
 // import schema from '../block-list.schema';
 
 @customElement('bolt-block-list')
@@ -22,9 +22,9 @@ class BoltBlockList extends BoltElement {
   //   };
   // }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();

@@ -1,7 +1,7 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import { withContext } from 'wc-context/lit-element';
 import classNames from 'classnames/bind';
-import styles from './accordion-item.scss';
+// import styles from './accordion-item.scss';
 import schema from '../../accordion-item.schema';
 import { AccordionItemTrigger } from './AccordionItemTrigger';
 import { AccordionItemContent } from './AccordionItemContent';
@@ -43,9 +43,9 @@ class AccordionItem extends withContext(BoltElement) {
     this[name] = value;
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   get isFirstItem() {
     return this.accordionItems && this === this.accordionItems[0];

@@ -8,7 +8,7 @@ import {
   spread,
 } from '@bolt/element';
 import classNames from 'classnames/bind';
-import styles from './button.scss';
+// import styles from './button.scss';
 import schema from '../button.schema.js';
 
 let cx = classNames.bind(styles);
@@ -29,9 +29,9 @@ class BoltButton extends BoltActionElement {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   render() {
     // While `color` option is in use downstream, we must provide this fallback

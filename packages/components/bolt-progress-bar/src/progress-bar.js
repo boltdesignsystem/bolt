@@ -6,7 +6,7 @@ import {
   ifDefined,
 } from '@bolt/element';
 import classNames from 'classnames/bind';
-import styles from './progress-bar.scss';
+// import styles from './progress-bar.scss';
 import schema from '../progress-bar.schema.js';
 
 let cx = classNames.bind(styles);
@@ -21,9 +21,9 @@ class BoltProgressBar extends BoltElement {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();

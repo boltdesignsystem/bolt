@@ -1,7 +1,7 @@
 import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import Handorgel from 'handorgel';
 import classNames from 'classnames/bind';
-import styles from './dropdown.scss';
+// import styles from './dropdown.scss';
 import schema from './dropdown.schema';
 
 let cx = classNames.bind(styles);
@@ -25,9 +25,9 @@ class BoltDropdown extends BoltElement {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   constructor() {
     super();

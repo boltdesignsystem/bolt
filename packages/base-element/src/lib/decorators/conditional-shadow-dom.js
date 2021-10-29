@@ -25,7 +25,8 @@ const conditionalShadowDomClass = clazz => {
     }
 
     createRenderRoot() {
-      this.useShadow = shouldUseShadowDom(this);
+      this.useShadow = false;
+      // this.useShadow = shouldUseShadowDom(this);
 
       // @todo: look into adding fallback style loader
       // if (this.constructor && this.useShadow === false && this.constructor.styles){

@@ -1,14 +1,14 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
-import figureStyles from './figure.scss';
+// import figureStyles from './figure.scss';
 
 let cx = classNames.bind(figureStyles);
 
 @customElement('bolt-figure')
 class BoltFigure extends BoltElement {
-  static get styles() {
-    return [unsafeCSS(figureStyles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(figureStyles)];
+  // }
 
   render() {
     return html`

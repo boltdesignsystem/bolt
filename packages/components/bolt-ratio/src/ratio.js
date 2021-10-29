@@ -7,7 +7,7 @@ import {
   unsafeCSS,
 } from '@bolt/element';
 import classNames from 'classnames/dedupe';
-import styles from './ratio.scss';
+// import styles from './ratio.scss';
 import schema from '../ratio.schema';
 
 let cx = classNames.bind(styles);
@@ -43,9 +43,9 @@ class BoltRatio extends BoltElement {
     this.noCssVars = supportsCSSVars ? false : true;
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   /**
    * sets the style so that the height is based on a ratio of width to height

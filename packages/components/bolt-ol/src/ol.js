@@ -1,6 +1,6 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
-import styles from './ol.scss';
+// import styles from './ol.scss';
 import schema from '../ol.schema';
 
 let cx = classNames.bind(styles);
@@ -16,9 +16,9 @@ class BoltOrderedList extends BoltElement {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();

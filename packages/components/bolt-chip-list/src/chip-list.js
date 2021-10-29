@@ -7,7 +7,7 @@ import {
 } from '@bolt/element';
 import { render } from 'lit-html';
 import classNames from 'classnames/bind';
-import styles from './chip-list.scss';
+// import styles from './chip-list.scss';
 import schema from '../chip-list.schema';
 
 let cx = classNames.bind(styles);
@@ -28,9 +28,9 @@ class BoltChipList extends BoltElement {
     this.triggerAttr = 'truncate-trigger';
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   get items() {
     // Get all list items, except the trigger items

@@ -1,6 +1,6 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
-import styles from './text.scss';
+// import styles from './text.scss';
 import schema from '../text.schema';
 
 let cx = classNames.bind(styles);
@@ -15,9 +15,9 @@ class BoltText extends BoltElement {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   setDefaultValue(propName, propVal) {
     // Unless prop is explicitly set with an attribute, override default value from schema with `propVal`.

@@ -1,7 +1,7 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import { withContext } from 'wc-context/lit-element';
 import classNames from 'classnames/bind';
-import styles from './tab-panel.scss';
+// import styles from './tab-panel.scss';
 
 let cx = classNames.bind(styles);
 
@@ -27,9 +27,9 @@ class TabPanel extends withContext(BoltElement) {
     this[name] = value;
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();

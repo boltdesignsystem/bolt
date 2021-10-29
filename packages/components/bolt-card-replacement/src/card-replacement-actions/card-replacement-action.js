@@ -2,9 +2,9 @@ import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import { withContext } from 'wc-context/lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
-import globalStyles from '@bolt/global/styles/03-generic/_generic-global.scss';
-import buttonStyles from '@bolt/elements-button/src/button.scss';
-import styles from './_card-replacement-action.scss';
+// import globalStyles from '@bolt/global/styles/03-generic/_generic-global.scss';
+// import buttonStyles from '@bolt/elements-button/src/button.scss';
+// import styles from './_card-replacement-action.scss';
 
 let cx = classNames.bind(styles);
 
@@ -27,13 +27,13 @@ class BoltCardReplacementAction extends withContext(BoltElement) {
     };
   }
 
-  static get styles() {
-    return [
-      unsafeCSS(globalStyles),
-      unsafeCSS(buttonStyles),
-      unsafeCSS(styles),
-    ];
-  }
+  // static get styles() {
+  //   return [
+  //     unsafeCSS(globalStyles),
+  //     unsafeCSS(buttonStyles),
+  //     unsafeCSS(styles),
+  //   ];
+  // }
 
   static get observedContexts() {
     return ['spacing'];

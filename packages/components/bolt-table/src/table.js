@@ -3,7 +3,7 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { parse, stringify } from 'himalaya';
 import classNames from 'classnames/bind';
-import styles from './table.scss';
+// import styles from './table.scss';
 import schema from '../table.schema';
 
 let cx = classNames.bind(styles);
@@ -23,9 +23,9 @@ class BoltTable extends BoltElement {
 
   static useShadow = false;
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   removeEmptyNodes(nodes) {
     return nodes.filter(node => {

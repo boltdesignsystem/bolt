@@ -1,6 +1,6 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import classNames from 'classnames/bind';
-import styles from './placeholder.scss';
+// import styles from './placeholder.scss';
 import schema from './placeholder.schema';
 
 let cx = classNames.bind(styles);
@@ -15,9 +15,9 @@ class BoltPlaceholder extends BoltElement {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   render() {
     const classes = cx('c-bolt-placeholder');

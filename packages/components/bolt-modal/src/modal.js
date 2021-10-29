@@ -3,7 +3,7 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import { getTransitionDuration } from '@bolt/core-v3.x/utils';
 import classNames from 'classnames/bind';
-import styles from './modal.scss';
+// import styles from './modal.scss';
 import schema from '../modal.schema.js';
 import '@bolt/core-v3.x/elements/focus-trap';
 
@@ -23,9 +23,9 @@ class BoltModal extends BoltElement {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();

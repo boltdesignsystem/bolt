@@ -7,7 +7,7 @@ import {
 } from '@bolt/element';
 import classNames from 'classnames/dedupe';
 import { withContext } from 'wc-context/lit-element';
-import menuStyles from './_menu-item.scss';
+// import menuStyles from './_menu-item.scss';
 import schema from '../menu.schema';
 
 let cx = classNames.bind(menuStyles);
@@ -35,9 +35,9 @@ class BoltMenuItem extends withContext(BoltElement) {
     this[name] = value;
   }
 
-  static get styles() {
-    return [unsafeCSS(menuStyles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(menuStyles)];
+  // }
 
   constructor() {
     super();

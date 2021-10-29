@@ -14,7 +14,7 @@ import {
 Swiper.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
 import schema from '../carousel.schema';
-import styles from '../index.scss';
+// import styles from '../index.scss';
 
 import '@bolt/core-v3.x/utils/optimized-resize';
 
@@ -564,9 +564,9 @@ class BoltCarousel extends BoltElement {
 
 @customElement('bolt-carousel-slide')
 class BoltCarouselSlide extends BoltElement {
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   render() {
     const classes = cx('c-bolt-carousel-slide');

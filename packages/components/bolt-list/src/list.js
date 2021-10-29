@@ -1,7 +1,7 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
 import { withContext } from 'wc-context/lit-element';
 import classNames from 'classnames/bind';
-import styles from './list.scss';
+// import styles from './list.scss';
 import schema from '../list.schema';
 
 let cx = classNames.bind(styles);
@@ -26,9 +26,9 @@ class BoltList extends withContext(BoltElement) {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   render() {
     const classes = cx('c-bolt-list', {

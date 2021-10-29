@@ -7,16 +7,16 @@ import {
 } from '@bolt/element';
 import { render } from 'lit-html';
 import classNames from 'classnames/bind';
-import styles from './_card-replacement-link.scss';
+// import styles from './_card-replacement-link.scss';
 
 let cx = classNames.bind(styles);
 
 @customElement('bolt-card-replacement-link')
 @convertInitialTags('a') // The first matching tag will have its attributes converted to component props
 class BoltCardReplacementLink extends BoltActionElement {
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   render() {
     const classes = cx('c-bolt-card_replacement__link');

@@ -9,7 +9,7 @@ import {
 import classNames from 'classnames/bind';
 import { AuthorImage, AuthorName, AuthorTitle } from './_blockquote-author';
 import schema from '../blockquote.schema';
-import styles from './blockquote.scss';
+// import styles from './blockquote.scss';
 
 let cx = classNames.bind([styles]);
 
@@ -18,9 +18,9 @@ let cx = classNames.bind([styles]);
 class BoltBlockquote extends BoltElement {
   static schema = schema;
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   static get properties() {
     return {

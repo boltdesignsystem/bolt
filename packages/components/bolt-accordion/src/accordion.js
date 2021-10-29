@@ -3,7 +3,7 @@ import { withContext } from 'wc-context/lit-element';
 import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import classNames from 'classnames/bind';
-import styles from './accordion.scss';
+// import styles from './accordion.scss';
 import schema from '../accordion.schema';
 import { Accordion } from './_accordion-handorgel';
 
@@ -28,9 +28,9 @@ class BoltAccordion extends withContext(BoltElement) {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   updated(changedProperties) {
     super.updated && super.updated(changedProperties);

@@ -7,7 +7,7 @@ import {
   spread,
 } from '@bolt/element';
 import classNames from 'classnames/bind';
-import styles from './link.scss';
+// import styles from './link.scss';
 import schema from '../link.schema';
 
 let cx = classNames.bind(styles);
@@ -24,9 +24,9 @@ class BoltLink extends BoltActionElement {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   render() {
     const classes = cx('c-bolt-link', {

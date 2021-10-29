@@ -6,7 +6,7 @@ import {
   unsafeCSS,
 } from '@bolt/element';
 import classNames from 'classnames/dedupe';
-import styles from './image.scss';
+// import styles from './image.scss';
 import { lazySizes } from './_image-lazy-sizes';
 import schema from '../image.schema';
 import '@bolt/core-v3.x/utils/optimized-resize';
@@ -51,9 +51,9 @@ class BoltImage extends BoltElement {
     };
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
 
   constructor() {
     super();
