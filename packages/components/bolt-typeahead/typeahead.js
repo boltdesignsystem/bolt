@@ -6,7 +6,8 @@ import {
   unsafeCSS,
   unsafeHTML,
 } from '@bolt/element';
-import { iconSearch, iconCloseSolid } from '@bolt/elements-icon';
+import { iconSearch } from '@bolt/elements-icon/src/icons/js/search';
+import { iconCloseSolid } from '@bolt/elements-icon/src/icons/js/close-solid';
 import { props } from 'skatejs';
 import { withLitEvents } from '@bolt/core-v3.x/renderers/with-events';
 import iconStyles from '@bolt/elements-icon/index.scss';
