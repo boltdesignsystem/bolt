@@ -659,7 +659,7 @@ class BoltVideo extends withPreact {
   render({ state, props }) {
     // data-email-subject="Pega - Intelligent Virtual Assistant for Email"
     // data-email-body="Check out this video from Pega"
-    // data-email-videourl="https://local.d8.pega.com/insights/resources/intelligent-virtual-assistant-email"
+    // data-email-videourl="#!"
 
     // const playIconEmoji = () => (
     //   <span role="img" aria-label="play-video">
