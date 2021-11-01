@@ -1,0 +1,109 @@
+{% set header %}
+  <header class="c-bolt-profile-header t-bolt-white">
+    <div class="c-bolt-profile-header__cover">
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: 'https://via.placeholder.com/1600x900',
+          srcset: 'https://via.placeholder.com/400x225 400w, https://via.placeholder.com/800x450 800w, https://via.placeholder.com/1600x900 1600w',
+          sizes: '100vw',
+          width: 1600,
+          height: 900,
+          loading: 'eager',
+        },
+      } only %}
+    </div>
+    <div class="c-bolt-profile-header__avatar">
+      {% include '@bolt-elements-image/image.twig' with {
+        fill: true,
+        attributes: {
+          src: 'https://via.placeholder.com/500x500',
+          sizes: '100vw',
+          width: 500,
+          height: 500,
+          loading: 'eager',
+        },
+      } only %}
+    </div>
+    <div class="c-bolt-profile-header__user-info">
+      <div class="c-bolt-profile-header__user-info-item">
+        {% include '@bolt-components-headline/subheadline.twig' with {
+          text: '<strong>First Last</strong> (@username)',
+          tag: 'h1',
+          size: 'xlarge',
+        } only %}
+      </div>
+      <div class="c-bolt-profile-header__user-info-item c-bolt-profile-header__user-info-item--chips">
+        {% include '@bolt-components-chip/chip.twig' with {
+          text: 'Member since 2014',
+          size: 'xsmall',
+        } only %}
+        {% include '@bolt-components-chip/chip.twig' with {
+          text: 'Designer',
+          color: 'orange',
+          size: 'xsmall',
+        } only %}
+        {% include '@bolt-components-chip/chip.twig' with {
+          text: 'Available for hire',
+          color: 'teal',
+          size: 'xsmall',
+        } only %}
+      </div>
+      <div class="c-bolt-profile-header__user-info-item">
+        <bolt-stack spacing="xxsmall">
+          {% include '@bolt-components-headline/subheadline.twig' with {
+            text: 'UX/UI Developer at Accenture',
+            tag: 'p',
+            size: 'large',
+          } only %}
+        </bolt-stack>
+        <bolt-stack>
+          {% set icon_map_pin_solid %}
+            {% include '@bolt-elements-icon/icon.twig' with {
+              name: 'map-pin-solid',
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-headline/subheadline.twig' with {
+            text: icon_map_pin_solid ~ 'United States',
+            tag: 'p',
+            size: 'large',
+          } only %}
+        </bolt-stack>
+      </div>
+    </div>
+    <div class="c-bolt-profile-header__actions">
+      <button type="button">
+        User actions
+      </button>
+    </div>
+    <ul class="c-bolt-profile-header__stats">
+      <li class="c-bolt-profile-header__stats-item">
+        <span></span>
+        <span>Messages</span>
+      </li>
+      <li class="c-bolt-profile-header__stats-item">
+        <span>23</span>
+        <span>Achievements</span>
+      </li>
+      <li class="c-bolt-profile-header__stats-item">
+        <span>13</span>
+        <span>Contributions</span>
+      </li>
+    </ul>
+  </header>
+{% endset %}
+{% set main_content %}
+  <div class="u-bolt-padding-small">
+    This is the main content. The site layout is at least 100% of viewport height and the footer is always positioned on the bottom.
+  </div>
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  header: header,
+  main: {
+    content: main_content,
+  },
+  attributes: {
+    class: 't-bolt-gray-xlight',
+  },
+} only %}

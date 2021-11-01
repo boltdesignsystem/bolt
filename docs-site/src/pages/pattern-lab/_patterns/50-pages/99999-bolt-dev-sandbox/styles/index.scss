@@ -2,6 +2,10 @@
  * Add imports here
  */
 
+/**
+ * Notifications List
+ */
+
 .c-base-notifications__list {
   display: block;
   position: relative;
@@ -259,4 +263,72 @@
 .c-base-notifications__footer {
   text-align: center;
   border-top: 1px solid var(--m-bolt-border);
+}
+
+/**
+ * Profile Header
+ */
+
+.c-bolt-profile-header {
+  display: grid;
+  position: relative;
+
+  > * {
+    order: 3;
+  }
+}
+
+.c-bolt-profile-header__cover {
+  order: 0;
+  position: relative;
+  aspect-ratio: 4/1;
+}
+
+.c-bolt-profile-header__actions {
+  display: flex;
+  justify-content: flex-end;
+  order: 2;
+  min-height: 3.5rem;
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+}
+
+.c-bolt-profile-header__avatar {
+  order: 1;
+  position: relative;
+  width: 7rem;
+  overflow: hidden;
+  margin: -3.5rem auto;
+  border: 0.25rem solid var(--m-bolt-bg);
+  border-radius: bolt-border-radius(full);
+
+  img {
+    display: block;
+  }
+}
+
+.c-bolt-profile-header__user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
+  text-align: center;
+  gap: var(--bolt-spacing-x-small);
+  row-gap: var(--bolt-spacing-y-small);
+}
+
+.c-bolt-profile-header__user-info-item--chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--bolt-spacing-x-xsmall);
+  row-gap: var(--bolt-spacing-y-xsmall);
+  white-space: nowrap;
+}
+
+.c-bolt-profile-header__stats {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(3, 1fr);
 }
