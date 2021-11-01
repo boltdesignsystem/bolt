@@ -117,7 +117,7 @@ describe('Bolt Navbar Props', () => {
         },
         link: {
           attributes: {
-            href: 'https://pega.com',
+            href: 'https://google.com',
           },
         },
       },
