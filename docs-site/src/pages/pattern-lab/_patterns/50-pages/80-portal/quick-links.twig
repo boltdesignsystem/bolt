@@ -47,26 +47,29 @@
   } only %}
 {% endset %}
 
+{# a11y sets for screen readers #}
+{% set a11y_delete_option = '<span class="u-bolt-visuallyhidden">, delete this item.</span>' %}
+{% set a11y_add_option = '<span class="u-bolt-visuallyhidden">, add this item.</span>' %}
+{% set a11y_new_window = '<span class="u-bolt-visuallyhidden">, opens in a new window.</span>' %}
+
 {% set quick_link_1 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Agenda Manager',
+    content: 'Agenda Manager' ~ a11y_delete_option,
     icon_before: icon_delete,
     reversed_underline: true,
     attributes: {
       href: '#!',
-      'aria-describedby': 'delete-option',
     },
   } only %}
 {% endset %}
 
 {% set quick_link_1_external %}
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'Agenda Manager',
+    content: 'Agenda Manager' ~ a11y_new_window,
     attributes: {
       href: 'https://google.com',
       target: '_blank',
       rel: 'noopener',
-      'aria-describedby': 'new-window',
     },
     icon_only: icon_external_link,
     hierarchy: 'transparent',
@@ -76,24 +79,22 @@
 
 {% set quick_link_2 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Agile Studio',
+    content: 'Agile Studio' ~ a11y_delete_option,
     icon_before: icon_delete,
     reversed_underline: true,
     attributes: {
       href: '#!',
-      'aria-describedby': 'delete-option',
     },
   } only %}
 {% endset %}
 
 {% set quick_link_2_external %}
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'Agile Studio',
+    content: 'Agile Studio' ~ a11y_new_window,
     attributes: {
       href: 'https://google.com',
       target: '_blank',
       rel: 'noopener',
-      'aria-describedby': 'new-window',
     },
     icon_only: icon_external_link,
     hierarchy: 'transparent',
@@ -103,24 +104,22 @@
 
 {% set quick_link_3 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'App Factory',
+    content: 'App Factory' ~ a11y_delete_option,
     icon_before: icon_delete,
     reversed_underline: true,
     attributes: {
       href: '#!',
-      'aria-describedby': 'delete-option',
     },
   } only %}
 {% endset %}
 
 {% set quick_link_3_external %}
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'App Factory',
+    content: 'App Factory' ~ a11y_new_window,
     attributes: {
       href: 'https://google.com',
       target: '_blank',
       rel: 'noopener',
-      'aria-describedby': 'new-window',
     },
     icon_only: icon_external_link,
     hierarchy: 'transparent',
@@ -130,24 +129,22 @@
 
 {% set add_link_1 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Atlas',
+    content: 'Atlas' ~ a11y_add_option,
     icon_before: icon_add,
     reversed_underline: true,
     attributes: {
       href: '#!',
-      'aria-describedby': 'add-option',
     },
   } only %}
 {% endset %}
 
 {% set add_link_1_external %}
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'Atlas',
+    content: 'Atlas' ~ a11y_new_window,
     attributes: {
       href: 'https://google.com',
       target: '_blank',
       rel: 'noopener',
-      'aria-describedby': 'new-window',
     },
     icon_only: icon_external_link,
     hierarchy: 'transparent',
@@ -157,24 +154,22 @@
 
 {% set add_link_2 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Attestation Manager/Survey Manager',
+    content: 'Attestation Manager/Survey Manager' ~ a11y_add_option,
     icon_before: icon_add,
     reversed_underline: true,
     attributes: {
       href: '#!',
-      'aria-describedby': 'add-option',
     },
   } only %}
 {% endset %}
 
 {% set add_link_2_external %}
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'Attestation Manager/Survey Manager',
+    content: 'Attestation Manager/Survey Manager' ~ a11y_new_window,
     attributes: {
       href: 'https://google.com',
       target: '_blank',
       rel: 'noopener',
-      'aria-describedby': 'new-window',
     },
     icon_only: icon_external_link,
     hierarchy: 'transparent',
@@ -184,24 +179,22 @@
 
 {% set add_link_3 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Box',
+    content: 'Box' ~ a11y_add_option,
     icon_before: icon_add,
     reversed_underline: true,
     attributes: {
       href: '#!',
-      'aria-describedby': 'add-option',
     },
   } only %}
 {% endset %}
 
 {% set add_link_3_external %}
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'Box',
+    content: 'Box' ~ a11y_new_window,
     attributes: {
       href: 'https://google.com',
       target: '_blank',
       rel: 'noopener',
-      'aria-describedby': 'new-window',
     },
     icon_only: icon_external_link,
     hierarchy: 'transparent',
@@ -211,24 +204,22 @@
 
 {% set add_link_4 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Credit Memo',
+    content: 'Credit Memo' ~ a11y_add_option,
     icon_before: icon_add,
     reversed_underline: true,
     attributes: {
       href: '#!',
-      'aria-describedby': 'add-option',
     },
   } only %}
 {% endset %}
 
 {% set add_link_4_external %}
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'Credit Memo',
+    content: 'Credit Memo' ~ a11y_new_window,
     attributes: {
       href: 'https://google.com',
       target: '_blank',
       rel: 'noopener',
-      'aria-describedby': 'new-window',
     },
     icon_only: icon_external_link,
     hierarchy: 'transparent',
@@ -238,24 +229,22 @@
 
 {% set add_link_5 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Expenses',
+    content: 'Expenses' ~ a11y_add_option,
     icon_before: icon_add,
     reversed_underline: true,
     attributes: {
       href: '#!',
-      'aria-describedby': 'add-option',
     },
   } only %}
 {% endset %}
 
 {% set add_link_5_external %}
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'Expenses',
+    content: 'Expenses' ~ a11y_new_window,
     attributes: {
       href: 'https://google.com',
       target: '_blank',
       rel: 'noopener',
-      'aria-describedby': 'new-window',
     },
     icon_only: icon_external_link,
     hierarchy: 'transparent',
@@ -395,9 +384,6 @@
     {{ quick_links_content }}
     {{ add_links_content }}
     {{ modal_content }}
-    <span id='delete-option' hidden>delete this item</span>
-    <span id='add-option' hidden>add this item</span>
-    <span id='new-window' hidden>opens in a new window</span>
   </div>
 {% endblock %}
 
