@@ -1,4 +1,4 @@
-.c-portal {
+.c-portal-quick-links {
   margin-bottom: var(--bolt-spacing-y-medium);
   padding-top: var(--bolt-spacing-y-medium);
   padding-bottom: var(--bolt-spacing-y-xlarge);
@@ -13,7 +13,7 @@
   }
 }
 
-.c-portal__col {
+.c-portal-quick-links__col {
   border: 1px solid var(--m-bolt-border);
   border-radius: bolt-border-radius(small);
 
@@ -26,12 +26,12 @@
   }
 }
 
-.c-portal__col-title {
+.c-portal-quick-links__col-title {
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
   border-bottom: 1px solid var(--m-bolt-border);
 }
 
-.c-portal__skip-button {
+.c-portal-quick-links__skip-button {
   position: absolute;
   top: var(--bolt-spacing-y-medium);
   right: var(--bolt-spacing-x-medium);
@@ -44,7 +44,7 @@
   }
 }
 
-.c-portal__skip-button--open {
+.c-portal-quick-links__skip-button--open {
   display: none;
 
   @include bolt-mq(medium) {
@@ -52,7 +52,7 @@
   }
 }
 
-.c-portal__skip-button--mobile {
+.c-portal-quick-links__skip-button--mobile {
   display: block;
 
   @include bolt-mq(medium) {
@@ -60,7 +60,7 @@
   }
 }
 
-.c-portal__col-inner {
+.c-portal-quick-links__col-inner {
   position: relative;
   height: 45vh;
   overflow-y: scroll;
@@ -87,7 +87,7 @@
 // 1. Reset typography so it doesn't inherit from a higher level container.
 // 2. Reset text-align so it doesn't conflict with the align prop which handles the horizontal alignment of inline items in a list, not the text-align within.
 
-.c-portal__list {
+.c-portal-quick-links__list {
   margin: 0 0 var(--bolt-spacing-y-medium) 0;
   padding: 0;
   font-family: var(--bolt-type-font-family-body); // [1]
@@ -102,12 +102,12 @@
   }
 }
 
-.c-portal__list-item {
+.c-portal-quick-links__list-item {
   display: flex;
   margin-bottom: var(--bolt-spacing-y-small);
 }
 
-.c-portal__trigger {
+.c-portal-quick-links__trigger {
   margin-bottom: var(--bolt-spacing-y-medium);
 
   @include bolt-mq(medium) {
@@ -115,14 +115,14 @@
   }
 }
 
-.c-portal__modal {
+.c-portal-quick-links__modal {
   display: block;
 
   @include bolt-mq(medium) {
     display: none;
   }
 
-  .c-portal__col-inner {
+  .c-portal-quick-links__col-inner {
     height: 65vh;
 
     @include bolt-mq(small) {

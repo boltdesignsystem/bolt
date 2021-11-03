@@ -25,9 +25,9 @@
       href: '#add-links',
       'data-bolt-modal-target': '.js-bolt-modal-content',
       class: [
-        'c-portal__skip-button',
+        'c-portal-quick-links__skip-button',
         'u-bolt-margin-bottom-medium',
-        'c-portal__skip-button--open'
+        'c-portal-quick-links__skip-button--open'
       ],
     }
   } only %}
@@ -40,7 +40,7 @@
       href: '#my-quick-links',
       'data-bolt-modal-target': '.js-bolt-modal-content',
       class: [
-        'c-portal__skip-button',
+        'c-portal-quick-links__skip-button',
         'u-bolt-margin-bottom-medium',
       ],
     }
@@ -259,7 +259,7 @@
     hierarchy: 'primary',
     attributes: {
       type: 'button',
-      class: 'c-portal__trigger',
+      class: 'c-portal-quick-links__trigger',
       'data-bolt-modal-target': '.js-bolt-modal-content',
     },
   } only %}
@@ -287,10 +287,10 @@
 
   {% set quick_links_list %}
     {{ modal_trigger }}
-    <ul class="c-portal__list">
-      <li class="c-portal__list-item">{{ quick_link_1 }} {{ quick_link_1_external }}</li>
-      <li class="c-portal__list-item">{{ quick_link_2 }} {{ quick_link_2_external }}</li>
-      <li class="c-portal__list-item">{{ quick_link_3 }} {{ quick_link_3_external }}</li>
+    <ul class="c-portal-quick-links__list">
+      <li class="c-portal-quick-links__list-item">{{ quick_link_1 }} {{ quick_link_1_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ quick_link_2 }} {{ quick_link_2_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ quick_link_3 }} {{ quick_link_3_external }}</li>
     </ul>
   {% endset %}
 
@@ -306,42 +306,42 @@
   {% endset %}
 
   {% set add_links_list %}
-    <ul class="c-portal__list">
-      <li class="c-portal__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
-      <li class="c-portal__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
-      <li class="c-portal__list-item">...</li>
+    <ul class="c-portal-quick-links__list">
+      <li class="c-portal-quick-links__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal-quick-links__list-item">...</li>
     </ul>
   {% endset %}
 
   {% set quick_links_content %}
-  <div id="my-quick-links" class="c-portal__col">
-    <div class="c-portal__col-title">
+  <div id="my-quick-links" class="c-portal-quick-links__col">
+    <div class="c-portal-quick-links__col-title">
       {{ quick_links_header  }}
     </div>
-    <div class="c-portal__col-inner">
+    <div class="c-portal-quick-links__col-inner">
       {{ skip_button_to_add_links }}
       {{ quick_links_list }}
     </div>
@@ -349,11 +349,11 @@
   {% endset %}
 
   {% set add_links_content %}
-  <div id="add-links" class="c-portal__col">
-    <div class="c-portal__col-title">
+  <div id="add-links" class="c-portal-quick-links__col">
+    <div class="c-portal-quick-links__col-title">
       {{ add_links_header }}
     </div>
-    <div class="c-portal__col-inner">
+    <div class="c-portal-quick-links__col-inner">
       {{ skip_button_to_my_quick_links }}
       {{ add_links_list }}
     </div>
@@ -361,7 +361,7 @@
   {% endset %}
 
   {% set modal_content %}
-  <div class="c-portal__modal">
+  <div class="c-portal-quick-links__modal">
     {% set modal_content %}
       {{ add_links_content }}
     {% endset %}
@@ -380,7 +380,7 @@
     content: header,
   } only %}
 
-  <div class="c-portal">
+  <div class="c-portal-quick-links">
     {{ quick_links_content }}
     {{ add_links_content }}
     {{ modal_content }}
