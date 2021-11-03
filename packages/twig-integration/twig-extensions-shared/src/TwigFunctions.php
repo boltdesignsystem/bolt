@@ -273,8 +273,6 @@ class TwigFunctions {
           return '@bolt-components-teaser/teaser.twig';
         case 'text':
           return '@bolt-components-text/text.twig';
-        case 'video':
-          return '@bolt-components-video/video.twig';
         default:
           return 'ERROR: Template not found: '. $patternName;
       }

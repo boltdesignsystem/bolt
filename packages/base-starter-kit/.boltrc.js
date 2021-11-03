@@ -72,7 +72,6 @@ module.exports = {
       '@bolt/components-trigger',
       '@bolt/components-typeahead',
       '@bolt/components-ul',
-      '@bolt/components-video',
       '@bolt/components-video-thumbnail',
       '@bolt/analytics-autolink',
     ],
