@@ -4,26 +4,26 @@
       {% include '@bolt-elements-image/image.twig' with {
         background: true,
         attributes: {
-          src: 'https://via.placeholder.com/1600x900',
-          srcset: 'https://via.placeholder.com/400x225 400w, https://via.placeholder.com/800x450 800w, https://via.placeholder.com/1600x900 1600w',
+          src: '/images/backgrounds/navy-light-circles.jpg',
           sizes: '100vw',
-          width: 1600,
-          height: 900,
+          width: 2560,
+          height: 2560,
           loading: 'eager',
         },
       } only %}
     </div>
     <div class="c-bolt-profile-header__avatar">
-      {% include '@bolt-elements-image/image.twig' with {
+      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><path d="m450 398.32c-41.11-48-92.49-77.33-155.45-88.88 35.52-18.24 57.86-45.7 62.39-85s-9.7-72-40.76-96.63c-46.91-37.19-117.18-25.81-151.61 23.46-34.75 49.67-22.45 125.53 44.2 158.24-30.77 5.63-59.25 15.3-85.67 30.49a255.37 255.37 0 0 0 -69.48 58.26c-61.89-78.26-75.62-216.47 17.11-316.44 89.95-96.95 242.27-106.66 344.33-16.89 98.08 86.23 110.86 231.6 34.94 333.39z" fill="#282828"/><g fill="#6b6b6b"><path d="m442.17 407.77c-94.44 118.39-282.52 121.89-380.88.38 88.1-113.4 277.05-126.38 380.88-.38z"/><path d="m345.69 211.49c-.36 52.58-42.88 95-94.65 94.52-51.55-.52-94-43.31-93.51-94.17.57-53.33 43-95.3 96.46-94.12 52.65 1.17 91.87 44.79 91.7 93.77z"/></g></svg>
+      {# {% include '@bolt-elements-image/image.twig' with {
         fill: true,
         attributes: {
-          src: 'https://via.placeholder.com/500x500',
+          src: 'https://via.placeholder.com/250x250',
           sizes: '100vw',
-          width: 500,
-          height: 500,
+          width: 250,
+          height: 250,
           loading: 'eager',
         },
-      } only %}
+      } only %} #}
     </div>
     <div class="c-bolt-profile-header__user-info">
       <div class="c-bolt-profile-header__user-info-item">
@@ -36,66 +36,214 @@
       <div class="c-bolt-profile-header__user-info-item c-bolt-profile-header__user-info-item--chips">
         {% include '@bolt-components-chip/chip.twig' with {
           text: 'Member since 2014',
-          size: 'xsmall',
+          border_radius: 'small',
         } only %}
         {% include '@bolt-components-chip/chip.twig' with {
           text: 'Designer',
           color: 'orange',
-          size: 'xsmall',
+          border_radius: 'small',
         } only %}
         {% include '@bolt-components-chip/chip.twig' with {
           text: 'Available for hire',
           color: 'teal',
-          size: 'xsmall',
+          border_radius: 'small',
         } only %}
       </div>
       <div class="c-bolt-profile-header__user-info-item">
         <bolt-stack spacing="xxsmall">
-          {% include '@bolt-components-headline/subheadline.twig' with {
-            text: 'UX/UI Developer at Accenture',
-            tag: 'p',
-            size: 'large',
-          } only %}
+          UX/UI Developer at Accenture
         </bolt-stack>
         <bolt-stack>
-          {% set icon_map_pin_solid %}
-            {% include '@bolt-elements-icon/icon.twig' with {
-              name: 'map-pin-solid',
-            } only %}
-          {% endset %}
-          {% include '@bolt-components-headline/subheadline.twig' with {
-            text: icon_map_pin_solid ~ 'United States',
-            tag: 'p',
-            size: 'large',
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'map-pin-solid',
           } only %}
+          United States
         </bolt-stack>
       </div>
     </div>
     <div class="c-bolt-profile-header__actions">
-      <button type="button">
-        User actions
-      </button>
+      {% set popover_trigger %}
+        {% set icon_share %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'share',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Share profile',
+          icon_only: icon_share,
+          hierarchy: 'tertiary',
+          border_radius: 'full',
+          size: 'xsmall',
+          attributes: {
+            type: 'button',
+          }
+        } only %}
+      {% endset %}
+      {% set popover_menu %}
+        {% set icon_facebook %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'facebook-solid',
+            size: 'small',
+          } only %}
+        {% endset %}
+        {% set icon_twitter %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'twitter-solid',
+            size: 'small',
+          } only %}
+        {% endset %}
+        {% set icon_linkedin %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'linkedin-solid',
+            size: 'small',
+          } only %}
+        {% endset %}
+        {% set icon_email %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'email',
+            size: 'small',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-menu/menu.twig' with {
+          title: 'Share profile',
+          items: [
+            {
+              content: 'Facebook',
+              icon_before: icon_facebook,
+              url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse',
+              attributes: {
+                target: '_blank',
+              }
+            },
+            {
+              content: 'Twitter',
+              icon_before: icon_twitter,
+              url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
+              attributes: {
+                target: '_blank',
+              }
+            },
+            {
+              content: 'LinkedIn',
+              icon_before: icon_linkedin,
+              url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com',
+              attributes: {
+                target: '_blank',
+              }
+            },
+            {
+              content: 'Email',
+              icon_before: icon_email,
+              url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com',
+              attributes: {
+                target: '_blank',
+              }
+            },
+          ]
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: popover_trigger,
+        content: popover_menu,
+        spacing: 'none',
+        placement: 'bottom-end',
+      } only %}
+
+      {% set popover_trigger %}
+        {% set icon_more %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'more',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'More options',
+          icon_only: icon_more,
+          hierarchy: 'tertiary',
+          border_radius: 'full',
+          size: 'xsmall',
+          attributes: {
+            type: 'button',
+          }
+        } only %}
+      {% endset %}
+      {% set popover_menu %}
+        {% set icon_pencil %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pencil',
+          } only %}
+        {% endset %}
+        {% set icon_pega_setting %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-setting',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-menu/menu.twig' with {
+          title: 'More options',
+          items: [
+            {
+              content: 'Edit profile',
+              icon_before: icon_pencil,
+            },
+            {
+              content: 'Settings',
+              icon_before: icon_pega_setting,
+            },
+          ]
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: popover_trigger,
+        content: popover_menu,
+        spacing: 'none',
+        placement: 'bottom-end',
+      } only %}
     </div>
-    <ul class="c-bolt-profile-header__stats">
-      <li class="c-bolt-profile-header__stats-item">
-        <span></span>
-        <span>Messages</span>
-      </li>
-      <li class="c-bolt-profile-header__stats-item">
-        <span>23</span>
-        <span>Achievements</span>
-      </li>
-      <li class="c-bolt-profile-header__stats-item">
-        <span>13</span>
-        <span>Contributions</span>
-      </li>
-    </ul>
+    <div class="c-bolt-profile-header__stats">
+      <a href="#!" class="c-bolt-profile-header__stats-item">
+        <span class="c-bolt-profile-header__stats-signifier">
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'customer-service',
+          } only %}
+        </span>
+        <span class="c-bolt-profile-header__stats-label">Messages</span>
+      </a href="#!">
+      <a href="#!" class="c-bolt-profile-header__stats-item">
+        <span class="c-bolt-profile-header__stats-signifier">23</span>
+        <span class="c-bolt-profile-header__stats-label">Achievements</span>
+      </a href="#!">
+      <a href="#!" class="c-bolt-profile-header__stats-item">
+        <span class="c-bolt-profile-header__stats-signifier">13</span>
+        <span class="c-bolt-profile-header__stats-label">Contributions</span>
+      </a href="#!">
+    </div>
   </header>
 {% endset %}
 {% set main_content %}
-  <div class="u-bolt-padding-small">
-    This is the main content. The site layout is at least 100% of viewport height and the footer is always positioned on the bottom.
-  </div>
+  <bolt-layout>
+    <bolt-layout-item>
+      <ul class="c-bolt-profile-main">
+        <li class="c-bolt-profile-main__section t-bolt-white">
+          <button class="c-bolt-profile-main__section-heading" type="button" aria-expanded="true">About</button>
+          <div class="c-bolt-profile-main__section-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.
+          </div>
+        </li>
+        <li class="c-bolt-profile-main__section t-bolt-white">
+          <button class="c-bolt-profile-main__section-heading" type="button" aria-expanded="true">Language &amp; Skills</button>
+          <div class="c-bolt-profile-main__section-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.
+          </div>
+        </li>
+        <li class="c-bolt-profile-main__section t-bolt-white">
+          <button class="c-bolt-profile-main__section-heading" type="button" aria-expanded="true">Achievements</button>
+          <div class="c-bolt-profile-main__section-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.
+          </div>
+          <a href="#!" class="c-bolt-profile-main__section-link">View all achievements</a>
+        </li>
+      </ul>
+    </bolt-layout-item>
+  </bolt-layout>
 {% endset %}
 
 {% include '@bolt-layouts-site/site.twig' with {
