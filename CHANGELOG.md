@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.2](https://github.com/boltdesignsystem/bolt/compare/v4.6.1...v4.6.2) (2021-11-03)
+
+
+### Bug Fixes
+
+* views wrapper ([466715e](https://github.com/boltdesignsystem/bolt/commit/466715e95aa2959aad82c265be963df7ca6cf829))
+
+
+
+
+
 ## [4.6.1](https://github.com/boltdesignsystem/bolt/compare/v4.6.0...v4.6.1) (2021-10-13)
 
 
