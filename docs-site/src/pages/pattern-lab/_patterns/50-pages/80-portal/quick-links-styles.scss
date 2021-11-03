@@ -88,8 +88,6 @@
 // 2. Reset text-align so it doesn't conflict with the align prop which handles the horizontal alignment of inline items in a list, not the text-align within.
 
 .c-portal__list {
-  display: grid;
-  grid-template-columns: auto auto;
   margin: 0 0 var(--bolt-spacing-y-medium) 0;
   padding: 0;
   font-family: var(--bolt-type-font-family-body); // [1]
@@ -107,10 +105,6 @@
 .c-portal__list-item {
   display: flex;
   margin-bottom: var(--bolt-spacing-y-small);
-
-  &:nth-child(2n) {
-    justify-content: flex-end;
-  }
 }
 
 .c-portal__trigger {
