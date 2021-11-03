@@ -1,4 +1,5 @@
 import { html, customElement, BoltElement, unsafeCSS } from '@bolt/element';
+import { BoltCodeSnippet } from '@bolt/components-code-snippet/src/code-snippet';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { parse, stringify } from 'himalaya';
@@ -52,7 +53,9 @@ class BoltTable extends BoltElement {
   stripWhitespace(nodes) {
     return nodes.map(node => {
       if (node.type === 'element') {
-        node.children = this.stripWhitespace(node.children);
+        if (node.tagName !== 'code') {
+          node.children = this.stripWhitespace(node.children);
+        }
       } else {
         node.content =
           node.content.trim().length === 0
@@ -134,6 +137,14 @@ class BoltTable extends BoltElement {
         td.innerHTML = '';
       }
     });
+
+    // Init Code Snippets once Table has been updated, @see packages/components/bolt-code-snippet/index.js
+    const codeSnippets = this.querySelectorAll('.c-bolt-code-snippet');
+    if (codeSnippets.length) {
+      codeSnippets.forEach(el => {
+        const codeSnippetComponent = new BoltCodeSnippet(el);
+      });
+    }
   }
 
   render() {
