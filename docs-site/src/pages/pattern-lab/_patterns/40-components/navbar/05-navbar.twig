@@ -11,7 +11,7 @@
           href: '#section-1'
         }
       }
-    } only %} 
+    } only %}
     {% include '@bolt-components-navbar/navbar-li.twig' with {
       link: {
         content: 'Section 2',
@@ -19,7 +19,7 @@
           href: '#section-2'
         }
       }
-    } only %} 
+    } only %}
     {% include '@bolt-components-navbar/navbar-li.twig' with {
       link: {
         content: 'Section 3',
@@ -27,7 +27,7 @@
           href: '#section-3'
         }
       }
-    } only %} 
+    } only %}
     {% include '@bolt-components-navbar/navbar-li.twig' with {
       link: {
         content: 'Section 4',
@@ -35,7 +35,7 @@
           href: '#section-4'
         }
       }
-    } only %} 
+    } only %}
     {% include '@bolt-components-navbar/navbar-li.twig' with {
       link: {
         content: 'Section 5',
@@ -43,23 +43,23 @@
           href: '#section-5'
         }
       }
-    } only %} 
+    } only %}
   {% endset %}
   {% set navbar_list %}
-    {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+    {% include '@bolt-components-navbar/navbar-ul.twig' with {
       content: navbar_items,
-    } only %}  
+    } only %}
   {% endset %}
 
   {% include '@bolt-components-navbar/navbar.twig' with {
     title: {
       content: 'This is the navbar title',
       icon: {
-        name: 'marketing-gray'
+        name: 'bullseye'
       },
       link: {
         attributes: {
-          href: 'https://pega.com'
+          href: 'https://google.com'
         },
       },
     },
@@ -78,7 +78,7 @@
         href: '#section-1'
       }
     }
-  } only %} 
+  } only %}
   {% include '@bolt-components-navbar/navbar-li.twig' with {
     link: {
       content: 'Section 2',
@@ -90,9 +90,9 @@
   ...
 {% endset %}
 {% set navbar_list %}
-  {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+  {% include '@bolt-components-navbar/navbar-ul.twig' with {
     content: navbar_items,
-  } only %}  
+  } only %}
 {% endset %}
 
 // Pass the navbar items to the navbar template
@@ -100,11 +100,11 @@
   title: {
     content: 'This is the navbar title',
     icon: {
-      name: 'marketing-gray'
+      name: 'bullseye'
     },
     link: {
       attributes: {
-        href: 'https://pega.com'
+        href: 'https://google.com'
       },
     },
   },

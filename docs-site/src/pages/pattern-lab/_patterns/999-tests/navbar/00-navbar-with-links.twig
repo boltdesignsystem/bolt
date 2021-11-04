@@ -24,7 +24,7 @@
     link: {
       content: 'External Link',
       attributes: {
-        href: 'http://google.com/',
+        href: 'https://google.com/',
         target: '_blank'
       }
     }
@@ -41,7 +41,7 @@
     link: {
       content: 'External Link',
       attributes: {
-        href: 'http://google.com/'
+        href: 'https://google.com/'
       }
     }
   },
@@ -66,19 +66,19 @@
 
 {% set navbar_items %}
   {% for item in navbar_data %}
-    {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+    {% include '@bolt-components-navbar/navbar-li.twig' with item only %}
   {% endfor %}
 {% endset %}
 
 {% set navbar_links %}
-  {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+  {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}
 {% endset %}
 
 {% include '@bolt-components-navbar/navbar.twig' with {
   title: {
     content: 'Title text',
     icon: {
-      name: "marketing-gray"
+      name: "bullseye"
     },
   },
   links: navbar_links

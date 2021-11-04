@@ -1,0 +1,179 @@
+{% set _chevron_icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: "chevron-down"
+  } only %}
+{% endset %}
+
+{% set trigger %}
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Pega Customer Decision Hub 8.5",
+    size: "xsmall",
+    hierarchy: "tertiary",
+    icon_after: _chevron_icon,
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+
+{% set popoverContent %}
+  {% include "@bolt-components-menu/menu.twig" with {
+    items: [
+      {
+        content: "Pega Customer Decision Hub 8.1",
+        url: "https://google.com"
+      },
+      {
+        content: "Pega Customer Decision Hub 8.3",
+        url: "https://google.com"
+      },
+    ]
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-list/list.twig" with {
+  spacing: "medium",
+  items: [
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: bolt.faker.sentence(3),
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          text: "1 Module",
+          weight: "semibold"
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          text: "10 mins",
+          weight: "semibold",
+          attributes: {
+            class: "stats-item",
+          },
+        }, false),
+        macros.include("@bolt-components-popover/popover.twig", {
+          trigger: trigger,
+          content: popoverContent,
+          spacing: "none",
+          placement: "top-start",
+          fallbackPlacements: [
+            "top",
+            "top-end"
+          ],
+          theme: "light"
+        }, false),
+      ],
+      cardGradient: "purple",
+      cardIcon: "rocket",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Challenge",
+      cardTitle: bolt.faker.sentence(3),
+      cardMetaItems: [
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "#{bolt.faker.numberBetween(2,15)} tasks",
+        }, false),
+        macros.include("@bolt-components-headline/text.twig", {
+          size: "small",
+          weight: "bold",
+          text: "Completed",
+          icon: {
+            name: "check-solid",
+            position: "before"
+          },
+          attributes: {
+            style: [
+              'color: #3C9439;'
+            ]
+          }
+        }, false),
+      ],
+      cardGradient: "orange",
+      cardIcon: "meteor",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      completed: true,
+      cardSubtitle: "Module",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "teal",
+      cardIcon: "orbit",
+      link: {
+        url: "https://google.com",
+      },
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      completed: true,
+      cardSubtitle: "Certification",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "navy",
+      cardIcon: "academy",
+      link: {
+        url: "https://.google.com",
+      },
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: "Name of module that will take up two lines of text",
+      cardGradient: "teal",
+      cardIcon: "orbit",
+      link: {
+        url: "https://google.com",
+      },
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Mission Test",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      status: "complete",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Mission Exercise",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "pink",
+      completed: true,
+      cardIcon: "triangle",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Challenge",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "orange",
+      completed: true,
+      cardIcon: "meteor",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "pink",
+      cardIcon: "molecule",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: bolt.faker.sentence(3),
+      cardGradient: "teal",
+      cardIcon: "orbit",
+      cardDescription: bolt.faker.paragraph(3),
+    }, false),
+  ]
+} only %}

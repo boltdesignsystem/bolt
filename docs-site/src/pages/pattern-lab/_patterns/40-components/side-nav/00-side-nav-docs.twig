@@ -2,7 +2,7 @@
 // List item template
 {% set list_items %}
   {% set icon_external_link %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'external-link',
     } only %}
   {% endset %}
@@ -11,7 +11,7 @@
       content: 'Item text',
       icon: icon_external_link, // Set a custom icon for external link.
       attributes: {
-        href: 'https://pega.com',
+        href: 'https://google.com',
       },
     },
     current: true, // When set to true, the item is indicated as the current page.
@@ -32,7 +32,7 @@
   headline: {
     content: 'Headline text',
     link_attributes: {
-      href: 'https://pega.com',
+      href: 'https://google.com',
     },
   },
   content: list, // Pass list in here.

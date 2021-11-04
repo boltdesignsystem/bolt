@@ -34,11 +34,12 @@
   </bolt-card-replacement-body>
 {% endmacro %}
 
+
 {% macro actions() %}
   <bolt-card-replacement-actions>
-    <bolt-card-replacement-action url="https://pega.com">Internal link</bolt-card-replacement-action>
+    <bolt-card-replacement-action url="!#">Internal link</bolt-card-replacement-action>
     <bolt-card-replacement-action url="https://yahoo.com" external>External link</bolt-card-replacement-action>
-    <bolt-card-replacement-action url="https://yahoo.com" icon="download">Download Icon</bolt-card-replacement-action>
+    <bolt-card-replacement-action url="https://yahoo.com">Download Icon <span slot="icon">{% spaceless %}{% include '@bolt-elements-icon/icon.twig' with { name: 'download'} only %}{% endspaceless %}</span></bolt-card-replacement-action>
     <bolt-card-replacement-action url="https://yahoo.com" icon="none">No Icon</bolt-card-replacement-action>
   </bolt-card-replacement-actions>
 {% endmacro %}
@@ -61,7 +62,7 @@
 {% set advanced_link_demo %}
 <bolt-card-replacement>
   <bolt-card-replacement-link custom-attribute="foo" html-attribute="bar">
-    <a href="http://google.com" target="_blank">Go to google.com</a>
+    <a href="https://google.com" target="_blank">Go to google.com</a>
   </bolt-card-replacement-link>
 {% include card_replacement_code.image() %}
 {% include card_replacement_code.body_clickable() %}
@@ -69,7 +70,7 @@
 {% endset %}
 
 {% set nested_links_demo %}
-<bolt-card-replacement url="http://google.com">
+<bolt-card-replacement url="https://google.com">
   <bolt-card-replacement-media>
     <bolt-ratio ratio="16/9">
       <video-js data-account="1900410236" data-player="O3FkeBiaDz" data-embed="default" data-video-id="3974147489001" controls class="c-base-video"></video-js>
@@ -80,8 +81,9 @@
 </bolt-card-replacement>
 {% endset %}
 
-
 <div class="o-bolt-wrapper">
+  {{ card_replacement_web_component_demo }}
+
   <bolt-text headline>
     Web Component Usage
   </bolt-text>
@@ -93,6 +95,7 @@
     <code>&lt;bolt-card-replacement-body&gt;</code>, and
     <code>&lt;bolt-card-replacement-actions&gt;</code>.
   </bolt-text>
+
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
     content: card_replacement_web_component_demo,
     lang: 'html',

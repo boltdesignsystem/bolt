@@ -151,7 +151,7 @@
       {% endif %}
     {% endfor %}
 
-    {# Everything is ready, render nav dropdown below -- NOTE: currently not used #}
+    {# Everything is ready, render nav dropdown below -- NOTE: bolt dropdown has benn deleted #}
     {% for label,nav in navItems %}
 
       {% set children = [] %}
@@ -179,10 +179,6 @@
           spacing: small
         } only %}
       {% endset %}
-      {% include "@bolt-components-dropdown/dropdown.twig" with {
-        title: label|capitalize,
-        content: content
-      } only %}
     {% endfor %}
 
   {% endif %}
@@ -238,10 +234,6 @@
           items: children
         } %}
       {% endset %}
-      {% include "@bolt-components-dropdown/dropdown.twig" with {
-        title: label|capitalize,
-        content: content
-      } only %}
     {% endfor %}
 
   {% endif %}

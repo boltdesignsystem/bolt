@@ -25,7 +25,7 @@
   {% set _icon_position = link.icon.position in schema.properties.link.properties.icon.properties.position.enum ? link.icon.position : schema.properties.link.properties.icon.properties.position.default %}
   {% set _inline_icon %}
     <span class="c-bolt-navbar-item__icon">
-      {% include "@bolt-components-icon/icon.twig" with link.icon only %}
+      {% include "@bolt-elements-icon/icon.twig" with link.icon only %}
     </span>
   {% endset %}
 {% endif %}

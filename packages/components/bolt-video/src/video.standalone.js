@@ -1,6 +1,8 @@
-import { customElement } from '@bolt/element';
+import { customElement, unsafeCSS, unsafeHTML } from '@bolt/element';
 import { props, css } from '@bolt/core-v3.x/utils';
 import { h, withPreact } from '@bolt/core-v3.x/renderers';
+import { iconClose } from '@bolt/elements-icon/src/icons/js/close';
+import iconStyles from '@bolt/elements-icon/index.scss';
 import Mousetrap from 'mousetrap';
 import classNames from 'classnames';
 
@@ -70,6 +72,10 @@ class BoltVideo extends withPreact {
     // even if the handler is attached to another element (window in this case)
     self._onWindowResize = self._onWindowResize.bind(self);
     return self;
+  }
+
+  static get styles() {
+    return [unsafeCSS(iconStyles)];
   }
 
   get expandedHeight() {
@@ -653,7 +659,7 @@ class BoltVideo extends withPreact {
   render({ state, props }) {
     // data-email-subject="Pega - Intelligent Virtual Assistant for Email"
     // data-email-body="Check out this video from Pega"
-    // data-email-videourl="https://local.d8.pega.com/insights/resources/intelligent-virtual-assistant-email"
+    // data-email-videourl="#!"
 
     // const playIconEmoji = () => (
     //   <span role="img" aria-label="play-video">
@@ -683,6 +689,7 @@ class BoltVideo extends withPreact {
 
     const videoMetaTag = `${bolt.namespace}-video-meta`;
 
+    // prettier-ignore
     return (
       <span className={classes}>
         <video-js
@@ -718,7 +725,7 @@ class BoltVideo extends withPreact {
                 size="xsmall"
                 color="secondary"
                 border-radius="full">
-                <bolt-icon name="close" size="small" slot="after" />
+                <span slot="after">${unsafeHTML(iconClose({size: 'small'}))}</span>
               </bolt-button>
             </span>
             <span className={`c-${bolt.namespace}-video__close-button-text`}>

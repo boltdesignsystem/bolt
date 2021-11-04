@@ -18,27 +18,11 @@
 {% set color = color | default("black") %}
 {% set orientation = orientation | default("portrait") %}
 
-{# DEPRECATED.  Support for magnify will be dropped in a future release. #}
-{% set magnify = magnify | default(false) %}
-
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {# Defaults for a vanilla `Button` component #}
 {% set componentName = deviceName ~ "-viewer" %}
 {% set baseClass = prefix ~ componentName %}
-
-{% if image and magnify == true %}
-  {% set image = image | merge({
-    zoom: true
-  }) %}
-{% endif %}
-
-{# DEPRECATED.  Don't use the `image` prop, use the `content` prop to pass a rendered image instead. #}
-{% if image %}
-  {% set content %}
-    {% include "@bolt-components-image/image.twig" with image only %}
-  {% endset %}
-{% endif %}
 
 {% set classes = [
   baseClass,
@@ -47,7 +31,6 @@
   color in colors ? baseClass ~ "--" ~ color : "",
   orientation in orientations ? baseClass ~ "--" ~ orientation : ""
 ] %}
-
 
 <bolt-device-viewer {{ attributes.addClass(classes | raw) }}>
   <div class="c-bolt-device-viewer__inner {{ baseClass ~ "__inner"}}">
@@ -61,33 +44,12 @@
     <div class="c-bolt-device-viewer__home {{ baseClass ~ "__home"}}"></div>
 
     <div class="c-bolt-device-viewer__screen {{ baseClass ~ "__screen"}}">
-      {% if magnify %}<bolt-image-zoom>{% endif %}
-        {% if magnify %}
-          {% include "@bolt/_screen-tilt.twig" %}
+      {# DEPRECATED.  Don't use the twig block, just use the `content` prop instead. #}
+      {% block device_viewer_image %}
+        {% if content %}
+          {{ content }}
         {% endif %}
-
-        {# DEPRECATED.  Don't use the twig block, just use the `content` prop instead. #}
-        {% block device_viewer_image %}
-          {% if content %}
-            {{ content }}
-          {% endif %}
-        {% endblock %}
-
-        {% if magnify %}
-          <div class="c-bolt-image-zoom__overlay">
-            {% include "@bolt-components-icon/icon.twig" with {
-              name: "search",
-              size: "xlarge",
-              background: "circle",
-              attributes: {
-                class: [
-                  "c-bolt-image-zoom__overlay-icon"
-                ]
-              }
-            } only %}
-          </div>
-        {% endif %}
-      {% if magnify %}</bolt-image-zoom>{% endif %}
+      {% endblock %}
     </div>
   </div>
 </bolt-device-viewer>
