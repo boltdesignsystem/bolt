@@ -73,10 +73,6 @@ module.exports = {
           type: 'object',
           ref: 'image',
         },
-        video: {
-          type: 'object',
-          ref: 'video',
-        },
         content: {
           type: ['string', 'array', 'object'],
           description:
