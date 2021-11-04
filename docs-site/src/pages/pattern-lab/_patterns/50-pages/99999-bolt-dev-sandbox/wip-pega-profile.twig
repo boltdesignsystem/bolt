@@ -13,7 +13,7 @@
       } only %}
     </div>
     <div class="c-bolt-profile-header__avatar">
-      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><path d="m450 398.32c-41.11-48-92.49-77.33-155.45-88.88 35.52-18.24 57.86-45.7 62.39-85s-9.7-72-40.76-96.63c-46.91-37.19-117.18-25.81-151.61 23.46-34.75 49.67-22.45 125.53 44.2 158.24-30.77 5.63-59.25 15.3-85.67 30.49a255.37 255.37 0 0 0 -69.48 58.26c-61.89-78.26-75.62-216.47 17.11-316.44 89.95-96.95 242.27-106.66 344.33-16.89 98.08 86.23 110.86 231.6 34.94 333.39z" fill="#282828"/><g fill="#6b6b6b"><path d="m442.17 407.77c-94.44 118.39-282.52 121.89-380.88.38 88.1-113.4 277.05-126.38 380.88-.38z"/><path d="m345.69 211.49c-.36 52.58-42.88 95-94.65 94.52-51.55-.52-94-43.31-93.51-94.17.57-53.33 43-95.3 96.46-94.12 52.65 1.17 91.87 44.79 91.7 93.77z"/></g></svg>
+      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><path d="m450 398.32c-41.11-48-92.49-77.33-155.45-88.88 35.52-18.24 57.86-45.7 62.39-85s-9.7-72-40.76-96.63c-46.91-37.19-117.18-25.81-151.61 23.46-34.75 49.67-22.45 125.53 44.2 158.24-30.77 5.63-59.25 15.3-85.67 30.49a255.37 255.37 0 0 0 -69.48 58.26c-61.89-78.26-75.62-216.47 17.11-316.44 89.95-96.95 242.27-106.66 344.33-16.89 98.08 86.23 110.86 231.6 34.94 333.39z" fill="var(--m-bolt-text-on-disabled)"/><g fill="var(--m-bolt-disabled)"><path d="m442.17 407.77c-94.44 118.39-282.52 121.89-380.88.38 88.1-113.4 277.05-126.38 380.88-.38z"/><path d="m345.69 211.49c-.36 52.58-42.88 95-94.65 94.52-51.55-.52-94-43.31-93.51-94.17.57-53.33 43-95.3 96.46-94.12 52.65 1.17 91.87 44.79 91.7 93.77z"/></g></svg>
       {# {% include '@bolt-elements-image/image.twig' with {
         fill: true,
         attributes: {
@@ -219,29 +219,74 @@
   </header>
 {% endset %}
 {% set main_content %}
-  <bolt-layout>
+  <bolt-layout padding-top="large" padding-bottom="large">
     <bolt-layout-item>
-      <ul class="c-bolt-profile-main">
-        <li class="c-bolt-profile-main__section t-bolt-white">
-          <button class="c-bolt-profile-main__section-heading" type="button" aria-expanded="true">About</button>
-          <div class="c-bolt-profile-main__section-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.
+      <bolt-grid gutter="medium" row-gutter="medium">
+        <bolt-grid-item column-start="1" column-span="12 6@medium">
+          <div class="c-bolt-info-card t-bolt-white">
+            <h2 class="c-bolt-info-card__headline">About</h2>
+            <button class="c-bolt-info-card__headline c-bolt-info-card__headline--button js-bolt-info-card-toggle-button" type="button" aria-expanded="true">
+              About
+              <span class="c-bolt-info-card__headline-icon">
+                {% include '@bolt-elements-icon/icon.twig' with {
+                  name: 'chevron-down',
+                } only %}
+              </span>
+            </button>
+            <div class="c-bolt-info-card__content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.
+            </div>
           </div>
-        </li>
-        <li class="c-bolt-profile-main__section t-bolt-white">
-          <button class="c-bolt-profile-main__section-heading" type="button" aria-expanded="true">Language &amp; Skills</button>
-          <div class="c-bolt-profile-main__section-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.
+        </bolt-grid-item>
+        <bolt-grid-item column-start="1 7@medium" column-span="12 6@medium">
+          <div class="c-bolt-info-card t-bolt-white">
+            <h2 class="c-bolt-info-card__headline">Language &amp; Skills</h2>
+            <button class="c-bolt-info-card__headline c-bolt-info-card__headline--button js-bolt-info-card-toggle-button" type="button" aria-expanded="false">
+              Language &amp; Skills
+              <span class="c-bolt-info-card__headline-icon">
+                {% include '@bolt-elements-icon/icon.twig' with {
+                  name: 'chevron-down',
+                } only %}
+              </span>
+            </button>
+            <div class="c-bolt-info-card__content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.
+            </div>
           </div>
-        </li>
-        <li class="c-bolt-profile-main__section t-bolt-white">
-          <button class="c-bolt-profile-main__section-heading" type="button" aria-expanded="true">Achievements</button>
-          <div class="c-bolt-profile-main__section-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.
+        </bolt-grid-item>
+        <bolt-grid-item column-start="1" column-span="12">
+          <div class="c-bolt-info-card t-bolt-white">
+            <h2 class="c-bolt-info-card__headline">Achievements</h2>
+            <button class="c-bolt-info-card__headline c-bolt-info-card__headline--button js-bolt-info-card-toggle-button" type="button" aria-expanded="false">
+              Achievements
+              <span class="c-bolt-info-card__headline-icon">
+                {% include '@bolt-elements-icon/icon.twig' with {
+                  name: 'chevron-down',
+                } only %}
+              </span>
+            </button>
+            <div class="c-bolt-info-card__content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.
+            </div>
+            <div class="c-bolt-info-card__link">
+              {% set icon_chevron_right %}
+                {% include '@bolt-elements-icon/icon.twig' with {
+                  name: 'chevron-right',
+                } only %}
+              {% endset %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'View all achievements',
+                icon_after: icon_chevron_right,
+                reversed_underline: true,
+                expand_click_target: true,
+                attributes: {
+                  href: '#!',
+                }
+              } only %}
+            </div>
           </div>
-          <a href="#!" class="c-bolt-profile-main__section-link">View all achievements</a>
-        </li>
-      </ul>
+        </bolt-grid-item>
+      </bolt-grid>
     </bolt-layout-item>
   </bolt-layout>
 {% endset %}
