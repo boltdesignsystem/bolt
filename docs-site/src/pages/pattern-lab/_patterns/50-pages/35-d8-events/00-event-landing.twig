@@ -34,13 +34,13 @@
 
           {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center' %}
             {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-text-align-center' %}
-              {% include '@bolt/headline.twig' with {
+              {% include '@bolt-components-headline/headline.twig' with {
                 text: 'Events at Pega: Meet the people behind the tech',
                 size: 'xxxlarge',
                 tag: 'h1'
               } only %}
 
-              {% include '@bolt/subheadline.twig' with {
+              {% include '@bolt-components-headline/subheadline.twig' with {
                 text: 'Join Pega thought leaders, customers, and partners from around the world and explore the power of Pega firsthand.'
               } only %}
             {% endcell %}
@@ -58,7 +58,7 @@
 
           {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
             {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
-              {% include '@bolt/headline.twig' with {
+              {% include '@bolt-components-headline/headline.twig' with {
                 text: 'Featured Pega Events',
                 size: 'xxlarge'
               } only %}
@@ -69,7 +69,7 @@
                     actions: [
                       {
                         text: 'Learn more',
-                        url: 'https://pega.com',
+                        url: 'https://google.com',
                       },
                     ],
                   } only %}
@@ -98,7 +98,7 @@
                     actions: [
                       {
                         text: 'Learn more',
-                        url: 'https://pega.com',
+                        url: 'https://google.com',
                       },
                     ],
                   } only %}
@@ -127,74 +127,58 @@
 
             {% endcell %}
             {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@medium' %}
-              {% include '@bolt/headline.twig' with {
+              {% include '@bolt-components-headline/headline.twig' with {
                 text: 'Find Us Here Also',
                 size: 'xxlarge'
               } only %}
 
-                {% set listItems %}
-
+                {% set list_item_1 %}
+                  {% include '@bolt-components-headline/headline.twig' with {
+                    text: 'Mobil World Congress, 2/26-3/1',
+                    url: '#',
+                    icon: 'external-link',
+                    size: 'large'
+                  } only %}
                 {% endset %}
 
-                {% include '@bolt/ui-list.twig' with {
-                  size: 'small',
-                  contentItems : [
-                    {
-                      contentItems: [
-                        {
-                          'pattern': 'headline',
-                          'size': 'large',
-                          'text': 'Mobil World Congress, 2/26-3/1',
-                          'url': '#',
-                          'icon': {
-                            name: 'external-link'
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      contentItems: [
-                        {
-                          'pattern': 'headline',
-                          'size': 'large',
-                          'text': 'CCW 2018, 2/27 - 3/1',
-                          'url': '#',
-                          'icon': {
-                            name: 'external-link'
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      contentItems: [
-                        {
-                          'pattern': 'headline',
-                          'size': 'large',
-                          'text': 'HIMSS18, 3/5 - 3/10',
-                          'url': '#',
-                          'icon': {
-                            name: 'external-link'
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      contentItems: [
-                        {
-                          'pattern': 'headline',
-                          'size': 'large',
-                          'text': 'ACAMS 2018, 4/9',
-                          'url': '#',
-                          'icon': {
-                            name: 'external-link'
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                } only %}
+                {% set list_item_2 %}
+                  {% include '@bolt-components-headline/headline.twig' with {
+                    text: 'CCW 2018, 2/27 - 3/1',
+                    url: '#',
+                    icon: 'external-link',
+                    size: 'large'
+                  } only %}
+                {% endset %}
 
+                {% set list_item_3 %}
+                  {% include '@bolt-components-headline/headline.twig' with {
+                    text: 'HIMSS18, 3/5 - 3/10',
+                    url: '#',
+                    icon: 'external-link',
+                    size: 'large'
+                  } only %}
+                {% endset %}
 
+                {% set list_item_4 %}
+                  {% include '@bolt-components-headline/headline.twig' with {
+                    text: 'ACAMS 2018, 4/9',
+                    url: '#',
+                    icon: 'external-link',
+                    size: 'large'
+                  } only %}
+                {% endset %}
+
+                {% include "@bolt-components-list/list.twig" with {
+                  items: [
+                    list_item_1,
+                    list_item_2,
+                    list_item_3,
+                    list_item_4,
+                  ],
+                  spacing: 'small',
+                  separator: 'solid'
+                } %}
+                
             {% endcell %}
           {% endgrid %}
         {% endblock %}
@@ -292,11 +276,11 @@
                       {% endcell %}
 
                       {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-                        {% include '@bolt/eyebrow.twig' with {
+                        {% include '@bolt-components-headline/eyebrow.twig' with {
                           text: 'Conference | Rebruary 26 - March 1 2018 | Barcelona, Spain'
                         } only %}
 
-                        {% include '@bolt/headline.twig' with {
+                        {% include '@bolt-components-headline/headline.twig' with {
                           text: 'Mobile World Congress',
                           size: 'xlarge'
                         } only %}
@@ -306,7 +290,7 @@
                           facility in Barcelona, Spain. View the event page to request a meeting in advance.</p>
 
                         <p>
-                          {% include '@bolt/link.twig' with {
+                          {% include '@bolt-components-link/link.twig' with {
                             text: 'Request a Meeting',
                             icon: {
                               name: 'chevron-right'
@@ -335,7 +319,7 @@
 
       {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center' %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-text-align-center' %}
-          {% include '@bolt/blockquote.twig' with {
+          {% include '@bolt-components-blockquote/blockquote.twig' with {
             size: 'xlarge',
             border: 'none',
             alignItems: 'center',

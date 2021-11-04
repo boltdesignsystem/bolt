@@ -9,7 +9,7 @@
     {% set name = "@#{item.context.type} #{item.context.name}" %}
   {% endif %}
 
-  {% include "@bolt/headline.twig" with {
+  {% include "@bolt-components-headline/headline.twig" with {
     size: "xlarge",
     tag: "h3",
     url: "##{item.context.type}-#{item.context.name}",
@@ -30,7 +30,7 @@
   {% if descriptor %}
     <div class="c-bds-docs__meta-item">
       {% if title %}
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
           size: "small",
           tag: "h4",
           text: title,
@@ -85,7 +85,7 @@
   {% import _self as macros %}
 
   {% if item.parameter %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       size: "small",
       tag: "h4",
       url: "##{item.context.type}-#{item.context.name}--params",
@@ -263,7 +263,7 @@
               {% set group = item.group[0] %}
               {% set section = item.context.type %}
               <div class="u-bolt-margin-bottom-large">
-                {% include "@bolt/headline.twig" with {
+                {% include "@bolt-components-headline/headline.twig" with {
                   size: "xxlarge",
                   tag: "h2",
                   url: "#group--#{group|replace({' ':'',':':'-'})}",
@@ -287,7 +287,7 @@
               {{ item.description }}
             </div>
 
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               size: "small",
               tag: "h4",
               url: "##{item.context.type}-#{item.context.name}--code",
@@ -311,7 +311,7 @@
                 {% for example in item.example %}
                   {% set title = example.description ? "Example #{example.type|upper}: #{example.description}" : "Example: #{example.type|upper}" %}
                   <div class="c-bds-docs__example-item">
-                    {% include "@bolt/headline.twig" with {
+                    {% include "@bolt-components-headline/headline.twig" with {
                       size: "small",
                       tag: "h4",
                       url: "##{item.context.type}-#{item.context.name}--example-#{example.type}",
@@ -336,7 +336,7 @@
 
             {% if item.return  %}
               <div class="c-bds-docs__return">
-                {% include "@bolt/headline.twig" with {
+                {% include "@bolt-components-headline/headline.twig" with {
                   size: "small",
                   tag: "h4",
                   text: "Returns",
@@ -353,7 +353,7 @@
             <div class="c-bds-docs__meta">
               {{ macros.elementDescription('Throws', item.throw) }}
               <div class="c-bds-docs__meta-item">
-                {% include "@bolt/headline.twig" with {
+                {% include "@bolt-components-headline/headline.twig" with {
                   size: "small",
                   tag: "h4",
                   text: "Source",

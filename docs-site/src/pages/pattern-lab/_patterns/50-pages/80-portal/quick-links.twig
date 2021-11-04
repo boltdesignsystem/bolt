@@ -1,0 +1,390 @@
+{% extends '@pl/_default-page-template.twig' %}
+
+{% set icon_add %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'add-solid',
+  } only %}
+{% endset %}
+
+{% set icon_delete %}
+  {% include '@bolt-components-icon/icon.twig' with {
+    name: 'minus-solid',
+  } only %}
+{% endset %}
+
+{% set icon_external_link %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'external-link',
+  } only %}
+{% endset %}
+
+{% set skip_button_to_add_links %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Skip to add links list',
+    attributes: {
+      href: '#add-links',
+      'data-bolt-modal-target': '.js-bolt-modal-content',
+      class: [
+        'c-portal-quick-links__skip-button',
+        'u-bolt-margin-bottom-medium',
+        'c-portal-quick-links__skip-button--open'
+      ],
+    }
+  } only %}
+{% endset %}
+
+{% set skip_button_to_my_quick_links %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Skip to my quick links list',
+    attributes: {
+      href: '#my-quick-links',
+      'data-bolt-modal-target': '.js-bolt-modal-content',
+      class: [
+        'c-portal-quick-links__skip-button',
+        'u-bolt-margin-bottom-medium',
+      ],
+    }
+  } only %}
+{% endset %}
+
+{# a11y sets for screen readers #}
+{% set a11y_delete_option = '<span class="u-bolt-visuallyhidden">, delete this item.</span>' %}
+{% set a11y_add_option = '<span class="u-bolt-visuallyhidden">, add this item.</span>' %}
+{% set a11y_new_window = '<span class="u-bolt-visuallyhidden">, opens in a new window.</span>' %}
+
+{% set quick_link_1 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Agenda Manager' ~ a11y_delete_option,
+    icon_before: icon_delete,
+    reversed_underline: true,
+    attributes: {
+      href: '#!',
+    },
+  } only %}
+{% endset %}
+
+{% set quick_link_1_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Agenda Manager' ~ a11y_new_window,
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'transparent',
+    size: 'xsmall'
+  } only %}
+{% endset %}
+
+{% set quick_link_2 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Agile Studio' ~ a11y_delete_option,
+    icon_before: icon_delete,
+    reversed_underline: true,
+    attributes: {
+      href: '#!',
+    },
+  } only %}
+{% endset %}
+
+{% set quick_link_2_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Agile Studio' ~ a11y_new_window,
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'transparent',
+    size: 'xsmall'
+  } only %}
+{% endset %}
+
+{% set quick_link_3 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'App Factory' ~ a11y_delete_option,
+    icon_before: icon_delete,
+    reversed_underline: true,
+    attributes: {
+      href: '#!',
+    },
+  } only %}
+{% endset %}
+
+{% set quick_link_3_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'App Factory' ~ a11y_new_window,
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'transparent',
+    size: 'xsmall'
+  } only %}
+{% endset %}
+
+{% set add_link_1 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Atlas' ~ a11y_add_option,
+    icon_before: icon_add,
+    reversed_underline: true,
+    attributes: {
+      href: '#!',
+    },
+  } only %}
+{% endset %}
+
+{% set add_link_1_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Atlas' ~ a11y_new_window,
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'transparent',
+    size: 'xsmall'
+  } only %}
+{% endset %}
+
+{% set add_link_2 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Attestation Manager/Survey Manager' ~ a11y_add_option,
+    icon_before: icon_add,
+    reversed_underline: true,
+    attributes: {
+      href: '#!',
+    },
+  } only %}
+{% endset %}
+
+{% set add_link_2_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Attestation Manager/Survey Manager' ~ a11y_new_window,
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'transparent',
+    size: 'xsmall'
+  } only %}
+{% endset %}
+
+{% set add_link_3 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Box' ~ a11y_add_option,
+    icon_before: icon_add,
+    reversed_underline: true,
+    attributes: {
+      href: '#!',
+    },
+  } only %}
+{% endset %}
+
+{% set add_link_3_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Box' ~ a11y_new_window,
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'transparent',
+    size: 'xsmall'
+  } only %}
+{% endset %}
+
+{% set add_link_4 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Credit Memo' ~ a11y_add_option,
+    icon_before: icon_add,
+    reversed_underline: true,
+    attributes: {
+      href: '#!',
+    },
+  } only %}
+{% endset %}
+
+{% set add_link_4_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Credit Memo' ~ a11y_new_window,
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'transparent',
+    size: 'xsmall'
+  } only %}
+{% endset %}
+
+{% set add_link_5 %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Expenses' ~ a11y_add_option,
+    icon_before: icon_add,
+    reversed_underline: true,
+    attributes: {
+      href: '#!',
+    },
+  } only %}
+{% endset %}
+
+{% set add_link_5_external %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Expenses' ~ a11y_new_window,
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener',
+    },
+    icon_only: icon_external_link,
+    hierarchy: 'transparent',
+    size: 'xsmall'
+  } only %}
+{% endset %}
+
+{% set modal_trigger %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Add items to My Quick Links',
+    display: 'block',
+    hierarchy: 'primary',
+    attributes: {
+      type: 'button',
+      class: 'c-portal-quick-links__trigger',
+      'data-bolt-modal-target': '.js-bolt-modal-content',
+    },
+  } only %}
+{% endset %}
+
+{% block main_content %}
+  {% set header %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'My quick links 2.0',
+      size: 'xxxlarge',
+      tag: 'h1'
+    } only %}
+  {% endset %}
+
+  {% set quick_links_header %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'My Quick Links',
+    } only %}
+
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'These options will be available in your sidebar on Pega Portal. You can remove the quick links below by clicking on them or go to their external pages by clicking on the icon with an arrow.',
+      size: 'small'
+    } only %}
+  {% endset %}
+
+  {% set quick_links_list %}
+    {{ modal_trigger }}
+    <ul class="c-portal-quick-links__list">
+      <li class="c-portal-quick-links__list-item">{{ quick_link_1 }} {{ quick_link_1_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ quick_link_2 }} {{ quick_link_2_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ quick_link_3 }} {{ quick_link_3_external }}</li>
+    </ul>
+  {% endset %}
+
+  {% set add_links_header %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Add Items To My Quick Links',
+    } only %}
+
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'Choose options from the list below by clicking on them. Chosen items will be added to your quick links. You can go to their external pages by clicking on the icon with an arrow.',
+      size: 'small'
+    } only %}
+  {% endset %}
+
+  {% set add_links_list %}
+    <ul class="c-portal-quick-links__list">
+      <li class="c-portal-quick-links__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_1 }} {{ add_link_1_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_2 }} {{ add_link_2_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_3 }} {{ add_link_3_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_4 }} {{ add_link_4_external }}</li>
+      <li class="c-portal-quick-links__list-item">{{ add_link_5 }} {{ add_link_5_external }}</li>
+      <li class="c-portal-quick-links__list-item">...</li>
+    </ul>
+  {% endset %}
+
+  {% set quick_links_content %}
+  <div id="my-quick-links" class="c-portal-quick-links__col">
+    <div class="c-portal-quick-links__col-title">
+      {{ quick_links_header  }}
+    </div>
+    <div class="c-portal-quick-links__col-inner">
+      {{ skip_button_to_add_links }}
+      {{ quick_links_list }}
+    </div>
+  </div>
+  {% endset %}
+
+  {% set add_links_content %}
+  <div id="add-links" class="c-portal-quick-links__col">
+    <div class="c-portal-quick-links__col-title">
+      {{ add_links_header }}
+    </div>
+    <div class="c-portal-quick-links__col-inner">
+      {{ skip_button_to_my_quick_links }}
+      {{ add_links_list }}
+    </div>
+  </div>
+  {% endset %}
+
+  {% set modal_content %}
+  <div class="c-portal-quick-links__modal">
+    {% set modal_content %}
+      {{ add_links_content }}
+    {% endset %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: modal_content,
+      attributes: {
+        class: 'js-bolt-modal-content',
+      }
+    } only %}
+  </div>
+  {% endset %}
+
+  {% include '@bolt-components-band/band.twig' with {
+    theme: 'dark',
+    size: 'large',
+    content: header,
+  } only %}
+
+  <div class="c-portal-quick-links">
+    {{ quick_links_content }}
+    {{ add_links_content }}
+    {{ modal_content }}
+  </div>
+{% endblock %}
+
+

@@ -2,7 +2,7 @@
   This video has external controls and an inline script:
 </p>
 <p>
-  {% include '@bolt/button.twig' with {
+  {% include '@bolt-components-button/button.twig' with {
     'text': 'Play or pause',
     'type': 'button',
     'attributes': {
@@ -13,10 +13,10 @@
 </p>
 
 {% include '@bolt/_video-inline-script.twig' with {
-  'socialUrl': 'https://demo1.d8.pega.com/insights/resources/crm-evolved-atlanta-customer-engagement-digital-world'
+  'socialUrl': '#!'
 } %}
 
-{% include '@bolt/video.twig' with {
+{% include '@bolt-components-video/video.twig' with {
   'videoId': '3974147489001',
   'accountId': '1900410236',
   'playerId': 'r1CAdLzTW',

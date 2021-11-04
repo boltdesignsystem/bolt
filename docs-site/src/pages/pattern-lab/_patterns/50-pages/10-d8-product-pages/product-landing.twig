@@ -28,7 +28,7 @@
           text: 'Products',
           size: 'xsmall',
           tag: 'span',
-          url: 'pega.com',
+          url: 'https://google.com',
           icon: {
             name: 'arrow-left',
             position: 'before'
@@ -69,7 +69,7 @@
     {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
 
       {% cell 'o-u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-        {% include '@bolt/headline.twig' with {
+        {% include '@bolt-components-headline/headline.twig' with {
           text: 'Explore the Pega CRM Suite',
           size: 'xxlarge'
         } only %}
@@ -129,9 +129,10 @@
 
       {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
         {% set flag_item_1 %}
-          {% include '@bolt/flag.twig' with {
-            valign: 'middle',
-            url: '#!',
+          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
+          {% include "@bolt/flag.twig" with {
+            valign: "middle",
+            url: "#!",
             figure: {
               content: shape_1
             },
@@ -154,9 +155,10 @@
           } only %}
         {% endset %}
         {% set flag_item_2 %}
-          {% include '@bolt/flag.twig' with {
-            valign: 'middle',
-            url: '#!',
+          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
+          {% include "@bolt/flag.twig" with {
+            valign: "middle",
+            url: "#!",
             figure: {
               content: shape_2
             },
@@ -179,9 +181,10 @@
           } only %}
         {% endset %}
         {% set flag_item_3 %}
-          {% include '@bolt/flag.twig' with {
-            valign: 'middle',
-            url: '#!',
+          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
+          {% include "@bolt/flag.twig" with {
+            valign: "middle",
+            url: "#!",
             figure: {
               content: shape_3
             },
@@ -246,12 +249,12 @@
 
 
       {% cell 'u-bolt-width-1/1 u-bolt-width-5/12@small' %}
-        {% include '@bolt/headline.twig' with {
+        {% include '@bolt-components-headline/headline.twig' with {
           text: 'Customer Decision Hub',
           size: 'xxxlarge',
           tag: 'h2'
         } only %}
-        {% include '@bolt/subheadline.twig' with {
+        {% include '@bolt-components-headline/subheadline.twig' with {
           text: 'Infuse real-time AI into every customer engagement',
           size: 'xlarge',
           tag: 'p'
@@ -260,9 +263,9 @@
           text: 'There’s nothing artificial about Pega’s proven AI. This always-on brain gets results. Using pragmatic artificial intelligence and decision management, you can improve response rates by up to 6X, NPS by 30 points, and get ROI as high as 500%.',
           size: 'medium'
         } only %}
-        {% include '@bolt/button.twig' with {
+        {% include '@bolt-components-button/button.twig' with {
           text: 'Call to Action',
-          url: 'www.google.com'
+          url: 'https://www.google.com'
         } only %}
       {% endcell %}
 
@@ -275,96 +278,75 @@
 
 
 {% embed '@pl/_band--collection.twig' with {
-  'theme': 'light',
-  'size': 'medium',
-  'contentItems': [
+  theme: 'light',
+  size: 'medium',
+  contentItems: [
     {
-      'pattern': 'card',
-      'image': {
-        'src': '/images/content/promos/promo-16x9-anthem.jpg',
-        'lazyload': true
-      },
-      'teaser': {
-        'eyebrow': {
-          text: 'Article'
+      pattern: 'card',
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-anthem.jpg',
+          lazyload: true
         },
-        'logo': {
+      },
+      body: {
+        eyebrow: 'Article',
+        logo: {
           src: '/images/content/logos/logo-paypal.svg',
           lazyload: true
         },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Learn More',
-            'hierarchy': 'secondary',
-            'url': 'www.google.com/pega7',
-            'width': 'full'
-          }
-        ]
-      }
+        headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Learn More',
+          hierarchy: 'secondary',
+          url: 'https://www.google.com/pega7',
+        }
+      ]
     },
     {
-      'pattern': 'card',
-      'image': {
-        'src': '/images/content/promos/promo-16x9-anthem.jpg',
-        'lazyload': true
-      },
-      'teaser': {
-        'eyebrow': {
-          text: 'Article'
+      pattern: 'card',
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-anthem.jpg',
+          lazyload: true
         },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Learn More',
-            'hierarchy': 'secondary',
-            'url': 'www.google.com/pega7',
-            'width': 'full'
-          }
-        ]
-      }
+      },
+      body: {
+        eyebrow: 'Article',
+        headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Learn More',
+          hierarchy: 'secondary',
+          url: 'https://www.google.com/pega7',
+        }
+      ]
     },
     {
-      'pattern': 'card',
-      'image': {
-        'src': '/images/content/promos/promo-16x9-anthem.jpg',
-        'lazyload': true
-      },
-      'teaser': {
-        'eyebrow': {
-          text: 'Article'
+      pattern: 'card',
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-anthem.jpg',
+          lazyload: true
         },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Learn More',
-            'hierarchy': 'secondary',
-            'url': 'www.google.com/pega7',
-            'width': 'full'
-          }
-        ]
-      }
+      },
+      body: {
+        eyebrow: 'Article',
+        headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Learn More',
+          hierarchy: 'secondary',
+          url: 'https://www.google.com/pega7',
+        }
+      ]
     }
   ]
 } %}
@@ -378,7 +360,7 @@
 
         {% grid %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-            {% include '@bolt/headline.twig' with {
+            {% include '@bolt-components-headline/headline.twig' with {
               text: 'Analyst Reports',
               size: 'xlarge',
               tag: 'h3'
@@ -394,7 +376,7 @@
           size: 'small',
           weight: 'bold',
           tag: 'p',
-          url: 'pega.com',
+          url: 'https://google.com',
           icon: {
             name: 'chevron-right',
             position: 'after'
@@ -438,7 +420,7 @@
 
 
 
-        {% include '@bolt/blockquote.twig' with {
+        {% include '@bolt-components-blockquote/blockquote.twig' with {
           size: 'xlarge',
           border: 'horizontal',
           alignItems: 'center',
@@ -463,9 +445,9 @@
           text: 'Watch Birgit König, Ph.D., CEO, Allianz Health Germany, share how the Pega platform meets rapidly changing customer expectations.'
         } only %}
 
-        {% include '@bolt/button.twig' with {
+        {% include '@bolt-components-button/button.twig' with {
           text: 'Call to Action',
-          url: 'www.google.com',
+          url: 'https://www.google.com',
           hierarchy: 'secondary'
         } only %}
 
@@ -493,7 +475,7 @@
 
         {% grid %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-            {% include '@bolt/headline.twig' with {
+            {% include '@bolt-components-headline/headline.twig' with {
               text: 'See How Pega Can Help Your Business',
               size: 'xlarge'
             } only %}
@@ -506,7 +488,7 @@
 
 
       {% cell 'u-bolt-width-1/1@only-small' %}
-        {% include '@bolt/button.twig' with {
+        {% include '@bolt-components-button/button.twig' with {
           text: 'Call to action',
           width: 'full',
           size: 'medium'

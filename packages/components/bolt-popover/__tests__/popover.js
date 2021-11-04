@@ -13,7 +13,7 @@ describe('<bolt-popover> Component', () => {
       trigger:
         '<button type="button" class="e-bolt-button">This triggers a popover</button>',
       content:
-        'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
+        'This is the content of the popover with a <a href="https://google.com" class="e-bolt-text-link">call to action</a>.',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -26,7 +26,7 @@ describe('<bolt-popover> Component', () => {
         trigger:
           '<button type="button" class="e-bolt-button">This triggers a popover</button>',
         content:
-          'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
+          'This is the content of the popover with a <a href="https://google.com" class="e-bolt-text-link">call to action</a>.',
         placement: placementChoice,
       });
       expect(results.ok).toBe(true);
@@ -40,7 +40,7 @@ describe('<bolt-popover> Component', () => {
         trigger:
           '<button type="button" class="e-bolt-button">This triggers a popover</button>',
         content:
-          'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
+          'This is the content of the popover with a <a href="https://google.com" class="e-bolt-text-link">call to action</a>.',
         spacing: spacingChoice,
       });
       expect(results.ok).toBe(true);
@@ -54,7 +54,7 @@ describe('<bolt-popover> Component', () => {
         trigger:
           '<button type="button" class="e-bolt-button">This triggers a popover</button>',
         content:
-          'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
+          'This is the content of the popover with a <a href="https://google.com" class="e-bolt-text-link">call to action</a>.',
         theme: themeChoice,
       });
       expect(results.ok).toBe(true);
@@ -67,7 +67,7 @@ describe('<bolt-popover> Component', () => {
       trigger:
         '<button type="button" class="e-bolt-button">This triggers a popover</button>',
       content:
-        'This is the content of the popover with a <a href="https://pega.com" class="e-bolt-text-link">call to action</a>.',
+        'This is the content of the popover with a <a href="https://google.com" class="e-bolt-text-link">call to action</a>.',
       uuid: 'custom-unique-id',
     });
     expect(results.ok).toBe(true);

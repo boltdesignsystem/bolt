@@ -53,7 +53,7 @@ beforeAll(async () => {
     actions: [
       {
         text: 'This is a button',
-        url: 'https://pega.com',
+        url: 'https://google.com',
       },
     ],
   };
@@ -95,11 +95,11 @@ describe('Bolt Card', () => {
         actions: [
           {
             text: 'This is a button',
-            url: 'https://pega.com',
+            url: 'https://google.com',
           },
           {
             text: 'This is a sceond button',
-            url: 'https://pega.com',
+            url: 'https://google.com',
           },
         ],
       },
@@ -152,7 +152,7 @@ describe('Bolt Card', () => {
       '@bolt-components-card-replacement/card-replacement.twig',
       {
         link: {
-          url: 'https://pega.com',
+          url: 'https://google.com',
           text: 'This entire card-replacement is clickable',
         },
         ...fixtures.mediaData,
