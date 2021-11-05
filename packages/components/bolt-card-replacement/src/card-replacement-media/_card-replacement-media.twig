@@ -1,8 +1,8 @@
 {% set _card_replacement_image = media.image %}
 {% set _card_replacement_video = media.video %}
-{% set attributes = create_attribute(media.attributes|default({})) %}
-
 {% set _card_replacement_media_content = media.content %}
+
+{% set attributes = create_attribute(media.attributes|default({})) %}
 
 {% if horizontal and _card_replacement_image %}
   {% set _card_replacement_image = _card_replacement_image|merge({
