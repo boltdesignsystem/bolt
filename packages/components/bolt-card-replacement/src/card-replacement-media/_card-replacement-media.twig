@@ -1,8 +1,8 @@
 {% set _card_replacement_image = media.image %}
 {% set _card_replacement_video = media.video %}
-{% set attributes = create_attribute(media.attributes|default({})) %}
-
 {% set _card_replacement_media_content = media.content %}
+
+{% set attributes = create_attribute(media.attributes|default({})) %}
 
 {% if horizontal and _card_replacement_image %}
   {% set _card_replacement_image = _card_replacement_image|merge({
@@ -26,11 +26,6 @@
     </bolt-card-replacement-media>
   {% endif %}
 
-  {% if (_card_replacement_video.videoId) %}
-    {% set _card_replacement_video %}
-      {% include '@bolt-components-video/video.twig' with _card_replacement_video only %}
-    {% endset %}
-  {% endif %}
   {% if _card_replacement_video %}
     <bolt-card-replacement-media {{ attributes }}>
       <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media c-bolt-card_replacement__media--video">
