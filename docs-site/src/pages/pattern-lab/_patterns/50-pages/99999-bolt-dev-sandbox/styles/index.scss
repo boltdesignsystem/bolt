@@ -269,7 +269,7 @@
  * Profile Header
  */
 
-.c-bolt-profile-header {
+.c-bolt-profile {
   --c-bolt-profile-header-avatar-size: 7rem;
 
   display: grid;
@@ -281,12 +281,13 @@
 
   > * {
     order: 3;
+    position: relative;
+    z-index: 0; // Reset stacking context.
   }
 }
 
-.c-bolt-profile-header__cover {
+.c-bolt-profile__cover {
   order: 0;
-  position: relative;
   aspect-ratio: 4/1;
 
   @include bolt-mq(medium) {
@@ -298,7 +299,7 @@
   }
 }
 
-.c-bolt-profile-header__actions {
+.c-bolt-profile__actions {
   display: flex;
   justify-content: flex-end;
   gap: var(--bolt-spacing-x-xsmall);
@@ -311,9 +312,8 @@
   }
 }
 
-.c-bolt-profile-header__avatar {
+.c-bolt-profile__avatar {
   order: 1;
-  position: relative;
   width: var(--c-bolt-profile-header-avatar-size);
   height: var(--c-bolt-profile-header-avatar-size);
   overflow: hidden;
@@ -337,10 +337,11 @@
   }
 }
 
-.c-bolt-profile-header__user-info {
+.c-bolt-profile__user-info {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1; // Raise statcking context above all stats.
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-xsmall);
   text-align: center;
   gap: var(--bolt-spacing-x-small);
@@ -358,12 +359,25 @@
 
   @include bolt-mq(large) {
     max-width: calc(38vw + var(--bolt-page-padding-x));
-    margin-top: calc(var(--bolt-spacing-y-medium) * -2);
+    margin-top: calc(var(--bolt-spacing-y-medium) * -1.5);
     padding-right: 0;
   }
 }
 
-.c-bolt-profile-header__user-info-item--chips {
+.c-bolt-profile__user-info-item--headline {
+  > * {
+    font-family: var(--bolt-type-font-family-headline);
+    font-size: clamp(
+      var(--bolt-type-font-size-xlarge),
+      3vw,
+      var(--bolt-type-font-size-xxxlarge)
+    );
+    font-weight: var(--bolt-type-font-weight-regular);
+    line-height: var(--bolt-type-line-height-xxlarge);
+  }
+}
+
+.c-bolt-profile__user-info-item--chips {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -372,7 +386,7 @@
   white-space: nowrap;
 }
 
-.c-bolt-profile-header__stats {
+.c-bolt-profile__stats {
   display: flex;
   justify-content: center;
   gap: var(--bolt-spacing-x-xsmall);
@@ -403,7 +417,7 @@
   }
 }
 
-.c-bolt-profile-header__stats-item {
+.c-bolt-profile__stats-item {
   flex-basis: 6.25rem;
   padding: calc(var(--bolt-spacing-y-small) / 2) 0;
   font-family: var(--bolt-type-font-family-headline);
@@ -433,7 +447,7 @@
   }
 }
 
-.c-bolt-profile-header__stats-signifier {
+.c-bolt-profile__stats-signifier {
   display: grid;
   max-height: 1em;
   margin-bottom: var(--bolt-spacing-y-xsmall);
@@ -442,7 +456,7 @@
   place-items: center;
 }
 
-.c-bolt-profile-header__stats-label {
+.c-bolt-profile__stats-label {
   display: block;
   font-size: var(--bolt-type-font-size-xsmall);
   color: var(--m-bolt-neutral);
@@ -476,6 +490,10 @@
   grid-template-columns: 1fr auto;
   align-items: center;
   width: 100%;
+
+  &:focus {
+    outline: var(--bolt-focus-ring);
+  }
 
   @include bolt-mq($until: medium) {
     &[aria-expanded='true'] {

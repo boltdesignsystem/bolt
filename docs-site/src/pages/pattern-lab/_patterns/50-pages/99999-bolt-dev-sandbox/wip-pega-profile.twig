@@ -1,6 +1,72 @@
+{% set icon_facebook %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'facebook-solid',
+  } only %}
+{% endset %}
+{% set icon_twitter %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'twitter-solid',
+  } only %}
+{% endset %}
+{% set icon_linkedin %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'linkedin-solid',
+  } only %}
+{% endset %}
+{% set icon_email %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'email',
+  } only %}
+{% endset %}
+{% set icon_more %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'more',
+  } only %}
+{% endset %}
+{% set icon_pencil %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pencil',
+  } only %}
+{% endset %}
+{% set icon_info_circle %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'info-circle',
+  } only %}
+{% endset %}
+{% set icon_share %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'share',
+  } only %}
+{% endset %}
+{% set icon_pega_setting %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-setting',
+  } only %}
+{% endset %}
+{% set icon_chevron_right %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+{% set icon_chevron_down %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-down',
+  } only %}
+{% endset %}
+{% set icon_map_pin_solid %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'map-pin-solid',
+  } only %}
+{% endset %}
+{% set icon_customer_service %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'customer-service',
+  } only %}
+{% endset %}
+
 {% set header %}
-  <header class="c-bolt-profile-header t-bolt-white">
-    <div class="c-bolt-profile-header__cover">
+  <header class="c-bolt-profile t-bolt-white">
+    <div class="c-bolt-profile__cover">
       {% include '@bolt-elements-image/image.twig' with {
         background: true,
         attributes: {
@@ -12,7 +78,7 @@
         },
       } only %}
     </div>
-    <div class="c-bolt-profile-header__avatar">
+    <div class="c-bolt-profile__avatar">
       <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><path d="m450 398.32c-41.11-48-92.49-77.33-155.45-88.88 35.52-18.24 57.86-45.7 62.39-85s-9.7-72-40.76-96.63c-46.91-37.19-117.18-25.81-151.61 23.46-34.75 49.67-22.45 125.53 44.2 158.24-30.77 5.63-59.25 15.3-85.67 30.49a255.37 255.37 0 0 0 -69.48 58.26c-61.89-78.26-75.62-216.47 17.11-316.44 89.95-96.95 242.27-106.66 344.33-16.89 98.08 86.23 110.86 231.6 34.94 333.39z" fill="var(--m-bolt-text-on-disabled)"/><g fill="var(--m-bolt-disabled)"><path d="m442.17 407.77c-94.44 118.39-282.52 121.89-380.88.38 88.1-113.4 277.05-126.38 380.88-.38z"/><path d="m345.69 211.49c-.36 52.58-42.88 95-94.65 94.52-51.55-.52-94-43.31-93.51-94.17.57-53.33 43-95.3 96.46-94.12 52.65 1.17 91.87 44.79 91.7 93.77z"/></g></svg>
       {# {% include '@bolt-elements-image/image.twig' with {
         fill: true,
@@ -25,15 +91,11 @@
         },
       } only %} #}
     </div>
-    <div class="c-bolt-profile-header__user-info">
-      <div class="c-bolt-profile-header__user-info-item">
-        {% include '@bolt-components-headline/subheadline.twig' with {
-          text: '<strong>First Last</strong> (@username)',
-          tag: 'h1',
-          size: 'xlarge',
-        } only %}
+    <div class="c-bolt-profile__user-info">
+      <div class="c-bolt-profile__user-info-item c-bolt-profile__user-info-item--headline">
+        <h1><strong>First Last</strong> (@username)</h1>
       </div>
-      <div class="c-bolt-profile-header__user-info-item c-bolt-profile-header__user-info-item--chips">
+      <div class="c-bolt-profile__user-info-item c-bolt-profile__user-info-item--chips">
         {% include '@bolt-components-chip/chip.twig' with {
           text: 'Member since 2014',
           border_radius: 'small',
@@ -49,61 +111,30 @@
           border_radius: 'small',
         } only %}
       </div>
-      <div class="c-bolt-profile-header__user-info-item">
+      <div class="c-bolt-profile__user-info-item">
         <bolt-stack spacing="xxsmall">
           UX/UI Developer at Accenture
         </bolt-stack>
         <bolt-stack>
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'map-pin-solid',
-          } only %}
-          United States
+          {{ icon_map_pin_solid }}United States
         </bolt-stack>
       </div>
     </div>
-    <div class="c-bolt-profile-header__actions">
+    <div class="c-bolt-profile__actions">
       {% set popover_trigger %}
-        {% set icon_share %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'share',
-          } only %}
-        {% endset %}
         {% include '@bolt-elements-button/button.twig' with {
           content: 'Share profile',
           icon_only: icon_share,
           hierarchy: 'tertiary',
           border_radius: 'full',
           size: 'xsmall',
+          trigger_event: 'hover',
           attributes: {
             type: 'button',
           }
         } only %}
       {% endset %}
       {% set popover_menu %}
-        {% set icon_facebook %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'facebook-solid',
-            size: 'small',
-          } only %}
-        {% endset %}
-        {% set icon_twitter %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'twitter-solid',
-            size: 'small',
-          } only %}
-        {% endset %}
-        {% set icon_linkedin %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'linkedin-solid',
-            size: 'small',
-          } only %}
-        {% endset %}
-        {% set icon_email %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'email',
-            size: 'small',
-          } only %}
-        {% endset %}
         {% include '@bolt-components-menu/menu.twig' with {
           title: 'Share profile',
           items: [
@@ -150,33 +181,19 @@
       } only %}
 
       {% set popover_trigger %}
-        {% set icon_more %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'more',
-          } only %}
-        {% endset %}
         {% include '@bolt-elements-button/button.twig' with {
           content: 'More options',
           icon_only: icon_more,
           hierarchy: 'tertiary',
           border_radius: 'full',
           size: 'xsmall',
+          trigger_event: 'hover',
           attributes: {
             type: 'button',
           }
         } only %}
       {% endset %}
       {% set popover_menu %}
-        {% set icon_pencil %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'pencil',
-          } only %}
-        {% endset %}
-        {% set icon_pega_setting %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'pega-setting',
-          } only %}
-        {% endset %}
         {% include '@bolt-components-menu/menu.twig' with {
           title: 'More options',
           items: [
@@ -198,22 +215,20 @@
         placement: 'bottom-end',
       } only %}
     </div>
-    <div class="c-bolt-profile-header__stats">
-      <a href="#!" class="c-bolt-profile-header__stats-item">
-        <span class="c-bolt-profile-header__stats-signifier">
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'customer-service',
-          } only %}
+    <div class="c-bolt-profile__stats">
+      <a href="#!" class="c-bolt-profile__stats-item">
+        <span class="c-bolt-profile__stats-signifier">
+          {{ icon_customer_service }}
         </span>
-        <span class="c-bolt-profile-header__stats-label">Messages</span>
+        <span class="c-bolt-profile__stats-label">Send Message</span>
       </a href="#!">
-      <a href="#!" class="c-bolt-profile-header__stats-item">
-        <span class="c-bolt-profile-header__stats-signifier">23</span>
-        <span class="c-bolt-profile-header__stats-label">Achievements</span>
+      <a href="#!" class="c-bolt-profile__stats-item">
+        <span class="c-bolt-profile__stats-signifier">23</span>
+        <span class="c-bolt-profile__stats-label">Achievements</span>
       </a href="#!">
-      <a href="#!" class="c-bolt-profile-header__stats-item">
-        <span class="c-bolt-profile-header__stats-signifier">13</span>
-        <span class="c-bolt-profile-header__stats-label">Contributions</span>
+      <a href="#!" class="c-bolt-profile__stats-item">
+        <span class="c-bolt-profile__stats-signifier">13</span>
+        <span class="c-bolt-profile__stats-label">Contributions</span>
       </a href="#!">
     </div>
   </header>
@@ -223,34 +238,108 @@
     <bolt-layout-item>
       <bolt-grid gutter="medium" row-gutter="medium">
         <bolt-grid-item column-start="1" column-span="12 6@medium">
-          <div class="c-bolt-info-card t-bolt-white">
+          <div class="c-bolt-info-card t-bolt-white u-bolt-height-full">
             <h2 class="c-bolt-info-card__headline">About</h2>
             <button class="c-bolt-info-card__headline c-bolt-info-card__headline--button js-bolt-info-card-toggle-button" type="button" aria-expanded="true">
               About
               <span class="c-bolt-info-card__headline-icon">
-                {% include '@bolt-elements-icon/icon.twig' with {
-                  name: 'chevron-down',
-                } only %}
+                {{ icon_chevron_down }}
               </span>
             </button>
             <div class="c-bolt-info-card__content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.</p>
+              {% set tooltip_linkedin %}
+                {% set link_linkedin %}<a href="#!">{{ icon_linkedin }}</a>{% endset %}
+                {% include '@bolt-components-tooltip/tooltip.twig' with {
+                  trigger: link_linkedin,
+                  content: 'LinkedIn',
+                } only %}
+              {% endset %}
+              {% set tooltip_facebook %}
+                {% set link_facebook %}<a href="#!">{{ icon_facebook }}</a>{% endset %}
+                {% include '@bolt-components-tooltip/tooltip.twig' with {
+                  trigger: link_facebook,
+                  content: 'Facebook',
+                } only %}
+              {% endset %}
+              {% include '@bolt-components-list/list.twig' with {
+                display: "inline",
+                tag: "div",
+                items: [
+                  "On the web:",
+                  tooltip_linkedin,
+                  tooltip_facebook,
+                ]
+              } only %}
             </div>
           </div>
         </bolt-grid-item>
         <bolt-grid-item column-start="1 7@medium" column-span="12 6@medium">
-          <div class="c-bolt-info-card t-bolt-white">
-            <h2 class="c-bolt-info-card__headline">Language &amp; Skills</h2>
+          <div class="c-bolt-info-card t-bolt-white u-bolt-height-full">
+            <h2 class="c-bolt-info-card__headline">Languages &amp; Skills</h2>
             <button class="c-bolt-info-card__headline c-bolt-info-card__headline--button js-bolt-info-card-toggle-button" type="button" aria-expanded="false">
-              Language &amp; Skills
+              Languages &amp; Skills
               <span class="c-bolt-info-card__headline-icon">
-                {% include '@bolt-elements-icon/icon.twig' with {
-                  name: 'chevron-down',
-                } only %}
+                {{ icon_chevron_down }}
               </span>
             </button>
             <div class="c-bolt-info-card__content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.
+              {% include '@bolt-components-headline/text.twig' with {
+                text: 'Languages',
+                weight: 'semibold',
+                tag: 'h3',
+              } only %}
+              {% include '@bolt-components-ul/ul.twig' with {
+                items: [
+                  'Chinese (native or bilingual proficiency)',
+                  'English (native or bilingual proficiency)',
+                ]
+              } only %}
+              <bolt-layout template="tiles" padding-top="none" padding-bottom="none" style="--l-bolt-layout-tile-min-width: 12.5rem">
+                <bolt-layout-item>
+                  {% set tooltip %}
+                    {% include '@bolt-components-tooltip/tooltip.twig' with {
+                      trigger: icon_info_circle,
+                      content: 'Pega platform capabilities with which the member has experience.',
+                    } only %}
+                  {% endset %}
+                  {% include '@bolt-components-headline/text.twig' with {
+                    text: 'Pega Specializations ' ~ tooltip,
+                    weight: 'semibold',
+                    tag: 'h3',
+                  } only %}
+                  {% include '@bolt-components-ul/ul.twig' with {
+                    items: [
+                      'Application Development',
+                      'Mobile',
+                      'Reporting',
+                      'Case Management',
+                      'Data Integration',
+                      'Robotic Process Automation',
+                      'User Interface',
+                    ]
+                  } only %}
+                </bolt-layout-item>
+                <bolt-layout-item>
+                  {% set tooltip %}
+                    {% include '@bolt-components-tooltip/tooltip.twig' with {
+                      trigger: icon_info_circle,
+                      content: 'Professional positions the member has held on Pega projects.',
+                    } only %}
+                  {% endset %}
+                  {% include '@bolt-components-headline/text.twig' with {
+                    text: 'Project Roles ' ~ tooltip,
+                    weight: 'semibold',
+                    tag: 'h3',
+                  } only %}
+                  {% include '@bolt-components-ul/ul.twig' with {
+                    items: [
+                      'Lead System Architect',
+                      'System Architect',
+                    ]
+                  } only %}
+                </bolt-layout-item>
+              </bolt-layout>
             </div>
           </div>
         </bolt-grid-item>
@@ -260,20 +349,98 @@
             <button class="c-bolt-info-card__headline c-bolt-info-card__headline--button js-bolt-info-card-toggle-button" type="button" aria-expanded="false">
               Achievements
               <span class="c-bolt-info-card__headline-icon">
-                {% include '@bolt-elements-icon/icon.twig' with {
-                  name: 'chevron-down',
-                } only %}
+                {{ icon_chevron_down }}
               </span>
             </button>
             <div class="c-bolt-info-card__content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.
+              {% include '@bolt-components-headline/text.twig' with {
+                text: 'Most Recent Certifications',
+                weight: 'semibold',
+                tag: 'h3',
+              } only %}
+              <bolt-layout template="tiles" gutter="large" row-gutter="medium" padding-top="small" padding-bottom="medium">
+                {% set placeholder_certification %}
+                  <small class="u-bolt-display-block u-bolt-text-align-center">
+                    <bolt-stack spacing="small">
+                      {% include '@bolt-elements-image/image.twig' with {
+                        fill: true,
+                        attributes: {
+                          src: 'https://via.placeholder.com/400x400',
+                          srcset: 'https://via.placeholder.com/400x400 200w, https://via.placeholder.com/800x800 400w, https://via.placeholder.com/1200x1200 800w, https://via.placeholder.com/1800x1800 1200w',
+                          sizes: '25vw',
+                          width: 400,
+                          height: 400,
+                          loading: 'lazy',
+                        },
+                      } only %}
+                    </bolt-stack>
+                    <bolt-stack spacing="xxsmall">
+                      Lead System Architect
+                    </bolt-stack>
+                    <bolt-stack>
+                      Version 7.2 | Nov 7, 2021
+                    </bolt-stack>
+                  </small>
+                {% endset %}
+                <bolt-layout-item>
+                  {{ placeholder_certification }}
+                </bolt-layout-item>
+                <bolt-layout-item>
+                  {{ placeholder_certification }}
+                </bolt-layout-item>
+                <bolt-layout-item>
+                  {{ placeholder_certification }}
+                </bolt-layout-item>
+                <bolt-layout-item>
+                  {{ placeholder_certification }}
+                </bolt-layout-item>
+              </bolt-layout>
+              {% include '@bolt-components-headline/text.twig' with {
+                text: 'Most Recent Badges',
+                weight: 'semibold',
+                tag: 'h3',
+              } only %}
+              <bolt-layout template="tiles" gutter="large" padding-top="small" row-gutter="large">
+                {% set placeholder_badge %}
+                  {% set image %}
+                    {% include '@bolt-elements-image/image.twig' with {
+                      fill: true,
+                      attributes: {
+                        src: 'https://via.placeholder.com/400x400',
+                        srcset: 'https://via.placeholder.com/400x400 200w, https://via.placeholder.com/800x800 400w, https://via.placeholder.com/1200x1200 800w, https://via.placeholder.com/1800x1800 1200w',
+                        sizes: '25vw',
+                        width: 400,
+                        height: 400,
+                        loading: 'lazy',
+                      },
+                    } only %}
+                  {% endset %}
+                  {% include '@bolt-components-tooltip/tooltip.twig' with {
+                    trigger: image,
+                    content: 'Senior System Architect<br>Version 7.2 | Nov 7, 2021',
+                  } only %}
+                {% endset %}
+                <bolt-layout-item>
+                  {{ placeholder_badge }}
+                </bolt-layout-item>
+                <bolt-layout-item>
+                  {{ placeholder_badge }}
+                </bolt-layout-item>
+                <bolt-layout-item>
+                  {{ placeholder_badge }}
+                </bolt-layout-item>
+                <bolt-layout-item>
+                  {{ placeholder_badge }}
+                </bolt-layout-item>
+                <bolt-layout-item>
+                  {{ placeholder_badge }}
+                </bolt-layout-item>
+                <bolt-layout-item>
+                  {{ placeholder_badge }}
+                </bolt-layout-item>
+              </bolt-layout>
             </div>
             <div class="c-bolt-info-card__link">
-              {% set icon_chevron_right %}
-                {% include '@bolt-elements-icon/icon.twig' with {
-                  name: 'chevron-right',
-                } only %}
-              {% endset %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'View all achievements',
                 icon_after: icon_chevron_right,
