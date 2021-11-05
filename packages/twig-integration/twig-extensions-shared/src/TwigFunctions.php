@@ -287,7 +287,6 @@ class TwigFunctions {
       //image - @bolt-global/image.twig
       //teaser - @bolt-teaser/teaser.twig
       //text - @bolt-headline/text.twig
-      //video - @bolt-video/video.twig
     });
   }
 
