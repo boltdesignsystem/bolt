@@ -1,0 +1,194 @@
+{% set description %}
+  A representation of a input radio fieldset.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>...</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {# input radio fieldset #}
+  {% set radio_children %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Left-aligned',
+        displayType: 'inline-radio',
+        attributes: {
+          for: 'radio-left',
+          name: 'radio-alignment'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'radio',
+          id: 'radio-left',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Center-aligned',
+        displayType: 'inline-radio',
+        attributes: {
+          for: 'radio-center',
+          name: 'radio-alignment'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'radio',
+          id: 'radio-center',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Right-aligned',
+        displayType: 'inline-radio',
+        attributes: {
+          for: 'radio-right',
+          name: 'radio-alignment'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'radio',
+          id: 'radio-right',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+  {% endset %}
+  {% set fieldset_children %}
+    {% include '@bolt-components-form/form-radios.twig' with {
+        children: radio_children
+      } only %}
+  {% endset %}
+
+  {% include '@bolt-components-form/form-fieldset.twig' with {
+    legendTitle: 'Select an alignment',
+    children: fieldset_children
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set radio_children %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Left-aligned',
+      displayType: 'inline-radio',
+      attributes: {
+        for: 'radio-left',
+        name: 'radio-alignment'
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'radio',
+        id: 'radio-left',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Center-aligned',
+      displayType: 'inline-radio',
+      attributes: {
+        for: 'radio-center',
+        name: 'radio-alignment'
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'radio',
+        id: 'radio-center',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Right-aligned',
+      displayType: 'inline-radio',
+      attributes: {
+        for: 'radio-right',
+        name: 'radio-alignment'
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'radio',
+        id: 'radio-right',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+{% endset %}
+{% set fieldset_children %}
+  {% include '@bolt-components-form/form-radios.twig' with {
+      children: radio_children
+    } only %}
+{% endset %}
+
+{% include '@bolt-components-form/form-fieldset.twig' with {
+  legendTitle: 'Select an alignment',
+  children: fieldset_children
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+  ...
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Input radio fieldset',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
+

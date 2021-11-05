@@ -1,0 +1,84 @@
+{% set description %}
+  A representation of a single input radio.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>...</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{# input radio #}
+{% set label %}
+  {% include '@bolt-components-form/form-label.twig' with {
+    title: 'Single Radio',
+    displayType: 'inline-radio',
+    attributes: {
+      for: 'radio-id',
+      name: 'radio-name'
+    },
+  } only %}
+{% endset %}
+{% set input %}
+  {% include '@bolt-components-form/form-input.twig' with {
+    attributes: {
+      type: 'radio',
+      id: 'radio-id',
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-components-form/form-element.twig' with {
+  label: label,
+  children: input,
+  attributes: {
+    class: 'u-bolt-margin-bottom-large'
+  }
+} only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set label %}
+  {% include '@bolt-components-form/form-label.twig' with {
+    title: 'Single Radio',
+    displayType: 'inline-radio',
+    attributes: {
+      for: 'radio-id',
+      name: 'radio-name'
+    },
+  } only %}
+{% endset %}
+{% set input %}
+  {% include '@bolt-components-form/form-input.twig' with {
+    attributes: {
+      type: 'radio',
+      id: 'radio-id',
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-components-form/form-element.twig' with {
+  label: label,
+  children: input,
+  attributes: {
+    class: 'u-bolt-margin-bottom-large'
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+  ...
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Input radio',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
+
