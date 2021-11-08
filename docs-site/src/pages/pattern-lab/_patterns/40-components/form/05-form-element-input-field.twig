@@ -7,6 +7,9 @@
     <bolt-li>To make an input accessible to screen readers and other assistive technology, make sure to include input <code>type</code> attribute. For example: <code>text</code>, <code>email</code>, <code>search</code> etc. All existing input types you can find on the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" class="e-bolt-text-link">MDN article on form input elements</a>.</bolt-li>
     <bolt-li>Remember to provide <code>labels</code> for your inputs to increase the ease of filling in the form.</bolt-li>
     <bolt-li>Dont't forget to include a <code>placeholder</code> as an input <code>attribute</code>.</bolt-li>
+    <bolt-li>It's possible to add attributes like <code>required</code> or <code>disabled</code> to the <code>form-input.twig</code> include statmenet if needed.</bolt-li>
+    <bolt-li>To display text message or error message add <code>descriptionText</code> or <code>errors</code> attribute with the message to your <code>form-element.twig</code> include statement.</bolt-li>
+    <bolt-li>Adding error icon in the input field can be possible by setting <code>hasErrors=true</code> in the <code>form-input.twig</code> .</bolt-li>
     <bolt-li>Is it possible to choose the label position of the input. Reference the <a href="{{ link['components-form-label-positions'] }}" class="e-bolt-text-link">form label positions</a> for all options.</bolt-li>
   </bolt-ol>
 {% endset %}
@@ -17,7 +20,7 @@
 {% set label %}
   {% include '@bolt-components-form/form-label.twig' with {
     title: 'Title',
-    displayType: 'floating',
+    displayType: 'block',
     attributes: {
       for: 'text',
     },
@@ -35,6 +38,7 @@
 {% include '@bolt-components-form/form-element.twig' with {
   label: label,
   children: input,
+  labelDisplay: 'before',
   attributes: {
     class: 'u-bolt-margin-bottom-large'
   }
@@ -45,7 +49,7 @@
 {% set label %}
   {% include '@bolt-components-form/form-label.twig' with {
     title: 'Search',
-    displayType: 'floating',
+    displayType: 'block',
     attributes: {
       for: 'search',
     },
@@ -64,6 +68,7 @@
 {% include '@bolt-components-form/form-element.twig' with {
   label: label,
   children: input,
+  labelDisplay: 'before',
   attributes: {
     class: 'u-bolt-margin-bottom-large'
   }
@@ -74,7 +79,7 @@
 {% set label %}
   {% include '@bolt-components-form/form-label.twig' with {
     title: 'Search',
-    displayType: 'floating',
+    displayType: 'block',
     attributes: {
       for: 'search',
     },
@@ -93,6 +98,7 @@
 {% include '@bolt-components-form/form-element.twig' with {
   label: label,
   children: input,
+  labelDisplay: 'before',
   attributes: {
     class: 'u-bolt-margin-bottom-large'
   }
@@ -103,7 +109,7 @@
 {% set label %}
   {% include '@bolt-components-form/form-label.twig' with {
     title: 'Email',
-    displayType: 'floating',
+    displayType: 'block',
     attributes: {
       for: 'email-address',
     },
@@ -121,6 +127,7 @@
 {% include '@bolt-components-form/form-element.twig' with {
   label: label,
   children: input,
+  labelDisplay: 'before',
   descriptionText: 'We promise not to sell your email address',
   attributes: {
     class: 'u-bolt-margin-bottom-large'
@@ -132,7 +139,7 @@
 {% set label %}
   {% include '@bolt-components-form/form-label.twig' with {
     title: 'Password',
-    displayType: 'floating',
+    displayType: 'block',
     attributes: {
       for: 'password',
     },
@@ -150,6 +157,7 @@
 {% include '@bolt-components-form/form-element.twig' with {
   label: label,
   children: input,
+  labelDisplay: 'before',
   attributes: {
     class: 'u-bolt-margin-bottom-large'
   }
@@ -160,7 +168,7 @@
 {% set label %}
   {% include '@bolt-components-form/form-label.twig' with {
     title: 'Search',
-    displayType: 'floating',
+    displayType: 'block',
     attributes: {
       for: 'search',
     },
@@ -178,6 +186,7 @@
 {% include '@bolt-components-form/form-element.twig' with {
   label: label,
   children: input,
+  labelDisplay: 'before',
   attributes: {
     class: 'u-bolt-margin-bottom-large'
   }
@@ -188,7 +197,7 @@
 {% set label %}
   {% include '@bolt-components-form/form-label.twig' with {
     title: 'Username',
-    displayType: 'floating',
+    displayType: 'block',
     attributes: {
       for: 'username',
     },
@@ -207,6 +216,7 @@
 {% include '@bolt-components-form/form-element.twig' with {
   label: label,
   children: input,
+  labelDisplay: 'before',
   errors: 'The username you entered is already taken.',
   attributes: {
     class: 'u-bolt-margin-bottom-large'
@@ -219,7 +229,7 @@
 {% set label %}
   {% include '@bolt-components-form/form-label.twig' with {
     title: 'Title',
-    displayType: 'floating',
+    displayType: 'block',
     attributes: {
       for: 'text',
     },
@@ -237,6 +247,7 @@
 {% include '@bolt-components-form/form-element.twig' with {
   label: label,
   children: input,
+  labelDisplay: 'before',
 } only %}
 {% endverbatim %}
 {% endset %}
