@@ -1,0 +1,98 @@
+{% set description %}
+    A representation of a select element.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Add select options as an array to the select include statement.</bolt-li>
+    <bolt-li>Rememeber to set <code>type</code> as an <code>option</code> and add <code>label</code> and <code>value</code> attributes to each of the options.</bolt-li>
+    <bolt-li>First option can have the <code>value</code> of an empty string and the <code>label</code> set to "- Select an option -", or whatever that will perform a function of a placeholder for select element.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{# Select element #}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Select',
+      displayType: 'floating',
+    } only %}
+  {% endset %}
+  {% set select %}
+    {% include '@bolt-components-form/form-select.twig' with {
+      options: [
+        {
+          type: 'option',
+          value: '',
+          label: '- Select an option -',
+        },
+        {
+          type: 'option',
+          value: 'option-a',
+          label: 'Option A'
+        },
+        {
+          type: 'option',
+          value: 'option-b',
+          label: 'Option B'
+        }
+      ]
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: select,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set label %}
+  {% include '@bolt-components-form/form-label.twig' with {
+    title: 'Select',
+    displayType: 'floating',
+  } only %}
+{% endset %}
+{% set select %}
+  {% include '@bolt-components-form/form-select.twig' with {
+    options: [
+      {
+        type: 'option',
+        value: '',
+        label: '- Select an option -'
+      },
+      {
+        type: 'option',
+        value: 'option-a',
+        label: 'Option A'
+      },
+      {
+        type: 'option',
+        value: 'option-b',
+        label: 'Option B'
+      }
+    ]
+  } only %}
+{% endset %}
+{% include '@bolt-components-form/form-element.twig' with {
+  label: label,
+  children: select,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+  ...
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Select element',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
+
