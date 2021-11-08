@@ -1,0 +1,82 @@
+{% set description %}
+    An example of a inline inputs.
+{% endset %}
+
+{% set demo %}
+  {% set form_children %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Email Address',
+        displayType: 'floating',
+        attributes: {
+          for: 'email-address',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter email address',
+          required: true,
+          type: 'email',
+          id: 'email-address',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+
+    {% set submit_button %}
+      {% include '@bolt-components-form/form-button.twig' with {
+        text: 'Sign Up Now',
+        type: 'submit'
+      } only %}
+    {% endset %}
+
+    {% set submit_button_full_width %}
+      {% include '@bolt-components-form/form-button.twig' with {
+        text: 'Sign Up Now',
+        type: 'submit',
+        width: 'full'
+      } only %}
+    {% endset %}
+  {% endset %}
+
+  {% include '@bolt-components-form/form.twig' with {
+    children: form_children
+  } only  %}
+
+  <h3>Inline inputs: auto width</h3>
+
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    spacing: 'xsmall',
+    align: 'start',
+    valign: 'start',
+    items: [
+      demo
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+...
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+  ...
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Inline inputs',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
