@@ -71,10 +71,18 @@
           text: 'Move past traditional CRM systems to a true journey-enabled, customer engagement suite. Learn how Pega is helping enterprises revolutionize their customer engagement with end-to-end automation and real-time AI on the only unified CRM platform.',
           size: 'medium'
         } only %}
-        {% include '@bolt-components-video/video.twig' with {
-          'videoId': '5609376179001',
-          'accountId': '1900410236',
-          'playerId': 'r1CAdLzTW'
+        {% set video %}
+          <video-js
+            data-account="1900410236"
+            data-player="O3FkeBiaDz"
+            data-embed="default"
+            data-video-id="5609376179001"
+            controls
+            class="c-base-video"></video-js>
+        {% endset %}
+        {% include '@bolt-components-ratio/ratio.twig' with {
+          children: video,
+          ratio: '16/9'
         } only %}
       {% endcell %}
 
@@ -350,13 +358,15 @@
     {% block band_content %}
       {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-          {% set videoUuid3 = 'js-bolt-video-uuid--3c' %}
-          {% include '@bolt-componenets-video/video.twig' with {
-            'videoId': '5609376179001',
-            'accountId': '1900410236',
-            'playerId': 'r1CAdLzTW',
-            'videoUuid': videoUuid3
-          } only %}
+          {% set videoUuid1 = 'js-bolt-video-uuid--1' %}
+          <video-js
+            data-account="1900410236"
+            data-player="O3FkeBiaDz"
+            data-embed="default"
+            data-video-id="5609376179001"
+            controls
+            id="{{ videoUuid1 }}"
+            class="c-base-video"></video-js>
         {% endcell %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
           {% include '@bolt-components-headline/subheadline.twig' with {
@@ -521,11 +531,19 @@
           } only %}
         {% endcell %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-          {% include '@bolt-components-video/video.twig' with {
-            'videoId': '5609376179001',
-            'accountId': '1900410236',
-            'playerId': 'r1CAdLzTW',
-            'videoUuid': videoUuid3
+          {% set video %}
+            <video-js
+              data-account="1900410236"
+              data-player="O3FkeBiaDz"
+              data-embed="default"
+              data-video-id="5609376179001"
+              controls
+              id="{{ videoUuid3 }}"
+              class="c-base-video"></video-js>
+          {% endset %}
+          {% include '@bolt-components-ratio/ratio.twig' with {
+            children: video,
+            ratio: '16/9'
           } only %}
         {% endcell %}
       {% endgrid %}
@@ -597,11 +615,19 @@
     {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
       {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
         {% set videoUuid3 = 'js-bolt-video-uuid--3b' %}
-        {% include '@bolt-components-video/video.twig' with {
-          'videoId': '5609376179001',
-          'accountId': '1900410236',
-          'playerId': 'r1CAdLzTW',
-          'videoUuid': videoUuid3
+        {% set video %}
+          <video-js
+            data-account="1900410236"
+            data-player="O3FkeBiaDz"
+            data-embed="default"
+            data-video-id="5609376179001"
+            controls
+            id="{{ videoUuid3 }}"
+            class="c-base-video"></video-js>
+        {% endset %}
+        {% include '@bolt-components-ratio/ratio.twig' with {
+          children: video,
+          ratio: '16/9'
         } only %}
         {% endcell %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
@@ -864,105 +890,229 @@
 
     {% endgrid %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '3973999413001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="3973999413001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="5138448829001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '5138448829001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="3974028469001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="5400908626001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '3974028469001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4584402777001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '5400908626001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="3979775517001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4175249227001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '4584402777001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4236820085001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '3979775517001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4922500787001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '4175249227001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="5103362380001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '4236820085001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="3974028459001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '4922500787001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4763108346001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '5103362380001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="3974012235001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '3974028459001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="5214595752001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '4763108346001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="5273142065001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '3974012235001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
-
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '5214595752001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
-
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '5273142065001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
-
-{% include '@bolt-components-video/video.twig' with {
-  'videoId': '4944556027001',
-  'accountId': '1900410236',
-  'playerId': 'r1CAdLzTW'
-} only %}
-
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4944556027001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
 
   {% endblock %}
 {% endembed %}

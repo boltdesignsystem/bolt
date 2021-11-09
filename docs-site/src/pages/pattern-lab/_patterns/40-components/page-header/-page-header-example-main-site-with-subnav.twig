@@ -954,7 +954,7 @@
     size: 'small',
     align: 'center',
     icon: {
-      name: 'info-open',
+      name: 'info-circle',
       position: 'before',
     }
   } only %}
@@ -1021,12 +1021,12 @@
 
   {% set navbar_items %}
     {% for item in navbar_data %}
-      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}
     {% endfor %}
   {% endset %}
 
   {% set navbar_list %}
-    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}
   {% endset %}
 
   {% include '@bolt-components-navbar/navbar.twig' with {
@@ -1034,7 +1034,7 @@
       content: 'Subnav',
       tag: 'h1',
       icon: {
-        name: 'marketing-gray'
+        name: 'bullseye'
       }
     },
     links: navbar_list

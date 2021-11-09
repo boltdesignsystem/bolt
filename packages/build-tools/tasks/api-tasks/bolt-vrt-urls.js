@@ -39,7 +39,6 @@ async function generateVrtUrls() {
   const excludePackages = [
     '@bolt/components-radio-switch',
     '@bolt/components-animate',
-    '@bolt/components-dropdown',
     '@bolt/components-grid',
     '@bolt/components-icons',
     '@bolt/components-page-footer',

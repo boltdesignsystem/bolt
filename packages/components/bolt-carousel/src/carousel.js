@@ -1,4 +1,10 @@
-import { html, unsafeCSS, customElement, BoltElement } from '@bolt/element';
+import {
+  html,
+  unsafeCSS,
+  unsafeHTML,
+  customElement,
+  BoltElement,
+} from '@bolt/element';
 import classNames from 'classnames/bind';
 // Import Swiper and modules
 import {
@@ -13,8 +19,11 @@ import {
 // Install modules
 Swiper.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
-import schema from '../carousel.schema';
+import { iconChevronLeft } from '@bolt/elements-icon/src/icons/js/chevron-left';
+import { iconChevronRight } from '@bolt/elements-icon/src/icons/js/chevron-right';
+import iconStyles from '@bolt/elements-icon/index.scss';
 import styles from '../index.scss';
+import schema from '../carousel.schema';
 
 import '@bolt/core-v3.x/utils/optimized-resize';
 
@@ -503,6 +512,7 @@ class BoltCarousel extends BoltElement {
       },
     );
 
+    // prettier-ignore
     const buttonTemplate = iconName => html`
       <span
         class="e-bolt-button
@@ -512,9 +522,9 @@ class BoltCarousel extends BoltElement {
         e-bolt-button--icon-only"
         aria-hidden="true"
       >
-        <span class="e-bolt-button__icon-center">
-          <bolt-icon size="large" name="${iconName}"></bolt-icon>
-        </span>
+        <span class="e-bolt-button__icon-center">${iconName === 'chevron-left'
+        ? unsafeHTML(iconChevronLeft({ size: 'large' }))
+        : unsafeHTML(iconChevronRight({ size: 'large' }))}</span>
       </span>
     `;
 
@@ -565,7 +575,7 @@ class BoltCarousel extends BoltElement {
 @customElement('bolt-carousel-slide')
 class BoltCarouselSlide extends BoltElement {
   static get styles() {
-    return [unsafeCSS(styles)];
+    return [unsafeCSS(styles), unsafeCSS(iconStyles)];
   }
 
   render() {

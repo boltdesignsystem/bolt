@@ -56,53 +56,49 @@
                     <li class="o-bolt-inline-list__item c-share__item">
                       <a href="https://twitter.com/" class="c-bolt-link u-bolt-color-info" target="_blank">
                         <span class="u-bolt-visuallyhidden">Follow Us On Twitter</span>
-                        <!-- Icon JS + twig integration -->
-
-
-
-
-                        <bolt-icon class="c-share__icon c-share__icon--twitter" name="twitter" size="medium"></bolt-icon>
-
-
+                        {% include '@bolt-elements-icon/icon.twig' with {
+                          name: 'twitter',
+                          size: 'medium',
+                          attributes: {
+                            class: 'c-share__icon c-share__icon--twitter'
+                          }
+                        } only %}
                       </a>
                     </li>
                     <li class="o-bolt-inline-list__item c-share__item">
                       <a href="https://www.facebook.com/" class="c-bolt-link u-bolt-color-info" target="_blank">
                         <span class="u-bolt-visuallyhidden">Follow Us On Facebook</span>
-                        <!-- Icon JS + twig integration -->
-
-
-
-
-                        <bolt-icon class="c-share__icon c-share__icon--facebook" name="facebook" size="medium"></bolt-icon>
-
-
+                        {% include '@bolt-elements-icon/icon.twig' with {
+                          name: 'facebook',
+                          size: 'medium',
+                          attributes: {
+                            class: 'c-share__icon c-share__icon--facebook'
+                          }
+                        } only %}
                       </a>
                     </li>
                     <li class="o-bolt-inline-list__item c-share__item">
                       <a href="https://www.linkedin.com/" class="c-bolt-link u-bolt-color-info" target="_blank">
                         <span class="u-bolt-visuallyhidden">Connect with us on LinkedIn</span>
-                        <!-- Icon JS + twig integration -->
-
-
-
-
-                        <bolt-icon class="c-share__icon c-share__icon--linkedin" name="linkedin-solid" size="medium"></bolt-icon>
-
-
+                        {% include '@bolt-elements-icon/icon.twig' with {
+                          name: 'linkedin-solid',
+                          size: 'medium',
+                          attributes: {
+                            class: 'c-share__icon c-share__icon--linkedin'
+                          }
+                        } only %}
                       </a>
                     </li>
                     <li class="o-bolt-inline-list__item c-share__item">
                       <a href="https://www.youtube.com/" class="c-bolt-link u-bolt-color-info" target="_blank">
                         <span class="u-bolt-visuallyhidden">Check us out on YouTube</span>
-                        <!-- Icon JS + twig integration -->
-
-
-
-
-                        <bolt-icon class="c-share__icon c-share__icon--youtube" name="youtube-solid" size="medium"></bolt-icon>
-
-
+                        {% include '@bolt-elements-icon/icon.twig' with {
+                          name: 'youtube-solid',
+                          size: 'medium',
+                          attributes: {
+                            class: 'c-share__icon c-share__icon--youtube'
+                          }
+                        } only %}
                       </a>
                     </li>
                   </ul>

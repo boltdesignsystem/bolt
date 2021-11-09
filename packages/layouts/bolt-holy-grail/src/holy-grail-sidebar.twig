@@ -16,26 +16,26 @@
 {% spaceless %}<div {{ sidebar_attributes.addClass(sidebar_classes) }}>
   <button type="button" aria-expanded="false" class="l-bolt-holy-grail__sidebar-trigger js-bolt-holy-grail__toggle-trigger">
     <span class="l-bolt-holy-grail__sidebar-trigger__text">
-      {% include '@bolt-components-icon/icon.twig' with {
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: trigger_icon|default('documentation'),
       } only %}
       {{ trigger_label|default('Primary Sidebar'|t)|title }}
     </span>
     <span class="l-bolt-holy-grail__sidebar-trigger__text l-bolt-holy-grail__sidebar-trigger__text--close">
       {{ 'Close'|t }} {{ trigger_label|default('Primary Sidebar'|t)|title }}
-      {% include '@bolt-components-icon/icon.twig' with {
+      {% include '@bolt-elements-icon/icon.twig' with {
         name: 'close',
       } only %}
     </span>
     <span class="l-bolt-holy-grail__sidebar-trigger__text l-bolt-holy-grail__sidebar-trigger__text--toggle">
       <span class="l-bolt-holy-grail__sidebar-trigger__icon-center">
-        {% include '@bolt-components-icon/icon.twig' with {
-          name: 'exit-full-screen',
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'full-screen-off',
         } only %}
       </span>
       <span class="l-bolt-holy-grail__sidebar-trigger__icon-center">
-        {% include '@bolt-components-icon/icon.twig' with {
-          name: trigger_icon|default('full-screen'),
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: trigger_icon|default('full-screen-on'),
         } only %}
       </span>
       <span class="u-bolt-visuallyhidden">{{ 'Toggle'|t }} {{ trigger_label|default('Primary Sidebar'|t)|title }}</span>
