@@ -180,18 +180,11 @@
 {% endverbatim %}
 {% endset %}
 
-{% set html_markup %}
-{% verbatim %}
-  ...
-{% endverbatim %}
-{% endset %}
-
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Input radio fieldset',
   description: description,
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,
-  html_markup: html_markup,
 } only %}
 
