@@ -3,98 +3,204 @@
 
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
   {% set form_children %}
-    {% include '@pl/10-form-element-demo-input-element.twig' with {
-      title: 'First Name',
-      inputAttributes: {
-        placeholder: 'Enter your first name',
-        required: true
-      },
-      labelDisplayType: 'floating'
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'First Name',
+        displayType: 'floating',
+        attributes: {
+          for: 'first-name',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter your first name',
+          required: true,
+          type: 'text',
+          id: 'first-name',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
     } only %}
 
-    {% include '@pl/10-form-element-demo-input-element.twig' with {
-      title: 'Last Name',
-      inputAttributes: {
-        placeholder: 'Enter your last name',
-        required: true
-      },
-      labelDisplayType: 'floating'
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Last Name',
+        displayType: 'floating',
+        attributes: {
+          for: 'last-name',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter your last name',
+          required: true,
+          type: 'text',
+          id: 'last-name',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+    
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Email Address',
+        displayType: 'floating',
+        attributes: {
+          for: 'email-address',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter your email',
+          required: true,
+          type: 'email',
+          id: 'email-address',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
     } only %}
 
-    {% include '@pl/10-form-element-demo-input-element.twig' with {
-      title: 'Email Address',
-      inputAttributes: {
-        placeholder: 'Enter your email address',
-        type: 'email',
-        required: true
-      },
-      labelDisplayType: 'floating'
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Title',
+        displayType: 'floating',
+        attributes: {
+          for: 'job-title',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter your current job title',
+          required: true,
+          type: 'text',
+          id: 'job-title',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
     } only %}
 
-    {% include '@pl/10-form-element-demo-input-element.twig' with {
-      title: 'Title',
-      inputAttributes: {
-        placeholder: 'Enter your current job title',
-        required: true
-      },
-      labelDisplayType: 'floating'
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Company Name',
+        displayType: 'floating',
+        attributes: {
+          for: 'company-name',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter the name of your company',
+          required: true,
+          type: 'text',
+          id: 'company-name',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
     } only %}
 
-    {% include '@pl/10-form-element-demo-input-element.twig' with {
-      title: 'Company Name',
-      inputAttributes: {
-        placeholder: 'Enter the name of your company',
-        required: true
-      },
-      labelDisplayType: 'floating'
-    } only %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Country',
+        displayType: 'floating',
+      } only %}
+    {% endset %}
 
-    {% include '@pl/40-form-element-demo-select.twig' with {
-      title: 'Country',
-      selectAttributes: {
-        required: true
-      },
-      options: [
-        {
-          type: 'option',
-          value: '',
-          label: '- Select a Country -',
-          attributes: {
-            disabled: true,
+    {% set select %}
+      {% include '@bolt-components-form/form-select.twig' with {
+        attributes: {
+          required: true
+        },
+        selectAttributes: {},
+        options: [
+          {
+            type: 'option',
+            value: '',
+            label: '- Select an Country -',
+            attributes: {
+              disabled: true
+            }
+          },
+          {
+            type: 'option',
+            value: 'a',
+            label: 'Argentina'
+          },
+          {
+            type: 'option',
+            value: 'b',
+            label: 'Belgium'
+          },
+          {
+            type: 'option',
+            value: 'c',
+            label: 'Croatia'
           }
-        },
-        {
-          type: 'option',
-          value: 'a',
-          label: 'Argentina'
-        },
-        {
-          type: 'option',
-          value: 'b',
-          label: 'Belgium'
-        },
-        {
-          type: 'option',
-          value: 'c',
-          label: 'Croatia'
-        }
-      ]
+        ]
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: select,
     } only %}
 
-    {% include '@pl/30-form-element-demo-checkbox.twig' with {
-      labelTitle: 'Receive periodic emails on key analyst reports, Pega events, and important news.  You can unsubscribe at any time',
-      elementId: 'checkbox-' ~ random(),
-      labelDisplayType: 'inline'
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Receive periodic emails on key analyst reports, Pega events, and important news.  You can unsubscribe at any time',
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'checkbox-id',
+          name: 'checkbox-name'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'checkbox-id',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
     } only %}
 
     {% include '@bolt-components-form/form-button.twig' with {
-      text: 'Download',
+      text: 'Download Now',
       width: 'full',
       icon: {
         name: 'download'
       }
     } only %}
   {% endset %}
+
   {% set modal_content %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Get the report',
