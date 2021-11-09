@@ -33,7 +33,12 @@ export class BoltCodeSnippet {
   constructor(el) {
     if (!el) return;
     this.el = el;
-    this.init();
+
+    // Ensure component doesn't init twice
+    // @TODO: Enable component to be properly re-initialized?
+    if (!this.el.hasAttribute('data-bolt-ready')) {
+      this.init();
+    }
   }
 
   static get styles() {
