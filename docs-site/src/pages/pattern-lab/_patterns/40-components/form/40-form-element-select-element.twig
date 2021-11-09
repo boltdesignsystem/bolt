@@ -6,7 +6,7 @@
   <bolt-ol>
     <bolt-li>Add select options as an array to the <code>form-select.twig</code> include statement.</bolt-li>
     <bolt-li>Rememeber to set <code>type</code> as an <code>option</code> and add <code>label</code> and <code>value</code> attributes to each of the options.</bolt-li>
-    <bolt-li>First option can have the <code>value</code> of an empty string and the <code>label</code> set to "- Select an option -", or whatever that will perform a function of a placeholder for select element.</bolt-li>
+    <bolt-li>First option can have the <code>value</code> of an empty string and the <code>label</code> set to "- Select an option -", or whatever that will perform a function of a placeholder for the select element.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -20,7 +20,6 @@
   {% endset %}
   {% set select %}
     {% include '@bolt-components-form/form-select.twig' with {
-      selectAttributes: {},
       options: [
         {
           type: 'option',
@@ -56,7 +55,6 @@
 {% endset %}
 {% set select %}
   {% include '@bolt-components-form/form-select.twig' with {
-    selectAttributes: {},
     options: [
       {
         type: 'option',
