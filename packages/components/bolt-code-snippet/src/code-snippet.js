@@ -1,6 +1,6 @@
 import Prism from 'prismjs';
 import { html, render, ifDefined, unsafeCSS, unsafeHTML } from '@bolt/element';
-import { iconCopyToClipboard } from '@bolt/elements-icon';
+import { iconCopyToClipboard } from '@bolt/elements-icon/src/icons/js/copy-to-clipboard';
 import iconStyles from '@bolt/elements-icon/index.scss';
 import cx from 'classnames/bind';
 import ClipboardJS from 'clipboard';
