@@ -1,0 +1,241 @@
+{% set description %}
+  An example of checkbox fieldset
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Add <code>displayType: 'inline-checkbox'</code> in the label include statement.</bolt-li>
+    <bolt-li>Set input<code>type</code> as <code>checkbox</code>.</bolt-li>
+    <bolt-li>Make the input label cklickable by adding a <code>for</code> attribute to the label element and an <code>id</code> (with the same name as <code>for</code> attribute) to the input checkbox element.</bolt-li>
+      <bolt-li>It's possible to add fieldset title by adding <code>legendTitle</code> attribute to the <code>form-fieldset.twig</code> include statement.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {# input checkobox fieldset #}
+  {% set checkbox_children %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Pepperoni',
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'checkbox-pepperoni',
+          name: 'checkbox-name'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'checkbox-pepperoni',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Olives',
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'checkbox-olives',
+          name: 'checkbox-name'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'checkbox-olives',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Feta',
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'checkbox-feta',
+          name: 'checkbox-name'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'checkbox-feta',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Pineapple',
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'checkbox-pineapple',
+          name: 'checkbox-name'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'checkbox-pineapple',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+  {% endset %}
+  {% set fieldset_children %}
+    {% include '@bolt-components-form/form-checkboxes.twig' with {
+        children: checkbox_children
+      } only %}
+  {% endset %}
+
+  {% include '@bolt-components-form/form-fieldset.twig' with {
+    legendTitle: 'Select an alignment',
+    children: fieldset_children,
+    descriptionText: 'Pick at least two of the following',
+    errors: 'If there were any server-side errors, you\'d see them here'
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set checkbox_children %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Pepperoni',
+      displayType: 'inline-checkbox',
+      attributes: {
+        for: 'checkbox-pepperoni',
+        name: 'checkbox-name'
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'checkbox',
+        id: 'checkbox-pepperoni',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Olives',
+      displayType: 'inline-checkbox',
+      attributes: {
+        for: 'checkbox-olives',
+        name: 'checkbox-name'
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'checkbox',
+        id: 'checkbox-olives',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Feta',
+      displayType: 'inline-checkbox',
+      attributes: {
+        for: 'checkbox-feta',
+        name: 'checkbox-name'
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'checkbox',
+        id: 'checkbox-feta',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Pineapple',
+      displayType: 'inline-checkbox',
+      attributes: {
+        for: 'checkbox-pineapple',
+        name: 'checkbox-name'
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'checkbox',
+        id: 'checkbox-pineapple',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+{% endset %}
+{% set fieldset_children %}
+  {% include '@bolt-components-form/form-checkboxes.twig' with {
+      children: checkbox_children
+    } only %}
+{% endset %}
+
+{% include '@bolt-components-form/form-fieldset.twig' with {
+  legendTitle: 'Select an alignment',
+  children: fieldset_children,
+  descriptionText: 'Pick at least two of the following',
+  errors: 'If there were any server-side errors, you\'d see them here'
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+  ...
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Checkbox fieldset',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
+
