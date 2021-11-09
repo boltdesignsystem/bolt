@@ -31,7 +31,7 @@ describe('listing-teaser', () => {
           tag: 'h3',
           size: 'xlarge',
           link_attributes: {
-            href: 'https://pega.com',
+            href: 'https://google.com',
           },
         },
         meta_items: [

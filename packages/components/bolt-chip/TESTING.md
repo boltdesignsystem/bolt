@@ -32,16 +32,16 @@ Functional testing should be performed manually by the QA team across the standa
 5. When I hover over "Has URL" chip
 6. Then the chip's background color will become darker
 7. When I click on the "Has URL" chip
-8. Then the page will be directed to https://pega.com
+8. Then the page will be directed to homepage
 
 ## Scenario: target variations
 
 1. Given I am viewing the Target section of the [URL demo page](https://boltdesignsystem.com/pattern-lab/patterns/40-components-chip-10-chip-url-variations/40-components-chip-10-chip-url-variations.html)
 2. And I see two chips, one reads "Open link in current tab", the other reads "Open link in new tab"
 3. When I click on the "Open link in current tab" chip
-4. Then the page will be directed to https://pega.com
+4. Then the page will be directed to homepage
 7. When I click on the "Open link in new tab" chip
-8. Then a new tab or window will open and be directed to https://pega.com
+8. Then a new tab or window will open and be directed to homepage
 
 ## Scenario: spacing variations
 
