@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-code-snippet/compare/v4.7.0...v5.0.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* add missing icons with broken paths ([62d5d51](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-code-snippet/commit/62d5d513adefd2e8edb2f75732337fa425c73bd6))
+
+
+
+
+
 ## [4.6.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-code-snippet/compare/v4.6.1...v4.6.2) (2021-11-03)
 
 **Note:** Version bump only for package @bolt/components-code-snippet

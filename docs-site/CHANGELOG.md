@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/bolt-design-system/bolt/compare/v4.7.0...v5.0.0) (2021-11-10)
+
+
+
+# [5.0.0-beta-3](https://github.com/bolt-design-system/bolt/compare/v5.0.0-beta-2...v5.0.0-beta-3) (2021-11-01)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
 # [4.7.0](https://github.com/bolt-design-system/bolt/compare/v4.6.2...v4.7.0) (2021-11-04)
 
 
