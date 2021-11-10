@@ -150,6 +150,9 @@ jobs:
 
     - stage: Auto-release
       name: 'Full Release'
+      # TRUST YOUR INSTINCTS!
+      # If you don't trust your instincts...
+      # release/6.x will not trigger an auto release, update the range "[1-5]" to [1-6] to start the 6.x release
       if: (branch =~ /(release)\/[1-5]/)
       before_script:
         - git config --global user.email ${GITHUB_EMAIL}
