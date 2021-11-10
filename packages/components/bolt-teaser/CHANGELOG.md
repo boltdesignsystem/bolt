@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser/compare/v4.6.1...v4.6.2) (2021-11-03)
+
+
+### Bug Fixes
+
+* views wrapper ([466715e](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser/commit/466715e95aa2959aad82c265be963df7ca6cf829))
+
+
+
+
+
 # [4.6.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser/compare/v4.5.1...v4.6.0) (2021-10-12)
 
 **Note:** Version bump only for package @bolt/components-teaser

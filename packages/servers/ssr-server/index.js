@@ -81,7 +81,7 @@ async function run() {
   console.log('Test the server by running:');
   console.log('');
   console.log(
-    'curl http://localhost -v --http2-prior-knowledge -X POST -d "<bolt-button>hello world</bolt-button><bolt-icon name=\'close\'></bolt-icon>"',
+    'curl http://localhost -v --http2-prior-knowledge -X POST -d "<bolt-button>hello world</bolt-button>"',
   );
 }
 
@@ -117,7 +117,6 @@ async function setupWebpack(config) {
           !item.includes('bolt-placeholder') &&
           !item.includes('bolt-li') &&
           !item.includes('packages/core') &&
-          !item.includes('bolt-dropdown') &&
           !item.includes('global/styles/index.js') &&
           !item.includes('bolt-copy-to-clipboard') &&
           !item.includes('bolt-icons') &&
@@ -135,9 +134,6 @@ async function setupWebpack(config) {
       });
     }
   });
-
-  console.log('webpack ready...');
-  return webpackStatsGenerated;
 }
 
 run();

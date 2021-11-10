@@ -33,14 +33,5 @@ module.exports = {
       description:
         'Renderable content (i.e. a string, render array, or included pattern) to display within the device.  Usually represents an image or video.',
     },
-    image: {
-      title: 'DEPRECATED',
-      description: 'Pass a rendered image as `content` instead.',
-    },
-    magnify: {
-      title: 'DEPRECATED',
-      description:
-        'This feature is no longer supported.  The recommended UI replacement is to pass an image that is a modal trigger instead.',
-    },
   },
 };

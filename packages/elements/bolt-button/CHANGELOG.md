@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/elements/bolt-button/compare/v4.6.2...v4.7.0) (2021-11-04)
+
+
+### Bug Fixes
+
+* refine neutral gray colors ([c30a498](https://github.com/bolt-design-system/bolt/tree/master/packages/elements/bolt-button/commit/c30a49827557c3acfb9495a6e10014587b8d2292))
+
+
+
+
+
 # [4.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/elements/bolt-button/compare/v4.5.1...v4.6.0) (2021-10-12)
 
 **Note:** Version bump only for package @bolt/elements-button

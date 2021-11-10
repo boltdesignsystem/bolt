@@ -13,19 +13,40 @@
 {% set button_basic_demo %}
 <p>
   <bolt-button>
-    <bolt-icon name="chevron-left" slot="before"></bolt-icon>
+    <span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-left' } only %}</span>
     {{ button_text }}
   </bolt-button>
 </p>
 <p>
   <bolt-button>
-    <bolt-icon name="chevron-right" slot="after"></bolt-icon>
     {{ button_text }}
+    <span slot="after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span>
   </bolt-button>
 </p>
 <p>
   <bolt-button icon-only>
-    <bolt-icon name="close" slot="before"></bolt-icon>
+    <span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'close' } only %}</span>
+    {{ button_text }}
+  </bolt-button>
+</p>
+{% endset %}
+
+{% set button_basic_demo_code %}
+<p>
+  <bolt-button>
+    <span slot="before"><!-- Icon or image markup --></span>
+    {{ button_text }}
+  </bolt-button>
+</p>
+<p>
+  <bolt-button>
+    {{ button_text }}
+    <span slot="after"><!-- Icon or image markup --></span>
+  </bolt-button>
+</p>
+<p>
+  <bolt-button icon-only>
+    <span slot="before"><!-- Icon or image markup --></span>
     {{ button_text }}
   </bolt-button>
 </p>
@@ -39,7 +60,20 @@
   border-radius="full"
   icon-only
 >
-  <bolt-icon name="menu" slot="before"></bolt-icon>
+  <span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'menu' } only %}</span>
+  {{ button_text }}
+</bolt-button>
+{% endset %}
+
+{% set button_advanced_demo_code %}
+<bolt-button
+  url="https://pega.com"
+  size="large"
+  hierarchy="secondary"
+  border-radius="full"
+  icon-only
+>
+  <span slot="before"><!-- Icon or image markup --></span>
   {{ button_text }}
 </bolt-button>
 {% endset %}
@@ -83,7 +117,7 @@
     {% endgrid %}
   </div>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-    content: button_basic_demo,
+    content: button_basic_demo_code,
     lang: 'html',
     mode: 'dark',
   } only %}
@@ -107,7 +141,7 @@
     {% endgrid %}
   </div>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-    content: button_advanced_demo,
+    content: button_advanced_demo_code,
     lang: 'html',
     mode: 'dark',
   } only %}

@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/boltdesignsystem/bolt/compare/v4.6.2...v4.7.0) (2021-11-04)
+
+
+### Bug Fixes
+
+* refine neutral gray colors ([c30a498](https://github.com/boltdesignsystem/bolt/commit/c30a49827557c3acfb9495a6e10014587b8d2292))
+* typos in package.json ([c876930](https://github.com/boltdesignsystem/bolt/commit/c876930180b63975605f135c78371aaa43e41020))
+
+
+### Reverts
+
+* Revert "DS-565: make every link in separate li" ([dee2c1a](https://github.com/boltdesignsystem/bolt/commit/dee2c1af4ad3051248d134dfd284c7535820f380))
+
+
+
+
+
+## [4.6.2](https://github.com/boltdesignsystem/bolt/compare/v4.6.1...v4.6.2) (2021-11-03)
+
+
+### Bug Fixes
+
+* views wrapper ([466715e](https://github.com/boltdesignsystem/bolt/commit/466715e95aa2959aad82c265be963df7ca6cf829))
+
+
+
+
+
 ## [4.6.1](https://github.com/boltdesignsystem/bolt/compare/v4.6.0...v4.6.1) (2021-10-13)
 
 

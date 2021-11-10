@@ -8,7 +8,7 @@
   {% if data.components["@bolt-#{componentGroup}-#{componentName}"].schema["#{componentName}"] is defined %}
     {% set component_schemas = data.components["@bolt-#{componentGroup}-#{componentName}"].schema %}
     {% set schema = component_schemas["#{componentName}"] %}
-  {% else %} 
+  {% else %}
     {% set schema = data.components["@bolt-#{componentGroup}-#{componentName}"].schema %}
   {% endif %}
 {% endif %}
@@ -28,9 +28,9 @@
 {% set component_status %}
   <bolt-text font-size="xsmall">
     {% if is_private == true %}
-      <span class="u-bolt-color-error"><bolt-icon name="refresh"></bolt-icon> <strong>In Progress (Unreleased)</strong></span>
+      <span class="u-bolt-color-error">{% include '@bolt-elements-icon/icon.twig' with { name: 'refresh' } only %} <strong>In Progress (Unreleased)</strong></span>
     {% else %}
-      <span class="u-bolt-color-success"><bolt-icon name="check-solid"></bolt-icon> <strong>Published</strong></span>
+      <span class="u-bolt-color-success">{% include '@bolt-elements-icon/icon.twig' with { name: 'check-solid' } only %} <strong>Published</strong></span>
     {% endif %}
   </bolt-text>
 {% endset %}
