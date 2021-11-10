@@ -1,4 +1,4 @@
-{% set themes = get_data('@bolt/themes.schema.json') %}
+{% set themes = ['dark', 'light'] %}
 {% extends '@pl/_share-variables.twig' %}
 {% block content %}
 
@@ -7,7 +7,7 @@
 {% endset %}
 
 {% set demo %}
-  {% for theme in themes.properties.colors.enum %}
+  {% for theme in themes %}
     {% embed '@utils/theme-demo.twig' %}
       {% block demo_content %}
         {% include '@bolt-components-share/share.twig' with {

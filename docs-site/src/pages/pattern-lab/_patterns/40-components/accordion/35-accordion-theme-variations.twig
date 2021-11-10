@@ -1,8 +1,8 @@
-{% set themes = get_data('@bolt/themes.schema.json') %}
+{% set themes = ['dark', 'light'] %}
 
 <h3>Accordion inside various themes</h3>
 {% grid 'o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-medium' %}
-  {% for theme in themes.properties.colors.enum %}
+  {% for theme in themes %}
     {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium' %}
       {% embed '@utils/theme-demo.twig' %}
         {% block demo_content %}
@@ -30,7 +30,7 @@
 
 <h3>Accordion with shadow inside various themes</h3>
 {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
-  {% for theme in themes.properties.colors.enum %}
+  {% for theme in themes %}
     {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium' %}
       {% embed '@utils/theme-demo.twig' %}
         {% block demo_content %}
