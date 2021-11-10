@@ -1,4 +1,4 @@
-const iconSchema = require('@bolt/components-icon/icon.schema.json');
+const iconSchema = require('@bolt/elements-icon/icon.schema.json');
 const elementSchemas = require('@bolt/element/element.schemas');
 
 iconSchema.properties = {
@@ -12,7 +12,7 @@ iconSchema.properties = {
 };
 
 iconSchema.description =
-  'Icon data as expected by the icon component. Accepts an additional position prop that determines placement within the button.';
+  'Icon data as expected by the icon element. Accepts an additional position prop that determines placement within the button.';
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',

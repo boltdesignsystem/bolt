@@ -1,5 +1,9 @@
 {% include '@pl/00-layout-docs.twig' %}
 
+{% set _chevron_up %}
+  {% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-up' } only %}
+{% endset %}
+
 <bolt-layout template="halves@from-small" valign-items="center" gutter="large" row-gutter="large" padding-top="large" padding-bottom="large" class="t-bolt-dark">
   {% include '@bolt-components-background/background.twig' with {
     overlay: 'disabled',
@@ -89,9 +93,9 @@
     </bolt-text>
   </bolt-layout-item>
   <bolt-layout-item>
-    <bolt-layout template="flag" valign-items="center" gutter="small" padding-top="none" padding-bottom="small" style="--l-bolt-layout-flag-media-width:40px">
+    <bolt-layout template="flag" valign-items="center" gutter="small" padding-top="none" padding-bottom="small" style="--l-bolt-layout-flag-media-width:48px">
       <bolt-layout-item>
-        <bolt-icon name="chevron-up" size="medium" color="yellow" background="circle"></bolt-icon>
+        {% include '@bolt-elements-shape/shape.twig' with { content: _chevron_up, size: 'medium', attributes: { class: 't-bolt-yellow' } } only %}
       </bolt-layout-item>
       <bolt-layout-item>
         <bolt-text headline tag="h3" font-size="xxxlarge">
@@ -100,13 +104,15 @@
       </bolt-layout-item>
     </bolt-layout>
     <bolt-text>
-      <a href="https://google.com" class="e-bolt-text-link">Create personalized experience<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+    {% spaceless %}
+      <a href="https://google.com" class="e-bolt-text-link">Create personalized experience<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a>
+    {% endspaceless %}
     </bolt-text>
   </bolt-layout-item>
   <bolt-layout-item>
-    <bolt-layout template="flag" valign-items="center" gutter="small" padding-top="none" padding-bottom="small" style="--l-bolt-layout-flag-media-width:40px">
+    <bolt-layout template="flag" valign-items="center" gutter="small" padding-top="none" padding-bottom="small" style="--l-bolt-layout-flag-media-width:48px">
       <bolt-layout-item>
-        <bolt-icon name="chevron-up" size="medium" color="yellow" background="circle"></bolt-icon>
+        {% include '@bolt-elements-shape/shape.twig' with { content: _chevron_up, size: 'medium', attributes: { class: 't-bolt-yellow' } } only %}
       </bolt-layout-item>
       <bolt-layout-item>
         <bolt-text headline tag="h3" font-size="xxxlarge">
@@ -115,7 +121,9 @@
       </bolt-layout-item>
     </bolt-layout>
     <bolt-text>
-      <a href="https://google.com" class="e-bolt-text-link">Automate &amp; save<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+    {% spaceless %}
+      <a href="https://google.com" class="e-bolt-text-link">Automate &amp; save<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a>
+    {% endspaceless %}
     </bolt-text>
   </bolt-layout-item>
 </bolt-layout>

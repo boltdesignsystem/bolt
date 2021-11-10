@@ -1,11 +1,13 @@
 {% set notes %}
+{% spaceless %}
   <bolt-ol>
     <bolt-li>Video thumbnail is a graphical element, it is not an interactive element. Interactions should be handled via links and buttons.</bolt-li>
-    <bolt-li>It is commonly used as a trigger for video modals. <a href="{{ link['components-video-thumbnail-use-case-modal'] }}" class="e-bolt-text-link">View use case<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+    <bolt-li>It is commonly used as a trigger for video modals. <a href="{{ link['components-video-thumbnail-use-case-modal'] }}" class="e-bolt-text-link">View use case<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a></bolt-li>
     <bolt-li>The <code>content</code> prop accepts both plain <code>&lt;img&gt;</code> element and Bolt Image component.</bolt-li>
     <bolt-li>When passing the <a href="{{ link['viewall-components-icon'] }}" class="e-bolt-text-link">Bolt Image component</a>, <code>ratio</code> prop must be set to false and <code>cover</code> prop set to true.</bolt-li>
     <bolt-li><code>duration</code> prop is optional while recommended.</bolt-li>
   </bolt-ol>
+{% endspaceless %}
 {% endset %}
 
 {% set demo %}
