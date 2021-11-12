@@ -1,7 +1,6 @@
 module.exports = {
   components: {
     global: [
-      '@bolt/components-switch-button',
       '@bolt/core-v3.x',
       '@bolt/global',
       '@bolt/elements-article',
