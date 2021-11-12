@@ -1,3 +1,20 @@
 /**
  * Add imports here
  */
+
+.c-notification-tag-manager {
+  padding-top: var(--bolt-spacing-y-medium);
+}
+
+.c-notification-tag-manager__modal-body {
+  @include bolt-mq(medium) {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: var(--bolt-spacing-x-medium);
+  }
+}
+
+.c-notification-tag-manager__modal-footer {
+  padding: var(--bolt-spacing-x-medium);
+  text-align: center;
+}
