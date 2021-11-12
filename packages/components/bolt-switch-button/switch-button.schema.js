@@ -18,5 +18,14 @@ module.exports = {
       type: 'any',
       description: 'Render a label in front of the switch button.',
     },
+    on: {
+      type: 'boolean',
+      default: true,
+      description: 'Controls the active state of the switch button',
+    },
+    uuid: {
+      type: 'string',
+      description: 'Unique ID for popover, randomly generated if not provided.',
+    },
   },
 };

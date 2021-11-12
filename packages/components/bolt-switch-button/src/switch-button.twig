@@ -24,14 +24,17 @@
 {% set button_attributes = create_attribute(button_attributes|default({})) %}
 {% set _switch_button_id = bolt.data.config.env == 'test' ? 'bolt-switch-button-test-target' : 'bolt-switch-button-' ~ random() %}
 
+{% set _checked = this.data.on.value ? 'true' : 'false' %}
+{% set _uuid = this.data.uuid|default(bolt.data.config.env == 'test' ? '12345' : random() ~ '') %}
+
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-switch-button',
 ] %}
 
-<label {{ attributes.addClass(classes)|without('for') }} for="{{ _switch_button_id }}">
+<label {{ attributes.addClass(classes)|without('for') }} for="{{ _switch_button_id }}" uuid="{{ _uuid }}">
   <div class="c-bolt-switch-button__label">{% if label %}{{ label }}{% else %}{{ 'Switch'|t }}{% endif %}</div>
-  <button {{ button_attributes.addClass('c-bolt-switch-button__button')|without('type')|without('id')|without('role')|without('aria-checked') }} type="button" id="{{ _switch_button_id }}" role="switch" aria-checked="false">
+  <button {{ button_attributes.addClass('c-bolt-switch-button__button')|without('type')|without('id')|without('role')|without('aria-checked') }} type="button" id="{{ _switch_button_id }}" role="switch" aria-checked="{{ _checked }}">
     <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--checked">{{ 'on'|t }}</span>
     <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--unchecked ">{{ 'off'|t }}</span>
   </button>
