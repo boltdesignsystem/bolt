@@ -1,6 +1,7 @@
 module.exports = {
   components: {
     global: [
+      '@bolt/components-switch-button',
       '@bolt/core-v3.x',
       '@bolt/global',
       '@bolt/elements-article',
@@ -61,6 +62,7 @@ module.exports = {
       '@bolt/components-smooth-scroll',
       '@bolt/components-stack',
       '@bolt/components-sticky',
+      '@bolt/components-switch-button',
       '@bolt/components-ratio',
       '@bolt/components-table',
       '@bolt/components-tabs',

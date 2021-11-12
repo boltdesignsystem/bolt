@@ -1,0 +1,41 @@
+{#
+/**
+ * Switch Button Component
+ *
+ * Available variables:
+ * - Reference switch-button.schema.js
+ *
+ * Dev notes
+ * 1. By default, a button will take its contents to create an accessible name. Using a <label> and referencing it by using for= and the id of the <button> overrides this default behaviour. The content of the <label> becomes the accessible name of the <button>.
+ * 2. Why <button>? Because it can change instantly which a checkbox (<input type=checkbox>) really should not be doing. Checkboxes that change things often clash with WCAG Criterion 3.2.1: On Focus. A <button> aligns better with the goal of instant change.
+ * 3. More notes here: https://www.erikkroes.nl/blog/accessible-html-toggle-button-switch/
+ * 4. [Mai] @todo: Add size and align-items props to give more layout flexibility.
+ */
+#}
+
+{% set schema = bolt.data.components['@bolt-components-switch-button'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set button_attributes = create_attribute(button_attributes|default({})) %}
+{% set _switch_button_id = bolt.data.config.env == 'test' ? 'bolt-switch-button-test-target' : 'bolt-switch-button-' ~ random() %}
+
+{% set _checked = this.data.on.value ? 'true' : 'false' %}
+{% set _uuid = this.data.uuid|default(bolt.data.config.env == 'test' ? '12345' : random() ~ '') %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-switch-button',
+] %}
+
+<label {{ attributes.addClass(classes)|without('for') }} for="{{ _switch_button_id }}" uuid="{{ _uuid }}">
+  <div class="c-bolt-switch-button__label">{% if label %}{{ label }}{% else %}{{ 'Switch'|t }}{% endif %}</div>
+  <button {{ button_attributes.addClass('c-bolt-switch-button__button')|without('type')|without('id')|without('role')|without('aria-checked') }} type="button" id="{{ _switch_button_id }}" role="switch" aria-checked="{{ _checked }}">
+    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--checked">{{ 'on'|t }}</span>
+    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--unchecked ">{{ 'off'|t }}</span>
+  </button>
+</label>

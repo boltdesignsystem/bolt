@@ -1,0 +1,92 @@
+/* ------------------------------------ *\
+   Switch Button
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+.c-bolt-switch-button {
+  --c-bolt-switch-button-spacing: 0.25rem;
+  --c-bolt-switch-button-min-width: 3rem;
+
+  display: inline-grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--bolt-spacing-x-small);
+  row-gap: var(--bolt-spacing-y-small);
+  align-items: center;
+  cursor: pointer;
+}
+
+.c-bolt-switch-button__button {
+  @include bolt-button-native-styles-reset;
+
+  display: inline-grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: relative;
+  min-width: var(--c-bolt-switch-button-min-width);
+  color: var(--m-bolt-text-on-disabled);
+  border-radius: bolt-border-radius(full);
+  background-color: var(--m-bolt-disabled);
+  transition: color var(--bolt-transition),
+    background-color var(--bolt-transition);
+
+  &:focus {
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: var(--c-bolt-switch-button-spacing);
+    bottom: var(--c-bolt-switch-button-spacing);
+    left: var(--c-bolt-switch-button-spacing);
+    transform: translate3d(0, 0, 0);
+    width: calc(50% - var(--c-bolt-switch-button-spacing) * 2);
+    border-radius: inherit;
+    background-color: var(--bolt-color-white);
+    transition: transform var(--bolt-transition);
+  }
+
+  &[aria-checked='true'] {
+    color: var(--bolt-color-white);
+    background-color: var(--bolt-color-success);
+
+    &:after {
+      transform: translate3d(
+        calc(100% + var(--c-bolt-switch-button-spacing) * 2),
+        0,
+        0
+      );
+    }
+
+    .c-bolt-switch-button__button-text--unchecked {
+      visibility: hidden;
+    }
+  }
+
+  &[aria-checked='false'] {
+    .c-bolt-switch-button__button-text--checked {
+      visibility: hidden;
+    }
+  }
+}
+
+.c-bolt-switch-button__button-text {
+  display: grid;
+  height: calc(var(--c-bolt-switch-button-min-width) / 2);
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-xxsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: calc(var(--c-bolt-switch-button-min-width) / 2);
+  text-align: center;
+  pointer-events: none;
+  place-items: center;
+}
+
+.c-bolt-switch-button__button-text--checked {
+  padding-left: var(--c-bolt-switch-button-spacing);
+}
+
+.c-bolt-switch-button__button-text--unchecked {
+  padding-right: var(--c-bolt-switch-button-spacing);
+}
