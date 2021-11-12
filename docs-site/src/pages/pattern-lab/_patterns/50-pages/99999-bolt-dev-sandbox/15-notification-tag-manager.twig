@@ -1,27 +1,108 @@
 {% extends "@pl/_default-page-template.twig" %}
 
+{% set step_info %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xlarge',
+    text: 'Step 1:'
+  } only %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'xlarge',
+    text: 'What types of content do you want to follow?'
+  } only %}
+{% endset %}
+
+{% set checkbox_fieldsets_representation %}
+  {% set checkbox_fieldset_group = [
+    {
+      title: 'Forums',
+      checkboxes: ['Question', 'Discussion', 'Idea']
+    },
+    {
+      title: 'Training',
+      checkboxes: ['Mission']
+    },
+    {
+      title: 'Video & Media',
+      checkboxes: ['Video']
+    }
+  ] %}
+
+  {% for item in checkbox_fieldset_group %}
+    {% set checkbox_children %}
+      {% for checkbox in item.checkboxes %}
+        {% set label %}
+          {% include '@bolt-components-form/form-label.twig' with {
+            title: checkbox,
+            displayType: 'inline-checkbox',
+            attributes: {
+              for: 'checkbox-' ~ item.title ~ '-' ~ checkbox
+            }
+          } only %}
+        {% endset %}
+        {% set input %}
+          {% include '@bolt-components-form/form-input.twig' with {
+            attributes: {
+              type: 'checkbox',
+              id: 'checkbox-' ~ item.title ~ '-' ~ checkbox,
+            },
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-form/form-element.twig' with {
+          label: label,
+          children: input
+        } only %}
+      {% endfor %}
+    {% endset %}
+    {% set fieldset_children %}
+      {% include '@bolt-components-form/form-checkboxes.twig' with {
+        children: checkbox_children
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-form/form-fieldset.twig' with {
+      legendTitle: item.title,
+      children: fieldset_children
+    } only %}
+  {% endfor %}
+{% endset %}
+
+{% set tips_list %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'large',
+    text: 'Tips and suggestions:'
+  } only %}
+  {% include '@bolt-components-ul/ul.twig' with {
+    items: [
+      'Do not include any data or information in your posts that are confidential!',
+      'Apply basic practices for collaborative work.',
+      'Be honest, respectful, trustworthy and helpful.',
+      'Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.'
+    ]
+  } only %}
+{% endset %}
+
+{% set footer %}
+  {% include '@bolt-components-headline/text.twig' with {
+  text: 'Want to know about new blogs, analyst reports, and press realases as they publish? <a href="https://google.com" class="e-bolt-text-link" target="_blank" rel="noopener">Manage email subscriptions here.</a>',
+} only %}
+{% endset %}
+
 {% set modal_content %}
   {% include '@bolt-components-headline/text.twig' with {
     text: 'This is the modal container\'s header.',
-    attributes: {
-      slot: 'header',
-    }
   } only %}
-  <div>
-    {% include '@bolt-components-headline/headline.twig' with {
-      size: 'xlarge',
-      text: 'This is the modal container\'s body'
-    } only %}
-    {% include '@bolt-components-headline/text.twig' with {
-      text: 'This is the modal container\'s body.'
-    } only %}
+  <div class="c-notification-tag-manager__modal-body">
+    <div class="c-notification-tag-manager__col">
+      {{ step_info }}
+      {{ checkbox_fieldsets_representation }}
+    </div>
+    <div class="c-notification-tag-manager__col">
+      {{ tips_list }}
+    </div>
   </div>
-  {% include '@bolt-components-headline/text.twig' with {
-    text: 'This is the modal container\'s footer.',
-    attributes: {
-      slot: 'footer',
-    }
-  } only %}
+  <footer class="c-notification-tag-manager__modal-footer t-bolt-navy">
+    {{ footer }}
+  </footer>
 {% endset %}
 
 {% set modal_trigger %}
