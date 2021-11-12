@@ -59,4 +59,32 @@ describe('Bolt Switch Button Prop', () => {
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
   });
+
+  test(`on`, async () => {
+    const results = await render(
+      '@bolt-components-switch-button/switch-button.twig',
+      {
+        ...fixtures.defaultData,
+        on: false,
+      },
+    );
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  test(`custom id`, async () => {
+    const results = await render(
+      '@bolt-components-switch-button/switch-button.twig',
+      {
+        ...fixtures.defaultData,
+        button_attributes: {
+          id: 'a-uuid-test-12345',
+        },
+      },
+    );
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
 });

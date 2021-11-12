@@ -2,15 +2,14 @@
 
 exports[`Bolt Switch Button Prop button_attributes 1`] = `
 <label class="js-target-the-switch-button-container c-bolt-switch-button"
-       for="bolt-switch-button-test-target"
-       uuid="12345"
+       for="bolt-switch-button-12345"
 >
   <div class="c-bolt-switch-button__label">
     Toggle me
   </div>
   <button class="switch-button-class-example c-bolt-switch-button__button"
           type="button"
-          id="bolt-switch-button-test-target"
+          id="bolt-switch-button-12345"
           role="switch"
           aria-checked="true"
   >
@@ -24,17 +23,62 @@ exports[`Bolt Switch Button Prop button_attributes 1`] = `
 </label>
 `;
 
-exports[`Bolt Switch Button default 1`] = `
+exports[`Bolt Switch Button Prop custom id 1`] = `
 <label class="js-target-the-switch-button-container c-bolt-switch-button"
-       for="bolt-switch-button-test-target"
-       uuid="12345"
+       for="a-uuid-test-12345"
 >
   <div class="c-bolt-switch-button__label">
     Toggle me
   </div>
   <button class="c-bolt-switch-button__button"
           type="button"
-          id="bolt-switch-button-test-target"
+          id="a-uuid-test-12345"
+          role="switch"
+          aria-checked="true"
+  >
+    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--checked">
+      on
+    </span>
+    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--unchecked ">
+      off
+    </span>
+  </button>
+</label>
+`;
+
+exports[`Bolt Switch Button Prop on 1`] = `
+<label class="js-target-the-switch-button-container c-bolt-switch-button"
+       for="bolt-switch-button-12345"
+>
+  <div class="c-bolt-switch-button__label">
+    Toggle me
+  </div>
+  <button class="c-bolt-switch-button__button"
+          type="button"
+          id="bolt-switch-button-12345"
+          role="switch"
+          aria-checked="false"
+  >
+    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--checked">
+      on
+    </span>
+    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--unchecked ">
+      off
+    </span>
+  </button>
+</label>
+`;
+
+exports[`Bolt Switch Button default 1`] = `
+<label class="js-target-the-switch-button-container c-bolt-switch-button"
+       for="bolt-switch-button-12345"
+>
+  <div class="c-bolt-switch-button__label">
+    Toggle me
+  </div>
+  <button class="c-bolt-switch-button__button"
+          type="button"
+          id="bolt-switch-button-12345"
           role="switch"
           aria-checked="true"
   >

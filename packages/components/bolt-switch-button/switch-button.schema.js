@@ -21,11 +21,8 @@ module.exports = {
     on: {
       type: 'boolean',
       default: true,
-      description: 'Controls the active state of the switch button',
-    },
-    uuid: {
-      type: 'string',
-      description: 'Unique ID for popover, randomly generated if not provided.',
+      description:
+        'Controls the active state of the switch button. Sets button state to "on" by default.',
     },
   },
 };
