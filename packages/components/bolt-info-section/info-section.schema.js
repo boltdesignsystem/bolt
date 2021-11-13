@@ -6,7 +6,7 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-info-section&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the parent container.',
     },
     label: {
       type: 'object',
@@ -26,6 +26,21 @@ module.exports = {
     content: {
       type: 'any',
       description: 'Content of the info section.',
+    },
+    details_link: {
+      type: 'object',
+      description: 'Render a link or button that leads to more details.',
+      properties: {
+        attributes: {
+          type: 'object',
+          description:
+            'A Drupal attributes object. Applies extra HTML attributes to the details link element.',
+        },
+        content: {
+          type: 'any',
+          description: 'Set the details link text.',
+        },
+      },
     },
     open: {
       type: 'boolean',

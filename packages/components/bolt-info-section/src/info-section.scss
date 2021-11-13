@@ -40,13 +40,17 @@
     }
 
     &[aria-expanded='true'] ~ .c-bolt-info-section__link {
-      border-top: 1px solid var(--m-bolt-border);
+      transition: height calc(var(--bolt-transition-timing) * 2)
+          var(--bolt-transition-ease),
+        opacity calc(var(--bolt-transition-timing) * 2)
+          var(--bolt-transition-ease);
     }
 
     &[aria-expanded='false'] ~ * {
       visibility: hidden;
       opacity: 0;
       height: 0;
+      overflow: hidden;
       padding: 0;
     }
   }
@@ -104,10 +108,12 @@
     var(--bolt-type-font-size-large) * var(--bolt-type-line-height-large)
   );
   text-align: center;
+  border-top: 1px solid var(--m-bolt-border);
 
   @include bolt-mq(medium) {
     position: absolute;
     top: 1px;
     right: 0;
+    border-top: 0;
   }
 }

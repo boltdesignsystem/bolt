@@ -109,7 +109,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 1; // Raise stacking context above all stats.
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   text-align: center;
   gap: var(--bolt-spacing-x-small);
@@ -203,10 +202,10 @@
       position: absolute;
       right: 0;
       bottom: var(--bolt-spacing-y-large);
-      left: 0;
       margin-top: 0;
       margin-right: calc(var(--bolt-spacing-x-small) * -1);
       margin-left: 0;
+      padding-left: 0;
     }
   }
 }

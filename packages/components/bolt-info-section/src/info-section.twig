@@ -25,4 +25,20 @@
   <div class="c-bolt-info-section__content">
     {{ content }}
   </div>
+  {% if details_link %}
+    <div class="c-bolt-info-section__link">
+      {% set _icon_chevron_right %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'chevron-right',
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: details_link.label,
+        icon_after: _icon_chevron_right,
+        reversed_underline: true,
+        expand_click_target: true,
+        attributes: details_link.attributes,
+      } only %}
+    </div>
+  {% endif %}
 </div>
