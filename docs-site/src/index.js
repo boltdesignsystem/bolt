@@ -101,3 +101,26 @@ const quickFiltersScrollEl = document.querySelector(
 if (quickFiltersScrollEl) {
   quickFiltersScroll(quickFiltersScrollEl);
 }
+
+const infoSectionToggleButtons = document.querySelectorAll(
+  '.js-bolt-info-section-toggle-button',
+);
+
+infoSectionToggleButtons.forEach(button => {
+  button.addEventListener('click', e => {
+    const el = e.target;
+    const isExpanded = el.getAttribute('aria-expanded') === 'true';
+    const otherButtons = [...infoSectionToggleButtons].filter(
+      button => button !== el,
+    );
+
+    if (isExpanded) {
+      el.setAttribute('aria-expanded', false);
+    } else {
+      otherButtons.forEach(el => {
+        el.setAttribute('aria-expanded', false);
+      });
+      el.setAttribute('aria-expanded', true);
+    }
+  });
+});

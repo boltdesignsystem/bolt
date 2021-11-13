@@ -1,0 +1,28 @@
+{% set schema = bolt.data.components['@bolt-components-info-section'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-info-section',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+  <{{ label.tag }} class="c-bolt-info-section__headline">{{ label.content }}</{{ label.tag }}>
+  <button class="c-bolt-info-section__headline c-bolt-info-section__headline--button js-bolt-info-section-toggle-button" type="button" {% if open %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %}>
+    {{ label.content }}
+    <span class="c-bolt-info-section__headline-icon">
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-down',
+      } only %}
+    </span>
+  </button>
+  <div class="c-bolt-info-section__content">
+    {{ content }}
+  </div>
+</div>
