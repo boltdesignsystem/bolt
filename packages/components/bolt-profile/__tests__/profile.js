@@ -22,7 +22,11 @@ beforeAll(async () => {
   });
 
   const defaultData = {
-    content: 'This is a profile',
+    first_name: 'First',
+    last_name: 'Last',
+    username: 'username',
+    job_title: 'Job Title',
+    location: 'Location',
   };
 
   fixtures = {
@@ -32,12 +36,9 @@ beforeAll(async () => {
 
 describe('Bolt Profile component', () => {
   test('default', async () => {
-    const results = await render(
-      '@bolt-components-profile/profile.twig',
-      {
-        ...fixtures.defaultData,
-      },
-    );
+    const results = await render('@bolt-components-profile/profile.twig', {
+      ...fixtures.defaultData,
+    });
 
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();

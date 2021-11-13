@@ -22,7 +22,18 @@ beforeAll(async () => {
   });
 
   const defaultData = {
-    content: 'This is a info-section',
+    label: {
+      content: 'This is an info section',
+      tag: 'h2',
+    },
+    content:
+      'This is the section content. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit labore hic officia maiores ut sequi ipsam nihil repudiandae numquam quidem, molestiae amet aliquid sapiente sed odio quo aspernatur mollitia a.',
+    details_link: {
+      label: 'This is the details link',
+      attributes: {
+        type: 'button',
+      },
+    },
   };
 
   fixtures = {
