@@ -143,7 +143,11 @@
 
   > * {
     font-family: var(--bolt-type-font-family-headline);
-    font-size: var(--bolt-type-font-size-xlarge);
+    font-size: clamp(
+      var(--bolt-type-font-size-large),
+      2vw,
+      var(--bolt-type-font-size-xlarge)
+    );
     font-weight: var(--bolt-type-font-weight-regular);
     color: var(--m-bolt-headline);
     line-height: 1;
@@ -168,6 +172,13 @@
 }
 
 .c-bolt-profile__user-meta {
+  font-size: clamp(
+    var(--bolt-type-font-size-small),
+    2vw,
+    var(--bolt-type-font-size-medium)
+  );
+  line-height: var(--bolt-type-line-height-small);
+
   @at-root .c-bolt-profile--full-bleed #{&} {
     @include bolt-mq(large) {
       width: clamp(1ch, 48%, 75ch);
