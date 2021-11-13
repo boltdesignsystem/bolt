@@ -13,9 +13,15 @@
   border-radius: bolt-border-radius(small);
 
   > * {
-    order: 3;
+    order: 0;
     position: relative;
     z-index: 0; // Reset stacking context.
+  }
+
+  .c-bolt-profile__user-info,
+  .c-bolt-profile__stats {
+    order: 1;
+    z-index: 1;
   }
 }
 
@@ -40,7 +46,6 @@
 }
 
 .c-bolt-profile__cover {
-  order: 0;
   overflow: hidden;
   border-top-right-radius: bolt-border-radius(small);
   border-top-left-radius: bolt-border-radius(small);
@@ -64,7 +69,6 @@
 }
 
 .c-bolt-profile__avatar {
-  order: 1;
   width: var(--c-bolt-profile-header-avatar-size);
   height: var(--c-bolt-profile-header-avatar-size);
   overflow: hidden;
@@ -90,7 +94,6 @@
   display: flex;
   justify-content: flex-end;
   gap: var(--bolt-spacing-x-xsmall);
-  order: 2;
   min-height: 3.5rem;
   padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-small);
 
@@ -135,6 +138,16 @@
     @include bolt-mq(large) {
       padding-right: 0;
     }
+
+    > * {
+      @include bolt-mq(large) {
+        width: clamp(1ch, 48%, 75ch);
+      }
+
+      @include bolt-mq(xlarge) {
+        width: clamp(1ch, 57%, 75ch);
+      }
+    }
   }
 }
 
@@ -155,7 +168,7 @@
     @at-root .c-bolt-profile--full-bleed #{&} {
       font-size: clamp(
         var(--bolt-type-font-size-xlarge),
-        3vw,
+        2.3vw,
         var(--bolt-type-font-size-xxxlarge)
       );
     }
@@ -169,6 +182,12 @@
   gap: var(--bolt-spacing-x-xsmall);
   row-gap: var(--bolt-spacing-y-xsmall);
   white-space: nowrap;
+
+  @at-root .c-bolt-profile--full-bleed #{&} {
+    @include bolt-mq(large) {
+      justify-content: flex-start;
+    }
+  }
 }
 
 .c-bolt-profile__user-meta {
@@ -178,12 +197,6 @@
     var(--bolt-type-font-size-medium)
   );
   line-height: var(--bolt-type-line-height-small);
-
-  @at-root .c-bolt-profile--full-bleed #{&} {
-    @include bolt-mq(large) {
-      width: clamp(1ch, 48%, 75ch);
-    }
-  }
 }
 
 .c-bolt-profile__stats {
