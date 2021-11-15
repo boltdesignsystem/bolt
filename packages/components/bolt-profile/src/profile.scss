@@ -49,21 +49,25 @@
   overflow: hidden;
   border-top-right-radius: bolt-border-radius(small);
   border-top-left-radius: bolt-border-radius(small);
-  aspect-ratio: 3/1;
+  aspect-ratio: 5/1;
 
   @at-root .c-bolt-profile--full-bleed #{&} {
     border-radius: 0;
 
-    @include bolt-mq(small) {
-      aspect-ratio: 4/1;
-    }
-
-    @include bolt-mq(medium) {
-      aspect-ratio: 6/1;
-    }
-
     @include bolt-mq(large) {
       aspect-ratio: 7/1;
+    }
+  }
+
+  svg {
+    transform: translate3d(-10%, -7%, 0);
+    width: 140%;
+
+    @at-root .c-bolt-profile--full-bleed #{&} {
+      @include bolt-mq(large) {
+        transform: translate3d(0, -15%, 0);
+        width: 120%;
+      }
     }
   }
 }
