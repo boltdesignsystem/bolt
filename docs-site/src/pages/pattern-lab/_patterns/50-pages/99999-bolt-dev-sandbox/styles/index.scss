@@ -10,7 +10,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--bolt-spacing-x-medium);
+  margin-bottom: var(--bolt-spacing-y-medium);
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
   background: rgb(62, 103, 187);
   background: linear-gradient(
     90deg,
@@ -19,14 +20,64 @@
   );
 
   .c-bolt-headline {
+    margin-bottom: 0;
     color: var(--bolt-color-white);
   }
+
+  .c-notification-tag-manager__steps {
+    display: flex;
+    align-items: center;
+    gap: var(--bolt-spacing-x-small);
+    color: var(--bolt-color-white);
+  }
+
+  .c-bolt-pagination__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    margin-right: var(--bolt-spacing-x-xsmall);
+    font-weight: var(--bolt-type-font-weight-semibold);
+    border: 2px solid var(--bolt-color-white);
+    background-color: transparent;
+
+    &.is-current {
+      background-color: var(--bolt-color-white);
+
+      .c-bolt-pagination__text {
+        color: var(--bolt-color-navy-light);
+      }
+    }
+  }
+
+  .c-bolt-pagination__text {
+    font-weight: var(--bolt-type-font-weight-bold);
+    color: var(--bolt-color-white);
+  }
+}
+
+.c-notification-tag-manager__fieldset-title {
+  display: flex;
+  align-items: center;
+  gap: var(--bolt-spacing-x-small);
+}
+
+.c-notification-tag-manager__fieldset-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.c-notification-tag-manager__frame {
+  margin-bottom: var(--bolt-spacing-y-large);
+  padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  border: 1px solid var(--m-bolt-border);
 }
 
 .c-notification-tag-manager__modal-body {
   @include bolt-mq(medium) {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 2fr;
     grid-column-gap: var(--bolt-spacing-x-medium);
   }
 }
@@ -34,7 +85,7 @@
 .c-notification-tag-manager__nav {
   display: flex;
   justify-content: space-between;
-  padding: var(--bolt-spacing-y-medium) 0;
+  padding: var(--bolt-spacing-y-xlarge) 0 var(--bolt-spacing-y-large);
 }
 
 .c-notification-tag-manager__modal-footer {

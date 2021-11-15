@@ -8,6 +8,27 @@
   } only %}
 {% endset %}
 
+{% set steps %}
+  {% include '@bolt-components-pagination/pagination.twig' with {
+    current: 1,
+    total: 4,
+    pages: {
+      1: {
+        href: '#!'
+      },
+      2: {
+        href: '#!'
+      },
+      3: {
+        href: '#!'
+      },
+      4: {
+        href: '#!'
+      },
+    },
+  } only %}
+{% endset %}
+
 {% set step_info %}
   {% include '@bolt-components-headline/headline.twig' with {
     size: 'xlarge',
@@ -16,6 +37,28 @@
   {% include '@bolt-components-headline/text.twig' with {
     size: 'xlarge',
     text: 'What types of content do you want to follow?'
+  } only %}
+{% endset %}
+
+{% set frame_title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+  size: 'small',
+  text: 'Your current tag set',
+  transform: 'uppercase'
+} only %}
+{% endset %}
+
+{% set chip_1 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Question',
+    size: 'small',
+  } only %}
+{% endset %}
+
+{% set chip_2 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Discussion',
+    size: 'small',
   } only %}
 {% endset %}
 
@@ -95,6 +138,7 @@
   attributes: {
     href: 'https://google.com',
     target: '_blank',
+    rel: 'noopener'
   }
 } only %}
 {% endset %}
@@ -144,12 +188,22 @@
 {% set modal_content %}
   <div class="c-notification-tag-manager__header">
     {{ title }}
-    Step: 1 2 3 4
+    <div class="c-notification-tag-manager__steps">
+      Step: {{ steps }}
+    </div>
+  </div>
+  {{ frame_title }}
+  <div class="c-notification-tag-manager__frame">
+    <p class="c-notification-tag-manager__copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with (step 2) is published or updated.</p>
   </div>
   <div class="c-notification-tag-manager__modal-body">
     <div class="c-notification-tag-manager__col">
-      {{ step_info }}
-      {{ checkbox_fieldsets_representation }}
+      <div class="c-notification-tag-manager__fieldset-title">
+        {{ step_info }}
+      </div>
+      <div class="c-notification-tag-manager__fieldset-group">
+        {{ checkbox_fieldsets_representation }}
+      </div>
     </div>
     <div class="c-notification-tag-manager__col">
       {{ tips_list }}
