@@ -1,4 +1,12 @@
+
 {% extends "@pl/_default-page-template.twig" %}
+
+{% set title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxxlarge',
+    text: 'Pega Tag set builder'
+  } only %}
+{% endset %}
 
 {% set step_info %}
   {% include '@bolt-components-headline/headline.twig' with {
@@ -81,16 +89,63 @@
   } only %}
 {% endset %}
 
+{% set text_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'Manage email subscriptions here',
+  attributes: {
+    href: 'https://google.com',
+    target: '_blank',
+  }
+} only %}
+{% endset %}
+
+{% set icon_chevron_right %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+
+{% set next_btn %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Next',
+    attributes: {
+      href: 'https://google.com',
+      class: 'e-bolt-button--next'
+    },
+    icon_after: icon_chevron_right,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
+{% set icon_chevron_left %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-left',
+  } only %}
+{% endset %}
+
+{% set prev_btn %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Previous',
+    attributes: {
+      href: 'https://google.com',
+      class: 'e-bolt-button--prev'
+    },
+    icon_before: icon_chevron_left,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
 {% set footer %}
   {% include '@bolt-components-headline/text.twig' with {
-  text: 'Want to know about new blogs, analyst reports, and press realases as they publish? <a href="https://google.com" class="e-bolt-text-link" target="_blank" rel="noopener">Manage email subscriptions here.</a>',
+  text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
 } only %}
 {% endset %}
 
 {% set modal_content %}
-  {% include '@bolt-components-headline/text.twig' with {
-    text: 'This is the modal container\'s header.',
-  } only %}
+  <div class="c-notification-tag-manager__header">
+    {{ title }}
+    Step: 1 2 3 4
+  </div>
   <div class="c-notification-tag-manager__modal-body">
     <div class="c-notification-tag-manager__col">
       {{ step_info }}
@@ -99,6 +154,10 @@
     <div class="c-notification-tag-manager__col">
       {{ tips_list }}
     </div>
+  </div>
+  <div class="c-notification-tag-manager__nav">
+    {{ prev_btn }}
+    {{ next_btn }}
   </div>
   <footer class="c-notification-tag-manager__modal-footer t-bolt-navy">
     {{ footer }}
