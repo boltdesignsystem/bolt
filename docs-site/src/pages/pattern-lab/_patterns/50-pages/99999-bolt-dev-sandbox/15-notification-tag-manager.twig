@@ -35,7 +35,7 @@
     text: 'Step 1:'
   } only %}
   {% include '@bolt-components-headline/text.twig' with {
-    size: 'xlarge',
+    size: 'large',
     text: 'What types of content do you want to follow?'
   } only %}
 {% endset %}
@@ -192,28 +192,30 @@
       Step: {{ steps }}
     </div>
   </div>
-  {{ frame_title }}
-  <div class="c-notification-tag-manager__frame">
-    <p class="c-notification-tag-manager__copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with (step 2) is published or updated.</p>
-  </div>
-  <div class="c-notification-tag-manager__modal-body">
-    <div class="c-notification-tag-manager__col">
-      <div class="c-notification-tag-manager__fieldset-title">
-        {{ step_info }}
+  <div class="c-notification-tag-manager__body">
+    {{ frame_title }}
+    <div class="c-notification-tag-manager__frame">
+      <p class="c-notification-tag-manager__frame-copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with (step 2) is published or updated.</p>
+    </div>
+    <div class="c-notification-tag-manager__builder">
+      <div class="c-notification-tag-manager__col">
+        <div class="c-notification-tag-manager__fieldset-title">
+          {{ step_info }}
+        </div>
+        <div class="c-notification-tag-manager__fieldset-group">
+          {{ checkbox_fieldsets_representation }}
+        </div>
       </div>
-      <div class="c-notification-tag-manager__fieldset-group">
-        {{ checkbox_fieldsets_representation }}
+      <div class="c-notification-tag-manager__col">
+        {{ tips_list }}
       </div>
     </div>
-    <div class="c-notification-tag-manager__col">
-      {{ tips_list }}
+    <div class="c-notification-tag-manager__nav">
+      {{ prev_btn }}
+      {{ next_btn }}
     </div>
   </div>
-  <div class="c-notification-tag-manager__nav">
-    {{ prev_btn }}
-    {{ next_btn }}
-  </div>
-  <footer class="c-notification-tag-manager__modal-footer t-bolt-navy">
+  <footer class="c-notification-tag-manager__footer t-bolt-navy">
     {{ footer }}
   </footer>
 {% endset %}
@@ -256,6 +258,7 @@
   {% include '@bolt-components-modal/modal.twig' with {
   content: modal_content,
   width: 'full',
+  spacing: 'none',
   attributes: {
     class: 'js-bolt-modal',
   },

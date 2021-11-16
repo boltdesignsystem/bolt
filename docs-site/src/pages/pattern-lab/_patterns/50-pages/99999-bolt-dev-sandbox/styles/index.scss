@@ -7,9 +7,6 @@
 }
 
 .c-notification-tag-manager__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: var(--bolt-spacing-y-medium);
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
   background: rgb(62, 103, 187);
@@ -18,10 +15,17 @@
     rgba(62, 103, 187, 1) 0%,
     rgba(16, 165, 172, 1) 100%
   );
+  @include bolt-mq(medium) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   .c-bolt-headline {
-    margin-bottom: 0;
     color: var(--bolt-color-white);
+    @include bolt-mq(medium) {
+      margin-bottom: 0;
+    }
   }
 
   .c-notification-tag-manager__steps {
@@ -58,9 +62,12 @@
 }
 
 .c-notification-tag-manager__fieldset-title {
-  display: flex;
-  align-items: center;
-  gap: var(--bolt-spacing-x-small);
+  margin-bottom: var(--bolt-spacing-y-medium);
+  @include bolt-mq(large) {
+    display: flex;
+    align-items: center;
+    gap: var(--bolt-spacing-x-small);
+  }
 }
 
 .c-notification-tag-manager__fieldset-group {
@@ -74,7 +81,11 @@
   border: 1px solid var(--m-bolt-border);
 }
 
-.c-notification-tag-manager__modal-body {
+.c-notification-tag-manager__body {
+  padding: 0 var(--bolt-spacing-x-medium);
+}
+
+.c-notification-tag-manager__builder {
   @include bolt-mq(medium) {
     display: grid;
     grid-template-columns: 3fr 2fr;
@@ -88,7 +99,7 @@
   padding: var(--bolt-spacing-y-xlarge) 0 var(--bolt-spacing-y-large);
 }
 
-.c-notification-tag-manager__modal-footer {
+.c-notification-tag-manager__footer {
   padding: var(--bolt-spacing-x-medium);
   text-align: center;
 }
