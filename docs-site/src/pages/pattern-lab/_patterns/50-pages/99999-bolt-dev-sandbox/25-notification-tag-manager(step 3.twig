@@ -1,0 +1,221 @@
+
+{% extends "@pl/_default-page-template.twig" %}
+
+{% set title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxxlarge',
+    text: 'Pega Tag set builder'
+  } only %}
+{% endset %}
+
+{% set steps %}
+  {% include '@bolt-components-pagination/pagination.twig' with {
+    current: 3,
+    total: 4,
+    pages: {
+      1: {
+        href: '#!'
+      },
+      2: {
+        href: '#!'
+      },
+      3: {
+        href: '#!'
+      },
+      4: {
+        href: '#!'
+      },
+    },
+  } only %}
+{% endset %}
+
+{% set step_info %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xlarge',
+    text: 'Step 3:'
+  } only %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'large',
+    text: 'How do yu want to be notified?'
+  } only %}
+{% endset %}
+
+{% set frame_title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+  size: 'small',
+  text: 'Your current tag set',
+  transform: 'uppercase'
+} only %}
+{% endset %}
+
+{% set chip_1 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Question',
+    size: 'small',
+  } only %}
+{% endset %}
+
+{% set chip_2 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Discussion',
+    size: 'small',
+  } only %}
+{% endset %}
+
+{% set chip_3 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Pega customer Service 8.6',
+    size: 'small',
+  } only %}
+{% endset %}
+
+{% set chip_4 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Mobile',
+    size: 'small',
+  } only %}
+{% endset %}
+
+{% set tips_list %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'large',
+    text: 'Tips and suggestions:'
+  } only %}
+  {% include '@bolt-components-ul/ul.twig' with {
+    items: [
+      'Do not include any data or information in your posts that are confidential!',
+      'Apply basic practices for collaborative work.',
+    ]
+  } only %}
+{% endset %}
+
+{% set text_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'Manage email subscriptions here',
+  attributes: {
+    href: 'https://google.com',
+    target: '_blank',
+    rel: 'noopener'
+  }
+} only %}
+{% endset %}
+
+{% set icon_chevron_right %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+
+{% set next_btn %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Next',
+    attributes: {
+      href: 'https://google.com',
+      class: 'e-bolt-button--next'
+    },
+    icon_after: icon_chevron_right,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
+{% set icon_chevron_left %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-left',
+  } only %}
+{% endset %}
+
+{% set prev_btn %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Previous',
+    attributes: {
+      href: 'https://google.com',
+      class: 'e-bolt-button--prev'
+    },
+    icon_before: icon_chevron_left,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
+{% set footer %}
+  {% include '@bolt-components-headline/text.twig' with {
+  text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+} only %}
+{% endset %}
+
+{% set modal_content %}
+  <div class="c-notification-tag-manager__header">
+    {{ title }}
+    <div class="c-notification-tag-manager__steps">
+      Step: {{ steps }}
+    </div>
+  </div>
+  <div class="c-notification-tag-manager__body">
+    {{ frame_title }}
+    <div class="c-notification-tag-manager__frame">
+      <p class="c-notification-tag-manager__frame-copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with {{ chip_3 }} and {{ chip_4 }}is published or updated.</p>
+    </div>
+    <div class="c-notification-tag-manager__builder">
+      <div class="c-notification-tag-manager__col">
+        <div class="c-notification-tag-manager__fieldset-title">
+          {{ step_info }}
+        </div>
+        <div class="c-notification-tag-manager__fieldset-group c-notification-tag-manager__fieldset-group--selects">
+          {# {{ select_fieldsets_representation }} #}
+        </div>
+      </div>
+    </div>
+    <div class="c-notification-tag-manager__nav">
+      {{ prev_btn }}
+      {{ next_btn }}
+    </div>
+  </div>
+  <footer class="c-notification-tag-manager__footer t-bolt-navy">
+    {{ footer }}
+  </footer>
+{% endset %}
+
+{% set modal_trigger %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Open Notification Tag Manager',
+    size: 'large',
+    attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '.js-bolt-modal',
+    },
+  } only %}
+{% endset %}
+
+{% block main_content %}
+  {% set header %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Notification Tag Manager',
+      size: 'xxxlarge',
+      tag: 'h1'
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-band/band.twig' with {
+    theme: 'dark',
+    size: 'large',
+    content: header,
+  } only %}
+
+  <div class="c-notification-tag-manager">
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Click the button below to open Notification Tag Manager.',
+      size: 'large',
+      tag: 'h2'
+    } only %}
+    {{ modal_trigger }}
+  </div>
+
+  {% include '@bolt-components-modal/modal.twig' with {
+  content: modal_content,
+  width: 'full',
+  spacing: 'none',
+  attributes: {
+    class: 'js-bolt-modal',
+  },
+} only %}
+{% endblock %}
+
