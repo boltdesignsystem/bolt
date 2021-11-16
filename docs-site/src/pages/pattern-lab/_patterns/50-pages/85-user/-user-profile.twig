@@ -496,6 +496,11 @@
       name: 'info-circle',
     } only %}
   {% endset %}
+  {% set icon_download %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'download',
+    } only %}
+  {% endset %}
 
   {% set actions %}
     {% set popover_trigger %}
@@ -786,7 +791,7 @@
           } only %}
           {% set layout_content %}
             {% set placeholder_certification %}
-              <small class="u-bolt-block u-bolt-text-align-center">
+              <small class="u-bolt-block u-bolt-text-align-center u-bolt-margin-bottom-xxsmall">
                 {% include '@bolt-elements-image/image.twig' with {
                   attributes: {
                     src: '/images/placeholders/cert-pegaclsa62.png',
@@ -801,6 +806,95 @@
                 <br>
                 Version 7.2 | Nov 7, 2021
               </small>
+              {% set download_button %}
+                {% set tooltip_trigger %}
+                  {% include '@bolt-elements-button/button.twig' with {
+                    content: 'Download certificate',
+                    icon_only: icon_download,
+                    hierarchy: 'tertiary',
+                    size: 'xsmall',
+                    attributes: {
+                      href: '#!',
+                      download: true,
+                    }
+                  } only %}
+                {% endset %}
+                {% set tooltip_content %}
+                  Download certificate
+                {% endset %}
+                {% include '@bolt-components-tooltip/tooltip.twig' with {
+                  trigger: tooltip_trigger,
+                  content: tooltip_content,
+                  placement: 'bottom',
+                } only %}
+              {% endset %}
+              {% set share_button %}
+                {% set popover_trigger %}
+                  {% include '@bolt-elements-button/button.twig' with {
+                    content: 'Share certificate',
+                    icon_only: icon_share,
+                    hierarchy: 'tertiary',
+                    size: 'xsmall',
+                    attributes: {
+                      type: 'button',
+                    }
+                  } only %}
+                {% endset %}
+                {% set popover_menu %}
+                  {% include '@bolt-components-menu/menu.twig' with {
+                    title: 'Share certificate',
+                    items: [
+                      {
+                        content: 'Facebook',
+                        icon_before: icon_facebook,
+                        url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse',
+                        attributes: {
+                          target: '_blank',
+                        }
+                      },
+                      {
+                        content: 'Twitter',
+                        icon_before: icon_twitter,
+                        url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
+                        attributes: {
+                          target: '_blank',
+                        }
+                      },
+                      {
+                        content: 'LinkedIn',
+                        icon_before: icon_linkedin,
+                        url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com',
+                        attributes: {
+                          target: '_blank',
+                        }
+                      },
+                      {
+                        content: 'Email',
+                        icon_before: icon_email,
+                        url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com',
+                        attributes: {
+                          target: '_blank',
+                        }
+                      },
+                    ]
+                  } only %}
+                {% endset %}
+                {% include '@bolt-components-popover/popover.twig' with {
+                  trigger: popover_trigger,
+                  content: popover_menu,
+                  spacing: 'none',
+                  trigger_event: 'hover',
+                  placement: 'bottom',
+                } only %}
+              {% endset %}
+              {% include '@bolt-components-list/list.twig' with {
+                display: 'inline',
+                align: 'center',
+                items: [
+                  download_button,
+                  share_button,
+                ],
+              } only %}
             {% endset %}
             {% include '@bolt-layouts-layout/layout-item.twig' with {
               content: placeholder_certification,
