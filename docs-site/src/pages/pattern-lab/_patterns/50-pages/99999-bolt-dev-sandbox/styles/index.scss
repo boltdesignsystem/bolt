@@ -61,7 +61,7 @@
   }
 }
 
-.c-notification-tag-manager__fieldset-title {
+.c-notification-tag-manager__builder-title {
   margin-bottom: var(--bolt-spacing-y-medium);
   @include bolt-mq(large) {
     display: flex;
@@ -89,6 +89,14 @@
   margin-bottom: var(--bolt-spacing-y-large);
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
   border: 1px solid var(--m-bolt-border);
+
+  &--before-submit {
+    @include bolt-shadow('level-20');
+
+    display: flex;
+    align-items: center;
+    gap: var(--bolt-spacing-x-xsmall);
+  }
 }
 
 .c-notification-tag-manager__body {

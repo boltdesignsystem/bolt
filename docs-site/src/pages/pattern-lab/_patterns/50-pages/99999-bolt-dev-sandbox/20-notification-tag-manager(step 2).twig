@@ -66,46 +66,103 @@
   {% set select_fieldset_group = [
     {
       title: 'Pega Product',
-      select_option: ['Question', 'Discussion', 'Idea']
+      select_option: [
+        {
+          type: 'option',
+          value: '',
+          label: '- Select an option -',
+        },
+        {
+          type: 'option',
+          value: 'product-a',
+          label: 'product a',
+        },
+        {
+          type: 'option',
+          value: 'product-b',
+          label: 'product b',
+        },
+      ],
     },
     {
       title: 'Product Capability',
-      select_option: ['Mission']
+      select_option: [
+        {
+          type: 'option',
+          value: '',
+          label: '- Select an option -',
+        },
+        {
+          type: 'option',
+          value: 'capability-a',
+          label: 'capability a',
+        },
+        {
+          type: 'option',
+          value: 'capability-b',
+          label: 'capability b',
+        },
+      ]
     },
     {
       title: 'Collaboration Center',
-      select_option: ['Video']
+      select_option: [
+        {
+          type: 'option',
+          value: '',
+          label: '- Select an option -',
+        },
+        {
+          type: 'option',
+          value: 'collaboration-a',
+          label: 'collaboration a',
+        },
+        {
+          type: 'option',
+          value: 'collaboration b',
+          label: 'collaboration b',
+        },
+      ]
     },
     {
       title: 'Industry',
-      select_option: ['Video']
+      select_option: [
+        {
+          type: 'option',
+          value: '',
+          label: '- Select an option -',
+        },
+        {
+          type: 'option',
+          value: 'industry-a',
+          label: 'industry a',
+        },
+        {
+          type: 'option',
+          value: 'industry-b',
+          label: 'industry b',
+        },
+      ]
     }
   ] %}
 
   {% for item in select_fieldset_group %}
     {% set select_children %}
-        {% for select_item in item.select_option %}
-          <pre>
-            {{ dump(select_item) }}
-          </pre>
-        {% endfor %}
-        
-        {# {% for select_item in item.select_option %} #}
-          {% set select %}
-            {% include '@bolt-components-form/form-select.twig' with {
-              options: [
-                {
-                  type: select_item,
-                  value: select_item,
-                  label: select_item,
-                },
-              ]
-            } only %}
-          {% endset %}
-        {# {% endfor %} #}
-        {% include '@bolt-components-form/form-element.twig' with {
-          children: select
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Select',
+          displayType: 'floating',
         } only %}
+      {% endset %}       
+      {% set select %}
+        {% include '@bolt-components-form/form-select.twig' with {
+          options: item.select_option
+        } only %}
+      {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: select
+    } only %}
     {% endset %}
     {% include '@bolt-components-form/form-fieldset.twig' with {
       legendTitle: item.title,
@@ -192,11 +249,11 @@
     <div class="c-notification-tag-manager__frame">
       <p class="c-notification-tag-manager__frame-copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with (step 2) is published or updated.</p>
     </div>
+    <div class="c-notification-tag-manager__builder-title">
+      {{ step_info }}
+    </div>
     <div class="c-notification-tag-manager__builder">
       <div class="c-notification-tag-manager__col">
-        <div class="c-notification-tag-manager__fieldset-title">
-          {{ step_info }}
-        </div>
         <div class="c-notification-tag-manager__fieldset-group c-notification-tag-manager__fieldset-group--step-two">
           {{ select_fieldsets_representation }}
         </div>

@@ -112,20 +112,12 @@
 } only %}
 {% endset %}
 
-{% set icon_chevron_right %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'chevron-right',
-  } only %}
-{% endset %}
-
 {% set next_btn %}
   {% include '@bolt-elements-button/button.twig' with {
     content: 'Save',
     attributes: {
-      href: 'https://google.com',
-      class: 'e-bolt-button--next'
+      type: 'submit'
     },
-    icon_after: icon_chevron_right,
     border_radius: 'full',
   } only %}
 {% endset %}
@@ -148,6 +140,18 @@
   } only %}
 {% endset %}
 
+{% set icon_bell %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'bell-solid',
+  } only %}
+{% endset %}
+
+{% set icon_email %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'email',
+  } only %}
+{% endset %}
+
 {% set footer %}
   {% include '@bolt-components-headline/text.twig' with {
   text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
@@ -163,14 +167,16 @@
   </div>
   <div class="c-notification-tag-manager__body">
     {{ frame_title }}
-    <div class="c-notification-tag-manager__frame">
+    <div class="c-notification-tag-manager__frame c-notification-tag-manager__frame--before-submit t-bolt-gray-xlight">
+      {{ icon_bell }}
+      {{ icon_email }}
       <p class="c-notification-tag-manager__frame-copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with {{ chip_3 }} and {{ chip_4 }}is published or updated.</p>
+    </div>
+    <div class="c-notification-tag-manager__builder-title">
+      {{ step_info }}
     </div>
     <div class="c-notification-tag-manager__builder">
       <div class="c-notification-tag-manager__col">
-        <div class="c-notification-tag-manager__fieldset-title">
-          {{ step_info }}
-        </div>
         <div class="c-notification-tag-manager__fieldset-group c-notification-tag-manager__fieldset-group--step-four">
           {{ input}}
         </div>
