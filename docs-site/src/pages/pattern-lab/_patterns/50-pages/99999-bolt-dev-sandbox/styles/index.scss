@@ -73,6 +73,11 @@
 .c-notification-tag-manager__fieldset-group {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  column-gap: var(--bolt-spacing-x-medium);
+
+  &--selects {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .c-notification-tag-manager__frame {
@@ -96,7 +101,7 @@
 .c-notification-tag-manager__nav {
   display: flex;
   justify-content: space-between;
-  padding: var(--bolt-spacing-y-xlarge) 0 var(--bolt-spacing-y-large);
+  margin: var(--bolt-spacing-y-xlarge) 0 var(--bolt-spacing-y-large);
 }
 
 .c-notification-tag-manager__footer {
