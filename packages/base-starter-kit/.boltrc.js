@@ -63,6 +63,7 @@ module.exports = {
       '@bolt/components-smooth-scroll',
       '@bolt/components-stack',
       '@bolt/components-sticky',
+      '@bolt/components-switch-button',
       '@bolt/components-ratio',
       '@bolt/components-table',
       '@bolt/components-tabs',
