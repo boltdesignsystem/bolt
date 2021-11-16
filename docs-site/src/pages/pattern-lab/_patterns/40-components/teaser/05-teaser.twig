@@ -4,10 +4,10 @@ A teaser is an interactive block element. Its main purpose is to display relevan
 
 {% set notes %}
 <bolt-ol>
-  <bolt-li><bolt-code-snippet display="inline">signifier</bolt-code-snippet> and <bolt-code-snippet display="inline">headline</bolt-code-snippet> props are required for a basic teaser.</bolt-li>
-  <bolt-li>When using the <bolt-code-snippet display="inline">signifier</bolt-code-snippet> prop, it will automatically crop an <bolt-code-snippet display="inline"><img></bolt-code-snippet> to the defined ratio (16:9 for vertical and responsive layout, 1:1 for horizontal layout).</bolt-li>
-  <bolt-li>When using <bolt-code-snippet display="inline">bolt-image</bolt-code-snippet> as the signifier, please be sure that the source image file has the appropriate ratio, otherwise there will be undesired white space.</bolt-li>
-  <bolt-li>The <bolt-code-snippet display="inline">headline</bolt-code-snippet> prop and its children props are required for use. To set an action for the teaser, set an <bolt-code-snippet display="inline">href</bolt-code-snippet> (for links) or <bolt-code-snippet display="inline">type</bolt-code-snippet> and proper attributes (for buttons) with the <bolt-code-snippet display="inline">headline.link_attributes</bolt-code-snippet> prop.</bolt-li>
+  <bolt-li><code>signifier</code> and <code>headline</code> props are required for a basic teaser.</bolt-li>
+  <bolt-li>When using the <code>signifier</code> prop, it will automatically crop an <code>&lt;img&gt;</code> to the defined ratio (16:9 for vertical and responsive layout, 1:1 for horizontal layout).</bolt-li>
+  <bolt-li>When using <code>bolt-image</code> as the signifier, please be sure that the source image file has the appropriate ratio, otherwise there will be undesired white space.</bolt-li>
+  <bolt-li>The <code>headline</code> prop and its children props are required for use. To set an action for the teaser, set an <code>href</code> (for links) or <code>type</code> and proper attributes (for buttons) with the <code>headline.link_attributes</code> prop.</bolt-li>
 </bolt-ol>
 {% endset %}
 
@@ -27,7 +27,7 @@ A teaser is an interactive block element. Its main purpose is to display relevan
       headline: {
         text: 'This is the teaser headline',
         link_attributes: {
-          href: 'https://www.pega.com',
+          href: 'https://www.google.com',
         }
       },
     } only %}
@@ -44,7 +44,7 @@ A teaser is an interactive block element. Its main purpose is to display relevan
   headline: {
     text: 'This is the teaser headline',
     link_attributes: {
-      href: 'https://www.pega.com',
+      href: 'https://www.google.com',
     }
   },
 } only %}

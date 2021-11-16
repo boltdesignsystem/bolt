@@ -3,11 +3,13 @@
 {% endset %}
 
 {% set notes %}
+{% spaceless %}
   <bolt-ol>
-    <bolt-li>Even though plain <bolt-code-snippet display="inline">&lt;table&gt;</bolt-code-snippet> elements are styled, they are not responsive. Please wrap all <bolt-code-snippet display="inline">&lt;table&gt;</bolt-code-snippet> elements with <bolt-code-snippet display="inline">&lt;bolt-table&gt;</bolt-code-snippet> web component to enable responsive styles (JavaScript required). <a href="{{ link['viewall-components-table'] }}" class="e-bolt-text-link">View Table Component<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
-    <bolt-li>As for <bolt-code-snippet display="inline">&lt;pre&gt;</bolt-code-snippet> and <bolt-code-snippet display="inline">&lt;code&gt;</bolt-code-snippet> elements, they do not have syntax highlighting. To enable syntax highlighting, please use <bolt-code-snippet display="inline">&lt;bolt-code-snippet&gt;</bolt-code-snippet> web component instead (JavaScript required). <a href="{{ link['viewall-components-code-snippet'] }}" class="e-bolt-text-link">View Code Snippet Component<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
-    {# <bolt-li>Community Tech Doc is a great example of using Side Nav, Content Pagination, Holy Grail layout, and Article element together. <a href="{{ link['pages-community-tech-doc'] }}" class="e-bolt-text-link">View Example Tech Documentation<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li> #}
+    <bolt-li>Even though plain <code>&lt;table&gt;</code> elements are styled, they are not responsive. Please wrap all <code>&lt;table&gt;</code> elements with <code>&lt;bolt-table&gt;</code> web component to enable responsive styles (JavaScript required). <a href="{{ link['viewall-components-table'] }}" class="e-bolt-text-link">View Table Component<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a></bolt-li>
+    <bolt-li>As for <code>&lt;pre&gt;</code> and <code>&lt;code&gt;</code> elements, they do not have syntax highlighting. To enable syntax highlighting, please use <code>&lt;code&gt;</code> web component instead (JavaScript required). <a href="{{ link['viewall-components-code-snippet'] }}" class="e-bolt-text-link">View Code Snippet Component<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a></bolt-li>
+    {# <bolt-li>Community Tech Doc is a great example of using Side Nav, Content Pagination, Holy Grail layout, and Article element together. <a href="{{ link['pages-community-tech-doc'] }}" class="e-bolt-text-link">View Example Tech Documentation<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a></bolt-li> #}
   </bolt-ol>
+{% endspaceless %}
 {% endset %}
 
 {% set demo %}
@@ -233,7 +235,6 @@
 {% endset %}
 
 {% set html_markup %}
-{% verbatim %}
 <article class="e-bolt-article">
   <h1>
     H1 heading text
@@ -257,7 +258,6 @@
     Text: <strong>bold</strong>, <em>italic</em>, <a href="#!">linked</a>, <code>code</code>, <kbd>kbd</kbd>, <small>small</small>, super<sup>script</sup>, sub<sub>script</sub>.
   </p>
 </article>
-{% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {

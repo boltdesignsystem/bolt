@@ -1,5 +1,5 @@
 {% set description %}
-  Use the <bolt-code-snippet display="inline">icon_before</bolt-code-snippet> and <bolt-code-snippet display="inline">icon_after</bolt-code-snippet> props to append icons before or after the menu item text.
+  Use the <code>icon_before</code> and <code>icon_after</code> props to append icons before or after the menu item text.
 {% endset %}
 
 {% set demo %}
@@ -84,15 +84,15 @@
 {% verbatim %}
 <bolt-menu>
   <bolt-menu-item>
-    <bolt-icon name="facebook-solid" size="small" slot="icon-before"></bolt-icon>
+    <span slot="icon-before"><!-- Icon or image markup --></span>
     Share via Facebook
   </bolt-menu-item>
   <bolt-menu-item>
-    <bolt-icon name="twitter-solid" size="small" slot="icon-before"></bolt-icon>
+    <span slot="icon-before"><!-- Icon or image markup --></span>
     Share via Twitter
   </bolt-menu-item>
   <bolt-menu-item>
-    <bolt-icon name="linkedin-solid" size="small" slot="icon-before"></bolt-icon>
+    <span slot="icon-before"><!-- Icon or image markup --></span>
     Share via LinkedIn
   </bolt-menu-item>
 </bolt-menu>

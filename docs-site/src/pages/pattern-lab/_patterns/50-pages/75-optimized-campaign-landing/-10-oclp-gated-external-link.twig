@@ -46,21 +46,24 @@
             type: 'option',
             value: '',
             label: 'Select a Country',
+            attributes: {
+              disabled: true,
+            },
           },
           {
             type: 'option',
             value: 'a',
-            label: 'Argentina',
+            label: 'Argentina'
           },
           {
             type: 'option',
             value: 'b',
-            label: 'Belgium',
+            label: 'Belgium'
           },
           {
             type: 'option',
             value: 'c',
-            label: 'Croatia',
+            label: 'Croatia'
           }
         ],
         attributes: {
@@ -127,7 +130,7 @@
 {% set header %}
   <header>
     {% set logo %}
-      <a href="https://pega.com">
+      <a href="https://google.com">
         {% include '@bolt-elements-image/image.twig' with {
           attributes: {
             alt: 'Pegasystems, Inc.',
@@ -157,7 +160,7 @@
       tag: 'h1',
       size: 'xxxlarge',
     } only %}
-    
+
     {% set text_content %}
       {% include '@bolt-components-headline/text.twig' with {
         text: 'This is the body. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis numquam quidem vitae minus deserunt, qui libero autem, modi dolorem cum nisi asperiores beatae error hic architecto nobis saepe, maiores eligendi.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quam ipsum commodi accusantium eligendi, soluta, unde incidunt omnis officiis eos aut quae culpa laudantium consequatur! Quasi repellat odit doloremque rerum.',
@@ -360,7 +363,7 @@
             tag: 'h2',
             size: 'xlarge',
             link_attributes: {
-              href: 'https://pega.com'
+              href: 'https://google.com'
             },
           },
           subheadline: 'Learn more about our award winning solution',
@@ -383,7 +386,7 @@
             tag: 'h2',
             size: 'xlarge',
             link_attributes: {
-              href: 'https://pega.com'
+              href: 'https://google.com'
             },
           },
           subheadline: 'Get in touch with us',
@@ -434,10 +437,10 @@
           content: '<span class="u-bolt-visuallyhidden">LinkedIn</span>',
           icon_before: icon_linkedin,
           attributes: {
-            href: 'https://pega.com',
+            href: 'https://google.com',
           }
         } only %}
-        
+
         {% set icon_twitter %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'twitter',
@@ -447,10 +450,10 @@
           content: '<span class="u-bolt-visuallyhidden">Twitter</span>',
           icon_before: icon_twitter,
           attributes: {
-            href: 'https://pega.com',
+            href: 'https://google.com',
           }
         } only %}
-        
+
         {% set icon_facebook %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'facebook',
@@ -460,10 +463,10 @@
           content: '<span class="u-bolt-visuallyhidden">Facebook</span>',
           icon_before: icon_facebook,
           attributes: {
-            href: 'https://pega.com',
+            href: 'https://google.com',
           }
         } only %}
-        
+
         {% set icon_youtube %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'youtube-solid',
@@ -473,7 +476,7 @@
           content: '<span class="u-bolt-visuallyhidden">YouTube</span>',
           icon_before: icon_youtube,
           attributes: {
-            href: 'https://pega.com',
+            href: 'https://google.com',
           }
         } only %}
       </div>
@@ -482,28 +485,28 @@
           content: 'Terms of Use',
           reversed_underline: true,
           attributes: {
-            href: 'https://pega.com',
+            href: 'https://google.com',
           }
         } only %}
         {% include '@bolt-elements-text-link/text-link.twig' with {
           content: 'Privacy',
           reversed_underline: true,
           attributes: {
-            href: 'https://pega.com',
+            href: 'https://google.com',
           }
         } only %}
         {% include '@bolt-elements-text-link/text-link.twig' with {
           content: 'Contact',
           reversed_underline: true,
           attributes: {
-            href: 'https://pega.com',
+            href: 'https://google.com',
           }
         } only %}
         {% include '@bolt-elements-text-link/text-link.twig' with {
-          content: 'Pega.com',
+          content: 'google.com',
           reversed_underline: true,
           attributes: {
-            href: 'https://pega.com',
+            href: 'https://google.com',
           }
         } only %}
       </div>

@@ -1,14 +1,14 @@
 {% set description %}
-  The <bolt-code-snippet display="inline">status</bolt-code-snippet> prop can be used to display status information about a resource such as locked and view count. Like, share and download buttons can be generated via the <bolt-code-snippet display="inline">actions</bolt-code-snippet> prop.
+  The <code>status</code> prop can be used to display status information about a resource such as locked and view count. Like, share and download buttons can be generated via the <code>actions</code> prop.
 {% endset %}
 
 {% set notes %}
 <bolt-ol>
-  <bolt-li>View count can be set via the <bolt-code-snippet display="inline">status.views</bolt-code-snippet> prop. It can be numbers or string (eg. 28k).</bolt-li>
-  <bolt-li>Locked status can be set via the <bolt-code-snippet display="inline">status.locked</bolt-code-snippet> prop. If this is set, a lock icon will appear with the signifier.</bolt-li>
-  <bolt-li>Pass a like button into the <bolt-code-snippet display="inline">like</bolt-code-snippet> prop. Example code snippet is shown below.</bolt-li>
-  <bolt-li>Pass a share popover menu into the <bolt-code-snippet display="inline">share</bolt-code-snippet> prop. Boundary is required on the popover. Example code snippet is shown below.</bolt-li>
-  <bolt-li>Pass a download link into the <bolt-code-snippet display="inline">download</bolt-code-snippet> prop. Example code snippet is shown below.</bolt-li>
+  <bolt-li>View count can be set via the <code>status.views</code> prop. It can be numbers or string (eg. 28k).</bolt-li>
+  <bolt-li>Locked status can be set via the <code>status.locked</code> prop. If this is set, a lock icon will appear with the signifier.</bolt-li>
+  <bolt-li>Pass a like button into the <code>like</code> prop. Example code snippet is shown below.</bolt-li>
+  <bolt-li>Pass a share popover menu into the <code>share</code> prop. Boundary is required on the popover. Example code snippet is shown below.</bolt-li>
+  <bolt-li>Pass a download link into the <code>download</code> prop. Example code snippet is shown below.</bolt-li>
 </bolt-ol>
 {% endset %}
 
@@ -47,30 +47,30 @@
           {
             name: 'facebook',
             attributes: {
-              href: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+              href: 'https://www.facebook.com/sharer/sharer.php?u=https://google.com&amp;src=sdkpreparse'
             }
           },
           {
             name: 'twitter',
             attributes: {
-              href: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+              href: 'https://twitter.com/intent/tweet?url=https://google.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
             }
           },
           {
             name: 'linkedin',
             attributes: {
-              href: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+              href: 'https://www.linkedin.com/shareArticle?url=https://google.com'
             }
           },
           {
             name: 'email',
             attributes: {
-              href: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+              href: 'mailto:?&body=Sample%20Text%20--%20https%3A//mail.com'
             }
           }
         ],
         copy_to_clipboard: {
-          text_to_copy: 'https://pega.com',
+          text_to_copy: 'https://google.com',
         },
       } only %}
     {% endset %}
@@ -108,7 +108,7 @@
         icon_before: icon_download,
         reversed_underline: true,
         attributes: {
-          href: 'https://www.pega.com/',
+          href: 'https://www.google.com/',
         },
       } only %}
     {% endset %}
@@ -126,7 +126,7 @@
         tag: 'h2',
         size: 'xlarge',
         link_attributes: {
-          href: 'https://www.pega.com',
+          href: 'https://www.google.com',
         }
       },
       description: {
@@ -209,7 +209,7 @@
       icon_before: icon_download,
       reversed_underline: true,
       attributes: {
-        href: 'https://www.pega.com/',
+        href: 'https://www.google.com/',
       },
     } only %}
   {% endset %}

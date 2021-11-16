@@ -10,7 +10,7 @@
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>When creating a block text link (such as trying to make an entire card clickable while retaining the headline as the link) with the <bolt-code-snippet display="inline">expand_click_target</bolt-code-snippet> prop, the text link must be placed into a container that is not positioned static (e.g. absolute, fixed, relative, or sticky), and the text must explain clearly the block of content that it&rsquo;s trying to cover.</bolt-li>
+    <bolt-li>When creating a block text link (such as trying to make an entire card clickable while retaining the headline as the link) with the <code>expand_click_target</code> prop, the text link must be placed into a container that is not positioned static (e.g. absolute, fixed, relative, or sticky), and the text must explain clearly the block of content that it&rsquo;s trying to cover.</bolt-li>
     <bolt-li>Only 1 block text link should be used within a particular block of content.</bolt-li>
   </bolt-ol>
 {% endset %}
@@ -36,7 +36,7 @@
       reversed_underline: true,
       icon_after: icon_chevron_right,
       attributes: {
-        href: 'https://pega.com',
+        href: 'https://google.com',
       }
     } only %}
   </bolt-text>
@@ -53,7 +53,7 @@
   content: 'This is a block text link, its click target will cover the entire area of its closest container that is not positioned static.',
   expand_click_target: true,
   attributes: {
-    href: 'https://pega.com',
+    href: 'https://google.com',
   }
 } only %}
 {% endverbatim %}
@@ -62,7 +62,7 @@
 {% set html_markup %}
 {% verbatim %}
 // Wrap this text link with a container that is not positioned static.
-<a href="https://pega.com" class="e-bolt-text-link e-bolt-text-link--expand-click-target">This is a block text link, its click target will cover the entire area of its closest container that is not positioned static.</a>
+<a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--expand-click-target">This is a block text link, its click target will cover the entire area of its closest container that is not positioned static.</a>
 {% endverbatim %}
 {% endset %}
 

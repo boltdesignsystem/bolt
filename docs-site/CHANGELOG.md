@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/bolt-design-system/bolt/compare/v5.0.0...v5.0.1) (2021-11-12)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [5.0.0](https://github.com/bolt-design-system/bolt/compare/v4.7.0...v5.0.0) (2021-11-10)
+
+
+
+# [5.0.0-beta-3](https://github.com/bolt-design-system/bolt/compare/v5.0.0-beta-2...v5.0.0-beta-3) (2021-11-01)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [4.7.0](https://github.com/bolt-design-system/bolt/compare/v4.6.2...v4.7.0) (2021-11-04)
+
+
+### Reverts
+
+* Revert "DS-565: make every link in separate li" ([dee2c1a](https://github.com/bolt-design-system/bolt/commit/dee2c1af4ad3051248d134dfd284c7535820f380))
+
+
+
+
+
+## [4.6.2](https://github.com/bolt-design-system/bolt/compare/v4.6.1...v4.6.2) (2021-11-03)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [4.6.1](https://github.com/bolt-design-system/bolt/compare/v4.6.0...v4.6.1) (2021-10-13)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [4.6.0](https://github.com/bolt-design-system/bolt/compare/v4.5.1...v4.6.0) (2021-10-12)
+
+
+### Bug Fixes
+
+* remove obsolete template files ([5634c37](https://github.com/bolt-design-system/bolt/commit/5634c37cc01190a6b51c2ec28cbad2b34c90bf01))
+
+
+
+
+
+## [4.5.1](https://github.com/bolt-design-system/bolt/compare/v4.5.0...v4.5.1) (2021-09-30)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
 # [4.5.0](https://github.com/bolt-design-system/bolt/compare/v4.4.0...v4.5.0) (2021-09-24)
 
 
@@ -1699,7 +1765,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - remove postinstall on docs site + test quicker PHP install command ([5b76360](https://github.com/bolt-design-system/bolt/commit/5b76360))
 - remove uses of 'imageAttributes', these ones are unnecessary ([b4ceae9](https://github.com/bolt-design-system/bolt/commit/b4ceae9))
 - replace 'imageAttributes' with 'cover' on careers page demo, does same thing ([32c1733](https://github.com/bolt-design-system/bolt/commit/32c1733))
-- replace missing card image with new one from pega.com ([0fbc791](https://github.com/bolt-design-system/bolt/commit/0fbc791))
+- replace missing card image with new one ([0fbc791](https://github.com/bolt-design-system/bolt/commit/0fbc791))
 - resolve conflicts ([8554cd9](https://github.com/bolt-design-system/bolt/commit/8554cd9))
 - resolve conflicts ([d6adc02](https://github.com/bolt-design-system/bolt/commit/d6adc02))
 - retest docker build ([f4bfa64](https://github.com/bolt-design-system/bolt/commit/f4bfa64))
@@ -1806,7 +1872,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - remove postinstall on docs site + test quicker PHP install command ([5b76360](https://github.com/bolt-design-system/bolt/commit/5b76360))
 - remove uses of 'imageAttributes', these ones are unnecessary ([b4ceae9](https://github.com/bolt-design-system/bolt/commit/b4ceae9))
 - replace 'imageAttributes' with 'cover' on careers page demo, does same thing ([32c1733](https://github.com/bolt-design-system/bolt/commit/32c1733))
-- replace missing card image with new one from pega.com ([0fbc791](https://github.com/bolt-design-system/bolt/commit/0fbc791))
+- replace missing card image with new one ([0fbc791](https://github.com/bolt-design-system/bolt/commit/0fbc791))
 - resolve conflicts ([8554cd9](https://github.com/bolt-design-system/bolt/commit/8554cd9))
 - resolve conflicts ([d6adc02](https://github.com/bolt-design-system/bolt/commit/d6adc02))
 - retest docker build ([f4bfa64](https://github.com/bolt-design-system/bolt/commit/f4bfa64))

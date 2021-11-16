@@ -1,20 +1,11 @@
 {% include '@pl/00-deprecated-button-docs.twig' %}
 
-{% macro code_example(code, copy) %}
-  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
-    {{ code | replace({
-      '<': '&lt;',
-      '>': '&gt;',
-    }) | trim | raw }}
-  {% endspaceless %}</bolt-code-snippet>
-{% endmacro %}
-
 {% import _self as button_code %}
 
 {% set button_text = "This is a button" %}
 
 {% set button_demo %}
-<bolt-button url="https://pega.com">
+<bolt-button url="https://google.com">
   {{ button_text }}
 </bolt-button>
 {% endset %}
@@ -22,19 +13,40 @@
 {% set button_basic_demo %}
 <p>
   <bolt-button>
-    <bolt-icon name="chevron-left" slot="before"></bolt-icon>
+    <span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-left' } only %}</span>
     {{ button_text }}
   </bolt-button>
 </p>
 <p>
   <bolt-button>
-    <bolt-icon name="chevron-right" slot="after"></bolt-icon>
     {{ button_text }}
+    <span slot="after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span>
   </bolt-button>
 </p>
 <p>
   <bolt-button icon-only>
-    <bolt-icon name="close" slot="before"></bolt-icon>
+    <span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'close' } only %}</span>
+    {{ button_text }}
+  </bolt-button>
+</p>
+{% endset %}
+
+{% set button_basic_demo_code %}
+<p>
+  <bolt-button>
+    <span slot="before"><!-- Icon or image markup --></span>
+    {{ button_text }}
+  </bolt-button>
+</p>
+<p>
+  <bolt-button>
+    {{ button_text }}
+    <span slot="after"><!-- Icon or image markup --></span>
+  </bolt-button>
+</p>
+<p>
+  <bolt-button icon-only>
+    <span slot="before"><!-- Icon or image markup --></span>
     {{ button_text }}
   </bolt-button>
 </p>
@@ -42,13 +54,26 @@
 
 {% set button_advanced_demo %}
 <bolt-button
+  url="https://google.com"
+  size="large"
+  hierarchy="secondary"
+  border-radius="full"
+  icon-only
+>
+  <span slot="before">{% include '@bolt-elements-icon/icon.twig' with { name: 'menu' } only %}</span>
+  {{ button_text }}
+</bolt-button>
+{% endset %}
+
+{% set button_advanced_demo_code %}
+<bolt-button
   url="https://pega.com"
   size="large"
   hierarchy="secondary"
   border-radius="full"
   icon-only
 >
-  <bolt-icon name="menu" slot="before"></bolt-icon>
+  <span slot="before"><!-- Icon or image markup --></span>
   {{ button_text }}
 </bolt-button>
 {% endset %}
@@ -58,7 +83,7 @@
     Web Component Usage
   </bolt-text>
   <bolt-text>
-    Bolt Button is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-button&gt;</bolt-code-snippet> in the markup to make it render.
+    Bolt Button is a web component, you can simply use <code>&lt;bolt-button&gt;</code> in the markup to make it render.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid %}
@@ -67,7 +92,11 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  {% include button_code.code_example(button_demo, true) %}
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: button_demo,
+    lang: 'html',
+    mode: 'dark',
+  } only %}
 </div>
 
 <div class="u-bolt-margin-bottom-large">
@@ -75,7 +104,7 @@
     Basic Usage
   </bolt-text>
   <bolt-text>
-    To use icon in combination with text within the button, you must pass <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet> with a <bolt-code-snippet display="inline" lang="html">slot</bolt-code-snippet> attribute defined as either <bolt-code-snippet display="inline" lang="html">before</bolt-code-snippet> or <bolt-code-snippet display="inline" lang="html">after</bolt-code-snippet>.
+    To use icon in combination with text within the button, you must pass <code>&lt;bolt-icon&gt;</code> with a <code>slot</code> attribute defined as either <code>before</code> or <code>after</code>.
   </bolt-text>
   <bolt-text>
     <mark>Note: the slot attribute is required in order for the icon to be placed and spaced correctly within the button. Even if icon-only option is turned on, slot is still required.</mark>
@@ -87,7 +116,11 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  {% include button_code.code_example(button_basic_demo, true) %}
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: button_basic_demo_code,
+    lang: 'html',
+    mode: 'dark',
+  } only %}
 </div>
 
 <div class="u-bolt-margin-bottom-large">
@@ -95,7 +128,7 @@
     Advanced Usage
   </bolt-text>
   <bolt-text>
-    The web component has all the options shown in the schema table. You can define each prop within the <bolt-code-snippet display="inline" lang="html">&lt;bolt-button&gt;</bolt-code-snippet> element. Use unique combinations to customize a button to your liking.
+    The web component has all the options shown in the schema table. You can define each prop within the <code>&lt;bolt-button&gt;</code> element. Use unique combinations to customize a button to your liking.
   </bolt-text>
   <bolt-text>
     <mark>Note: the hierarchy prop is named color instead.</mark>
@@ -107,6 +140,10 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  {% include button_code.code_example(button_advanced_demo, true) %}
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: button_advanced_demo_code,
+    lang: 'html',
+    mode: 'dark',
+  } only %}
 </div>
 

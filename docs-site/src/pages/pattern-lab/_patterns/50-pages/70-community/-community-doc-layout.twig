@@ -56,30 +56,30 @@
         {
           name: 'facebook',
           attributes: {
-            href: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+            href: 'https://www.facebook.com/sharer/sharer.php?u=https://google.com&amp;src=sdkpreparse'
           }
         },
         {
           name: 'twitter',
           attributes: {
-            href: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+            href: 'https://twitter.com/intent/tweet?url=https://google.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
           }
         },
         {
           name: 'linkedin',
           attributes: {
-            href: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+            href: 'https://www.linkedin.com/shareArticle?url=https://google.com'
           }
         },
         {
           name: 'email',
           attributes: {
-            href: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+            href: 'mailto:?&body=Sample%20Text%20--%20https%3A//mail.com'
           }
         }
       ],
       copy_to_clipboard: {
-        text_to_copy: 'https://pega.com',
+        text_to_copy: 'https://google.com',
       },
     } only %}
   {% endset %}
@@ -144,43 +144,43 @@
         {
           type: 'option',
           value: 'draft',
-          label: 'Draft',
+          label: 'Draft'
         },
         {
           type: 'option',
           value: 'sme-review',
-          label: 'SME Review',
+          label: 'SME Review'
         },
         {
           type: 'option',
           value: 'editor-review',
-          label: 'Editor Review',
+          label: 'Editor Review'
         },
         {
           type: 'option',
           value: 'publisher-review',
-          label: 'Publisher Review',
+          label: 'Publisher Review'
         },
         {
           type: 'option',
           value: 'pending-publication',
-          label: 'Pending Publication',
+          label: 'Pending Publication'
         },
         {
           type: 'option',
           value: 'revision-requested',
-          label: 'Revision Requested',
+          label: 'Revision Requested'
         },
         {
           type: 'option',
           value: 'published',
           label: 'Published',
-          selected: true,
+          selected: true
         },
         {
           type: 'option',
           value: 'unpublished',
-          label: 'Unpublished',
+          label: 'Unpublished'
         },
       ],
       attributes: {
@@ -289,14 +289,14 @@
         content: 'Previous topic',
         tooltip_content: 'Topic Title Goes Here',
         link_attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       next: {
         content: 'Next topic',
         tooltip_content: 'Topic Title Goes Here',
         link_attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
     } only %}
@@ -315,7 +315,7 @@
             icon_before: icon,
             reversed_underline: true,
             attributes: {
-              href: 'https://pega.com',
+              href: 'https://google.com',
             },
           } only %}
         {% endset %}
@@ -325,7 +325,7 @@
             icon_before: icon,
             reversed_underline: true,
             attributes: {
-              href: 'https://pega.com',
+              href: 'https://google.com',
             },
           } only %}
         {% endset %}
@@ -400,7 +400,7 @@
 {% endset %}
 {% set sidebar_content %}
   {% set icon_external_link %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'external-link',
     } only %}
   {% endset %}
@@ -409,7 +409,7 @@
       link: {
         content: 'Level 9 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
     } only %}
@@ -424,7 +424,7 @@
       link: {
         content: 'Level 8 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       children: level_9_list,
@@ -440,7 +440,7 @@
       link: {
         content: 'Level 7 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       children: level_8_list,
@@ -456,7 +456,7 @@
       link: {
         content: 'Level 6 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       children: level_7_list,
@@ -472,7 +472,7 @@
       link: {
         content: 'Level 5 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       children: level_6_list,
@@ -488,7 +488,7 @@
       link: {
         content: 'Level 4 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       children: level_5_list,
@@ -504,7 +504,7 @@
       link: {
         content: 'Level 3 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       children: level_4_list,
@@ -520,7 +520,7 @@
       link: {
         content: 'Level 2 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       children: level_3_list,
@@ -529,7 +529,7 @@
       link: {
         content: 'Level 2 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
     } only %}
@@ -544,7 +544,7 @@
       link: {
         content: 'Level 1 page (with nested links)',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       children: level_2_list,
@@ -553,7 +553,7 @@
       link: {
         content: 'Level 1 page (current)',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       current: true,
@@ -562,7 +562,7 @@
       link: {
         content: 'Level 1 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
     } only %}
@@ -570,7 +570,7 @@
       link: {
         content: 'Level 1 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
     } only %}
@@ -578,7 +578,7 @@
       link: {
         content: 'Level 1 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
     } only %}
@@ -586,7 +586,7 @@
       link: {
         content: 'Level 1 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
     } only %}
@@ -595,7 +595,7 @@
         content: 'Level 1 external link',
         icon: icon_external_link,
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
           target: '_blank',
           rel: 'noopener',
         },
@@ -607,7 +607,7 @@
       content: level_1_items,
     } only %}
   {% endset %}
-  
+
   {% set form_children %}
     <div class="u-bolt-margin-bottom-xsmall">
       {% set label %}

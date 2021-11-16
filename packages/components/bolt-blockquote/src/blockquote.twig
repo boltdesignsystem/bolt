@@ -58,7 +58,7 @@
   <blockquote {{ inner_attributes.addClass(inner_classes) }}>
     {% if logo %}
       <ssr-keep for="bolt-blockquote" class="c-bolt-blockquote__logo">
-        {% include "@bolt/logo.twig" with logo|merge({
+        {% include "@bolt-components-logo/logo.twig" with logo|merge({
           slot: "logo",
         }) only %}
       </ssr-keep>

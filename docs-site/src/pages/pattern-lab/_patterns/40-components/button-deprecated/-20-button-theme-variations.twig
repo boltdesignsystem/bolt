@@ -1,13 +1,13 @@
 {% include '@pl/00-deprecated-button-docs.twig' %}
 
 <bolt-banner status="success" align="start">
-  <bolt-icon name="documentation" size="medium"></bolt-icon> Please reference <a href="{{ link['elements-button-hierarchy'] }}" class="e-bolt-text-link"> element doc</a> instead.
+  {% include '@bolt-elements-icon/icon.twig' with { name: 'documentation', size: 'medium' } only %} Please reference <a href="{{ link['elements-button-hierarchy'] }}" class="e-bolt-text-link"> element doc</a> instead.
 </bolt-banner>
 
 {% set schema = bolt.data.components['@bolt-components-button'].schema %}
-{% set themes = get_data('@bolt/themes.schema.json') %}
+{% set themes = ['dark', 'light'] %}
 
-{% for theme in themes.properties.colors.enum %}
+{% for theme in themes %}
   <h3>Buttons inside a {{ theme }} theme</h3>
   <div class="u-bolt-margin-bottom-medium">
     {% embed '@utils/theme-demo.twig' %}

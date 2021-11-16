@@ -1,8 +1,17 @@
-import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
+import {
+  unsafeCSS,
+  unsafeHTML,
+  BoltElement,
+  customElement,
+  html,
+} from '@bolt/element';
 import { withContext } from 'wc-context/lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
+import { iconChevronRight } from '@bolt/elements-icon/src/icons/js/chevron-right';
+import { iconExternalLink } from '@bolt/elements-icon/src/icons/js/external-link';
 import classNames from 'classnames/bind';
 import globalStyles from '@bolt/global/styles/03-generic/_generic-global.scss';
+import iconStyles from '@bolt/elements-icon/index.scss';
 import buttonStyles from '@bolt/elements-button/src/button.scss';
 import styles from './_card-replacement-action.scss';
 
@@ -30,6 +39,7 @@ class BoltCardReplacementAction extends withContext(BoltElement) {
   static get styles() {
     return [
       unsafeCSS(globalStyles),
+      unsafeCSS(iconStyles),
       unsafeCSS(buttonStyles),
       unsafeCSS(styles),
     ];
@@ -50,6 +60,15 @@ class BoltCardReplacementAction extends withContext(BoltElement) {
           this.spacing && this.spacing !== 'none',
       },
     );
+    let renderedIcon;
+
+    if (this.slotMap.get('icon')) {
+      renderedIcon = this.slotify('icon');
+    } else if (this.external) {
+      renderedIcon = unsafeHTML(iconExternalLink());
+    } else if (this.icon !== 'none') {
+      renderedIcon = unsafeHTML(iconChevronRight());
+    }
 
     return html`
       <div class="${classes}">
@@ -63,15 +82,9 @@ class BoltCardReplacementAction extends withContext(BoltElement) {
                   this.url ? (this.external ? '_blank' : '_self') : undefined,
                 )}"
               >
-                ${this.slotify('default')}${this.icon !== 'none'
+                ${this.slotify('default')}${renderedIcon
                   ? // prettier-ignore
-                    html`<span class="e-bolt-button__icon-after"><bolt-icon
-                        name="${this.icon
-                          ? this.icon
-                          : this.external
-                          ? 'external-link'
-                          : 'chevron-right'}"
-                        aria-hidden="true"></bolt-icon></span>`
+                    html`<span class="e-bolt-button__icon-after">${renderedIcon}</span>`
                   : ''}
               </a>
             `

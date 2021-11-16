@@ -1,7 +1,7 @@
 {% include '@pl/00-deprecated-link-docs.twig' %}
 
 <bolt-banner status="success" align="start">
-  <bolt-icon name="documentation" size="medium"></bolt-icon> Please reference <a href="{{ link['elements-text-link-with-icon'] }}" class="e-bolt-text-link"> element doc</a> instead.
+  {% include '@bolt-elements-icon/icon.twig' with { name: 'documentation', size: 'medium' } only %} Please reference <a href="{{ link['elements-text-link-with-icon'] }}" class="e-bolt-text-link"> element doc</a> instead.
 </bolt-banner>
 
 
@@ -9,9 +9,9 @@
 <p>
   {% include '@bolt-components-link/link.twig' with {
     text: 'This is a link',
-    url: 'https://pega.com',
+    url: 'https://google.com',
     icon: {
-      name: 'info-open',
+      name: 'info-circle',
     },
   } only %}
 </p>
@@ -19,9 +19,9 @@
 <p>
   {% include '@bolt-components-link/link.twig' with {
     text: 'This is a link',
-    url: 'https://pega.com',
+    url: 'https://google.com',
     icon: {
-      name: 'info-open',
+      name: 'info-circle',
       position: 'before'
     },
   } only %}
@@ -30,7 +30,7 @@
 <p>
   {% include '@bolt-components-link/link.twig' with {
     text: 'This is a link',
-    url: 'https://pega.com',
+    url: 'https://google.com',
     icon: {
       name: 'chevron-left',
     },
@@ -39,7 +39,7 @@
 <p>
   {% include '@bolt-components-link/link.twig' with {
     text: 'This is a link',
-    url: 'https://pega.com',
+    url: 'https://google.com',
     icon: {
       name: 'chevron-right',
     },
@@ -48,25 +48,25 @@
 <p>
   {% include '@bolt-components-link/link.twig' with {
     text: 'This is a link',
-    url: 'https://pega.com',
+    url: 'https://google.com',
     icon: {
-      name: 'academy',
+      name: 'certification',
     },
   } only %}
 </p>
 <p>
   {% include '@bolt-components-link/link.twig' with {
     text: 'This is a link',
-    url: 'https://pega.com',
+    url: 'https://google.com',
     icon: {
-      name: 'app-exchange',
+      name: 'cube',
     },
   } only %}
 </p>
 <p>
   {% include '@bolt-components-link/link.twig' with {
     text: 'This is a link',
-    url: 'https://pega.com',
+    url: 'https://google.com',
     icon: {
       name: 'menu',
     },
@@ -75,7 +75,7 @@
 <p>
   {% include '@bolt-components-link/link.twig' with {
     text: 'This is a link',
-    url: 'https://pega.com',
+    url: 'https://google.com',
     icon: {
       name: 'search',
     },
@@ -84,7 +84,7 @@
 <p>
   {% include '@bolt-components-link/link.twig' with {
     text: 'This is a link',
-    url: 'https://pega.com',
+    url: 'https://google.com',
     icon: {
       name: 'close',
     },

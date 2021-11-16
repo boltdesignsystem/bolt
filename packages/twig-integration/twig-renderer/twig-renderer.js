@@ -64,7 +64,7 @@ async function prep(keepAlive) {
 
 /**
  * Render Twig Template
- * @param {string} template - Template name (i.e. `@bolt/button.twig`)
+ * @param {string} template - Template name (i.e. `@bolt-components-button/button.twig`)
  * @param {Object} data - Optional data to pass to template
  * @param {Boolean} keepAlive - Optionally tell the Twig renderer service to keep alive to help speed up requests
  * @return {Promise<{ ok: boolean, html: string, message: string }>} - Results of render

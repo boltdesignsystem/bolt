@@ -78,14 +78,14 @@
     {% block band_content  %}
       {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-1/1@medium' %}
-          {% include '@bolt/headline.twig' with {
+          {% include '@bolt-components-headline/headline.twig' with {
             text: page_title,
             size: 'xxxlarge',
             tag: 'h1',
           } only %}
 
           <div class="u-bolt-margin-bottom-medium">
-            {% include '@bolt/subheadline.twig' with {
+            {% include '@bolt-components-headline/subheadline.twig' with {
               text: 'Newsworthy is an understatement. Our industry-leading solutions help the world\'s largest companies build applications engineered for the future.',
               size: 'xxlarge',
               tag: 'h2',
@@ -536,11 +536,11 @@
             {% for i in 0..4 %}
               {% cell 'u-bolt-width-1/1' %}
                 {% set text_group %}
-                  {% include '@bolt/eyebrow.twig' with {
+                  {% include '@bolt-components-headline/eyebrow.twig' with {
                     text: 'June 5, 2018'
                   } only %}
                   {% include '@bolt-components-headline/headline.twig' with {
-                    text: 'Pegasystems Launches Pega Community to Empower Anyone to Create Better Software',
+                    text: 'Launches to Empower Anyone to Create Better Software',
                     url: '/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-press-details/50-pages-100-d8-Press-and-Media-d8-press-details.html',
                     size: 'large',
                   } only %}
@@ -557,12 +557,12 @@
               {% endcell %}
               {% cell 'u-bolt-width-1/1' %}
                 {% set text_group %}
-                  {% include '@bolt/eyebrow.twig' with {
+                  {% include '@bolt-components-headline/eyebrow.twig' with {
                     text: 'Jan 18, 2018'
                   } only %}
                   {% include '@bolt-components-headline/headline.twig' with {
                     text: 'A New CRM Bill of Rights for the Future Empowered Enterprise',
-                    url: 'http://pega.com',
+                    url: 'https://google.com',
                     size: 'large',
                   } only %}
                   {% include '@bolt-components-headline/text.twig' with {
@@ -578,12 +578,12 @@
               {% endcell %}
               {% cell 'u-bolt-width-1/1' %}
                 {% set text_group %}
-                  {% include '@bolt/eyebrow.twig' with {
+                  {% include '@bolt-components-headline/eyebrow.twig' with {
                     text: 'Jan 18, 2018'
                   } only %}
                   {% include '@bolt-components-headline/headline.twig' with {
                     text: '6 Customer Experience Trends to Watch in 2018',
-                    url: 'http://pega.com',
+                    url: 'https://google.com',
                     size: 'large',
                   } only %}
                   {% include '@bolt-components-headline/text.twig' with {
@@ -599,12 +599,12 @@
               {% endcell %}
               {% cell 'u-bolt-width-1/1' %}
                 {% set text_group %}
-                  {% include '@bolt/eyebrow.twig' with {
+                  {% include '@bolt-components-headline/eyebrow.twig' with {
                     text: 'Jan 18, 2018'
                   } only %}
                   {% include '@bolt-components-headline/headline.twig' with {
                     text: '3 Reasons Your AI-Driven Customer Experiences are Falling Short',
-                    url: 'http://pega.com',
+                    url: 'https://google.com',
                     size: 'large',
                   } only %}
                   {% include '@bolt-components-headline/text.twig' with {
@@ -620,12 +620,12 @@
               {% endcell %}
               {% cell 'u-bolt-width-1/1' %}
                 {% set text_group %}
-                  {% include '@bolt/eyebrow.twig' with {
+                  {% include '@bolt-components-headline/eyebrow.twig' with {
                     text: 'Date'
                   } only %}
                   {% include '@bolt-components-headline/headline.twig' with {
                     text: 'Article Headline',
-                    url: 'http://pega.com',
+                    url: 'https://google.com',
                     size: 'large',
                   } only %}
                   {% include '@bolt-components-headline/text.twig' with {

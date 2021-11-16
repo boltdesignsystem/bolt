@@ -7,6 +7,7 @@
  * 1. Special tricks are used here to make inline icon work, reference the mixin scss to understand it.
  * 2. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
  * 3. Offsets the white space around chevron icons' SVG files.
+ * 4. Initial value necessary for Safari to calculate correctly.
  */
 
 .e-bolt-text-link {
@@ -52,6 +53,8 @@
 
 .e-bolt-text-link--reversed-underline {
   text-decoration: none;
+  text-decoration-thickness: 0; /* [4] */
+  text-underline-offset: 0; /* [4] */
 
   &:hover {
     text-decoration: underline;

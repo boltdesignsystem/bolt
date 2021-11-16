@@ -6,7 +6,7 @@
     Line-height Usage
   </bolt-text>
   <bolt-text>
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> has a few options for leading (line-height). Leading can be adjusted for legibility. The default is regular.
+    <code>&lt;bolt-text&gt;</code> has a few options for leading (line-height). Leading can be adjusted for legibility. The default is regular.
   </bolt-text>
   {% for line_height in schema.properties["line-height"].enum %}
 
@@ -21,5 +21,10 @@
 {% endset %}
 
     {% include text_code.code_example(text_demo, true) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: text_demo,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   {% endfor %}
 {% endblock %}

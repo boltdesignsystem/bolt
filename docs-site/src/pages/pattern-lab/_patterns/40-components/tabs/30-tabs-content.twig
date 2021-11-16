@@ -61,7 +61,7 @@
 {% endset %}
 
 {% set text_group_content %}
-  {% include '@bolt/eyebrow.twig' with {
+  {% include '@bolt-components-headline/eyebrow.twig' with {
     text: 'Eyebrow'
   } only %}
 
@@ -78,7 +78,7 @@
     {% include '@bolt-elements-button/button.twig' with {
       content: 'CTA 1',
       attributes: {
-        href: 'www.google.com'
+        href: 'https://www.google.com'
       }
     } only %}
   {% endset %}
@@ -88,7 +88,7 @@
       content: 'CTA 12',
       hierarchy: 'secondary',
       attributes: {
-        href: 'www.google.com'
+        href: 'https://www.google.com'
       }
     } only %}
   {% endset %}

@@ -1,5 +1,5 @@
 ###### Install via NPM
 
 ```
-npm install @bolt/components-post
+npm install @bolt/components-listing-teaser
 ```

@@ -4,9 +4,20 @@
 @import '@bolt/core-v3.x';
 
 /**
+ * Status prop
+ * @todo: we don't have a good way to create more themes on the fly. We should consider creating 'Light Mode' and 'Dark Mode', then background-color can be set separately.
+ * 1. Overriding the old theme colors.
+ * 2. Overriding the new mode colors. These will take effect once we convert all things to use mode colors instead of theme.
+ */
+
+/**
  * Register custom element
  */
 @include bolt-repeat-rule(('bolt-banner', ':host(bolt-banner)')) {
+  --m-bolt-text: var(--bolt-color-info-dark); /* [2] */
+  --m-bolt-headline: var(--bolt-color-info-dark); /* [2] */
+  --m-bolt-link: var(--bolt-color-info-dark); /* [2] */
+
   display: block;
 
   &:not(:last-child) {
@@ -22,7 +33,6 @@
 /**
  * Status prop
  * @todo: we don't have a good way to create more themes on the fly. We should consider creating 'Light Mode' and 'Dark Mode', then background-color can be set separately.
- * 1. Overriding the old theme colors.
  * 2. Overriding the new mode colors. These will take effect once we convert all things to use mode colors instead of theme.
  */
 @include bolt-repeat-rule(
@@ -33,11 +43,6 @@
     ':host(bolt-banner[status=success])'
   )
 ) {
-  --bolt-theme-headline-link: 255, 255, 255; /* [1] */
-  --bolt-theme-headline: 255, 255, 255; /* [1] */
-  --bolt-theme-link: 255, 255, 255; /* [1] */
-  --bolt-theme-text: 255, 255, 255; /* [1] */
-
   --m-bolt-text: var(--bolt-color-white); /* [2] */
   --m-bolt-headline: var(--bolt-color-white); /* [2] */
   --m-bolt-link: var(--bolt-color-white); /* [2] */
@@ -46,14 +51,17 @@
 @include bolt-repeat-rule(
   ('bolt-banner[status=warning]', ':host(bolt-banner[status=warning])')
 ) {
-  --bolt-theme-headline-link: 0, 0, 0; /* [1] */
-  --bolt-theme-headline: 0, 0, 0; /* [1] */
-  --bolt-theme-link: 0, 0, 0; /* [1] */
-  --bolt-theme-text: 0, 0, 0; /* [1] */
-
   --m-bolt-text: var(--bolt-color-black); /* [2] */
   --m-bolt-headline: var(--bolt-color-black); /* [2] */
   --m-bolt-link: var(--bolt-color-black); /* [2] */
+}
+
+@include bolt-repeat-rule(
+  ('bolt-banner[status=information]', ':host(bolt-banner[status=information])')
+) {
+  --m-bolt-text: var(--bolt-color-info-dark); /* [2] */
+  --m-bolt-headline: var(--bolt-color-info-dark); /* [2] */
+  --m-bolt-link: var(--bolt-color-info-dark); /* [2] */
 }
 
 .c-bolt-banner--status-error,
@@ -76,26 +84,12 @@
 
 .c-bolt-banner--status-information {
   position: relative;
-  color: var(--m-bolt-text);
-  border-left-color: var(--m-bolt-link);
+  color: var(--bolt-color-info-dark);
+  border-left-color: var(--bolt-color-info);
   border-left-style: $bolt-border-style;
   border-left-width: $bolt-border-width * 3;
   box-shadow: 0 0 var(--bolt-spacing-y-xsmall) var(--m-bolt-border);
-  background-color: var(--m-bolt-bg);
-
-  &:before {
-    content: '';
-    display: block;
-    opacity: 0.2;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    pointer-events: none;
-    user-select: none;
-    background-color: var(--bolt-color-white);
-  }
+  background-color: var(--bolt-color-info-light);
 }
 
 /**

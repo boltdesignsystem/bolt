@@ -1,6 +1,8 @@
+{% spaceless %}
 <bolt-banner status="warning" class="u-bolt-margin-top-large">
-  <bolt-icon name="warning"></bolt-icon>&nbsp;<strong>This layout is in a testing phase, do not use any code examples from the docs for production sites.</strong>
+  {% include '@bolt-elements-icon/icon.twig' with { name: 'warning' } only %}&nbsp;<strong>This layout is in a testing phase, do not use any code examples from the docs for production sites.</strong>
 </bolt-banner>
+{% endspaceless %}
 
 {# {% set usage %}{% verbatim %}
 {% set content %}

@@ -1,4 +1,5 @@
 {% set content %}
+{% spaceless %}
   <button type="button" data-bolt-modal-target=".editor-demo__modal" class="e-bolt-button" >
     <span>This is a Button triggering an on-page Modal</span>
   </button>
@@ -6,10 +7,11 @@
     This is a Link triggering an on-page Modal
   </button>
   <bolt-cta>
-    <bolt-icon size="medium" slot="icon" name="asset-presentation">
+    <span slot="icon">{% include '@bolt-elements-icon/icon.twig' with { name: 'presentation', size: 'medium' } only %}</span>
     </bolt-icon>
-    <button slot="link" type="button" href="javascript:void(0)" data-bolt-modal-target=".editor-demo__modal" class="e-bolt-text-link e-bolt-text-link--reversed-underline">CTA Text<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></button>
+    <button slot="link" type="button" href="javascript:void(0)" data-bolt-modal-target=".editor-demo__modal" class="e-bolt-text-link e-bolt-text-link--reversed-underline">CTA Text<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></button>
   </bolt-cta>
+{% endspaceless %}
 {% endset %}
 
 {% include '@bolt-components-editor/editor-in-pl.twig' with {

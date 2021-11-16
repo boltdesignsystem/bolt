@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v5.0.0...v5.0.1) (2021-11-12)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [5.0.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v4.7.0...v5.0.0) (2021-11-10)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [4.7.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v4.6.2...v4.7.0) (2021-11-04)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [4.6.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v4.5.1...v4.6.0) (2021-10-12)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
 # [4.4.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v4.3.0...v4.4.0) (2021-09-13)
 
 **Note:** Version bump only for package @bolt/components-modal

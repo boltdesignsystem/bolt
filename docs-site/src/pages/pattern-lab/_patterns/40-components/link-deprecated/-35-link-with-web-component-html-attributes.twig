@@ -1,20 +1,11 @@
 {% include '@pl/00-deprecated-link-docs.twig' %}
 
-{% macro code_example(code, copy) %}
-  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
-    {{ code | replace({
-      '<': '&lt;',
-      '>': '&gt;',
-    }) | trim | raw }}
-  {% endspaceless %}</bolt-code-snippet>
-{% endmacro %}
-
 {% import _self as link_demo %}
 
 
 {% set link_with_data_attributes %}
 <bolt-link>
-  <a href="https://pega.com" data-analytics="click">
+  <a href="https://google.com" data-analytics="click">
     Links retain most HTML attributes
   </a>
 </bolt-link>
@@ -22,7 +13,7 @@
 
 {% set link_with_prop_conflict %}
 <bolt-link url="https://www.google.com">
-  <a href="https://pega.com" style="color: red">
+  <a href="https://google.com" style="color: red">
     Props > Initial HTML Attributes
   </a>
 </bolt-link>
@@ -43,7 +34,11 @@
         <p>{{ link_with_data_attributes }}</p>
       </div>
 
-      {% include link_demo.code_example(link_with_data_attributes, true) %}
+      {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+        content: link_with_data_attributes,
+        lang: 'html',
+        mode: 'dark',
+      } only %}
     {% endcell %}
 
     {% cell "u-bolt-width-12/12" %}
@@ -57,7 +52,11 @@
         <p>{{ link_with_prop_conflict }}</p>
       </div>
 
-      {% include link_demo.code_example(link_with_prop_conflict, true) %}
+      {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+        content: link_with_prop_conflict,
+        lang: 'html',
+        mode: 'dark',
+      } only %}
     {% endcell %}
   {% endgrid %}
 </div>

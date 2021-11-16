@@ -1,16 +1,16 @@
 {% set description %}
-  When appropriate, an <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> element can use the button style. For example, the button helps to navigate to another page.
+  When appropriate, an <code>&lt;a&gt;</code> element can use the button style. For example, the button helps to navigate to another page.
 {% endset %}
 
 {% set notes %}
-  If a button serves navigational purpose, the proper URL must be set with the <bolt-code-snippet display="inline">href</bolt-code-snippet> attribute.
+  If a button serves navigational purpose, the proper URL must be set with the <code>href</code> attribute.
 {% endset %}
 
 {% set demo %}
   {% include '@bolt-elements-button/button.twig' with {
     content: 'This looks like a button but semantically is an anchor',
     attributes: {
-      href: 'https://pega.com',
+      href: 'https://google.com',
     }
   } only %}
 {% endset %}
@@ -20,7 +20,7 @@
 {% include '@bolt-elements-button/button.twig' with {
   content: 'This looks like a button but semantically is an anchor',
   attributes: {
-    href: 'https://pega.com',
+    href: 'https://google.com',
   }
 } only %}
 {% endverbatim %}
@@ -28,7 +28,7 @@
 
 {% set html_markup %}
 {% verbatim %}
-<a href="https://pega.com" class="e-bolt-button">This looks like a button but semantically is an anchor</a>
+<a href="https://google.com" class="e-bolt-button">This looks like a button but semantically is an anchor</a>
 {% endverbatim %}
 {% endset %}
 

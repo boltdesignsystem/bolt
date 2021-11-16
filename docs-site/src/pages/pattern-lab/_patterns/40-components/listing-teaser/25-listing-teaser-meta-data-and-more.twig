@@ -1,8 +1,8 @@
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Meta data can be passed via the <bolt-code-snippet display="inline">meta_items</bolt-code-snippet> prop, each item is visually separated by a pipe.</bolt-li>
-    <bolt-li>Extra content can be passed to the <bolt-code-snippet display="inline">description</bolt-code-snippet> prop. It will appear below the meta data. Truncating with an ellipsis and a read more button is optional.</bolt-li>
-    <bolt-li>Warning content can be passed to the <bolt-code-snippet display="inline">warning</bolt-code-snippet> prop. It will appear below the description. A warning icon is appended at the start.</bolt-li>
+    <bolt-li>Meta data can be passed via the <code>meta_items</code> prop, each item is visually separated by a pipe.</bolt-li>
+    <bolt-li>Extra content can be passed to the <code>description</code> prop. It will appear below the meta data. Truncating with an ellipsis and a read more button is optional.</bolt-li>
+    <bolt-li>Warning content can be passed to the <code>warning</code> prop. It will appear below the description. A warning icon is appended at the start.</bolt-li>
     <bolt-li>Meta data, description, and warning may contain links, use the link element to render a link. This will generate a link that is not blocked by the headline link.</bolt-li>
   </bolt-ol>
 {% endset %}
@@ -36,11 +36,11 @@
       tag: 'h3',
       size: 'large',
       link_attributes: {
-        href: 'https://pega.com'
+        href: 'https://google.com'
       },
     },
     meta_items: [
-      'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">username</a> on May 21, 2020',
+      'Posted by <a href="#!" class="e-bolt-text-link e-bolt-text-link--reversed-underline">username</a> on May 21, 2020',
       'Last activity: 2 minutes ago',
     ],
     description: description,
@@ -62,7 +62,7 @@
       content: 'Read more',
       icon_after: icon_chevron_right,
       attributes: {
-        href: 'https://pega.com',
+        href: 'https://google.com',
       }
     } only %}
   {% endset %}
@@ -79,11 +79,11 @@
     tag: 'h3',
     size: 'large',
     link_attributes: {
-      href: 'https://pega.com'
+      href: 'https://google.com'
     },
   },
   meta_items: [
-    'Posted by <a href="https://collaborate.pega.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">username</a> on May 21, 2020',
+    'Posted by <a href="#!" class="e-bolt-text-link e-bolt-text-link--reversed-underline">username</a> on May 21, 2020',
     'Last activity: 2 minutes ago',
   ],
   description: description,

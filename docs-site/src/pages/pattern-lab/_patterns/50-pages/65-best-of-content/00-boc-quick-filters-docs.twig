@@ -1,14 +1,14 @@
 {% set description %}
   <bolt-text>Quick filters are an alternative way to display the traditional search facets (checkbox based).</bolt-text>
   <bolt-banner status="warning" align="start">
-    <bolt-icon name="warning"></bolt-icon> <strong>This is just example code. It will become obsolete once the relevant CSS and JS are moved to the www theme. Please reference the latest code in the www theme as the source of truth.</strong>
+    {% include '@bolt-elements-icon/icon.twig' with { name: 'warning' } only %} <strong>This is just example code. It will become obsolete once the relevant CSS and JS are moved to the www theme. Please reference the latest code in the www theme as the source of truth.</strong>
   </bolt-banner>
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
     <bolt-li>This is a minimal component with a few CSS classes.</bolt-li>
-    <bolt-li>JavaScript and <bolt-code-snippet display="inline">js-*</bolt-code-snippet> classes are required. Example is shown in the code snippet below.</bolt-li>
+    <bolt-li>JavaScript and <code>js-*</code> classes are required. Example is shown in the code snippet below.</bolt-li>
   </bolt-ol>
 {% endset %}
 

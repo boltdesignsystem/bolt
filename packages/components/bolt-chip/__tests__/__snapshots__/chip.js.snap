@@ -59,28 +59,20 @@ exports[`chip icon only 1`] = `
     <ssr-keep for="bolt-chip"
               class="c-bolt-chip__icon"
     >
-      <bolt-icon slot="after"
-                 name="more"
-                 aria-hidden="true"
+      <svg slot="after"
+           class="e-bolt-icon"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
       >
-        <span class="c-bolt-icon c-bolt-icon--more">
-          <svg class="c-bolt-icon__icon"
-               xmlns="http://www.w3.org/2000/svg"
-               viewbox="0 0 24 24"
-          >
-            <g fill="none"
-               fill-rule="evenodd"
-            >
-              <path>
-              </path>
-              <g fill="var(--bolt-theme-icon, currentColor)">
-                <path d="M14 12a2 2 0 11-4 0 2 2 0 014 0M6 12a2 2 0 11-4 0 2 2 0 014 0M22.1 12a2 2 0 11-4 0 2 2 0 014 0">
-                </path>
-              </g>
-            </g>
-          </svg>
-        </span>
-      </bolt-icon>
+        <g fill="#151619"
+           fill-rule="evenodd"
+           clip-rule="evenodd"
+        >
+          <path d="M19.2 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M6.4 16c0 1.8-1.4 3.2-3.2 3.2S0 17.8 0 16s1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M32 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2S32 14.2 32 16">
+          </path>
+        </g>
+      </svg>
     </ssr-keep>
   </span>
 </bolt-chip>
@@ -92,28 +84,19 @@ exports[`chip icon usage 1`] = `
     <ssr-keep for="bolt-chip"
               class="c-bolt-chip__icon"
     >
-      <bolt-icon slot="before"
-                 name="check"
-                 aria-hidden="true"
+      <svg slot="before"
+           class="e-bolt-icon"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
       >
-        <span class="c-bolt-icon c-bolt-icon--check">
-          <svg class="c-bolt-icon__icon"
-               xmlns="http://www.w3.org/2000/svg"
-               viewbox="0 0 24 24"
-          >
-            <g fill="none"
-               fill-rule="evenodd"
-            >
-              <path>
-              </path>
-              <path fill="var(--bolt-theme-icon, currentColor)"
-                    d="M19.3 6.3L9 16.6l-4.3-4.3a1 1 0 00-1.4 0 1 1 0 000 1.4l5 5a1 1 0 001.4 0l11-11c.4-.4.4-1 0-1.4a1 1 0 00-1.4 0z"
-              >
-              </path>
-            </g>
-          </svg>
-        </span>
-      </bolt-icon>
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M29 5L10.7 23.3 3 15.6c-.7-.7-1.8-.7-2.5 0s-.7 1.8 0 2.5L9.4 27c.3.3.8.5 1.3.5s.9-.2 1.3-.5L31.5 7.5c.7-.7.7-1.8 0-2.5s-1.8-.7-2.5 0z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
     </ssr-keep>
     <ssr-keep for="bolt-chip"
               class="c-bolt-chip__text"
@@ -125,10 +108,10 @@ exports[`chip icon usage 1`] = `
 `;
 
 exports[`chip url usage 1`] = `
-<bolt-chip url="https://pega.com"
+<bolt-chip url="https://google.com"
            target="_blank"
 >
-  <a href="https://pega.com"
+  <a href="https://google.com"
      target="_blank"
      class="c-bolt-chip c-bolt-chip--link c-bolt-chip--size-small"
   >
