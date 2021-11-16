@@ -10,7 +10,7 @@
 
 {% set steps %}
   {% include '@bolt-components-pagination/pagination.twig' with {
-    current: 1,
+    current: 3,
     total: 4,
     pages: {
       1: {
@@ -32,11 +32,11 @@
 {% set step_info %}
   {% include '@bolt-components-headline/headline.twig' with {
     size: 'xlarge',
-    text: 'Step 2:'
+    text: 'Step 3:'
   } only %}
   {% include '@bolt-components-headline/text.twig' with {
     size: 'large',
-    text: 'What tags are you inteested in?'
+    text: 'How do you want to be notified?'
   } only %}
 {% endset %}
 
@@ -62,56 +62,18 @@
   } only %}
 {% endset %}
 
-{% set select_fieldsets_representation %}
-  {% set select_fieldset_group = [
-    {
-      title: 'Pega Product',
-      select_option: ['Question', 'Discussion', 'Idea']
-    },
-    {
-      title: 'Product Capability',
-      select_option: ['Mission']
-    },
-    {
-      title: 'Collaboration Center',
-      select_option: ['Video']
-    },
-    {
-      title: 'Industry',
-      select_option: ['Video']
-    }
-  ] %}
+{% set chip_3 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Pega customer Service 8.6',
+    size: 'small',
+  } only %}
+{% endset %}
 
-  {% for item in select_fieldset_group %}
-    {% set select_children %}
-        {% for select_item in item.select_option %}
-          <pre>
-            {{ dump(select_item) }}
-          </pre>
-        {% endfor %}
-        
-        {# {% for select_item in item.select_option %} #}
-          {% set select %}
-            {% include '@bolt-components-form/form-select.twig' with {
-              options: [
-                {
-                  type: select_item,
-                  value: select_item,
-                  label: select_item,
-                },
-              ]
-            } only %}
-          {% endset %}
-        {# {% endfor %} #}
-        {% include '@bolt-components-form/form-element.twig' with {
-          children: select
-        } only %}
-    {% endset %}
-    {% include '@bolt-components-form/form-fieldset.twig' with {
-      legendTitle: item.title,
-      children: select_children
-    } only %}
-  {% endfor %}
+{% set chip_4 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Mobile',
+    size: 'small',
+  } only %}
 {% endset %}
 
 {% set tips_list %}
@@ -190,19 +152,16 @@
   <div class="c-notification-tag-manager__body">
     {{ frame_title }}
     <div class="c-notification-tag-manager__frame">
-      <p class="c-notification-tag-manager__frame-copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with (step 2) is published or updated.</p>
+      <p class="c-notification-tag-manager__frame-copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with {{ chip_3 }} and {{ chip_4 }}is published or updated.</p>
     </div>
     <div class="c-notification-tag-manager__builder">
       <div class="c-notification-tag-manager__col">
         <div class="c-notification-tag-manager__fieldset-title">
           {{ step_info }}
         </div>
-        <div class="c-notification-tag-manager__fieldset-group c-notification-tag-manager__fieldset-group--step-two">
-          {{ select_fieldsets_representation }}
+        <div class="c-notification-tag-manager__fieldset-group c-notification-tag-manager__fieldset-group--selects">
+          {# {{ select_fieldsets_representation }} #}
         </div>
-      </div>
-      <div class="c-notification-tag-manager__col">
-        {{ tips_list }}
       </div>
     </div>
     <div class="c-notification-tag-manager__nav">

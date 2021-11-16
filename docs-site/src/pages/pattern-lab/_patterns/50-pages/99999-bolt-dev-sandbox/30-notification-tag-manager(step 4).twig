@@ -10,7 +10,7 @@
 
 {% set steps %}
   {% include '@bolt-components-pagination/pagination.twig' with {
-    current: 3,
+    current: 4,
     total: 4,
     pages: {
       1: {
@@ -32,11 +32,11 @@
 {% set step_info %}
   {% include '@bolt-components-headline/headline.twig' with {
     size: 'xlarge',
-    text: 'Step 3:'
+    text: 'Step 4:'
   } only %}
   {% include '@bolt-components-headline/text.twig' with {
     size: 'large',
-    text: 'How do yu want to be notified?'
+    text: 'Name and save your target'
   } only %}
 {% endset %}
 
@@ -76,16 +76,28 @@
   } only %}
 {% endset %}
 
-{% set tips_list %}
-  {% include '@bolt-components-headline/headline.twig' with {
-    size: 'large',
-    text: 'Tips and suggestions:'
-  } only %}
-  {% include '@bolt-components-ul/ul.twig' with {
-    items: [
-      'Do not include any data or information in your posts that are confidential!',
-      'Apply basic practices for collaborative work.',
-    ]
+{% set input %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Insert name',
+      displayType: 'floating',
+      attributes: {
+        for: 'name-id'
+      }
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'text',
+        id: 'name-id',
+        placeholder: 'Insert name'
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input
   } only %}
 {% endset %}
 
@@ -108,7 +120,7 @@
 
 {% set next_btn %}
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'Next',
+    content: 'Save',
     attributes: {
       href: 'https://google.com',
       class: 'e-bolt-button--next'
@@ -159,8 +171,8 @@
         <div class="c-notification-tag-manager__fieldset-title">
           {{ step_info }}
         </div>
-        <div class="c-notification-tag-manager__fieldset-group c-notification-tag-manager__fieldset-group--selects">
-          {# {{ select_fieldsets_representation }} #}
+        <div class="c-notification-tag-manager__fieldset-group c-notification-tag-manager__fieldset-group--step-four">
+          {{ input}}
         </div>
       </div>
     </div>
