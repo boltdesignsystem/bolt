@@ -17,9 +17,10 @@ module.exports = {
           description: 'Set the label text.',
         },
         tag: {
-          type: 'any',
+          type: 'string',
           description: 'Set the semantic heading level.',
           enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+          default: 'h2',
         },
       },
     },

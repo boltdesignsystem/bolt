@@ -6,6 +6,8 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set _expanded = this.data.open.value ? "true" : "false" %}
+{% set _tag = label.tag|default(schema.properties.label.properties.tag.default) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
@@ -13,8 +15,8 @@
 ] %}
 
 <div {{ attributes.addClass(classes) }}>
-  <{{ label.tag }} class="c-bolt-info-section__headline">{{ label.content }}</{{ label.tag }}>
-  <button class="c-bolt-info-section__headline c-bolt-info-section__headline--button js-bolt-info-section-toggle-button" type="button" {% if open %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %}>
+  <{{ _tag }} class="c-bolt-info-section__headline">{{ label.content }}</{{ _tag }}>
+  <button class="c-bolt-info-section__headline c-bolt-info-section__headline--button js-bolt-info-section-toggle-button" type="button" aria-expanded="{{ _expanded }}">
     {{ label.content }}
     <span class="c-bolt-info-section__headline-icon">
       {% include '@bolt-elements-icon/icon.twig' with {
