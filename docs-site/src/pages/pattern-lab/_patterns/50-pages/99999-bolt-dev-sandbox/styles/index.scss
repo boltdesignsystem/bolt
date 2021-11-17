@@ -74,10 +74,11 @@
 .c-notification-tag-manager__fieldset-group {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  column-gap: var(--bolt-spacing-x-medium);
+  gap: 0 var(--bolt-spacing-x-medium);
 
   &--step-two {
     grid-template-columns: 1fr 1fr;
+    gap: var(--bolt-spacing-y-large) var(--bolt-spacing-x-xlarge);
   }
 
   &--step-four {
