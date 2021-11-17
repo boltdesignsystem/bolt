@@ -20,11 +20,36 @@
 {# todo: in v4.0 nix the pattern_template pattern #}
 {% if item.pattern %}
   <div class="{{ 'c-bolt-background__item' }}">
-    {% include pattern_template(item.pattern) with item|merge({
-      ratio: _ratio_value,
-      lazyload: item.lazyload ?? true,
-      cover: item.cover ?? true
-    }) only %}
+    {% if item.pattern == 'image' %}
+      {% set _srcset = item.srcset ? item.srcset : '' %}
+      {% set _width = item.width ? item.width : '' %}
+      {% set _height = item.height ? item.height : '' %}
+      {% set _sizes = item.sizes ? item.sizes : '100vw' %}
+      {# Found both of these spellings, expanding the conditional to catch both #}
+      {% set _loading = item.lazyLoad or item.lazyload ? 'lazy' : 'eager' %}
+      {% set _align = item.align ? item.align : 'center' %}
+      {% set _valign = item.valign ? item.valign : 'center' %}
+      {% set _alignment = _align ~ ' ' ~ _valign %}
+
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: item.src,
+          srcset: _srcset,
+          sizes: _sizes,
+          width: _width,
+          height: _height,
+          loading: _loading,
+          style: 'object-position: ' ~ _alignment ~ ';'
+        },
+      } only %}
+    {% else %}
+      {% include pattern_template(item.pattern) with item|merge({
+        ratio: _ratio_value,
+        lazyload: item.lazyload ?? true,
+        cover: item.cover ?? true
+      }) only %}
+    {% endif %}
   </div>
 {% elseif (item is iterable) %}
   <div class="{{ 'c-bolt-background__item' }}">
