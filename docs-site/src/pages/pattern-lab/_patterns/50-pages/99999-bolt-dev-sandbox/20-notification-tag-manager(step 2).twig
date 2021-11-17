@@ -10,7 +10,7 @@
 
 {% set steps %}
   {% include '@bolt-components-pagination/pagination.twig' with {
-    current: 1,
+    current: 2,
     total: 4,
     pages: {
       1: {
@@ -173,8 +173,9 @@
 
 {% set tips_list %}
   {% include '@bolt-components-headline/headline.twig' with {
-    size: 'large',
-    text: 'Tips and suggestions:'
+    size: 'small',
+    text: 'Tips and suggestions:',
+    transform: 'capitalize'
   } only %}
   {% include '@bolt-components-ul/ul.twig' with {
     items: [
@@ -238,36 +239,36 @@
 {% endset %}
 
 {% set modal_content %}
-  <header class="c-notification-tag-manager__header">
+  <header class="c-ntm__header">
     {{ title }}
-    <div class="c-notification-tag-manager__steps">
+    <div class="c-ntm__steps">
       Step: {{ steps }}
     </div>
   </header>
-  <div class="c-notification-tag-manager__body">
+  <div class="c-ntm__body">
     {{ frame_title }}
-    <div class="c-notification-tag-manager__frame">
-      <p class="c-notification-tag-manager__frame-copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with (step 2) is published or updated.</p>
+    <div class="c-ntm__frame">
+      <p class="c-ntm__frame-copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with (step 2) is published or updated.</p>
     </div>
-    <div class="c-notification-tag-manager__builder-title">
+    <div class="c-ntm__builder-title">
       {{ step_info }}
     </div>
-    <div class="c-notification-tag-manager__builder">
-      <div class="c-notification-tag-manager__col">
-        <div class="c-notification-tag-manager__fieldset-group c-notification-tag-manager__fieldset-group--step-two">
+    <div class="c-ntm__builder">
+      <div class="c-ntm__col">
+        <div class="c-ntm__fieldset-group c-ntm__fieldset-group--step-two">
           {{ select_fieldsets_representation }}
         </div>
       </div>
-      <div class="c-notification-tag-manager__col">
+      <div class="c-ntm__col">
         {{ tips_list }}
       </div>
     </div>
-    <div class="c-notification-tag-manager__nav">
+    <div class="c-ntm__nav">
       {{ prev_btn }}
       {{ next_btn }}
     </div>
   </div>
-  <footer class="c-notification-tag-manager__footer t-bolt-navy">
+  <footer class="c-ntm__footer t-bolt-navy">
     {{ footer }}
   </footer>
 {% endset %}
@@ -298,7 +299,7 @@
     content: header,
   } only %}
 
-  <div class="c-notification-tag-manager">
+  <div class="c-ntm">
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Click the button below to open Notification Tag Manager.',
       size: 'large',

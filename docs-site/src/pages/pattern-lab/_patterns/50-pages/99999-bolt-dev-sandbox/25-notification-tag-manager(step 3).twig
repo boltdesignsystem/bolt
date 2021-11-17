@@ -76,16 +76,27 @@
   } only %}
 {% endset %}
 
-{% set tips_list %}
-  {% include '@bolt-components-headline/headline.twig' with {
-    size: 'large',
-    text: 'Tips and suggestions:'
-  } only %}
-  {% include '@bolt-components-ul/ul.twig' with {
-    items: [
-      'Do not include any data or information in your posts that are confidential!',
-      'Apply basic practices for collaborative work.',
-    ]
+{% set checkbox_group %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'toggle notification feed',
+      displayType: 'inline-checkbox',
+      attributes: {
+        for: 'check-id',
+      }
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'checkbox',
+        id: 'check-id',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input
   } only %}
 {% endset %}
 
@@ -143,33 +154,33 @@
 {% endset %}
 
 {% set modal_content %}
-  <header class="c-notification-tag-manager__header">
+  <header class="c-ntm__header">
     {{ title }}
-    <div class="c-notification-tag-manager__steps">
+    <div class="c-ntm__steps">
       Step: {{ steps }}
     </div>
   </header>
-  <div class="c-notification-tag-manager__body">
+  <div class="c-ntm__body">
     {{ frame_title }}
-    <div class="c-notification-tag-manager__frame">
-      <p class="c-notification-tag-manager__frame-copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with {{ chip_3 }} and {{ chip_4 }}is published or updated.</p>
+    <div class="c-ntm__frame">
+      <p class="c-ntm__frame-copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with {{ chip_3 }} and {{ chip_4 }}is published or updated.</p>
     </div>
-    <div class="c-notification-tag-manager__builder-title">
+    <div class="c-ntm__builder-title">
       {{ step_info }}
     </div>
-    <div class="c-notification-tag-manager__builder">
-      <div class="c-notification-tag-manager__col">
-        <div class="c-notification-tag-manager__fieldset-group c-notification-tag-manager__fieldset-group--selects">
-          {# {{ select_fieldsets_representation }} #}
+    <div class="c-ntm__builder">
+      <div class="c-ntm__col">
+        <div class="c-ntm__fieldset-group c-ntm__fieldset-group--step-three">
+          {{ checkbox_group }}
         </div>
       </div>
     </div>
-    <div class="c-notification-tag-manager__nav">
+    <div class="c-ntm__nav">
       {{ prev_btn }}
       {{ next_btn }}
     </div>
   </div>
-  <footer class="c-notification-tag-manager__footer t-bolt-navy">
+  <footer class="c-ntm__footer t-bolt-navy">
     {{ footer }}
   </footer>
 {% endset %}
@@ -200,7 +211,7 @@
     content: header,
   } only %}
 
-  <div class="c-notification-tag-manager">
+  <div class="c-ntm">
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Click the button below to open Notification Tag Manager.',
       size: 'large',

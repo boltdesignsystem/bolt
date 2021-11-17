@@ -2,11 +2,11 @@
  * Add imports here
  */
 
-.c-notification-tag-manager {
+.c-ntm {
   padding-top: var(--bolt-spacing-y-medium);
 }
 
-.c-notification-tag-manager__header {
+.c-ntm__header {
   margin-bottom: var(--bolt-spacing-y-medium);
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
   background: rgb(62, 103, 187);
@@ -28,7 +28,7 @@
     }
   }
 
-  .c-notification-tag-manager__steps {
+  .c-ntm__steps {
     display: flex;
     align-items: center;
     gap: var(--bolt-spacing-x-small);
@@ -61,7 +61,7 @@
   }
 }
 
-.c-notification-tag-manager__builder-title {
+.c-ntm__builder-title {
   margin-bottom: var(--bolt-spacing-y-medium);
   @include bolt-mq(large) {
     display: flex;
@@ -71,14 +71,82 @@
   }
 }
 
-.c-notification-tag-manager__fieldset-group {
+.c-ntm__fieldset-group {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0 var(--bolt-spacing-x-medium);
 
   &--step-two {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--bolt-spacing-y-large) var(--bolt-spacing-x-xlarge);
+    grid-template-columns: 1fr;
+    gap: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+    margin-bottom: var(--bolt-spacing-y-large);
+
+    @include bolt-mq(small) {
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 0;
+    }
+
+    @include bolt-mq(large) {
+      gap: var(--bolt-spacing-y-large) var(--bolt-spacing-x-large);
+    }
+  }
+
+  &--step-three {
+    display: block;
+
+    .c-bolt-inline-label {
+      &::before {
+        opacity: 0;
+      }
+    }
+
+    .c-bolt-inline-label {
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    .c-bolt-inline-label--checkbox {
+      display: block;
+      position: relative;
+      width: 4rem;
+      height: 2rem;
+      text-indent: -9999px;
+      cursor: pointer;
+      border-radius: bolt-border-radius(full);
+      background-color: var(--bolt-color-gray-light);
+    }
+
+    .c-bolt-inline-label--checkbox {
+      &::after {
+        content: '';
+        top: 3px;
+        width: 1.6rem;
+        height: 1.6rem;
+        border: none;
+        border-radius: 90px;
+        background-color: var(--bolt-color-white);
+      }
+    }
+
+    .c-bolt-input--checkbox:checked + .c-bolt-inline-label--checkbox {
+      background-color: var(--bolt-color-success);
+    }
+
+    .c-bolt-input--checkbox ~ .c-bolt-inline-label:after {
+      border: 2px solid var(--bolt-color-gray);
+    }
+
+    .c-bolt-input--checkbox:checked ~ .c-bolt-inline-label:after {
+      border: none;
+    }
+
+    .c-bolt-inline-label--checkbox {
+      &::after {
+        left: 50%;
+        transform: translateX(-100%);
+      }
+    }
   }
 
   &--step-four {
@@ -86,7 +154,7 @@
   }
 }
 
-.c-notification-tag-manager__frame {
+.c-ntm__frame {
   margin-bottom: var(--bolt-spacing-y-large);
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
   border: 1px solid var(--m-bolt-border);
@@ -100,11 +168,11 @@
   }
 }
 
-.c-notification-tag-manager__body {
+.c-ntm__body {
   padding: 0 var(--bolt-spacing-x-medium);
 }
 
-.c-notification-tag-manager__builder {
+.c-ntm__builder {
   @include bolt-mq(medium) {
     display: grid;
     grid-template-columns: 3fr 2fr;
@@ -112,13 +180,13 @@
   }
 }
 
-.c-notification-tag-manager__nav {
+.c-ntm__nav {
   display: flex;
   justify-content: space-between;
   margin: var(--bolt-spacing-y-xlarge) 0 var(--bolt-spacing-y-large);
 }
 
-.c-notification-tag-manager__footer {
+.c-ntm__footer {
   padding: var(--bolt-spacing-x-medium);
   text-align: center;
 }
