@@ -49,5 +49,6 @@ module.exports = {
     'max-empty-lines': null,
     'function-parentheses-space-inside': null,
     'no-eol-whitespace': null,
+    'property-no-unknown': null,
   },
 };
