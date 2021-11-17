@@ -239,6 +239,8 @@
 }
 
 .c-bolt-profile__stats-item {
+  @include bolt-button-native-styles-reset;
+
   flex-basis: 6.25rem;
   padding: calc(var(--bolt-spacing-y-small) / 2) 0;
   font-family: var(--bolt-type-font-family-headline);
@@ -246,6 +248,7 @@
   color: var(--m-bolt-neutral);
   text-align: center;
   text-decoration: none;
+  cursor: auto;
   border-radius: bolt-border-radius(small);
   transition: color var(--bolt-transition),
     background-color var(--bolt-transition);
@@ -262,12 +265,10 @@
   }
 }
 
-button.c-bolt-profile__stats-item {
-  @include bolt-button-native-styles-reset;
-}
-
 button.c-bolt-profile__stats-item,
 a.c-bolt-profile__stats-item {
+  cursor: pointer;
+
   &:hover {
     color: var(--m-bolt-headline);
     background-color: var(--m-bolt-tertiary);
