@@ -1,0 +1,109 @@
+{% set _description %}
+  {% set _icon %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'external-link'
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Hero example',
+    icon_after: _icon,
+    attributes: {
+      href: 'https://www.pega.com/de',
+      target: '_blank',
+    }
+  } only %}
+{% endset %}
+
+{% set _notes %}
+  <ul>
+    <li>ALL images in a hero require the <code>loading="eager"</code> HTML attribute.</li>
+    <li>ALL images should utilize the <code>srcset</code> HTML attribute (not done for this example due to time).</li>
+    <li>Bolt Layout does not offer a 40% column option. To adjust, the columns were increased to 50% column width. Due to this change, the image will appear smaller.</li>
+    <li>The <code>order</code> prop was used to move the image above the headline on mobile.</li>
+  </ul>
+{% endset %}
+
+{% set _demo %}
+  {% set _content %}
+    <bolt-text headline tag="h1" font-size="xxxlarge" class="u-bolt-padding-bottom">
+      Mit Pega komplexe Abläufe genial einfach umsetzen
+    </bolt-text>
+    <bolt-text subheadline tag="h2" font-size="large" class="u-bolt-padding-bottom">
+      Nehmen Sie in einer sich rasant ändernden Welt eine Spitzenposition ein – dank besserer Entscheidungsfindung und höherer Produktivität.
+    </bolt-text>
+    {% set _button_1 %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Warum Pega?',
+        display: 'block',
+        attributes: {
+          href: '#!',
+        }
+      } only %}
+    {% endset %}
+    {% set _button_2 %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Entdecken Sie unsere Plattform',
+        display: 'block',
+        hierarchy: 'secondary',
+        attributes: {
+          href: '#!',
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      spacing: 'small',
+      nowrap: true,
+      items: [
+        _button_1,
+        _button_2
+      ]
+    } only %}
+  {% endset %}
+
+  {% set _supplement %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/live-assets/hero-fpo-v4.png',
+        loading: 'eager',
+        width: 1372,
+        height: 780,
+        style: 'display: block;'
+      },
+    } only %}
+  {% endset %}
+
+  {% set _layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      valign_self: 'start-offset',
+      content: _supplement,
+      order: 'last@from-medium',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: _content
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: _layout_items,
+    gutter: 'large',
+    row_gutter: 'large',
+    padding_top: 'large',
+    padding_bottom: 'large',
+    valign_items: 'center',
+    template: [
+      'halves@from-medium'
+    ],
+    attributes: {
+      class: 't-bolt-light'
+    }
+  } only %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'German Header Example',
+  description: _description,
+  demo: _demo,
+  notes: _notes
+} only %}

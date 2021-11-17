@@ -1,0 +1,101 @@
+{% set _description %}
+  {% set _icon %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'external-link'
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Hero example',
+    icon_after: _icon,
+    attributes: {
+      href: 'https://www.pega.com/de',
+      target: '_blank',
+    }
+  } only %}
+{% endset %}
+
+{% set _notes %}
+  <ul>
+    <li>ALL images in a hero require the <code>loading="eager"</code> HTML attribute.</li>
+    <li>ALL images should utilize the <code>srcset</code> HTML attribute (not done for this example due to time).</li>
+    <li><code>text-align: center;</code> has been added to the layout column through a style tag.</li>
+  </ul>
+{% endset %}
+
+{% set _demo %}
+  {% set _content %}
+    <bolt-text headline tag="h1" font-size="xxxlarge">
+      Ready to crush business complexity?
+    </bolt-text>
+    <bolt-text subheadline tag="h2" font-size="xlarge" class="u-bolt-padding-bottom">
+      Our software helps you work smarter, simpler, and faster.
+    </bolt-text>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Let\'s go',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+
+  {% set _supplement %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/live-assets/Hero-go-graphics-front.png',
+        loading: 'eager',
+        width: 516,
+        height: 389,
+        style: 'display: inline-block;'
+      },
+    } only %}
+  {% endset %}
+
+  {% set _layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      valign_self: 'start-offset',
+      content: _supplement,
+      attribute: {
+        style: 'text-align: center;'
+      }
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: _content
+    } only %}
+  {% endset %}
+
+  {% set _background %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/live-assets/pega-go-homepage-hero-bg.jpg',
+        loading: 'eager',
+        width: '100vw'
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: _layout_items,
+    gutter: 'large',
+    row_gutter: 'large',
+    padding_top: 'large',
+    padding_bottom: 'large',
+    valign_items: 'center',
+    background: _background,
+    template: [
+      'halves@from-medium'
+    ],
+    attributes: {
+      class: 't-bolt-light'
+    }
+  } only %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'English Header Example',
+  description: _description,
+  demo: _demo,
+  notes: _notes
+} only %}

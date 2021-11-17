@@ -1,0 +1,224 @@
+{% set _description %}
+  {% set _icon %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'external-link'
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Hero example',
+    icon_after: _icon,
+    attributes: {
+      href: 'https://www.pega.com/about',
+      target: '_blank',
+    }
+  } only %}
+{% endset %}
+
+{% set _notes %}
+  <ul>
+    <li>ALL images in a hero require the <code>loading="eager"</code> HTML attribute.</li>
+    <li>ALL images should utilize the <code>srcset</code> HTML attribute (not done for this example due to time).</li>
+    <li><code>text-align: center;</code> has been added to the layout column and the individual tiles through a style tag.</li>
+  </ul>
+{% endset %}
+
+{% set _demo %}
+  {% set _content %}
+    <bolt-text headline tag="h1" font-size="xxxlarge">
+      Hi, we're Pegasystems.<br />But you can call us Pega.
+    </bolt-text>
+    <bolt-text subheadline tag="h2" font-size="large">
+      Looking for innovative software that crushes business complexity? A growing company with a deep commitment to our clients and communities? You've come to the right place.
+    </bolt-text>
+  {% endset %}
+
+  {% set _supplement %}
+    {% set _video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="6236693947001"
+        data-media-duration
+        data-media-title
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-components-ratio/ratio.twig' with {
+      children: _video,
+      ratio: '16/9'
+    } only %}
+  {% endset %}
+
+  {% set _top_row_layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: _content
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: _supplement
+    } only %}
+  {% endset %}
+
+  {% set _tile_1 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/live-assets/icon-employees.png',
+        loading: 'eager',
+        width: 80,
+        height: 80,
+        style: 'display: inline-block;'
+      },
+    } only %}
+    <bolt-text subheadline tag="h3" font-size="large" class="u-bolt-padding-top">
+      <strong>6,000</strong> global employees
+    </bolt-text>
+  {% endset %}
+
+  {% set _tile_2 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/live-assets/icon-HQs.png',
+        loading: 'eager',
+        width: 80,
+        height: 80,
+        style: 'display: inline-block;'
+      },
+    } only %}
+    <bolt-text subheadline tag="h3" font-size="large" class="u-bolt-padding-top">
+      <strong>3</strong> regional HQs in North America, Europe, & Asia Pacific
+    </bolt-text>
+  {% endset %}
+
+  {% set _tile_3 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/live-assets/icon-partners.png',
+        loading: 'eager',
+        width: 80,
+        height: 80,
+        style: 'display: inline-block;'
+      },
+    } only %}
+    <bolt-text subheadline tag="h3" font-size="large" class="u-bolt-padding-top">
+      <strong>250+</strong> global partners
+    </bolt-text>
+  {% endset %}
+
+  {% set _tile_4 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/live-assets/icon-awards.png',
+        loading: 'eager',
+        width: 80,
+        height: 80,
+        style: 'display: inline-block;'
+      },
+    } only %}
+    <bolt-text subheadline tag="h3" font-size="large" class="u-bolt-padding-top">
+      <strong>Dozens</strong> of culture &amp; technology awards
+    </bolt-text>
+  {% endset %}
+
+  {% set _middle_row_layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: _tile_1,
+      attributes: {
+        style: 'text-align: center;'
+      }
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: _tile_2,
+      attributes: {
+        style: 'text-align: center;'
+      }
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: _tile_3,
+      attributes: {
+        style: 'text-align: center;'
+      }
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: _tile_4,
+      attributes: {
+        style: 'text-align: center;'
+      }
+    } only %}
+  {% endset %}
+
+  {% set _button %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Download corporate fact sheet',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+
+  {% set _bottom_row_layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: _button,
+      attributes: {
+        style: 'text-align: center;'
+      }
+    } only %}
+  {% endset %}
+
+  {% set _layout %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: _top_row_layout_items,
+      gutter: 'large',
+      row_gutter: 'large',
+      valign_items: 'center',
+      template: [
+        'halves@from-medium'
+      ]
+    } only %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: _middle_row_layout_items,
+      gutter: 'large',
+      valign_items: 'center',
+      template: [
+        'tiles@from-small'
+      ]
+    } only %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: _bottom_row_layout_items,
+    } only %}
+  {% endset %}
+
+  {% set _background %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/live-assets/about-hero-bg.jpg',
+        loading: 'eager',
+        width: '100vw'
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: _layout,
+    row_gutter: 'small',
+    padding_top: 'large',
+    padding_bottom: 'large',
+    valign_items: 'center',
+    background: _background,
+    attributes: {
+      class: 't-bolt-light'
+    }
+  } only %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Platform Header Example',
+  description: _description,
+  demo: _demo,
+  notes: _notes
+} only %}
