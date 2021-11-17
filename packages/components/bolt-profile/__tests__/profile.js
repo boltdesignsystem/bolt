@@ -22,11 +22,31 @@ beforeAll(async () => {
   });
 
   const defaultData = {
-    first_name: 'First',
-    last_name: 'Last',
-    username: 'username',
+    name: '<strong>First Last</strong> (@username)',
     job_title: 'Job Title',
     location: 'Location',
+    stats: [
+      {
+        number: '15',
+        label: 'Achievements',
+        attributes: {
+          type: 'button',
+        },
+      },
+      {
+        number: '3k',
+        label: 'Contributions',
+        attributes: {
+          href: '#!',
+        },
+      },
+    ],
+    message: {
+      label: 'Send message',
+      attributes: {
+        href: '#!',
+      },
+    },
   };
 
   fixtures = {
