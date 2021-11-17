@@ -16,17 +16,9 @@ module.exports = {
       type: 'any',
       description: 'Render a custom cover image.',
     },
-    first_name: {
+    name: {
       type: 'any',
-      description: 'Render first name of the user.',
-    },
-    last_name: {
-      type: 'any',
-      description: 'Render last name of the user.',
-    },
-    username: {
-      type: 'any',
-      description: 'Render username of the user.',
+      description: 'Render a name and/or username for the user.',
     },
     job_title: {
       type: 'any',
@@ -45,6 +37,45 @@ module.exports = {
       type: 'any',
       description:
         'Render chips based on user info. Chip components (no Chip List) are expected here.',
+    },
+    message: {
+      type: 'object',
+      description: 'Render a message button.',
+      properties: {
+        attributes: {
+          type: 'object',
+          description:
+            'A Drupal attributes object. Applies extra HTML attributes to the message container.',
+        },
+        label: {
+          type: 'any',
+          description: 'Text label of the message button.',
+        },
+      },
+    },
+    stats: {
+      type: 'array',
+      description: 'Render stats with text labels.',
+      properties: {
+        item: {
+          type: 'object',
+          properties: {
+            attributes: {
+              type: 'object',
+              description:
+                'A Drupal attributes object. Applies extra HTML attributes to the stat container.',
+            },
+            label: {
+              type: 'any',
+              description: 'Text label of the stat.',
+            },
+            number: {
+              type: 'any',
+              description: 'Number of the stat.',
+            },
+          },
+        },
+      },
     },
     full_bleed: {
       type: 'boolean',

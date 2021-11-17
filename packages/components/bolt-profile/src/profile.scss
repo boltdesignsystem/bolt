@@ -239,8 +239,6 @@
 }
 
 .c-bolt-profile__stats-item {
-  @include bolt-button-native-styles-reset;
-
   flex-basis: 6.25rem;
   padding: calc(var(--bolt-spacing-y-small) / 2) 0;
   font-family: var(--bolt-type-font-family-headline);
@@ -251,19 +249,6 @@
   border-radius: bolt-border-radius(small);
   transition: color var(--bolt-transition),
     background-color var(--bolt-transition);
-
-  &:hover {
-    color: var(--m-bolt-headline);
-    background-color: var(--m-bolt-tertiary);
-
-    > * {
-      color: inherit;
-    }
-  }
-
-  &:focus {
-    outline: var(--bolt-focus-ring);
-  }
 
   @at-root .c-bolt-profile--full-bleed #{&} {
     @include bolt-mq(medium) {
@@ -277,12 +262,35 @@
   }
 }
 
+button.c-bolt-profile__stats-item {
+  @include bolt-button-native-styles-reset;
+}
+
+button.c-bolt-profile__stats-item,
+a.c-bolt-profile__stats-item {
+  &:hover {
+    color: var(--m-bolt-headline);
+    background-color: var(--m-bolt-tertiary);
+
+    > * {
+      color: inherit;
+    }
+  }
+
+  &:focus {
+    outline: var(--bolt-focus-ring);
+  }
+
+  .c-bolt-profile__stats-signifier {
+    color: var(--m-bolt-link);
+  }
+}
+
 .c-bolt-profile__stats-signifier {
   display: grid;
   max-height: 1em;
   margin-bottom: var(--bolt-spacing-y-xsmall);
   font-size: var(--bolt-type-font-size-xlarge);
-  color: var(--m-bolt-link);
   line-height: 1;
   place-items: center;
 }

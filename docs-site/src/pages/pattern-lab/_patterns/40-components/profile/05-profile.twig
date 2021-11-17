@@ -3,6 +3,7 @@
     <bolt-li>The <code>avatar</code> and <code>cover</code> props expect the <a href="{{ link['viewall-elements-image'] }}" class="e-bolt-text-link">Image element</a> or plain HTML image element.</bolt-li>
     <bolt-li>The <code>actions</code> prop expects one or many <a href="{{ link['viewall-elements-button'] }}" class="e-bolt-text-link">Button elements</a> with <code>icon_only</code> prop.</bolt-li>
     <bolt-li>The <code>chips</code> prop expects one or many <a href="{{ link['viewall-components-chip'] }}" class="e-bolt-text-link">Chip components</a>. Chip List is not supported.</bolt-li>
+    <bolt-li>Both the <code>stats</code> and <code>message</code> props accept attributes. If <code>type</code> attribute is passed, it becomse a semantic button. If <code>href</code> attribute is passed, it becomes a semantic link. Otherwise it is just a generic non-interactive element. Never pass both <code>type</code> and <code>href</code>.</bolt-li>
     <bolt-li>Optionally, a <a href="{{ link['visual-styles-theming-system'] }}" class="e-bolt-text-link">theme class</a> and a <a href="{{ link['visual-styles-shadow'] }}" class="e-bolt-text-link">shadow utility class</a> can be added to create a profile card.</bolt-li>
   </bolt-ol>
 {% endset %}
@@ -194,9 +195,7 @@
     {% include '@bolt-components-profile/profile.twig' with {
       avatar: avatar,
       cover: cover,
-      first_name: 'First',
-      last_name: 'Last',
-      username: 'username',
+      name: '<strong>First Last</strong> (@username)',
       job_title: 'Lead System Architect',
       location: 'United States',
       actions: actions,
@@ -206,14 +205,14 @@
           number: '15',
           label: 'Achievements',
           attributes: {
-            type: 'button',
+            href: '#!',
           },
         },
         {
           number: '3k',
           label: 'Contributions',
           attributes: {
-            type: 'button',
+            href: '#!',
           },
         },
       ],
@@ -419,9 +418,7 @@
 {% include '@bolt-components-profile/profile.twig' with {
   avatar: avatar,
   cover: cover,
-  first_name: 'First',
-  last_name: 'Last',
-  username: 'username',
+  name: '<strong>First Last</strong> (@username)',
   job_title: 'Lead System Architect',
   location: 'United States',
   actions: actions,
@@ -431,14 +428,14 @@
       number: '15',
       label: 'Achievements',
       attributes: {
-        type: 'button',
+        href: '#!',
       },
     },
     {
       number: '3k',
       label: 'Contributions',
       attributes: {
-        type: 'button',
+        href: '#!',
       },
     },
   ],
