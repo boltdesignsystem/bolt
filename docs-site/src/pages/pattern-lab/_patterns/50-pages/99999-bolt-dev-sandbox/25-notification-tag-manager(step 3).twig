@@ -42,10 +42,10 @@
 
 {% set frame_title %}
   {% include '@bolt-components-headline/headline.twig' with {
-  size: 'small',
-  text: 'Your current tag set',
-  transform: 'uppercase'
-} only %}
+    size: 'small',
+    text: 'Your current tag set',
+    transform: 'uppercase'
+  } only %}
 {% endset %}
 
 {% set chip_1 %}
@@ -97,6 +97,19 @@
   {% include '@bolt-components-form/form-element.twig' with {
     label: label,
     children: input
+  } only %}
+{% endset %}
+
+{% set notification %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Notification feed',
+    icon: {
+      name: 'bell-solid',
+      position: 'before'
+    }
+  } only %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Ecosystem real time alerts that appear in your notifications feed',
   } only %}
 {% endset %}
 
@@ -172,6 +185,7 @@
       <div class="c-ntm__col">
         <div class="c-ntm__fieldset-group c-ntm__fieldset-group--step-three">
           {{ checkbox_group }}
+          {{ notification }}
         </div>
       </div>
     </div>
