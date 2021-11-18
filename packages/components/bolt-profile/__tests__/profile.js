@@ -22,7 +22,10 @@ beforeAll(async () => {
   });
 
   const defaultData = {
-    name: '<strong>First Last</strong> (@username)',
+    name: {
+      content: '<strong>First Last</strong> (@username)',
+      tag: 'h2',
+    },
     job_title: 'Job Title',
     location: 'Location',
     stats: [
