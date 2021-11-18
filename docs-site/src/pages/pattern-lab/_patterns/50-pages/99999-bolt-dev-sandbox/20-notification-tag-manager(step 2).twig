@@ -62,6 +62,25 @@
   } only %}
 {% endset %}
 
+{% set info_icon %}
+  <span class="u-bolt-color-gray">
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'info-circle',
+      attributes: {
+        'aria-label': 'This is a tooltip',
+      }
+    } only %}
+  </span>
+{% endset %}
+
+{% set tool_tip %}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    trigger: info_icon,
+    content: 'This is a tooltip',
+  } only %}
+{% endset %}
+
+
 {% set select_fieldsets_representation %}
   {% set select_fieldset_group = [
     {
@@ -105,7 +124,7 @@
       ]
     },
     {
-      title: 'Collaboration Center',
+      title: 'Collaboration Center' ~ tool_tip,
       select_option: [
         {
           type: 'option',
@@ -247,9 +266,7 @@
   </header>
   <div class="c-ntm__body">
     {{ frame_title }}
-    <div class="c-ntm__frame">
-      <p class="c-ntm__frame-copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with (step 2) is published or updated.</p>
-    </div>
+    <p class="c-ntm__frame">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with (step 2) is published or updated.</p>
     <div class="c-ntm__builder-title">
       {{ step_info }}
     </div>

@@ -79,7 +79,7 @@
 {% set checkbox_switcher_1 %}
   {% set label %}
     {% include '@bolt-components-form/form-label.twig' with {
-      title: '<span class="c-bolt-inline-label__on">on</span><span class="c-bolt-inline-label__off">off</span>',
+      title: '<span>on</span><span>off</span>',
       displayType: 'inline-checkbox',
       attributes: {
         for: 'check-id-1',
@@ -138,7 +138,7 @@
 {% endset %}
 {% set notification_2 %}
   {% include '@bolt-components-headline/headline.twig' with {
-    text: 'Notification feed',
+    text: 'Email',
     icon: {
       name: 'email',
       position: 'before'
@@ -211,9 +211,7 @@
   </header>
   <div class="c-ntm__body">
     {{ frame_title }}
-    <div class="c-ntm__frame">
-      <p class="c-ntm__frame-copy">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with {{ chip_3 }} and {{ chip_4 }}is published or updated.</p>
-    </div>
+    <p class="c-ntm__frame">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with {{ chip_3 }} and {{ chip_4 }}is published or updated.</p>
     <div class="c-ntm__builder-title">
       {{ step_info }}
     </div>
