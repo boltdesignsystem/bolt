@@ -5,7 +5,7 @@
 @import '@bolt/core-v3.x';
 
 .c-bolt-profile {
-  --c-bolt-profile-header-avatar-size: 7rem;
+  --c-bolt-profile-header-avatar-size: clamp(7rem, 10vw, 9rem);
 
   display: grid;
   position: relative;
@@ -31,7 +31,7 @@
   padding-bottom: var(--bolt-spacing-y-large);
 
   @include bolt-mq(medium) {
-    --c-bolt-profile-header-avatar-size: 12rem;
+    --c-bolt-profile-header-avatar-size: clamp(12rem, 20vw, 15rem);
   }
 }
 
@@ -46,28 +46,23 @@
 }
 
 .c-bolt-profile__cover {
+  height: clamp(6rem, 10vw, 9rem);
   overflow: hidden;
   border-top-right-radius: bolt-border-radius(small);
   border-top-left-radius: bolt-border-radius(small);
-  aspect-ratio: 4/1;
 
   @at-root .c-bolt-profile--full-bleed #{&} {
+    height: clamp(6rem, 20vw, 18rem);
     border-radius: 0;
-
-    @include bolt-mq(large) {
-      aspect-ratio: 7/1;
-    }
   }
 
   svg {
-    transform: translate3d(-10%, -7%, 0);
-    width: 140%;
+    transform: translate3d(-6%, 0, 0);
+    width: 130%;
 
     @at-root .c-bolt-profile--full-bleed #{&} {
-      @include bolt-mq(large) {
-        transform: translate3d(0, -15%, 0);
-        width: 120%;
-      }
+      transform: translate3d(-8%, -6%, 0);
+      width: 140%;
     }
   }
 }

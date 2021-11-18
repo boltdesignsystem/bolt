@@ -68,23 +68,21 @@ module.exports = {
     stats: {
       type: 'array',
       description: 'Render stats with text labels.',
-      properties: {
-        item: {
-          type: 'object',
-          properties: {
-            attributes: {
-              type: 'object',
-              description:
-                'A Drupal attributes object. Applies extra HTML attributes to the stat container.',
-            },
-            label: {
-              type: 'any',
-              description: 'Text label of the stat.',
-            },
-            number: {
-              type: 'any',
-              description: 'Number of the stat.',
-            },
+      items: {
+        type: 'object',
+        properties: {
+          attributes: {
+            type: 'object',
+            description:
+              'A Drupal attributes object. Applies extra HTML attributes to the stat container.',
+          },
+          label: {
+            type: 'any',
+            description: 'Text label of the stat.',
+          },
+          number: {
+            type: 'any',
+            description: 'Number of the stat.',
           },
         },
       },
