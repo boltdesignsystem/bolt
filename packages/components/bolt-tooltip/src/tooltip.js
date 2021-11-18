@@ -125,9 +125,6 @@ class BoltTooltip extends BoltElement {
     if (textContentLength > 31) {
       contentClasslist.push(`c-bolt-tooltip__content--text-wrap`);
     }
-    if (textContentLength > 31 && textContentLength < 62) {
-      contentClasslist.push(`c-bolt-tooltip__content--text-align-center`);
-    }
     this.content.classList.add(...contentClasslist);
 
     this.initTippy();

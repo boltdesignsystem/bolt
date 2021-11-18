@@ -11,8 +11,8 @@
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  this.data.content.value|length > 31 and this.data.content.value|length < 62 ? base_class ~ "--text-align-center",
-  "c-bolt-tooltip--dotted"
+  "c-bolt-tooltip",
+  "c-bolt-tooltip--dotted",
 ] %}
 
 {#
