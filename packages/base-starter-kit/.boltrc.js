@@ -1,8 +1,6 @@
 module.exports = {
   components: {
     global: [
-      '@bolt/components-info-section',
-      '@bolt/components-profile',
       '@bolt/core-v3.x',
       '@bolt/global',
       '@bolt/elements-article',
@@ -40,9 +38,10 @@ module.exports = {
       '@bolt/components-grid',
       '@bolt/components-headline',
       '@bolt/components-hero',
-      '@bolt/components-li',
       '@bolt/components-icon',
       '@bolt/components-image',
+      '@bolt/components-info-section',
+      '@bolt/components-li',
       '@bolt/components-link',
       '@bolt/components-list',
       '@bolt/components-listing-teaser',
@@ -56,6 +55,7 @@ module.exports = {
       '@bolt/components-page-footer',
       '@bolt/components-placeholder',
       '@bolt/components-popover',
+      '@bolt/components-profile',
       '@bolt/components-progress-bar',
       '@bolt/components-share',
       '@bolt/components-side-nav',
