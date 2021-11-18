@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/elements/bolt-image/compare/v4.7.0...v4.8.0) (2021-11-18)
+
+**Note:** Version bump only for package @bolt/elements-image
+
+
+
+
+
 ## [4.6.1](https://github.com/bolt-design-system/bolt/tree/master/packages/elements/bolt-image/compare/v4.6.0...v4.6.1) (2021-10-13)
 
 
