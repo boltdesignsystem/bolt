@@ -5,11 +5,12 @@
     } only %}
   {% endset %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Hero example',
+    content: 'Live example',
     icon_after: _icon,
     attributes: {
-      href: 'https://www.pega.com/technology/center-out',
+      href: 'https://www.pega.com/',
       target: '_blank',
+      rel: 'noopener',
     }
   } only %}
 {% endset %}
@@ -18,20 +19,23 @@
   <ul>
     <li>ALL images in a hero require the <code>loading="eager"</code> HTML attribute.</li>
     <li>ALL images should utilize the <code>srcset</code> HTML attribute (not done for this example due to time).</li>
-    <li>The <code>order</code> prop was used to move the image above the headline on mobile.</li>
   </ul>
 {% endset %}
 
 {% set _demo %}
   {% set _content %}
-    <bolt-text headline tag="h1" font-size="xxxlarge" class="u-bolt-padding-bottom">
-      Build from the center out
-    </bolt-text>
-    <bolt-text subheadline tag="h2" font-size="xlarge" class="u-bolt-padding-bottom">
-      Feeling the need for speed <em>and</em> scalability? You can have both if you take a Center-out<sup>™</sup> approach to structuring your technology – and avoid some common mistakes.
-    </bolt-text>
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Ready to crush business complexity?',
+      tag: 'h1',
+      size: 'xxxlarge',
+    } only %}
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'Our software helps you work smarter, simpler, and faster.',
+      tag: 'h2',
+      size: 'xlarge',
+    } only %}
     {% include '@bolt-elements-button/button.twig' with {
-      content: 'Get the ebook',
+      content: 'Let\'s go',
       attributes: {
         href: '#!',
       }
@@ -39,27 +43,21 @@
   {% endset %}
 
   {% set _supplement %}
-    {% set _video %}
-      <video-js
-        data-account="1900410236"
-        data-player="O3FkeBiaDz"
-        data-embed="default"
-        data-video-id="6154161119001"
-        data-media-duration
-        data-media-title
-        controls
-        class="c-base-video"></video-js>
-    {% endset %}
-    {% include '@bolt-components-ratio/ratio.twig' with {
-      children: _video,
-      ratio: '16/9'
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/live-assets/Hero-go-graphics-front.png',
+        loading: 'eager',
+        width: 516,
+        height: 389,
+      },
     } only %}
   {% endset %}
 
   {% set _layout_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
+      valign_self: 'start-offset',
       content: _supplement,
-      order: 'last@from-medium'
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: _content
@@ -71,7 +69,7 @@
       background: true,
       attributes: {
         alt: 'Image alt text',
-        src: '/images/heros/live-assets/center-out-hero-bg.jpg',
+        src: '/images/heros/live-assets/pega-go-homepage-hero-bg.jpg',
         loading: 'eager',
         width: '100vw'
       },
@@ -81,22 +79,22 @@
   {% include '@bolt-layouts-layout/layout.twig' with {
     content: _layout_items,
     gutter: 'large',
-    row_gutter: 'small',
+    row_gutter: 'large',
     padding_top: 'large',
     padding_bottom: 'large',
     valign_items: 'center',
     background: _background,
     template: [
-      '67/33@from-medium'
+      'halves@from-medium'
     ],
     attributes: {
-      class: 't-bolt-dark'
+      class: 't-bolt-gray-xlight'
     }
   } only %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Center Out Header Example',
+  title: 'English Homepage Hero',
   description: _description,
   demo: _demo,
   notes: _notes

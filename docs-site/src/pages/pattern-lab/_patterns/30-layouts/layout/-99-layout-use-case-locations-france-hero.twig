@@ -4,13 +4,13 @@
       name: 'external-link'
     } only %}
   {% endset %}
-
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Hero example',
+    content: 'Live example',
     icon_after: _icon,
     attributes: {
       href: 'https://www.pega.com/about/locations/france',
       target: '_blank',
+      rel: 'noopener',
     }
   } only %}
 {% endset %}
@@ -25,15 +25,21 @@
 
 {% set _demo %}
   {% set _content %}
-    <bolt-text headline tag="h1" font-size="xxxlarge" class="u-bolt-padding-bottom">
-      Pega in France
-    </bolt-text>
-    <bolt-text subheadline tag="h2" font-size="xxlarge" class="u-bolt-padding-bottom">
-      Your partner for digital transformation
-    </bolt-text>
-    <bolt-text subheadline tag="h3" font-size="large" class="u-bolt-padding-bottom">
-      Founded in 1983 in the United States, Pega is the leader in dedicated software for customer engagement and process automation. In 2010, Pega arrived in France with talented employees and an increased knowledge of the market and local specificities. Today Pega France is growing and is working to surround itself with the most innovative minds.
-    </bolt-text>
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Pega in France',
+      tag: 'h1',
+      size: 'xxxlarge',
+    } only %}
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'Your partner for digital transformation',
+      tag: 'h2',
+      size: 'xxlarge',
+    } only %}
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'Founded in 1983 in the United States, Pega is the leader in dedicated software for customer engagement and process automation. In 2010, Pega arrived in France with talented employees and an increased knowledge of the market and local specificities. Today Pega France is growing and is working to surround itself with the most innovative minds.',
+      tag: 'h3',
+      size: 'large',
+    } only %}
     {% set _button_1 %}
       {% include '@bolt-elements-button/button.twig' with {
         content: 'Contact Us',
@@ -96,13 +102,13 @@
       '67/33@from-medium'
     ],
     attributes: {
-      class: 't-bolt-xdark'
+      class: 't-bolt-navy-dark'
     }
   } only %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Locations (France) Header Example',
+  title: 'Locations (France) Hero',
   description: _description,
   demo: _demo,
   notes: _notes

@@ -5,11 +5,12 @@
     } only %}
   {% endset %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: 'Hero example',
+    content: 'Live example',
     icon_after: _icon,
     attributes: {
       href: 'https://www.pega.com/solutions/customer-lifetime-value',
       target: '_blank',
+      rel: 'noopener',
     }
   } only %}
 {% endset %}
@@ -18,29 +19,32 @@
   <ul>
     <li>ALL images in a hero require the <code>loading="eager"</code> HTML attribute.</li>
     <li>ALL images should utilize the <code>srcset</code> HTML attribute (not done for this example due to time).</li>
-    <li><code>text-align: center;</code> has been added to the layout column through a style tag.</li>
+    <li><code>u-bolt-text-align-center</code> utility class has been added to the layout column through a style tag.</li>
     <li>This example contains custom code found on the live example.</li>
   </ul>
 {% endset %}
 
 {% set _demo %}
   {% set _content %}
-    <bolt-text headline tag="h1" font-size="xxxlarge" class="u-bolt-padding-bottom">
-      Engage with empathy. Adapt instantly.
-    </bolt-text>
-    <bolt-text subheadline tag="h2" font-size="large" class="u-bolt-padding-bottom">
-      Keeping pace with a changing market doesn’t have to be complicated. With Pega, you can hyper-personalize every interaction to stay timely and relevant – no matter what happens next.
-    </bolt-text>
-    <bolt-inline-list size="xsmall" bolt-object="">
-      <ul class="c-pega-bolt-video-metadata o-bolt-inline-list o-bolt-inline-list--xsmall o-bolt-inline-list--delimited o-bolt-inline-list--valign-top">
-        <li class="o-bolt-inline-list__item">
-          <span style="display: inline-block" class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">Explainer</span>
-        </li>
-        <li class="o-bolt-inline-list__item">
-          <span style="display: inline-block" class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">01:16</span>
-        </li>
-      </ul>
-    </bolt-inline-list>
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Engage with empathy. Adapt instantly.',
+      tag: 'h1',
+      size: 'xxxlarge',
+    } only %}
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'Keeping pace with a changing market doesn’t have to be complicated. With Pega, you can hyper-personalize every interaction to stay timely and relevant – no matter what happens next.',
+      tag: 'h2',
+      size: 'xlarge',
+    } only %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      align: 'center',
+      separator: 'solid',
+      items: [
+        '<small>Exlpainer</small>',
+        '<small>0:16</small>',
+      ],
+    } only %}
     {% include '@bolt-elements-button/button.twig' with {
       content: 'Watch it come to life',
       attributes: {
@@ -53,7 +57,7 @@
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: _content,
       attributes: {
-        style: 'text-align: center'
+        class: 'u-bolt-text-align-center'
       }
     } only %}
   {% endset %}
@@ -80,13 +84,13 @@
       '67@from-medium'
     ],
     attributes: {
-      class: 't-bolt-light'
+      class: 't-bolt-gray-xlight'
     }
   } only %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Customer Lifetime Value Header Example',
+  title: 'Customer Lifetime Value Hero',
   description: _description,
   demo: _demo,
   notes: _notes
