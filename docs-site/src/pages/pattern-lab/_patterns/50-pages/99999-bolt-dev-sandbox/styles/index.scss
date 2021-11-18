@@ -95,6 +95,8 @@
     display: block;
 
     .c-bolt-inline-label {
+      padding-left: 0;
+
       &::before {
         opacity: 0;
       }
@@ -107,11 +109,11 @@
     }
 
     .c-bolt-inline-label--checkbox {
-      display: block;
-      position: relative;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
       width: 4rem;
       height: 2rem;
-      text-indent: -9999px;
       cursor: pointer;
       border-radius: bolt-border-radius(full);
       background-color: var(--bolt-color-gray-light);
@@ -135,6 +137,10 @@
 
     .c-bolt-input--checkbox ~ .c-bolt-inline-label:after {
       border: 2px solid var(--bolt-color-gray);
+    }
+
+    .c-bolt-input--checkbox:checked ~ .c-bolt-inline-label {
+      color: var(--bolt-color-white);
     }
 
     .c-bolt-input--checkbox:checked ~ .c-bolt-inline-label:after {

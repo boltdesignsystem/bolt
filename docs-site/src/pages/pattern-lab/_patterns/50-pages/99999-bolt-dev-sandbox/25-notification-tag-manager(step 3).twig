@@ -76,13 +76,13 @@
   } only %}
 {% endset %}
 
-{% set checkbox_group %}
+{% set checkbox_switcher_1 %}
   {% set label %}
     {% include '@bolt-components-form/form-label.twig' with {
-      title: 'toggle notification feed',
+      title: '<span>on</span><span>off</span>',
       displayType: 'inline-checkbox',
       attributes: {
-        for: 'check-id',
+        for: 'check-id-1',
       }
     } only %}
   {% endset %}
@@ -90,7 +90,7 @@
     {% include '@bolt-components-form/form-input.twig' with {
       attributes: {
         type: 'checkbox',
-        id: 'check-id',
+        id: 'check-id-1',
       },
     } only %}
   {% endset %}
@@ -100,7 +100,31 @@
   } only %}
 {% endset %}
 
-{% set notification %}
+{% set checkbox_switcher_2 %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: '<span>on</span><span>off</span>',
+      displayType: 'inline-checkbox',
+      attributes: {
+        for: 'check-id-2',
+      }
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'checkbox',
+        id: 'check-id-2',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input
+  } only %}
+{% endset %}
+
+{% set notification_1 %}
   {% include '@bolt-components-headline/headline.twig' with {
     text: 'Notification feed',
     icon: {
@@ -110,6 +134,18 @@
   } only %}
   {% include '@bolt-components-headline/text.twig' with {
     text: 'Ecosystem real time alerts that appear in your notifications feed',
+  } only %}
+{% endset %}
+{% set notification_2 %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Notification feed',
+    icon: {
+      name: 'email',
+      position: 'before'
+    }
+  } only %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'A weekly digest compiling all your favourite content chosen above',
   } only %}
 {% endset %}
 
@@ -184,8 +220,10 @@
     <div class="c-ntm__builder">
       <div class="c-ntm__col">
         <div class="c-ntm__fieldset-group c-ntm__fieldset-group--step-three">
-          {{ checkbox_group }}
-          {{ notification }}
+          {{ checkbox_switcher_1 }}
+          {{ notification_1 }}
+          {{ checkbox_switcher_2 }}
+          {{ notification_2 }}
         </div>
       </div>
     </div>
