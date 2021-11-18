@@ -17,8 +17,20 @@ module.exports = {
       description: 'Render a custom cover image.',
     },
     name: {
-      type: 'any',
+      type: 'object',
       description: 'Render a name and/or username for the user.',
+      properties: {
+        content: {
+          type: 'any',
+          description: 'Set the text content.',
+        },
+        tag: {
+          type: 'string',
+          description: 'Set the semantic heading level.',
+          enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+          default: 'h2',
+        },
+      },
     },
     job_title: {
       type: 'any',

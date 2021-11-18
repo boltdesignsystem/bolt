@@ -616,7 +616,10 @@
   {% endset %}
 
   {% include '@bolt-components-profile/profile.twig' with {
-    name: '<strong>Toni Kukoc</strong> (@thepinkpanther)',
+    name: {
+      content: '<strong>Toni Kukoc</strong> (@thepinkpanther)',
+      tag: 'h1',
+    },
     job_title: 'Lead System Architect',
     location: 'Croatia',
     actions: actions,

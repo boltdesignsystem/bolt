@@ -195,7 +195,10 @@
     {% include '@bolt-components-profile/profile.twig' with {
       avatar: avatar,
       cover: cover,
-      name: '<strong>First Last</strong> (@username)',
+      name: {
+        content: '<strong>First Last</strong> (@username)',
+        tag: 'h2',
+      },
       job_title: 'Lead System Architect',
       location: 'United States',
       actions: actions,
@@ -418,7 +421,10 @@
 {% include '@bolt-components-profile/profile.twig' with {
   avatar: avatar,
   cover: cover,
-  name: '<strong>First Last</strong> (@username)',
+  name: {
+    content: '<strong>First Last</strong> (@username)',
+    tag: 'h2',
+  },
   job_title: 'Lead System Architect',
   location: 'United States',
   actions: actions,

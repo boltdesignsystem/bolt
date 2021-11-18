@@ -30,7 +30,7 @@
   </div>
   <div class="c-bolt-profile__user-info">
     <div class="c-bolt-profile__user-headline">
-      <h1>{{ name }}</h1>
+      <{{ name.tag }}>{{ name.content }}</{{ name.tag }}>
     </div>
     {% if chips %}
       <div class="c-bolt-profile__user-chips">

@@ -1,3 +1,10 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use the <code>full_bleed</code> prop for building a profile header for a particular page.</bolt-li>
+    <bolt-li>While building a profile page, it is recommened to set the semantic heading level of the name to be <code>h1</code>. Use the <code>name.tag</code> prop to set it. See a <a href="{{ link['pages-user-profile'] }}" class="e-bolt-text-link">full page mockup of User Profile</a>.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
 {% set demo %}
   {% set icon_facebook %}
     {% include '@bolt-elements-icon/icon.twig' with {
@@ -154,21 +161,24 @@
   {% endset %}
 
   {% include '@bolt-components-profile/profile.twig' with {
-    name: '<strong>Toni Kukoc</strong> (@thepinkpanther)',
+    name: {
+      content: '<strong>Toni Kukoc</strong> (@thepinkpanther)',
+      tag: 'h1',
+    },
     job_title: 'Lead System Architect',
     location: 'Croatia',
     actions: actions,
     chips: chips,
     stats: [
       {
-        number: '15',
+        number: '7',
         label: 'Achievements',
         attributes: {
           type: 'button',
         },
       },
       {
-        number: '3k',
+        number: '7k',
         label: 'Contributions',
         attributes: {
           type: 'button',
@@ -344,21 +354,24 @@
 {% endset %}
 
 {% include '@bolt-components-profile/profile.twig' with {
-  name: '<strong>Toni Kukoc</strong> (@thepinkpanther)',
+  name: {
+    content: '<strong>Toni Kukoc</strong> (@thepinkpanther)',
+    tag: 'h1',
+  },
   job_title: 'Lead System Architect',
   location: 'Croatia',
   actions: actions,
   chips: chips,
   stats: [
     {
-      number: '15',
+      number: '7',
       label: 'Achievements',
       attributes: {
         type: 'button',
       },
     },
     {
-      number: '3k',
+      number: '7k',
       label: 'Contributions',
       attributes: {
         type: 'button',
@@ -380,7 +393,8 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Full Bleed Profile',
-  description: 'Set the profile to expand the full viewport. Use the <code>full_bleed</code> prop for building a profile header for a particular page.',
+  description: 'Profile width can expand the full viewport.',
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
 } only %}
