@@ -1,7 +1,8 @@
-<p>Fill: Color</p>
+{% for fill in ['color', 'gradient'] %}
+<p>Fill: {{ fill|capitalize }}</p>
 {% include './_00-background-band-demo.twig' with {
   background: {
-    fill: 'color',
+    fill: fill,
     opacity: 'medium',
     focal_point: {
       vertical: 'center',
@@ -12,30 +13,10 @@
         pattern: 'image',
         src: '/images/content/backgrounds/background-tall-2.jpg',
         srcset: '/images/content/backgrounds/background-tall-2-50.jpg 50w, /images/content/backgrounds/background-tall-2-100.jpg 100w, /images/content/backgrounds/background-tall-2-200.jpg 200w, /images/content/backgrounds/background-tall-2-320.jpg 320w, /images/content/backgrounds/background-tall-2-480.jpg 480w, /images/content/backgrounds/background-tall-2-640.jpg 640w, /images/content/backgrounds/background-tall-2-800.jpg 800w, /images/content/backgrounds/background-tall-2-1024.jpg 1024w, /images/content/backgrounds/background-tall-2-1366.jpg 1366w, /images/content/backgrounds/background-tall-2-1536.jpg 1536w, /images/content/backgrounds/background-tall-2-1920.jpg 1920w, /images/content/backgrounds/background-tall-2-2560.jpg 2560w, /images/content/backgrounds/background-tall-2-2880.jpg 2880w, /images/content/backgrounds/background-tall-2.jpg 4320w',
-        width: 823,
-        height: 549
+        width: 4320,
+        height: 2880
       }
     ]
   }
 } %}
-
-<p>Fill: Gradient</p>
-{% include './_00-background-band-demo.twig' with {
-  background: {
-    fill: 'gradient',
-    opacity: 'medium',
-    focal_point: {
-      vertical: 'center',
-      horizontal: 'center'
-    },
-    content_items: [
-      {
-        pattern: 'image',
-        src: '/images/content/backgrounds/background-tall-2.jpg',
-        srcset: '/images/content/backgrounds/background-tall-2-50.jpg 50w, /images/content/backgrounds/background-tall-2-100.jpg 100w, /images/content/backgrounds/background-tall-2-200.jpg 200w, /images/content/backgrounds/background-tall-2-320.jpg 320w, /images/content/backgrounds/background-tall-2-480.jpg 480w, /images/content/backgrounds/background-tall-2-640.jpg 640w, /images/content/backgrounds/background-tall-2-800.jpg 800w, /images/content/backgrounds/background-tall-2-1024.jpg 1024w, /images/content/backgrounds/background-tall-2-1366.jpg 1366w, /images/content/backgrounds/background-tall-2-1536.jpg 1536w, /images/content/backgrounds/background-tall-2-1920.jpg 1920w, /images/content/backgrounds/background-tall-2-2560.jpg 2560w, /images/content/backgrounds/background-tall-2-2880.jpg 2880w, /images/content/backgrounds/background-tall-2.jpg 4320w',
-        width: 823,
-        height: 549
-      }
-    ]
-  }
-} %}
+{% endfor %}

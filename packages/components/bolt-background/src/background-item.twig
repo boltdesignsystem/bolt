@@ -21,27 +21,39 @@
 {% if item.pattern %}
   <div class="{{ 'c-bolt-background__item' }}">
     {% if item.pattern == 'image' %}
-      {% set _srcset = item.srcset ? item.srcset : '' %}
-      {% set _width = item.width ? item.width : '' %}
-      {% set _height = item.height ? item.height : '' %}
+      {% set attributes = {} %}
+
+      {% if item.srcset %}
+        {% set attributes = attributes|merge({ srcset: item.srcset }) %}
+      {% endif %}
+
+      {% if item.width %}
+        {% set attributes = attributes|merge({ width: item.width }) %}
+      {% endif %}
+
+      {% if item.height %}
+        {% set attributes = attributes|merge({ height: item.height }) %}
+      {% endif %}
+
+      {% if item.align or item.valign %}
+        {% set _align = item.align ? item.align : 'center' %}
+        {% set _valign = item.valign ? item.valign : 'center' %}
+        {% set _alignment = _align ~ ' ' ~ _valign %}
+        {% set attributes = attributes|merge({ style:  '--e-bolt-image-position: ' ~ _alignment ~ ';' }) %}
+      {% endif %}
+
       {% set _sizes = item.sizes ? item.sizes : '100vw' %}
+
       {# Found both of these spellings, expanding the conditional to catch both #}
       {% set _loading = item.lazyLoad or item.lazyload ? 'lazy' : 'eager' %}
-      {% set _align = item.align ? item.align : 'center' %}
-      {% set _valign = item.valign ? item.valign : 'center' %}
-      {% set _alignment = _align ~ ' ' ~ _valign %}
 
       {% include '@bolt-elements-image/image.twig' with {
         background: true,
-        attributes: {
+        attributes: attributes|merge({
           src: item.src,
-          srcset: _srcset,
           sizes: _sizes,
-          width: _width,
-          height: _height,
           loading: _loading,
-          style: 'object-position: ' ~ _alignment ~ ';'
-        },
+        })
       } only %}
     {% else %}
       {% include pattern_template(item.pattern) with item|merge({
