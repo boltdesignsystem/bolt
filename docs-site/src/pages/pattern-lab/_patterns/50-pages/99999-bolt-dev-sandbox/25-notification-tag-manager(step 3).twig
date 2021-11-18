@@ -79,7 +79,7 @@
 {% set checkbox_switcher_1 %}
   {% set label %}
     {% include '@bolt-components-form/form-label.twig' with {
-      title: '<span>on</span><span>off</span>',
+      title: '<span class="c-bolt-inline-label__on">on</span><span class="c-bolt-inline-label__off">off</span>',
       displayType: 'inline-checkbox',
       attributes: {
         for: 'check-id-1',
@@ -217,13 +217,21 @@
     <div class="c-ntm__builder-title">
       {{ step_info }}
     </div>
-    <div class="c-ntm__builder">
-      <div class="c-ntm__col">
+    <div class="c-ntm__builder c-ntm__builder--step-three">
+      <div class="c-ntm__container">
         <div class="c-ntm__fieldset-group c-ntm__fieldset-group--step-three">
-          {{ checkbox_switcher_1 }}
-          {{ notification_1 }}
-          {{ checkbox_switcher_2 }}
-          {{ notification_2 }}
+          <div class="c-ntm__fieldset-note">
+            <div class="c-ntm__fieldset-note-text">
+              {{ notification_1 }}
+            </div>
+            {{ checkbox_switcher_1 }}
+          </div>
+          <div class="c-ntm__fieldset-note">
+            <div class="c-ntm__fieldset-note-text">
+              {{ notification_2 }}
+            </div>
+            {{ checkbox_switcher_2 }}
+          </div>
         </div>
       </div>
     </div>

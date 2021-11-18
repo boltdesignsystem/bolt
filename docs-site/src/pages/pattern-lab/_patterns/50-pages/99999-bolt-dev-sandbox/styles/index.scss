@@ -95,7 +95,7 @@
     display: block;
 
     .c-bolt-inline-label {
-      padding-left: 0;
+      padding: 0 var(--bolt-spacing-x-xsmall);
 
       &::before {
         opacity: 0;
@@ -108,6 +108,10 @@
       }
     }
 
+    .c-bolt-input-list__item {
+      margin-right: var(--bolt-spacing-x-small);
+    }
+
     .c-bolt-inline-label--checkbox {
       display: flex;
       justify-content: space-around;
@@ -117,6 +121,12 @@
       cursor: pointer;
       border-radius: bolt-border-radius(full);
       background-color: var(--bolt-color-gray-light);
+    }
+
+    .c-bolt-input--checkbox:focus + .c-bolt-inline-label--checkbox {
+      transform: translate3d(0, 0, 0);
+      outline: var(--bolt-focus-ring);
+      outline-offset: 2px;
     }
 
     .c-bolt-inline-label--checkbox {
@@ -137,6 +147,10 @@
 
     .c-bolt-input--checkbox ~ .c-bolt-inline-label:after {
       border: 2px solid var(--bolt-color-gray);
+    }
+
+    .c-bolt-input--checkbox ~ .c-bolt-inline-label {
+      color: var(--bolt-color-gray);
     }
 
     .c-bolt-input--checkbox:checked ~ .c-bolt-inline-label {
@@ -183,6 +197,21 @@
     display: grid;
     grid-template-columns: 3fr 2fr;
     grid-column-gap: var(--bolt-spacing-x-medium);
+  }
+
+  &--step-three,
+  &--step-four {
+    display: block;
+  }
+}
+
+.c-ntm__fieldset-note {
+  margin-bottom: var(--bolt-spacing-y-medium);
+  @include bolt-mq(xsmall) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
   }
 }
 
