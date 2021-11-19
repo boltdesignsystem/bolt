@@ -143,20 +143,12 @@
 {% set icon_bell %}
   {% include '@bolt-elements-icon/icon.twig' with {
     name: 'bell-solid',
-    attributes: {
-      style:
-        "--e-bolt-icon-color: var(--bolt-color-navy-light);"
-    }
   } only %}
 {% endset %}
 
 {% set icon_email %}
   {% include '@bolt-elements-icon/icon.twig' with {
     name: 'email',
-    attributes: {
-      style:
-        "--e-bolt-icon-color: var(--bolt-color-gray);"
-    }
   } only %}
 {% endset %}
 
@@ -184,7 +176,7 @@
       <p class="c-ntm__frame c-ntm__frame--before-submit t-bolt-gray-xlight">
       {{ icon_bell }}
       {{ icon_email }}
-       Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with {{ chip_3 }} and {{ chip_4 }}is published or updated.</p>
+       Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with {{ chip_3 }} and {{ chip_4 }} is published or updated.</p>
     <div class="c-ntm__builder-title">
       {{ step_info }}
     </div>

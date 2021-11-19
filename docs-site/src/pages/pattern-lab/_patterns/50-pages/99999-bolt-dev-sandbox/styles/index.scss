@@ -15,7 +15,7 @@
     rgba(62, 103, 187, 1) 0%,
     rgba(16, 165, 172, 1) 100%
   );
-  @include bolt-mq(medium) {
+  @include bolt-mq(small) {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,7 +23,7 @@
 
   .c-bolt-headline {
     color: var(--bolt-color-white);
-    @include bolt-mq(medium) {
+    @include bolt-mq(small) {
       margin-bottom: 0;
     }
   }
@@ -62,19 +62,20 @@
 }
 
 .c-ntm__builder-title {
-  margin-bottom: var(--bolt-spacing-y-medium);
-  @include bolt-mq(large) {
-    display: flex;
-    align-items: center;
-    gap: var(--bolt-spacing-x-small);
-    margin-bottom: 0;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--bolt-spacing-x-xsmall);
 }
 
 .c-ntm__fieldset-group {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0 var(--bolt-spacing-x-medium);
+  grid-template-columns: 1fr 1fr;
+  gap: 0 var(--bolt-spacing-x-small);
+  margin-bottom: var(--bolt-spacing-y-large);
+  @include bolt-mq(xsmall) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
   &--step-two {
     grid-template-columns: 1fr;
@@ -213,8 +214,16 @@
 
 .c-ntm__nav {
   display: flex;
-  justify-content: space-between;
-  margin: var(--bolt-spacing-y-xlarge) 0 var(--bolt-spacing-y-large);
+  margin: var(--bolt-spacing-y-large) 0 var(--bolt-spacing-y-large);
+
+  .e-bolt-button {
+    margin-right: auto;
+
+    &:last-of-type {
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
 }
 
 .c-ntm__footer {
