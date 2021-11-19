@@ -84,54 +84,6 @@
   } only %}
 {% endset %}
 
-{% set checkbox_switcher_1 %}
-  {% set label %}
-    {% include '@bolt-components-form/form-label.twig' with {
-      title: '<span>on</span><span>off</span>',
-      displayType: 'inline-checkbox',
-      attributes: {
-        for: 'check-id-1',
-      }
-    } only %}
-  {% endset %}
-  {% set input %}
-    {% include '@bolt-components-form/form-input.twig' with {
-      attributes: {
-        type: 'checkbox',
-        id: 'check-id-1',
-      },
-    } only %}
-  {% endset %}
-  {% include '@bolt-components-form/form-element.twig' with {
-    label: label,
-    children: input
-  } only %}
-{% endset %}
-
-{% set checkbox_switcher_2 %}
-  {% set label %}
-    {% include '@bolt-components-form/form-label.twig' with {
-      title: '<span>on</span><span>off</span>',
-      displayType: 'inline-checkbox',
-      attributes: {
-        for: 'check-id-2',
-      }
-    } only %}
-  {% endset %}
-  {% set input %}
-    {% include '@bolt-components-form/form-input.twig' with {
-      attributes: {
-        type: 'checkbox',
-        id: 'check-id-2',
-      },
-    } only %}
-  {% endset %}
-  {% include '@bolt-components-form/form-element.twig' with {
-    label: label,
-    children: input
-  } only %}
-{% endset %}
-
 {% set notification_1 %}
   {% include '@bolt-components-headline/headline.twig' with {
     text: 'Notification feed',
@@ -144,6 +96,7 @@
     text: 'Ecosystem real time alerts that appear in your notifications feed',
   } only %}
 {% endset %}
+
 {% set notification_2 %}
   {% include '@bolt-components-headline/headline.twig' with {
     text: 'Email',
@@ -154,6 +107,25 @@
   } only %}
   {% include '@bolt-components-headline/text.twig' with {
     text: 'A weekly digest compiling all your favourite content chosen above',
+  } only %}
+{% endset %}
+
+{% set switcher_on %}
+  {% include '@bolt-components-switch-button/switch-button.twig' with {
+    label: notification_1,
+    attributes: {
+      class: 'js-target-the-switch-button-container'
+    },
+  } only %}
+{% endset %}
+
+{% set switcher_off %}
+  {% include '@bolt-components-switch-button/switch-button.twig' with {
+    label: notification_2,
+    on: false,
+    attributes: {
+      class: 'js-target-the-switch-button-container'
+    },
   } only %}
 {% endset %}
 
@@ -222,18 +194,8 @@
     <div class="c-ntm__builder c-ntm__builder--step-three">
       <div class="c-ntm__container">
         <div class="c-ntm__fieldset-group c-ntm__fieldset-group--step-three">
-          <div class="c-ntm__fieldset-note">
-            <div class="c-ntm__fieldset-note-text">
-              {{ notification_1 }}
-            </div>
-            {{ checkbox_switcher_1 }}
-          </div>
-          <div class="c-ntm__fieldset-note">
-            <div class="c-ntm__fieldset-note-text">
-              {{ notification_2 }}
-            </div>
-            {{ checkbox_switcher_2 }}
-          </div>
+        {{ switcher_on }}
+        {{ switcher_off }}
         </div>
       </div>
     </div>
@@ -290,5 +252,18 @@
     class: 'js-bolt-modal',
   },
 } only %}
-{% endblock %}
+<script>
+  let switchButton = document.querySelectorAll(
+    '.js-target-the-switch-button-container button[role="switch"]',
+  ), i;
 
+  for (i = 0; i < switchButton.length; ++i) {
+    switchButton[i].addEventListener('click', e => {
+      let el = e.target;
+      let isChecked = el.getAttribute('aria-checked') === 'true';
+
+      el.setAttribute('aria-checked', isChecked ? false : true);
+    });
+  }
+</script>
+{% endblock %}
