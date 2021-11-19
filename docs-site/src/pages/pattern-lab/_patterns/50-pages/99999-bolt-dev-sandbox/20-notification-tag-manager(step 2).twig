@@ -9,49 +9,44 @@
 {% endset %}
 
 {% set steps %}
-  {% include '@bolt-components-pagination/pagination.twig' with {
-    current: 2,
-    total: 4,
-    pages: {
-      1: {
-        href: '#!'
-      },
-      2: {
-        href: '#!'
-      },
-      3: {
-        href: '#!'
-      },
-      4: {
-        href: '#!'
-      },
-    },
+  {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+    value: 2,
+    valueFormat: 'step',
+    max: 4,
   } only %}
 {% endset %}
 
-{% set step_info %}
-  {% include '@bolt-components-headline/headline.twig' with {
-    size: 'xlarge',
-    text: 'Step 2:'
-  } only %}
+{% set step_heading_inner %}
   {% include '@bolt-components-headline/text.twig' with {
     size: 'large',
-    text: 'What tags are you inteested in?'
+    text: 'What tags are yu interested in?',
+    tag: 'span'
+  } only %}
+{% endset %}
+
+{% set step_heading %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xlarge',
+    text: 'Step 2:' ~ step_heading_inner,
+    attributes: {
+      class: 'c-ntm__builder-title u-bolt-margin-bottom-large'
+    }
   } only %}
 {% endset %}
 
 {% set frame_title %}
   {% include '@bolt-components-headline/headline.twig' with {
-  size: 'small',
-  text: 'Your current tag set',
-  transform: 'uppercase'
-} only %}
+    size: 'small',
+    text: 'Your current tag set',
+    transform: 'uppercase'
+  } only %}
 {% endset %}
 
 {% set chip_1 %}
   {% include '@bolt-components-chip/chip.twig' with {
     text: 'Question',
     size: 'small',
+    color: 'success'
   } only %}
 {% endset %}
 
@@ -59,6 +54,24 @@
   {% include '@bolt-components-chip/chip.twig' with {
     text: 'Discussion',
     size: 'small',
+    color: 'success'
+  } only %}
+{% endset %}
+
+{% set chip_3 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Step 2',
+    size: 'small',
+  } only %}
+{% endset %}
+
+{% set frame %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'small',
+    text: 'Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' is published or updated.',
+    attributes: {
+      class: 'c-ntm__frame'
+    }
   } only %}
 {% endset %}
 
@@ -226,7 +239,6 @@
     content: 'Next',
     attributes: {
       href: 'https://google.com',
-      class: 'e-bolt-button--next'
     },
     icon_after: icon_chevron_right,
     border_radius: 'full',
@@ -244,7 +256,6 @@
     content: 'Previous',
     attributes: {
       href: 'https://google.com',
-      class: 'e-bolt-button--prev'
     },
     icon_before: icon_chevron_left,
     border_radius: 'full',
@@ -266,10 +277,8 @@
   </header>
   <div class="c-ntm__body">
     {{ frame_title }}
-    <p class="c-ntm__frame">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with (step 2) is published or updated.</p>
-    <div class="c-ntm__builder-title">
-      {{ step_info }}
-    </div>
+    {{ frame }}
+    {{ step_heading }}
     <div class="c-ntm__builder">
       <div class="c-ntm__container">
         <div class="c-ntm__fieldset-group c-ntm__fieldset-group--step-two">
