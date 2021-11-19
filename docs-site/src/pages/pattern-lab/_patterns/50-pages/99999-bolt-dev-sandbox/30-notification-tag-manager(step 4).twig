@@ -149,7 +149,6 @@
     content: 'Previous',
     attributes: {
       href: 'https://google.com',
-      class: 'e-bolt-button--prev'
     },
     icon_before: icon_chevron_left,
     border_radius: 'full',
@@ -158,7 +157,10 @@
 
 {% set legal_note %}
   {% include '@bolt-components-headline/text.twig' with {
-    text: 'Legal dolor sit amet',
+    text: 'Legal notification dolor sit amet',
+    attributes: {
+      class: 'u-bolt-text-align-center u-bolt-margin-bottom-medium'
+    }
   } only %}
 {% endset %}
 
@@ -179,9 +181,6 @@
     {{ frame_title }}
     {{ frame }}
     {{ step_heading }}
-    <div class="c-ntm__builder-title">
-      {{ step_info }}
-    </div>
     <div class="c-ntm__builder c-ntm__builder--step-four">
       <div class="c-ntm__container">
         <div class="c-ntm__fieldset-group c-ntm__fieldset-group--step-four">
