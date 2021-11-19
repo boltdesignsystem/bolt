@@ -1,12 +1,12 @@
-{% set _description %}
-  {% set _icon %}
+{% set description %}
+  {% set icon %}
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'external-link'
     } only %}
   {% endset %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Live example',
-    icon_after: _icon,
+    icon_after: icon,
     attributes: {
       href: 'https://www.pega.com/about/locations/france',
       target: '_blank',
@@ -15,7 +15,7 @@
   } only %}
 {% endset %}
 
-{% set _notes %}
+{% set notes %}
   <ul>
     <li>ALL images in a hero require the <code>loading="eager"</code> HTML attribute.</li>
     <li>ALL images should utilize the <code>srcset</code> HTML attribute (not done for this example due to time).</li>
@@ -23,8 +23,8 @@
   </ul>
 {% endset %}
 
-{% set _demo %}
-  {% set _content %}
+{% set demo %}
+  {% set content %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Pega in France',
       tag: 'h1',
@@ -40,7 +40,7 @@
       tag: 'h3',
       size: 'large',
     } only %}
-    {% set _button_1 %}
+    {% set button_1 %}
       {% include '@bolt-elements-button/button.twig' with {
         content: 'Contact Us',
         display: 'block',
@@ -49,7 +49,7 @@
         }
       } only %}
     {% endset %}
-    {% set _button_2 %}
+    {% set button_2 %}
       {% include '@bolt-elements-button/button.twig' with {
         content: 'Join Us',
         display: 'block',
@@ -63,19 +63,19 @@
       display: 'inline',
       spacing: 'small',
       items: [
-        _button_1,
-        _button_2
+        button_1,
+        button_2
       ]
     } only %}
   {% endset %}
 
-  {% set _layout_items %}
+  {% set layout_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: _content
+      content: content
     } only %}
   {% endset %}
 
-  {% set _background %}
+  {% set background %}
     {% include '@bolt-components-background/background.twig' with {
       opacity: 'heavy',
       fill_color: 'navy',
@@ -93,11 +93,11 @@
   {% endset %}
 
   {% include '@bolt-layouts-layout/layout.twig' with {
-    content: _layout_items,
+    content: layout_items,
     padding_top: 'xlarge',
     padding_bottom: 'xlarge',
     valign_items: 'center',
-    background: _background,
+    background: background,
     template: [
       '67/33@from-medium'
     ],
@@ -107,9 +107,96 @@
   } only %}
 {% endset %}
 
+{% set twig_markup %}
+{% verbatim %}
+{% set content %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Pega in France',
+    tag: 'h1',
+    size: 'xxxlarge',
+  } only %}
+  {% include '@bolt-components-headline/subheadline.twig' with {
+    text: 'Your partner for digital transformation',
+    tag: 'h2',
+    size: 'xxlarge',
+  } only %}
+  {% include '@bolt-components-headline/subheadline.twig' with {
+    text: 'Founded in 1983 in the United States, Pega is the leader in dedicated software for customer engagement and process automation. In 2010, Pega arrived in France with talented employees and an increased knowledge of the market and local specificities. Today Pega France is growing and is working to surround itself with the most innovative minds.',
+    tag: 'h3',
+    size: 'large',
+  } only %}
+  {% set button_1 %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Contact Us',
+      display: 'block',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+  {% set button_2 %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Join Us',
+      display: 'block',
+      hierarchy: 'secondary',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    spacing: 'small',
+    items: [
+      button_1,
+      button_2
+    ]
+  } only %}
+{% endset %}
+
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: content
+  } only %}
+{% endset %}
+
+{% set background %}
+  {% include '@bolt-components-background/background.twig' with {
+    opacity: 'heavy',
+    fill_color: 'navy',
+    focalPoint: {
+      vertical: 'center',
+      horizontal: 'center'
+    },
+    contentItems: [
+      {
+        pattern: 'image',
+        src: '/images/heros/live-assets/ces-paris-team.jpg'
+      }
+    ]
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  padding_top: 'xlarge',
+  padding_bottom: 'xlarge',
+  valign_items: 'center',
+  background: background,
+  template: [
+    '67/33@from-medium'
+  ],
+  attributes: {
+    class: 't-bolt-navy-dark'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Locations (France) Hero',
-  description: _description,
-  demo: _demo,
-  notes: _notes
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
 } only %}

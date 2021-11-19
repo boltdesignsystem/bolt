@@ -1,12 +1,12 @@
-{% set _description %}
-  {% set _icon %}
+{% set description %}
+  {% set icon %}
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'external-link'
     } only %}
   {% endset %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Live example',
-    icon_after: _icon,
+    icon_after: icon,
     attributes: {
       href: 'https://www.pega.com/solutions/customer-lifetime-value',
       target: '_blank',
@@ -15,7 +15,7 @@
   } only %}
 {% endset %}
 
-{% set _notes %}
+{% set notes %}
   <ul>
     <li>ALL images in a hero require the <code>loading="eager"</code> HTML attribute.</li>
     <li>ALL images should utilize the <code>srcset</code> HTML attribute (not done for this example due to time).</li>
@@ -24,8 +24,8 @@
   </ul>
 {% endset %}
 
-{% set _demo %}
-  {% set _content %}
+{% set demo %}
+  {% set content %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Engage with empathy. Adapt instantly.',
       tag: 'h1',
@@ -53,16 +53,16 @@
     } only %}
   {% endset %}
 
-  {% set _layout_items %}
+  {% set layout_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: _content,
+      content: content,
       attributes: {
         class: 'u-bolt-text-align-center'
       }
     } only %}
   {% endset %}
 
-  {% set _background %}
+  {% set background %}
     {% include '@bolt-elements-image/image.twig' with {
       background: true,
       attributes: {
@@ -75,10 +75,10 @@
   {% endset %}
 
   {% include '@bolt-layouts-layout/layout.twig' with {
-    content: _layout_items,
+    content: layout_items,
     padding_top: 'large',
     padding_bottom: 'large',
-    background: _background,
+    background: background,
     align_items: 'center',
     template: [
       '67@from-medium'
@@ -89,9 +89,77 @@
   } only %}
 {% endset %}
 
+{% set twig_markup %}
+{% verbatim %}
+{% set content %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Engage with empathy. Adapt instantly.',
+    tag: 'h1',
+    size: 'xxxlarge',
+  } only %}
+  {% include '@bolt-components-headline/subheadline.twig' with {
+    text: 'Keeping pace with a changing market doesn’t have to be complicated. With Pega, you can hyper-personalize every interaction to stay timely and relevant – no matter what happens next.',
+    tag: 'h2',
+    size: 'xlarge',
+  } only %}
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    align: 'center',
+    separator: 'solid',
+    items: [
+      '<small>Exlpainer</small>',
+      '<small>0:16</small>',
+    ],
+  } only %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Watch it come to life',
+    attributes: {
+      href: '#!',
+    }
+  } only %}
+{% endset %}
+
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: content,
+    attributes: {
+      class: 'u-bolt-text-align-center'
+    }
+  } only %}
+{% endset %}
+
+{% set background %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/heros/live-assets/pega-ES-header-bg-1-max-value.jpg',
+      loading: 'eager',
+      width: '100vw'
+    },
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  padding_top: 'large',
+  padding_bottom: 'large',
+  background: background,
+  align_items: 'center',
+  template: [
+    '67@from-medium'
+  ],
+  attributes: {
+    class: 't-bolt-gray-xlight'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Customer Lifetime Value Hero',
-  description: _description,
-  demo: _demo,
-  notes: _notes
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
 } only %}
