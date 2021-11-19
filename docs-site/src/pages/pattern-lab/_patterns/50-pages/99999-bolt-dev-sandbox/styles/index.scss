@@ -84,7 +84,6 @@
 
     @include bolt-mq(small) {
       grid-template-columns: 1fr 1fr;
-      margin-bottom: 0;
     }
 
     @include bolt-mq(large) {
@@ -182,6 +181,7 @@
 
   &--before-submit {
     @include bolt-shadow('level-20');
+    background-color: var(--bolt-color-gray-xlight);
   }
 }
 

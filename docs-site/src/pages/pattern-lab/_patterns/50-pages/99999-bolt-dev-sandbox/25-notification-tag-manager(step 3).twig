@@ -9,34 +9,28 @@
 {% endset %}
 
 {% set steps %}
-  {% include '@bolt-components-pagination/pagination.twig' with {
-    current: 3,
-    total: 4,
-    pages: {
-      1: {
-        href: '#!'
-      },
-      2: {
-        href: '#!'
-      },
-      3: {
-        href: '#!'
-      },
-      4: {
-        href: '#!'
-      },
-    },
+  {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+    value: 3,
+    valueFormat: 'step',
+    max: 4,
   } only %}
 {% endset %}
 
-{% set step_info %}
-  {% include '@bolt-components-headline/headline.twig' with {
-    size: 'xlarge',
-    text: 'Step 3:'
-  } only %}
+{% set step_heading_inner %}
   {% include '@bolt-components-headline/text.twig' with {
     size: 'large',
-    text: 'How do you want to be notified?'
+    text: 'How do you want to be notified?',
+    tag: 'span'
+  } only %}
+{% endset %}
+
+{% set step_heading %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xlarge',
+    text: 'Step 3:' ~ step_heading_inner,
+    attributes: {
+      class: 'c-ntm__builder-title u-bolt-margin-bottom-large'
+    }
   } only %}
 {% endset %}
 
@@ -52,6 +46,7 @@
   {% include '@bolt-components-chip/chip.twig' with {
     text: 'Question',
     size: 'small',
+    color: 'success'
   } only %}
 {% endset %}
 
@@ -59,13 +54,15 @@
   {% include '@bolt-components-chip/chip.twig' with {
     text: 'Discussion',
     size: 'small',
+    color: 'success'
   } only %}
 {% endset %}
 
 {% set chip_3 %}
   {% include '@bolt-components-chip/chip.twig' with {
-    text: 'Pega customer Service 8.6',
+    text: 'Pega Customer Services 8.6',
     size: 'small',
+    color: 'success'
   } only %}
 {% endset %}
 
@@ -73,6 +70,17 @@
   {% include '@bolt-components-chip/chip.twig' with {
     text: 'Mobile',
     size: 'small',
+    color: 'success'
+  } only %}
+{% endset %}
+
+{% set frame %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'small',
+    text: 'Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' and ' ~ chip_4 ~ ' is published or updated.',
+    attributes: {
+      class: 'c-ntm__frame'
+    }
   } only %}
 {% endset %}
 
@@ -211,10 +219,8 @@
   </header>
   <div class="c-ntm__body">
     {{ frame_title }}
-    <p class="c-ntm__frame">Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with {{ chip_3 }} and {{ chip_4 }}is published or updated.</p>
-    <div class="c-ntm__builder-title">
-      {{ step_info }}
-    </div>
+    {{ frame }}
+    {{ step_heading }}
     <div class="c-ntm__builder c-ntm__builder--step-three">
       <div class="c-ntm__container">
         <div class="c-ntm__fieldset-group c-ntm__fieldset-group--step-three">

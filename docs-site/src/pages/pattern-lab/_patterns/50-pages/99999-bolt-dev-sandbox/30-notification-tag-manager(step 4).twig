@@ -9,34 +9,28 @@
 {% endset %}
 
 {% set steps %}
-  {% include '@bolt-components-pagination/pagination.twig' with {
-    current: 4,
-    total: 4,
-    pages: {
-      1: {
-        href: '#!'
-      },
-      2: {
-        href: '#!'
-      },
-      3: {
-        href: '#!'
-      },
-      4: {
-        href: '#!'
-      },
-    },
+  {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+    value: 4,
+    valueFormat: 'step',
+    max: 4,
   } only %}
 {% endset %}
 
-{% set step_info %}
-  {% include '@bolt-components-headline/headline.twig' with {
-    size: 'xlarge',
-    text: 'Step 4:'
-  } only %}
+{% set step_heading_inner %}
   {% include '@bolt-components-headline/text.twig' with {
     size: 'large',
-    text: 'Name and save your target'
+    text: 'How do you want to be notified?',
+    tag: 'span'
+  } only %}
+{% endset %}
+
+{% set step_heading %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xlarge',
+    text: 'Step 3:' ~ step_heading_inner,
+    attributes: {
+      class: 'c-ntm__builder-title u-bolt-margin-bottom-large'
+    }
   } only %}
 {% endset %}
 
@@ -73,6 +67,28 @@
   {% include '@bolt-components-chip/chip.twig' with {
     text: 'Mobile',
     size: 'small',
+  } only %}
+{% endset %}
+
+{% set icon_bell %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'bell-solid',
+  } only %}
+{% endset %}
+
+{% set icon_email %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'email',
+  } only %}
+{% endset %}
+
+{% set frame %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'small',
+    text: icon_bell ~ icon_email ~ ' Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' and ' ~ chip_4 ~ ' is published or updated.',
+    attributes: {
+      class: 'c-ntm__frame c-ntm__frame--before-submit'
+    }
   } only %}
 {% endset %}
 
@@ -140,18 +156,6 @@
   } only %}
 {% endset %}
 
-{% set icon_bell %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'bell-solid',
-  } only %}
-{% endset %}
-
-{% set icon_email %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'email',
-  } only %}
-{% endset %}
-
 {% set legal_note %}
   {% include '@bolt-components-headline/text.twig' with {
     text: 'Legal dolor sit amet',
@@ -173,10 +177,8 @@
   </header>
   <div class="c-ntm__body">
     {{ frame_title }}
-      <p class="c-ntm__frame c-ntm__frame--before-submit t-bolt-gray-xlight">
-      {{ icon_bell }}
-      {{ icon_email }}
-       Notify me when {{ chip_1 }} or {{ chip_2 }} tagged with {{ chip_3 }} and {{ chip_4 }} is published or updated.</p>
+    {{ frame }}
+    {{ step_heading }}
     <div class="c-ntm__builder-title">
       {{ step_info }}
     </div>
