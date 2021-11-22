@@ -183,7 +183,7 @@
 {% set modal_content %}
   <header class="c-ntm__header">
     {{ title }}
-    <div class="c-ntm__steps">
+    <div class="c-ntm__header-steps">
       Step: {{ steps }}
     </div>
   </header>
@@ -192,11 +192,9 @@
     {{ frame }}
     {{ step_heading }}
     <div class="c-ntm__builder c-ntm__builder--step-three">
-      <div class="c-ntm__container">
-        <div class="c-ntm__fieldset-group c-ntm__fieldset-group--step-three">
+      <div class="c-ntm__builder-inputs c-ntm__builder-inputs--step-three">
         {{ switcher_on }}
         {{ switcher_off }}
-        </div>
       </div>
     </div>
     <div class="c-ntm__nav">
@@ -237,7 +235,7 @@
 
   <div class="c-ntm">
     {% include '@bolt-components-headline/headline.twig' with {
-      text: 'Click the button below to open Notification Tag Manager.',
+      text: 'Click the button below to open Notification Tag Manager (Step 3).',
       size: 'large',
       tag: 'h2'
     } only %}

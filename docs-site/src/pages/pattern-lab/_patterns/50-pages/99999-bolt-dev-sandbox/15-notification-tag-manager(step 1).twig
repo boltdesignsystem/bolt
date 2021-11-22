@@ -99,18 +99,30 @@
             title: checkbox,
             displayType: 'inline-checkbox',
             attributes: {
-              for: 'checkbox-' ~ item.title ~ '-' ~ checkbox
+              for: 'checkbox-' ~ item.title ~ '-' ~ checkbox,
             }
           } only %}
         {% endset %}
-        {% set input %}
-          {% include '@bolt-components-form/form-input.twig' with {
-            attributes: {
-              type: 'checkbox',
-              id: 'checkbox-' ~ item.title ~ '-' ~ checkbox,
-            },
-          } only %}
-        {% endset %}
+        {% if checkbox == 'Question' or checkbox == 'Discussion' %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-' ~ item.title ~ '-' ~ checkbox,
+                checked: true
+              },
+            } only %}
+          {% endset %}
+          {% else %}
+            {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-' ~ item.title ~ '-' ~ checkbox,
+              },
+            } only %}
+          {% endset %}
+        {% endif %}
         {% include '@bolt-components-form/form-element.twig' with {
           label: label,
           children: input
@@ -183,7 +195,7 @@
 {% set modal_content %}
   <header class="c-ntm__header">
     {{ title }}
-    <div class="c-ntm__steps">
+    <div class="c-ntm__header-steps">
       Step: {{ steps }}
     </div>
   </header>
@@ -192,12 +204,10 @@
     {{ frame }}
     {{ step_heading }}
     <div class="c-ntm__builder">
-      <div class="c-ntm__container">
-        <div class="c-ntm__fieldset-group">
-          {{ checkbox_fieldsets_representation }}
-        </div>
+      <div class="c-ntm__builder-inputs">
+        {{ checkbox_fieldsets_representation }}
       </div>
-      <div class="c-ntm__container">
+      <div class="c-ntm__builder-list">
         {{ tips_list }}
       </div>
     </div>
@@ -239,7 +249,7 @@
 
   <div class="c-ntm">
     {% include '@bolt-components-headline/headline.twig' with {
-      text: 'Click the button below to open Notification Tag Manager.',
+      text: 'Click the button below to open Notification Tag Manager (Step 1).',
       size: 'large',
       tag: 'h2'
     } only %}

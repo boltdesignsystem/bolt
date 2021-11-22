@@ -27,13 +27,13 @@
       margin-bottom: 0;
     }
   }
+}
 
-  .c-ntm__steps {
-    display: flex;
-    align-items: center;
-    gap: var(--bolt-spacing-x-small);
-    color: var(--bolt-color-white);
-  }
+.c-ntm__header-steps {
+  display: flex;
+  align-items: center;
+  gap: var(--bolt-spacing-x-small);
+  color: var(--bolt-color-white);
 }
 
 .c-ntm__builder-title {
@@ -43,7 +43,7 @@
   gap: var(--bolt-spacing-x-xsmall);
 }
 
-.c-ntm__fieldset-group {
+.c-ntm__builder-inputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 var(--bolt-spacing-x-small);
@@ -90,6 +90,16 @@
     @include bolt-shadow('level-20');
     background-color: var(--bolt-color-gray-xlight);
   }
+}
+
+.c-ntm__icon-bell {
+  margin-right: var(--bolt-spacing-x-xsmall);
+  color: var(--bolt-color-navy-light);
+}
+
+.c-ntm__icon-email {
+  margin-right: var(--bolt-spacing-x-xsmall);
+  color: var(--bolt-color-gray);
 }
 
 .c-ntm__body {

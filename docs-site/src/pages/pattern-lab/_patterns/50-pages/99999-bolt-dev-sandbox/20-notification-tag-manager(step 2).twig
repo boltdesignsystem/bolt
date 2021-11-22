@@ -102,7 +102,7 @@
         {
           type: 'option',
           value: '',
-          label: '- Select an option -',
+          label: '- Choose a product -',
         },
         {
           type: 'option',
@@ -122,7 +122,7 @@
         {
           type: 'option',
           value: '',
-          label: '- Select an option -',
+          label: '- Choose a capability -',
         },
         {
           type: 'option',
@@ -142,7 +142,7 @@
         {
           type: 'option',
           value: '',
-          label: '- Select an option -',
+          label: '- Choose a forum tag -',
         },
         {
           type: 'option',
@@ -162,7 +162,7 @@
         {
           type: 'option',
           value: '',
-          label: '- Select an option -',
+          label: '- Choose an industry-',
         },
         {
           type: 'option',
@@ -271,7 +271,7 @@
 {% set modal_content %}
   <header class="c-ntm__header">
     {{ title }}
-    <div class="c-ntm__steps">
+    <div class="c-ntm__header-steps">
       Step: {{ steps }}
     </div>
   </header>
@@ -280,12 +280,10 @@
     {{ frame }}
     {{ step_heading }}
     <div class="c-ntm__builder">
-      <div class="c-ntm__container">
-        <div class="c-ntm__fieldset-group c-ntm__fieldset-group--step-two">
-          {{ select_fieldsets_representation }}
-        </div>
+      <div class="c-ntm__builder-inputs c-ntm__builder-inputs--step-two">
+        {{ select_fieldsets_representation }}
       </div>
-      <div class="c-ntm__container">
+      <div class="c-ntm__builder-list">
         {{ tips_list }}
       </div>
     </div>
@@ -327,7 +325,7 @@
 
   <div class="c-ntm">
     {% include '@bolt-components-headline/headline.twig' with {
-      text: 'Click the button below to open Notification Tag Manager.',
+      text: 'Click the button below to open Notification Tag Manager (Step 2).',
       size: 'large',
       tag: 'h2'
     } only %}
