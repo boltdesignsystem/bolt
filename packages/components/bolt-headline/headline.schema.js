@@ -14,8 +14,8 @@ module.exports = {
     tag: {
       type: 'string',
       description: 'Set the semantic HTML tag for the headline.',
-      default: 'p',
-      enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'cite', 'div'],
+      default: 'div',
+      enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'div', 'p', 'cite'],
     },
     align: {
       description: 'Set the text alignment of the headline.',
