@@ -243,13 +243,13 @@
   </div>
 
   {% include '@bolt-components-modal/modal.twig' with {
-  content: modal_content,
-  width: 'full',
-  spacing: 'none',
-  attributes: {
-    class: 'js-bolt-modal',
-  },
-} only %}
+    content: modal_content,
+    width: 'full',
+    spacing: 'none',
+    attributes: {
+      class: 'js-bolt-modal',
+    },
+  } only %}
 <script>
   let switchButton = document.querySelectorAll(
     '.js-target-the-switch-button-container button[role="switch"]',
