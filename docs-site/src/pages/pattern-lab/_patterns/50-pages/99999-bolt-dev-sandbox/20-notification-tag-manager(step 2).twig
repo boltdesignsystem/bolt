@@ -191,10 +191,10 @@
           options: item.select_option
         } only %}
       {% endset %}
-    {% include '@bolt-components-form/form-element.twig' with {
-      label: label,
-      children: select
-    } only %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: select
+      } only %}
     {% endset %}
     {% include '@bolt-components-form/form-fieldset.twig' with {
       legendTitle: item.title,
