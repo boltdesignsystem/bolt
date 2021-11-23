@@ -131,11 +131,11 @@
 
 {% set follow_tags_details %}
   {% include '@bolt-components-headline/text.twig' with {
-    text: 'It\'s easy to get notified of new content! Click "Create Tag Set" to create notifications for specific content as it is published.',
+    text: 'It\'s easy to get notified of new content! Click <strong>"Create Tag Set"</strong> to create notifications for specific content as it is published.',
   } only %}
     {% include '@bolt-components-headline/text.twig' with {
-    text: 'You are following 0 tags',
-  } only %}
+      text: 'You are following <strong>0</strong> tags',
+    } only %}
 {% endset %}
 
 {% set tag_set_button %}
