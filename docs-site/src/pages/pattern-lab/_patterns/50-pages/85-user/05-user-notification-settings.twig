@@ -1,0 +1,266 @@
+{% extends "@pl/_site-layout-template.twig" %}
+
+{% set heading %}
+  <div class="c-ntm__sort">
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Content you follow:',
+      tag: 'h2',
+      size: 'xxlarge'
+    } only %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Sort options',
+        displayType: 'floating',
+      } only %}
+    {% endset %}       
+    {% set select %}
+      {% include '@bolt-components-form/form-select.twig' with {
+        options: [
+          {
+            type: 'option',
+            value: '',
+            label: 'Choose from below',
+            attributes: {
+              disabled: true
+            }
+          },
+          {
+            type: 'option',
+            value: 'all-content-types',
+            label: 'All content types',
+          },
+          {
+            type: 'option',
+            value: 'sort-a',
+            label: 'sort a',
+          },
+          {
+            type: 'option',
+            value: 'sort-b',
+            label: 'sort b',
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: select
+    } only %}
+  </div>
+{% endset %}
+
+{% set list %}
+  {% set items = [
+    {
+      name: 'Collaboration center',
+      tag: 'Discussion',
+      heading: 'Configure External Kafka as a stream service',
+      icon: 'pega-chat-typing',
+    },
+    {
+      name: 'Collaboraton center',
+      tag: 'Idea',
+      heading: '0Auth2.0 Authentication Profile for Connect SOAP in Pega 7.3.1',
+      icon: 'ideas',
+    },
+    {
+      name: 'Pega academy',
+      tag: 'Mission',
+      heading: 'Low-code App Builder',
+      icon: 'rocket',
+    },
+  ] %}
+
+  <ul class="c-ntm__list">
+    {% for item in items %}
+      {% set list_item_button %}
+        {% set icon_trash %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'trash',
+          } only %}
+        {% endset %}
+        {% set tooltip_trigger %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Delete ' ~ item.heading ~ ' item from the list',
+            icon_only: icon_trash,
+            hierarchy: 'transparent',
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-tooltip/tooltip.twig' with {
+          trigger: tooltip_trigger,
+          content: 'Delete from the list',
+        } only %}
+      {% endset %}
+      <li class="c-ntm__list-item">
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: item.icon,
+          size: 'large'
+        } only %}
+        <div class="c-ntm__list-content">
+          {% include '@bolt-components-headline/eyebrow.twig' with {
+            text: item.name ~ '<span aria-hidden="true"> | </span>' ~ item.tag,
+            transform: 'uppercase'
+          } only %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: item.heading,
+            tag: 'h3',
+            size: 'large',
+            attributes: {
+              class: 'c-ntm__list-title'
+            }
+          } only %}
+        </div>
+        {{ list_item_button }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endset %}
+
+{% set bottom_headline %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Tags you follow:',
+    tag: 'h2',
+    size: 'xxlarge'
+  } only %}
+{% endset %}
+
+{% set follow_tags_details %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'It\'s easy to get notified of new content! Click <strong>"Create Tag Set"</strong> to create notifications for specific content as it is published.',
+  } only %}
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'You are following <strong>0</strong> tags',
+    } only %}
+{% endset %}
+
+{% set tag_set_button %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Create tag set',
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+
+{% set modal_content %}
+  {% set video %}
+    <video-js
+      data-delayed-account="1900410236"
+      data-delayed-player="O3FkeBiaDz"
+      data-delayed-video-id="4892122320001"
+      data-video-delayed
+      data-embed="default"
+      controls
+      data-media-title
+      data-media-duration
+      class="c-base-video js-bolt-video--demo-1"></video-js>
+  {% endset %}
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+
+{% set video_trigger %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Watch Demo',
+    attributes: {
+      class: 'c-ntm__video-trigger',
+      type: 'button',
+      'data-bolt-modal-target': '.js-bolt-modal--demo',
+    }
+  } only %}
+{% endset %}
+
+{% set modal %}
+  {% include '@bolt-components-modal/modal.twig' with {
+    content: modal_content,
+    width: 'optimal',
+    spacing: 'none',
+    theme: 'none',
+    scroll: 'overall',
+    attributes: {
+      class: 'js-bolt-modal--demo',
+    },
+  } only %}
+{% endset %}
+
+{% block main_content %}
+  {% set layout_content %}
+    {% set headline %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Notification Settings',
+        size: 'xxxlarge',
+        tag: 'h1'
+      } only %}
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: headline,
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_content,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    attributes: {
+      class: 't-bolt-navy',
+    },
+  } only %}
+
+  {% set layout_content %}
+    {% set manage_notifications %}
+      <div class="c-ntm">
+        {{ heading }}
+        {{ list }}
+        {{ bottom_headline }}
+        {{ follow_tags_details }}
+        {{ tag_set_button }}
+        {{ video_trigger }}
+        {{ modal }}
+        {{ javascript_1 }}
+      </div>
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: manage_notifications,
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_content,
+    padding_top: 'large',
+    padding_bottom: 'large',
+  } only %}
+  
+  {% set layout_content %}
+    {% set text_link %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Manage email subscriptions here',
+        attributes: {
+          href: 'https://google.com',
+          target: '_blank',
+          rel: 'noopener'
+        }
+      } only %}
+    {% endset %}
+    {% set footnote %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+      } only %}
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: footnote,
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_content,
+    padding_top: 'small',
+    padding_bottom: 'small',
+    attributes: {
+      class: 't-bolt-navy',
+    },
+  } only %}
+{% endblock %}
+
