@@ -1,0 +1,47 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-notifications'].schema['notifications'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-notifications',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+  {% if header %}
+    <div class="c-bolt-notifications__header">
+      {% if header.content %}
+        {{ header.content }}
+      {% else %}
+        {% if header.switch_button %}
+          <div class="c-bolt-notifications__switch">
+            {{ header.switch_button }}
+          </div>
+        {% endif %}
+        {% if header.actions %}
+          <div class="c-bolt-notifications__actions">
+            {{ header.actions }}
+          </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  {% endif %}
+  {% if content %}
+    {{ content }}
+  {% else %}
+    <div class="c-bolt-notifications__list">
+      You are all caught up.
+    </div>
+  {% endif %}
+  {% if footer.content %}
+    <div class="c-bolt-notifications__footer">
+      {{ footer.content }}
+    </div>
+  {% endif %}
+</div>

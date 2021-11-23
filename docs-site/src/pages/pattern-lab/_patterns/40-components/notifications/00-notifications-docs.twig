@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-notifications/notifications.twig' with {
+  content: 'This is a notifications component.'
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'notifications',
+  usage: usage
+} only %}

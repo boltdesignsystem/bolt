@@ -1,0 +1,33 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-notifications'].schema['notifications-list-item'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set _message_attributes = create_attribute(message.attributes|default({})) %}
+{% set _message_tag = _message_attributes.type ? 'button' : _message_attributes.href ? 'a' : 'span' %}
+
+{% set classes = [
+  'c-bolt-notifications__list-item',
+] %}
+
+{# Template #}
+<li {{ attributes.addClass(classes) }}>
+  <div class="c-bolt-notifications__signifier">
+    {{ signifier }}
+  </div>
+  <div class="c-bolt-notifications__content">
+    <div class="c-bolt-notifications__eyebrow">
+      {{ site_name }}
+    </div>
+    <div class="c-bolt-notifications__timestamp">
+      {{ timestamp }}
+    </div>
+    <{{ _message_tag }} {{ _message_attributes.addClass('c-bolt-notifications__message') }}>
+      {{ message.content }}
+    </{{ _message_tag }}>
+  </div>
+</li>

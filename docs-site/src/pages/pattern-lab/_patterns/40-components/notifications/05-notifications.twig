@@ -1,0 +1,85 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set content %}
+    {% set list_content %}
+      {% include '@bolt-components-notifications/notifications-list-heading-divider.twig' with {
+        content: 'Lastest',
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_announce,
+        site_name: 'Community',
+        timestamp: '5 min ago',
+        message: {
+          content: '<em>Emphasize part of</em> a message.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_announce,
+        site_name: 'Collaboration Center',
+        timestamp: '10 min ago',
+        message: {
+          content: '<em>Emphasize part of</em> a message.',
+          attributes: {
+            href: '#!',
+          },
+        },
+        read: 'true',
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-heading-divider.twig' with {
+        content: 'Recent',
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_announce,
+        site_name: 'Academy',
+        timestamp: '1 day ago',
+        message: {
+          content: '<em>Emphasize part of</em> a message.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_announce,
+        site_name: 'Docs',
+        timestamp: '2 days ago',
+        message: {
+          content: '<em>Emphasize part of</em> a message.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+    {% endset %}
+    
+    {% include '@bolt-components-notifications/notifications-list.twig' with {
+      content: list_content,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-notifications/notifications.twig' with {
+    content: content,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-notifications/notifications.twig' with {
+  content: 'This is a notifications component.'
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Notifications',
+  description: 'description',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

@@ -1,0 +1,33 @@
+{
+  "name": "@bolt/components-notifications",
+  "version": "5.0.1",
+  "description": "UI element that displays notifications and user actions.",
+  "keywords": [
+    "bolt design system"
+  ],
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-notifications"
+  },
+  "license": "MIT",
+  "author": "Mike Mai <emceehao@gmail.com>",
+  "main": "index.js",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/core-v3.x": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "schema": [
+    "notifications.schema.js",
+    "notifications-list.schema.js",
+    "notifications-list-item.schema.js",
+    "notifications-list-heading-divider.schema.js"
+  ],
+  "twig": "src/notifications.twig"
+}
