@@ -70,8 +70,12 @@
     grid-template-columns: auto;
     gap: var(--bolt-spacing-y-medium);
 
-    @include bolt-mq(small) {
-      grid-template-columns: max-content;
+    .c-bolt-switch-button {
+      grid-template-columns: auto 1fr;
+    }
+
+    .c-bolt-switch-button__button {
+      order: -1;
     }
   }
 
