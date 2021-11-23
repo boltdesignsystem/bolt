@@ -1,0 +1,337 @@
+
+{% extends "@pl/_default-page-template.twig" %}
+
+{% set header %}
+  <header class="c-ntm__header">
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xxxlarge',
+      text: 'Pega Tag set builder'
+    } only %}
+    <div class="c-ntm__header-steps">
+      {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+        value: 2,
+        valueFormat: 'step',
+        max: 4,
+      } only %}
+    </div>
+  </header>
+{% endset %}
+
+{% set step_heading_inner %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'large',
+    text: 'What tags are yu interested in?',
+    tag: 'span'
+  } only %}
+{% endset %}
+
+{% set step_heading %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xlarge',
+    text: 'Step 2:' ~ step_heading_inner,
+    attributes: {
+      class: 'c-ntm__builder-title u-bolt-margin-bottom-large'
+    }
+  } only %}
+{% endset %}
+
+{% set frame_title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'small',
+    text: 'Your current tag set',
+    transform: 'uppercase'
+  } only %}
+{% endset %}
+
+{% set chip_1 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Question',
+    size: 'xsmall',
+    color: 'navy'
+  } only %}
+{% endset %}
+
+{% set chip_2 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Discussion',
+    size: 'xsmall',
+    color: 'navy'
+  } only %}
+{% endset %}
+
+{% set chip_3 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Step 2',
+    size: 'xsmall',
+  } only %}
+{% endset %}
+
+{% set frame %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'small',
+    text: 'Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' is published or updated.',
+    attributes: {
+      class: 'c-ntm__frame'
+    }
+  } only %}
+{% endset %}
+
+{% set info_icon %}
+  <span class="u-bolt-color-gray">
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'info-circle',
+      attributes: {
+        'aria-label': 'This is a tooltip',
+      }
+    } only %}
+  </span>
+{% endset %}
+
+{% set tool_tip %}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    trigger: info_icon,
+    content: 'This is a tooltip',
+  } only %}
+{% endset %}
+
+
+{% set select_fieldsets_representation %}
+  <div class="c-ntm__builder-inputs c-ntm__builder-inputs--step-two">
+    {% set select_fieldset_group = [
+      {
+        title: 'Pega Product',
+        select_option: [
+          {
+            type: 'option',
+            value: '',
+            label: '- Choose a product -',
+          },
+          {
+            type: 'option',
+            value: 'product-a',
+            label: 'product a',
+          },
+          {
+            type: 'option',
+            value: 'product-b',
+            label: 'product b',
+          },
+        ],
+      },
+      {
+        title: 'Product Capability',
+        select_option: [
+          {
+            type: 'option',
+            value: '',
+            label: '- Choose a capability -',
+          },
+          {
+            type: 'option',
+            value: 'capability-a',
+            label: 'capability a',
+          },
+          {
+            type: 'option',
+            value: 'capability-b',
+            label: 'capability b',
+          },
+        ]
+      },
+      {
+        title: 'Collaboration Center' ~ tool_tip,
+        select_option: [
+          {
+            type: 'option',
+            value: '',
+            label: '- Choose a forum tag -',
+          },
+          {
+            type: 'option',
+            value: 'collaboration-a',
+            label: 'collaboration a',
+          },
+          {
+            type: 'option',
+            value: 'collaboration b',
+            label: 'collaboration b',
+          },
+        ]
+      },
+      {
+        title: 'Industry',
+        select_option: [
+          {
+            type: 'option',
+            value: '',
+            label: '- Choose an industry-',
+          },
+          {
+            type: 'option',
+            value: 'industry-a',
+            label: 'industry a',
+          },
+          {
+            type: 'option',
+            value: 'industry-b',
+            label: 'industry b',
+          },
+        ]
+      }
+    ] %}
+
+    {% for item in select_fieldset_group %}
+      {% set select_children %}
+        {% set label %}
+          {% include '@bolt-components-form/form-label.twig' with {
+            title: 'Select',
+            displayType: 'floating',
+          } only %}
+        {% endset %}       
+        {% set select %}
+          {% include '@bolt-components-form/form-select.twig' with {
+            options: item.select_option
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-form/form-element.twig' with {
+          label: label,
+          children: select
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-fieldset.twig' with {
+        legendTitle: item.title,
+        children: select_children
+      } only %}
+    {% endfor %}
+  </div>
+{% endset %}
+
+{% set tips_list %}
+  <div class="c-ntm__builder-list">
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'small',
+      text: 'Tips and suggestions:',
+      transform: 'capitalize'
+    } only %}
+    {% include '@bolt-components-ul/ul.twig' with {
+      items: [
+        'Do not include any data or information in your posts that are confidential!',
+        'Apply basic practices for collaborative work.',
+      ]
+    } only %}
+  </div>
+{% endset %}
+
+{% set text_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'Manage email subscriptions here',
+  attributes: {
+    href: 'https://google.com',
+    target: '_blank',
+    rel: 'noopener'
+  }
+} only %}
+{% endset %}
+
+{% set navigation %}
+  <div class="c-ntm__nav">
+    {% set icon_chevron_left %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-left',
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Previous',
+      attributes: {
+        type: 'button',
+      },
+      icon_before: icon_chevron_left,
+      border_radius: 'full',
+    } only %}
+
+    {% set icon_chevron_right %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-right',
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Next',
+      attributes: {
+        type: 'button',
+      },
+      icon_after: icon_chevron_right,
+      border_radius: 'full',
+    } only %}
+  </div>
+{% endset %}
+
+{% set footer %}
+  <footer class="c-ntm__footer t-bolt-navy">
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+    } only %}
+  </footer>
+{% endset %}
+
+{% set modal_content %}
+  {{ header }}
+  <div class="c-ntm__body">
+    {{ frame_title }}
+    {{ frame }}
+    {{ step_heading }}
+    <div class="c-ntm__builder">
+      {{ select_fieldsets_representation }}
+      {{ tips_list }}
+    </div>
+    {{ navigation}}
+  </div>
+  {{ footer }}
+{% endset %}
+
+{% set modal_trigger %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Open Notification Tag Manager',
+    size: 'large',
+    attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '.js-bolt-modal',
+    },
+  } only %}
+{% endset %}
+
+{% block main_content %}
+  {% set header %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Notification Tag Manager',
+      size: 'xxxlarge',
+      tag: 'h1'
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-band/band.twig' with {
+    theme: 'dark',
+    size: 'large',
+    content: header,
+  } only %}
+
+  <div class="c-ntm">
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Click the button below to open Notification Tag Manager (Step 2).',
+      size: 'large',
+      tag: 'h2'
+    } only %}
+    {{ modal_trigger }}
+  </div>
+
+  {% include '@bolt-components-modal/modal.twig' with {
+    content: modal_content,
+    width: 'full',
+    spacing: 'none',
+    attributes: {
+      class: 'js-bolt-modal',
+    },
+  } only %}
+{% endblock %}
+

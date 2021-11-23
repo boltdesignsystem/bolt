@@ -1,19 +1,20 @@
 
 {% extends "@pl/_default-page-template.twig" %}
 
-{% set title %}
-  {% include '@bolt-components-headline/headline.twig' with {
-    size: 'xxxlarge',
-    text: 'Pega Tag set builder'
-  } only %}
-{% endset %}
-
-{% set steps %}
-  {% include '@bolt-components-progress-bar/progress-bar.twig' with {
-    value: 4,
-    valueFormat: 'step',
-    max: 4,
-  } only %}
+{% set header %}
+  <header class="c-ntm__header">
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xxxlarge',
+      text: 'Pega Tag set builder'
+    } only %}
+    <div class="c-ntm__header-steps">
+      {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+        value: 4,
+        valueFormat: 'step',
+        max: 4,
+      } only %}
+    </div>
+  </header>
 {% endset %}
 
 {% set step_heading_inner %}
@@ -101,28 +102,30 @@
 {% endset %}
 
 {% set input %}
-  {% set label %}
-    {% include '@bolt-components-form/form-label.twig' with {
-      title: 'Insert name',
-      displayType: 'floating',
-      attributes: {
-        for: 'name-id'
-      }
+  <div class="c-ntm__builder-inputs c-ntm__builder-inputs--step-four">
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Insert name',
+        displayType: 'floating',
+        attributes: {
+          for: 'name-id'
+        }
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'text',
+          id: 'name-id',
+          placeholder: 'Insert name'
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input
     } only %}
-  {% endset %}
-  {% set input %}
-    {% include '@bolt-components-form/form-input.twig' with {
-      attributes: {
-        type: 'text',
-        id: 'name-id',
-        placeholder: 'Insert name'
-      },
-    } only %}
-  {% endset %}
-  {% include '@bolt-components-form/form-element.twig' with {
-    label: label,
-    children: input
-  } only %}
+  </div>
 {% endset %}
 
 {% set text_link %}
@@ -136,31 +139,38 @@
 } only %}
 {% endset %}
 
-{% set next_btn %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Save',
-    attributes: {
-      type: 'submit'
-    },
-    border_radius: 'full',
-  } only %}
-{% endset %}
+{% set navigation %}
+  <div class="c-ntm__nav">
+    {% set icon_chevron_left %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-left',
+      } only %}
+    {% endset %}
 
-{% set icon_chevron_left %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'chevron-left',
-  } only %}
-{% endset %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Previous',
+      attributes: {
+        type: 'button',
+      },
+      icon_before: icon_chevron_left,
+      border_radius: 'full',
+    } only %}
 
-{% set prev_btn %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Previous',
-    attributes: {
-      type: 'button',
-    },
-    icon_before: icon_chevron_left,
-    border_radius: 'full',
-  } only %}
+    {% set icon_chevron_right %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-right',
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Save',
+      attributes: {
+        type: 'submit',
+      },
+      icon_after: icon_chevron_right,
+      border_radius: 'full',
+    } only %}
+  </div>
 {% endset %}
 
 {% set legal_note %}
@@ -173,36 +183,26 @@
 {% endset %}
 
 {% set footer %}
-  {% include '@bolt-components-headline/text.twig' with {
-  text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
-} only %}
+  <footer class="c-ntm__footer t-bolt-navy">
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+    } only %}
+  </footer>
 {% endset %}
 
 {% set modal_content %}
-  <header class="c-ntm__header">
-    {{ title }}
-    <div class="c-ntm__header-steps">
-      Step: {{ steps }}
-    </div>
-  </header>
+  {{ header }}
   <div class="c-ntm__body">
     {{ frame_title }}
     {{ frame }}
     {{ step_heading }}
     <div class="c-ntm__builder c-ntm__builder--step-four">
-      <div class="c-ntm__builder-inputs c-ntm__builder-inputs--step-four">
-        {{ input }}
-      </div>
+      {{ input }}
     </div>
-    <div class="c-ntm__nav">
-      {{ prev_btn }}
-      {{ next_btn }}
-    </div>
+    {{ navigation}}
     {{ legal_note }}
   </div>
-  <footer class="c-ntm__footer t-bolt-navy">
-    {{ footer }}
-  </footer>
+  {{ footer }}
 {% endset %}
 
 {% set modal_trigger %}

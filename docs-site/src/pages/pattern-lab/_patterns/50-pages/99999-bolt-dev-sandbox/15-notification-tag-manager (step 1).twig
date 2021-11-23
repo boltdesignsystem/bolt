@@ -1,0 +1,264 @@
+
+{% extends "@pl/_default-page-template.twig" %}
+
+{% set header %}
+  <header class="c-ntm__header">
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xxxlarge',
+      text: 'Pega Tag set builder'
+    } only %}
+    <div class="c-ntm__header-steps">
+      {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+        value: 1,
+        valueFormat: 'step',
+        max: 4,
+      } only %}
+    </div>
+  </header>
+{% endset %}
+
+{% set step_heading_inner %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'large',
+    text: 'What types of content do you want to follow?',
+    tag: 'span'
+  } only %}
+{% endset %}
+
+{% set step_heading %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xlarge',
+    text: 'Step 1:' ~ step_heading_inner,
+    attributes: {
+      class: 'c-ntm__builder-title u-bolt-margin-bottom-large'
+    }
+  } only %}
+{% endset %}
+
+{% set frame_title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'small',
+    text: 'Your current tag set',
+    transform: 'uppercase'
+  } only %}
+{% endset %}
+
+{% set chip_1 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Question',
+    size: 'xsmall',
+    color: 'navy'
+  } only %}
+{% endset %}
+
+{% set chip_2 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Discussion',
+    size: 'xsmall',
+    color: 'navy'
+  } only %}
+{% endset %}
+
+{% set chip_3 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Step 2',
+    size: 'xsmall',
+  } only %}
+{% endset %}
+
+{% set frame %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'small',
+    text: 'Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' is published or updated.',
+    attributes: {
+      class: 'c-ntm__frame'
+    }
+  } only %}
+{% endset %}
+
+{% set checkbox_fieldsets_representation %}
+  <div class="c-ntm__builder-inputs">
+    {% set checkbox_fieldset_group = [
+      {
+        title: 'Forums',
+        checkboxes: ['Question', 'Discussion', 'Idea']
+      },
+      {
+        title: 'Training',
+        checkboxes: ['Mission']
+      },
+      {
+        title: 'Video & Media',
+        checkboxes: ['Video']
+      }
+    ] %}
+
+    {% for item in checkbox_fieldset_group %}
+      {% set checkbox_children %}
+        {% for checkbox in item.checkboxes %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: checkbox,
+              displayType: 'inline-checkbox',
+              attributes: {
+                for: 'checkbox-' ~ item.title ~ '-' ~ checkbox,
+              }
+            } only %}
+          {% endset %}
+          {% if checkbox == 'Question' or checkbox == 'Discussion' %}
+            {% set input %}
+              {% include '@bolt-components-form/form-input.twig' with {
+                attributes: {
+                  type: 'checkbox',
+                  id: 'checkbox-' ~ item.title ~ '-' ~ checkbox,
+                  checked: true
+                },
+              } only %}
+            {% endset %}
+            {% else %}
+              {% set input %}
+              {% include '@bolt-components-form/form-input.twig' with {
+                attributes: {
+                  type: 'checkbox',
+                  id: 'checkbox-' ~ item.title ~ '-' ~ checkbox,
+                },
+              } only %}
+            {% endset %}
+          {% endif %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input
+          } only %}
+        {% endfor %}
+      {% endset %}
+      {% set fieldset_children %}
+        {% include '@bolt-components-form/form-checkboxes.twig' with {
+          children: checkbox_children
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-components-form/form-fieldset.twig' with {
+        legendTitle: item.title,
+        children: fieldset_children
+      } only %}
+    {% endfor %}
+  </div>
+{% endset %}
+
+{% set tips_list %}
+  <div class="c-ntm__builder-list">
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'small',
+      text: 'Tips and suggestions:',
+      transform: 'capitalize'
+    } only %}
+    {% include '@bolt-components-ul/ul.twig' with {
+      items: [
+        'Do not include any data or information in your posts that are confidential!',
+        'Apply basic practices for collaborative work.',
+        'Be honest, respectful, trustworthy and helpful.',
+        'Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.'
+      ]
+    } only %}
+  </div>
+{% endset %}
+
+{% set text_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'Manage email subscriptions here',
+  attributes: {
+    href: 'https://google.com',
+    target: '_blank',
+    rel: 'noopener'
+  }
+} only %}
+{% endset %}
+
+{% set navigation %}
+  <div class="c-ntm__nav">
+    {% set icon_chevron_right %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-right',
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Next',
+      attributes: {
+        type: 'button',
+      },
+      icon_after: icon_chevron_right,
+      border_radius: 'full',
+    } only %}
+
+  </div>
+{% endset %}
+
+{% set footer %}
+  <footer class="c-ntm__footer t-bolt-navy">
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+    } only %}
+  </footer>
+{% endset %}
+
+{% set modal_content %}
+  {{ header }}
+  <div class="c-ntm__body">
+    {{ frame_title }}
+    {{ frame }}
+    {{ step_heading }}
+    <div class="c-ntm__builder">
+      {{ checkbox_fieldsets_representation }}
+      {{ tips_list }}
+    </div>
+    {{ navigation }}
+  </div>
+  {{ footer }}
+{% endset %}
+
+{% set modal_trigger %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Open Notification Tag Manager',
+    size: 'large',
+    attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '.js-bolt-modal',
+    },
+  } only %}
+{% endset %}
+
+{% block main_content %}
+  {% set header %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Notification Tag Manager',
+      size: 'xxxlarge',
+      tag: 'h1'
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-band/band.twig' with {
+    theme: 'dark',
+    size: 'large',
+    content: header,
+  } only %}
+
+  <div class="c-ntm">
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Click the button below to open Notification Tag Manager (Step 1).',
+      size: 'large',
+      tag: 'h2'
+    } only %}
+    {{ modal_trigger }}
+  </div>
+
+  {% include '@bolt-components-modal/modal.twig' with {
+    content: modal_content,
+    width: 'full',
+    spacing: 'none',
+    attributes: {
+      class: 'js-bolt-modal',
+    },
+  } only %}
+{% endblock %}
+

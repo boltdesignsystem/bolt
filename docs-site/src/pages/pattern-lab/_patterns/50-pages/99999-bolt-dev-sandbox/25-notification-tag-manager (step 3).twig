@@ -1,19 +1,20 @@
 
 {% extends "@pl/_default-page-template.twig" %}
 
-{% set title %}
-  {% include '@bolt-components-headline/headline.twig' with {
-    size: 'xxxlarge',
-    text: 'Pega Tag set builder'
-  } only %}
-{% endset %}
-
-{% set steps %}
-  {% include '@bolt-components-progress-bar/progress-bar.twig' with {
-    value: 3,
-    valueFormat: 'step',
-    max: 4,
-  } only %}
+{% set header %}
+  <header class="c-ntm__header">
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xxxlarge',
+      text: 'Pega Tag set builder'
+    } only %}
+    <div class="c-ntm__header-steps">
+      {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+        value: 3,
+        valueFormat: 'step',
+        max: 4,
+      } only %}
+    </div>
+  </header>
 {% endset %}
 
 {% set step_heading_inner %}
@@ -110,23 +111,23 @@
   } only %}
 {% endset %}
 
-{% set switcher_on %}
-  {% include '@bolt-components-switch-button/switch-button.twig' with {
-    label: notification_1,
-    attributes: {
-      class: 'js-target-the-switch-button-container'
-    },
-  } only %}
-{% endset %}
+{% set switchers_buttons %}
+  <div class="c-ntm__builder-inputs c-ntm__builder-inputs--step-three">
+    {% include '@bolt-components-switch-button/switch-button.twig' with {
+      label: notification_1,
+      attributes: {
+        class: 'js-target-the-switch-button-container'
+      },
+    } only %}
 
-{% set switcher_off %}
-  {% include '@bolt-components-switch-button/switch-button.twig' with {
-    label: notification_2,
-    on: false,
-    attributes: {
-      class: 'js-target-the-switch-button-container'
-    },
-  } only %}
+    {% include '@bolt-components-switch-button/switch-button.twig' with {
+      label: notification_2,
+      on: false,
+      attributes: {
+        class: 'js-target-the-switch-button-container'
+      },
+    } only %}
+  </div>
 {% endset %}
 
 {% set text_link %}
@@ -140,71 +141,60 @@
 } only %}
 {% endset %}
 
-{% set icon_chevron_right %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'chevron-right',
-  } only %}
-{% endset %}
+{% set navigation %}
+  <div class="c-ntm__nav">
+    {% set icon_chevron_left %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-left',
+      } only %}
+    {% endset %}
 
-{% set next_btn %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Next',
-    attributes: {
-      type: 'button',
-    },
-    icon_after: icon_chevron_right,
-    border_radius: 'full',
-  } only %}
-{% endset %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Previous',
+      attributes: {
+        type: 'button',
+      },
+      icon_before: icon_chevron_left,
+      border_radius: 'full',
+    } only %}
 
-{% set icon_chevron_left %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'chevron-left',
-  } only %}
-{% endset %}
+    {% set icon_chevron_right %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-right',
+      } only %}
+    {% endset %}
 
-{% set prev_btn %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Previous',
-    attributes: {
-      type: 'button',
-    },
-    icon_before: icon_chevron_left,
-    border_radius: 'full',
-  } only %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Next',
+      attributes: {
+        type: 'button',
+      },
+      icon_after: icon_chevron_right,
+      border_radius: 'full',
+    } only %}
+  </div>
 {% endset %}
 
 {% set footer %}
-  {% include '@bolt-components-headline/text.twig' with {
-  text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
-} only %}
+  <footer class="c-ntm__footer t-bolt-navy">
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+    } only %}
+  </footer>
 {% endset %}
 
 {% set modal_content %}
-  <header class="c-ntm__header">
-    {{ title }}
-    <div class="c-ntm__header-steps">
-      Step: {{ steps }}
-    </div>
-  </header>
+  {{ header }}
   <div class="c-ntm__body">
     {{ frame_title }}
     {{ frame }}
     {{ step_heading }}
     <div class="c-ntm__builder c-ntm__builder--step-three">
-      <div class="c-ntm__builder-inputs c-ntm__builder-inputs--step-three">
-        {{ switcher_on }}
-        {{ switcher_off }}
-      </div>
+      {{ switchers_buttons }}
     </div>
-    <div class="c-ntm__nav">
-      {{ prev_btn }}
-      {{ next_btn }}
-    </div>
+    {{ navigation }}
   </div>
-  <footer class="c-ntm__footer t-bolt-navy">
-    {{ footer }}
-  </footer>
+  {{ footer }}
 {% endset %}
 
 {% set modal_trigger %}
