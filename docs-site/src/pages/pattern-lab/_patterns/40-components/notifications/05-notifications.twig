@@ -236,17 +236,6 @@
           },
         },
       } only %}
-      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
-        signifier: icon_check_circle,
-        site_name: 'Site Name',
-        timestamp: '3 days ago',
-        message: {
-          content: 'Use <em>check-circle</em> icon for approval notification.',
-          attributes: {
-            href: '#!',
-          },
-        },
-      } only %}
     {% endset %}
 
     {% include '@bolt-components-notifications/notifications-list.twig' with {
@@ -488,17 +477,6 @@
       timestamp: '3 days ago',
       message: {
         content: 'Use <em>reply</em> icon for reply notification.',
-        attributes: {
-          href: '#!',
-        },
-      },
-    } only %}
-    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
-      signifier: icon_check_circle,
-      site_name: 'Site Name',
-      timestamp: '3 days ago',
-      message: {
-        content: 'Use <em>check-circle</em> icon for approval notification.',
         attributes: {
           href: '#!',
         },
