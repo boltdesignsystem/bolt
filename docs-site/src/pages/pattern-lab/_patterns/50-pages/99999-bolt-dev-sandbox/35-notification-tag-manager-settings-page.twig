@@ -178,6 +178,23 @@
   } only %}
 {% endset %}
 
+{% set text_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Manage email subscriptions here',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener'
+    }
+  } only %}
+{% endset %}
+
+{% set bottom_note %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+  } only %}
+{% endset %}
+
 {% set modal %}
   {% include '@bolt-components-modal/modal.twig' with {
     content: modal_content,
@@ -216,6 +233,11 @@
     {{ modal }}
     {{ javascript_1 }}
   </div>
-
+  
+  {% include '@bolt-components-band/band.twig' with {
+    theme: 'dark',
+    size: 'small',
+    content: bottom_note,
+  } only %}
 {% endblock %}
 

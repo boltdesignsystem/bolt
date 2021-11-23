@@ -76,19 +76,19 @@
 {% endset %}
 
 {% set icon_bell %}
-<span class="c-ntm__icon-bell">
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'bell-solid',
-  } only %}
-</span>
+  <span class="c-ntm__icon-bell">
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'bell-solid',
+    } only %}
+  </span>
 {% endset %}
 
 {% set icon_email %}
-<span class="c-ntm__icon-email">
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'email',
-  } only %}
-</span>
+  <span class="c-ntm__icon-email">
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'email',
+    } only %}
+  </span>
 {% endset %}
 
 {% set frame %}
@@ -130,13 +130,13 @@
 
 {% set text_link %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-  content: 'Manage email subscriptions here',
-  attributes: {
-    href: 'https://google.com',
-    target: '_blank',
-    rel: 'noopener'
-  }
-} only %}
+    content: 'Manage email subscriptions here',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener'
+    }
+  } only %}
 {% endset %}
 
 {% set navigation %}
