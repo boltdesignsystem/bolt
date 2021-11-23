@@ -1,10 +1,44 @@
 {% set notes %}
   <bolt-ol>
-    <bolt-li>List out important information about this component and its usage.</bolt-li>
+    <bolt-li>Each notification message can be set to read or unread.</bolt-li>
+    <bolt-li>Each notification message can be plain text, semantic link, or semantic button: passing <code>href</code> attribute to <code>message.attributes</code> will create a semantic link; passing <code>type</code> attribute to <code>message.attributes</code> will create a semantic button.</bolt-li>
+    <bolt-li>Certain words in a notification message can be emphasized using the <code>&lt;em&gt;</code> HTML element. Emphasized text visually looks like a text link.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
+  {% set switch_button %}
+    {% include '@bolt-components-switch-button/switch-button.twig' with {
+      label: 'Only show unread notifications',
+      attributes: {
+        class: 'js-target-the-switch-button-container'
+      },
+    } only %}
+    <script>
+      const switchButton = document.querySelector(
+        '.js-target-the-switch-button-container button[role="switch"]',
+      );
+
+      switchButton.addEventListener('click', e => {
+        const el = e.target;
+        const isChecked = el.getAttribute('aria-checked') === 'true';
+
+        el.setAttribute('aria-checked', isChecked ? false : true);
+      });
+    </script>
+  {% endset %}
+  {% set icon_check_circle %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'check-circle',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_pega_setting %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-setting',
+      size: 'medium',
+    } only %}
+  {% endset %}
   {% set content %}
     {% set list_content %}
       {% include '@bolt-components-notifications/notifications-list-heading-divider.twig' with {
@@ -15,7 +49,7 @@
         site_name: 'Community',
         timestamp: '5 min ago',
         message: {
-          content: '<em>Emphasize part of</em> a message.',
+          content: 'This is an <em>unread notification</em>.',
           attributes: {
             href: '#!',
           },
@@ -26,7 +60,7 @@
         site_name: 'Collaboration Center',
         timestamp: '10 min ago',
         message: {
-          content: '<em>Emphasize part of</em> a message.',
+          content: 'This is a <em>read notification</em>.',
           attributes: {
             href: '#!',
           },
@@ -38,10 +72,29 @@
       } only %}
       {% include '@bolt-components-notifications/notifications-list-item.twig' with {
         signifier: icon_announce,
+        site_name: 'Docs',
+        timestamp: '2 days ago',
+        message: {
+          content: 'You can make a plain notification without any actions by not passing any message attributes.',
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_announce,
         site_name: 'Academy',
         timestamp: '1 day ago',
         message: {
-          content: '<em>Emphasize part of</em> a message.',
+          content: 'You can create a notification that <em>performs a function</em> by passing <code>type="button"</code> attribute via message attributes.',
+          attributes: {
+            type: 'button',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_announce,
+        site_name: 'Academy',
+        timestamp: '1 day ago',
+        message: {
+          content: 'You can create a <em>linked notification</em> by passing <code>href</code> attribute via message attributes.',
           attributes: {
             href: '#!',
           },
@@ -49,24 +102,46 @@
       } only %}
       {% include '@bolt-components-notifications/notifications-list-item.twig' with {
         signifier: icon_announce,
-        site_name: 'Docs',
-        timestamp: '2 days ago',
+        site_name: 'Academy',
+        timestamp: '1 day ago',
         message: {
-          content: '<em>Emphasize part of</em> a message.',
+          content: 'You can <em>emphasize certain words</em> with the <code>em</code> HTML element. Emphasized text visually looks like a text link.',
           attributes: {
             href: '#!',
           },
         },
       } only %}
     {% endset %}
-    
+
     {% include '@bolt-components-notifications/notifications-list.twig' with {
       content: list_content,
     } only %}
   {% endset %}
 
   {% include '@bolt-components-notifications/notifications.twig' with {
+    header: {
+      switch_button: switch_button,
+      actions: [
+        {
+          icon: icon_check_circle,
+          label: 'Mark all as read',
+          attributes: {
+            type: 'button',
+          },
+        },
+        {
+          icon: icon_pega_setting,
+          label: 'Notification settings',
+          attributes: {
+            href: '#!',
+          },
+        },
+      ]
+    },
     content: content,
+    footer: {
+      content: footer_content,
+    },
   } only %}
 {% endset %}
 

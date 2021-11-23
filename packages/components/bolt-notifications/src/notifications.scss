@@ -6,6 +6,12 @@
 
 .c-bolt-notifications {
   display: block;
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--m-bolt-text);
+  line-height: var(--bolt-type-line-height-xsmall);
+  background-color: var(--m-bolt-bg);
 }
 
 .c-bolt-notifications__list {
@@ -13,15 +19,7 @@
   position: relative;
   margin: 0;
   padding: 0;
-  font-family: var(--bolt-type-font-family-body);
-  font-size: var(--bolt-type-font-size-xsmall);
-  font-weight: var(--bolt-type-font-weight-semibold);
   list-style: none;
-  color: var(--m-bolt-text);
-  line-height: var(--bolt-type-line-height-xsmall);
-  border-top: 1px solid var(--m-bolt-border);
-  border-bottom: 1px solid var(--m-bolt-border);
-  background-color: var(--m-bolt-bg);
 
   &:before {
     content: '';
@@ -132,6 +130,22 @@
   }
 }
 
+button.c-bolt-notifications__message {
+  @include bolt-button-native-styles-reset;
+}
+
+a.c-bolt-notifications__message,
+button.c-bolt-notifications__message {
+  &:before {
+    right: 0;
+  }
+
+  &:focus {
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
 .c-bolt-notifications__message {
   width: 100%;
   color: inherit;
@@ -147,24 +161,15 @@
     z-index: 0;
   }
 
-  &:before {
-    right: 0;
-  }
-
   &:after {
     opacity: 0;
     width: 5px;
     background-color: var(--m-bolt-primary);
     transition: opacity var(--bolt-transition);
 
-    @at-root .c-bolt-notifications__content:hover #{&} {
+    @at-root .c-bolt-notifications__list-item:hover #{&} {
       opacity: 1;
     }
-  }
-
-  &:focus {
-    outline: var(--bolt-focus-ring);
-    outline-offset: 2px;
   }
 
   em {
@@ -193,6 +198,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  border-bottom: 1px solid var(--m-bolt-border);
   gap: var(--bolt-spacing-x-medium);
   row-gap: var(--bolt-spacing-x-small);
 
@@ -266,4 +272,5 @@
 
 .c-bolt-notifications__footer {
   text-align: center;
+  border-top: 1px solid var(--m-bolt-border);
 }

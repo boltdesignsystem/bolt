@@ -15,7 +15,17 @@ module.exports = {
           type: 'any',
         },
         actions: {
-          type: 'any',
+          type: 'array',
+          items: {
+            properties: {
+              icon: {
+                type: 'any',
+              },
+              label: {
+                type: 'any',
+              },
+            },
+          },
         },
         content: {
           type: 'any',
