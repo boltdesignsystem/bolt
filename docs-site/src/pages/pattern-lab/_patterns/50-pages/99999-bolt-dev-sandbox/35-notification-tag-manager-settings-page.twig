@@ -72,30 +72,29 @@
     },
   ] %}
 
-  {% set list_item_button %}
-    {% set icon_trash %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'trash',
-      } only %}
-    {% endset %}
-    {% set tooltip_trigger %}
-      {% include '@bolt-elements-button/button.twig' with {
-        content: 'Delete this item from the list',
-        icon_only: icon_trash,
-        hierarchy: 'transparent',
-        attributes: {
-          type: 'button'
-        }
-      } only %}
-    {% endset %}
-    {% include '@bolt-components-tooltip/tooltip.twig' with {
-      trigger: tooltip_trigger,
-      content: 'Delete from the list',
-    } only %}
-  {% endset %}
-
   <ul class="c-ntm__list">
     {% for item in items %}
+      {% set list_item_button %}
+        {% set icon_trash %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'trash',
+          } only %}
+        {% endset %}
+        {% set tooltip_trigger %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Delete ' ~ item.heading ~ 'item from the list',
+            icon_only: icon_trash,
+            hierarchy: 'transparent',
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-tooltip/tooltip.twig' with {
+          trigger: tooltip_trigger,
+          content: 'Delete from the list',
+        } only %}
+      {% endset %}
       <li class="c-ntm__list-item">
         {% include '@bolt-elements-icon/icon.twig' with {
           name: item.icon,
