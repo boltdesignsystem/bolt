@@ -1,4 +1,4 @@
-UI element that displays notifications and user actions.
+UI element that displays notifications and related user actions.
 
 ###### Install via NPM
 
