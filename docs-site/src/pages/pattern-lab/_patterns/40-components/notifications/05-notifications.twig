@@ -3,11 +3,66 @@
     <bolt-li>Each notification message can be set to read or unread.</bolt-li>
     <bolt-li>Each notification message can be plain text, semantic link, or semantic button: passing <code>href</code> attribute to <code>message.attributes</code> will create a semantic link; passing <code>type</code> attribute to <code>message.attributes</code> will create a semantic button.</bolt-li>
     <bolt-li>Certain words in a notification message can be emphasized using the <code>&lt;em&gt;</code> HTML element. Emphasized text visually looks like a text link.</bolt-li>
+    <bolt-li>Header usually contains a switch button and couple action buttons, but all can be overriden by using the <code>header.content</code> prop.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
-  {% set switch_button %}
+  {% set icon_check_circle %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'check-circle',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_pega_setting %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-setting',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_announce %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-announce',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_calendar %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'calendar',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_certification %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'certification',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_info_circle %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'info-circle',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_pega_thumbs_up %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-thumbs-up',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_reply %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'reply',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_heart %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'heart',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set header_switch_button %}
     {% include '@bolt-components-switch-button/switch-button.twig' with {
       label: 'Only show unread notifications',
       attributes: {
@@ -27,16 +82,20 @@
       });
     </script>
   {% endset %}
-  {% set icon_check_circle %}
-    {% include '@bolt-elements-icon/icon.twig' with {
-      name: 'check-circle',
-      size: 'medium',
+  {% set header_actions %}
+    {% include '@bolt-components-notifications/notifications-header-action.twig' with {
+      icon: icon_check_circle,
+      label: 'Mark all as read',
+      attributes: {
+        type: 'button',
+      },
     } only %}
-  {% endset %}
-  {% set icon_pega_setting %}
-    {% include '@bolt-elements-icon/icon.twig' with {
-      name: 'pega-setting',
-      size: 'medium',
+    {% include '@bolt-components-notifications/notifications-header-action.twig' with {
+      icon: icon_pega_setting,
+      label: 'Notification settings',
+      attributes: {
+        href: '#!',
+      },
     } only %}
   {% endset %}
   {% set content %}
@@ -65,7 +124,7 @@
             href: '#!',
           },
         },
-        read: 'true',
+        read: true,
       } only %}
       {% include '@bolt-components-notifications/notifications-list-heading-divider.twig' with {
         content: 'Recent',
@@ -73,7 +132,7 @@
       {% include '@bolt-components-notifications/notifications-list-item.twig' with {
         signifier: icon_announce,
         site_name: 'Docs',
-        timestamp: '2 days ago',
+        timestamp: '1 day ago',
         message: {
           content: 'You can make a plain notification without any actions by not passing any message attributes.',
         },
@@ -91,8 +150,8 @@
       } only %}
       {% include '@bolt-components-notifications/notifications-list-item.twig' with {
         signifier: icon_announce,
-        site_name: 'Academy',
-        timestamp: '1 day ago',
+        site_name: 'Portal',
+        timestamp: '2 days ago',
         message: {
           content: 'You can create a <em>linked notification</em> by passing <code>href</code> attribute via message attributes.',
           attributes: {
@@ -102,10 +161,87 @@
       } only %}
       {% include '@bolt-components-notifications/notifications-list-item.twig' with {
         signifier: icon_announce,
-        site_name: 'Academy',
-        timestamp: '1 day ago',
+        site_name: 'Saleshub',
+        timestamp: '2 days ago',
         message: {
           content: 'You can <em>emphasize certain words</em> with the <code>em</code> HTML element. Emphasized text visually looks like a text link.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_info_circle,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>info-circle</em> icon for general information.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_calendar,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>calendar</em> icon for event notification.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_certification,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>certification</em> icon for Academy badge earning notification.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_pega_thumbs_up,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>pega-thumbs-up</em> icon for like notification.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_heart,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>heart</em> icon for favorite notification.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_reply,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>reply</em> icon for reply notification.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_check_circle,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>check-circle</em> icon for approval notification.',
           attributes: {
             href: '#!',
           },
@@ -117,26 +253,21 @@
       content: list_content,
     } only %}
   {% endset %}
+  {% set footer_content %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'View all notifications',
+      reversed_underline: true,
+      expand_click_target: true,
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
 
   {% include '@bolt-components-notifications/notifications.twig' with {
     header: {
-      switch_button: switch_button,
-      actions: [
-        {
-          icon: icon_check_circle,
-          label: 'Mark all as read',
-          attributes: {
-            type: 'button',
-          },
-        },
-        {
-          icon: icon_pega_setting,
-          label: 'Notification settings',
-          attributes: {
-            href: '#!',
-          },
-        },
-      ]
+      switch_button: header_switch_button,
+      actions: header_actions,
     },
     content: content,
     footer: {
@@ -146,14 +277,292 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
+{% set icon_check_circle %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'check-circle',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set icon_pega_setting %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-setting',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set icon_announce %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-announce',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set icon_calendar %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'calendar',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set icon_certification %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'certification',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set icon_info_circle %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'info-circle',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set icon_pega_thumbs_up %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-thumbs-up',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set icon_reply %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'reply',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set icon_heart %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'heart',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set header_switch_button %}
+  {% include '@bolt-components-switch-button/switch-button.twig' with {
+    label: 'Only show unread notifications',
+    attributes: {
+      class: 'js-target-the-switch-button-container'
+    },
+  } only %}
+{% endset %}
+{% set header_actions %}
+  {% include '@bolt-components-notifications/notifications-header-action.twig' with {
+    icon: icon_check_circle,
+    label: 'Mark all as read',
+    attributes: {
+      type: 'button',
+    },
+  } only %}
+  {% include '@bolt-components-notifications/notifications-header-action.twig' with {
+    icon: icon_pega_setting,
+    label: 'Notification settings',
+    attributes: {
+      href: '#!',
+    },
+  } only %}
+{% endset %}
+{% set content %}
+  {% set list_content %}
+    {% include '@bolt-components-notifications/notifications-list-heading-divider.twig' with {
+      content: 'Lastest',
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_announce,
+      site_name: 'Community',
+      timestamp: '5 min ago',
+      message: {
+        content: 'This is an <em>unread notification</em>.',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_announce,
+      site_name: 'Collaboration Center',
+      timestamp: '10 min ago',
+      message: {
+        content: 'This is a <em>read notification</em>.',
+        attributes: {
+          href: '#!',
+        },
+      },
+      read: true,
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-heading-divider.twig' with {
+      content: 'Recent',
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_announce,
+      site_name: 'Docs',
+      timestamp: '1 day ago',
+      message: {
+        content: 'You can make a plain notification without any actions by not passing any message attributes.',
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_announce,
+      site_name: 'Academy',
+      timestamp: '1 day ago',
+      message: {
+        content: 'You can create a notification that <em>performs a function</em> by passing <code>type="button"</code> attribute via message attributes.',
+        attributes: {
+          type: 'button',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_announce,
+      site_name: 'Portal',
+      timestamp: '2 days ago',
+      message: {
+        content: 'You can create a <em>linked notification</em> by passing <code>href</code> attribute via message attributes.',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_announce,
+      site_name: 'Saleshub',
+      timestamp: '2 days ago',
+      message: {
+        content: 'You can <em>emphasize certain words</em> with the <code>em</code> HTML element. Emphasized text visually looks like a text link.',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_info_circle,
+      site_name: 'Site Name',
+      timestamp: '3 days ago',
+      message: {
+        content: 'Use <em>info-circle</em> icon for general information.',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_calendar,
+      site_name: 'Site Name',
+      timestamp: '3 days ago',
+      message: {
+        content: 'Use <em>calendar</em> icon for event notification.',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_certification,
+      site_name: 'Site Name',
+      timestamp: '3 days ago',
+      message: {
+        content: 'Use <em>certification</em> icon for Academy badge earning notification.',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_pega_thumbs_up,
+      site_name: 'Site Name',
+      timestamp: '3 days ago',
+      message: {
+        content: 'Use <em>pega-thumbs-up</em> icon for like notification.',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_heart,
+      site_name: 'Site Name',
+      timestamp: '3 days ago',
+      message: {
+        content: 'Use <em>heart</em> icon for favorite notification.',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_reply,
+      site_name: 'Site Name',
+      timestamp: '3 days ago',
+      message: {
+        content: 'Use <em>reply</em> icon for reply notification.',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_check_circle,
+      site_name: 'Site Name',
+      timestamp: '3 days ago',
+      message: {
+        content: 'Use <em>check-circle</em> icon for approval notification.',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-notifications/notifications-list.twig' with {
+    content: list_content,
+  } only %}
+{% endset %}
+{% set footer_content %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'View all notifications',
+    reversed_underline: true,
+    expand_click_target: true,
+    attributes: {
+      href: '#!',
+    }
+  } only %}
+{% endset %}
+
 {% include '@bolt-components-notifications/notifications.twig' with {
-  content: 'This is a notifications component.'
+  header: {
+    switch_button: header_switch_button,
+    actions: header_actions,
+  },
+  content: content,
+  footer: {
+    content: footer_content,
+  },
+} only %}
+{% endset %}
+
+{% include '@bolt-components-notifications/notifications.twig' with {
+  header: {
+    switch_button: switch_button,
+    actions: [
+      {
+        icon: icon_check_circle,
+        label: 'Mark all as read',
+        attributes: {
+          type: 'button',
+        },
+      },
+      {
+        icon: icon_pega_setting,
+        label: 'Notification settings',
+        attributes: {
+          href: '#!',
+        },
+      },
+    ]
+  },
+  content: content,
+  footer: {
+    content: footer_content,
+  },
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Basic Notifications',
-  description: 'description',
+  description: 'Notifications component is for displaying site-wide user notifications, either via a notifications popover or listing page.',
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,

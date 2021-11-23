@@ -12,7 +12,7 @@
 
 {% set classes = [
   'c-bolt-notifications__list-item',
-  read ? 'c-bolt-notifications__list-item--read',
+  this.data.read.value ? 'c-bolt-notifications__list-item--read',
 ] %}
 
 {# Template #}

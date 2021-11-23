@@ -26,14 +26,7 @@
         {% endif %}
         {% if header.actions %}
           <div class="c-bolt-notifications__actions">
-            {% for item in header.actions %}
-              {% set _item_attributes = create_attribute(item.attributes|default({})) %}
-              {% set _item_tag = _item_attributes.type ? 'button' : _item_attributes.href ? 'a' : 'span' %}
-              <{{ _item_tag }} class="c-bolt-notifications__action-button">
-                {{ item.icon }}
-                <span class="c-bolt-notifications__action-button-text">{{ item.label }}</span>
-              </{{ _item_tag }}>
-            {% endfor %}
+            {{ header.actions }}
           </div>
         {% endif %}
       {% endif %}

@@ -13,22 +13,17 @@ module.exports = {
       properties: {
         switch_button: {
           type: 'any',
+          description:
+            'Render a switch button. Usually to toggle viewing read/unread notifications.',
         },
         actions: {
-          type: 'array',
-          items: {
-            properties: {
-              icon: {
-                type: 'any',
-              },
-              label: {
-                type: 'any',
-              },
-            },
-          },
+          type: 'any',
+          description: 'Render action buttons.',
         },
         content: {
           type: 'any',
+          description:
+            'Render custom content for the header. This prop overrides switch_button and actions.',
         },
       },
     },
@@ -37,6 +32,7 @@ module.exports = {
       properties: {
         content: {
           type: 'any',
+          description: 'Render content for the footer.',
         },
       },
     },
