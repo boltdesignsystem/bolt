@@ -1,36 +1,13 @@
-{% extends "@bolt/_typography.twig" %}
-
-{% set type = "headline" %}
-
-{% set styles = ["normal", "italic"] %}
-{% set style = style | default("normal") %}
-
-{# @todo @Salem, not sure if span should be allowed or not. There should not be two overrides of tags here. See Subheadline as well #}
-{% set tags = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "span"] %} {# Allowed Tags #}
-{% set tags = [
-  "h1",
-  "h2",
-  "h3",
-  "h4",
-  "h5",
-  "h6",
-  "p",
-] %}
-{% set sizes = [
-  "xsmall",
-  "small",
-  "large",
-  "xlarge",
-  "xxlarge",
-  "xxxlarge"
-] %}
-
-{% set size = size | default("xlarge") %}
+{% extends '@bolt-components-headline/_typography.twig' %}
+{% set type = 'headline' %}
+{% set weights = ['regular', 'bold'] %}
+{% set style = style | default('normal') %}
+{% set size = size | default('xlarge') %}
 
 {# replicate existing functionality where small headlines are uppercase by default - however allow this to still be overwritten if specified #}
-{% if size == "small" %}
-  {% set transform = transform | default("uppercase") %}
+{% if size == 'small' %}
+  {% set transform = transform | default('uppercase') %}
 {% endif %}
 
-{% set weight = weight | default("bold") %}
-{% set tag = tag | default("h2") %}
+{% set weight = weight | default('bold') %}
+{% set tag = tag | default('h2') %}

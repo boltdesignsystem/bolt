@@ -1,4 +1,5 @@
 module.exports = {
+  extends: ['stylelint-config-standard-scss'],
   ignoreFiles: [
     'nebula-css/tools/*',
     'nebula-css/resets/_normalize.scss',
