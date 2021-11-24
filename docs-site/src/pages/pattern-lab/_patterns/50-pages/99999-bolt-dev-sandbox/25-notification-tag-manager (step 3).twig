@@ -112,21 +112,54 @@
   } only %}
 {% endset %}
 
-{% set switchers_buttons %}
+{% set notification_inputs %}
   <div class="c-ntm__builder-inputs c-ntm__builder-inputs--step-three">
-    {% include '@bolt-components-switch-button/switch-button.twig' with {
-      label: notification_1,
-      attributes: {
-        class: 'js-target-the-switch-button-container'
-      },
+
+    {% set random_1 = random() %}
+    {% set random_2 = random() %}
+
+    {% set label_1 %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: notification_1,
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'checkbox-' ~ random_1,
+        }
+      } only %}
+    {% endset %}
+    {% set input_1 %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'checkbox-' ~ random_1,
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label_1,
+      children: input_1
     } only %}
 
-    {% include '@bolt-components-switch-button/switch-button.twig' with {
-      label: notification_2,
-      on: false,
-      attributes: {
-        class: 'js-target-the-switch-button-container'
-      },
+    {% set label_2 %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: notification_2,
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'checkbox-' ~ random_2,
+        }
+      } only %}
+    {% endset %}
+    {% set input_2 %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'checkbox-' ~ random_2,
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label_2,
+      children: input_2
     } only %}
   </div>
 {% endset %}
@@ -191,7 +224,7 @@
     {{ frame }}
     {{ step_heading }}
     <div class="c-ntm__builder c-ntm__builder--step-three">
-      {{ switchers_buttons }}
+      {{ notification_inputs }}
     </div>
     {{ navigation }}
   </div>
@@ -242,7 +275,7 @@
       class: 'js-bolt-modal',
     },
   } only %}
-<script>
+{# <script>
   let switchButton = document.querySelectorAll(
     '.js-target-the-switch-button-container button[role="switch"]',
   ), i;
@@ -255,5 +288,5 @@
       el.setAttribute('aria-checked', isChecked ? false : true);
     });
   }
-</script>
+</script> #}
 {% endblock %}
