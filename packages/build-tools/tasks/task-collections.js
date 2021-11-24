@@ -8,8 +8,8 @@ const webpackTasks = require('./webpack-tasks');
 // const criticalcssTasks = require('./criticalcss-tasks');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
+const iconComponentTasks = require('./icon-component-tasks');
 const iconTasks = require('./icon-tasks');
-const iconElementTasks = require('./icon-element-tasks');
 
 const { writeBoltVersions } = require('./api-tasks/bolt-versions');
 const extraTasks = [];
@@ -203,9 +203,9 @@ async function build(shouldReturnTime = false) {
       case 'pl':
       case 'static':
       case 'pwa':
-        // TODO: Remove `iconTasks` when the Icon/Icons Component is removed
+        // TODO: Remove `iconComponentTasks` when the Icon/Icons Component is removed
+        await iconComponentTasks.build();
         await iconTasks.build();
-        await iconElementTasks.build();
     }
 
     config.prod || config.watch === false ? await webpackTasks.compile() : '';
@@ -252,9 +252,9 @@ async function watch() {
         watchTasks.push(extraTasks.patternLab.watch());
         watchTasks.push(extraTasks.api.watch());
         watchTasks.push(extraTasks.static.watch());
-        // TODO: Remove `iconTasks` when the Icon/Icons Component is removed
+        // TODO: Remove `iconComponentTasks` when the Icon/Icons Component is removed
+        watchTasks.push(iconComponentTasks.watch());
         watchTasks.push(iconTasks.watch());
-        watchTasks.push(iconElementTasks.watch());
         break;
     }
 

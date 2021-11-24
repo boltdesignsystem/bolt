@@ -4,7 +4,7 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set types = ["headline", "subheadline", "eyebrow", "text"] %} {# Pre-defined types #}
+{% set types = ['headline', 'subheadline', 'eyebrow', 'text'] %} {# Pre-defined types #}
 {% set tags = schema.properties.tag.enum %}
 {% set weights = schema.properties.weight.enum %}
 {% set styles = schema.properties.style.enum %}
@@ -12,85 +12,85 @@
 {% set sizes = schema.properties.size.enum %}
 {% set alignments = schema.properties.align.enum %}
 
-{% if tags != "any" %}
+{% if tags != 'any' %}
   {% set tag = tag in tags ? tag : schema.properties.tag.default %}
 {% else %}
   {% set tag = tag ?? schema.properties.tag.default %}
 {% endif %}
 {% set weight = weight | default(schema.properties.weight.default) %}
 {% set style = style | default(schema.properties.style.default) %}
-{% set type = type in types ? type : "text" %}
+{% set type = type in types ? type : 'text' %}
 {% set size = size | default(schema.properties.size.default) %}
 
-{% set numberSize = "auto" %}
+{% set numberSize = 'auto' %}
 {% set autoshrink = autoshrink is defined ? autoshrink : schema.properties.autoshrink.default %}
 
 {# For backwards compatibility only, setting icon to exactly 'false' is the same as specifying 'none'.  Deprecated. #}
 {% if icon is same as(false) %}
-  {% set icon = "none" %}
+  {% set icon = 'none' %}
 {% endif %}
 
 {# If this is a link, use a chevron-right icon unless explicitly requested otherwise. #}
-{% set fallbackIconName = url ? "chevron-right" : "none" %}
+{% set fallbackIconName = url ? 'chevron-right' : 'none' %}
 
 {# iconName is a string representing the name of the icon or "none" if no icon should be shown. #}
 {% set iconName = icon is iterable ? icon.name : icon | default(fallbackIconName)%}
 
 {# Validate iconName.  If invalid, we'll use the default #}
 {#{% set iconSchema = bolt.data.components['@bolt-components-icon'].schema %}#}
-{#{% if iconName not in iconSchema.properties.name.enum and iconName != "none" %}#}
+{#{% if iconName not in iconSchema.properties.name.enum and iconName != 'none' %}#}
   {#{% set iconName = fallbackIconName %}#}
 {#{% endif %}#}
 
 {# If icon was a string, initialize it as an empty object. #}
 {% set icon = icon is iterable ? icon : {} %}
 
-{% if iconName == "none" %}
+{% if iconName == 'none' %}
   {% set icon = false %}
 {% else %}
   {% set icon = icon | merge({ name: iconName }) %}
 {% endif %}
 
 {# Covers backward compatibility with use of both left and before to describe icon position #}
-{% set iconPosition = icon.position == "left" ? "before" : icon.position  %}
+{% set iconPosition = icon.position == 'left' ? 'before' : icon.position  %}
 
-{% set prefix = "c-bolt-" %}
+{% set prefix = 'c-bolt-' %}
 {% set baseClass = prefix ~ type %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{% if (size == "xxxlarge") and (text|length >= 60) and autoshrink == true %}
+{% if (size == 'xxxlarge') and (text|length >= 60) and autoshrink == true %}
   {% set longTitle = true %}
 {% endif %}
 
 {% if slot %}
-  {% set attributes = attributes.setAttribute("slot", slot) %}
+  {% set attributes = attributes.setAttribute('slot', slot) %}
 {% endif %}
 
 {% set classes = [
   baseClass,
-  numberText ? baseClass ~ "--" ~ "bulleted" : "",
-  quoted ? baseClass ~ "--" ~ "quoted" : "",
-  weight in weights ? baseClass ~ "--" ~ weight : "",
-  align in alignments and align != null ? baseClass ~ "--" ~ align : "",
-  style in styles and type == "text" ? baseClass ~ "--" ~ style : "",
-  size in sizes and type != "eyebrow" ? longTitle and type == "headline" ? baseClass ~ "--" ~ size ~ "-min" : baseClass ~ "--" ~ size : "",
-  transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : "",
-  url ? baseClass ~ "--link" : "",
-  iconPosition ? baseClass ~ "--icon-position-" ~ iconPosition : ""
+  numberText ? baseClass ~ '--' ~ 'bulleted' : '',
+  quoted ? baseClass ~ '--' ~ 'quoted' : '',
+  weight in weights ? baseClass ~ '--' ~ weight : '',
+  align in alignments and align != null ? baseClass ~ '--' ~ align : '',
+  style in styles and type == 'text' ? baseClass ~ '--' ~ style : '',
+  size in sizes and type != 'eyebrow' ? longTitle and type == 'headline' ? baseClass ~ '--' ~ size ~ '-min' : baseClass ~ '--' ~ size : '',
+  transform in transformProps and transform != '' ? baseClass ~ '--' ~ transform : '',
+  url ? baseClass ~ '--link' : '',
+  iconPosition ? baseClass ~ '--icon-position-' ~ iconPosition : ''
 ] %}
 
 {% set iconBefore %}{% apply spaceless %}
-  {% if icon and not url and iconPosition == "before" %}
+  {% if icon and not url and iconPosition == 'before' %}
     <span class="c-bolt-headline__icon c-bolt-headline__icon--position-before">
-      {% include "@bolt-components-icon/icon.twig" with icon only %}
+      {% include '@bolt-elements-icon/icon.twig' with icon only %}
     </span>
   {% endif %}
 {% endapply %}{% endset %}
 
 {% set iconAfter %}{% apply spaceless %}
-  {% if icon and not url and iconPosition != "before" %}
+  {% if icon and not url and iconPosition != 'before' %}
     <span class="c-bolt-headline__icon c-bolt-headline__icon--position-after">
-      {% include "@bolt-components-icon/icon.twig" with icon only %}
+      {% include '@bolt-elements-icon/icon.twig' with icon only %}
     </span>
   {% endif %}
 {% endapply %}{% endset %}
@@ -119,13 +119,13 @@
 
     {% set _link_props = {
       content: text,
-      reversed_underline: (type != "text"),
+      reversed_underline: (type != 'text'),
       attributes: _link_attributes,
     } %}
 
     {% if icon %}
       {% set _icon_rendered %}
-        {% include '@bolt-components-icon/icon.twig' with icon only %}
+        {% include '@bolt-elements-icon/icon.twig' with icon only %}
       {% endset %}
 
       {% if iconPosition == 'before' %}
@@ -135,7 +135,7 @@
       {% endif %}
     {% endif %}
 
-    {% include "@bolt-elements-text-link/text-link.twig" with _link_props only %}
+    {% include '@bolt-elements-text-link/text-link.twig' with _link_props only %}
   {%- else -%}
     {% if hasIcon or quoted %}<span class="c-bolt-headline__text">{% endif %}
       {{- iconBefore -}}

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/elements/bolt-icon/compare/v5.0.0...v5.0.1) (2021-11-12)
+
+**Note:** Version bump only for package @bolt/elements-icon
+
+
+
+
+
+# [5.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/elements/bolt-icon/compare/v4.7.0...v5.0.0) (2021-11-10)
+
+**Note:** Version bump only for package @bolt/elements-icon
+
+
+
+
+
+# [4.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/elements/bolt-icon/compare/v4.6.2...v4.7.0) (2021-11-04)
+
+
+### Bug Fixes
+
+* typos in package.json ([c876930](https://github.com/bolt-design-system/bolt/tree/master/packages/elements/bolt-icon/commit/c876930180b63975605f135c78371aaa43e41020))
+
+
+
+
+
 # [4.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/elements/bolt-text-link/compare/v4.5.1...v4.6.0) (2021-10-12)
 
 **Note:** Version bump only for package @bolt/elements-icon

@@ -400,7 +400,7 @@
 {% endset %}
 {% set sidebar_content %}
   {% set icon_external_link %}
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'external-link',
     } only %}
   {% endset %}
@@ -551,7 +551,7 @@
     } only %}
     {% include '@bolt-components-side-nav/side-nav-li.twig' with {
       link: {
-        content: 'Level 1 page (current)',
+        content: 'Level 1 page (current) and it has long string of text! Lorem ipsum dolor sit amet consectetur adipisicing elit odio doloremque nam voluptas debitis ab Dolor autem Illo est sit Eaque veniam tenetur nihil sapiente sint dolor incidunt labore accusamus quaerat',
         attributes: {
           href: 'https://google.com',
         },

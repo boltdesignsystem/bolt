@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/boltdesignsystem/bolt/compare/v5.0.0...v5.0.1) (2021-11-12)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+# [5.0.0](https://github.com/boltdesignsystem/bolt/compare/v4.7.0...v5.0.0) (2021-11-10)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+# [4.7.0](https://github.com/boltdesignsystem/bolt/compare/v4.6.2...v4.7.0) (2021-11-04)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+## [4.6.2](https://github.com/boltdesignsystem/bolt/compare/v4.6.1...v4.6.2) (2021-11-03)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
 # [4.6.0](https://github.com/boltdesignsystem/bolt/compare/v4.5.1...v4.6.0) (2021-10-12)
 
 **Note:** Version bump only for package @bolt/build-tools--test-multi-lang

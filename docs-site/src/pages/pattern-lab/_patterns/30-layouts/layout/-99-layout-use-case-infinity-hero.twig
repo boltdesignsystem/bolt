@@ -1,0 +1,221 @@
+{% set description %}
+  {% set icon %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'external-link'
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Live example',
+    icon_after: icon,
+    attributes: {
+      href: 'https://www.pega.com/infinity',
+      target: '_blank',
+      rel: 'noopener',
+    }
+  } only %}
+{% endset %}
+
+{% set notes %}
+  <ul>
+    <li>ALL images in a hero require the <code>loading="eager"</code> HTML attribute.</li>
+    <li>ALL images should utilize the <code>srcset</code> HTML attribute (not done for this example due to time).</li>
+    <li><code>u-bolt-text-align-center</code> utility class has been added to the layout column through a style tag.</li>
+    <li>This example contains custom code found on the live example.</li>
+  </ul>
+{% endset %}
+
+{% set demo %}
+  {% set content %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Alt text.',
+        src: '/images/heros/live-assets/Infinity-logo-color.png',
+        width: '60%',
+        loading: 'eager'
+      },
+    } only %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'One powerful portfolio of enterprise software. Limitless possibilities.',
+      tag: 'h1',
+      size: 'xlarge',
+    } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="5793474985001"
+        data-media-duration
+        data-media-title
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-components-ratio/ratio.twig' with {
+      children: video,
+      ratio: '16/9'
+    } only %}
+
+    <div style="margin-top: 80px; margin-bottom: 76px;">
+      <style>
+        #arrow-text {
+          text-decoration: none;
+          text-transform: uppercase;
+          font-weight: bold;
+        }
+        #down-arrow {
+          border: solid;
+          border-top-width: medium;
+          border-right-width: medium;
+          border-bottom-width: medium;
+          border-left-width: medium;
+          border-width: 0 2px 2px 0;
+          display: inline-block;
+          padding: 5px;
+          transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+        }
+      </style>
+      <span id="arrow-text" class="c-bolt-text--xsmall">How far will infinity take you?</span>
+      <br />
+      <span id="down-arrow"></span>
+    </div>
+  {% endset %}
+
+  {% set background %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/heros/live-assets/Infinity-background-v2.jpg',
+        loading: 'eager',
+        width: '100vw'
+      },
+    } only %}
+  {% endset %}
+
+  {% set layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: content,
+      attributes: {
+        class: 'u-bolt-text-align-center'
+      }
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_items,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    align_items: 'center',
+    background: background,
+    template: [
+      '67@from-medium'
+    ],
+    attributes: {
+      class: 't-bolt-navy'
+    }
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set content %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: '/images/heros/live-assets/Infinity-logo-color.png',
+      width: '60%',
+      loading: 'eager'
+    },
+  } only %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'One powerful portfolio of enterprise software. Limitless possibilities.',
+    tag: 'h1',
+    size: 'xlarge',
+  } only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="5793474985001"
+      data-media-duration
+      data-media-title
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+
+  <div style="margin-top: 80px; margin-bottom: 76px;">
+    <style>
+      #arrow-text {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      #down-arrow {
+        border: solid;
+        border-top-width: medium;
+        border-right-width: medium;
+        border-bottom-width: medium;
+        border-left-width: medium;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 5px;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+      }
+    </style>
+    <span id="arrow-text" class="c-bolt-text--xsmall">How far will infinity take you?</span>
+    <br />
+    <span id="down-arrow"></span>
+  </div>
+{% endset %}
+
+{% set background %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/heros/live-assets/Infinity-background-v2.jpg',
+      loading: 'eager',
+      width: '100vw'
+    },
+  } only %}
+{% endset %}
+
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: content,
+    attributes: {
+      class: 'u-bolt-text-align-center'
+    }
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  padding_top: 'large',
+  padding_bottom: 'large',
+  align_items: 'center',
+  background: background,
+  template: [
+    '67@from-medium'
+  ],
+  attributes: {
+    class: 't-bolt-navy'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Infinity Hero',
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}

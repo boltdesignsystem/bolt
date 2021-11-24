@@ -31,11 +31,11 @@
       {% endset %}
       {% if demo_light_dark %}
         <div class="u-bolt-padding-medium t-bolt-xlight">
-          <bolt-text headline tag="p" font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Light</bolt-text>
+          <bolt-text headline tag="p" font-size="xsmall" text-transform="uppercase" letter-spacing="wide">Light</bolt-text>
           {{ rendered_demo }}
         </div>
         <div class="u-bolt-padding-medium t-bolt-dark">
-          <bolt-text headline tag="p" font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Dark</bolt-text>
+          <bolt-text headline tag="p" font-size="xsmall" text-transform="uppercase" letter-spacing="wide">Dark</bolt-text>
           {{ rendered_demo }}
         </div>
       {% else %}
@@ -56,7 +56,10 @@
           } only %}
         {% else %}
           <bolt-banner align="start" status="warning">
-            <bolt-icon name="warning" size="small" aria-hidden="true"></bolt-icon>
+            {% include '@bolt-elements-icon/icon.twig' with {
+              name: 'warning',
+              size: 'small'
+            } only %}
             <strong>Not available in Twig. Please use plain HTML.</strong>
           </bolt-banner>
         {% endif %}
@@ -71,7 +74,10 @@
           } only %}
         {% else %}
           <bolt-banner align="start" status="warning">
-            <bolt-icon name="warning" size="small" aria-hidden="true"></bolt-icon>
+            {% include '@bolt-elements-icon/icon.twig' with {
+              name: 'warning',
+              size: 'small'
+            } only %}
             <strong>Not available in plain HTML. Please use Twig.</strong>
           </bolt-banner>
         {% endif %}

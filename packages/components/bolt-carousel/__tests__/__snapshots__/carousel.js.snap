@@ -1,767 +1,1195 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`carousel Basic 3 Slide <bolt-carousel> Renders 1`] = `
-<bolt-carousel class="is-ready">
-  <div class="c-bolt-carousel c-bolt-carousel--no-overflow c-bolt-carousel--initialized c-bolt-carousel--horizontal"
-       style="cursor: grab;"
-  >
-    <div class="c-bolt-carousel__wrapper"
-         style="transform: translate3d(0px, 0px, 0px);"
-    >
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--visible c-bolt-carousel__slide--active"
-                           style="width: 790px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 1
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--next"
-                           style="width: 790px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 2
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready"
-                           style="width: 790px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 3
-        </div>
-      </bolt-carousel-slide>
-    </div>
-    <div class="c-bolt-carousel__pagination c-bolt-carousel__pagination--clickable c-bolt-carousel__pagination--bullets">
-      <span class="c-bolt-carousel__pagination__bullet c-bolt-carousel__pagination__bullet--active"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 1"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 2"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 3"
-      >
-      </span>
-    </div>
-    <span class="c-bolt-carousel__notification"
-          aria-live="assertive"
-          aria-atomic="true"
-    >
-    </span>
-  </div>
-  <div class="c-bolt-carousel__button c-bolt-carousel__button--previous c-bolt-carousel__button--inside c-bolt-carousel__button--disabled"
-       tabindex="0"
-       role="button"
-       aria-label="Previous slide"
-       aria-disabled="true"
-  >
-    <span class="e-bolt-button
-        e-bolt-button--medium
-        e-bolt-button--border-radius-full
-        e-bolt-button--secondary
-        e-bolt-button--icon-only"
-          aria-hidden="true"
-    >
-      <span class="e-bolt-button__icon-center">
-        <bolt-icon size="large"
-                   name="chevron-left"
-        >
-        </bolt-icon>
-      </span>
-    </span>
-  </div>
-  <div class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--inside"
-       tabindex="0"
-       role="button"
-       aria-label="Next slide"
-       aria-disabled="false"
-  >
-    <span class="e-bolt-button
-        e-bolt-button--medium
-        e-bolt-button--border-radius-full
-        e-bolt-button--secondary
-        e-bolt-button--icon-only"
-          aria-hidden="true"
-    >
-      <span class="e-bolt-button__icon-center">
-        <bolt-icon size="large"
-                   name="chevron-right"
-        >
-        </bolt-icon>
-      </span>
-    </span>
-  </div>
-</bolt-carousel>
-`;
-
-exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls 1`] = `
-<bolt-carousel class="is-ready">
-  <div class="c-bolt-carousel c-bolt-carousel--no-overflow c-bolt-carousel--initialized c-bolt-carousel--horizontal"
-       style="cursor: grab;"
-  >
-    <div class="c-bolt-carousel__wrapper"
-         style="transform: translate3d(0px, 0px, 0px);"
-    >
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--visible c-bolt-carousel__slide--active"
-                           style="width: 790px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 1
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--next"
-                           style="width: 790px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 2
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready"
-                           style="width: 790px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 3
-        </div>
-      </bolt-carousel-slide>
-    </div>
-    <div class="c-bolt-carousel__pagination c-bolt-carousel__pagination--clickable c-bolt-carousel__pagination--bullets">
-      <span class="c-bolt-carousel__pagination__bullet c-bolt-carousel__pagination__bullet--active"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 1"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 2"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 3"
-      >
-      </span>
-    </div>
-    <span class="c-bolt-carousel__notification"
-          aria-live="assertive"
-          aria-atomic="true"
-    >
-    </span>
-  </div>
-  <div class="c-bolt-carousel__button c-bolt-carousel__button--previous c-bolt-carousel__button--inside c-bolt-carousel__button--disabled"
-       tabindex="0"
-       role="button"
-       aria-label="Previous slide"
-       aria-disabled="true"
-  >
-    <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
-          aria-hidden="true"
-          slot="previous-btn"
-          tabindex="-1"
-    >
-      <span class="e-bolt-button__icon-center">
-        <bolt-icon name="chevron-left"
-                   size="large"
-        >
-          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-left c-bolt-icon--auto">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
-              <use href="#chevron-left">
-              </use>
-            </svg>
-          </span>
-        </bolt-icon>
-      </span>
-    </span>
-  </div>
-  <div class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--inside"
-       tabindex="0"
-       role="button"
-       aria-label="Next slide"
-       aria-disabled="false"
-  >
-    <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
-          aria-hidden="true"
-          slot="next-btn"
-          tabindex="-1"
-    >
-      <span class="e-bolt-button__icon-center">
-        <bolt-icon name="chevron-right"
-                   size="large"
-        >
-          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-right c-bolt-icon--auto">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
-              <use href="#chevron-right">
-              </use>
-            </svg>
-          </span>
-        </bolt-icon>
-      </span>
-    </span>
-  </div>
-</bolt-carousel>
-`;
-
-exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`] = `
-<bolt-carousel nav-button-position="outside"
-               class="is-ready"
+exports[`Bolt Carousel Prop mode items: default 1`] = `
+<bolt-carousel slides-per-view="1"
+               mode="default"
 >
-  <div class="c-bolt-carousel c-bolt-carousel--no-overflow c-bolt-carousel--initialized c-bolt-carousel--horizontal"
-       style="cursor: grab;"
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
   >
-    <div class="c-bolt-carousel__wrapper"
-         style="transform: translate3d(0px, 0px, 0px);"
-    >
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--visible c-bolt-carousel__slide--active"
-                           style="width: 801px; margin-right: 30px;"
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
       >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
         >
-        </bolt-image>
-        <div>
-          Slide 1
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--next"
-                           style="width: 801px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 2
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready"
-                           style="width: 801px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 3
-        </div>
-      </bolt-carousel-slide>
-    </div>
-    <div class="c-bolt-carousel__pagination c-bolt-carousel__pagination--clickable c-bolt-carousel__pagination--bullets">
-      <span class="c-bolt-carousel__pagination__bullet c-bolt-carousel__pagination__bullet--active"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 1"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 2"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 3"
-      >
-      </span>
-    </div>
-    <span class="c-bolt-carousel__notification"
-          aria-live="assertive"
-          aria-atomic="true"
-    >
+        </path>
+      </svg>
     </span>
-  </div>
-  <div class="c-bolt-carousel__button c-bolt-carousel__button--previous c-bolt-carousel__button--outside c-bolt-carousel__button--disabled"
-       tabindex="0"
-       role="button"
-       aria-label="Previous slide"
-       aria-disabled="true"
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
   >
-    <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
-          aria-hidden="true"
-          slot="previous-btn"
-          tabindex="-1"
-    >
-      <span class="e-bolt-button__icon-center">
-        <bolt-icon name="chevron-left"
-                   size="large"
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
         >
-          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-left c-bolt-icon--auto">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
-              <use href="#chevron-left">
-              </use>
-            </svg>
-          </span>
-        </bolt-icon>
-      </span>
+        </path>
+      </svg>
     </span>
-  </div>
-  <div class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--outside"
-       tabindex="0"
-       role="button"
-       aria-label="Next slide"
-       aria-disabled="false"
-  >
-    <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
-          aria-hidden="true"
-          slot="next-btn"
-          tabindex="-1"
-    >
-      <span class="e-bolt-button__icon-center">
-        <bolt-icon name="chevron-right"
-                   size="large"
-        >
-          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-right c-bolt-icon--auto">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
-              <use href="#chevron-right">
-              </use>
-            </svg>
-          </span>
-        </bolt-icon>
-      </span>
-    </span>
-  </div>
+  </span>
 </bolt-carousel>
 `;
 
-exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Variable (Auto) Slide Per View 1`] = `
-<bolt-carousel slides-per-view="auto"
-               class="is-ready"
+exports[`Bolt Carousel Prop mode items: gallery 1`] = `
+<bolt-carousel slides-per-view="1"
+               mode="gallery"
 >
-  <div class="c-bolt-carousel c-bolt-carousel--no-overflow c-bolt-carousel--initialized c-bolt-carousel--horizontal"
-       style="cursor: grab;"
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
   >
-    <div class="c-bolt-carousel__wrapper"
-         style="transform: translate3d(0px, 0px, 0px);"
-    >
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--visible c-bolt-carousel__slide--active"
-                           style="width: 380px; margin-right: 30px;"
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
       >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
         >
-        </bolt-image>
-        <div>
-          Slide 1
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--visible c-bolt-carousel__slide--next"
-                           style="width: 380px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 2
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready"
-                           style="width: 380px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 3
-        </div>
-      </bolt-carousel-slide>
-    </div>
-    <div class="c-bolt-carousel__pagination c-bolt-carousel__pagination--clickable c-bolt-carousel__pagination--bullets">
-      <span class="c-bolt-carousel__pagination__bullet c-bolt-carousel__pagination__bullet--active"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 1"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 2"
-      >
-      </span>
-    </div>
-    <span class="c-bolt-carousel__notification"
-          aria-live="assertive"
-          aria-atomic="true"
-    >
+        </path>
+      </svg>
     </span>
-  </div>
-  <div class="c-bolt-carousel__button c-bolt-carousel__button--previous c-bolt-carousel__button--inside c-bolt-carousel__button--disabled"
-       tabindex="0"
-       role="button"
-       aria-label="Previous slide"
-       aria-disabled="true"
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
   >
-    <span class="e-bolt-button
-        e-bolt-button--medium
-        e-bolt-button--border-radius-full
-        e-bolt-button--secondary
-        e-bolt-button--icon-only"
-          aria-hidden="true"
-    >
-      <span class="e-bolt-button__icon-center">
-        <bolt-icon size="large"
-                   name="chevron-left"
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
         >
-          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-left c-bolt-icon--auto">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
-              <use href="#chevron-left">
-              </use>
-            </svg>
-          </span>
-        </bolt-icon>
-      </span>
+        </path>
+      </svg>
     </span>
-  </div>
-  <div class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--inside"
-       tabindex="0"
-       role="button"
-       aria-label="Next slide"
-       aria-disabled="false"
-  >
-    <span class="e-bolt-button
-        e-bolt-button--medium
-        e-bolt-button--border-radius-full
-        e-bolt-button--secondary
-        e-bolt-button--icon-only"
-          aria-hidden="true"
-    >
-      <span class="e-bolt-button__icon-center">
-        <bolt-icon size="large"
-                   name="chevron-right"
-        >
-          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-right c-bolt-icon--auto">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
-              <use href="#chevron-right">
-              </use>
-            </svg>
-          </span>
-        </bolt-icon>
-      </span>
-    </span>
-  </div>
+  </span>
 </bolt-carousel>
 `;
 
-exports[`carousel Basic 7 Slide <bolt-carousel> Renders 1`] = `
-<bolt-carousel class="is-ready">
-  <div class="c-bolt-carousel c-bolt-carousel--no-overflow c-bolt-carousel--initialized c-bolt-carousel--horizontal"
-       style="cursor: grab;"
+exports[`Bolt Carousel Prop mode items: gallery-thumbnail 1`] = `
+<bolt-carousel slides-per-view="1"
+               mode="gallery-thumbnail"
+>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
   >
-    <div class="c-bolt-carousel__wrapper"
-         style="transform: translate3d(0px, 0px, 0px);"
-    >
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--visible c-bolt-carousel__slide--active"
-                           style="width: 790px; margin-right: 30px;"
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
       >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
         >
-        </bolt-image>
-        <div>
-          Slide 1
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--next"
-                           style="width: 790px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 2
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready"
-                           style="width: 790px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 3
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready"
-                           style="width: 790px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 4
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready"
-                           style="width: 790px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 5
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready"
-                           style="width: 790px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 6
-        </div>
-      </bolt-carousel-slide>
-      <bolt-carousel-slide class="c-bolt-carousel__slide is-ready"
-                           style="width: 790px; margin-right: 30px;"
-      >
-        <bolt-image src="/fixtures/1200x660.jpg"
-                    srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-                    sizes="auto"
-                    ratio="1200/660"
-                    alt="A Rock Climber"
-                    no-lazy
-                    style="background-color: hsl(233, 33%, 97%); width: 100%;"
-        >
-        </bolt-image>
-        <div>
-          Slide 7
-        </div>
-      </bolt-carousel-slide>
-    </div>
-    <div class="c-bolt-carousel__pagination c-bolt-carousel__pagination--clickable c-bolt-carousel__pagination--bullets">
-      <span class="c-bolt-carousel__pagination__bullet c-bolt-carousel__pagination__bullet--active"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 1"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 2"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 3"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 4"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 5"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 6"
-      >
-      </span>
-      <span class="c-bolt-carousel__pagination__bullet"
-            tabindex="0"
-            role="button"
-            aria-label="Go to slide 7"
-      >
-      </span>
-    </div>
-    <span class="c-bolt-carousel__notification"
-          aria-live="assertive"
-          aria-atomic="true"
-    >
+        </path>
+      </svg>
     </span>
-  </div>
-  <div class="c-bolt-carousel__button c-bolt-carousel__button--previous c-bolt-carousel__button--inside c-bolt-carousel__button--disabled"
-       tabindex="0"
-       role="button"
-       aria-label="Previous slide"
-       aria-disabled="true"
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
   >
-    <span class="e-bolt-button
-        e-bolt-button--medium
-        e-bolt-button--border-radius-full
-        e-bolt-button--secondary
-        e-bolt-button--icon-only"
-          aria-hidden="true"
-    >
-      <span class="e-bolt-button__icon-center">
-        <bolt-icon size="large"
-                   name="chevron-left"
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
         >
-          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-left c-bolt-icon--auto">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
-              <use href="#chevron-left">
-              </use>
-            </svg>
-          </span>
-        </bolt-icon>
-      </span>
+        </path>
+      </svg>
     </span>
-  </div>
-  <div class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--inside"
-       tabindex="0"
-       role="button"
-       aria-label="Next slide"
-       aria-disabled="false"
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel Prop nav_button_position items: inside 1`] = `
+<bolt-carousel slides-per-view="1"
+               nav-button-position="inside"
+>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
   >
-    <span class="e-bolt-button
-        e-bolt-button--medium
-        e-bolt-button--border-radius-full
-        e-bolt-button--secondary
-        e-bolt-button--icon-only"
-          aria-hidden="true"
-    >
-      <span class="e-bolt-button__icon-center">
-        <bolt-icon size="large"
-                   name="chevron-right"
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
         >
-          <span class="c-bolt-icon c-bolt-icon--large c-bolt-icon--chevron-right c-bolt-icon--auto">
-            <svg class="c-bolt-icon__icon c-bolt-icon__icon--large">
-              <use href="#chevron-right">
-              </use>
-            </svg>
-          </span>
-        </bolt-icon>
-      </span>
+        </path>
+      </svg>
     </span>
-  </div>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel Prop nav_button_position items: outside 1`] = `
+<bolt-carousel slides-per-view="1"
+               nav-button-position="outside"
+>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel Prop slides_per_group items: 1 1`] = `
+<bolt-carousel slides-per-view="1"
+               slides-per-group="1"
+>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel Prop slides_per_group items: auto 1`] = `
+<bolt-carousel slides-per-view="1"
+               slides-per-group="auto"
+>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel Prop slides_per_view items: 1 1`] = `
+<bolt-carousel slides-per-view="1">
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel Prop slides_per_view items: 2 1`] = `
+<bolt-carousel slides-per-view="2">
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel Prop slides_per_view items: 3 1`] = `
+<bolt-carousel slides-per-view="3">
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel Prop slides_per_view items: 4 1`] = `
+<bolt-carousel slides-per-view="4">
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel Prop space_between items: medium 1`] = `
+<bolt-carousel slides-per-view="1"
+               space-between="medium"
+>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel Prop space_between items: none 1`] = `
+<bolt-carousel slides-per-view="1"
+               space-between="none"
+>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel Prop space_between items: small 1`] = `
+<bolt-carousel slides-per-view="1"
+               space-between="small"
+>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel default 1`] = `
+<bolt-carousel slides-per-view="1">
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+</bolt-carousel>
+`;
+
+exports[`Bolt Carousel many slides 1`] = `
+<bolt-carousel slides-per-view="1">
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 1
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 2
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 3
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 4
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 5
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 6
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 7
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 8
+  </bolt-carousel-slide>
+  <bolt-carousel-slide>
+    <img class="e-bolt-image"
+         src="/fixtures/1200x660.jpg"
+         alt="Image alt text"
+         width="1200"
+         height="660"
+    >
+    Slide 9
+  </bolt-carousel-slide>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="previous-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M19.6 26.6c.6.6 1.6.6 2.2 0s.6-1.6 0-2.2L13.5 16l8.3-8.3c.6-.6.6-1.6 0-2.2-.3-.3-.7-.5-1.1-.5s-.8.2-1.1.5l-9.5 9.4c-.6.6-.6 1.6 0 2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
+  <span class="e-bolt-button e-bolt-button--border-radius-full e-bolt-button--secondary e-bolt-button--icon-only"
+        aria-hidden="true"
+        slot="next-btn"
+  >
+    <span class="e-bolt-button__icon-center">
+      <svg class="e-bolt-icon e-bolt-icon--large"
+           xmlns="http://www.w3.org/2000/svg"
+           viewbox="0 0 32 32"
+           aria-hidden="true"
+      >
+        <path fill="#151619"
+              fill-rule="evenodd"
+              d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z"
+              clip-rule="evenodd"
+        >
+        </path>
+      </svg>
+    </span>
+  </span>
 </bolt-carousel>
 `;

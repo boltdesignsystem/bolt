@@ -30,6 +30,11 @@
   padding: calc(var(--bolt-spacing-y-medium) / 2) var(--bolt-spacing-x-medium);
 }
 
+/**
+ * Status prop
+ * @todo: we don't have a good way to create more themes on the fly. We should consider creating 'Light Mode' and 'Dark Mode', then background-color can be set separately.
+ * 2. Overriding the new mode colors. These will take effect once we convert all things to use mode colors instead of theme.
+ */
 @include bolt-repeat-rule(
   (
     'bolt-banner[status=error]',
@@ -38,11 +43,6 @@
     ':host(bolt-banner[status=success])'
   )
 ) {
-  --bolt-theme-headline-link: 255, 255, 255; /* [1] */
-  --bolt-theme-headline: 255, 255, 255; /* [1] */
-  --bolt-theme-link: 255, 255, 255; /* [1] */
-  --bolt-theme-text: 255, 255, 255; /* [1] */
-
   --m-bolt-text: var(--bolt-color-white); /* [2] */
   --m-bolt-headline: var(--bolt-color-white); /* [2] */
   --m-bolt-link: var(--bolt-color-white); /* [2] */
@@ -51,11 +51,6 @@
 @include bolt-repeat-rule(
   ('bolt-banner[status=warning]', ':host(bolt-banner[status=warning])')
 ) {
-  --bolt-theme-headline-link: 0, 0, 0; /* [1] */
-  --bolt-theme-headline: 0, 0, 0; /* [1] */
-  --bolt-theme-link: 0, 0, 0; /* [1] */
-  --bolt-theme-text: 0, 0, 0; /* [1] */
-
   --m-bolt-text: var(--bolt-color-black); /* [2] */
   --m-bolt-headline: var(--bolt-color-black); /* [2] */
   --m-bolt-link: var(--bolt-color-black); /* [2] */

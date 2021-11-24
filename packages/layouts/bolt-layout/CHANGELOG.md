@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](http://github.com/bolt-design-system/bolt/tree/master/layouts/components/bolt-layout/compare/v4.7.0...v5.0.0) (2021-11-10)
+
+**Note:** Version bump only for package @bolt/layouts-layout
+
+
+
+
+
 # [4.6.0](http://github.com/bolt-design-system/bolt/tree/master/layouts/components/bolt-layout/compare/v4.5.1...v4.6.0) (2021-10-12)
 
 **Note:** Version bump only for package @bolt/layouts-layout

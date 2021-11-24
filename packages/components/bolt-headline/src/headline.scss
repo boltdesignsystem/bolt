@@ -142,6 +142,7 @@
   * 1. Only include max-width rule on larger font sizes
   */
 .c-bolt-text--xxxlarge,
+.c-bolt-subheadline--xxxlarge,
 .c-bolt-headline--xxxlarge {
   font-size: calc(var(--bolt-type-font-size-xxxlarge) * 1.06);
   line-height: var(--bolt-type-line-height-xxxlarge);
@@ -174,24 +175,29 @@
   line-height: var(--bolt-type-line-height-large);
 }
 
-.c-bolt-text--medium {
+.c-bolt-text--medium,
+.c-bolt-subheadline--medium,
+.c-bolt-headline--medium {
   font-size: var(--bolt-type-font-size-medium);
   line-height: var(--bolt-type-line-height-medium);
 }
 
 .c-bolt-text--small,
+.c-bolt-subheadline--small,
 .c-bolt-headline--small {
   font-size: var(--bolt-type-font-size-small);
   line-height: var(--bolt-type-line-height-small);
 }
 
 .c-bolt-text--xsmall,
+.c-bolt-subheadline--xsmall,
 .c-bolt-headline--xsmall {
   font-size: var(--bolt-type-font-size-xsmall);
   line-height: var(--bolt-type-line-height-xsmall);
 }
 
 .c-bolt-text--xxsmall,
+.c-bolt-subheadline--xxsmall,
 .c-bolt-headline--xxsmall {
   font-size: var(--bolt-type-font-size-xxsmall);
   line-height: var(--bolt-type-line-height-xxsmall);

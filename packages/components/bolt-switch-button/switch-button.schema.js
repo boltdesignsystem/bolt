@@ -18,5 +18,11 @@ module.exports = {
       type: 'any',
       description: 'Render a label in front of the switch button.',
     },
+    on: {
+      type: 'boolean',
+      default: true,
+      description:
+        'Controls the active state of the switch button. Sets button state to "on" by default.',
+    },
   },
 };

@@ -1,8 +1,10 @@
 {% set notes %}
+{% spaceless %}
   <bolt-ol>
     <bolt-li>This option is best combined with the center alignment.</bolt-li>
-    <bolt-li>Reference the schema for all options. <a href="{{ link['viewall-components-navbar'] }}" class="e-bolt-text-link">Navbar schema<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+    <bolt-li>Reference the schema for all options. <a href="{{ link['viewall-components-navbar'] }}" class="e-bolt-text-link">Navbar schema<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a></bolt-li>
   </bolt-ol>
+{% endspaceless %}
 {% endset %}
 
 {% set demo %}
@@ -14,7 +16,7 @@
           href: '#section-1'
         }
       }
-    } only %} 
+    } only %}
     {% include '@bolt-components-navbar/navbar-li.twig' with {
       link: {
         content: 'Section 2',
@@ -22,7 +24,7 @@
           href: '#section-2'
         }
       }
-    } only %} 
+    } only %}
     {% include '@bolt-components-navbar/navbar-li.twig' with {
       link: {
         content: 'Section 3',
@@ -30,7 +32,7 @@
           href: '#section-3'
         }
       }
-    } only %} 
+    } only %}
     {% include '@bolt-components-navbar/navbar-li.twig' with {
       link: {
         content: 'Section 4',
@@ -38,7 +40,7 @@
           href: '#section-4'
         }
       }
-    } only %} 
+    } only %}
     {% include '@bolt-components-navbar/navbar-li.twig' with {
       link: {
         content: 'Section 5',
@@ -46,12 +48,12 @@
           href: '#section-5'
         }
       }
-    } only %} 
+    } only %}
   {% endset %}
   {% set navbar_list %}
-    {% include '@bolt-components-navbar/navbar-ul.twig' with { 
+    {% include '@bolt-components-navbar/navbar-ul.twig' with {
       content: navbar_items,
-    } only %}  
+    } only %}
   {% endset %}
 
   {% include '@bolt-components-navbar/navbar.twig' with {

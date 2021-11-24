@@ -49,8 +49,19 @@ bolt-popover {
 @each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
 
-  .c-bolt-popover__content--spacing-#{$size-name} {
-    padding: var(--bolt-spacing-y-#{$size-name})
-      var(--bolt-spacing-x-#{$size-name});
+  @if (
+    $size-name !=
+      'xxsmall' and
+      $size-name !=
+      'large' and
+      $size-name !=
+      'xlarge' and
+      $size-name !=
+      'xxlarge'
+  ) {
+    .c-bolt-popover__content--spacing-#{$size-name} {
+      padding: var(--bolt-spacing-y-#{$size-name})
+        var(--bolt-spacing-x-#{$size-name});
+    }
   }
 }

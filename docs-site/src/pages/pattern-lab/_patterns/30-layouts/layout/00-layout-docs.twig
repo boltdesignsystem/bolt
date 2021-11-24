@@ -1,8 +1,16 @@
-<bolt-banner status="warning" class="u-bolt-margin-top-large">
-  <bolt-icon name="warning"></bolt-icon>&nbsp;<strong>This layout is in a testing phase, do not use any code examples from the docs for production sites.</strong>
+{% spaceless %}
+<bolt-banner status="warning" align="start" class="u-bolt-margin-top-large">
+  <bolt-text headline>{% include '@bolt-elements-icon/icon.twig' with { name: 'warning' } only %}&nbsp;Layout is in testing phase</bolt-text>
+  <bolt-ol>
+    <bolt-li>Consult the design system team when using Layout.</bolt-li>
+    <bolt-li>Read and understand the schema fully.</bolt-li>
+    <bolt-li>Only use the Twig includes, do not use HTML for the time being.</bolt-li>
+    <bolt-li>Use the side nav to view all Layout demos.</bolt-li>
+  </bolt-ol>
 </bolt-banner>
+{% endspaceless %}
 
-{# {% set usage %}{% verbatim %}
+{% set usage %}{% verbatim %}
 {% set content %}
   {% include '@bolt-layouts-layout/layout-item.twig' with {
     content: 'Layout item'
@@ -13,7 +21,6 @@
 {% endset %}
 {% include '@bolt-layouts-layout/layout.twig' with {
   content: content,
-  template: '75/25@from-small',
 } only %}
 {% endverbatim %}{% endset %}
 
@@ -21,4 +28,4 @@
   componentName: 'layout',
   componentGroup: 'layouts',
   usage: usage
-} only %} #}
+} only %}

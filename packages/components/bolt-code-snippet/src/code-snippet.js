@@ -1,5 +1,7 @@
 import Prism from 'prismjs';
-import { html, render, ifDefined } from '@bolt/element';
+import { html, render, ifDefined, unsafeCSS, unsafeHTML } from '@bolt/element';
+import { iconCopyToClipboard } from '@bolt/elements-icon/src/icons/js/copy-to-clipboard';
+import iconStyles from '@bolt/elements-icon/index.scss';
 import cx from 'classnames/bind';
 import ClipboardJS from 'clipboard';
 
@@ -31,7 +33,16 @@ export class BoltCodeSnippet {
   constructor(el) {
     if (!el) return;
     this.el = el;
-    this.init();
+
+    // Ensure component doesn't init twice
+    // @TODO: Enable component to be properly re-initialized?
+    if (!this.el.hasAttribute('data-bolt-ready')) {
+      this.init();
+    }
+  }
+
+  static get styles() {
+    return [unsafeCSS(iconStyles)];
   }
 
   init() {
@@ -158,7 +169,7 @@ export class BoltCodeSnippet {
                   hidden=${ifDefined(this.copied || undefined)}
                 >
                   <span class="e-bolt-text-link__icon-before"
-                    ><bolt-icon name="copy-to-clipboard"></bolt-icon></span
+                    >${unsafeHTML(iconCopyToClipboard())}</span
                   >Copy</button
                 >${this.copied
                   ? html`

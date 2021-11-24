@@ -31,12 +31,6 @@ bolt-ratio {
   position: relative;
   width: 100%;
 
-  @include bolt-css-vars(
-    (
-      --aspect-ratio: 1/1,
-    )
-  );
-
   @supports (--custom: property) {
     padding-bottom: calc(100% / (var(--aspect-ratio)));
   }

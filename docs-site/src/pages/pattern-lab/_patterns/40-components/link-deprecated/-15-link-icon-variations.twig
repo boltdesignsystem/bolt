@@ -1,7 +1,7 @@
 {% include '@pl/00-deprecated-link-docs.twig' %}
 
 <bolt-banner status="success" align="start">
-  <bolt-icon name="documentation" size="medium"></bolt-icon> Please reference <a href="{{ link['elements-text-link-with-icon'] }}" class="e-bolt-text-link"> element doc</a> instead.
+  {% include '@bolt-elements-icon/icon.twig' with { name: 'documentation', size: 'medium' } only %} Please reference <a href="{{ link['elements-text-link-with-icon'] }}" class="e-bolt-text-link"> element doc</a> instead.
 </bolt-banner>
 
 
@@ -11,7 +11,7 @@
     text: 'This is a link',
     url: 'https://google.com',
     icon: {
-      name: 'info-open',
+      name: 'info-circle',
     },
   } only %}
 </p>
@@ -21,7 +21,7 @@
     text: 'This is a link',
     url: 'https://google.com',
     icon: {
-      name: 'info-open',
+      name: 'info-circle',
       position: 'before'
     },
   } only %}
@@ -50,7 +50,7 @@
     text: 'This is a link',
     url: 'https://google.com',
     icon: {
-      name: 'academy',
+      name: 'certification',
     },
   } only %}
 </p>
@@ -59,7 +59,7 @@
     text: 'This is a link',
     url: 'https://google.com',
     icon: {
-      name: 'app-exchange',
+      name: 'cube',
     },
   } only %}
 </p>

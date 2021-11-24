@@ -1,0 +1,57 @@
+
+{% set _content %}
+  <bolt-text headline font-size="xxxlarge">
+    Excepteur Lorem occaecat.
+  </bolt-text>
+  <bolt-text subheadline font-size="large">
+    Nostrud est labore nisi et ut eu aute laboris quis anim ipsum non.
+  </bolt-text>
+  {% include '@bolt-elements-button/button.twig' with {
+    content: "See more",
+    hierarchy: "secondary",
+    attributes: {
+      type: 'button'
+    }
+  } %}
+{% endset %}
+
+{% set _supplement %}
+{% endset %}
+
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    order: 'last@from-small',
+    content: _content
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: _supplement
+  } only %}
+{% endset %}
+
+{% set _background %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/content/backgrounds/background-night-sky.jpg',
+      loading: 'eager',
+      width: '100vw'
+    },
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  gutter: 'large',
+  row_gutter: 'large',
+  padding_top: 'large',
+  padding_bottom: 'large',
+  valign_items: 'center',
+  background: _background,
+  template: [
+    'halves@from-small'
+  ],
+  attributes: {
+    class: 't-bolt-dark'
+  }
+} only %}
