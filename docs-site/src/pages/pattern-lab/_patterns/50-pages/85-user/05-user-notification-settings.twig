@@ -1,12 +1,14 @@
 {% extends "@pl/_site-layout-template.twig" %}
 
 {% set heading %}
-  <div class="c-ntm__sort">
+  {% set title %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Content you follow:',
       tag: 'h2',
       size: 'xxlarge'
     } only %}
+  {% endset %}
+  {% set sort %}
     {% set label %}
       {% include '@bolt-components-form/form-label.twig' with {
         title: 'Sort options',
@@ -46,77 +48,150 @@
       label: label,
       children: select
     } only %}
-  </div>
+  {% endset %}
+  {% include '@bolt-components-grid/grid.twig' with {
+  valign: 'center',
+  gutter: 'large',
+  items: [
+    {
+      column_start: '1',
+      column_span: '12 11@small',
+      row_start: '1 1@small',
+      content: title,
+    },
+    {
+      column_start: '1 12@small',
+      column_span: '12 1@small',
+      row_start: '2 1@small',
+      content: sort,
+    },
+  ],
+  attributes: {
+    class: 'u-bolt-margin-bottom-xsmall'
+  }
+} only %}
 {% endset %}
 
 {% set list %}
   {% set items = [
     {
-      name: 'Collaboration center',
-      tag: 'Discussion',
+      eyebrow_1: 'Collaboration center',
+      eyebrow_2: 'Discussion',
       heading: 'Configure External Kafka as a stream service',
       icon: 'pega-chat-typing',
     },
     {
-      name: 'Collaboraton center',
-      tag: 'Idea',
+      eyebrow_1: 'Collaboraton center',
+      eyebrow_2: 'Idea',
       heading: '0Auth2.0 Authentication Profile for Connect SOAP in Pega 7.3.1',
       icon: 'ideas',
     },
     {
-      name: 'Pega academy',
-      tag: 'Mission',
+      eyebrow_1: 'Pega academy',
+      eyebrow_2: 'Mission',
       heading: 'Low-code App Builder',
       icon: 'rocket',
     },
   ] %}
 
-  <ul class="c-ntm__list">
-    {% for item in items %}
-      {% set list_item_button %}
-        {% set icon_trash %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'trash',
-          } only %}
-        {% endset %}
-        {% set tooltip_trigger %}
-          {% include '@bolt-elements-button/button.twig' with {
-            content: 'Delete ' ~ item.heading ~ ' item from the list',
-            icon_only: icon_trash,
-            hierarchy: 'transparent',
-            attributes: {
-              type: 'button'
-            }
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-tooltip/tooltip.twig' with {
-          trigger: tooltip_trigger,
-          content: 'Delete from the list',
+  {% for item in items %}
+    {% set demo_icon %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: item.icon,
+        size: 'large'
+      } only %}
+    {% endset %}
+    {% set remove_item_button %}
+      {% set icon_trash %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'trash',
         } only %}
       {% endset %}
-      <li class="c-ntm__list-item">
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: item.icon,
-          size: 'large'
+      {% set tooltip_trigger %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Delete ' ~ item.heading ~ ' item from the list',
+          icon_only: icon_trash,
+          hierarchy: 'transparent',
+          attributes: {
+            type: 'button'
+          }
         } only %}
-        <div class="c-ntm__list-content">
-          {% include '@bolt-components-headline/eyebrow.twig' with {
-            text: item.name ~ '<span aria-hidden="true"> | </span>' ~ item.tag,
-            transform: 'uppercase'
-          } only %}
-          {% include '@bolt-components-headline/headline.twig' with {
-            text: item.heading,
-            tag: 'h3',
-            size: 'large',
-            attributes: {
-              class: 'c-ntm__list-title'
-            }
-          } only %}
-        </div>
-        {{ list_item_button }}
-      </li>
-    {% endfor %}
-  </ul>
+      {% endset %}
+      {% include '@bolt-components-tooltip/tooltip.twig' with {
+        trigger: tooltip_trigger,
+        content: 'Delete from the list',
+      } only %}
+    {% endset %}
+    {% set eyebrow_1 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: item.eyebrow_1,
+      } only %}
+    {% endset %}
+    {% set eyebrow_2 %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: item.eyebrow_2,
+      } only %}
+    {% endset %}
+    {% set listing_teaser %}
+      {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+        eyebrow_items: [
+          eyebrow_1,
+          eyebrow_2,
+        ],
+        signifier: demo_icon,
+        headline: {
+          text: item.heading,
+          tag: 'h3',
+          size: 'xlarge',
+          link_attributes: {
+            href: 'https://google.com'
+          },
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      valign: 'center',
+      gutter: 'large',
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 11@small',
+          row_start: '1 1@small',
+          content: listing_teaser,
+        },
+        {
+          column_start: '1 12@small',
+          column_span: '12 1@small',
+          row_start: '2 1@small',
+          content: remove_item_button,
+        },
+      ],
+      attributes: {
+        class: 'u-bolt-margin-bottom-xsmall'
+      }
+    } only %}
+  {% endfor %}
+  {# {% include '@bolt-components-grid/grid.twig' with {
+    valign: 'center',
+    gutter: 'large',
+    items: [
+      {
+        column_start: '1',
+        column_span: '12 11@small',
+        row_start: '1 1@small',
+        content: listing_teaser,
+      },
+      {
+        column_start: '1 12@small',
+        column_span: '12 1@small',
+        row_start: '2 1@small',
+        content: remove_item_button,
+      },
+    ],
+    attributes: {
+      class: 'u-bolt-margin-bottom-xsmall'
+    }
+  } only %} #}
 {% endset %}
 
 {% set bottom_headline %}

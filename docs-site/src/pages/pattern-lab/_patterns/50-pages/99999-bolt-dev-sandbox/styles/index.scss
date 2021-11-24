@@ -67,8 +67,7 @@
   }
 
   &--step-three {
-    grid-template-columns: auto;
-    gap: var(--bolt-spacing-y-medium);
+    display: block;
 
     .c-bolt-inline-label:before {
       top: 0.7em;
@@ -136,57 +135,4 @@
 .c-ntm__footer {
   padding: var(--bolt-spacing-x-medium);
   text-align: center;
-}
-
-//PAGE NOTIFICATION SETTINGS
-
-.c-ntm__sort {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--bolt-spacing-y-large);
-
-  .c-bolt-headline {
-    margin-bottom: 0;
-  }
-}
-
-.c-ntm__list {
-  margin: 0 0 var(--bolt-spacing-y-xlarge) 0;
-  padding: 0;
-  font-family: var(--bolt-type-font-family-body);
-  font-size: var(--bolt-type-font-size-medium);
-  font-weight: var(--bolt-type-font-weight-regular);
-  list-style: none;
-  line-height: var(--bolt-type-line-height-medium);
-  text-align: start;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-
-.c-ntm__list-item {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  column-gap: var(--bolt-spacing-x-small);
-  align-items: center;
-  margin-bottom: var(--bolt-spacing-y-small);
-  padding-bottom: var(--bolt-spacing-y-small);
-  border-bottom: 1px solid var(--m-bolt-border);
-
-  &:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border: none;
-  }
-}
-
-.c-ntm__list-title {
-  color: var(--bolt-color-navy-light);
-}
-
-.c-ntm__video-trigger {
-  display: block;
-  margin-top: var(--bolt-spacing-y-small);
 }
