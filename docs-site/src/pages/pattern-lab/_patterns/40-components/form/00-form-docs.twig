@@ -1,25 +1,61 @@
 {% set usage %}{% verbatim %}
 {% set form_children %}
-  {% set label %}
-    {% include '@bolt-components-form/form-label.twig' with {
-      title: 'This is the label',
-      displayType: 'block'
+  {% set fieldset_children %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Email input type',
+        displayType: 'floating',
+        attributes: {
+          for: 'email',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter email',
+          type: 'email',
+          id: 'email',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Password input type',
+        displayType: 'floating',
+        attributes: {
+          for: 'password',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter password',
+          type: 'password',
+          id: 'password',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
     } only %}
   {% endset %}
-  {% set input %}
-    {% include '@bolt-components-form/form-input.twig' with {
-      attributes: {
-        placeholder: 'This is the placeholder text.',
-        required: true,
-        type: 'text',
-      },
-    } only %}
-  {% endset %}
-  {% include '@bolt-components-form/form-element.twig' with {
-    labelDisplay: 'before',
-    label: label,
-    children: input
+
+  {% include '@bolt-components-form/form-fieldset.twig' with {
+    legendTitle: 'Fieldset Legend',
+    legendInnerAttributes: {
+      class: 'u-bolt-visuallyhidden',
+    },
+    children: fieldset_children,
   } only %}
+  
   {% include '@bolt-components-form/form-button.twig' with {
     text: 'Submit',
     attributes: {
@@ -27,6 +63,7 @@
     }
   } only %}
 {% endset %}
+
 {% include '@bolt-components-form/form.twig' with {
   children: form_children
 } only %}

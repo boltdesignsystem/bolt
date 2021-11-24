@@ -1,111 +1,20 @@
 {% set description %}
-  A specific type of form input should be used based on each use case.
+  A fieldset is for grouping one or many form inputs.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Each form input can be composed of <code>form-label.twig</code>, <code>form-input.twig</code>, and <code>form-element.twig</code>.</bolt-li>
-    <bolt-li>To improve accessibility and usability, make sure to include the <code>type</code> attribute for each input. Reference all valid values on <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" class="e-bolt-text-link" target="_blank" rel="noopener">this MDN article</a>.</bolt-li>
-    <bolt-li>All form inputs must have related <code>&lt;label&gt;</code> elements.</bolt-li>
-    <bolt-li>Required form inputs should have the <code>required</code> attribute.</bolt-li>
-    <bolt-li>Disabled form inputs should have the <code>disabled</code> attribute. However, this should be used sparingly because disabled inputs are bad for accessibility.</bolt-li>
-    <bolt-li>To display helper text for a specific form input, use the <code>descriptionText</code> prop in <code>form-element.twig</code>.</bolt-li>
-    <bolt-li>There are options when it comes to visually displaying labels. Reference the <a href="{{ link['components-form-label-positions'] }}" class="e-bolt-text-link">form label positions</a> doc for all options.</bolt-li>
     <bolt-li>All inputs must be wrapped with a fieldset using <code>form-fieldset.twig</code>. Multiple fieldsets can be used if it is necessary to group certain form inputs.</bolt-li>
-    <bolt-li>All form elements must be rendered inside a form using <code>form.twig</code>.</bolt-li>
+    <bolt-li>Each fieldset must be have a legend. Use <code>legendTitle</code> to set the legend text; use <code>legendSize</code> to set the legend text size.</bolt-li>
+    <bolt-li>To visually hide a legend, use <code>legendAttributes</code> to add the class <code>u-bolt-visuallyhidden</code>. This will still allow screen readers to access the legend.</bolt-li>
+    <bolt-li>Set helper text for a fieldset via the <code>descriptionText</code> prop.</bolt-li>
+    <bolt-li>Set error messages for a fieldset via the <code>errors</code> prop.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
   {% set form_children %}
     {% set fieldset_children %}
-      {% set label %}
-        {% include '@bolt-components-form/form-label.twig' with {
-          title: 'Text input type',
-          displayType: 'floating',
-          attributes: {
-            for: 'text',
-          },
-        } only %}
-      {% endset %}
-      {% set input %}
-        {% include '@bolt-components-form/form-input.twig' with {
-          attributes: {
-            placeholder: 'Enter text',
-            type: 'text',
-            id: 'text',
-          },
-        } only %}
-      {% endset %}
-      {% set icon_info_circle %}
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'info-circle',
-        } only %}
-      {% endset %}
-      {% include '@bolt-components-form/form-element.twig' with {
-        label: label,
-        children: input,
-        descriptionText: icon_info_circle ~ '<small>Helper text for this specific form input.</small>',
-      } only %}
-
-      {% set label %}
-        {% include '@bolt-components-form/form-label.twig' with {
-          title: 'Text input type',
-          displayType: 'floating',
-          attributes: {
-            for: 'required-text',
-          },
-        } only %}
-      {% endset %}
-      {% set input %}
-        {% include '@bolt-components-form/form-input.twig' with {
-          attributes: {
-            placeholder: 'Enter text (required)',
-            type: 'text',
-            id: 'required-text',
-            required: true,
-          },
-        } only %}
-      {% endset %}
-      {% set icon_info_circle %}
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'info-circle',
-        } only %}
-      {% endset %}
-      {% include '@bolt-components-form/form-element.twig' with {
-        label: label,
-        children: input,
-      } only %}
-
-      {% set label %}
-        {% include '@bolt-components-form/form-label.twig' with {
-          title: 'Text input type',
-          displayType: 'floating',
-          attributes: {
-            for: 'disabled-text',
-          },
-        } only %}
-      {% endset %}
-      {% set input %}
-        {% include '@bolt-components-form/form-input.twig' with {
-          attributes: {
-            placeholder: 'Enter text (disabled)',
-            type: 'text',
-            id: 'disabled-text',
-            disabled: true,
-          },
-        } only %}
-      {% endset %}
-      {% set icon_info_circle %}
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'info-circle',
-        } only %}
-      {% endset %}
-      {% include '@bolt-components-form/form-element.twig' with {
-        label: label,
-        children: input,
-      } only %}
-
       {% set label %}
         {% include '@bolt-components-form/form-label.twig' with {
           title: 'Email input type',
@@ -144,6 +53,36 @@
             placeholder: 'Enter password',
             type: 'password',
             id: 'password',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-form/form-fieldset.twig' with {
+      legendTitle: 'Account Info',
+      children: fieldset_children,
+    } only %}
+
+    {% set fieldset_children %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Text input type',
+          displayType: 'floating',
+          attributes: {
+            for: 'text',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Enter text',
+            type: 'text',
+            id: 'text',
           },
         } only %}
       {% endset %}
@@ -199,12 +138,23 @@
       } only %}
     {% endset %}
 
+    {% set icon_info_circle %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'info-circle',
+      } only %}
+    {% endset %}
+
+    {% set icon_warning %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'warning',
+      } only %}
+    {% endset %}
+
     {% include '@bolt-components-form/form-fieldset.twig' with {
-      legendTitle: 'Fieldset Legend',
-      legendInnerAttributes: {
-        class: 'u-bolt-visuallyhidden',
-      },
+      legendTitle: 'Personal Info',
       children: fieldset_children,
+      descriptionText: icon_info_circle ~ '<small>Helper text for this specific fieldset.</small>',
+      errors: icon_warning ~ ' This is an error message for this specific fieldset.'
     } only %}
   {% endset %}
 
@@ -217,93 +167,6 @@
 {% verbatim %}
 {% set form_children %}
   {% set fieldset_children %}
-    {% set label %}
-      {% include '@bolt-components-form/form-label.twig' with {
-        title: 'Text input type',
-        displayType: 'floating',
-        attributes: {
-          for: 'text',
-        },
-      } only %}
-    {% endset %}
-    {% set input %}
-      {% include '@bolt-components-form/form-input.twig' with {
-        attributes: {
-          placeholder: 'Enter text',
-          type: 'text',
-          id: 'text',
-        },
-      } only %}
-    {% endset %}
-    {% set icon_info_circle %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'info-circle',
-      } only %}
-    {% endset %}
-    {% include '@bolt-components-form/form-element.twig' with {
-      label: label,
-      children: input,
-      descriptionText: icon_info_circle ~ '<small>Helper text for this specific form input.</small>',
-    } only %}
-
-    {% set label %}
-      {% include '@bolt-components-form/form-label.twig' with {
-        title: 'Text input type',
-        displayType: 'floating',
-        attributes: {
-          for: 'required-text',
-        },
-      } only %}
-    {% endset %}
-    {% set input %}
-      {% include '@bolt-components-form/form-input.twig' with {
-        attributes: {
-          placeholder: 'Enter text (required)',
-          type: 'text',
-          id: 'required-text',
-          required: true,
-        },
-      } only %}
-    {% endset %}
-    {% set icon_info_circle %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'info-circle',
-      } only %}
-    {% endset %}
-    {% include '@bolt-components-form/form-element.twig' with {
-      label: label,
-      children: input,
-    } only %}
-
-    {% set label %}
-      {% include '@bolt-components-form/form-label.twig' with {
-        title: 'Text input type',
-        displayType: 'floating',
-        attributes: {
-          for: 'disabled-text',
-        },
-      } only %}
-    {% endset %}
-    {% set input %}
-      {% include '@bolt-components-form/form-input.twig' with {
-        attributes: {
-          placeholder: 'Enter text (disabled)',
-          type: 'text',
-          id: 'disabled-text',
-          disabled: true,
-        },
-      } only %}
-    {% endset %}
-    {% set icon_info_circle %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'info-circle',
-      } only %}
-    {% endset %}
-    {% include '@bolt-components-form/form-element.twig' with {
-      label: label,
-      children: input,
-    } only %}
-
     {% set label %}
       {% include '@bolt-components-form/form-label.twig' with {
         title: 'Email input type',
@@ -342,6 +205,36 @@
           placeholder: 'Enter password',
           type: 'password',
           id: 'password',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-form/form-fieldset.twig' with {
+    legendTitle: 'Account Info',
+    children: fieldset_children,
+  } only %}
+
+  {% set fieldset_children %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Text input type',
+        displayType: 'floating',
+        attributes: {
+          for: 'text',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter text',
+          type: 'text',
+          id: 'text',
         },
       } only %}
     {% endset %}
@@ -397,12 +290,23 @@
     } only %}
   {% endset %}
 
+  {% set icon_info_circle %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'info-circle',
+    } only %}
+  {% endset %}
+
+  {% set icon_warning %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'warning',
+    } only %}
+  {% endset %}
+
   {% include '@bolt-components-form/form-fieldset.twig' with {
-    legendTitle: 'Fieldset Legend',
-    legendInnerAttributes: {
-      class: 'u-bolt-visuallyhidden',
-    },
+    legendTitle: 'Personal Info',
     children: fieldset_children,
+    descriptionText: icon_info_circle ~ '<small>Helper text for this specific fieldset.</small>',
+    errors: icon_warning ~ ' This is an error message for this specific fieldset.'
   } only %}
 {% endset %}
 
@@ -413,7 +317,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Form Inputs',
+  title: 'Form Fieldset',
   description: description,
   notes: notes,
   demo: demo,
