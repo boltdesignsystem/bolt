@@ -659,51 +659,51 @@
 {# User nav #}
 {% set notifications_popover_lv2_ul_content %}
   {% set placeholder_item %}
-    <li class="c-base-notifications__list-item">
-      <div class="c-base-notifications__signifier">
+    <li class="c-bolt-notifications__list-item">
+      <div class="c-bolt-notifications__signifier">
         {% include '@bolt-elements-icon/icon.twig' with {
           name: 'info-circle',
           size: 'medium',
         } only %}
       </div>
-      <div class="c-base-notifications__content">
-        <div class="c-base-notifications__eyebrow">
+      <div class="c-bolt-notifications__content">
+        <div class="c-bolt-notifications__eyebrow">
           Site Name
         </div>
-        <div class="c-base-notifications__timestamp">
+        <div class="c-bolt-notifications__timestamp">
           2 days ago
         </div>
-        <a href="https://google.com" class="c-base-notifications__message">
-          The notificatoin message goes here. It may have <span class="c-base-notifications__callout">1 callout that looks like a link</span>, but the entire row is clickable and points to a single link.
+        <a href="https://google.com" class="c-bolt-notifications__message">
+          The notificatoin message goes here. It may have <span class="c-bolt-notifications__callout">1 callout that looks like a link</span>, but the entire row is clickable and points to a single link.
         </a>
       </div>
     </li>
   {% endset %}
   {% set placeholder_item_read %}
-    <li class="c-base-notifications__list-item c-base-notifications__list-item--read">
-      <div class="c-base-notifications__signifier">
+    <li class="c-bolt-notifications__list-item c-bolt-notifications__list-item--read">
+      <div class="c-bolt-notifications__signifier">
         {% include '@bolt-elements-icon/icon.twig' with {
           name: 'info-circle',
           size: 'medium',
         } only %}
       </div>
-      <div class="c-base-notifications__content">
-        <div class="c-base-notifications__eyebrow">
+      <div class="c-bolt-notifications__content">
+        <div class="c-bolt-notifications__eyebrow">
           Site Name
         </div>
-        <div class="c-base-notifications__timestamp">
+        <div class="c-bolt-notifications__timestamp">
           2 days ago
         </div>
-        <a href="https://google.com" class="c-base-notifications__message">
+        <a href="https://google.com" class="c-bolt-notifications__message">
           Each message can have a read or unread state. This one is read.
         </a>
       </div>
     </li>
   {% endset %}
   
-  <div class="c-base-notifications">
-    <header class="c-base-notifications__header">
-      <div class="c-base-notifications__switch">
+  <div class="c-bolt-notifications">
+    <header class="c-bolt-notifications__header">
+      <div class="c-bolt-notifications__switch">
         {% include '@bolt-components-switch-button/switch-button.twig' with {
           label: 'Only show unread notifications',
           attributes: {
@@ -723,16 +723,16 @@
           });
         </script>
       </div>
-      <div class="c-base-notifications__actions">
+      <div class="c-bolt-notifications__actions">
         {% set icon_check_circle %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'check-circle',
             size: 'medium',
           } only %}
         {% endset %}
-        <button class="c-base-notifications__action-button" type="button">
+        <button class="c-bolt-notifications__action-button" type="button">
           {{ icon_check_circle }}
-          <span class="c-base-notifications__action-button-text">Mark all as read</span>
+          <span class="c-bolt-notifications__action-button-text">Mark all as read</span>
         </button>
 
         {% set icon_pega_setting %}
@@ -741,95 +741,95 @@
             size: 'medium',
           } only %}
         {% endset %}
-        <a class="c-base-notifications__action-button" href="https://google.com">
+        <a class="c-bolt-notifications__action-button" href="https://google.com">
           {{ icon_pega_setting }}
-          <span class="c-base-notifications__action-button-text">Notification Settings</span>
+          <span class="c-bolt-notifications__action-button-text">Notification Settings</span>
         </a>
       </div>
     </header>
-    <ul class="c-base-notifications__list">
-      <li class="c-base-notifications__list-item c-base-notifications__list-item--section-heading">
+    <ul class="c-bolt-notifications__list">
+      <li class="c-bolt-notifications__list-item c-bolt-notifications__list-item--section-heading">
         <strong>Latest</strong>
       </li>
-      <li class="c-base-notifications__list-item">
-        <div class="c-base-notifications__signifier">
+      <li class="c-bolt-notifications__list-item">
+        <div class="c-bolt-notifications__signifier">
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'pega-announce',
             size: 'medium',
           } only %}
         </div>
-        <div class="c-base-notifications__content">
-          <div class="c-base-notifications__eyebrow">
+        <div class="c-bolt-notifications__content">
+          <div class="c-bolt-notifications__eyebrow">
             google.com
           </div>
-          <div class="c-base-notifications__timestamp">
+          <div class="c-bolt-notifications__timestamp">
             1 minute ago
           </div>
-          <a href="https://google.com" class="c-base-notifications__message">
-             <span class="c-base-notifications__callout">New Gartner CRM CEC Magic Quadrant analyst report</span> is published.
+          <a href="https://google.com" class="c-bolt-notifications__message">
+             <span class="c-bolt-notifications__callout">New Gartner CRM CEC Magic Quadrant analyst report</span> is published.
           </a>
         </div>
       </li>
       {{ placeholder_item_read }}
       {{ placeholder_item_read }}
-      <li class="c-base-notifications__list-item">
-        <div class="c-base-notifications__signifier">
+      <li class="c-bolt-notifications__list-item">
+        <div class="c-bolt-notifications__signifier">
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'pega-thumbs-up',
             size: 'medium',
           } only %}
         </div>
-        <div class="c-base-notifications__content">
-          <div class="c-base-notifications__eyebrow">
+        <div class="c-bolt-notifications__content">
+          <div class="c-bolt-notifications__eyebrow">
             Collaboration Center
           </div>
-          <div class="c-base-notifications__timestamp">
+          <div class="c-bolt-notifications__timestamp">
             2 minutes ago
           </div>
-          <a href="https://google.com" class="c-base-notifications__message">
-            Aneesh Borah, Matt Alley and 2 others liked your idea, <span class="c-base-notifications__callout">Multi-datacenter setup in 8.6.1 with two Openshift clusters</span>.
+          <a href="https://google.com" class="c-bolt-notifications__message">
+            Aneesh Borah, Matt Alley and 2 others liked your idea, <span class="c-bolt-notifications__callout">Multi-datacenter setup in 8.6.1 with two Openshift clusters</span>.
           </a>
         </div>
       </li>
-      <li class="c-base-notifications__list-item">
-        <div class="c-base-notifications__signifier">
+      <li class="c-bolt-notifications__list-item">
+        <div class="c-bolt-notifications__signifier">
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'info-circle',
             size: 'medium',
           } only %}
         </div>
-        <div class="c-base-notifications__content">
-          <div class="c-base-notifications__eyebrow">
+        <div class="c-bolt-notifications__content">
+          <div class="c-bolt-notifications__eyebrow">
             Community
           </div>
-          <div class="c-base-notifications__timestamp">
+          <div class="c-bolt-notifications__timestamp">
             5 minutes ago
           </div>
-          <a href="https://google.com" class="c-base-notifications__message">
+          <a href="https://google.com" class="c-bolt-notifications__message">
             There will be a site-wide maintenance scheduled for Wednesday, September 15, 2021 from 1&ndash;4PM EST.
           </a>
         </div>
       </li>
-      <li class="c-base-notifications__list-item">
-        <div class="c-base-notifications__signifier">
+      <li class="c-bolt-notifications__list-item">
+        <div class="c-bolt-notifications__signifier">
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'info-circle',
             size: 'medium',
           } only %}
         </div>
-        <div class="c-base-notifications__content">
-          <div class="c-base-notifications__eyebrow">
+        <div class="c-bolt-notifications__content">
+          <div class="c-bolt-notifications__eyebrow">
             Academy
           </div>
-          <div class="c-base-notifications__timestamp">
+          <div class="c-bolt-notifications__timestamp">
             6 minutes ago
           </div>
-          <a href="https://google.com" class="c-base-notifications__message">
-            A mission you follow has been updated: <span class="c-base-notifications__callout">Pega Robotic Automation</span>.
+          <a href="https://google.com" class="c-bolt-notifications__message">
+            A mission you follow has been updated: <span class="c-bolt-notifications__callout">Pega Robotic Automation</span>.
           </a>
         </div>
       </li>
-      <li class="c-base-notifications__list-item c-base-notifications__list-item--section-heading">
+      <li class="c-bolt-notifications__list-item c-bolt-notifications__list-item--section-heading">
         <strong>Earlier</strong>
       </li>
       {{ placeholder_item }}
@@ -846,7 +846,7 @@
       {{ placeholder_item }}
       {{ placeholder_item }}
     </ul>
-    <footer class="c-base-notifications__footer">
+    <footer class="c-bolt-notifications__footer">
       <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline e-bolt-text-link--expand-click-target">View all notifications</a>
     </footer>
   </div>
@@ -1104,7 +1104,7 @@
     {% set pega_sites_teaser_pega %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_pega %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Pegasystems Inc.',
@@ -1151,7 +1151,7 @@
     {% set pega_sites_teaser_pegaworld %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_pegaworld %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'PegaWorld',
@@ -1198,7 +1198,7 @@
     {% set pega_sites_teaser_partner %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_partner %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Partner Portal',
@@ -1245,7 +1245,7 @@
     {% set pega_sites_teaser_pegahub %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_pegahub %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'PegaHub',
@@ -1292,7 +1292,7 @@
     {% set pega_sites_teaser_cosmos %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_cosmos %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Pega Cosmos Design System',
@@ -1339,7 +1339,7 @@
     {% set pega_sites_teaser_community %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_community %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Pega Community',
@@ -1386,7 +1386,7 @@
     {% set pega_sites_teaser_documentation %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_documentation %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Documentation',
@@ -1433,7 +1433,7 @@
     {% set pega_sites_teaser_academy %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_academy %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Academy',
@@ -1480,7 +1480,7 @@
     {% set pega_sites_teaser_forums %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_forums %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Forums',
@@ -1527,7 +1527,7 @@
     {% set pega_sites_teaser_marketplace %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_marketplace %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Marketplace',
@@ -1574,7 +1574,7 @@
     {% set pega_sites_teaser_design_pattern %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_design_pattern %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Design Pattern Library',
@@ -1791,76 +1791,62 @@
   } only %}
 {% endset %}
 
-{# Secondary Nav #}
+{# Secondary nav #}
 {% set secondary_nav %}
-  {% set navbar_data = [
-    {
-      link: {
-        content: 'Real-Time AI',
-        attributes: {
-          href: '#!'
-        }
-      }
-    },
-    {
-      link: {
-        content: 'End-to-end Automation',
-        attributes: {
-          href: '#!'
-        }
-      }
-    },
-    {
-      link: {
-        content: 'Journey-centric Delivery',
-        attributes: {
-          href: '#!'
-        }
-      }
-    },
-    {
-      link: {
-        content: 'Low Code',
-        attributes: {
-          href: '#!'
-        }
-      }
-    },
-    {
-      link: {
-        content: 'Multi-dimensional Power Long Title',
-        attributes: {
-          href: '#!'
-        }
-      }
-    },
-    {
-      link: {
-        content: 'Cloud Choice',
-        attributes: {
-          href: '#!'
-        }
-      }
-    }
-  ] %}
-
   {% set navbar_items %}
-    {% for item in navbar_data %}
-      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}
-    {% endfor %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 1',
+        attributes: {
+          href: '#section-1'
+        }
+      }
+    } only %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 2',
+        attributes: {
+          href: '#section-2'
+        }
+      }
+    } only %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 3',
+        attributes: {
+          href: '#section-3'
+        }
+      }
+    } only %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 4',
+        attributes: {
+          href: '#section-4'
+        }
+      }
+    } only %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 5',
+        attributes: {
+          href: '#section-5'
+        }
+      }
+    } only %}
   {% endset %}
-
   {% set navbar_list %}
-    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}
+    {% include '@bolt-components-navbar/navbar-ul.twig' with {
+      content: navbar_items,
+    } only %}
   {% endset %}
 
   {% include '@bolt-components-navbar/navbar.twig' with {
     title: {
-      content: 'Subnav',
-      tag: 'h1',
+      content: 'Secondary Nav',
       icon: {
         name: 'bullseye'
-      }
+      },
     },
     links: navbar_list
   } only %}

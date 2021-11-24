@@ -880,7 +880,7 @@
     {% set pega_sites_teaser_pega %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_pega %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Pegasystems Inc.',
@@ -927,7 +927,7 @@
     {% set pega_sites_teaser_pegaworld %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_pegaworld %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'PegaWorld',
@@ -974,7 +974,7 @@
     {% set pega_sites_teaser_partner %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_partner %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Partner Portal',
@@ -1021,7 +1021,7 @@
     {% set pega_sites_teaser_pegahub %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_pegahub %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'PegaHub',
@@ -1068,7 +1068,7 @@
     {% set pega_sites_teaser_cosmos %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_cosmos %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Pega Cosmos Design System',
@@ -1115,7 +1115,7 @@
     {% set pega_sites_teaser_community %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_community %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Pega Community',
@@ -1162,7 +1162,7 @@
     {% set pega_sites_teaser_documentation %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_documentation %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Documentation',
@@ -1209,7 +1209,7 @@
     {% set pega_sites_teaser_academy %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_academy %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Academy',
@@ -1256,7 +1256,7 @@
     {% set pega_sites_teaser_forums %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_forums %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Forums',
@@ -1303,7 +1303,7 @@
     {% set pega_sites_teaser_marketplace %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_marketplace %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Marketplace',
@@ -1350,7 +1350,7 @@
     {% set pega_sites_teaser_design_pattern %}
       {% set layout_content %}
         {% set site_name %}
-          <bolt-stack spacing="xxsmall">
+          <bolt-stack spacing="xsmall">
             {% set site_name_design_pattern %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Design Pattern Library',
@@ -1555,7 +1555,7 @@
     size: 'small',
     align: 'center',
     icon: {
-      name: 'info-open',
+      name: 'info-circle',
       position: 'before',
     }
   } only %}
@@ -1567,76 +1567,62 @@
   } only %}
 {% endset %}
 
-{# Secondary Nav #}
+{# Secondary nav #}
 {% set secondary_nav %}
-  {% set navbar_data = [
-    {
-      link: {
-        content: 'Real-Time AI',
-        attributes: {
-          href: '#!'
-        }
-      }
-    },
-    {
-      link: {
-        content: 'End-to-end Automation',
-        attributes: {
-          href: '#!'
-        }
-      }
-    },
-    {
-      link: {
-        content: 'Journey-centric Delivery',
-        attributes: {
-          href: '#!'
-        }
-      }
-    },
-    {
-      link: {
-        content: 'Low Code',
-        attributes: {
-          href: '#!'
-        }
-      }
-    },
-    {
-      link: {
-        content: 'Multi-dimensional Power Long Title',
-        attributes: {
-          href: '#!'
-        }
-      }
-    },
-    {
-      link: {
-        content: 'Cloud Choice',
-        attributes: {
-          href: '#!'
-        }
-      }
-    }
-  ] %}
-
   {% set navbar_items %}
-    {% for item in navbar_data %}
-      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
-    {% endfor %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 1',
+        attributes: {
+          href: '#section-1'
+        }
+      }
+    } only %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 2',
+        attributes: {
+          href: '#section-2'
+        }
+      }
+    } only %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 3',
+        attributes: {
+          href: '#section-3'
+        }
+      }
+    } only %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 4',
+        attributes: {
+          href: '#section-4'
+        }
+      }
+    } only %}
+    {% include '@bolt-components-navbar/navbar-li.twig' with {
+      link: {
+        content: 'Section 5',
+        attributes: {
+          href: '#section-5'
+        }
+      }
+    } only %}
   {% endset %}
-
   {% set navbar_list %}
-    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+    {% include '@bolt-components-navbar/navbar-ul.twig' with {
+      content: navbar_items,
+    } only %}
   {% endset %}
 
   {% include '@bolt-components-navbar/navbar.twig' with {
     title: {
-      content: 'Subnav',
-      tag: 'h1',
+      content: 'Secondary Nav',
       icon: {
-        name: 'marketing-gray'
-      }
+        name: 'bullseye'
+      },
     },
     links: navbar_list
   } only %}
