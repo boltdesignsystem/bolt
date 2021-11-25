@@ -113,7 +113,7 @@
   } only %}
 {% endset %}
 
-{% set notification_inputs %}
+{% set tag_builder %}
 
   {% set random_1 = random() %}
   {% set random_2 = random() %}
@@ -160,6 +160,13 @@
   {% include '@bolt-components-form/form-element.twig' with {
     label: label_2,
     children: input_2
+  } only %}
+{% endset %}
+
+{% set notification_inputs %}
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: tag_builder,
+    spacing: 'large'
   } only %}
 {% endset %}
 

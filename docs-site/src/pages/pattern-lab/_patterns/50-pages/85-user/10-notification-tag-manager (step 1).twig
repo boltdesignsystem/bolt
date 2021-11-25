@@ -184,11 +184,10 @@
   } only %}
 {% endset %}
 
-{% set content_grid %}
+{% set tag_builder %}
   {% include '@bolt-components-grid/grid.twig' with {
     valign: 'start',
     gutter: 'small',
-    row_gutter: 'large',
     items: [
       {
         column_start: '1',
@@ -201,6 +200,13 @@
         content: tips_list,
       },
     ],
+  } only %}
+{% endset %}
+
+{% set content_grid %}
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: tag_builder,
+    spacing: 'large'
   } only %}
 {% endset %}
 

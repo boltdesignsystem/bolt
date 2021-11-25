@@ -101,7 +101,7 @@
   </div>
 {% endset %}
 
-{% set input %}
+{% set tag_builder %}
   {% set label %}
     {% include '@bolt-components-form/form-label.twig' with {
       title: 'Insert name',
@@ -123,6 +123,13 @@
   {% include '@bolt-components-form/form-element.twig' with {
     label: label,
     children: input
+  } only %}
+{% endset %}
+
+{% set input %}
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: tag_builder,
+    spacing: 'large'
   } only %}
 {% endset %}
 
