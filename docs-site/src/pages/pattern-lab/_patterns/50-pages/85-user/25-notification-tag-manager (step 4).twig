@@ -19,7 +19,10 @@
   {% include '@bolt-components-headline/text.twig' with {
     size: 'large',
     text: 'Name and save your tag set',
-    tag: 'span'
+    tag: 'span',
+    attributes: {
+      class: 'u-bolt-inline'
+    }
   } only %}
 {% endset %}
 
@@ -90,7 +93,7 @@
 {% endset %}
 
 {% set frame %}
-  <div class="c-base-tag-manager__frame c-base-tag-manager__frame--before-submit">
+  <div class="c-base-tag-manager__frame u-bolt-shadow-level-20 t-bolt-gray-xlight">
     {% include '@bolt-components-headline/text.twig' with {
       size: 'small',
       text: icon_bell ~ icon_email ~ ' Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' and ' ~ chip_4 ~ ' is published or updated.',
