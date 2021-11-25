@@ -2,11 +2,11 @@
  * Add imports here
  */
 
-.c-ntm {
-  padding: var(--bolt-spacing-y-medium) 0;
-}
+// .c-base-tag-manager {
+//   padding: var(--bolt-spacing-y-medium) 0;
+// }
 
-.c-ntm__header {
+.c-base-tag-manager__header {
   margin-bottom: var(--bolt-spacing-y-medium);
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
   background: rgb(62, 103, 187);
@@ -29,57 +29,57 @@
   }
 }
 
-.c-ntm__header-steps {
+.c-base-tag-manager__header-steps {
   display: flex;
   align-items: center;
   gap: var(--bolt-spacing-x-small);
   color: var(--bolt-color-white);
 }
 
-.c-ntm__builder-title {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--bolt-spacing-x-xsmall);
-}
+// .c-base-tag-manager__builder-title {
+//   display: flex;
+//   flex-wrap: wrap;
+//   align-items: center;
+//   gap: var(--bolt-spacing-x-xsmall);
+// }
 
-.c-ntm__builder-inputs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 var(--bolt-spacing-x-small);
-  margin-bottom: var(--bolt-spacing-y-large);
-  @include bolt-mq(xsmall) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+// .c-base-tag-manager__builder-inputs {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   gap: 0 var(--bolt-spacing-x-small);
+//   margin-bottom: var(--bolt-spacing-y-large);
+//   @include bolt-mq(xsmall) {
+//     grid-template-columns: 1fr 1fr 1fr;
+//   }
 
-  &--step-two {
-    grid-template-columns: 1fr;
-    gap: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
-    margin-bottom: var(--bolt-spacing-y-large);
+//   &--step-two {
+//     grid-template-columns: 1fr;
+//     gap: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+//     margin-bottom: var(--bolt-spacing-y-large);
 
-    @include bolt-mq(small) {
-      grid-template-columns: 1fr 1fr;
-    }
+//     @include bolt-mq(small) {
+//       grid-template-columns: 1fr 1fr;
+//     }
 
-    @include bolt-mq(large) {
-      gap: var(--bolt-spacing-y-large) var(--bolt-spacing-x-large);
-    }
-  }
+//     @include bolt-mq(large) {
+//       gap: var(--bolt-spacing-y-large) var(--bolt-spacing-x-large);
+//     }
+//   }
 
-  &--step-three {
-    display: block;
+//   &--step-three {
+//     display: block;
 
-    .c-bolt-inline-label:before {
-      top: 0.7em;
-    }
-  }
+//     .c-bolt-inline-label:before {
+//       top: 0.7em;
+//     }
+//   }
 
-  &--step-four {
-    display: block;
-  }
-}
+//   &--step-four {
+//     display: block;
+//   }
+// }
 
-.c-ntm__frame {
+.c-base-tag-manager__frame {
   margin-bottom: var(--bolt-spacing-y-large);
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
   line-height: var(--bolt-type-font-weight-medium);
@@ -91,34 +91,34 @@
   }
 }
 
-.c-ntm__icon-bell {
+.c-base-tag-manager__icon-bell {
   margin-right: var(--bolt-spacing-x-xsmall);
   color: var(--bolt-color-navy-light);
 }
 
-.c-ntm__icon-email {
+.c-base-tag-manager__icon-email {
   margin-right: var(--bolt-spacing-x-xsmall);
   color: var(--bolt-color-gray);
 }
 
-.c-ntm__body {
+.c-base-tag-manager__body {
   padding: 0 var(--bolt-spacing-x-medium);
 }
 
-.c-ntm__builder {
-  @include bolt-mq(medium) {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    grid-column-gap: var(--bolt-spacing-x-medium);
-  }
+// .c-base-tag-manager__builder {
+//   @include bolt-mq(medium) {
+//     display: grid;
+//     grid-template-columns: 3fr 2fr;
+//     grid-column-gap: var(--bolt-spacing-x-medium);
+//   }
 
-  &--step-three,
-  &--step-four {
-    display: block;
-  }
-}
+//   &--step-three,
+//   &--step-four {
+//     display: block;
+//   }
+// }
 
-.c-ntm__nav {
+.c-base-tag-manager__nav {
   display: flex;
   margin: var(--bolt-spacing-y-large) 0 var(--bolt-spacing-y-large);
 
@@ -132,7 +132,7 @@
   }
 }
 
-.c-ntm__footer {
+.c-base-tag-manager__footer {
   padding: var(--bolt-spacing-x-medium);
   text-align: center;
 }
