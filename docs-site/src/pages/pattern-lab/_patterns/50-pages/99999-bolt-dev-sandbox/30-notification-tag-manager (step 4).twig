@@ -1,14 +1,11 @@
-
-{% extends "@pl/_default-page-template.twig" %}
-
 {% set header %}
-  <header class="c-ntm__header">
+  <header class="c-base-tag-manager__header">
     {% include '@bolt-components-headline/headline.twig' with {
       size: 'xxlarge',
       text: 'Pega Tag set builder',
       tag: 'h2'
     } only %}
-    <div class="c-ntm__header-steps">
+    <div class="c-base-tag-manager__header-steps">
       {% include '@bolt-components-progress-bar/progress-bar.twig' with {
         value: 4,
         valueFormat: 'step',
@@ -21,7 +18,7 @@
 {% set step_heading_inner %}
   {% include '@bolt-components-headline/text.twig' with {
     size: 'large',
-    text: 'How do you want to be notified?',
+    text: 'Name and save your tag set',
     tag: 'span'
   } only %}
 {% endset %}
@@ -29,9 +26,9 @@
 {% set step_heading %}
   {% include '@bolt-components-headline/headline.twig' with {
     size: 'xlarge',
-    text: 'Step 3:' ~ step_heading_inner,
+    text: 'Step 4:' ~ step_heading_inner,
     attributes: {
-      class: 'c-ntm__builder-title u-bolt-margin-bottom-large'
+      class: 'u-bolt-margin-bottom-large'
     }
   } only %}
 {% endset %}
@@ -77,7 +74,7 @@
 {% endset %}
 
 {% set icon_bell %}
-  <span class="c-ntm__icon-bell">
+  <span class="c-base-tag-manager__icon-bell">
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'bell-solid',
     } only %}
@@ -85,7 +82,7 @@
 {% endset %}
 
 {% set icon_email %}
-  <span class="c-ntm__icon-email">
+  <span class="c-base-tag-manager__icon-email">
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'email',
     } only %}
@@ -93,40 +90,37 @@
 {% endset %}
 
 {% set frame %}
-  {% include '@bolt-components-headline/text.twig' with {
-    size: 'small',
-    text: icon_bell ~ icon_email ~ ' Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' and ' ~ chip_4 ~ ' is published or updated.',
-    attributes: {
-      class: 'c-ntm__frame c-ntm__frame--before-submit'
-    }
-  } only %}
+  <div class="c-base-tag-manager__frame c-base-tag-manager__frame--before-submit">
+    {% include '@bolt-components-headline/text.twig' with {
+      size: 'small',
+      text: icon_bell ~ icon_email ~ ' Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' and ' ~ chip_4 ~ ' is published or updated.',
+    } only %}
+  </div>
 {% endset %}
 
 {% set input %}
-  <div class="c-ntm__builder-inputs c-ntm__builder-inputs--step-four">
-    {% set label %}
-      {% include '@bolt-components-form/form-label.twig' with {
-        title: 'Insert name',
-        displayType: 'floating',
-        attributes: {
-          for: 'name-id'
-        }
-      } only %}
-    {% endset %}
-    {% set input %}
-      {% include '@bolt-components-form/form-input.twig' with {
-        attributes: {
-          type: 'text',
-          id: 'name-id',
-          placeholder: 'Insert name'
-        },
-      } only %}
-    {% endset %}
-    {% include '@bolt-components-form/form-element.twig' with {
-      label: label,
-      children: input
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Insert name',
+      displayType: 'floating',
+      attributes: {
+        for: 'name-id'
+      }
     } only %}
-  </div>
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'text',
+        id: 'name-id',
+        placeholder: 'Insert name'
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input
+  } only %}
 {% endset %}
 
 {% set text_link %}
@@ -141,7 +135,7 @@
 {% endset %}
 
 {% set navigation %}
-  <div class="c-ntm__nav">
+  <div class="c-base-tag-manager__nav">
     {% set icon_chevron_left %}
       {% include '@bolt-elements-icon/icon.twig' with {
         name: 'chevron-left',
@@ -184,7 +178,7 @@
 {% endset %}
 
 {% set footer %}
-  <footer class="c-ntm__footer t-bolt-navy">
+  <footer class="c-base-tag-manager__footer t-bolt-navy">
     {% include '@bolt-components-headline/text.twig' with {
       text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
     } only %}
@@ -193,13 +187,11 @@
 
 {% set modal_content %}
   {{ header }}
-  <div class="c-ntm__body">
+  <div class="c-base-tag-manager__body">
     {{ frame_title }}
     {{ frame }}
     {{ step_heading }}
-    <div class="c-ntm__builder c-ntm__builder--step-four">
-      {{ input }}
-    </div>
+    {{ input }}
     {{ navigation}}
     {{ legal_note }}
   </div>
@@ -217,38 +209,23 @@
   } only %}
 {% endset %}
 
-{% block main_content %}
-  {% set header %}
-    {% include '@bolt-components-headline/headline.twig' with {
-      text: 'Notification Tag Manager',
-      size: 'xxxlarge',
-      tag: 'h1'
-    } only %}
-  {% endset %}
-
-  {% include '@bolt-components-band/band.twig' with {
-    theme: 'dark',
+<div class="c-base-tag-manager">
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Click the button below to open Notification Tag Manager (Step 4).',
     size: 'large',
-    content: header,
+    tag: 'h2'
   } only %}
+  {{ modal_trigger }}
+</div>
 
-  <div class="c-ntm">
-    {% include '@bolt-components-headline/headline.twig' with {
-      text: 'Click the button below to open Notification Tag Manager (Step 4).',
-      size: 'large',
-      tag: 'h2'
-    } only %}
-    {{ modal_trigger }}
-  </div>
+{% include '@bolt-components-modal/modal.twig' with {
+  content: modal_content,
+  width: 'regular',
+  scroll: 'overall',
+  spacing: 'none',
+  attributes: {
+    class: 'js-bolt-modal',
+  },
+} only %}
 
-  {% include '@bolt-components-modal/modal.twig' with {
-    content: modal_content,
-    width: 'regular',
-    scroll: 'overall',
-    spacing: 'none',
-    attributes: {
-      class: 'js-bolt-modal',
-    },
-  } only %}
-{% endblock %}
 
