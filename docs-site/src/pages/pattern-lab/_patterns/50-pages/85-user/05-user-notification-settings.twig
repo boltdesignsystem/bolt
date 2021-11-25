@@ -1,77 +1,78 @@
 {% extends "@pl/_site-layout-template.twig" %}
 
-{% set heading %}
-  <div class="u-bolt-margin-bottom-large">
-  {% set title %}
-    {% include '@bolt-components-headline/headline.twig' with {
-      text: 'Content you follow:',
-      tag: 'h2',
-      size: 'xxlarge'
+{% set title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Content you follow:',
+    tag: 'h2',
+    size: 'xxlarge'
+  } only %}
+{% endset %}
+{% set sort %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Sort options',
+      displayType: 'floating',
+    } only %}
+  {% endset %}       
+  {% set select %}
+    {% include '@bolt-components-form/form-select.twig' with {
+      options: [
+        {
+          type: 'option',
+          value: '',
+          label: 'Choose from below',
+          attributes: {
+            disabled: true
+          }
+        },
+        {
+          type: 'option',
+          value: 'all-content-types',
+          label: 'All content types',
+        },
+        {
+          type: 'option',
+          value: 'sort-a',
+          label: 'sort a',
+        },
+        {
+          type: 'option',
+          value: 'sort-b',
+          label: 'sort b',
+        },
+      ]
     } only %}
   {% endset %}
-  {% set sort %}
-    {% set label %}
-      {% include '@bolt-components-form/form-label.twig' with {
-        title: 'Sort options',
-        displayType: 'floating',
-      } only %}
-    {% endset %}       
-    {% set select %}
-      {% include '@bolt-components-form/form-select.twig' with {
-        options: [
-          {
-            type: 'option',
-            value: '',
-            label: 'Choose from below',
-            attributes: {
-              disabled: true
-            }
-          },
-          {
-            type: 'option',
-            value: 'all-content-types',
-            label: 'All content types',
-          },
-          {
-            type: 'option',
-            value: 'sort-a',
-            label: 'sort a',
-          },
-          {
-            type: 'option',
-            value: 'sort-b',
-            label: 'sort b',
-          },
-        ]
-      } only %}
-    {% endset %}
-    {% include '@bolt-components-form/form-element.twig' with {
-      label: label,
-      children: select
-    } only %}
-  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: select
+  } only %}
+{% endset %}
+
+{% set heading_grid %}
   {% include '@bolt-components-grid/grid.twig' with {
     valign: 'center',
     gutter: 'small',
-    row_gutter: 'large',
     items: [
       {
         column_start: '1',
-        row_start: '1',
         column_span: '12 6@small 9@large ',
-        row_span: '1',
         content: title,
       },
       {
         column_start: '1 7@small 10@large',
-        row_start: '1',
         column_span: '12 6@small 3@large',
-        row_span: '1',
         content: sort,
       },
     ],
   } only %}
-  </div>
+{% endset %}
+
+{% set heading %} 
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: heading_grid,
+    spacing: 'large'
+  } only %}
 {% endset %}
 
 {% set list %}
@@ -97,7 +98,7 @@
   ] %}
 
   {# define empty arrow to make it possible to use outside the loop #}
-  {% set list_item = [] %}
+  {% set list_items = [] %}
   {% for item in items %}
     {% set demo_icon %}
       {% include '@bolt-elements-icon/icon.twig' with {
@@ -155,19 +156,22 @@
       } only %}
     {% endset %}
     {# merge our empty array with looped listing teaser items #}
-    {% set list_item = list_item|merge([listing_teaser]) %}
+    {% set list_items = list_items|merge([listing_teaser]) %}
   {% endfor %}
-  {% include '@bolt-components-list/list.twig' with {
-    attributes: {
-      class: 'u-bolt-margin-bottom-xlarge',
-    },
-    spacing: 'small',
-    separator: 'solid',
-    items: list_item
+  {% set list_items_collection %}
+    {% include '@bolt-components-list/list.twig' with {
+      spacing: 'small',
+      separator: 'solid',
+      items: list_items
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: list_items_collection,
+    spacing: 'xlarge'
   } only %}
 {% endset %}
 
-{% set bottom_headline %}
+{% set bottom_heading %}
   {% include '@bolt-components-headline/headline.twig' with {
     text: 'Tags you follow:',
     tag: 'h2',
@@ -179,9 +183,9 @@
   {% include '@bolt-components-headline/text.twig' with {
     text: 'It\'s easy to get notified of new content! Click <strong>"Create Tag Set"</strong> to create notifications for specific content as it is published.',
   } only %}
-    {% include '@bolt-components-headline/text.twig' with {
-      text: 'You are following <strong>0</strong> tags',
-    } only %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'You are following <strong>0</strong> tags',
+  } only %}
 {% endset %}
 
 {% set tag_set_button %}
@@ -264,7 +268,7 @@
     {% set manage_notifications %}
       {{ heading }}
       {{ list }}
-      {{ bottom_headline }}
+      {{ bottom_heading }}
       {{ follow_tags_details }}
       {{ tag_set_button }}
       {{ video_trigger }}
