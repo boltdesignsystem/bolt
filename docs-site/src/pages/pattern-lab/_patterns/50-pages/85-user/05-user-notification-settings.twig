@@ -1,6 +1,7 @@
 {% extends "@pl/_site-layout-template.twig" %}
 
 {% set heading %}
+  <div class="u-bolt-margin-bottom-large">
   {% set title %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Content you follow:',
@@ -52,22 +53,25 @@
   {% include '@bolt-components-grid/grid.twig' with {
     valign: 'center',
     gutter: 'small',
+    row_gutter: 'large',
     items: [
       {
         column_start: '1',
+        row_start: '1',
         column_span: '12 6@small 9@large ',
+        row_span: '1',
         content: title,
       },
       {
         column_start: '1 7@small 10@large',
+        row_start: '1',
         column_span: '12 6@small 3@large',
+        row_span: '1',
         content: sort,
       },
     ],
-    attributes: {
-      class: 'u-bolt-margin-bottom-medium'
-    }
   } only %}
+  </div>
 {% endset %}
 
 {% set list %}
@@ -92,6 +96,8 @@
     },
   ] %}
 
+  {# define empty arrow to make it possible to use outside the loop #}
+  {% set list_item = [] %}
   {% for item in items %}
     {% set demo_icon %}
       {% include '@bolt-elements-icon/icon.twig' with {
@@ -145,33 +151,20 @@
             href: 'https://google.com'
           },
         },
+        custom_menu: remove_item_button
       } only %}
     {% endset %}
-    {% include '@bolt-components-grid/grid.twig' with {
-      valign: 'center',
-      gutter: 'small',
-      items: [
-        {
-          column_start: '1',
-          column_span: '11',
-          row_start: '1',
-          content: listing_teaser,
-        },
-        {
-          column_start: '12',
-          column_span: '1',
-          row_start: '1',
-          content: remove_item_button,
-          attributes: {
-            class: 'u-bolt-text-align-right'
-          }
-        },
-      ],
-      attributes: {
-        class: 'u-bolt-margin-bottom-small',
-      }
-    } only %}
+    {# merge our empty array with looped listing teaser items #}
+    {% set list_item = list_item|merge([listing_teaser]) %}
   {% endfor %}
+  {% include '@bolt-components-list/list.twig' with {
+    attributes: {
+      class: 'u-bolt-margin-bottom-xlarge',
+    },
+    spacing: 'small',
+    separator: 'solid',
+    items: list_item
+  } only %}
 {% endset %}
 
 {% set bottom_headline %}
@@ -179,9 +172,6 @@
     text: 'Tags you follow:',
     tag: 'h2',
     size: 'xxlarge',
-    attributes: {
-      class: 'u-bolt-margin-top-xlarge'
-    }
   } only %}
 {% endset %}
 
@@ -195,13 +185,14 @@
 {% endset %}
 
 {% set tag_set_button %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Create tag set',
-    attributes: {
-      type: 'button',
-      class: 'u-bolt-margin-bottom-small '
-    }
-  } only %}
+  <p>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Create tag set',
+      attributes: {
+        type: 'button',
+      }
+    } only %}
+  </p>
 {% endset %}
 
 {% set modal_content %}
@@ -228,7 +219,6 @@
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Watch Demo',
     attributes: {
-      class: 'u-bolt-block',
       type: 'button',
       'data-bolt-modal-target': '.js-bolt-modal--demo',
     }
