@@ -240,9 +240,6 @@
 
 {% set navigation %}
   {% include '@bolt-components-list/list.twig' with {
-    attributes: {
-      class: 'u-bolt-margin-bottom-large'
-    },
     display: 'inline',
     spacing: 'none',
     align: 'end',
@@ -250,6 +247,27 @@
     items: [
       next
     ]
+  } only %}
+{% endset %}
+
+{% set body_content %}
+  {{ frame_title }}
+  {{ frame }}
+  {{ step_heading }}
+  {{ content_grid }}
+  {{ navigation }}
+{% endset %}
+
+{% set body %}
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: body_content,
+    spacing: 'large',
+    attributes: {
+      class: [
+        'u-bolt-padding-left-medium',
+        'u-bolt-padding-right-medium',
+      ]
+    }
   } only %}
 {% endset %}
 
@@ -268,13 +286,7 @@
 
 {% set modal_content %}
   {{ header }}
-  <div class="c-base-tag-manager__body">
-    {{ frame_title }}
-    {{ frame }}
-    {{ step_heading }}
-    {{ content_grid }}
-    {{ navigation }}
-  </div>
+  {{ body }}
   {{ footer }}
 {% endset %}
 

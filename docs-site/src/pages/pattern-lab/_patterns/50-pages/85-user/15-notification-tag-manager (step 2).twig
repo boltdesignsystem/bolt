@@ -5,21 +5,28 @@
       text: 'Pega Tag set builder',
       tag: 'h2'
     } only %}
-    <div class="u-bolt-flex">
+    {# <div class="u-bolt-flex"> #}
+      {% set progressbar %}
+        {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+          value: 2,
+          valueFormat: 'step',
+          max: 4,
+        } only %}
+      {% endset %}
       {# <span class="u-bolt-margin-right-small">Step: </span> #}
       {% include '@bolt-components-headline/text.twig' with {
-        text: 'Step: ',
-        tag: 'span',
+        text: 'Step: ' ~ progressbar,
+        tag: 'div',
         attributes: {
-          class: 'u-bolt-margin-right-small'
+          class: 'u-bolt-flex'
         }
       } only %}
-      {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+      {# {% include '@bolt-components-progress-bar/progress-bar.twig' with {
         value: 2,
         valueFormat: 'step',
         max: 4,
-      } only %}
-    </div>
+      } only %} #}
+    {# </div> #}
   </header>
 {% endset %}
 
@@ -329,9 +336,6 @@
 
 {% set navigation %}
   {% include '@bolt-components-list/list.twig' with {
-    attributes: {
-      class: 'u-bolt-margin-bottom-large'
-    },
     display: 'inline',
     spacing: 'none',
     align: 'justify',
@@ -343,14 +347,25 @@
   } only %}
 {% endset %}
 
+{% set body_content %}
+  {{ frame_title }}
+  {{ frame }}
+  {{ step_heading }}
+  {{ content_grid }}
+  {{ navigation }}
+{% endset %}
+
 {% set body %}
-  <div class="c-base-tag-manager__body">
-    {{ frame_title }}
-    {{ frame }}
-    {{ step_heading }}
-    {{ content_grid }}
-    {{ navigation }}
-  </div>
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: body_content,
+    spacing: 'large',
+    attributes: {
+      class: [
+        'u-bolt-padding-left-medium',
+        'u-bolt-padding-right-medium',
+      ]
+    }
+  } only %}
 {% endset %}
 
 {% set footer %}

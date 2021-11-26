@@ -180,9 +180,6 @@
   
 {% set navigation %}
   {% include '@bolt-components-list/list.twig' with {
-    attributes: {
-      class: 'u-bolt-margin-bottom-large'
-    },
     display: 'inline',
     spacing: 'none',
     align: 'justify',
@@ -203,6 +200,28 @@
   } only %}
 {% endset %}
 
+{% set body_content %}
+  {{ frame_title }}
+  {{ frame }}
+  {{ step_heading }}
+  {{ input }}
+  {{ navigation }}
+  {{ legal_note }}
+{% endset %}
+
+{% set body %}
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: body_content,
+    spacing: 'large',
+    attributes: {
+      class: [
+        'u-bolt-padding-left-medium',
+        'u-bolt-padding-right-medium',
+      ]
+    }
+  } only %}
+{% endset %}
+
 {% set footer %}
   {% include '@bolt-components-headline/text.twig' with {
     text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
@@ -218,14 +237,7 @@
 
 {% set modal_content %}
   {{ header }}
-  <div class="c-base-tag-manager__body">
-    {{ frame_title }}
-    {{ frame }}
-    {{ step_heading }}
-    {{ input }}
-    {{ navigation}}
-    {{ legal_note }}
-  </div>
+  {{ body }}
   {{ footer }}
 {% endset %}
 
