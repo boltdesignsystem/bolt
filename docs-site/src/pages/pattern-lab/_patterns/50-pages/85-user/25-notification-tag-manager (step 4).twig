@@ -98,12 +98,19 @@
 {% endset %}
 
 {% set frame %}
-  <div class="c-base-tag-manager__frame u-bolt-shadow-level-20 t-bolt-gray-xlight">
-    {% include '@bolt-components-headline/text.twig' with {
-      size: 'small',
-      text: icon_bell ~ icon_email ~ ' Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' and ' ~ chip_4 ~ ' is published or updated.',
-    } only %}
-  </div>
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'small',
+    text: icon_bell ~ icon_email ~ ' Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' and ' ~ chip_4 ~ ' is published or updated.',
+    attributes: {
+      class: [
+        't-bolt-gray-xlight',
+        'u-bolt-padding-medium',
+        'u-bolt-margin-bottom-large',
+        'u-bolt-shadow-level-20',
+      ],
+      style: 'border: 1px solid var(--m-bolt-border)'
+    }
+  } only %}
 {% endset %}
 
 {% set tag_builder %}
@@ -217,7 +224,7 @@
 {% set body %}
   {% include '@bolt-components-stack/stack.twig' with {
     content: body_content,
-    spacing: 'large',
+    spacing: 'none',
     attributes: {
       class: [
         'u-bolt-padding-left-medium',

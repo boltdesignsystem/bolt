@@ -69,12 +69,17 @@
 {% endset %}
 
 {% set frame %}
-  <div class="c-base-tag-manager__frame">
-    {% include '@bolt-components-headline/text.twig' with {
-      size: 'small',
-      text: 'Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' is published or updated.',
-    } only %}
-  </div>
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'small',
+    text: 'Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' is published or updated.',
+    attributes: {
+      class: [
+        'u-bolt-padding-medium',
+        'u-bolt-margin-bottom-large',
+      ],
+      style: 'border: 1px solid var(--m-bolt-border)'
+    }
+  } only %}
 {% endset %}
 
 {% set info_icon %}
