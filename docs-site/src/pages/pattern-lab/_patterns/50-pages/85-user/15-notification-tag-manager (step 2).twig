@@ -5,28 +5,14 @@
       text: 'Pega Tag set builder',
       tag: 'h2'
     } only %}
-    {# <div class="u-bolt-flex"> #}
-      {% set progressbar %}
-        {% include '@bolt-components-progress-bar/progress-bar.twig' with {
-          value: 2,
-          valueFormat: 'step',
-          max: 4,
-        } only %}
-      {% endset %}
-      {# <span class="u-bolt-margin-right-small">Step: </span> #}
-      {% include '@bolt-components-headline/text.twig' with {
-        text: 'Step: ' ~ progressbar,
-        tag: 'div',
-        attributes: {
-          class: 'u-bolt-flex'
-        }
-      } only %}
-      {# {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+    <div class="c-base-tag-manager__header-steps">
+      Step:
+      {% include '@bolt-components-progress-bar/progress-bar.twig' with {
         value: 2,
         valueFormat: 'step',
         max: 4,
-      } only %} #}
-    {# </div> #}
+      } only %}
+    </div>
   </header>
 {% endset %}
 
@@ -369,16 +355,11 @@
 {% endset %}
 
 {% set footer %}
-  {% include '@bolt-components-headline/text.twig' with {
-    text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
-    attributes: {
-      class: [
-        't-bolt-navy',
-        'u-bolt-text-align-center',
-        'u-bolt-padding-medium',
-      ]
-    }
-  } only %}
+  <footer class="t-bolt-navy u-bolt-text-align-center u-bolt-padding-medium">
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+    } only %}
+  </footer>
 {% endset %}
 
 {% set modal_content %}
