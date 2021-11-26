@@ -173,19 +173,12 @@
   } only %}
 {% endset %}
 
-{% set icon_chevron_right %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'chevron-right',
-  } only %}
-{% endset %}
-
 {% set submit %}
   {% include '@bolt-elements-button/button.twig' with {
     content: 'Save',
     attributes: {
       type: 'submit',
     },
-    icon_after: icon_chevron_right,
     border_radius: 'full',
   } only %}
 {% endset %}
