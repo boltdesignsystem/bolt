@@ -1,6 +1,7 @@
 .c-base-tag-manager__header {
   margin-bottom: var(--bolt-spacing-y-medium);
   padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  color: var(--m-bolt-text-on-primary);
   background: rgb(62, 103, 187);
   background: linear-gradient(
     90deg,
@@ -25,7 +26,7 @@
   display: flex;
   align-items: center;
   gap: var(--bolt-spacing-x-small);
-  color: var(--m-bolt-text-on-primary);
+  // color: var(--m-bolt-text-on-primary);
 }
 
 .c-base-tag-manager__frame {
@@ -47,20 +48,6 @@
 
 .c-base-tag-manager__body {
   padding: 0 var(--bolt-spacing-x-medium);
-}
-
-.c-base-tag-manager__nav {
-  display: flex;
-  margin-bottom: var(--bolt-spacing-y-large);
-
-  .e-bolt-button {
-    margin-right: auto;
-
-    &:last-of-type {
-      margin-right: 0;
-      margin-left: auto;
-    }
-  }
 }
 
 .c-base-tag-manager__footer {
