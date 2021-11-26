@@ -221,23 +221,36 @@
   } only %}
 {% endset %}
 
-{% set navigation %}
-  <div class="c-base-tag-manager__nav">
-    {% set icon_chevron_right %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'chevron-right',
-      } only %}
-    {% endset %}
+{% set icon_chevron_right %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
 
-    {% include '@bolt-elements-button/button.twig' with {
-      content: 'Next',
-      attributes: {
-        type: 'button',
-      },
-      icon_after: icon_chevron_right,
-      border_radius: 'full',
-    } only %}
-  </div>
+{% set next %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Next',
+    attributes: {
+      type: 'button',
+    },
+    icon_after: icon_chevron_right,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
+{% set navigation %}
+  {% include '@bolt-components-list/list.twig' with {
+    attributes: {
+      class: 'u-bolt-margin-bottom-large'
+    },
+    display: 'inline',
+    spacing: 'none',
+    align: 'end',
+    valign: 'center',
+    items: [
+      next
+    ]
+  } only %}
 {% endset %}
 
 {% set footer %}

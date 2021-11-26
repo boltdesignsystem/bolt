@@ -144,38 +144,54 @@
   } only %}
 {% endset %}
 
+{% set icon_chevron_left %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-left',
+  } only %}
+{% endset %}
+
+{% set prev %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Previous',
+    attributes: {
+      type: 'button',
+    },
+    icon_before: icon_chevron_left,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
+{% set icon_chevron_right %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+
+{% set submit %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Save',
+    attributes: {
+      type: 'submit',
+    },
+    icon_after: icon_chevron_right,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+  
 {% set navigation %}
-  <div class="c-base-tag-manager__nav">
-    {% set icon_chevron_left %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'chevron-left',
-      } only %}
-    {% endset %}
-
-    {% include '@bolt-elements-button/button.twig' with {
-      content: 'Previous',
-      attributes: {
-        type: 'button',
-      },
-      icon_before: icon_chevron_left,
-      border_radius: 'full',
-    } only %}
-
-    {% set icon_chevron_right %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'chevron-right',
-      } only %}
-    {% endset %}
-
-    {% include '@bolt-elements-button/button.twig' with {
-      content: 'Save',
-      attributes: {
-        type: 'submit',
-      },
-      icon_after: icon_chevron_right,
-      border_radius: 'full',
-    } only %}
-  </div>
+  {% include '@bolt-components-list/list.twig' with {
+    attributes: {
+      class: 'u-bolt-margin-bottom-large'
+    },
+    display: 'inline',
+    spacing: 'none',
+    align: 'justify',
+    valign: 'center',
+    items: [
+      prev,
+      submit
+    ]
+  } only %}
 {% endset %}
 
 {% set legal_note %}

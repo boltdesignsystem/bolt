@@ -5,7 +5,8 @@
       text: 'Pega Tag set builder',
       tag: 'h2'
     } only %}
-    <div class="c-base-tag-manager__header-steps">
+    <div class="u-bolt-flex">
+      <span class="u-bolt-margin-right-small">Step: </span>
       {% include '@bolt-components-progress-bar/progress-bar.twig' with {
         value: 2,
         valueFormat: 'step',
@@ -285,37 +286,63 @@
   } only %}
 {% endset %}
 
+{% set icon_chevron_left %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-left',
+  } only %}
+{% endset %}
+
+{% set prev %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Previous',
+    attributes: {
+      type: 'button',
+    },
+    icon_before: icon_chevron_left,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
+{% set icon_chevron_right %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+
+{% set next %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Next',
+    attributes: {
+      type: 'button',
+    },
+    icon_after: icon_chevron_right,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
 {% set navigation %}
-  <div class="c-base-tag-manager__nav">
-    {% set icon_chevron_left %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'chevron-left',
-      } only %}
-    {% endset %}
+  {% include '@bolt-components-list/list.twig' with {
+    attributes: {
+      class: 'u-bolt-margin-bottom-large'
+    },
+    display: 'inline',
+    spacing: 'none',
+    align: 'justify',
+    valign: 'center',
+    items: [
+      prev,
+      next
+    ]
+  } only %}
+{% endset %}
 
-    {% include '@bolt-elements-button/button.twig' with {
-      content: 'Previous',
-      attributes: {
-        type: 'button',
-      },
-      icon_before: icon_chevron_left,
-      border_radius: 'full',
-    } only %}
-
-    {% set icon_chevron_right %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'chevron-right',
-      } only %}
-    {% endset %}
-
-    {% include '@bolt-elements-button/button.twig' with {
-      content: 'Next',
-      attributes: {
-        type: 'button',
-      },
-      icon_after: icon_chevron_right,
-      border_radius: 'full',
-    } only %}
+{% set body %}
+  <div class="c-base-tag-manager__body">
+    {{ frame_title }}
+    {{ frame }}
+    {{ step_heading }}
+    {{ content_grid }}
+    {{ navigation }}
   </div>
 {% endset %}
 
@@ -329,13 +356,7 @@
 
 {% set modal_content %}
   {{ header }}
-  <div class="c-base-tag-manager__body">
-    {{ frame_title }}
-    {{ frame }}
-    {{ step_heading }}
-    {{ content_grid }}
-    {{ navigation}}
-  </div>
+  {{ body }}
   {{ footer }}
 {% endset %}
 
