@@ -78,19 +78,23 @@
 {% endset %}
 
 {% set icon_bell %}
-  <span class="c-base-tag-manager__icon-bell">
-    {% include '@bolt-elements-icon/icon.twig' with {
-      name: 'bell-solid',
-    } only %}
-  </span>
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'bell-solid',
+    attributes: {
+      class: 'u-bolt-margin-right-xsmall',
+      style: '--e-bolt-icon-color: var(--m-bolt-primary)'
+    }
+  } only %}
 {% endset %}
 
 {% set icon_email %}
-  <span class="c-base-tag-manager__icon-email">
-    {% include '@bolt-elements-icon/icon.twig' with {
-      name: 'email',
-    } only %}
-  </span>
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'email',
+    attributes: {
+      class: 'u-bolt-margin-right-xsmall',
+      style: '--e-bolt-icon-color: var(--m-bolt-tertiary)'
+    }
+  } only %}
 {% endset %}
 
 {% set frame %}
