@@ -188,18 +188,324 @@
   } only %}
 {% endset %}
 
-{% set tag_set_button %}
+{% set header %}
+  <header class="c-base-tag-manager__header">
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xxlarge',
+      text: 'Pega Tag set builder',
+      tag: 'h2'
+    } only %}
+    <div class="c-base-tag-manager__header-steps">
+      Step:
+      {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+        value: 1,
+        valueFormat: 'step',
+        max: 4,
+      } only %}
+    </div>
+  </header>
+{% endset %}
+
+{% set step_heading_inner %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'large',
+    text: 'What types of content do you want to follow?',
+    tag: 'span',
+    attributes: {
+      class: 'u-bolt-inline'
+    }
+  } only %}
+{% endset %}
+
+{% set step_heading %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xlarge',
+    text: 'Step 1:' ~ step_heading_inner,
+    attributes: {
+      class: 'u-bolt-margin-bottom-large'
+    }
+  } only %}
+{% endset %}
+
+{% set frame_title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'small',
+    text: 'Your current tag set',
+    transform: 'uppercase'
+  } only %}
+{% endset %}
+
+{% set chip_1 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Question',
+    size: 'xsmall',
+    color: 'navy'
+  } only %}
+{% endset %}
+
+{% set chip_2 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Discussion',
+    size: 'xsmall',
+    color: 'navy'
+  } only %}
+{% endset %}
+
+{% set chip_3 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Step 2',
+    size: 'xsmall',
+  } only %}
+{% endset %}
+
+{% set frame %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'small',
+    text: 'Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' is published or updated.',
+    attributes: {
+      class: [
+        'u-bolt-padding-medium',
+        'u-bolt-margin-bottom-large',
+      ],
+      style: 'border: 1px solid var(--m-bolt-border)'
+    }
+  } only %}
+{% endset %}
+
+{% set checkbox_fieldsets_representation %}
+  {% set checkbox_fieldset_group = [
+    {
+      title: 'Forums',
+      checkboxes: ['Question', 'Discussion', 'Idea']
+    },
+    {
+      title: 'Training',
+      checkboxes: ['Mission']
+    },
+    {
+      title: 'Video & Media',
+      checkboxes: ['Video']
+    }
+  ] %}
+
+  {% set fieldset_item = [] %}
+  {% for item in checkbox_fieldset_group %}
+    {% set checkbox_children %}
+      {% for checkbox in item.checkboxes %}
+        {% set label %}
+          {% include '@bolt-components-form/form-label.twig' with {
+            title: checkbox,
+            displayType: 'inline-checkbox',
+            attributes: {
+              for: 'checkbox-' ~ item.title ~ '-' ~ checkbox,
+            }
+          } only %}
+        {% endset %}
+        {% if checkbox == 'Question' or checkbox == 'Discussion' %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-' ~ item.title ~ '-' ~ checkbox,
+                checked: true
+              },
+            } only %}
+          {% endset %}
+          {% else %}
+            {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-' ~ item.title ~ '-' ~ checkbox,
+              },
+            } only %}
+          {% endset %}
+        {% endif %}
+        {% include '@bolt-components-form/form-element.twig' with {
+          label: label,
+          children: input
+        } only %}
+      {% endfor %}
+    {% endset %}
+    {% set fieldset_children %}
+      {% include '@bolt-components-form/form-checkboxes.twig' with {
+        children: checkbox_children
+      } only %}
+    {% endset %}
+
+    {% set fieldset %}
+      {% include '@bolt-components-form/form-fieldset.twig' with {
+        legendTitle: item.title,
+        children: fieldset_children
+      } only %}
+    {% endset %}
+    {% set fieldset_item = fieldset_item|merge([fieldset]) %}
+  {% endfor %}
+  {% include '@bolt-components-grid/grid.twig' with {
+    valign: 'start',
+    gutter: 'small',
+    items: [
+      {
+        column_start: '1',
+        column_span: '6 4@xsmall',
+        content: fieldset_item[0],
+      },
+      {
+        column_start: '7 5@xsmall',
+        column_span: '6 4@xsmall',
+        content: fieldset_item[1],
+      },
+      {
+        column_start: '1 9@xsmall',
+        column_span: '6 4@xsmall',
+        content: fieldset_item[2],
+      },
+    ],
+  } only %}
+{% endset %}
+
+{% set tips_list %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'small',
+    text: 'Tips and suggestions:',
+    transform: 'capitalize'
+  } only %}
+  {% include '@bolt-components-ul/ul.twig' with {
+    items: [
+      'Do not include any data or information in your posts that are confidential!',
+      'Apply basic practices for collaborative work.',
+      'Be honest, respectful, trustworthy and helpful.',
+      'Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.'
+    ]
+  } only %}
+{% endset %}
+
+{% set tag_builder %}
+  {% include '@bolt-components-grid/grid.twig' with {
+    valign: 'start',
+    gutter: 'small',
+    items: [
+      {
+        column_start: '1',
+        column_span: '12 6@medium 8@large',
+        content: checkbox_fieldsets_representation,
+      },
+      {
+        column_start: '1 7@medium 9@large',
+        column_span: '12 6@medium 4@large',
+        content: tips_list,
+      },
+    ],
+  } only %}
+{% endset %}
+
+{% set content_grid %}
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: tag_builder,
+    spacing: 'large'
+  } only %}
+{% endset %}
+
+{% set text_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Manage email subscriptions here',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener'
+    }
+  } only %}
+{% endset %}
+
+{% set icon_chevron_right %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+
+{% set next %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Next',
+    attributes: {
+      type: 'button',
+    },
+    icon_after: icon_chevron_right,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
+{% set navigation %}
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    spacing: 'none',
+    align: 'end',
+    valign: 'center',
+    items: [
+      next
+    ]
+  } only %}
+{% endset %}
+
+{% set body_content %}
+  {{ frame_title }}
+  {{ frame }}
+  {{ step_heading }}
+  {{ content_grid }}
+  {{ navigation }}
+{% endset %}
+
+{% set body %}
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: body_content,
+    spacing: 'large',
+    attributes: {
+      class: [
+        'u-bolt-padding-left-medium',
+        'u-bolt-padding-right-medium',
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% set footer %}
+  <footer class="t-bolt-navy u-bolt-text-align-center u-bolt-padding-medium">
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+    } only %}
+  </footer>
+{% endset %}
+
+{% set tag_manager %}
+  {{ header }}
+  {{ body }}
+  {{ footer }}
+{% endset %}
+
+{% set tag_manager_trigger %}
   <p>
     {% include '@bolt-elements-button/button.twig' with {
       content: 'Create tag set',
       attributes: {
         type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--demo-tag-manager',
       }
     } only %}
   </p>
 {% endset %}
 
-{% set modal_content %}
+{% set modal_tag_manager %}
+  {% include '@bolt-components-modal/modal.twig' with {
+    content: tag_manager,
+    width: 'regular',
+    scroll: 'overall',
+    spacing: 'none',
+    attributes: {
+      class: 'js-bolt-modal--demo-tag-manager',
+    },
+  } only %}
+{% endset %}
+
+{% set video %}
   {% set video %}
     <video-js
       data-delayed-account="1900410236"
@@ -219,25 +525,25 @@
   } only %}
 {% endset %}
 
-{% set video_trigger %}
+{% set modal_video_trigger %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Watch Demo',
     attributes: {
       type: 'button',
-      'data-bolt-modal-target': '.js-bolt-modal--demo',
+      'data-bolt-modal-target': '.js-bolt-modal--demo-video',
     }
   } only %}
 {% endset %}
 
-{% set modal %}
+{% set modal_video %}
   {% include '@bolt-components-modal/modal.twig' with {
-    content: modal_content,
+    content: video,
     width: 'optimal',
     spacing: 'none',
     theme: 'none',
     scroll: 'overall',
     attributes: {
-      class: 'js-bolt-modal--demo',
+      class: 'js-bolt-modal--demo-video',
     },
   } only %}
 {% endset %}
@@ -270,9 +576,10 @@
       {{ list }}
       {{ bottom_heading }}
       {{ follow_tags_details }}
-      {{ tag_set_button }}
-      {{ video_trigger }}
-      {{ modal }}
+      {{ tag_manager_trigger }}
+      {{ modal_tag_manager }}
+      {{ modal_video_trigger }}
+      {{ modal_video }}
       {{ javascript_1 }}
     {% endset %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
