@@ -6,7 +6,14 @@
       tag: 'h2'
     } only %}
     <div class="u-bolt-flex">
-      <span class="u-bolt-margin-right-small">Step: </span>
+      {# <span class="u-bolt-margin-right-small">Step: </span> #}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Step: ',
+        tag: 'span',
+        attributes: {
+          class: 'u-bolt-margin-right-small'
+        }
+      } only %}
       {% include '@bolt-components-progress-bar/progress-bar.twig' with {
         value: 2,
         valueFormat: 'step',
@@ -347,11 +354,16 @@
 {% endset %}
 
 {% set footer %}
-  <footer class="c-base-tag-manager__footer t-bolt-navy">
-    {% include '@bolt-components-headline/text.twig' with {
-      text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
-    } only %}
-  </footer>
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+    attributes: {
+      class: [
+        't-bolt-navy',
+        'u-bolt-text-align-center',
+        'u-bolt-padding-medium',
+      ]
+    }
+  } only %}
 {% endset %}
 
 {% set modal_content %}
