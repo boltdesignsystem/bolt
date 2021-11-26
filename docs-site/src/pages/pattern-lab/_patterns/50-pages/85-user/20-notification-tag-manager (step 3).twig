@@ -256,16 +256,11 @@
 {% endset %}
 
 {% set footer %}
-  {% include '@bolt-components-headline/text.twig' with {
-    text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
-    attributes: {
-      class: [
-        't-bolt-navy',
-        'u-bolt-text-align-center',
-        'u-bolt-padding-medium',
-      ]
-    }
-  } only %}
+  <footer class="t-bolt-navy u-bolt-text-align-center u-bolt-padding-medium">
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+    } only %}
+  </footer>
 {% endset %}
 
 {% set modal_content %}
