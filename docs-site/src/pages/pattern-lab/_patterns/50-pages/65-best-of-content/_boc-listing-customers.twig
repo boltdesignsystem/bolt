@@ -471,6 +471,9 @@
         {% include '@bolt-components-form/form-label.twig' with {
           title: 'Sort by',
           displayType: 'floating',
+          attributes: {
+            for: 'sort-by'
+          }
         } only %}
       {% endset %}
       {% set select %}
@@ -502,8 +505,8 @@
             }
           ],
           attributes: {
-            id: 'sort-select',
-            name: 'sort-select',
+            id: 'sort-by',
+            name: 'sort-by',
           },
         } only %}
       {% endset %}

@@ -353,6 +353,9 @@
         {% include '@bolt-components-form/form-label.twig' with {
           title: 'Year',
           displayType: 'floating',
+          attributes: {
+            for: 'year'
+          }
         } only %}
       {% endset %}
       {% set select %}
@@ -384,8 +387,8 @@
             },
           ],
           attributes: {
-            id: 'year-select',
-            name: 'year-select',
+            id: 'year',
+            name: 'year',
           },
         } only %}
       {% endset %}
@@ -528,6 +531,9 @@
         {% include '@bolt-components-form/form-label.twig' with {
           title: 'Sort by',
           displayType: 'floating',
+          attributes: {
+            for: 'sort-by'
+          }
         } only %}
       {% endset %}
       {% set select %}
@@ -559,8 +565,8 @@
             }
           ],
           attributes: {
-            id: 'sort-select',
-            name: 'sort-select',
+            id: 'sort-by',
+            name: 'sort by',
           },
         } only %}
       {% endset %}
