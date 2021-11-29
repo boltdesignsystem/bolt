@@ -470,17 +470,21 @@
       {% set label %}
         {% include '@bolt-components-form/form-label.twig' with {
           title: 'Sort by',
-          displayType: 'block',
-          attributes: {
-            for: 'sort-select',
-            class: 'u-bolt-visuallyhidden',
-          },
+          displayType: 'floating',
         } only %}
       {% endset %}
       {% set select %}
         {% include '@bolt-components-form/form-select.twig' with {
           title: 'Country',
           options: [
+            {
+              type: 'option',
+              value: '',
+              label: '- Choose an option -',
+              attributes: {
+                disabled: true
+              }
+            },
             {
               type: 'option',
               value: 'most-viewed',
@@ -505,7 +509,6 @@
       {% endset %}
       {% include '@bolt-components-form/form-element.twig' with {
         label: label,
-        labelDisplay: 'before',
         children: select,
       } only %}
     {% endset %}
