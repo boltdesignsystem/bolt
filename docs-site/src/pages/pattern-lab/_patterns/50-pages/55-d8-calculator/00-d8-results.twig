@@ -20,12 +20,12 @@
   {
     number: churn_rate ~ '%',
     description: 'Your churn rate today',
-    color: 'gray'
+    color: 't-bolt-navy-dark'
   },
   {
     number: churn_rate_with_pega ~ '%',
     description: 'Your churn rate with Pega Customer Decision Hub',
-    color: 'navy'
+    color: 't-bolt-navy-light'
   }
 ] %}
 
@@ -33,12 +33,12 @@
   {
     number: '$' ~ customer_value|number_format,
     description: 'Your current value of a customer',
-    color: 'gray'
+    color: 't-bolt-navy-dark'
   },
   {
     number: '$' ~ customer_value_with_pega|number_format,
     description: 'Your value of a customer with Pega Customer Decision Hub',
-    color: 'navy'
+    color: 't-bolt-navy-light'
   }
 ] %}
 
@@ -50,7 +50,7 @@
 {% macro resultsGraph(graph_array) %}
   <div class="c-www-results-graph">
     {% for item in graph_array %}
-      {% set color_class = ' c-www-results-graph__box--' ~ item.color %}
+      {% set color_class = item.color %}
       <div class="c-www-results-graph__box {{ color_class }}">
         <h4 class="c-www-results-stat">
           <span class="c-www-results-stat__text">{{ item.description }}</span>
