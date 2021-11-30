@@ -40,6 +40,7 @@
         'u-bolt-padding-medium',
         't-bolt-navy'
       ],
+      style: 'background: linear-gradient(90deg, rgba(62, 103, 187, 1) 0%, rgba(16, 165, 172, 1) 100%);'
     }
   } only %}
 {% endset %}
@@ -219,7 +220,7 @@
           title: 'Select',
           displayType: 'floating',
         } only %}
-      {% endset %}       
+      {% endset %}
       {% set select %}
         {% include '@bolt-components-form/form-select.twig' with {
           options: item.select_option
