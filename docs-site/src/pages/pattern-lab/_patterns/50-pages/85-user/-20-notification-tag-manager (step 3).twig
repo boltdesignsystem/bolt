@@ -1,19 +1,47 @@
+{% set header_title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxlarge',
+    text: 'Pega Tag set builder',
+    tag: 'h2'
+  } only %}
+{% endset %}
+
+{% set progressbar %}
+  {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+    value: 3,
+    valueFormat: 'step',
+    max: 4,
+  } only %}
+{% endset %}
+
+{% set steps %}
+  {% include '@bolt-components-list/list.twig' with {
+    tag: 'div',
+    display: 'inline',
+    items: [
+      'Step: ',
+      progressbar
+    ],
+  } only %}
+{% endset %}
+
 {% set header %}
-  <header class="c-base-tag-manager__header">
-    {% include '@bolt-components-headline/headline.twig' with {
-      size: 'xxlarge',
-      text: 'Pega Tag set builder',
-      tag: 'h2'
-    } only %}
-    <div class="c-base-tag-manager__header-steps">
-      Step:
-      {% include '@bolt-components-progress-bar/progress-bar.twig' with {
-        value: 3,
-        valueFormat: 'step',
-        max: 4,
-      } only %}
-    </div>
-  </header>
+  {% include '@bolt-components-list/list.twig' with {
+    tag: 'div',
+    display: 'inline',
+    align: 'justify',
+    items: [
+      header_title,
+      steps
+    ],
+    attributes: {
+      class: [
+        'u-bolt-margin-bottom-medium',
+        'u-bolt-padding-medium',
+        't-bolt-navy'
+      ],
+    }
+  } only %}
 {% endset %}
 
 {% set step_heading_inner %}
@@ -257,11 +285,16 @@
 {% endset %}
 
 {% set footer %}
-  <footer class="t-bolt-navy u-bolt-text-align-center u-bolt-padding-medium">
-    {% include '@bolt-components-headline/text.twig' with {
-      text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
-    } only %}
-  </footer>
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+    attributes: {
+      class: [
+        't-bolt-navy',
+        'u-bolt-text-align-center',
+        'u-bolt-padding-medium',
+      ]
+    }
+  } only %}
 {% endset %}
 
 {% set modal_content %}
