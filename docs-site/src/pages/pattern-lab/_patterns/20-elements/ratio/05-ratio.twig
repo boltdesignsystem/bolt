@@ -9,14 +9,34 @@
 {% endset %}
 
 {% set demo %}
+  {% set demo_img %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Alt text.',
+        src: 'https://via.placeholder.com/400x225',
+        width: 400,
+        height: 225,
+      },
+    } only %}
+  {% endset %}
   {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: 'This is a ratio element.'
+    children: demo_img
   } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
+{% set demo_img %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/400x225',
+      width: 400,
+      height: 225,
+    },
+  } only %}
+{% endset %}
 {% include '@bolt-elements-ratio/ratio.twig' with {
-  content: 'This is a ratio element.'
+  children: demo_img
 } only %}
 {% endverbatim %}{% endset %}
 
@@ -33,7 +53,6 @@
   description: description,
   notes: notes,
   demo: demo,
-  demo_light_dark: true,
   twig_markup: twig_markup,
   html_markup: html_markup
 } only %}
