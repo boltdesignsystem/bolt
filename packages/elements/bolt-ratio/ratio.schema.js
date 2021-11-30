@@ -8,11 +8,13 @@ module.exports = {
       description:
         'A Drupal-style attributes object with extra attributes to append to this element.',
     },
-    content: {
+    children: {
+      type: 'any',
+      description: 'An element with set up ratio.',
+    },
+    ratio: {
       type: 'string',
-      description: 'Content of the ratio. ',
+      description: 'Ratio between the width and height.',
     },
   },
 };
-
-// @TODO: content is only a string for validation demonstration purposes, please adjust or remove this property for your new element.
