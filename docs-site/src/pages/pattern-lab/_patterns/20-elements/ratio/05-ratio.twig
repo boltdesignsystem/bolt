@@ -13,14 +13,15 @@
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
         alt: 'Alt text.',
-        src: 'https://via.placeholder.com/400x225',
+        src: 'https://images.pexels.com/photos/1070850/pexels-photo-1070850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         width: 400,
-        height: 225,
+        height: 225
       },
     } only %}
   {% endset %}
   {% include '@bolt-elements-ratio/ratio.twig' with {
-    children: demo_img
+    children: demo_img,
+    ratio: '21/9'
   } only %}
 {% endset %}
 
