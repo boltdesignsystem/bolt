@@ -352,9 +352,10 @@
       {% set label %}
         {% include '@bolt-components-form/form-label.twig' with {
           title: 'Year',
-          displayType: 'floating',
+          displayType: 'block',
           attributes: {
-            for: 'year'
+            for: 'year-select',
+            class: 'u-bolt-visuallyhidden',
           }
         } only %}
       {% endset %}
@@ -362,14 +363,6 @@
         {% include '@bolt-components-form/form-select.twig' with {
           title: 'Country',
           options: [
-            {
-              type: 'option',
-              value: '',
-              label: '- Choose a year -',
-              attributes: {
-                disabled: true
-              }
-            },
             {
               type: 'option',
               value: 'pegaworld-2020',
@@ -387,8 +380,12 @@
             },
           ],
           attributes: {
-            id: 'year',
-            name: 'year',
+            id: 'year-select',
+            name: 'year-select',
+            class: [
+              'u-bolt-padding-top-small',
+              'u-bolt-padding-bottom-small'
+            ]
           },
         } only %}
       {% endset %}
@@ -530,9 +527,10 @@
       {% set label %}
         {% include '@bolt-components-form/form-label.twig' with {
           title: 'Sort by',
-          displayType: 'floating',
+          displayType: 'block',
           attributes: {
-            for: 'sort-by'
+            for: 'sort-select',
+            class: 'u-bolt-visuallyhidden',
           }
         } only %}
       {% endset %}
@@ -540,14 +538,6 @@
         {% include '@bolt-components-form/form-select.twig' with {
           title: 'Country',
           options: [
-            {
-              type: 'option',
-              value: '',
-              label: '- Choose sorting option -',
-              attributes: {
-                disabled: true
-              }
-            },
             {
               type: 'option',
               value: 'most-viewed',
@@ -565,8 +555,12 @@
             }
           ],
           attributes: {
-            id: 'sort-by',
-            name: 'sort by',
+            id: 'sort-select',
+            name: 'sort-select',
+            class: [
+              'u-bolt-padding-top-small',
+              'u-bolt-padding-bottom-small'
+            ]
           },
         } only %}
       {% endset %}
