@@ -23,12 +23,16 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set ratioW = ratio|split("/")[0] ?? "1" %}
+{% set ratioH = ratio|split("/")[1] ?? "1" %}
+{% set aspect_ratio = "aspect-ratio: #{ratioW}/#{ratioH}" %}
 
 {% set classes = [
   'e-bolt-ratio',
 ] %}
-
 {# Template #}
 {# [1], [2] #}
-{% spaceless %}<div {{ attributes.addClass(classes) }}>{{ this.data.content.value|spaceless }}{{ children }}</div>{% endspaceless %}
+{% spaceless %}<div {{ attributes.addClass(classes) }} 
+style="{{ aspect_ratio | join(" ") }}">
+{{ children }}</div>{% endspaceless %}
 
