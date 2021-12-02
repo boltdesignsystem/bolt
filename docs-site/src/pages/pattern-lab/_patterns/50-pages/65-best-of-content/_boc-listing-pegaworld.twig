@@ -382,17 +382,14 @@
           attributes: {
             id: 'year-select',
             name: 'year-select',
-            class: [
-              'u-bolt-padding-top-small',
-              'u-bolt-padding-bottom-small',
-              'u-bolt-margin-right-xsmall'
-            ]
+            class: 'u-bolt-padding-right-large'
           },
         } only %}
       {% endset %}
       {% include '@bolt-components-form/form-element.twig' with {
         label: label,
         children: select,
+        labelDisplay: 'before',
       } only %}
     {% endset %}
 
@@ -558,17 +555,14 @@
           attributes: {
             id: 'sort-select',
             name: 'sort-select',
-            class: [
-              'u-bolt-padding-top-small',
-              'u-bolt-padding-bottom-small',
-              'u-bolt-margin-right-xsmall'
-            ]
+            class: 'u-bolt-padding-right-large',
           },
         } only %}
       {% endset %}
       {% include '@bolt-components-form/form-element.twig' with {
         label: label,
         children: select,
+        labelDisplay: 'before',
       } only %}
     {% endset %}
 
