@@ -1,50 +1,56 @@
 {% set description %}
-    A description of the element and what it is used for.
+    A ratio element sets a preferred aspect ratio for the image or video.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>List out important information about this element and its usage.</bolt-li>
+    <bolt-li>Aspect ratio is most commonly expressed as two integers and a division sign <code>/</code> in the dimensions of: width / height. The browser will calculate the aspect ratio and for example <code>ratio: 4/3</code> will result in 1.33.</bolt-li>
+    <bolt-li>To measure the aspect ratio, we need to divide the width by the height. For example an image 400x300 and image 260x195 have the same ratio 1.33. That means this ratio should be respected.</bolt-li>
+    <bolt-li>It's good to find the nearest normal aspect ratio. In other words, while 649x360 technically has an aspect ratio of 649:360, it’s often useful to know that the nearest normal aspect ratio is actually 9:5 (648x360). You can <a href="http://lawlesscreation.github.io/nearest-aspect-ratio/" target="_blank" rel="noopener" class="e-bolt-text-link">calculate the Nearest Normal Aspect Ratio</a> using a useful tool.</bolt-li>
+    <bolt-li>Setting different aspect ratio than the one resulting from the calculations (width divided by height) causes <a href="{{ link['elements-ratio-video'] }}" class="e-bolt-text-link">cropping the image</a>.</bolt-li>
+    <bolt-li>The most common aspect ratios for images are 4/3 and 3/2, while <a href="{{ link['elements-ratio-video'] }}" class="e-bolt-text-link">video</a> tends to have a 16/9 aspect ratio.</bolt-li>
+    <bolt-li>A great feature of <code>aspect-ratio</code> is that it can create placeholder space to prevent <a href="https://web.dev/cls/" target="_blank" rel="noopener" class="e-bolt-text-link">Cumulative Layout Shift</a> and deliver better Web Vitals.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
-  {% set demo_img %}
+  {% set image %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
         alt: 'Alt text.',
-        src: 'https://images.pexels.com/photos/1070850/pexels-photo-1070850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        src: 'https://via.placeholder.com/400x300',
         width: 400,
-        height: 225
+        height: 300
       },
     } only %}
   {% endset %}
   {% include '@bolt-elements-ratio/ratio.twig' with {
-    children: demo_img,
-    ratio: '21/9'
+    children: image,
+    ratio: '4/3'
   } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% set demo_img %}
+{% set image %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
       alt: 'Alt text.',
-      src: 'https://via.placeholder.com/400x225',
+      src: 'https://via.placeholder.com/400x300',
       width: 400,
-      height: 225,
+      height: 300
     },
   } only %}
 {% endset %}
 {% include '@bolt-elements-ratio/ratio.twig' with {
-  children: demo_img
+  children: image,
+  ratio: '4/3'
 } only %}
 {% endverbatim %}{% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<div class="e-bolt-ratio">
-  This is a ratio element.
+<div class="e-bolt-ratio" style="aspect-ratio: 4/3">
+  <img alt="Alt text." src="path/image.jpg" width=400 height=300 class="e-bolt-image">
 </div>
 {% endverbatim %}
 {% endset %}
