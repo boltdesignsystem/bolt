@@ -1,12 +1,13 @@
 {% set description %}
-  Setting wrong aspect ratio causes cropping the image.
+  Setting another aspect ratio than expected causes cropping the image.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
+    <bolt-li>This calculator can be helpful for finding the <a href="http://lawlesscreation.github.io/nearest-aspect-ratio/" target="_blank" rel="noopener" class="e-bolt-text-link">Nearest Normal Aspect Ratio</a>. Useful for when images are odd aspect ratios.</bolt-li>
     <bolt-li>Setting different aspect ratio than the one resulting from the calculations (width divided by height) causes cropping the image. The aspect ratio is not respected.</bolt-li>
     <bolt-li>The dimensions of image below are 2100x900. The nearest normal aspect ratio should be 7/3. Setting the ratio to another, in this case 4/3 will cropp the image.</bolt-li>
-    <bolt-li>This calculator can be helpful for finding the <a href="http://lawlesscreation.github.io/nearest-aspect-ratio/" target="_blank" rel="noopener" class="e-bolt-text-link">Nearest Normal Aspect Ratio</a>. Useful for when images are odd aspect ratios.</bolt-li>
+    <bolt-li>The expected aspect ratio is 7/3, that means dividing width by height should be 2.33.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -23,7 +24,7 @@
   {% endset %}
 
   {% set wrong %}
-    <bolt-banner status="warning" align="start">Wrong aspect ratio value. Image <strong>2100x900</strong>, aspect-ratio: <strong>4/3</strong>.</bolt-banner>
+    <bolt-banner status="warning" align="start">The aspect ratio is <strong>not</strong> respected. Image <strong>2100x900</strong>, aspect-ratio: <strong>4/3 = 1.33</strong>.</bolt-banner>
     {% include '@bolt-elements-ratio/ratio.twig' with {
       children: image,
       ratio: '4/3',
@@ -31,7 +32,7 @@
   {% endset %}
 
   {% set correct %}
-    <bolt-banner status="success" align="start">Correct aspect ratio value. Image <strong>2100x900</strong>, aspect-ratio: <strong>7/3</strong>.</bolt-banner>
+    <bolt-banner status="success" align="start">The aspect ratio is respected. Image <strong>2100x900</strong>, aspect-ratio: <strong>7/3 = 2.33</strong>.</bolt-banner>
     {% include '@bolt-elements-ratio/ratio.twig' with {
       children: image,
       ratio: '7/3'
@@ -43,12 +44,12 @@
       {
         column_start: '1',
         column_span: '6',
-        content: wrong,
+        content: correct,
       },
       {
         column_start: '7',
         column_span: '6',
-        content: correct,
+        content: wrong,
       },
     ]
   } only %}
@@ -77,7 +78,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Nearest Normal Aspect Ratio VS wrong aspect ratio value.',
+  title: 'Nearest Normal Aspect Ratio VS another aspect ratio value.',
   description: description,
   notes: notes,
   demo: demo,
