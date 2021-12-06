@@ -36,7 +36,7 @@
   url ? 'c-bolt-chip--link' : '',
   size ? 'c-bolt-chip--size-' ~ size : '',
   border_radius ? 'c-bolt-chip--border-radius-' ~ border_radius : '',
-  color != "auto" ? 'c-bolt-chip--color-' ~ color : '',
+  color and color != 'auto' ? 'c-bolt-chip--color-' ~ color : '',
   iconOnly ? 'c-bolt-chip--icon-only' : '',
 ] %}
 
