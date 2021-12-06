@@ -19,7 +19,10 @@
   {% endset %}
   {% include '@bolt-elements-ratio/ratio.twig' with {
     children: image,
-    ratio: '1/1'
+    ratio: '1/1',
+    attributes: {
+      style: 'max-width: 150px',
+    }
   } only %}
 {% endset %}
 
@@ -42,8 +45,10 @@
 
 {% set html_markup %}
 {% verbatim %}
-<div class="e-bolt-ratio" style="aspect-ratio: 1/1">
-  <img alt="Alt text." src="path/image.jpg" width=150 height=150 class="e-bolt-image">
+<div class="e-bolt-ratio" style="max-width: 150px">
+  <div class="e-bolt-ratio__content" style="aspect-ratio: 1/1">
+    <img alt="Alt text." src="path/image.jpg" width=150 height=150 class="e-bolt-image">
+  </div>
 </div>
 {% endverbatim %}
 {% endset %}
