@@ -5,11 +5,10 @@
 \* ------------------------------------ */
 
 // Custom element styles
-bolt-chip {
-  display: inline-block;
-}
-
 @include bolt-repeat-rule(('bolt-chip', ':host')) {
+  --c-bolt-chip-text-color: var(--m-bolt-text);
+  --c-bolt-chip-bg-color: #{rgba(bolt-color(gray), 0.16)};
+  display: inline-block;
   outline: none;
 }
 
@@ -20,7 +19,7 @@ bolt-chip {
   font-family: var(--bolt-type-font-family-body);
   font-size: var(--bolt-type-font-size-xsmall);
   font-weight: var(--bolt-type-font-weight-regular);
-  color: var(--m-bolt-text);
+  color: var(--c-bolt-chip-text-color);
   line-height: calc(
     var(--bolt-type-line-height-xsmall) *
       var(--bolt-type-line-height-multiplier-tight)
@@ -28,7 +27,7 @@ bolt-chip {
   text-decoration: none;
   border-radius: bolt-border-radius(full);
   box-shadow: 0 0 0 1px rgba(bolt-color(gray, light), 0.2);
-  background-color: rgba(bolt-color(gray), 0.16);
+  background-color: var(--c-bolt-chip-bg-color);
   transition: color var(--bolt-transition),
     background-color var(--bolt-transition),
     text-decoration var(--bolt-transition);
@@ -56,153 +55,165 @@ $_bolt-chip-sizes: (xsmall, small, medium);
 }
 
 .c-bolt-chip--link {
-  color: var(--m-bolt-link);
+  --c-bolt-chip-text-color: var(--m-bolt-link);
 
   &:hover,
   &:focus {
-    color: var(--m-bolt-headline);
+    --c-bolt-chip-text-color: var(--m-bolt-headline);
+    --c-bolt-chip-bg-color: #{rgba(bolt-color(gray), 0.08)};
     text-decoration: underline;
-    background-color: rgba(bolt-color(gray), 0.08);
   }
 
   &:active,
   &:focus:active {
-    color: var(--m-bolt-headline);
+    --c-bolt-chip-text-color: var(--m-bolt-headline);
     text-decoration: none;
   }
 }
 
 .c-bolt-chip--color-error {
-  color: var(--bolt-color-error-dark) !important;
+  --c-bolt-chip-text-color: var(--bolt-color-error-dark);
+  --c-bolt-chip-bg-color: var(--bolt-color-error-light);
   box-shadow: 0 0 0 1px currentColor;
-  background-color: var(--bolt-color-error-light);
 
   &.c-bolt-chip--link {
     &:hover,
     &:focus {
-      background-color: var(--bolt-color-error-light);
+      --c-bolt-chip-bg-color: var(--bolt-color-error-light);
     }
   }
 }
 
 .c-bolt-chip--color-warning {
-  color: var(--bolt-color-black) !important;
+  --c-bolt-chip-text-color: var(--bolt-color-black);
+  --c-bolt-chip-bg-color: var(--bolt-color-warning-light);
   box-shadow: 0 0 0 1px var(--bolt-color-warning-dark);
-  background-color: var(--bolt-color-warning-light);
 
   &.c-bolt-chip--link {
     &:hover,
     &:focus {
-      background-color: var(--bolt-color-warning-light);
+      --c-bolt-chip-bg-color: var(--bolt-color-warning-light);
     }
   }
 }
 
 .c-bolt-chip--color-success {
-  color: var(--bolt-color-success-dark) !important;
+  --c-bolt-chip-text-color: var(--bolt-color-success-dark);
+  --c-bolt-chip-bg-color: var(--bolt-color-success-light);
   box-shadow: 0 0 0 1px currentColor;
-  background-color: var(--bolt-color-success-light);
 
   &.c-bolt-chip--link {
     &:hover,
     &:focus {
-      background-color: var(--bolt-color-success-light);
+      --c-bolt-chip-bg-color: var(--bolt-color-success-light);
     }
   }
 }
 
 .c-bolt-chip--color-navy {
-  color: var(--bolt-color-white) !important;
-  background-color: var(--bolt-color-navy);
+  --c-bolt-chip-text-color: var(--bolt-color-white);
+  --c-bolt-chip-bg-color: var(--bolt-color-navy);
 
   &.c-bolt-chip--link {
     &:hover,
     &:focus {
-      background-color: var(--bolt-color-navy-light);
+      --c-bolt-chip-bg-color: var(--bolt-color-navy-light);
     }
   }
 }
 
 .c-bolt-chip--color-teal {
-  color: var(--bolt-color-white) !important;
-  background-color: var(--bolt-color-teal-dark);
+  --c-bolt-chip-text-color: var(--bolt-color-white);
+  --c-bolt-chip-bg-color: var(--bolt-color-teal-dark);
 
   &.c-bolt-chip--link {
     &:hover,
     &:focus {
-      background-color: var(--bolt-color-teal);
+      --c-bolt-chip-bg-color: var(--bolt-color-teal);
     }
   }
 }
 
 .c-bolt-chip--color-orange {
-  color: var(--bolt-color-white) !important;
-  background-color: var(--bolt-color-orange-dark);
+  --c-bolt-chip-text-color: var(--bolt-color-white);
+  --c-bolt-chip-bg-color: var(--bolt-color-orange-dark);
 
   &.c-bolt-chip--link {
     &:hover,
     &:focus {
-      background-color: var(--bolt-color-orange);
+      --c-bolt-chip-bg-color: var(--bolt-color-orange);
     }
   }
 }
 
 .c-bolt-chip--color-yellow {
-  color: var(--bolt-color-black) !important;
-  background-color: var(--bolt-color-yellow);
+  --c-bolt-chip-text-color: var(--bolt-color-black);
+  --c-bolt-chip-bg-color: var(--bolt-color-yellow);
 
   &.c-bolt-chip--link {
     &:hover,
     &:focus {
-      background-color: var(--bolt-color-yellow-light);
+      --c-bolt-chip-bg-color: var(--bolt-color-yellow-light);
     }
   }
 }
 
 .c-bolt-chip--color-wine {
-  color: var(--bolt-color-white) !important;
-  background-color: var(--bolt-color-wine);
+  --c-bolt-chip-text-color: var(--bolt-color-white);
+  --c-bolt-chip-bg-color: var(--bolt-color-wine);
 
   &.c-bolt-chip--link {
     &:hover,
     &:focus {
-      background-color: var(--bolt-color-wine);
+      --c-bolt-chip-bg-color: var(--bolt-color-wine);
     }
   }
 }
 
 .c-bolt-chip--color-pink {
-  color: var(--bolt-color-white) !important;
-  background-color: var(--bolt-color-pink);
+  --c-bolt-chip-text-color: var(--bolt-color-white);
+  --c-bolt-chip-bg-color: var(--bolt-color-pink);
 
   &.c-bolt-chip--link {
     &:hover,
     &:focus {
-      background-color: var(--bolt-color-pink);
+      --c-bolt-chip-bg-color: var(--bolt-color-pink);
     }
   }
 }
 
 .c-bolt-chip--color-berry {
-  color: var(--bolt-color-white) !important;
-  background-color: var(--bolt-color-berry);
+  --c-bolt-chip-text-color: var(--bolt-color-white);
+  --c-bolt-chip-bg-color: var(--bolt-color-berry);
 
   &.c-bolt-chip--link {
     &:hover,
     &:focus {
-      background-color: var(--bolt-color-berry);
+      --c-bolt-chip-bg-color: var(--bolt-color-berry);
     }
   }
 }
 
 .c-bolt-chip--color-violet {
-  color: var(--bolt-color-white) !important;
-  background-color: var(--bolt-color-violet);
+  --c-bolt-chip-text-color: var(--bolt-color-white);
+  --c-bolt-chip-bg-color: var(--bolt-color-violet);
 
   &.c-bolt-chip--link {
     &:hover,
     &:focus {
-      background-color: var(--bolt-color-violet);
+      --c-bolt-chip-bg-color: var(--bolt-color-violet);
+    }
+  }
+}
+
+.c-bolt-chip--color-gray {
+  --c-bolt-chip-text-color: var(--bolt-color-black);
+  --c-bolt-chip-bg-color: var(--bolt-color-gray-light);
+
+  &.c-bolt-chip--link {
+    &:hover,
+    &:focus {
+      --c-bolt-chip-bg-color: var(--bolt-color-gray-light);
     }
   }
 }
