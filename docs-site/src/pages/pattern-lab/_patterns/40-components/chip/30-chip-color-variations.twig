@@ -9,8 +9,10 @@
 {% endset %}
 
 {% set demo %}
-  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Status Colors</bolt-text>
   <bolt-list display="inline">
+    <bolt-list-item>
+      <bolt-text headline font-size="xsmall" font-weight="semibold" letter-spacing="wide" tag="p">Status Colors</bolt-text>
+    </bolt-list-item>
     {% for color in schema.properties.color.enum %}
       {% if color == 'error' or color == 'warning' or color == 'success' %}
         {% if color == 'error' %}
@@ -35,8 +37,10 @@
       {% endif %}
     {% endfor %}
   </bolt-list>
-  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Selective Brand Colors</bolt-text>
   <bolt-list display="inline">
+    <bolt-list-item>
+      <bolt-text headline font-size="xsmall" font-weight="semibold" letter-spacing="wide" tag="p">Selective Brand Colors</bolt-text>
+    </bolt-list-item>
     {% for color in schema.properties.color.enum %}
       {% if color != 'error' and color != 'warning' and color != 'success' %}
         <bolt-list-item>
