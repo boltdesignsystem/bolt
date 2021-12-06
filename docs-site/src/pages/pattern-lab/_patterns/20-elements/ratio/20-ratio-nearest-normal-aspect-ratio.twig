@@ -25,7 +25,7 @@
   {% endset %}
 
   {% set wrong %}
-    <bolt-banner status="warning" align="start">The aspect ratio is <strong>not</strong> respected. Image <strong>2100x900</strong>, aspect-ratio: <strong>4/3 = 1.33</strong>.</bolt-banner>
+    <bolt-banner status="information" align="start">The aspect ratio is <strong>not</strong> respected. Image <strong>2100x900</strong>, aspect-ratio: <strong>4/3 = 1.33</strong>.</bolt-banner>
     {% include '@bolt-elements-ratio/ratio.twig' with {
       children: image,
       ratio: '4/3',
@@ -33,7 +33,7 @@
   {% endset %}
 
   {% set correct %}
-    <bolt-banner status="success" align="start">The aspect ratio is respected. Image <strong>2100x900</strong>, aspect-ratio: <strong>7/3 = 2.33</strong>.</bolt-banner>
+    <bolt-banner status="information" align="start">The aspect ratio is respected. Image <strong>2100x900</strong>, aspect-ratio: <strong>7/3 = 2.33</strong>.</bolt-banner>
     {% include '@bolt-elements-ratio/ratio.twig' with {
       children: image,
       ratio: '7/3'
