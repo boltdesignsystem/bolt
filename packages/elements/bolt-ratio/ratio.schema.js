@@ -10,11 +10,12 @@ module.exports = {
     },
     children: {
       type: 'any',
-      description: 'An element with set up ratio.',
+      description: 'An element with set up aspect ratio (image or video)',
     },
     ratio: {
       type: 'string',
-      description: 'Ratio between the width and height.',
+      description:
+        'An aspect ratio between the width and height. Expressed as width divided by height',
     },
   },
 };
