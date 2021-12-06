@@ -39,7 +39,10 @@
 {% endset %}
 {% include '@bolt-elements-ratio/ratio.twig' with {
   children: image,
-  ratio: '1/1'
+  ratio: '1/1',
+  attributes: {
+    style: 'max-width: 150px',
+  }
 } only %}
 {% endverbatim %}{% endset %}
 
