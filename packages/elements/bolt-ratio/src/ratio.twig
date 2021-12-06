@@ -5,13 +5,6 @@
  * Available variables:
  * - Reference ratio.schema.js
  *
- * Dev notes
- * 1. The markup is written in one line (combined with spaceless) to avoid any unwanted white-space.
- * 2. Zero width no-break space is passed to the icon container's :before and :after pseudo elements,
- *    combine that with nowrap white-space on the icon container, and it will make sure that an icon
- *    never wraps to the next line by itself, it will always wrap with the final word of the text.
- *    Do not remove the icon container spans. See: https://codepen.io/mikemai2awesome/pen/OJXbqwe?editors=0100
- */
 #}
 
 {# Schema Validation #}
@@ -23,16 +16,14 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set ratioW = ratio|split("/")[0] ?? "1" %}
-{% set ratioH = ratio|split("/")[1] ?? "1" %}
-{% set aspect_ratio = "aspect-ratio: #{ratioW}/#{ratioH}" %}
-
 {% set classes = [
   'e-bolt-ratio',
 ] %}
+
 {# Template #}
-{# [1], [2] #}
-{% spaceless %}<div {{ attributes.addClass(classes) }} 
-style="{{ aspect_ratio | join(" ") }}">
-{{ children }}</div>{% endspaceless %}
+<div {{ attributes.addClass(classes) }}>
+  <div class="e-bolt-ratio__content" style="aspect-ratio: {{ ratio }}">
+    {{ children }}
+  </div>
+</div>
 
