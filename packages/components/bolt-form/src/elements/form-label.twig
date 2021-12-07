@@ -20,6 +20,8 @@
   {% set _classes = ["c-bolt-floating-label"] %}
 {% elseif displayType == "block" %}
   {% set _classes = ["c-bolt-block-label"] %}
+{% elseif displayType == "hidden" %}
+  {% set _classes = ["c-bolt-hidden-label"] %}
 {% elseif displayType == "inline-radio" %}
   {% set _classes = ["c-bolt-inline-label", "c-bolt-inline-label--radio"] %}
 {% elseif displayType == "inline-checkbox" %}

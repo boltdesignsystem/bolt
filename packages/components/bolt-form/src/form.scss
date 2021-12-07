@@ -603,7 +603,8 @@ $bolt-strength-indicator-transition: var(--bolt-transition);
   transition: all $bolt-input-transition;
 }
 
-.c-bolt-block-label {
+.c-bolt-block-label,
+.c-bolt-hidden-label {
   display: block;
   margin-bottom: var(--bolt-spacing-y-xsmall);
   font-family: var(--bolt-type-font-family-headline);
@@ -617,7 +618,8 @@ $bolt-strength-indicator-transition: var(--bolt-transition);
     .c-bolt-input.is-filled,
     .c-bolt-input:focus {
       padding: calc(var(--bolt-spacing-y-medium) / 2 - 1px)
-        var(--bolt-spacing-x-small); // [Mai] medium/2 matches button vertical spacing.
+        calc(var(--bolt-spacing-x-small) + 24px)
+        calc(var(--bolt-spacing-y-medium) / 2 - 1px) var(--bolt-spacing-x-small); // [Mai] medium/2 matches button vertical spacing.
 
       @include bolt-mq($until: small) {
         padding-top: calc(var(--bolt-spacing-y-medium) / 2 - 0.1875rem);
@@ -627,12 +629,6 @@ $bolt-strength-indicator-transition: var(--bolt-transition);
   }
 }
 
-.c-bolt-block-label[hidden] {
+.c-bolt-hidden-label {
   @include bolt-visuallyhidden;
-
-  & ~ .c-bolt-block-input-wrapper {
-    .c-bolt-input--select {
-      padding-right: calc(var(--bolt-spacing-x-small) + 24px);
-    }
-  }
 }
