@@ -352,10 +352,9 @@
       {% set label %}
         {% include '@bolt-components-form/form-label.twig' with {
           title: 'Year',
-          displayType: 'block',
+          displayType: 'hidden',
           attributes: {
             for: 'year-select',
-            hidden: true
           },
         } only %}
       {% endset %}
@@ -524,10 +523,9 @@
       {% set label %}
         {% include '@bolt-components-form/form-label.twig' with {
           title: 'Sort by',
-          displayType: 'block',
+          displayType: 'hidden',
           attributes: {
             for: 'sort-select',
-            hidden: true
           },
         } only %}
       {% endset %}
