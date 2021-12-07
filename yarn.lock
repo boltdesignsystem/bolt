@@ -1423,6 +1423,60 @@
     node-fetch "^2.1.2"
     sleep-promise "^8.0.1"
 
+"@bolt/core-v3.x@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@bolt/core-v3.x/-/core-v3.x-4.6.0.tgz#d06f752af4bb88e1be776df02e14e34173f48385"
+  integrity sha512-SHTI28+Ri/MnLxS0GskkmkTi3kR+pda5NNuubLrKGYkZ57W91Z0K488k3sfZ5KjLwnrC9C0hrazo41XjtIKQeQ==
+  dependencies:
+    "@bolt/element" "^4.6.0"
+    "@bolt/lazy-queue" "^4.3.0"
+    camelcase "^5.3.1"
+    change-case "^3.1.0"
+    classnames "^2.2.6"
+    color "^3.1.2"
+    html-element "^2.3.0"
+    jsonschema "^1.2.6"
+    lit-element "^2.2.0"
+    lit-html "^1.1.2"
+    lodash.merge "^4.6.2"
+    preact "^10.0.5"
+    preact-markup "^2.0.0"
+    pwa-helpers "^0.9.1"
+    raf "^3.4.1"
+    sass-mq "github:bolt-design-system/sass-mq#master"
+    sassy-lists "^3.0.1"
+    sassy-maps "github:at-import/Sassy-Maps#0.x.x"
+    skatejs "^5.2.4"
+    tippy.js "^6.3.1"
+    wc-context "^0.8.0"
+
+"@bolt/element@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@bolt/element/-/element-4.6.0.tgz#c2d1444451b6a802197df3bc7752ff40e9277785"
+  integrity sha512-3tPUylPhmlwfnc/myDcgZsb5V0ULesdJoG4OlVxwtPF9+c0EUbXJNFBvjpiCQxthcM+EFoOg5mT4JUGpgloZ0g==
+  dependencies:
+    "@bolt/core-v3.x" "^4.6.0"
+    "@bolt/polyfills" "^4.3.0"
+    "@open-wc/lit-helpers" "^0.3.5"
+    camel-case "^4.1.1"
+    lit-element "2.2.1"
+    param-case "^3.0.3"
+
+"@bolt/lazy-queue@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@bolt/lazy-queue/-/lazy-queue-4.3.0.tgz#36b5191e2d4bc5db40c55ca93b46c1e9ee91c092"
+  integrity sha512-8+Mb8tcHOb1Xy+pCkq/Zd8H87XIectfJpHQTpKlKFoOBtgnJ+o7tZf34FsNK0Ha1dF6g49mmfaPwy/GOsXljWg==
+  dependencies:
+    "@bolt/polyfills" "^4.3.0"
+    idlize "^0.1.1"
+
+"@bolt/polyfills@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@bolt/polyfills/-/polyfills-4.3.0.tgz#05efd06e0f0057026c2cfa8abf0c649cbf75229b"
+  integrity sha512-uZG7+EpspHQzDirzPBwc+ViTrNRIPKSbE6kDxMVpdKLP9KOmLOjjEQR5gB1HaO8luvqSMBGdzLyV/Ib3FF8rAg==
+  dependencies:
+    "@webcomponents/custom-elements" "^1.3.0"
+
 "@ckeditor/ckeditor5-build-classic@^12.1.0":
   version "12.4.0"
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-12.4.0.tgz#d5eefb00424d6c559f826d8509ba6ce7e1ce12b9"
@@ -5183,10 +5237,10 @@ chrome-trace-event@^1.0.2:
   dependencies:
     tslib "^1.9.0"
 
-chromedriver@^94.0.0:
-  version "94.0.0"
-  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-94.0.0.tgz#f6a3533976ba72413a01672954040c3544ea9d30"
-  integrity sha512-x4hK7R7iOyAhdLHJEcOyGBW/oa2kno6AqpHVLd+n3G7c2Vk9XcAXMz84XhNItqykJvTc6E3z/JRIT1eHYH//Eg==
+chromedriver@^96.0.0:
+  version "96.0.0"
+  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-96.0.0.tgz#c8473498e4c94950fa168187b112019cce9e5c6c"
+  integrity sha512-4g6Hn5RHGsbaBmOrJbDlz/hdVPOc22eRsbvoAAMqkZxR2NJCcddHzCw2FAQeW8lX/C7xWVz3nyDsKX3fE9lIIw==
   dependencies:
     "@testim/chrome-version" "^1.0.7"
     axios "^0.21.2"

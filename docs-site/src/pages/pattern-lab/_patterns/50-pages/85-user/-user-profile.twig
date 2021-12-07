@@ -1,0 +1,1122 @@
+{% set header %}
+  {% include '@pl/_demo-main-site-page-header.twig' %}
+{% endset %}
+
+{% set footer %}
+  {% set icon_fb %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'facebook',
+    } only %}
+  {% endset %}
+
+  {% set icon_twitter %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'twitter',
+    } only %}
+  {% endset %}
+
+  {% set icon_linkedin %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'linkedin-solid',
+    } only %}
+  {% endset %}
+
+  {% set icon_youtube %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'youtube-solid',
+    } only %}
+  {% endset %}
+
+  {# Company links #}
+  {% set company_list_items %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'About Pega',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Office Locations',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Careers',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'US: 1-888-PEGA-NOW',
+        attributes: {
+          href: 'tel: 1-888-PEGA-NOW',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'UK: +44 118 965 1600',
+        attributes: {
+          href: 'tel: +44 118 965 1600',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'DACH: +49 (0) 89 540320',
+        attributes: {
+          href: 'tel: +49 (0) 89 540320',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'AU: +61 2 9581 7000',
+        attributes: {
+          href: 'tel: +61 2 9581 7000',
+        },
+      },
+    } only %}
+  {% endset %}
+
+  {# Pega sites links  #}
+  {% set pega_sites_list_items %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Community',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Support',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Product design',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Partners',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'PegaWorld Conference',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Blog',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'MyPega',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+  {% endset %}
+
+  {# Resources links #}
+  {% set resources_list_items %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Analyst Reports',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Demo Videos',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Pega Platform Trial',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Trust Center',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+    {% endset %}
+
+    {# social links #}
+    {% set socials %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Twitter',
+        icon_before: icon_twitter,
+        attributes: {
+          href: '#!',
+          target: '_blank',
+          rel: 'noopener',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Facebook',
+        icon_before: icon_fb,
+        attributes: {
+          href: '#!',
+          target: '_blank',
+          rel: 'noopener',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Linkedin',
+        icon_before: icon_linkedin,
+        attributes: {
+          href: '#!',
+          target: '_blank',
+          rel: 'noopener',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Youtube',
+        icon_before: icon_youtube,
+        attributes: {
+          href: '#!',
+          target: '_blank',
+          rel: 'noopener',
+        },
+      },
+    } only %}
+  {% endset %}
+
+  {# language links #}
+  {% set language_list_items %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'English',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Français',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Deutsch',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Italiano',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: '日本語',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Português',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Español',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Türkçe',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Pусский',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+  {% endset %}
+
+  {# legal links #}
+  {% set legal_list_items %}
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Terms Of Use',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Contact',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Glossary',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Trademarks',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+
+    {% include '@bolt-components-page-footer/page-footer-nav-li.twig' with {
+      link: {
+        content: 'Privacy',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+  {% endset %}
+
+  {# primary nav #}
+  {% set primary_nav %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        content: 'Join the conversation',
+        tag: 'h3',
+      },
+      category: 'social',
+      content: socials
+    } only %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        content: 'Company',
+        tag: 'h3',
+      },
+      content: company_list_items
+    } only %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        content: 'Pega sites',
+        tag: 'h3',
+      },
+      content: pega_sites_list_items
+    } only %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        content: 'Resources',
+        tag: 'h3',
+      },
+      content: resources_list_items
+    } only %}
+  {% endset %}
+
+  {# secondary nav #}
+  {% set secondary_nav %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        content: 'Languages',
+        tag: 'h3',
+      },
+      category: 'language',
+      content: language_list_items
+    } only %}
+    {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
+      headline: {
+        content: 'Legal',
+        tag: 'h3',
+      },
+      category: 'legal',
+      content: legal_list_items
+    } only %}
+  {% endset %}
+
+  {% set footer_description %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'About Pegasystems',
+      size: 'xlarge',
+      tag: 'h2',
+    } only %}
+    <p>Pega delivers innovative software that crushes business complexity. From increasing customer lifetime value to streamlining service to boosting efficiency, we help the world’s leading brands solve problems fast and transform for tomorrow. Our solutions save people time, so our clients’ employees and customers can get back to what matters most.</p>
+  {% endset %}
+
+  {% include '@bolt-components-page-footer/page-footer.twig' with {
+    description: footer_description,
+    primary_nav: primary_nav,
+    secondary_nav: secondary_nav
+  } only %}
+{% endset %}
+
+{% set main_content %}
+  {% set icon_facebook %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'facebook-solid',
+    } only %}
+  {% endset %}
+  {% set icon_twitter %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'twitter-solid',
+    } only %}
+  {% endset %}
+  {% set icon_linkedin %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'linkedin-solid',
+    } only %}
+  {% endset %}
+  {% set icon_email %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'email',
+    } only %}
+  {% endset %}
+  {% set icon_more %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'more',
+    } only %}
+  {% endset %}
+  {% set icon_pencil %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pencil',
+    } only %}
+  {% endset %}
+  {% set icon_share %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'share',
+    } only %}
+  {% endset %}
+  {% set icon_pega_setting %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-setting',
+    } only %}
+  {% endset %}
+  {% set icon_info_circle %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'info-circle',
+    } only %}
+  {% endset %}
+  {% set icon_download %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'download',
+    } only %}
+  {% endset %}
+
+  {% set actions %}
+    {% set popover_trigger %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Share profile',
+        icon_only: icon_share,
+        hierarchy: 'tertiary',
+        border_radius: 'full',
+        size: 'xsmall',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    {% endset %}
+    {% set popover_menu %}
+      {% include '@bolt-components-menu/menu.twig' with {
+        title: 'Share profile',
+        items: [
+          {
+            content: 'Facebook',
+            icon_before: icon_facebook,
+            url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse',
+            attributes: {
+              target: '_blank',
+            }
+          },
+          {
+            content: 'Twitter',
+            icon_before: icon_twitter,
+            url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
+            attributes: {
+              target: '_blank',
+            }
+          },
+          {
+            content: 'LinkedIn',
+            icon_before: icon_linkedin,
+            url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com',
+            attributes: {
+              target: '_blank',
+            }
+          },
+          {
+            content: 'Email',
+            icon_before: icon_email,
+            url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com',
+            attributes: {
+              target: '_blank',
+            }
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: popover_trigger,
+      content: popover_menu,
+      spacing: 'none',
+      placement: 'bottom-end',
+      trigger_event: 'hover',
+    } only %}
+
+    {% set popover_trigger %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'More options',
+        icon_only: icon_more,
+        hierarchy: 'tertiary',
+        border_radius: 'full',
+        size: 'xsmall',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    {% endset %}
+    {% set popover_menu %}
+      {% include '@bolt-components-menu/menu.twig' with {
+        title: 'More options',
+        items: [
+          {
+            content: 'Edit profile',
+            icon_before: icon_pencil,
+          },
+          {
+            content: 'Settings',
+            icon_before: icon_pega_setting,
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: popover_trigger,
+      content: popover_menu,
+      spacing: 'none',
+      placement: 'bottom-end',
+      trigger_event: 'hover',
+    } only %}
+  {% endset %}
+
+  {% set chips %}
+    {% include '@bolt-components-chip/chip.twig' with {
+      text: 'Member since 2017',
+      border_radius: 'small',
+    } only %}
+    {% include '@bolt-components-chip/chip.twig' with {
+      text: 'Developer',
+      color: 'orange',
+      border_radius: 'small',
+    } only %}
+    {% include '@bolt-components-chip/chip.twig' with {
+      text: 'Available for hire',
+      color: 'teal',
+      border_radius: 'small',
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-profile/profile.twig' with {
+    name: {
+      content: '<strong>Toni Kukoc</strong> (@thepinkpanther)',
+      tag: 'h1',
+    },
+    job_title: 'Lead System Architect',
+    location: 'Croatia',
+    actions: actions,
+    chips: chips,
+    stats: [
+      {
+        number: '15',
+        label: 'Achievements',
+        attributes: {
+          type: 'button',
+          'data-bolt-modal-target': '.js-bolt-modal-all-achievements',
+        },
+      },
+      {
+        number: '3k',
+        label: 'Contributions',
+        attributes: {
+          type: 'button',
+          'data-bolt-modal-target': '.js-bolt-modal-all-achievements',
+        },
+      },
+    ],
+    full_bleed: true,
+  } only %}
+
+  {% set layout_content %}
+    {% set sections %}
+      {% set about %}
+        {% set section_content %}
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.</p>
+          {% set tooltip_linkedin %}
+            {% set link_linkedin %}<a href="#!">{{ icon_linkedin }}</a>{% endset %}
+            {% include '@bolt-components-tooltip/tooltip.twig' with {
+              trigger: link_linkedin,
+              content: 'LinkedIn',
+            } only %}
+          {% endset %}
+          {% set tooltip_facebook %}
+            {% set link_facebook %}<a href="#!">{{ icon_facebook }}</a>{% endset %}
+            {% include '@bolt-components-tooltip/tooltip.twig' with {
+              trigger: link_facebook,
+              content: 'Facebook',
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-list/list.twig' with {
+            display: "inline",
+            tag: "div",
+            items: [
+              "On the web:",
+              tooltip_linkedin,
+              tooltip_facebook,
+            ]
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-info-section/info-section.twig' with {
+          label: {
+            content: 'About',
+            tag: 'h2',
+          },
+          content: section_content,
+          open: true,
+          attributes: {
+            class: [
+              't-bolt-white',
+              'u-bolt-height-full',
+            ],
+          },
+        } only %}
+      {% endset %}
+      {% set skills %}
+        {% set section_content %}
+          {% include '@bolt-components-headline/text.twig' with {
+            text: 'Languages',
+            weight: 'semibold',
+            tag: 'h3',
+          } only %}
+          {% include '@bolt-components-ul/ul.twig' with {
+            items: [
+              'Chinese (native or bilingual proficiency)',
+              'English (native or bilingual proficiency)',
+            ]
+          } only %}
+          {% set layout_content %}
+            {% set specializations %}
+              {% set tooltip %}
+                {% include '@bolt-components-tooltip/tooltip.twig' with {
+                  trigger: icon_info_circle,
+                  content: 'Pega platform capabilities with which the member has experience.',
+                } only %}
+              {% endset %}
+              {% include '@bolt-components-headline/text.twig' with {
+                text: 'Pega Specializations ' ~ tooltip,
+                weight: 'semibold',
+                tag: 'h3',
+              } only %}
+              {% include '@bolt-components-ul/ul.twig' with {
+                items: [
+                  'Application Development',
+                  'Mobile',
+                  'Reporting',
+                  'Case Management',
+                  'Data Integration',
+                  'Robotic Process Automation',
+                  'User Interface',
+                ]
+              } only %}
+            {% endset %}
+            {% set roles %}
+              {% set tooltip %}
+                {% include '@bolt-components-tooltip/tooltip.twig' with {
+                  trigger: icon_info_circle,
+                  content: 'Professional positions the member has held on Pega projects.',
+                } only %}
+              {% endset %}
+              {% include '@bolt-components-headline/text.twig' with {
+                text: 'Project Roles ' ~ tooltip,
+                weight: 'semibold',
+                tag: 'h3',
+              } only %}
+              {% include '@bolt-components-ul/ul.twig' with {
+                items: [
+                  'Lead System Architect',
+                  'System Architect',
+                ]
+              } only %}
+            {% endset %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: specializations,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: roles,
+            } only %}
+          {% endset %}
+          {% include '@bolt-layouts-layout/layout.twig' with {
+            content: layout_content,
+            template: [
+              'tiles',
+            ],
+            padding_top: 'none',
+            padding_bottom: 'none',
+            attributes: {
+              style: '--l-bolt-layout-tile-min-width: 12.5rem',
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-info-section/info-section.twig' with {
+          label: {
+            content: 'Languages &amp; Skills',
+            tag: 'h2',
+          },
+          content: section_content,
+          attributes: {
+            class: [
+              't-bolt-white',
+              'u-bolt-height-full',
+            ],
+          },
+        } only %}
+      {% endset %}
+      {% set achievements %}
+        {% set section_content %}
+          {% include '@bolt-components-headline/text.twig' with {
+            text: 'Most Recent Certifications',
+            weight: 'semibold',
+            tag: 'h3',
+          } only %}
+          {% set layout_content %}
+            {% set placeholder_certification %}
+              <small class="u-bolt-block u-bolt-text-align-center u-bolt-margin-bottom-xxsmall">
+                {% include '@bolt-elements-image/image.twig' with {
+                  attributes: {
+                    src: '/images/placeholders/cert-pegaclsa62.png',
+                    sizes: '25vw',
+                    width: 200,
+                    height: 200,
+                    loading: 'lazy',
+                  },
+                } only %}
+                <br>
+                <strong>Lead System Architect</strong>
+                <br>
+                Version 7.2 | Nov 7, 2021
+              </small>
+              {% set download_button %}
+                {% set tooltip_trigger %}
+                  {% include '@bolt-elements-button/button.twig' with {
+                    content: 'Download certificate',
+                    icon_only: icon_download,
+                    hierarchy: 'tertiary',
+                    size: 'xsmall',
+                    attributes: {
+                      href: '#!',
+                      download: true,
+                    }
+                  } only %}
+                {% endset %}
+                {% set tooltip_content %}
+                  Download certificate
+                {% endset %}
+                {% include '@bolt-components-tooltip/tooltip.twig' with {
+                  trigger: tooltip_trigger,
+                  content: tooltip_content,
+                  placement: 'bottom',
+                } only %}
+              {% endset %}
+              {% set share_button %}
+                {% set popover_trigger %}
+                  {% include '@bolt-elements-button/button.twig' with {
+                    content: 'Share certificate',
+                    icon_only: icon_share,
+                    hierarchy: 'tertiary',
+                    size: 'xsmall',
+                    attributes: {
+                      type: 'button',
+                    }
+                  } only %}
+                {% endset %}
+                {% set popover_menu %}
+                  {% include '@bolt-components-menu/menu.twig' with {
+                    title: 'Share certificate',
+                    items: [
+                      {
+                        content: 'Facebook',
+                        icon_before: icon_facebook,
+                        url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse',
+                        attributes: {
+                          target: '_blank',
+                        }
+                      },
+                      {
+                        content: 'Twitter',
+                        icon_before: icon_twitter,
+                        url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
+                        attributes: {
+                          target: '_blank',
+                        }
+                      },
+                      {
+                        content: 'LinkedIn',
+                        icon_before: icon_linkedin,
+                        url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com',
+                        attributes: {
+                          target: '_blank',
+                        }
+                      },
+                      {
+                        content: 'Email',
+                        icon_before: icon_email,
+                        url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com',
+                        attributes: {
+                          target: '_blank',
+                        }
+                      },
+                    ]
+                  } only %}
+                {% endset %}
+                {% include '@bolt-components-popover/popover.twig' with {
+                  trigger: popover_trigger,
+                  content: popover_menu,
+                  spacing: 'none',
+                  trigger_event: 'hover',
+                  placement: 'bottom',
+                } only %}
+              {% endset %}
+              {% include '@bolt-components-list/list.twig' with {
+                display: 'inline',
+                align: 'center',
+                items: [
+                  download_button,
+                  share_button,
+                ],
+              } only %}
+            {% endset %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_certification,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_certification,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_certification,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_certification,
+            } only %}
+          {% endset %}
+          {% include '@bolt-layouts-layout/layout.twig' with {
+            content: layout_content,
+            template: [
+              'tiles',
+            ],
+            gutter: 'medium',
+            row_gutter: 'small',
+            padding_top: 'small',
+            padding_bottom: 'medium',
+            align_items: 'center',
+            attributes: {
+              style: '--l-bolt-layout-tile-min-width: 5.5rem',
+            }
+          } only %}
+          {% include '@bolt-components-headline/text.twig' with {
+            text: 'Most Recent Badges',
+            weight: 'semibold',
+            tag: 'h3',
+          } only %}
+          {% set layout_content %}
+            {% set placeholder_badge %}
+              <div class="u-bolt-text-align-center">
+                {% set image %}
+                  {% include '@bolt-elements-image/image.twig' with {
+                    attributes: {
+                      src: '/images/placeholders/badge-mis20301.png',
+                      sizes: '18vw',
+                      width: 150,
+                      height: 150,
+                      loading: 'lazy',
+                    },
+                  } only %}
+                {% endset %}
+                {% set tooltip_content %}
+                  Senior System Architect<br><small>Version 7.2 | Nov 7, 2021</small>
+                {% endset %}
+                {% include '@bolt-components-tooltip/tooltip.twig' with {
+                  trigger: image,
+                  content: tooltip_content,
+                  placement: 'bottom',
+                } only %}
+              </div>
+            {% endset %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_badge,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_badge,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_badge,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_badge,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_badge,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_badge,
+            } only %}
+          {% endset %}
+          {% include '@bolt-layouts-layout/layout.twig' with {
+            content: layout_content,
+            template: [
+              'tiles',
+            ],
+            gutter: 'medium',
+            row_gutter: 'medium',
+            padding_top: 'small',
+            padding_bottom: 'none',
+            align_items: 'center',
+            attributes: {
+              style: '--l-bolt-layout-tile-min-width: 3.5rem',
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-info-section/info-section.twig' with {
+          label: {
+            content: 'Achievements',
+            tag: 'h2',
+          },
+          content: section_content,
+          details_link: {
+            label: 'View all achievements',
+            attributes: {
+              type: 'button',
+              'data-bolt-modal-target': '.js-bolt-modal-all-achievements',
+            },
+          },
+          attributes: {
+            class: [
+              't-bolt-white',
+              'u-bolt-height-full',
+            ],
+          },
+        } only %}
+      {% endset %}
+      {% set projects %}
+        {% set section_content %}
+          {% include '@bolt-components-table/table.twig' with {
+            headers: {
+              top: {
+                cells: [
+                  'Industry',
+                  'Role',
+                  'Product(s)',
+                  'From',
+                  'To',
+                ]
+              },
+            },
+            rows: [
+              {
+                cells: [
+                  'Industry name',
+                  'Role name',
+                  'Product name',
+                  'Feb 2021',
+                  'Sep 2021',
+                ]
+              },
+              {
+                cells: [
+                  'Industry name',
+                  'Role name',
+                  'Product name',
+                  'Feb 2021',
+                  'Sep 2021',
+                ]
+              },
+              {
+                cells: [
+                  'Industry name',
+                  'Role name',
+                  'Product name',
+                  'Feb 2021',
+                  'Sep 2021',
+                ]
+              },
+            ],
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-info-section/info-section.twig' with {
+          label: {
+            content: 'Projects',
+            tag: 'h2',
+          },
+          content: section_content,
+          attributes: {
+            class: [
+              't-bolt-white',
+              'u-bolt-height-full',
+            ],
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        gutter: 'medium',
+        row_gutter: 'medium',
+        items: [
+          {
+            column_start: '1',
+            column_span: '12 6@medium',
+            content: about,
+          },
+          {
+            column_start: '1 7@medium',
+            column_span: '12 6@medium',
+            content: skills,
+          },
+          {
+            column_start: '1',
+            column_span: '12',
+            content: achievements,
+          },
+          {
+            column_start: '1',
+            column_span: '12',
+            content: projects,
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: sections,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_content,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    attributes: {
+      class: 't-bolt-gray-xlight',
+    }
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  header: header,
+  main: {
+    content: main_content,
+  },
+  footer: footer,
+} only %}
+
+{% include '@bolt-components-modal/modal.twig' with {
+  content: 'Mashup embed goes here',
+  width: 'regular',
+  attributes: {
+    class: 'js-bolt-modal-all-achievements',
+  },
+} only %}
