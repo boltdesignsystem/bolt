@@ -626,3 +626,13 @@ $bolt-strength-indicator-transition: var(--bolt-transition);
     }
   }
 }
+
+.c-bolt-block-label[hidden] {
+  @include bolt-visuallyhidden;
+
+  & ~ .c-bolt-block-input-wrapper {
+    .c-bolt-input--select {
+      padding-right: calc(var(--bolt-spacing-x-small) + 24px);
+    }
+  }
+}

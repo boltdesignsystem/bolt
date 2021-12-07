@@ -355,8 +355,8 @@
           displayType: 'block',
           attributes: {
             for: 'year-select',
-            class: 'u-bolt-visuallyhidden',
-          }
+            hidden: true
+          },
         } only %}
       {% endset %}
       {% set select %}
@@ -382,7 +382,6 @@
           attributes: {
             id: 'year-select',
             name: 'year-select',
-            class: 'u-bolt-padding-right-large'
           },
         } only %}
       {% endset %}
@@ -528,8 +527,8 @@
           displayType: 'block',
           attributes: {
             for: 'sort-select',
-            class: 'u-bolt-visuallyhidden',
-          }
+            hidden: true
+          },
         } only %}
       {% endset %}
       {% set select %}
@@ -555,14 +554,13 @@
           attributes: {
             id: 'sort-select',
             name: 'sort-select',
-            class: 'u-bolt-padding-right-large',
           },
         } only %}
       {% endset %}
       {% include '@bolt-components-form/form-element.twig' with {
         label: label,
-        children: select,
         labelDisplay: 'before',
+        children: select,
       } only %}
     {% endset %}
 
