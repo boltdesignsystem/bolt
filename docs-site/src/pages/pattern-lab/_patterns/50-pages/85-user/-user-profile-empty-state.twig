@@ -1,6 +1,8 @@
 {% extends "@pl/_site-layout-template.twig" %}
 
 {% block main_content %}
+  {% set empty_state_text = 'No updates available.' %}
+
   {% set icon_facebook %}
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'facebook-solid',
@@ -161,16 +163,6 @@
       text: 'Member since 2017',
       border_radius: 'small',
     } only %}
-    {% include '@bolt-components-chip/chip.twig' with {
-      text: 'Developer',
-      color: 'orange',
-      border_radius: 'small',
-    } only %}
-    {% include '@bolt-components-chip/chip.twig' with {
-      text: 'Available for hire',
-      color: 'teal',
-      border_radius: 'small',
-    } only %}
   {% endset %}
 
   {% include '@bolt-components-profile/profile.twig' with {
@@ -178,13 +170,11 @@
       content: '<strong>Toni Kukoc</strong> (@thepinkpanther)',
       tag: 'h1',
     },
-    job_title: 'Lead System Architect, Pegasystems Inc.',
-    location: 'Croatia',
     actions: actions,
     chips: chips,
     stats: [
       {
-        number: '15',
+        number: '0',
         label: 'Achievements',
         attributes: {
           type: 'button',
@@ -192,7 +182,7 @@
         },
       },
       {
-        number: '3k',
+        number: '0',
         label: 'Contributions',
         attributes: {
           type: 'button',
@@ -207,30 +197,7 @@
     {% set sections %}
       {% set about %}
         {% set section_content %}
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi mollitia soluta magnam quisquam aperiam debitis nam dolorem! Nisi reprehenderit consequuntur quibusdam omnis similique perspiciatis, ratione esse quasi? Accusamus, magni porro.</p>
-          {% set tooltip_linkedin %}
-            {% set link_linkedin %}<a href="#!">{{ icon_linkedin }}</a>{% endset %}
-            {% include '@bolt-components-tooltip/tooltip.twig' with {
-              trigger: link_linkedin,
-              content: 'LinkedIn',
-            } only %}
-          {% endset %}
-          {% set tooltip_facebook %}
-            {% set link_facebook %}<a href="#!">{{ icon_facebook }}</a>{% endset %}
-            {% include '@bolt-components-tooltip/tooltip.twig' with {
-              trigger: link_facebook,
-              content: 'Facebook',
-            } only %}
-          {% endset %}
-          {% include '@bolt-components-list/list.twig' with {
-            display: "inline",
-            tag: "div",
-            items: [
-              "On the web:",
-              tooltip_linkedin,
-              tooltip_facebook,
-            ]
-          } only %}
+          <p>{{ empty_state_text }}</p>
         {% endset %}
         {% include '@bolt-components-info-section/info-section.twig' with {
           label: {
@@ -258,12 +225,7 @@
               class: 'u-bolt-margin-bottom-xsmall',
             },
           } only %}
-          {% include '@bolt-components-ul/ul.twig' with {
-            items: [
-              'Chinese (native or bilingual proficiency)',
-              'English (native or bilingual proficiency)',
-            ]
-          } only %}
+          <p>{{ empty_state_text }}</p>
           {% set layout_content %}
             {% set specializations %}
               {% set tooltip %}
@@ -281,17 +243,7 @@
                   class: 'u-bolt-margin-bottom-xsmall',
                 },
               } only %}
-              {% include '@bolt-components-ul/ul.twig' with {
-                items: [
-                  'Application Development',
-                  'Mobile',
-                  'Reporting',
-                  'Case Management',
-                  'Data Integration',
-                  'Robotic Process Automation',
-                  'User Interface',
-                ]
-              } only %}
+              <p>{{ empty_state_text }}</p>
             {% endset %}
             {% set roles %}
               {% set tooltip %}
@@ -309,12 +261,7 @@
                   class: 'u-bolt-margin-bottom-xsmall',
                 },
               } only %}
-              {% include '@bolt-components-ul/ul.twig' with {
-                items: [
-                  'Lead System Architect',
-                  'System Architect',
-                ]
-              } only %}
+              <p>{{ empty_state_text }}</p>
             {% endset %}
             {% include '@bolt-layouts-layout/layout-item.twig' with {
               content: specializations,
@@ -351,147 +298,6 @@
       {% endset %}
       {% set achievements %}
         {% set section_content %}
-          {% set placeholder_certification %}
-            <small class="u-bolt-block u-bolt-text-align-center u-bolt-margin-bottom-xxsmall">
-              {% set image %}
-                {% include '@bolt-elements-image/image.twig' with {
-                  attributes: {
-                    src: '/images/placeholders/cert-pegaclsa62.png',
-                    sizes: '25vw',
-                    width: 180,
-                    height: 180,
-                    loading: 'lazy',
-                  },
-                } only %}
-              {% endset %}
-              {% set tooltip_content %}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, repellat ea? Eius veritatis et velit, sed, vero vitae tenetur blanditiis modi assumenda laboriosam alias. Harum ducimus nam minima error autem.
-              {% endset %}
-              {% include '@bolt-components-tooltip/tooltip.twig' with {
-                trigger: image,
-                content: tooltip_content,
-                placement: 'bottom',
-              } only %}
-              <br>
-              <strong>Lead System Architect</strong>
-              <br>
-              Version 7.2 | Nov 7, 2021
-            </small>
-            {% set download_button %}
-              {% set tooltip_trigger %}
-                {% include '@bolt-elements-button/button.twig' with {
-                  content: 'Download certificate',
-                  icon_only: icon_download,
-                  hierarchy: 'tertiary',
-                  size: 'xsmall',
-                  attributes: {
-                    href: '#!',
-                    download: true,
-                  }
-                } only %}
-              {% endset %}
-              {% set tooltip_content %}
-                Download certificate
-              {% endset %}
-              {% include '@bolt-components-tooltip/tooltip.twig' with {
-                trigger: tooltip_trigger,
-                content: tooltip_content,
-                placement: 'bottom',
-              } only %}
-            {% endset %}
-            {% set share_button %}
-              {% set popover_trigger %}
-                {% include '@bolt-elements-button/button.twig' with {
-                  content: 'Share certificate',
-                  icon_only: icon_share,
-                  hierarchy: 'tertiary',
-                  size: 'xsmall',
-                  attributes: {
-                    type: 'button',
-                  }
-                } only %}
-              {% endset %}
-              {% set popover_menu %}
-                {% include '@bolt-components-menu/menu.twig' with {
-                  spacing: 'medium',
-                  title: 'Share certificate',
-                  items: [
-                    {
-                      content: 'Facebook',
-                      icon_before: icon_facebook,
-                      url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse',
-                      attributes: {
-                        target: '_blank',
-                      }
-                    },
-                    {
-                      content: 'Twitter',
-                      icon_before: icon_twitter,
-                      url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
-                      attributes: {
-                        target: '_blank',
-                      }
-                    },
-                    {
-                      content: 'LinkedIn',
-                      icon_before: icon_linkedin,
-                      url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com',
-                      attributes: {
-                        target: '_blank',
-                      }
-                    },
-                    {
-                      content: 'Email',
-                      icon_before: icon_email,
-                      url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com',
-                      attributes: {
-                        target: '_blank',
-                      }
-                    },
-                  ]
-                } only %}
-              {% endset %}
-              {% include '@bolt-components-popover/popover.twig' with {
-                trigger: popover_trigger,
-                content: popover_menu,
-                spacing: 'none',
-                trigger_event: 'hover',
-                placement: 'bottom',
-              } only %}
-            {% endset %}
-            {% include '@bolt-components-list/list.twig' with {
-              display: 'inline',
-              align: 'center',
-              items: [
-                download_button,
-                share_button,
-              ],
-            } only %}
-          {% endset %}
-          {% set placeholder_badge %}
-            <div class="u-bolt-text-align-center">
-              {% set image %}
-                {% include '@bolt-elements-image/image.twig' with {
-                  attributes: {
-                    src: '/images/placeholders/badge-mis20301.png',
-                    sizes: '18vw',
-                    width: 150,
-                    height: 150,
-                    loading: 'lazy',
-                  },
-                } only %}
-              {% endset %}
-              {% set tooltip_content %}
-                Senior System Architect<br><small>Version 7.2 | Nov 7, 2021</small>
-              {% endset %}
-              {% include '@bolt-components-tooltip/tooltip.twig' with {
-                trigger: image,
-                content: tooltip_content,
-                placement: 'bottom',
-              } only %}
-            </div>
-          {% endset %}
-
           {% include '@bolt-components-headline/text.twig' with {
             text: 'Most Recent Certifications',
             tag: 'h3',
@@ -502,28 +308,7 @@
             },
           } only %}
           <bolt-stack>
-            {% include '@bolt-components-grid/grid.twig' with {
-              gutter: 'small',
-              row_gutter: 'small',
-              items: [
-                {
-                  column_span: '6 4@xsmall 3@small',
-                  content: placeholder_certification,
-                },
-                {
-                  column_span: '6 4@xsmall 3@small',
-                  content: placeholder_certification,
-                },
-                {
-                  column_span: '6 4@xsmall 3@small',
-                  content: placeholder_certification,
-                },
-                {
-                  column_span: '6 4@xsmall 3@small',
-                  content: placeholder_certification,
-                },
-              ],
-            } only %}
+            {{ empty_state_text }}
           </bolt-stack>
           {% include '@bolt-components-headline/text.twig' with {
             text: 'Most Recent Badges',
@@ -535,36 +320,7 @@
             },
           } only %}
           <bolt-stack>
-            {% include '@bolt-components-grid/grid.twig' with {
-              gutter: 'small',
-              row_gutter: 'small',
-              items: [
-                {
-                  column_span: '4 3@xsmall 2@small',
-                  content: placeholder_badge,
-                },
-                {
-                  column_span: '4 3@xsmall 2@small',
-                  content: placeholder_badge,
-                },
-                {
-                  column_span: '4 3@xsmall 2@small',
-                  content: placeholder_badge,
-                },
-                {
-                  column_span: '4 3@xsmall 2@small',
-                  content: placeholder_badge,
-                },
-                {
-                  column_span: '4 3@xsmall 2@small',
-                  content: placeholder_badge,
-                },
-                {
-                  column_span: '4 3@xsmall 2@small',
-                  content: placeholder_badge,
-                },
-              ],
-            } only %}
+            {{ empty_state_text }}
           </bolt-stack>
         {% endset %}
         {% include '@bolt-components-info-section/info-section.twig' with {
@@ -590,48 +346,7 @@
       {% endset %}
       {% set projects %}
         {% set section_content %}
-          {% include '@bolt-components-table/table.twig' with {
-            headers: {
-              top: {
-                cells: [
-                  'Industry',
-                  'Role',
-                  'Product(s)',
-                  'From',
-                  'To',
-                ]
-              },
-            },
-            rows: [
-              {
-                cells: [
-                  'Industry name',
-                  'Role name',
-                  'Product name',
-                  'Feb 2021',
-                  'Sep 2021',
-                ]
-              },
-              {
-                cells: [
-                  'Industry name',
-                  'Role name',
-                  'Product name',
-                  'Feb 2021',
-                  'Sep 2021',
-                ]
-              },
-              {
-                cells: [
-                  'Industry name',
-                  'Role name',
-                  'Product name',
-                  'Feb 2021',
-                  'Sep 2021',
-                ]
-              },
-            ],
-          } only %}
+          <p>{{ empty_state_text }}</p>
         {% endset %}
         {% include '@bolt-components-info-section/info-section.twig' with {
           label: {
