@@ -2,14 +2,17 @@
 
 {% set notes %}
   <bolt-ol>
+    <bolt-li>When <code>color</code> is null or set to <code>auto</code>, the default design has a semi-transparent background that works across all color themes; when <code>color</code> is set to a specific color, the chip will always render in that color.</bolt-li>
     <bolt-li>When using status chips, it is recommended to append an appropriate icon in front of the text.</bolt-li>
-    <bolt-li>When using branded chips, always make sure a chip has good contrast with the page background. For example, do not use navy colored chip on a navy background.</bolt-li>
+    <bolt-li>When using branded chips, always make sure a chip has good contrast with the page background. For example, do not use a navy colored chip against a navy background.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
-  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Status Colors</bolt-text>
   <bolt-list display="inline">
+    <bolt-list-item>
+      <bolt-text headline font-size="xsmall" font-weight="semibold" letter-spacing="wide" tag="p">Status Colors</bolt-text>
+    </bolt-list-item>
     {% for color in schema.properties.color.enum %}
       {% if color == 'error' or color == 'warning' or color == 'success' %}
         {% if color == 'error' %}
@@ -34,8 +37,10 @@
       {% endif %}
     {% endfor %}
   </bolt-list>
-  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Selective Brand Colors</bolt-text>
   <bolt-list display="inline">
+    <bolt-list-item>
+      <bolt-text headline font-size="xsmall" font-weight="semibold" letter-spacing="wide" tag="p">Selective Brand Colors</bolt-text>
+    </bolt-list-item>
     {% for color in schema.properties.color.enum %}
       {% if color != 'error' and color != 'warning' and color != 'success' %}
         <bolt-list-item>
