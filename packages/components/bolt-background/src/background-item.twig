@@ -45,7 +45,7 @@
       {% set _sizes = item.sizes ? item.sizes : '100vw' %}
 
       {# Found both of these spellings, expanding the conditional to catch both #}
-      {% set _loading = item.lazyLoad or item.lazyload ? 'lazy' : 'eager' %}
+      {% set _loading = (item.lazyLoad is same as false) or (item.lazyload is same as false) ? 'eager' : 'lazy' %}
 
       {% include '@bolt-elements-image/image.twig' with {
         background: true,
