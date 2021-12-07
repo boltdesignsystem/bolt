@@ -454,21 +454,25 @@
   {% set icon_facebook %}
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'facebook-solid',
+      size: 'medium',
     } only %}
   {% endset %}
   {% set icon_twitter %}
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'twitter-solid',
+      size: 'medium',
     } only %}
   {% endset %}
   {% set icon_linkedin %}
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'linkedin-solid',
+      size: 'medium',
     } only %}
   {% endset %}
   {% set icon_email %}
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'email',
+      size: 'medium',
     } only %}
   {% endset %}
   {% set icon_more %}
@@ -476,19 +480,21 @@
       name: 'more',
     } only %}
   {% endset %}
-  {% set icon_pencil %}
-    {% include '@bolt-elements-icon/icon.twig' with {
-      name: 'pencil',
-    } only %}
-  {% endset %}
   {% set icon_share %}
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'share',
     } only %}
   {% endset %}
+  {% set icon_pencil %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pencil',
+      size: 'medium',
+    } only %}
+  {% endset %}
   {% set icon_pega_setting %}
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'pega-setting',
+      size: 'medium',
     } only %}
   {% endset %}
   {% set icon_info_circle %}
@@ -517,6 +523,7 @@
     {% endset %}
     {% set popover_menu %}
       {% include '@bolt-components-menu/menu.twig' with {
+        spacing: 'medium',
         title: 'Share profile',
         items: [
           {
@@ -576,6 +583,7 @@
     {% endset %}
     {% set popover_menu %}
       {% include '@bolt-components-menu/menu.twig' with {
+        spacing: 'medium',
         title: 'More options',
         items: [
           {
@@ -620,7 +628,7 @@
       content: '<strong>Toni Kukoc</strong> (@thepinkpanther)',
       tag: 'h1',
     },
-    job_title: 'Lead System Architect',
+    job_title: 'Lead System Architect, Pegasystems Inc.',
     location: 'Croatia',
     actions: actions,
     chips: chips,
@@ -693,8 +701,12 @@
         {% set section_content %}
           {% include '@bolt-components-headline/text.twig' with {
             text: 'Languages',
-            weight: 'semibold',
             tag: 'h3',
+            size: 'medium',
+            weight: 'bold',
+            attributes: {
+              class: 'u-bolt-margin-xsmall',
+            },
           } only %}
           {% include '@bolt-components-ul/ul.twig' with {
             items: [
@@ -712,8 +724,12 @@
               {% endset %}
               {% include '@bolt-components-headline/text.twig' with {
                 text: 'Pega Specializations ' ~ tooltip,
-                weight: 'semibold',
                 tag: 'h3',
+                size: 'medium',
+                weight: 'bold',
+                attributes: {
+                  class: 'u-bolt-margin-xsmall',
+                },
               } only %}
               {% include '@bolt-components-ul/ul.twig' with {
                 items: [
@@ -736,8 +752,12 @@
               {% endset %}
               {% include '@bolt-components-headline/text.twig' with {
                 text: 'Project Roles ' ~ tooltip,
-                weight: 'semibold',
                 tag: 'h3',
+                size: 'medium',
+                weight: 'bold',
+                attributes: {
+                  class: 'u-bolt-margin-xsmall',
+                },
               } only %}
               {% include '@bolt-components-ul/ul.twig' with {
                 items: [
@@ -839,6 +859,7 @@
                 {% endset %}
                 {% set popover_menu %}
                   {% include '@bolt-components-menu/menu.twig' with {
+                    spacing: 'medium',
                     title: 'Share certificate',
                     items: [
                       {
