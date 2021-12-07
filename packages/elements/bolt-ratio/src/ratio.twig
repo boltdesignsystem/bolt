@@ -22,7 +22,7 @@
 
 {# Template #}
 <div {{ attributes.addClass(classes) }}>
-  <div class="e-bolt-ratio__content" {% if ratio %} style="aspect-ratio: {{ ratio }}" {% endif %}>
+  <div class="e-bolt-ratio__content" {% if ratio %} style="--aspect-ratio: {{ ratio }}" {% endif %}>
     {{ children }}
   </div>
 </div>
