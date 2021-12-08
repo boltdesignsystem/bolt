@@ -176,18 +176,10 @@
       {
         number: '0',
         label: 'Achievements',
-        attributes: {
-          type: 'button',
-          'data-bolt-modal-target': '.js-bolt-modal-all-achievements',
-        },
       },
       {
         number: '0',
         label: 'Contributions',
-        attributes: {
-          type: 'button',
-          'data-bolt-modal-target': '.js-bolt-modal-all-achievements',
-        },
       },
     ],
     full_bleed: true,
@@ -329,13 +321,6 @@
             tag: 'h2',
           },
           content: section_content,
-          details_link: {
-            label: 'View all achievements',
-            attributes: {
-              type: 'button',
-              'data-bolt-modal-target': '.js-bolt-modal-all-achievements',
-            },
-          },
           attributes: {
             class: [
               't-bolt-white',
@@ -401,13 +386,5 @@
     attributes: {
       class: 't-bolt-gray-xlight',
     }
-  } only %}
-
-  {% include '@bolt-components-modal/modal.twig' with {
-    content: 'Mashup embed goes here',
-    width: 'regular',
-    attributes: {
-      class: 'js-bolt-modal-all-achievements',
-    },
   } only %}
 {% endblock %}

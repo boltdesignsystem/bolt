@@ -373,7 +373,7 @@
                 placement: 'bottom',
               } only %}
               <br>
-              <strong>Lead System Architect</strong>
+              <strong>Zertifizierter Kundenservice-Systemarchitekt</strong>
               <br>
               Version 7.2 | Nov 7, 2021
             </small>
@@ -501,25 +501,42 @@
               class: 'u-bolt-margin-bottom-xsmall',
             },
           } only %}
+          {% set layout_content %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_certification,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_certification,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_certification,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_certification,
+            } only %}
+            {% include '@bolt-layouts-layout/layout-item.twig' with {
+              content: placeholder_certification,
+            } only %}
+          {% endset %}
           <bolt-stack>
             {% include '@bolt-components-grid/grid.twig' with {
               gutter: 'small',
               row_gutter: 'small',
               items: [
                 {
-                  column_span: '6 4@xsmall 3@small',
+                  column_span: '6 4@small 3@medium',
                   content: placeholder_certification,
                 },
                 {
-                  column_span: '6 4@xsmall 3@small',
+                  column_span: '6 4@small 3@medium',
                   content: placeholder_certification,
                 },
                 {
-                  column_span: '6 4@xsmall 3@small',
+                  column_span: '6 4@small 3@medium',
                   content: placeholder_certification,
                 },
                 {
-                  column_span: '6 4@xsmall 3@small',
+                  column_span: '6 4@small 3@medium',
                   content: placeholder_certification,
                 },
               ],
