@@ -246,8 +246,8 @@ $bolt-input-transition: var(--bolt-transition);
 
 .c-bolt-input--select {
   padding-right: calc(
-    var(--bolt-spacing-x-small) + 24px
-  ); // 24px is icon size, if icon component changes, this needs to update as well.
+    var(--bolt-spacing-x-small) + 1.5rem
+  ); // 1.5rem is icon size, if icon component changes, this needs to update as well.
 }
 
 .c-bolt-floating-label {
@@ -618,13 +618,17 @@ $bolt-strength-indicator-transition: var(--bolt-transition);
     .c-bolt-input.is-filled,
     .c-bolt-input:focus {
       padding: calc(var(--bolt-spacing-y-medium) / 2 - 1px)
-        calc(var(--bolt-spacing-x-small) + 24px)
-        calc(var(--bolt-spacing-y-medium) / 2 - 1px) var(--bolt-spacing-x-small); // [Mai] medium/2 matches button vertical spacing.
+        var(--bolt-spacing-x-small); // [Mai] medium/2 matches button vertical spacing.
 
       @include bolt-mq($until: small) {
         padding-top: calc(var(--bolt-spacing-y-medium) / 2 - 0.1875rem);
         padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 0.25rem);
       }
+    }
+
+    .c-bolt-input--select.is-filled,
+    .c-bolt-input--select.focus {
+      padding-right: calc(var(--bolt-spacing-x-small) + 1.5rem);
     }
   }
 }
