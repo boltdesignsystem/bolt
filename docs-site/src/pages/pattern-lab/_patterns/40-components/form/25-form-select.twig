@@ -1,17 +1,16 @@
 {% set description %}
-    A representation of a select element.
+  Select inputs are for choosing a single option from a list.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
     <bolt-li>Add select options as an array to the <code>form-select.twig</code> include statement.</bolt-li>
     <bolt-li>Rememeber to set <code>type</code> as an <code>option</code> and add <code>label</code> and <code>value</code> attributes to each of the options.</bolt-li>
-    <bolt-li>First option can have the <code>value</code> of an empty string and the <code>label</code> set to "- Select an option -", or whatever that will perform a function of a placeholder for the select element.</bolt-li>
+    <bolt-li>Select elements do not have placeholder text, to create one, use an <code>&lt;option&gt;</code> element with empty <code>value</code>, then use the option label as the placeholder text (eg. &ldquo;- Select an option -&rdquo;).</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
-{# Select element #}
   {% set label %}
     {% include '@bolt-components-form/form-label.twig' with {
       title: 'Select',
