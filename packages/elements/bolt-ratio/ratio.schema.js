@@ -10,7 +10,8 @@ module.exports = {
     },
     children: {
       type: 'any',
-      description: 'An element with set up aspect ratio (image or video)',
+      description:
+        'A nested element with proportions defined through ratio property. It can be for example image or video',
     },
     ratio: {
       type: 'string',
