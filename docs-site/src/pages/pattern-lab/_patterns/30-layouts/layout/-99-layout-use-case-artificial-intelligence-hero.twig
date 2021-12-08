@@ -1,0 +1,184 @@
+{% set description %}
+  {% set icon %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'external-link'
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Live example',
+    icon_after: icon,
+    attributes: {
+      href: 'https://www.pega.com/topics/artificial-intelligence',
+      target: '_blank',
+      rel: 'noopener',
+    }
+  } only %}
+{% endset %}
+
+{% set notes %}
+  <ul>
+    <li>ALL images in a hero require the <code>loading="eager"</code> HTML attribute.</li>
+    <li>ALL images should utilize the <code>srcset</code> HTML attribute (not done for this example due to time).</li>
+    <li>To set a background image that utilizes a gradient or color affect, continue to use the Bolt Background Component. This component still utilizes the Image Component and will not be performant.</li>
+  </ul>
+{% endset %}
+
+{% set demo %}
+  {% set content %}
+    {% include '@bolt-components-headline/eyebrow.twig' with {
+      text: 'Artificial Intelligence',
+      tag: 'p',
+    } only %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'AI decision-making: Beyond the hype',
+      tag: 'h1',
+      size: 'xxxlarge',
+    } only %}
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'Real-time AI isn’t just a trend – it’s a way to transform your customer experience. We’ve gathered experts, best practices, and examples to show you how.',
+      tag: 'h2',
+      size: 'xlarge',
+    } only %}
+  {% endset %}
+
+  {% set supplement %}
+    {% include '@bolt-components-blockquote/blockquote.twig' with {
+      logo: {
+        invert: true,
+        src: '/images/content/logos/logo-paypal.svg'
+      },
+      content: '<p>As the technology evolves ... so increases the opportunity for brands to build higher-value relationships with consumers based on relevance and intimacy.</p>',
+      author: {
+        name: 'Mark Taylor',
+        title: 'Chief Experience Officer, Digital Customer Experience Practice'
+      }
+    } only %}
+  {% endset %}
+
+  {% set layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: content
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: supplement
+    } only %}
+  {% endset %}
+
+  {% set background %}
+    {% include '@bolt-components-background/background.twig' with {
+      opacity: 'heavy',
+      fill: 'gradient',
+      focalPoint: {
+        vertical: 'center',
+        horizontal: 'center'
+      },
+      contentItems: [
+        {
+          pattern: 'image',
+          src: '/images/heros/live-assets/artificial-intelligence-hero.jpg'
+        }
+      ]
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_items,
+    gutter: 'large',
+    row_gutter: 'small',
+    padding_top: 'large',
+    padding_bottom: 'large',
+    valign_items: 'center',
+    background: background,
+    template: [
+      '67/33@from-medium'
+    ],
+    attributes: {
+      class: 't-bolt-navy'
+    }
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set content %}
+  {% include '@bolt-components-headline/eyebrow.twig' with {
+    text: 'Artificial Intelligence',
+    tag: 'p',
+  } only %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'AI decision-making: Beyond the hype',
+    tag: 'h1',
+    size: 'xxxlarge',
+  } only %}
+  {% include '@bolt-components-headline/subheadline.twig' with {
+    text: 'Real-time AI isn’t just a trend – it’s a way to transform your customer experience. We’ve gathered experts, best practices, and examples to show you how.',
+    tag: 'h2',
+    size: 'xlarge',
+  } only %}
+{% endset %}
+
+{% set supplement %}
+  {% include '@bolt-components-blockquote/blockquote.twig' with {
+    logo: {
+      invert: true,
+      src: '/images/content/logos/logo-paypal.svg'
+    },
+    content: '<p>As the technology evolves ... so increases the opportunity for brands to build higher-value relationships with consumers based on relevance and intimacy.</p>',
+    author: {
+      name: 'Mark Taylor',
+      title: 'Chief Experience Officer, Digital Customer Experience Practice'
+    }
+  } only %}
+{% endset %}
+
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: content
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: supplement
+  } only %}
+{% endset %}
+
+{% set background %}
+  {% include '@bolt-components-background/background.twig' with {
+    opacity: 'heavy',
+    fill: 'gradient',
+    focalPoint: {
+      vertical: 'center',
+      horizontal: 'center'
+    },
+    contentItems: [
+      {
+        pattern: 'image',
+        src: '/images/heros/live-assets/artificial-intelligence-hero.jpg'
+      }
+    ]
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  gutter: 'large',
+  row_gutter: 'small',
+  padding_top: 'large',
+  padding_bottom: 'large',
+  valign_items: 'center',
+  background: background,
+  template: [
+    '67/33@from-medium'
+  ],
+  attributes: {
+    class: 't-bolt-navy'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Artificial Intelligence Hero',
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}

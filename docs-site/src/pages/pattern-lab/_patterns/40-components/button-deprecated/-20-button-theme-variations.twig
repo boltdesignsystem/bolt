@@ -5,9 +5,9 @@
 </bolt-banner>
 
 {% set schema = bolt.data.components['@bolt-components-button'].schema %}
-{% set themes = get_data('@bolt/themes.schema.json') %}
+{% set themes = ['dark', 'light'] %}
 
-{% for theme in themes.properties.colors.enum %}
+{% for theme in themes %}
   <h3>Buttons inside a {{ theme }} theme</h3>
   <div class="u-bolt-margin-bottom-medium">
     {% embed '@utils/theme-demo.twig' %}
