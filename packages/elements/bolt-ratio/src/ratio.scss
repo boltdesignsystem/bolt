@@ -11,6 +11,7 @@
  * characters in width.
  *
  * 1. Provide line-comments like this.
+ * 2. Fallback for old Safari IOS versions
  */
 
 .e-bolt-ratio {
@@ -26,6 +27,30 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+  }
+}
+
+/* [2] */
+@supports not (aspect-ratio: var(--aspect-ratio)) {
+  .e-bolt-ratio__content {
+    position: relative;
+
+    > *:first-child {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:before {
+      content: '';
+      float: left;
+      padding-top: calc(100% / (var(--aspect-ratio)));
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
   }
 }
