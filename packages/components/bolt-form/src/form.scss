@@ -246,8 +246,8 @@ $bolt-input-transition: var(--bolt-transition);
 
 .c-bolt-input--select {
   padding-right: calc(
-    var(--bolt-spacing-x-small) + 24px
-  ); // 24px is icon size, if icon component changes, this needs to update as well.
+    var(--bolt-spacing-x-small) + 1.5rem
+  ); // 1.5rem is icon size, if icon component changes, this needs to update as well.
 }
 
 .c-bolt-floating-label {
@@ -603,7 +603,8 @@ $bolt-strength-indicator-transition: var(--bolt-transition);
   transition: all $bolt-input-transition;
 }
 
-.c-bolt-block-label {
+.c-bolt-block-label,
+.c-bolt-hidden-label {
   display: block;
   margin-bottom: var(--bolt-spacing-y-xsmall);
   font-family: var(--bolt-type-font-family-headline);
@@ -624,5 +625,14 @@ $bolt-strength-indicator-transition: var(--bolt-transition);
         padding-bottom: calc(var(--bolt-spacing-y-medium) / 2 - 0.25rem);
       }
     }
+
+    .c-bolt-input--select.is-filled,
+    .c-bolt-input--select.focus {
+      padding-right: calc(var(--bolt-spacing-x-small) + 1.5rem);
+    }
   }
+}
+
+.c-bolt-hidden-label {
+  @include bolt-visuallyhidden;
 }
