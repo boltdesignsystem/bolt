@@ -17,6 +17,7 @@ const store = new InCache();
 let isUsingOldData = false; // remember if we are using up to date version data or older (stale) data as a fallback
 
 const urlsToCheck = [];
+const tagRegex = /(?![v\d])(\w)/g;
 
 async function writeBoltVersionUrlsToJson(versionData) {
   const config = await getConfig();
@@ -78,14 +79,23 @@ async function getBoltTags() {
         },
         debug: false,
       });
-
       tags = await octokit.repos.listTags({
         owner: 'bolt-design-system',
         repo: 'bolt',
         per_page: 9999,
       });
+
+      let cleanTags = [];
       tags = tags.data;
-      await store.set('bolt-tags', tags, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // set 30 day cache
+      for (let index = 0; index < tags.length; index++) {
+        const tag = tags[index];
+        if (!tag.name.match(tagRegex)) {
+          cleanTags.push(tags[index]);
+        }
+      }
+      await store.set('bolt-tags', cleanTags, {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+      }); // set 30 day cache
       await store.save();
     } catch (err) {
       // handle expired cached data + not having a GITHUB_TOKEN set as an environmental variable
@@ -138,13 +148,15 @@ async function gatherBoltVersionUrls() {
 
   for (let index = 0; index < tags.length; index++) {
     let tag = tags[index].name;
-    let tagString = tag
-      .replace(/\//g, '-') // `/` => `-`
-      .replace('--', '-') // `--` => `-`
-      .replace(/\./g, '-'); // `.` => `-`
+    if (!tag.match(tagRegex)) {
+      let tagString = tag
+        .replace(/\//g, '-') // `/` => `-`
+        .replace('--', '-') // `--` => `-`
+        .replace(/\./g, '-'); // `.` => `-`
 
-    const siteUrl = `https://${tagString}.boltdesignsystem.com`;
-    urlsToCheck.push(siteUrl);
+      const siteUrl = `https://${tagString}.boltdesignsystem.com`;
+      urlsToCheck.push(siteUrl);
+    }
   }
 
   let results;
@@ -161,23 +173,25 @@ async function gatherBoltVersionUrls() {
 
   for (let index = 0; index < tags.length; index++) {
     let tag = tags[index].name;
-    let tagString = tag
-      .replace(/\//g, '-') // `/` => `-`
-      .replace('--', '-') // `--` => `-`
-      .replace(/\./g, '-'); // `.` => `-`
+    if (!tag.match(tagRegex)) {
+      let tagString = tag
+        .replace(/\//g, '-') // `/` => `-`
+        .replace('--', '-') // `--` => `-`
+        .replace(/\./g, '-'); // `.` => `-`
 
-    const siteUrl = `https://${tagString}.boltdesignsystem.com`;
+      const siteUrl = `https://${tagString}.boltdesignsystem.com`;
 
-    if (
-      semver.valid(tag) &&
-      results[siteUrl] !== undefined &&
-      results[siteUrl].status === 'alive'
-    ) {
-      tagUrls.push({
-        label: tag,
-        type: 'option',
-        value: siteUrl,
-      });
+      if (
+        semver.valid(tag) &&
+        results[siteUrl] !== undefined &&
+        results[siteUrl].status === 'alive'
+      ) {
+        tagUrls.push({
+          label: tag,
+          type: 'option',
+          value: siteUrl,
+        });
+      }
     }
   }
 
