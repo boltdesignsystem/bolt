@@ -2,6 +2,7 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Ratio',
   type: 'object',
+  required: ['ratio'],
   properties: {
     attributes: {
       type: 'object',
