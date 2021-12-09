@@ -1,0 +1,435 @@
+{% set header_title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxlarge',
+    text: 'Pega Tag set builder',
+    tag: 'h2'
+  } only %}
+{% endset %}
+
+{% set progressbar %}
+  {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+    value: 2,
+    valueFormat: 'step',
+    max: 4,
+  } only %}
+{% endset %}
+
+{% set steps %}
+  {% include '@bolt-components-list/list.twig' with {
+    tag: 'div',
+    display: 'inline',
+    items: [
+      'Step: ',
+      progressbar
+    ],
+  } only %}
+{% endset %}
+
+{% set header %}
+  {% include '@bolt-components-list/list.twig' with {
+    tag: 'div',
+    display: 'inline',
+    align: 'justify',
+    items: [
+      header_title,
+      steps
+    ],
+    attributes: {
+      class: [
+        'u-bolt-margin-bottom-medium',
+        'u-bolt-padding-medium',
+        't-bolt-navy'
+      ],
+      style: 'background: linear-gradient(90deg, rgba(62, 103, 187, 1) 0%, rgba(16, 165, 172, 1) 100%);'
+    }
+  } only %}
+{% endset %}
+
+{% set step_heading_inner %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'large',
+    text: 'What tags are you interested in?',
+    tag: 'span',
+    attributes: {
+      class: 'u-bolt-inline'
+    }
+  } only %}
+{% endset %}
+
+{% set step_heading %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xlarge',
+    text: 'Step 2:' ~ step_heading_inner,
+    attributes: {
+      class: 'u-bolt-margin-bottom-large'
+    }
+  } only %}
+{% endset %}
+
+{% set frame_title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'small',
+    text: 'Your current tag set',
+    transform: 'uppercase'
+  } only %}
+{% endset %}
+
+{% set chip_1 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Question',
+    size: 'xsmall',
+    color: 'navy'
+  } only %}
+{% endset %}
+
+{% set chip_2 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Discussion',
+    size: 'xsmall',
+    color: 'navy'
+  } only %}
+{% endset %}
+
+{% set chip_3 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Step 2',
+    size: 'xsmall',
+  } only %}
+{% endset %}
+
+{% set frame %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'small',
+    text: 'Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' is published or updated.',
+    attributes: {
+      class: [
+        'u-bolt-padding-medium',
+        'u-bolt-margin-bottom-large',
+      ],
+      style: 'border: 1px solid var(--m-bolt-border)'
+    }
+  } only %}
+{% endset %}
+
+{% set info_icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'info-circle',
+    attributes: {
+      'aria-label': 'This is a tooltip',
+    }
+  } only %}
+{% endset %}
+
+{% set tool_tip %}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    trigger: info_icon,
+    content: 'This is a tooltip',
+  } only %}
+{% endset %}
+
+
+{% set select_fieldsets_representation %}
+  {% set select_fieldset_group = [
+    {
+      title: 'Pega Product',
+      select_option: [
+        {
+          type: 'option',
+          value: '',
+          label: 'Choose a product',
+        },
+        {
+          type: 'option',
+          value: 'product-a',
+          label: 'product a',
+        },
+        {
+          type: 'option',
+          value: 'product-b',
+          label: 'product b',
+        },
+      ],
+    },
+    {
+      title: 'Product Capability',
+      select_option: [
+        {
+          type: 'option',
+          value: '',
+          label: 'Choose a capability',
+        },
+        {
+          type: 'option',
+          value: 'capability-a',
+          label: 'capability a',
+        },
+        {
+          type: 'option',
+          value: 'capability-b',
+          label: 'capability b',
+        },
+      ]
+    },
+    {
+      title: 'Collaboration Center' ~ tool_tip,
+      select_option: [
+        {
+          type: 'option',
+          value: '',
+          label: 'Choose a forum tag',
+        },
+        {
+          type: 'option',
+          value: 'collaboration-a',
+          label: 'collaboration a',
+        },
+        {
+          type: 'option',
+          value: 'collaboration b',
+          label: 'collaboration b',
+        },
+      ]
+    },
+    {
+      title: 'Industry',
+      select_option: [
+        {
+          type: 'option',
+          value: '',
+          label: 'Choose an industry',
+        },
+        {
+          type: 'option',
+          value: 'industry-a',
+          label: 'industry a',
+        },
+        {
+          type: 'option',
+          value: 'industry-b',
+          label: 'industry b',
+        },
+      ]
+    }
+  ] %}
+
+  {% set fieldset_item = [] %}
+  {% for item in select_fieldset_group %}
+    {% set select_children %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Select',
+          displayType: 'floating',
+        } only %}
+      {% endset %}
+      {% set select %}
+        {% include '@bolt-components-form/form-select.twig' with {
+          options: item.select_option
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: select
+      } only %}
+    {% endset %}
+    {% set fieldset %}
+      {% include '@bolt-components-form/form-fieldset.twig' with {
+        legendTitle: item.title,
+        children: select_children
+      } only %}
+    {% endset %}
+    {% set fieldset_item = fieldset_item|merge([fieldset]) %}
+  {% endfor %}
+  {% include '@bolt-components-grid/grid.twig' with {
+    valign: 'start',
+    gutter: 'small',
+    items: [
+      {
+        column_start: '1',
+        column_span: '12 6@medium',
+        content: fieldset_item[0],
+      },
+      {
+        column_start: '1 7@medium',
+        column_span: '12 6@medium',
+        content: fieldset_item[1],
+      },
+      {
+        column_start: '1',
+        column_span: '12 6@medium',
+        content: fieldset_item[2],
+      },
+      {
+        column_start: '1 7@medium',
+        column_span: '12 6@medium',
+        content: fieldset_item[3],
+      },
+    ],
+  } only %}
+{% endset %}
+
+{% set tips_list %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'small',
+    text: 'Tips and suggestions:',
+    transform: 'capitalize'
+  } only %}
+  {% include '@bolt-components-ul/ul.twig' with {
+    items: [
+      'Do not include any data or information in your posts that are confidential!',
+      'Apply basic practices for collaborative work.',
+    ]
+  } only %}
+{% endset %}
+
+{% set tag_builder %}
+  {% include '@bolt-components-grid/grid.twig' with {
+    valign: 'start',
+    gutter: 'small',
+    items: [
+      {
+        column_start: '1',
+        column_span: '12 7@large',
+        content: select_fieldsets_representation,
+      },
+      {
+        column_start: '1 9@large',
+        column_span: '12 4@large',
+        content: tips_list,
+      },
+    ],
+  } only %}
+{% endset %}
+
+{% set content_grid %}
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: tag_builder,
+    spacing: 'large'
+  } only %}
+{% endset %}
+
+{% set text_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Manage email subscriptions here',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener'
+    }
+  } only %}
+{% endset %}
+
+{% set icon_chevron_left %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-left',
+  } only %}
+{% endset %}
+
+{% set prev %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Previous',
+    attributes: {
+      type: 'button',
+    },
+    icon_before: icon_chevron_left,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
+{% set icon_chevron_right %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+
+{% set next %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Next',
+    attributes: {
+      type: 'button',
+    },
+    icon_after: icon_chevron_right,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
+{% set navigation %}
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    spacing: 'none',
+    align: 'justify',
+    valign: 'center',
+    items: [
+      prev,
+      next
+    ]
+  } only %}
+{% endset %}
+
+{% set body_content %}
+  {{ frame_title }}
+  {{ frame }}
+  {{ step_heading }}
+  {{ content_grid }}
+  {{ navigation }}
+{% endset %}
+
+{% set body %}
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: body_content,
+    spacing: 'large',
+    attributes: {
+      class: [
+        'u-bolt-padding-left-medium',
+        'u-bolt-padding-right-medium',
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% set footer %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+    attributes: {
+      class: [
+        't-bolt-navy',
+        'u-bolt-text-align-center',
+        'u-bolt-padding-medium',
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% set modal_content %}
+  {{ header }}
+  {{ body }}
+  {{ footer }}
+{% endset %}
+
+{% set modal_trigger %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Open Notification Tag Manager',
+    size: 'large',
+    attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '.js-bolt-modal',
+    },
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-headline/headline.twig' with {
+  text: 'Click the button below to open Notification Tag Manager (Step 2).',
+  size: 'large',
+  tag: 'h2'
+} only %}
+{{ modal_trigger }}
+
+{% include '@bolt-components-modal/modal.twig' with {
+  content: modal_content,
+  width: 'regular',
+  scroll: 'overall',
+  spacing: 'none',
+  attributes: {
+    class: 'js-bolt-modal',
+  },
+} only %}
+
