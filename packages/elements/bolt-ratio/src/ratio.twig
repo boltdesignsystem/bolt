@@ -20,10 +20,23 @@
   'e-bolt-ratio',
 ] %}
 
+
+{% set inline_style = [
+  "--e-bolt-aspect-ratio: " ~ ratio ~ ";"
+] %}
+{% if attributes.style is not empty  %}
+  {% set inline_style = inline_style|merge(attributes.style) %}
+{% endif %}
+
+{% if inline_style is not empty %}
+{# Add inline styles to attributes object #}
+{% set attributes = create_attribute(attributes|default({})|merge({
+  style: inline_style
+})) %}
+{% endif %}
+
 {# Template #}
 <div {{ attributes.addClass(classes) }}>
-  <div class="e-bolt-ratio__content" {% if ratio %} style="--aspect-ratio: {{ ratio }}" {% endif %}>
-    {{ children }}
-  </div>
+  {{ children }}
 </div>
 
