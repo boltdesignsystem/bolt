@@ -22,7 +22,7 @@
 
 
 {% set inline_style = [
-  "--e-bolt-aspect-ratio: " ~ ratio ~ ";"
+  '--e-bolt-aspect-ratio: ' ~ ratio ~ ';'
 ] %}
 {% if attributes.style is not empty  %}
   {% set inline_style = inline_style|merge(attributes.style) %}
