@@ -16,27 +16,14 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set attributes_style = attributes.style %}
 {% set classes = [
   'e-bolt-ratio',
 ] %}
 
-
-{% set inline_style = [
-  '--e-bolt-aspect-ratio: ' ~ ratio ~ ';'
-] %}
-{% if attributes.style is not empty  %}
-  {% set inline_style = inline_style|merge(attributes.style) %}
-{% endif %}
-
-{% if inline_style is not empty %}
-{# Add inline styles to attributes object #}
-{% set attributes = create_attribute(attributes|default({})|merge({
-  style: inline_style
-})) %}
-{% endif %}
-
 {# Template #}
-<div {{ attributes.addClass(classes) }}>
+<div {{ attributes.addClass(classes)|without('style') }}
+  style="--e-bolt-aspect-ratio: {{ ratio }}; {{ attributes_style }}"
+>
   {{ children }}
 </div>
-
