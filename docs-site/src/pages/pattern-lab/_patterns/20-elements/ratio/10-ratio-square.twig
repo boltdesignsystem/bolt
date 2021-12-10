@@ -19,10 +19,10 @@
   {% endset %}
   {% include '@bolt-elements-ratio/ratio.twig' with {
     children: image,
-    ratio: '1/1',
+    ratio: 'square',
     attributes: {
       style: [
-        'max-width: 150px;'
+        'max-width: 150px;',
       ],
     }
   } only %}
@@ -35,13 +35,13 @@
       alt: 'Alt text.',
       src: 'https://via.placeholder.com/150x150',
       width: 150,
-      height: 150
+      height: 150,
     },
   } only %}
 {% endset %}
 {% include '@bolt-elements-ratio/ratio.twig' with {
   children: image,
-  ratio: '1/1',
+  ratio: 'square',
   attributes: {
     style: [
       'max-width: 150px;'
