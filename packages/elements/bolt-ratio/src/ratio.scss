@@ -10,7 +10,7 @@
 .e-bolt-ratio {
   display: block;
   background-color: var(--m-bolt-tertiary);
-
+  --e-bolt-aspect-ratio: 4/3;
   aspect-ratio: var(--e-bolt-aspect-ratio);
 
   > *:first-child {
@@ -20,10 +20,24 @@
   }
 }
 
+.e-bolt-ratio--square {
+  --e-bolt-aspect-ratio: 1/1;
+}
+
+.e-bolt-ratio--image {
+  --e-bolt-aspect-ratio: 4/3;
+}
+
+.e-bolt-ratio--video {
+  --e-bolt-aspect-ratio: 16/9;
+}
+
 /* [2] */
 @supports not (aspect-ratio: var(--e-bolt-aspect-ratio)) {
   .e-bolt-ratio {
     position: relative;
+    --e-bolt-aspect-ratio: 4/3;
+    aspect-ratio: var(--e-bolt-aspect-ratio);
 
     > *:first-child {
       position: absolute;
@@ -42,5 +56,17 @@
       display: block;
       clear: both;
     }
+  }
+
+  .e-bolt-ratio--square {
+    --e-bolt-aspect-ratio: 1/1;
+  }
+
+  .e-bolt-ratio--image {
+    --e-bolt-aspect-ratio: 4/3;
+  }
+
+  .e-bolt-ratio--video {
+    --e-bolt-aspect-ratio: 16/9;
   }
 }
