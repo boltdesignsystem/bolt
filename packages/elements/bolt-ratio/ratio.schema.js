@@ -2,7 +2,6 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Ratio',
   type: 'object',
-  required: ['ratio'],
   properties: {
     attributes: {
       type: 'object',
@@ -18,6 +17,8 @@ module.exports = {
       type: 'string',
       description:
         'An aspect ratio between the width and height. Expressed as width divided by height',
+      default: 'image',
+      enum: ['image', 'square', 'video'],
     },
   },
 };
