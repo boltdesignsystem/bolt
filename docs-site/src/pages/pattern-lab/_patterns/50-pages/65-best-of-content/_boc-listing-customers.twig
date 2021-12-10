@@ -470,9 +470,10 @@
       {% set label %}
         {% include '@bolt-components-form/form-label.twig' with {
           title: 'Sort by',
-          displayType: 'hidden',
+          displayType: 'block',
           attributes: {
             for: 'sort-select',
+            class: 'u-bolt-visuallyhidden',
           },
         } only %}
       {% endset %}
@@ -504,8 +505,8 @@
       {% endset %}
       {% include '@bolt-components-form/form-element.twig' with {
         label: label,
-        children: select,
         labelDisplay: 'before',
+        children: select,
       } only %}
     {% endset %}
 
