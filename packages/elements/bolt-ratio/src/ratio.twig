@@ -16,14 +16,13 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set attributes_style = attributes.style %}
 {% set classes = [
   'e-bolt-ratio',
+  this.data.ratio.value != schema.properties.ratio.default ? 'e-bolt-ratio--' ~ this.data.ratio.value,
+  dump
 ] %}
 
 {# Template #}
-<div {{ attributes.addClass(classes)|without('style') }}
-  style="--e-bolt-aspect-ratio: {{ ratio }}; {{ attributes_style }}"
->
+<div {{ attributes.addClass(classes) }}>
   {{ children }}
 </div>
