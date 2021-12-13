@@ -14,107 +14,98 @@
   </bolt-ol>
 {% endset %}
 
-  {% set image_1 %}
-    {% include '@bolt-elements-image/image.twig' with {
-      attributes: {
-        alt: 'Alt text.',
-        src: 'https://via.placeholder.com/400x300',
-        width: 400,
-        height: 300,
-      },
-    } only %}
-  {% endset %}
+{% set schema = bolt.data.components['@bolt-elements-ratio'].schema %}
 
-  {% set image_2 %}
-    {% include '@bolt-elements-image/image.twig' with {
-      attributes: {
-        alt: 'Alt text.',
-        src: 'https://via.placeholder.com/500x500',
-        width: 500,
-        height: 500,
-      },
-    } only %}
-  {% endset %}
+{% set image_1 %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/400x300',
+      width: 400,
+      height: 300,
+    },
+  } only %}
+{% endset %}
 
-  {% set image_3 %}
-    {% include '@bolt-elements-image/image.twig' with {
-      attributes: {
-        alt: 'Alt text.',
-        src: 'https://via.placeholder.com/1600x900',
-        width: 1600,
-        height: 900,
-      },
-    } only %}
-  {% endset %}
+{% set image_2 %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/500x500',
+      width: 500,
+      height: 500,
+    },
+  } only %}
+{% endset %}
 
-  {% set image_4 %}
-    {% include '@bolt-elements-image/image.twig' with {
-      attributes: {
-        alt: 'Alt text.',
-        src: 'https://via.placeholder.com/2100x900',
-        width: 2100,
-        height: 900,
-      },
-    } only %}
-  {% endset %}
+{% set image_3 %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/1600x900',
+      width: 1600,
+      height: 900,
+    },
+  } only %}
+{% endset %}
 
-  {% set element_1 %}
-    <bolt-text>The ratio is set to<strong>"standard"</strong>. The aspect-ratio is <strong>4/3 = 1.33</strong>.</bolt-text>
-    {% include '@bolt-elements-ratio/ratio.twig' with {
-      children: image_1,
-      ratio: 'standard',
-    } only %}
-  {% endset %}
+{% set image_4 %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/2100x900',
+      width: 2100,
+      height: 900,
+    },
+  } only %}
+{% endset %}
 
-  {% set element_2 %}
-    <bolt-text>The ratio is set to<strong>"square"</strong>. The aspect-ratio is <strong>1/1 = 1</strong>.</bolt-text>
-    {% include '@bolt-elements-ratio/ratio.twig' with {
-      children: image_2,
-      ratio: 'square',
-    } only %}
-  {% endset %}
-
-  {% set element_3 %}
-    <bolt-text>The ratio is set to<strong>"rectangle"</strong> (default). The aspect-ratio is <strong>16/9 = 1.78</strong>.</bolt-text>
-    {% include '@bolt-elements-ratio/ratio.twig' with {
-      children: image_3,
-      ratio: 'rectangle',
-    } only %}
-  {% endset %}
-
-  {% set element_4 %}
-    <bolt-text>The ratio is <strong>custom</strong>. The aspect-ratio is <strong>7/3 = 2.33</strong>.</bolt-text>
+{% set demo %}
+  {% set elements = [] %}
+  {% for ratio in schema.properties.ratio.enum %}
+    {% set images = [ image_1, image_2, image_3] %}
+    {% set element %}
+      <bolt-text>The ratio is set to<strong>"{{ ratio }}"</strong>.</bolt-text>
+      {% include '@bolt-elements-ratio/ratio.twig' with {
+        children: images[loop.index0],
+        ratio: ratio,
+      } only %}
+    {% endset %}
+    {% set elements = elements|merge([element]) %}
+  {% endfor %}
+  {% set custom_aspect_ratio %}
+    <bolt-text>The ratio is set through inline style.</bolt-text>
     {% include '@bolt-elements-ratio/ratio.twig' with {
       children: image_4,
       attributes: {
-        style: '--e-bolt-aspect-ratio: 7/3;'
+        style: [
+          '--e-bolt-aspect-ratio: 7/3;'
+        ]
       }
     } only %}
   {% endset %}
-
-{% set demo %}
-    {% include '@bolt-components-grid/grid.twig' with {
+  {% include '@bolt-components-grid/grid.twig' with {
     gutter: 'small',
     items: [
       {
         column_start: '1',
         column_span: '12 6@medium',
-        content: element_1,
+        content: elements[0],
       },
       {
         column_start: '1 7@medium',
         column_span: '12 6@medium',
-        content: element_2,
+        content: elements[1],
       },
       {
         column_start: '1',
         column_span: '12 6@medium',
-        content: element_3,
+        content: elements[2],
       },
       {
         column_start: '1 7@medium',
         column_span: '12 6@medium',
-        content: element_4,
+        content: custom_aspect_ratio,
       },
     ]
   } only %}
