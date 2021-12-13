@@ -11,7 +11,7 @@ $_bolt-holy-grail-sidebar-overflow-offset: 2rem;
   @include bolt-full-bleed;
 
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   min-height: 100%;
 
   @include bolt-mq($until: medium) {
@@ -19,16 +19,15 @@ $_bolt-holy-grail-sidebar-overflow-offset: 2rem;
       'sidebar'
       'article';
     grid-template-rows: auto 1fr;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     grid-gap: var(--bolt-spacing-x-xxsmall);
     grid-row-gap: var(--bolt-spacing-y-medium);
   }
 
   @include bolt-mq(xxxlarge) {
-    grid-template-columns: minmax(18vw, var(--bolt-page-padding-x)) 1fr minmax(
-        20.2vw,
-        var(--bolt-page-padding-x)
-      );
+    grid-template-columns:
+      minmax(18vw, var(--bolt-page-padding-x)) minmax(0, 1fr)
+      minmax(20.2vw, var(--bolt-page-padding-x));
   }
 }
 
