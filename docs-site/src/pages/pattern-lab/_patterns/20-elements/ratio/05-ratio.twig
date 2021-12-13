@@ -7,7 +7,7 @@
     <bolt-li>Reference the <a href="{{ link['viewall-elements-ratio'] }}?selected-tab=schema" class="e-bolt-text-link">schema</a> for all options.</bolt-li>
     <bolt-li>Additionally, a CSS custom property is available to change the aspect ratio to any. Define <code>--e-bolt-aspect-ratio</code> inline style rule to set the desired aspect ratio.</bolt-li>
     <bolt-li>To measure the aspect ratio, we need to divide the width by the height. For example an image 400x300 and image 260x195 have the same ratio 1.33. That means this ratio should be respected.</bolt-li>
-    <bolt-li>The nearest normal aspect ratio should be find. In other words, while 649x360 technically has an aspect ratio of 649/360, it’s often useful to know that the nearest normal aspect ratio is actually 9/5 (648x360). You can <a href="http://lawlesscreation.github.io/nearest-aspect-ratio/" target="_blank" rel="noopener" class="e-bolt-text-link">calculate the Nearest Normal Aspect Ratio</a>. Useful for when images are odd aspect ratios.</bolt-li>
+    <bolt-li>The nearest normal aspect ratio should be find. In other words, while 649x360 technically has an aspect ratio of 649/360, it’s often useful to know that the nearest normal aspect ratio is actually 9/5 (648x360). You can <a href="http://lawlesscreation.github.io/nearest-aspect-ratio/" target="_blank" rel="noopener" class="e-bolt-text-link">calculate the Nearest Normal Aspect Ratio</a>. Useful for when images are odd dimensions.</bolt-li>
     <bolt-li>Setting different aspect ratio than the one resulting from the calculations (width divided by height) causes <a href="{{ link['elements-ratio-nearest-normal-aspect-ratio'] }}" class="e-bolt-text-link">cropping the image</a>.</bolt-li>
     <bolt-li>Ratio element width will adapt to its parent container width. Or we can set the width directly to the ratio element using attributes object, for example: <code>attributes: { style: 'max-width: 150px' }</code></bolt-li>
     <bolt-li>A great feature of <code>aspect-ratio</code> is that it can create placeholder space to prevent <a href="https://web.dev/cls/" target="_blank" rel="noopener" class="e-bolt-text-link">Cumulative Layout Shift</a> and deliver better Web Vitals.</bolt-li>
@@ -59,7 +59,7 @@
   {% endset %}
 
   {% set element_1 %}
-    <bolt-banner status="information" align="start">The aspect ratio is set to<strong>"standard"</strong> Aspect-ratio is: <strong>4/3 = 1.33</strong>.</bolt-banner>
+    <bolt-text>The ratio is set to<strong>"standard"</strong>. The aspect-ratio is <strong>4/3 = 1.33</strong>.</bolt-text>
     {% include '@bolt-elements-ratio/ratio.twig' with {
       children: image_1,
       ratio: 'standard',
@@ -67,7 +67,7 @@
   {% endset %}
 
   {% set element_2 %}
-    <bolt-banner status="information" align="start">The aspect ratio is set to<strong>"square"</strong> Aspect-ratio is: <strong>1/1 = 1</strong>.</bolt-banner>
+    <bolt-text>The ratio is set to<strong>"square"</strong>. The aspect-ratio is <strong>1/1 = 1</strong>.</bolt-text>
     {% include '@bolt-elements-ratio/ratio.twig' with {
       children: image_2,
       ratio: 'square',
@@ -75,7 +75,7 @@
   {% endset %}
 
   {% set element_3 %}
-    <bolt-banner status="information" align="start">The aspect ratio is set to<strong>"rectangle"</strong> Aspect-ratio is: <strong>16/9 = 1.78</strong>.</bolt-banner>
+    <bolt-text>The ratio is set to<strong>"rectangle"</strong> (default). The aspect-ratio is <strong>16/9 = 1.78</strong>.</bolt-text>
     {% include '@bolt-elements-ratio/ratio.twig' with {
       children: image_3,
       ratio: 'rectangle',
@@ -83,7 +83,7 @@
   {% endset %}
 
   {% set element_4 %}
-    <bolt-banner status="information" align="start">The aspect ratio is <strong>custom</strong> Aspect-ratio is: <strong>7/3 = 2.33</strong>.</bolt-banner>
+    <bolt-text>The ratio is <strong>custom</strong>. The aspect-ratio is <strong>7/3 = 2.33</strong>.</bolt-text>
     {% include '@bolt-elements-ratio/ratio.twig' with {
       children: image_4,
       attributes: {
@@ -121,18 +121,8 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% set image %}
-  {% include '@bolt-elements-image/image.twig' with {
-    attributes: {
-      alt: 'Alt text.',
-      src: 'https://via.placeholder.com/400x300',
-      width: 400,
-      height: 300
-    },
-  } only %}
-{% endset %}
 {% include '@bolt-elements-ratio/ratio.twig' with {
-  children: image,
+  children: // image or video goes here,
   ratio: 'standard'
 } only %}
 {% endverbatim %}{% endset %}
@@ -140,7 +130,7 @@
 {% set html_markup %}
 {% verbatim %}
 <div class="e-bolt-ratio e-bolt-ratio--standard">
-  <img alt="Alt text." src="path/image.jpg" width=400 height=300 class="e-bolt-image">
+  <!-- image or video goes here -->
 </div>
 {% endverbatim %}
 {% endset %}

@@ -50,21 +50,8 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% set video %}
-  <video-js
-    data-delayed-account="1900410236"
-    data-delayed-player="O3FkeBiaDz"
-    data-delayed-video-id="4892122320001"
-    data-video-delayed
-    data-embed="default"
-    controls
-    data-media-title
-    data-media-duration
-    class="c-base-video js-bolt-video--demo-1"></video-js>
-{% endset %}
-
 {% include '@bolt-elements-ratio/ratio.twig' with {
-  children: video,
+  children: // video goes here,
   ratio: 'rectangle'
 } only %}
 {% endverbatim %}{% endset %}
