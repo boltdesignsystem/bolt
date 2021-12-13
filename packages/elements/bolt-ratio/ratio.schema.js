@@ -11,14 +11,14 @@ module.exports = {
     children: {
       type: 'any',
       description:
-        'A nested element with proportions defined through ratio property. It can be for example image or video',
+        'A nested element with proportions defined through ratio property. It can be for example image or video.',
     },
     ratio: {
       type: 'string',
       description:
-        'An aspect ratio between the width and height. Expressed as width divided by height',
-      default: 'image',
-      enum: ['image', 'square', 'video'],
+        'An aspect ratio between the width and height. Expressed as width divided by height. You can choose from: standard(4/3), square(1/1), rectangle(16/9) or set your custom aspect ratio.',
+      default: 'rectangle',
+      enum: ['standard', 'square', 'rectangle'],
     },
   },
 };

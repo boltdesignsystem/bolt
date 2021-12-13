@@ -26,7 +26,7 @@
     <bolt-banner status="information" align="start">The aspect ratio is <strong>not</strong> respected. Image <strong>2100x900</strong>, aspect-ratio: <strong>4/3 = 1.33</strong>.</bolt-banner>
     {% include '@bolt-elements-ratio/ratio.twig' with {
       children: image,
-      ratio: 'image',
+      ratio: 'standard',
     } only %}
   {% endset %}
 
@@ -34,7 +34,12 @@
     <bolt-banner status="information" align="start">The aspect ratio is respected. Image <strong>2100x900</strong>, aspect-ratio: <strong>7/3 = 2.33</strong>.</bolt-banner>
     {% include '@bolt-elements-ratio/ratio.twig' with {
       children: image,
-      ratio: 'image'
+      ratio: 'standard',
+      attributes: {
+        style: [
+          '--e-bolt-aspect-ratio: 7/3;'
+        ]
+      }
     } only %}
   {% endset %}
   {% include '@bolt-components-grid/grid.twig' with {
@@ -64,16 +69,18 @@
 {% endset %}
 {% include '@bolt-elements-ratio/ratio.twig' with {
   children: image,
-  ratio: 'image'
+  attributes: {
+    style: [
+      '--e-bolt-aspect-ratio: 7/3;'
+    ]
+  }
 } only %}
 {% endverbatim %}{% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<div class="e-bolt-ratio">
-  <div class="e-bolt-ratio__content" style="aspect-ratio: 7/3">
-    <img alt="Alt text." src="path/image.jpg" width=700 height=300 class="e-bolt-image">
-  </div>
+<div class="e-bolt-ratio" style="--e-bolt-aspect-ratio: 7/3">
+  <img alt="Alt text." src="path/image.jpg" width=700 height=300 class="e-bolt-image">
 </div>
 {% endverbatim %}
 {% endset %}
