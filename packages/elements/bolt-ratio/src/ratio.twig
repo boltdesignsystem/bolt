@@ -18,7 +18,7 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set classes = [
   'e-bolt-ratio',
-  this.data.ratio.value != schema.properties.ratio.default ? 'e-bolt-ratio--' ~ this.data.ratio.value,
+  this.data.ratio.value != schema.properties.ratio.default ? 'e-bolt-ratio--' ~ this.data.ratio.value : 'e-bolt-ratio--rectangle',
 ] %}
 
 {# Template #}
