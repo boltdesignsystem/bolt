@@ -19,53 +19,17 @@
   </bolt-ol>
 {% endset %}
 
-{% set image_attrs = [
-  {
-    url_chunk: '200x200',
-    image_dimensions: {
-      width: '200',
-      height: '200'
-    },
-  },
-  {
-    url_chunk: '200x200',
-    image_dimensions: {
-      width: '200',
-      height: '200'
-    },
-  },
-  {
-    url_chunk: '200x200',
-    image_dimensions: {
-      width: '200',
-      height: '200'
-    },
-  },
-  {
-    url_chunk: '200x200',
-    image_dimensions: {
-      width: '200',
-      height: '200'
-    },
-  },
-] %}
-
-{% set image_elements = [] %}
-{% for attr in image_attrs %}
+{% set demo %}
   {% set image %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
         alt: 'Alt text.',
-        src: 'https://via.placeholder.com/' ~ attr.url_chunk,
-        width: attr.image_dimensions.width,
-        height: attr.image_dimensions.height
+        src: 'https://via.placeholder.com/200x200',
+        width: 200,
+        height: 200,
       },
     } only %}
   {% endset %}
-  {% set image_elements = image_elements|merge([image]) %}
-{% endfor %}
-
-{% set demo %}
   {% set ratio_elements = [] %}
   {% for ratio_name in schema.properties.ratio.enum %}
     {% set ratio_single_element %}
@@ -78,7 +42,7 @@
       {% endif %}
       <bolt-text>The <code>ratio</code> prop is set to <strong>{{ ratio_name }}</strong>. The aspect ratio is <strong>{{ ratio_value }}</strong>.</bolt-text>
       {% include '@bolt-elements-ratio/ratio.twig' with {
-        content: image_elements[loop.index0],
+        content: image,
         ratio: ratio_name,
       } only %}
     {% endset %}
@@ -87,7 +51,7 @@
   {% set custom_aspect_ratio %}
     <bolt-text>The <code>ratio</code> prop is set with <code>--e-bolt-aspect-ratio</code> via inline CSS style. The aspect ratio is <strong>7/3</strong>.</bolt-text>
     {% include '@bolt-elements-ratio/ratio.twig' with {
-      content: image_elements[3],
+      content: image,
       attributes: {
         style: [
           '--e-bolt-aspect-ratio: 7/3;'
