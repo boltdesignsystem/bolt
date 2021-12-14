@@ -1,0 +1,17 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-notifications/notifications.twig' with {
+  header: {
+    switch_button: header_switch_button,
+    actions: header_actions,
+  },
+  content: content,
+  footer: {
+    content: footer_content,
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'notifications',
+  usage: usage
+} only %}
