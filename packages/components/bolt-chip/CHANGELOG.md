@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v4.8.2...v4.8.3) (2021-12-14)
+
+**Note:** Version bump only for package @bolt/components-chip
+
+
+
+
+
 ## [4.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v4.8.0...v4.8.1) (2021-12-07)
 
 **Note:** Version bump only for package @bolt/components-chip
