@@ -1,0 +1,25 @@
+{% set schema = bolt.data.components['@bolt-components-icon'].schema %}
+{% set names = schema.properties.name.anyOf[0].enum %}
+{% set colors = schema.properties.color.enum %}
+{% set sizes = schema.properties.size.enum %}
+
+{% for name in names %}
+  <p>
+    {# {% set text_and_icon %}
+      {% include "@bolt-elements-icon/icon.twig" with {
+        name: name,
+      } only %}
+      {{ name|capitalize }}
+    {% endset %}
+    {% include '@bolt-components-chip/chip.twig' with {
+      text: text_and_icon,
+    } only %} #}
+    {% include '@bolt-components-chip/chip.twig' with {
+      text: name|capitalize,
+      icon: {
+        name: name,
+        position: 'before',
+      },
+    } only %}
+  </p>
+{% endfor %}
