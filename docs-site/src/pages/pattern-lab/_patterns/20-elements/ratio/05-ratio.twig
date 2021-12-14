@@ -1,3 +1,5 @@
+{% set schema = bolt.data.components['@bolt-elements-ratio'].schema %}
+
 {% set description %}
   Aspect ratio is most commonly expressed as two integers and a division sign: width / height. The browser will calculate the aspect ratio and for example <code>ratio: 4/3</code> will result in 1.33.
 {% endset %}
@@ -14,69 +16,75 @@
   </bolt-ol>
 {% endset %}
 
-{% set schema = bolt.data.components['@bolt-elements-ratio'].schema %}
-
-{% set image_1 %}
-  {% include '@bolt-elements-image/image.twig' with {
-    attributes: {
-      alt: 'Alt text.',
-      src: 'https://via.placeholder.com/400x300',
-      width: 400,
-      height: 300,
+{% set image_attrs = [
+  {
+    url_chunk: '400x300',
+    image_dimensions: {
+      width: '400',
+      height: '300'
     },
-  } only %}
-{% endset %}
-
-{% set image_2 %}
-  {% include '@bolt-elements-image/image.twig' with {
-    attributes: {
-      alt: 'Alt text.',
-      src: 'https://via.placeholder.com/500x500',
-      width: 500,
-      height: 500,
+  },
+  {
+    url_chunk: '500x500',
+    image_dimensions: {
+      width: '500',
+      height: '500'
     },
-  } only %}
-{% endset %}
-
-{% set image_3 %}
-  {% include '@bolt-elements-image/image.twig' with {
-    attributes: {
-      alt: 'Alt text.',
-      src: 'https://via.placeholder.com/1600x900',
-      width: 1600,
-      height: 900,
+  },
+  {
+    url_chunk: '1600x900',
+    image_dimensions: {
+      width: '1600',
+      height: '900'
     },
-  } only %}
-{% endset %}
-
-{% set image_4 %}
-  {% include '@bolt-elements-image/image.twig' with {
-    attributes: {
-      alt: 'Alt text.',
-      src: 'https://via.placeholder.com/2100x900',
-      width: 2100,
-      height: 900,
+  },
+  {
+    url_chunk: '2100x900',
+    image_dimensions: {
+      width: '2100',
+      height: '900'
     },
-  } only %}
-{% endset %}
+  },
+] %}
+
+{% set image_elements = [] %}
+{% for attr in image_attrs %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Alt text.',
+        src: 'https://via.placeholder.com/' ~ attr.url_chunk,
+        width: attr.image_dimensions.width,
+        height: attr.image_dimensions.height
+      },
+    } only %}
+  {% endset %}
+  {% set image_elements = image_elements|merge([image]) %}
+{% endfor %}
 
 {% set demo %}
-  {% set elements = [] %}
+  {% set ratio_elements = [] %}
   {% for ratio in schema.properties.ratio.enum %}
-    {% set images = [ image_1, image_2, image_3] %}
-    {% set element %}
-      <bolt-text>The ratio is set to<strong>"{{ ratio }}"</strong>.</bolt-text>
+    {% set ratio_single_element %}
+      {% if ratio == 'standard' %}
+        {% set aspect_ratio = '4/3 = 1.33' %}
+      {% elseif ratio == 'square' %}
+        {% set aspect_ratio = '1/1 = 1' %}
+      {% elseif ratio == 'rectangle'%}
+        {% set aspect_ratio = '16/9 = 1.77' %}
+      {% endif %}
+      <bolt-text>The ratio is set to <strong>"{{ ratio }}"</strong>. The aspect-ratio is <strong>{{ aspect_ratio }}</strong>.</bolt-text>
       {% include '@bolt-elements-ratio/ratio.twig' with {
-        children: images[loop.index0],
+        children: image_elements[loop.index0],
         ratio: ratio,
       } only %}
     {% endset %}
-    {% set elements = elements|merge([element]) %}
+    {% set ratio_elements = ratio_elements|merge([ratio_single_element]) %}
   {% endfor %}
   {% set custom_aspect_ratio %}
-    <bolt-text>The ratio is set through inline style.</bolt-text>
+    <bolt-text>The ratio is <strong>custom</strong> set with an inline style. The aspect-ratio is <strong>7/3 = 2.33</strong></bolt-text>
     {% include '@bolt-elements-ratio/ratio.twig' with {
-      children: image_4,
+      children: image_elements[3],
       attributes: {
         style: [
           '--e-bolt-aspect-ratio: 7/3;'
@@ -90,17 +98,17 @@
       {
         column_start: '1',
         column_span: '12 6@medium',
-        content: elements[0],
+        content: ratio_elements[0],
       },
       {
         column_start: '1 7@medium',
         column_span: '12 6@medium',
-        content: elements[1],
+        content: ratio_elements[1],
       },
       {
         column_start: '1',
         column_span: '12 6@medium',
-        content: elements[2],
+        content: ratio_elements[2],
       },
       {
         column_start: '1 7@medium',
