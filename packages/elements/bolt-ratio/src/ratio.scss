@@ -5,24 +5,22 @@
  *
  * Dev notes:
  * 1. 4/3 is the component default, update it if schema changes.
+ * 2. Necessary for video embed.
  */
 
 .e-bolt-ratio {
   --e-bolt-aspect-ratio: 4/3; /* [1] */
 
-  display: block;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* [2] */
   overflow: hidden;
   background-color: var(--m-bolt-tertiary);
   aspect-ratio: var(--e-bolt-aspect-ratio);
 
   > * {
     display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    z-index: 0;
     width: 100%;
     height: auto;
   }
