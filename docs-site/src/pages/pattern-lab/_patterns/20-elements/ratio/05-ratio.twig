@@ -1,48 +1,51 @@
 {% set schema = bolt.data.components['@bolt-elements-ratio'].schema %}
 
 {% set description %}
-  Aspect ratio is most commonly expressed as two integers and a division sign: width / height. The browser will calculate the aspect ratio and for example <code>ratio: 4/3</code> will result in 1.33.
+  Aspect ratio is most commonly expressed as two integers and a division sign: <code>width / height</code>. To measure the aspect ratio of an image or video, divide the width by the height. For example, an image or video that is 200x200 pixels and one that is 260x195 pixels have the same ratio 4/3 (standard).
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
     <bolt-li>Reference the <a href="{{ link['viewall-elements-ratio'] }}?selected-tab=schema" class="e-bolt-text-link">schema</a> for all options.</bolt-li>
-    <bolt-li>Additionally, a CSS custom property is available to change the aspect ratio to any. Define <code>--e-bolt-aspect-ratio</code> inline style rule to set the desired aspect ratio.</bolt-li>
-    <bolt-li>To measure the aspect ratio, we need to divide the width by the height. For example an image 400x300 and image 260x195 have the same ratio 1.33. That means this ratio should be respected.</bolt-li>
-    <bolt-li>The nearest normal aspect ratio should be find. In other words, while 649x360 technically has an aspect ratio of 649/360, it’s often useful to know that the nearest normal aspect ratio is actually 9/5 (648x360). You can <a href="http://lawlesscreation.github.io/nearest-aspect-ratio/" target="_blank" rel="noopener" class="e-bolt-text-link">calculate the Nearest Normal Aspect Ratio</a>. Useful for when images are odd dimensions.</bolt-li>
-    <bolt-li>Setting different aspect ratio than the one resulting from the calculations (width divided by height) causes <a href="{{ link['elements-ratio-nearest-normal-aspect-ratio'] }}" class="e-bolt-text-link">cropping the image</a>.</bolt-li>
-    <bolt-li>Ratio element width will adapt to its parent container width. Or we can set the width directly to the ratio element using attributes object, for example: <code>attributes: { style: 'max-width: 150px' }</code></bolt-li>
-    <bolt-li>A great feature of <code>aspect-ratio</code> is that it can create placeholder space to prevent <a href="https://web.dev/cls/" target="_blank" rel="noopener" class="e-bolt-text-link">Cumulative Layout Shift</a> and deliver better Web Vitals.</bolt-li>
+    <bolt-li>
+      <strong>Use in tandem with an image:</strong> set a different aspect ratio than the image&rsquo;s natural aspect ratio. This will crop the image.
+      <bolt-ol>
+        <bolt-li>Do not use the Ratio element if cropping is not needed.</bolt-li>
+        <bolt-li>When the image&rsquo;s width is smaller than the parent container, the image will stretch to fill the available space.</bolt-li>
+      </bolt-ol>
+    </bolt-li>
+    <bolt-li><strong>Use in tandem with a video:</strong> the Ratio element preserves the needed space to load a video embed, preventing <a href="https://web.dev/cls/" target="_blank" rel="noopener" class="e-bolt-text-link">Cumulative Layout Shift</a>.</bolt-li>
+    <bolt-li>Additionally, a CSS custom property is available to change the aspect ratio to anything. Define <code>--e-bolt-aspect-ratio</code> inline style rule to set the desired aspect ratio.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set image_attrs = [
   {
-    url_chunk: '400x300',
+    url_chunk: '200x200',
     image_dimensions: {
-      width: '400',
-      height: '300'
+      width: '200',
+      height: '200'
     },
   },
   {
-    url_chunk: '500x500',
+    url_chunk: '200x200',
     image_dimensions: {
-      width: '500',
-      height: '500'
+      width: '200',
+      height: '200'
     },
   },
   {
-    url_chunk: '1600x900',
+    url_chunk: '200x200',
     image_dimensions: {
-      width: '1600',
-      height: '900'
+      width: '200',
+      height: '200'
     },
   },
   {
-    url_chunk: '2100x900',
+    url_chunk: '200x200',
     image_dimensions: {
-      width: '2100',
-      height: '900'
+      width: '200',
+      height: '200'
     },
   },
 ] %}
@@ -64,27 +67,27 @@
 
 {% set demo %}
   {% set ratio_elements = [] %}
-  {% for ratio in schema.properties.ratio.enum %}
+  {% for ratio_name in schema.properties.ratio.enum %}
     {% set ratio_single_element %}
-      {% if ratio == 'standard' %}
-        {% set aspect_ratio = '4/3 = 1.33' %}
-      {% elseif ratio == 'square' %}
-        {% set aspect_ratio = '1/1 = 1' %}
-      {% elseif ratio == 'rectangle'%}
-        {% set aspect_ratio = '16/9 = 1.77' %}
+      {% if ratio_name == 'standard' %}
+        {% set ratio_value = '4/3' %}
+      {% elseif ratio_name == 'square' %}
+        {% set ratio_value = '1/1' %}
+      {% elseif ratio_name == 'wide'%}
+        {% set ratio_value = '16/9' %}
       {% endif %}
-      <bolt-text>The ratio is set to <strong>"{{ ratio }}"</strong>. The aspect-ratio is <strong>{{ aspect_ratio }}</strong>.</bolt-text>
+      <bolt-text>The <code>ratio</code> prop is set to <strong>{{ ratio_name }}</strong>. The aspect ratio is <strong>{{ ratio_value }}</strong>.</bolt-text>
       {% include '@bolt-elements-ratio/ratio.twig' with {
-        children: image_elements[loop.index0],
-        ratio: ratio,
+        content: image_elements[loop.index0],
+        ratio: ratio_name,
       } only %}
     {% endset %}
     {% set ratio_elements = ratio_elements|merge([ratio_single_element]) %}
   {% endfor %}
   {% set custom_aspect_ratio %}
-    <bolt-text>The ratio is <strong>custom</strong> set with an inline style. The aspect-ratio is <strong>7/3 = 2.33</strong></bolt-text>
+    <bolt-text>The <code>ratio</code> prop is set with <code>--e-bolt-aspect-ratio</code> via inline CSS style. The aspect ratio is <strong>7/3</strong>.</bolt-text>
     {% include '@bolt-elements-ratio/ratio.twig' with {
-      children: image_elements[3],
+      content: image_elements[3],
       attributes: {
         style: [
           '--e-bolt-aspect-ratio: 7/3;'
@@ -93,7 +96,6 @@
     } only %}
   {% endset %}
   {% include '@bolt-components-grid/grid.twig' with {
-    gutter: 'small',
     items: [
       {
         column_start: '1',
@@ -120,19 +122,27 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/200x200',
+      width: 200,
+      height: 200,
+    },
+  } only %}
+{% endset %}
 {% include '@bolt-elements-ratio/ratio.twig' with {
-  children: // image or video goes here,
-  ratio: 'standard'
+  content: image,
+  ratio: 'wide',
 } only %}
 {% endverbatim %}{% endset %}
 
-{% set html_markup %}
-{% verbatim %}
-<div class="e-bolt-ratio e-bolt-ratio--standard">
+{% set html_markup %}{% verbatim %}
+<div class="e-bolt-ratio e-bolt-ratio--wide">
   <!-- image or video goes here -->
 </div>
-{% endverbatim %}
-{% endset %}
+{% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Basic Ratio',

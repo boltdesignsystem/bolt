@@ -4,67 +4,38 @@
  * Ratio
  *
  * Dev notes:
- * 1. Fallback for old Safari IOS versions
+ * 1. 4/3 is the component default, update it if schema changes.
  */
 
 .e-bolt-ratio {
+  --e-bolt-aspect-ratio: 4/3; /* [1] */
+
   display: block;
+  position: relative;
+  overflow: hidden;
   background-color: var(--m-bolt-tertiary);
   aspect-ratio: var(--e-bolt-aspect-ratio);
 
-  > *:first-child {
+  > * {
     display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
   }
-}
-
-.e-bolt-ratio--square {
-  --e-bolt-aspect-ratio: 1/1;
 }
 
 .e-bolt-ratio--standard {
   --e-bolt-aspect-ratio: 4/3;
 }
 
-.e-bolt-ratio--rectangle {
-  --e-bolt-aspect-ratio: 16/9;
+.e-bolt-ratio--square {
+  --e-bolt-aspect-ratio: 1/1;
 }
 
-/* [2] */
-@supports not (aspect-ratio: var(--e-bolt-aspect-ratio)) {
-  .e-bolt-ratio {
-    position: relative;
-    aspect-ratio: var(--e-bolt-aspect-ratio);
-
-    > *:first-child {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-
-    &:before {
-      content: '';
-      float: left;
-      padding-top: calc(100% / (var(--e-bolt-aspect-ratio)));
-    }
-
-    &:after {
-      content: '';
-      display: block;
-      clear: both;
-    }
-  }
-
-  .e-bolt-ratio--square {
-    --e-bolt-aspect-ratio: 1/1;
-  }
-
-  .e-bolt-ratio--standard {
-    --e-bolt-aspect-ratio: 4/3;
-  }
-
-  .e-bolt-ratio--rectangle {
-    --e-bolt-aspect-ratio: 16/9;
-  }
+.e-bolt-ratio--wide {
+  --e-bolt-aspect-ratio: 16/9;
 }

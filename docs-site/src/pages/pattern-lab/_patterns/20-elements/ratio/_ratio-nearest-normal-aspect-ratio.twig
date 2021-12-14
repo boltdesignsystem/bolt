@@ -25,7 +25,7 @@
   {% set wrong %}
     <bolt-text>The aspect ratio is <strong>not</strong> respected. Image <strong>2100x900</strong>, aspect-ratio <strong>4/3 = 1.33</strong>.</bolt-text>
     {% include '@bolt-elements-ratio/ratio.twig' with {
-      children: image,
+      content: image,
       ratio: 'standard',
     } only %}
   {% endset %}
@@ -33,7 +33,7 @@
   {% set correct %}
     <bolt-text>The aspect ratio is respected. Image <strong>2100x900</strong>, aspect-ratio <strong>7/3 = 2.33</strong>.</bolt-text>
     {% include '@bolt-elements-ratio/ratio.twig' with {
-      children: image,
+      content: image,
       ratio: 'standard',
       attributes: {
         style: [
@@ -60,7 +60,7 @@
 {% endset %}
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-elements-ratio/ratio.twig' with {
-  children: // image or video goes here,
+  content: // image or video goes here,
   attributes: {
     style: [
       '--e-bolt-aspect-ratio: 7/3;'

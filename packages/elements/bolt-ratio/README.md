@@ -1,4 +1,4 @@
-consistent ratio between the width and height of images
+Ratio element is part of the collection of components, visual styles, and build tools that power the [Bolt Design System](https://www.boltdesignsystem.com).
 
 ###### Install via NPM
 

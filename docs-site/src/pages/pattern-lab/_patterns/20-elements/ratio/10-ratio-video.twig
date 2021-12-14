@@ -1,5 +1,5 @@
 {% set description %}
-  The most common aspect ratio for videos is 16/9.
+  The most common aspect ratio for videos is wide (16/9).
 {% endset %}
 
 {% set notes %}
@@ -7,59 +7,60 @@
 {% endset %}
 
 {% set demo %}
-  {% set modal_content_1 %}
-    {% set video %}
-      <video-js
-        data-delayed-account="1900410236"
-        data-delayed-player="O3FkeBiaDz"
-        data-delayed-video-id="4892122320001"
-        data-video-delayed
-        data-embed="default"
-        controls
-        data-media-title
-        data-media-duration
-        class="c-base-video js-bolt-video--demo-1"></video-js>
-    {% endset %}
-
-    {% include '@bolt-elements-ratio/ratio.twig' with {
-      children: video,
-      ratio: 'rectangle'
-    } only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="6236693947001"
+      data-media-duration
+      data-media-title
+      controls
+      class="c-base-video"></video-js>
   {% endset %}
-
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Play the video',
-    attributes: {
-      type: 'button',
-      'data-bolt-modal-target': '.js-bolt-modal--demo-1',
-    }
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video,
+    ratio: 'wide',
   } only %}
-
-  {% include '@bolt-components-modal/modal.twig' with {
-    content: modal_content_1,
-    width: 'optimal',
-    spacing: 'none',
-    theme: 'none',
-    scroll: 'overall',
-    attributes: {
-      class: 'js-bolt-modal--demo-1',
-    },
-  } only %}
-
-  {{ javascript_1 }}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
+{% set video %}
+  <video-js
+    data-account="1900410236"
+    data-player="O3FkeBiaDz"
+    data-embed="default"
+    data-video-id="6236693947001"
+    data-media-duration
+    data-media-title
+    controls
+    class="c-base-video"></video-js>
+{% endset %}
 {% include '@bolt-elements-ratio/ratio.twig' with {
-  children: // video goes here,
-  ratio: 'rectangle'
+  content: video,
+  ratio: 'wide',
 } only %}
 {% endverbatim %}{% endset %}
 
+{% set html_markup %}{% verbatim %}
+<div class="e-bolt-ratio e-bolt-ratio--wide">
+  <video-js
+    data-account="1900410236"
+    data-player="O3FkeBiaDz"
+    data-embed="default"
+    data-video-id="6236693947001"
+    data-media-duration
+    data-media-title
+    controls
+    class="c-base-video"></video-js>
+</div>
+{% endverbatim %}{% endset %}
+
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Aspect ratio for a video',
+  title: 'Ratio for Videos',
   description: description,
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,
+  html_markup: html_markup,
 } only %}

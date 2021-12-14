@@ -8,7 +8,7 @@ module.exports = {
       description:
         'A Drupal-style attributes object with extra attributes to append to this element.',
     },
-    children: {
+    content: {
       type: 'any',
       description:
         'A nested element with proportions defined through ratio property. It can be for example image or video.',
@@ -16,9 +16,9 @@ module.exports = {
     ratio: {
       type: 'string',
       description:
-        'An aspect ratio between the width and height. Expressed as width divided by height. You can choose from: standard(4/3), square(1/1), rectangle(16/9) or set your custom aspect ratio.',
-      default: 'rectangle',
-      enum: ['standard', 'square', 'rectangle'],
+        'An aspect ratio between the width and height. Expressed as width divided by height. You can choose from: standard(4/3), square(1/1), wide(16/9). Custom aspect ratio can be set via the CSS custom property <code>--e-bolt-aspect-ratio</code>.',
+      default: 'standard',
+      enum: ['standard', 'square', 'wide'],
     },
   },
 };
