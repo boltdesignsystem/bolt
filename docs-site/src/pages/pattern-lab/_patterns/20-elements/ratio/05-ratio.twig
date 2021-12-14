@@ -1,7 +1,7 @@
 {% set schema = bolt.data.components['@bolt-elements-ratio'].schema %}
 
 {% set description %}
-  Aspect ratio is most commonly expressed as two integers and a division sign: <code>width / height</code>. To measure the aspect ratio of an image or video, divide the width by the height. For example, an image or video that is 200x200 pixels and one that is 260x195 pixels have the same ratio 4/3 (standard).
+  Aspect ratio is most commonly expressed as two integers and a division sign: <code>width / height</code>. To measure the aspect ratio of an image or video, divide the width by the height. For example, an image or video that is 400x300 pixels and one that is 260x195 pixels have the same ratio 4/3 (standard).
 {% endset %}
 
 {% set notes %}
@@ -126,7 +126,7 @@
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
       alt: 'Alt text.',
-      src: 'https://via.placeholder.com/200x200',
+      src: 'https://via.placeholder.com/400x300',
       width: 200,
       height: 200,
     },
@@ -134,12 +134,12 @@
 {% endset %}
 {% include '@bolt-elements-ratio/ratio.twig' with {
   content: image,
-  ratio: 'wide',
+  ratio: 'square',
 } only %}
 {% endverbatim %}{% endset %}
 
 {% set html_markup %}{% verbatim %}
-<div class="e-bolt-ratio e-bolt-ratio--wide">
+<div class="e-bolt-ratio e-bolt-ratio--square">
   <!-- image or video goes here -->
 </div>
 {% endverbatim %}{% endset %}
