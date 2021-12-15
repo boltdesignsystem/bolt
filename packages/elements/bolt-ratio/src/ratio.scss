@@ -6,6 +6,7 @@
  * Dev notes:
  * 1. 4/3 is the component default, update it if schema changes.
  * 2. Necessary for video embed.
+ * 3. While the * selector catches all plain HTML elements, the element class in addition is to specifically target the image element, that's needed to set higher specificity order.
  */
 
 .e-bolt-ratio {
@@ -22,7 +23,11 @@
   > * {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%; /* [3] */
+  }
+
+  > .e-bolt-image {
+    height: 100%; /* [3] */
   }
 }
 
