@@ -1002,6 +1002,14 @@
 {% set contact_popover_lv2_ul_content %}
   {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
     link: {
+      content: 'Contact Us',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
       content: 'US: 1-888-PEGA-NOW',
       attributes: {
         href: 'tel: 1-888-PEGA-NOW',
@@ -1029,14 +1037,6 @@
       content: 'AU: +61 2 9581 7000',
       attributes: {
         href: 'tel: +61 2 9581 7000',
-      },
-    },
-  } only %}
-  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
-    link: {
-      content: 'More Contact Info',
-      attributes: {
-        href: 'https://google.com/',
       },
     },
   } only %}
@@ -1123,7 +1123,7 @@
           </bolt-stack>
           <bolt-stack>
             {% include '@bolt-components-headline/text.twig' with {
-              text: 'Site description goes here',
+              text: 'Explore solutions, events, and customers',
               tag: 'p',
               size: 'small',
             } only %}
@@ -1154,7 +1154,7 @@
           <bolt-stack spacing="xsmall">
             {% set site_name_pegaworld %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
-                content: 'PegaWorld',
+                content: 'PegaWorld iNspire',
                 reversed_underline: true,
                 icon_after: icon_chevron_right,
                 attributes: {
@@ -1170,7 +1170,7 @@
           </bolt-stack>
           <bolt-stack>
             {% include '@bolt-components-headline/text.twig' with {
-              text: 'Site description goes here',
+              text: 'Register for our flagship virtual event',
               tag: 'p',
               size: 'small',
             } only %}
@@ -1201,7 +1201,7 @@
           <bolt-stack spacing="xsmall">
             {% set site_name_partner %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
-                content: 'Partner Portal',
+                content: 'Partners',
                 reversed_underline: true,
                 icon_after: icon_chevron_right,
                 attributes: {
@@ -1217,7 +1217,7 @@
           </bolt-stack>
           <bolt-stack>
             {% include '@bolt-components-headline/text.twig' with {
-              text: 'Site description goes here',
+              text: 'Discover program benefits and enablement resources',
               tag: 'p',
               size: 'small',
             } only %}
@@ -1248,7 +1248,7 @@
           <bolt-stack spacing="xsmall">
             {% set site_name_pegahub %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
-                content: 'PegaHub',
+                content: 'My Pega',
                 reversed_underline: true,
                 icon_after: icon_chevron_right,
                 attributes: {
@@ -1264,7 +1264,7 @@
           </bolt-stack>
           <bolt-stack>
             {% include '@bolt-components-headline/text.twig' with {
-              text: 'Site description goes here',
+              text: 'Manage your organization&rsquo;s relationship with Pega',
               tag: 'p',
               size: 'small',
             } only %}
@@ -1412,7 +1412,7 @@
           </bolt-stack>
         {% endset %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
-          content: '',
+          content: site_signifier,
         } only %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
           content: site_name,
@@ -1459,7 +1459,7 @@
           </bolt-stack>
         {% endset %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
-          content: '',
+          content: site_signifier,
         } only %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
           content: site_name,
@@ -1506,7 +1506,7 @@
           </bolt-stack>
         {% endset %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
-          content: '',
+          content: site_signifier,
         } only %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
           content: site_name,
@@ -1553,7 +1553,7 @@
           </bolt-stack>
         {% endset %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
-          content: '',
+          content: site_signifier,
         } only %}
         {% include '@bolt-layouts-layout/layout-item.twig' with {
           content: site_name,
@@ -1624,6 +1624,7 @@
           pega_sites_teaser_pega,
           pega_sites_teaser_pegaworld,
           pega_sites_teaser_partner,
+          pega_sites_teaser_marketplace,
           pega_sites_teaser_pegahub,
           pega_sites_teaser_cosmos,
         ],
@@ -1637,7 +1638,6 @@
           pega_sites_teaser_documentation,
           pega_sites_teaser_academy,
           pega_sites_teaser_forums,
-          pega_sites_teaser_marketplace,
           pega_sites_teaser_design_pattern,
         ],
         spacing: 'small',
@@ -1668,7 +1668,7 @@
     {% set pega_sites_teaser_support %}
       {% set support_link %}
         {% include '@bolt-elements-text-link/text-link.twig' with {
-          content: 'Support',
+          content: 'Pega Support',
           reversed_underline: true,
           icon_after: icon_chevron_right,
           attributes: {
@@ -1705,10 +1705,10 @@
 
     {% set layout_content %}
       {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: pega_sites_teaser_support,
+        content: pega_sites_teaser_careers,
       } only %}
       {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: pega_sites_teaser_careers,
+        content: pega_sites_teaser_support,
       } only %}
     {% endset %}
     
