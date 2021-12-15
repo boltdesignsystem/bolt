@@ -1,0 +1,151 @@
+{% set description %}
+  Adjust the display of a particular input label.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>displayType</code> prop on <code>form-label.twig</code> determines how an input label is visually displayed. <code>floating</code> will render a floating label, while <code>block</code> will render a block label before the form input.</bolt-li>
+    <bolt-li>For block labels, it is also needed to set the <code>labelDisplay</code> prop to <code>before</code> on <code>form-element.twig</code>.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set form_children %}
+    {% set fieldset_children %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Floating Label',
+          displayType: 'floating',
+          attributes: {
+            for: 'floating-label',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Enter value (floating label)',
+            type: 'text',
+            id: 'floating-label',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: '<strong>Block Label</strong>',
+          displayType: 'block',
+          attributes: {
+            for: 'block-label',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Enter value (block label)',
+            type: 'text',
+            id: 'block-label',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+        labelDisplay: 'before',
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-form/form-fieldset.twig' with {
+      legendTitle: 'Fieldset Legend',
+      legendInnerAttributes: {
+        class: 'u-bolt-visuallyhidden',
+      },
+      children: fieldset_children,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-form/form.twig' with {
+    children: form_children
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set form_children %}
+  {% set fieldset_children %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Floating Label',
+        displayType: 'floating',
+        attributes: {
+          for: 'floating-label',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter value (floating label)',
+          type: 'text',
+          id: 'floating-label',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: '<strong>Block Label</strong>',
+        displayType: 'block',
+        attributes: {
+          for: 'block-label',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter value (block label)',
+          type: 'text',
+          id: 'block-label',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+      labelDisplay: 'before',
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-form/form-fieldset.twig' with {
+    legendTitle: 'Fieldset Legend',
+    legendInnerAttributes: {
+      class: 'u-bolt-visuallyhidden',
+    },
+    children: fieldset_children,
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-form/form.twig' with {
+  children: form_children
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Input Label Display',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
+
