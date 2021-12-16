@@ -13,7 +13,7 @@ let versionSpinner;
 
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { fileExists } = require('@bolt/build-utils/general');
-const lernaConfig = require(path.join(process.cwd(), './../lerna.json'));
+const lernaConfig = require('./../../../../lerna.json');
 
 const store = new InCache();
 let isUsingOldData = false; // remember if we are using up to date version data or older (stale) data as a fallback
