@@ -227,9 +227,26 @@
 
             {% set checkboxChildren %}
               {% for checkbox in facet.checkboxes %}
-                {% include ('@pl/30-form-element-demo-checkbox.twig') with {
-                  'labelTitle': checkbox,
-                  'elementId': 'checkbox-' ~ facet.title ~ checkbox
+                  {% set label %}
+                    {% include '@bolt-components-form/form-label.twig' with {
+                      title: checkbox,
+                      displayType: 'inline-checkbox',
+                      attributes: {
+                        for: 'checkbox-' ~ facet.title ~ checkbox
+                      }
+                    } only %}
+                  {% endset %}
+                  {% set input %}
+                    {% include '@bolt-components-form/form-input.twig' with {
+                      attributes: {
+                        type: 'checkbox',
+                        id: 'checkbox-' ~ facet.title ~ checkbox,
+                      },
+                    } only %}
+                  {% endset %}
+                {% include '@bolt-components-form/form-element.twig' with {
+                  label: label,
+                  children: input
                 } only %}
               {% endfor %}
             {% endset %}
@@ -241,8 +258,8 @@
             {% endset %}
 
             {% include '@bolt-components-form/form-fieldset.twig' with {
-              'legendTitle': facet.title,
-              'children': fieldsetChildren
+              legendTitle: facet.title,
+              children: fieldsetChildren
             } only %}
           {% endfor %}
 

@@ -50,6 +50,7 @@ module.exports = {
       '@bolt/components-menu',
       '@bolt/components-modal',
       '@bolt/components-navbar',
+      '@bolt/components-notifications',
       '@bolt/components-ol',
       '@bolt/components-pagination',
       '@bolt/components-page-header',

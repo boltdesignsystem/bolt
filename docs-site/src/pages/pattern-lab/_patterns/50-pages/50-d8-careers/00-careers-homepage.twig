@@ -95,14 +95,28 @@
 {% set form_children %}
   {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--center' %}
     {% cell 'c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--first u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-flex-grow' %}
-      {% include '@pl/10-form-element-demo-input-element.twig' with {
-        title: 'Search',
-        inputAttributes: {
-          placeholder: 'Search All Jobs',
-          required: false,
-          type: 'search'
-        },
-        labelDisplayType: 'floating'
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Search',
+          displayType: 'floating',
+          attributes: {
+            for: 'search',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Search All Jobs',
+            type: 'search',
+            id: 'search',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+        labelDisplay: 'before',
       } only %}
     {% endcell %}
 
@@ -110,60 +124,76 @@
       <div class="gsc-careers-cta">
         {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--center' %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-            {% include '@pl/40-form-element-demo-select.twig' with {
-              title: 'Country',
-              selectAttributes: {
-                required: false
-              },
-              options: [
-                {
-                  type: 'option',
-                  value: '',
-                  label: '- Select a Country -',
-                  attributes: {
-                    disabled: true,
+            {% set label %}
+              {% include '@bolt-components-form/form-label.twig' with {
+                title: 'Country',
+                displayType: 'floating',
+              } only %}
+            {% endset %}
+            {% set select %}
+              {% include '@bolt-components-form/form-select.twig' with {
+                options: [
+                  {
+                    type: 'option',
+                    value: '',
+                    label: '- Select an option -',
+                    attributes: {
+                      disabled: true,
+                    }
+                  },
+                  {
+                    type: 'option',
+                    value: 'a',
+                    label: 'Argentina'
+                  },
+                  {
+                    type: 'option',
+                    value: 'b',
+                    label: 'Belgium'
+                  },
+                  {
+                    type: 'option',
+                    value: 'c',
+                    label: 'Croatia'
                   }
-                },
-                {
-                  type: 'option',
-                  value: 'a',
-                  label: 'Argentina'
-                },
-                {
-                  type: 'option',
-                  value: 'b',
-                  label: 'Belgium'
-                },
-                {
-                  type: 'option',
-                  value: 'c',
-                  label: 'Croatia'
-                }
-              ]
+                ]
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-form/form-element.twig' with {
+              label: label,
+              children: select,
             } only %}
           {% endcell %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-            {% include '@pl/40-form-element-demo-select.twig' with {
-              title: 'Categories',
-              selectAttributes: {
-                required: false
-              },
-              options: [
-                {
-                  type: 'option',
-                  value: '',
-                  label: '- Select a Category -',
-                  attributes: {
-                    disabled: true,
-                  }
-                },
-                {
-                  type: 'option',
-                  value: 'sales',
-                  label: 'Sales'
-                }
-              ]
-            } only %}
+          {% set label %}
+              {% include '@bolt-components-form/form-label.twig' with {
+                title: 'Categories',
+                displayType: 'floating',
+              } only %}
+            {% endset %}
+            {% set select %}
+              {% include '@bolt-components-form/form-select.twig' with {
+                options: [
+                  {
+                    type: 'option',
+                    value: '',
+                    label: '- Select a Category -',
+                    attributes: {
+                      disabled: true,
+                    }
+                  },
+                  {
+                    type: 'option',
+                    value: 'sales',
+                    label: 'Sales'
+                  },
+                ]
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-form/form-element.twig' with {
+              label: label,
+              children: select,
+            } only %} 
           {% endcell %}
         {% endgrid %}
       </div>

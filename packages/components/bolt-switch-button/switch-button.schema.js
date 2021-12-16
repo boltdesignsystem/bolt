@@ -20,7 +20,7 @@ module.exports = {
     },
     on: {
       type: 'boolean',
-      default: true,
+      default: false,
       description:
         'Controls the active state of the switch button. Sets button state to "on" by default.',
     },

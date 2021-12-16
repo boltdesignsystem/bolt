@@ -1,0 +1,178 @@
+{% set description %}
+  Input fields with autoformatting.
+{% endset %}
+
+{% set notes %}
+    <p>Add proper <code>data-bolt-format-input</code> to the <code>form-input.twig</code> attributes object in order to autoformat a given value into input field. For example:</p>
+    <bolt-ol>
+      <bolt-li><code>'data-bolt-format-input': 'percent'</code> for percentage autoformatting.</bolt-li>
+      <bolt-li><code>'data-bolt-format-input': 'currency-us'</code> for dollar autoformatting.</bolt-li>
+      <bolt-li><code>'data-bolt-format-input': 'currency-ja'</code> for yen autoformatting.</bolt-li>
+      <bolt-li><code>'data-bolt-format-input': 'number'</code> for number autoformatting.</bolt-li>
+    </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set form_children %}
+    {% set for_value = 'percent' %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Example of percent auto formatting',
+        attributes: {
+          for: for_value
+        },
+        displayType: 'block'
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'E.g. 10',
+          required: true,
+          type: 'number',
+          id: for_value,
+          'data-bolt-format-input': 'percent',
+          min: 0,
+          max: 100
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      labelDisplay: 'before',
+      label: label,
+      children: input
+    } only %}
+
+    {% set for_value = 'currency-us' %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Example of dollar auto formatting',
+        attributes: {
+          for: for_value
+        },
+        displayType: 'block'
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'E.g. 25000000000',
+          required: true,
+          type: 'number',
+          id: for_value,
+          'data-bolt-format-input': 'currency-us'
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      labelDisplay: 'before',
+      label: label,
+      children: input
+    } only %}
+
+    {% set for_value = 'currency-ja' %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Example of yen auto formatting',
+        attributes: {
+          for: for_value
+        },
+        displayType: 'block'
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'E.g. 25000000000',
+          required: true,
+          type: 'number',
+          id: for_value,
+          'data-bolt-format-input': 'currency-ja'
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      labelDisplay: 'before',
+      label: label,
+      children: input
+    } only %}
+
+    {% set for_value = 'number' %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Example of number auto formatting',
+        attributes: {
+          for: for_value
+        },
+        displayType: 'block'
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'E.g. 10000000',
+          required: true,
+          type: 'number',
+          id: for_value,
+          'data-bolt-format-input': 'number'
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      labelDisplay: 'before',
+      label: label,
+      children: input
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-form/form.twig' with {
+    children: form_children
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set form_children %}
+  {% set for_value = 'percent' %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Example of percent auto formatting (add attribute \'data-bolt-format-input="percent"\')',
+        attributes: {
+          for: for_value
+        },
+        displayType: 'block'
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'E.g. 10',
+          required: true,
+          type: 'number',
+          id: for_value,
+          'data-bolt-format-input': 'percent',
+          min: 0,
+          max: 100
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      labelDisplay: 'before',
+      label: label,
+      children: input
+    } only %}
+{% endset %}
+
+{% include '@bolt-components-form/form.twig' with {
+  children: form_children
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Auto Format Inputs',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
