@@ -41,6 +41,7 @@ describe('<bolt-typeahead> Component', () => {
         attributes: {
           action: "https://www.pega.com/search",
           target: "_blank",
+          rel: "noopener",
           method: "GET"
         }
       } %}
