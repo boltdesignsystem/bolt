@@ -72,7 +72,7 @@
 
   {% if source_text %}
     {% set source_inline_items %}
-      <a {{ source_attributes.addClass(base_class ~ '__link js-bolt-share__link--' ~ source_name).setAttribute('target', '_blank') }}>
+      <a {{ source_attributes.addClass(base_class ~ '__link js-bolt-share__link--' ~ source_name).setAttribute('target', '_blank').setAttribute('rel', 'noopener') }}>
         {% include '@bolt-elements-icon/icon.twig' with {
           name: source_icon,
           size: size,
