@@ -8,11 +8,13 @@ const InCache = require('incache');
 const { Octokit } = require('@octokit/rest');
 const { throttling } = require('@octokit/plugin-throttling');
 const MyOctokit = Octokit.plugin(throttling);
-
+const cmp = require('semver-compare');
 let versionSpinner;
 
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { fileExists } = require('@bolt/build-utils/general');
+const lernaConfig = require(path.join(process.cwd(), './../lerna.json'));
+
 const store = new InCache();
 let isUsingOldData = false; // remember if we are using up to date version data or older (stale) data as a fallback
 
@@ -22,15 +24,35 @@ const tagRegex = /(?![v\d])(\w)/g;
 async function writeBoltVersionUrlsToJson(versionData) {
   const config = await getConfig();
   let versionInfo = versionData;
+  let versionInfoUpdated = [];
+  let latestVersion = 0;
 
   versionInfo.sort(function(a, b) {
     return semver.rcompare(a.label, b.label);
   });
 
+  // Loop through all Bolt versions ("versionInfo") and look for a match for the current Lerna value ("lernaConfig.version").
+  // If there is a match ("0"), then set the "latestVersion" variable to "v".
+  for (var v = 0; v < versionInfo.length; v++) {
+    const optionVersion = versionInfo[v].label.replace('v', '');
+    if (cmp(lernaConfig.version, optionVersion) === 0) {
+      latestVersion = v;
+    }
+  }
+
+  // Start looping through the Bolt versions ("versionInfo") starting with the "latestVersion" (this value was determined in the previous loop).
+  // This will populate a list of bolt releases STARTING with the current version and going backwards.
+  for (var i = latestVersion; i < versionInfo.length; i++) {
+    const selectOption = versionInfo[i];
+    versionInfoUpdated.push(versionInfo[i]);
+  }
+
+  // Write the dynamically created version list to the "bolt-releases.bolt.json" data file.
+  // This will be used to populate the Version Selector component.
   fs.writeFile(
     path.join(config.dataDir, '/bolt-releases.bolt.json'),
     JSON.stringify({
-      options: versionInfo,
+      options: versionInfoUpdated,
     }),
     'utf8',
     err => {
