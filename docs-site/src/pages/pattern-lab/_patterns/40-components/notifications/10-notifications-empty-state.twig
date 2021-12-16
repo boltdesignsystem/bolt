@@ -1,0 +1,155 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>An empty state can happen if there are literally no notifications to show, or all notifications have been read and user toggles to show only unread notifications.</bolt-li>
+    <bolt-li>A simple empty state message can be passed to the <code>content</code> prop.</bolt-li>
+    <bolt-li>Empty state means there are no notifications to read, do not render a "mark all as read" action button in such case.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set icon_check_circle %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'check-circle',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_pega_setting %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-setting',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_face_happy %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'face-happy',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set header_switch_button %}
+    {% include '@bolt-components-switch-button/switch-button.twig' with {
+      label: 'Only show unread notifications',
+      attributes: {
+        class: 'js-target-the-switch-button-container'
+      },
+    } only %}
+    <script>
+      const switchButton = document.querySelector(
+        '.js-target-the-switch-button-container button[role="switch"]',
+      );
+
+      switchButton.addEventListener('click', e => {
+        const el = e.target;
+        const isChecked = el.getAttribute('aria-checked') === 'true';
+
+        el.setAttribute('aria-checked', isChecked ? false : true);
+      });
+    </script>
+  {% endset %}
+  {% set header_actions %}
+    {% include '@bolt-components-notifications/notifications-header-action.twig' with {
+      icon: icon_pega_setting,
+      label: 'Notification settings',
+      attributes: {
+        href: '#!',
+      },
+    } only %}
+  {% endset %}
+  {% set content %}
+    <div class="u-bolt-padding-top-large u-bolt-padding-right-medium u-bolt-padding-bottom-large u-bolt-padding-left-medium u-bolt-text-align-center">
+      <span class="u-bolt-margin-right-small">{{ icon_face_happy }}</span>You are all caught up!
+    </div>
+  {% endset %}
+  {% set footer_content %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'View all notifications',
+      reversed_underline: true,
+      expand_click_target: true,
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-notifications/notifications.twig' with {
+    header: {
+      switch_button: header_switch_button,
+      actions: header_actions,
+    },
+    content: content,
+    footer: {
+      content: footer_content,
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set icon_check_circle %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'check-circle',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set icon_pega_setting %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-setting',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set icon_face_happy %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'face-happy',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set header_switch_button %}
+  {% include '@bolt-components-switch-button/switch-button.twig' with {
+    label: 'Only show unread notifications',
+    attributes: {
+      class: 'js-target-the-switch-button-container'
+    },
+  } only %}
+{% endset %}
+{% set header_actions %}
+  {% include '@bolt-components-notifications/notifications-header-action.twig' with {
+    icon: icon_pega_setting,
+    label: 'Notification settings',
+    attributes: {
+      href: '#!',
+    },
+  } only %}
+{% endset %}
+{% set content %}
+  <div class="u-bolt-padding-top-large u-bolt-padding-right-medium u-bolt-padding-bottom-large u-bolt-padding-left-medium u-bolt-text-align-center">
+    <span class="u-bolt-margin-right-small">{{ icon_face_happy }}</span>You are all caught up!
+  </div>
+{% endset %}
+{% set footer_content %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'View all notifications',
+    reversed_underline: true,
+    expand_click_target: true,
+    attributes: {
+      href: '#!',
+    }
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-notifications/notifications.twig' with {
+  header: {
+    switch_button: header_switch_button,
+    actions: header_actions,
+  },
+  content: content,
+  footer: {
+    content: footer_content,
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Notifications Empty State',
+  description: 'Pass freeform content instead of notification list to render an empty state.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
