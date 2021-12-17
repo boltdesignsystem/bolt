@@ -8,7 +8,7 @@ const InCache = require('incache');
 const { Octokit } = require('@octokit/rest');
 const { throttling } = require('@octokit/plugin-throttling');
 const MyOctokit = Octokit.plugin(throttling);
-const cmp = require('semver-compare');
+
 let versionSpinner;
 
 const { getConfig } = require('@bolt/build-utils/config-store');
