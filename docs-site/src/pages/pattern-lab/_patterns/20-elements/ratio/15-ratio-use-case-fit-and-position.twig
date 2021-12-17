@@ -1,0 +1,60 @@
+{% set description %}
+  The Image element comes with advanced position and fit options. They can work in tandem with the Ratio element.
+{% endset %}
+
+{% set notes %}
+  Reference the <a href="{{ link['elements-image-use-case-background-fit-and-position'] }}" class="e-bolt-text-link">Image element</a> for all options.
+{% endset %}
+
+{% set demo %}
+  <div style="max-width: 400px;">
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          alt: 'Alt text.',
+          src: 'https://via.placeholder.com/400x250',
+          width: 400,
+          height: 250,
+          style: '--e-bolt-image-position: top right',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: image,
+      ratio: 'square',
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/400x250',
+      width: 400,
+      height: 250,
+      style: '--e-bolt-image-position: top right',
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-elements-ratio/ratio.twig' with {
+  content: image,
+  ratio: 'square',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<div class="e-bolt-ratio e-bolt-ratio--square">
+  <img src="https://via.placeholder.com/400x250" width=400 height=250 class="e-bolt-image" alt="" style="--e-bolt-image-position: top right">
+</div>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Use Case: Image Fit and Position within Ratio',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}
