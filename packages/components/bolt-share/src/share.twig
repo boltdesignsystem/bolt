@@ -106,7 +106,7 @@
       {% set menu_item_attributes = source_attributes_data|without('href') %}
 
       {# The 'js-' class added here is currently filtered out in the "menu" display. @todo: rework Menu component to allow passing classes. #}
-      {% set menu_item_attributes = menu_item_attributes|merge({ target: '_blank', class: 'js-bolt-share__link--' ~ source_name }) %}
+      {% set menu_item_attributes = menu_item_attributes|merge({ target: '_blank', rel: 'noopener', class: 'js-bolt-share__link--' ~ source_name }) %}
 
       {% include '@bolt-components-menu/_menu-item.twig' with menu_item_props|merge({ attributes: menu_item_attributes }) only %}
     {% endset %}
