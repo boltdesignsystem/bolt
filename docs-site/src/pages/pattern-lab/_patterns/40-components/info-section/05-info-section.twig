@@ -1,0 +1,65 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use the <code>open</code> prop to set a particular info section to be open by default when the viewport is below the medium breakpoint.</bolt-li>
+    <bolt-li>If there are multiple info sections, only one can be open at a time.</bolt-li>
+    <bolt-li>Use the <code>label.content</code> prop to render a label for the section.</bolt-li>
+    <bolt-li>Use the <code>label.tag</code> prop to set the proper heading level for the section. It defaults to <code>h2</code>.</bolt-li>
+    <bolt-li>Use the <code>details_link</code> prop if a section has additional information (either on another page or in a modal).</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-components-info-section/info-section.twig' with {
+    label: {
+      content: 'This is an info section',
+      tag: 'h3',
+    },
+    content: 'This is the section content. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit labore hic officia maiores ut sequi ipsam nihil repudiandae numquam quidem, molestiae amet aliquid sapiente sed odio quo aspernatur mollitia a.',
+    details_link: {
+      label: 'This is the details link',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-modal-target',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-modal/modal.twig' with {
+    content: 'More details about this section.',
+    attributes: {
+      class: 'js-modal-target',
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-info-section/info-section.twig' with {
+  label: {
+    content: 'This is an info section',
+    tag: 'h3',
+  },
+  content: 'This is the section content. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit labore hic officia maiores ut sequi ipsam nihil repudiandae numquam quidem, molestiae amet aliquid sapiente sed odio quo aspernatur mollitia a.',
+  details_link: {
+    label: 'This is the details link',
+    attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '.js-modal-target',
+    },
+  },
+} only %}
+
+{# Optionally create a modal for more details #}
+{% include '@bolt-components-modal/modal.twig' with {
+  content: 'More details about this section.',
+  attributes: {
+    class: 'js-modal-target',
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Info Section',
+  description: 'An info section is a disclosure widget that transforms into a simple card container when the viewport is above the medium breakpoint.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

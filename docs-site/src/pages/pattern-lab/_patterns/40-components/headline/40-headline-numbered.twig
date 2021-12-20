@@ -187,7 +187,7 @@
     <bolt-stack>
       {% include '@bolt-components-headline/headline.twig' with {
         size: size,
-        text: 'Numbered Headline (#{size})',
+        text: 'Numbered Headline (' ~ size ~ ')',
         numberText: loop.index,
         numberColor: 'navy',
       } only %}

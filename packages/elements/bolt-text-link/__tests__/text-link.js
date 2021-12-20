@@ -23,6 +23,7 @@ beforeAll(async () => {
     attributes: {
       href: 'https://google.com',
       target: '_blank',
+      rel: 'noopener',
     },
   };
 

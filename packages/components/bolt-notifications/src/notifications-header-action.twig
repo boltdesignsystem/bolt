@@ -1,0 +1,20 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-notifications'].schema['notifications-header-action'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set _tag = attributes.type ? 'button' : attributes.href ? 'a' : 'span' %}
+
+{% set classes = [
+  'c-bolt-notifications__action-button',
+] %}
+
+{# Template #}
+<{{ _tag }} {{ attributes.addClass(classes) }}>
+  {{ icon }}
+  <span class="c-bolt-notifications__action-button-text">{{ label }}</span>
+</{{ _tag }}>

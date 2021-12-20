@@ -61,7 +61,7 @@ if (boltSelect) {
     if (url && window.location.href !== url) {
       // open Bolt version selected in a new tab (vs same tab) if the CMD / meta key is held
       if (shouldOpenInNewWindow) {
-        window.open(url, '_blank');
+        window.open(url, '_blank', 'noopener');
       } else {
         window.location = url;
       }
