@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu/compare/v5.0.1...v5.1.0) (2021-12-20)
+
+**Note:** Version bump only for package @bolt/components-menu
+
+
+
+
+
 # [5.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu/compare/v4.7.0...v5.0.0) (2021-11-10)
 
 **Note:** Version bump only for package @bolt/components-menu
