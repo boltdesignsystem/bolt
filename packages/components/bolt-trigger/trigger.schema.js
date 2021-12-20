@@ -34,6 +34,10 @@ module.exports = {
       default: 'button',
       enum: ['button', 'submit', 'reset'],
     },
+    rel: {
+      description: 'Set to <code>noopener</code>, if a link is external.',
+      type: 'string',
+    },
     cursor: {
       description: 'Type of cursor shown on hover.',
       type: 'string',
