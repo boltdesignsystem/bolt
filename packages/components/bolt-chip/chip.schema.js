@@ -70,6 +70,10 @@ module.exports = {
       },
       ref: 'icon',
     },
+    rel: {
+      type: 'string',
+      description: 'Set to <code>noopener</code>, if a link is external.',
+    },
     tag: {
       description:
         '<mark>DEPRECATED</mark> - tag is automatically determined by URL.',
