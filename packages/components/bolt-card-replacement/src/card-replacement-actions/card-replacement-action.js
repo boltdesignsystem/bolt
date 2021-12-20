@@ -81,9 +81,7 @@ class BoltCardReplacementAction extends withContext(BoltElement) {
                 target="${ifDefined(
                   this.url ? (this.external ? '_blank' : '_self') : undefined,
                 )}"
-                rel="${ifDefined(
-                  this.url ? (this.external ? 'noopener' : '') : undefined,
-                )}"
+                ${this.external ? 'rel="noopener"' : undefined}
               >
                 ${this.slotify('default')}${renderedIcon
                   ? // prettier-ignore
