@@ -16,6 +16,7 @@ describe('chip', () => {
       text: 'Has URL',
       url: 'https://google.com',
       target: '_blank',
+      rel: 'noopener',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
