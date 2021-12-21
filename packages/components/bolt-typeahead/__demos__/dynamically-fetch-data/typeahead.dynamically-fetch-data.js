@@ -24,7 +24,7 @@ const setupEventHandlers = () => {
 
     function navigateTo(url) {
       if (window.location !== window.parent.location) {
-        const win = window.open(url, '_blank');
+        const win = window.open(url, '_blank', 'noopener');
         win.focus();
       } else {
         window.location = url;

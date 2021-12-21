@@ -70,6 +70,7 @@ const setupEventHandlers = () => {
           const win = window.open(
             `https://www.pega.com/search?q=${itemSelected.label}`,
             '_blank',
+            'noopener',
           );
           win.focus();
         } else {

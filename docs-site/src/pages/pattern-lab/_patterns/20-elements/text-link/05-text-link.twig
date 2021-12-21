@@ -16,6 +16,7 @@
     attributes: {
       href: 'https://google.com',
       target: '_blank',
+      rel: 'noopener'
     }
   } only %}
 {% endset %}
@@ -27,6 +28,7 @@
   attributes: {
     href: 'https://google.com',
     target: '_blank',
+    rel: 'noopener'
   }
 } only %}
 {% endverbatim %}
@@ -34,7 +36,7 @@
 
 {% set html_markup %}
 {% verbatim %}
-<a href="https://google.com" target="_blank" class="e-bolt-text-link">Click me to go to google.com</a>
+<a href="https://google.com" target="_blank" rel="noopener" class="e-bolt-text-link">Click me to go to google.com</a>
 {% endverbatim %}
 {% endset %}
 

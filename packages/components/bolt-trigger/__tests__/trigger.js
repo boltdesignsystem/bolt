@@ -60,6 +60,7 @@ describe('trigger', () => {
       url: 'https://google.com',
       attributes: {
         target: '_blank',
+        rel: 'noopener',
       },
     });
     expect(results.ok).toBe(true);
