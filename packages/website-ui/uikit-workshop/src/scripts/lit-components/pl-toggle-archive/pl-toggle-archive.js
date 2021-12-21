@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars, no-param-reassign */
 import { LitElement, html, customElement } from 'lit-element';
 import { store } from '../../store.js'; // connect to the Redux store.
-import { updatearchiveMode } from '../../actions/app.js'; // redux actions needed
+import { updateArchiveMode } from '../../actions/app.js'; // redux actions needed
 import styles from './pl-toggle-archive.scss?external';
 
 @customElement('pl-toggle-archive')
-class archiveToggle extends LitElement {
+class ArchiveToggle extends LitElement {
   constructor(self) {
     self = super(self);
     // self.handleClick = self.handleClick.bind(self);
@@ -44,7 +44,7 @@ class archiveToggle extends LitElement {
     );
     this._stateChanged(store.getState());
 
-    store.dispatch(updatearchiveMode(this.archiveMode));
+    store.dispatch(updateArchiveMode(this.archiveMode));
   }
 
   disconnectedCallback() {
@@ -66,13 +66,13 @@ class archiveToggle extends LitElement {
     return html`
       <pl-button
         class="pl-c-tools__action pl-c-toggle-archive__action"
-        title="Toggle archive Folder"
-        @click="${_ => store.dispatch(updatearchiveMode(!this.archiveMode))}"
-        >${this.archiveMode ? 'Hide' : 'Show'} archive Folder
-        <pl-icon slot="after" name="archive"></pl-icon>
+        title="Toggle Archive Folder"
+        @click="${_ => store.dispatch(updateArchiveMode(!this.archiveMode))}"
+        >${this.archiveMode ? 'Hide' : 'Show'} Archive Folder
+        <pl-icon slot="after" name="test"></pl-icon>
       </pl-button>
     `;
   }
 }
 
-export { archiveToggle };
+export { ArchiveToggle };
