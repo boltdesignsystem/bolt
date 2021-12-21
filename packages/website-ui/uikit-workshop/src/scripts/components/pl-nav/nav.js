@@ -65,6 +65,7 @@ class Nav extends BaseComponent {
     const state = store.getState();
     this.layoutMode = state.app.layoutMode || '';
     this.testMode = state.app.testMode || false;
+    this.archiveMode = state.app.archiveMode || false;
     this.currentPattern = state.app.currentPattern || '';
     this.elem = this;
     this.previouslyActiveLinks = [];
@@ -99,6 +100,10 @@ class Nav extends BaseComponent {
       this.testMode = state.app.testMode || false;
     }
 
+    if (this.archivetMode !== state.app.archiveMode) {
+      this.archiveMode = state.app.archiveMode || false;
+    }
+
     if (
       state.app.currentPattern &&
       this.currentPattern !== state.app.currentPattern
@@ -108,6 +113,7 @@ class Nav extends BaseComponent {
     }
 
     this.handleTestFolder();
+    this.handleArchiveFolder();
   }
 
   handleTestFolder() {
@@ -115,6 +121,14 @@ class Nav extends BaseComponent {
       this.testMode
         ? this.testElem.classList.remove('pl-c-nav__list-item--hidden')
         : this.testElem.classList.add('pl-c-nav__list-item--hidden');
+    }
+  }
+
+  handleArchiveFolder() {
+    if (this.archiveElem !== undefined) {
+      this.archiveMode
+        ? this.archiveElem.classList.remove('pl-c-nav__list-item--hidden')
+        : this.archiveElem.classList.add('pl-c-nav__list-item--hidden');
     }
   }
 
@@ -156,7 +170,7 @@ class Nav extends BaseComponent {
   cleanupActiveNav(topLevelOnly, exceptFor) {
     this.navContainer = document.querySelector('.pl-js-nav-container');
     this.topLevelTriggers = document.querySelectorAll(
-      '.pl-c-nav__link--title.is-open'
+      '.pl-c-nav__link--title.is-open',
     );
 
     if (topLevelOnly === true && window.innerWidth > 670) {
@@ -188,7 +202,7 @@ class Nav extends BaseComponent {
   handleURLChange() {
     const currentPattern = this.currentPattern;
     this.activeLink = document.querySelector(
-      `[data-patternpartial="${currentPattern}"]`
+      `[data-patternpartial="${currentPattern}"]`,
     );
 
     if (this.previouslyActiveLinks) {
@@ -204,7 +218,7 @@ class Nav extends BaseComponent {
 
       const triggers = [this.activeLink];
       const panels = Array.from(
-        getParents(this.activeLink, '.pl-js-nav-accordion')
+        getParents(this.activeLink, '.pl-js-nav-accordion'),
       );
 
       panels.forEach(panel => {
@@ -248,6 +262,9 @@ class Nav extends BaseComponent {
 
     this.testElem = document.querySelector('.pl-c-nav__list-item--tests');
     this.handleTestFolder();
+
+    this.archiveElem = document.querySelector('.pl-c-nav__list-item--archive');
+    this.handleArchiveFolder();
   }
 
   render({ layoutMode }) {
@@ -259,7 +276,7 @@ class Nav extends BaseComponent {
           const patternItems = item.patternItems;
           const classes = classNames(
             'pl-c-nav__list-item',
-            `pl-c-nav__list-item--${item.patternTypeUC.toLowerCase()}`
+            `pl-c-nav__list-item--${item.patternTypeUC.toLowerCase()}`,
           );
 
           return (
@@ -269,20 +286,17 @@ class Nav extends BaseComponent {
                 iconName={'arrow-down'}
                 isTitle={true}
                 aria-controls={item.patternTypeLC}
-                onClick={this.handleTopLevelNavClick}
-              >
+                onClick={this.handleTopLevelNavClick}>
                 {item.patternTypeUC}
               </NavLink>
               <ol
                 id={item.patternSubtypeUC}
-                className={`pl-c-nav__list pl-c-nav__accordion pl-c-nav__dropdown pl-js-nav-accordion`}
-              >
+                className={`pl-c-nav__list pl-c-nav__accordion pl-c-nav__dropdown pl-js-nav-accordion`}>
                 {item.patternTypeItems.map((patternSubtype, i) => {
                   return (
                     <NavList
                       elem={this.elem}
-                      category={patternSubtype.patternSubtypeUC}
-                    >
+                      category={patternSubtype.patternSubtypeUC}>
                       {patternSubtype.patternSubtypeItems}
                     </NavList>
                   );
@@ -302,8 +316,7 @@ class Nav extends BaseComponent {
                             this.handleClick(e, patternItem.patternPartial)
                           }
                           data-patternpartial={patternItem.patternPartial}
-                          state={patternItem.patternState}
-                        >
+                          state={patternItem.patternState}>
                           {patternItem.patternName === 'View All'
                             ? patternItem.patternName + ' ' + item.patternTypeUC
                             : patternItem.patternName}
@@ -326,8 +339,7 @@ class Nav extends BaseComponent {
               onClick={e => this.handleClick(e, 'all')}
               href="styleguide/html/styleguide.html"
               level={0}
-              data-patternpartial="all"
-            >
+              data-patternpartial="all">
               All
             </NavLink>
           </li>
