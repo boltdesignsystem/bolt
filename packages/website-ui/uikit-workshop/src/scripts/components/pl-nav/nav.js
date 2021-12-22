@@ -100,7 +100,7 @@ class Nav extends BaseComponent {
       this.testMode = state.app.testMode || false;
     }
 
-    if (this.archivetMode !== state.app.archiveMode) {
+    if (this.archiveMode !== state.app.archiveMode) {
       this.archiveMode = state.app.archiveMode || false;
     }
 

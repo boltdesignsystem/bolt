@@ -35,7 +35,7 @@ const config = deepmerge(baseConfig, {
     },
     'bolt-academy': {
       recursive: true,
-      paths: ['./src/pages/pattern-lab/_patterns/999-tests/academy'],
+      paths: ['./src/pages/pattern-lab/_patterns/999-archive/60-d8-academy'],
     },
     pl: {
       recursive: true,
