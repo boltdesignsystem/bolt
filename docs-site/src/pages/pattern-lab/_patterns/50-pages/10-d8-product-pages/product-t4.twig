@@ -83,9 +83,9 @@
             class="c-base-video"></video-js>
         {% endset %}
 
-        {% include '@bolt-components-ratio/ratio.twig' with {
-          children: video,
-          ratio: '16/9'
+        {% include '@bolt-elements-ratio/ratio.twig' with {
+          content: video,
+          ratio: 'wide'
         } only %}
       {% endcell %}
 
@@ -402,9 +402,9 @@
               class="-base-video"></video-js>
           {% endset %}
 
-          {% include '@bolt-components-ratio/ratio.twig' with {
-            children: video,
-            ratio: '16/9'
+          {% include '@bolt-elements-ratio/ratio.twig' with {
+            content: video,
+            ratio: 'wide'
           } only %}
         {% endcell %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
@@ -763,9 +763,9 @@
               class="c-base-video"></video-js>
           {% endset %}
 
-          {% include '@bolt-components-ratio/ratio.twig' with {
-            children: video,
-            ratio: '16/9'
+          {% include '@bolt-elements-ratio/ratio.twig' with {
+            content: video,
+            ratio: 'wide'
           } only %}
         {% endcell %}
       {% endgrid %}
@@ -863,9 +863,9 @@
               class="c-base-video"></video-js>
           {% endset %}
 
-          {% include '@bolt-components-ratio/ratio.twig' with {
-            children: video,
-            ratio: '16/9'
+          {% include '@bolt-elements-ratio/ratio.twig' with {
+            content: video,
+            ratio: 'wide'
           } only %}
         {% endcell %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}

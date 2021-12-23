@@ -82,9 +82,9 @@
             id="{{ videoUuid1 }}"
             class="c-base-video"></video-js>
         {% endset %}
-        {% include '@bolt-components-ratio/ratio.twig' with {
-          children: video,
-          ratio: '16/9'
+        {% include '@bolt-elements-ratio/ratio.twig' with {
+          content: video,
+          ratio: 'wide'
         } only %}
       {% endcell %}
 
@@ -369,12 +369,12 @@
               data-embed="default"
               data-video-id="5609376179001"
               controls
-              id="{{ videoUuid1 }}
+              id="{{ videoUuid1 }}"
               class="c-base-video"></video-js>
           {% endset %}
-          {% include '@bolt-components-ratio/ratio.twig' with {
-            children: video,
-            ratio: '16/9'
+          {% include '@bolt-elements-ratio/ratio.twig' with {
+            content: video,
+            ratio: 'wide'
           } only %}
 
         {% endcell %}
@@ -549,12 +549,12 @@
               data-embed="default"
               data-video-id="5609376179001"
               controls
-              id="{{ videoUuid2 }}
+              id="{{ videoUuid2 }}"
               class="c-base-video"></video-js>
           {% endset %}
-          {% include '@bolt-components-ratio/ratio.twig' with {
-            children: video,
-            ratio: '16/9'
+          {% include '@bolt-elements-ratio/ratio.twig' with {
+            content: video,
+            ratio: 'wide'
           } only %}
         {% endcell %}
       {% endgrid %}
@@ -634,12 +634,12 @@
             data-embed="default"
             data-video-id="5609376179001"
             controls
-            id="{{ videoUuid3b }}
+            id="{{ videoUuid3b }}"
             class="c-base-video"></video-js>
         {% endset %}
-        {% include '@bolt-components-ratio/ratio.twig' with {
-          children: video,
-          ratio: '16/9'
+        {% include '@bolt-elements-ratio/ratio.twig' with {
+          content: video,
+          ratio: 'wide'
         } only %}
 
         {% endcell %}
