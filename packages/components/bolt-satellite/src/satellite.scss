@@ -1,0 +1,60 @@
+/* ------------------------------------ *\
+   Satellite
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-satellite', block, medium);
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+
+$default-x-offset: var(--bolt-spacing-x-xsmall);
+$default-y-offset: var(--bolt-spacing-y-xsmall);
+
+.c-bolt-satellite {
+  display: none;
+
+  &[ready]:not([data-show-on-load='false']) {
+    display: block;
+  }
+
+  &__content {
+    display: grid;
+    grid-gap: var(--bolt-spacing-y-xxsmall);
+    margin-bottom: var(--bolt-spacing-y-xxsmall);
+  }
+
+  // Hide extra content on laod
+  @for $i from 1 through 3 {
+    &__content[data-stash='#{$i}'][data-reveal-children='false'] > * {
+      &:not(:nth-child(-n + #{$i})) {
+        @include bolt-visuallyhidden;
+      }
+    }
+  }
+}
+
+// position prop
+$bolt-satellite-position: 'bottom', 'middle', 'top';
+
+@each $position in $bolt-satellite-position {
+  .c-bolt-satellite--position-#{$position}-right {
+    position: fixed;
+    right: var(--c-bolt-satellite-offset-x, $default-x-offset);
+
+    @if index($position, 'middle') {
+      top: calc(50% + var(--c-bolt-satellite-offset-y));
+      transform: translateY(-50%);
+    } @else {
+      #{$position}: var(--c-bolt-satellite-offset-y, $default-y-offset);
+    }
+  }
+}
