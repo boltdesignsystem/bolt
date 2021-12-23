@@ -1103,9 +1103,6 @@
 {# Related sites nav #}
 {% set pega_sites_nav_lv2_ul_content %}
   {% set more_pega_sites_www %}
-    {% set site_signifier %}
-      <img src="https://via.placeholder.com/100x100" alt="" width=35 height=35 class="u-bolt-block u-bolt-border-radius-full">
-    {% endset %}
     {% set pega_sites_teaser_pega %}
       {% set layout_content %}
         {% set site_name %}
@@ -1202,6 +1199,15 @@
     {% endset %}
     {% set pega_sites_teaser_partner %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-handshake',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
           <bolt-stack spacing="none">
             {% set site_name_partner %}
@@ -1249,6 +1255,15 @@
     {% endset %}
     {% set pega_sites_teaser_pegahub %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-hub',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
           <bolt-stack spacing="none">
             {% set site_name_pegahub %}
@@ -1296,6 +1311,15 @@
     {% endset %}
     {% set pega_sites_teaser_cosmos %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-cosmos',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
           <bolt-stack spacing="none">
             {% set site_name_cosmos %}
@@ -1343,6 +1367,15 @@
     {% endset %}
     {% set pega_sites_teaser_community %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-people',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
           <bolt-stack spacing="none">
             {% set site_name_community %}
@@ -1390,6 +1423,15 @@
     {% endset %}
     {% set pega_sites_teaser_documentation %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-book',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
           <bolt-stack spacing="none">
             {% set site_name_documentation %}
@@ -1437,6 +1479,15 @@
     {% endset %}
     {% set pega_sites_teaser_academy %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'rocket',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
           <bolt-stack spacing="none">
             {% set site_name_academy %}
@@ -1484,6 +1535,15 @@
     {% endset %}
     {% set pega_sites_teaser_forums %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'customer-service',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
           <bolt-stack spacing="none">
             {% set site_name_forums %}
@@ -1531,6 +1591,15 @@
     {% endset %}
     {% set pega_sites_teaser_marketplace %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'cube',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
           <bolt-stack spacing="none">
             {% set site_name_marketplace %}
@@ -1578,6 +1647,15 @@
     {% endset %}
     {% set pega_sites_teaser_design_pattern %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-patterns',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
           <bolt-stack spacing="none">
             {% set site_name_design_pattern %}
