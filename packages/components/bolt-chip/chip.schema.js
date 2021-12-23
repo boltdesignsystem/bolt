@@ -38,8 +38,9 @@ module.exports = {
     color: {
       type: 'string',
       description: 'Controls the color of the chip.',
-      default: 'gray',
+      default: 'auto',
       enum: [
+        'auto',
         'error',
         'warning',
         'success',
@@ -68,6 +69,10 @@ module.exports = {
         },
       },
       ref: 'icon',
+    },
+    rel: {
+      type: 'string',
+      description: 'Set to <code>noopener</code>, if a link is external.',
     },
     tag: {
       description:

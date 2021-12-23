@@ -4,28 +4,72 @@
 
 {# Text content and form #}
 {% set persistent_modal_form_children %}
-  {% include '@pl/10-form-element-demo-input-element.twig' with {
-    title: 'Email Address',
-    inputAttributes: {
-      placeholder: 'Enter your email address',
-      type: 'email',
-      required: true
-    },
-    labelDisplayType: 'floating'
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Email Address',
+      displayType: 'floating',
+      attributes: {
+        for: 'email-address',
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        placeholder: 'Enter your email address',
+        type: 'email',
+        id: 'email-address',
+        required: true
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
   } only %}
-  {% include '@pl/10-form-element-demo-input-element.twig' with {
-    title: 'Password',
-    inputAttributes: {
-      placeholder: 'Enter your password',
-      type: 'password',
-      required: true
-    },
-    labelDisplayType: 'floating'
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Password',
+      displayType: 'floating',
+      attributes: {
+        for: 'password',
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        placeholder: 'Enter your password',
+        type: 'password',
+        id: 'password',
+        required: true
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
   } only %}
-  {% include '@pl/30-form-element-demo-checkbox.twig' with {
-    labelTitle: 'Remember this computer',
-    elementId: 'checkbox-' ~ random(),
-    labelDisplayType: 'inline'
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Remember this computer',
+      displayType: 'inline-checkbox',
+      attributes: {
+        for: 'checkbox-id',
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'checkbox',
+        id: 'checkbox-id',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
   } only %}
   {% include '@bolt-components-form/form-button.twig' with {
     text: 'Sign In',

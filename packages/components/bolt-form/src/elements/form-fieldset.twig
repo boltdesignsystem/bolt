@@ -19,13 +19,13 @@ Available variables:
 
 <fieldset{{ fieldsetAttributes.addClass('c-bolt-fieldset') }}>
   <legend{{ legendAttributes.addClass('c-bolt-legend') }}>
-    {% include "@bolt-components-headline/headline.twig" with {
-      "text": legendTitle,
-      "attributes": legendInnerAttributes,
-      "size": legendSize|default('small')
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: legendTitle,
+      attributes: legendInnerAttributes,
+      size: legendSize|default('small')
     } only %}
   </legend>
-  <div>
+  <div class="c-bolt-input-list">
     {% if errors %}
       <div class="c-bolt-input-message c-bolt-input-message--invalid">
         {{ errors }}
@@ -33,9 +33,10 @@ Available variables:
     {% endif %}
 
     {% if descriptionText %}
-      <div class="c-bolt-input-message">
-        {{ descriptionText }}
-      </div>
+      {% include '@bolt-components-stack/stack.twig' with {
+        content: descriptionText,
+        spacing: 'xsmall',
+      } only %}
     {% endif %}
 
     {{ children }}

@@ -1,0 +1,135 @@
+{% set description %}
+    An example of a inline inputs.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use a bolt-list with <code>display</code> set to <code>inline</code>, and pass each input as an item. This will create an inline layout with multiple inputs. The width of each input will be adjusted to fit its content.</bolt-li>
+    <bolt-li>Use a bolt-list with <code>display</code> set to <code>flex</code>, and pass each input as an item. This will create a flexible layout with multiple inputs. The width of each input will be adjusted to the available space to fill up the full width of the layout.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set form_children %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Email Address',
+        displayType: 'floating',
+        attributes: {
+          for: 'email-address',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter email address',
+          required: true,
+          type: 'email',
+          id: 'email-address',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+  {% endset %}
+
+  {% set submit_button %}
+    {% include '@bolt-components-form/form-button.twig' with {
+      text: 'Sign Up Now',
+      type: 'submit'
+    } only %}
+  {% endset %}
+
+  {% set submit_button_full_width %}
+    {% include '@bolt-components-form/form-button.twig' with {
+      text: 'Sign Up Now',
+      type: 'submit',
+      width: 'full'
+    } only %}
+  {% endset %}
+
+  <bolt-text font-weight="semibold" class="u-bolt-margin-bottom-small">Inline inputs: auto width</bolt-text>
+
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    spacing: 'xsmall',
+    align: 'start',
+    valign: 'start',
+    items: [
+      form_children,
+      submit_button
+    ]
+  } only %}
+
+  <bolt-text font-weight="semibold" class="u-bolt-margin-bottom-small">Inline inputs: flexible width</bolt-text>
+
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'flex',
+    spacing: 'xsmall',
+    align: 'start',
+    valign: 'start',
+    items: [
+      form_children,
+      submit_button_full_width
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set form_children %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Email Address',
+      displayType: 'floating',
+      attributes: {
+        for: 'email-address',
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        placeholder: 'Enter email address',
+        required: true,
+        type: 'email',
+        id: 'email-address',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+{% endset %}
+
+{% set submit_button %}
+  {% include '@bolt-components-form/form-button.twig' with {
+    text: 'Sign Up Now',
+    type: 'submit'
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-list/list.twig' with {
+  display: 'inline',
+  spacing: 'xsmall',
+  align: 'start',
+  valign: 'start',
+  items: [
+    form_children,
+    submit_button
+  ]
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Use Case: Inline Inputs',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

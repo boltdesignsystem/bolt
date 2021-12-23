@@ -93,6 +93,7 @@ class BoltTrigger extends BoltActionElement {
           href="${ifDefined(this.url && !this.disabled ? this.url : undefined)}"
           class="${classes}"
           target="${ifDefined(this.target ? this.target : undefined)}"
+          rel="${ifDefined(this.rel ? this.rel : undefined)}"
           aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
           @focus="${e => this._handleFocus(e)}"
           @blur="${e => this._handleBlur(e)}"

@@ -1,0 +1,44 @@
+@import '@bolt/core-v3.x';
+
+/**
+ * Ratio
+ *
+ * Dev notes:
+ * 1. 4/3 is the component default, update it if schema changes.
+ * 2. Necessary for video embed.
+ * 3. While the * selector catches all plain HTML elements, the element class in addition is to specifically target the image element, that's needed to set higher specificity order.
+ */
+
+.e-bolt-ratio {
+  --e-bolt-aspect-ratio: 4/3; /* [1] */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* [2] */
+  overflow: hidden;
+  background-color: var(--m-bolt-tertiary);
+  aspect-ratio: var(--e-bolt-aspect-ratio);
+
+  > * {
+    display: block;
+    width: 100%;
+    height: 100%; /* [3] */
+  }
+
+  > .e-bolt-image {
+    height: 100%; /* [3] */
+  }
+}
+
+.e-bolt-ratio--standard {
+  --e-bolt-aspect-ratio: 4/3;
+}
+
+.e-bolt-ratio--square {
+  --e-bolt-aspect-ratio: 1/1;
+}
+
+.e-bolt-ratio--wide {
+  --e-bolt-aspect-ratio: 16/9;
+}

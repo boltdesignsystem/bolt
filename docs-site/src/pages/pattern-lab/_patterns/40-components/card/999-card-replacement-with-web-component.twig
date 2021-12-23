@@ -30,7 +30,7 @@
 
 {% macro body_with_link() %}
   <bolt-card-replacement-body>
-    This is a card-replacement with an overall link that makes the whole card-replacement clickable, while the body can still have <a target="_blank" href="https://boltdesignsystem.com/docs" class="e-bolt-text-link">text links</a> that would go somewhere else.
+    This is a card-replacement with an overall link that makes the whole card-replacement clickable, while the body can still have <a target="_blank" href="https://boltdesignsystem.com/docs" rel="noopener" class="e-bolt-text-link">text links</a> that would go somewhere else.
   </bolt-card-replacement-body>
 {% endmacro %}
 
@@ -62,7 +62,7 @@
 {% set advanced_link_demo %}
 <bolt-card-replacement>
   <bolt-card-replacement-link custom-attribute="foo" html-attribute="bar">
-    <a href="https://google.com" target="_blank">Go to google.com</a>
+    <a href="https://google.com" target="_blank" rel="noopener">Go to google.com</a>
   </bolt-card-replacement-link>
 {% include card_replacement_code.image() %}
 {% include card_replacement_code.body_clickable() %}

@@ -37,14 +37,20 @@
         {{ chips }}
       </div>
     {% endif %}
-    <div class="c-bolt-profile__user-meta">
-      {{ job_title }}
-      <br>
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'map-pin-solid',
-      } only %}
-      {{ location }}
-    </div>
+    {% if job_title or location %}
+      <div class="c-bolt-profile__user-meta">
+        {% if job_title %}
+          {{ job_title }}
+          <br>
+        {% endif %}
+        {% if location %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'map-pin-solid',
+          } only %}
+          {{ location }}
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
   {% if actions %}
     <div class="c-bolt-profile__actions">

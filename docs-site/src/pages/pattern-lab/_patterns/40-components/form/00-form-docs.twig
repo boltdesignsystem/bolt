@@ -2,34 +2,211 @@
 {% set form_children %}
   {% set label %}
     {% include '@bolt-components-form/form-label.twig' with {
-      title: 'This is the label',
-      displayType: 'block'
+      title: 'First Name',
+      displayType: 'floating',
+      attributes: {
+        for: 'first-name',
+      },
     } only %}
   {% endset %}
   {% set input %}
     {% include '@bolt-components-form/form-input.twig' with {
       attributes: {
-        placeholder: 'This is the placeholder text.',
+        placeholder: 'Enter your first name',
         required: true,
         type: 'text',
+        id: 'first-name',
       },
     } only %}
   {% endset %}
   {% include '@bolt-components-form/form-element.twig' with {
-    labelDisplay: 'before',
     label: label,
-    children: input
+    children: input,
   } only %}
+
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Last Name',
+      displayType: 'floating',
+      attributes: {
+        for: 'last-name',
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        placeholder: 'Enter your last name',
+        required: true,
+        type: 'text',
+        id: 'last-name',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+  
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Email Address',
+      displayType: 'floating',
+      attributes: {
+        for: 'email-address',
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        placeholder: 'Enter your email',
+        required: true,
+        type: 'email',
+        id: 'email-address',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Title',
+      displayType: 'floating',
+      attributes: {
+        for: 'job-title',
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        placeholder: 'Enter your current job title',
+        required: true,
+        type: 'text',
+        id: 'job-title',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Company Name',
+      displayType: 'floating',
+      attributes: {
+        for: 'company-name',
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        placeholder: 'Enter the name of your company',
+        required: true,
+        type: 'text',
+        id: 'company-name',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Country',
+      displayType: 'floating',
+    } only %}
+  {% endset %}
+
+  {% set select %}
+    {% include '@bolt-components-form/form-select.twig' with {
+      attributes: {
+        required: true
+      },
+      options: [
+        {
+          type: 'option',
+          value: '',
+          label: '- Select an Country -',
+          attributes: {
+            disabled: true
+          }
+        },
+        {
+          type: 'option',
+          value: 'a',
+          label: 'Argentina'
+        },
+        {
+          type: 'option',
+          value: 'b',
+          label: 'Belgium'
+        },
+        {
+          type: 'option',
+          value: 'c',
+          label: 'Croatia'
+        }
+      ]
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: select,
+  } only %}
+
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Receive periodic emails on key analyst reports, Pega events, and important news.  You can unsubscribe at any time',
+      displayType: 'inline-checkbox',
+      attributes: {
+        for: 'checkbox-id',
+        name: 'checkbox-name'
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'checkbox',
+        id: 'checkbox-id',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+
   {% include '@bolt-components-form/form-button.twig' with {
-    text: 'Submit',
-    attributes: {
-      type: 'submit',
+    text: 'Download Now',
+    width: 'full',
+    icon: {
+      name: 'download'
     }
   } only %}
 {% endset %}
+
+{% include '@bolt-components-headline/headline.twig' with {
+  text: 'Get the Report',
+  size: 'xlarge'
+} only %}
+{% include '@bolt-components-headline/text.twig' with {
+  text: '(all fields are required)',
+  size: 'small'
+} only %}
 {% include '@bolt-components-form/form.twig' with {
   children: form_children
-} only %}
+} only  %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {

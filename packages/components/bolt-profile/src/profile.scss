@@ -31,7 +31,7 @@
   padding-bottom: var(--bolt-spacing-y-large);
 
   @include bolt-mq(medium) {
-    --c-bolt-profile-header-avatar-size: clamp(12rem, 20vw, 15rem);
+    --c-bolt-profile-header-avatar-size: clamp(10rem, 20vw, 12rem);
   }
 }
 
@@ -52,7 +52,7 @@
   border-top-left-radius: bolt-border-radius(small);
 
   @at-root .c-bolt-profile--full-bleed #{&} {
-    height: clamp(6rem, 20vw, 18rem);
+    height: clamp(6rem, 15vw, 10rem);
     border-radius: 0;
   }
 
@@ -61,8 +61,8 @@
     width: 130%;
 
     @at-root .c-bolt-profile--full-bleed #{&} {
-      transform: translate3d(-8%, -6%, 0);
-      width: 140%;
+      transform: translate3d(-3.5%, -18%, 0);
+      width: 115%;
     }
   }
 }
@@ -168,7 +168,7 @@
       font-size: clamp(
         var(--bolt-type-font-size-xlarge),
         2.3vw,
-        var(--bolt-type-font-size-xxxlarge)
+        var(--bolt-type-font-size-xxlarge)
       );
     }
   }

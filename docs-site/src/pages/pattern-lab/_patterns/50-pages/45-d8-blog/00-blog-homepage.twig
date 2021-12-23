@@ -60,13 +60,27 @@
     {% grid %}
       {% cell 'u-bolt-width-1/1 u-bolt-width-3/12@medium' %}
         <form action="#" method="post" class="c-bolt-form">
-          {% include '@pl/10-form-element-demo-input-element.twig' with {
-            'title': 'Search',
-            'inputAttributes': {
-              'placeholder': 'Enter text to search',
-              'type': 'search'
-            },
-            'labelDisplayType': 'floating'
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'Search',
+              displayType: 'floating',
+              attributes: {
+                for: 'search',
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                placeholder: 'Enter text to search',
+                type: 'search',
+                id: 'search',
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
           } only %}
         </form>
 

@@ -165,6 +165,7 @@ class ToolsMenu extends BaseLitComponent {
                   <pl-button
                     href="${this.currentUrl}"
                     target="_blank"
+                    rel="noopener"
                     class="pl-js-open-new-window"
                   >
                     Open In New Tab
@@ -176,7 +177,11 @@ class ToolsMenu extends BaseLitComponent {
           ${!this.ishControlsHide['tools-docs']
             ? html`
                 <li class="pl-c-tools__item">
-                  <pl-button href="http://patternlab.io/docs/" target="_blank">
+                  <pl-button
+                    href="http://patternlab.io/docs/"
+                    target="_blank"
+                    rel="noopener"
+                  >
                     Pattern Lab Docs
                     <pl-icon name="help" slot="after"></pl-icon>
                   </pl-button>

@@ -1,0 +1,27 @@
+{#
+/**
+ * Ratio Element
+ *
+ * Available variables:
+ * - Reference ratio.schema.js
+ *
+#}
+
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-elements-ratio'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set classes = [
+  'e-bolt-ratio',
+  this.data.ratio.value != schema.properties.ratio.default ? 'e-bolt-ratio--' ~ this.data.ratio.value,
+] %}
+
+{# Template #}
+<div {{ attributes.addClass(classes) }}>
+  {{ content }}
+</div>

@@ -1,0 +1,421 @@
+{% set description %}
+  A specific type of form input should be used based on each use case.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Each form input can be composed of <code>form-label.twig</code>, <code>form-input.twig</code>, and <code>form-element.twig</code>.</bolt-li>
+    <bolt-li>To improve accessibility and usability, make sure to include the <code>type</code> attribute for each input. Reference all valid values on <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" class="e-bolt-text-link" target="_blank" rel="noopener">this MDN article</a>.</bolt-li>
+    <bolt-li>All form inputs must have related <code>&lt;label&gt;</code> elements.</bolt-li>
+    <bolt-li>Required form inputs should have the <code>required</code> attribute.</bolt-li>
+    <bolt-li>Disabled form inputs should have the <code>disabled</code> attribute. However, this should be used sparingly because disabled inputs are bad for accessibility.</bolt-li>
+    <bolt-li>To display helper text for a specific form input, use the <code>descriptionText</code> prop in <code>form-element.twig</code>.</bolt-li>
+    <bolt-li>There are options when it comes to visually displaying labels. Reference the <a href="{{ link['components-form-label-positions'] }}" class="e-bolt-text-link">form label positions</a> doc for all options.</bolt-li>
+    <bolt-li>All inputs must be wrapped with a fieldset using <code>form-fieldset.twig</code>. Multiple fieldsets can be used if it is necessary to group certain form inputs.</bolt-li>
+    <bolt-li>All form elements must be rendered inside a form using <code>form.twig</code>.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set form_children %}
+    {% set fieldset_children %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Text input type',
+          displayType: 'floating',
+          attributes: {
+            for: 'text',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Enter text',
+            type: 'text',
+            id: 'text',
+          },
+        } only %}
+      {% endset %}
+      {% set icon_info_circle %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'info-circle',
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+        descriptionText: icon_info_circle ~ '<small>Helper text for this specific form input.</small>',
+      } only %}
+
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Text input type',
+          displayType: 'floating',
+          attributes: {
+            for: 'required-text',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Enter text (required)',
+            type: 'text',
+            id: 'required-text',
+            required: true,
+          },
+        } only %}
+      {% endset %}
+      {% set icon_info_circle %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'info-circle',
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Text input type',
+          displayType: 'floating',
+          attributes: {
+            for: 'disabled-text',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Enter text (disabled)',
+            type: 'text',
+            id: 'disabled-text',
+            disabled: true,
+          },
+        } only %}
+      {% endset %}
+      {% set icon_info_circle %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'info-circle',
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Email input type',
+          displayType: 'floating',
+          attributes: {
+            for: 'email',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Enter email',
+            type: 'email',
+            id: 'email',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Password input type',
+          displayType: 'floating',
+          attributes: {
+            for: 'password',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Enter password',
+            type: 'password',
+            id: 'password',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'URL input type',
+          displayType: 'floating',
+          attributes: {
+            for: 'url',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Enter URL',
+            type: 'url',
+            id: 'url',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Telephone input type',
+          displayType: 'floating',
+          attributes: {
+            for: 'tel',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Enter telephone number',
+            type: 'tel',
+            id: 'tel',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-form/form-fieldset.twig' with {
+      legendTitle: 'Fieldset Legend',
+      legendInnerAttributes: {
+        class: 'u-bolt-visuallyhidden',
+      },
+      children: fieldset_children,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-form/form.twig' with {
+    children: form_children
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set form_children %}
+  {% set fieldset_children %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Text input type',
+        displayType: 'floating',
+        attributes: {
+          for: 'text',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter text',
+          type: 'text',
+          id: 'text',
+        },
+      } only %}
+    {% endset %}
+    {% set icon_info_circle %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'info-circle',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+      descriptionText: icon_info_circle ~ '<small>Helper text for this specific form input.</small>',
+    } only %}
+
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Text input type',
+        displayType: 'floating',
+        attributes: {
+          for: 'required-text',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter text (required)',
+          type: 'text',
+          id: 'required-text',
+          required: true,
+        },
+      } only %}
+    {% endset %}
+    {% set icon_info_circle %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'info-circle',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Text input type',
+        displayType: 'floating',
+        attributes: {
+          for: 'disabled-text',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter text (disabled)',
+          type: 'text',
+          id: 'disabled-text',
+          disabled: true,
+        },
+      } only %}
+    {% endset %}
+    {% set icon_info_circle %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'info-circle',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Email input type',
+        displayType: 'floating',
+        attributes: {
+          for: 'email',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter email',
+          type: 'email',
+          id: 'email',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Password input type',
+        displayType: 'floating',
+        attributes: {
+          for: 'password',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter password',
+          type: 'password',
+          id: 'password',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'URL input type',
+        displayType: 'floating',
+        attributes: {
+          for: 'url',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter URL',
+          type: 'url',
+          id: 'url',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Telephone input type',
+        displayType: 'floating',
+        attributes: {
+          for: 'tel',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter telephone number',
+          type: 'tel',
+          id: 'tel',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-form/form-fieldset.twig' with {
+    legendTitle: 'Fieldset Legend',
+    legendInnerAttributes: {
+      class: 'u-bolt-visuallyhidden',
+    },
+    children: fieldset_children,
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-form/form.twig' with {
+  children: form_children
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Form Inputs',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
