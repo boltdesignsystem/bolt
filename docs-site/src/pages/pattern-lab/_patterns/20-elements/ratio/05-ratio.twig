@@ -1,0 +1,118 @@
+{% set schema = bolt.data.components['@bolt-elements-ratio'].schema %}
+
+{% set description %}
+  Aspect ratio is most commonly expressed as two integers and a division sign: <code>width / height</code>. To measure the aspect ratio of an image or video, divide the width by the height. For example, an image or video that is 400x300 pixels and one that is 260x195 pixels have the same ratio 4/3 (standard).
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Reference the <a href="{{ link['viewall-elements-ratio'] }}?selected-tab=schema" class="e-bolt-text-link">schema</a> for all options.</bolt-li>
+    <bolt-li>
+      <strong>Use in tandem with an image:</strong> set a different aspect ratio than the image&rsquo;s natural aspect ratio. This will crop the image.
+      <bolt-ol>
+        <bolt-li>Do not use the Ratio element if cropping is not needed.</bolt-li>
+        <bolt-li>When the image&rsquo;s width is smaller than the parent container, the image will stretch to fill the available space.</bolt-li>
+      </bolt-ol>
+    </bolt-li>
+    <bolt-li><strong>Use in tandem with a video:</strong> the Ratio element preserves the needed space to load a video embed, preventing <a href="https://web.dev/cls/" target="_blank" rel="noopener" class="e-bolt-text-link">Cumulative Layout Shift</a>.</bolt-li>
+    <bolt-li>Additionally, a CSS custom property is available to change the aspect ratio to anything. Define <code>--e-bolt-aspect-ratio</code> inline style rule to set the desired aspect ratio.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Alt text.',
+        src: 'https://via.placeholder.com/200x200',
+        width: 200,
+        height: 200,
+      },
+    } only %}
+  {% endset %}
+  {% set ratio_elements = [] %}
+  {% for ratio_name in schema.properties.ratio.enum %}
+    {% set ratio_single_element %}
+      {% if ratio_name == 'standard' %}
+        {% set ratio_value = '4/3' %}
+      {% elseif ratio_name == 'square' %}
+        {% set ratio_value = '1/1' %}
+      {% elseif ratio_name == 'wide'%}
+        {% set ratio_value = '16/9' %}
+      {% endif %}
+      <bolt-text>The <code>ratio</code> prop is set to <strong>{{ ratio_name }}</strong>. The aspect ratio is <strong>{{ ratio_value }}</strong>.</bolt-text>
+      {% include '@bolt-elements-ratio/ratio.twig' with {
+        content: image,
+        ratio: ratio_name,
+      } only %}
+    {% endset %}
+    {% set ratio_elements = ratio_elements|merge([ratio_single_element]) %}
+  {% endfor %}
+  {% set custom_aspect_ratio %}
+    <bolt-text>The <code>ratio</code> prop is set with <code>--e-bolt-aspect-ratio</code> via inline CSS style. The aspect ratio is <strong>7/3</strong>.</bolt-text>
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: image,
+      attributes: {
+        style: [
+          '--e-bolt-aspect-ratio: 7/3;'
+        ]
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-grid/grid.twig' with {
+    items: [
+      {
+        column_start: '1',
+        column_span: '12 6@medium',
+        content: ratio_elements[0],
+      },
+      {
+        column_start: '1 7@medium',
+        column_span: '12 6@medium',
+        content: ratio_elements[1],
+      },
+      {
+        column_start: '1',
+        column_span: '12 6@medium',
+        content: ratio_elements[2],
+      },
+      {
+        column_start: '1 7@medium',
+        column_span: '12 6@medium',
+        content: custom_aspect_ratio,
+      },
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/400x300',
+      width: 200,
+      height: 200,
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-elements-ratio/ratio.twig' with {
+  content: image,
+  ratio: 'square',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<div class="e-bolt-ratio e-bolt-ratio--square">
+  <!-- image or video goes here -->
+</div>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Ratio',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

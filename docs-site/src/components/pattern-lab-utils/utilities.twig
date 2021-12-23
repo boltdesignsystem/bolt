@@ -55,7 +55,7 @@
         <h5>SassDoc references</h5>
         <ul>
           {% for item in sassdoc_items %}
-            <li><a target="_blank" href="{{ item.anchor }}">{{ item.title }}</a></li>
+            <li><a target="_blank" rel="noopener" href="{{ item.anchor }}">{{ item.title }}</a></li>
           {% endfor %}
         </ul>
       </div>

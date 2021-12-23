@@ -3,6 +3,7 @@
     text: 'This is a linked chip',
     url: 'https://google.com',
     target: '_blank',
+    rel: 'noopener'
   } only %}
 {% endset %}
 
@@ -12,13 +13,14 @@
   text: 'This is a linked chip',
   url: 'https://google.com',
   target: '_blank',
+  rel: 'noopener'
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<bolt-chip url="https://google.com" target="_blank">This is a linked chip</bolt-chip>
+<bolt-chip url="https://google.com" target="_blank" rel="noopener">This is a linked chip</bolt-chip>
 {% endverbatim %}
 {% endset %}
 

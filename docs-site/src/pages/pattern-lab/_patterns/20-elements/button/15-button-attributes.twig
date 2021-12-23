@@ -4,10 +4,11 @@
 
 {% set demo %}
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'This button has the "href", "target", and "id" attributes',
+    content: 'This button has the "href", "target", "rel", and "id" attributes',
     attributes: {
       href: 'https://google.com',
       target: '_blank',
+      rel:'noopener',
       id: 'js-bolt-some-unique-id'
     }
   } only %}
@@ -36,6 +37,7 @@
   attributes: {
     href: 'https://google.com',
     target: '_blank',
+    rel: 'noopener',
     id: 'js-bolt-some-unique-id'
   }
 } only %}
@@ -44,7 +46,7 @@
 
 {% set html_markup %}
 {% verbatim %}
-<a href="https://google.com" target="_blank" id="js-bolt-some-unique-id" class="e-bolt-button">This button has the "href", "target", and "id" attributes</a>
+<a href="https://google.com" target="_blank" rel="noopener" id="js-bolt-some-unique-id" class="e-bolt-button">This button has the "href", "target", "rel", and "id" attributes</a>
 {% endverbatim %}
 {% endset %}
 

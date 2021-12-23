@@ -75,7 +75,7 @@ module.exports = {
     sizes: {
       type: 'string',
       description:
-        "A list of one or more strings separated by commas indicating a set of source sizes. Each source size consists of a media condition omitted for the last item), and a source size value. <a href='htt://mor10.com/experiments/ricg/'target='_blank'>Learn more</a>.",
+        "A list of one or more strings separated by commas indicating a set of source sizes. Each source size consists of a media condition omitted for the last item), and a source size value. <a href='http://mor10.com/experiments/ricg/'target='_blank' rel='noopener'>Learn more</a>.",
       default: 'auto',
     },
     useAspectRatio: {

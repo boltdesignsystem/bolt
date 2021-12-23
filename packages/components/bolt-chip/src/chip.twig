@@ -25,6 +25,9 @@
   {% if target %}
     {% set inner_attributes = inner_attributes.setAttribute('target', target) %}
   {% endif %}
+  {% if rel %}
+    {% set inner_attributes = inner_attributes.setAttribute('rel', rel) %}
+  {% endif %}
 {% else %}
   {# Otherwise, it's a whatever tag is passed #}
   {% set tag = 'span' %}
@@ -61,6 +64,7 @@
   {% if url %}
     url="{{ url }}"
     {% if target %} target="{{ target }}" {% endif %}
+    {% if rel %} rel="{{ rel }}" {% endif %}
   {% endif %}
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without('text')|without('class') }}
