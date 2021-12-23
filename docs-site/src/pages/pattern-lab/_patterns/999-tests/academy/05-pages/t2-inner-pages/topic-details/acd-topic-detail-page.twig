@@ -288,9 +288,9 @@
         class="c-base-video"></video-js>
     {% endset %}
 
-    {% include "@bolt-components-ratio/ratio.twig" with {
-      children: video,
-      ratio: "16/9",
+    {% include "@bolt-elements-ratio/ratio.twig" with {
+      content: video,
+      ratio: "wide",
       attributes: {
         class: [
           "u-bolt-width-4/9@small",
@@ -331,9 +331,9 @@
       } only %}
     {% endset %}
 
-    {% include "@bolt-components-ratio/ratio.twig" with {
-      ratio: "4/3",
-      children: h5pExample
+    {% include "@bolt-elements-ratio/ratio.twig" with {
+      ratio: "standard",
+      content: h5pExample
     } only %}
 {% endblock %}
 
