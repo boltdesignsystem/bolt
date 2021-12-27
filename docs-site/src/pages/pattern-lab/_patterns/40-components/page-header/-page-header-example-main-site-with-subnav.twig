@@ -1105,6 +1105,17 @@
   {% set more_pega_sites_www %}
     {% set pega_sites_teaser_pega %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              src: '/images/logos/pega-logo-vertical-navy-light.svg',
+              alt: '',
+              loading: 'eager',
+              width: 250,
+              height: 185,
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
           <bolt-stack spacing="none">
             {% set site_name_pega %}
@@ -1152,6 +1163,17 @@
     {% endset %}
     {% set pega_sites_teaser_pegaworld %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              src: '/images/logos/pw-logo-inspire.svg',
+              alt: '',
+              loading: 'eager',
+              width: 250,
+              height: 194,
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
           <bolt-stack spacing="none">
             {% set site_name_pegaworld %}

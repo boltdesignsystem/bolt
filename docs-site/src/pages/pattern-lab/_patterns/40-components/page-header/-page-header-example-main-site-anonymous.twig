@@ -891,13 +891,21 @@
 {# Related sites nav #}
 {% set pega_sites_nav_lv2_ul_content %}
   {% set more_pega_sites_www %}
-    {% set site_signifier %}
-      <img src="https://via.placeholder.com/100x100" alt="" width=35 height=35 class="u-bolt-block u-bolt-border-radius-full">
-    {% endset %}
     {% set pega_sites_teaser_pega %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              src: '/images/logos/pega-logo-vertical-navy-light.svg',
+              alt: '',
+              loading: 'eager',
+              width: 250,
+              height: 185,
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
-          <bolt-stack spacing="xsmall">
+          <bolt-stack spacing="none">
             {% set site_name_pega %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Pegasystems Inc.',
@@ -918,7 +926,7 @@
             {% include '@bolt-components-headline/text.twig' with {
               text: 'Explore solutions, events, and customers',
               tag: 'p',
-              size: 'small',
+              size: 'xsmall',
             } only %}
           </bolt-stack>
         {% endset %}
@@ -943,8 +951,19 @@
     {% endset %}
     {% set pega_sites_teaser_pegaworld %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              src: '/images/logos/pw-logo-inspire.svg',
+              alt: '',
+              loading: 'eager',
+              width: 250,
+              height: 194,
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
-          <bolt-stack spacing="xsmall">
+          <bolt-stack spacing="none">
             {% set site_name_pegaworld %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'PegaWorld iNspire',
@@ -965,7 +984,7 @@
             {% include '@bolt-components-headline/text.twig' with {
               text: 'Register for our flagship virtual event',
               tag: 'p',
-              size: 'small',
+              size: 'xsmall',
             } only %}
           </bolt-stack>
         {% endset %}
@@ -990,8 +1009,17 @@
     {% endset %}
     {% set pega_sites_teaser_partner %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-handshake',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
-          <bolt-stack spacing="xsmall">
+          <bolt-stack spacing="none">
             {% set site_name_partner %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Partners',
@@ -1012,7 +1040,7 @@
             {% include '@bolt-components-headline/text.twig' with {
               text: 'Discover program benefits and enablement resources',
               tag: 'p',
-              size: 'small',
+              size: 'xsmall',
             } only %}
           </bolt-stack>
         {% endset %}
@@ -1037,8 +1065,17 @@
     {% endset %}
     {% set pega_sites_teaser_pegahub %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-hub',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
-          <bolt-stack spacing="xsmall">
+          <bolt-stack spacing="none">
             {% set site_name_pegahub %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'My Pega',
@@ -1059,7 +1096,7 @@
             {% include '@bolt-components-headline/text.twig' with {
               text: 'Manage your organization&rsquo;s relationship with Pega',
               tag: 'p',
-              size: 'small',
+              size: 'xsmall',
             } only %}
           </bolt-stack>
         {% endset %}
@@ -1084,8 +1121,17 @@
     {% endset %}
     {% set pega_sites_teaser_cosmos %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-cosmos',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
-          <bolt-stack spacing="xsmall">
+          <bolt-stack spacing="none">
             {% set site_name_cosmos %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Pega Cosmos Design System',
@@ -1104,9 +1150,9 @@
           </bolt-stack>
           <bolt-stack>
             {% include '@bolt-components-headline/text.twig' with {
-              text: 'Library of UX/UI templates, patterns and components for building enterprise applications',
+              text: 'Browse library of UI/UX templates, patterns, and components',
               tag: 'p',
-              size: 'small',
+              size: 'xsmall',
             } only %}
           </bolt-stack>
         {% endset %}
@@ -1131,8 +1177,17 @@
     {% endset %}
     {% set pega_sites_teaser_community %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-people',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
-          <bolt-stack spacing="xsmall">
+          <bolt-stack spacing="none">
             {% set site_name_community %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Pega Community',
@@ -1151,9 +1206,9 @@
           </bolt-stack>
           <bolt-stack>
             {% include '@bolt-components-headline/text.twig' with {
-              text: 'Site description goes here',
+              text: 'Drive success with centralized content and resources',
               tag: 'p',
-              size: 'small',
+              size: 'xsmall',
             } only %}
           </bolt-stack>
         {% endset %}
@@ -1178,8 +1233,17 @@
     {% endset %}
     {% set pega_sites_teaser_documentation %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-book',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
-          <bolt-stack spacing="xsmall">
+          <bolt-stack spacing="none">
             {% set site_name_documentation %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Documentation',
@@ -1200,7 +1264,7 @@
             {% include '@bolt-components-headline/text.twig' with {
               text: 'Find product guides and reference docs',
               tag: 'p',
-              size: 'small',
+              size: 'xsmall',
             } only %}
           </bolt-stack>
         {% endset %}
@@ -1225,8 +1289,17 @@
     {% endset %}
     {% set pega_sites_teaser_academy %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'rocket',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
-          <bolt-stack spacing="xsmall">
+          <bolt-stack spacing="none">
             {% set site_name_academy %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Academy',
@@ -1247,7 +1320,7 @@
             {% include '@bolt-components-headline/text.twig' with {
               text: 'Complete missions, earn badges, and stay current',
               tag: 'p',
-              size: 'small',
+              size: 'xsmall',
             } only %}
           </bolt-stack>
         {% endset %}
@@ -1272,8 +1345,17 @@
     {% endset %}
     {% set pega_sites_teaser_forums %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'customer-service',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
-          <bolt-stack spacing="xsmall">
+          <bolt-stack spacing="none">
             {% set site_name_forums %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Forums',
@@ -1294,7 +1376,7 @@
             {% include '@bolt-components-headline/text.twig' with {
               text: 'Ask questions and help other Pega professionals',
               tag: 'p',
-              size: 'small',
+              size: 'xsmall',
             } only %}
           </bolt-stack>
         {% endset %}
@@ -1319,8 +1401,17 @@
     {% endset %}
     {% set pega_sites_teaser_marketplace %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'cube',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
-          <bolt-stack spacing="xsmall">
+          <bolt-stack spacing="none">
             {% set site_name_marketplace %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Marketplace',
@@ -1341,7 +1432,7 @@
             {% include '@bolt-components-headline/text.twig' with {
               text: 'Extend Pega with components and apps',
               tag: 'p',
-              size: 'small',
+              size: 'xsmall',
             } only %}
           </bolt-stack>
         {% endset %}
@@ -1366,8 +1457,17 @@
     {% endset %}
     {% set pega_sites_teaser_design_pattern %}
       {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-patterns',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-primary)',
+            },
+          } only %}
+        {% endset %}
         {% set site_name %}
-          <bolt-stack spacing="xsmall">
+          <bolt-stack spacing="none">
             {% set site_name_design_pattern %}
               {% include '@bolt-elements-text-link/text-link.twig' with {
                 content: 'Design Pattern Library',
@@ -1388,7 +1488,7 @@
             {% include '@bolt-components-headline/text.twig' with {
               text: 'Explore common implementation patterns',
               tag: 'p',
-              size: 'small',
+              size: 'xsmall',
             } only %}
           </bolt-stack>
         {% endset %}
