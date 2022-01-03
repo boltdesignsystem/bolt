@@ -57,7 +57,6 @@
 
   @at-root .c-bolt-teaser--horizontal #{&} {
     --c-bolt-teaser-aspect-ratio: 1/1;
-    aspect-ratio: var(--c-bolt-teaser-aspect-ratio);
     margin-bottom: 0;
     //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
     @supports not (aspect-ratio: var(--c-bolt-teaser-aspect-ratio)) {
