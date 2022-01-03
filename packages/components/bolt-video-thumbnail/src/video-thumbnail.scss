@@ -5,26 +5,43 @@
  */
 
 .c-bolt-video-thumbnail {
+  --c-bolt-video-thumbnail-aspect-ratio: 1/1;
+  aspect-ratio: var(--c-bolt-video-thumbnail-aspect-ratio);
   display: block;
   position: relative;
   width: 100%;
   min-width: 10rem;
-  height: 0;
   overflow: hidden;
-  padding-bottom: var(--c-bolt-video-thumbnail-aspect-ratio);
   border-radius: var(--c-bolt-video-thumbnail-border-radius);
+  //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
+  @supports not (aspect-ratio: var(--c-bolt-video-thumbnail-aspect-ratio)) {
+    height: 0;
+    padding-bottom: var(--c-bolt-video-thumbnail-aspect-ratio);
+  }
 }
 
 .c-bolt-video-thumbnail--aspect-ratio-1\:1 {
-  --c-bolt-video-thumbnail-aspect-ratio: 100%;
+  aspect-ratio: 1/1;
+  //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
+  @supports not (aspect-ratio: var(--c-bolt-video-thumbnail-aspect-ratio)) {
+    --c-bolt-video-thumbnail-aspect-ratio: 100%;
+  }
 }
 
 .c-bolt-video-thumbnail--aspect-ratio-16\:9 {
-  --c-bolt-video-thumbnail-aspect-ratio: calc(9 / 16 * 100%);
+  aspect-ratio: 16/9;
+  //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
+  @supports not (aspect-ratio: var(--c-bolt-video-thumbnail-aspect-ratio)) {
+    --c-bolt-video-thumbnail-aspect-ratio: calc(9 / 16 * 100%);
+  }
 }
 
 .c-bolt-video-thumbnail--aspect-ratio-4\:3 {
-  --c-bolt-video-thumbnail-aspect-ratio: calc(3 / 4 * 100%);
+  aspect-ratio: 4/3;
+  //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
+  @supports not (aspect-ratio: var(--c-bolt-video-thumbnail-aspect-ratio)) {
+    --c-bolt-video-thumbnail-aspect-ratio: calc(3 / 4 * 100%);
+  }
 }
 
 .c-bolt-video-thumbnail--border-radius-small {
@@ -46,7 +63,7 @@
     object-fit: cover;
     object-position: center center;
     width: 100%;
-    height: auto;
+    height: 100%;
   }
 
   > bolt-image {
