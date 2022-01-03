@@ -42,17 +42,27 @@
 }
 
 .c-bolt-teaser__signifier {
+  --c-bolt-teaser-aspect-ratio: 16/9;
   display: block;
   position: relative;
-  height: 0;
   overflow: hidden;
   margin-bottom: var(--bolt-spacing-x-xsmall);
-  padding-bottom: calc(9 / 16 * 100%);
   background-color: var(--bolt-color-gray-light);
+  aspect-ratio: var(--c-bolt-teaser-aspect-ratio);
+  //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
+  @supports not (aspect-ratio: var(--c-bolt-teaser-aspect-ratio)) {
+    height: 0;
+    padding-bottom: calc(9 / 16 * 100%);
+  }
 
   @at-root .c-bolt-teaser--horizontal #{&} {
+    --c-bolt-teaser-aspect-ratio: 1/1;
+    aspect-ratio: var(--c-bolt-teaser-aspect-ratio);
     margin-bottom: 0;
-    padding-bottom: 100%;
+    //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
+    @supports not (aspect-ratio: var(--c-bolt-teaser-aspect-ratio)) {
+      padding-bottom: 100%;
+    }
   }
 
   @at-root .c-bolt-teaser--responsive #{&} {
