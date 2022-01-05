@@ -3,10 +3,10 @@ import { LitElement, html, customElement } from 'lit-element';
 import { store } from '../../store.js'; // connect to the Redux store.
 import { updateTestMode } from '../../actions/app.js'; // redux actions needed
 import { updateArchiveMode } from '../../actions/app.js'; // redux actions needed
-import styles from './pl-toggle-test.scss?external';
+import styles from './pl-toggle-hidden-folders.scss?external';
 
-@customElement('pl-toggle-test')
-class TestToggle extends LitElement {
+@customElement('pl-toggle-hidden-folders')
+class HiddenFoldersToggle extends LitElement {
   constructor(self) {
     self = super(self);
     // self.handleClick = self.handleClick.bind(self);
@@ -80,7 +80,7 @@ class TestToggle extends LitElement {
   render() {
     return html`
       <pl-button
-        class="pl-c-tools__action pl-c-toggle-test__action"
+        class="pl-c-tools__action pl-c-toggle-hidden-folders__action"
         title="Toggle Hidden Folders"
         @click="${() => this.toggleFolders()}"
         >${this.testMode ? 'Hide' : 'Show'} Archive and Test Folders
@@ -90,4 +90,4 @@ class TestToggle extends LitElement {
   }
 }
 
-export { TestToggle };
+export { HiddenFoldersToggle };
