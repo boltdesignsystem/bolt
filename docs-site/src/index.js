@@ -101,26 +101,3 @@ const quickFiltersScrollEl = document.querySelector(
 if (quickFiltersScrollEl) {
   quickFiltersScroll(quickFiltersScrollEl);
 }
-
-const infoCardToggleButtons = document.querySelectorAll(
-  '.js-bolt-info-card-toggle-button',
-);
-
-infoCardToggleButtons.forEach(button => {
-  button.addEventListener('click', e => {
-    const el = e.target;
-    const isExpanded = el.getAttribute('aria-expanded') === 'true';
-    const otherButtons = [...infoCardToggleButtons].filter(
-      button => button !== el,
-    );
-
-    if (isExpanded) {
-      el.setAttribute('aria-expanded', false);
-    } else {
-      otherButtons.forEach(el => {
-        el.setAttribute('aria-expanded', false);
-      });
-      el.setAttribute('aria-expanded', true);
-    }
-  });
-});
