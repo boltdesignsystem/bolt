@@ -11,7 +11,6 @@ const imageTasks = require('./image-tasks');
 const iconComponentTasks = require('./icon-component-tasks');
 const iconTasks = require('./icon-tasks');
 
-const { writeBoltVersions } = require('./api-tasks/bolt-versions');
 const extraTasks = [];
 let config;
 
@@ -184,7 +183,8 @@ async function buildPrep(cleanAll = false) {
       config.env === 'static' ||
       config.env === 'pwa'
     ) {
-      await writeBoltVersions();
+      // Do not run in Drupal environment. Lerna is not available there.
+      await require('./api-tasks/bolt-versions').writeBoltVersions();
     }
     await manifest.writeTwigNamespaceFile();
   } catch (error) {
