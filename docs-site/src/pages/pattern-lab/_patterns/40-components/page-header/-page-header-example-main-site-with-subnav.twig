@@ -663,198 +663,265 @@
 
 {# User nav #}
 {% set notifications_popover_lv2_ul_content %}
-  {% set placeholder_item %}
-    <li class="c-bolt-notifications__list-item">
-      <div class="c-bolt-notifications__signifier">
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'info-circle',
-          size: 'medium',
-        } only %}
-      </div>
-      <div class="c-bolt-notifications__content">
-        <div class="c-bolt-notifications__eyebrow">
-          Site Name
-        </div>
-        <div class="c-bolt-notifications__timestamp">
-          2 days ago
-        </div>
-        <a href="https://google.com" class="c-bolt-notifications__message">
-          The notificatoin message goes here. It may have <span class="c-bolt-notifications__callout">1 callout that looks like a link</span>, but the entire row is clickable and points to a single link.
-        </a>
-      </div>
-    </li>
+  {% set icon_check_circle %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'check-circle',
+      size: 'medium',
+    } only %}
   {% endset %}
-  {% set placeholder_item_read %}
-    <li class="c-bolt-notifications__list-item c-bolt-notifications__list-item--read">
-      <div class="c-bolt-notifications__signifier">
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'info-circle',
-          size: 'medium',
-        } only %}
-      </div>
-      <div class="c-bolt-notifications__content">
-        <div class="c-bolt-notifications__eyebrow">
-          Site Name
-        </div>
-        <div class="c-bolt-notifications__timestamp">
-          2 days ago
-        </div>
-        <a href="https://google.com" class="c-bolt-notifications__message">
-          Each message can have a read or unread state. This one is read.
-        </a>
-      </div>
-    </li>
+  {% set icon_pega_setting %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-setting',
+      size: 'medium',
+    } only %}
   {% endset %}
-  
-  <div class="c-bolt-notifications">
-    <header class="c-bolt-notifications__header">
-      <div class="c-bolt-notifications__switch">
-        {% include '@bolt-components-switch-button/switch-button.twig' with {
-          label: 'Only show unread notifications',
+  {% set icon_announce %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-announce',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_calendar %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'calendar',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_certification %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'certification',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_info_circle %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'info-circle',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_pega_thumbs_up %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-thumbs-up',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_reply %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'reply',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set icon_heart %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'heart',
+      size: 'medium',
+    } only %}
+  {% endset %}
+  {% set header_switch_button %}
+    {% include '@bolt-components-switch-button/switch-button.twig' with {
+      label: 'Only show unread notifications',
+      attributes: {
+        class: 'js-target-the-switch-button-container'
+      },
+    } only %}
+    <script>
+      const switchButton = document.querySelector(
+        '.js-target-the-switch-button-container button[role="switch"]',
+      );
+
+      switchButton.addEventListener('click', e => {
+        const el = e.target;
+        const isChecked = el.getAttribute('aria-checked') === 'true';
+
+        el.setAttribute('aria-checked', isChecked ? false : true);
+      });
+    </script>
+  {% endset %}
+  {% set header_actions %}
+    {% include '@bolt-components-notifications/notifications-header-action.twig' with {
+      icon: icon_check_circle,
+      label: 'Mark all as read',
+      attributes: {
+        type: 'button',
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-header-action.twig' with {
+      icon: icon_pega_setting,
+      label: 'Notification settings',
+      attributes: {
+        href: '#!',
+      },
+    } only %}
+  {% endset %}
+  {% set content %}
+    {% set list_content %}
+      {% include '@bolt-components-notifications/notifications-list-heading-divider.twig' with {
+        content: 'Latest',
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_announce,
+        site_name: 'Community',
+        timestamp: '5 min ago',
+        message: {
+          content: 'This is an <em>unread notification</em>.',
           attributes: {
-            class: 'js-target-page-header-notifications-unread-switch'
+            href: '#!',
           },
-        } only %}
-        <script>
-          const switchButton = document.querySelector(
-            '.js-target-page-header-notifications-unread-switch button[role="switch"]',
-          );
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_announce,
+        site_name: 'Collaboration Center',
+        timestamp: '10 min ago',
+        message: {
+          content: 'This is a <em>read notification</em>.',
+          attributes: {
+            href: '#!',
+          },
+        },
+        read: true,
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-heading-divider.twig' with {
+        content: 'Recent',
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_announce,
+        site_name: 'Docs',
+        timestamp: '1 day ago',
+        message: {
+          content: 'You can make a plain notification without any actions by not passing any message attributes.',
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_announce,
+        site_name: 'Academy',
+        timestamp: '1 day ago',
+        message: {
+          content: 'You can create a notification that <em>performs a function</em> by passing <code>type="button"</code> attribute via message attributes.',
+          attributes: {
+            type: 'button',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_announce,
+        site_name: 'Portal',
+        timestamp: '2 days ago',
+        message: {
+          content: 'You can create a <em>linked notification</em> by passing <code>href</code> attribute via message attributes.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_announce,
+        site_name: 'Saleshub',
+        timestamp: '2 days ago',
+        message: {
+          content: 'You can <em>emphasize certain words</em> with the <code>em</code> HTML element. Emphasized text visually looks like a text link.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_info_circle,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>info-circle</em> icon for general information.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_calendar,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>calendar</em> icon for event notification.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_certification,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>certification</em> icon for Academy badge earning notification.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_pega_thumbs_up,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>pega-thumbs-up</em> icon for like notification.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_heart,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>heart</em> icon for favorite notification.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+        signifier: icon_reply,
+        site_name: 'Site Name',
+        timestamp: '3 days ago',
+        message: {
+          content: 'Use <em>reply</em> icon for reply notification.',
+          attributes: {
+            href: '#!',
+          },
+        },
+      } only %}
+    {% endset %}
 
-          switchButton.addEventListener('click', e => {
-            const el = e.target;
-            const isChecked = el.getAttribute('aria-checked') === 'true';
+    {% include '@bolt-components-notifications/notifications-list.twig' with {
+      content: list_content,
+    } only %}
+  {% endset %}
+  {% set footer_content %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'View all notifications',
+      reversed_underline: true,
+      expand_click_target: true,
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
 
-            el.setAttribute('aria-checked', isChecked ? false : true);
-          });
-        </script>
-      </div>
-      <div class="c-bolt-notifications__actions">
-        {% set icon_check_circle %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'check-circle',
-            size: 'medium',
-          } only %}
-        {% endset %}
-        <button class="c-bolt-notifications__action-button" type="button">
-          {{ icon_check_circle }}
-          <span class="c-bolt-notifications__action-button-text">Mark all as read</span>
-        </button>
-
-        {% set icon_pega_setting %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'pega-setting',
-            size: 'medium',
-          } only %}
-        {% endset %}
-        <a class="c-bolt-notifications__action-button" href="https://google.com">
-          {{ icon_pega_setting }}
-          <span class="c-bolt-notifications__action-button-text">Notification Settings</span>
-        </a>
-      </div>
-    </header>
-    <ul class="c-bolt-notifications__list">
-      <li class="c-bolt-notifications__list-item c-bolt-notifications__list-item--section-heading">
-        <strong>Latest</strong>
-      </li>
-      <li class="c-bolt-notifications__list-item">
-        <div class="c-bolt-notifications__signifier">
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'pega-announce',
-            size: 'medium',
-          } only %}
-        </div>
-        <div class="c-bolt-notifications__content">
-          <div class="c-bolt-notifications__eyebrow">
-            google.com
-          </div>
-          <div class="c-bolt-notifications__timestamp">
-            1 minute ago
-          </div>
-          <a href="https://google.com" class="c-bolt-notifications__message">
-             <span class="c-bolt-notifications__callout">New Gartner CRM CEC Magic Quadrant analyst report</span> is published.
-          </a>
-        </div>
-      </li>
-      {{ placeholder_item_read }}
-      {{ placeholder_item_read }}
-      <li class="c-bolt-notifications__list-item">
-        <div class="c-bolt-notifications__signifier">
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'pega-thumbs-up',
-            size: 'medium',
-          } only %}
-        </div>
-        <div class="c-bolt-notifications__content">
-          <div class="c-bolt-notifications__eyebrow">
-            Collaboration Center
-          </div>
-          <div class="c-bolt-notifications__timestamp">
-            2 minutes ago
-          </div>
-          <a href="https://google.com" class="c-bolt-notifications__message">
-            Aneesh Borah, Matt Alley and 2 others liked your idea, <span class="c-bolt-notifications__callout">Multi-datacenter setup in 8.6.1 with two Openshift clusters</span>.
-          </a>
-        </div>
-      </li>
-      <li class="c-bolt-notifications__list-item">
-        <div class="c-bolt-notifications__signifier">
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'info-circle',
-            size: 'medium',
-          } only %}
-        </div>
-        <div class="c-bolt-notifications__content">
-          <div class="c-bolt-notifications__eyebrow">
-            Community
-          </div>
-          <div class="c-bolt-notifications__timestamp">
-            5 minutes ago
-          </div>
-          <a href="https://google.com" class="c-bolt-notifications__message">
-            There will be a site-wide maintenance scheduled for Wednesday, September 15, 2021 from 1&ndash;4PM EST.
-          </a>
-        </div>
-      </li>
-      <li class="c-bolt-notifications__list-item">
-        <div class="c-bolt-notifications__signifier">
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'info-circle',
-            size: 'medium',
-          } only %}
-        </div>
-        <div class="c-bolt-notifications__content">
-          <div class="c-bolt-notifications__eyebrow">
-            Academy
-          </div>
-          <div class="c-bolt-notifications__timestamp">
-            6 minutes ago
-          </div>
-          <a href="https://google.com" class="c-bolt-notifications__message">
-            A mission you follow has been updated: <span class="c-bolt-notifications__callout">Pega Robotic Automation</span>.
-          </a>
-        </div>
-      </li>
-      <li class="c-bolt-notifications__list-item c-bolt-notifications__list-item--section-heading">
-        <strong>Earlier</strong>
-      </li>
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-      {{ placeholder_item_read }}
-      {{ placeholder_item_read }}
-      {{ placeholder_item_read }}
-      {{ placeholder_item_read }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-      {{ placeholder_item }}
-    </ul>
-    <footer class="c-bolt-notifications__footer">
-      <a href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline e-bolt-text-link--expand-click-target">View all notifications</a>
-    </footer>
-  </div>
+  {# listitem role needed because it is going into a ul element #}
+  {% include '@bolt-components-notifications/notifications.twig' with {
+    header: {
+      switch_button: header_switch_button,
+      actions: header_actions,
+    },
+    content: content,
+    footer: {
+      content: footer_content,
+    },
+    attributes: {
+      role: 'listitem',
+    },
+  } only %}
 {% endset %}
 
 {% set notifications_popover_lv2 %}
