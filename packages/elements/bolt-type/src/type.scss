@@ -101,9 +101,14 @@
   --e-bolt-type-font-family: var(--bolt-type-font-family-headline);
   --e-bolt-type-font-size: var(--bolt-type-font-size-xsmall);
   --e-bolt-type-color: var(--m-bolt-neutral);
-  --e-bolt-type-line-height: var(--bolt-type-line-height-small);
+  --e-bolt-type-line-height: var(--bolt-type-line-height-xsmall);
   --e-bolt-type-letter-spacing: var(--bolt-type-letter-spacing-wide);
 
-  margin-bottom: 0.1;
+  margin-bottom: 0.1rem;
   text-transform: uppercase;
+}
+
+// Inline text
+span.e-bolt-type {
+  margin: 0;
 }

@@ -1,6 +1,6 @@
 {% set notes %}
   <bolt-ol>
-    <bolt-li>If size is not defined or set to auto, font-size inherits from parent container.</bolt-li>
+    <bolt-li>Use hierarchy to create common typography pairings.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -28,15 +28,39 @@
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-elements-type/type.twig' with {
-  content: 'This is size xxxlarge.'
+  content: 'Eyebrow',
+  hierarchy: 'eyebrow',
+} only %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'Headline (size xxxlarge and h1)',
+  hierarchy: 'headline',
+  tag: 'h1',
   size: 'xxxlarge',
+} only %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'Subheadline (size xlarge and h2)',
+  hierarchy: 'subheadline',
+  tag: 'h2',
+  size: 'xlarge',
+} only %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'Paragraph (basic type element).',
 } only %}
 {% endverbatim %}{% endset %}
 
 {% set html_markup %}
 {% verbatim %}
+<p class="e-bolt-type e-bolt-type--eyebrow">
+  Eyebrow
+</p>
+<h1 class="e-bolt-type e-bolt-type--headline">
+  Headline (size xxxlarge and h1)
+</h1>
+<h2 class="e-bolt-type e-bolt-type--subheadline">
+  Subheadline (size xlarge and h2)
+</h2>
 <p class="e-bolt-type">
-  This is size xxxlarge.
+  Paragraph (basic type element).
 </p>
 {% endverbatim %}
 {% endset %}
