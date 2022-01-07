@@ -12,9 +12,8 @@
 // Dev Notes
 // 1. Make this only show on smaller devices to align with the modal display change (when it starts to cover the screen).
 // 2. Target only Safari with this fix (this is to help prevent regressions).
-// 3. Place this background directly behind the modal to prevent other elements from displaying over it.
-// 4. Forces the background color to spill out the bottom of the page to cover the browser scrrolling/painting issues.
-// 5. This fixes a table specific regression that didn't allow the model to show over the background color.
+// 3. Forces the background color to spill out the bottom of the page to cover the browser scrrolling/painting issues.
+// 4. This fixes a table specific regression that didn't allow the modal to show over the background color.
 
 .u-bolt-ios-content-fill {
   @include bolt-mq($until: small) {
@@ -27,15 +26,14 @@
         position: fixed;
         top: 0;
         right: 0;
-        bottom: 0;
         left: 0;
-        z-index: bolt-z-index('modal') - 1; // [3]
-        height: 150vh; // [4]
+        z-index: bolt-z-index('modal');
+        height: 150vh; // [3]
         background-color: var(--bolt-color-navy);
       }
 
       .c-bolt-table {
-        display: inline-table; // [5]
+        display: inline-table; // [4]
 
         bolt-modal .c-bolt-table {
           display: inline-block;
