@@ -1,0 +1,39 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Semantics is independent of visual styles, this allows flexibility when building all kinds of text layouts. Reference other props to style text within a type element.</bolt-li>
+    <bolt-li>Use <code>&lt;span&gt;</code> for inline text.</bolt-li>
+    <bolt-li>Use <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, <code>&lt;h5&gt;</code>, <code>&lt;h6&gt;</code>, or <code>&lt;div&gt;</code> for block text.</bolt-li>
+    <bolt-li>General HTML rules apply here, do not nest block text inside inline text or another block text unless it is a generic <code>&lt;div&gt;</code>.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'This type element is a level 4 heading. No styles are defined so this looks like plain text.',
+    tag: 'h4',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'This type element is a level 4 heading. No styles are defined so this looks like plain text.'
+  tag: 'h4',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<h4 class="e-bolt-type">
+  This type element is a level 4 heading. No styles are defined so this looks like plain text.
+</h4>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Type Tag',
+  description: 'Tag defines the semantic tag for the type element.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

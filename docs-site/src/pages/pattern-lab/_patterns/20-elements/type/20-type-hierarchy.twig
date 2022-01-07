@@ -1,0 +1,51 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>If size is not defined or set to auto, font-size inherits from parent container.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'Eyebrow',
+    hierarchy: 'eyebrow',
+  } only %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'Headline (size xxxlarge and h1)',
+    hierarchy: 'headline',
+    tag: 'h1',
+    size: 'xxxlarge',
+  } only %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'Subheadline (size xlarge and h2)',
+    hierarchy: 'subheadline',
+    tag: 'h2',
+    size: 'xlarge',
+  } only %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'Paragraph (basic type element).',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'This is size xxxlarge.'
+  size: 'xxxlarge',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<p class="e-bolt-type">
+  This is size xxxlarge.
+</p>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Type Hierarchy',
+  description: 'Hierarchy defines specific recipes of typographic styles that creates visual hierarchy amongst type elements.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}
