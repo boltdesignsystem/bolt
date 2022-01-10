@@ -11,8 +11,8 @@ const tabbable = require('tabbable');
 const ESCAPE_KEY = 27;
 let cx = classNames.bind(styles);
 
-// This conditional will target iOS Safari on mobile, if true, it will add the "u-bolt-ios-content-fill" class to the body.
-// Refer to the documentation on "packages/global/styles/07-utilities/_utilities-ios-content-fill.scss" for more details
+// This conditional will target iOS Safari on mobile, if true, it will add the "c-bolt-modal-ios-content-fill" class to the body.
+// Refer to the documentation on "packages/components/bolt-modal/src/modal.scss" for more details
 const isiOS =
   window.matchMedia('(max-width: 37.5em)') &&
   CSS.supports('-webkit-touch-callout', 'none')
@@ -112,7 +112,7 @@ class BoltModal extends BoltElement {
 
     document.body.classList.add('u-bolt-overflow-hidden');
     if (isiOS) {
-      document.body.classList.add('u-bolt-ios-content-fill');
+      document.body.classList.add('c-bolt-modal-ios-content-fill');
     }
 
     // @todo: re-evaluate if the trigger element used needs to have it's tabindex messed with
@@ -150,7 +150,7 @@ class BoltModal extends BoltElement {
 
     document.body.classList.remove('u-bolt-overflow-hidden');
     if (isiOS) {
-      document.body.classList.remove('u-bolt-ios-content-fill');
+      document.body.classList.remove('c-bolt-modal-ios-content-fill');
     }
 
     this.transitionDuration = getTransitionDuration(
