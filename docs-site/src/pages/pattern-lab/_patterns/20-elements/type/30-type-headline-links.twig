@@ -1,0 +1,106 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Turn headline, subheadline, and eyebrow into links by passing proper HTML attributes via <code>link_attributes</code>.</bolt-li>
+    <bolt-li>Headline, subheadline, and eyebrow links created this way will utilize the reversed underline style from the <a href="{{ link['elements-text-link-reversed-underline'] }}" class="e-bolt-text-link">Text Link</a> element, icon is recommended to be used as a visual cue while underline is not visible. The twig template has reversed underline on by default, however, when writing raw HTML, this style needs to be written out manually using appropriate Text Link modifier classes.</bolt-li>
+    <bolt-li><code>link_attributes</code> will turn the entire paragraph of text into a link, so it is not recommended for body text links. Instead, use the <a href="{{ link['elements-text-link-reversed-underline'] }}" class="e-bolt-text-link">Text Link</a> element for inline links within a paragraph of text.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set icon_chevron_right %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'chevron-right',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'Eyebrow link',
+    hierarchy: 'eyebrow',
+    icon_after: icon_chevron_right,
+    link_attributes: {
+      href: '#!',
+    },
+  } only %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'Headline link',
+    hierarchy: 'headline',
+    tag: 'h1',
+    size: 'xxxlarge',
+    icon_after: icon_chevron_right,
+    link_attributes: {
+      href: '#!',
+    },
+  } only %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'Subheadline link',
+    hierarchy: 'subheadline',
+    tag: 'h2',
+    size: 'xlarge',
+    icon_after: icon_chevron_right,
+    link_attributes: {
+      href: '#!',
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set icon_chevron_right %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'Eyebrow link',
+  hierarchy: 'eyebrow',
+  icon_after: icon_chevron_right,
+  link_attributes: {
+    href: '#!',
+  },
+} only %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'Headline link',
+  hierarchy: 'headline',
+  tag: 'h1',
+  size: 'xxxlarge',
+  icon_after: icon_chevron_right,
+  link_attributes: {
+    href: '#!',
+  },
+} only %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'Subheadline link',
+  hierarchy: 'subheadline',
+  tag: 'h2',
+  size: 'xlarge',
+  icon_after: icon_chevron_right,
+  link_attributes: {
+    href: '#!',
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<p class="e-bolt-type e-bolt-type--eyebrow">
+  Eyebrow
+</p>
+<h1 class="e-bolt-type e-bolt-type--headline">
+  Headline (size xxxlarge and h1)
+</h1>
+<h2 class="e-bolt-type e-bolt-type--subheadline">
+  Subheadline (size xlarge and h2)
+</h2>
+<p class="e-bolt-type">
+  Paragraph (basic type element).
+</p>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Headline Links',
+  description: 'Link styles for headline, subheadline, and eyebrow.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

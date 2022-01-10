@@ -26,4 +26,16 @@
 ] %}
 
 {# Template #}
-<{{ this.data.tag.value }} {{ attributes.addClass(classes) }}>{{ this.data.content.value|spaceless }}</{{ this.data.tag.value }}>
+{% spaceless %}<{{ this.data.tag.value }} {{ attributes.addClass(classes) }}>
+  {% if link_attributes %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: this.data.content.value,
+      icon_before: icon_before ? icon_before : null,
+      icon_after: icon_after ? icon_after : null,
+      reversed_underline: true ? this.data.hierarchy.value != schema.properties.hierarchy.default,
+      attributes: link_attributes,
+    } only %}
+  {% else %}
+    {% if icon_before %}<span class="e-bolt-type__icon-before" aria-hidden="true">{{ icon_before|spaceless }}</span>{% endif %}{{ this.data.content.value|spaceless }}{% if icon_after %}<span class="e-bolt-type__icon-after" aria-hidden="true">{{ icon_after|spaceless }}</span>{% endif %}
+  {% endif %}
+</{{ this.data.tag.value }}>{% endspaceless %}

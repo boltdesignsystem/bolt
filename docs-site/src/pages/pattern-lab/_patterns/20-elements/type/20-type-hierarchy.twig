@@ -1,32 +1,104 @@
+{% set schema = bolt.data.components['@bolt-elements-type'].schema %}
+
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Use hierarchy to create common typography pairings.</bolt-li>
+    <bolt-li>Using bold basic text is not the same as using headline hierarchy. Headline, subheadline, and eyebrow have specific typographic styles that differentiate from basic text element, such as color, spacing, and font.</bolt-li>
+    <bolt-li>Using <code>&lt;strong&gt;</code> in tandem with subheadline hierarchy will create the same styles as headline hierarchy. This flexibility allows content authors to create mixed-weight headlines.</bolt-li>
+    <bolt-li>Eyebrow has one size only, because its main purpose is to be short complimentary info above the headline.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
-  {% include '@bolt-elements-type/type.twig' with {
-    content: 'Eyebrow',
-    hierarchy: 'eyebrow',
-  } only %}
-  {% include '@bolt-elements-type/type.twig' with {
-    content: 'Headline (size xxxlarge and h1)',
-    hierarchy: 'headline',
-    tag: 'h1',
-    size: 'xxxlarge',
-  } only %}
-  {% include '@bolt-elements-type/type.twig' with {
-    content: 'Subheadline (size xlarge and h2)',
-    hierarchy: 'subheadline',
-    tag: 'h2',
-    size: 'xlarge',
-  } only %}
-  {% include '@bolt-elements-type/type.twig' with {
-    content: 'Paragraph (basic type element).',
-  } only %}
+  <bolt-tabs inset="off" label-spacing="medium">
+    <bolt-tab-panel>
+      <bolt-text slot="label">Teaser Text Group</bolt-text>
+      <div class="t-bolt-gray-xlight u-bolt-padding-medium">
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'Eyebrow',
+          hierarchy: 'eyebrow',
+        } only %}
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'Headline (size xxxlarge and h1)',
+          hierarchy: 'headline',
+          tag: 'h1',
+          size: 'xxxlarge',
+        } only %}
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'Subheadline (size xlarge and h2)',
+          hierarchy: 'subheadline',
+          tag: 'h2',
+          size: 'xlarge',
+        } only %}
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'Body text (basic type element).',
+        } only %}
+      </div>
+    </bolt-tab-panel>
+
+    <bolt-tab-panel>
+      <bolt-text slot="label">Mixed-weight Headlines</bolt-text>
+      <div class="t-bolt-gray-xlight u-bolt-padding-medium">
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'This entire sentence is a subheadline <strong>but part of it is bold</strong>',
+          hierarchy: 'subheadline',
+          tag: 'h1',
+          size: 'xxxlarge',
+        } only %}
+      </div>
+    </bolt-tab-panel>
+
+    <bolt-tab-panel>
+      <bolt-text slot="label">Headlines</bolt-text>
+      <div class="t-bolt-gray-xlight u-bolt-padding-medium">
+        {% for size in schema.properties.size.enum %}
+          {% include '@bolt-elements-type/type.twig' with {
+            content: 'This is size ' ~ size ~ ' headline',
+            hierarchy: 'headline',
+            size: size,
+          } only %}
+        {% endfor %}
+      </div>
+    </bolt-tab-panel>
+
+    <bolt-tab-panel>
+      <bolt-text slot="label">Subheadlines</bolt-text>
+      <div class="t-bolt-gray-xlight u-bolt-padding-medium">
+        {% for size in schema.properties.size.enum %}
+          {% include '@bolt-elements-type/type.twig' with {
+            content: 'This is size ' ~ size ~ ' subheadline',
+            hierarchy: 'subheadline',
+            size: size,
+          } only %}
+        {% endfor %}
+      </div>
+    </bolt-tab-panel>
+
+    <bolt-tab-panel>
+      <bolt-text slot="label">Eyebrow</bolt-text>
+      <div class="t-bolt-gray-xlight u-bolt-padding-medium">
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'This is an eyebrow',
+          hierarchy: 'eyebrow',
+        } only %}
+      </div>
+    </bolt-tab-panel>
+
+    <bolt-tab-panel>
+      <bolt-text slot="label">Body</bolt-text>
+      <div class="t-bolt-gray-xlight u-bolt-padding-medium">
+        {% for size in schema.properties.size.enum %}
+          {% include '@bolt-elements-type/type.twig' with {
+            content: 'This is size ' ~ size ~ ' body text',
+            size: size,
+          } only %}
+        {% endfor %}
+      </div>
+    </bolt-tab-panel>
+  </bolt-tabs>
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
+{# Teaser Text Group #}
 {% include '@bolt-elements-type/type.twig' with {
   content: 'Eyebrow',
   hierarchy: 'eyebrow',
@@ -45,6 +117,14 @@
 } only %}
 {% include '@bolt-elements-type/type.twig' with {
   content: 'Paragraph (basic type element).',
+} only %}
+
+{# Mixed-weight Headlines #}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'This entire sentence is a subheadline <strong>but part of it is bold</strong>',
+  hierarchy: 'subheadline',
+  tag: 'h1',
+  size: 'xxxlarge',
 } only %}
 {% endverbatim %}{% endset %}
 
