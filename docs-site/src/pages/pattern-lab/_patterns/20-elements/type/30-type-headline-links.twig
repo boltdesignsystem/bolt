@@ -1,8 +1,8 @@
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Turn headline, subheadline, and eyebrow into links by passing proper HTML attributes via <code>link_attributes</code>.</bolt-li>
-    <bolt-li>Headline, subheadline, and eyebrow links created this way will utilize the reversed underline style from the <a href="{{ link['elements-text-link-reversed-underline'] }}" class="e-bolt-text-link">Text Link</a> element, icon is recommended to be used as a visual cue while underline is not visible. The twig template has reversed underline on by default, however, when writing raw HTML, this style needs to be written out manually using appropriate Text Link modifier classes.</bolt-li>
-    <bolt-li><code>link_attributes</code> will turn the entire paragraph of text into a link, so it is not recommended for body text links. Instead, use the <a href="{{ link['elements-text-link-reversed-underline'] }}" class="e-bolt-text-link">Text Link</a> element for inline links within a paragraph of text.</bolt-li>
+    <bolt-li>Turn headline, subheadline, and eyebrow into links by passing proper HTML attributes via <code>link_attributes</code>. Same as <a href="{{ link['elements-text-link-attributes'] }}" class="e-bolt-text-link">Text Link</a> element, depending on if the <code>&lt;a&gt;</code> or the <code>&lt;button&gt;</code> HTML element is being used, the proper HTML attributes should be passed.</bolt-li>
+    <bolt-li>Headline, subheadline, and eyebrow links created this way will utilize the reversed underline style from the <a href="{{ link['elements-text-link-reversed-underline'] }}" class="e-bolt-text-link">Text Link</a> element, icon is recommended to be used as a visual cue while underline is not visible. The twig template has reversed underline on by default, however, when writing plain HTML, this style needs to be written out manually using appropriate Text Link modifier classes.</bolt-li>
+    <bolt-li><code>link_attributes</code> will turn the entire paragraph of text into a link, so it is not recommended for body text links. Instead, use the <a href="{{ link['elements-text-link-reversed-underline'] }}" class="e-bolt-text-link">Text Link</a> element or <code>&lt;a&gt;</code> HTML element for inline links within a paragraph of text.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -12,34 +12,50 @@
       name: 'chevron-right',
     } only %}
   {% endset %}
-  {% include '@bolt-elements-type/type.twig' with {
-    content: 'Eyebrow link',
-    hierarchy: 'eyebrow',
-    icon_after: icon_chevron_right,
-    link_attributes: {
-      href: '#!',
-    },
-  } only %}
-  {% include '@bolt-elements-type/type.twig' with {
-    content: 'Headline link',
-    hierarchy: 'headline',
-    tag: 'h1',
-    size: 'xxxlarge',
-    icon_after: icon_chevron_right,
-    link_attributes: {
-      href: '#!',
-    },
-  } only %}
-  {% include '@bolt-elements-type/type.twig' with {
-    content: 'Subheadline link',
-    hierarchy: 'subheadline',
-    tag: 'h2',
-    size: 'xlarge',
-    icon_after: icon_chevron_right,
-    link_attributes: {
-      href: '#!',
-    },
-  } only %}
+  <bolt-tabs inset="off" label-spacing="medium">
+    <bolt-tab-panel>
+      <bolt-text slot="label">Block Link</bolt-text>
+      <div class="t-bolt-gray-xlight u-bolt-padding-medium">
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'Eyebrow link',
+          hierarchy: 'eyebrow',
+          icon_after: icon_chevron_right,
+          link_attributes: {
+            href: '#!',
+          },
+        } only %}
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'Headline link',
+          hierarchy: 'headline',
+          tag: 'h1',
+          size: 'xxxlarge',
+          icon_after: icon_chevron_right,
+          link_attributes: {
+            href: '#!',
+          },
+        } only %}
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'Subheadline link',
+          hierarchy: 'subheadline',
+          tag: 'h2',
+          size: 'xlarge',
+          icon_after: icon_chevron_right,
+          link_attributes: {
+            href: '#!',
+          },
+        } only %}
+      </div>
+    </bolt-tab-panel>
+
+    <bolt-tab-panel>
+      <bolt-text slot="label">Inline Link</bolt-text>
+      <div class="t-bolt-gray-xlight u-bolt-padding-medium">
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'This is a paragraph of text. In the middle of it, it has <a href="#!">an inline link</a>. This inline link can be a Text Link element or an HTML anchor element.',
+        } only %}
+      </div>
+    </bolt-tab-panel>
+  </bolt-tabs>
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
@@ -49,6 +65,7 @@
   } only %}
 {% endset %}
 
+{# Block Link #}
 {% include '@bolt-elements-type/type.twig' with {
   content: 'Eyebrow link',
   hierarchy: 'eyebrow',
@@ -77,24 +94,20 @@
     href: '#!',
   },
 } only %}
+
+{# Inline Link #}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'This is a paragraph of text. In the middle of it, it has <a href="#!">an inline link</a>. This inline link can be a Text Link element or an HTML anchor element.',
+} only %}
 {% endverbatim %}{% endset %}
 
-{% set html_markup %}
-{% verbatim %}
-<p class="e-bolt-type e-bolt-type--eyebrow">
-  Eyebrow
-</p>
-<h1 class="e-bolt-type e-bolt-type--headline">
-  Headline (size xxxlarge and h1)
-</h1>
-<h2 class="e-bolt-type e-bolt-type--subheadline">
-  Subheadline (size xlarge and h2)
-</h2>
-<p class="e-bolt-type">
-  Paragraph (basic type element).
-</p>
-{% endverbatim %}
-{% endset %}
+{% set html_markup %}{% verbatim %}
+<!-- Block Link -->
+<h1 class="e-bolt-type e-bolt-type--size-xxxlarge e-bolt-type--headline"><a href="#!" class="e-bolt-text-link e-bolt-text-link--reversed-underline">Headline link<span class="e-bolt-text-link__icon-after"><!-- Icon or image markup --></span></a></h1>
+
+<!-- Inline Link -->
+<p class="e-bolt-type">This is a paragraph of text. In the middle of it, it has <a href="#!">an inline link</a>. This inline link can be a Text Link element or an HTML anchor element.</p>
+{% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Headline Links',

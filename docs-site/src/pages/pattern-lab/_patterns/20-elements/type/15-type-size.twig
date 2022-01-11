@@ -23,17 +23,13 @@
 } only %}
 {% endverbatim %}{% endset %}
 
-{% set html_markup %}
-{% verbatim %}
-<p class="e-bolt-type">
-  This is size xxxlarge.
-</p>
-{% endverbatim %}
-{% endset %}
+{% set html_markup %}{% verbatim %}
+<p class="e-bolt-type e-bolt-type--xxxlarge">This is size xxxlarge.</p>
+{% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Type Size',
-  description: 'Size defines the font-size for the type element.',
+  description: 'Size defines the font-size of the type element.',
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,

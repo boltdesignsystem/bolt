@@ -2,9 +2,10 @@
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Using bold basic text is not the same as using headline hierarchy. Headline, subheadline, and eyebrow have specific typographic styles that differentiate from basic text element, such as color, spacing, and font.</bolt-li>
+    <bolt-li>As mentioned before, <code>tag</code> controls semantics while <code>hierarchy</code> controls visual styles.</bolt-li>
+    <bolt-li>Using bold text is not the same as using headline hierarchy. Headline, subheadline, and eyebrow have specific typographic styles&mdash;color, spacing, and font&mdash;that differentiate them from basic text.</bolt-li>
     <bolt-li>Using <code>&lt;strong&gt;</code> in tandem with subheadline hierarchy will create the same styles as headline hierarchy. This flexibility allows content authors to create mixed-weight headlines.</bolt-li>
-    <bolt-li>Eyebrow has one size only, because its main purpose is to be short complimentary info above the headline.</bolt-li>
+    <bolt-li>Eyebrow has one size only, because its main purpose is to be short complimentary info above the headline. Due to eyebrow text set to uppercase by design, it is recommended to set <code>aria-label</code> with the proper case to improve accessibility.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -16,6 +17,9 @@
         {% include '@bolt-elements-type/type.twig' with {
           content: 'Eyebrow',
           hierarchy: 'eyebrow',
+          attributes: {
+            'aria-label': 'Eyebrow',
+          },
         } only %}
         {% include '@bolt-elements-type/type.twig' with {
           content: 'Headline (size xxxlarge and h1)',
@@ -102,6 +106,9 @@
 {% include '@bolt-elements-type/type.twig' with {
   content: 'Eyebrow',
   hierarchy: 'eyebrow',
+  attributes: {
+    'aria-label': 'Eyebrow',
+  },
 } only %}
 {% include '@bolt-elements-type/type.twig' with {
   content: 'Headline (size xxxlarge and h1)',
@@ -128,26 +135,30 @@
 } only %}
 {% endverbatim %}{% endset %}
 
-{% set html_markup %}
-{% verbatim %}
-<p class="e-bolt-type e-bolt-type--eyebrow">
+{% set html_markup %}{% verbatim %}
+<!-- Teaser Text Group -->
+<p class="e-bolt-type e-bolt-type--eyebrow" aria-label="Eyebrow">
   Eyebrow
 </p>
-<h1 class="e-bolt-type e-bolt-type--headline">
+<h1 class="e-bolt-type e-bolt-type--headline e-bolt-type--xxxlarge">
   Headline (size xxxlarge and h1)
 </h1>
-<h2 class="e-bolt-type e-bolt-type--subheadline">
+<h2 class="e-bolt-type e-bolt-type--subheadline e-bolt-type--xlarge">
   Subheadline (size xlarge and h2)
 </h2>
 <p class="e-bolt-type">
   Paragraph (basic type element).
 </p>
-{% endverbatim %}
-{% endset %}
+
+<!-- Mixed-weight Headlines -->
+<h1 class="e-bolt-type e-bolt-type--subheadline e-bolt-type--xxxlarge">
+  This entire sentence is a subheadline <strong>but part of it is bold</strong>
+</h1>
+{% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Type Hierarchy',
-  description: 'Hierarchy defines specific recipes of typographic styles that creates visual hierarchy amongst type elements.',
+  description: 'Hierarchy defines specific recipes of typographic styles that create visual hierarchy amongst type elements.',
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,

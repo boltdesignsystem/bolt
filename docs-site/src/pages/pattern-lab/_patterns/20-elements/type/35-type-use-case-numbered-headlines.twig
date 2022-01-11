@@ -1,0 +1,114 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use the List component to create an inline list with <code>tag</code> set to <code>div</code>, <code>spacing</code> set to <code>small</code>, and <code>nowrap</code> set to <code>true</code>.</bolt-li>
+    <bolt-li>Pass the Shape element with a bold number as the first list item.</bolt-li>
+    <bolt-li>Pass the Type element as the second list item.</bolt-li>
+    <bolt-li>Adjust the Shape and Type element&rsquo;s <code>size</code> to create the desired design.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set number_sm %}
+    {% include '@bolt-elements-shape/shape.twig' with {
+      content: '<strong>1</strong>',
+      size: 'small',
+      attributes: {
+        class: 't-bolt-teal',
+      },
+    } only %}
+  {% endset %}
+  {% set number_md %}
+    {% include '@bolt-elements-shape/shape.twig' with {
+      content: '<strong>1</strong>',
+      size: 'medium',
+      attributes: {
+        class: 't-bolt-teal',
+      },
+    } only %}
+  {% endset %}
+  {% set headline_xxl %}
+    {% include '@bolt-elements-type/type.twig' with {
+      content: 'Numbered headline xxlarge',
+      hierarchy: 'headline',
+      tag: 'h4',
+      size: 'xxlarge',
+    } only %}
+  {% endset %}
+  {% set headline_xxxl %}
+    {% include '@bolt-elements-type/type.twig' with {
+      content: 'Numbered headline xxxlarge',
+      hierarchy: 'headline',
+      tag: 'h4',
+      size: 'xxxlarge',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    tag: 'div',
+    nowrap: true,
+    spacing: 'small',
+    items: [
+      number_md,
+      headline_xxxl,
+    ],
+  } only %}
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    tag: 'div',
+    nowrap: true,
+    spacing: 'small',
+    items: [
+      number_sm,
+      headline_xxl,
+    ],
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set number %}
+  {% include '@bolt-elements-shape/shape.twig' with {
+    content: '<strong>1</strong>',
+    size: 'small',
+    attributes: {
+      class: 't-bolt-teal',
+    },
+  } only %}
+{% endset %}
+{% set headline %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'Numbered headline xxlarge',
+    hierarchy: 'headline',
+    tag: 'h4',
+    size: 'xxlarge',
+  } only %}
+{% endset %}
+{% include '@bolt-components-list/list.twig' with {
+  display: 'inline',
+  nowrap: true,
+  spacing: 'small',
+  items: [
+    number,
+    headline,
+  ],
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<bolt-list display="inline" tag="div" spacing="small" nowrap>
+  <bolt-list-item>
+    <span class="e-bolt-shape"><span class="e-bolt-shape__content"><strong>1</strong></span></span>
+  </bolt-list-item>
+  <bolt-list-item>
+    <h1 class="e-bolt-type e-bolt-type--headline e-bolt-type--xxxlarge">Numbered headline</h1>
+  </bolt-list-item>
+</bolt-list>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Use Case: Numbered Headline',
+  description: 'Combine the List component, Shape element, and Type element to create numbered headlines.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}
