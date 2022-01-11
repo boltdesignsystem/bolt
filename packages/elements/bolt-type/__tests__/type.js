@@ -22,7 +22,7 @@ beforeAll(async () => {
   });
 
   const defaultData = {
-    content: 'This is a type',
+    content: 'This is a type element',
   };
 
   fixtures = {
@@ -32,31 +32,10 @@ beforeAll(async () => {
 
 describe('Bolt Type element', () => {
   test('default', async () => {
-    const results = await render(
-      '@bolt-elements-type/type.twig',
-      {
-        ...fixtures.defaultData,
-      },
-    );
+    const results = await render('@bolt-elements-type/type.twig', {
+      ...fixtures.defaultData,
+    });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 });
-
-// describe('Bolt Type prop -', () => {
-//   // Target each of the schema keys with the following pattern
-//   [PROP KEY].enum.forEach(async (option) => {
-//     test(`[PROP KEY] items: ${option}`, async () => {
-//       const results = await render(
-//         '@bolt-components-type/type.twig',
-//         {
-//           ...fixtures.defaultData,
-//           [PROP KEY]: option,
-//         }
-//       );
-
-//       await expect(results.ok).toBe(true);
-//       await expect(results.html).toMatchSnapshot();
-//     });
-//   });
-// });
