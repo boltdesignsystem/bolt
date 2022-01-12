@@ -1,0 +1,14 @@
+:root {
+  --bolt-animation-duration: 500ms;
+}
+
+.a-bolt-fade {
+  animation-duration: var(--bolt-animation-duration);
+  animation-fill-mode: both;
+}
+
+@media print, (prefers-reduced-motion: reduce) {
+  .a-bolt-fade {
+    animation-duration: 0ms !important;
+  }
+}
