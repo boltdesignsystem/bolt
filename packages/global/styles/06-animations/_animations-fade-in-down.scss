@@ -1,0 +1,15 @@
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -50%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.a-bolt-fade--in-down {
+  animation-name: fade-in-down;
+}
