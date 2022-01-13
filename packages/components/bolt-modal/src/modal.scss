@@ -24,9 +24,42 @@ $bolt-modal-transition: var(--bolt-transition);
 $bolt-modal-breakpoint: 'small';
 $bolt-modal-animation-scale: 0.95;
 
-// Hide all the non-trigger (button / link, etc) content inside the <bolt-modal> container before the JS kicks in
-bolt-modal:not([ready]) {
-  display: none;
+bolt-modal {
+  &[open] {
+    /*
+      This is a fix to a iOS Safari specific bug.
+      The following tickets track the bugs that this fix is supposed to fix.
+      * https://pegadigitalit.atlassian.net/browse/WWW-1157
+      * https://pegadigitalit.atlassian.net/browse/DS-448
+    */
+
+    // Dev Notes
+    // 1. Make this only show on smaller devices to align with the modal display change (when it starts to cover the screen).
+    // 2. Target only Safari with this fix (this is to help prevent regressions).
+    // 3. Forces the background color to spill out the bottom of the page to cover the browser scrrolling/painting issues.
+    @include bolt-mq($until: small) {
+      // [1]
+      @supports (-webkit-touch-callout: none) {
+        // [2]
+        &:before {
+          content: '';
+          display: block;
+          position: fixed;
+          top: 0;
+          right: 0;
+          left: 0;
+          z-index: bolt-z-index('modalBG');
+          height: 150vh; // [3]
+          background-color: var(--bolt-color-navy);
+        }
+      }
+    }
+  }
+
+  // Hide all the non-trigger (button / link, etc) content inside the <bolt-modal> container before the JS kicks ins
+  &:not([ready]) {
+    display: none;
+  }
 }
 
 .c-bolt-modal {
@@ -473,49 +506,4 @@ bolt-modal:not([ready]) {
 
 .c-bolt-modal__dialog-title {
   @include bolt-visuallyhidden;
-}
-
-/* ------------------------------------ *\
-  #iOS CONTENT FILL CLASS
-\* ------------------------------------ */
-
-/*
-  This class is a fix to a iOS Safari specific bug.
-  The following tickets track the bugs that this fix is supposed to fix.
-  * https://pegadigitalit.atlassian.net/browse/WWW-1157
-  * https://pegadigitalit.atlassian.net/browse/DS-448
-*/
-
-// Dev Notes
-// 1. Make this only show on smaller devices to align with the modal display change (when it starts to cover the screen).
-// 2. Target only Safari with this fix (this is to help prevent regressions).
-// 3. Forces the background color to spill out the bottom of the page to cover the browser scrrolling/painting issues.
-// 4. This fixes a table specific regression that didn't allow the modal to show over the background color.
-
-.c-bolt-modal-ios-content-fill {
-  @include bolt-mq($until: small) {
-    // [1]
-    @supports (-webkit-touch-callout: none) {
-      // [2]
-      &:before {
-        content: '';
-        display: block;
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: bolt-z-index('modal');
-        height: 150vh; // [3]
-        background-color: var(--bolt-color-navy);
-      }
-
-      .c-bolt-table {
-        display: inline-table; // [4]
-
-        bolt-modal .c-bolt-table {
-          display: inline-block;
-        }
-      }
-    }
-  }
 }
