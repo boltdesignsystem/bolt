@@ -58,9 +58,9 @@ beforeAll(async () => {
     ],
   };
 
-  const videoData = await render('@bolt-components-ratio/ratio.twig', {
-    children: video,
-    ratio: '16/9',
+  const videoData = await render('@bolt-elements-ratio/ratio.twig', {
+    content: video,
+    ratio: 'wide',
   });
 
   fixtures = {

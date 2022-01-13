@@ -15,9 +15,9 @@
 
   <h2>Video with Captions</h2>
 
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video,
-    ratio: '16/9'
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video,
+    ratio: 'wide'
   } only %}
 
   {% set video_1 %}
@@ -33,8 +33,8 @@
 
   <h2>Video with Captions Use Page Lang</h2>
 
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video_1,
-    ratio: '16/9'
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video_1,
+    ratio: 'wide'
   } only %}
 {% endblock %}
