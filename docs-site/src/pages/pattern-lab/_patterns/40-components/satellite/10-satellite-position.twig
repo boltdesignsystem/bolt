@@ -1,0 +1,72 @@
+{% set description %}
+    Use this to place the Satellite in the <code>bottom-right</code>, <code>middle-right</code>, or <code>top-right</code>.
+{% endset %}
+
+{% set _content %}
+  {% set icon_sample %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'trash',
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    content: 'Button 1',
+    trigger: include('@bolt-elements-button/button.twig', {
+      content: 'Button 1',
+      icon_only: icon_sample,
+      attributes: {
+        type: 'button'
+      },
+    }),
+    } only %}
+
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    content: 'Button 2',
+    trigger: include('@bolt-elements-button/button.twig', {
+      content: 'Button 2',
+      icon_only: icon_sample,
+      attributes: {
+        type: 'button'
+      },
+    }),
+  } only %}
+
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    content: 'Button 3',
+    trigger: include('@bolt-elements-button/button.twig', {
+      content: 'Button 3',
+      icon_only: icon_sample,
+      attributes: {
+        type: 'button'
+      },
+    }),
+  } only %}
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>static</code> setting shown here is included only for testing and demo purposes.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% include '@bolt-components-satellite/satellite.twig' with {
+  content: _content,
+  position: 'static',
+} only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-satellite/satellite.twig' with {
+  content: _content,
+  position: 'static',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Satellite Position',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

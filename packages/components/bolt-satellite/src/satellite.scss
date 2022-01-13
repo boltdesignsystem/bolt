@@ -7,20 +7,12 @@
 // Register Custom Block Element
 @include bolt-custom-element('bolt-satellite', block, medium);
 
-/**
- * Long-form comment.
- *
- * This spans multiple lines and is also constrained to no longer than 80
- * characters in width.
- *
- * 1. Provide line-comments like this.
- */
-
 $default-x-offset: var(--bolt-spacing-x-xsmall);
 $default-y-offset: var(--bolt-spacing-y-xsmall);
 
 .c-bolt-satellite {
   display: none;
+  z-index: bolt-z-index('fab');
 
   &[ready]:not([data-show-on-load='false']) {
     display: block;

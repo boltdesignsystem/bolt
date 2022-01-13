@@ -1,8 +1,8 @@
 {% set description %}
-    A description of the component and what it is used for.
+    This component is used to contain and place floating action buttons, or FABs.
 {% endset %}
 
-{% set content %}
+{% set _content %}
   {% set share_menu %}
     {% include '@bolt-components-share/share.twig' with {
       display: 'menu',
@@ -124,24 +124,20 @@
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>List out important information about this component and its usage.</bolt-li>
+    <bolt-li>This is the demo you see stickied in the <code>bottom-right</code>.</bolt-li>
+    <bolt-li>It has the default <code>stash</code> value of <code>2</code>.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
-<p>This is the demo you see stickied in the <code>bottomright</code>.</p>
 {% include '@bolt-components-satellite/satellite.twig' with {
-  content: content,
-  position: 'bottom-right',
-  stash: 2,
+  content: _content,
 } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-satellite/satellite.twig' with {
-  content: content,
-  position: 'bottom-right',
-  stash: 2,
+  content: _content,
 } only %}
 {% endverbatim %}{% endset %}
 
@@ -152,17 +148,3 @@
   demo: demo,
   twig_markup: twig_markup,
 } only %}
-
-<p>Excepteur nisi proident labore reprehenderit. Voluptate ad ut minim aliquip commodo nostrud mollit deserunt duis eu. Enim dolor anim velit labore. Ullamco dolore labore consectetur irure ullamco consequat laboris pariatur ipsum excepteur deserunt. Ullamco sunt voluptate et duis. Minim cupidatat labore nulla consectetur pariatur sunt fugiat consectetur ipsum consequat in.</p>
-<p>Ad non non cillum culpa. Tempor anim est eu Lorem. Sunt pariatur magna deserunt dolor nisi ad aliqua exercitation duis commodo proident labore aliquip sunt. Est cupidatat ea amet laboris elit ex cupidatat dolor consequat ipsum nostrud dolor sit.</p>
-<p>Officia deserunt anim anim officia Lorem consequat cillum et incididunt duis laborum laborum amet. Incididunt voluptate aliqua est commodo nisi pariatur duis consequat dolore laborum voluptate. Mollit labore do aute velit nulla magna eu incididunt pariatur ex ut nostrud commodo esse. Enim proident irure voluptate commodo. Mollit dolore Lorem excepteur deserunt occaecat mollit consectetur proident sint velit tempor pariatur. Amet ad exercitation amet ex.</p>
-<p>Ex laboris laborum eu tempor irure laborum esse sint Lorem. Aute sunt incididunt eiusmod elit. Amet cillum reprehenderit qui ipsum nulla. Minim duis duis ut et ullamco Lorem fugiat eu consequat eiusmod sint. Irure duis proident voluptate adipisicing Lorem pariatur mollit consequat nisi culpa consectetur. Voluptate commodo sit culpa fugiat aute. Ea exercitation minim fugiat reprehenderit commodo consequat amet ea dolore consequat consequat.</p>
-<p>Voluptate est cillum culpa minim nisi enim proident. Ex commodo voluptate exercitation dolore consectetur ex commodo consectetur sint duis ut. Mollit aliqua esse mollit magna anim commodo irure ut sunt. Reprehenderit laboris enim officia exercitation. Est veniam excepteur ut officia cillum reprehenderit exercitation.</p>
-<p>Occaecat et incididunt sint tempor ad. Ex ea pariatur quis anim nulla nostrud mollit magna magna sunt cupidatat. Nulla id ut adipisicing culpa amet minim sint et eiusmod commodo exercitation exercitation amet aute. Aliqua ut adipisicing non laboris non reprehenderit velit irure.</p>
-<p>Nisi do voluptate quis mollit occaecat proident deserunt ex ea. Occaecat Lorem labore incididunt officia aliquip est mollit. Aliquip excepteur proident et id qui est velit velit adipisicing. Aliqua mollit est elit ex occaecat laborum voluptate officia. Esse do aute incididunt tempor laboris ipsum.</p>
-<p>Eiusmod fugiat minim nisi irure in. Duis velit laborum ex minim incididunt dolor velit enim minim pariatur incididunt tempor amet nulla. Eiusmod id id laboris deserunt eiusmod elit ea in quis cupidatat do eu reprehenderit. Exercitation anim anim enim excepteur est. Aliquip dolor adipisicing eu ea. Incididunt cillum veniam sint officia voluptate adipisicing quis voluptate sit elit non duis proident. Labore anim enim occaecat enim nostrud esse id officia officia laborum sunt dolor aute officia.</p>
-<p>In consequat occaecat occaecat consequat et exercitation minim et ullamco excepteur enim fugiat. Nostrud sit nulla ullamco esse dolor quis aliquip magna enim voluptate. Dolore consectetur quis esse dolor aliqua esse laboris excepteur. Et Lorem adipisicing labore qui Lorem irure non ad.</p>
-<p>Laborum velit culpa magna nulla elit mollit sunt veniam mollit. Quis commodo in labore deserunt excepteur non reprehenderit ea in ullamco cupidatat. Nostrud est in mollit ex reprehenderit ex non aliqua dolore. Sunt Lorem ipsum dolor excepteur sunt qui pariatur nisi ad. Voluptate dolore commodo cupidatat cupidatat occaecat irure commodo est excepteur Lorem. Reprehenderit consequat minim occaecat laboris.</p>
-<p>Fugiat nostrud laborum eiusmod occaecat laboris culpa aute ea sint laborum elit occaecat culpa. Mollit eiusmod culpa laborum aliqua tempor nostrud magna in aliqua. Labore ut commodo nisi est reprehenderit. Velit reprehenderit commodo commodo minim aliqua pariatur eiusmod eiusmod proident duis aliquip cupidatat consequat mollit. Nisi do ad culpa tempor Lorem magna esse amet dolor.</p>
-<p>Eu sunt minim proident anim duis excepteur ex qui ut sint deserunt adipisicing velit non. Eiusmod ullamco cillum consectetur Lorem occaecat magna minim et irure ea Lorem sit. Pariatur ipsum esse pariatur amet. Consectetur culpa eu consectetur id adipisicing sint qui consectetur eu excepteur elit.</p>
-<p>Commodo nostrud exercitation veniam cupidatat ut pariatur dolore officia ullamco aliquip veniam. Laborum labore ad magna tempor do fugiat in fugiat reprehenderit eu in adipisicing. In in Lorem officia fugiat duis nisi et commodo voluptate. Dolor pariatur laboris commodo aute aliqua eiusmod duis cupidatat esse laborum culpa. Nisi veniam exercitation officia magna esse nulla aliquip duis magna.</p>
