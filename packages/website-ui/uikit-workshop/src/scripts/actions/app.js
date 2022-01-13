@@ -1,5 +1,6 @@
 export const UPDATE_THEME_MODE = 'UPDATE_THEME_MODE';
 export const UPDATE_TEST_MODE = 'UPDATE_TEST_MODE';
+export const UPDATE_ARCHIVE_MODE = 'UPDATE_ARCHIVE_MODE';
 export const UPDATE_LAYOUT_MODE = 'UPDATE_LAYOUT_MODE';
 export const UPDATE_DRAWER_ANIMATION_STATE = 'UPDATE_DRAWER_ANIMATION_STATE';
 export const UPDATE_DRAWER_STATE = 'UPDATE_DRAWER_STATE';
@@ -73,6 +74,15 @@ export const updateTestMode = testMode => (dispatch, getState) => {
   }
 };
 
+export const updateArchiveMode = archiveMode => (dispatch, getState) => {
+  if (getState().app.archiveMode !== archiveMode) {
+    dispatch({
+      type: UPDATE_ARCHIVE_MODE,
+      archiveMode,
+    });
+  }
+};
+
 export const updateDrawerState = opened => (dispatch, getState) => {
   if (getState().app.drawerOpened !== opened) {
     dispatch({
@@ -84,7 +94,7 @@ export const updateDrawerState = opened => (dispatch, getState) => {
 
 export const updateDrawerAnimationState = drawerIsAnimating => (
   dispatch,
-  getState
+  getState,
 ) => {
   if (getState().app.drawerIsAnimating !== drawerIsAnimating) {
     dispatch({
