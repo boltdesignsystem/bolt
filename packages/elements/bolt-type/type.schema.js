@@ -42,5 +42,15 @@ module.exports = {
       default: 'body',
       enum: ['body', 'headline', 'subheadline', 'eyebrow'],
     },
+    icon_before: {
+      type: 'any',
+      description:
+        'Append an icon before the text. Icon element is recommended. However, &lt;img&gt; elements are also acceptable.',
+    },
+    icon_after: {
+      type: 'any',
+      description:
+        'Append an icon after the text. Icon element is recommended. However, &lt;img&gt; elements are also acceptable.',
+    },
   },
 };
