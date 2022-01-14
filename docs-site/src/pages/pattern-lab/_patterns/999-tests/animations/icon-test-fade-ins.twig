@@ -1,0 +1,17 @@
+<bolt-text>An example of a fade--in-up on icon, looped 100 times</bolt-text>
+
+{% for i in 0..100 %}
+  {% include "@bolt-elements-icon/icon.twig" with {
+    name: 'bell-solid',
+    color: 'navy',
+    size: 'xlarge',
+    attributes: {
+      class: [
+        'a-bolt-fade',
+        'a-bolt-fade--duration-fast',
+        'a-bolt-fade--in-up',
+        'a-bolt-delay-gradual',
+      ]
+    }
+  }%}
+{% endfor %}
