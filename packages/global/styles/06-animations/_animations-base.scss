@@ -7,6 +7,13 @@
   animation-delay: var(--bolt-animation-delay);
   animation-duration: var(--bolt-animation-duration);
   animation-fill-mode: both;
+
+  @media print, (prefers-reduced-motion: reduce) {
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
+    animation-delay: 0ms !important;
+    animation-duration: 0ms !important;
+  }
 }
 
 .a-bolt-fade--duration-slow {
@@ -23,11 +30,5 @@
   .a-bolt-delay-gradual:nth-child(#{$i}) {
     --bolt-animation-delay: 50ms;
     animation-delay: calc(var(--bolt-animation-delay) * #{$i});
-  }
-}
-
-@media print, (prefers-reduced-motion: reduce) {
-  .a-bolt-fade {
-    animation-duration: 0ms !important;
   }
 }
