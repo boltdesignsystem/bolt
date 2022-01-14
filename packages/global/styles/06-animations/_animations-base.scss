@@ -1,5 +1,5 @@
 :root {
-  --bolt-animation-duration: 1000ms;
+  --bolt-animation-duration: 800ms;
   --bolt-animation-delay: 0ms;
 }
 
@@ -22,13 +22,13 @@
 }
 
 .a-bolt-fade--duration-fast {
-  --bolt-animation-duration: 350ms;
+  --bolt-animation-duration: 400ms;
   animation-duration: var(--bolt-animation-duration);
 }
 
 @for $i from 1 through 10000 {
   .a-bolt-delay-gradual:nth-child(#{$i}) {
-    --bolt-animation-delay: 50ms;
+    --bolt-animation-delay: 80ms;
     animation-delay: calc(var(--bolt-animation-delay) * #{$i});
   }
 }
