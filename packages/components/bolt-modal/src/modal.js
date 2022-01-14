@@ -18,7 +18,7 @@ class BoltModal extends BoltElement {
   static get properties() {
     return {
       ...this.props,
-      open: { type: Boolean, reflect: true },
+      open: { type: Boolean },
       hideCloseButton: { type: Boolean },
     };
   }
