@@ -1,34 +1,58 @@
+/* ------------------------------------ *\
+   Base fade animations tool set
+\* ------------------------------------ */
+
 :root {
-  --bolt-animation-duration: 800ms;
+  --bolt-animation-duration: 200ms;
   --bolt-animation-delay: 0ms;
 }
 
 .a-bolt-fade {
+  visibility: hidden; //Safari performance issue
   animation-delay: var(--bolt-animation-delay);
   animation-duration: var(--bolt-animation-duration);
   animation-fill-mode: both;
+  animation-play-state: paused;
 
   @media print, (prefers-reduced-motion: reduce) {
     opacity: 1 !important;
     transform: translate3d(0, 0, 0) !important;
     animation-delay: 0ms !important;
     animation-duration: 0ms !important;
+
+    &[class*='--out'] {
+      opacity: 0 !important;
+    }
   }
 }
 
+.a-bolt-fade--running {
+  visibility: visible; //Safari performance issue
+  animation-play-state: running;
+}
+
 .a-bolt-fade--duration-slow {
-  --bolt-animation-duration: 1200ms;
+  --bolt-animation-duration: 500ms;
   animation-duration: var(--bolt-animation-duration);
 }
 
 .a-bolt-fade--duration-fast {
-  --bolt-animation-duration: 400ms;
+  --bolt-animation-duration: 100ms;
   animation-duration: var(--bolt-animation-duration);
 }
 
-@for $i from 1 through 10000 {
-  .a-bolt-delay-gradual:nth-child(#{$i}) {
-    --bolt-animation-delay: 80ms;
+//these classes delays animation gradually
+@for $i from 1 through 1000 {
+  .a-bolt-fade--delay-gradual:nth-of-type(#{$i}) {
+    --bolt-animation-delay: 25ms;
+    animation-delay: calc(var(--bolt-animation-delay) * #{$i});
+  }
+  .a-bolt-fade--delay-gradual-fast:nth-of-type(#{$i}) {
+    --bolt-animation-delay: 15ms;
+    animation-delay: calc(var(--bolt-animation-delay) * #{$i});
+  }
+  .a-bolt-fade--delay-gradual-slow:nth-of-type(#{$i}) {
+    --bolt-animation-delay: 50ms;
     animation-delay: calc(var(--bolt-animation-delay) * #{$i});
   }
 }
