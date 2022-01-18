@@ -103,9 +103,91 @@ Examples of different methods of launching a modal.
   } only %}
 {% endset %}
 
+{% set twig_markup %}
+{% verbatim %}
+// <button>
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Button trigger',
+  size: 'small',
+  attributes: {
+    type: 'button',
+    'data-bolt-modal-target': '.js-bolt-modal--trigger-button',
+  },
+} only %}
+{% include '@bolt-components-modal/modal.twig' with {
+  content: 'This modal is triggered by a button.',
+  attributes: {
+    class: 'js-bolt-modal--trigger-button'
+  },
+} only %}
+
+// <img>
+{% set trigger_content %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/tout-4x3-climber.jpg',
+      alt: 'A Rock Climber',
+      loading: 'lazy',
+      style: 'max-width: 320px',
+      width: '640',
+      height: '480'
+    }
+  } only %}
+{% endset %}
+
+{% set modal_content %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/tout-4x3-climber.jpg',
+      alt: 'A Rock Climber',
+      width: '640',
+      height: '480'
+    }
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-trigger/trigger.twig' with {
+  content: trigger_content,
+  cursor: 'zoom-in',
+  display: 'inline',
+  attributes: {
+    'data-bolt-modal-target': '.js-bolt-modal--trigger-image',
+  },
+} only %}
+
+{% include '@bolt-components-modal/modal.twig' with {
+  content: modal_content,
+  spacing: 'none',
+  theme: 'none',
+  scroll: 'overall',
+  width: 'auto',
+  attributes: {
+    class: 'js-bolt-modal--trigger-image'
+  },
+} only %}
+
+// <a>
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'Link trigger',
+  attributes: {
+    href: '#',
+    'data-bolt-modal-target': '.js-bolt-modal--trigger-link',
+  },
+} only %}
+
+{% include '@bolt-components-modal/modal.twig' with {
+  content: 'This modal is triggered by a link.',
+  attributes: {
+    class: 'js-bolt-modal--trigger-link'
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Modal Trigger Options',
   description: description,
   notes: notes,
   demo: demo,
+  twig_markup: twig_markup
 } only %}
