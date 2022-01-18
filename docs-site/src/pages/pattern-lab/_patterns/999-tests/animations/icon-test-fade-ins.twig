@@ -1,4 +1,4 @@
-<bolt-text>An example of a fade--in-up on icon, looped 100 times</bolt-text>
+<p>An example of a fade--in-up on icons, looped 100 times, triggered on window load</p>
 
 {% for i in 0..100 %}
   {% include "@bolt-elements-icon/icon.twig" with {
@@ -10,8 +10,22 @@
         'a-bolt-fade',
         'a-bolt-fade--duration-fast',
         'a-bolt-fade--in-up',
-        'a-bolt-delay-gradual',
+        'a-bolt-fade--delay-gradual-fast',
       ]
     }
   }%}
 {% endfor %}
+
+<script>
+
+  function playStateRunningOnLoad() {
+    document.querySelectorAll('.a-bolt-fade').forEach((fade) => {
+      fade.classList.add('a-bolt-fade--running');
+    })
+  }
+
+  window.onload = () => {
+    playStateRunningOnLoad();
+  };
+
+</script>

@@ -1,8 +1,8 @@
-<bolt-text>An example of all fade ins, looped 50 times</bolt-text>
+<p>An example of all fade ins on a banner component, (100 elements in total), triggered on window load. Click on the banner to see the specific single animation.</p>
 
 {% set fades = ['--in', '--in-up', '--in-down', '--in-left', '--in-right'] %}
 
-{% for i in 1..50 %}
+{% for i in 1..20 %}
   {% for fade in fades %}
     {% include '@bolt-components-banner/banner.twig' with {
       content: 'This is the banner content fade' ~ fade,
@@ -10,13 +10,41 @@
         class: [
           'a-bolt-fade',
           'a-bolt-fade' ~ fade,
-          'a-bolt-delay-gradual'
+          'a-bolt-fade--delay-gradual'
         ],
       }
     } only %}
   {% endfor %}
 {% endfor %}
 
+<script>
 
+  const fadeEl = document.querySelectorAll('.a-bolt-fade');
 
+  function playStateRunningOnLoad() {
+    document.querySelectorAll('.a-bolt-fade').forEach((fade) => {
+      fade.classList.add('a-bolt-fade--running');
+    })
+  }
+
+  function triggerThisEl(e) {
+    const prefix = 'a-bolt-fade--';
+    const classes = e.target.className.split(' ').filter(c => !c.startsWith(prefix));
+    const runAnimationClasses = e.target.className.split(' ').filter(c => c.startsWith(prefix));
+    e.target.className = classes.join(' ').trim();
+    e.target.classList.remove('a-bolt-fade--delay-gradual');
+    setTimeout(() => {
+      e.target.classList.add(...runAnimationClasses)
+    }, 100)
+  }
+
+  window.onload = () => {
+    playStateRunningOnLoad();
+  };
+
+  fadeEl.forEach((el) => {
+    el.addEventListener('click', triggerThisEl)
+  })
+
+</script>
 

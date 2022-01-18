@@ -1,3 +1,5 @@
+<p>An example of a fade--in-up on teasers, (21 elements), triggered on window load</p>
+
 {% block main_content %}
   {% set modal_id = 'js-bolt-modal-' ~ random() %}
 
@@ -309,58 +311,282 @@
   {% endset %}
 
   {% set band_content %}
-    <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center">
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium a-bolt-fade a-bolt-fade--in-up a-bolt-delay-gradual">
-        {{ item_video }}
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium a-bolt-fade a-bolt-fade--in-up a-bolt-delay-gradual">
-        {{ item_pdf }}
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium a-bolt-fade a-bolt-fade--in-up a-bolt-delay-gradual">
-        {{ item_locked }}
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium a-bolt-fade a-bolt-fade--in-up a-bolt-delay-gradual">
-        {{ item_external_link }}
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium a-bolt-fade a-bolt-fade--in-up a-bolt-delay-gradual">
-        {{ item_locked }}
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium a-bolt-fade a-bolt-fade--in-up a-bolt-delay-gradual">
-        {{ item_video }}
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium a-bolt-fade a-bolt-fade--in-up a-bolt-delay-gradual">
-        {{ item_video }}
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium a-bolt-fade a-bolt-fade--in-up a-bolt-delay-gradual">
-        {{ item_pdf }}
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium a-bolt-fade a-bolt-fade--in-up a-bolt-delay-gradual">
-        {{ item_locked }}
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium a-bolt-fade a-bolt-fade--in-up a-bolt-delay-gradual">
-        {{ item_external_link }}
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium a-bolt-fade a-bolt-fade--in-up a-bolt-delay-gradual">
-        {{ item_locked }}
-      </div>
-      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium a-bolt-fade a-bolt-fade--in-up a-bolt-delay-gradual">
-        {{ item_video }}
-      </div>
-    </div>
+    {% include '@bolt-components-grid/grid.twig' with {
+      gutter: 'small',
+      items: [
+        {
+          column_start: '1',
+          column_span: '4',
+          content: item_video,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '5',
+          column_span: '4',
+          content: item_external_link,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '9',
+          column_span: '4',
+          content: item_locked,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+                {
+          column_start: '1',
+          column_span: '4',
+          content: item_video,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '5',
+          column_span: '4',
+          content: item_pdf,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '9',
+          column_span: '4',
+          content: item_locked,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+                {
+          column_start: '1',
+          column_span: '4',
+          content: item_video,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '5',
+          column_span: '4',
+          content: item_external_link,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '9',
+          column_span: '4',
+          content: item_locked,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+                {
+          column_start: '1',
+          column_span: '4',
+          content: item_video,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '5',
+          column_span: '4',
+          content: item_pdf,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '9',
+          column_span: '4',
+          content: item_locked,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+                {
+          column_start: '1',
+          column_span: '4',
+          content: item_video,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '5',
+          column_span: '4',
+          content: item_external_link,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '9',
+          column_span: '4',
+          content: item_locked,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+                {
+          column_start: '1',
+          column_span: '4',
+          content: item_video,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '5',
+          column_span: '4',
+          content: item_external_link,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '9',
+          column_span: '4',
+          content: item_locked,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+                {
+          column_start: '1',
+          column_span: '4',
+          content: item_video,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '5',
+          column_span: '4',
+          content: item_pdf,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+        {
+          column_start: '9',
+          column_span: '4',
+          content: item_locked,
+          attributes: {
+            class: [
+              'a-bolt-fade',
+              'a-bolt-fade--in-up',
+              'a-bolt-fade--delay-gradual'
+            ]
+          }
+        },
+      ]
+    } only %}
   {% endset %}
 
   {% include '@bolt-components-band/band.twig' with {
     content: band_content,
     theme: 'light',
-    background: {
-      opacity: 'none',
-      content_items: [
-        {
-          pattern: 'image',
-          src: '/images/backgrounds/teal-shapes.png',
-          lazyload: true,
-        },
-      ]
-    },
   } only %}
 {% endblock %}
+
+
+<script>
+
+function playStateRunningOnLoad() {
+  document.querySelectorAll('.a-bolt-fade').forEach((fade) => {
+    fade.classList.add('a-bolt-fade--running');
+  })
+}
+
+window.onload = () => {
+  playStateRunningOnLoad();
+};
+
+</script>
