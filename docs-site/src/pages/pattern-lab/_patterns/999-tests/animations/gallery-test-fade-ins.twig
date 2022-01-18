@@ -109,22 +109,6 @@
     } only %}
   {% endset %}
 
-  {% set download %}
-    {% set icon_download %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'download',
-      } only %}
-    {% endset %}
-    {% include '@bolt-elements-text-link/text-link.twig' with {
-      content: 'Download slides',
-      icon_before: icon_download,
-      reversed_underline: true,
-      attributes: {
-        href: 'https://www.google.com/',
-      },
-    } only %}
-  {% endset %}
-
   {% set video_image %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
@@ -266,7 +250,6 @@
   {% set video_teaser_props = video_teaser_props|merge({ 
     like: like,
     share: share,
-    download: download,
     status: {
       views: '27',
     } 
@@ -315,8 +298,8 @@
       gutter: 'small',
       items: [
         {
-          column_start: '1',
-          column_span: '4',
+          column_start: '1 1@small',
+          column_span: '6 4@small',
           content: item_video,
           attributes: {
             class: [
@@ -327,8 +310,8 @@
           }
         },
         {
-          column_start: '5',
-          column_span: '4',
+          column_start: '7 5@small',
+          column_span: '6 4@small',
           content: item_external_link,
           attributes: {
             class: [
@@ -339,8 +322,8 @@
           }
         },
         {
-          column_start: '9',
-          column_span: '4',
+          column_start: '1 9@small',
+          column_span: '6 4@small',
           content: item_locked,
           attributes: {
             class: [
@@ -351,8 +334,8 @@
           }
         },
                 {
-          column_start: '1',
-          column_span: '4',
+          column_start: '7 1@small',
+          column_span: '6 4@small',
           content: item_video,
           attributes: {
             class: [
@@ -363,8 +346,8 @@
           }
         },
         {
-          column_start: '5',
-          column_span: '4',
+          column_start: '1 5@small',
+          column_span: '6 4@small',
           content: item_pdf,
           attributes: {
             class: [
@@ -375,8 +358,8 @@
           }
         },
         {
-          column_start: '9',
-          column_span: '4',
+          column_start: '7 9@small',
+          column_span: '6 4@small',
           content: item_locked,
           attributes: {
             class: [
@@ -387,8 +370,8 @@
           }
         },
                 {
-          column_start: '1',
-          column_span: '4',
+          column_start: '1 1@small',
+          column_span: '6 4@small',
           content: item_video,
           attributes: {
             class: [
@@ -399,8 +382,8 @@
           }
         },
         {
-          column_start: '5',
-          column_span: '4',
+          column_start: '7 5@small',
+          column_span: '6 4@small',
           content: item_external_link,
           attributes: {
             class: [
@@ -411,8 +394,8 @@
           }
         },
         {
-          column_start: '9',
-          column_span: '4',
+          column_start: '1 9@small',
+          column_span: '6 4@small',
           content: item_locked,
           attributes: {
             class: [
@@ -423,8 +406,8 @@
           }
         },
                 {
-          column_start: '1',
-          column_span: '4',
+          column_start: '7 1@small',
+          column_span: '6 4@small',
           content: item_video,
           attributes: {
             class: [
@@ -435,8 +418,8 @@
           }
         },
         {
-          column_start: '5',
-          column_span: '4',
+          column_start: '1 5@small',
+          column_span: '6 4@small',
           content: item_pdf,
           attributes: {
             class: [
@@ -447,8 +430,8 @@
           }
         },
         {
-          column_start: '9',
-          column_span: '4',
+          column_start: '7 9@small',
+          column_span: '6 4@small',
           content: item_locked,
           attributes: {
             class: [
@@ -459,8 +442,8 @@
           }
         },
                 {
-          column_start: '1',
-          column_span: '4',
+          column_start: '1 1@small',
+          column_span: '6 4@small',
           content: item_video,
           attributes: {
             class: [
@@ -471,8 +454,8 @@
           }
         },
         {
-          column_start: '5',
-          column_span: '4',
+          column_start: '7 5@small',
+          column_span: '6 4@small',
           content: item_external_link,
           attributes: {
             class: [
@@ -483,8 +466,8 @@
           }
         },
         {
-          column_start: '9',
-          column_span: '4',
+          column_start: '1 9@small',
+          column_span: '6 4@small',
           content: item_locked,
           attributes: {
             class: [
@@ -495,8 +478,8 @@
           }
         },
                 {
-          column_start: '1',
-          column_span: '4',
+          column_start: '7 1@small',
+          column_span: '6 4@small',
           content: item_video,
           attributes: {
             class: [
@@ -507,8 +490,8 @@
           }
         },
         {
-          column_start: '5',
-          column_span: '4',
+          column_start: '1 5@small',
+          column_span: '6 4@small',
           content: item_external_link,
           attributes: {
             class: [
@@ -519,8 +502,8 @@
           }
         },
         {
-          column_start: '9',
-          column_span: '4',
+          column_start: '7 9@small',
+          column_span: '6 4@small',
           content: item_locked,
           attributes: {
             class: [
@@ -531,8 +514,8 @@
           }
         },
                 {
-          column_start: '1',
-          column_span: '4',
+          column_start: '1 1@samll',
+          column_span: '6 4@small',
           content: item_video,
           attributes: {
             class: [
@@ -543,8 +526,8 @@
           }
         },
         {
-          column_start: '5',
-          column_span: '4',
+          column_start: '7 5@small',
+          column_span: '6 4@small',
           content: item_pdf,
           attributes: {
             class: [
@@ -555,8 +538,8 @@
           }
         },
         {
-          column_start: '9',
-          column_span: '4',
+          column_start: '1 9@small',
+          column_span: '6 4@small',
           content: item_locked,
           attributes: {
             class: [
