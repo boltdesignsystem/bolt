@@ -17,7 +17,7 @@
   <{{ headline.tag }} {{ headline_attributes.addClass('c-page-footer__nav-headline') }}>
     {{ headline.content }}
   </{{ headline.tag }}>
-  <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
+  <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" {% if this.data.open.value == true %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %}>
     {{ headline.content }}
     <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">
       {% include '@bolt-elements-icon/icon.twig' with {
