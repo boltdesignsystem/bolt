@@ -10,7 +10,7 @@
         class: [
           'a-bolt-fade',
           'a-bolt-fade' ~ fade,
-          'a-bolt-fade--delay-gradual'
+          'a-bolt-fade--successively'
         ],
       }
     } only %}
@@ -27,12 +27,13 @@
     })
   }
 
+  //Repeat single specific fade on click
   function triggerThisEl(e) {
     const prefix = 'a-bolt-fade--';
     const classes = e.target.className.split(' ').filter(c => !c.startsWith(prefix));
     const runAnimationClasses = e.target.className.split(' ').filter(c => c.startsWith(prefix));
     e.target.className = classes.join(' ').trim();
-    e.target.classList.remove('a-bolt-fade--delay-gradual');
+    e.target.classList.remove('a-bolt-fade--successively');
     setTimeout(() => {
       e.target.classList.add(...runAnimationClasses)
     }, 100)

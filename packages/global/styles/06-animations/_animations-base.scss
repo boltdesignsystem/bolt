@@ -41,17 +41,17 @@
   animation-duration: var(--bolt-animation-duration);
 }
 
-//these classes delays animation gradually
+//these classes fade animation one by one
 @for $i from 1 through 1000 {
-  .a-bolt-fade--delay-gradual:nth-of-type(#{$i}) {
-    --bolt-animation-delay: 25ms;
+  .a-bolt-fade--successively:nth-of-type(#{$i}) {
+    --bolt-animation-delay: 20ms;
     animation-delay: calc(var(--bolt-animation-delay) * #{$i});
   }
-  .a-bolt-fade--delay-gradual-fast:nth-of-type(#{$i}) {
-    --bolt-animation-delay: 15ms;
+  .a-bolt-fade--successively-fast:nth-of-type(#{$i}) {
+    --bolt-animation-delay: 10ms;
     animation-delay: calc(var(--bolt-animation-delay) * #{$i});
   }
-  .a-bolt-fade--delay-gradual-slow:nth-of-type(#{$i}) {
+  .a-bolt-fade--successively-slow:nth-of-type(#{$i}) {
     --bolt-animation-delay: 50ms;
     animation-delay: calc(var(--bolt-animation-delay) * #{$i});
   }
