@@ -21,12 +21,6 @@
 
   const fadeEl = document.querySelectorAll('.a-bolt-fade');
 
-  function playStateRunningOnLoad() {
-    document.querySelectorAll('.a-bolt-fade').forEach((fade) => {
-      fade.classList.add('a-bolt-fade--running');
-    })
-  }
-
   //Repeat single specific fade on click
   function triggerThisEl(e) {
     const prefix = 'a-bolt-fade--';
@@ -38,10 +32,6 @@
       e.target.classList.add(...runAnimationClasses)
     }, 100)
   }
-
-  window.onload = () => {
-    playStateRunningOnLoad();
-  };
 
   fadeEl.forEach((el) => {
     el.addEventListener('click', triggerThisEl)
