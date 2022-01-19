@@ -1412,23 +1412,18 @@ exports[`Bolt Card Video Card 1`] = `
       <ssr-keep for="bolt-card-replacement-media"
                 class="c-bolt-card_replacement__media c-bolt-card_replacement__media--video"
       >
-        <bolt-ratio ratio="16/9">
-          <ssr-keep for="bolt-ratio"
-                    class="c-bolt-ratio"
-                    style="padding-bottom: calc((9 / 16) * 100%); --aspect-ratio: 1.7777777777778;"
+        <div class="e-bolt-ratio e-bolt-ratio--wide">
+          <video-js data-account="1900410236"
+                    data-player="O3FkeBiaDz"
+                    data-embed="default"
+                    data-video-id="5609376179001"
+                    data-media-title
+                    data-media-duration
+                    controls
+                    class="c-base-video"
           >
-            <video-js data-account="1900410236"
-                      data-player="O3FkeBiaDz"
-                      data-embed="default"
-                      data-video-id="5609376179001"
-                      data-media-title
-                      data-media-duration
-                      controls
-                      class="c-base-video"
-            >
-            </video-js>
-          </ssr-keep>
-        </bolt-ratio>
+          </video-js>
+        </div>
       </ssr-keep>
     </bolt-card-replacement-media>
     <bolt-card-replacement-body>

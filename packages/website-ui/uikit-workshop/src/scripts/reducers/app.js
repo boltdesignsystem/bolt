@@ -7,6 +7,7 @@ import {
   UPDATE_VIEWPORT_EM,
   UPDATE_THEME_MODE,
   UPDATE_TEST_MODE,
+  UPDATE_ARCHIVE_MODE,
   IS_VIEWALL_PAGE,
   UPDATE_CURRENT_URL,
   UPDATE_CURRENT_PATTERN,
@@ -48,6 +49,11 @@ const app = (state = {}, action) => {
       return {
         ...state,
         testMode: action.testMode,
+      };
+    case UPDATE_ARCHIVE_MODE:
+      return {
+        ...state,
+        archiveMode: action.archiveMode,
       };
     case UPDATE_DRAWER_STATE:
       return {
