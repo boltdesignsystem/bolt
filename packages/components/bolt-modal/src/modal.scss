@@ -25,14 +25,8 @@ $bolt-modal-breakpoint: 'small';
 $bolt-modal-animation-scale: 0.95;
 
 // Hide all the non-trigger (button / link, etc) content inside the <bolt-modal> container before the JS kicks in
-bolt-modal {
-  .e-bolt-image {
-    width: 100%;
-  }
-
-  &:not([ready]) {
-    display: none;
-  }
+bolt-modal:not([ready]) {
+  display: none;
 }
 
 .c-bolt-modal {
