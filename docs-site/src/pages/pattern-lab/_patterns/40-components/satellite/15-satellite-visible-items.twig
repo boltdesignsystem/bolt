@@ -1,5 +1,5 @@
 {% set description %}
-    Use this to place the Satellite in the <code>bottom-right</code>, <code>middle-right</code>, or <code>top-right</code>.
+The <code>visible_items</code> property can be used to hide an overflow of elements passed into <code>content</code>.
 {% endset %}
 
 {% set _placeholderItem %}
@@ -41,26 +41,36 @@
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>The <code>static</code> setting shown here is included only for testing and demo purposes.</bolt-li>
+    <bolt-li>The default value of <code>visible_items</code> is <code>2</code></bolt-li>
+    <bolt-li>You may set <code>visible_items</code> to <code>0</code> to allow all elements to be shown.</bolt-li>
   </bolt-ol>
 {% endset %}
 
+{% set schema = bolt.data.components['@bolt-components-satellite'].schema %}
+
 {% set demo %}
-{% include '@bolt-components-satellite/satellite.twig' with {
-  content: _content,
-  position: 'static',
-} only %}
+  <bolt-list display="inline" spacing="small">
+    {% for _visible_items in schema.properties.visible_items.enum %}
+      <bolt-list-item>
+        {% include '@bolt-components-satellite/satellite.twig' with {
+          content: _content,
+          visible_items: _visible_items,
+          position: 'static',
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-satellite/satellite.twig' with {
   content: _content,
-  position: 'static',
+  visible_items: 0,
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Satellite Position',
+  title: 'Satellite Visible Items',
   description: description,
   notes: notes,
   demo: demo,

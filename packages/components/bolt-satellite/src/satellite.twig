@@ -1,3 +1,5 @@
+{# @TODO: rename stash #}
+
 {% set schema = bolt.data.components['@bolt-components-satellite'].schema %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
@@ -10,18 +12,23 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-satellite',
-  this.data.position.value != 'static' ? 'c-bolt-satellite--position-' ~ this.data.position.value : '',
+  'c-bolt-satellite--position-' ~ this.data.position.value,
 ] %}
 
-<div {{ attributes.addClass(classes) }}
-{{ this.data.show_on_load.value ? 'data-show-on-load' : '' }}
-{{ this.props|without("class")|without("position")|without("stash") }}>
+<div
+  {{ attributes.addClass(classes) }}
+  aria-hidden="true"
+  aria-expanded="false"
+  data-visible-items="{{ this.data.visible_items.value }}"
+  {{ this.data.show_on_load.value ? 'data-show-on-load=""' : '' }}
+  {{ this.props|without("class")|without("position")|without("visible_items") }}
+>
 
-  <div class="c-bolt-satellite__content" data-stash="{{ this.data.stash.value }}" data-reveal-children="false">
+  <div class="c-bolt-satellite__content">
     {{ content }}
   </div>
 
-  {% if this.data.stash.value > 0 %}
+  {% if this.data.visible_items.value > 0 %}
   <div class="c-bolt-satellite__more">
     {% set icon_more %}
       {% include '@bolt-elements-icon/icon.twig' with {

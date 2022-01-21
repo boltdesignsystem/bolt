@@ -5,67 +5,88 @@ export class BoltSatellite {
     this.init();
   }
 
-  show() {
-    // @TODO: navbar has ready state conventions.
-    this.el.setAttribute('ready', 'true');
-  }
-
-  showOnScroll(revealData) {
-    var scrollPosition = window.scrollY;
-    var value = parseInt(revealData, 10);
-    var revealPosition = 0;
-
-    // @TODO: is this unecessarily comprehensive?
-    var pageHeight = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight,
-    );
-
-    if (revealData.includes('px')) {
-      revealPosition = value;
-    } else if (revealData.includes('%')) {
-      // set a pixel value based on the percentage value.
-      revealPosition = pageHeight * (value / 100);
-    }
-
-    window.addEventListener('scroll', () => {
-      // prevent this from firing more than once.
-      if (this.el.getAttribute('ready') !== 'true') {
-        scrollPosition = window.scrollY;
-        if (revealPosition > 0 && scrollPosition >= revealPosition) {
-          this.show();
-        }
-      }
-    });
-  }
-
-  toggleRevealChildren() {
-    // @TODO: refactor with states?
-    if (
-      this.el.firstElementChild.getAttribute('data-reveal-children') === 'false'
-    ) {
-      this.el.firstElementChild.setAttribute('data-reveal-children', 'true');
-    } else {
-      this.el.firstElementChild.setAttribute('data-reveal-children', 'false');
-    }
-  }
-
   init() {
-    if (this.el.getAttribute('data-show-on-scroll')) {
-      this.showOnScroll(this.el.getAttribute('data-show-on-scroll'));
-    } else if (this.el.getAttribute('data-show-on-load') != null) {
+    this.visibleItems = this.el.getAttribute('data-visible-items');
+    this.contentElement = this.el.querySelector('.c-bolt-satellite__content');
+    this.showOnScroll = this.el.getAttribute('show-on-scroll');
+    this.showOnLoad = this.el.getAttribute('data-show-on-load');
+    this.expandButton = this.el.querySelector('.c-bolt-satellite__more');
+
+    if (this.visibleItems > 0) {
+      this.setDefaultVisibility();
+    }
+
+    if (this.showOnScroll) {
+      this.handleshowOnScroll();
+    } else if (this.showOnLoad != null) {
       this.show();
     }
 
-    this.el.lastElementChild.onclick = () => {
-      if (
-        this.el.lastElementChild.classList.contains('c-bolt-satellite__more')
-      ) {
-        this.toggleRevealChildren();
+    if (this.expandButton) {
+      this.expandButton.onclick = () => {
+        this.toggleShowMore();
+      };
+    }
+
+    // add the ready attribute at the end of init
+    this.el.setAttribute('data-bolt-ready', '');
+  }
+
+  show() {
+    this.el.setAttribute('aria-hidden', false);
+  }
+
+  getScrollPositionFromProp() {
+    var revealPosition = 0;
+    var scrollInt = parseInt(this.showOnScroll, 10);
+    var pageHeight = window.innerHeight;
+
+    if (this.showOnScroll.includes('px')) {
+      revealPosition = scrollInt;
+    } else if (this.showOnScroll.includes('%')) {
+      // set a pixel value based on the percentage value.
+      revealPosition = pageHeight * (scrollInt / 100);
+    }
+    return revealPosition;
+  }
+
+  handleshowOnScroll() {
+    var scrollPosition = window.scrollY;
+    var revealPosition = this.getScrollPositionFromProp();
+
+    const superFunction = () => {
+      scrollPosition = window.scrollY;
+      if (revealPosition > 0 && scrollPosition >= revealPosition) {
+        this.show();
+        window.removeEventListener('scroll', superFunction);
       }
     };
+
+    window.addEventListener('scroll', superFunction);
+  }
+
+  toggleShowMore() {
+    if (this.el.getAttribute('aria-expanded') === 'false') {
+      this.el.setAttribute('aria-expanded', 'true');
+      // show all contentItems
+      for (const contentItem of this.contentElement.children) {
+        contentItem.setAttribute('aria-hidden', false);
+      }
+    } else {
+      this.el.setAttribute('aria-expanded', 'false');
+      this.setDefaultVisibility();
+    }
+  }
+
+  setDefaultVisibility() {
+    let index = 1;
+    for (const contentItem of this.contentElement.children) {
+      if (index > this.visibleItems) {
+        contentItem.setAttribute('aria-hidden', true);
+      } else {
+        contentItem.setAttribute('aria-hidden', false);
+      }
+      index++;
+    }
   }
 }

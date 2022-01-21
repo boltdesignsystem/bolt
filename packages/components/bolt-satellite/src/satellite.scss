@@ -1,5 +1,5 @@
 /* ------------------------------------ *\
-   Satellite
+  Satellite
 \* ------------------------------------ */
 
 @import '@bolt/core-v3.x';
@@ -11,11 +11,12 @@ $default-x-offset: var(--bolt-spacing-x-xsmall);
 $default-y-offset: var(--bolt-spacing-y-xsmall);
 
 .c-bolt-satellite {
-  display: none;
   z-index: bolt-z-index('fab');
 
-  &[ready]:not([data-show-on-load='false']) {
-    display: block;
+  // must both be ready && not have aria-hidden before showing
+  &:not([data-bolt-ready]),
+  &[aria-hidden='true'] {
+    @include bolt-visuallyhidden;
   }
 
   &__content {
@@ -24,13 +25,9 @@ $default-y-offset: var(--bolt-spacing-y-xsmall);
     margin-bottom: var(--bolt-spacing-y-xxsmall);
   }
 
-  // Hide extra content on laod
-  @for $i from 1 through 3 {
-    &__content[data-stash='#{$i}'][data-reveal-children='false'] > * {
-      &:not(:nth-child(-n + #{$i})) {
-        @include bolt-visuallyhidden;
-      }
-    }
+  // Hide hidden content items
+  &__content-item[aria-hidden='true'] {
+    @include bolt-visuallyhidden;
   }
 }
 
