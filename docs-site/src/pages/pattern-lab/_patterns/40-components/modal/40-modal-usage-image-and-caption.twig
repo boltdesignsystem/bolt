@@ -8,6 +8,8 @@
         src: '/images/placeholders/tout-4x3-climber.jpg',
         alt: 'Image description.',
         loading: 'lazy',
+        width: 640,
+        height: 480,
       }
     } only %}
   {% endset %}
@@ -24,7 +26,9 @@
       attributes: {
         src: '/images/placeholders/tout-4x3-climber.jpg',
         alt: 'Image description.',
-        style: 'max-width: 1000px',
+        loading: 'lazy',
+        width: 640,
+        height: 480,
       }
     } only %}
   {% endset %}
@@ -57,8 +61,8 @@
   {% endset %}
   {% set description %}
     <bolt-text headline font-size="large">Enlarge image and show caption</bolt-text>
-    <bolt-text>Create a thumbnail image trigger and pass a figure with image and caption into the modal content. Note: make sure you upload a high-resolution image (up to 2880px wide) if you intend to show the image as big as possible.</bolt-text>
-    <bolt-text>Modal <code>width</code>  is set to <code>auto</code>  and image <code>max-width</code>  is set to <code>1000px</code>.</bolt-text>
+    <bolt-text>Create a thumbnail image trigger and pass a figure with image and caption into the modal content. Note: make sure the modal inside the modal is bigger than the thumbnail image.</bolt-text>
+    <bolt-text>Modal <code>width</code> is set to <code>auto</code> and image has <code>width</code> attribute defined.</bolt-text>
   {% endset %}
 
   {% include '@bolt-components-grid/grid.twig' with {
@@ -90,6 +94,8 @@
         src: '/images/content/screenshots/device-screenshot--desktop.jpg',
         alt: 'Image description.',
         loading: 'lazy',
+        width: 686,
+        height: 396,
       }
     } only %}
   {% endset %}
@@ -104,9 +110,11 @@
   {% set modal_image_2 %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
-        src: '/images/content/screenshots/device-screenshot--desktop.jpg',
+        src: '/images/content/backgrounds/background-tall-3.jpg',
         alt: 'Image description.',
         loading: 'lazy',
+        width: 4320,
+        height: 2880,
       }
     } only %}
   {% endset %}
@@ -142,7 +150,7 @@
       content: modal_content,
       spacing: 'none',
       scroll: 'overall',
-      width: 'optimal',
+      width: 'auto',
       attributes: {
         class: 'js-bolt-modal--device-viewer',
       },
@@ -152,7 +160,7 @@
   {% set description %}
     <bolt-text headline font-size="large">Enlarge image (inside device viewer) and show caption</bolt-text>
     <bolt-text>Create a device viewer trigger and pass a figure with image and caption into the modal content. Note: make sure you upload a high-resolution image (up to 2880px wide) if you intend to show the image as big as possible.</bolt-text>
-    <bolt-text>Modal <code>width</code>  is set to <code>optimal</code> .</bolt-text>
+    <bolt-text>Modal <code>width</code> is set to <code>auto</code> and image has <code>width</code> attribute defined.</bolt-text>
   {% endset %}
 
   {% include '@bolt-components-grid/grid.twig' with {
