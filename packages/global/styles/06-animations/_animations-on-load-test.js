@@ -1,9 +1,29 @@
 function playStateRunningOnLoad() {
-  document.querySelectorAll('.a-bolt-fade').forEach(fade => {
-    fade.classList.add('a-bolt-fade--running');
-  });
+  function runAnime() {
+    document.querySelectorAll('.a-bolt-fade').forEach(fade => {
+      fade.classList.add('a-bolt-fade--running');
+    });
+  }
+
+  window.onload = () => {
+    runAnime();
+  };
 }
 
-window.onload = () => {
+const mediaQueryReduceMotion = window.matchMedia(
+  '(prefers-reduced-motion: reduce)',
+);
+
+if (!mediaQueryReduceMotion || mediaQueryReduceMotion.matches) {
   playStateRunningOnLoad();
-};
+} else {
+  playStateRunningOnLoad();
+}
+
+mediaQueryReduceMotion.addEventListener('change', () => {
+  if (mediaQueryReduceMotion.matches) {
+    playStateRunningOnLoad();
+  } else {
+    playStateRunningOnLoad();
+  }
+});
