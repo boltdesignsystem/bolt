@@ -42,6 +42,7 @@
 {% set notes %}
   <bolt-ol>
     <bolt-li>The <code>static</code> setting shown here is included only for testing and demo purposes.</bolt-li>
+    <bolt-li>The X and Y position can be altered with the CSS custom properties (variables).</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -56,6 +57,9 @@
 {% include '@bolt-components-satellite/satellite.twig' with {
   content: _content,
   position: 'static',
+  attributes: {
+    style: '--c-bolt-satellite-offset-x: 100px;'
+  }
 } only %}
 {% endverbatim %}{% endset %}
 
