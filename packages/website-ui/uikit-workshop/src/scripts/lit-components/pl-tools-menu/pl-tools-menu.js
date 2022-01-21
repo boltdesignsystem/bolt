@@ -156,7 +156,7 @@ class ToolsMenu extends BaseLitComponent {
             <pl-toggle-theme></pl-toggle-theme>
           </li>
           <li class="pl-c-tools__item">
-            <pl-toggle-test></pl-toggle-test>
+            <pl-toggle-hidden-folders></pl-toggle-hidden-folders>
           </li>
 
           ${!this.ishControlsHide['views-new']
