@@ -1,25 +1,9 @@
 function playStateRunningOnLoad() {
-  function runAnime() {
-    document.querySelectorAll('.a-bolt-fade').forEach(fade => {
-      fade.classList.add('a-bolt-fade--running');
-    });
-  }
-
-  window.onload = () => {
-    runAnime();
-  };
+  document.querySelectorAll('.a-bolt-fade').forEach(fade => {
+    fade.classList.add('a-bolt-fade--running');
+  });
 }
 
-const mediaQueryReduceMotion = window.matchMedia(
-  '(prefers-reduced-motion: reduce)',
-);
-
-if (mediaQueryReduceMotion || !mediaQueryReduceMotion.matches) {
+window.onload = () => {
   playStateRunningOnLoad();
-}
-
-mediaQueryReduceMotion.addEventListener('change', () => {
-  if (mediaQueryReduceMotion.matches) {
-    playStateRunningOnLoad();
-  }
-});
+};
