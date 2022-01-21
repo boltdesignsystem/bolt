@@ -1,97 +1,193 @@
-<bolt-text headline font-size="xlarge">Trigger Options</bolt-text>
+{% set description %}
+Examples of different methods of launching a modal.
+{% endset %}
 
-<bolt-table>
-  <table>
-    <tbody>
-      <tr>
-        <th>
-          {% include '@bolt-elements-button/button.twig' with {
-            content: 'Button trigger',
-            size: 'small',
-            attributes: {
-              type: 'button',
-              'data-bolt-modal-target': '.js-bolt-modal--trigger-button',
-            },
-          } only %}
-          {% include '@bolt-components-modal/modal.twig' with {
-            content: 'This modal is triggered by a button.',
-            attributes: {
-              class: 'js-bolt-modal--trigger-button'
-            },
-          } only %}
-        </th>
-        <td>
-          The Button component is the standard method to trigger a modal.
-        </td>
-      </tr>
-      <tr>
-        <th>
-          {% set trigger_content %}
-            {% include '@bolt-elements-image/image.twig' with {
-              attributes: {
-                src: '/images/placeholders/tout-4x3-climber.jpg',
-                alt: 'A Rock Climber',
-                loading: 'lazy',
-              }
-            } only %}
-          {% endset %}
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The Button component is the standard method to trigger a modal. </bolt-li>
+    <bolt-li>An Image trigger can be created by wrapping the Trigger component around an Image element.</bolt-li>
+    <bolt-li><strong>Advanced usage:</strong> if the Image element has an absolute value (e.g. 640px) defined for <code>max_width</code>, then the modal's width prop can be set to <code>auto</code>. This will allow the image inside the modal to be responsive but does not stretch beyond the specified <code>max_width</code>.</bolt-li>
+    <bolt-li>Buttons are preferred for opening a modal, but you can use a link in a pinch.</bolt-li>
+  </bolt-ol>
+{% endset %}
 
-          {% set modal_content %}
-            {% include '@bolt-elements-image/image.twig' with {
-              attributes: {
-                src: '/images/placeholders/tout-4x3-climber.jpg',
-                alt: 'A Rock Climber',
-                style: 'max-width: 640px',
-              }
-            } only %}
-          {% endset %}
+{% set demo %}
+  {% set button_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Button trigger',
+      size: 'small',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--trigger-button',
+      },
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This modal is triggered by a button.',
+      attributes: {
+        class: 'js-bolt-modal--trigger-button'
+      },
+    } only %}
+  {% endset %}
 
-          {% include '@bolt-components-trigger/trigger.twig' with {
-            content: trigger_content,
-            cursor: 'zoom-in',
-            display: 'block',
-            attributes: {
-              'data-bolt-modal-target': '.js-bolt-modal--trigger-image',
-            },
-          } only %}
+  {% set image_modal %}
+    {% set trigger_content %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/tout-4x3-climber.jpg',
+          alt: 'A Rock Climber',
+          loading: 'lazy',
+          style: 'max-width: 320px',
+          width: '640',
+          height: '480'
+        }
+      } only %}
+    {% endset %}
 
-          {% include '@bolt-components-modal/modal.twig' with {
-            content: modal_content,
-            spacing: 'none',
-            theme: 'none',
-            scroll: 'overall',
-            width: 'auto',
-            attributes: {
-              class: 'js-bolt-modal--trigger-image'
-            },
-          } only %}
-        </th>
-        <td>
-          <p>Image trigger can be created by wrapping the Trigger component around an Image component.</p>
-          <p><strong>Advanced usage:</strong> if the Image component has an absolute value (e.g. 640px) defined for <code>max_width</code>, then the modal's width prop can be set to <code>auto</code>. This will allow the image inside the modal to be responsive but does not stretch beyond the specified <code>max_width</code>.</p>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          {% include '@bolt-elements-text-link/text-link.twig' with {
-            content: 'Link trigger',
-            attributes: {
-              href: '#',
-              'data-bolt-modal-target': '.js-bolt-modal--trigger-link',
-            },
-          } only %}
+    {% set modal_content %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/tout-4x3-climber.jpg',
+          alt: 'A Rock Climber',
+          width: '640',
+          height: '480'
+        }
+      } only %}
+    {% endset %}
 
-          {% include '@bolt-components-modal/modal.twig' with {
-            content: 'This modal is triggered by a link.',
-            attributes: {
-              class: 'js-bolt-modal--trigger-link'
-            },
-          } only %}
-        </th>
-        <td>
-          Buttons are preferred for opening a modal, but you can use a link in a pinch.
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</bolt-table>
+    {% include '@bolt-components-trigger/trigger.twig' with {
+      content: trigger_content,
+      cursor: 'zoom-in',
+      display: 'inline',
+      attributes: {
+        'data-bolt-modal-target': '.js-bolt-modal--trigger-image',
+      },
+    } only %}
+
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: modal_content,
+      spacing: 'none',
+      theme: 'none',
+      scroll: 'overall',
+      width: 'auto',
+      attributes: {
+        class: 'js-bolt-modal--trigger-image'
+      },
+    } only %}
+  {% endset %}
+
+  {% set link_modal %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Link trigger',
+      attributes: {
+        href: '#',
+        'data-bolt-modal-target': '.js-bolt-modal--trigger-link',
+      },
+    } only %}
+
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This modal is triggered by a link.',
+      attributes: {
+        class: 'js-bolt-modal--trigger-link'
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-list/list.twig' with {
+    spacing: 'large',
+    align: 'start',
+    items: [
+      button_modal,
+      image_modal,
+      link_modal,
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// <button>
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Button trigger',
+  size: 'small',
+  attributes: {
+    type: 'button',
+    'data-bolt-modal-target': '.js-bolt-modal--trigger-button',
+  },
+} only %}
+{% include '@bolt-components-modal/modal.twig' with {
+  content: 'This modal is triggered by a button.',
+  attributes: {
+    class: 'js-bolt-modal--trigger-button'
+  },
+} only %}
+
+// <img>
+{% set trigger_content %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/tout-4x3-climber.jpg',
+      alt: 'A Rock Climber',
+      loading: 'lazy',
+      style: 'max-width: 320px',
+      width: '640',
+      height: '480'
+    }
+  } only %}
+{% endset %}
+
+{% set modal_content %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/tout-4x3-climber.jpg',
+      alt: 'A Rock Climber',
+      width: '640',
+      height: '480'
+    }
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-trigger/trigger.twig' with {
+  content: trigger_content,
+  cursor: 'zoom-in',
+  display: 'inline',
+  attributes: {
+    'data-bolt-modal-target': '.js-bolt-modal--trigger-image',
+  },
+} only %}
+
+{% include '@bolt-components-modal/modal.twig' with {
+  content: modal_content,
+  spacing: 'none',
+  theme: 'none',
+  scroll: 'overall',
+  width: 'auto',
+  attributes: {
+    class: 'js-bolt-modal--trigger-image'
+  },
+} only %}
+
+// <a>
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: 'Link trigger',
+  attributes: {
+    href: '#',
+    'data-bolt-modal-target': '.js-bolt-modal--trigger-link',
+  },
+} only %}
+
+{% include '@bolt-components-modal/modal.twig' with {
+  content: 'This modal is triggered by a link.',
+  attributes: {
+    class: 'js-bolt-modal--trigger-link'
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Modal Trigger Options',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup
+} only %}
