@@ -14,16 +14,12 @@ const mediaQueryReduceMotion = window.matchMedia(
   '(prefers-reduced-motion: reduce)',
 );
 
-if (!mediaQueryReduceMotion || mediaQueryReduceMotion.matches) {
-  playStateRunningOnLoad();
-} else {
+if (mediaQueryReduceMotion || !mediaQueryReduceMotion.matches) {
   playStateRunningOnLoad();
 }
 
 mediaQueryReduceMotion.addEventListener('change', () => {
   if (mediaQueryReduceMotion.matches) {
-    playStateRunningOnLoad();
-  } else {
     playStateRunningOnLoad();
   }
 });
