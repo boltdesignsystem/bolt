@@ -10,7 +10,7 @@
         class: [
           'a-bolt-fade',
           'a-bolt-fade' ~ fade,
-          'a-bolt-fade--successively'
+          'a-bolt-fade--cascade'
         ],
       }
     } only %}
@@ -27,7 +27,7 @@
     const classes = e.target.className.split(' ').filter(c => !c.startsWith(prefix));
     const runAnimationClasses = e.target.className.split(' ').filter(c => c.startsWith(prefix));
     e.target.className = classes.join(' ').trim();
-    e.target.classList.remove('a-bolt-fade--successively');
+    e.target.classList.remove('a-bolt-fade--cascade');
     setTimeout(() => {
       e.target.classList.add(...runAnimationClasses)
     }, 100)

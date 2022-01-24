@@ -51,15 +51,15 @@
 
 //these classes fade animation one by one
 @for $i from 1 through 1000 {
-  .a-bolt-fade--successively:nth-of-type(#{$i}) {
+  .a-bolt-fade--cascade:nth-of-type(#{$i}) {
     --bolt-animation-delay: 20ms;
     animation-delay: calc(var(--bolt-animation-delay) * #{$i});
   }
-  .a-bolt-fade--successively-fast:nth-of-type(#{$i}) {
+  .a-bolt-fade--cascade-fast:nth-of-type(#{$i}) {
     --bolt-animation-delay: 10ms;
     animation-delay: calc(var(--bolt-animation-delay) * #{$i});
   }
-  .a-bolt-fade--successively-slow:nth-of-type(#{$i}) {
+  .a-bolt-fade--cascade-slow:nth-of-type(#{$i}) {
     --bolt-animation-delay: 50ms;
     animation-delay: calc(var(--bolt-animation-delay) * #{$i});
   }
