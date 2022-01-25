@@ -11,9 +11,9 @@
 
   <h2>Video with No Autoplay</h2>
 
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video,
-    ratio: '16/9'
+  {% include '@bolt-elelemnts-ratio/ratio.twig' with {
+    content: video,
+    ratio: 'wide'
   } only %}
 
   {% set video_1 %}
@@ -30,9 +30,9 @@
 
   <h2>Video with Autoplay in Viewport</h2>
 
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video_1,
-    ratio: '16/9'
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video_1,
+    ratio: 'wide'
   } only %}
 
   <div style="position:relative;height:1000px;"></div>
@@ -51,9 +51,9 @@
 
   <h2>Video with Autoplay Outside Viewport</h2>
 
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video_2,
-    ratio: '16/9'
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video_2,
+    ratio: 'wide'
   } only %}
 {% endset %}
 

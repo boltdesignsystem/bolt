@@ -289,9 +289,9 @@
       class="c-base-video"></video-js>
   {% endset %}
 
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video,
-    ratio: '16/9'
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video,
+    ratio: 'wide'
   } only %}
 {% endset %}
 
