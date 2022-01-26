@@ -13,6 +13,8 @@
   animation-duration: var(--bolt-animation-duration);
   animation-fill-mode: both;
   animation-play-state: paused;
+  // animation-iteration-count: infinite;
+  // animation-direction: alternate;
 
   @media print, (prefers-reduced-motion: reduce) {
     animation: none !important;
@@ -28,6 +30,12 @@
   @media print, (prefers-reduced-motion: reduce) {
     opacity: 0;
   }
+}
+
+[class*='a-bolt-in--zoom'],
+[class*='a-bolt-out--zoom'] {
+  --bolt-animation-duration: 500ms;
+  animation-duration: var(--bolt-animation-duration);
 }
 
 .a-bolt-running {
