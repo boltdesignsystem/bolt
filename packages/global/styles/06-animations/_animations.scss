@@ -19,7 +19,12 @@
   }
 }
 
+[class*='a-bolt-in'] {
+  animation-timing-function: ease-out;
+}
+
 [class*='a-bolt-out'] {
+  animation-timing-function: ease-in;
   @media print, (prefers-reduced-motion: reduce) {
     opacity: 0;
   }
