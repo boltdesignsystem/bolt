@@ -18,15 +18,15 @@
 
 <script>
 
-  const fadeEl = document.querySelectorAll('.a-bolt-fade');
+  const fadeEl = document.querySelectorAll('[class*="a-bolt-"]');
 
   //Repeat single specific fade on click
   function triggerThisEl(e) {
-    const prefix = 'a-bolt-fade--';
+    const prefix = 'a-bolt-in--';
     const classes = e.target.className.split(' ').filter(c => !c.startsWith(prefix));
     const runAnimationClasses = e.target.className.split(' ').filter(c => c.startsWith(prefix));
     e.target.className = classes.join(' ').trim();
-    e.target.classList.remove('a-bolt-fade--cascade');
+    e.target.classList.remove('a-bolt-cascade');
     setTimeout(() => {
       e.target.classList.add(...runAnimationClasses)
     }, 100)
