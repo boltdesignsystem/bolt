@@ -1,6 +1,6 @@
 <p>An example of all fade ins on a banner component, (100 elements in total), triggered on window load. Click on the banner to see the specific single animation.</p>
 
-{% set fades = ['--in', '--in-up', '--in-down', '--in-left', '--in-right'] %}
+{% set fades = ['-in--fade', '-in--fade-up', '-in--fade-down', '-in--fade-left', '-in--fade-right'] %}
 
 {% for i in 1..20 %}
   {% for fade in fades %}
@@ -8,9 +8,8 @@
       content: 'This is the banner content fade' ~ fade,
       attributes: {
         class: [
-          'a-bolt-fade',
-          'a-bolt-fade' ~ fade,
-          'a-bolt-fade--cascade'
+          'a-bolt' ~ fade,
+          'a-bolt-cascade'
         ],
       }
     } only %}
