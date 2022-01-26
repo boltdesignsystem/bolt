@@ -1,6 +1,6 @@
 function playStateRunningOnLoad() {
-  document.querySelectorAll('.a-bolt-fade').forEach(fade => {
-    fade.classList.add('a-bolt-fade--running');
+  document.querySelectorAll('[class*="a-bolt-"]').forEach(fade => {
+    fade.classList.add('a-bolt-running');
   });
 }
 
