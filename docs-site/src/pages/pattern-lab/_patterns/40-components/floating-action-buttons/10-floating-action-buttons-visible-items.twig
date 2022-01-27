@@ -1,0 +1,94 @@
+{% set description %}
+The <code>visible_items</code> property can be used to hide an overflow of elements passed into <code>content</code>.
+{% endset %}
+
+{% set icon_sample %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'rocket',
+  } only %}
+{% endset %}
+
+{% set _placeholder_pri %}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    content: 'Placeholder Button',
+    trigger: include('@bolt-elements-button/button.twig', {
+      content: 'Placeholder Button',
+      icon_only: icon_sample,
+      attributes: {
+        type: 'button'
+      },
+    }),
+  } only %}
+{% endset %}
+
+{% set _placeholder_sec %}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    content: 'Placeholder Button',
+    trigger: include('@bolt-elements-button/button.twig', {
+      content: 'Placeholder Button',
+      hierarchy: 'secondary',
+      icon_only: icon_sample,
+      attributes: {
+        type: 'button'
+      },
+    }),
+  } only %}
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The default value of <code>visible_items</code> is <code>2</code></bolt-li>
+    <bolt-li>You may set <code>visible_items</code> to <code>0</code> to allow all elements to be shown.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    {% for _visible_items in schema.properties.visible_items.enum %}
+      <bolt-list-item>
+        {% set _content %}
+          {% for i in 0..4 %}
+            {% if i < _visible_items %}
+              {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
+                content: _placeholder_pri,
+              } only %}
+            {% elseif _visible_items == 0 %}
+              {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
+                content: _placeholder_pri,
+              } only %}
+            {% else %}
+              {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
+                content: _placeholder_sec,
+              } only %}
+            {% endif %}
+          {% endfor %}
+        {% endset %}
+
+        {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
+          content: _content,
+          visible_items: _visible_items,
+          attributes: {
+            style: "position: static;"
+          }
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
+  content: _content,
+  visible_items: 0,
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Floating Action Buttons Visible Items',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

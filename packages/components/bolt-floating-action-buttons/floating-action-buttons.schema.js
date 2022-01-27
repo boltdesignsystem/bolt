@@ -1,12 +1,12 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Satellite',
+  title: 'Floating Action Buttons',
   type: 'object',
   properties: {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-satellite&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-floating-action-buttons&gt; tag.',
     },
     content: {
       type: 'any',
@@ -15,9 +15,8 @@ module.exports = {
     },
     position: {
       type: 'string',
-      description:
-        'The desired location of the floating element. The static option is used solely for testing purposes.',
-      enum: ['bottom-right', 'middle-right', 'top-right', 'static'],
+      description: 'The desired location of the floating element.',
+      enum: ['bottom-right', 'middle-right', 'top-right'],
       default: 'bottom-right',
     },
     visible_items: {

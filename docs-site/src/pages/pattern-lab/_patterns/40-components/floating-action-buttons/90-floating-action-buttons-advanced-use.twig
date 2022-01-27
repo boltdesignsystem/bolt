@@ -1,0 +1,37 @@
+{% set description %}
+    There are 2 CSS custom properties available for use to further customize Satalitte.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>
+      <strong>--c-bolt-floating-action-buttons-offset-x</strong>
+      <bolt-ul>
+        <bolt-li>Set a pixel value to move the Satelite this many pixels left.</bolt-li>
+      </bolt-ul>
+    </bolt-li>
+    <bolt-li>
+      <strong>--c-bolt-floating-action-buttons-offset-y</strong>
+      <bolt-ul>
+        <bolt-li>if <code>position</code> is set to <code>top-right</code>, the Floating Action Buttons will move down.</bolt-li>
+        <bolt-li>if <code>position</code> is set to <code>bottom-right</code>, the Floating Action Buttons will move up.</bolt-li>
+      </bolt-ul>
+    </bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
+  content: _content,
+  attributes: {
+    style: '--c-bolt-floating-action-buttons-offset-x: 100px;'
+  }
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Floating Action Buttons Advanced Use',
+  description: description,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}

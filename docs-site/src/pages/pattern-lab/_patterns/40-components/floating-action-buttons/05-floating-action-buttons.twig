@@ -73,13 +73,13 @@
       content: 'Back to top',
       icon_only: icon_up,
       attributes: {
-        href: '#components-satellite-docs',
+        href: '#components-floating-action-buttons-docs',
       },
     }),
   } only %}
 {% endset %}
 
-{% set _placeholderItem %}
+{% set _placeholder_sec %}
   {% set icon_sample %}
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'rocket',
@@ -90,6 +90,7 @@
     content: 'Placeholder Button',
     trigger: include('@bolt-elements-button/button.twig', {
       content: 'Placeholder Button',
+      hierarchy: 'secondary',
       icon_only: icon_sample,
       attributes: {
         type: 'button'
@@ -99,20 +100,20 @@
 {% endset %}
 
 {% set _content %}
-  {% include '@bolt-components-satellite/satellite-item.twig' with {
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
     content: _shareButton,
   } only %}
-  {% include '@bolt-components-satellite/satellite-item.twig' with {
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
     content: _scrollToTopButton,
   } only %}
-  {% include '@bolt-components-satellite/satellite-item.twig' with {
-    content: _placeholderItem,
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
+    content: _placeholder_sec,
   } only %}
-  {% include '@bolt-components-satellite/satellite-item.twig' with {
-    content: _placeholderItem,
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
+    content: _placeholder_sec,
   } only %}
-  {% include '@bolt-components-satellite/satellite-item.twig' with {
-    content: _placeholderItem,
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
+    content: _placeholder_sec,
   } only %}
 {% endset %}
 
@@ -124,19 +125,41 @@
 {% endset %}
 
 {% set demo %}
-{% include '@bolt-components-satellite/satellite.twig' with {
+{% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
   content: _content,
 } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% include '@bolt-components-satellite/satellite.twig' with {
+{% set _item_visible %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'This is a button',
+  } only %}
+{% endset %}
+
+{% set _item_hidden %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'This is a button',
+    hierarchy: 'secondary'
+  } only %}
+{% endset %}
+
+{% set _content %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
+    content: _item_visible,
+  } only %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
+    content: _item_hidden,
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
   content: _content,
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Satellite',
+  title: 'Basic Floating Action Buttons',
   description: description,
   notes: notes,
   demo: demo,

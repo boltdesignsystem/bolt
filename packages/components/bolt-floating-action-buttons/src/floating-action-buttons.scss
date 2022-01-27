@@ -1,16 +1,16 @@
 /* ------------------------------------ *\
-  Satellite
+  Floating Action Buttons
 \* ------------------------------------ */
 
 @import '@bolt/core-v3.x';
 
 // Register Custom Block Element
-@include bolt-custom-element('bolt-satellite', block, medium);
+@include bolt-custom-element('bolt-floating-action-buttons', block, medium);
 
 $default-x-offset: var(--bolt-spacing-x-xsmall);
 $default-y-offset: var(--bolt-spacing-y-xsmall);
 
-.c-bolt-satellite {
+.c-bolt-floating-action-buttons {
   z-index: bolt-z-index('fab');
 
   // must both be ready && not have aria-hidden before showing
@@ -23,6 +23,11 @@ $default-y-offset: var(--bolt-spacing-y-xsmall);
     display: grid;
     grid-gap: var(--bolt-spacing-y-xxsmall);
     margin-bottom: var(--bolt-spacing-y-xxsmall);
+    margin-left: 0;
+  }
+
+  &__content-item {
+    display: block;
   }
 
   // Hide hidden content items
@@ -32,18 +37,21 @@ $default-y-offset: var(--bolt-spacing-y-xsmall);
 }
 
 // position prop
-$bolt-satellite-position: 'bottom', 'middle', 'top';
+$bolt-fab-position: 'bottom', 'middle', 'top';
 
-@each $position in $bolt-satellite-position {
-  .c-bolt-satellite--position-#{$position}-right {
+@each $position in $bolt-fab-position {
+  .c-bolt-floating-action-buttons--position-#{$position}-right {
     position: fixed;
-    right: var(--c-bolt-satellite-offset-x, $default-x-offset);
+    right: var(--c-bolt-floating-action-buttons-offset-x, $default-x-offset);
 
     @if index($position, 'middle') {
-      top: calc(50% + var(--c-bolt-satellite-offset-y));
+      top: calc(50% + var(--c-bolt-floating-action-buttons-offset-y));
       transform: translateY(-50%);
     } @else {
-      #{$position}: var(--c-bolt-satellite-offset-y, $default-y-offset);
+      #{$position}: var(
+        --c-bolt-floating-action-buttons-offset-y,
+        $default-y-offset
+      );
     }
   }
 }

@@ -1,6 +1,6 @@
 {# @TODO: rename stash #}
 
-{% set schema = bolt.data.components['@bolt-components-satellite'].schema %}
+{% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -11,8 +11,8 @@
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  'c-bolt-satellite',
-  'c-bolt-satellite--position-' ~ this.data.position.value,
+  'c-bolt-floating-action-buttons',
+  'c-bolt-floating-action-buttons--position-' ~ this.data.position.value,
 ] %}
 
 <div
@@ -24,12 +24,12 @@
   {{ this.props|without("class")|without("position")|without("visible_items") }}
 >
 
-  <div class="c-bolt-satellite__content">
-    {{ content }}
-  </div>
+  <ul class="c-bolt-floating-action-buttons__content">
+      {{ content }}
+  </ul>
 
   {% if this.data.visible_items.value > 0 %}
-  <div class="c-bolt-satellite__more">
+  <div class="c-bolt-floating-action-buttons__more">
     {% set icon_more %}
       {% include '@bolt-elements-icon/icon.twig' with {
         name: 'more',

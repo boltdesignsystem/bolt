@@ -3,5 +3,5 @@ A sticky floating container for action buttons.
 ###### Install via NPM
 
 ```
-npm install @bolt/components-satellite
+npm install @bolt/components-floating-action-buttons
 ```

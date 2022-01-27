@@ -1,4 +1,4 @@
-export class BoltSatellite {
+export class BoltFloatingActionButtons {
   constructor(el) {
     if (!el) return;
     this.el = el;
@@ -7,10 +7,14 @@ export class BoltSatellite {
 
   init() {
     this.visibleItems = this.el.getAttribute('data-visible-items');
-    this.contentElement = this.el.querySelector('.c-bolt-satellite__content');
+    this.contentElement = this.el.querySelector(
+      '.c-bolt-floating-action-buttons__content',
+    );
     this.showOnScroll = this.el.getAttribute('show-on-scroll');
     this.showOnLoad = this.el.getAttribute('data-show-on-load');
-    this.expandButton = this.el.querySelector('.c-bolt-satellite__more');
+    this.expandButton = this.el.querySelector(
+      '.c-bolt-floating-action-buttons__more',
+    );
 
     if (this.visibleItems > 0) {
       this.setDefaultVisibility();
