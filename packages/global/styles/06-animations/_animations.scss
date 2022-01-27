@@ -55,11 +55,6 @@
   animation-delay: var(--bolt-animation-delay);
 }
 
-.a-bolt-delay-medium {
-  --bolt-animation-delay: 200ms;
-  animation-delay: var(--bolt-animation-delay);
-}
-
 .a-bolt-delay-short {
   --bolt-animation-delay: 100ms;
   animation-delay: var(--bolt-animation-delay);
@@ -67,10 +62,6 @@
 
 //these classes fade animation one by one
 @for $i from 1 through 150 {
-  .a-bolt-cascade:nth-of-type(#{$i}) {
-    --bolt-animation-delay: 20ms;
-    animation-delay: calc(var(--bolt-animation-delay) * #{$i});
-  }
   .a-bolt-cascade-fast:nth-of-type(#{$i}) {
     --bolt-animation-delay: 10ms;
     animation-delay: calc(var(--bolt-animation-delay) * #{$i});
