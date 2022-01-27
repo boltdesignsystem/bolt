@@ -2,13 +2,19 @@
    Base animations tool set
 \* ------------------------------------ */
 
+/**
+ * Dev notes:
+ * 1. Safari performance issue (elements flickers in random places after animation starts).
+ * 2. Start animation one after another.
+ */
+
 :root {
   --bolt-animation-duration: 200ms;
   --bolt-animation-delay: 0ms;
 }
 
 [class*='a-bolt-'] {
-  visibility: hidden; //Safari performance issue
+  visibility: hidden; /* [1] */
   animation-delay: var(--bolt-animation-delay);
   animation-duration: var(--bolt-animation-duration);
   animation-fill-mode: both;
@@ -38,7 +44,7 @@
 }
 
 .a-bolt-running {
-  visibility: visible; //Safari performance issue
+  visibility: visible; /* [1] */
   animation-play-state: running;
 }
 
@@ -60,7 +66,7 @@
   animation-delay: var(--bolt-animation-delay);
 }
 
-//these classes fade animation one by one
+/* [2] */
 @for $i from 1 through 150 {
   .a-bolt-cascade-fast:nth-of-type(#{$i}) {
     --bolt-animation-delay: 10ms;

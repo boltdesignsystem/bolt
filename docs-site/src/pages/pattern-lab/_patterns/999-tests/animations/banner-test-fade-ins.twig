@@ -1,8 +1,8 @@
-<p>An example of all fade ins on a banner component, (100 elements in total), triggered on window load. Click on the banner to see the specific single animation.</p>
+<p>An example of all fade ins on a banner component, (20 elements in total), triggered on window load. Click on the banner to see the specific single animation.</p>
 
 {% set fades = ['-in--fade', '-in--fade-up', '-in--fade-down', '-in--fade-left', '-in--fade-right'] %}
 
-{% for i in 1..20 %}
+{% for i in 1..4 %}
   {% for fade in fades %}
     {% include '@bolt-components-banner/banner.twig' with {
       content: 'This is the banner content fade' ~ fade,
@@ -29,7 +29,7 @@
     e.target.classList.remove('a-bolt-cascade-fast');
     setTimeout(() => {
       e.target.classList.add(...runAnimationClasses)
-    }, 100)
+    }, 20)
   }
 
   fadeEl.forEach((el) => {
