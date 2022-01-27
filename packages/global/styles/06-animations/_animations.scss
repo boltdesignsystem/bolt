@@ -8,11 +8,6 @@
  * 2. Start animation one after another.
  */
 
-:root {
-  --bolt-animation-duration: 200ms;
-  --bolt-animation-delay: 0ms;
-}
-
 [class*='a-bolt-'] {
   visibility: hidden; /* [1] */
   animation-delay: var(--bolt-animation-delay);
@@ -34,13 +29,6 @@
   @media print, (prefers-reduced-motion: reduce) {
     opacity: 0;
   }
-}
-
-[class*='a-bolt-in--zoom'],
-[class*='a-bolt-out--zoom'],
-[class*='a-bolt-in--bounce'],
-[class*='a-bolt-out--bounce'] {
-  animation-duration: calc(var(--bolt-animation-duration) * 2.5);
 }
 
 .a-bolt-running {
