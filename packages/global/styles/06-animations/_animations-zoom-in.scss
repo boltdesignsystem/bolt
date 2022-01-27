@@ -8,7 +8,7 @@
     transform: scale3d(0.3, 0.3, 0.3);
   }
 
-  50% {
+  to {
     opacity: 1;
   }
 }
@@ -24,12 +24,12 @@
 @keyframes a-bolt-in-zoom-up {
   from {
     opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3) translate3d(0, 50rem, 0);
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 500%, 0);
   }
 
   60% {
     opacity: 1;
-    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    transform: scale3d(0.4, 0.4, 0.4) translate3d(0, -30%, 0);
   }
 }
 
@@ -44,12 +44,12 @@
 @keyframes a-bolt-in-zoom-down {
   from {
     opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3) translate3d(0, -50rem, 0);
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -500%, 0);
   }
 
   60% {
     opacity: 1;
-    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    transform: scale3d(0.4, 0.4, 0.4) translate3d(0, 30%, 0);
   }
 }
 
@@ -64,12 +64,12 @@
 @keyframes a-bolt-in-zoom-left {
   from {
     opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3) translate3d(-50rem, 0, 0);
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(-500%, 0, 0);
   }
 
   60% {
     opacity: 1;
-    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    transform: scale3d(0.4, 0.4, 0.4) translate3d(30%, 0, 0);
   }
 }
 
@@ -84,12 +84,12 @@
 @keyframes a-bolt-in-zoom-right {
   from {
     opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3) translate3d(50rem, 0, 0);
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(500%, 0, 0);
   }
 
   60% {
     opacity: 1;
-    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    transform: scale3d(0.4, 0.4, 0.4) translate3d(-30%, 0, 0);
   }
 }
 
