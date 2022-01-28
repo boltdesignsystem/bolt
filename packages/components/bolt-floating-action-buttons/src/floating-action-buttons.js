@@ -33,7 +33,10 @@ export class BoltFloatingActionButtons {
     }
 
     // add the ready attribute at the end of init
-    this.el.setAttribute('data-bolt-ready', '');
+    // delay it just long enough to avoid CSS animation lag
+    setTimeout(() => {
+      this.el.setAttribute('data-bolt-ready', '');
+    }, 200);
   }
 
   show() {

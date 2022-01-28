@@ -25,7 +25,9 @@
 >
 
   <ul class="c-bolt-floating-action-buttons__content">
+    {% spaceless %}
       {{ content }}
+    {% endspaceless %}
   </ul>
 
   {% if this.data.visible_items.value > 0 %}

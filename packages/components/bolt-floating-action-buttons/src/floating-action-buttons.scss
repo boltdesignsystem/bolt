@@ -20,19 +20,21 @@ $default-y-offset: var(--bolt-spacing-y-xsmall);
   }
 
   &__content {
-    display: grid;
-    grid-gap: var(--bolt-spacing-y-xxsmall);
-    margin-bottom: var(--bolt-spacing-y-xxsmall);
+    margin-bottom: 0;
     margin-left: 0;
   }
 
   &__content-item {
     display: block;
+    margin-bottom: var(--bolt-spacing-y-xxsmall);
+    transition: all var(--bolt-transition);
   }
 
   // Hide hidden content items
   &__content-item[aria-hidden='true'] {
-    @include bolt-visuallyhidden;
+    visibility: hidden;
+    opacity: 0;
+    margin-bottom: -100%;
   }
 }
 
