@@ -1,0 +1,21 @@
+{% set schema = bolt.data.components['@bolt-components-{{ kebabCase name }}'].schema %}
+{% if enable_json_schema_validation %}
+  \{{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-{{ kebabCase name }}',
+  this.data.disabled.value ? 'c-bolt-{{ kebabCase name }}--disabled' : '',
+] %}
+
+<div \{{ attributes.addClass(classes) }}>
+  {% if content %}
+    \{{ content }}
+  {% endif %}
+</div>
+

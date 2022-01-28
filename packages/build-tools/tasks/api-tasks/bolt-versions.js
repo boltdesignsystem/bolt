@@ -13,19 +13,35 @@ let versionSpinner;
 
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { fileExists } = require('@bolt/build-utils/general');
+// Note: cannot use `cwd` as this is run from docs-site (yarn start, yarn build) and from root dir (yarn test:js)
+const lernaConfig = require('./../../../../lerna.json');
+
 const store = new InCache();
 let isUsingOldData = false; // remember if we are using up to date version data or older (stale) data as a fallback
 
 const urlsToCheck = [];
 
+function isValidFullRelease(tag) {
+  // Is valid semver and does not contain any pre-release labels
+  return semver.valid(tag) && !semver.prerelease(tag);
+}
+
 async function writeBoltVersionUrlsToJson(versionData) {
   const config = await getConfig();
-  let versionInfo = versionData;
+
+  const lernaVersion = semver.clean(lernaConfig.version);
+
+  // Filter out versions that are greater than the lerna version
+  const versionInfo = versionData.filter(({ label }) =>
+    semver.lte(label, lernaVersion),
+  );
 
   versionInfo.sort(function(a, b) {
     return semver.rcompare(a.label, b.label);
   });
 
+  // Write the dynamically created version list to the "bolt-releases.bolt.json" data file.
+  // This will be used to populate the Version Selector component.
   fs.writeFile(
     path.join(config.dataDir, '/bolt-releases.bolt.json'),
     JSON.stringify({
@@ -84,8 +100,13 @@ async function getBoltTags() {
         repo: 'bolt',
         per_page: 9999,
       });
-      tags = tags.data;
-      await store.set('bolt-tags', tags, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // set 30 day cache
+
+      // Filter out versions that are not valid or pre-release
+      tags = tags.data.filter(({ name }) => isValidFullRelease(name));
+
+      await store.set('bolt-tags', tags, {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+      }); // set 30 day cache
       await store.save();
     } catch (err) {
       // handle expired cached data + not having a GITHUB_TOKEN set as an environmental variable
@@ -138,13 +159,15 @@ async function gatherBoltVersionUrls() {
 
   for (let index = 0; index < tags.length; index++) {
     let tag = tags[index].name;
-    let tagString = tag
-      .replace(/\//g, '-') // `/` => `-`
-      .replace('--', '-') // `--` => `-`
-      .replace(/\./g, '-'); // `.` => `-`
+    if (isValidFullRelease(tag)) {
+      let tagString = tag
+        .replace(/\//g, '-') // `/` => `-`
+        .replace('--', '-') // `--` => `-`
+        .replace(/\./g, '-'); // `.` => `-`
 
-    const siteUrl = `https://${tagString}.boltdesignsystem.com`;
-    urlsToCheck.push(siteUrl);
+      const siteUrl = `https://${tagString}.boltdesignsystem.com`;
+      urlsToCheck.push(siteUrl);
+    }
   }
 
   let results;
@@ -161,23 +184,25 @@ async function gatherBoltVersionUrls() {
 
   for (let index = 0; index < tags.length; index++) {
     let tag = tags[index].name;
-    let tagString = tag
-      .replace(/\//g, '-') // `/` => `-`
-      .replace('--', '-') // `--` => `-`
-      .replace(/\./g, '-'); // `.` => `-`
+    if (isValidFullRelease(tag)) {
+      let tagString = tag
+        .replace(/\//g, '-') // `/` => `-`
+        .replace('--', '-') // `--` => `-`
+        .replace(/\./g, '-'); // `.` => `-`
 
-    const siteUrl = `https://${tagString}.boltdesignsystem.com`;
+      const siteUrl = `https://${tagString}.boltdesignsystem.com`;
 
-    if (
-      semver.valid(tag) &&
-      results[siteUrl] !== undefined &&
-      results[siteUrl].status === 'alive'
-    ) {
-      tagUrls.push({
-        label: tag,
-        type: 'option',
-        value: siteUrl,
-      });
+      if (
+        semver.valid(tag) &&
+        results[siteUrl] !== undefined &&
+        results[siteUrl].status === 'alive'
+      ) {
+        tagUrls.push({
+          label: tag,
+          type: 'option',
+          value: siteUrl,
+        });
+      }
     }
   }
 

@@ -1,0 +1,17 @@
+{% set schema = bolt.data.components["@bolt-components-icon"].schema %}
+{% set names = schema.properties.name.anyOf[0].enum %}
+{% set colors = schema.properties.color.enum %}
+{% set sizes = schema.properties.size.enum %}
+
+
+{% for name in names %}
+  {% for color in colors %}
+    {% for size in sizes %}
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: name,
+        color: color,
+        size: size
+      }%}
+    {% endfor %}
+  {% endfor %}
+{% endfor %}

@@ -1,5 +1,7 @@
 // TODO: limit to a .js class
-const inputs = document.querySelectorAll('.c-bolt-input');
+const inputs = document.querySelectorAll(
+  '.c-bolt-input:not(.js-bolt-react-component)',
+);
 
 let thousandsDecimal = [',', '.'];
 
@@ -176,7 +178,9 @@ for (let i = 0, len = inputs.length; i < len; i++) {
   };
 }
 
-const customInputWrappers = document.querySelectorAll('.c-bolt-custom-input');
+const customInputWrappers = document.querySelectorAll(
+  '.c-bolt-custom-input:not(.js-bolt-react-component)',
+);
 
 for (let i = 0, len = customInputWrappers.length; i < len; i++) {
   const wrapper = customInputWrappers[i];

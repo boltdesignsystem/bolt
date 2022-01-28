@@ -10,7 +10,7 @@ module.exports = {
         'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
     content: {
-      type: ['string', 'array', 'object'],
+      type: 'any',
       description:
         'Content of page header search panel. Typeahead or some kind of search input is expected here.',
     },

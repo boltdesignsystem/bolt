@@ -1,3 +1,3 @@
 ---
-title: (Phase 2) Homepage
+title: Homepage
 ---

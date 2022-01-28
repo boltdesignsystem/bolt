@@ -1,0 +1,232 @@
+{% set description %}
+  The Holy Grail layout is commonly used for documentation design where a page would display a book nav and a page level table of contents.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The primary sidebar works best with the <a href="{{ link['viewall-components-side-nav'] }}" class="e-bolt-text-link">Side Nav</a> component.</bolt-li>
+    <bolt-li>The secondary sidebar works best with the <a href="{{ link['viewall-components-toc'] }}" class="e-bolt-text-link">Table of Contents</a> component.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set level_2_items %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 2 page',
+        attributes: {
+          href: 'https://google.com',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 2 page',
+        attributes: {
+          href: 'https://google.com',
+        },
+      },
+    } only %}
+  {% endset %}
+  {% set level_2_list %}
+    {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+      content: level_2_items,
+    } only %}
+  {% endset %}
+  {% set level_1_items %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 page (with nested links)',
+        attributes: {
+          href: 'https://google.com',
+        },
+      },
+      children: level_2_list,
+    } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 page (current) and it has long string of text! Lorem ipsum dolor sit amet consectetur adipisicing elit odio doloremque nam voluptas debitis ab Dolor autem Illo est sit Eaque veniam tenetur nihil sapiente sint dolor incidunt labore accusamus quaerat',
+        attributes: {
+          href: 'https://google.com',
+        },
+      },
+      current: true,
+    } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 page',
+        attributes: {
+          href: 'https://google.com',
+        },
+      },
+    } only %}
+  {% endset %}
+  {% set level_1_list %}
+    {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+      content: level_1_items,
+    } only %}
+  {% endset %}
+  {% set side_nav %}
+    {% include '@bolt-components-side-nav/side-nav.twig' with {
+      headline: {
+        content: 'This is a side nav',
+        link_attributes: {
+          href: 'https://google.com',
+        },
+      },
+      content: level_1_list,
+    } only %}
+  {% endset %}
+  {% set table_of_contents %}
+    {% include '@bolt-components-toc/toc.twig' with {
+      variant: 'transparent',
+      header: 'This is the TOC',
+      items: [
+        {
+          text: 'Section One',
+          url: '#section-one',
+        },
+        {
+          text: 'Section Two',
+          url: '#section-two',
+        },
+        {
+          text: 'Section Three',
+          url: '#section-three',
+        },
+        {
+          text: 'Section Four',
+          url: '#section-four',
+        },
+        {
+          text: 'Section Five',
+          url: '#section-five',
+        },
+      ],
+      scrollOffset: 16,
+    } only %}
+  {% endset %}
+  {% set content %}
+    <article class="e-bolt-article">
+      <h2 id="section-one">Section One</h2>
+      <p>This is a holy grail layout.</p>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis harum placeat magni voluptas maiores iure explicabo magnam delectus et molestias tempore, dolore sed voluptate voluptatibus! Voluptas pariatur rerum quidem blanditiis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae atque molestias esse iusto laboriosam, repellendus voluptate adipisci consequatur consectetur? Fuga recusandae excepturi deleniti quo natus voluptas sequi, optio nemo aspernatur.</p>
+      <h2 id="section-two">Section Two</h2>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis harum placeat magni voluptas maiores iure explicabo magnam delectus et molestias tempore, dolore sed voluptate voluptatibus! Voluptas pariatur rerum quidem blanditiis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae atque molestias esse iusto laboriosam, repellendus voluptate adipisci consequatur consectetur? Fuga recusandae excepturi deleniti quo natus voluptas sequi, optio nemo aspernatur.</p>
+      {% include '@bolt-components-table/table.twig' with {
+        first_col_fixed_width: true,
+        headers: {
+          top: {
+            cells: [
+              'Item number',
+              'Description',
+              'Assemblies',
+            ]
+          },
+          side: {
+            cells: [
+              'Build 2.0.1.0 — SR-49969',
+              {
+                content: 'Build 1.1.360 — SR-44891',
+                attributes: {
+                  rowspan: 2,
+                }
+              },
+              {},
+              'Build 1.1.354 — SR-44889',
+            ]
+          }
+        },
+        rows: [
+          {
+            cells: [
+              'SR-49941',
+              'This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.',
+              'OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe',
+            ]
+          },
+          {
+            cells: [
+              'SR-44869',
+              'This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.',
+              'OpenSpan.Updater.Git.dll',
+            ]
+          },
+          {
+            cells: [
+              'SR-43163',
+              'This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.',
+              'OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe',
+            ]
+          },
+          {
+            cells: [
+              'SR-44850',
+              'This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.',
+              'ManagedOpenSsl.dll',
+            ]
+          },
+        ],
+      } only %}
+    </article>
+  {% endset %}
+
+  {% set sidebar %}
+    {% include '@bolt-layouts-holy-grail/holy-grail-sidebar.twig' with {
+      content: side_nav,
+      trigger_icon: 'documentation',
+      trigger_label: 'Book Navigation',
+      attributes: {
+        class: 't-bolt-gray-xlight',
+      },
+    } only %}
+  {% endset %}
+
+  {% set secondary_sidebar %}
+    {% include '@bolt-layouts-holy-grail/holy-grail-secondary-sidebar.twig' with {
+      content: table_of_contents,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+    content: content,
+    sidebar: sidebar,
+    secondary_sidebar: secondary_sidebar,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up sidebar templates
+{% set sidebar %}
+  {% include '@bolt-layouts-holy-grail/holy-grail-sidebar.twig' with {
+    content: side_nav,
+    trigger_icon: 'documentation',
+    trigger_label: 'Book Navigation',
+    attributes: {
+      class: 't-bolt-gray-xlight',
+    },
+  } only %}
+{% endset %}
+{% set secondary_sidebar %}
+  {% include '@bolt-layouts-holy-grail/holy-grail-secondary-sidebar.twig' with {
+    content: table_of_contents,
+  } only %}
+{% endset %}
+
+// Pass sidebars to main template
+{% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
+  content: content,
+  sidebar: sidebar,
+  secondary_sidebar: secondary_sidebar,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Use Case: Navigation',
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}

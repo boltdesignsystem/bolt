@@ -64,13 +64,13 @@ module.exports = {
     gutter: {
       type: 'string',
       description: 'Set the horizontal spacing in between layout items.',
-      enum: ['none', 'small', 'medium', 'large'],
+      enum: ['none', 'small', 'medium', 'large', 'xlarge'],
       default: 'medium',
     },
     row_gutter: {
       type: 'string',
       description: 'Set the vertical spacing in between layout items.',
-      enum: ['none', 'small', 'medium', 'large'],
+      enum: ['none', 'small', 'medium', 'large', 'xlarge'],
       default: 'medium',
     },
     padding_top: {

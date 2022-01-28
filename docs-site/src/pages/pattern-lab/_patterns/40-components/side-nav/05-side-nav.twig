@@ -1,0 +1,151 @@
+{% set description %}
+  Side nav is a secondary navigation. It is commonly used in documentation design.
+{% endset %}
+
+{% set notes %}
+{% spaceless %}
+  <bolt-ol>
+    <bolt-li>Although nesting is possible, it is not recommended to go more than 4 levels deep.</bolt-li>
+    <bolt-li>Side nav is intended to be used as the left sidebar of a <a href="{{ link['viewall-layouts-holy-grail'] }}" class="e-bolt-text-link">Holy Grail layout</a>.</bolt-li>
+    <bolt-li>Tech Doc is a great example of using Holy Grail layout, Site layout, Side Nav, Content Pagination, and Article element together. <a href="{{ link['pages-community-doc-layout'] }}" class="e-bolt-text-link">View demo<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a></bolt-li>
+  </bolt-ol>
+{% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  {% set icon_external_link %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'external-link',
+    } only %}
+  {% endset %}
+  {% set level_2_items %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 2 page',
+        attributes: {
+          href: 'https://google.com',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 2 page',
+        attributes: {
+          href: 'https://google.com',
+        },
+      },
+    } only %}
+  {% endset %}
+  {% set level_2_list %}
+    {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+      content: level_2_items,
+    } only %}
+  {% endset %}
+  {% set level_1_items %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 page (with nested links)',
+        attributes: {
+          href: 'https://google.com',
+        },
+      },
+      children: level_2_list,
+    } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 page (current)',
+        attributes: {
+          href: 'https://google.com',
+        },
+      },
+      current: true,
+    } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 page',
+        attributes: {
+          href: 'https://google.com',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 external link',
+        icon: icon_external_link,
+        attributes: {
+          href: 'https://google.com',
+          target: '_blank',
+          rel: 'noopener',
+        },
+      },
+    } only %}
+  {% endset %}
+  {% set level_1_list %}
+    {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+      content: level_1_items,
+    } only %}
+  {% endset %}
+
+  <div style="max-width: 320px;">
+    {% include '@bolt-components-side-nav/side-nav.twig' with {
+      headline: {
+        content: 'This is a side nav',
+        link_attributes: {
+          href: 'https://google.com',
+        },
+      },
+      content: level_1_list,
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// List item template
+{% set list_items %}
+  {% set icon_external_link %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'external-link',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+    link: {
+      content: 'Item text',
+      icon: icon_external_link, // Set a custom icon for external link.
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+    current: true, // When set to true, the item is indicated as the current page.
+    expanded: true, // When set to true, it will show children.
+    children: children, // Pass another list in here.
+  } only %}
+{% endset %}
+
+// List template
+{% set list %}
+  {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+    content: list_items, // Pass list items in here.
+  } only %}
+{% endset %}
+
+// Side nav template
+{% include '@bolt-components-side-nav/side-nav.twig' with {
+  headline: {
+    content: 'Headline text',
+    link_attributes: {
+      href: 'https://google.com',
+    },
+  },
+  content: list, // Pass list in here.
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Side Nav',
+  description: description,
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}

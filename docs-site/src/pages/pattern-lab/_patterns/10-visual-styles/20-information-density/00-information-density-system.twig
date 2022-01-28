@@ -30,7 +30,9 @@
             The comfortable density increases font-size and spacing.
           </td>
           <td>
-            <a href="{{ link['visual-styles-comfortable-density'] }}" class="e-bolt-text-link">View<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+          {% spaceless %}
+            <a href="{{ link['visual-styles-comfortable-density'] }}" class="e-bolt-text-link">View<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a>
+          {% endspaceless %}
           </td>
         </tr>
         <tr>
@@ -44,7 +46,9 @@
             The default density.
           </td>
           <td>
-            <a href="{{ link['visual-styles-regular-density'] }}" class="e-bolt-text-link">View<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+          {% spaceless %}
+            <a href="{{ link['visual-styles-regular-density'] }}" class="e-bolt-text-link">View<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a>
+          {% endspaceless %}
           </td>
         </tr>
         <tr>
@@ -58,7 +62,9 @@
             The compact density decreases font-size and spacing.
           </td>
           <td>
-            <a href="{{ link['visual-styles-compact-density'] }}" class="e-bolt-text-link">View<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a>
+          {% spaceless %}
+            <a href="{{ link['visual-styles-compact-density'] }}" class="e-bolt-text-link">View<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a>
+          {% endspaceless %}
           </td>
         </tr>
       </tbody>

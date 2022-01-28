@@ -36,7 +36,7 @@ const { configFileUsed } = readJSONSync(fullConfigPath);
 const twigNamespaceRoot = dirname(configFileUsed);
 
 /**
- * @param {string} templateName i.e. `@bolt/button.twig`
+ * @param {string} templateName i.e. `@bolt-components-button/button.twig`
  * @returns {Promise<string>} file path to template file
  */
 async function getTwigFilePath(templateName) {
@@ -76,18 +76,19 @@ async function getTwigFilePath(templateName) {
  * @param {string} twigString - Twig code as a string to parse
  * @param {Object} [opt]
  * @param {boolean} [opt.unique=true]
- * @returns {string[]} list of other Twig files used in it via `include`, `embed`, or `extend`. i.e. `['@bolt/button.twig']`
+ * @returns {string[]} list of other Twig files used in it via `include`, `embed`, or `extend`. i.e. `['@bolt-components-button/button.twig']`
  * @see {findTwigFilesUsedInFile}
  */
 function findTwigFilesUsedInString(twigString, { unique = true } = {}) {
   /* eslint-disable prettier/prettier */
   const twigRegex = new RegExp(
-    "(?<=" + // begin lookahead assertion; these patterns must appear before and will not be included in result
-      "(include|extends|embed) " + // any of these words and then a space
-      "[\"|']" + // either `"` or `'`
-    ")" + // end lookahead assertion
-    "(.*\.twig)" // this will be captured as result. any character `.` infinite times `*` followed by a literal period `\.` and then `twig`
-    , 'g'); // Regex flags - `g`: global
+    '(?<=' + // begin lookahead assertion; these patterns must appear before and will not be included in result
+    '(include|extends|embed) ' + // any of these words and then a space
+    '["|\']' + // either `"` or `'`
+    ')' + // end lookahead assertion
+      '(.*.twig)', // this will be captured as result. any character `.` infinite times `*` followed by a literal period `\.` and then `twig`
+    'g',
+  ); // Regex flags - `g`: global
   /* eslint-enable prettier/prettier */
 
   let results = twigString.match(twigRegex);
@@ -109,7 +110,7 @@ function findTwigFilesUsedInString(twigString, { unique = true } = {}) {
  * @param {string} twigFilePath i.e. `path/to/file.twig`
  * @param {Object} [opt]
  * @param {boolean} [opt.unique=true]
- * @returns {Promise<string[]>} list of other Twig files used in it via `include`, `embed`, or `extend`. i.e. `['@bolt/button.twig']`
+ * @returns {Promise<string[]>} list of other Twig files used in it via `include`, `embed`, or `extend`. i.e. `['@bolt-components-button/button.twig']`
  * @see {findTwigFilesUsedInString}
  */
 async function findTwigFilesUsedInFile(twigFilePath, { unique = true } = {}) {

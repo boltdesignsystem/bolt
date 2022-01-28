@@ -102,38 +102,17 @@ Task Done: ${task}
 }
 
 /**
- * Displays big Bolt intro ASCII art
+ * Displays Bolt usage notes
  */
 function intro() {
-  // @TODO: How best to pull in .scss color data export to reference branch colors below?
-  const i = chalk.hex('#545DA6'); // indigo, light
-  const y = chalk.hex('#ffcc4d'); // yellow, base
-  const o = chalk.hex('#E84B17');
-  const t = chalk.hex('#009999');
-  const w = chalk.hex('#FFFFFF');
-
   const CLI_TITLE = chalk.bold.underline('Bolt Design System CLI');
   const CLI_USAGE = 'Usage: `bolt <command> [options ...]`';
   const HELP_USAGE = 'Help: `bolt -h` or `bolt <command> --help`';
-
   const HELP_HEADER = `
-        ${o('__________')}${y('___________')}
-       ${o('/ttttttt|')}  ${y('|BCCCCCCCL;\\')}
-      ${o('/;ttttttt|')}  ${y('|CCCCCCCCLi.\\')}
-     ${o('/,iiiiiiii|')}  ${y('|11111111111:\\')}
-    ${o('/_______')}  ${y('_________')}  ${w('_______\\')}
-   ${o('/,1ttttt|')} ${y('|fCCCCCCCC|')} ${w('|C0000C:\\')}     ${CLI_TITLE}
-  ${o('/:ttttttt|')} ${y('|fCCCCCCCC|')} ${w('|888888Gi\\')}
- ${o('/:::::::::|')} ${y('|;;;;;;;;;|')} ${w('|11111111i\\')}   ${CLI_USAGE}
- ${i('\\:;;;;;;;;;;;|')} ${t('|::::::::::::::::::/')}           ${HELP_USAGE}
-  ${i('\\:tfffffffff|')} ${t('|ttttttttttttttt1:/')}
-   ${i('\\,1ffffffft|')} ${t('|tttttttttttttti,/')}
-    ${i('\\¯¯¯¯¯¯¯¯¯¯')}  ${t('¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯/')}
-     ${i('\\,iiiiiiiiiiii|')} ${t('|iiiiiii1,/')}
-      ${i('\\.;ffffffffff|')} ${t('|ttttttt;/')}
-       ${i('\\:tfffffffff|')} ${t('|ttttt1:/')}
-        ${i('¯¯¯¯¯¯¯¯¯¯¯¯')}${t('¯¯¯¯¯¯¯¯¯')}
-`;
+${CLI_TITLE}
+
+${CLI_USAGE}
+${HELP_USAGE}`;
 
   info(HELP_HEADER);
 }

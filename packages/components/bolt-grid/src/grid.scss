@@ -22,36 +22,47 @@ bolt-grid {
   @each $size in $bolt-spacing-multiplier-system {
     $size-name: nth($size, 1);
 
-    &[gutter='#{$size-name}'] {
-      margin-left: calc(var(--bolt-spacing-x-#{$size-name}) * -1);
-
-      > bolt-grid-item {
-        margin-left: var(--bolt-spacing-x-#{$size-name});
-      }
-
-      @include bolt-grid-gap-progressive-enhance {
-        grid-column-gap: var(--bolt-spacing-x-#{$size-name});
-        margin-left: 0;
+    @if (
+      $size-name !=
+        'xxsmall' and
+        $size-name !=
+        'xsmall' and
+        $size-name !=
+        'xlarge' and
+        $size-name !=
+        'xxlarge'
+    ) {
+      &[gutter='#{$size-name}'] {
+        margin-left: calc(var(--bolt-spacing-x-#{$size-name}) * -1);
 
         > bolt-grid-item {
+          margin-left: var(--bolt-spacing-x-#{$size-name});
+        }
+
+        @include bolt-grid-gap-progressive-enhance {
+          grid-column-gap: var(--bolt-spacing-x-#{$size-name});
           margin-left: 0;
+
+          > bolt-grid-item {
+            margin-left: 0;
+          }
         }
       }
-    }
 
-    &[row-gutter='#{$size-name}'] {
-      margin-top: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
-
-      > bolt-grid-item {
-        margin-top: var(--bolt-spacing-y-#{$size-name});
-      }
-
-      @include bolt-grid-gap-progressive-enhance {
-        grid-row-gap: var(--bolt-spacing-y-#{$size-name});
-        margin-top: 0;
+      &[row-gutter='#{$size-name}'] {
+        margin-top: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
 
         > bolt-grid-item {
+          margin-top: var(--bolt-spacing-y-#{$size-name});
+        }
+
+        @include bolt-grid-gap-progressive-enhance {
+          grid-row-gap: var(--bolt-spacing-y-#{$size-name});
           margin-top: 0;
+
+          > bolt-grid-item {
+            margin-top: 0;
+          }
         }
       }
     }

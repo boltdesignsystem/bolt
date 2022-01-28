@@ -1,6 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Holy Grail Layout',
+  title: 'Holy Grail',
   type: 'object',
   required: ['content'],
   properties: {
@@ -15,76 +15,13 @@ module.exports = {
     },
     sidebar: {
       type: 'object',
-      description: 'The primary sidebar of the layout.',
-      properties: {
-        content: {
-          type: 'any',
-          description: 'Render content of the primary sidebar.',
-        },
-        trigger_icon: {
-          type: 'string',
-          description:
-            'Set the icon of the trigger button that is shown in smaller viewports.',
-        },
-        trigger_label: {
-          type: 'string',
-          description:
-            'Set the text of the trigger button that is shown in smaller viewports.',
-        },
-        auto_width: {
-          type: 'boolean',
-          description:
-            'Allow the sidebar to have no defined width, the content inside will dictate the width.',
-        },
-      },
+      description:
+        'The primary sidebar of the layout. Sidebar twig template is expected to be passed here.',
     },
     secondary_sidebar: {
       type: 'object',
-      description: 'The secondary sidebar of the layout.',
-      properties: {
-        content: {
-          type: 'any',
-          description: 'Render content of the secondary sidebar.',
-        },
-        trigger_icon: {
-          type: 'string',
-          description:
-            'Set the icon of the trigger button that is shown in smaller viewports.',
-        },
-        trigger_label: {
-          type: 'string',
-          description:
-            'Set the text of the trigger button that is shown in smaller viewports.',
-        },
-        auto_width: {
-          type: 'boolean',
-          description:
-            'Allow the sidebar to have no defined width, the content inside will dictate the width.',
-        },
-      },
-    },
-    gutter: {
-      type: 'string',
-      description: 'Set the horizontal spacing in between desktop columns.',
-      enum: ['none', 'small', 'medium', 'large'],
-      default: 'large',
-    },
-    padding_top: {
-      type: 'string',
-      description: 'Set the top padding of the layout.',
-      enum: ['none', 'small', 'medium', 'large', 'xlarge'],
-      default: 'none',
-    },
-    padding_bottom: {
-      type: 'string',
-      description: 'Set the bottom padding of the layout.',
-      enum: ['none', 'small', 'medium', 'large', 'xlarge'],
-      default: 'none',
-    },
-    full_bleed: {
-      type: 'boolean',
       description:
-        'Force the layout to be full bleed (span edge to edge of browser width).',
+        'The secondary sidebar of the layout. Secondary sidebar twig template is expected to be passed here.',
     },
   },
 };

@@ -7,7 +7,7 @@ export class BoltSideNav {
 
   init() {
     const linkToggleTrigger = this.el.querySelectorAll(
-      '[data-bolt-side-nav-toggle-trigger]',
+      '.js-bolt-side-nav-toggle-trigger',
     );
     linkToggleTrigger.forEach(el => {
       el.addEventListener('click', event => {
@@ -21,7 +21,7 @@ export class BoltSideNav {
   }
 }
 
-const sideNavs = document.querySelectorAll('[data-bolt-side-nav]');
+const sideNavs = document.querySelectorAll('.js-bolt-side-nav');
 
 sideNavs.forEach(el => {
   const component = new BoltSideNav(el);

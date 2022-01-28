@@ -2,7 +2,7 @@
 
 {% block main_content %}
   {% set header %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       "text": "WYSIWYG Elements to Bolt Components",
       "size": "xxxlarge",
       "tag": "h1"
@@ -55,17 +55,17 @@ ClassicEditor
     </p>
     <h3>Headlines</h3>
     <figure class="u-bolt-margin-bottom-medium">
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         "text": "Headline 1 is XXLarge Headline",
         "size": "xxlarge",
         "tag": "h2"
       } only %}
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         "text": "Headline 2 is XLarge Headline",
         "size": "xlarge",
         "tag": "h3"
       } only %}
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         "text": "Headline 3 is Large Headline",
         "size": "large",
         "tag": "h4"

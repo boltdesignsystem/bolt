@@ -5,11 +5,13 @@
 {% set demo %}
   {% set signifier %}
     {% set image %}
-      {% include '@bolt-components-image/image.twig' with {
-        src: '/images/placeholders/tout-4x3-climber.jpg',
-        alt: 'A Rock Climber',
-        ratio: false,
-        cover: true,
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/tout-4x3-climber.jpg',
+          alt: 'A Rock Climber',
+          loading: 'lazy',
+          background: true,
+        }
       } only %}
     {% endset %}
     {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
@@ -26,7 +28,7 @@
         tag: 'h3',
         size: 'large',
         link_attributes: {
-          href: 'https://pega.com'
+          href: 'https://google.com'
         },
       },
       meta_items: [
@@ -47,7 +49,7 @@
           tag: 'h3',
           size: 'large',
           link_attributes: {
-            href: 'https://pega.com'
+            href: 'https://google.com'
           },
         },
         meta_items: [
@@ -71,7 +73,7 @@
     tag: 'h3',
     size: 'large',
     link_attributes: {
-      href: 'https://pega.com'
+      href: 'https://google.com'
     },
   },
   layout: 'responsive',

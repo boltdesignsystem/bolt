@@ -1,21 +1,21 @@
-{% set schema = bolt.data.components["@bolt-components-tabs"].schema %}
+{% set schema = bolt.data.components['@bolt-components-tabs'].schema %}
 
 {% set tab_content_1 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-      text: "Tab panel 1",
-      size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel 1',
+      size: 'large',
     } only %}
 {% endset %}
 {% set tab_content_2 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-      text: "Tab panel 2",
-      size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel 2',
+      size: 'large',
     } only %}
 {% endset %}
 {% set tab_content_3 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-      text: "Tab panel 3",
-      size: "large",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Tab panel 3',
+      size: 'large',
     } only %}
 {% endset %}
 
@@ -26,19 +26,19 @@
 {% for inset in schema.properties.inset.enum %}
   <bolt-text headline font-size="large">Inset: <code>{{ inset }}</code></bolt-text>
   <div class="u-bolt-margin-bottom-medium">
-    {% include "@bolt-components-tabs/tabs.twig" with {
+    {% include '@bolt-components-tabs/tabs.twig' with {
       inset: inset,
       panels: [
         {
-          label: "Tab label 1",
+          label: 'Tab label 1',
           content: tab_content_1,
         },
         {
-          label: "Tab label 2",
+          label: 'Tab label 2',
           content: tab_content_2,
         },
         {
-          label: "Tab label 3",
+          label: 'Tab label 3',
           content: tab_content_3,
         }
       ]

@@ -58,57 +58,57 @@ module.exports = {
   //     .end();
   // },
 
-  'Tabs: loads video content in inactive tab': function(browser) {
-    const { testingUrl } = browser.globals;
-    console.log(`global browser url: ${testingUrl}`);
-    currentBrowser = '--' + browser.currentEnv || 'chrome';
-    let testName = 'tabs-adaptive-menu';
-    const video = 'video-js';
+  // 'Tabs: loads video content in inactive tab': function(browser) {
+  //   const { testingUrl } = browser.globals;
+  //   console.log(`global browser url: ${testingUrl}`);
+  //   currentBrowser = '--' + browser.currentEnv || 'chrome';
+  //   let testName = 'tabs-adaptive-menu';
+  //   const video = 'video-js';
 
-    browser
-      .url(
-        `${testingUrl}/pattern-lab/patterns/40-components-tabs-30-tabs-content/40-components-tabs-30-tabs-content.html`,
-      )
-      .waitForElementVisible('bolt-tabs', 1000)
-      .assert.elementPresent(video)
-      .execute(
-        function(data) {
-          // Get initial selected tab
-          return document.querySelector('bolt-tabs').selectedTab;
-        },
-        [],
-        function(result) {
-          browser.assert.ok(
-            result.value === 1,
-            `On load the first tab is open and Video is hidden`,
-          );
-        },
-      )
-      .execute(function(data) {
-        // Opens video tab
-        document.querySelector('bolt-tabs').setAttribute('selected-tab', 4);
-      })
-      .click(video)
-      .pause(4000)
-      .assert.cssClassPresent(video, ['vjs-has-started', 'vjs-playing'])
-      .click(video)
-      .pause(1000)
-      .assert.cssClassPresent(video, ['vjs-paused'])
-      .execute(
-        function(data) {
-          return document.querySelector('video-js').player.currentTime();
-        },
-        [],
-        function(result) {
-          browser.assert.ok(
-            result.value > 1,
-            `<video-js> starts playing when <bolt-button> is clicked -- verified since the current video's play time is ${result.value} seconds`,
-          );
-        },
-      )
-      .saveScreenshot(
-        `screenshots/bolt-tabs/${testName}--${currentBrowser}.png`,
-      )
-      .end();
-  },
+  //   browser
+  //     .url(
+  //       `${testingUrl}/pattern-lab/patterns/40-components-tabs-30-tabs-content/40-components-tabs-30-tabs-content.html`,
+  //     )
+  //     .waitForElementVisible('bolt-tabs', 1000)
+  //     .assert.elementPresent(video)
+  //     .execute(
+  //       function(data) {
+  //         // Get initial selected tab
+  //         return document.querySelector('bolt-tabs').selectedTab;
+  //       },
+  //       [],
+  //       function(result) {
+  //         browser.assert.ok(
+  //           result.value === 1,
+  //           `On load the first tab is open and Video is hidden`,
+  //         );
+  //       },
+  //     )
+  //     .execute(function(data) {
+  //       // Opens video tab
+  //       document.querySelector('bolt-tabs').setAttribute('selected-tab', 4);
+  //     })
+  //     .click(video)
+  //     .pause(4000)
+  //     .assert.cssClassPresent(video, ['vjs-has-started', 'vjs-playing'])
+  //     .click(video)
+  //     .pause(1000)
+  //     .assert.cssClassPresent(video, ['vjs-paused'])
+  //     .execute(
+  //       function(data) {
+  //         return document.querySelector('video-js').player.currentTime();
+  //       },
+  //       [],
+  //       function(result) {
+  //         browser.assert.ok(
+  //           result.value > 1,
+  //           `<video-js> starts playing when button is clicked -- verified since the current video's play time is ${result.value} seconds`,
+  //         );
+  //       },
+  //     )
+  //     .saveScreenshot(
+  //       `screenshots/bolt-tabs/${testName}--${currentBrowser}.png`,
+  //     )
+  //     .end();
+  // },
 };

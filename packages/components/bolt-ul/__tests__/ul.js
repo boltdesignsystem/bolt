@@ -13,7 +13,7 @@ describe('<bolt-ul> Component', () => {
     const results = await render('@bolt-components-ul/ul.twig', {
       attributes: {
         'data-attr': 'some attribute',
-        onclick: "location.href='https://pega.com'",
+        onclick: "location.href='https://google.com'",
       },
       items: [
         'Do not include any data or information in your posts that are confidential!',

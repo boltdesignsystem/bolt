@@ -17,9 +17,9 @@
         class="c-base-video"></video-js>
     {% endset %}
 
-    {% include '@bolt-components-ratio/ratio.twig' with {
-      children: video,
-      ratio: '16/9'
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
     } only %}
   {% endset %}
 
@@ -36,8 +36,8 @@
 
   {% set like %}
     {% set icon_heart %}
-      {% include '@bolt-components-icon/icon.twig' with {
-        name: 'heart-open',
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'heart',
       } only %}
     {% endset %}
     {% include '@bolt-elements-text-link/text-link.twig' with {
@@ -60,36 +60,36 @@
           {
             name: 'facebook',
             attributes: {
-              href: 'https://www.facebook.com/sharer/sharer.php?u=https://pega.com&amp;src=sdkpreparse'
+              href: 'https://www.facebook.com/sharer/sharer.php?u=https://google.com&amp;src=sdkpreparse'
             }
           },
           {
             name: 'twitter',
             attributes: {
-              href: 'https://twitter.com/intent/tweet?url=https://pega.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+              href: 'https://twitter.com/intent/tweet?url=https://google.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
             }
           },
           {
             name: 'linkedin',
             attributes: {
-              href: 'https://www.linkedin.com/shareArticle?url=https://pega.com'
+              href: 'https://www.linkedin.com/shareArticle?url=https://google.com'
             }
           },
           {
             name: 'email',
             attributes: {
-              href: 'mailto:?&body=Sample%20Text%20--%20https%3A//pega.com'
+              href: 'mailto:?&body=Sample%20Text%20--%20https%3A//mail.com'
             }
           }
         ],
         copy_to_clipboard: {
-          text_to_copy: 'https://pega.com',
+          text_to_copy: 'https://google.com',
         },
       } only %}
     {% endset %}
     {% set share_popover_trigger %}
       {% set icon_share %}
-        {% include '@bolt-components-icon/icon.twig' with {
+        {% include '@bolt-elements-icon/icon.twig' with {
           name: 'share',
         } only %}
       {% endset %}
@@ -109,31 +109,59 @@
     } only %}
   {% endset %}
 
+  {% set download %}
+    {% set icon_download %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'download',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Download slides',
+      icon_before: icon_download,
+      reversed_underline: true,
+      attributes: {
+        href: 'https://www.google.com/',
+      },
+    } only %}
+  {% endset %}
+
   {% set video_image %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: '/images/content/promos/promo-16x9-ai.jpg',
-      alt: 'Alt text.',
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/promos/promo-16x9-ai.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+      }
     } only %}
   {% endset %}
 
   {% set external_link_image %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: '/images/placeholders/signifier-external-link.jpg',
-      alt: 'Alt text.',
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/signifier-external-link.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+      }
     } only %}
   {% endset %}
 
   {% set pdf_image %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: '/images/placeholders/signifier-pdf.jpg',
-      alt: 'Alt text.',
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/signifier-pdf.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+      }
     } only %}
   {% endset %}
 
   {% set locked_image %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: '/images/content/promos/promo-16x9-mask.jpg',
-      alt: 'Alt text.',
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/promos/promo-16x9-mask.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+      }
     } only %}
   {% endset %}
 
@@ -235,51 +263,36 @@
     chip_list: chip_list_content,
   } %}
 
-  {% if phase1 or phase2 %}
-    {% set video_teaser_props = video_teaser_props|merge({ 
-      like: like,
-      share: share, 
-    }) %}
-    {% set external_link_teaser_props = external_link_teaser_props|merge({ 
-      like: like,
-      share: share, 
-    }) %}
-    {% set pdf_teaser_props = pdf_teaser_props|merge({ 
-      like: like,
-      share: share, 
-    }) %}
-    {% set locked_teaser_props = locked_teaser_props|merge({ 
-      like: like,
-      share: share, 
-      status: {
-        locked: true,
-      } 
-    }) %}
-  {% endif %}
-
-  {% if phase2 %}
-    {% set video_teaser_props = video_teaser_props|merge({ 
-      status: {
-        views: '27',
-      } 
-    }) %}
-    {% set external_link_teaser_props = external_link_teaser_props|merge({ 
-      status: {
-        views: '3k',
-      } 
-    }) %}
-    {% set pdf_teaser_props = pdf_teaser_props|merge({ 
-      status: {
-        views: '66',
-      } 
-    }) %}
-    {% set locked_teaser_props = locked_teaser_props|merge({ 
-      status: {
-        views: '20k',
-        locked: true,
-      } 
-    }) %}
-  {% endif %}
+  {% set video_teaser_props = video_teaser_props|merge({ 
+    like: like,
+    share: share,
+    download: download,
+    status: {
+      views: '27',
+    } 
+  }) %}
+  {% set external_link_teaser_props = external_link_teaser_props|merge({ 
+    like: like,
+    share: share,
+    status: {
+      views: '3k',
+    } 
+  }) %}
+  {% set pdf_teaser_props = pdf_teaser_props|merge({ 
+    like: like,
+    share: share,
+    status: {
+      views: '66',
+    } 
+  }) %}
+  {% set locked_teaser_props = locked_teaser_props|merge({ 
+    like: like,
+    share: share, 
+    status: {
+      views: '20k',
+      locked: true,
+    } 
+  }) %}
 
   {% set item_video %}
     {% include '@bolt-components-teaser/teaser.twig' with video_teaser_props only %}
@@ -314,9 +327,7 @@
         } only %}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12">
-        {% if phase1 or phase2 %}
-          {% include '_boc-quick-filters.twig' %}
-        {% endif %}
+        {% include '_boc-quick-filters.twig' %}
       </div>
       <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
         {{ item_video }}
@@ -486,7 +497,6 @@
     theme: 'xlight',
   } only %}
 
-  {% if phase1 or phase2 %}
-    {% include '@pl/_boc-like-button-js.twig' %}
-  {% endif %}
+  {% include '@pl/_boc-like-button-js.twig' %}
+
 {% endblock %}

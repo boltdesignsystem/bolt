@@ -1,0 +1,122 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Only the languages listed in the <a href="{{ link['viewall-components-code-snippet'] }}?selected-tab=schema" class="e-bolt-text-link">schema</a> are supported. Contact the Design System team to request additional language support.</bolt-li>
+    <bolt-li>Twig Code Snippets must be wrapped in <code>{{ '{% verbatim %}' }}</code> tag or they will be parsed as code by Twig.</bolt-li>
+    <bolt-li>If you are using plain HTML, not the Twig template, you must manually escape HTML and Twig containing HTML or it will be parsed as code by the browser.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+{% set css_code %}
+.my-css {
+  display: block;
+}
+{% endset %}
+
+{% set js_code %}
+import { props } from '@bolt/core-v3.x/utils';
+{% endset %}
+
+{% set html_code %}
+<p>Hello World!</p>
+{% endset %}
+
+{% set twig_code %}{% verbatim %}
+{% include '@bolt-components-banner/banner.twig' with {
+  content: 'This is the banner content.'
+} only %}
+{% endverbatim %}{% endset %}
+
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: css_code,
+    lang: 'css',
+  } only %}
+
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: js_code,
+    lang: 'js',
+  } only %}
+
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: html_code,
+    lang: 'html',
+  } only %}
+
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: twig_code,
+    lang: 'twig',
+  } only %}
+{% endset %}
+
+{# Note: we use `raw` tag here because we don't want Twig to parse `verbatim`. Normally, use `verbatim`, not `raw`. #}
+{% set twig_markup %}{% verbatim %}
+{% set css_code %}
+.my-css {
+  display: block;
+}
+{% endset %}
+
+{% set js_code %}
+import { props } from '@bolt/core-v3.x/utils';
+{% endset %}
+
+{% set html_code %}
+<p>Hello World!</p>
+{% endset %}
+
+{% set twig_code %}
+{# Twig does not allow nested verbatim tags, so the required verbatim tag placement for Twig language code snippets is shown in comments below #}
+{# verbatim goes here #}
+{% include '@bolt-components-banner/banner.twig' with {
+  content: 'This is the banner content.'
+} only %}
+{# endverbatim goes here #}
+{% endset %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: css_code,
+  lang: 'css',
+} only %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: js_code,
+  lang: 'js',
+} only %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: html_code,
+  lang: 'html',
+} only %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: twig_code,
+  lang: 'twig',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}
+<div class="c-bolt-code-snippet" data-lang="css" data-mode="light">
+<pre><code>{{ css_code|trim }}</code></pre>
+</div>
+
+<div class="c-bolt-code-snippet" data-lang="js" data-mode="light">
+<pre><code>{{ js_code|trim }}</code></pre>
+</div>
+
+<div class="c-bolt-code-snippet" data-lang="html" data-mode="light">
+<pre><code>{{ html_code|trim|e }}</code></pre>
+</div>
+
+<div class="c-bolt-code-snippet" data-lang="twig" data-mode="light">
+<pre><code>{{ twig_code|trim|e }}</code></pre>
+</div>
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Code Snippet Language',
+  description: 'The Code Snippet will be syntax highlighted based on the chosen language.',
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

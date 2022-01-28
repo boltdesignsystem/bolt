@@ -15,7 +15,7 @@
   color: var(--m-bolt-text);
   line-height: var(--bolt-type-line-height-small);
   text-decoration: none;
-  transition: color $bolt-transition;
+  transition: color var(--bolt-transition);
 
   &:before,
   &:after {
@@ -34,7 +34,8 @@
     width: 0;
     height: 100%;
     background-color: var(--m-bolt-link);
-    transition: width $bolt-transition, border-radius $bolt-transition;
+    transition: width var(--bolt-transition),
+      border-radius var(--bolt-transition);
   }
 
   &:after {
@@ -45,7 +46,7 @@
     width: var(--bolt-spacing-x-xxsmall);
     height: 0;
     background-color: var(--bolt-color-teal);
-    transition: height $bolt-transition;
+    transition: height var(--bolt-transition);
   }
 
   &:hover {

@@ -23,7 +23,7 @@ module.exports = {
           },
           contentItems: {
             type: 'object',
-            description: 'Passes to `@bolt/text.twig`',
+            description: 'Passes to `@bolt-components-text/text.twig`',
           },
         },
       },

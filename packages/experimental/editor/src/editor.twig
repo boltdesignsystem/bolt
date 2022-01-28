@@ -11,8 +11,8 @@
         {{ config | json_encode | raw }}
       {% endautoescape %}
     </script>
-    <bolt-button color="primary" size="xsmall" class="js-pega-editor__trigger">Edit</bolt-button>
-    <bolt-button color="secondary" size="xsmall" class="js-pega-editor__feedback">Submit Feedback</bolt-button>
+    <button type="button" class="e-bolt-button e-bolt-button--xsmall js-pega-editor__trigger">Edit</button>
+    <button type="button" class="e-bolt-button e-bolt-button--xsmall e-bolt-button--secondary js-pega-editor__feedback">Submit Feedback</button>
     <br>
     <div class="js-pega-editor__space">
       {{ content }}

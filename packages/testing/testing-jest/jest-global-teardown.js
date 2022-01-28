@@ -1,9 +1,11 @@
 const os = require('os');
 const rimraf = require('rimraf');
 const path = require('path');
+const internalTasks = require('@bolt/build-tools/tasks/internal-tasks');
 
 const { teardown: teardownDevServer } = require('jest-dev-server');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const iconComponentTasks = require('@bolt/build-tools/tasks/icon-component-tasks');
 const iconTasks = require('@bolt/build-tools/tasks/icon-tasks');
 const { buildPrep } = require('@bolt/build-tools/tasks/task-collections.js');
 
@@ -21,6 +23,11 @@ module.exports = async function() {
     item => !item.includes('__tests__/fixtures'),
   );
 
+  await internalTasks.clean([
+    'packages/generators/bolt-generator/__tests__/component/_tmp',
+    'packages/generators/bolt-generator/__tests__/element/_tmp',
+  ]); // cleaning bolt-generator temp files after error
+  await iconComponentTasks.build(); // Deprecated: remove with Icon component
   await iconTasks.build(); // cleaning icons after all tests
   await teardownDevServer();
   await buildPrep(true); // clear out all built www folders when complete

@@ -1,0 +1,42 @@
+{% set _content %}
+  <bolt-text headline tag="h1" font-size="xxxlarge">
+    Billboard Title
+  </bolt-text>
+{% endset %}
+
+{% set _supplement %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/heros/hero-foreground--yellow.png',
+      loading: 'eager',
+      width: 415,
+      style: 'display: block;'
+    },
+  } only %}
+{% endset %}
+
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: _content
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    valign_self: 'end-offset',
+    content: _supplement
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  gutter: 'large',
+  row_gutter: 'large',
+  padding_top: 'large',
+  padding_bottom: 'large',
+  valign_items: 'center',
+  template: [
+    'halves@from-small'
+  ],
+  attributes: {
+    class: 't-bolt-light'
+  }
+} only %}

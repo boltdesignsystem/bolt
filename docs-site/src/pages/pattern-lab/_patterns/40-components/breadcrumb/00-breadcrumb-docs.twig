@@ -1,5 +1,5 @@
 {% set usage %}{% verbatim %}
-{% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
+{% include '@bolt-components-breadcrumb/breadcrumb.twig' with {
   contentItems: [
     include('@bolt-elements-text-link/text-link.twig', {
       content: 'Home',
@@ -30,7 +30,7 @@
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "breadcrumb",
+{% include '@utils/docs.twig' with {
+  componentName: 'breadcrumb',
   usage: usage
 } only %}

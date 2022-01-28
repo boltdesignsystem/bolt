@@ -1,0 +1,1840 @@
+{# Icons #}
+{% set icon_user %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'user',
+  } only %}
+{% endset %}
+{% set icon_contact %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-chat-question',
+  } only %}
+{% endset %}
+{% set icon_network %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-network',
+  } only %}
+{% endset %}
+{% set icon_grid %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'grid',
+  } only %}
+{% endset %}
+{% set icon_bell_solid %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'bell-solid',
+  } only %}
+{% endset %}
+{% set icon_chevron_right %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+
+{# Site nav #}
+{% set placeholder_lv4_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 4',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+    children: placeholder_lv4,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 4',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 4',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+{% endset %}
+{% set placeholder_lv4 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: placeholder_lv4_ul_content,
+  } only %}
+{% endset %}
+
+{% set placeholder_lv3_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 3',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+    children: placeholder_lv4,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 3',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 3',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 3',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 3',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 3',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'View all placeholders',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+    view_all: true,
+  } only %}
+{% endset %}
+{% set placeholder_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: placeholder_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set placeholder_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 2',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 2',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Placeholder Level 2',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'View all',
+      attributes: {
+        href: 'https://google.com',
+      }
+    },
+    view_all: true,
+    full_width: true,
+  } only %}
+{% endset %}
+{% set placeholder_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: placeholder_lv2_ul_content,
+  } only %}
+{% endset %}
+
+{# Industries #}
+{% set wealth_management_lv4_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Optimizing Existing CS Apps',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Customer Decision Hub',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'CLM',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+{% endset %}
+{% set wealth_management_lv4 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: wealth_management_lv4_ul_content,
+  } only %}
+{% endset %}
+
+{% set multiline_of_business_lv4_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'KYC CLM',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Optimizing CS Apps',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Replacing CS Apps',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+{% endset %}
+{% set multiline_of_business_lv4 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: multiline_of_business_lv4_ul_content,
+  } only %}
+{% endset %}
+
+{% set commercial_banking_lv4_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Intelligent Service Automation',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Intelligent Automation',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+{% endset %}
+{% set commercial_banking_lv4 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: commercial_banking_lv4_ul_content,
+  } only %}
+{% endset %}
+
+{% set consumer_banking_lv4_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: '1:1 Customer Engagement',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Proactive Digital Customer Service',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Intelligent Automation',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+{% endset %}
+{% set consumer_banking_lv4 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: consumer_banking_lv4_ul_content,
+  } only %}
+{% endset %}
+
+{% set financial_services_lv3_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Cosumer Banking: Engagement Strategy Kits',
+      desktop_heading: true,
+    },
+    children: consumer_banking_lv4,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Commercial Banking: Engagement Strategy Kits',
+      desktop_heading: true,
+    },
+    children: commercial_banking_lv4,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Multi-line of Business: Engagement Strategy Kits',
+      desktop_heading: true,
+    },
+    children: multiline_of_business_lv4,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Wealth Management',
+      desktop_heading: true,
+    },
+    children: wealth_management_lv4,
+  } only %}
+{% endset %}
+{% set financial_services_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: financial_services_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set industries_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Financial Services',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+    children: financial_services_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Insurance',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Heathcare &amp; Life Sciences',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+    children: placeholder_lv3,
+  } only %}
+{% endset %}
+{% set industries_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: industries_lv2_ul_content,
+  } only %}
+{% endset %}
+
+{# Products #}
+{% set intelligent_automation_lv4_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Robotic &amp; Intelligent Automation',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Low-Code',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Workforce Intelligence',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+{% endset %}
+{% set intelligent_automation_lv4 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: intelligent_automation_lv4_ul_content,
+  } only %}
+{% endset %}
+
+{% set platform_technology_lv3_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Core Assets',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Pega Cloud Services',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+{% endset %}
+{% set platform_technology_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: platform_technology_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set additional_strategic_apps_lv3_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Sales Automation',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Field Service',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+{% endset %}
+
+{% set additional_strategic_apps_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: additional_strategic_apps_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set engagement_strategies_lv3_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: '1:1 Customer Engagement',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Proactive Digital Customer Service',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Intelligent Automation',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+    children: intelligent_automation_lv4,
+  } only %}
+{% endset %}
+{% set engagement_strategies_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: engagement_strategies_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set products_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Engagement Strategies',
+      desktop_heading: true,
+    },
+    children: engagement_strategies_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Platform Technology',
+      desktop_heading: true,
+    },
+    children: platform_technology_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Additional Strategic Apps',
+      desktop_heading: true,
+    },
+    children: additional_strategic_apps_lv3,
+  } only %}
+{% endset %}
+{% set products_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: products_lv2_ul_content,
+  } only %}
+{% endset %}
+
+{# Team Hubs #}
+{% set solutions_consulting_lv3_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'America SC Team',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'EMEA SC Team',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Demo Central',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Communications',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Enablement: SC Induction',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Enablement: SC Continuous',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Enablement: SC Leadership',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Enablement: Contacts',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+{% endset %}
+{% set solutions_consulting_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: solutions_consulting_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set sales_enablement_lv3_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Ongoing Sales Excellence',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Sales Onboarding',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Badges',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Prospecting',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Sales Readiness Toolkit',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'GSE Team Contacts',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Reporting',
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
+  } only %}
+{% endset %}
+{% set sales_enablement_lv3 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: sales_enablement_lv3_ul_content,
+  } only %}
+{% endset %}
+
+{% set team_hubs_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Sales Enablement',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      }
+    },
+    children: sales_enablement_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Solutions Consulting',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      }
+    },
+    children: solutions_consulting_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Demo Central',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      }
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Resources for Partners',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      }
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Partner Resources for Pega',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      }
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Pega Consulting',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      }
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Client Success',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      }
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'RFx Team',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      }
+    },
+    children: placeholder_lv3,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Client Advocacy Program',
+      desktop_heading: true,
+      attributes: {
+        href: 'https://google.com',
+      }
+    },
+    children: placeholder_lv3,
+  } only %}
+{% endset %}
+{% set team_hubs_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: team_hubs_lv2_ul_content,
+  } only %}
+{% endset %}
+
+{% set site_nav_lv1_list_items = [
+  {
+    link: {
+      content: 'Industries',
+    },
+    children: industries_lv2,
+  },
+  {
+    link: {
+      content: 'Products',
+    },
+    children: products_lv2,
+  },
+  {
+    link: {
+      content: 'Process',
+    },
+    children: placeholder_lv2,
+  },
+  {
+    link: {
+      content: 'Skills',
+    },
+    children: placeholder_lv2,
+  },
+  {
+    link: {
+      content: 'Team Hubs',
+    },
+    children: team_hubs_lv2,
+  },
+  {
+    link: {
+      content: 'Resources',
+    },
+    children: placeholder_lv2,
+  },
+  {
+    link: {
+      content: 'Events',
+    },
+    children: placeholder_lv2,
+  },
+  {
+    link: {
+      content: 'Academy',
+    },
+    children: placeholder_lv2,
+  },
+] %}
+
+{% set site_nav_lv1_ul_content = [] %}
+{% for list_item in site_nav_lv1_list_items %}
+  {% set site_nav_lv1_li %}
+    {% include '@bolt-components-page-header/page-header-nav-li.twig' with list_item only %}
+  {% endset %}
+  {% set site_nav_lv1_ul_content = site_nav_lv1_ul_content|merge([site_nav_lv1_li]) %}
+{% endfor %}
+
+{% set site_nav %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: site_nav_lv1_ul_content|join,
+    category: 'site',
+  } only %}
+{% endset %}
+
+{# User nav #}
+{% set user_popover_lv2_ul_content %}
+  {% set user_login_message %}
+    <p class="u-bolt-text-align-center">
+      {{ icon_user }} <a href="https://google.com">Log in</a> to set up user profile.
+    </p>
+  {% endset %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    content: user_login_message,
+  } only %}
+{% endset %}
+
+{% set user_popover_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: user_popover_lv2_ul_content,
+    popover_position: 'edge-end',
+  } only %}
+{% endset %}
+
+{% set notifications_popover_lv2_ul_content %}
+  {% set empty_notifications_message %}
+    <p class="u-bolt-text-align-center">
+      {{ icon_bell_solid }} <a href="https://google.com">Log in</a> to set up personalized notifications.
+    </p>
+  {% endset %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    content: empty_notifications_message,
+  } only %}
+{% endset %}
+
+{% set notifications_popover_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: notifications_popover_lv2_ul_content,
+    popover_position: 'edge-end',
+  } only %}
+{% endset %}
+
+{% set user_flag %}
+  <div class="c-bolt-page-header__user-flag">
+    <img src="/images/docs/500x500.jpg" alt="CEO Alan" class="c-bolt-page-header__user-flag__img">
+    <div class="c-bolt-page-header__user-flag__content">
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'Hello',
+        tag: 'p',
+      } only %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Alan',
+        size: 'large',
+        tag: 'p',
+      } only %}
+    </div>
+  </div>
+{% endset %}
+
+{% set language_popover_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: '<span class="u-bolt-visuallyhidden">Site language: </span>' ~ 'English',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+    selected: true,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Français',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Deutsch',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Italiano',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: '日本語',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Português',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Español',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Set your preferred language',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+{% endset %}
+
+{% set language_popover_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: language_popover_lv2_ul_content,
+    popover_position: 'edge-end',
+  } only %}
+{% endset %}
+
+{% set contact_popover_lv2_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Contact Us',
+      attributes: {
+        href: 'https://google.com/',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'US: 1-888-PEGA-NOW',
+      attributes: {
+        href: 'tel: 1-888-PEGA-NOW',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'UK: 0800 014 8123',
+      attributes: {
+        href: 'tel: 0800 014 8123',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'DACH: 0800 1814783',
+      attributes: {
+        href: 'tel: 0800 1814783',
+      },
+    },
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'AU: 1800 763 425',
+      attributes: {
+        href: 'tel: 1800 763 425',
+      },
+    },
+  } only %}
+{% endset %}
+
+{% set contact_popover_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: contact_popover_lv2_ul_content,
+    popover_position: 'edge-end',
+  } only %}
+{% endset %}
+
+{% set user_nav_lv1_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Log in',
+      signifier_only: icon_user,
+    },
+    children: user_popover_lv2,
+    popover: true,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Notifications',
+      signifier_only: icon_bell_solid,
+      counter: true,
+    },
+    children: notifications_popover_lv2,
+    popover: true,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Language',
+      signifier_only: icon_network,
+    },
+    children: language_popover_lv2,
+    popover: true,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Contact',
+      signifier_only: icon_contact,
+    },
+    children: contact_popover_lv2,
+    popover: true,
+  } only %}
+{% endset %}
+
+{% set user_nav %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: user_nav_lv1_ul_content,
+    category: 'user',
+  } only %}
+{% endset %}
+
+{# Related sites nav #}
+{% set pega_sites_nav_lv2_ul_content %}
+  {% set more_pega_sites_www %}
+    {% set pega_sites_teaser_pega %}
+      {% set layout_content %}
+        {% set site_signifier %}
+          <svg enable-background="new 0 0 250 250" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg"><path d="m128.5 48.5c-2.4 9.8-2.8 20.1-1.1 30.1-2.7-.5-5.3-1.1-7.8-1.5-57.8-9.4-75.1 19-68.4 41.9-17.6 6.6-34.7 14.5-51.2 23.5 22.6-54.2 71.6-101.9 112.9-108.1 13.6-1.8 17.4 6.9 15.6 14.1zm121 43.5s-2.6 4.5-3.7 6.2c-2.1 2.1-5.2 2.6-7.8 1.2-6-3.7-12.6-6.3-19.4-7.8-25.3 2.3-32.2-8.2-33-9.1s-2.3-.5-1.2 1.3c5.5 9.5 21.9 14 21.9 14 2.4 5.6 3.9 11.5 4.6 17.5-4.3-3.3-8.9-6.1-13.7-8.4-18.8-12.3-39.6-21.2-61.5-26.3 1.6-22.3 12.9-54.7 65.4-46.9 6.2 1.1 12.2 3.4 17.7 6.6l-3.9 4c-1 .6-1.3 1.9-.7 2.9.2.3.4.5.7.7l11.7 8.7c-.4 3.8 1 7.5 3.7 10.1 3.5 4.1 16.9 18.3 18.7 20.2 1.1 1.4 1.3 3.4.5 5.1zm-26.4-31.3c-2.2-.9-4.7-.4-6.4 1.3h-.4l5.8 2.8z" fill="var(--m-bolt-link)"/><path d="m133.3 98.3c-28.1 3.4-55.7 10.4-82.1 20.8-6.6-23 10.6-51.3 68.1-41.9 2.8.4 5.5.9 7.8 1.5 1.3 6.7 3.4 13.3 6.2 19.6zm3.2 0c20.7-2.4 41.8.6 61 8.7-18.8-12.3-39.6-21.2-61.5-26.3-.4 5.8-.2 11.6.5 17.3z" fill="var(--bolt-color-navy-xlight)"/><path d="m80.8 193.8h23.4v-10.8h-23.4v-11.2h29.4v-11h-41.5v54.7h41.9v-10.5h-29.8zm44.9-26.9c-11.4 11.8-11.4 30.5 0 42.3 5.7 5.5 13.3 8.5 21.2 8.3 8.6.5 17-2.7 23-8.9v-25.5h-23.7v10.2h12.4v10.3c-3.7 2-7.8 3-12 2.9-10.3-.4-18.2-9.1-17.8-19.4.2-4.6 2.1-9 5.3-12.3 3.6-3.4 8.4-5.2 13.3-5.1 2.4-.1 4.9.3 7.2 1 2.2.7 4.1 1.9 5.9 3.4l6.6-8.4c-5.6-4.9-12.9-7.5-20.4-7.2-7.9-.1-15.4 2.9-21 8.4zm-86.6-6.1h-22.7v54.7h12.1v-16.2h9.1c12.3 0 22.3-6.6 22.3-19.3.2-10.4-8-19-18.4-19.2-.8-.1-1.6 0-2.4 0zm8.5 19.4c-.1 4.7-4 8.4-8.7 8.3-.3 0-.6 0-.9-.1h-9.5v-16.6h9.3c6.1.1 9.8 3 9.8 8.4zm151.5-19.4-23.4 54.7h12.3l5-12.2h23.4l4.9 12.2h12.3l-23.4-54.7zm-1.9 32.2 7.3-17.7 7.3 17.7z" fill="var(--m-bolt-link)"/></svg>
+        {% endset %}
+        {% set site_name %}
+          <bolt-stack spacing="none">
+            {% set site_name_pega %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Pegasystems Inc.',
+                reversed_underline: true,
+                icon_after: icon_chevron_right,
+                attributes: {
+                  href: 'https://google.com',
+                }
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: site_name_pega,
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+          <bolt-stack>
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Explore solutions, events, and customers',
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'start',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
+        },
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_pegaworld %}
+      {% set layout_content %}
+        {% set site_signifier %}
+          <svg enable-background="new 0 0 250 250" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg"><g fill="var(--m-bolt-link)"><path d="m60.9 54.8c.5-7.4-2.4-14.7-7.8-19.8-6.4-4.9-14.5-7.3-22.6-6.7-8.1-.7-16.2 1.6-22.6 6.6-5.4 5.2-8.3 12.4-7.9 19.9-.8 11.9 7.4 22.6 19.1 25h-11.1c-3.8 0-6.8 3-6.9 6.7v.2 128.3c0 3.8 3 6.8 6.7 6.9h.2 44.4c3.8 0 6.9-3 7-6.8v-.1-128.2c0-3.8-3.1-6.9-6.9-6.9h-.1-10c11.5-2.6 19.4-13.3 18.5-25.1zm-15.6 152.9h-30.2v-114h30.3v114zm-15-140.5c-15 .2-16.3-6.2-16.3-12.4-.4-3.5.8-7 3.2-9.6 3.9-2.5 8.6-3.7 13.3-3.1 4.7-.5 9.5.7 13.4 3.3 2.4 2.5 3.5 6 3.1 9.5 0 6.2-1.2 12.7-16.6 12.7z"/><path d="m243 42.7h-39.9c-3.8 0-7 3.1-7 7v74.7 10.5l-46-88.5c-1.2-2.3-3.5-3.7-6.1-3.7h-58c-3.8 0-6.9 3.1-6.9 6.9v.1 165.3c0 3.8 3 6.8 6.7 6.9h.2 39c3.8 0 6.8-3 6.9-6.7 0-.1 0-.1 0-.2v-74.2c0-3.4 0-7.3 0-11.9l46.5 89.2c1.2 2.3 3.6 3.8 6.2 3.7h58.4c3.8 0 6.9-3 7-6.8v-.1-165.3c0-3.8-3.1-6.9-7-6.9zm-6.8 165.1h-47.4l-58.5-112.6c-1.2-2.3-3.6-3.7-6.2-3.7h-1c-3.8-.1-6.8 2.9-6.9 6.7v.7c1.4 18.1 2.1 32 2.1 41.4v67.6h-25.6v-151.3h46.9l58.2 111.1c2.3 3.6 7.1 4.7 10.8 2.4.4-.2.8-.5 1.1-.8 1.3-1.4 2-3.3 1.9-5.2-1.1-16.5-1.6-29.8-1.6-39.7v-67.8h25.9z"/></g></svg>
+        {% endset %}
+        {% set site_name %}
+          <bolt-stack spacing="none">
+            {% set site_name_pegaworld %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'PegaWorld iNspire',
+                reversed_underline: true,
+                icon_after: icon_chevron_right,
+                attributes: {
+                  href: 'https://google.com',
+                }
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: site_name_pegaworld,
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+          <bolt-stack>
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Register for our flagship virtual event',
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'start',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
+        },
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_partner %}
+      {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-handshake',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-link)',
+            },
+          } only %}
+        {% endset %}
+        {% set site_name %}
+          <bolt-stack spacing="none">
+            {% set site_name_partner %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Partners',
+                reversed_underline: true,
+                icon_after: icon_chevron_right,
+                attributes: {
+                  href: 'https://google.com',
+                }
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: site_name_partner,
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+          <bolt-stack>
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Discover program benefits and enablement resources',
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'start',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
+        },
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_pegahub %}
+      {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-hub',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-link)',
+            },
+          } only %}
+        {% endset %}
+        {% set site_name %}
+          <bolt-stack spacing="none">
+            {% set site_name_pegahub %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'My Pega',
+                reversed_underline: true,
+                icon_after: icon_chevron_right,
+                attributes: {
+                  href: 'https://google.com',
+                }
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: site_name_pegahub,
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+          <bolt-stack>
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Manage your organization&rsquo;s relationship with Pega',
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'start',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
+        },
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_cosmos %}
+      {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-cosmos',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-link)',
+            },
+          } only %}
+        {% endset %}
+        {% set site_name %}
+          <bolt-stack spacing="none">
+            {% set site_name_cosmos %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Pega Cosmos Design System',
+                reversed_underline: true,
+                icon_after: icon_chevron_right,
+                attributes: {
+                  href: 'https://google.com',
+                }
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: site_name_cosmos,
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+          <bolt-stack>
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Browse library of UI/UX templates, patterns, and components',
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'start',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
+        },
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_community %}
+      {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-people',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-link)',
+            },
+          } only %}
+        {% endset %}
+        {% set site_name %}
+          <bolt-stack spacing="none">
+            {% set site_name_community %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Pega Community',
+                reversed_underline: true,
+                icon_after: icon_chevron_right,
+                attributes: {
+                  href: 'https://google.com',
+                }
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: site_name_community,
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+          <bolt-stack>
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Drive success with centralized content and resources',
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'start',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
+        },
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_documentation %}
+      {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-book',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-link)',
+            },
+          } only %}
+        {% endset %}
+        {% set site_name %}
+          <bolt-stack spacing="none">
+            {% set site_name_documentation %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Documentation',
+                reversed_underline: true,
+                icon_after: icon_chevron_right,
+                attributes: {
+                  href: 'https://google.com',
+                }
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: site_name_documentation,
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+          <bolt-stack>
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Find product guides and reference docs',
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'start',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
+        },
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_academy %}
+      {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'rocket',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-link)',
+            },
+          } only %}
+        {% endset %}
+        {% set site_name %}
+          <bolt-stack spacing="none">
+            {% set site_name_academy %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Academy',
+                reversed_underline: true,
+                icon_after: icon_chevron_right,
+                attributes: {
+                  href: 'https://google.com',
+                }
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: site_name_academy,
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+          <bolt-stack>
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Complete missions, earn badges, and stay current',
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'start',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
+        },
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_forums %}
+      {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'customer-service',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-link)',
+            },
+          } only %}
+        {% endset %}
+        {% set site_name %}
+          <bolt-stack spacing="none">
+            {% set site_name_forums %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Forums',
+                reversed_underline: true,
+                icon_after: icon_chevron_right,
+                attributes: {
+                  href: 'https://google.com',
+                }
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: site_name_forums,
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+          <bolt-stack>
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Ask questions and help other Pega professionals',
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'start',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
+        },
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_marketplace %}
+      {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'cube',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-link)',
+            },
+          } only %}
+        {% endset %}
+        {% set site_name %}
+          <bolt-stack spacing="none">
+            {% set site_name_marketplace %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Marketplace',
+                reversed_underline: true,
+                icon_after: icon_chevron_right,
+                attributes: {
+                  href: 'https://google.com',
+                }
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: site_name_marketplace,
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+          <bolt-stack>
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Extend Pega with components and apps',
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'start',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
+        },
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_design_pattern %}
+      {% set layout_content %}
+        {% set site_signifier %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pega-patterns',
+            size: 'large',
+            attributes: {
+              style: '--e-bolt-icon-color: var(--m-bolt-link)',
+            },
+          } only %}
+        {% endset %}
+        {% set site_name %}
+          <bolt-stack spacing="none">
+            {% set site_name_design_pattern %}
+              {% include '@bolt-elements-text-link/text-link.twig' with {
+                content: 'Design Pattern Library',
+                reversed_underline: true,
+                icon_after: icon_chevron_right,
+                attributes: {
+                  href: 'https://google.com',
+                }
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: site_name_design_pattern,
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+          <bolt-stack>
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Explore common implementation patterns',
+              tag: 'p',
+              size: 'xsmall',
+            } only %}
+          </bolt-stack>
+        {% endset %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_signifier,
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: site_name,
+        } only %}
+      {% endset %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        template: [
+          'flag'
+        ],
+        valign_items: 'start',
+        gutter: 'small',
+        content: layout_content,
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: 35px;',
+        },
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_list_1 %}
+      {% include '@bolt-components-list/list.twig' with {
+        items: [
+          pega_sites_teaser_pega,
+          pega_sites_teaser_pegaworld,
+          pega_sites_teaser_partner,
+          pega_sites_teaser_marketplace,
+          pega_sites_teaser_pegahub,
+        ],
+        spacing: 'small',
+      } only %}
+    {% endset %}
+    {% set pega_sites_teaser_list_2 %}
+      {% include '@bolt-components-list/list.twig' with {
+        items: [
+          pega_sites_teaser_community,
+          pega_sites_teaser_documentation,
+          pega_sites_teaser_academy,
+          pega_sites_teaser_forums,
+          pega_sites_teaser_design_pattern,
+          pega_sites_teaser_cosmos,
+        ],
+        spacing: 'small',
+      } only %}
+    {% endset %}
+
+    {% set layout_content %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: pega_sites_teaser_list_1,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: pega_sites_teaser_list_2,
+      } only %}
+    {% endset %}
+    
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      template: [
+        'tiles'
+      ],
+      content: layout_content,
+      attributes: {
+        style: '--l-bolt-layout-tile-min-width: 14rem',
+      }
+    } only %}
+
+    <hr class="u-bolt-margin-bottom-small">
+
+    {% set pega_sites_teaser_support %}
+      {% set support_link %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Pega Support',
+          reversed_underline: true,
+          icon_after: icon_chevron_right,
+          attributes: {
+            href: 'https://google.com',
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: support_link,
+        tag: 'p',
+        size: 'xsmall',
+        align: 'center',
+      } only %}
+    {% endset %}
+
+    {% set pega_sites_teaser_careers %}
+      {% set careers_link %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: 'Careers',
+          reversed_underline: true,
+          icon_after: icon_chevron_right,
+          attributes: {
+            href: 'https://google.com',
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: careers_link,
+        tag: 'p',
+        size: 'xsmall',
+        align: 'center',
+      } only %}
+    {% endset %}
+
+    {% set layout_content %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: pega_sites_teaser_careers,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: pega_sites_teaser_support,
+      } only %}
+    {% endset %}
+    
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      template: [
+        'tiles'
+      ],
+      content: layout_content,
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    content: more_pega_sites_www,
+  } only %}
+{% endset %}
+
+{% set pega_sites_nav_lv2 %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: pega_sites_nav_lv2_ul_content,
+    popover_position: 'edge-start',
+    attributes: {
+      style: '--c-bolt-page-header-desktop-popover-width: max(58rem, 40vw)',
+    }
+  } only %}
+{% endset %}
+
+{% set related_sites_nav_lv1_ul_content %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Pega Sites',
+      signifier_before: icon_grid,
+    },
+    children: pega_sites_nav_lv2,
+    popover: true,
+  } only %}
+{% endset %}
+
+{% set related_sites_nav %}
+  {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
+    content: related_sites_nav_lv1_ul_content,
+    category: 'related-sites',
+  } only %}
+{% endset %}
+
+{# Put all the navs together #}
+{% set primary_nav %}
+  {% set primary_nav_content %}
+    {{ site_nav }}
+    {{ related_sites_nav }}
+    {{ user_nav }}
+  {% endset %}
+
+  {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
+    content: primary_nav_content,
+  } only %}
+{% endset %}
+
+{# Search Panel #}
+{% set search_panel_content %}
+  <bolt-stack spacing="small">
+    <form>
+      {% include '@bolt-components-typeahead/typeahead.twig' with {
+        input_placeholder: 'Search Pega Saleshub',
+      } only %}
+    </form>
+  </bolt-stack>
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Placeholder for helper text.',
+    size: 'small',
+    align: 'center',
+    icon: {
+      name: 'info-circle',
+      position: 'before',
+    }
+  } only %}
+{% endset %}
+
+{% set search_panel %}
+  {% include '@bolt-components-page-header/page-header-search-panel.twig' with {
+    content: search_panel_content,
+  } only %}
+{% endset %}
+
+{# Page Header #}
+{% set page_header_content %}
+  {{ search_panel }}
+  {{ primary_nav }}
+{% endset %}
+
+{% include '@bolt-components-page-header/page-header.twig' with {
+  logo: {
+    image_src: '/images/logos/pega-logo-saleshub.png',
+    label: 'Pega Saleshub',
+    attributes: {
+      href: 'https://google.com',
+    }
+  },
+  content: page_header_content,
+} only %}

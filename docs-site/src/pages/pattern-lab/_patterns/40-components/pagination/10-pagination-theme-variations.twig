@@ -1,5 +1,5 @@
 {% set pagination %}
-  {% include "@bolt-components-pagination/pagination.twig" with {
+  {% include '@bolt-components-pagination/pagination.twig' with {
     current: 5,
     total: 10,
     first: {
@@ -34,22 +34,22 @@
   } only %}
 {% endset %}
 
-{% include "@bolt-components-band/band.twig" with {
-  theme: "xdark",
+{% include '@bolt-components-band/band.twig' with {
+  theme: 'xdark',
   content: pagination
 } only %}
 
-{% include "@bolt-components-band/band.twig" with {
-  theme: "dark",
+{% include '@bolt-components-band/band.twig' with {
+  theme: 'dark',
   content: pagination
 } only %}
 
-{% include "@bolt-components-band/band.twig" with {
-  theme: "light",
+{% include '@bolt-components-band/band.twig' with {
+  theme: 'light',
   content: pagination
 } only %}
 
-{% include "@bolt-components-band/band.twig" with {
-  theme: "xlight",
+{% include '@bolt-components-band/band.twig' with {
+  theme: 'xlight',
   content: pagination
 } only %}

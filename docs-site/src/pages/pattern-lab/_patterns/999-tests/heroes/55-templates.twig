@@ -1,0 +1,45 @@
+{% set _content %}
+  <bolt-text font-size="xxxlarge">
+    Templates / Content Widths
+  </bolt-text>
+  <bolt-text font-size="xlarge">
+    You can use any template from the layout component. this one uses <code>75/25@from-small</code>.
+  </bolt-text>
+{% endset %}
+
+{% set _supplement %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/heros/hero-foreground--yellow.png',
+      loading: 'eager',
+      width: 415,
+      style: 'display: block;'
+    },
+  } only %}
+{% endset %}
+
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: _content
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    valign_self: 'end-offset',
+    content: _supplement
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  gutter: 'large',
+  row_gutter: 'large',
+  padding_top: 'large',
+  padding_bottom: 'large',
+  valign_items: 'center',
+  template: [
+    '75/25@from-small'
+  ],
+  attributes: {
+    class: 't-bolt-dark'
+  }
+} only %}

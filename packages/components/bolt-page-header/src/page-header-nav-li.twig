@@ -1,14 +1,11 @@
-{#
-  Schema Validation @todo: find a way to validate multiple schemas within one component.
-
-  {% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
-  {% if enable_json_schema_validation %}
-    {{ validate_data_schema(schema, _self)|raw }}
-  {% endif %}
-  {% set this = init(schema) %}
-#}
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-page-header'].schema['page-header-nav-li'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
 
 {# Variables #}
+{% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set link_attributes = create_attribute(link.attributes|default({})) %}
 {% set link_tag = link_attributes.type ? 'button' : link_attributes.href ? 'a' : 'span' %}
@@ -17,11 +14,12 @@
   'js-bolt-page-header-nav-item',
   'c-bolt-page-header__nav-list-item',
   popover ? 'c-bolt-page-header__nav-list-item--popover',
-  view_all ? 'c-bolt-page-header__nav-list-item--view-all',
-  full_width ? 'c-bolt-page-header__nav-list-item--full-width',
+  this.data.flat.value ? 'c-bolt-page-header__nav-list-item--flat',
+  this.data.view_all.value ? 'c-bolt-page-header__nav-list-item--view-all',
+  this.data.full_width.value ? 'c-bolt-page-header__nav-list-item--full-width',
+  this.data.selected.value ? 'is-selected',
+  this.data.current.value ? 'is-current',
   children ? 'has-children',
-  selected ? 'is-selected',
-  current ? 'is-current',
 ] %}
 
 {% set link_classes = [
@@ -36,12 +34,27 @@
       {{ content }}
     </div>
   {% elseif link and not content %}
+    {% set _link_content %}
+      {% if link.signifier_only or link.signifier_before %}
+        {% if link.signifier_only %}
+          <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--only">{{ link.signifier_only }}</span>
+        {% elseif link.signifier_before %}
+          <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--before">{{ link.signifier_before }}</span>
+        {% endif %}
+        <span class="c-bolt-page-header__nav-link__content__text">{{ link.content }}</span>
+        {% if link.counter %}
+          <span class="c-bolt-page-header__counter"></span>
+        {% endif %}
+      {% else %}
+        {{ link.content }}
+      {% endif %}
+    {% endset %}
     {% if link and children %}
       {# Visible desktop heading #}
       {% if link.desktop_heading %}
         <{{ link_tag }} {{ link_attributes.addClass(link_classes) }}>
           <strong class="c-bolt-page-header__nav-link__content">
-            {{ link.content }}
+            {{ _link_content }}
           </strong>
         </{{ link_tag }}>
       {% endif %}
@@ -50,7 +63,7 @@
       <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
         <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
         <span class="c-bolt-page-header__nav-link__content">
-          {{ link.content }}
+          {{ _link_content }}
         </span>
         <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
       </button>
@@ -59,7 +72,7 @@
       {# Simple link without children #}
       <{{ link_tag }} {{ link_attributes.addClass(link_classes)|without('aria-current') }} {% if selected and not current %}aria-current="true"{% endif %}>
         <span class="c-bolt-page-header__nav-link__content">
-          {{ link.content }}
+          {{ _link_content }}
         </span>
       </{{ link_tag }}>
     {% endif %}

@@ -1,0 +1,23 @@
+{% set usage %}{% verbatim %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/400x300',
+      width: 400,
+      height: 300,
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-elements-ratio/ratio.twig' with {
+  content: image,
+  ratio: 'wide',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'ratio',
+  componentGroup: 'elements',
+  usage: usage
+} only %}
+

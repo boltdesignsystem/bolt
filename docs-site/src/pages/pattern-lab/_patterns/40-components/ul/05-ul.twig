@@ -1,16 +1,16 @@
-{% include "@bolt-components-ul/ul.twig" with {
+{% include '@bolt-components-ul/ul.twig' with {
   attributes: {
-    "data-attr": "some attribute",
+    'data-attr': 'some attribute',
   },
   items: [
-    "Do not include any data or information in your posts that are confidential!",
-    "Apply basic practices for collaborative work.",
+    'Do not include any data or information in your posts that are confidential!',
+    'Apply basic practices for collaborative work.',
     include('@bolt-elements-text-link/text-link.twig', {
-      content: "Be honest, respectful, trustworthy and helpful.",
+      content: 'Be honest, respectful, trustworthy and helpful.',
       attributes: {
         href: '#!'
       }
     }),
-    "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise."
+    'Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.'
   ]
 } %}

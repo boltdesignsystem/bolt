@@ -1,5 +1,5 @@
 {% set description %}
-  There are currently three <bolt-code-snippet display="inline">layout</bolt-code-snippet> options, <bolt-code-snippet display="inline">vertical</bolt-code-snippet>, <bolt-code-snippet display="inline">horizontal</bolt-code-snippet>, and <bolt-code-snippet display="inline">responsive</bolt-code-snippet>. The default option is <bolt-code-snippet display="inline">vertical</bolt-code-snippet>.
+  There are currently three <code>layout</code> options, <code>vertical</code>, <code>horizontal</code>, and <code>responsive</code>. The default option is <code>vertical</code>.
 {% endset %}
 
 {% set notes %}
@@ -11,15 +11,21 @@
 
 {% set demo %}
   {% set wide_image %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: '/images/placeholders/signifier-pdf.jpg',
-      alt: 'Alt text.',
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/signifier-pdf.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+      }
     } only %}
   {% endset %}
   {% set square_image %}
-    {% include '@bolt-components-image/image.twig' with {
-      src: '/images/placeholders/thumb-square-abstract.jpg',
-      alt: 'Alt text.',
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/thumb-square-abstract.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+      }
     } only %}
   {% endset %}
 
@@ -31,7 +37,9 @@
         headline: {
           text: 'This is vertical teaser',
           link_attributes: {
-            href: 'https://www.pega.com',
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
           }
         },
         description: {
@@ -46,7 +54,9 @@
         headline: {
           text: 'This is horizontal teaser',
           link_attributes: {
-            href: 'https://www.pega.com',
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
           }
         },
         description: {
@@ -62,7 +72,9 @@
         headline: {
           text: 'This is a responsive teaser',
           link_attributes: {
-            href: 'https://www.pega.com',
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
           }
         },
         description: {
@@ -81,7 +93,9 @@
   headline: {
     text: 'This is the teaser headline',
     link_attributes: {
-      href: 'https://www.pega.com',
+      href: 'https://www.google.com',
+      target: '_blank',
+      rel: 'noopener'
     }
   },
 } only %}

@@ -54,7 +54,7 @@ const boltPkgs = getPkgList();
 
 describe.skip('Bolt Components declare dependencies in package.json if used in Twig files', () => {
   const excludedPkgs = [
-    '@bolt/generator-bolt',
+    '@bolt/bolt-generator',
     '@bolt/components-editor',
     '@bolt/uikit-workshop',
   ];

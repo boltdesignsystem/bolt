@@ -7,7 +7,7 @@
 {% endset %}
 
 {% block global_header %}
-  {% include '@pl/_main-site-page-header.twig' %}
+  {% include '@pl/_demo-main-site-page-header.twig' %}
 {% endblock %}
 
 {% block main_content %}
@@ -37,7 +37,7 @@
           text: "CRM Applications",
           size: "xsmall",
           tag: "span",
-          url: "pega.com",
+          url: "https://google.com",
           icon: {
           name: "arrow-left",
           position: "before"
@@ -74,7 +74,7 @@
       {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
         {% cell "o-u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Explore the Pega CRM Suite",
             size: "xxlarge"
           } only %}
@@ -85,39 +85,61 @@
         {% endcell %}
 
         {% set icon_1 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "app-development",
-            size: "xlarge",
-            background: "circle",
-            color: "teal"
           } only %}
         {% endset %}
 
         {% set icon_2 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "sales-automation",
-            size: "xlarge",
-            background: "circle",
-            color: "teal"
           } only %}
         {% endset %}
 
         {% set icon_3 %}
-          {% include "@bolt-components-icon/icon.twig" with {
+          {% include "@bolt-elements-icon/icon.twig" with {
             name: "customer-service",
+          } only %}
+        {% endset %}
+
+        {% set icon_shape_1 %}
+          {% include "@bolt-elements-shape/shape.twig" with {
+            content: icon_1,
             size: "xlarge",
-            background: "circle",
-            color: "teal"
+            attributes: {
+              class: "t-bolt-teal"
+            }
+          } only %}
+        {% endset %}
+
+        {% set icon_shape_2 %}
+          {% include "@bolt-elements-shape/shape.twig" with {
+            content: icon_2,
+            size: "xlarge",
+            attributes: {
+              class: "t-bolt-teal"
+            }
+          } only %}
+        {% endset %}
+
+        {% set icon_shape_3 %}
+          {% include "@bolt-elements-shape/shape.twig" with {
+            content: icon_3,
+            size: "xlarge",
+            attributes: {
+              class: "t-bolt-teal"
+            }
           } only %}
         {% endset %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
           {% set flag_item_1 %}
+            {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
             {% include "@bolt/flag.twig" with {
               valign: "middle",
               url: "#!",
               figure: {
-                content: icon_1
+                content: icon_shape_1
               },
               items: [
                 {
@@ -134,11 +156,12 @@
             } only %}
           {% endset %}
           {% set flag_item_2 %}
+          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
             {% include "@bolt/flag.twig" with {
               valign: "middle",
               url: "#!",
               figure: {
-                content: icon_2
+                content: icon_shape_2
               },
               items: [
                 {
@@ -154,11 +177,12 @@
             } only %}
           {% endset %}
           {% set flag_item_3 %}
+            {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
             {% include "@bolt/flag.twig" with {
               valign: "middle",
               url: "#!",
               figure: {
-                content: icon_3
+                content: icon_shape_3
               },
               items: [
                 {
@@ -174,7 +198,7 @@
             } only %}
           {% endset %}
 
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Get to know Pega Marketing",
             size: "xlarge",
             tag: "h2"
@@ -234,7 +258,7 @@
           {
             "text": "Learn More",
             "hierarchy": "secondary",
-            "url": "www.google.com/pega7",
+            "url": "https://www.google.com/pega7",
             "width": "full"
           }
         ]
@@ -262,7 +286,7 @@
           {
             "text": "Learn More",
             "hierarchy": "secondary",
-            "url": "www.google.com/pega7",
+            "url": "https://www.google.com/pega7",
             "width": "full"
           }
         ]
@@ -290,7 +314,7 @@
           {
             "text": "Learn More",
             "hierarchy": "secondary",
-            "url": "www.google.com/pega7",
+            "url": "https://www.google.com/pega7",
             "width": "full"
           }
         ]
@@ -308,7 +332,7 @@
 
           {% grid %}
             {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-              {% include "@bolt/headline.twig" with {
+              {% include "@bolt-components-headline/headline.twig" with {
                 text: "Analyst Reports",
                 size: "xlarge",
                 tag: "h3"
@@ -324,7 +348,7 @@
             size: "small",
             weight: "bold",
             tag: "p",
-            url: "pega.com",
+            url: "https://google.com",
             icon: {
               name: "chevron-right",
               position: "after"
@@ -350,7 +374,7 @@
       {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
             weight: "regular",
             size: "xxlarge",
@@ -362,7 +386,7 @@
             size: "medium"
           } only %}
 
-          {% include "@bolt/button-group.twig" with {
+          {% include "@bolt-components-button-group/button-group.twig" with {
             "buttons": [
               {
                 "text": "Call to action",
@@ -384,7 +408,7 @@
             } only %}
           {% endset %}
 
-          {% include "@bolt/device-viewer.twig" with {
+          {% include "@bolt-components-device-viewer/device-viewer.twig" with {
             device: "ipad",
             orientation: "landscape",
             color: "black",
@@ -420,7 +444,7 @@
             } only %}
           {% endset %}
 
-          {% include "@bolt/device-viewer.twig" with {
+          {% include "@bolt-components-device-viewer/device-viewer.twig" with {
             device: "ipad",
             orientation: "portrait",
             color: "black",
@@ -430,7 +454,7 @@
 
 
         {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-          {% include "@bolt/subheadline.twig" with {
+          {% include "@bolt-components-headline/subheadline.twig" with {
             text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
             size: "xxlarge",
             tag: "span"
@@ -441,7 +465,7 @@
             size: "medium"
           } only %}
 
-          {% include "@bolt/button-group.twig" with {
+          {% include "@bolt-components-button-group/button-group.twig" with {
             "buttons": [
               {
                 "text": "Call to action",
@@ -471,7 +495,7 @@
       {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-          {% include "@bolt/subheadline.twig" with {
+          {% include "@bolt-components-headline/subheadline.twig" with {
             text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
             size: "xxlarge",
             tag: "span"
@@ -482,7 +506,7 @@
             size: "medium"
           } only %}
 
-          {% include "@bolt/button-group.twig" with {
+          {% include "@bolt-components-button-group/button-group.twig" with {
             "buttons": [
               {
                 "text": "Call to action",
@@ -504,7 +528,7 @@
             } only %}
           {% endset %}
 
-          {% include "@bolt/device-viewer.twig" with {
+          {% include "@bolt-components-device-viewer/device-viewer.twig" with {
             device: "iphone8",
             orientation: "portrait",
             color: "black",
@@ -528,7 +552,7 @@
       {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix o-bolt-grid--center" %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-          {% include "@bolt/subheadline.twig" with {
+          {% include "@bolt-components-headline/subheadline.twig" with {
             text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
             size: "xxlarge",
             tag: "span"
@@ -539,7 +563,7 @@
             size: "medium"
           } only %}
 
-          {% include "@bolt/button-group.twig" with {
+          {% include "@bolt-components-button-group/button-group.twig" with {
             "buttons": [
               {
                 "text": "Call to action",
@@ -561,7 +585,7 @@
             } only %}
           {% endset %}
 
-          {% include "@bolt/device-viewer.twig" with {
+          {% include "@bolt-components-device-viewer/device-viewer.twig" with {
             device: "macbook",
             orientation: "landscape",
             color: "black",
@@ -600,7 +624,7 @@
 
 
 
-          {% include "@bolt/blockquote.twig" with {
+          {% include "@bolt-components-blockquote/blockquote.twig" with {
             size: "xlarge",
             border: "horizontal",
             alignItems: "center",
@@ -625,9 +649,9 @@
             text: "Watch Birgit König, Ph.D., CEO, Allianz Health Germany, share how the Pega platform meets rapidly changing customer expectations."
           } only %}
 
-          {% include "@bolt/button.twig" with {
+          {% include "@bolt-components-button/button.twig" with {
             text: "Call to Action",
-            url: "www.google.com",
+            url: "https://www.google.com",
             hierarchy: "secondary"
           } only %}
 
@@ -655,7 +679,7 @@
 
           {% grid %}
             {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-              {% include "@bolt/headline.twig" with {
+              {% include "@bolt-components-headline/headline.twig" with {
                 text: "See How Pega Can Help Your Business",
                 size: "xlarge"
               } only %}
@@ -668,7 +692,7 @@
 
 
         {% cell "u-bolt-width-1/1@only-small" %}
-          {% include "@bolt/button.twig" with {
+          {% include "@bolt-components-button/button.twig" with {
             text: "Call to action",
             width: "full",
             size: "medium"

@@ -17,6 +17,7 @@ describe('test-utils', () => {
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/element',
+      '@bolt/elements-image',
       '@bolt/lazy-queue',
       '@bolt/polyfills',
     ].sort();
@@ -28,9 +29,7 @@ describe('test-utils', () => {
     expect(dependents).toEqual([
       '@bolt/starter-kit',
       '@bolt/components-band',
-      '@bolt/generator-bolt',
       '@bolt/components-hero',
-      '@bolt/components-page-footer',
     ]);
   });
 

@@ -6,6 +6,10 @@
 @import '_page-header-settings-and-tools.scss';
 
 @include bolt-mq($from: large) {
+  .c-bolt-page-header--full-width {
+    --bolt-page-padding-x: var(--bolt-page-padding-x-medium);
+  }
+
   // Primary section container
   .c-bolt-page-header__primary {
     padding-top: var(--c-bolt-page-header-desktop-padding-top);
@@ -99,6 +103,21 @@
     margin-right: auto;
   }
 
+  .c-bolt-page-header__nav--align-site-nav-items-start {
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  .c-bolt-page-header__nav--align-site-nav-items-center {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .c-bolt-page-header__nav--align-site-nav-items-end {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
   .c-bolt-page-header__nav-list-group {
     display: flex;
     flex-wrap: nowrap;
@@ -116,15 +135,15 @@
     position: absolute;
     top: 0;
     font-family: var(--bolt-type-font-family-headline);
-    font-size: var(--bolt-type-font-size-xxsmall);
+    font-size: var(--bolt-type-font-size-xsmall);
     font-weight: var(--bolt-type-font-weight-semibold);
-    color: var(--m-bolt-link);
-    line-height: var(--bolt-type-line-height-xxsmall);
+    line-height: var(--bolt-type-line-height-xsmall);
 
     .c-bolt-page-header__nav-link {
       @include bolt-button-native-styles-reset;
 
       display: block;
+      min-height: $bolt-page-header-desktop-util-nav-height;
       padding: 0 var(--bolt-spacing-x-xsmall);
       font-family: var(--bolt-type-font-family-headline);
       color: var(--m-bolt-link);
@@ -143,7 +162,38 @@
     }
 
     .c-bolt-page-header__nav-link__content {
-      grid-gap: var(--bolt-spacing-x-xxsmall);
+      position: relative;
+
+      .c-bolt-page-header__nav-link__content__signifier {
+        font-size: calc(#{$bolt-page-header-desktop-util-nav-height} * 0.6);
+      }
+
+      .c-bolt-page-header__nav-link__content__signifier
+        + .c-bolt-page-header__nav-link__content__text {
+        margin-left: var(--bolt-spacing-x-xxsmall);
+      }
+
+      .c-bolt-page-header__nav-link__content__signifier--only
+        + .c-bolt-page-header__nav-link__content__text {
+        @include bolt-visuallyhidden;
+      }
+
+      .c-bolt-page-header__counter {
+        position: absolute;
+        top: 0;
+      }
+
+      .c-bolt-page-header__nav-link__content__signifier--only
+        ~ .c-bolt-page-header__counter {
+        right: 0;
+        transform: translate3d(25%, -20%, 0);
+      }
+
+      .c-bolt-page-header__nav-link__content__signifier--before
+        ~ .c-bolt-page-header__counter {
+        left: 0;
+        transform: translate3d(125%, 40%, 0);
+      }
     }
 
     .c-bolt-page-header__nav-content {
@@ -165,15 +215,17 @@
 
       > .c-bolt-page-header__nav-list {
         @include bolt-shadow('level-10');
+        @include bolt-vertical-scroll;
 
+        --c-bolt-page-header-desktop-popover-width: max(13rem, 10vw);
         visibility: hidden;
         opacity: 0;
         position: absolute;
         top: 0;
         transform: translate3d(0, calc(var(--bolt-spacing-y-medium) - 6px), 0);
         z-index: bolt-z-index(modal);
-        width: 180px;
-        overflow: hidden;
+        width: var(--c-bolt-page-header-desktop-popover-width);
+        max-height: 80vh;
         border-radius: bolt-border-radius(small);
         border-width: $bolt-border-width;
         border-style: $bolt-border-style;
@@ -193,8 +245,8 @@
 
           min-height: auto;
           padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
-          font-size: var(--bolt-type-font-size-xxsmall);
-          line-height: var(--bolt-type-line-height-xxsmall);
+          font-size: var(--bolt-type-font-size-xsmall);
+          line-height: var(--bolt-type-line-height-xsmall);
           border-radius: 0;
 
           &:hover,
@@ -232,15 +284,19 @@
         ~ .c-bolt-page-header__nav-list {
         visibility: visible;
         opacity: 1;
-        transform: translate3d(0, calc(var(--bolt-spacing-y-medium) - 2px), 0);
+        transform: translate3d(
+          0,
+          calc(#{$bolt-page-header-desktop-util-nav-height} - 2px),
+          0
+        );
       }
 
       > .c-bolt-page-header__nav-list--edge-start {
-        left: 0;
+        left: -2ch;
       }
 
       > .c-bolt-page-header__nav-list--edge-end {
-        right: 0;
+        right: -2ch;
       }
     }
   }
@@ -255,16 +311,6 @@
   .c-bolt-page-header__nav-list--related-sites {
     order: 2;
     left: calc(var(--bolt-page-padding-x) - var(--bolt-spacing-x-xsmall));
-
-    > .c-bolt-page-header__nav-list-item {
-      > .c-bolt-page-header__nav-link {
-        display: none;
-      }
-
-      > .c-bolt-page-header__nav-list {
-        display: flex;
-      }
-    }
   }
 
   .c-bolt-page-header__nav-list--site {
@@ -275,6 +321,7 @@
       > .c-bolt-page-header__nav-link {
         @include bolt-page-header-action-trigger;
 
+        --c-bolt-page-header-desktop-current-indicator-opacity: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -285,20 +332,24 @@
           --c-bolt-page-header-desktop-primary-nav-link-font-size,
           var(--bolt-type-font-size-small)
         );
-        color: var(--m-bolt-headline);
+        color: var(--m-bolt-text);
         line-height: calc(#{$bolt-page-header-click-target-size} / 2 - 4px);
         white-space: nowrap;
         transition: var(--bolt-transition);
 
+        &:before {
+          opacity: 0;
+        }
+
         &:after {
           content: '';
-          opacity: 0;
+          opacity: var(--c-bolt-page-header-desktop-current-indicator-opacity);
           position: absolute;
           top: 50%;
-          left: 0;
+          right: 1px;
+          left: 1px;
           transform: translate3d(0, -50%, 0);
           z-index: 0;
-          width: 100%;
           height: calc(
             var(--c-bolt-page-header-desktop-spacing-y) * 2 + #{$bolt-page-header-click-target-size}
           );
@@ -319,23 +370,23 @@
           &:before {
             opacity: 0;
           }
-
-          &:after {
-            opacity: 1;
-          }
         }
+      }
+
+      &.is-current > .c-bolt-page-header__nav-link,
+      > .c-bolt-page-header__nav-link:hover,
+      > .c-bolt-page-header__nav-link[aria-expanded='true'] {
+        --c-bolt-page-header-desktop-current-indicator-opacity: 1;
       }
     }
 
     > .c-bolt-page-header__nav-list-item.has-children {
-      position: relative;
-
       > .c-bolt-page-header__nav-list {
         display: flex;
         flex-wrap: wrap;
         visibility: hidden;
         opacity: 0;
-        position: fixed;
+        position: absolute;
         top: var(--bolt-page-header-height);
         right: 0;
         left: 0;
@@ -447,9 +498,9 @@
         }
 
         .c-bolt-page-header__nav-list-item--view-all {
-          font-size: var(--bolt-type-font-size-small);
+          font-size: var(--bolt-type-font-size-xsmall);
           font-weight: var(--bolt-type-font-weight-semibold);
-          line-height: var(--bolt-type-line-height-small);
+          line-height: var(--bolt-type-line-height-xsmall);
 
           .c-bolt-page-header__nav-link {
             color: var(--m-bolt-link);
@@ -472,35 +523,42 @@
         }
       }
 
-      > .c-bolt-page-header__nav-list--flat {
-        display: block;
-        position: absolute;
-        top: calc(var(--bolt-page-header-height) / 2 - 0.1rem);
-        right: auto;
-        left: 50%;
-        transform: translate3d(-50%, 0, 0);
-        width: auto;
-        padding-right: 0;
-        padding-left: 0;
-        border-radius: bolt-border-radius(small);
-        border-width: $bolt-border-width;
-        border-style: $bolt-border-style;
-        border-color: var(--m-bolt-border);
+      &.c-bolt-page-header__nav-list-item--flat {
+        position: relative;
 
-        > .c-bolt-page-header__nav-list-item {
-          margin-bottom: var(--bolt-spacing-y-small);
-          border-left-width: 0;
-          white-space: nowrap;
+        & > .c-bolt-page-header__nav-list {
+          display: block;
+          position: absolute;
+          top: calc(
+            (#{$bolt-page-header-click-target-size} / 1.45) +
+              var(--c-bolt-page-header-desktop-padding-bottom)
+          );
+          right: auto;
+          left: 50%;
+          transform: translate3d(-50%, 0, 0);
+          width: auto;
+          padding-right: 0;
+          padding-left: 0;
+          border-radius: bolt-border-radius(small);
+          border-width: $bolt-border-width;
+          border-style: $bolt-border-style;
+          border-color: var(--m-bolt-border);
 
-          &:last-of-type {
-            margin-bottom: 0;
-          }
+          > .c-bolt-page-header__nav-list-item {
+            margin-bottom: var(--bolt-spacing-y-small);
+            border-left-width: 0;
+            white-space: nowrap;
 
-          .c-bolt-page-header__nav-link {
-            margin-bottom: 0;
-            font-size: var(--bolt-type-font-size-xsmall);
-            font-weight: var(--bolt-type-font-weight-semibold);
-            line-height: var(--bolt-type-line-height-xsmall);
+            &:last-of-type {
+              margin-bottom: 0;
+            }
+
+            .c-bolt-page-header__nav-link {
+              margin-bottom: 0;
+              font-size: var(--bolt-type-font-size-xsmall);
+              font-weight: var(--bolt-type-font-weight-semibold);
+              line-height: var(--bolt-type-line-height-xsmall);
+            }
           }
         }
       }
@@ -515,7 +573,7 @@
       }
 
       > .c-bolt-page-header__nav-link[aria-expanded='false']
-        ~ .c-bolt-page-header__nav-list:not(.c-bolt-page-header__nav-list--flat) {
+        ~ .c-bolt-page-header__nav-list {
         transition-delay: calc(var(--bolt-transition-timing) * 1.05);
       }
     }
@@ -561,6 +619,37 @@
     grid-template-columns: 48px 1fr;
     grid-gap: var(--bolt-spacing-x-small);
     align-items: center;
+  }
+
+  // Related Sites Grid View
+  .c-bolt-page-header__related-sites {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: var(--bolt-spacing-x-small);
+  }
+
+  // Notifications specific overrides
+  .c-bolt-page-header {
+    .c-bolt-notifications__list {
+      z-index: 0; // Lower stacking order than header and footer.
+    }
+
+    // Make notifications header and footer sticky in the desktop popover
+    .c-bolt-notifications__header,
+    .c-bolt-notifications__footer {
+      position: sticky;
+      right: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .c-bolt-notifications__header {
+      top: 0;
+    }
+
+    .c-bolt-notifications__footer {
+      bottom: 0;
+    }
   }
 }
 

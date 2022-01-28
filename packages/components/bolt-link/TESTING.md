@@ -46,14 +46,14 @@ When an `<a>` tag is placed directly inside the `<bolt-link>` element (prior to 
 
 ```html
 <bolt-link>
-  <a href="https://pega.com" data-foo="bar">Hello world!</a>
+  <a href="https://google.com" data-foo="bar">Hello world!</a>
 </bolt-link>
 ```
 
 Note: an inner `<a>` tag without an `href` attribute does not automatically inherit the `url` prop from its parent. This will not work:
 
 ```html
-<bolt-link url="https://pega.com">
+<bolt-link url="https://google.com">
   <a data-foo="bar">Hello world!</a>
 </bolt-link>
 ```

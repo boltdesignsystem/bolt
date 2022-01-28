@@ -32,7 +32,7 @@ module.exports = {
     signifier: {
       type: 'object',
       description:
-        'Set the signifier for the teaser. It accepts plain <img> element, the Image component, and the Icon component.',
+        'Set the signifier for the teaser. It accepts plain <img> element, the Image component, and the Icon element.',
     },
     eyebrow_text: {
       type: 'string',
@@ -103,6 +103,10 @@ module.exports = {
     share: {
       type: 'object',
       description: 'Render the share button. Share menu is expected here.',
+    },
+    download: {
+      type: 'object',
+      description: 'Render the download link. Link element is expected here.',
     },
     chip_list: {
       type: 'object',

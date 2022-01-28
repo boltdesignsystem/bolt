@@ -50,7 +50,7 @@
     {% endif %}
 
     {% set chip %}
-      {% include "@bolt/chip.twig" with item only %}
+      {% include "@bolt-components-chip/chip.twig" with item only %}
     {% endset %}
 
     {% set list = list|merge([chip]) %}

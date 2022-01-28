@@ -6,7 +6,7 @@
 
 // Light and dark mode
 @mixin bolt-base-light-mode {
-  --m-bolt-neutral: var(--bolt-color-gray);
+  --m-bolt-neutral: var(--bolt-color-gray-dark);
   --m-bolt-text: var(--bolt-color-black);
   --m-bolt-bg: var(--bolt-color-white);
   --m-bolt-headline: var(--bolt-color-navy);
@@ -18,13 +18,13 @@
   --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.15);
   --m-bolt-text-on-tertiary: var(--m-bolt-headline);
   --m-bolt-disabled: var(--bolt-color-gray-light);
-  --m-bolt-text-on-disabled: var(--bolt-color-gray);
+  --m-bolt-text-on-disabled: var(--bolt-color-gray-xdark);
   --m-bolt-border: var(--m-bolt-tertiary);
   --m-bolt-img-filter: none;
 }
 
 @mixin bolt-base-dark-mode {
-  --m-bolt-neutral: var(--bolt-color-gray);
+  --m-bolt-neutral: var(--bolt-color-gray-light);
   --m-bolt-text: var(--bolt-color-white);
   --m-bolt-bg: var(--bolt-color-navy-xdark);
   --m-bolt-headline: var(--bolt-color-white);
@@ -35,8 +35,8 @@
   --m-bolt-text-on-secondary: var(--bolt-color-navy);
   --m-bolt-tertiary: hsla(0, 0%, 100%, 0.15);
   --m-bolt-text-on-tertiary: var(--m-bolt-headline);
-  --m-bolt-disabled: var(--bolt-color-gray-light);
-  --m-bolt-text-on-disabled: var(--bolt-color-gray);
+  --m-bolt-disabled: var(--bolt-color-gray-dark);
+  --m-bolt-text-on-disabled: var(--bolt-color-gray-light);
   --m-bolt-border: var(--m-bolt-tertiary);
   --m-bolt-img-filter: grayscale(100%) invert(100%) brightness(150%);
 }
@@ -48,9 +48,7 @@
 // New themes
 .t-bolt-white,
 .t-bolt-gray-xlight,
-.t-bolt-orange,
-.t-bolt-yellow,
-.t-bolt-pink {
+.t-bolt-yellow {
   @include bolt-base-light-mode;
 }
 
@@ -65,6 +63,8 @@
 .t-bolt-navy,
 .t-bolt-navy-light,
 .t-bolt-teal,
+.t-bolt-orange,
+.t-bolt-pink,
 .t-bolt-wine,
 .t-bolt-berry,
 .t-bolt-violet {
@@ -100,25 +100,18 @@ bolt-card-replacement[theme='xdark'] {
 }
 
 .t-bolt-orange {
-  --m-bolt-text: var(--bolt-color-black);
   --m-bolt-bg: var(--bolt-color-orange);
-  --m-bolt-headline: var(--bolt-color-black);
-  --m-bolt-link: var(--bolt-color-navy);
-  --m-bolt-primary: var(--bolt-color-navy);
-  --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.08);
 }
 
 .t-bolt-yellow {
   --m-bolt-bg: var(--bolt-color-yellow);
+  --m-bolt-link: var(--bolt-color-black);
+  --m-bolt-primary: var(--bolt-color-navy-dark);
+  --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.08);
 }
 
 .t-bolt-pink {
-  --m-bolt-text: var(--bolt-color-black);
   --m-bolt-bg: var(--bolt-color-pink);
-  --m-bolt-headline: var(--bolt-color-black);
-  --m-bolt-link: var(--bolt-color-navy);
-  --m-bolt-primary: var(--bolt-color-navy);
-  --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.08);
 }
 
 .t-bolt-black {
@@ -196,7 +189,8 @@ bolt-card-replacement[theme='xdark'] {
 // Declare text color and bg color
 // Dev note: add :root after bolt-theme() function usage is completely removed.
 [data-bolt-mode],
-[class^='t-bolt-'] {
+[class^='t-bolt-'],
+[class*=' t-bolt-'] {
   color: var(--m-bolt-text);
   background-color: var(--m-bolt-bg);
 }

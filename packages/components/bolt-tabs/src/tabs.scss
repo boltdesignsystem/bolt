@@ -43,7 +43,7 @@ bolt-tabs {
   border-radius: $bolt-tabs-bg-border-radius;
   border-color: transparent;
   transition: opacity $bolt-tabs-text-transition,
-    color $bolt-transition-timing ease-out;
+    color var(--bolt-transition-timing) ease-out;
 
   &:active {
     opacity: bolt-opacity(100);

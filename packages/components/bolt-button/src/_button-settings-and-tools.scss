@@ -26,7 +26,6 @@ $bolt-button-border-style: $bolt-border-style;
 
 @mixin bolt-button {
   @include bolt-button-reset;
-  @include bolt-no-select;
 
   display: flex;
   align-items: center;
@@ -36,6 +35,7 @@ $bolt-button-border-style: $bolt-border-style;
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
+  user-select: none;
   border-radius: bolt-border-radius(small);
   border-width: $bolt-button-border-width;
   border-style: $bolt-button-border-style;
@@ -62,7 +62,7 @@ $bolt-button-border-style: $bolt-border-style;
 
   &:before {
     opacity: 0.8;
-    box-shadow: 0 0.2em 0.75em var(--m-bolt-neutral);
+    box-shadow: 0 0.2em 0.75em var(--bolt-color-gray);
   }
 
   &:after {

@@ -1,0 +1,308 @@
+{% set header_title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxlarge',
+    text: 'Pega Tag set builder',
+    tag: 'h2'
+  } only %}
+{% endset %}
+
+{% set progressbar %}
+  {% include '@bolt-components-progress-bar/progress-bar.twig' with {
+    value: 4,
+    valueFormat: 'step',
+    max: 4,
+  } only %}
+{% endset %}
+
+{% set steps %}
+  {% include '@bolt-components-list/list.twig' with {
+    tag: 'div',
+    display: 'inline',
+    items: [
+      'Step: ',
+      progressbar
+    ],
+  } only %}
+{% endset %}
+
+{% set header %}
+  {% include '@bolt-components-list/list.twig' with {
+    tag: 'div',
+    display: 'inline',
+    align: 'justify',
+    items: [
+      header_title,
+      steps
+    ],
+    attributes: {
+      class: [
+        'u-bolt-margin-bottom-medium',
+        'u-bolt-padding-medium',
+        't-bolt-navy'
+      ],
+      style: 'background: linear-gradient(90deg, rgba(62, 103, 187, 1) 0%, rgba(16, 165, 172, 1) 100%);'
+    }
+  } only %}
+{% endset %}
+
+{% set step_heading_inner %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'large',
+    text: 'Name and save your tag set',
+    tag: 'span',
+    attributes: {
+      class: 'u-bolt-inline'
+    }
+  } only %}
+{% endset %}
+
+{% set step_heading %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xlarge',
+    text: 'Step 4:' ~ step_heading_inner,
+    attributes: {
+      class: 'u-bolt-margin-bottom-large'
+    }
+  } only %}
+{% endset %}
+
+{% set frame_title %}
+  {% include '@bolt-components-headline/headline.twig' with {
+  size: 'small',
+  text: 'Your current tag set',
+  transform: 'uppercase'
+} only %}
+{% endset %}
+
+{% set chip_1 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Question',
+    size: 'xsmall',
+    color: 'navy'
+  } only %}
+{% endset %}
+
+{% set chip_2 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Discussion',
+    size: 'xsmall',
+    color: 'navy'
+  } only %}
+{% endset %}
+
+{% set chip_3 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Pega customer Service 8.6',
+    size: 'xsmall',
+    color: 'navy'
+  } only %}
+{% endset %}
+
+{% set chip_4 %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Mobile',
+    size: 'xsmall',
+    color: 'navy'
+  } only %}
+{% endset %}
+
+{% set icon_bell %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'bell-solid',
+    attributes: {
+      class: 'u-bolt-margin-right-xsmall',
+      style: '--e-bolt-icon-color: var(--m-bolt-primary)'
+    }
+  } only %}
+{% endset %}
+
+{% set icon_email %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'email',
+    attributes: {
+      class: 'u-bolt-margin-right-xsmall',
+      style: '--e-bolt-icon-color: var(--m-bolt-tertiary)'
+    }
+  } only %}
+{% endset %}
+
+{% set frame %}
+  {% include '@bolt-components-headline/text.twig' with {
+    size: 'small',
+    text: icon_bell ~ icon_email ~ ' Notify me when' ~ chip_1 ~ ' or ' ~ chip_2 ~ ' tagged with ' ~ chip_3 ~ ' and ' ~ chip_4 ~ ' is published or updated.',
+    attributes: {
+      class: [
+        't-bolt-gray-xlight',
+        'u-bolt-padding-medium',
+        'u-bolt-margin-bottom-large',
+        'u-bolt-shadow-level-20',
+      ],
+      style: 'border: 1px solid var(--m-bolt-border)'
+    }
+  } only %}
+{% endset %}
+
+{% set tag_builder %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Insert name',
+      displayType: 'floating',
+      attributes: {
+        for: 'name-id'
+      }
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      attributes: {
+        type: 'text',
+        id: 'name-id',
+        placeholder: 'Insert name'
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input
+  } only %}
+{% endset %}
+
+{% set input %}
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: tag_builder,
+    spacing: 'large'
+  } only %}
+{% endset %}
+
+{% set text_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Manage email subscriptions here',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener'
+    }
+  } only %}
+{% endset %}
+
+{% set icon_chevron_left %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-left',
+  } only %}
+{% endset %}
+
+{% set prev %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Previous',
+    attributes: {
+      type: 'button',
+    },
+    icon_before: icon_chevron_left,
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
+{% set submit %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Save',
+    attributes: {
+      type: 'submit',
+    },
+    border_radius: 'full',
+  } only %}
+{% endset %}
+
+{% set navigation %}
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    spacing: 'none',
+    align: 'justify',
+    valign: 'center',
+    items: [
+      prev,
+      submit
+    ]
+  } only %}
+{% endset %}
+
+{% set legal_note %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Legal notification dolor sit amet',
+    attributes: {
+      class: 'u-bolt-text-align-center u-bolt-margin-bottom-medium'
+    }
+  } only %}
+{% endset %}
+
+{% set body_content %}
+  {{ frame_title }}
+  {{ frame }}
+  {{ step_heading }}
+  {{ input }}
+  {{ navigation }}
+  {{ legal_note }}
+{% endset %}
+
+{% set body %}
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: body_content,
+    spacing: 'none',
+    attributes: {
+      class: [
+        'u-bolt-padding-left-medium',
+        'u-bolt-padding-right-medium',
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% set footer %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Want to know about new blogs, analyst reports, and press realases as they publish?' ~ text_link,
+    attributes: {
+      class: [
+        't-bolt-navy',
+        'u-bolt-text-align-center',
+        'u-bolt-padding-medium',
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% set modal_content %}
+  {{ header }}
+  {{ body }}
+  {{ footer }}
+{% endset %}
+
+{% set modal_trigger %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Open Notification Tag Manager',
+    size: 'large',
+    attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '.js-bolt-modal',
+    },
+  } only %}
+{% endset %}
+
+<div class="c-base-tag-manager">
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Click the button below to open Notification Tag Manager (Step 4).',
+    size: 'large',
+    tag: 'h2'
+  } only %}
+  {{ modal_trigger }}
+</div>
+
+{% include '@bolt-components-modal/modal.twig' with {
+  content: modal_content,
+  width: 'regular',
+  scroll: 'overall',
+  spacing: 'none',
+  attributes: {
+    class: 'js-bolt-modal',
+  },
+} only %}
+
+

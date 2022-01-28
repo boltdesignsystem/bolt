@@ -1,29 +1,29 @@
 {% set notes %}
   <bolt-ol>
     <bolt-li>A training list is composed of the Listing Teaser component and the List component with solid separators.</bolt-li>
-    <bolt-li><bolt-code-snippet display="inline">solved_label</bolt-code-snippet> is used for customizing the solved status label text.</bolt-li>
-    <bolt-li><bolt-code-snippet display="inline">locked_label</bolt-code-snippet> is used for customizing the locked status label text.</bolt-li>
+    <bolt-li><code>solved_label</code> is used for customizing the solved status label text.</bolt-li>
+    <bolt-li><code>locked_label</code> is used for customizing the locked status label text.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
   {% set icon_orbit %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'brand-orbit',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'orbit',
       size: 'large',
       color: 'teal',
     } only %}
   {% endset %}
   {% set icon_meteor %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'brand-meteor',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'meteor',
       size: 'large',
       color: 'orange',
     } only %}
   {% endset %}
   {% set icon_launchpad %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'launchpad',
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'rocket',
       size: 'large',
       color: 'navy',
     } only %}
@@ -36,7 +36,7 @@
         tag: 'h3',
         size: 'large',
         link_attributes: {
-          href: 'https://pega.com'
+          href: 'https://google.com'
         },
       },
       meta_items: [
@@ -58,7 +58,7 @@
         tag: 'h3',
         size: 'large',
         link_attributes: {
-          href: 'https://pega.com'
+          href: 'https://google.com'
         },
       },
       meta_items: [
@@ -80,7 +80,7 @@
         tag: 'h3',
         size: 'large',
         link_attributes: {
-          href: 'https://pega.com'
+          href: 'https://google.com'
         },
       },
       meta_items: [
@@ -103,7 +103,7 @@
         tag: 'h3',
         size: 'large',
         link_attributes: {
-          href: 'https://pega.com'
+          href: 'https://google.com'
         },
       },
       meta_items: [
@@ -120,7 +120,7 @@
         tag: 'h3',
         size: 'large',
         link_attributes: {
-          href: 'https://pega.com'
+          href: 'https://google.com'
         },
       },
       meta_items: [
@@ -155,8 +155,8 @@
 {% verbatim %}
 // Set up a particular training
 {% set demo_icon %}
-  {% include '@bolt-components-icon/icon.twig' with {
-    name: 'brand-orbit',
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'orbit',
     size: 'large',
     color: 'teal',
   } only %}
@@ -169,7 +169,7 @@
       tag: 'h3',
       size: 'large',
       link_attributes: {
-        href: 'https://pega.com'
+        href: 'https://google.com'
       },
     },
     meta_items: [

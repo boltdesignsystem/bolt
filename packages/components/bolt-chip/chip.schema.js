@@ -38,8 +38,9 @@ module.exports = {
     color: {
       type: 'string',
       description: 'Controls the color of the chip.',
-      default: 'gray',
+      default: 'auto',
       enum: [
+        'auto',
         'error',
         'warning',
         'success',
@@ -59,7 +60,7 @@ module.exports = {
     icon: {
       type: 'object',
       description:
-        "Bolt icon. Accepts the same options as Bolt Icon Component `@bolt-components-icon` plus an additional 'position' parameter that determines placement within the button.",
+        "Bolt icon. Accepts the same options as Bolt Icon Element `@bolt-elements-icon` plus an additional 'position' parameter that determines placement within the button.",
       properties: {
         position: {
           type: 'string',
@@ -68,6 +69,10 @@ module.exports = {
         },
       },
       ref: 'icon',
+    },
+    rel: {
+      type: 'string',
+      description: 'Set to <code>noopener</code>, if a link is external.',
     },
     tag: {
       description:

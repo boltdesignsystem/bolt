@@ -1,0 +1,29 @@
+{% set schema = bolt.data.components['@bolt-components-page-footer'].schema['page-footer'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'c-page-footer',
+  'js-bolt-page-footer',
+] %}
+
+<footer {{ attributes.addClass(classes) }}>
+  <nav class="c-page-footer__nav c-page-footer__nav--main" aria-label="{{ 'About Pegasystems'|t }}">
+    <div class="c-page-footer__nav-item c-page-footer__nav-item--description">
+      {{ description }}
+    </div>
+    {{ primary_nav }}
+  </nav>
+  <aside>
+    <nav class="c-page-footer__nav c-page-footer__nav--aside" aria-label="{{ 'Utilities'|t }}">
+      {{ secondary_nav }}
+      <span class="c-page-footer__nav-item c-page-footer__nav-item--copyrights">&copy;{{ 'now'|date('Y') }} Pegasystems Inc.</span>
+    </nav>
+  </aside>
+  <span id="page-footer-new-window" hidden>{{ 'Open in new window'|t }}</span>
+</footer>

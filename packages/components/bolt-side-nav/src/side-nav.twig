@@ -1,5 +1,5 @@
 {# Schema Validation #}
-{% set schema = bolt.data.components['@bolt-components-side-nav'].schema %}
+{% set schema = bolt.data.components['@bolt-components-side-nav'].schema['side-nav'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -7,18 +7,18 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set _side_nav_label_id = bolt.data.config.env == 'test' ? 'side-nav-label-test' : 'side-nav-label-' ~ random() %}
+
+{% set classes = [
+  'c-bolt-side-nav',
+  'js-bolt-side-nav',
+] %}
 
 {# Template #}
-<div {{ attributes.addClass('c-bolt-side-nav') }} data-bolt-side-nav>
-  <button type="button" aria-expanded="true" class="c-bolt-side-nav__trigger" data-bolt-side-nav-toggle-trigger>
-    <span class="c-bolt-side-nav__trigger__text">{{ 'Toggle side navigation'|t }}</span>
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'chevron-left',
-    } only %}
-  </button>
-  <nav class="c-bolt-side-nav__content" {% if headline %} aria-labelledby="bolt-side-nav" {% endif %}>
+<div {{ attributes.addClass(classes) }}>
+  <nav class="c-bolt-side-nav__content" {% if headline %} aria-labelledby="{{ _side_nav_label_id }}" {% endif %}>
     {% if headline %}
-      <strong class="c-bolt-side-nav__headline" id="bolt-side-nav">
+      <strong class="c-bolt-side-nav__headline" id="{{ _side_nav_label_id }}">
         {% if headline.link_attributes.href %}
           <a href="{{ headline.link_attributes.href }}" class="c-bolt-side-nav__headline__link">{{ headline.content }}</a>
         {% else %}

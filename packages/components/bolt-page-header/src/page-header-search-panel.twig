@@ -1,14 +1,11 @@
-{#
-  Schema Validation @todo: find a way to validate multiple schemas within one component.
-
-  {% set schema = bolt.data.components['@bolt-components-page-header'].schema %}
-  {% if enable_json_schema_validation %}
-    {{ validate_data_schema(schema, _self)|raw }}
-  {% endif %}
-  {% set this = init(schema) %}
-#}
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-page-header'].schema['page-header-search-panel'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
 
 {# Variables #}
+{% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% set classes = [
@@ -21,12 +18,12 @@
     {{ 'Toggle Search Panel'|t }}
   </span>
   <span class="c-bolt-page-header__action-trigger__icon" aria-hidden="true">
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'search'
     } only %}
   </span>
   <span class="c-bolt-page-header__action-trigger__icon c-bolt-page-header__action-trigger__icon--close" aria-hidden="true">
-    {% include '@bolt-components-icon/icon.twig' with {
+    {% include '@bolt-elements-icon/icon.twig' with {
       name: 'close'
     } only %}
   </span>

@@ -59,15 +59,13 @@ async function getPackageBasePath(outputPackageName) {
   );
 }
 
-async function getIconSourcePaths(outputPackageName, extendedIconDirs) {
+async function getIconSourcePaths(outputPackageName, extendedIconDirs = []) {
   const packageDir = await getPackageBasePath(outputPackageName);
   const dirs = [packageDir, ...extendedIconDirs];
   return dirs.map(dir => path.join(dir, globPattern));
 }
 
-async function generate(outputPackageName, extendedIconDirs) {
-  extendedIconDirs = extendedIconDirs || [];
-
+async function generate(outputPackageName, extendedIconDirs = []) {
   const packageDir = await getPackageBasePath(outputPackageName);
   const buildDir = path.join(packageDir, 'src/icons');
 

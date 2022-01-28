@@ -1,0 +1,62 @@
+{% set description %}
+  Textarea is used for long form text input.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use <code>form-textarea.twig</code> include statement.</bolt-li>
+    <bolt-li>Add the attributes you need, for example a <code>placeholder</code> or <code>required</code>.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Describe the job',
+      displayType: 'floating',
+    } only %}
+  {% endset %}
+  {% set textarea %}
+    {% include '@bolt-components-form/form-textarea.twig' with {
+      attributes: {
+        placeholder: 'Describe the job',
+        required: true
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: textarea,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set label %}
+  {% include '@bolt-components-form/form-label.twig' with {
+    title: 'Describe the job',
+    displayType: 'floating',
+  } only %}
+{% endset %}
+{% set textarea %}
+  {% include '@bolt-components-form/form-textarea.twig' with {
+    attributes: {
+      placeholder: 'Describe the job'
+    }
+  } only %}
+{% endset %}
+{% include '@bolt-components-form/form-element.twig' with {
+  label: label,
+  children: textarea,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Textarea',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
+

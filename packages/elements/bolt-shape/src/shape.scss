@@ -1,0 +1,86 @@
+@import '@bolt/core-v3.x';
+
+.e-bolt-shape {
+  --e-bolt-shape-border-radius: #{bolt-border-radius(full)};
+  display: inline-block;
+  position: relative;
+  width: calc(var(--e-bolt-shape-content-size) * 2);
+  height: calc(var(--e-bolt-shape-content-size) * 2);
+  font-size: var(--e-bolt-shape-font-size);
+  vertical-align: middle;
+  border-radius: var(--e-bolt-shape-border-radius, 0);
+  background-color: var(--m-bolt-tertiary);
+
+  &[class^='t-bolt-'],
+  &[class*=' t-bolt-'] {
+    border: 1px solid var(--m-bolt-tertiary);
+  }
+}
+
+.e-bolt-shape__content {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: var(--e-bolt-shape-content-size);
+  height: var(--e-bolt-shape-content-size);
+  font-family: var(--bolt-type-font-family-headline);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  line-height: var(--e-bolt-shape-content-size);
+  text-align: center;
+  white-space: nowrap;
+  border-radius: inherit;
+
+  > * {
+    position: inherit;
+    top: inherit;
+    left: inherit;
+    transform: inherit;
+    width: inherit;
+    height: inherit;
+  }
+
+  > img {
+    border-radius: inherit;
+    object-fit: cover;
+  }
+}
+
+// Shape content sizes
+.e-bolt-shape,
+.e-bolt-shape--small {
+  --e-bolt-shape-content-size: 1rem;
+  --e-bolt-shape-font-size: 0.8rem;
+}
+
+.e-bolt-shape--medium {
+  --e-bolt-shape-content-size: 1.5rem;
+  --e-bolt-shape-font-size: 1rem;
+}
+
+.e-bolt-shape--large {
+  --e-bolt-shape-content-size: 2rem;
+  --e-bolt-shape-font-size: 1.5rem;
+}
+
+.e-bolt-shape--xlarge {
+  --e-bolt-shape-content-size: 2.375rem;
+  --e-bolt-shape-font-size: 1.75rem;
+}
+
+//shape border radiuses
+
+.e-bolt-shape--border-radius-none {
+  --e-bolt-shape-border-radius: none;
+}
+
+.e-bolt-shape--border-radius-small {
+  --e-bolt-shape-border-radius: #{bolt-border-radius(small)};
+}
+
+.e-bolt-shape--border-radius-large {
+  --e-bolt-shape-border-radius: #{bolt-border-radius(large)};
+}

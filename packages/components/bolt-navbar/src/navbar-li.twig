@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar-item'] %}
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema['navbar-li'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -14,18 +14,18 @@
   'js-bolt-navbar-item'
 ] %}
 
-{% if this.data.current.value is sameas(true) %}
-  {% set attributes = attributes.setAttribute('data-bolt-current') %}
+{% if this.data.current.value is same as(true) %}
+  {% set attributes = attributes.setAttribute('data-bolt-current', true) %}
 {% endif %}
 
 {# [data-scroll-ignore] opts out of automatic smoothscroll behavior, @see packages/bolt-smooth-scroll #}
-{% set _link_attributes = _link_attributes.setAttribute('data-scroll-ignore', '') %}
+{% set _link_attributes = _link_attributes.setAttribute('data-scroll-ignore', true) %}
 
 {% if link.icon %}
   {% set _icon_position = link.icon.position in schema.properties.link.properties.icon.properties.position.enum ? link.icon.position : schema.properties.link.properties.icon.properties.position.default %}
   {% set _inline_icon %}
     <span class="c-bolt-navbar-item__icon">
-      {% include "@bolt-components-icon/icon.twig" with link.icon only %}
+      {% include "@bolt-elements-icon/icon.twig" with link.icon only %}
     </span>
   {% endset %}
 {% endif %}

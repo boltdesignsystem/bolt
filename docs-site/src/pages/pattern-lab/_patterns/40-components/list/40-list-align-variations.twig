@@ -1,21 +1,21 @@
 {# Setting variables for demo purposes #}
-{% set schema = bolt.data.components["@bolt-components-list"].schema %}
+{% set schema = bolt.data.components['@bolt-components-list'].schema %}
 {% set placeholder_1 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Item 1",
-    size: "xsmall",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Item 1',
+    size: 'xsmall',
   } only %}
 {% endset %}
 {% set placeholder_2 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Item 2",
-    size: "xsmall",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Item 2',
+    size: 'xsmall',
   } only %}
 {% endset %}
 {% set placeholder_3 %}
-  {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Item 3",
-    size: "xsmall",
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Item 3',
+    size: 'xsmall',
   } only %}
 {% endset %}
 
@@ -26,9 +26,9 @@
 
 {% for align in schema.properties.align.enum %}
   {% for display in schema.properties.display.enum %}
-    {% if display != "block" and display != "flex" %}
+    {% if display != 'block' and display != 'flex' %}
       <h3>Horizontally align {{ display }} items: {{ align }}</h3>
-      {% include "@bolt-components-list/list.twig" with {
+      {% include '@bolt-components-list/list.twig' with {
         display: display,
         align: align,
         items: [

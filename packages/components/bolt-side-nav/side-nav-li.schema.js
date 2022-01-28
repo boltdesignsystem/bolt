@@ -1,8 +1,7 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Side Nav List Item',
+  title: 'Side Nav li',
   type: 'object',
-  required: ['content'],
   properties: {
     attributes: {
       type: 'object',
@@ -21,6 +20,11 @@ module.exports = {
         content: {
           type: 'string',
           description: 'Text content of the link.',
+        },
+        icon: {
+          type: 'any',
+          description:
+            'Set an icon after the link text. Use this to indicate external links. Do not use this if the link has children.',
         },
       },
     },

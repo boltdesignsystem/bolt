@@ -1,0 +1,86 @@
+{% set schema = bolt.data.components['@bolt-components-profile'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-profile',
+  this.data.full_bleed.value ? 'c-bolt-profile--full-bleed' : '',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+  <div class="c-bolt-profile__cover">
+    {% if cover %}
+      {{ cover }}
+    {% else %}
+      {% include '@bolt-components-profile/_profile-default-cover.twig' %}
+    {% endif %}
+  </div>
+  <div class="c-bolt-profile__avatar">
+    {% if avatar %}
+      {{ avatar }}
+    {% else %}
+      {% include '@bolt-components-profile/_profile-default-avatar.twig' %}
+    {% endif %}
+  </div>
+  <div class="c-bolt-profile__user-info">
+    <div class="c-bolt-profile__user-headline">
+      <{{ name.tag }}>{{ name.content }}</{{ name.tag }}>
+    </div>
+    {% if chips %}
+      <div class="c-bolt-profile__user-chips">
+        {{ chips }}
+      </div>
+    {% endif %}
+    {% if job_title or location %}
+      <div class="c-bolt-profile__user-meta">
+        {% if job_title %}
+          {{ job_title }}
+          <br>
+        {% endif %}
+        {% if location %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'map-pin-solid',
+          } only %}
+          {{ location }}
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+  {% if actions %}
+    <div class="c-bolt-profile__actions">
+      {{ actions }}
+    </div>
+  {% endif %}
+  {% if stats or message %}
+    <div class="c-bolt-profile__stats">
+      {% if message %}
+        {% set _message_attributes = create_attribute(message.attributes|default({})) %}
+        {% set _message_tag = _message_attributes.type ? 'button' : _message_attributes.href ? 'a' : 'span' %}
+        <{{ _message_tag }} {{ _message_attributes.addClass('c-bolt-profile__stats-item') }}>
+          <span class="c-bolt-profile__stats-signifier">
+            {% include '@bolt-elements-icon/icon.twig' with {
+              name: 'customer-service',
+            } only %}
+          </span>
+          <span class="c-bolt-profile__stats-label">{{ message.label }}</span>
+        </{{ _message_tag }}>
+      {% endif %}
+      {% if stats %}
+        {% for item in stats %}
+          {% set _item_attributes = create_attribute(item.attributes|default({})) %}
+          {% set _item_tag = _item_attributes.type ? 'button' : _item_attributes.href ? 'a' : 'span' %}
+          <{{ _item_tag }} {{ _item_attributes.addClass('c-bolt-profile__stats-item') }}>
+            <span class="c-bolt-profile__stats-signifier">{{ item.number }}</span>
+            <span class="c-bolt-profile__stats-label">{{ item.label }}</span>
+          </{{ _item_tag }}>
+        {% endfor %}
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

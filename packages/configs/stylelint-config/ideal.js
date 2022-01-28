@@ -1,4 +1,5 @@
 module.exports = {
+  extends: ['stylelint-config-standard-scss'],
   ignoreFiles: [
     'nebula-css/tools/*',
     'nebula-css/resets/_normalize.scss',
@@ -75,7 +76,12 @@ module.exports = {
     'block-no-empty': true,
     'block-opening-brace-newline-after': 'always-multi-line',
     'block-opening-brace-space-after': 'always-single-line',
-    'block-opening-brace-space-before': 'always',
+    'block-opening-brace-space-before': [
+      'always',
+      {
+        ignoreAtRules: ['if', 'else', 'elseif'],
+      },
+    ],
     'color-hex-case': 'lower',
     'color-hex-length': 'short',
     'color-no-invalid-hex': true,

@@ -1,52 +1,142 @@
-{% set schema = bolt.data.components['@bolt-components-modal'].schema %}
+{% set description %}
+The modal container's coloring theme can be adjusted by the  <code>theme</code> prop. The default is set to <code>xlight</code>.
+{% endset %}
 
-<bolt-text>The modal container's coloring theme can be adjusted by the <code>theme</code> prop. The default is set to <code>xlight</code>.</bolt-text>
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>none</code> prop makes the modal container transparent.</bolt-li>
+    <bolt-li>The <code>xlight</code>, <code>light</code>, <code>dark</code>, and <code>xdark</code> props adds the respective theme to the modal container.</bolt-li>
+    <bolt-li>The <code>theme</code> prop only applies to viewports equal to or above the small breakpoint (~600px).</bolt-li>
+  </bolt-ol>
+{% endset %}
 
-<bolt-text headline font-size="xlarge">Theme Options</bolt-text>
+{% set demo %}
+  {% set none_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'None',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--theme-none',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal with a transparent background.',
+      theme: 'none',
+      attributes: {
+        class: 'js-bolt-modal--theme-none',
+      },
+    } only %}
+  {% endset %}
 
-<bolt-table>
-  <table>
-    <tbody>
-      {% for theme in schema.properties.theme.enum %}
-        <tr>
-          <th>
-            {% set text = 'This is a modal set to ' ~ theme ~ ' theme.' %}
-            {% if theme == 'none' %}
-              {% set modal_content = '<mark>' ~ text ~ '</mark>' %}
-            {% else %}
-              {% set modal_content = text %}
-            {% endif %}
-            {% include '@bolt-elements-button/button.twig' with {
-              content: theme|capitalize,
-              size: 'small',
-              display: 'block',
-              attributes: {
-                type: 'button',
-                "data-bolt-modal-target": ".js-bolt-modal--theme-" ~ theme,
-              }
-            } only %}
-            {% include '@bolt-components-modal/modal.twig' with {
-              content: modal_content,
-              theme: theme,
-              attributes: {
-                class: "js-bolt-modal--theme-" ~ theme,
-              },
-            } only %}
-          </th>
-          <td>
-            {% if theme == 'none' %}
-              This makes the modal container transparent.
-            {% else %}
-              This sets the {{ theme }} theme on the modal container.
-            {% endif %}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-    <tfoot>
-      <tr>
-        <th colspan="2">Additional Notes: this prop only applies to viewports equal to or above the small breakpoint (~600px).</th>
-      </tr>
-    </tfoot>
-  </table>
-</bolt-table>
+  {% set xlight_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Xlight',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--theme-xlight',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal with a xlight theme.',
+      theme: 'xlight',
+      attributes: {
+        class: 'js-bolt-modal--theme-xlight',
+      },
+    } only %}
+  {% endset %}
+
+  {% set light_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Light',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--theme-light',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal with a light theme.',
+      theme: 'light',
+      attributes: {
+        class: 'js-bolt-modal--theme-light',
+      },
+    } only %}
+  {% endset %}
+
+  {% set dark_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Dark',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--theme-dark',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal with a dark theme.',
+      theme: 'dark',
+      attributes: {
+        class: 'js-bolt-modal--theme-dark',
+      },
+    } only %}
+  {% endset %}
+
+  {% set xdark_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Xdark',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--theme-xdark',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal with a xdark theme.',
+      theme: 'xdark',
+      attributes: {
+        class: 'js-bolt-modal--theme-xdark',
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    spacing: 'xsmall',
+    align: 'start',
+    valign: 'center',
+    items: [
+      none_modal,
+      xlight_modal,
+      light_modal,
+      dark_modal,
+      xdark_modal,
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-modal/modal.twig' with {
+  content: 'This is a modal with a xlight theme.',
+  theme: 'xlight',
+  attributes: {
+    class: 'js-bolt-modal--theme-xlight',
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Modal Theme Options',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup
+} only %}

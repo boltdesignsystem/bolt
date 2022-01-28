@@ -29,7 +29,7 @@ module.exports = {
       type: 'string',
       description:
         "Screenreader-specific text for the submit button, intended to provide a longer, more descriptive explanation of the submit button's behavior.",
-      default: 'Submit search query',
+      default: 'Submit',
     },
     input_label: {
       type: 'string',
@@ -40,7 +40,7 @@ module.exports = {
       type: 'string',
       description:
         'The placeholder text to display inside the Typeahead search input.',
-      default: 'Enter your search query',
+      default: 'Search',
     },
     input_value: {
       type: 'string',

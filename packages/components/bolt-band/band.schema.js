@@ -94,7 +94,7 @@ module.exports = {
         'If set to true, the band will take the full width of the page.',
     },
     theme: {
-      type: 'any',
+      type: 'string',
       description: 'Controls the theme of the band.',
       default: 'dark',
       enum: ['none', 'xlight', 'light', 'dark', 'xdark', 'xxdark'],

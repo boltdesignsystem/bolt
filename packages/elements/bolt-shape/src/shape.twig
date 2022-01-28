@@ -1,0 +1,31 @@
+{#
+/**
+ * Background Shape Element
+ *
+ * Available variables:
+ * - Reference shape.schema.js
+ */
+#}
+
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-elements-shape'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'e-bolt-shape',
+  this.data.size.value ? 'e-bolt-shape--' ~ this.data.size.value,
+  this.data.spacing.value ? 'e-bolt-shape--spacing-' ~ this.data.spacing.value,
+  this.data.border_radius.value ? 'e-bolt-shape--border-radius-' ~ this.data.border_radius.value,
+] %}
+
+<span {{ attributes.addClass(classes) }}>
+  <span class="e-bolt-shape__content">
+    {{ content }}
+  </span>
+</span>

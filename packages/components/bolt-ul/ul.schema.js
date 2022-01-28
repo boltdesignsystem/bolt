@@ -24,7 +24,7 @@ module.exports = {
           },
           contentItems: {
             type: 'array',
-            description: 'Items pass to `@bolt/text.twig`',
+            description: 'Items pass to `@bolt-components-text/text.twig`',
           },
         },
       },

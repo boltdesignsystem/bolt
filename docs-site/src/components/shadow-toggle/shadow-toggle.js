@@ -4,7 +4,6 @@
 -------------------------------- */
 
 import { html, BoltElement, customElement, unsafeCSS } from '@bolt/element';
-import shadowToggleStyles from './shadow-toggle.scss';
 
 @customElement('bolt-shadow-toggle')
 class BoltShadowToggle extends BoltElement {
