@@ -1,46 +1,122 @@
-{% set schema = bolt.data.components['@bolt-components-modal'].schema %}
+{% set description %}
+  The modal container's spacing can be adjusted by the <code>spacing</code> prop. The default is set to <code>medium</code>.
+{% endset %}
 
-<bolt-text>The modal container's spacing can be adjusted by the <code>spacing</code> prop. The default is set to <code>medium</code>.</bolt-text>
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>none</code> prop removes the spacing inside the modal container.</bolt-li>
+    <bolt-li>The <code>small</code>, <code>medium</code>, and <code>large</code> props add the respective spacing around the modal content.</bolt-li>
+    <bolt-li>The <code>spacing</code> prop only applies to viewports equal to or above the small breakpoint (~600px).</bolt-li>
+  </bolt-ol>
+{% endset %}
 
-<bolt-text headline font-size="xlarge">Spacing Options</bolt-text>
+{% set demo %}
+  {% set none_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'None',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--spacing-none',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal set to none spacing.',
+      spacing: 'none',
+      attributes: {
+        class: 'js-bolt-modal--spacing-none',
+      },
+    } only %}
+  {% endset %}
 
-<bolt-table>
-  <table>
-    <tbody>
-      {% for spacing in schema.properties.spacing.enum %}
-        <tr>
-          <th>
-            {% include '@bolt-elements-button/button.twig' with {
-              content: spacing|capitalize,
-              size: 'small',
-              display: 'block',
-              attributes: {
-                type: 'button',
-                'data-bolt-modal-target': '.js-bolt-modal--spacing-' ~ spacing,
-              }
-            } only %}
-            {% include '@bolt-components-modal/modal.twig' with {
-              content: 'This is a modal set to ' ~ spacing ~ ' spacing.',
-              spacing: spacing,
-              attributes: {
-                class: 'js-bolt-modal--spacing-' ~ spacing,
-              },
-            } only %}
-          </th>
-          <td>
-            {% if spacing == 'none' %}
-              This removes the spacing inside the modal container.
-            {% else %}
-              This sets {{ spacing }} inset spacing on the modal container.
-            {% endif %}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-    <tfoot>
-      <tr>
-        <th colspan="2">Additional Notes: this prop only applies to viewports equal to or above the small breakpoint (~600px).</th>
-      </tr>
-    </tfoot>
-  </table>
-</bolt-table>
+  {% set small_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Small',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--spacing-small',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal set to small spacing.',
+      spacing: 'small',
+      attributes: {
+        class: 'js-bolt-modal--spacing-small',
+      },
+    } only %}
+  {% endset %}
+
+  {% set medium_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Medium',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--spacing-medium',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal set to medium spacing.',
+      spacing: 'medium',
+      attributes: {
+        class: 'js-bolt-modal--spacing-medium',
+      },
+    } only %}
+  {% endset %}
+
+  {% set large_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Large',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--spacing-large',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal set to large spacing.',
+      spacing: 'large',
+      attributes: {
+        class: 'js-bolt-modal--spacing-large',
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    spacing: 'xsmall',
+    align: 'start',
+    valign: 'center',
+    items: [
+      none_modal,
+      small_modal,
+      medium_modal,
+      large_modal,
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-modal/modal.twig' with {
+  content: 'This is a modal set to small spacing.',
+  spacing: 'small',
+  attributes: {
+    class: 'js-bolt-modal--spacing-small',
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Modal Spacing Variation',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup
+} only %}

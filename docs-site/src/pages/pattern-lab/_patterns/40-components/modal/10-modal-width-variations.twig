@@ -1,50 +1,158 @@
-{% set schema = bolt.data.components['@bolt-components-modal'].schema %}
+{% set description %}
+  The modal container's width can be adjusted by the <code>width</code> prop. The default is set to <code>optimal</code>.
+{% endset %}
 
-<bolt-text>The modal container's width can be adjusted by the <code>width</code> prop. The default is set to <code>optimal</code>.</bolt-text>
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>full</code> modal takes up the full width of the screen minus the gutters (about 2rem on left and right).</bolt-li>
+    <bolt-li>The <code>regular</code> modal is 10 out 12 columns wide, about 80% of the screen width.</bolt-li>
+    <bolt-li>The <code>optimal</code> modal is about 75 characters wide, close to optimal reading length.</bolt-li>
+    <bolt-li>The <code>auto</code> modal adjusts to the width of the modal content. In most cases, the user must define a max-width in absolute value (do not use relative value such as %) on the modal content to get the desired results. Recommended for advanced usage.</bolt-li>
+    <bolt-li>The <code>width</code> prop only applies to viewports equal to or above the small breakpoint (~600px).</bolt-li>
+    <bolt-li><strong>Advanced usage:</strong> use an image that has the <code>width</code> attribute defined (e.g. 640) in tandem with auto width modal will allow the image inside the modal to be responsive but does not stretch beyond the specified <code>width</code>.</bolt-li>
+  </bolt-ol>
+{% endset %}
 
-<bolt-text headline font-size="xlarge">Width Options</bolt-text>
+{% set demo %}
+  {% set full_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Full',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--width-full',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal set to full width.',
+      width: 'full',
+      attributes: {
+        class: 'js-bolt-modal--width-full',
+      },
+    } only %}
+  {% endset %}
 
-<bolt-table>
-  <table>
-    <tbody>
-      {% for width in schema.properties.width.enum %}
-        <tr>
-          <th>
-            {% include '@bolt-elements-button/button.twig' with {
-              content: width|capitalize,
-              size: 'small',
-              display: 'block',
-              attributes: {
-                type: 'button',
-                'data-bolt-modal-target': '.js-bolt-modal--width-' ~ width,
-              }
-            } only %}
-            {% include '@bolt-components-modal/modal.twig' with {
-              content: 'This is a modal set to ' ~ width ~ ' width.',
-              width: width,
-              attributes: {
-                class: 'js-bolt-modal--width-' ~ width,
-              },
-            } only %}
-          </th>
-          <td>
-            {% if width == 'full' %}
-              This is taking up the full width of the screen minus the gutters (about 2rem on left and right).
-            {% elseif width == 'regular' %}
-              This is 10 out 12 columns wide, about 80% of the screen width.
-            {% elseif width == 'optimal' %}
-              This is about 75 characters wide, close to optimal reading length.
-            {% elseif width == 'auto' %}
-              This adjusts to the width of the modal content. In most cases, the user must define a max-width in absolute value (do not use relative value such as %) on the modal content to get the desired results. Recommended for advanced usage.
-            {% endif %}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-    <tfoot>
-      <tr>
-        <th colspan="2">Additional Notes: this prop only applies to viewports equal to or above the small breakpoint (~600px).</th>
-      </tr>
-    </tfoot>
-  </table>
-</bolt-table>
+  {% set regular_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Regular',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--width-regular',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal set to regular width.',
+      width: 'regular',
+      attributes: {
+        class: 'js-bolt-modal--width-regular',
+      },
+    } only %}
+  {% endset %}
+
+  {% set optimal_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Optimal',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--width-optimal',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal set to optimal width.',
+      width: 'optimal',
+      attributes: {
+        class: 'js-bolt-modal--width-optimal',
+      },
+    } only %}
+  {% endset %}
+
+  {% set auto_modal %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Auto',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--width-auto',
+      }
+    } only %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: 'This is a modal set to auto width.',
+      width: 'auto',
+      attributes: {
+        class: 'js-bolt-modal--width-auto',
+      },
+    } only %}
+  {% endset %}
+
+  {% set auto_modal_image %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Auto (content is an image)',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--width-auto-image',
+      }
+    } only %}
+
+    {% set modal_content %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/tout-4x3-climber.jpg',
+          alt: 'A Rock Climber',
+          width: '640',
+          height: '480'
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: modal_content,
+      width: 'auto',
+      spacing: 'none',
+      theme: 'none',
+      attributes: {
+        class: 'js-bolt-modal--width-auto-image',
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    spacing: 'xsmall',
+    align: 'start',
+    valign: 'center',
+    items: [
+      full_modal,
+      regular_modal,
+      optimal_modal,
+      auto_modal,
+      auto_modal_image,
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-modal/modal.twig' with {
+  content: 'This is a modal set to full width.',
+  width: 'full',
+  attributes: {
+    class: 'js-bolt-modal--width-full',
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Modal Width Variation',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup
+} only %}
