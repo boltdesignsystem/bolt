@@ -1,0 +1,34 @@
+{% set tooltip_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'tooltip',
+    attributes: {
+      href: 'https://google.com'
+    }
+  } only %}
+{% endset %}
+
+{% set tooltip %}{% spaceless %}
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: tooltip_link,
+    content: "This is what we call a tooltip."
+  } only %}
+{% endspaceless %}{% endset %}
+
+{% set popover_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'popover',
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+
+{% set popover %}{% spaceless %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: popover_link,
+    content: "This is what we call a popover."
+  } only %}
+{% endspaceless %}{% endset %}
+
+<h2>Tooltip/Popover whitespace around trigger</h2>
+<p>When you use a link as the tooltip or popover trigger there should be no extra whitespace around the link. For example, this is a {{ tooltip }}. This is a {{ popover }}.</p>
