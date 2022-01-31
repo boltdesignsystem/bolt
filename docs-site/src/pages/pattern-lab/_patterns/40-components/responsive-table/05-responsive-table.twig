@@ -1,0 +1,209 @@
+{% set description %}
+    A responsive table.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <p>Table with checkboxes</p>
+  {% include '@bolt-components-responsive-table/responsive-table.twig' with {
+    table_caption_top: 'table header top',
+    checkbox: true,
+    table_headers_top: [
+      {
+        cells: [
+          'Header top 1',
+          'Header top 2',
+          'Header top 3',
+          'Header top 4',
+          'Header top 5',
+        ]
+      },
+    ],
+    rows: [
+      {
+        cells: [
+          'Row 1 Column 1',
+          'Row 1 Column 2',
+          'Row 1 Column 3',
+          'Row 1 Column 4',
+          'Row 1 Column 5',
+        ]
+      },
+      {
+        cells: [
+          'Row 2 Column 1',
+          'Row 2 Column 2',
+          'Row 2 Column 3',
+          'Row 2 Column 4',
+          'Row 2 Column 5',
+        ]
+      },
+      {
+        cells: [
+          'Row 3 Column 1',
+          'Row 3 Column 2',
+          'Row 3 Column 3',
+          'Row 3 Column 4',
+          'Row 4 Column 5',
+        ]
+      },
+    ],
+  } only %}
+
+  <p>table with buttons</p>
+  {% include '@bolt-components-responsive-table/responsive-table.twig' with {
+    checkbox: true,
+    table_headers_top: [
+      {
+        cells: [
+          'Header top 1',
+          {
+            content: 'header',
+            filters: true,
+            sort: true,
+          },
+          'Header top 3',
+          'Header top 4',
+          'Header top 5',
+        ]
+      },
+    ],
+    table_headers_side: [
+      {
+        cells: [
+          'Header side 1',
+          'Header side 2',
+          'Header side 3',
+          'Header side 4',
+          'Header side 5',
+          'Header side 6',
+          'Header side 7',
+        ]
+      },
+    ],
+    rows: [
+      {
+        cells: [
+          'Row 1 Column 1',
+          'Row 1 Column 2',
+          'Row 1 Column 3',
+          'Row 1 Column 4',
+          'Row 1 Column 5',
+        ]
+      },
+      {
+        trigger: true,
+        cells: [
+          'Row 2 Column 1',
+          'Row 2 Column 2',
+          'Row 2 Column 3',
+          'Row 2 Column 4',
+          'Row 2 Column 5',
+        ]
+      },
+      {
+        hidden: true,
+        cells: [
+          'Row 2 Column 1',
+          'Row 2 Column 2',
+          'Row 2 Column 3',
+          'Row 2 Column 4',
+          'Row 2 Column 5',
+        ]
+      },
+      {
+        trigger: true,
+        cells: [
+          'Row 2 Column 1',
+          'Row 2 Column 2',
+          'Row 2 Column 3',
+          'Row 2 Column 4',
+          'Row 2 Column 5',
+        ]
+      },
+      {
+        hidden: true,
+        cells: [
+          'Row 3 Column 1',
+          'Row 3 Column 2',
+          'Row 3 Column 3',
+          'Row 3 Column 4',
+          'Row 4 Column 5',
+        ]
+      },
+      {
+        hidden: true,
+        cells: [
+          'Row 3 Column 1',
+          'Row 3 Column 2',
+          'Row 3 Column 3',
+          'Row 3 Column 4',
+          'Row 4 Column 5',
+        ]
+      },
+      {
+        cells: [
+          'Row 3 Column 1',
+          'Row 3 Column 2',
+          'Row 3 Column 3',
+          'Row 3 Column 4',
+          'Row 4 Column 5',
+        ]
+      },
+    ],
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-responsive-table/responsive-table.twig' with {
+  rows: [
+    {
+      cells: [
+        'Row 1 Column 1',
+        'Row 1 Column 2',
+        'Row 1 Column 3',
+        'Row 1 Column 4',
+        'Row 1 Column 5',
+      ]
+    },
+    {
+      cells: [
+        'Row 2 Column 1',
+        'Row 2 Column 2',
+        'Row 2 Column 3',
+        'Row 2 Column 4',
+        'Row 2 Column 5',
+      ]
+    },
+    {
+      cells: [
+        'Row 3 Column 1',
+        'Row 3 Column 2',
+        'Row 3 Column 3',
+        'Row 3 Column 4',
+        'Row 4 Column 5',
+      ]
+    },
+  ],
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<div class="c-bolt-responsive-table">
+  This is a responsive-table component.
+</div>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Responsive Table',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

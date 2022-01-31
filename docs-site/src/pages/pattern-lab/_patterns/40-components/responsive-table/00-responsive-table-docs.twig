@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-responsive-table/responsive-table.twig' with {
+  content: 'This is a responsive-table component.'
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'responsive-table',
+  usage: usage
+} only %}
