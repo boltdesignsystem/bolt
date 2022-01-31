@@ -21,7 +21,7 @@ getLatestDeploy()
     if (
       TRAVIS_TAG &&
       TRAVIS_TAG === latestTag &&
-      !semver.valid(latestTag) &&
+      semver.valid(latestTag) &&
       !semver.prerelease(latestTag)
     ) {
       aliasNowUrl(url, '');
