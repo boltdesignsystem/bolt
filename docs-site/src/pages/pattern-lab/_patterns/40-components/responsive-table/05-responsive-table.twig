@@ -57,7 +57,7 @@
 
   <p>table with buttons</p>
   {% include '@bolt-components-responsive-table/responsive-table.twig' with {
-    checkbox: true,
+    table_caption_bottom: 'table header bottom',
     table_headers_top: [
       {
         cells: [
@@ -82,12 +82,12 @@
           'Header side 4',
           'Header side 5',
           'Header side 6',
-          'Header side 7',
         ]
       },
     ],
     rows: [
       {
+        trigger: true,
         cells: [
           'Row 1 Column 1',
           'Row 1 Column 2',
@@ -97,16 +97,6 @@
         ]
       },
       {
-        trigger: true,
-        cells: [
-          'Row 2 Column 1',
-          'Row 2 Column 2',
-          'Row 2 Column 3',
-          'Row 2 Column 4',
-          'Row 2 Column 5',
-        ]
-      },
-      {
         hidden: true,
         cells: [
           'Row 2 Column 1',
@@ -119,39 +109,30 @@
       {
         trigger: true,
         cells: [
-          'Row 2 Column 1',
-          'Row 2 Column 2',
-          'Row 2 Column 3',
-          'Row 2 Column 4',
-          'Row 2 Column 5',
+          'Row 3 Column 1',
+          'Row 3 Column 2',
+          'Row 3 Column 3',
+          'Row 3 Column 4',
+          'Row 3 Column 5',
         ]
       },
       {
         hidden: true,
         cells: [
-          'Row 3 Column 1',
-          'Row 3 Column 2',
-          'Row 3 Column 3',
-          'Row 3 Column 4',
+          'Row 4 Column 1',
+          'Row 4 Column 2',
+          'Row 4 Column 3',
+          'Row 4 Column 4',
           'Row 4 Column 5',
         ]
       },
       {
         hidden: true,
         cells: [
-          'Row 3 Column 1',
-          'Row 3 Column 2',
-          'Row 3 Column 3',
-          'Row 3 Column 4',
-          'Row 4 Column 5',
-        ]
-      },
-      {
-        cells: [
-          'Row 3 Column 1',
-          'Row 3 Column 2',
-          'Row 3 Column 3',
-          'Row 3 Column 4',
+          'Row 5 Column 1',
+          'Row 5 Column 2',
+          'Row 5 Column 3',
+          'Row 5 Column 4',
           'Row 4 Column 5',
         ]
       },

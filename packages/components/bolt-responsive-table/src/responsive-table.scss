@@ -21,26 +21,44 @@
   overflow-x: auto;
 }
 
-.c-bolt-reponsive-table__table {
+.c-bolt-responsive-table__table {
   width: 100%;
 }
 
-.c-bolt-reponsive-table__header,
-.c-bolt-reponsive-table__data {
+.c-bolt-responsive-table__header,
+.c-bolt-responsive-table__data {
   position: relative;
 }
 
-.c-bolt-reponsive-table__cell-label {
+.c-bolt-responsive-table__button {
+  @include bolt-button-native-styles-reset; // Button styles must be reset first before applying other styles.
+}
+
+.c-bolt-responsive-table__cell-label {
   opacity: 0;
   position: absolute;
 }
 
-.c-bolt-responsive-table__row--trigger {
-  color: green;
+.c-bolt-responsive-table__row--trigger ~ .c-bolt-responsive-table__row--hidden {
+  .c-bolt-responsive-table__header {
+    background-color: var(--bolt-color-white);
+  }
 }
 
 .c-bolt-responsive-table__row--hidden {
-  color: red;
+  display: none;
+}
+
+.c-bolt-responsive-table__data {
+  vertical-align: middle;
+}
+
+.c-bolt-responsive-table__caption {
+  text-align: left;
+}
+
+.c-bolt-responsive-table__caption--bottom {
+  caption-side: bottom;
 }
 
 .icon-wrapper {

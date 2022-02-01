@@ -30,19 +30,6 @@
   } only %}
 {% endset %}
 
-{% set toggle_row_button %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: icon_chevron_down,
-    size: 'small',
-    hierarchy: 'transparent',
-    attributes: {
-      type: 'button',
-      'aria-expanded': 'false',
-      'aria-label': 'Toggle row table'
-    }
-  } only %}
-{% endset %}
-
 {% set sort_button %}
   {% set sort_button_wrapper %}
     <div class="icon-wrapper">
@@ -75,11 +62,15 @@
 {% endset %}
 
 <div {{ attributes.addClass(classes) }}>
-  <table class="c-bolt-reponsive-table__table">
-    {% if table_caption_top or table_caption_bottom %}
-      <caption class="c-bolt-reponsive-table__caption--top">{{ table_caption_top }}</caption>
+  <table class="c-bolt-responsive-table__table">
+    {% if table_caption_top %}
+      <caption class="c-bolt-responsive-table__caption c-bolt-responsive-table__caption--top">
+        {{ table_caption_top }}
+      </caption>
     {% else %}
-      <caption class="c-bolt-reponsive-table__caption--bottom">{{ table_caption_bottom }}</caption>
+      <caption class="c-bolt-responsive-table__caption c-bolt-responsive-table__caption--bottom">
+        {{ table_caption_bottom }}
+      </caption>
     {% endif %}
     {% if table_headers_top %}
       <thead class="c-bolt-responsive-table__head">
@@ -91,12 +82,12 @@
             {% for table_header in headers.cells %}
               {% set table_header_attrs = create_attribute(table_header.attributes|default({})) %}
               {% set table_header_classes = [
-                'c-bolt-reponsive-table__header',
+                'c-bolt-responsive-table__header',
               ] %}
               <th {{ table_header_attrs.addClass(table_header_classes) }}>
               {% if checkbox and loop.first and not table_headers_side %}
                 {% set table_data = headers.cells[loop.index0]|replace({' ': '-'})|lower %}
-                  <label class="c-bolt-reponsive-table__cell-label" for="table-data-id-{{ table_data }}">{{ headers.cells[loop.index0] }}</label>
+                  <label class="c-bolt-responsive-table__cell-label" for="table-data-id-{{ table_data }}">{{ headers.cells[loop.index0] }}</label>
                   <input class="c-bolt-responsive-table__header-checkbox" type="checkbox" id="table-data-id-{{ table_data }}" name="table-data-name-{{ table_data }}" value="{{ table_data }}">
                 {% endif %}
               {% if table_header.content %}
@@ -119,7 +110,7 @@
     {% if rows %}
       <tbody>
         {% for row in rows %}
-          <tr 
+          <tr id= "{{ random() }}"
             {% if row.trigger %}
               class="c-bolt-responsive-table__row c-bolt-responsive-table__row--trigger"
             {% elseif row.hidden %}
@@ -132,12 +123,18 @@
                 {% for headers in table_headers_side %}
                 {% set table_header_attrs = create_attribute(table_header.attributes|default({})) %}
                 {% set table_header_classes = [
-                  'c-bolt-reponsive-table__header',
+                  'c-bolt-responsive-table__header',
                 ] %}
                   <th {{ table_header_attrs.addClass(table_header_classes) }}>
                     {{ headers.cells[index] }}
                     {% if row.trigger %}
-                      {{ toggle_row_button }}
+                      <button class="c-bolt-responsive-table__button js-bolt-responsive-table-toggle-row" type="button"    aria-expanded="false" aria-label="Toggle row table" id = "{{random()}}">
+                        <span class="c-bolt-responsive-table__trigger-icon" aria-hidden="true">
+                          {% include '@bolt-elements-icon/icon.twig' with {
+                            name: 'chevron-down',
+                          } only %}
+                        </span>
+                      </button>
                     {% endif %}
                   </th>
                 {% endfor %}
@@ -145,12 +142,12 @@
             {% for table_data in row.cells %}
               {% set table_data_attrs = create_attribute(table_data.attributes|default({})) %}
               {% set table_data_classes = [
-                'c-bolt-reponsive-table__data',
+                'c-bolt-responsive-table__data',
               ] %}
               <td {{ table_data_attrs.addClass(table_data_classes) }}>
                 {% if checkbox and loop.first and not table_headers_side %}
                 {% set table_data = row.cells[loop.index0]|replace({' ': '-'})|lower %}
-                  <label class="c-bolt-reponsive-table__cell-label" for="table-data-id-{{ table_data }}">{{ row.cells[loop.index0] }}</label>
+                  <label class="c-bolt-responsive-table__cell-label" for="table-data-id-{{ table_data }}">{{ row.cells[loop.index0] }}</label>
                   <input class="c-bolt-responsive-table__header-checkbox" type="checkbox" id="table-data-id-{{ table_data }}" name="table-data-name-{{ table_data }}" value="{{ table_data }}">
                 {% endif %}
                 {% if table_data.content %}
