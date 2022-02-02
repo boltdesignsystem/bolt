@@ -40,10 +40,17 @@ export class BoltResponsiveTable {
     );
 
     for (let i = 0; i < start.length; i++) {
-      const btn = start[i].querySelector(
+      const tableButton = start[i].querySelector(
         '.js-bolt-responsive-table-toggle-row',
       );
-      btn.addEventListener('click', function() {
+
+      // ???
+      var next = nextUntil(start[i], '.c-bolt-responsive-table__row--trigger');
+      next.forEach(el => {
+        el.classList.add('c-bolt-responsive-table__row--hidden');
+      });
+      // ???
+      tableButton.addEventListener('click', function() {
         var next = nextUntil(
           start[i],
           '.c-bolt-responsive-table__row--trigger',
