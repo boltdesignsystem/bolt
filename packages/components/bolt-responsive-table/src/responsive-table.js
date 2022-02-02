@@ -4,31 +4,23 @@ export class BoltResponsiveTable {
     this.el = el;
     this.toggleNextRows();
     this.toggleAriaExpanded();
+    this.toggleCheckbox();
   }
 
   toggleNextRows() {
-    console.log('toggletable rows');
+    //nextUntil.js method https://vanillajstoolkit.com/helpers/nextuntil/
     var nextUntil = function(elem, selector, filter) {
-      // Setup siblings array
       var siblings = [];
 
-      // Get the next sibling element
       elem = elem.nextElementSibling;
 
-      // As long as a sibling exists
       while (elem) {
-        // If we've reached our match, bail
         if (elem.matches(selector)) break;
 
-        // If filtering by a selector, check if the sibling matches
         if (filter && !elem.matches(filter)) {
           elem = elem.nextElementSibling;
         }
-
-        // Otherwise, push it to the siblings array
         siblings.push(elem);
-
-        // Get the next sibling element
         elem = elem.nextElementSibling;
       }
 
@@ -44,12 +36,11 @@ export class BoltResponsiveTable {
         '.js-bolt-responsive-table-toggle-row',
       );
 
-      // ???
       var next = nextUntil(start[i], '.c-bolt-responsive-table__row--trigger');
       next.forEach(el => {
         el.classList.add('c-bolt-responsive-table__row--hidden');
       });
-      // ???
+
       tableButton.addEventListener('click', function() {
         var next = nextUntil(
           start[i],
@@ -63,11 +54,11 @@ export class BoltResponsiveTable {
   }
 
   toggleAriaExpanded() {
-    console.log('toggle aria expanded');
+    // console.log('toggle aria expanded');
     const tableButton = this.el.querySelectorAll(
       '.js-bolt-responsive-table-toggle-row',
     );
-    console.log(tableButton);
+    // console.log(tableButton);
     tableButton.forEach(el => {
       el.addEventListener('click', event => {
         if (el.getAttribute('aria-expanded') === 'true') {
@@ -77,6 +68,50 @@ export class BoltResponsiveTable {
         }
       });
     });
+  }
+
+  toggleCheckbox() {
+    const mainCheckbox = this.el.querySelector(
+      '.c-bolt-responsive-table__head .c-bolt-responsive-table__header-checkbox',
+    );
+
+    const rowCheckboxes = this.el.querySelectorAll(
+      '.c-bolt-responsive-table__body .c-bolt-responsive-table__header-checkbox',
+    );
+    rowCheckboxes.forEach(el => {
+      el.addEventListener('click', () => {
+        mainCheckbox.checked = true;
+        let checkboxesArr = Array.from(rowCheckboxes);
+        let allUnchecked = checkboxesArr.every(e => !e.checked);
+        if (allUnchecked) {
+          mainCheckbox.checked = false;
+        }
+      });
+    });
+
+    let myArray = Array.from(rowCheckboxes);
+
+    let result = myArray.every(e => !e.checked);
+
+    console.log(result);
+
+    function checkAllCheckboxes() {
+      rowCheckboxes.forEach(el => {
+        if (el.checked) {
+          el.checked = false;
+        } else {
+          el.checked = true;
+        }
+      });
+
+      if (!mainCheckbox.checked) {
+        rowCheckboxes.forEach(el => {
+          el.checked = false;
+        });
+      }
+    }
+
+    mainCheckbox.addEventListener('click', checkAllCheckboxes);
   }
 }
 
