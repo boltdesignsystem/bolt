@@ -89,12 +89,6 @@ export class BoltResponsiveTable {
       });
     });
 
-    let myArray = Array.from(rowCheckboxes);
-
-    let result = myArray.every(e => !e.checked);
-
-    console.log(result);
-
     function checkAllCheckboxes() {
       rowCheckboxes.forEach(el => {
         if (el.checked) {
