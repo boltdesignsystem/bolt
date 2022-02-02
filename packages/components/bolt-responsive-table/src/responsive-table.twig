@@ -85,21 +85,36 @@
                 'c-bolt-responsive-table__header',
               ] %}
               <th {{ table_header_attrs.addClass(table_header_classes) }}>
-              {% if checkbox and loop.first and not table_headers_side %}
-                {% set table_data = headers.cells[loop.index0]|replace({' ': '-'})|lower %}
-                  <label class="c-bolt-responsive-table__cell-label" for="table-data-id-{{ table_data }}">{{ headers.cells[loop.index0] }}</label>
-                  <input class="c-bolt-responsive-table__header-checkbox" type="checkbox" id="table-data-id-{{ table_data }}" name="table-data-name-{{ table_data }}" value="{{ table_data }}">
-                {% endif %}
-              {% if table_header.content %}
-                {{ table_header.content }}
-              {% else %}
-                {{ table_header }}
+              {% if table_header.sort or table_header.filters %}
+                <div class="c-bolt-responsive-table__ctas">
               {% endif %}
-              {% if table_header.sort %}
-                {{ sort_button }}
-              {% endif %}
-              {% if table_header.filters %}
-                {{ filter_button }}
+                  {% if checkbox and loop.first and not table_headers_side %}
+                    {% set table_data = headers.cells[loop.index0]|replace({' ': '-'})|lower %}
+                      <label class="c-bolt-responsive-table__cell-label" for="table-data-id-{{ table_data }}">{{ headers.cells[loop.index0] }}</label>
+                      <input class="c-bolt-responsive-table__header-checkbox" type="checkbox" id="table-data-id-{{ table_data }}" name="table-data-name-{{ table_data }}" value="{{ table_data }}">
+                    {% endif %}
+                  {% if table_header.content %}
+                    {{ table_header.content }}
+                  {% else %}
+                    {{ table_header }}
+                  {% endif %}
+                  {% if table_header.sort %}
+                  <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--sort" type="button">
+                    <div class="c-bolt-responsive-table__trigger-icon">
+                      {{ icon_chevron_up }}
+                      {{ icon_chevron_down }}
+                    </div>
+                  </button>
+                    {# {{ sort_button }} #}
+                  {% endif %}
+                  {% if table_header.filters %}
+                    <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--filter" type="button">
+                      {# {{ filter_button }} #}
+                      {{ icon_filter }}
+                    </button>
+                  {% endif %}
+              {% if table_header.sort or table_header.filters %}
+                </div>
               {% endif %}
               </th>
             {% endfor %}
@@ -108,13 +123,11 @@
       </thead>
     {% endif %}
     {% if rows %}
-      <tbody>
+      <tbody class="c-bolt-responsive-table__body">
         {% for row in rows %}
-          <tr id= "{{ random() }}"
+          <tr
             {% if row.trigger %}
               class="c-bolt-responsive-table__row c-bolt-responsive-table__row--trigger"
-            {% elseif row.hidden %}
-              class="c-bolt-responsive-table__row c-bolt-responsive-table__row--hidden"
             {% else %}
               class="c-bolt-responsive-table__row"
             {% endif %}>
@@ -126,14 +139,18 @@
                   'c-bolt-responsive-table__header',
                 ] %}
                   <th {{ table_header_attrs.addClass(table_header_classes) }}>
-                    {{ headers.cells[index] }}
+                  {% if headers.cells[index] is iterable %}
+                      {{ headers.cells[index].content }}
+                    {% else %}
+                      {{ headers.cells[index] }}
+                    {% endif %}
                     {% if row.trigger %}
-                      <button class="c-bolt-responsive-table__button js-bolt-responsive-table-toggle-row" type="button"    aria-expanded="false" aria-label="Toggle row table" id = "{{random()}}">
-                        <span class="c-bolt-responsive-table__trigger-icon" aria-hidden="true">
+                      <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--toggle-row js-bolt-responsive-table-toggle-row" type="button" aria-expanded="false" aria-label="Toggle row table">
+                        <div class="c-bolt-responsive-table__trigger-icon" aria-hidden="true">
                           {% include '@bolt-elements-icon/icon.twig' with {
                             name: 'chevron-down',
                           } only %}
-                        </span>
+                        </div>
                       </button>
                     {% endif %}
                   </th>
