@@ -6,12 +6,15 @@ export class BoltFloatingActionButtons {
   }
 
   init() {
-    this.visibleItems = this.el.getAttribute('data-visible-items');
+    this.visibleItems = this.el.dataset.visibleItems;
     this.contentElement = this.el.querySelector(
       '.c-bolt-floating-action-buttons__content',
     );
+    this.contentElementItems = this.el.querySelectorAll(
+      '.c-bolt-floating-action-buttons__content-item',
+    );
     this.showOnScroll = this.el.getAttribute('show-on-scroll');
-    this.showOnLoad = this.el.getAttribute('data-show-on-load');
+    this.showOnLoad = this.el.dataset.showOnLoad;
     this.expandButton = this.el.querySelector(
       '.c-bolt-floating-action-buttons__more',
     );
@@ -21,7 +24,7 @@ export class BoltFloatingActionButtons {
     }
 
     if (this.showOnScroll) {
-      this.handleshowOnScroll();
+      this.handleShowOnScroll();
     } else if (this.showOnLoad != null) {
       this.show();
     }
@@ -44,9 +47,9 @@ export class BoltFloatingActionButtons {
   }
 
   getScrollPositionFromProp() {
-    var revealPosition = 0;
-    var scrollInt = parseInt(this.showOnScroll, 10);
-    var pageHeight = window.innerHeight;
+    let revealPosition = 0;
+    const scrollInt = parseInt(this.showOnScroll, 10);
+    const pageHeight = window.innerHeight;
 
     if (this.showOnScroll.includes('px')) {
       revealPosition = scrollInt;
@@ -57,26 +60,26 @@ export class BoltFloatingActionButtons {
     return revealPosition;
   }
 
-  handleshowOnScroll() {
-    var scrollPosition = window.scrollY;
-    var revealPosition = this.getScrollPositionFromProp();
+  handleShowOnScroll() {
+    let scrollPosition = window.scrollY;
+    const revealPosition = this.getScrollPositionFromProp();
 
-    const superFunction = () => {
+    const scrollHandler = () => {
       scrollPosition = window.scrollY;
       if (revealPosition > 0 && scrollPosition >= revealPosition) {
         this.show();
-        window.removeEventListener('scroll', superFunction);
+        window.removeEventListener('scroll', scrollHandler);
       }
     };
 
-    window.addEventListener('scroll', superFunction);
+    window.addEventListener('scroll', scrollHandler);
   }
 
   toggleShowMore() {
     if (this.el.getAttribute('aria-expanded') === 'false') {
       this.el.setAttribute('aria-expanded', 'true');
       // show all contentItems
-      for (const contentItem of this.contentElement.children) {
+      for (const contentItem of this.contentElementItems) {
         contentItem.setAttribute('aria-hidden', false);
       }
     } else {
@@ -87,7 +90,7 @@ export class BoltFloatingActionButtons {
 
   setDefaultVisibility() {
     let index = 1;
-    for (const contentItem of this.contentElement.children) {
+    for (const contentItem of this.contentElementItems) {
       if (index > this.visibleItems) {
         contentItem.setAttribute('aria-hidden', true);
       } else {

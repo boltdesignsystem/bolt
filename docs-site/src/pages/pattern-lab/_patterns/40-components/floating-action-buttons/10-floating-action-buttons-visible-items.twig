@@ -8,7 +8,7 @@ The <code>visible_items</code> property can be used to hide an overflow of eleme
   } only %}
 {% endset %}
 
-{% set _placeholder_pri %}
+{% set _placeholderPrimary %}
   {% include '@bolt-components-tooltip/tooltip.twig' with {
     content: 'Placeholder Button',
     trigger: include('@bolt-elements-button/button.twig', {
@@ -21,7 +21,7 @@ The <code>visible_items</code> property can be used to hide an overflow of eleme
   } only %}
 {% endset %}
 
-{% set _placeholder_sec %}
+{% set _placeholderSecondary %}
   {% include '@bolt-components-tooltip/tooltip.twig' with {
     content: 'Placeholder Button',
     trigger: include('@bolt-elements-button/button.twig', {
@@ -52,15 +52,15 @@ The <code>visible_items</code> property can be used to hide an overflow of eleme
           {% for i in 0..4 %}
             {% if i < _visible_items %}
               {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
-                content: _placeholder_pri,
+                content: _placeholderPrimary,
               } only %}
             {% elseif _visible_items == 0 %}
               {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
-                content: _placeholder_pri,
+                content: _placeholderPrimary,
               } only %}
             {% else %}
               {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
-                content: _placeholder_sec,
+                content: _placeholderSecondary,
               } only %}
             {% endif %}
           {% endfor %}

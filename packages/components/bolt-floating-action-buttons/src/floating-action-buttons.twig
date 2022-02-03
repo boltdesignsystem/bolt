@@ -1,5 +1,3 @@
-{# @TODO: rename stash #}
-
 {% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
@@ -20,7 +18,7 @@
   aria-hidden="true"
   aria-expanded="false"
   data-visible-items="{{ this.data.visible_items.value }}"
-  {{ this.data.show_on_load.value ? 'data-show-on-load=""' : '' }}
+  {% if this.data.show_on_load.value %}data-show-on-load{% endif %}
   {{ this.props|without("class")|without("position")|without("visible_items") }}
 >
 
