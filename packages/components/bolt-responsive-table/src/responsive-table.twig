@@ -77,7 +77,7 @@
         {% for headers in table_headers_top %}
           <tr class="c-bolt-responsive-table__row">
             {% if table_headers_side %}
-              <td></td>
+              <th></th>
             {% endif %}
             {% for table_header in headers.cells %}
               {% set table_header_attrs = create_attribute(table_header.attributes|default({})) %}
@@ -139,6 +139,7 @@
                   'c-bolt-responsive-table__header',
                 ] %}
                   <th {{ table_header_attrs.addClass(table_header_classes) }}>
+                  {% if row.trigger %}<div class="c-bolt-responsive-table__header-cta">{% endif %}
                   {% if headers.cells[index] is iterable %}
                       {{ headers.cells[index].content }}
                     {% else %}
@@ -153,6 +154,7 @@
                         </div>
                       </button>
                     {% endif %}
+                    {% if row.trigger %}</div>{% endif %}
                   </th>
                 {% endfor %}
             {% endif %}
