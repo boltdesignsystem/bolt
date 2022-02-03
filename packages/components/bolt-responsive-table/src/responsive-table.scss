@@ -19,23 +19,29 @@
   // Styles go here. /* [1] */
   display: block;
   overflow-x: auto;
+  max-height: 75vh;
 }
 
 .c-bolt-responsive-table__table {
   width: 100%;
-  border: 1px solid var(--bolt-color-gray-light);
   border-collapse: collapse;
 }
 
 .c-bolt-responsive-table__head {
-  td {
-    border-right: 1px solid var(--bolt-color-gray-light);
-    border-bottom: 1px solid var(--bolt-color-gray-light);
+  th:first-of-type {
+    background-color: var(--bolt-color-gray-xlight);
+  }
+
+  .c-bolt-responsive-table__header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: var(--bolt-color-gray-xlight);
   }
 }
 
 .c-bolt-responsive-table__header {
-  border-right: 1px solid var(--bolt-color-gray-light);
+  border-right: none;
 }
 
 .c-bolt-responsive-table__header,
@@ -45,7 +51,7 @@
 }
 
 .c-bolt-responsive-table__button {
-  @include bolt-button-native-styles-reset; // Button styles must be reset first before applying other styles.
+  @include bolt-button-native-styles-reset;
 }
 
 .c-bolt-responsive-table__ctas {
@@ -69,10 +75,10 @@
 
 .c-bolt-responsive-table__body {
   .c-bolt-responsive-table__header {
-    display: flex;
-    justify-content: space-between;
-    border-right: none;
-    border-bottom: 1px solid var(--bolt-color-gray-light);
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: var(--bolt-color-gray-xlight);
 
     &:last-child {
       border-bottom: none;
@@ -82,6 +88,11 @@
 
 .c-bolt-responsive-table__header {
   vertical-align: middle;
+}
+
+.c-bolt-responsive-table__header-cta {
+  display: flex;
+  justify-content: space-between;
 }
 
 .c-bolt-responsive-table__button--toggle-row {
@@ -128,7 +139,6 @@
 
 .c-bolt-responsive-table__data {
   vertical-align: middle;
-  border: 1px solid var(--bolt-color-gray-light);
 }
 
 .c-bolt-responsive-table__caption {
@@ -141,27 +151,3 @@
   margin-bottom: 0;
   caption-side: bottom;
 }
-
-.c-bolt-responsive-table__trigger-icon {
-  // display: flex;
-  // flex-direction: column;
-}
-
-// .c-bolt-responsive-table {
-//   overflow-y: auto;
-//   max-height: 300px;
-// }
-
-// .c-bolt-responsive-table thead th {
-//   position: sticky;
-//   top: 0;
-//   z-index: 1;
-//   background: var(--bolt-color-gray-light);
-// }
-
-// .c-bolt-responsive-table tbody th {
-//   position: sticky;
-//   left: 0;
-//   z-index: 1;
-//   background: var(--bolt-color-gray-light);
-// }
