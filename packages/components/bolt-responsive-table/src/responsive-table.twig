@@ -30,39 +30,8 @@
   } only %}
 {% endset %}
 
-{% set sort_button %}
-  {% set sort_button_wrapper %}
-    <div class="icon-wrapper">
-      {{ icon_chevron_up }}
-      {{ icon_chevron_down }}
-    </div>
-  {% endset %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: sort_button_wrapper,
-    size: 'small',
-    hierarchy: 'transparent',
-    attributes: {
-      type: 'button',
-      'aria-label': 'Sort by '
-    }
-  } only %}
-{% endset %}
-
-{% set filter_button %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: icon_filter,
-    size: 'small',
-    hierarchy: 'transparent',
-    attributes: {
-      type: 'button',
-      'aria-expanded': 'false',
-      'aria-label': 'Filter by '
-    }
-  } only %}
-{% endset %}
-
 <div {{ attributes.addClass(classes) }}>
-  <table class="c-bolt-responsive-table__table">
+  <table class="c-bolt-responsive-table__table" id="table-id-{{ random() }}">
     {% if table_caption_top %}
       <caption class="c-bolt-responsive-table__caption c-bolt-responsive-table__caption--top">
         {{ table_caption_top }}
@@ -88,31 +57,38 @@
               {% if table_header.sort or table_header.filters %}
                 <div class="c-bolt-responsive-table__ctas">
               {% endif %}
-                  {% if checkbox and loop.first and not table_headers_side %}
-                    {% set table_data = headers.cells[loop.index0]|replace({' ': '-'})|lower %}
-                      <label class="c-bolt-responsive-table__cell-label" for="table-data-id-{{ table_data }}">{{ headers.cells[loop.index0] }}</label>
-                      <input class="c-bolt-responsive-table__header-checkbox" type="checkbox" id="table-data-id-{{ table_data }}" name="table-data-name-{{ table_data }}" value="{{ table_data }}">
-                    {% endif %}
-                  {% if table_header.content %}
-                    {{ table_header.content }}
-                  {% else %}
-                    {{ table_header }}
-                  {% endif %}
-                  {% if table_header.sort %}
-                  <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--sort" type="button">
-                    <div class="c-bolt-responsive-table__trigger-icon">
-                      {{ icon_chevron_up }}
-                      {{ icon_chevron_down }}
-                    </div>
-                  </button>
-                    {# {{ sort_button }} #}
-                  {% endif %}
-                  {% if table_header.filters %}
-                    <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--filter" type="button">
-                      {# {{ filter_button }} #}
-                      {{ icon_filter }}
-                    </button>
-                  {% endif %}
+              {% if checkbox and loop.first and not table_headers_side %}
+                {% set table_data = headers.cells[loop.index0]|replace({' ': '-'})|lower %}
+                <label class="c-bolt-responsive-table__cell-label" for="table-data-id-{{ table_data }}">{{ headers.cells[loop.index0] }}</label>
+                <input class="c-bolt-responsive-table__header-checkbox" type="checkbox" id="table-data-id-{{ table_data }}" name="table-data-name-{{ table_data }}" value="{{ table_data }}">
+              {% endif %}
+              {% if table_header.content %}
+                {{ table_header.content }}
+              {% else %}
+                {{ table_header }}
+              {% endif %}
+              {% if table_header.sort %}
+              {% set data %}
+              {% if headers.cells[loop.index0] is iterable %}
+                {{ headers.cells[loop.index0].content }}
+              {% else %}
+                {{ headers.cells[loop.index0] }}
+              {% endif %}
+              {% endset %}
+              <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--sort" type="button" data-sort="{{ data|trim|replace({' ': '-'})|lower }}">
+                <div class="c-bolt-responsive-table__trigger-icon">
+                  {{ icon_chevron_up }}
+                  {{ icon_chevron_down }}
+                </div>
+              </button>
+                {# {{ sort_button }} #}
+              {% endif %}
+              {% if table_header.filters %}
+                <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--filter" type="button">
+                  {# {{ filter_button }} #}
+                  {{ icon_filter }}
+                </button>
+              {% endif %}
               {% if table_header.sort or table_header.filters %}
                 </div>
               {% endif %}
@@ -133,35 +109,51 @@
             {% endif %}>
             {% if table_headers_side %}
               {% set index = loop.index0 %}
-                {% for headers in table_headers_side %}
+              {% for headers in table_headers_side %}
                 {% set table_header_attrs = create_attribute(table_header.attributes|default({})) %}
                 {% set table_header_classes = [
                   'c-bolt-responsive-table__header',
                 ] %}
-                  <th {{ table_header_attrs.addClass(table_header_classes) }}>
+                <th {{ table_header_attrs.addClass(table_header_classes) }}>
                   {% if row.trigger %}<div class="c-bolt-responsive-table__header-cta">{% endif %}
                   {% if headers.cells[index] is iterable %}
-                      {{ headers.cells[index].content }}
-                    {% else %}
-                      {{ headers.cells[index] }}
-                    {% endif %}
-                    {% if row.trigger %}
-                      <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--toggle-row js-bolt-responsive-table-toggle-row" type="button" aria-expanded="false" aria-label="Toggle row table">
-                        <div class="c-bolt-responsive-table__trigger-icon" aria-hidden="true">
-                          {% include '@bolt-elements-icon/icon.twig' with {
-                            name: 'chevron-down',
-                          } only %}
-                        </div>
-                      </button>
-                    {% endif %}
-                    {% if row.trigger %}</div>{% endif %}
-                  </th>
-                {% endfor %}
+                    {{ headers.cells[index].content }}
+                  {% else %}
+                    {{ headers.cells[index] }}
+                  {% endif %}
+                  {% if row.trigger %}
+                    <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--toggle-row js-bolt-responsive-table-toggle-row" type="button" aria-expanded="false" aria-label="Toggle row table">
+                      <div class="c-bolt-responsive-table__trigger-icon" aria-hidden="true">
+                        {% include '@bolt-elements-icon/icon.twig' with {
+                          name: 'chevron-down',
+                        } only %}
+                      </div>
+                    </button>
+                  {% endif %}
+                  {% if row.trigger %}</div>{% endif %}
+                </th>
+              {% endfor %}
             {% endif %}
+            {# loop for classes to enable sort #}
+              {% set classes_arr = [] %}
+              {% for headers in table_headers_top %}
+                {% for table_header in headers.cells %}
+                {% set header_name %}
+                  {% if table_header.content %}
+                    {{ table_header.content }}
+                  {% else %}
+                    {{ table_header }}
+                  {% endif %}
+                {% endset %}
+                {% set classes_arr = classes_arr|merge([header_name]) %}
+                {% endfor %}
+              {% endfor %}
+            {# loop for classes to enable sort #}
             {% for table_data in row.cells %}
               {% set table_data_attrs = create_attribute(table_data.attributes|default({})) %}
               {% set table_data_classes = [
                 'c-bolt-responsive-table__data',
+                "#{classes_arr[loop.index0]|trim|replace({' ': '-'})|lower}"
               ] %}
               <td {{ table_data_attrs.addClass(table_data_classes) }}>
                 {% if checkbox and loop.first and not table_headers_side %}
