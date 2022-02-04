@@ -1,0 +1,151 @@
+{% set description %}
+    sorting.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-components-responsive-table/responsive-table.twig' with {
+    table_caption_top: 'table header top',
+    table_headers_top: [
+      {
+        cells: [
+          'top-1 header',
+          'top-2 header',
+          {
+            content: 'top-3 header',
+            sort: true,
+          },
+          'top-4 header',
+          {
+            content: 'top-5 header',
+            filters: true,
+            sort: true,
+          },
+        ]
+      },
+    ],
+    rows: [
+      {
+        cells: [
+          'Row 1 Column 1',
+          'Row 1 Column 2',
+          'A',
+          'Row 1 Column 4',
+          '50',
+        ]
+      },
+      {
+        cells: [
+          'Row 2 Column 1',
+          'Row 2 Column 2',
+          'C',
+          'Row 2 Column 4',
+          '100',
+        ]
+      },
+      {
+        cells: [
+          'Row 3 Column 1',
+          'Row 3 Column 2',
+          'B',
+          'Row 3 Column 4',
+          '10',
+        ]
+      },
+    ],
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-responsive-table/responsive-table.twig' with {
+  table_caption_top: 'table header top',
+  table_headers_top: [
+    {
+      cells: [
+        'top-1 header',
+        'top-2 header',
+        {
+          content: 'top-3 header',
+          sort: true,
+        },
+        'top-4 header',
+        {
+          content: 'top-5 header',
+          filters: true,
+          sort: true,
+        },
+      ]
+    },
+  ],
+  rows: [
+    {
+      cells: [
+        'Row 1 Column 1',
+        'Row 1 Column 2',
+        'A',
+        'Row 1 Column 4',
+        '50',
+      ]
+    },
+    {
+      cells: [
+        'Row 2 Column 1',
+        'Row 2 Column 2',
+        'C',
+        'Row 2 Column 4',
+        '100',
+      ]
+    },
+    {
+      cells: [
+        'Row 3 Column 1',
+        'Row 3 Column 2',
+        'B',
+        'Row 3 Column 4',
+        '10',
+      ]
+    },
+  ],
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<div class="c-bolt-responsive-table">
+  This is a responsive-table component.
+</div>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'sorting',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}
+
+{# JS drafts #}
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+
+<script>
+
+    var tableHeaders = document.querySelectorAll('.c-bolt-responsive-table__head .c-bolt-responsive-table__header')
+    var table = document.querySelector('.c-bolt-responsive-table__table');
+    const sortingClassesArr=[];
+    for(var i=0;i<tableHeaders.length;i++){
+      sortingClassesArr.push(tableHeaders[i].innerText.replace(/^\s+|\s+$/gm,'').replace(/\s/g, '-'));
+    }
+
+    var options = {
+      sortClass: 'c-bolt-responsive-table__button--sort',
+      listClass: 'c-bolt-responsive-table__body',
+      valueNames: sortingClassesArr,
+    };
+
+    var tableID = new List(table.id, options)
+</script>

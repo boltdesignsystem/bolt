@@ -1,5 +1,5 @@
 {% set description %}
-    A responsive table.
+    checkboxes.
 {% endset %}
 
 {% set notes %}
@@ -9,7 +9,20 @@
 {% endset %}
 
 {% set demo %}
+  <p>Table with checkboxes</p>
   {% include '@bolt-components-responsive-table/responsive-table.twig' with {
+    checkbox: true,
+    table_headers_top: [
+      {
+        cells: [
+          'Header top 1',
+          'Header top 2',
+          'Header top 3',
+          'Header top 4',
+          'Header top 5',
+        ]
+      },
+    ],
     rows: [
       {
         cells: [
@@ -44,6 +57,18 @@
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-responsive-table/responsive-table.twig' with {
+  checkbox: true,
+  table_headers_top: [
+    {
+      cells: [
+        'Header top 1',
+        'Header top 2',
+        'Header top 3',
+        'Header top 4',
+        'Header top 5',
+      ]
+    },
+  ],
   rows: [
     {
       cells: [
@@ -83,7 +108,7 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Responsive Table',
+  title: 'Checkboxes',
   description: description,
   notes: notes,
   demo: demo,

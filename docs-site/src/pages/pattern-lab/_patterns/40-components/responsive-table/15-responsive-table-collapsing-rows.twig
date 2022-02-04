@@ -1,5 +1,5 @@
 {% set description %}
-    A responsive table.
+    Collapsing rows.
 {% endset %}
 
 {% set notes %}
@@ -10,8 +10,34 @@
 
 {% set demo %}
   {% include '@bolt-components-responsive-table/responsive-table.twig' with {
+    table_caption_bottom: 'table header bottom',
+    table_headers_top: [
+      {
+        cells: [
+          'Header top 1',
+          'Header top 2',
+          'Header top 3',
+          'Header top 4',
+          'Header top 5',
+        ]
+      },
+    ],
+    table_headers_side: [
+      {
+        cells: [
+          {
+            content: 'Header side 1',
+          },
+          'Header side 2',
+          'Header side 3',
+          'Header side 4',
+          'Header side 5',
+        ]
+      },
+    ],
     rows: [
       {
+        trigger: true,
         cells: [
           'Row 1 Column 1',
           'Row 1 Column 2',
@@ -21,6 +47,7 @@
         ]
       },
       {
+
         cells: [
           'Row 2 Column 1',
           'Row 2 Column 2',
@@ -30,11 +57,32 @@
         ]
       },
       {
+        trigger: true,
         cells: [
           'Row 3 Column 1',
           'Row 3 Column 2',
           'Row 3 Column 3',
           'Row 3 Column 4',
+          'Row 3 Column 5',
+        ]
+      },
+      {
+  
+        cells: [
+          'Row 4 Column 1',
+          'Row 4 Column 2',
+          'Row 4 Column 3',
+          'Row 4 Column 4',
+          'Row 4 Column 5',
+        ]
+      },
+      {
+  
+        cells: [
+          'Row 5 Column 1',
+          'Row 5 Column 2',
+          'Row 5 Column 3',
+          'Row 5 Column 4',
           'Row 4 Column 5',
         ]
       },
@@ -44,8 +92,34 @@
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-responsive-table/responsive-table.twig' with {
+  table_caption_bottom: 'table header bottom',
+  table_headers_top: [
+    {
+      cells: [
+        'Header top 1',
+        'Header top 2',
+        'Header top 3',
+        'Header top 4',
+        'Header top 5',
+      ]
+    },
+  ],
+  table_headers_side: [
+    {
+      cells: [
+        {
+          content: 'Header side 1',
+        },
+        'Header side 2',
+        'Header side 3',
+        'Header side 4',
+        'Header side 5',
+      ]
+    },
+  ],
   rows: [
     {
+      trigger: true,
       cells: [
         'Row 1 Column 1',
         'Row 1 Column 2',
@@ -55,6 +129,7 @@
       ]
     },
     {
+
       cells: [
         'Row 2 Column 1',
         'Row 2 Column 2',
@@ -64,11 +139,32 @@
       ]
     },
     {
+      trigger: true,
       cells: [
         'Row 3 Column 1',
         'Row 3 Column 2',
         'Row 3 Column 3',
         'Row 3 Column 4',
+        'Row 3 Column 5',
+      ]
+    },
+    {
+
+      cells: [
+        'Row 4 Column 1',
+        'Row 4 Column 2',
+        'Row 4 Column 3',
+        'Row 4 Column 4',
+        'Row 4 Column 5',
+      ]
+    },
+    {
+
+      cells: [
+        'Row 5 Column 1',
+        'Row 5 Column 2',
+        'Row 5 Column 3',
+        'Row 5 Column 4',
         'Row 4 Column 5',
       ]
     },
@@ -83,7 +179,7 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Responsive Table',
+  title: 'Collapsing rows',
   description: description,
   notes: notes,
   demo: demo,
