@@ -105,13 +105,13 @@ export class BoltResponsiveTable {
       }
     }
 
-    mainCheckbox.addEventListener('click', checkAllCheckboxes);
+    if (mainCheckbox) {
+      mainCheckbox.addEventListener('click', checkAllCheckboxes);
+    }
   }
 }
 
-const responsiveTable = document.querySelectorAll(
-  '.c-bolt-reponsive-table__table',
-);
+const responsiveTable = document.querySelectorAll('.js-bolt-responsive-table');
 
 responsiveTable.forEach(el => {
   const component = new BoltResponsiveTable(el);
