@@ -41,13 +41,17 @@
 }
 
 .c-bolt-responsive-table__header {
+  width: 1%;
+  vertical-align: middle;
   border-right: none;
+  white-space: nowrap;
 }
 
 .c-bolt-responsive-table__header,
 .c-bolt-responsive-table__data {
   position: relative;
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+  vertical-align: middle;
 }
 
 .c-bolt-responsive-table__button {
@@ -71,6 +75,11 @@
 .c-bolt-responsive-table__cell-label {
   opacity: 0;
   position: absolute;
+  width: 100%;
+}
+
+.c-bolt-responsive-table__header-checkbox {
+  margin-right: var(--bolt-spacing-x-small);
 }
 
 .c-bolt-responsive-table__body {
@@ -84,10 +93,6 @@
       border-bottom: none;
     }
   }
-}
-
-.c-bolt-responsive-table__header {
-  vertical-align: middle;
 }
 
 .c-bolt-responsive-table__header-cta {
@@ -135,10 +140,6 @@
 
 .c-bolt-responsive-table__row--hidden {
   display: none;
-}
-
-.c-bolt-responsive-table__data {
-  vertical-align: middle;
 }
 
 .c-bolt-responsive-table__caption {
