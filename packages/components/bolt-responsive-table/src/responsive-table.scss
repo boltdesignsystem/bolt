@@ -73,20 +73,30 @@
 }
 
 .c-bolt-responsive-table__filters {
+  @include bolt-shadow(
+    $key: 'level-20',
+    $base-color: var(--bolt-color-navy-light)
+  );
+
   display: none;
   position: absolute;
   right: 0;
-  margin-top: var(--bolt-spacing-y-small);
+  margin: var(--bolt-spacing-y-small) 0 0 0;
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+  list-style-type: none;
   background-color: var(--bolt-color-white);
 
   &--visible {
     display: block;
   }
-  @include bolt-shadow(
-    $key: 'level-20',
-    $base-color: var(--bolt-color-navy-light)
-  );
+}
+
+.c-bolt-responsive-table__filters-item {
+  margin-bottom: var(--bolt-spacing-y-small);
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .c-bolt-responsive-table__cell-label {
