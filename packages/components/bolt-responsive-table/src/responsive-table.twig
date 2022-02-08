@@ -92,17 +92,20 @@
                   </div>
                 {% endif %}
                 {% if filters %}
-                  <ul class="c-bolt-responsive-table__filters">
-                    <li class="c-bolt-responsive-table__filters-item">
-                      <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />input 1
-                    </li>
-                    <li class="c-bolt-responsive-table__filters-item">
-                      <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />input 2
-                    </li>
-                    <li class="c-bolt-responsive-table__filters-item">
-                      <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />input 3
-                    </li>
-                  </ul>
+                  <div class="c-bolt-responsive-table__filters">
+                    <ul class="c-bolt-responsive-table__filters-list">
+                      <li class="c-bolt-responsive-table__filters-item">
+                        <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />input 1
+                      </li>
+                      <li class="c-bolt-responsive-table__filters-item">
+                        <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />input 2
+                      </li>
+                      <li class="c-bolt-responsive-table__filters-item">
+                        <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />input 3
+                      </li>
+                    </ul>
+                    <button class="c-bolt-responsive-table__filters-reset" type="button">Reset</button>
+                  </div>
                 {% endif %}
               </th>
             {% endfor %}
