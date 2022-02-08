@@ -135,9 +135,9 @@ class BoltTooltip extends BoltElement {
   }
 
   render() {
-    return html`
-      ${this.slotify('default')} ${this.slotify('content')}
-    `;
+    // Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
+    // prettier-ignore
+    return html`${this.slotify('default')}${this.slotify('content')}`;
   }
 }
 

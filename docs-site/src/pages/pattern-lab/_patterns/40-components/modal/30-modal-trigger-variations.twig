@@ -4,10 +4,14 @@ Examples of different methods of launching a modal.
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>The Button component is the standard method to trigger a modal. </bolt-li>
-    <bolt-li>An Image trigger can be created by wrapping the Trigger component around an Image element.</bolt-li>
-    <bolt-li><strong>Advanced usage:</strong> if the Image element has an absolute value (e.g. 640px) defined for <code>max_width</code>, then the modal's width prop can be set to <code>auto</code>. This will allow the image inside the modal to be responsive but does not stretch beyond the specified <code>max_width</code>.</bolt-li>
-    <bolt-li>Buttons are preferred for opening a modal, but you can use a link in a pinch.</bolt-li>
+    <bolt-li>The Button element is the standard method to trigger a modal.</bolt-li>
+    <bolt-li>
+      Semantic buttons are mandatory for opening a modal, never use a semantic link element.
+      <bolt-ul>
+        <bolt-li>If a text link is needed as the trigger, use the Text Link element, which has the ability to be set as a semantic button element.</bolt-li>
+        <bolt-li>If an image thumbnail is needed as the trigger, use the Trigger component to wrap around an Image element.</bolt-li>
+      </bolt-ul>
+    </bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -77,15 +81,15 @@ Examples of different methods of launching a modal.
 
   {% set link_modal %}
     {% include '@bolt-elements-text-link/text-link.twig' with {
-      content: 'Link trigger',
+      content: 'Text link trigger',
       attributes: {
-        href: '#',
+        type: 'button',
         'data-bolt-modal-target': '.js-bolt-modal--trigger-link',
       },
     } only %}
 
     {% include '@bolt-components-modal/modal.twig' with {
-      content: 'This modal is triggered by a link.',
+      content: 'This modal is triggered by a text link.',
       attributes: {
         class: 'js-bolt-modal--trigger-link'
       },
@@ -105,7 +109,7 @@ Examples of different methods of launching a modal.
 
 {% set twig_markup %}
 {% verbatim %}
-// <button>
+{# Button element #}
 {% include '@bolt-elements-button/button.twig' with {
   content: 'Button trigger',
   size: 'small',
@@ -121,7 +125,7 @@ Examples of different methods of launching a modal.
   },
 } only %}
 
-// <img>
+{# Image element and Trigger component #}
 {% set trigger_content %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
@@ -166,17 +170,17 @@ Examples of different methods of launching a modal.
   },
 } only %}
 
-// <a>
+{# Text Link element #}
 {% include '@bolt-elements-text-link/text-link.twig' with {
-  content: 'Link trigger',
+  content: 'Text link trigger',
   attributes: {
-    href: '#',
+    type: 'button',
     'data-bolt-modal-target': '.js-bolt-modal--trigger-link',
   },
 } only %}
 
 {% include '@bolt-components-modal/modal.twig' with {
-  content: 'This modal is triggered by a link.',
+  content: 'This modal is triggered by a text link.',
   attributes: {
     class: 'js-bolt-modal--trigger-link'
   },

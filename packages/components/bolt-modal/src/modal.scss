@@ -200,6 +200,7 @@ bolt-modal:not([ready]) {
     position: fixed;
     top: 0;
     left: 0;
+    width: fit-content;
     min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
     max-width: calc(100% - var(--bolt-spacing-x-medium) * 2);
     max-height: $bolt-modal-max-height;
@@ -273,7 +274,7 @@ bolt-modal:not([ready]) {
 // Content width options
 @include bolt-mq($bolt-modal-breakpoint) {
   .c-bolt-modal__content--width-regular {
-    width: 100% / 12 * 10;
+    width: clamp(200px, calc(100% / 12 * 10), #{bolt-breakpoint(xxlarge)});
   }
 
   .c-bolt-modal__content--width-optimal {
