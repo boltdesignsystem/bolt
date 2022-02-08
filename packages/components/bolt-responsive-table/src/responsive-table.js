@@ -5,6 +5,7 @@ export class BoltResponsiveTable {
     this.toggleNextRows();
     this.toggleAriaExpanded();
     this.toggleCheckbox();
+    this.openFilters();
   }
 
   toggleNextRows() {
@@ -108,6 +109,25 @@ export class BoltResponsiveTable {
     if (mainCheckbox) {
       mainCheckbox.addEventListener('click', checkAllCheckboxes);
     }
+  }
+
+  openFilters() {
+    const filtersButton = document.querySelectorAll(
+      '.c-bolt-responsive-table__button--filter',
+    );
+
+    filtersButton.forEach(el => {
+      el.addEventListener('click', event => {
+        el.parentElement.nextElementSibling.classList.toggle(
+          'c-bolt-responsive-table__filters--visible',
+        );
+        if (el.getAttribute('aria-expanded') === 'true') {
+          el.setAttribute('aria-expanded', 'false');
+        } else {
+          el.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
   }
 }
 
