@@ -11,6 +11,8 @@
 {% set demo %}
   {% include '@bolt-components-responsive-table/responsive-table.twig' with {
     table_caption_bottom: 'table header bottom',
+    sort: true,
+    filters: true,
     table_headers_top: [
       {
         cells: [

@@ -11,6 +11,8 @@
 {% set demo %}
   {% include '@bolt-components-responsive-table/responsive-table.twig' with {
     table_caption_top: 'table header top',
+    sort: true,
+    filters: true,
     table_headers_top: [
       {
         cells: [
@@ -18,13 +20,10 @@
           'top-2 header',
           {
             content: 'top-3 header',
-            sort: true,
           },
           'top-4 header',
           {
             content: 'top-5 header',
-            filters: true,
-            sort: true,
           },
         ]
       },
@@ -138,7 +137,7 @@
     var table = document.querySelector('.c-bolt-responsive-table__table');
     const sortingClassesArr=[];
     for(var i=0;i<tableHeaders.length;i++){
-      sortingClassesArr.push(tableHeaders[i].innerText.replace(/^\s+|\s+$/gm,'').replace(/\s/g, '-'));
+      sortingClassesArr.push(`c-bolt-responsive-table--sort-${tableHeaders[i].innerText}`.replace(/^\s+|\s+$/gm,'').replace(/\s/g, '-'));
     }
 
     var options = {
@@ -147,5 +146,8 @@
       valueNames: sortingClassesArr,
     };
 
-    var tableID = new List(table.id, options)
+    var table = document.querySelectorAll('.c-bolt-responsive-table__table');
+    table.forEach(el => {
+      var tableID = new List(el.id, options)
+    })
 </script>
