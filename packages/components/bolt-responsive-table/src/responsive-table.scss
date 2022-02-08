@@ -80,10 +80,11 @@
 
   display: none;
   position: absolute;
+  overflow-y: scroll;
   right: 0;
+  max-height: 10rem;
   margin: var(--bolt-spacing-y-small) 0 0 0;
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
-  list-style-type: none;
   background-color: var(--bolt-color-white);
 
   &--visible {
@@ -91,12 +92,27 @@
   }
 }
 
-.c-bolt-responsive-table__filters-item {
-  margin-bottom: var(--bolt-spacing-y-small);
+.c-bolt-responsive-table__filters-list {
+  margin: 0;
+  list-style-type: none;
+}
 
-  &:last-of-type {
-    margin-bottom: 0;
-  }
+.c-bolt-responsive-table__filters-item {
+  margin-bottom: var(--bolt-spacing-y-xsmall);
+}
+
+.c-bolt-responsive-table__filters-checkbox {
+  margin-right: var(--bolt-spacing-x-small);
+}
+
+.c-bolt-responsive-table__filters-reset {
+  @include bolt-button-native-styles-reset;
+  @include bolt-shadow(
+    $key: 'level-20',
+    $base-color: var(--bolt-color-navy-light)
+  );
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+  background-color: var(--bolt-color-gray-xlight);
 }
 
 .c-bolt-responsive-table__cell-label {
