@@ -30,9 +30,7 @@
     name: 'filter',
   } only %}
 {% endset %}
-{# <pre>
-  {{ dump(table_headers_top[0]['cells']) }}
-</pre> #}
+
 <div {{ attributes.addClass(classes) }}>
   <table class="c-bolt-responsive-table__table" {% if sort or filters %} id="table-id-{{ random() }} {% endif %}">
     {% if table_caption_top %}
@@ -70,7 +68,7 @@
                 {% else %}
                   {{ table_header }}
                 {% endif %}
-                {% if sort %}
+                {% if sort or filters %}
                 {% set data %}
                 {% if headers.cells[loop.index0] is iterable %}
                   {{ headers.cells[loop.index0].content }}
@@ -94,17 +92,17 @@
                   </div>
                 {% endif %}
                 {% if filters %}
-                  <div class="c-bolt-responsive-table__filters">
-                    {% for row in rows %}
-                      {% for table_data in row.cells %}
-                        {% if table_data.content %}
-                          <p>{{ table_data.content }}</p>
-                        {% else %}
-                          <p>{{ table_data }}</p>
-                        {% endif %}
-                      {% endfor %}
-                    {% endfor %}
-                  </div>
+                  <ul class="c-bolt-responsive-table__filters">
+                    <li class="c-bolt-responsive-table__filters-item">
+                      <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />input 1
+                    </li>
+                    <li class="c-bolt-responsive-table__filters-item">
+                      <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />input 2
+                    </li>
+                    <li class="c-bolt-responsive-table__filters-item">
+                      <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />input 3
+                    </li>
+                  </ul>
                 {% endif %}
               </th>
             {% endfor %}
@@ -165,9 +163,12 @@
             {# loop for classes to enable sort #}
             {% for table_data in row.cells %}
               {% set table_data_attrs = create_attribute(table_data.attributes|default({})) %}
+              {% if table_headers_top %}
+                {% set prefix = 'c-bolt-responsive-table--sort-' %}
+              {% endif %}
               {% set table_data_classes = [
                 'c-bolt-responsive-table__data',
-                "c-bolt-responsive-table--sort-#{classes_arr[loop.index0]|trim|replace({' ': '-'})|lower}"
+                prefix ~ classes_arr[loop.index0]|trim|replace({' ': '-'})|lower
               ] %}
               <td {{ table_data_attrs.addClass(table_data_classes) }}>
                 {% if checkbox and loop.first and not table_headers_side %}
