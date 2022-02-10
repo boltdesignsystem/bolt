@@ -83,7 +83,7 @@
                   {{ headers.cells[loop.index0] }}
                 {% endif %}
                 {% endset %}
-                <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--sort" type="button" data-sort="c-bolt-responsive-table--sort-{{ data|trim|replace({' ': '-'})|lower }}">
+                <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--sort" type="button" data-sort="c-bolt-responsive-table--sort-{{ data|trim|replace({' ': '-'})|lower }}" aria-label="Sort column">
                   <div class="c-bolt-responsive-table__trigger-icon">
                     {{ icon_chevron_up }}
                     {{ icon_chevron_down }}
@@ -91,7 +91,7 @@
                 </button>
                 {% endif %}
                 {% if filters %}
-                  <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--filter" type="button" aria-expanded="false">
+                  <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--filter" type="button" aria-expanded="false" aria-label="Toggle filters">
                     {{ icon_filter }}
                   </button>
                 {% endif %}
@@ -165,7 +165,7 @@
                 </th>
               {% endfor %}
             {% endif %}
-            {# loop for classes to enable sort #}
+            {# strat loop for classes to enable sort from list.js #}
               {% set classes_arr = [] %}
               {% for headers in table_headers_top %}
                 {% for table_header in headers.cells %}
@@ -179,7 +179,7 @@
                 {% set classes_arr = classes_arr|merge([header_name]) %}
                 {% endfor %}
               {% endfor %}
-            {# loop for classes to enable sort #}
+            {# end loop for classes to enable sort from list.js #}
             {% for table_data in row.cells %}
               {% set table_data_attrs = create_attribute(table_data.attributes|default({})) %}
               {% if table_headers_top %}
