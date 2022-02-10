@@ -31,6 +31,13 @@
   } only %}
 {% endset %}
 
+{% set icon_close %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'close-circle',
+    size: 'small'
+  } only %}
+{% endset %}
+
 <div {{ attributes.addClass(classes) }}>
   <table class="c-bolt-responsive-table__table" {% if sort or filters %} id="table-id-{{ random() }} {% endif %}">
     {% if table_caption_top %}
@@ -95,17 +102,41 @@
                   <div class="c-bolt-responsive-table__filters">
                     <ul class="c-bolt-responsive-table__filters-list">
                       <li class="c-bolt-responsive-table__filters-item">
-                        <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />input 1
+                      <label>
+                        <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
+                        input 1
+                      </label>
                       </li>
                       <li class="c-bolt-responsive-table__filters-item">
-                        <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />input 2
+                        <label>
+                          <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
+                          input 2
+                        </label>
                       </li>
                       <li class="c-bolt-responsive-table__filters-item">
-                        <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />input 3
+                        <label>
+                        <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
+                          input 3
+                        </label>
                       </li>
                     </ul>
-                    <button class="c-bolt-responsive-table__filters-reset" type="button">Reset</button>
+                    <button class="c-bolt-responsive-table__button c-bolt-responsive-table__filters-reset" type="button" aria-label="Reset filters">Reset</button>
                   </div>
+                  {# {% if rows %}
+                    <div class="c-bolt-responsive-table__filters">
+                      {% set start = 0 %}
+                      {% for row in rows %}
+                        {% for table_data in row.cells|slice(start,1) %}
+                          {% if table_data.content %}
+                            <p>{{ table_data.content }}</p>
+                          {% else %}
+                            <p>{{ table_data }}</p>
+                          {% endif %}
+                        {% endfor %}
+                        {% set start = start + 1 %}
+                      {% endfor %}
+                    </div>
+                  {% endif %} #}
                 {% endif %}
               </th>
             {% endfor %}
