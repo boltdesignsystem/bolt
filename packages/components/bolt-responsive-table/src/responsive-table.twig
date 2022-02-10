@@ -101,42 +101,27 @@
                 {% if filters %}
                   <div class="c-bolt-responsive-table__filters">
                     <ul class="c-bolt-responsive-table__filters-list">
-                      <li class="c-bolt-responsive-table__filters-item">
-                      <label>
-                        <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
-                        input 1
-                      </label>
-                      </li>
-                      <li class="c-bolt-responsive-table__filters-item">
-                        <label>
-                          <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
-                          input 2
-                        </label>
-                      </li>
-                      <li class="c-bolt-responsive-table__filters-item">
-                        <label>
-                        <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
-                          input 3
-                        </label>
-                      </li>
+                      {% set index = loop.index0 %}
+                      {% for row in rows %}
+                        {% if row.cells[index] is iterable %}
+                          <li class="c-bolt-responsive-table__filters-item">
+                            <label class="c-bolt-responsive-table__filters-label">
+                              <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
+                              {{ row.cells[index].content }}
+                            </label>
+                          </li>
+                        {% else %}
+                          <li class="c-bolt-responsive-table__filters-item">
+                            <label class="c-bolt-responsive-table__filters-label">
+                              <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
+                              {{ row.cells[index] }}
+                            </label>
+                          </li>
+                        {% endif %}
+                      {% endfor %}
                     </ul>
                     <button class="c-bolt-responsive-table__button c-bolt-responsive-table__filters-reset" type="button" aria-label="Reset filters">Reset</button>
                   </div>
-                  {# {% if rows %}
-                    <div class="c-bolt-responsive-table__filters">
-                      {% set start = 0 %}
-                      {% for row in rows %}
-                        {% for table_data in row.cells|slice(start,1) %}
-                          {% if table_data.content %}
-                            <p>{{ table_data.content }}</p>
-                          {% else %}
-                            <p>{{ table_data }}</p>
-                          {% endif %}
-                        {% endfor %}
-                        {% set start = start + 1 %}
-                      {% endfor %}
-                    </div>
-                  {% endif %} #}
                 {% endif %}
               </th>
             {% endfor %}
