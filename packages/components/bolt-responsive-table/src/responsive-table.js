@@ -5,7 +5,7 @@ export class BoltResponsiveTable {
     this.toggleNextRows();
     this.toggleAriaExpanded();
     this.toggleCheckbox();
-    this.openFilters();
+    this.toggleFilters();
   }
 
   toggleNextRows() {
@@ -55,11 +55,9 @@ export class BoltResponsiveTable {
   }
 
   toggleAriaExpanded() {
-    // console.log('toggle aria expanded');
     const tableButton = this.el.querySelectorAll(
       '.js-bolt-responsive-table-toggle-row',
     );
-    // console.log(tableButton);
     tableButton.forEach(el => {
       el.addEventListener('click', event => {
         if (el.getAttribute('aria-expanded') === 'true') {
@@ -111,13 +109,44 @@ export class BoltResponsiveTable {
     }
   }
 
-  openFilters() {
-    const filtersButton = document.querySelectorAll(
+  toggleFilters() {
+    const filtersButton = this.el.querySelectorAll(
       '.c-bolt-responsive-table__button--filter',
     );
 
+    const resetButton = this.el.querySelectorAll(
+      '.c-bolt-responsive-table__filters-reset',
+    );
+
+    const filterArr = this.el.querySelectorAll(
+      '.c-bolt-responsive-table__filters',
+    );
+
+    filterArr.forEach(el => {
+      const checkbox = el.querySelectorAll(
+        '.c-bolt-responsive-table__filters-checkbox',
+      );
+
+      checkbox.forEach(el => {
+        el.addEventListener('click', () => {
+          let allUnchecked = [...checkbox].every(e => !e.checked);
+          el.closest('.c-bolt-responsive-table__filters')
+            .querySelector('.c-bolt-responsive-table__filters-reset')
+            .classList.add('c-bolt-responsive-table__filters-reset--visible');
+
+          if (allUnchecked) {
+            el.closest('.c-bolt-responsive-table__filters')
+              .querySelector('.c-bolt-responsive-table__filters-reset')
+              .classList.remove(
+                'c-bolt-responsive-table__filters-reset--visible',
+              );
+          }
+        });
+      });
+    });
+
     filtersButton.forEach(el => {
-      el.addEventListener('click', event => {
+      el.addEventListener('click', () => {
         el.parentElement.nextElementSibling.classList.toggle(
           'c-bolt-responsive-table__filters--visible',
         );
@@ -128,6 +157,26 @@ export class BoltResponsiveTable {
         }
       });
     });
+
+    if (resetButton) {
+      resetButton.forEach(el => {
+        el.addEventListener('click', e => {
+          e.target.classList.remove(
+            'c-bolt-responsive-table__filters-reset--visible',
+          );
+          el.parentElement
+            .querySelectorAll('.c-bolt-responsive-table__filters-checkbox')
+            .forEach(el => {
+              if (el.checked) {
+                el.checked = false;
+              }
+            });
+          el.parentElement.classList.remove(
+            'c-bolt-responsive-table__filters--visible',
+          );
+        });
+      });
+    }
   }
 }
 
