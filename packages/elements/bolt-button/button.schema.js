@@ -28,6 +28,13 @@ module.exports = {
       description:
         'Append an icon to the button content and visually hide the text content. This prop trumps icon_before and icon_after.',
     },
+    icon_only_tooltip: {
+      type: 'string',
+      description:
+        'A simple CSS tooltip to be used in tandem with the icon_only prop. The text will be taken from the content prop.',
+      enum: ['none', 'left', 'center', 'right'],
+      default: 'none',
+    },
     hierarchy: {
       type: 'string',
       description:

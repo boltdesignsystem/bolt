@@ -68,6 +68,12 @@
       opacity: 0.4;
       box-shadow: 0 0.4em 1.5em var(--m-bolt-primary);
     }
+
+    .e-bolt-button__tooltip {
+      visibility: visible;
+      opacity: 1;
+      margin-bottom: 0;
+    }
   }
 
   &:focus,
@@ -75,6 +81,13 @@
     transform: translate3d(0, 0, 0);
     outline: var(--bolt-focus-ring);
     outline-offset: 2px;
+
+    .e-bolt-button__tooltip {
+      visibility: visible;
+      opacity: 1;
+      // offset outline like tooltip component
+      margin-bottom: 2px;
+    }
   }
 
   &:disabled {
@@ -261,5 +274,35 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
     top: 50% !important;
     left: 50% !important;
     transform: translate3d(-50%, -50%, 0) !important;
+  }
+}
+
+.e-bolt-button__tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  z-index: bolt-z-index('tooltip');
+  margin-bottom: calc(var(--bolt-spacing-y-small) * -1);
+  padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+  font-size: var(--bolt-type-font-size-xsmall);
+  color: var(--m-bolt-text-on-primary);
+  pointer-events: none;
+  border-radius: #{bolt-border-radius(large)};
+  background-color: black;
+  white-space: nowrap;
+  transition: all var(--bolt-transition);
+
+  &-left {
+    right: 0;
+    left: auto;
+    transform: none;
+  }
+
+  &-right {
+    left: 0;
+    transform: none;
   }
 }
