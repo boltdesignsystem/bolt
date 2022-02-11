@@ -118,18 +118,18 @@ export class BoltResponsiveTable {
       '.c-bolt-responsive-table__filters-reset',
     );
 
-    const filterArr = this.el.querySelectorAll(
+    const filters = this.el.querySelectorAll(
       '.c-bolt-responsive-table__filters',
     );
 
-    filterArr.forEach(el => {
-      const checkbox = el.querySelectorAll(
+    filters.forEach(el => {
+      const checkboxes = el.querySelectorAll(
         '.c-bolt-responsive-table__filters-checkbox',
       );
 
-      checkbox.forEach(el => {
+      checkboxes.forEach(el => {
         el.addEventListener('click', () => {
-          let allUnchecked = [...checkbox].every(e => !e.checked);
+          let allUnchecked = [...checkboxes].every(e => !e.checked);
           el.closest('.c-bolt-responsive-table__filters')
             .querySelector('.c-bolt-responsive-table__filters-reset')
             .classList.add('c-bolt-responsive-table__filters-reset--visible');
