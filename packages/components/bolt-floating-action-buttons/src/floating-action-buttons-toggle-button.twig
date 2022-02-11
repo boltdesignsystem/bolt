@@ -1,0 +1,40 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema['floating-action-buttons-toggle-button'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'e-bolt-button',
+  'e-bolt-button--icon-only',
+  'c-bolt-floating-action-buttons__toggle',
+  'js-bolt-floating-action-buttons-toggle',
+  this.data.size.value ? 'e-bolt-button--' ~ this.data.size.value : '',
+  this.data.hierarchy.value ? 'e-bolt-button--' ~ this.data.hierarchy.value : '',
+  this.data.border_radius.value ? 'e-bolt-button--border-radius-' ~ this.data.border_radius.value : '',
+] %}
+
+<button
+  type="button"
+  aria-expanded="false"
+  {{ attributes.addClass(classes) }}
+  {{ this.props|without("class") }}>
+
+  <span class="e-bolt-button__icon-center c-bolt-floating-action-buttons__toggle-icon js-bolt-floating-action-buttons-toggle-icon" aria-hidden="false">
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'more'
+    } only %}
+  </span>
+
+  <span class="e-bolt-button__icon-center c-bolt-floating-action-buttons__toggle-icon js-bolt-floating-action-buttons-toggle-icon-close" aria-hidden="true">
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'close'
+    } only %}
+  </span>
+
+  <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">{{ this.data.content.value|default('Toggle Menu') }}</span>
+</button>

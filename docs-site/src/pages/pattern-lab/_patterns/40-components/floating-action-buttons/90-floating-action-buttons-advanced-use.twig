@@ -1,5 +1,5 @@
 {% set description %}
-    There are 2 CSS custom properties available for use to further customize the Floating Action Buttons.
+    There are 2 CSS custom properties available for use to further customize the Floating Action Buttons. You can also use <code>show_on_load: 'false'</code> if you plan on setting your own way to load this component.
 {% endset %}
 
 {% set notes %}
@@ -23,6 +23,7 @@
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
   content: _content,
+  show_on_load: 'false',
   attributes: {
     style: '--c-bolt-floating-action-buttons-offset-x: 100px;'
   }

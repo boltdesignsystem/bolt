@@ -19,13 +19,6 @@ module.exports = {
       enum: ['bottom-right', 'middle-right', 'top-right'],
       default: 'bottom-right',
     },
-    visible_items: {
-      type: 'number',
-      description:
-        'The number of items visisble when a "more" button is needed. It can be set to 0 to turn off the button.',
-      enum: [1, 2, 3, 0],
-      default: 2,
-    },
     show_on_load: {
       type: 'boolean',
       description:

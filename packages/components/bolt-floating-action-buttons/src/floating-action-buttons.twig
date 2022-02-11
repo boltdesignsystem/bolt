@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema %}
+{% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema['floating-action-buttons'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -16,35 +16,10 @@
 <div
   {{ attributes.addClass(classes) }}
   aria-hidden="true"
-  aria-expanded="false"
-  data-visible-items="{{ this.data.visible_items.value }}"
   {% if this.data.show_on_load.value %}data-show-on-load{% endif %}
-  {{ this.props|without("class")|without("position")|without("visible_items") }}
+  {{ this.props|without("class")|without("position") }}
 >
-
-  <ul class="c-bolt-floating-action-buttons__content">
-    {% spaceless %}
-      {{ content }}
-    {% endspaceless %}
-  </ul>
-
-  {% if this.data.visible_items.value > 0 %}
-  <div class="c-bolt-floating-action-buttons__more">
-    {% set icon_more %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'more',
-      } only %}
-    {% endset %}
-    {% include '@bolt-components-tooltip/tooltip.twig' with {
-      content: 'More',
-      trigger: include('@bolt-elements-button/button.twig', {
-        content: 'More',
-        icon_only: icon_more,
-        attributes: {
-          type: 'button'
-        },
-      }),
-    } only %}
-  </div>
-  {% endif %}
+  {% spaceless %}
+    {{ content }}
+  {% endspaceless %}
 </div>

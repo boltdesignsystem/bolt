@@ -19,22 +19,41 @@ $default-y-offset: var(--bolt-spacing-y-xsmall);
     @include bolt-visuallyhidden;
   }
 
-  &__content {
+  &__list {
     margin-bottom: 0;
     margin-left: 0;
   }
 
-  &__content-item {
-    display: block;
+  &__list-item {
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
     margin-bottom: var(--bolt-spacing-y-xxsmall);
     transition: all var(--bolt-transition);
   }
 
-  // Hide hidden content items
-  &__content-item[aria-hidden='true'] {
+  .c-bolt-floating-action-buttons__toggle {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Hide secondary list
+  .c-bolt-floating-action-buttons__toggle[aria-expanded='false']
+    + .c-bolt-floating-action-buttons__list {
+    > .c-bolt-floating-action-buttons__list-item {
+      visibility: hidden;
+      opacity: 0;
+      margin-bottom: -100%;
+    }
+  }
+
+  .c-bolt-floating-action-buttons__toggle-icon {
+    transition: all var(--bolt-transition);
+  }
+
+  .c-bolt-floating-action-buttons__toggle-icon[aria-hidden='true'] {
     visibility: hidden;
     opacity: 0;
-    margin-bottom: -100%;
   }
 }
 

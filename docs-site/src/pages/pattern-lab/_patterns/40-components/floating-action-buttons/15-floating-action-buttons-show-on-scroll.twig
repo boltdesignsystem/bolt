@@ -1,16 +1,16 @@
 {% set description %}
-    Use this to place the Floating Action Buttons in the <code>bottom-right</code>, <code>middle-right</code>, or <code>top-right</code>.
+  Add a pixel, <code>'200px'</code>, or percentage, <code>'20%'</code>, value to reveal the Floating Action Buttons once the user scrolls to meet that value.
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
   content: _content,
-  position: 'top-right',
+  show_on_scroll: '200px',
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Floating Action Buttons Position',
+  title: 'Floating Action Buttons Scroll on Show',
   description: description,
   twig_markup: twig_markup,
 } only %}

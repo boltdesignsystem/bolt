@@ -6,21 +6,24 @@ export class BoltFloatingActionButtons {
   }
 
   init() {
-    this.visibleItems = this.el.dataset.visibleItems;
-    this.contentElement = this.el.querySelector(
-      '.c-bolt-floating-action-buttons__content',
-    );
-    this.contentElementItems = this.el.querySelectorAll(
-      '.c-bolt-floating-action-buttons__content-item',
+    this.list = this.el.querySelector('.js-bolt-floating-action-buttons-list');
+    this.secondaryList = this.list.querySelector(
+      '.js-bolt-floating-action-buttons-list ',
     );
     this.showOnScroll = this.el.getAttribute('show-on-scroll');
     this.showOnLoad = this.el.dataset.showOnLoad;
-    this.expandButton = this.el.querySelector(
-      '.c-bolt-floating-action-buttons__more',
+    this.showToggleButton = this.list.querySelector(
+      '.js-bolt-floating-action-buttons-toggle',
+    );
+    this.showToggleButtonIcon = this.list.querySelector(
+      '.js-bolt-floating-action-buttons-toggle-icon',
+    );
+    this.showToggleButtonIconClose = this.list.querySelector(
+      '.js-bolt-floating-action-buttons-toggle-icon-close',
     );
 
-    if (this.visibleItems > 0) {
-      this.setDefaultVisibility();
+    if (this.secondaryList) {
+      this.secondaryList.setAttribute('aria-hidden', 'true');
     }
 
     if (this.showOnScroll) {
@@ -29,9 +32,9 @@ export class BoltFloatingActionButtons {
       this.show();
     }
 
-    if (this.expandButton) {
-      this.expandButton.onclick = () => {
-        this.toggleShowMore();
+    if (this.showToggleButton) {
+      this.showToggleButton.onclick = () => {
+        this.toggleShowToggle();
       };
     }
 
@@ -43,7 +46,23 @@ export class BoltFloatingActionButtons {
   }
 
   show() {
-    this.el.setAttribute('aria-hidden', false);
+    this.el.removeAttribute('aria-hidden');
+  }
+
+  toggleShowToggle() {
+    if (this.showToggleButton.getAttribute('aria-expanded') === 'false') {
+      // open
+      this.secondaryList.setAttribute('aria-hidden', 'false');
+      this.showToggleButton.setAttribute('aria-expanded', 'true');
+      this.showToggleButtonIcon.setAttribute('aria-hidden', 'true');
+      this.showToggleButtonIconClose.setAttribute('aria-hidden', 'false');
+    } else {
+      //close
+      this.secondaryList.setAttribute('aria-hidden', 'true');
+      this.showToggleButton.setAttribute('aria-expanded', 'false');
+      this.showToggleButtonIcon.setAttribute('aria-hidden', 'false');
+      this.showToggleButtonIconClose.setAttribute('aria-hidden', 'true');
+    }
   }
 
   getScrollPositionFromProp() {
@@ -73,30 +92,5 @@ export class BoltFloatingActionButtons {
     };
 
     window.addEventListener('scroll', scrollHandler);
-  }
-
-  toggleShowMore() {
-    if (this.el.getAttribute('aria-expanded') === 'false') {
-      this.el.setAttribute('aria-expanded', 'true');
-      // show all contentItems
-      for (const contentItem of this.contentElementItems) {
-        contentItem.setAttribute('aria-hidden', false);
-      }
-    } else {
-      this.el.setAttribute('aria-expanded', 'false');
-      this.setDefaultVisibility();
-    }
-  }
-
-  setDefaultVisibility() {
-    let index = 1;
-    for (const contentItem of this.contentElementItems) {
-      if (index > this.visibleItems) {
-        contentItem.setAttribute('aria-hidden', true);
-      } else {
-        contentItem.setAttribute('aria-hidden', false);
-      }
-      index++;
-    }
   }
 }
