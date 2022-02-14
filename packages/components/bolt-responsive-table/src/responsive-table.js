@@ -59,7 +59,7 @@ export class BoltResponsiveTable {
       '.js-bolt-responsive-table-toggle-row',
     );
     tableButton.forEach(el => {
-      el.addEventListener('click', event => {
+      el.addEventListener('click', () => {
         if (el.getAttribute('aria-expanded') === 'true') {
           el.setAttribute('aria-expanded', 'false');
         } else {
@@ -80,8 +80,7 @@ export class BoltResponsiveTable {
     rowCheckboxes.forEach(el => {
       el.addEventListener('click', () => {
         mainCheckbox.checked = true;
-        let checkboxesArr = Array.from(rowCheckboxes);
-        let allUnchecked = checkboxesArr.every(e => !e.checked);
+        let allUnchecked = [...rowCheckboxes].every(e => !e.checked);
         if (allUnchecked) {
           mainCheckbox.checked = false;
         }

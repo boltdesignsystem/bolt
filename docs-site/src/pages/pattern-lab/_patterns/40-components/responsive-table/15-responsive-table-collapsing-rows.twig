@@ -11,8 +11,6 @@
 {% set demo %}
   {% include '@bolt-components-responsive-table/responsive-table.twig' with {
     table_caption_bottom: 'table header bottom',
-    sort: true,
-    filters: true,
     table_headers_top: [
       {
         cells: [
@@ -27,13 +25,12 @@
     table_headers_side: [
       {
         cells: [
-          {
-            content: 'Header side 1',
-          },
+          'Header side 1',
           'Header side 2',
           'Header side 3',
           'Header side 4',
           'Header side 5',
+          'Footer'
         ]
       },
     ],
@@ -89,6 +86,15 @@
         ]
       },
     ],
+    footer: {
+      cells: [
+        'Footer Row 1 Column 1',
+        'Footer Row 1 Column 2',
+        'Footer Row 1 Column 3',
+        'Footer Row 1 Column 4',
+        'Footer Row 1 Column 5',
+      ]
+    },
   } only %}
 {% endset %}
 
@@ -109,13 +115,12 @@
   table_headers_side: [
     {
       cells: [
-        {
-          content: 'Header side 1',
-        },
+        'Header side 1',
         'Header side 2',
         'Header side 3',
         'Header side 4',
         'Header side 5',
+        'Footer'
       ]
     },
   ],
@@ -167,10 +172,19 @@
         'Row 5 Column 2',
         'Row 5 Column 3',
         'Row 5 Column 4',
-        'Row 4 Column 5',
+        'Row 5 Column 5',
       ]
     },
   ],
+  footer: {
+    cells: [
+      'Footer Row 1 Column 1',
+      'Footer Row 1 Column 2',
+      'Footer Row 1 Column 3',
+      'Footer Row 1 Column 4',
+      'Footer Row 1 Column 5',
+    ]
+  },
 } only %}
 {% endverbatim %}{% endset %}
 

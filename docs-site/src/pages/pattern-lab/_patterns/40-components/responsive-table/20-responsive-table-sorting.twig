@@ -1,5 +1,5 @@
 {% set description %}
-    sorting.
+    Sorting.
 {% endset %}
 
 {% set notes %}
@@ -7,7 +7,15 @@
     <bolt-li>List out important information about this component and its usage.</bolt-li>
   </bolt-ol>
 {% endset %}
-
+{% set inline_image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/tout-4x3-climber.jpg',
+      alt: 'A Rock Climber',
+      loading: 'lazy'
+    }
+  } only %}
+{% endset %}
 {% set demo %}
   {% include '@bolt-components-responsive-table/responsive-table.twig' with {
     table_caption_top: 'table header top',
@@ -57,12 +65,23 @@
         ]
       },
     ],
+    footer: {
+      cells: [
+        'Footer Row 1 Column 1',
+        'Footer Row 1 Column 2',
+        'Footer Row 1 Column 3',
+        'Footer Row 1 Column 4',
+        'Footer Row 1 Column 5',
+      ]
+    },
   } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-responsive-table/responsive-table.twig' with {
   table_caption_top: 'table header top',
+  sort: true,
+  filters: true,
   table_headers_top: [
     {
       cells: [
@@ -70,13 +89,10 @@
         'top-2 header',
         {
           content: 'top-3 header',
-          sort: true,
         },
         'top-4 header',
         {
           content: 'top-5 header',
-          filters: true,
-          sort: true,
         },
       ]
     },
@@ -110,6 +126,15 @@
       ]
     },
   ],
+  footer: {
+    cells: [
+      'Footer Row 1 Column 1',
+      'Footer Row 1 Column 2',
+      'Footer Row 1 Column 3',
+      'Footer Row 1 Column 4',
+      'Footer Row 1 Column 5',
+    ]
+  },
 } only %}
 {% endverbatim %}{% endset %}
 
@@ -120,7 +145,7 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'sorting',
+  title: 'Sorting',
   description: description,
   notes: notes,
   demo: demo,
@@ -150,4 +175,37 @@
     table.forEach(el => {
       var tableID = new List(el.id, options)
     })
+
+    //filter
+    {# var activeFilters = [];
+    const filterCheckboxes = document.querySelectorAll('.c-bolt-responsive-table__filters-checkbox');
+
+    filterCheckboxes.forEach(el => {
+      el.addEventListener('change', function() {
+        var isChecked = el.checked;
+        var value = el.getAttribute('data-value');
+        console.log('change', isChecked, value, activeFilters)
+
+        if(isChecked){
+          //  add to list of active filters
+          activeFilters.push(value);
+        }
+        else
+        {
+          // remove from active filters
+          activeFilters.splice(activeFilters.indexOf(value), 1);
+        }
+        
+        tableID.filter(function (item) {
+          if(activeFilters.length > 0)
+          {
+            return(activeFilters.indexOf(item.values().difficulty)) > -1;
+            console.log(activeFilters.indexOf(item.values().difficulty) > -1)
+          }
+          return true;
+        });
+        console.log(tableID)
+      })
+    }) #}
+
 </script>
