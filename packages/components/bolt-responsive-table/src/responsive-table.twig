@@ -39,12 +39,12 @@
 {% endset %}
 
 <div {{ attributes.addClass(classes) }}>
-  <table class="c-bolt-responsive-table__table" {% if sort or filters %} id="table-id-{{ random() }} {% endif %}">
+  <table class="c-bolt-responsive-table__table" {% if sort or filters %} id="table-id-{{ random() }}" {% endif %}>
     {% if table_caption_top %}
       <caption class="c-bolt-responsive-table__caption c-bolt-responsive-table__caption--top">
         {{ table_caption_top }}
       </caption>
-    {% else %}
+    {% elseif table_caption_bottom %}
       <caption class="c-bolt-responsive-table__caption c-bolt-responsive-table__caption--bottom">
         {{ table_caption_bottom }}
       </caption>
@@ -54,7 +54,7 @@
         {% for headers in table_headers_top %}
           <tr class="c-bolt-responsive-table__row">
             {% if table_headers_side %}
-              <th></th>
+              <th class="c-bolt-responsive-table__empty"></th>
             {% endif %}
             {% for table_header in headers.cells %}
               {% set table_header_attrs = create_attribute(table_header.attributes|default({})) %}
@@ -76,14 +76,14 @@
                   {{ table_header }}
                 {% endif %}
                 {% if sort or filters %}
-                {% set data %}
-                {% if headers.cells[loop.index0] is iterable %}
-                  {{ headers.cells[loop.index0].content }}
-                {% else %}
-                  {{ headers.cells[loop.index0] }}
-                {% endif %}
+                  {% set data %}
+                  {% if headers.cells[loop.index0] is iterable %}
+                    {{ headers.cells[loop.index0].content }}
+                  {% else %}
+                    {{ headers.cells[loop.index0] }}
+                  {% endif %}
                 {% endset %}
-                <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--sort" type="button" data-sort="c-bolt-responsive-table--sort-{{ data|trim|replace({' ': '-'})|lower }}" aria-label="Sort column">
+                <button class="c-bolt-responsive-table__button c-bolt-responsive-table__button--sort" type="button" data-sort="c-bolt-responsive-table--sort-{{ data|trim|replace({' ': '-'})|lower }}" aria-label="Sort data">
                   <div class="c-bolt-responsive-table__trigger-icon">
                     {{ icon_chevron_up }}
                     {{ icon_chevron_down }}
@@ -103,21 +103,16 @@
                     <ul class="c-bolt-responsive-table__filters-list">
                       {% set index = loop.index0 %}
                       {% for row in rows %}
-                        {% if row.cells[index] is iterable %}
-                          <li class="c-bolt-responsive-table__filters-item">
-                            <label class="c-bolt-responsive-table__filters-label">
-                              <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
-                              {{ row.cells[index].content }}
-                            </label>
-                          </li>
-                        {% else %}
-                          <li class="c-bolt-responsive-table__filters-item">
-                            <label class="c-bolt-responsive-table__filters-label">
-                              <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
-                              {{ row.cells[index] }}
-                            </label>
-                          </li>
-                        {% endif %}
+                        <li class="c-bolt-responsive-table__filters-item">
+                          <label class="c-bolt-responsive-table__filters-label">
+                            <input class="c-bolt-responsive-table__filters-checkbox" data-value="{{ row.cells[index] }}" type="checkbox" />
+                              {% if row.cells[index] is iterable %}
+                                {{ row.cells[index].content }}
+                              {% else %}
+                                {{ row.cells[index] }}
+                              {% endif %}
+                          </label>
+                        </li>
                       {% endfor %}
                     </ul>
                     <button class="c-bolt-responsive-table__button c-bolt-responsive-table__filters-reset" type="button" aria-label="Reset filters">Reset</button>
@@ -146,7 +141,9 @@
                   'c-bolt-responsive-table__header',
                 ] %}
                 <th {{ table_header_attrs.addClass(table_header_classes) }}>
-                  {% if row.trigger %}<div class="c-bolt-responsive-table__header-cta">{% endif %}
+                  {% if row.trigger %}
+                    <div class="c-bolt-responsive-table__header-cta">
+                  {% endif %}
                   {% if headers.cells[index] is iterable %}
                     {{ headers.cells[index].content }}
                   {% else %}
@@ -161,25 +158,27 @@
                       </div>
                     </button>
                   {% endif %}
-                  {% if row.trigger %}</div>{% endif %}
+                  {% if row.trigger %}
+                    </div>
+                  {% endif %}
                 </th>
               {% endfor %}
             {% endif %}
-            {# strat loop for classes to enable sort from list.js #}
+            {# start loop for classes to enable sort using list.js #}
               {% set classes_arr = [] %}
               {% for headers in table_headers_top %}
                 {% for table_header in headers.cells %}
-                {% set header_name %}
-                  {% if table_header.content %}
-                    {{ table_header.content }}
-                  {% else %}
-                    {{ table_header }}
-                  {% endif %}
-                {% endset %}
+                  {% set header_name %}
+                    {% if table_header.content %}
+                      {{ table_header.content }}
+                    {% else %}
+                      {{ table_header }}
+                    {% endif %}
+                  {% endset %}
                 {% set classes_arr = classes_arr|merge([header_name]) %}
                 {% endfor %}
               {% endfor %}
-            {# end loop for classes to enable sort from list.js #}
+            {# end loop for classes to enable sort using list.js #}
             {% for table_data in row.cells %}
               {% set table_data_attrs = create_attribute(table_data.attributes|default({})) %}
               {% if table_headers_top %}
@@ -187,11 +186,11 @@
               {% endif %}
               {% set table_data_classes = [
                 'c-bolt-responsive-table__data',
-                prefix ~ classes_arr[loop.index0]|trim|replace({' ': '-'})|lower
+                prefix ~ classes_arr[loop.index0]|trim|replace({' ': '-'})|lower,
               ] %}
               <td {{ table_data_attrs.addClass(table_data_classes) }}>
                 {% if checkbox and loop.first and not table_headers_side %}
-                {% set table_data = row.cells[loop.index0]|replace({' ': '-'})|lower %}
+                  {% set table_data = row.cells[loop.index0]|replace({' ': '-'})|lower %}
                   <label class="c-bolt-responsive-table__cell-label" for="table-data-id-{{ table_data }}">{{ row.cells[loop.index0] }}</label>
                   <input class="c-bolt-responsive-table__header-checkbox" type="checkbox" id="table-data-id-{{ table_data }}" name="table-data-name-{{ table_data }}" value="{{ table_data }}">
                 {% endif %}
@@ -205,6 +204,40 @@
           </tr>
         {% endfor %}
       </tbody>
+    {% endif %}
+    {% if footer %}
+      <tfoot class="c-bolt-responsive-table__footer">
+        <tr class="c-bolt-responsive-table__row">
+          {% if table_headers_side %}
+            {% for headers in table_headers_side %}
+              {% for header_side in headers.cells %}
+                {% if loop.last %}
+                  <th class="c-bolt-responsive-table__header">
+                    {% if header_side.content %}
+                      {{ header_side.content }}
+                    {% else %}
+                      {{ header_side }}
+                    {% endif %}
+                  </th>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          {% endif %}
+          {% for table_data in footer.cells %}
+            {% set table_data_attrs = create_attribute(table_data.attributes|default({})) %}
+            {% set table_data_classes = [
+              'c-bolt-responsive-table__data',
+            ]%}
+            <td {{ table_data_attrs.addClass(table_data_classes) }}>
+              {% if table_data.content %}
+                {{ table_data.content }}
+              {% else %}
+                {{ table_data }}
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+      </tfoot>
     {% endif %}
   </table>
 </div>
