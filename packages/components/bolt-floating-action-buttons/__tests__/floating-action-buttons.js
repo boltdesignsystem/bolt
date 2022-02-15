@@ -25,29 +25,77 @@ beforeAll(async () => {
     name: 'rocket',
   });
 
-  const exampleButton = await render('@bolt-elements-button/button.twig', {
+  const primaryButton = await render('@bolt-elements-button/button.twig', {
     content: 'This is a button',
     icon_only: exampleIcon.html,
+    icon_only_tooltip: 'left',
     attributes: {
       type: 'button',
     },
   });
 
-  const exampleItem = await render(
-    '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig',
+  const secondaryButton = await render('@bolt-elements-button/button.twig', {
+    content: 'This is a button',
+    heirarch: ' secondary',
+    icon_only: exampleIcon.html,
+    icon_only_tooltip: 'left',
+    attributes: {
+      type: 'button',
+    },
+  });
+
+  const secondaryListItem = await render(
+    '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig',
     {
-      content: exampleButton.html,
+      content: secondaryButton.html,
     },
   );
 
-  let defaultContent = '';
-
-  for (let i = 0; i < 5; i++) {
-    defaultContent = defaultContent.concat(exampleItem.html);
+  let secondaryContent = '';
+  for (let i = 0; i < 3; i++) {
+    secondaryContent = secondaryContent.concat(secondaryListItem.html);
   }
 
+  const secondaryList = await render(
+    '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig',
+    {
+      content: secondaryContent.html,
+    },
+  );
+
+  const primaryListItem = await render(
+    '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig',
+    {
+      content: primaryButton.html,
+    },
+  );
+
+  const toggleButton = await render(
+    '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig',
+  );
+
+  const toggleButtonListItem = await render(
+    '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig',
+    {
+      content: toggleButton.html,
+      children: secondaryList.html,
+    },
+  );
+
+  let primaryContent = '';
+  primaryContent = primaryContent.concat(primaryListItem.html);
+  primaryContent = primaryContent.concat(primaryListItem.html);
+  primaryContent = primaryContent.concat(toggleButtonListItem.html);
+
+  const primaryList = await render(
+    '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig',
+    {
+      content: primaryContent,
+    },
+  );
+
   fixtures = {
-    defaultContent,
+    primaryList,
   };
 });
 
@@ -56,31 +104,19 @@ describe('Bolt Floating Action Buttons', () => {
     const results = await render(
       '@bolt-components-floating-action-buttons/floating-action-buttons.twig',
       {
-        content: fixtures.defaultContent,
+        content: fixtures.primaryList.html,
       },
     );
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
-  test('show_on_scroll', async () => {
-    const results = await render(
-      '@bolt-components-floating-action-buttons/floating-action-buttons.twig',
-      {
-        content: fixtures.defaultContent,
-        schow_on_scroll: '200px',
-      },
-    );
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
-  });
-
-  position.enum.forEach(async (option) => {
+  position.enum.forEach(async option => {
     test(`position: ${option}`, async () => {
       const results = await render(
         '@bolt-components-floating-action-buttons/floating-action-buttons.twig',
         {
-          content: fixtures.defaultContent,
+          content: fixtures.primaryList.html,
           position: option,
         },
       );
