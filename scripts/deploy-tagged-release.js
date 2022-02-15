@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const { promisify } = require('util');
+const semver = require('semver');
 const gitSemverTags = require('git-semver-tags');
 const promisifyGitTags = promisify(gitSemverTags);
 const { getLatestDeploy } = require('./utils');
@@ -16,7 +17,13 @@ getLatestDeploy()
       aliasNowUrl(url, latestTag);
     }
 
-    if (TRAVIS_TAG && TRAVIS_TAG === latestTag && !latestTag.includes('rc')) {
+    // Alias prod (boltdesignsystem.com) if this is the latest semver tag and it is NOT a pre-release
+    if (
+      TRAVIS_TAG &&
+      TRAVIS_TAG === latestTag &&
+      semver.valid(latestTag) &&
+      !semver.prerelease(latestTag)
+    ) {
       aliasNowUrl(url, '');
       aliasNowUrl(url, 'www');
     } else {
