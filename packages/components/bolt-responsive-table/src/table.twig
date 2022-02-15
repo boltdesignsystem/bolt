@@ -1,0 +1,85 @@
+{% set schema = bolt.data.components['@bolt-components-responsive-table'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set header_attributes = create_attribute(header.attributes|default({})) %}
+{% set body_attributes = create_attribute(body.attributes|default({})) %}
+{% set footer_attributes = create_attribute(footer.attributes|default({})) %}
+{% set caption_attributes = create_attribute(caption.attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-responsive-table',
+  'js-bolt-responsive-table'
+] %}
+
+{% set header_classes = [
+  'c-bolt-responsive-table__head',
+] %}
+
+{% set body_classes = [
+  'c-bolt-responsive-table__body',
+] %}
+
+{% set footer_classes = [
+  'c-bolt-responsive-table__footer',
+] %}
+
+{% set caption_classes = [
+  'c-bolt-responsive-table__caption',
+] %}
+
+
+{# {% set icon_chevron_down %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-down',
+  } only %}
+{% endset %}
+
+{% set icon_chevron_up %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-up',
+  } only %}
+{% endset %}
+
+{% set icon_filter %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'filter',
+  } only %}
+{% endset %} #}
+
+<div {{ attributes.addClass(classes) }}>
+  <table class="c-bolt-responsive-table__table">
+    {% if header %}
+      <thead {{ header_attributes.addClass(header_classes) }}>
+        <tr class="c-bolt-responsive-table__row">
+          {{ header.content }}
+        </tr>
+      </thead>
+    {% endif %}
+    {% if body %}
+      <tbody {{ body_attributes.addClass(body_classes) }}>
+        {% for row in body.content %}
+          {{ row }}
+        {% endfor %}
+      </tbody>
+    {% endif %}
+    {% if footer %}
+      <tfoot {{ footer_attributes.addClass(footer_classes) }}>
+        <tr class="c-bolt-responsive-table__row">
+          {{ footer.content }}
+        </tr>
+      </tfoot>
+    {% endif %}
+    {% if caption %}
+      <caption {{ caption_attributes.addClass(caption_classes) }}>
+        {{ caption.content }}
+      </caption>
+    {% endif %}
+  </table>
+</div>
+

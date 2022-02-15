@@ -1,0 +1,34 @@
+{% set schema = bolt.data.components['@bolt-components-responsive-table'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set header_attributes = create_attribute(header_attributes|default({})) %}
+{% set table_data_attributes = create_attribute(table_data_attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set header_classes = [
+  'c-bolt-responsive-table__header',
+  'c-bolt-responsive-table__cell',
+] %}
+
+{% set table_data_classes = [
+  'c-bolt-responsive-table__cell',
+] %}
+
+{% if header %}
+  {% if header|first %}
+    <th></th>
+  {% endif %}
+  <th {{ header_attributes.addClass(header_classes) }}>
+    {{ content }}
+  </th>
+{% else %}
+  <td {{ table_data_attributes.addClass(table_data_classes) }}>
+    {{ content }}
+  </td>
+{% endif %}
+
+
