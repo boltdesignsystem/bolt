@@ -373,3 +373,23 @@
     display: block;
   }
 }
+
+.test-table {
+  @include bolt-horizontal-scroll;
+
+  box-shadow: 0 0 0 1px var(--m-bolt-border);
+  background-color: var(--m-bolt-border);
+
+  table {
+    margin: -1px;
+  }
+
+  td {
+    background-color: var(--m-bolt-bg);
+  }
+
+  thead td,
+  th {
+    background-color: var(--m-bolt-table-header);
+  }
+}
