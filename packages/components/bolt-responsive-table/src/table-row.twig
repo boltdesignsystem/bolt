@@ -13,6 +13,9 @@
 ] %}
 
 <tr {{ attributes.addClass(classes) }}>
+  {% if hidden %}
+    <td class="c-bolt-responsive-table__cell c-bolt-responsive-table__cell--empty"></td>
+  {% endif %}
   {{ content }}
 </tr>
 

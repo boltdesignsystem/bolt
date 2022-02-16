@@ -1,0 +1,24 @@
+{% set schema = bolt.data.components['@bolt-components-responsive-table'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set expand_button_attributes = create_attribute(expand_button_attributes|default({})) %}
+{% set icon_chevron_down %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-down',
+  } only %}
+{% endset %}
+
+{# Array of classes based on the defined + default props #}
+{% set expand_button_classes = [
+  'c-bolt-responsive-table__button',
+  'c-bolt-responsive-table__button--expand',
+] %}
+
+
+<button type="button" aria-expanded="false" aria-label="{{ content }}" {{ expand_button_attributes.addClass(expand_button_classes) }}>{{ icon_chevron_down }}</button>
+
+

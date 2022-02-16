@@ -14,7 +14,9 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-responsive-table',
-  'js-bolt-responsive-table'
+  borderless ? 'c-bolt-responsive-table--borderless',
+  'js-bolt-responsive-table',
+
 ] %}
 
 {% set header_classes = [
@@ -33,30 +35,14 @@
   'c-bolt-responsive-table__caption',
 ] %}
 
-
-{# {% set icon_chevron_down %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'chevron-down',
-  } only %}
-{% endset %}
-
-{% set icon_chevron_up %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'chevron-up',
-  } only %}
-{% endset %}
-
-{% set icon_filter %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'filter',
-  } only %}
-{% endset %} #}
-
 <div {{ attributes.addClass(classes) }}>
   <table class="c-bolt-responsive-table__table">
     {% if header %}
       <thead {{ header_attributes.addClass(header_classes) }}>
         <tr class="c-bolt-responsive-table__row">
+          {% if body.side_headers %}
+            <th class="c-bolt-responsive-table__cell c-bolt-responsive-table__cell--empty"></th>
+          {% endif %}
           {{ header.content }}
         </tr>
       </thead>
