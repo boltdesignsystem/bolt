@@ -204,48 +204,65 @@
 } only %}
 
 <script>
-    //nextUntil.js method https://vanillajstoolkit.com/helpers/nextuntil/
-    var nextUntil = function(elem, selector, filter) {
-      var siblings = [];
+  //nextUntil.js method https://vanillajstoolkit.com/helpers/nextuntil/
+  var nextUntil = function(elem, selector, filter) {
+    var siblings = [];
 
-      elem = elem.nextElementSibling;
+    elem = elem.nextElementSibling;
 
-      while (elem) {
-        if (elem.matches(selector)) break;
+    while (elem) {
+      if (elem.matches(selector)) break;
 
-        if (filter && !elem.matches(filter)) {
-          elem = elem.nextElementSibling;
-        }
-        siblings.push(elem);
+      if (filter && !elem.matches(filter)) {
         elem = elem.nextElementSibling;
       }
+      siblings.push(elem);
+      elem = elem.nextElementSibling;
+    }
 
-      return siblings;
-    };
+    return siblings;
+  };
 
-    var start = document.querySelectorAll(
-      '.c-bolt-responsive-table__row--trigger',
+  var start = document.querySelectorAll(
+    '.c-bolt-responsive-table__row--trigger',
+  );
+
+  for (let i = 0; i < start.length; i++) {
+    const tableButton = start[i].querySelector(
+      '.js-bolt-responsive-table-toggle-row',
     );
 
-    for (let i = 0; i < start.length; i++) {
-      const tableButton = start[i].querySelector(
-        '.js-bolt-responsive-table-toggle-row',
+    var next = nextUntil(start[i], '.c-bolt-responsive-table__row--trigger');
+    next.forEach(el => {
+      el.classList.add('c-bolt-responsive-table__row--hidden');
+    });
+
+    tableButton.addEventListener('click', function() {
+      var next = nextUntil(
+        start[i],
+        '.c-bolt-responsive-table__row--trigger',
       );
-
-      var next = nextUntil(start[i], '.c-bolt-responsive-table__row--trigger');
       next.forEach(el => {
-        el.classList.add('c-bolt-responsive-table__row--hidden');
+        el.classList.toggle('c-bolt-responsive-table__row--hidden');
       });
+    });
+  }
 
-      tableButton.addEventListener('click', function() {
-        var next = nextUntil(
-          start[i],
-          '.c-bolt-responsive-table__row--trigger',
-        );
-        next.forEach(el => {
-          el.classList.toggle('c-bolt-responsive-table__row--hidden');
-        });
+  function toggleAriaExpanded() {
+    const tableButton = document.querySelectorAll(
+      '.js-bolt-responsive-table-toggle-row',
+    );
+    tableButton.forEach(el => {
+      el.addEventListener('click', () => {
+        if (el.getAttribute('aria-expanded') === 'true') {
+          el.setAttribute('aria-expanded', 'false');
+        } else {
+          el.setAttribute('aria-expanded', 'true');
+        }
       });
-    }
+    });
+  }
+
+  toggleAriaExpanded()
 
 </script>
