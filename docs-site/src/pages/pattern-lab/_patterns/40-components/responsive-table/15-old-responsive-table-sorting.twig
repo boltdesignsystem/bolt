@@ -176,36 +176,75 @@
       var tableID = new List(el.id, options)
     })
 
-    //filter
-    {# var activeFilters = [];
-    const filterCheckboxes = document.querySelectorAll('.c-bolt-responsive-table__filters-checkbox');
+      function toggleFilters() {
+    const filtersButton = document.querySelectorAll(
+      '.c-bolt-responsive-table__button--filter',
+    );
 
-    filterCheckboxes.forEach(el => {
-      el.addEventListener('change', function() {
-        var isChecked = el.checked;
-        var value = el.getAttribute('data-value');
-        console.log('change', isChecked, value, activeFilters)
+    const resetButton = document.querySelectorAll(
+      '.c-bolt-responsive-table__filters-reset',
+    );
 
-        if(isChecked){
-          //  add to list of active filters
-          activeFilters.push(value);
-        }
-        else
-        {
-          // remove from active filters
-          activeFilters.splice(activeFilters.indexOf(value), 1);
-        }
-        
-        tableID.filter(function (item) {
-          if(activeFilters.length > 0)
-          {
-            return(activeFilters.indexOf(item.values().difficulty)) > -1;
-            console.log(activeFilters.indexOf(item.values().difficulty) > -1)
+    const filters = document.querySelectorAll(
+      '.c-bolt-responsive-table__filters',
+    );
+
+    filters.forEach(el => {
+      const checkboxes = el.querySelectorAll(
+        '.c-bolt-responsive-table__filters-checkbox',
+      );
+
+      checkboxes.forEach(el => {
+        el.addEventListener('click', () => {
+          let allUnchecked = [...checkboxes].every(e => !e.checked);
+          el.closest('.c-bolt-responsive-table__filters')
+            .querySelector('.c-bolt-responsive-table__filters-reset')
+            .classList.add('c-bolt-responsive-table__filters-reset--visible');
+
+          if (allUnchecked) {
+            el.closest('.c-bolt-responsive-table__filters')
+              .querySelector('.c-bolt-responsive-table__filters-reset')
+              .classList.remove(
+                'c-bolt-responsive-table__filters-reset--visible',
+              );
           }
-          return true;
         });
-        console.log(tableID)
-      })
-    }) #}
+      });
+    });
+
+    filtersButton.forEach(el => {
+      el.addEventListener('click', () => {
+        el.parentElement.nextElementSibling.classList.toggle(
+          'c-bolt-responsive-table__filters--visible',
+        );
+        if (el.getAttribute('aria-expanded') === 'true') {
+          el.setAttribute('aria-expanded', 'false');
+        } else {
+          el.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    if (resetButton) {
+      resetButton.forEach(el => {
+        el.addEventListener('click', e => {
+          e.target.classList.remove(
+            'c-bolt-responsive-table__filters-reset--visible',
+          );
+          el.parentElement
+            .querySelectorAll('.c-bolt-responsive-table__filters-checkbox')
+            .forEach(el => {
+              if (el.checked) {
+                el.checked = false;
+              }
+            });
+          el.parentElement.classList.remove(
+            'c-bolt-responsive-table__filters--visible',
+          );
+        });
+      });
+    }
+  }
+  toggleFilters();
 
 </script>
