@@ -1,0 +1,214 @@
+{% set description %}
+  Table with expandable rows.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set header %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'Toggle',
+      header: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 1.',
+      header: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 2.',
+      header: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 3.',
+      header: true,
+    } only %}
+    {# Add more headers here #}
+  {% endset %}
+
+  {% set row_expandable %}
+    {% set cells %}
+      {% set expand_button %}
+        {% include '@bolt-components-responsive-table/table-expand-button.twig' with {
+          content: 'Expand more rows',
+          ids: [
+            'hidden-row-1',
+            'hidden-row-2',
+          ],
+          attributes: {},
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: expand_button,
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {# Add more cells here #}
+    {% endset %}
+
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row_hidden_1 %}
+    {% set cells %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {# Add more cells here #}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
+      hidden: true,
+      attributes: {
+        id: 'hidden-row-1',
+      },
+    } only %}
+  {% endset %}
+
+  {% set row_hidden_2 %}
+    {% set cells %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {# Add more cells here #}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
+      hidden: true,
+      attributes: {
+        id: 'hidden-row-2',
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-responsive-table/table.twig' with {
+    header: {
+      content: header
+    },
+    body: {
+      content: [
+        row_expandable,
+        row_hidden_1,
+        row_hidden_2,
+      ],
+      attributes: {},
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set header %}
+  {% include '@bolt-components-responsive-table/table-cell.twig' with {
+    content: 'Toggle',
+    header: true,
+  } only %}
+  {% include '@bolt-components-responsive-table/table-cell.twig' with {
+    content: 'This is a header cell 1.',
+    header: true,
+  } only %}
+  {% include '@bolt-components-responsive-table/table-cell.twig' with {
+    content: 'This is a header cell 2.',
+    header: true,
+  } only %}
+  {% include '@bolt-components-responsive-table/table-cell.twig' with {
+    content: 'This is a header cell 3.',
+    header: true,
+  } only %}
+  {# Add more headers here #}
+{% endset %}
+
+{% set row_expandable %}
+  {% set cells %}
+    {% set expand_button %}
+      {% include '@bolt-components-responsive-table/table-expand-button.twig' with {
+        content: 'Expand more rows',
+        ids: [
+          'hidden-row-1',
+          'hidden-row-2',
+        ],
+        attributes: {},
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: expand_button,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {# Add more cells here #}
+  {% endset %}
+
+  {% include '@bolt-components-responsive-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row_hidden_1 %}
+  {% set cells %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {# Add more cells here #}
+  {% endset %}
+  {% include '@bolt-components-responsive-table/table-row.twig' with {
+    content: cells,
+    hidden: true,
+    attributes: {
+      id: 'hidden-row-1',
+    },
+  } only %}
+{% endset %}
+
+{% set row_hidden_2 %}
+  {% set cells %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {# Add more cells here #}
+  {% endset %}
+  {% include '@bolt-components-responsive-table/table-row.twig' with {
+    content: cells,
+    hidden: true,
+    attributes: {
+      id: 'hidden-row-2',
+    },
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-responsive-table/table.twig' with {
+  header: {
+    content: header
+  },
+  body: {
+    content: [
+      row_expandable,
+      row_hidden_1,
+      row_hidden_2,
+    ],
+    attributes: {},
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<div class="c-bolt-responsive-table">
+  This is a responsive-table component.
+</div>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table with expandable rows',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

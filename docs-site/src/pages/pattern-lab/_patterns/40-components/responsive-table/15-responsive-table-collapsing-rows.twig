@@ -202,3 +202,50 @@
   twig_markup: twig_markup,
   html_markup: html_markup
 } only %}
+
+<script>
+    //nextUntil.js method https://vanillajstoolkit.com/helpers/nextuntil/
+    var nextUntil = function(elem, selector, filter) {
+      var siblings = [];
+
+      elem = elem.nextElementSibling;
+
+      while (elem) {
+        if (elem.matches(selector)) break;
+
+        if (filter && !elem.matches(filter)) {
+          elem = elem.nextElementSibling;
+        }
+        siblings.push(elem);
+        elem = elem.nextElementSibling;
+      }
+
+      return siblings;
+    };
+
+    var start = document.querySelectorAll(
+      '.c-bolt-responsive-table__row--trigger',
+    );
+
+    for (let i = 0; i < start.length; i++) {
+      const tableButton = start[i].querySelector(
+        '.js-bolt-responsive-table-toggle-row',
+      );
+
+      var next = nextUntil(start[i], '.c-bolt-responsive-table__row--trigger');
+      next.forEach(el => {
+        el.classList.add('c-bolt-responsive-table__row--hidden');
+      });
+
+      tableButton.addEventListener('click', function() {
+        var next = nextUntil(
+          start[i],
+          '.c-bolt-responsive-table__row--trigger',
+        );
+        next.forEach(el => {
+          el.classList.toggle('c-bolt-responsive-table__row--hidden');
+        });
+      });
+    }
+
+</script>

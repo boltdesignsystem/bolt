@@ -1,0 +1,290 @@
+{% set description %}
+  Table with top headers.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set header %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 1.',
+      header: true,
+      checkbox: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 2.',
+      header: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 3.',
+      header: true,
+    } only %}
+    {# Add more headers here #}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+        checkbox: true,
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {# Add more cells here #}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a regular cell in row 2.',
+        checkbox: true,
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a regular cell in row 2.',
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a regular cell in row 2.',
+      } only %}
+      {# Add more cells here #}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a regular cell in row 3.',
+        checkbox: true,
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a regular cell in row 3.',
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a regular cell in row 3.',
+      } only %}
+      {# Add more cells here #}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set footer %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a footer cell.',
+    } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a footer cell.',
+    } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a footer cell.',
+    } only %}
+    {# Add more cells here #}
+  {% endset %}
+
+  {% include '@bolt-components-responsive-table/table.twig' with {
+    header: {
+      content: header,
+      attributes: {},
+    },
+    body: {
+      content: [
+        row1,
+        row2,
+        row3,
+      ],
+      attributes: {},
+    },
+    footer: {
+      content: footer,
+      attributes: {},
+    },
+    caption: {
+      content: 'This is the table caption.',
+      attributes: {},
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set header %}
+  {% include '@bolt-components-responsive-table/table-cell.twig' with {
+    content: 'This is a header cell 1.',
+    header: true,
+    checkbox: true,
+  } only %}
+  {% include '@bolt-components-responsive-table/table-cell.twig' with {
+    content: 'This is a header cell 2.',
+    header: true,
+  } only %}
+  {% include '@bolt-components-responsive-table/table-cell.twig' with {
+    content: 'This is a header cell 3.',
+    header: true,
+  } only %}
+  {# Add more headers here #}
+{% endset %}
+
+{% set row1 %}
+  {% set cells %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+      checkbox: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {# Add more cells here #}
+  {% endset %}
+  {% include '@bolt-components-responsive-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row2 %}
+  {% set cells %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in row 2.',
+      checkbox: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in row 2.',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in row 2.',
+    } only %}
+    {# Add more cells here #}
+  {% endset %}
+  {% include '@bolt-components-responsive-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row3 %}
+  {% set cells %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in row 3.',
+      checkbox: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in row 3.',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in row 3.',
+    } only %}
+    {# Add more cells here #}
+  {% endset %}
+  {% include '@bolt-components-responsive-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set footer %}
+  {% include '@bolt-components-responsive-table/table-cell.twig' with {
+    content: 'This is a footer cell.',
+  } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+    content: 'This is a footer cell.',
+  } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+    content: 'This is a footer cell.',
+  } only %}
+  {# Add more cells here #}
+{% endset %}
+
+{% include '@bolt-components-responsive-table/table.twig' with {
+  header: {
+    content: header,
+    attributes: {},
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+    attributes: {},
+  },
+  footer: {
+    content: footer,
+    attributes: {},
+  },
+  caption: {
+    content: 'This is the table caption.',
+    attributes: {},
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<div class="c-bolt-responsive-table">
+  This is a responsive-table component.
+</div>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table with top headers',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}
+
+<script>
+  function toggleCheckbox() {
+    const mainCheckbox = document.querySelector(
+      '.c-bolt-responsive-table__head .c-bolt-responsive-table__checkbox',
+    );
+
+    const rowCheckboxes = document.querySelectorAll(
+      '.c-bolt-responsive-table__body .c-bolt-responsive-table__checkbox',
+    );
+    rowCheckboxes.forEach(el => {
+      el.addEventListener('click', () => {
+        mainCheckbox.checked = true;
+        let allUnchecked = [...rowCheckboxes].every(e => !e.checked);
+        if (allUnchecked) {
+          mainCheckbox.checked = false;
+        }
+      });
+    });
+
+    function checkAllCheckboxes() {
+      rowCheckboxes.forEach(el => {
+        if (el.checked) {
+          el.checked = false;
+        } else {
+          el.checked = true;
+        }
+      });
+
+      if (!mainCheckbox.checked) {
+        rowCheckboxes.forEach(el => {
+          el.checked = false;
+        });
+      }
+    }
+
+    if (mainCheckbox) {
+      mainCheckbox.addEventListener('click', checkAllCheckboxes);
+    }
+  }
+  toggleCheckbox()
+</script>
