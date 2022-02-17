@@ -7,8 +7,8 @@
 // Register Custom Block Element
 @include bolt-custom-element('bolt-floating-action-buttons', block, medium);
 
-$default-x-offset: var(--bolt-spacing-x-xsmall);
-$default-y-offset: var(--bolt-spacing-y-xsmall);
+$_bolt-fab-x-offset: var(--bolt-spacing-x-xsmall);
+$_bolt-fab-y-offset: var(--bolt-spacing-y-xsmall);
 
 .c-bolt-floating-action-buttons {
   z-index: bolt-z-index('fab');
@@ -63,7 +63,7 @@ $bolt-fab-position: 'bottom', 'middle', 'top';
 @each $position in $bolt-fab-position {
   .c-bolt-floating-action-buttons--position-#{$position}-right {
     position: fixed;
-    right: var(--c-bolt-floating-action-buttons-offset-x, $default-x-offset);
+    right: var(--c-bolt-floating-action-buttons-offset-x, $_bolt-fab-x-offset);
 
     @if index($position, 'middle') {
       top: calc(50% + var(--c-bolt-floating-action-buttons-offset-y));
@@ -71,7 +71,7 @@ $bolt-fab-position: 'bottom', 'middle', 'top';
     } @else {
       #{$position}: var(
         --c-bolt-floating-action-buttons-offset-y,
-        $default-y-offset
+        $_bolt-fab-y-offset
       );
     }
   }

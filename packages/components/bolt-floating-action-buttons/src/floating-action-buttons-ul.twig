@@ -1,3 +1,12 @@
-<ul class="c-bolt-floating-action-buttons__list js-bolt-floating-action-buttons-list">
+{% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema['floating-action-buttons-ul'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+<ul {{ attributes }} class="c-bolt-floating-action-buttons__list js-bolt-floating-action-buttons-list">
   {{ content }}
 </ul>

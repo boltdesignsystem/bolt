@@ -1,4 +1,13 @@
-<li class="c-bolt-floating-action-buttons__list-item">
+{% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema['floating-action-buttons-li'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+<li {{ attributes }} class="c-bolt-floating-action-buttons__list-item">
   {{ content }}
 
   {% if children %}
