@@ -136,7 +136,9 @@
 }
 
 .c-bolt-responsive-table__input {
-  display: flex;
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
 }
 
 .c-bolt-responsive-table__checkbox {
@@ -146,7 +148,11 @@
 .c-bolt-responsive-table__cell-label {
   opacity: 0;
   position: absolute;
-  width: calc(100% - (2 * var(--bolt-spacing-x-small)));
+  width: 100%;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .c-bolt-responsive-table__header-checkbox {
@@ -211,13 +217,14 @@
   margin-bottom: var(--bolt-spacing-y-xsmall);
 }
 
-.c-bolt-responsive-table__filters-checkbox {
-  margin-right: var(--bolt-spacing-x-small);
+.c-bolt-responsive-table__filters-label {
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-.c-bolt-responsive-table__filters-close {
-  display: block;
-  margin: 0 0 var(--bolt-spacing-x-small) auto;
+.c-bolt-responsive-table__filters-checkbox {
+  margin-right: var(--bolt-spacing-x-small);
 }
 
 .c-bolt-responsive-table__filters-reset {
