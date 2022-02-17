@@ -163,6 +163,7 @@
 
   &:focus {
     outline: var(--bolt-focus-ring);
+    outline-offset: 4px;
   }
 }
 
@@ -171,7 +172,7 @@
   align-items: center;
 
   .c-bolt-responsive-table__button {
-    padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+    display: flex;
     color: var(--m-bolt-headline);
 
     &:first-of-type {
@@ -185,6 +186,12 @@
 .c-bolt-responsive-table__button-icons {
   display: flex;
   flex-direction: column;
+
+  .e-bolt-icon {
+    &:first-child {
+      margin-bottom: -6px;
+    }
+  }
 }
 
 .c-bolt-responsive-table__filters {
