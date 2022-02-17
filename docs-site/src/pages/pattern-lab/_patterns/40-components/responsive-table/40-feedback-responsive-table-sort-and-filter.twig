@@ -10,37 +10,76 @@
 
 {% set demo %}
   {% set header %}
+    {% set sortable_header %}
+      {% set _icon_pega_sort %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'pega-sort',
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Sortable header',
+        hierarchy: 'transparent',
+        icon_after: _icon_pega_sort,
+        reversed_underline: true,
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    {% endset %}
+    {% set filters %}
+      {% set icon_filter %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'filter',
+        } only %}
+      {% endset %}
+      {% set trigger %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: icon_filter ~ '<span class="u-bolt-visuallyhidden">Filters</span>',
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+      {% endset %}
+      {% set content %}
+        Filters go here
+      {% endset %}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: trigger,
+        content: content,
+        trigger_event: 'hover',
+      } only %}
+    {% endset %}
+
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a header cell 1.',
+      content: sortable_header,
       header: true,
-      filters: true,
+      filters: filters,
       sort: true,
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a header cell 2.',
+      content: sortable_header,
       header: true,
-      filters: true,
+      filters: filters,
       sort: true,
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a header cell 3.',
+      content: sortable_header,
       header: true,
-      filters: true,
+      filters: filters,
       sort: true,
     } only %}
-    {# Add more headers here #}
   {% endset %}
 
   {% set row1 %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'Row 1 cell 1',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'Row 1 cell 2',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'Row 1 cell 3',
       } only %}
       {# Add more cells here #}
     {% endset %}
@@ -52,15 +91,14 @@
   {% set row2 %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in row 2.',
+        content: 'Row 2 cell 1',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in row 2.',
+        content: 'Row 2 cell 2 and this cell has a lot more text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis cupiditate deleniti quia maiores vitae molestias, illum sapiente perspiciatis dignissimos labore sed itaque dolore neque soluta aliquid distinctio, voluptates tempora? Vitae.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in row 2.',
+        content: 'Row 2 cell 3',
       } only %}
-      {# Add more cells here #}
     {% endset %}
     {% include '@bolt-components-responsive-table/table-row.twig' with {
       content: cells,
@@ -70,15 +108,14 @@
   {% set row3 %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in row 3.',
+        content: 'Row 3 cell 1',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in row 3.',
+        content: 'Row 3 cell 2',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in row 3.',
+        content: 'Row 3 cell 3',
       } only %}
-      {# Add more cells here #}
     {% endset %}
     {% include '@bolt-components-responsive-table/table-row.twig' with {
       content: cells,
@@ -95,7 +132,6 @@
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'This is a footer cell.',
     } only %}
-    {# Add more cells here #}
   {% endset %}
 
   {% include '@bolt-components-responsive-table/table.twig' with {
@@ -127,19 +163,19 @@
   {% include '@bolt-components-responsive-table/table-cell.twig' with {
     content: 'This is a header cell 1.',
     header: true,
-    filters: true,
+    filters: filters,
     sort: true,
   } only %}
   {% include '@bolt-components-responsive-table/table-cell.twig' with {
     content: 'This is a header cell 2.',
     header: true,
-    filters: true,
+    filters: filters,
     sort: true,
   } only %}
   {% include '@bolt-components-responsive-table/table-cell.twig' with {
     content: 'This is a header cell 3.',
     header: true,
-    filters: true,
+    filters: filters,
     sort: true,
   } only %}
   {# Add more headers here #}

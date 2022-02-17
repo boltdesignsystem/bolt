@@ -40,9 +40,6 @@
     {% if header %}
       <thead {{ header_attributes.addClass(header_classes) }}>
         <tr class="c-bolt-responsive-table__row">
-          {% if body.side_headers %}
-            <th class="c-bolt-responsive-table__cell c-bolt-responsive-table__cell--empty"></th>
-          {% endif %}
           {{ header.content }}
         </tr>
       </thead>

@@ -11,6 +11,9 @@
 {% set demo %}
   {% set header %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: '',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'This is a header cell 1.',
       header: true,
     } only %}
@@ -114,7 +117,6 @@
       attributes: {},
     },
     body: {
-      side_headers: true,
       content: [
         row1,
         row2,
@@ -239,7 +241,6 @@
     attributes: {},
   },
   body: {
-    side_headers: true,
     content: [
       row1,
       row2,

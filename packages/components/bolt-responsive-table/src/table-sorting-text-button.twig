@@ -1,0 +1,64 @@
+{% set schema = bolt.data.components['@bolt-components-responsive-table'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-responsive-table__sorting-text-button',
+] %}
+
+<span {{ attributes.addClass(classes) }}>
+  <span class="c-bolt-responsive-table__sorted-ascending">
+    {% set _icon_pega_sort-ascending %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'pega-sort-ascending',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: content,
+      hierarchy: 'transparent',
+      icon_after: _icon_pega_sort-ascending,
+      reversed_underline: true,
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  </span>
+  <span class="c-bolt-responsive-table__sorted-descending">
+    {% set _icon_pega_sort-descending %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'pega-sort-descending',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: content,
+      hierarchy: 'transparent',
+      icon_after: _icon_pega_sort-descending,
+      reversed_underline: true,
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  </span>
+  <span class="c-bolt-responsive-table__unsorted">
+    {% set _icon_pega_sort %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'pega-sort',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: content,
+      hierarchy: 'transparent',
+      icon_after: _icon_pega_sort,
+      reversed_underline: true,
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  </span>
+</span>

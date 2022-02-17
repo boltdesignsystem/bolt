@@ -63,7 +63,7 @@
               ] %}
               <th {{ table_header_attrs.addClass(table_header_classes) }}>
                 {% if sort or filters %}
-                  <div class="c-bolt-responsive-table__ctas">
+                  <div class="c-bolt-responsive-table__controlss">
                 {% endif %}
                 {% if checkbox and loop.first and not table_headers_side %}
                   {% set table_data = headers.cells[loop.index0]|replace({' ': '-'})|lower %}
