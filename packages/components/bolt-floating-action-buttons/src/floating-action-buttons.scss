@@ -57,19 +57,21 @@ $_bolt-fab-y-offset: var(--bolt-spacing-y-xsmall);
   }
 }
 
-// position prop
-$bolt-fab-position: 'bottom', 'middle', 'top';
+// placement prop
+$_bolt-fab-placement: 'right-end', 'right', 'right-start';
 
-@each $position in $bolt-fab-position {
-  .c-bolt-floating-action-buttons--position-#{$position}-right {
+@each $placement in $_bolt-fab-placement {
+  .c-bolt-floating-action-buttons--placement-#{$placement} {
     position: fixed;
     right: var(--c-bolt-floating-action-buttons-offset-x, $_bolt-fab-x-offset);
 
-    @if index($position, 'middle') {
+    @if index($placement, 'right') {
       top: calc(50% + var(--c-bolt-floating-action-buttons-offset-y));
       transform: translateY(-50%);
+    } @else if index($placement, 'right-top') {
+      top: var(--c-bolt-floating-action-buttons-offset-y, $_bolt-fab-y-offset);
     } @else {
-      #{$position}: var(
+      bottom: var(
         --c-bolt-floating-action-buttons-offset-y,
         $_bolt-fab-y-offset
       );

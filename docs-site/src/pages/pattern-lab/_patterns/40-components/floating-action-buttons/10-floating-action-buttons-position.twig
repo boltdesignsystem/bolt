@@ -1,16 +1,16 @@
 {% set description %}
-  Use this to place the Floating Action Buttons in the <code>bottom-right</code>, <code>middle-right</code>, or <code>top-right</code>.
+  Use this to place the Floating Action Buttons in the <code>right-end</code>, <code>right</code>, or <code>right-start</code>.
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
   content: _content,
-  position: 'top-right',
+  placement: 'right-start',
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Floating Action Buttons Position',
+  title: 'Floating Action Buttons Placement',
   description: description,
   twig_markup: twig_markup,
 } only %}

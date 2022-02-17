@@ -10,14 +10,14 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-floating-action-buttons',
-  'c-bolt-floating-action-buttons--position-' ~ this.data.position.value,
+  'c-bolt-floating-action-buttons--placement-' ~ this.data.placement.value,
 ] %}
 
 <div
   {{ attributes.addClass(classes) }}
   aria-hidden="true"
   {% if this.data.show_on_load.value %}data-show-on-load{% endif %}
-  {{ this.props|without("class")|without("position") }}
+  {{ this.props|without("class")|without("placement") }}
 >
   {% spaceless %}
     {{ content }}

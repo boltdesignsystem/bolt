@@ -13,11 +13,11 @@ module.exports = {
       description:
         'The main content. Typically, this will be a number of icon-only buttons.',
     },
-    position: {
+    placement: {
       type: 'string',
       description: 'The desired location of the floating element.',
-      enum: ['bottom-right', 'middle-right', 'top-right'],
-      default: 'bottom-right',
+      enum: ['right-end', 'right', 'right-start'],
+      default: 'right-end',
     },
     show_on_load: {
       type: 'boolean',

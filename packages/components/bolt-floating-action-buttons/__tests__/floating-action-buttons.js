@@ -1,7 +1,7 @@
 import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../floating-action-buttons.schema';
 // eslint-disable-next-line camelcase
-const { position, show_on_scroll } = schema.properties;
+const { placement, show_on_scroll } = schema.properties;
 let page, fixtures;
 
 afterAll(async () => {
@@ -111,13 +111,13 @@ describe('Bolt Floating Action Buttons', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  position.enum.forEach(async option => {
-    test(`position: ${option}`, async () => {
+  placement.enum.forEach(async option => {
+    test(`placement: ${option}`, async () => {
       const results = await render(
         '@bolt-components-floating-action-buttons/floating-action-buttons.twig',
         {
           content: fixtures.primaryList.html,
-          position: option,
+          placement: option,
         },
       );
       expect(results.ok).toBe(true);
