@@ -18,131 +18,78 @@
 .c-bolt-responsive-table {
   // Styles go here. /* [1] */
   display: block;
-  overflow-x: auto;
-  background: -webkit-radial-gradient(
-        left,
-        ellipse,
-        var(--m-bolt-border) 0,
-        transparent 75%
-      )
-      0,
-    -webkit-radial-gradient(
-        right,
-        ellipse,
-        var(--m-bolt-border) 0,
-        transparent 75%
-      ) 100%;
-  background-attachment: scroll, scroll;
-  background-color: var(--m-bolt-bg);
-  background-repeat: no-repeat;
-  background-size: 0.5em 100%, 0.5em 100%;
+  @include bolt-horizontal-scroll;
+  max-height: 75vh;
+  box-shadow: 0 0 0px 1px var(--m-bolt-disabled);
+  background-color: var(--m-bolt-disabled);
+
+  &.c-bolt-responsive-table--borderless {
+    box-shadow: none;
+  }
+}
+
+.c-bolt-reponsive-table__head .c-bolt-responsive-table__cell,
+.c-bolt-responsive-table__header {
+  background-color: var(--m-bolt-table-header);
 }
 
 .c-bolt-responsive-table__table {
   width: 100%;
-  border-collapse: collapse;
-  border: 1px solid var(--m-bolt-border);
 
   .c-bolt-responsive-table--borderless & {
-    border: none;
+    border-spacing: 0;
   }
-}
-
-.c-bolt-responsive-table__head,
-.c-bolt-responsive-table__body,
-.c-bolt-responsive-table__footer {
-  background: linear-gradient(
-    90deg,
-    var(--m-bolt-bg) 0.5em,
-    transparent 0,
-    transparent calc(100% - 0.5em),
-    var(--m-bolt-bg) calc(100% - 0.5em)
-  );
 }
 
 .c-bolt-responsive-table__head {
   .c-bolt-responsive-table__cell--empty {
     width: 1%;
-    border-right: 1px solid var(--m-bolt-border);
     white-space: nowrap;
+    background-color: var(--m-bolt-table-header);
   }
 }
 
 .c-bolt-responsive-table__head {
-  .c-bolt-responsive-table__row {
-    .c-bolt-responsive-table__header {
-      border-right: 1px solid var(--m-bolt-border);
+  .c-bolt-responsive-table__header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    box-shadow: 0 0 0px 1px var(--m-bolt-disabled);
 
-      &:last-of-type {
-        border-right: none;
-      }
+    .c-bolt-responsive-table--borderless & {
+      box-shadow: none;
+    }
 
-      .c-bolt-responsive-table--borderless & {
-        border: none;
-      }
+    @media print {
+      position: static;
+      top: unset;
+      z-index: auto;
     }
   }
 }
 
-.c-bolt-responsive-table__body {
-  .c-bolt-responsive-table__row {
-    .c-bolt-responsive-table__cell {
-      border-right: 1px solid var(--m-bolt-border);
-
-      &:last-of-type {
-        border-right: none;
-      }
-
-      .c-bolt-responsive-table--borderless & {
-        border: none;
-      }
-    }
-  }
-}
-
-.c-bolt-responsive-table__body {
-  .c-bolt-responsive-table__row {
-    .c-bolt-responsive-table__header {
-      border-right: 1px solid var(--m-bolt-border);
-
-      .c-bolt-responsive-table--borderless & {
-        border: none;
-      }
-    }
-  }
-}
-
+.c-bolt-responsive-table__body,
 .c-bolt-responsive-table__footer {
-  .c-bolt-responsive-table__row {
-    .c-bolt-responsive-table__cell {
-      border-right: 1px solid var(--m-bolt-border);
+  .c-bolt-responsive-table__header {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    box-shadow: 0 0 0px 1px var(--m-bolt-disabled);
 
-      &:last-of-type {
-        border: none;
-      }
-
-      .c-bolt-responsive-table--borderless & {
-        border: none;
-      }
+    .c-bolt-responsive-table--borderless & {
+      box-shadow: none;
     }
-  }
-}
 
-.c-bolt-responsive-table__footer {
-  .c-bolt-responsive-table__row {
-    .c-bolt-responsive-table__header {
-      border-right: 1px solid var(--m-bolt-border);
+    @media print {
+      position: static;
+      top: unset;
+      z-index: auto;
     }
   }
 }
 
 .c-bolt-responsive-table__row {
   position: relative;
-  border-bottom: 1px solid var(--m-bolt-border);
-
-  .c-bolt-responsive-table--borderless & {
-    border-bottom: none;
-  }
 }
 
 .c-bolt-responsive-table__cell {
@@ -151,6 +98,7 @@
   font-weight: var(--bolt-type-font-weight-regular);
   color: var(--m-bolt-text);
   line-height: var(--bolt-type-line-height-small);
+  background-color: var(--m-bolt-bg);
 }
 
 .c-bolt-responsive-table__header,
@@ -167,10 +115,11 @@
 }
 
 .c-bolt-responsive-table__caption {
-  margin-bottom: var(--bolt-spacing-y-small);
+  padding: var(--bolt-spacing-y-small);
   font-size: var(--bolt-type-font-size-xsmall);
   line-height: var(--bolt-type-line-height-xsmall);
   text-align: left;
+  background-color: var(--m-bolt-bg);
 }
 
 .c-bolt-responsive-table__body,
@@ -179,7 +128,7 @@
     &:hover {
       .c-bolt-responsive-table__header,
       .c-bolt-responsive-table__cell {
-        background-color: rgba(5, 18, 46, 0.1);
+        background-color: var(--m-bolt-disabled);
       }
     }
   }
@@ -284,51 +233,12 @@
   display: block;
 }
 
-/////////
-
-// .c-bolt-responsive-table__body,
-// .c-bolt-responsive-table__footer {
-//   .c-bolt-responsive-table__header {
-//     position: sticky;
-//     left: 0;
-//     z-index: 1;
-
-//     @media print {
-//       position: static;
-//       top: unset;
-//       z-index: auto;
-//     }
-
-//[2]
-// &:before {
-//   content: '';
-//   position: absolute;
-//   top: 0;
-//   left: -1px;
-//   z-index: -1;
-//   width: 1px;
-//   height: 100%;
-//   background-color: var(--bolt-color-gray-light);
-// }
-
-// //[2]
-// &:after {
-//   content: '';
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   width: 1px;
-//   height: 100%;
-//   background-color: var(--bolt-color-gray-light);
-// }
-//   }
-// }
-
 .c-bolt-responsive-table__header-cta {
   display: flex;
   justify-content: space-between;
 }
 
+/////in progress
 .c-bolt-responsive-table__button--toggle-row {
   display: flex;
   justify-content: flex-end;
@@ -374,22 +284,22 @@
   }
 }
 
-.test-table {
-  @include bolt-horizontal-scroll;
+// .test-table {
+//   @include bolt-horizontal-scroll;
 
-  box-shadow: 0 0 0 1px var(--m-bolt-border);
-  background-color: var(--m-bolt-border);
+//   box-shadow: 0 0 0 1px var(--m-bolt-disabled);
+//   background-color: var(--m-bolt-disabled);
 
-  table {
-    margin: -1px;
-  }
+//   table {
+//     margin: -1px;
+//   }
 
-  td {
-    background-color: var(--m-bolt-bg);
-  }
+//   td {
+//     background-color: var(--m-bolt-bg);
+//   }
 
-  thead td,
-  th {
-    background-color: var(--m-bolt-table-header);
-  }
-}
+//   thead td,
+//   th {
+//     background-color: var(--m-bolt-table-header);
+//   }
+// }
