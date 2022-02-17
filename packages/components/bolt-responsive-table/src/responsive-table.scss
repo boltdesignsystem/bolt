@@ -17,7 +17,8 @@
  */
 .c-bolt-responsive-table {
   // Styles go here. /* [1] */
-  display: block;
+  display: inline-block;
+  max-width: 100%;
   @include bolt-horizontal-scroll;
   max-height: 75vh;
   box-shadow: 0 0 0px 1px var(--m-bolt-disabled);
@@ -34,8 +35,6 @@
 }
 
 .c-bolt-responsive-table__table {
-  width: 100%;
-
   .c-bolt-responsive-table--borderless & {
     border-spacing: 0;
   }
