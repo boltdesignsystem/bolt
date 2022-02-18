@@ -10,10 +10,33 @@
 
 {% set demo %}
   {% set header %}
+    {% set checkbox %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'This is a header cell 1.',
+          displayType: 'inline-checkbox',
+          attributes: {
+            for: 'checkbox-header',
+            name: 'checkbox-name'
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            type: 'checkbox',
+            id: 'checkbox-header',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+    {% endset %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a header cell 1.',
+      content: checkbox,
       header: true,
-      checkbox: true,
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'This is a header cell 2.',
@@ -27,10 +50,33 @@
   {% endset %}
 
   {% set row1 %}
+    {% set checkbox %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'This is a regular cell in row 1.',
+          displayType: 'inline-checkbox',
+          attributes: {
+            for: 'checkbox-row-1',
+            name: 'checkbox-name'
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            type: 'checkbox',
+            id: 'checkbox-row-1',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+    {% endset %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
-        checkbox: true,
+        content: checkbox,
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'This is a regular cell.',
@@ -46,10 +92,33 @@
   {% endset %}
 
   {% set row2 %}
+    {% set checkbox %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'This is a regular cell in row 2.',
+          displayType: 'inline-checkbox',
+          attributes: {
+            for: 'checkbox-row-2',
+            name: 'checkbox-name'
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            type: 'checkbox',
+            id: 'checkbox-row-2',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+    {% endset %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in row 2.',
-        checkbox: true,
+        content: checkbox,
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'This is a regular cell in row 2.',
@@ -65,10 +134,33 @@
   {% endset %}
 
   {% set row3 %}
+    {% set checkbox %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'This is a regular cell in row 3.',
+          displayType: 'inline-checkbox',
+          attributes: {
+            for: 'checkbox-row-3',
+            name: 'checkbox-name'
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            type: 'checkbox',
+            id: 'checkbox-row-3',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+      } only %}
+    {% endset %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in row 3.',
-        checkbox: true,
+        content: checkbox,
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'This is a regular cell in row 3.',
@@ -122,10 +214,33 @@
 
 {% set twig_markup %}{% verbatim %}
 {% set header %}
+  {% set checkbox %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'This is a header cell 1.',
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'checkbox-header',
+          name: 'checkbox-name'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'checkbox-header',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+  {% endset %}
   {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a header cell 1.',
+    content: checkbox,
     header: true,
-    checkbox: true,
   } only %}
   {% include '@bolt-components-responsive-table/table-cell.twig' with {
     content: 'This is a header cell 2.',
@@ -139,10 +254,33 @@
 {% endset %}
 
 {% set row1 %}
+  {% set checkbox %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'This is a regular cell in row 1.',
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'checkbox-row-1',
+          name: 'checkbox-name'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'checkbox-row-1',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+  {% endset %}
   {% set cells %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell.',
-      checkbox: true,
+      content: checkbox,
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'This is a regular cell.',
@@ -158,10 +296,33 @@
 {% endset %}
 
 {% set row2 %}
+  {% set checkbox %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'This is a regular cell in row 2.',
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'checkbox-row-2',
+          name: 'checkbox-name'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'checkbox-row-2',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+  {% endset %}
   {% set cells %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell in row 2.',
-      checkbox: true,
+      content: checkbox,
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'This is a regular cell in row 2.',
@@ -177,10 +338,33 @@
 {% endset %}
 
 {% set row3 %}
+  {% set checkbox %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'This is a regular cell in row 3.',
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'checkbox-row-3',
+          name: 'checkbox-name'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'checkbox-row-3',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+  {% endset %}
   {% set cells %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell in row 3.',
-      checkbox: true,
+      content: checkbox,
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'This is a regular cell in row 3.',
@@ -250,11 +434,11 @@
 <script>
   function toggleCheckbox() {
     const mainCheckbox = document.querySelector(
-      '.c-bolt-responsive-table__head .c-bolt-responsive-table__checkbox',
+      '.c-bolt-responsive-table__head .c-bolt-input--checkbox',
     );
 
     const rowCheckboxes = document.querySelectorAll(
-      '.c-bolt-responsive-table__body .c-bolt-responsive-table__checkbox',
+      '.c-bolt-responsive-table__body .c-bolt-input--checkbox',
     );
     rowCheckboxes.forEach(el => {
       el.addEventListener('click', () => {
