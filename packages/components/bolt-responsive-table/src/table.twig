@@ -39,9 +39,7 @@
   <table class="c-bolt-responsive-table__table">
     {% if header %}
       <thead {{ header_attributes.addClass(header_classes) }}>
-        <tr class="c-bolt-responsive-table__row">
-          {{ header.content }}
-        </tr>
+        {{ header.content }}
       </thead>
     {% endif %}
     {% if body %}
@@ -53,9 +51,7 @@
     {% endif %}
     {% if footer %}
       <tfoot {{ footer_attributes.addClass(footer_classes) }}>
-        <tr class="c-bolt-responsive-table__row">
-          {{ footer.content }}
-        </tr>
+        {{ footer.content }}
       </tfoot>
     {% endif %}
     {% if caption %}
