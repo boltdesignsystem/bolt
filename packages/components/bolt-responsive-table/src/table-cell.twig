@@ -5,32 +5,11 @@
 
 {# Variables #}
 {% set this = init(schema) %}
-{% set header_attributes = create_attribute(header_attributes|default({})) %}
+{% set table_header_attributes = create_attribute(table_header_attributes|default({})) %}
 {% set table_data_attributes = create_attribute(table_data_attributes|default({})) %}
-{% set input_checkbx %}
-<input class="c-bolt-responsive-table__checkbox" type="checkbox" id="{{ content }}">
-<label class="c-bolt-responsive-table__cell-label" for="{{ content }}">
-  {{ content }}
-</label>
-{% endset %}
-{% set icon_chevron_down %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'chevron-down',
-  } only %}
-{% endset %}
-{% set icon_chevron_up %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'chevron-up',
-  } only %}
-{% endset %}
-{% set icon_filter %}
-  {% include '@bolt-elements-icon/icon.twig' with {
-    name: 'filter',
-  } only %}
-{% endset %}
 
 {# Array of classes based on the defined + default props #}
-{% set header_classes = [
+{% set table_header_classes = [
   'c-bolt-responsive-table__header',
 ] %}
 
@@ -39,60 +18,17 @@
 ] %}
 
 {% if header %}
-  <th {{ header_attributes.addClass(header_classes) }}>
-    {% if checkbox %}<div class="c-bolt-responsive-table__input">{{ input_checkbx }}{% endif %}
-      {% if sort or filters %}<div class="c-bolt-responsive-table__cta">{% endif %}
-        {{ content }}
-        {% if sort %}
-          <button type="button" class="c-bolt-responsive-table__button c-bolt-responsive-table__button--sort" aria-label="Sort">
-            <div class="c-bolt-responsive-table__button-icons">
-              {{ icon_chevron_up }}
-              {{ icon_chevron_down }}
-            </div>
-          </button>
-        {% endif %}
-        {% if filters %}
-          <button type="button" class="c-bolt-responsive-table__button c-bolt-responsive-table__button--filter" aria-label="Filter">
-            {{ icon_filter }}
-          </button>
-        {% endif %}
-      {% if sort or filters %}</div>{% endif %}
+  <th {{ table_header_attributes.addClass(table_header_classes) }}>
+    {% if filters %}<div class="c-bolt-responsive-table__controls">{% endif %}
+      {{ content }}
       {% if filters %}
-        <div class="c-bolt-responsive-table__filters">
-          <ul class="c-bolt-responsive-table__filters-list">
-            <li class="c-bolt-responsive-table__filters-item">
-              <label class="c-bolt-responsive-table__filters-label">
-                <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
-                  filter 1
-              </label>
-            </li>
-            <li class="c-bolt-responsive-table__filters-item">
-              <label class="c-bolt-responsive-table__filters-label">
-                <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
-                  filter 2
-              </label>
-            </li>
-            <li class="c-bolt-responsive-table__filters-item">
-              <label class="c-bolt-responsive-table__filters-label">
-                <input class="c-bolt-responsive-table__filters-checkbox" type="checkbox" />
-                  filter 3
-              </label>
-            </li>
-          </ul>
-          <button class="c-bolt-responsive-table__button c-bolt-responsive-table__filters-reset" type="button" aria-label="Reset filters">Reset</button>
-        </div>
+        {{ filters }}
       {% endif %}
-    {% if checkbox %}</div>{% endif %}
+    {% if filters %}</div>{% endif %}
   </th>
 {% else %}
   <td {{ table_data_attributes.addClass(table_data_classes) }}>
-    {% if checkbox %}
-      <div class="c-bolt-responsive-table__input">{{ input_checkbx }}
-    {% endif %}
     {{ content }}
-    {% if checkbox %}
-      </div>
-    {% endif %}
   </td>
 {% endif %}
 

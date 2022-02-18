@@ -9,11 +9,12 @@
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  'c-bolt-responsive-table__row',
+  'c-bolt-responsive-table__input',
 ] %}
 
-<tr {{ attributes.addClass(classes) }}>
-  {{ content }}
-</tr>
-
-
+<span {{ attributes.addClass(classes) }}>
+  <input class="c-bolt-responsive-table__checkbox" type="checkbox" id="{{ content }}">
+  <label class="c-bolt-responsive-table__cell-label" for="{{ content }}">
+    {{ content }}
+  </label>
+</span>
