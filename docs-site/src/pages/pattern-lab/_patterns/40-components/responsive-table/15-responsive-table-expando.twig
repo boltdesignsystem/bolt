@@ -146,8 +146,7 @@
 {% set twig_markup %}{% verbatim %}
 {% set header %}
   {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'Toggle',
-    header: true,
+    content: '',
   } only %}
   {% include '@bolt-components-responsive-table/table-cell.twig' with {
     content: 'This is a header cell 1.',
@@ -155,6 +154,10 @@
   } only %}
   {% include '@bolt-components-responsive-table/table-cell.twig' with {
     content: 'This is a header cell 2.',
+    header: true,
+  } only %}
+  {% include '@bolt-components-responsive-table/table-cell.twig' with {
+    content: 'This is a header cell 3.',
     header: true,
   } only %}
   {% include '@bolt-components-responsive-table/table-cell.twig' with {
@@ -179,13 +182,23 @@
 
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: expand_button,
+      header: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a side header.',
+      header: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'This is a regular cell.',
     } only %}
     {# Add more cells here #}
   {% endset %}
-
   {% include '@bolt-components-responsive-table/table-row.twig' with {
     content: cells,
   } only %}
@@ -194,7 +207,19 @@
 {% set row_hidden_1 %}
   {% set cells %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell.',
+      content: '',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in ahidden row.',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in ahidden row.',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in ahidden row.',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in ahidden row.',
     } only %}
     {# Add more cells here #}
   {% endset %}
@@ -210,7 +235,19 @@
 {% set row_hidden_2 %}
   {% set cells %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell.',
+      content: '',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in ahidden row.',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in ahidden row.',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in ahidden row.',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a regular cell in ahidden row.',
     } only %}
     {# Add more cells here #}
   {% endset %}
@@ -229,6 +266,9 @@
   },
   body: {
     content: [
+      row_expandable,
+      row_hidden_1,
+      row_hidden_2,
       row_expandable,
       row_hidden_1,
       row_hidden_2,
