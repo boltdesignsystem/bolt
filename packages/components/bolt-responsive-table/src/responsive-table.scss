@@ -146,29 +146,29 @@
   }
 }
 
-.c-bolt-responsive-table__input {
-  display: inline-flex;
-  position: relative;
-  overflow: hidden;
-}
+// .c-bolt-responsive-table__input {
+//   display: inline-flex;
+//   position: relative;
+//   overflow: hidden;
+// }
 
-.c-bolt-responsive-table__checkbox {
-  margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-small) 0 0;
-}
+// .c-bolt-responsive-table__checkbox {
+//   margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-small) 0 0;
+// }
 
-.c-bolt-responsive-table__cell-label {
-  opacity: 0;
-  position: absolute;
-  width: 100%;
+// .c-bolt-responsive-table__cell-label {
+//   opacity: 0;
+//   position: absolute;
+//   width: 100%;
 
-  &:hover {
-    cursor: pointer;
-  }
-}
+//   &:hover {
+//     cursor: pointer;
+//   }
+// }
 
-.c-bolt-responsive-table__header-checkbox {
-  margin-right: var(--bolt-spacing-x-small);
-}
+// .c-bolt-responsive-table__header-checkbox {
+//   margin-right: var(--bolt-spacing-x-small);
+// }
 
 .c-bolt-responsive-table__button {
   @include bolt-button-native-styles-reset;
@@ -191,6 +191,17 @@
   }
 }
 
+.tippy-box {
+  .e-bolt-responsive-table__button-reset-filters {
+    display: none;
+
+    &.visible {
+      display: block;
+    }
+  }
+}
+
+/////
 .c-bolt-responsive-table__filters {
   @include bolt-shadow(
     $key: 'level-20',
