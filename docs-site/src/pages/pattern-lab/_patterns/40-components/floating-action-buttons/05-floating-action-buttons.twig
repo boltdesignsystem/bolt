@@ -105,7 +105,9 @@
 {% endset %}
 
 {% set _button_toggle %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig' only %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig' with {
+    content: 'Toggle Menu'
+  } only %}
 {% endset %}
 
 {% set _content_secondary %}
@@ -152,7 +154,9 @@
 
 {% set twig_markup %}{% verbatim %}
 {% set _button_toggle %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig' %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig' with {
+    content: 'Toggle Menu'
+  } only %}
 {% endset %}
 
 {% set _content_secondary %}

@@ -10,7 +10,7 @@ export class BoltFloatingActionButtons {
     this.secondaryList = this.list.querySelector(
       '.js-bolt-floating-action-buttons-list ',
     );
-    this.showOnScroll = this.el.getAttribute('show-on-scroll');
+    this.showOnScroll = this.el.dataset.showOnScroll;
     this.showOnLoad = this.el.dataset.showOnLoad;
     this.showToggleButton = this.list.querySelector(
       '.js-bolt-floating-action-buttons-toggle',

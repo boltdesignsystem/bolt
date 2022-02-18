@@ -17,7 +17,8 @@
   {{ attributes.addClass(classes) }}
   aria-hidden="true"
   {% if this.data.show_on_load.value %}data-show-on-load{% endif %}
-  {{ this.props|without("class")|without("placement") }}
+  {% if this.data.show_on_scroll.value %}data-show-on-scroll="{{ this.data.show_on_scroll.value }}"{% endif %}
+  {{ this.props|without("class")|without("placement")|without("show_on_scroll") }}
 >
   {% spaceless %}
     {{ content }}
