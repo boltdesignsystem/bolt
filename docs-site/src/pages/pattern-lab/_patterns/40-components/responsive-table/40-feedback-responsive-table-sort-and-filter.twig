@@ -26,7 +26,7 @@
         }
       } only %}
     {% endset %}
-    {% set filters %}
+    {% set filters_1 %}
       {% set icon_filter %}
         {% include '@bolt-elements-icon/icon.twig' with {
           name: 'filter',
@@ -40,12 +40,312 @@
           }
         } only %}
       {% endset %}
-      {% set content %}
-        Filters go here
+      {% set filters_checkboxes %}
+        {% set checkbox_children %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'filter 1 column 1',
+              displayType: 'inline-checkbox',
+              attributes: {
+                for: 'checkbox-filter-1-column-1',
+                name: 'checkbox-name'
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-filter-1-column-1',
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'filter 2 column 1',
+              displayType: 'inline-checkbox',
+              attributes: {
+                for: 'checkbox-filter-2-column-1',
+                name: 'checkbox-name'
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-filter-2-column-1',
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'filter 3 column 1',
+              displayType: 'inline-checkbox',
+              attributes: {
+                for: 'checkbox-filter-3-column-1',
+                name: 'checkbox-name'
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-filter-3-column-1',
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+        {% endset %}
+        {% set fieldset_children %}
+          {% include '@bolt-components-form/form-checkboxes.twig' with {
+              children: checkbox_children
+            } only %}
+        {% endset %}
+        {% include '@bolt-components-form/form-fieldset.twig' with {
+          legendTitle: 'Filter by',
+          children: fieldset_children,
+        } only %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Reset',
+          size: 'xsmall',
+          hierarchy: 'tertiary',
+          attributes: {
+            type: 'button'
+          }
+        } only %}
       {% endset %}
       {% include '@bolt-components-popover/popover.twig' with {
         trigger: trigger,
-        content: content,
+        content: filters_checkboxes,
+        trigger_event: 'hover',
+      } only %}
+    {% endset %}
+
+    {% set filters_2 %}
+      {% set icon_filter %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'filter',
+        } only %}
+      {% endset %}
+      {% set trigger %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: icon_filter ~ '<span class="u-bolt-visuallyhidden">Filters</span>',
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+      {% endset %}
+      {% set filters_checkboxes %}
+        {% set checkbox_children %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'filter 1 column 2',
+              displayType: 'inline-checkbox',
+              attributes: {
+                for: 'checkbox-filter-1-column-2',
+                name: 'checkbox-name'
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-filter-1-column-2',
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'filter 2 column 2',
+              displayType: 'inline-checkbox',
+              attributes: {
+                for: 'checkbox-filter-2-column-2',
+                name: 'checkbox-name'
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-filter-2-column-2',
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'filter 3 column 2',
+              displayType: 'inline-checkbox',
+              attributes: {
+                for: 'checkbox-filter-3-column-2',
+                name: 'checkbox-name'
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-filter-3-column-2',
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+        {% endset %}
+        {% set fieldset_children %}
+          {% include '@bolt-components-form/form-checkboxes.twig' with {
+              children: checkbox_children
+            } only %}
+        {% endset %}
+        {% include '@bolt-components-form/form-fieldset.twig' with {
+          legendTitle: 'Filter by',
+          children: fieldset_children,
+        } only %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Reset',
+          size: 'xsmall',
+          hierarchy: 'tertiary',
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: trigger,
+        content: filters_checkboxes,
+        trigger_event: 'hover',
+      } only %}
+    {% endset %}
+
+    {% set filters_3 %}
+      {% set icon_filter %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'filter',
+        } only %}
+      {% endset %}
+      {% set trigger %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+          content: icon_filter ~ '<span class="u-bolt-visuallyhidden">Filters</span>',
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+      {% endset %}
+      {% set filters_checkboxes %}
+        {% set checkbox_children %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'filter 1 column 3',
+              displayType: 'inline-checkbox',
+              attributes: {
+                for: 'checkbox-filter-1-column-3',
+                name: 'checkbox-name'
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-filter-1-column-3',
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'filter 2 column 3',
+              displayType: 'inline-checkbox',
+              attributes: {
+                for: 'checkbox-filter-2-column-3',
+                name: 'checkbox-name'
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-filter-2-column-3',
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'filter 3 column 3',
+              displayType: 'inline-checkbox',
+              attributes: {
+                for: 'checkbox-filter-3-column-3',
+                name: 'checkbox-name'
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'checkbox-filter-3-column-3',
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+        {% endset %}
+        {% set fieldset_children %}
+          {% include '@bolt-components-form/form-checkboxes.twig' with {
+              children: checkbox_children
+            } only %}
+        {% endset %}
+        {% include '@bolt-components-form/form-fieldset.twig' with {
+          legendTitle: 'Filter by',
+          children: fieldset_children,
+        } only %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Reset',
+          size: 'xsmall',
+          hierarchy: 'tertiary',
+          attributes: {
+            type: 'button'
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: trigger,
+        content: filters_checkboxes,
         trigger_event: 'hover',
       } only %}
     {% endset %}
@@ -53,17 +353,17 @@
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: sortable_header,
       header: true,
-      filters: filters,
+      filters: filters_1,
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: sortable_header,
       header: true,
-      filters: filters,
+      filters: filters_2,
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: sortable_header,
       header: true,
-      filters: filters,
+      filters: filters_3,
     } only %}
   {% endset %}
 
@@ -160,17 +460,17 @@
   {% include '@bolt-components-responsive-table/table-cell.twig' with {
     content: 'This is a header cell 1.',
     header: true,
-    filters: filters,
+    filters: filters_1,
   } only %}
   {% include '@bolt-components-responsive-table/table-cell.twig' with {
     content: 'This is a header cell 2.',
     header: true,
-    filters: filters,
+    filters: filters_2,
   } only %}
   {% include '@bolt-components-responsive-table/table-cell.twig' with {
     content: 'This is a header cell 3.',
     header: true,
-    filters: filters,
+    filters: filters_3,
   } only %}
   {# Add more headers here #}
 {% endset %}
