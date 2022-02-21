@@ -26,6 +26,9 @@
           attributes: {
             type: 'checkbox',
             id: 'checkbox-header',
+            class: [
+              'js-bolt-head-checkbox'
+            ]
           },
         } only %}
       {% endset %}
@@ -66,6 +69,9 @@
           attributes: {
             type: 'checkbox',
             id: 'checkbox-row-1',
+            class: [
+              'js-bolt-body-row-checkbox'
+            ]
           },
         } only %}
       {% endset %}
@@ -108,6 +114,9 @@
           attributes: {
             type: 'checkbox',
             id: 'checkbox-row-2',
+            class: [
+              'js-bolt-body-row-checkbox'
+            ]
           },
         } only %}
       {% endset %}
@@ -150,6 +159,9 @@
           attributes: {
             type: 'checkbox',
             id: 'checkbox-row-3',
+            class: [
+              'js-bolt-body-row-checkbox'
+            ]
           },
         } only %}
       {% endset %}
@@ -230,6 +242,9 @@
         attributes: {
           type: 'checkbox',
           id: 'checkbox-header',
+          class: [
+              'js-bolt-head-checkbox'
+            ]
         },
       } only %}
     {% endset %}
@@ -270,6 +285,9 @@
         attributes: {
           type: 'checkbox',
           id: 'checkbox-row-1',
+          class: [
+            'js-bolt-body-row-checkbox'
+          ]
         },
       } only %}
     {% endset %}
@@ -312,6 +330,9 @@
         attributes: {
           type: 'checkbox',
           id: 'checkbox-row-2',
+          class: [
+            'js-bolt-body-row-checkbox'
+          ]
         },
       } only %}
     {% endset %}
@@ -354,6 +375,9 @@
         attributes: {
           type: 'checkbox',
           id: 'checkbox-row-3',
+          class: [
+            'js-bolt-body-row-checkbox'
+          ]
         },
       } only %}
     {% endset %}
@@ -434,11 +458,11 @@
 <script>
   function toggleCheckbox() {
     const mainCheckbox = document.querySelector(
-      '.c-bolt-responsive-table__head .c-bolt-input--checkbox',
+      '.js-bolt-head-checkbox',
     );
 
     const rowCheckboxes = document.querySelectorAll(
-      '.c-bolt-responsive-table__body .c-bolt-input--checkbox',
+      '.js-bolt-body-row-checkbox',
     );
     rowCheckboxes.forEach(el => {
       el.addEventListener('click', () => {
