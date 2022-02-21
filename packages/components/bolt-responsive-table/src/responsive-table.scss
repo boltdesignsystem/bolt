@@ -135,6 +135,18 @@
 }
 
 .c-bolt-responsive-table__button--expand {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + 2 * var(--bolt-spacing-x-small));
+    height: calc(100% + 2 * var(--bolt-spacing-y-small));
+  }
+
   &[aria-expanded='true'] {
     svg {
       transform: rotate(180deg);
@@ -208,7 +220,7 @@
 
   &:focus {
     outline: var(--bolt-focus-ring);
-    outline-offset: 4px;
+    outline-offset: 6px;
   }
 }
 
