@@ -15,6 +15,7 @@
  *
  * 1. Provide line-comments like this.
  */
+
 .c-bolt-responsive-table {
   @include bolt-horizontal-scroll;
 
@@ -24,6 +25,11 @@
   border-radius: bolt-border-radius(small);
   box-shadow: 0 0 0 1px var(--m-bolt-disabled);
   background-color: var(--m-bolt-disabled);
+
+  @media print {
+    max-width: none;
+    max-height: none;
+  }
 
   &.c-bolt-responsive-table--borderless {
     box-shadow: none;
@@ -105,6 +111,12 @@
       &:nth-of-type(2) {
         left: 35px;
       }
+    }
+  }
+
+  &[id^='hidden-row'] {
+    @media print {
+      display: table-row !important;
     }
   }
 }
