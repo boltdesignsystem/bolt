@@ -66,6 +66,11 @@
     {% endset %}
     {% include '@bolt-components-responsive-table/table-row.twig' with {
       content: cells,
+      attributes: {
+        class: [
+          'js-bolt-row-trigger'
+        ]
+      }
     } only %}
   {% endset %}
 
@@ -75,16 +80,16 @@
         content: '',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in a hidden row.',
+        content: 'A cell in a hidden row.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in a hidden row.',
+        content: 'A cell in a hidden row.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in a hidden row.',
+        content: 'A cell in a hidden row.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in a hidden row.',
+        content: 'A cell in a hidden row.',
       } only %}
       {# Add more cells here #}
     {% endset %}
@@ -103,16 +108,16 @@
         content: '',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in a hidden row.',
+        content: 'A cell in a hidden row.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in a hidden row.',
+        content: 'A cell in a hidden row.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in a hidden row.',
+        content: 'A cell in a hidden row.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell in a hidden row.',
+        content: 'A cell in a hidden row.',
       } only %}
       {# Add more cells here #}
     {% endset %}
@@ -210,16 +215,16 @@
       content: '',
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell in a hidden row.',
+      content: 'A cell in a hidden row.',
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell in a hidden row.',
+      content: 'A cell in a hidden row.',
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell in a hidden row.',
+      content: 'A cell in a hidden row.',
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell in a hidden row.',
+      content: 'A cell in a hidden row.',
     } only %}
     {# Add more cells here #}
   {% endset %}
@@ -238,16 +243,16 @@
       content: '',
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell in a hidden row.',
+      content: 'A cell in a hidden row.',
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell in a hidden row.',
+      content: 'A cell in a hidden row.',
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell in a hidden row.',
+      content: 'A cell in a hidden row.',
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a regular cell in a hidden row.',
+      content: 'A cell in a hidden row.',
     } only %}
     {# Add more cells here #}
   {% endset %}
@@ -292,3 +297,66 @@
   twig_markup: twig_markup,
   html_markup: html_markup
 } only %}
+
+<script>
+  //nextUntil.js method https://vanillajstoolkit.com/helpers/nextuntil/
+  var nextUntil = function(elem, selector, filter) {
+    var siblings = [];
+
+    elem = elem.nextElementSibling;
+
+    while (elem) {
+      if (elem.matches(selector)) break;
+
+      if (filter && !elem.matches(filter)) {
+        elem = elem.nextElementSibling;
+      }
+      siblings.push(elem);
+      elem = elem.nextElementSibling;
+    }
+
+    return siblings;
+  };
+
+  var start = document.querySelectorAll(
+    '.js-bolt-row-trigger',
+  );
+
+  for (let i = 0; i < start.length; i++) {
+    const tableButton = start[i].querySelector(
+      '.js-bolt-toggle-button',
+    );
+
+    var next = nextUntil(start[i], '.js-bolt-row-trigger');
+    next.forEach(el => {
+      el.classList.add('u-bolt-hidden');
+    });
+
+    tableButton.addEventListener('click', function() {
+      var next = nextUntil(
+        start[i],
+        '.js-bolt-row-trigger',
+      );
+      next.forEach(el => {
+        el.classList.toggle('u-bolt-hidden');
+      });
+    });
+  }
+
+  function toggleAriaExpanded() {
+    const tableButton = document.querySelectorAll(
+      '.js-bolt-toggle-button',
+    );
+    tableButton.forEach(el => {
+      el.addEventListener('click', () => {
+        if (el.getAttribute('aria-expanded') === 'true') {
+          el.setAttribute('aria-expanded', 'false');
+        } else {
+          el.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+
+  toggleAriaExpanded()
+</script>

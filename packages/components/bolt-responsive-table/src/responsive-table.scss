@@ -122,6 +122,14 @@
   }
 }
 
+.c-bolt-responsive-table__button--expand {
+  &[aria-expanded='true'] {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+}
+
 .c-bolt-responsive-table__cell {
   background-color: var(--m-bolt-bg);
 }
@@ -183,30 +191,6 @@
   }
 }
 
-// .c-bolt-responsive-table__input {
-//   display: inline-flex;
-//   position: relative;
-//   overflow: hidden;
-// }
-
-// .c-bolt-responsive-table__checkbox {
-//   margin: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-small) 0 0;
-// }
-
-// .c-bolt-responsive-table__cell-label {
-//   opacity: 0;
-//   position: absolute;
-//   width: 100%;
-
-//   &:hover {
-//     cursor: pointer;
-//   }
-// }
-
-// .c-bolt-responsive-table__header-checkbox {
-//   margin-right: var(--bolt-spacing-x-small);
-// }
-
 .c-bolt-responsive-table__button {
   @include bolt-button-native-styles-reset;
 
@@ -228,7 +212,7 @@
   }
 }
 
-/////
+///// old filters
 .c-bolt-responsive-table__filters {
   @include bolt-shadow(
     $key: 'level-20',
@@ -287,7 +271,7 @@
   justify-content: space-between;
 }
 
-/////in progress
+/////old collapsing rows
 .c-bolt-responsive-table__button--toggle-row {
   display: flex;
   justify-content: flex-end;
