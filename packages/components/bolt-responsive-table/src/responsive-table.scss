@@ -161,7 +161,16 @@
 .c-bolt-responsive-table__head .c-bolt-responsive-table__cell,
 .c-bolt-responsive-table__header {
   background-color: var(--m-bolt-table-header);
+}
 
+.c-bolt-responsive-table__head .c-bolt-responsive-table__cell,
+.c-bolt-responsive-table__head .c-bolt-responsive-table__header,
+.c-bolt-responsive-table__body:first-child
+  .c-bolt-responsive-table__row:first-of-type
+  .c-bolt-responsive-table__cell,
+.c-bolt-responsive-table__body:first-child
+  .c-bolt-responsive-table__row:first-of-type
+  .c-bolt-responsive-table__header {
   &:first-child {
     border-top-left-radius: bolt-border-radius(small);
   }
@@ -171,6 +180,12 @@
   }
 }
 
+.c-bolt-responsive-table__body:last-child
+  .c-bolt-responsive-table__row:last-of-type
+  .c-bolt-responsive-table__cell,
+.c-bolt-responsive-table__body:last-child
+  .c-bolt-responsive-table__row:last-of-type
+  .c-bolt-responsive-table__header,
 .c-bolt-responsive-table__footer .c-bolt-responsive-table__cell,
 .c-bolt-responsive-table__footer .c-bolt-responsive-table__header {
   &:first-child {

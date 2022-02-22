@@ -1,5 +1,5 @@
 {% set description %}
-  Header cells can be used in the table body as well, use them to create side headers.
+  A basic table is composed of table header, body, footer, rows, cells, and caption.
 {% endset %}
 
 {% set demo %}
@@ -26,8 +26,7 @@
   {% set row1 %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a header cell.',
-        header: true,
+        content: 'This is a regular cell.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'This is a regular cell.',
@@ -44,8 +43,7 @@
   {% set row2 %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a header cell.',
-        header: true,
+        content: 'This is a regular cell.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'This is a regular cell.',
@@ -62,8 +60,7 @@
   {% set row3 %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a header cell.',
-        header: true,
+        content: 'This is a regular cell.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'This is a regular cell.',
@@ -80,8 +77,7 @@
   {% set footer %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a header cell in table footer.',
-        header: true,
+        content: 'This is a regular cell in table footer.',
       } only %}
         {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'This is a regular cell in table footer.',
@@ -119,7 +115,7 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Table with side headers',
+  title: 'Basic table',
   description: description,
   demo: demo,
   twig_markup: twig_markup,
