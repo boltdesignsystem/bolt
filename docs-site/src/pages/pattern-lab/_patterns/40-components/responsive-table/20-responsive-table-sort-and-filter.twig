@@ -11,20 +11,6 @@
 {% set demo %}
   {% set header %}
     {% set sortable_header %}
-      {# {% set _icon_pega_sort %}
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'pega-sort',
-        } only %}
-      {% endset %}
-      {% include '@bolt-elements-text-link/text-link.twig' with {
-        content: 'Sortable header',
-        hierarchy: 'transparent',
-        icon_after: _icon_pega_sort,
-        reversed_underline: true,
-        attributes: {
-          type: 'button',
-        }
-      } only %} #}
       {% include '@bolt-components-responsive-table/table-sorting-text-button.twig' with {
         content: 'Sortable header',
       } only %}
