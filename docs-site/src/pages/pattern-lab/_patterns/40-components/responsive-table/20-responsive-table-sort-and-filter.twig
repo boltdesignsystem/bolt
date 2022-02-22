@@ -1086,7 +1086,7 @@
           resetBtn.classList.add('u-bolt-hidden')
         }
 
-        resetBtn.addEventListener('click', (event) => {
+        resetBtn.addEventListener('click', event => {
           event.target.classList.add('u-bolt-hidden');
           checkboxes.forEach(el => {
             el.checked = false;
@@ -1101,29 +1101,35 @@
     const table = document.querySelector('.js-bolt-responsive-table');
     const sortingButton = document.querySelectorAll('.js-bolt-sort-button');
 
+    var clickcount = 0;
     table.addEventListener('click', event => {
+      {# sortingButton.forEach(el => {
+        if(el.parentElement.classList.contains('js-bolt-sorted-unsorted')) {
+          el.parentElement.classList.remove('u-bolt-hidden')
+        }
+        if(el.parentElement.classList.contains('js-bolt-sorted-desc')) {
+          el.parentElement.classList.add('u-bolt-hidden')
+        }
+        if(el.parentElement.classList.contains('js-bolt-sorted-asc')) {
+          el.parentElement.classList.add('u-bolt-hidden')
+        }
+      }) #}
       if(event.target.matches('.js-bolt-sort-button')) {
-        var clickcount = 0;
-        sortingButton.forEach(el => {
-          el.addEventListener('click', event => {
-            clickcount++
-            console.log(clickcount)
-            if(clickcount == 1) {
-              event.target.closest('.js-bolt-sorted-unsorted').classList.add('u-bolt-hidden')
-              event.target.parentElement.parentElement.querySelector('.js-bolt-sorted-asc').classList.remove('u-bolt-hidden')
-            }
-            if(clickcount == 2) {
-              event.target.closest('.js-bolt-sorted-asc').classList.add('u-bolt-hidden')
-              event.target.parentElement.parentElement.querySelector('.js-bolt-sorted-desc').classList.remove('u-bolt-hidden')
-            }
-            if(clickcount == 3) {
-              event.target.closest('.js-bolt-sorted-desc').classList.add('u-bolt-hidden')
-              event.target.parentElement.parentElement.querySelector('.js-bolt-sorted-unsorted').classList.remove('u-bolt-hidden')
-              clickcount = 0;
-            }
-            return
-          })
-        })
+        clickcount++
+        console.log(clickcount, 'match')
+        if(clickcount == 1) {
+          event.target.closest('.js-bolt-sorted-unsorted').classList.add('u-bolt-hidden')
+          event.target.parentElement.parentElement.querySelector('.js-bolt-sorted-asc').classList.remove('u-bolt-hidden')
+        }
+        else if(clickcount == 2) {
+          event.target.closest('.js-bolt-sorted-asc').classList.add('u-bolt-hidden')
+          event.target.parentElement.parentElement.querySelector('.js-bolt-sorted-desc').classList.remove('u-bolt-hidden')
+        }
+        else if(clickcount >= 3) {
+          event.target.closest('.js-bolt-sorted-desc').classList.add('u-bolt-hidden')
+          event.target.parentElement.parentElement.querySelector('.js-bolt-sorted-unsorted').classList.remove('u-bolt-hidden')
+          clickcount = 0;
+        }
       }
     })
   }
