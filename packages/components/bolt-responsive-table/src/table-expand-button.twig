@@ -5,7 +5,7 @@
 
 {# Variables #}
 {% set this = init(schema) %}
-{% set expand_button_attributes = create_attribute(expand_button_attributes|default({})) %}
+{% set expand_button_attributes = create_attribute(attributes|default({})) %}
 {% set icon_chevron_down %}
   {% include '@bolt-elements-icon/icon.twig' with {
     name: 'chevron-down',
