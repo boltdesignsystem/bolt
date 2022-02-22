@@ -11,7 +11,7 @@
 {% set demo %}
   {% set header %}
     {% set sortable_header %}
-      {% set _icon_pega_sort %}
+      {# {% set _icon_pega_sort %}
         {% include '@bolt-elements-icon/icon.twig' with {
           name: 'pega-sort',
         } only %}
@@ -24,6 +24,9 @@
         attributes: {
           type: 'button',
         }
+      } only %} #}
+      {% include '@bolt-components-responsive-table/table-sorting-text-button.twig' with {
+        content: 'Sortable header',
       } only %}
     {% endset %}
     {% set filters_1 %}
@@ -383,20 +386,25 @@
       } only %}
     {% endset %}
 
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: sortable_header,
-      header: true,
-      filters: filters_1,
-    } only %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: sortable_header,
-      header: true,
-      filters: filters_2,
-    } only %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: sortable_header,
-      header: true,
-      filters: filters_3,
+    {% set cells %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: sortable_header,
+        header: true,
+        filters: filters_1,
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: sortable_header,
+        header: true,
+        filters: filters_2,
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: sortable_header,
+        header: true,
+        filters: filters_3,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
     } only %}
   {% endset %}
 
@@ -404,12 +412,27 @@
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'Row 1 cell 1',
+        attributes: {
+          class :[
+            'sort-row-1-column-1'
+          ]
+        }
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'Row 1 cell 2',
+        attributes: {
+          class :[
+            'sort-row-1-column-2'
+          ]
+        }
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'Row 1 cell 3',
+        attributes: {
+          class: [
+            'sort-row-1-column-3'
+          ]
+        }
       } only %}
       {# Add more cells here #}
     {% endset %}
@@ -422,12 +445,27 @@
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'Row 2 cell 1',
+        attributes: {
+          class: [
+            'sort-row-2-column-1'
+          ]
+        }
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'Row 2 cell 2 and this cell has a lot more text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis cupiditate deleniti quia maiores vitae molestias, illum sapiente perspiciatis dignissimos labore sed itaque dolore neque soluta aliquid distinctio, voluptates tempora? Vitae.',
+        attributes: {
+          class: [
+            'sort-row-2-column-2'
+          ]
+        }
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'Row 2 cell 3',
+        attributes: {
+          class :[
+            'sort-row-2-column-3'
+          ]
+        }
       } only %}
     {% endset %}
     {% include '@bolt-components-responsive-table/table-row.twig' with {
@@ -439,12 +477,27 @@
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'Row 3 cell 1',
+        attributes: {
+          class: [
+            'sort-row-3-column-1'
+          ]
+        }
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'Row 3 cell 2',
+        attributes: {
+          class: [
+            'sort-row-3-column-1'
+          ]
+        }
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'Row 3 cell 3',
+        attributes: {
+          class: [
+            'sort-row-3-column-3'
+          ]
+        }
       } only %}
     {% endset %}
     {% include '@bolt-components-responsive-table/table-row.twig' with {
@@ -453,14 +506,19 @@
   {% endset %}
 
   {% set footer %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a footer cell.',
-    } only %}
+    {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a footer cell.',
-    } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a footer cell.',
+        content: 'This is a footer cell.',
+      } only %}
+        {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a footer cell.',
+      } only %}
+        {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a footer cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
     } only %}
   {% endset %}
 
@@ -475,7 +533,6 @@
         row2,
         row3,
       ],
-      attributes: {},
     },
     footer: {
       content: footer,
@@ -491,19 +548,8 @@
 {% set twig_markup %}{% verbatim %}
 {% set header %}
   {% set sortable_header %}
-    {% set _icon_pega_sort %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'pega-sort',
-      } only %}
-    {% endset %}
-    {% include '@bolt-elements-text-link/text-link.twig' with {
+    {% include '@bolt-components-responsive-table/table-sorting-text-button.twig' with {
       content: 'Sortable header',
-      hierarchy: 'transparent',
-      icon_after: _icon_pega_sort,
-      reversed_underline: true,
-      attributes: {
-        type: 'button',
-      }
     } only %}
   {% endset %}
   {% set filters_1 %}
@@ -863,20 +909,25 @@
     } only %}
   {% endset %}
 
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: sortable_header,
-    header: true,
-    filters: filters_1,
-  } only %}
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: sortable_header,
-    header: true,
-    filters: filters_2,
-  } only %}
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: sortable_header,
-    header: true,
-    filters: filters_3,
+  {% set cells %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: sortable_header,
+      header: true,
+      filters: filters_1,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: sortable_header,
+      header: true,
+      filters: filters_2,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: sortable_header,
+      header: true,
+      filters: filters_3,
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-responsive-table/table-row.twig' with {
+    content: cells,
   } only %}
 {% endset %}
 
@@ -884,12 +935,27 @@
   {% set cells %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'Row 1 cell 1',
+      attributes: {
+        class :[
+          'sort-row-1-column-1'
+        ]
+      }
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'Row 1 cell 2',
+      attributes: {
+        class :[
+          'sort-row-1-column-2'
+        ]
+      }
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'Row 1 cell 3',
+      attributes: {
+        class: [
+          'sort-row-1-column-3'
+        ]
+      }
     } only %}
     {# Add more cells here #}
   {% endset %}
@@ -902,12 +968,27 @@
   {% set cells %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'Row 2 cell 1',
+      attributes: {
+        class: [
+          'sort-row-2-column-1'
+        ]
+      }
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'Row 2 cell 2 and this cell has a lot more text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis cupiditate deleniti quia maiores vitae molestias, illum sapiente perspiciatis dignissimos labore sed itaque dolore neque soluta aliquid distinctio, voluptates tempora? Vitae.',
+      attributes: {
+        class: [
+          'sort-row-2-column-2'
+        ]
+      }
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'Row 2 cell 3',
+      attributes: {
+        class :[
+          'sort-row-2-column-3'
+        ]
+      }
     } only %}
   {% endset %}
   {% include '@bolt-components-responsive-table/table-row.twig' with {
@@ -919,12 +1000,27 @@
   {% set cells %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'Row 3 cell 1',
+      attributes: {
+        class: [
+          'sort-row-3-column-1'
+        ]
+      }
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'Row 3 cell 2',
+      attributes: {
+        class: [
+          'sort-row-3-column-1'
+        ]
+      }
     } only %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
       content: 'Row 3 cell 3',
+      attributes: {
+        class: [
+          'sort-row-3-column-3'
+        ]
+      }
     } only %}
   {% endset %}
   {% include '@bolt-components-responsive-table/table-row.twig' with {
@@ -933,14 +1029,19 @@
 {% endset %}
 
 {% set footer %}
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a footer cell.',
-  } only %}
+  {% set cells %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a footer cell.',
-  } only %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a footer cell.',
+      content: 'This is a footer cell.',
+    } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a footer cell.',
+    } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a footer cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-responsive-table/table-row.twig' with {
+    content: cells,
   } only %}
 {% endset %}
 
@@ -955,7 +1056,6 @@
       row2,
       row3,
     ],
-    attributes: {},
   },
   footer: {
     content: footer,
@@ -1010,4 +1110,54 @@
     });
   }
   toggleFilters()
+
+  function toggleButtonState() {
+    const table = document.querySelector('.js-bolt-responsive-table');
+    const sortingButton = document.querySelectorAll('.js-bolt-sort-button');
+
+    table.addEventListener('click', event => {
+      if(event.target.matches('.js-bolt-sort-button')) {
+        var clickcount = 0;
+        sortingButton.forEach(el => {
+          el.addEventListener('click', event => {
+            clickcount++
+            console.log(clickcount)
+            if(clickcount == 1) {
+              event.target.closest('.js-bolt-sorted-unsorted').classList.add('u-bolt-hidden')
+              event.target.parentElement.parentElement.querySelector('.js-bolt-sorted-asc').classList.remove('u-bolt-hidden')
+            }
+            if(clickcount == 2) {
+              event.target.closest('.js-bolt-sorted-asc').classList.add('u-bolt-hidden')
+              event.target.parentElement.parentElement.querySelector('.js-bolt-sorted-desc').classList.remove('u-bolt-hidden')
+            }
+            if(clickcount == 3) {
+              event.target.closest('.js-bolt-sorted-desc').classList.add('u-bolt-hidden')
+              event.target.parentElement.parentElement.querySelector('.js-bolt-sorted-unsorted').classList.remove('u-bolt-hidden')
+              clickcount = 0;
+            }
+            return
+          })
+        })
+      }
+    })
+  }
+  toggleButtonState()
+
+  {# var tableHeaders = document.querySelectorAll('.c-bolt-responsive-table__head .c-bolt-responsive-table__header')
+  var table = document.querySelector('.c-bolt-responsive-table__table');
+  const sortingClassesArr=[];
+  for(var i=0;i<tableHeaders.length;i++){
+    sortingClassesArr.push(`c-bolt-responsive-table--sort-${tableHeaders[i].innerText}`.replace(/^\s+|\s+$/gm,'').replace(/\s/g, '-'));
+  }
+
+  var options = {
+    sortClass: 'c-bolt-responsive-table__button--sort',
+    listClass: 'c-bolt-responsive-table__body',
+    valueNames: sortingClassesArr,
+  };
+
+  var table = document.querySelectorAll('.c-bolt-responsive-table__table');
+  table.forEach(el => {
+    var tableID = new List(el.id, options)
+  }) #}
 </script>
