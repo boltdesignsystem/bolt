@@ -10,26 +10,31 @@
 
 {% set demo %}
   {% set header %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: '',
+    {% set cells %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: '',
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a header cell 1.',
+        header: true,
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a header cell 2.',
+        header: true,
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a header cell 3.',
+        header: true,
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a header cell 4.',
+        header: true,
+      } only %}
+      {# Add more headers here #}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
     } only %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a header cell 1.',
-      header: true,
-    } only %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a header cell 2.',
-      header: true,
-    } only %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a header cell 3.',
-      header: true,
-    } only %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a header cell 4.',
-      header: true,
-    } only %}
-    {# Add more headers here #}
   {% endset %}
 
   {% set row_expandable %}
@@ -150,26 +155,31 @@
 
 {% set twig_markup %}{% verbatim %}
 {% set header %}
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: '',
+  {% set cells %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: '',
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 1.',
+      header: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 2.',
+      header: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 3.',
+      header: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 4.',
+      header: true,
+    } only %}
+    {# Add more headers here #}
+  {% endset %}
+  {% include '@bolt-components-responsive-table/table-row.twig' with {
+    content: cells,
   } only %}
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a header cell 1.',
-    header: true,
-  } only %}
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a header cell 2.',
-    header: true,
-  } only %}
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a header cell 3.',
-    header: true,
-  } only %}
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a header cell 4.',
-    header: true,
-  } only %}
-  {# Add more headers here #}
 {% endset %}
 
 {% set row_expandable %}
@@ -206,6 +216,11 @@
   {% endset %}
   {% include '@bolt-components-responsive-table/table-row.twig' with {
     content: cells,
+    attributes: {
+      class: [
+        'js-bolt-row-trigger'
+      ]
+    }
   } only %}
 {% endset %}
 

@@ -10,19 +10,24 @@
 
 {% set demo %}
   {% set header %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a header cell 1.',
-      header: true,
+    {% set cells %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a header cell 1.',
+        header: true,
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a header cell 2.',
+        header: true,
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a header cell 3.',
+        header: true,
+      } only %}
+      {# Add more headers here #}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
     } only %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a header cell 2.',
-      header: true,
-    } only %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a header cell 3.',
-      header: true,
-    } only %}
-    {# Add more headers here #}
   {% endset %}
 
   {% set row1 %}
@@ -80,16 +85,21 @@
   {% endset %}
 
   {% set footer %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a footer cell.',
-    } only %}
+    {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a footer cell.',
+        content: 'This is a footer cell.',
+      } only %}
+        {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a footer cell.',
+      } only %}
+        {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This is a footer cell.',
+      } only %}
+      {# Add more cells here #}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
     } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-      content: 'This is a footer cell.',
-    } only %}
-    {# Add more cells here #}
   {% endset %}
 
   {% include '@bolt-components-responsive-table/table.twig' with {
@@ -114,19 +124,24 @@
 
 {% set twig_markup %}{% verbatim %}
 {% set header %}
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a header cell 1.',
-    header: true,
+  {% set cells %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 1.',
+      header: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 2.',
+      header: true,
+    } only %}
+    {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a header cell 3.',
+      header: true,
+    } only %}
+    {# Add more headers here #}
+  {% endset %}
+  {% include '@bolt-components-responsive-table/table-row.twig' with {
+    content: cells,
   } only %}
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a header cell 2.',
-    header: true,
-  } only %}
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a header cell 3.',
-    header: true,
-  } only %}
-  {# Add more headers here #}
 {% endset %}
 
 {% set row1 %}
@@ -184,16 +199,21 @@
 {% endset %}
 
 {% set footer %}
-  {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a footer cell.',
-  } only %}
+  {% set cells %}
     {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a footer cell.',
+      content: 'This is a footer cell.',
+    } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a footer cell.',
+    } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+      content: 'This is a footer cell.',
+    } only %}
+    {# Add more cells here #}
+  {% endset %}
+  {% include '@bolt-components-responsive-table/table-row.twig' with {
+    content: cells,
   } only %}
-    {% include '@bolt-components-responsive-table/table-cell.twig' with {
-    content: 'This is a footer cell.',
-  } only %}
-  {# Add more cells here #}
 {% endset %}
 
 {% include '@bolt-components-responsive-table/table.twig' with {
@@ -211,10 +231,6 @@
   },
   footer: {
     content: footer,
-    attributes: {},
-  },
-  caption: {
-    content: 'This is the table caption.',
     attributes: {},
   },
 } only %}
