@@ -5,8 +5,8 @@
 
 {# Variables #}
 {% set this = init(schema) %}
-{% set table_header_attributes = create_attribute(table_header_attributes|default({})) %}
-{% set table_data_attributes = create_attribute(table_data_attributes|default({})) %}
+{% set table_header_attributes = create_attribute(attributes|default({})) %}
+{% set table_data_attributes = create_attribute(attributes|default({})) %}
 
 {# Array of classes based on the defined + default props #}
 {% set table_header_classes = [
