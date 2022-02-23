@@ -48,7 +48,7 @@
   .c-bolt-responsive-table__header {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 2;
     box-shadow: 0 0 0 1px var(--m-bolt-disabled);
 
     .c-bolt-responsive-table--borderless & {
@@ -67,12 +67,23 @@
   }
 }
 
+.c-bolt-responsive-table__head,
+.c-bolt-responsive-table__body,
+.c-bolt-responsive-table__footer {
+  .c-bolt-responsive-table__header {
+    white-space: normal;
+    @include bolt-mq(small) {
+      white-space: nowrap;
+    }
+  }
+}
+
 .c-bolt-responsive-table__body,
 .c-bolt-responsive-table__footer {
   .c-bolt-responsive-table__header {
     position: sticky;
     left: 0;
-    z-index: 2;
+    z-index: 1;
     box-shadow: 0 0 0 1px var(--m-bolt-disabled);
 
     .c-bolt-responsive-table--borderless & {
@@ -94,7 +105,7 @@
       &:nth-of-type(2) {
         position: sticky;
         left: 0;
-        z-index: 2;
+        z-index: 1;
         box-shadow: 0 0 0 1px var(--m-bolt-disabled);
 
         .c-bolt-responsive-table--borderless & {
@@ -109,7 +120,7 @@
       }
 
       &:nth-of-type(2) {
-        left: 37px;
+        left: 35px;
       }
     }
   }
@@ -121,15 +132,27 @@
   }
 }
 
-.c-bolt-responsive-table__row:not([id^='hidden-row']) {
-  .c-bolt-responsive-table__header {
-    &:nth-of-type(2) {
-      left: 37px;
+.c-bolt-responsive-table__body {
+  .c-bolt-responsive-table__row:not([id^='hidden-row']) {
+    .c-bolt-responsive-table__header {
+      &:nth-of-type(2) {
+        left: 35px;
+      }
+      @media print {
+        position: static;
+        top: unset;
+        z-index: auto;
+      }
     }
-    @media print {
-      position: static;
-      top: unset;
-      z-index: auto;
+  }
+}
+
+.c-bolt-responsive-table__first-cell-sticky {
+  .c-bolt-responsive-table__header {
+    &:first-of-type {
+      top: 0;
+      left: 0;
+      z-index: 3;
     }
   }
 }
@@ -252,6 +275,11 @@
 }
 
 .c-bolt-responsive-table__sorting-text-button {
+  .e-bolt-text-link {
+    display: flex;
+    align-items: center;
+  }
+
   .e-bolt-text-link__icon-after {
     pointer-events: none;
   }
