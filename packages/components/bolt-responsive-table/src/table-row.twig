@@ -12,8 +12,19 @@
   'c-bolt-responsive-table__row',
 ] %}
 
+{% set classes_hidden = [
+  'c-bolt-responsive-table__row',
+  'u-bolt-hidden'
+] %}
+
+{% if hidden %}
+<tr {{ attributes.addClass(classes_hidden) }}>
+  {{ content }}
+</tr>
+{% else %}
 <tr {{ attributes.addClass(classes) }}>
   {{ content }}
 </tr>
+{% endif %}
 
 
