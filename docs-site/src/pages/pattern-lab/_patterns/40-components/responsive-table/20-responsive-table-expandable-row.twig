@@ -81,10 +81,6 @@
       {% set expand_button %}
         {% include '@bolt-components-responsive-table/table-expand-button.twig' with {
           content: 'Expand next 2 rows',
-          ids: [
-            'hidden-row-1',
-            'hidden-row-2',
-          ],
           attributes: {},
         } only %}
       {% endset %}
@@ -93,14 +89,14 @@
         content: expand_button,
         header: true,
         attributes: {
-          rowspan: 3,
+     
         },
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'Build 1.1.360 — SR-44891',
         header: true,
         attributes: {
-          rowspan: 3,
+ 
         },
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
@@ -125,6 +121,12 @@
 
   {% set row3_hidden %}
     {% set cells %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: '',
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'SR-43163',
+      } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'SR-43163',
       } only %}
@@ -163,6 +165,12 @@
   {% set row4_hidden %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: '',
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'A cell in a hidden row.',
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'A cell in a hidden row.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
@@ -188,7 +196,7 @@
         header: true,
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'Build 1.1.354 — SR-44889',
+        content: 'This is a regular unexpandable row',
         header: true,
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
@@ -216,7 +224,10 @@
         row2_expandable,
         row3_hidden,
         row4_hidden,
-        row5
+        row5,
+        row2_expandable,
+        row3_hidden,
+        row4_hidden,
       ],
       attributes: {},
     },
@@ -257,17 +268,16 @@
     );
 
     var next = nextUntil(start[i], '.js-bolt-row-trigger');
-    next.forEach(el => {
-      el.classList.add('u-bolt-hidden');
-    });
 
-    tableButton.addEventListener('click', function() {
+    tableButton.addEventListener('click', (e) => {
       var next = nextUntil(
         start[i],
         '.js-bolt-row-trigger',
       );
       next.forEach(el => {
-        el.classList.toggle('u-bolt-hidden');
+        if (el.id.indexOf('hidden-row-') != -1) {
+          el.classList.toggle('u-bolt-hidden');
+        }
       });
     });
   }
