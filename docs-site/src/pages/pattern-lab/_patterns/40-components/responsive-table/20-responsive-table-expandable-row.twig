@@ -81,23 +81,16 @@
       {% set expand_button %}
         {% include '@bolt-components-responsive-table/table-expand-button.twig' with {
           content: 'Expand next 2 rows',
-          attributes: {},
         } only %}
       {% endset %}
 
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: expand_button,
         header: true,
-        attributes: {
-     
-        },
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'Build 1.1.360 — SR-44891',
         header: true,
-        attributes: {
- 
-        },
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'SR-44869',
@@ -123,9 +116,36 @@
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: '',
+        attributes: {
+          colspan: 2,
+        },
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'SR-43163',
+        content: 'SR-44850',
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.',
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'ManagedOpenSsl.dll',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
+      hidden: true,
+      attributes: {
+        id: 'hidden-row-1',
+      },
+    } only %}
+  {% endset %}
+
+  {% set row4_hidden %}
+    {% set cells %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: '',
+        attributes: {
+          colspan: 2,
+        },
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
         content: 'SR-43163',
@@ -157,33 +177,6 @@
       content: cells,
       hidden: true,
       attributes: {
-        id: 'hidden-row-1',
-      },
-    } only %}
-  {% endset %}
-
-  {% set row4_hidden %}
-    {% set cells %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '',
-      } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'A cell in a hidden row.',
-      } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'A cell in a hidden row.',
-      } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'A cell in a hidden row.',
-      } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'A cell in a hidden row.',
-      } only %}
-    {% endset %}
-    {% include '@bolt-components-responsive-table/table-row.twig' with {
-      content: cells,
-      hidden: true,
-      attributes: {
         id: 'hidden-row-2',
       },
     } only %}
@@ -196,7 +189,7 @@
         header: true,
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular unexpandable row',
+        content: 'Build 1.1.354 — SR-44889',
         header: true,
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
@@ -225,9 +218,6 @@
         row3_hidden,
         row4_hidden,
         row5,
-        row2_expandable,
-        row3_hidden,
-        row4_hidden,
       ],
       attributes: {},
     },

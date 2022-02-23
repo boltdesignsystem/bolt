@@ -223,11 +223,6 @@
   {% include '@bolt-components-responsive-table/table.twig' with {
     header: {
       content: header,
-      attributes: {
-        class: [
-          'c-bolt-responsive-table__first-cell-sticky'
-        ]
-      },
     },
     body: {
       content: [
@@ -236,6 +231,11 @@
         row3,
       ],
       attributes: {},
+    },
+    attributes: {
+      class: [
+        'c-bolt-responsive-table--sticky-side-headers'
+      ]
     },
   } only %}
 {% endset %}
