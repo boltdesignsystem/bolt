@@ -32,7 +32,21 @@ module.exports = {
       type: 'string',
       description:
         'A simple CSS tooltip to be used in tandem with the icon_only prop. The text will be taken from the content prop.',
-      enum: ['none', 'left', 'center', 'right'],
+      enum: [
+        'none',
+        'top-start',
+        'top',
+        'top-end',
+        'left-start',
+        'left',
+        'left-end',
+        'right-start',
+        'right',
+        'right-end',
+        'bottom-start',
+        'bottom',
+        'bottom-end',
+      ],
       default: 'none',
     },
     hierarchy: {

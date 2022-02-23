@@ -19,11 +19,11 @@ module.exports = {
       enum: ['right-end', 'right', 'right-start'],
       default: 'right-end',
     },
-    show_on_load: {
+    hide_on_load: {
       type: 'boolean',
       description:
-        'Please leave this set to true unless you plan on adding javascript to show the element yourself.',
-      default: true,
+        'Please leave this set to false unless you plan on adding javascript to show the element yourself.',
+      default: false,
     },
     show_on_scroll: {
       type: 'string',

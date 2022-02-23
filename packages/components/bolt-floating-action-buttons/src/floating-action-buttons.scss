@@ -12,11 +12,13 @@ $_bolt-fab-y-offset: var(--bolt-spacing-y-xsmall);
 
 .c-bolt-floating-action-buttons {
   z-index: bolt-z-index('fab');
+  transition: opacity var(--bolt-transition);
 
-  // must both be ready && not have aria-hidden before showing
+  // must both be ready && not have c-bolt-floating-action-buttons--hidden class before showing
   &:not([data-bolt-ready]),
-  &[aria-hidden='true'] {
-    @include bolt-visuallyhidden;
+  &.c-bolt-floating-action-buttons--hidden {
+    visibility: hidden;
+    opacity: 0;
   }
 
   &__list {
@@ -32,28 +34,60 @@ $_bolt-fab-y-offset: var(--bolt-spacing-y-xsmall);
     transition: all var(--bolt-transition);
   }
 
-  .c-bolt-floating-action-buttons__toggle {
+  .c-bolt-floating-action-buttons__list-item--has-children .e-bolt-button {
     position: relative;
     z-index: 1;
-  }
 
-  // Hide secondary list
-  .c-bolt-floating-action-buttons__toggle[aria-expanded='false']
-    + .c-bolt-floating-action-buttons__list {
-    > .c-bolt-floating-action-buttons__list-item {
-      visibility: hidden;
-      opacity: 0;
-      margin-bottom: -100%;
+    span {
+      transition: all var(--bolt-transition);
     }
   }
 
-  .c-bolt-floating-action-buttons__toggle-icon {
-    transition: all var(--bolt-transition);
+  // Hide secondary list and toggle close icon
+  .c-bolt-floating-action-buttons__list-item--has-children .e-bolt-button {
+    & + .c-bolt-floating-action-buttons__list {
+      > .c-bolt-floating-action-buttons__list-item {
+        transition: all 0.2s;
+
+        $delay: 0.05s; // Base delay interval
+        @for $i from 1 through 6 {
+          &:nth-of-type(#{$i}) {
+            transition-delay: $delay * $i;
+          }
+        }
+      }
+    }
   }
 
-  .c-bolt-floating-action-buttons__toggle-icon[aria-hidden='true'] {
-    visibility: hidden;
-    opacity: 0;
+  // Hide secondary list and toggle close icon
+  .c-bolt-floating-action-buttons__list-item--has-children
+    .e-bolt-button[aria-expanded='false'] {
+    > span:nth-child(2) {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    & + .c-bolt-floating-action-buttons__list {
+      > .c-bolt-floating-action-buttons__list-item {
+        visibility: hidden;
+        opacity: 0;
+        margin-bottom: -100%;
+      }
+    }
+  }
+
+  // change toggle icon
+  .c-bolt-floating-action-buttons__list-item--has-children
+    .e-bolt-button[aria-expanded='true'] {
+    > span:nth-child(1) {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    > span:nth-child(2) {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 }
 

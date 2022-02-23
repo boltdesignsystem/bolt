@@ -1,3 +1,8 @@
+{# @TODO:
+- move tooltip to side
+- figure out auto button tooltip
+#}
+
 {% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema['floating-action-buttons'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
@@ -10,13 +15,13 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-floating-action-buttons',
+  'c-bolt-floating-action-buttons--hidden',
   'c-bolt-floating-action-buttons--placement-' ~ this.data.placement.value,
 ] %}
 
 <div
   {{ attributes.addClass(classes) }}
-  aria-hidden="true"
-  {% if this.data.show_on_load.value %}data-show-on-load{% endif %}
+  {% if this.data.hide_on_load.value %}data-hide-on-load{% endif %}
   {% if this.data.show_on_scroll.value %}data-show-on-scroll="{{ this.data.show_on_scroll.value }}"{% endif %}
   {{ this.props|without("class")|without("placement")|without("show_on_scroll") }}
 >

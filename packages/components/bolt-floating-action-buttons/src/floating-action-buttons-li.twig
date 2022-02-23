@@ -7,10 +7,20 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-<li {{ attributes }} class="c-bolt-floating-action-buttons__list-item">
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-floating-action-buttons__list-item',
+  children ? 'c-bolt-floating-action-buttons__list-item--has-children'
+] %}
+
+<li {{ attributes.addClass(classes) }} {{ this.props|without("class") }}>
   {{ content }}
 
   {% if children %}
     {{ children }}
   {% endif %}
 </li>
+
+{# if children add modifier class
+use class to target the toggle button with aria-expanded
+clean up relevant css #}

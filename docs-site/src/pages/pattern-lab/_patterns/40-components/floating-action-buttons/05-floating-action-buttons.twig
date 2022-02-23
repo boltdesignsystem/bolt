@@ -9,7 +9,7 @@
 {% endset %}
 
 {% set demo %}
-{% set _button_share %}
+{% set button_share %}
   {% set share_menu %}
     {% include '@bolt-components-share/share.twig' with {
       display: 'menu',
@@ -68,7 +68,7 @@
   } only %}
 {% endset %}
 
-{% set _button_scroll_to_top %}
+{% set button_scroll_to_top %}
   {% set icon_up %}
     {% include '@bolt-components-icon/icon.twig' with {
       name: 'chevron-up',
@@ -85,15 +85,15 @@
   } only %}
 {% endset %}
 
-{% set _button_secondary %}
-  {% set _icon_link %}
+{% set button_secondary %}
+  {% set icon_link %}
     {% include '@bolt-elements-icon/icon.twig' with {
       name: 'external-link',
     } only %}
   {% endset %}
   {% include '@bolt-elements-button/button.twig' with {
     content: 'Go to Google',
-    icon_only: _icon_link,
+    icon_only: icon_link,
     icon_only_tooltip: 'left',
     hierarchy: 'secondary',
     attributes: {
@@ -104,93 +104,96 @@
   } only %}
 {% endset %}
 
-{% set _button_toggle %}
+{% set button_toggle %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig' with {
-    content: 'Toggle Menu'
+    content: 'Toggle Menu',
+    attributes: {
+      type: 'button',
+    }
   } only %}
 {% endset %}
 
-{% set _content_secondary %}
+{% set content_secondary %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: _button_secondary,
+    content: button_secondary,
   } only %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: _button_secondary,
+    content: button_secondary,
   } only %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: _button_secondary,
+    content: button_secondary,
   } only %}
 {% endset %}
 
-{% set _list_secondary %}
+{% set list_secondary %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig' with {
-    content: _content_secondary,
+    content: content_secondary,
   } only %}
 {% endset %}
 
-{% set _list_primary %}
+{% set list_primary %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: _button_share,
+    content: button_share,
   } only %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: _button_scroll_to_top,
+    content: button_scroll_to_top,
   } only %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: _button_toggle,
-    children: _list_secondary
+    content: button_toggle,
+    children: list_secondary
   } only %}
 {% endset %}
 
-{% set _content %}
+{% set content %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig' with {
-    content: _list_primary,
+    content: list_primary,
   } only %}
 {% endset %}
 
 {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
-  content: _content,
+  content: content,
 } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% set _button_toggle %}
+{% set button_toggle %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig' with {
     content: 'Toggle Menu'
   } only %}
 {% endset %}
 
-{% set _content_secondary %}
+{% set content_secondary %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: _button,
+    content: button,
   } only %}
   ...
 {% endset %}
 
-{% set _list_secondary %}
+{% set list_secondary %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig' with {
-    content: _content_secondary,
+    content: content_secondary,
   } only %}
 {% endset %}
 
-{% set _list_primary %}
+{% set list_primary %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: _button,
+    content: button,
   } only %}
   ...
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: _button_toggle,
-    children: _list_secondary
+    content: button_toggle,
+    children: list_secondary
   } only %}
 {% endset %}
 
-{% set _content %}
+{% set content %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig' with {
-    content: _list_primary,
+    content: list_primary,
   } only %}
 {% endset %}
 
 {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
-  content: _content,
+  content: content,
 } only %}
 {% endverbatim %}{% endset %}
 
