@@ -61,20 +61,26 @@
     opacity: 0;
   }
 
-  &:hover {
-    transform: translate3d(0, -2px, 0);
+  &[type='button'],
+  &[href] {
+    &:hover {
+      transform: translate3d(0, -2px, 0);
 
-    &:after {
-      opacity: 0.4;
-      box-shadow: 0 0.4em 1.5em var(--m-bolt-primary);
+      &:after {
+        opacity: 0.4;
+        box-shadow: 0 0.4em 1.5em var(--m-bolt-primary);
+      }
     }
   }
 
-  &:focus,
-  &:active:not(:disabled) {
-    transform: translate3d(0, 0, 0);
-    outline: var(--bolt-focus-ring);
-    outline-offset: 2px;
+  &[type='button'],
+  &[href] {
+    &:focus,
+    &:active:not(:disabled) {
+      transform: translate3d(0, 0, 0);
+      outline: var(--bolt-focus-ring);
+      outline-offset: 2px;
+    }
   }
 
   &:disabled {
@@ -95,13 +101,16 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
 @each $hierarchy-name in $_bolt-button-hierarchy {
   .e-bolt-button--#{$hierarchy-name} {
     @if $hierarchy-name == tertiary or $hierarchy-name == transparent {
-      &:hover {
-        transform: translate3d(0, 0, 0);
+      &[type='button'],
+      &[href] {
+        &:hover {
+          transform: translate3d(0, 0, 0);
 
-        &:after {
-          opacity: 0.2;
-          box-shadow: none;
-          background-color: var(--bolt-color-gray);
+          &:after {
+            opacity: 0.2;
+            box-shadow: none;
+            background-color: var(--bolt-color-gray);
+          }
         }
       }
     }
@@ -136,10 +145,13 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
         display: none;
       }
 
-      &:hover {
-        text-decoration: underline;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 3px;
+      &[type='button'],
+      &[href] {
+        &:hover {
+          text-decoration: underline;
+          text-decoration-thickness: 2px;
+          text-underline-offset: 3px;
+        }
       }
     }
   }
