@@ -132,9 +132,9 @@
     {% endset %}
     {% include '@bolt-components-responsive-table/table-row.twig' with {
       content: cells,
-      hidden: true,
       attributes: {
         id: 'hidden-row-1',
+        class: ['u-bolt-hidden']
       },
     } only %}
   {% endset %}
@@ -175,9 +175,9 @@
     {% endset %}
     {% include '@bolt-components-responsive-table/table-row.twig' with {
       content: cells,
-      hidden: true,
       attributes: {
         id: 'hidden-row-2',
+        class: ['u-bolt-hidden']
       },
     } only %}
   {% endset %}
