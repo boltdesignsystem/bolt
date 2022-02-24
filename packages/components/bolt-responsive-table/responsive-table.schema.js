@@ -26,7 +26,7 @@ module.exports = {
         content: {
           type: 'object',
           description:
-            'Contains an object of a single table row &lt;tr&gt; tag.',
+            'Renders a table row &lt;tr&gt; tag. Use table-row.twig to render a sngle table row',
         },
         attributes: {
           type: 'object',
@@ -39,7 +39,7 @@ module.exports = {
       properties: {
         content: {
           type: 'object',
-          description: 'Contains an object of an array of single table rows.',
+          description: 'Renders an array of single table rows.',
         },
         attributes: {
           type: 'object',
@@ -53,7 +53,7 @@ module.exports = {
         content: {
           type: 'object',
           description:
-            'Contains an object of a single footer row &lt;tr&gt; tag.',
+            'Renders a table row &lt;tr&gt; tag. Use table-row.twig to render a sngle table row',
         },
         attributes: {
           type: 'object',
@@ -61,14 +61,16 @@ module.exports = {
       },
     },
     caption: {
-      type: 'any',
-      description: 'The table caption.',
-      content: {
-        type: 'object',
-        description: 'It specifies the title of a table.',
-      },
-      attributes: {
-        type: 'object',
+      type: 'object',
+      description: 'Generates a table caption &lt;tr&gt; tag.',
+      properties: {
+        content: {
+          type: 'any',
+          description: 'It specifies the title of a table.',
+        },
+        attributes: {
+          type: 'object',
+        },
       },
     },
   },
