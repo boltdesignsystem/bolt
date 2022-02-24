@@ -1,108 +1,36 @@
 {% set description %}
-  Use inline style on the table headers to set a specific column width.
+  Existing use cases on our sites.
 {% endset %}
 
 {% set demo %}
-  {% set header_250px %}
+  {% set header %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '250px wide column',
+        content: 'Data page',
         header: true,
         attributes: {
-          style: 'min-width: 250px;',
+          style: 'width: 20%;',
         },
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '250px wide column',
+        content: 'Data type',
         header: true,
         attributes: {
-          style: 'min-width: 250px;',
+          style: 'width: 20%;',
         },
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '250px wide column',
+        content: 'SharePoint API',
         header: true,
         attributes: {
-          style: 'min-width: 250px;',
+          style: 'width: 45%;',
         },
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '250px wide column',
-        header: true,
-        attributes: {
-          style: 'min-width: 250px;',
-        },
-      } only %}
-    {% endset %}
-    {% include '@bolt-components-responsive-table/table-row.twig' with {
-      content: cells,
-    } only %}
-  {% endset %}
-
-  {% set header_percent %}
-    {% set cells %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '15% wide column',
+        content: 'HTTP method',
         header: true,
         attributes: {
           style: 'width: 15%;',
-        },
-      } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '25% wide column',
-        header: true,
-        attributes: {
-          style: 'width: 25%;',
-        },
-      } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '45% wide column',
-        header: true,
-        attributes: {
-          style: 'width: 35%;',
-        },
-      } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '15% wide column',
-        header: true,
-        attributes: {
-          style: 'width: 25%;',
-        },
-      } only %}
-    {% endset %}
-    {% include '@bolt-components-responsive-table/table-row.twig' with {
-      content: cells,
-    } only %}
-  {% endset %}
-
-  {% set header_percent_2 %}
-    {% set cells %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '25% wide column',
-        header: true,
-        attributes: {
-          style: 'width: 25%;',
-        },
-      } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '25% wide column',
-        header: true,
-        attributes: {
-          style: 'width: 25%;',
-        },
-      } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '25% wide column',
-        header: true,
-        attributes: {
-          style: 'width: 25%;',
-        },
-      } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: '25% wide column',
-        header: true,
-        attributes: {
-          style: 'width: 25%;',
         },
       } only %}
     {% endset %}
@@ -114,16 +42,94 @@
   {% set row1 %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'D_SpOnlineGetAllLists',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'Int-SPO-Lists',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'https://{site url}/_api/web/lists',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'GET',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  <bolt-text headline tag="h4" font-size="small">Data page details (auto width table)</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-responsive-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+        ],
+      },
+    } only %}
+  </bolt-stack>
+
+  <bolt-text headline tag="h4" font-size="small">Data page details (full width table)</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-responsive-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+        ],
+      },
+      attributes: {
+        class: 'u-bolt-block',
+      },
+    } only %}
+  </bolt-stack>
+
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'Name',
+        header: true,
+        attributes: {
+          style: 'width: 20%;',
+        },
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'Description',
+        header: true,
+        attributes: {
+          style: 'width: 70%;',
+        },
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'Required',
+        header: true,
+        attributes: {
+          style: 'width: 10%;',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-responsive-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'SiteName',
+        header: true,
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: 'Overrides the default site in SPOnlineSetings.',
+      } only %}
+      {% include '@bolt-components-responsive-table/table-cell.twig' with {
+        content: '❌',
       } only %}
     {% endset %}
     {% include '@bolt-components-responsive-table/table-row.twig' with {
@@ -134,16 +140,14 @@
   {% set row2 %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'Authentication profile',
+        header: true,
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'Overrides the default authentication profile in the SPOnlineSetings data transform.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
-      } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: '❌',
       } only %}
     {% endset %}
     {% include '@bolt-components-responsive-table/table-row.twig' with {
@@ -154,16 +158,14 @@
   {% set row3 %}
     {% set cells %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'SelectFields',
+        header: true,
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'Specifies the fields to retrieve.',
       } only %}
       {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
-      } only %}
-      {% include '@bolt-components-responsive-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: '✅',
       } only %}
     {% endset %}
     {% include '@bolt-components-responsive-table/table-row.twig' with {
@@ -171,41 +173,11 @@
     } only %}
   {% endset %}
 
-  <bolt-text headline tag="h4" font-size="small">Pixel value width</bolt-text>
+  <bolt-text headline tag="h4" font-size="small">Data page parameters (auto width table)</bolt-text>
   <bolt-stack>
     {% include '@bolt-components-responsive-table/table.twig' with {
       header: {
-        content: header_250px,
-      },
-      body: {
-        content: [
-          row1,
-          row2,
-          row3,
-        ],
-      },
-    } only %}
-  </bolt-stack>
-  <bolt-text headline tag="h4" font-size="small">Percent value width</bolt-text>
-  <bolt-stack>
-    {% include '@bolt-components-responsive-table/table.twig' with {
-      header: {
-        content: header_percent,
-      },
-      body: {
-        content: [
-          row1,
-          row2,
-          row3,
-        ],
-      },
-    } only %}
-  </bolt-stack>
-  <bolt-text headline tag="h4" font-size="small">Percent value width + full width table container (block display)</bolt-text>
-  <bolt-stack>
-    {% include '@bolt-components-responsive-table/table.twig' with {
-      header: {
-        content: header_percent,
+        content: header,
       },
       body: {
         content: [
@@ -215,7 +187,31 @@
         ],
       },
       attributes: {
-        class: 'u-bolt-block',
+        class: [
+          'c-bolt-responsive-table--sticky-side-headers',
+        ]
+      },
+    } only %}
+  </bolt-stack>
+
+  <bolt-text headline tag="h4" font-size="small">Data page parameters (full width table)</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-responsive-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+      attributes: {
+        class: [
+          'u-bolt-block',
+          'c-bolt-responsive-table--sticky-side-headers',
+        ]
       },
     } only %}
   </bolt-stack>
@@ -225,8 +221,9 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Table column width',
+  title: 'Table use cases',
   description: description,
   demo: demo,
+  demo_light_dark: true,
   twig_markup: twig_markup,
 } only %}

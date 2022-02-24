@@ -55,7 +55,6 @@
   }
 
   td {
-    font-weight: var(--bolt-type-font-weight-regular);
     background-color: var(--m-bolt-bg);
   }
 
@@ -92,21 +91,9 @@
 
   th,
   td {
-    position: relative;
     padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
-    transition: background-color var(--bolt-transition);
-  }
-
-  tfoot {
-    th,
-    td {
-      font-weight: var(--bolt-type-font-weight-bold);
-    }
-  }
-
-  thead,
-  tfoot {
-    font-family: var(--bolt-type-font-family-headline);
+    transition: box-shadow var(--bolt-transition),
+      background-color var(--bolt-transition);
   }
 
   tbody,
@@ -114,7 +101,12 @@
     tr:hover {
       th,
       td {
-        background-color: var(--m-bolt-table-header);
+        background-color: var(--m-bolt-table-highlight);
+      }
+
+      th {
+        z-index: 1;
+        box-shadow: 0 0 0 1px var(--m-bolt-border);
       }
     }
   }
@@ -132,7 +124,6 @@
     &:first-of-type {
       position: sticky;
       left: 1px;
-      z-index: 1;
       box-shadow: 0 0 0 1px var(--m-bolt-disabled);
     }
   }
@@ -151,7 +142,6 @@
   thead th {
     position: sticky;
     top: 1px;
-    z-index: 1;
     box-shadow: 0 0 0 1px var(--m-bolt-disabled);
   }
 
