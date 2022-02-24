@@ -77,6 +77,13 @@ module.exports = {
       description:
         "An array of different placement options that Popper.js should try if there isn't enough space for the ideal placement. Normally this defaults to all placement options however this lets you limit the options to pick from in certain situations.",
     },
+    aria_type: {
+      type: 'string',
+      description:
+        '`labelledby` should reference brief text that provides the element with an accessible name. `describedby` is used to reference longer content that provides a description.',
+      enum: ['labelledby', 'describedby'],
+      default: 'labelledby',
+    },
     direction: {
       type: 'any',
       title: 'DEPRECATED',
