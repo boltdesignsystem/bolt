@@ -12,7 +12,6 @@
 
 .e-bolt-button {
   @include bolt-button-native-styles-reset;
-
   --e-bolt-button-padding-y: calc(var(--bolt-spacing-y-medium) * 0.5);
   --e-bolt-button-padding-x: var(--bolt-spacing-x-medium);
   --e-bolt-button-font-size: var(--bolt-type-font-size-small);
@@ -34,6 +33,7 @@
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
+  cursor: default;
   border-radius: var(--e-bolt-button-border-radius);
   background-color: var(--e-bolt-button-bg-color);
   transition: transform var(--bolt-transition);
@@ -93,6 +93,11 @@
     &:after {
       display: none;
     }
+  }
+
+  &[type='button'],
+  &[href] {
+    cursor: pointer;
   }
 }
 
