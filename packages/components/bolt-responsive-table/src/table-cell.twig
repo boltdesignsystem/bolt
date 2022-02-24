@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-responsive-table'].schema %}
+{% set schema = bolt.data.components['@bolt-components-responsive-table'].schema['table-cell'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
