@@ -5,20 +5,12 @@
 
 {# Variables #}
 {% set this = init(schema) %}
-{% set table_header_attributes = create_attribute(attributes|default({})) %}
-{% set table_data_attributes = create_attribute(attributes|default({})) %}
+{% set attributes = create_attribute(attributes|default({})) %}
 
 {# Array of classes based on the defined + default props #}
-{% set table_header_classes = [
-  'c-bolt-responsive-table__header',
-] %}
-
-{% set table_data_classes = [
-  'c-bolt-responsive-table__cell',
-] %}
 
 {% if header %}
-  <th {{ table_header_attributes.addClass(table_header_classes) }}>
+  <th {{ attributes }}>
     {% if filters %}<div class="c-bolt-responsive-table__controls">{% endif %}
       {{ content }}
       {% if filters %}
@@ -27,7 +19,7 @@
     {% if filters %}</div>{% endif %}
   </th>
 {% else %}
-  <td {{ table_data_attributes.addClass(table_data_classes) }}>
+  <td {{ attributes }}>
     {{ content }}
   </td>
 {% endif %}
