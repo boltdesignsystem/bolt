@@ -19,16 +19,19 @@
       name: 'close'
     } only %}
   </span>
-  <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">{{ content }}</span>
 {% endset %}
 
 {% set attributes = attributes.setAttribute("aria-expanded", "false") %}
 {% set attributes = attributes.setAttribute("class", "e-bolt-button--icon-only js-bolt-floating-action-buttons-toggle") %}
 
-{% include '@bolt-elements-button/button.twig' with {
-  content: _content,
-  hierarchy: this.data.hierarchy.value,
-  border_radius: this.data.border_radius.value,
-  size: this.data.size.value,
-  attributes: attributes
+{% include '@bolt-components-tooltip/tooltip.twig' with {
+  content: content,
+  placement: 'left',
+  trigger: include('@bolt-elements-button/button.twig', {
+    content: _content,
+    hierarchy: this.data.hierarchy.value,
+    border_radius: this.data.border_radius.value,
+    size: this.data.size.value,
+    attributes: attributes
+  }),
 } only %}

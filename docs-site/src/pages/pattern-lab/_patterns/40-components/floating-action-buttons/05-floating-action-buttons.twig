@@ -16,18 +16,6 @@
       text: 'Share this content',
       sources: [
         {
-          name: 'facebook',
-          attributes: {
-            href: 'https://www.facebook.com/sharer/sharer.php?u=https://google.com&amp;src=sdkpreparse'
-          }
-        },
-        {
-          name: 'twitter',
-          attributes: {
-            href: 'https://twitter.com/intent/tweet?url=https://google.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
-          }
-        },
-        {
           name: 'linkedin',
           attributes: {
             href: 'https://www.linkedin.com/shareArticle?url=https://google.com'
@@ -54,7 +42,6 @@
     {% include '@bolt-elements-button/button.twig' with {
       content: 'Share this page',
       icon_only: icon_share,
-      icon_only_tooltip: 'left',
       attributes: {
         type: 'button'
       }
@@ -75,13 +62,16 @@
     } only %}
   {% endset %}
 
-  {% include '@bolt-elements-button/button.twig' with {
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
     content: 'Back to top',
-    icon_only: icon_up,
-    icon_only_tooltip: 'left',
-    attributes: {
-      href: '#components-floating-action-buttons-docs',
-    },
+    placement: 'left',
+    trigger: include('@bolt-elements-button/button.twig', {
+      content: 'Back to top',
+      icon_only: icon_up,
+      attributes: {
+        href: '#components-floating-action-buttons-docs',
+      },
+    }),
   } only %}
 {% endset %}
 
@@ -91,16 +81,19 @@
       name: 'external-link',
     } only %}
   {% endset %}
-  {% include '@bolt-elements-button/button.twig' with {
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
     content: 'Go to Google',
-    icon_only: icon_link,
-    icon_only_tooltip: 'left',
-    hierarchy: 'secondary',
-    attributes: {
-      href: 'https://www.google.com',
-      rel: 'noopener',
-      target: '_blank'
-    },
+    placement: 'left',
+    trigger: include('@bolt-elements-button/button.twig', {
+      content: 'Go to Google',
+      icon_only: icon_link,
+      hierarchy: 'secondary',
+      attributes: {
+        href: 'https://www.google.com',
+        rel: 'noopener',
+        target: '_blank'
+      },
+    }),
   } only %}
 {% endset %}
 
