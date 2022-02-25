@@ -1,7 +1,7 @@
 // Refer to https://github.com/boltdesignsystem/bolt/wiki/Jest-Test:-Example-Jest-Test for more testing examples
 import { render, stopServer } from '../../../testing/testing-helpers';
-// import schema from '../responsive-table.schema';
-// const { [PROP KEY], [PROP KEY]... } = schema.properties;
+import schema from '../table.schema';
+// const { borderless, sticky_headers } = schema.properties;
 let page, fixtures;
 
 afterAll(async () => {
@@ -22,7 +22,7 @@ beforeAll(async () => {
   });
 
   const defaultData = {
-    content: 'This is a responsive-table',
+    content: 'This is a table',
   };
 
   fixtures = {
@@ -33,7 +33,7 @@ beforeAll(async () => {
 describe('Bolt Responsive Table component', () => {
   test('default', async () => {
     const results = await render(
-      '@bolt-components-responsive-table/responsive-table.twig',
+      '@bolt-components-responsive-table/table.twig',
       {
         ...fixtures.defaultData,
       },
@@ -43,21 +43,3 @@ describe('Bolt Responsive Table component', () => {
     await expect(results.html).toMatchSnapshot();
   });
 });
-
-// describe('Bolt Responsive Table prop -', () => {
-//   // Target each of the schema keys with the following pattern
-//   [PROP KEY].enum.forEach(async (option) => {
-//     test(`[PROP KEY] items: ${option}`, async () => {
-//       const results = await render(
-//         '@bolt-components-responsive-table/responsive-table.twig',
-//         {
-//           ...fixtures.defaultData,
-//           [PROP KEY]: option,
-//         }
-//       );
-
-//       await expect(results.ok).toBe(true);
-//       await expect(results.html).toMatchSnapshot();
-//     });
-//   });
-// });
