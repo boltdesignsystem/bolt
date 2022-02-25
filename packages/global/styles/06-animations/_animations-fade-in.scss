@@ -1,0 +1,97 @@
+/* ------------------------------------ *\
+   Animation fade in
+\* ------------------------------------ */
+
+@keyframes a-bolt-in-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.a-bolt-in--fade {
+  animation-name: a-bolt-in-fade;
+}
+
+/* ------------------------------------ *\
+   Animation fade in up
+\* ------------------------------------ */
+
+@keyframes a-bolt-in-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.a-bolt-in--fade-up {
+  animation-name: a-bolt-in-fade-up;
+}
+
+/* ------------------------------------ *\
+   Animation fade in down
+\* ------------------------------------ */
+
+@keyframes a-bolt-in-fade-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -1rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.a-bolt-in--fade-down {
+  animation-name: a-bolt-in-fade-down;
+}
+
+/* ------------------------------------ *\
+   Animation fade in left
+\* ------------------------------------ */
+
+@keyframes a-bolt-in-fade-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-1rem, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.a-bolt-in--fade-left {
+  animation-name: a-bolt-in-fade-left;
+}
+
+/* ------------------------------------ *\
+   Animation fade in right
+\* ------------------------------------ */
+
+@keyframes a-bolt-in-fade-right {
+  from {
+    opacity: 0;
+    transform: translate3d(1rem, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.a-bolt-in--fade-right {
+  animation-name: a-bolt-in-fade-right;
+}

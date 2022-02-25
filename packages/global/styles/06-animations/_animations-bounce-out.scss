@@ -1,0 +1,114 @@
+/* ------------------------------------ *\
+   Animation bounce out
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-bounce {
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  50%,
+  55% {
+    opacity: 1;
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+}
+
+.a-bolt-out--bounce {
+  animation-name: a-bolt-out-bounce;
+}
+
+/* ------------------------------------ *\
+   Animation bounce out up
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-bounce-up {
+  20% {
+    transform: translate3d(0, -1rem, 0) scaleY(0.985);
+  }
+
+  40%,
+  45% {
+    opacity: 1;
+    transform: translate3d(0, 2rem, 0) scaleY(0.9);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -50%, 0) scaleY(1.2);
+  }
+}
+
+.a-bolt-out--bounce-up {
+  animation-name: a-bolt-out-bounce-up;
+}
+
+/* ------------------------------------ *\
+   Animation bounce out down
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-bounce-down {
+  20% {
+    transform: translate3d(0, 1rem, 0) scaleY(0.985);
+  }
+
+  40%,
+  45% {
+    opacity: 1;
+    transform: translate3d(0, -2rem, 0) scaleY(0.9);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 50%, 0) scaleY(1.2);
+  }
+}
+
+.a-bolt-out--bounce-down {
+  animation-name: a-bolt-out-bounce-down;
+}
+
+/* ------------------------------------ *\
+   Animation bounce out left
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-bounce-left {
+  20% {
+    opacity: 1;
+    transform: translate3d(2rem, 0, 0) scaleX(0.9);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-50%, 0, 0) scaleX(1.2);
+  }
+}
+
+.a-bolt-out--bounce-left {
+  animation-name: a-bolt-out-bounce-left;
+}
+
+/* ------------------------------------ *\
+   Animation bounce out right
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-bounce-right {
+  20% {
+    opacity: 1;
+    transform: translate3d(-2rem, 0, 0) scaleX(0.9);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(50%, 0, 0) scaleX(1.2);
+  }
+}
+
+.a-bolt-out--bounce-right {
+  animation-name: a-bolt-out-bounce-right;
+}
