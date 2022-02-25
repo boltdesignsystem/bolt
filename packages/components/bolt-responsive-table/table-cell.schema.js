@@ -22,7 +22,7 @@ module.exports = {
     filters: {
       type: 'object',
       description:
-        'Renders control buttons of a filter fetaure. Use already existing bolt form elements and bolt popover to create a filter set, ready to pass to filters prop.',
+        'Renders control buttons of a filter fetaure. Use already existing bolt form elements and bolt popover to create a filter set. Then pass it to the prop.',
     },
   },
 };
