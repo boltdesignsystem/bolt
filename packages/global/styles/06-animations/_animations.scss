@@ -53,15 +53,3 @@
   --bolt-animation-delay: 100ms;
   animation-delay: var(--bolt-animation-delay);
 }
-
-/* [2] */
-@for $i from 1 through 150 {
-  .a-bolt-cascade-fast:nth-of-type(#{$i}) {
-    --bolt-animation-delay: 10ms;
-    animation-delay: calc(var(--bolt-animation-delay) * #{$i});
-  }
-  .a-bolt-cascade-slow:nth-of-type(#{$i}) {
-    --bolt-animation-delay: 50ms;
-    animation-delay: calc(var(--bolt-animation-delay) * #{$i});
-  }
-}

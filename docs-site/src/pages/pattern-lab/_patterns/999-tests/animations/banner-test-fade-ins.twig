@@ -20,21 +20,25 @@
 
   const fadeEl = document.querySelectorAll('[class*="a-bolt-"]');
 
-  //Repeat single specific fade on click
-  function triggerThisEl(e) {
+  // Repeat single specific fade on click
+  function triggerThisEl({ target }) {
     const prefix = 'a-bolt-in--';
-    const classes = e.target.className.split(' ').filter(c => !c.startsWith(prefix));
-    const runAnimationClasses = e.target.className.split(' ').filter(c => c.startsWith(prefix));
-    e.target.className = classes.join(' ').trim();
-    e.target.classList.remove('a-bolt-cascade-fast');
+    const runAnimationClasses = [];
+
+    target.classList.forEach(c => {
+      if (c.startsWith(prefix)) {
+        runAnimationClasses.push(c);
+        target.classList.remove(c);
+      }
+    });
+
     setTimeout(() => {
-      e.target.classList.add(...runAnimationClasses)
-    }, 20)
+      target.classList.add(...runAnimationClasses);
+    }, 0);
   }
 
-  fadeEl.forEach((el) => {
-    el.addEventListener('click', triggerThisEl)
-  })
+  fadeEl.forEach(el => {
+    el.addEventListener('click', triggerThisEl);
+  });
 
 </script>
-
