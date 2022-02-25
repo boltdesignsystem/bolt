@@ -73,6 +73,10 @@ class BoltTooltip extends BoltElement {
       offset: [0, 0],
       plugins: [hideOnEsc],
       zIndex: this.zIndex,
+      aria: {
+        expanded: false,
+        content: this.ariaType,
+      },
       popperOptions: {
         modifiers: [
           {
