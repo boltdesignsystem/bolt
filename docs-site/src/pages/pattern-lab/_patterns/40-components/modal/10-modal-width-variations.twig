@@ -9,6 +9,7 @@
     <bolt-li>The <code>optimal</code> modal is about 75 characters wide, close to optimal reading length.</bolt-li>
     <bolt-li>The <code>auto</code> modal adjusts to the width of the modal content. In most cases, the user must define a max-width in absolute value (do not use relative value such as %) on the modal content to get the desired results. Recommended for advanced usage.</bolt-li>
     <bolt-li>The <code>width</code> prop only applies to viewports equal to or above the small breakpoint (~600px).</bolt-li>
+    <bolt-li><strong>Advanced usage:</strong> use an image that has the <code>width</code> attribute defined (e.g. 640) in tandem with auto width modal will allow the image inside the modal to be responsive but does not stretch beyond the specified <code>width</code>.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -89,6 +90,38 @@
     } only %}
   {% endset %}
 
+  {% set auto_modal_image %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Auto (content is an image)',
+      size: 'small',
+      display: 'inline',
+      attributes: {
+        type: 'button',
+        'data-bolt-modal-target': '.js-bolt-modal--width-auto-image',
+      }
+    } only %}
+
+    {% set modal_content %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/tout-4x3-climber.jpg',
+          alt: 'A Rock Climber',
+          width: '640',
+          height: '480'
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: modal_content,
+      width: 'auto',
+      spacing: 'none',
+      theme: 'none',
+      attributes: {
+        class: 'js-bolt-modal--width-auto-image',
+      },
+    } only %}
+  {% endset %}
+
   {% include '@bolt-components-list/list.twig' with {
     display: 'inline',
     spacing: 'xsmall',
@@ -99,6 +132,7 @@
       regular_modal,
       optimal_modal,
       auto_modal,
+      auto_modal_image,
     ]
   } only %}
 {% endset %}

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-video-thumbnail/compare/v5.1.1...v5.2.0) (2022-01-25)
+
+**Note:** Version bump only for package @bolt/components-video-thumbnail
+
+
+
+
+
 # [5.0.0](https://github.com/boltdesignsystem/bolt/tree/master/packages/components/bolt-video-thumbnail/compare/v4.7.0...v5.0.0) (2021-11-10)
 
 **Note:** Version bump only for package @bolt/components-video-thumbnail
