@@ -80,7 +80,7 @@ module.exports = {
     aria_type: {
       type: 'string',
       description:
-        '`labelledby` should reference brief text that provides the element with an accessible name. `describedby` is used to reference longer content that provides a description.',
+        "This sets the specific aria attribute for rendering the tooltip, the 2 available options do different things. 'labelledby' sets the tooltip text as the accessible name for the trigger, while 'describedby' keeps the trigger's accessible name (it must have one in such case) and provides additional description.",
       enum: ['labelledby', 'describedby'],
       default: 'labelledby',
     },
