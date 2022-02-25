@@ -5,21 +5,19 @@
 
 {# Variables #}
 {% set this = init(schema) %}
-{% set expand_button_attributes = create_attribute(attributes|default({})) %}
+{% set attributes = create_attribute(attributes|default({})) %}
 {% set _icon_chevron_down %}
   {% include '@bolt-elements-icon/icon.twig' with {
     name: 'chevron-down',
   } only %}
 {% endset %}
+{% set classes = [
+  'js-bolt-toggle-button',
+  'c-bolt-responsive-table__expand-button',
+] %}
+{% set attributes = attributes.setAttribute('type', 'button').setAttribute('aria-expanded', 'false') %}
 
 {% include '@bolt-elements-text-link/text-link.twig' with {
   content: _icon_chevron_down ~ '<span class="u-bolt-visuallyhidden">' ~ content ~ '</span>',
-  attributes: {
-    type: 'button',
-    'aria-expanded': 'false',
-    class: [
-      'c-bolt-responsive-table__expand-button',
-      'js-bolt-toggle-button',
-    ],
-  }
+  attributes: attributes.addClass(classes)
 } only %}
