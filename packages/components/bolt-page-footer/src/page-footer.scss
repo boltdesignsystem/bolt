@@ -216,8 +216,10 @@
   }
 
   @include bolt-mq($until: medium) {
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: var(--bolt-spacing-x-small);
     width: 100%;
     padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-xsmall);
 
