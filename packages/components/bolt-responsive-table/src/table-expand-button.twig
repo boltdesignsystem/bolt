@@ -6,6 +6,7 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set attributes = attributes.setAttribute('type', 'button').setAttribute('aria-expanded', 'false') %}
 {% set _icon_chevron_down %}
   {% include '@bolt-elements-icon/icon.twig' with {
     name: 'chevron-down',
@@ -15,7 +16,6 @@
   'js-bolt-toggle-button',
   'c-bolt-responsive-table__expand-button',
 ] %}
-{% set attributes = attributes.setAttribute('type', 'button').setAttribute('aria-expanded', 'false') %}
 
 {% include '@bolt-elements-text-link/text-link.twig' with {
   content: _icon_chevron_down ~ '<span class="u-bolt-visuallyhidden">' ~ content ~ '</span>',
