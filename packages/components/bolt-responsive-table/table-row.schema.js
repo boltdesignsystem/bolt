@@ -11,7 +11,7 @@ module.exports = {
     content: {
       type: 'object',
       description:
-        'Content of the single table row &lt;tr&gt; tag. Use table-cell.twig to render table cells.',
+        'Generates a single table row - &lt;tr&gt; tag. Use table-cell.twig to render table cells inside the table row.',
     },
   },
 };

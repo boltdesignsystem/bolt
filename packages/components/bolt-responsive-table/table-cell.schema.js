@@ -10,7 +10,8 @@ module.exports = {
     },
     content: {
       type: 'any',
-      description: 'Generates a table cell &lt;td&gt; tag.',
+      description:
+        'Generates a table cell &lt;td&gt; tag. To render a button which triggers expanding hidden rows use table-expand-button.twig. To render a button which triggers sorting use table-sorting-text-button.twig',
     },
     header: {
       type: 'boolean',
@@ -20,7 +21,8 @@ module.exports = {
     },
     filters: {
       type: 'object',
-      description: 'Generates control buttons (sort and filter).',
+      description:
+        'Renders control buttons of a filter fetaure. Use already existing bolt form elements and bolt popover to create a filter set, ready to pass to filters prop.',
     },
   },
 };

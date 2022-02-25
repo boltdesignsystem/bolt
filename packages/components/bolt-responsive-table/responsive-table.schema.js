@@ -21,12 +21,12 @@ module.exports = {
     },
     header: {
       type: 'object',
-      description: 'Generates a table head &lt;head&gt; tag.',
+      description: 'Generates a table head - &lt;thead&gt; tag.',
       properties: {
         content: {
           type: 'object',
           description:
-            'Renders a table row &lt;tr&gt; tag. Use table-row.twig to render a sngle table row',
+            'Renders a table row - &lt;tr&gt; tag. Use table-row.twig to render a single table row',
         },
         attributes: {
           type: 'object',
@@ -35,11 +35,12 @@ module.exports = {
     },
     body: {
       type: 'object',
-      description: 'Generates a main table content, &lt;tbody&gt; tag.',
+      description: 'Generates a main table content - &lt;tbody&gt; tag.',
       properties: {
         content: {
-          type: 'object',
-          description: 'Renders an array of single table rows.',
+          type: 'array',
+          description:
+            'Renders a collection of single table rows. Use table-row.twig to render table rows',
         },
         attributes: {
           type: 'object',
@@ -48,12 +49,12 @@ module.exports = {
     },
     footer: {
       type: 'object',
-      description: 'Generates a table footer &lt;tfoot&gt; tag.',
+      description: 'Generates a table footer - &lt;tfoot&gt; tag.',
       properties: {
         content: {
           type: 'object',
           description:
-            'Renders a table row &lt;tr&gt; tag. Use table-row.twig to render a sngle table row',
+            'Renders a table row - &lt;tr&gt; tag. Use table-row.twig to render a single table row',
         },
         attributes: {
           type: 'object',
@@ -62,11 +63,12 @@ module.exports = {
     },
     caption: {
       type: 'object',
-      description: 'Generates a table caption &lt;tr&gt; tag.',
+      description: 'Generates a table caption - &lt;tr&gt; tag.',
       properties: {
         content: {
           type: 'any',
-          description: 'It specifies the title of a table.',
+          description:
+            'It specifies the title of a table which is displayed at the bottom of the table.',
         },
         attributes: {
           type: 'object',
