@@ -31,45 +31,29 @@ $_bolt-fab-y-offset: var(--bolt-spacing-y-xsmall);
     flex-direction: column-reverse;
     position: relative;
     margin-bottom: var(--bolt-spacing-y-xxsmall);
-    transition: all var(--bolt-transition);
+    // transition: all var(--bolt-transition);
   }
 
   .c-bolt-floating-action-buttons__list-item--has-children .e-bolt-button {
     span {
-      transition: all var(--bolt-transition);
+      // transition: all var(--bolt-transition);
     }
   }
 
   // Hide secondary list and toggle close icon
-  .c-bolt-floating-action-buttons__list-item--has-children .e-bolt-button {
-    & + .c-bolt-floating-action-buttons__list {
-      > .c-bolt-floating-action-buttons__list-item {
-        transition: all 0.2s;
-
-        $delay: 0.05s; // Base delay interval
-        @for $i from 1 through 6 {
-          &:nth-of-type(#{$i}) {
-            transition-delay: $delay * $i;
-          }
-        }
-      }
-    }
-  }
-
-  // Hide secondary list and toggle close icon
-  .c-bolt-floating-action-buttons__list-item--has-children
+  .c-bolt-floating-action-buttons__list-item--has-children {
     .e-bolt-button[aria-expanded='false'] {
-    > span:nth-child(2) {
-      visibility: hidden;
-      opacity: 0;
-    }
-
-    & + .c-bolt-floating-action-buttons__list {
-      > .c-bolt-floating-action-buttons__list-item {
+      > span:nth-child(2) {
         visibility: hidden;
         opacity: 0;
-        margin-bottom: -100%;
       }
+    }
+
+    .c-bolt-floating-action-buttons__list--hidden .c-bolt-floating-action-buttons__list-item {
+      display: none;
+      // visibility: hidden;
+      // opacity: 0;
+      // margin-bottom: -100%;
     }
   }
 
