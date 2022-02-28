@@ -1,5 +1,5 @@
 {% set description %}
-  A basic table is composed of table header, body, footer, rows, cells, and caption.
+  Header cells can be used in the table body as well. Use header cell as the first child of each row to create side headers.
 {% endset %}
 
 {% set demo %}
@@ -26,7 +26,8 @@
   {% set row1 %}
     {% set cells %}
       {% include '@bolt-components-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'This is a header cell.',
+        header: true,
       } only %}
       {% include '@bolt-components-table/table-cell.twig' with {
         content: 'This is a regular cell.',
@@ -43,7 +44,8 @@
   {% set row2 %}
     {% set cells %}
       {% include '@bolt-components-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'This is a header cell.',
+        header: true,
       } only %}
       {% include '@bolt-components-table/table-cell.twig' with {
         content: 'This is a regular cell.',
@@ -60,7 +62,8 @@
   {% set row3 %}
     {% set cells %}
       {% include '@bolt-components-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'This is a header cell.',
+        header: true,
       } only %}
       {% include '@bolt-components-table/table-cell.twig' with {
         content: 'This is a regular cell.',
@@ -77,7 +80,8 @@
   {% set footer %}
     {% set cells %}
       {% include '@bolt-components-table/table-cell.twig' with {
-        content: 'This is a regular cell in table footer.',
+        content: 'This is a header cell in table footer.',
+        header: true,
       } only %}
         {% include '@bolt-components-table/table-cell.twig' with {
         content: 'This is a regular cell in table footer.',
@@ -92,6 +96,7 @@
   {% endset %}
 
   {% include '@bolt-components-table/table.twig' with {
+    sticky_headers: 'side',
     header: {
       content: header,
     },
@@ -115,7 +120,7 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic table',
+  title: 'Table with side headers',
   description: description,
   demo: demo,
   twig_markup: twig_markup,

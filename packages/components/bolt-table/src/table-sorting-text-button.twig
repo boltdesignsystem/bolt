@@ -1,0 +1,74 @@
+{% set schema = bolt.data.components['@bolt-components-table'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-responsive-table__sorting-text-button',
+  'js-bolt-sorting-text-button'
+] %}
+
+<span {{ attributes.addClass(classes) }}>
+  <span class="js-bolt-sorted-unsorted c-bolt-responsive-table__unsorted">
+    {% set _icon_pega_sort %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'pega-sort',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: content,
+      hierarchy: 'transparent',
+      icon_after: _icon_pega_sort,
+      reversed_underline: true,
+      attributes: {
+        type: 'button',
+        class: [
+          'js-bolt-sort-button'
+        ]
+      }
+    } only %}
+  </span>
+  <span class="js-bolt-sorted-asc c-bolt-responsive-table__sorted-ascending u-bolt-hidden">
+    {% set _icon_pega_sort_ascending %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'pega-sort-ascending',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: content,
+      hierarchy: 'transparent',
+      icon_after: _icon_pega_sort_ascending,
+      reversed_underline: true,
+      attributes: {
+        type: 'button',
+        class: [
+          'js-bolt-sort-button'
+        ]
+      }
+    } only %}
+  </span>
+  <span class="js-bolt-sorted-desc c-bolt-responsive-table__sorted-descending u-bolt-hidden">
+    {% set _icon_pega_sort_descending %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'pega-sort-descending',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: content,
+      hierarchy: 'transparent',
+      icon_after: _icon_pega_sort_descending,
+      reversed_underline: true,
+      attributes: {
+        type: 'button',
+        class: [
+          'js-bolt-sort-button'
+        ]
+      }
+    } only %}
+  </span>
+</span>

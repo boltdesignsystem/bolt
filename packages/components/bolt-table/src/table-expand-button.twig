@@ -1,0 +1,23 @@
+{% set schema = bolt.data.components['@bolt-components-table'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set attributes = attributes.setAttribute('type', 'button').setAttribute('aria-expanded', 'false') %}
+{% set _icon_chevron_down %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-down',
+  } only %}
+{% endset %}
+{% set classes = [
+  'js-bolt-toggle-button',
+  'c-bolt-responsive-table__expand-button',
+] %}
+
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: _icon_chevron_down ~ '<span class="u-bolt-visuallyhidden">' ~ content ~ '</span>',
+  attributes: attributes.addClass(classes)
+} only %}

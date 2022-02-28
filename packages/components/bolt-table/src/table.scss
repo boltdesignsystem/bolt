@@ -1,195 +1,182 @@
 /* ------------------------------------ *\
-   Table
+   Responsive Table
 \* ------------------------------------ */
 
 @import '@bolt/core-v3.x';
 
-// see https://github.com/datorama/themify#known-issues for more info on why the border styles need to be written out longhand
-$bolt-table-border-width: 1px;
-$bolt-table-border-style: solid;
-$bolt-table-border-color: var(--m-bolt-disabled);
-$bolt-table-header-background-color: rgba(bolt-color(gray), 0.1);
-$bolt-table-row-hover-background-color: rgba(bolt-color(gray), 0.1);
+// Register Custom Block Element
+@include bolt-custom-element('bolt-responsive-table', block, medium);
 
-@mixin bolt-table-border($direction) {
-  border-#{$direction}-color: $bolt-table-border-color;
-  border-#{$direction}-style: $bolt-table-border-style;
-  border-#{$direction}-width: $bolt-table-border-width;
-}
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
 
-@include bolt-custom-element('bolt-table', block, medium);
-
-.c-bolt-table {
+.c-bolt-responsive-table {
   @include bolt-horizontal-scroll;
-  @include bolt-table-border(right);
-  @include bolt-table-border(bottom);
-  @include bolt-table-border(left);
 
   display: inline-block;
-  width: 100%;
   max-width: 100%;
-  margin: 0;
-  padding: 0;
-  vertical-align: top;
-  background: -webkit-radial-gradient(
-        left,
-        ellipse,
-        var(--m-bolt-border) 0%,
-        transparent 75%
-      )
-      0 center,
-    -webkit-radial-gradient(
-        right,
-        ellipse,
-        var(--m-bolt-border) 0%,
-        transparent 75%
-      ) 100% center;
-  background-attachment: scroll, scroll;
-  background-color: var(--m-bolt-bg);
-  background-repeat: no-repeat;
-  background-size: 0.5em 100%, 0.5em 100%;
-  overflow-x: auto;
-  border-collapse: collapse;
-  border-spacing: 0;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-}
-
-.c-bolt-table__head,
-.c-bolt-table__body,
-.c-bolt-table__foot {
-  background: linear-gradient(
-    to right,
-    var(--m-bolt-bg) 0.5em,
-    transparent 0.5em,
-    transparent calc(100% - 0.5em),
-    var(--m-bolt-bg) calc(100% - 0.5em)
-  );
-}
-
-.c-bolt-table__row {
-  @include bolt-table-border(top);
-  transition: background-color var(--bolt-transition);
-
-  @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&}:hover {
-    background-color: $bolt-table-row-hover-background-color;
-  }
-}
-
-.c-bolt-table__cell {
-  text-align: left;
-  vertical-align: top;
-
-  &:not(:last-child) {
-    @include bolt-table-border(right);
-  }
-
-  &:first-child:empty ~ .c-bolt-table__cell {
-    width: auto;
-  }
-
-  @at-root .c-bolt-table__head #{&} {
-    width: 1%;
-    padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
-    background-color: $bolt-table-header-background-color;
-  }
-
-  @at-root .c-bolt-table__body:first-child #{&} {
-    width: 1%;
-  }
-
-  @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&} {
-    padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
-  }
-
-  @at-root .c-bolt-table__foot #{&} {
-    font-weight: var(--bolt-type-font-weight-bold);
-  }
-
-  img {
-    max-width: 100%;
-  }
-}
-
-.c-bolt-table__cell--header {
-  font-family: var(--bolt-type-font-family-headline);
-  font-size: var(--bolt-type-font-size-small);
-  font-weight: var(--bolt-type-font-weight-semibold);
-  color: var(--m-bolt-headline);
-  line-height: var(--bolt-type-line-height-small);
-  background-color: $bolt-table-header-background-color;
-  white-space: nowrap;
-
-  &:first-child {
-    width: 1%;
-
-    & ~ .c-bolt-table__cell--data {
-      width: auto;
-    }
-  }
-}
-
-.c-bolt-table__cell--data {
-  font-family: var(--bolt-type-font-family-body);
-  font-size: var(--bolt-type-font-size-small);
-  font-weight: var(--bolt-type-font-weight-regular);
-  color: var(--m-bolt-text);
-  line-height: var(--bolt-type-line-height-small);
-}
-
-.c-bolt-table--borderless {
-  .c-bolt-table__cell:not(:last-child) {
-    border-right: 0;
-  }
-
-  .c-bolt-table__cell--data[rowspan]:not(:last-child) {
-    @include bolt-table-border(right);
-  }
-
-  td.c-bolt-table__cell--data[rowspan]:not(:first-of-type) {
-    @include bolt-table-border(left);
-  }
-
-  > *:not(.c-bolt-table__head) .c-bolt-table__cell--header:first-child {
-    @include bolt-table-border(right);
-  }
-}
-
-.c-bolt-table--format-numeric {
-  .c-bolt-table__cell {
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  .c-bolt-table__cell--data {
-    font-family: var(--bolt-type-font-family-code);
-  }
-
-  > *:not(.c-bolt-table__head) .c-bolt-table__cell--header:first-child {
-    text-align: right;
-  }
-}
-
-.c-bolt-table--first-col-fixed-width {
-  .c-bolt-table__head .c-bolt-table__cell:first-child,
-  td.c-bolt-table__cell--data:first-of-type {
-    width: 1%;
-    white-space: nowrap;
-
-    & ~ .c-bolt-table__cell {
-      width: auto;
-    }
-  }
-}
-
-.c-bolt-table__figure {
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-
-.c-bolt-table__caption {
-  display: block;
-  padding-top: var(--bolt-spacing-y-xsmall);
+  max-height: 75vh;
   font-size: var(--bolt-type-font-size-xsmall);
   line-height: var(--bolt-type-line-height-xsmall);
+  border-radius: bolt-border-radius(small);
+  box-shadow: 0 0 0 1px var(--m-bolt-disabled);
+  background-color: var(--m-bolt-disabled);
+
+  @media print {
+    max-width: unset;
+    max-height: unset;
+  }
+
+  &.c-bolt-responsive-table--borderless {
+    box-shadow: none;
+
+    table {
+      border-spacing: 0;
+    }
+
+    th {
+      box-shadow: none;
+    }
+  }
+
+  table {
+    width: 100%;
+  }
+
+  thead {
+    --m-bolt-text: var(--m-bolt-headline);
+    --m-bolt-link: var(--m-bolt-headline);
+  }
+
+  td {
+    background-color: var(--m-bolt-bg);
+  }
+
+  thead td,
+  th {
+    background-color: var(--m-bolt-table-header);
+  }
+
+  thead td,
+  thead th,
+  tbody:first-child tr:first-of-type td,
+  tbody:first-child tr:first-of-type th {
+    &:first-child {
+      border-top-left-radius: bolt-border-radius(small);
+    }
+
+    &:last-child {
+      border-top-right-radius: bolt-border-radius(small);
+    }
+  }
+
+  tbody:last-child tr:last-of-type td,
+  tbody:last-child tr:last-of-type th,
+  tfoot td,
+  tfoot th {
+    &:first-child {
+      border-bottom-left-radius: bolt-border-radius(small);
+    }
+
+    &:last-child {
+      border-bottom-right-radius: bolt-border-radius(small);
+    }
+  }
+
+  th,
+  td {
+    padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+    transition: box-shadow var(--bolt-transition),
+      background-color var(--bolt-transition);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--m-bolt-table-highlight);
+      }
+
+      th {
+        z-index: 1;
+        box-shadow: 0 0 0 1px var(--m-bolt-disabled);
+      }
+    }
+  }
+
+  caption {
+    padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+    text-align: start;
+    background-color: transparent;
+    caption-side: bottom;
+  }
+}
+
+.c-bolt-responsive-table--sticky-side-headers {
+  th {
+    &:first-of-type {
+      position: sticky;
+      left: 1px;
+      box-shadow: 0 0 0 1px var(--m-bolt-disabled);
+    }
+  }
+
+  &.c-bolt-responsive-table--borderless {
+    th {
+      &:first-of-type {
+        left: 0;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.c-bolt-responsive-table--sticky-top-headers {
+  thead th {
+    position: sticky;
+    top: 1px;
+    box-shadow: 0 0 0 1px var(--m-bolt-disabled);
+  }
+
+  &.c-bolt-responsive-table--borderless {
+    thead th {
+      top: 0;
+    }
+  }
+}
+
+.c-bolt-responsive-table__expand-button[aria-expanded='true'] {
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+.c-bolt-responsive-table__controls {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--bolt-spacing-x-small);
+  align-items: center;
+
+  .c-bolt-responsive-table__button {
+    display: flex;
+    color: var(--m-bolt-headline);
+  }
+}
+
+.c-bolt-responsive-table__sorting-text-button {
+  .e-bolt-text-link {
+    display: flex;
+    align-items: center;
+  }
+
+  .e-bolt-text-link__icon-after {
+    pointer-events: none;
+  }
 }

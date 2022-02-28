@@ -1,0 +1,232 @@
+{% set description %}
+  Use inline style on the table headers to set a specific column width.
+{% endset %}
+
+{% set demo %}
+  {% set header_250px %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '250px wide column',
+        header: true,
+        attributes: {
+          style: 'min-width: 250px;',
+        },
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '250px wide column',
+        header: true,
+        attributes: {
+          style: 'min-width: 250px;',
+        },
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '250px wide column',
+        header: true,
+        attributes: {
+          style: 'min-width: 250px;',
+        },
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '250px wide column',
+        header: true,
+        attributes: {
+          style: 'min-width: 250px;',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set header_percent %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '15% wide column',
+        header: true,
+        attributes: {
+          style: 'width: 15%;',
+        },
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '25% wide column',
+        header: true,
+        attributes: {
+          style: 'width: 25%;',
+        },
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '45% wide column',
+        header: true,
+        attributes: {
+          style: 'width: 35%;',
+        },
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '15% wide column',
+        header: true,
+        attributes: {
+          style: 'width: 25%;',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set header_percent_2 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '25% wide column',
+        header: true,
+        attributes: {
+          style: 'width: 25%;',
+        },
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '25% wide column',
+        header: true,
+        attributes: {
+          style: 'width: 25%;',
+        },
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '25% wide column',
+        header: true,
+        attributes: {
+          style: 'width: 25%;',
+        },
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '25% wide column',
+        header: true,
+        attributes: {
+          style: 'width: 25%;',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  <bolt-text headline tag="h4" font-size="small">Pixel value width</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header_250px,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+    } only %}
+  </bolt-stack>
+  <bolt-text headline tag="h4" font-size="small">Percent value width</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header_percent,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+    } only %}
+  </bolt-stack>
+  <bolt-text headline tag="h4" font-size="small">Percent value width + full width table container (block display)</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header_percent,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+      attributes: {
+        class: 'u-bolt-block',
+      },
+    } only %}
+  </bolt-stack>
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table column width',
+  description: description,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

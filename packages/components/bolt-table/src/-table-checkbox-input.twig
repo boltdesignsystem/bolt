@@ -1,0 +1,20 @@
+{% set schema = bolt.data.components['@bolt-components-table'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-responsive-table__input',
+] %}
+
+<span {{ attributes.addClass(classes) }}>
+  <input class="c-bolt-responsive-table__checkbox" type="checkbox" id="{{ content }}">
+  <label class="c-bolt-responsive-table__cell-label" for="{{ content }}">
+    {{ content }}
+  </label>
+</span>
