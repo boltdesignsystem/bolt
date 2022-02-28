@@ -19,9 +19,6 @@
   this.data.sticky_headers.value != schema.properties.sticky_headers.default ? 'c-bolt-responsive-table--sticky-' ~ this.data.sticky_headers.value ~ '-headers',
 
 ] %}
-<pre>
-  {{ dump(schema.properties) }}
-</pre>
 <div {{ attributes_wrapper.addClass(classes) }}>
   <table>
     {% if header %}

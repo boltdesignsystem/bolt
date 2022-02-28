@@ -6,7 +6,7 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-responsive-table&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-table&gt; tag.',
     },
     content: {
       type: 'object',

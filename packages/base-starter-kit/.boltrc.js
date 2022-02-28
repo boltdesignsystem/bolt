@@ -1,7 +1,6 @@
 module.exports = {
   components: {
     global: [
-      '@bolt/components-responsive-table',
       '@bolt/elements-ratio',
       '@bolt/core-v3.x',
       '@bolt/global',

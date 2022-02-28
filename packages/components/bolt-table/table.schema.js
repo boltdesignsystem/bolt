@@ -63,7 +63,7 @@ module.exports = {
       },
     },
     caption: {
-      type: 'object',
+      type: 'any',
       description: 'Generates a table caption - &lt;tr&gt; tag.',
       properties: {
         content: {
