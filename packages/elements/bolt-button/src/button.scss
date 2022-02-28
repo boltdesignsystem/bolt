@@ -61,28 +61,6 @@
     opacity: 0;
   }
 
-  &[type='button'],
-  &[href] {
-    &:hover {
-      transform: translate3d(0, -2px, 0);
-
-      &:after {
-        opacity: 0.4;
-        box-shadow: 0 0.4em 1.5em var(--m-bolt-primary);
-      }
-    }
-  }
-
-  &[type='button'],
-  &[href] {
-    &:focus,
-    &:active:not(:disabled) {
-      transform: translate3d(0, 0, 0);
-      outline: var(--bolt-focus-ring);
-      outline-offset: 2px;
-    }
-  }
-
   &:disabled {
     --e-bolt-button-text-color: var(--m-bolt-text-on-disabled);
     --e-bolt-button-bg-color: var(--m-bolt-disabled);
@@ -94,11 +72,33 @@
       display: none;
     }
   }
+}
 
-  &[type='button'],
-  &[href] {
-    cursor: pointer;
+button.e-bolt-button,
+a.e-bolt-button {
+  &:hover {
+    transform: translate3d(0, -2px, 0);
+
+    &:after {
+      opacity: 0.4;
+      box-shadow: 0 0.4em 1.5em var(--m-bolt-primary);
+    }
   }
+}
+
+button.e-bolt-button,
+a.e-bolt-button {
+  &:focus,
+  &:active:not(:disabled) {
+    transform: translate3d(0, 0, 0);
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+button.e-bolt-button,
+a.e-bolt-button {
+  cursor: pointer;
 }
 
 $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
@@ -106,8 +106,8 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
 @each $hierarchy-name in $_bolt-button-hierarchy {
   .e-bolt-button--#{$hierarchy-name} {
     @if $hierarchy-name == tertiary or $hierarchy-name == transparent {
-      &[type='button'],
-      &[href] {
+      button.e-bolt-button,
+      a.e-bolt-button {
         &:hover {
           transform: translate3d(0, 0, 0);
 
@@ -150,8 +150,8 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
         display: none;
       }
 
-      &[type='button'],
-      &[href] {
+      button.e-bolt-button,
+      a.e-bolt-button {
         &:hover {
           text-decoration: underline;
           text-decoration-thickness: 2px;
