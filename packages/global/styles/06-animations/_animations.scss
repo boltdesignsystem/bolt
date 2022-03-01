@@ -1,0 +1,55 @@
+/* ------------------------------------ *\
+   Base animations tool set
+\* ------------------------------------ */
+
+/**
+ * Dev notes:
+ * 1. Safari performance issue (elements flickers in random places after animation starts).
+ * 2. Start animation one after another.
+ */
+
+[class*='a-bolt-'] {
+  visibility: hidden; /* [1] */
+  animation-delay: var(--bolt-animation-delay);
+  animation-duration: var(--bolt-animation-duration);
+  animation-fill-mode: both;
+  animation-play-state: paused;
+
+  @media print, (prefers-reduced-motion: reduce) {
+    animation: none !important;
+  }
+}
+
+[class*='a-bolt-in'] {
+  animation-timing-function: ease-out;
+}
+
+[class*='a-bolt-out'] {
+  animation-timing-function: ease-in;
+  @media print, (prefers-reduced-motion: reduce) {
+    opacity: 0;
+  }
+}
+
+.a-bolt-running {
+  visibility: visible; /* [1] */
+  animation-play-state: running;
+}
+
+.a-bolt-duration-long {
+  animation-duration: calc(var(--bolt-animation-duration) * 2.5);
+}
+
+.a-bolt-duration-short {
+  animation-duration: calc(var(--bolt-animation-duration) / 2);
+}
+
+.a-bolt-delay-long {
+  --bolt-animation-delay: 500ms;
+  animation-delay: var(--bolt-animation-delay);
+}
+
+.a-bolt-delay-short {
+  --bolt-animation-delay: 100ms;
+  animation-delay: var(--bolt-animation-delay);
+}
