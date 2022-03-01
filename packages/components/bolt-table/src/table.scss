@@ -46,7 +46,6 @@
 
   table {
     width: 100%;
-    border-radius: inherit;
     background-color: var(--m-bolt-table-highlight);
   }
 
@@ -79,8 +78,8 @@
 
   tbody:last-child tr:last-of-type td,
   tbody:last-child tr:last-of-type th,
-  tfoot td,
-  tfoot th {
+  tfoot:last-child td,
+  tfoot:last-child th {
     &:first-child {
       border-bottom-left-radius: bolt-border-radius(small);
     }
