@@ -1,3 +1,7 @@
+<bolt-banner status="warning">
+  <bolt-text headline>Warning! The feature is work in progress.</bolt-text>
+</bolt-banner>
+
 {% set description %}
   In use cases where checkboxes are necessary in a table, render the checkbox in the first cell of a row.
 {% endset %}
@@ -28,7 +32,7 @@
             type: 'checkbox',
             id: 'checkbox-header',
             class: [
-              'js-bolt-head-checkbox'
+              'js-bolt-table-header-checkbox'
             ]
           },
         } only %}
@@ -242,7 +246,7 @@
 <script>
   function toggleCheckbox() {
     const mainCheckbox = document.querySelector(
-      '.js-bolt-head-checkbox',
+      '.js-bolt-table-header-checkbox',
     );
 
     const rowCheckboxes = document.querySelectorAll(

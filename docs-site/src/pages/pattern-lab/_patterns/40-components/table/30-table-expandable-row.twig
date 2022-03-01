@@ -1,11 +1,9 @@
-{% set description %}
-  Table with expandable rows.
-{% endset %}
+<bolt-banner status="warning">
+  <bolt-text headline>Warning! The feature is work in progress.</bolt-text>
+</bolt-banner>
 
-{% set notes %}
-  <bolt-ol>
-    <bolt-li>List out important information about this component and its usage.</bolt-li>
-  </bolt-ol>
+{% set description %}
+  Use an expand button to create a table row that can expand additional rows.
 {% endset %}
 
 {% set demo %}
@@ -297,7 +295,6 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Table with expandable rows',
   description: description,
-  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
   js: demo_js,

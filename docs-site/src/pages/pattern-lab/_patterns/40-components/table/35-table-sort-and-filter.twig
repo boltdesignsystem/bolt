@@ -1,11 +1,9 @@
-{% set description %}
-  Table with sort and filter buttons.
-{% endset %}
+<bolt-banner status="warning">
+  <bolt-text headline>Warning! The feature is work in progress.</bolt-text>
+</bolt-banner>
 
-{% set notes %}
-  <bolt-ol>
-    <bolt-li>List out important information about this component and its usage.</bolt-li>
-  </bolt-ol>
+{% set description %}
+  Use the sort button and filter popover to create sortable tables.
 {% endset %}
 
 {% set demo %}
@@ -646,7 +644,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Table with sort and filter buttons',
+  title: 'Sortable table',
   description: description,
   notes: notes,
   demo: demo,

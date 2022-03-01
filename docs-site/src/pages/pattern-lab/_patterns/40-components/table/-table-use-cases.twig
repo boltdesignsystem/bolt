@@ -6,28 +6,28 @@
   {% set header %}
     {% set cells %}
       {% include '@bolt-components-table/table-cell.twig' with {
-        content: 'Data page',
+        content: 'Data page (20% wide)',
         header: true,
         attributes: {
           style: 'width: 20%;',
         },
       } only %}
       {% include '@bolt-components-table/table-cell.twig' with {
-        content: 'Data type',
+        content: 'Data type (20% wide)',
         header: true,
         attributes: {
           style: 'width: 20%;',
         },
       } only %}
       {% include '@bolt-components-table/table-cell.twig' with {
-        content: 'SharePoint API',
+        content: 'SharePoint API (45% wide)',
         header: true,
         attributes: {
           style: 'width: 45%;',
         },
       } only %}
       {% include '@bolt-components-table/table-cell.twig' with {
-        content: 'HTTP method',
+        content: 'HTTP method (15% wide)',
         header: true,
         attributes: {
           style: 'width: 15%;',
@@ -59,7 +59,7 @@
     } only %}
   {% endset %}
 
-  <bolt-text headline tag="h4" font-size="small">Data page details (auto width table)</bolt-text>
+  <bolt-text headline tag="h4" font-size="small">Data page details (auto width table, percentage column width)</bolt-text>
   <bolt-stack>
     {% include '@bolt-components-table/table.twig' with {
       header: {
@@ -73,7 +73,7 @@
     } only %}
   </bolt-stack>
 
-  <bolt-text headline tag="h4" font-size="small">Data page details (full width table)</bolt-text>
+  <bolt-text headline tag="h4" font-size="small">Data page details (full width table, percentage column width)</bolt-text>
   <bolt-stack>
     {% include '@bolt-components-table/table.twig' with {
       header: {
@@ -90,27 +90,29 @@
     } only %}
   </bolt-stack>
 
+  <hr>
+
   {% set header %}
     {% set cells %}
       {% include '@bolt-components-table/table-cell.twig' with {
-        content: 'Name',
+        content: 'Name (200px wide)',
         header: true,
         attributes: {
-          style: 'width: 20%;',
+          style: 'width: 200px',
         },
       } only %}
       {% include '@bolt-components-table/table-cell.twig' with {
-        content: 'Description',
+        content: 'Description (400px wide)',
         header: true,
         attributes: {
-          style: 'width: 70%;',
+          style: 'width: 400px',
         },
       } only %}
       {% include '@bolt-components-table/table-cell.twig' with {
-        content: 'Required',
+        content: 'Required (50px wide)',
         header: true,
         attributes: {
-          style: 'width: 10%;',
+          style: 'width: 50px',
         },
       } only %}
     {% endset %}
@@ -123,7 +125,6 @@
     {% set cells %}
       {% include '@bolt-components-table/table-cell.twig' with {
         content: 'SiteName',
-        header: true,
       } only %}
       {% include '@bolt-components-table/table-cell.twig' with {
         content: 'Overrides the default site in SPOnlineSetings.',
@@ -141,7 +142,6 @@
     {% set cells %}
       {% include '@bolt-components-table/table-cell.twig' with {
         content: 'Authentication profile',
-        header: true,
       } only %}
       {% include '@bolt-components-table/table-cell.twig' with {
         content: 'Overrides the default authentication profile in the SPOnlineSetings data transform.',
@@ -159,7 +159,6 @@
     {% set cells %}
       {% include '@bolt-components-table/table-cell.twig' with {
         content: 'SelectFields',
-        header: true,
       } only %}
       {% include '@bolt-components-table/table-cell.twig' with {
         content: 'Specifies the fields to retrieve.',
@@ -173,7 +172,7 @@
     } only %}
   {% endset %}
 
-  <bolt-text headline tag="h4" font-size="small">Data page parameters (auto width table)</bolt-text>
+  <bolt-text headline tag="h4" font-size="small">Data page parameters (auto width table, pixel column width)</bolt-text>
   <bolt-stack>
     {% include '@bolt-components-table/table.twig' with {
       header: {
@@ -186,15 +185,10 @@
           row3,
         ],
       },
-      attributes: {
-        class: [
-          'c-bolt-table--sticky-side-headers',
-        ]
-      },
     } only %}
   </bolt-stack>
 
-  <bolt-text headline tag="h4" font-size="small">Data page parameters (full width table)</bolt-text>
+  <bolt-text headline tag="h4" font-size="small">Data page parameters (full width table, pixel column width)</bolt-text>
   <bolt-stack>
     {% include '@bolt-components-table/table.twig' with {
       header: {
@@ -210,7 +204,291 @@
       attributes: {
         class: [
           'u-bolt-block',
-          'c-bolt-table--sticky-side-headers',
+        ]
+      },
+    } only %}
+  </bolt-stack>
+
+  <hr>
+
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Capabilities',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Interaction Portal',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'RDA-enabled service cases',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Start My Day (SMD)',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Reportability of time spent per application (Captured through robotics. Reported through Workforce Intelligence)',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  <bolt-text headline tag="h4" font-size="small">Capabilities (auto width table, undefined column width)</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+    } only %}
+  </bolt-stack>
+
+  <bolt-text headline tag="h4" font-size="small">Capabilities (full width table, undefined column width)</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+      attributes: {
+        class: [
+          'u-bolt-block',
+        ]
+      },
+    } only %}
+  </bolt-stack>
+
+  <hr>
+
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Feature',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐵',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐶',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🦊',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐱',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🦁',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🦄',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐮',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐷',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Proactive chat / AI-driven offers and suggestions',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Styling and branding configuration',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Asynchronous messaging (support for long running interactions)',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  <bolt-text headline tag="h4" font-size="small">Chatbots and other virtual assistants (auto width table, undefined column width)</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+    } only %}
+  </bolt-stack>
+
+  <bolt-text headline tag="h4" font-size="small">Chatbots and other virtual assistants (full width table, undefined column width)</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+      attributes: {
+        class: [
+          'u-bolt-block',
         ]
       },
     } only %}
@@ -224,6 +502,5 @@
   title: 'Table use cases',
   description: description,
   demo: demo,
-  demo_light_dark: true,
   twig_markup: twig_markup,
 } only %}

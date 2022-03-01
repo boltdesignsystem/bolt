@@ -25,8 +25,7 @@
   font-size: var(--bolt-type-font-size-xsmall);
   line-height: var(--bolt-type-line-height-xsmall);
   border-radius: bolt-border-radius(small);
-  box-shadow: 0 0 0 1px var(--m-bolt-disabled);
-  background-color: var(--m-bolt-disabled);
+  box-shadow: 0 0 0 1px var(--m-bolt-table-highlight);
 
   @media print {
     max-width: unset;
@@ -47,6 +46,8 @@
 
   table {
     width: 100%;
+    border-radius: inherit;
+    background-color: var(--m-bolt-table-highlight);
   }
 
   thead {
@@ -106,7 +107,7 @@
 
       th {
         z-index: 1;
-        box-shadow: 0 0 0 1px var(--m-bolt-disabled);
+        box-shadow: 0 0 0 1px var(--m-bolt-headline);
       }
     }
   }
@@ -114,7 +115,6 @@
   caption {
     padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
     text-align: start;
-    background-color: transparent;
     caption-side: bottom;
   }
 }
@@ -124,7 +124,7 @@
     &:first-of-type {
       position: sticky;
       left: 1px;
-      box-shadow: 0 0 0 1px var(--m-bolt-disabled);
+      box-shadow: 0 0 0 1px var(--m-bolt-table-highlight);
     }
   }
 
@@ -142,7 +142,7 @@
   thead th {
     position: sticky;
     top: 1px;
-    box-shadow: 0 0 0 1px var(--m-bolt-disabled);
+    box-shadow: 0 0 0 1px var(--m-bolt-table-highlight);
   }
 
   &.c-bolt-table--borderless {
@@ -153,7 +153,7 @@
 }
 
 .c-bolt-table__expand-button[aria-expanded='true'] {
-  svg {
+  .e-bolt-icon {
     transform: rotate(180deg);
   }
 }
