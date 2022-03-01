@@ -49,8 +49,50 @@ $_bolt-fab-y-offset: var(--bolt-spacing-y-xsmall);
       }
     }
 
-    .c-bolt-floating-action-buttons__list--hidden .c-bolt-floating-action-buttons__list-item {
-      display: none;
+    .c-bolt-floating-action-buttons__list {
+      max-height: 50vh;
+      overflow: hidden;
+      transition: max-height, 500ms ease-out;
+
+      .e-bolt-button {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: opacity, transform 250ms ease-out;
+      }
+
+      > .c-bolt-floating-action-buttons__list-item:nth-child(1) {
+        .e-bolt-button {
+          transition-delay: 50ms;
+        }
+      }
+
+      > .c-bolt-floating-action-buttons__list-item:nth-child(2) {
+        .e-bolt-button {
+          transition-delay: 100ms;
+        }
+      }
+
+      > .c-bolt-floating-action-buttons__list-item:nth-child(3) {
+        .e-bolt-button {
+          transition-delay: 150ms;
+        }
+      }
+    }
+
+    .c-bolt-floating-action-buttons__list--hidden {
+      z-index: -1;
+      max-height: 0;
+      transition: max-height, 250ms ease-out;
+
+      .e-bolt-button {
+        opacity: 0;
+        transform: translate3d(0, 4rem, 0);
+      }
+    }
+
+    .c-bolt-floating-action-buttons__list--hidden
+      .c-bolt-floating-action-buttons__list-item {
+      // display: none;
       // visibility: hidden;
       // opacity: 0;
       // margin-bottom: -100%;
