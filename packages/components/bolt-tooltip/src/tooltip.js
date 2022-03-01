@@ -73,6 +73,10 @@ class BoltTooltip extends BoltElement {
       offset: [0, 0],
       plugins: [hideOnEsc],
       zIndex: this.zIndex,
+      aria: {
+        expanded: false,
+        content: this.ariaType,
+      },
       popperOptions: {
         modifiers: [
           {
@@ -135,9 +139,9 @@ class BoltTooltip extends BoltElement {
   }
 
   render() {
-    return html`
-      ${this.slotify('default')} ${this.slotify('content')}
-    `;
+    // Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
+    // prettier-ignore
+    return html`${this.slotify('default')}${this.slotify('content')}`;
   }
 }
 

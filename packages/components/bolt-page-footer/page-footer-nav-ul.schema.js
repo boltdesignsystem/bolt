@@ -42,5 +42,11 @@ module.exports = {
         },
       },
     },
+    open: {
+      type: 'boolean',
+      description:
+        'Set to true if a nav list needs to be expanded by default in mobile view.',
+      default: false,
+    },
   },
 };

@@ -4,7 +4,7 @@
 
 @import '@bolt/core-v3.x';
 
-.c-page-footer {
+.c-bolt-page-footer {
   @include bolt-full-bleed;
 
   padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
@@ -23,11 +23,11 @@
   }
 }
 
-.c-page-footer__nav {
+.c-bolt-page-footer__nav {
   display: grid;
 }
 
-.c-page-footer__nav--main {
+.c-bolt-page-footer__nav--main {
   @include bolt-mq(medium) {
     grid-gap: var(--bolt-spacing-x-medium);
     grid-row-gap: var(--bolt-spacing-y-medium);
@@ -38,24 +38,24 @@
       'social . . .';
     padding: var(--bolt-spacing-y-medium) var(--bolt-page-padding-x);
 
-    .c-page-footer__nav-item {
+    .c-bolt-page-footer__nav-item {
       grid-row: span 2;
     }
 
-    .c-page-footer__nav-item--description {
+    .c-bolt-page-footer__nav-item--description {
       grid-row: unset;
       grid-area: description;
       max-width: 55ch;
     }
 
-    .c-page-footer__nav-item--social {
+    .c-bolt-page-footer__nav-item--social {
       grid-row: unset;
       grid-area: social;
     }
   }
 }
 
-.c-page-footer__nav--aside {
+.c-bolt-page-footer__nav--aside {
   @include bolt-mq(medium) {
     display: flex;
     flex-wrap: wrap;
@@ -76,7 +76,7 @@
       background-color: var(--bolt-color-gray);
     }
 
-    .c-page-footer__nav-item {
+    .c-bolt-page-footer__nav-item {
       margin-right: var(--bolt-spacing-x-medium);
 
       &:last-child {
@@ -86,7 +86,7 @@
   }
 }
 
-.c-page-footer__nav-item {
+.c-bolt-page-footer__nav-item {
   display: block;
 
   @include bolt-mq($until: medium) {
@@ -94,7 +94,7 @@
   }
 }
 
-.c-page-footer__nav-item--description {
+.c-bolt-page-footer__nav-item--description {
   @include bolt-mq($until: medium) {
     padding-bottom: var(--bolt-spacing-y-medium);
   }
@@ -104,54 +104,54 @@
   }
 }
 
-.c-page-footer__nav-item--social {
+.c-bolt-page-footer__nav-item--social {
   @include bolt-mq(medium) {
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: baseline;
 
-    .c-page-footer__nav-headline {
+    .c-bolt-page-footer__nav-headline {
       font-size: inherit;
       font-weight: var(--bolt-type-font-weight-semibold);
       line-height: inherit;
     }
 
-    .c-page-footer__nav-list {
+    .c-bolt-page-footer__nav-list {
       display: flex;
       padding: 0 var(--bolt-spacing-x-small);
       font-size: var(--bolt-type-font-size-large);
     }
 
-    .c-page-footer__nav-link__text {
+    .c-bolt-page-footer__nav-link__text {
       @include bolt-visuallyhidden;
     }
   }
 }
 
-.c-page-footer__nav-item--copyrights {
+.c-bolt-page-footer__nav-item--copyrights {
   @include bolt-mq($until: medium) {
     padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-xsmall);
     border-bottom: 0;
   }
 }
 
-.c-page-footer__nav-item--language,
-.c-page-footer__nav-item--legal {
+.c-bolt-page-footer__nav-item--language,
+.c-bolt-page-footer__nav-item--legal {
   @include bolt-mq(medium) {
-    .c-page-footer__nav-list {
+    .c-bolt-page-footer__nav-list {
       display: flex;
       gap: var(--bolt-spacing-x-xsmall);
       white-space: nowrap;
     }
 
-    .c-page-footer__nav-headline:not(.c-page-footer__nav-headline--trigger) {
+    .c-bolt-page-footer__nav-headline:not(.c-bolt-page-footer__nav-headline--trigger) {
       @include bolt-visuallyhidden;
     }
   }
 }
 
-.c-page-footer__nav-item--language {
-  .c-page-footer__nav-link {
+.c-bolt-page-footer__nav-item--language {
+  .c-bolt-page-footer__nav-link {
     color: var(--m-bolt-link);
 
     &:hover {
@@ -160,11 +160,11 @@
   }
 }
 
-.c-page-footer__nav-headline--trigger {
+.c-bolt-page-footer__nav-headline--trigger {
   @include bolt-button-native-styles-reset; // Button styles must be reset first before applying other styles.
 }
 
-.c-page-footer__nav-headline {
+.c-bolt-page-footer__nav-headline {
   display: none;
   margin-bottom: var(--bolt-spacing-y-small);
   font-family: var(--bolt-type-font-family-headline);
@@ -178,7 +178,7 @@
   }
 }
 
-.c-page-footer__nav-headline--trigger {
+.c-bolt-page-footer__nav-headline--trigger {
   position: relative;
   margin-bottom: 0;
 
@@ -216,8 +216,10 @@
   }
 
   @include bolt-mq($until: medium) {
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: var(--bolt-spacing-x-small);
     width: 100%;
     padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-xsmall);
 
@@ -226,11 +228,11 @@
         opacity: 0.05;
       }
 
-      .c-page-footer__nav-headline--trigger__icon {
+      .c-bolt-page-footer__nav-headline--trigger__icon {
         transform: rotate(180deg);
       }
 
-      & ~ .c-page-footer__nav-list {
+      & ~ .c-bolt-page-footer__nav-list {
         visibility: visible;
         opacity: 1;
         max-height: 100vh;
@@ -240,7 +242,7 @@
       }
     }
 
-    &[aria-expanded='false'] ~ .c-page-footer__nav-list {
+    &[aria-expanded='false'] ~ .c-bolt-page-footer__nav-list {
       visibility: hidden;
       opacity: 0;
       max-height: 0;
@@ -256,11 +258,11 @@
   }
 }
 
-.c-page-footer__nav-headline--trigger__icon {
+.c-bolt-page-footer__nav-headline--trigger__icon {
   transition: transform var(--bolt-transition);
 }
 
-.c-page-footer__nav-list {
+.c-bolt-page-footer__nav-list {
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -270,7 +272,7 @@
   }
 }
 
-.c-page-footer__nav-list-item {
+.c-bolt-page-footer__nav-list-item {
   margin: 0 0 var(--bolt-spacing-y-small) 0;
   padding: 0;
   color: var(--m-bolt-text);
@@ -280,7 +282,7 @@
   }
 }
 
-.c-page-footer__nav-link {
+.c-bolt-page-footer__nav-link {
   display: inline-grid;
   grid-template-columns: auto 1fr;
   grid-gap: var(--bolt-spacing-x-xsmall);
@@ -293,7 +295,7 @@
     color: var(--m-bolt-headline);
     text-decoration: underline;
 
-    .c-page-footer__nav-link__icon {
+    .c-bolt-page-footer__nav-link__icon {
       color: var(--m-bolt-headline);
     }
   }
@@ -312,14 +314,14 @@
   }
 }
 
-.c-page-footer__nav-link__icon {
+.c-bolt-page-footer__nav-link__icon {
   color: var(--m-bolt-link);
   transition: color var(--bolt-transition);
 }
 
 @media (prefers-reduced-motion) {
-  .c-page-footer__nav-list,
-  .c-page-footer__nav-headline--trigger__icon {
+  .c-bolt-page-footer__nav-list,
+  .c-bolt-page-footer__nav-headline--trigger__icon {
     transition: none !important; // Remove transitions that would cause motion sickness.
   }
 }

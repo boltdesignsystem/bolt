@@ -9,23 +9,23 @@
 {% set headline_attributes = create_attribute(headline.attributes|default({})) %}
 
 {% set classes = [
-  'c-page-footer__nav-item',
-  this.data.category.value ? 'c-page-footer__nav-item--' ~ this.data.category.value,
+  'c-bolt-page-footer__nav-item',
+  this.data.category.value ? 'c-bolt-page-footer__nav-item--' ~ this.data.category.value,
 ] %}
 
 <div {{ attributes.addClass(classes) }}>
-  <{{ headline.tag }} {{ headline_attributes.addClass('c-page-footer__nav-headline') }}>
+  <{{ headline.tag }} {{ headline_attributes.addClass('c-bolt-page-footer__nav-headline') }}>
     {{ headline.content }}
   </{{ headline.tag }}>
-  <button class="c-page-footer__nav-headline c-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="false">
+  <button class="c-bolt-page-footer__nav-headline c-bolt-page-footer__nav-headline--trigger js-bolt-page-footer-toggle-trigger" type="button" aria-expanded="{{ this.data.open.value is same as(true) ? 'true' : 'false' }}">
     {{ headline.content }}
-    <span class="c-page-footer__nav-headline--trigger__icon" aria-hidden="true">
+    <span class="c-bolt-page-footer__nav-headline--trigger__icon" aria-hidden="true">
       {% include '@bolt-elements-icon/icon.twig' with {
         name: 'chevron-down',
       } only %}
     </span>
   </button>
-  <ul class="c-page-footer__nav-list">
+  <ul class="c-bolt-page-footer__nav-list">
     {{ content }}
   </ul>
 </div>
