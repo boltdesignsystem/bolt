@@ -42,9 +42,17 @@
       if(this.el().dataset.playbackRates){
         var playbackRateOptions = this.getAttribute('data-playback-rates').replace(/(\[*\]*)/g, '')
         playbackRateOptions = playbackRateOptions.split(',')
-        thisPlayer.controlBar.playbackRateMenuButton = thisPlayer.controlBar.addChild('PlaybackRateMenuButton', {
-          playbackRates: playbackRateOptions
-        }, 10)
+        if(typeof thisPlayer.playbackRates === "function"){
+          var playbackRateOptionsClean = []
+          for (var o = 0; o < playbackRateOptions.length; o++) {
+            playbackRateOptionsClean.push(parseFloat(playbackRateOptions[o], 10))
+            } 
+            thisPlayer.playbackRates(playbackRateOptionsClean);
+        } else {
+          thisPlayer.controlBar.playbackRateMenuButton = thisPlayer.controlBar.addChild('PlaybackRateMenuButton', {
+            playbackRates: playbackRateOptions
+          }, 10)
+        }
       }
       // OPTIONS
       // data-default-resolution (optional) [string]: Adjusts the default resolution for the videos (ex. 720p)
