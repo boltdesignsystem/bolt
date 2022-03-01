@@ -5,7 +5,7 @@ export class BoltResponsiveTable {
   }
 }
 
-const responsiveTable = document.querySelectorAll('.js-bolt-responsive-table');
+const responsiveTable = document.querySelectorAll('.js-bolt-table');
 
 responsiveTable.forEach(el => {
   const component = new BoltResponsiveTable(el);

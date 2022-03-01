@@ -16,7 +16,7 @@
  * 1. Provide line-comments like this.
  */
 
-.c-bolt-responsive-table {
+.c-bolt-table {
   @include bolt-horizontal-scroll;
 
   display: inline-block;
@@ -33,7 +33,7 @@
     max-height: unset;
   }
 
-  &.c-bolt-responsive-table--borderless {
+  &.c-bolt-table--borderless {
     box-shadow: none;
 
     table {
@@ -119,7 +119,7 @@
   }
 }
 
-.c-bolt-responsive-table--sticky-side-headers {
+.c-bolt-table--sticky-side-headers {
   th {
     &:first-of-type {
       position: sticky;
@@ -128,7 +128,7 @@
     }
   }
 
-  &.c-bolt-responsive-table--borderless {
+  &.c-bolt-table--borderless {
     th {
       &:first-of-type {
         left: 0;
@@ -138,45 +138,34 @@
   }
 }
 
-.c-bolt-responsive-table--sticky-top-headers {
+.c-bolt-table--sticky-top-headers {
   thead th {
     position: sticky;
     top: 1px;
     box-shadow: 0 0 0 1px var(--m-bolt-disabled);
   }
 
-  &.c-bolt-responsive-table--borderless {
+  &.c-bolt-table--borderless {
     thead th {
       top: 0;
     }
   }
 }
 
-.c-bolt-responsive-table__expand-button[aria-expanded='true'] {
+.c-bolt-table__expand-button[aria-expanded='true'] {
   svg {
     transform: rotate(180deg);
   }
 }
 
-.c-bolt-responsive-table__controls {
+.c-bolt-table__controls {
   display: flex;
   justify-content: space-between;
   gap: var(--bolt-spacing-x-small);
   align-items: center;
 
-  .c-bolt-responsive-table__button {
+  .c-bolt-table__button {
     display: flex;
     color: var(--m-bolt-headline);
-  }
-}
-
-.c-bolt-responsive-table__sorting-text-button {
-  .e-bolt-text-link {
-    display: flex;
-    align-items: center;
-  }
-
-  .e-bolt-text-link__icon-after {
-    pointer-events: none;
   }
 }

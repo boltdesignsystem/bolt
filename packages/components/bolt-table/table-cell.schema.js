@@ -6,23 +6,23 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-table&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
     content: {
       type: 'any',
       description:
-        'Generates a table cell &lt;td&gt; tag. To render a button which triggers expanding hidden rows use table-expand-button.twig. To render a button which triggers sorting use table-sorting-text-button.twig',
+        'Generates a table cell &lt;td&gt; element. To render a button which triggers expanding hidden rows, pass table-expand-button.twig as the content. To render a button which triggers sorting, pass table-sorting-button.twig as the content.',
     },
     header: {
       type: 'boolean',
       default: false,
       description:
-        'Generates a table cell as a header &lt;th&gt; tag, if sets to true. &lt;Th&gt; tags can be both at the top or side of the table',
+        'Generates a table cell as a table header &lt;th&gt; element if set to true. &lt;th&gt; elements can be used in table head, table body, or table footer.',
     },
     filters: {
       type: 'object',
       description:
-        'Renders control buttons of a filter fetaure. Use already existing bolt form elements and bolt popover to create a filter set. Then pass it to the prop.',
+        'Generates space for a popover filter button. It is recommended to pass the Button element and Popover component here.',
     },
   },
 };

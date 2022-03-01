@@ -1,4 +1,4 @@
-const responsiveTables = document.querySelectorAll('.c-bolt-responsive-table');
+const responsiveTables = document.querySelectorAll('.c-bolt-table');
 
 if (responsiveTables.length) {
   import(/* webpackChunkName: 'bolt-responsive-table' */ './src/table').then(

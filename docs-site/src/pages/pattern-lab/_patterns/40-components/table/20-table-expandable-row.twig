@@ -81,6 +81,9 @@
       {% set expand_button %}
         {% include '@bolt-components-table/table-expand-button.twig' with {
           content: 'Expand next 2 rows',
+          attributes: {
+            class: 'js-bolt-table-expand-button',
+          },
         } only %}
       {% endset %}
 
@@ -254,7 +257,7 @@
 
   for (let i = 0; i < start.length; i++) {
     const tableButton = start[i].querySelector(
-      '.js-bolt-toggle-button',
+      '.js-bolt-table-expand-button',
     );
 
     var next = nextUntil(start[i], '.js-bolt-row-trigger');
@@ -274,7 +277,7 @@
 
   function toggleAriaExpanded() {
     const tableButton = document.querySelectorAll(
-      '.js-bolt-toggle-button',
+      '.js-bolt-table-expand-button',
     );
     tableButton.forEach(el => {
       el.addEventListener('click', () => {

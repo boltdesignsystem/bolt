@@ -6,12 +6,12 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-table&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
     content: {
       type: 'object',
       description:
-        'Generates a single table row - &lt;tr&gt; tag. Use table-cell.twig to render table cells inside the table row.',
+        'Generates a single table row &lt;tr&gt; element. Use table-cell.twig to render table cells inside the table row.',
     },
   },
 };

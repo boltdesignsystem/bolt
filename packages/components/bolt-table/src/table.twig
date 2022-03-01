@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-table'].schema %}
+{% set schema = bolt.data.components['@bolt-components-table'].schema['table'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -13,10 +13,10 @@
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  'js-bolt-responsive-table',
-  'c-bolt-responsive-table',
-  borderless ? 'c-bolt-responsive-table--borderless',
-  this.data.sticky_headers.value != schema.properties.sticky_headers.default ? 'c-bolt-responsive-table--sticky-' ~ this.data.sticky_headers.value ~ '-headers',
+  'js-bolt-table',
+  'c-bolt-table',
+  borderless ? 'c-bolt-table--borderless',
+  this.data.sticky_headers.value != schema.properties.sticky_headers.default ? 'c-bolt-table--sticky-' ~ this.data.sticky_headers.value ~ '-headers',
 
 ] %}
 <div {{ attributes_wrapper.addClass(classes) }}>

@@ -1,13 +1,13 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Table',
-  description: 'Table layout for tabular content.',
+  description: 'Responsive layout for tabular content.',
   type: 'object',
   properties: {
     attributes: {
       type: 'object',
       description:
-        'A Drupal-style attributes object with extra attributes to append to this component.',
+        'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
     borderless: {
       type: 'boolean',
@@ -16,18 +16,18 @@ module.exports = {
     },
     sticky_headers: {
       type: 'string',
-      description: 'Makes top table headers or side table headers sticky.',
+      description: 'Enables/disables sticky table headers.',
       default: 'none',
-      enum: ['top', 'side'],
+      enum: ['top', 'side', 'none'],
     },
     header: {
       type: 'object',
-      description: 'Generates a table head - &lt;thead&gt; tag.',
+      description: 'Generates a table head &lt;thead&gt; element.',
       properties: {
         content: {
           type: 'object',
           description:
-            'Renders a table row - &lt;tr&gt; tag. Use table-row.twig to render a single table row',
+            'Content must be a table row. Use table-row.twig to render a single table row.',
         },
         attributes: {
           type: 'object',
@@ -36,12 +36,12 @@ module.exports = {
     },
     body: {
       type: 'object',
-      description: 'Generates a main table content - &lt;tbody&gt; tag.',
+      description: 'Generates a main table content &lt;tbody&gt; element.',
       properties: {
         content: {
           type: 'array',
           description:
-            'Renders a collection of single table rows. Use table-row.twig to render table rows',
+            'Content must be a collection of table rows. Use table-row.twig to render table rows.',
         },
         attributes: {
           type: 'object',
@@ -50,12 +50,12 @@ module.exports = {
     },
     footer: {
       type: 'object',
-      description: 'Generates a table footer - &lt;tfoot&gt; tag.',
+      description: 'Generates a table footer &lt;tfoot&gt; element.',
       properties: {
         content: {
           type: 'object',
           description:
-            'Renders a table row - &lt;tr&gt; tag. Use table-row.twig to render a single table row',
+            'Content must be a collection of table rows. Use table-row.twig to render table rows.',
         },
         attributes: {
           type: 'object',
@@ -64,12 +64,11 @@ module.exports = {
     },
     caption: {
       type: 'any',
-      description: 'Generates a table caption - &lt;tr&gt; tag.',
+      description: 'Generates a table caption &lt;tr&gt; element.',
       properties: {
         content: {
           type: 'any',
-          description:
-            'It specifies the title of a table which is displayed at the bottom of the table.',
+          description: 'Displays a caption at the bottom of the table.',
         },
         attributes: {
           type: 'object',

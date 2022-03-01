@@ -1,5 +1,13 @@
 {% set description %}
-  Header cells can be used in the table body as well. Use header cell as the first child of each row to create side headers.
+  When appropriate, create top and side table headers.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use table header cells in the table head row to create top headers.</bolt-li>
+    <bolt-li>Use table header cell as the first child of each table body row to create side headers.</bolt-li>
+    <bolt-li>Use the <code>sticky_headers</code> prop on the table to make either top or side headers sticky.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
@@ -120,8 +128,9 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Table with side headers',
+  title: 'Table with headers',
   description: description,
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
 } only %}
