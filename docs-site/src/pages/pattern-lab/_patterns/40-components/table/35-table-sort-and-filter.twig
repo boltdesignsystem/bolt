@@ -9,7 +9,7 @@
 {% set demo %}
   {% set header %}
     {% set sortable_header %}
-      <span class"js-bolt-table-sorting">
+      <span class="js-bolt-table-sorting">
         {% set _icon_pega_sort %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'pega-sort',
@@ -619,22 +619,20 @@
 
   function toggleButtonState() {
     const sortingButtonWrap = document.querySelectorAll('.js-bolt-table-sorting');
-
     sortingButtonWrap.forEach(el => {
       el.addEventListener('click', event => {
-        if(event.target.matches('.js-bolt-table-sorting-button')) {
-          if(event.target.parentElement.classList.contains('js-bolt-table-sorting-button-unsorted')) {
-            event.target.parentElement.classList.add('u-bolt-hidden')
-            event.target.parentElement.parentElement.querySelector('.js-bolt-table-sorting-button-ascending').classList.remove('u-bolt-hidden')
-          }
-          else if(event.target.parentElement.classList.contains('js-bolt-table-sorting-button-ascending')) {
-            event.target.parentElement.classList.add('u-bolt-hidden')
-            event.target.parentElement.parentElement.querySelector('.js-bolt-table-sorting-button-descending').classList.remove('u-bolt-hidden')
-          }
-          else if(event.target.parentElement.classList.contains('js-bolt-table-sorting-button-descending')) {
-            event.target.parentElement.classList.add('u-bolt-hidden')
-            event.target.parentElement.parentElement.querySelector('.js-bolt-table-sorting-button-unsorted').classList.remove('u-bolt-hidden')
-          }
+        if(event.target.matches('.js-bolt-table-sorting-button-unsorted')) {
+          event.target.classList.add('u-bolt-hidden')
+          event.target.parentElement.querySelector('.js-bolt-table-sorting-button-ascending').classList.remove('u-bolt-hidden')
+        }
+        else if(event.target.matches('.js-bolt-table-sorting-button-ascending')) {
+          event.target.classList.add('u-bolt-hidden')
+          event.target.parentElement.querySelector('.js-bolt-table-sorting-button-descending').classList.remove('u-bolt-hidden')
+        }
+        else if(event.target.matches('.js-bolt-table-sorting-button-descending')) {
+          event.target.classList.add('u-bolt-hidden')
+          event.target.parentElement.querySelector('.js-bolt-table-sorting-button-unsorted').classList.remove('u-bolt-hidden')
+
         }
       });
     });
@@ -649,6 +647,7 @@
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,
+  js: demo_js,
 } only %}
 
 {{ demo_js }}
