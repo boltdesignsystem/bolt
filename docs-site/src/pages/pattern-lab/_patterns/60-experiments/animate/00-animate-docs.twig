@@ -8,81 +8,216 @@
 } only %}
 
 <h3>Slots</h3>
-{% include "@bolt-components-table/table.twig" with {
-  first_col_fixed_width: false,
-  headers: {
-    top: {
-      cells: [
-        "Name",
-        "Required?",
-        "Description",
-      ]
-    },
+{% set header %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Name',
+      header: true,
+      attributes: {
+        style: 'width: 33.33%'
+      }
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Required?',
+      header: true,
+      attributes: {
+        style: 'width: 33.33%'
+      }
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Description',
+      header: true,
+      attributes: {
+        style: 'width: 33.33%'
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row1 %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: '<coded>default</code>',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'No',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'wrapped content to animate',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-table/table.twig' with {
+  header: {
+    content: header,
   },
-  rows: [
-    {
-      cells: [
-        "<code>default</code>",
-        "No",
-        "wrapped content to animate",
-      ]
-    },
-  ],
+  body: {
+    content: [
+      row1,
+    ],
+  },
+  attributes: {
+    class: [
+      'u-bolt-block',
+      'u-bolt-margin-bottom-medium'
+    ]
+  }
 } only %}
 
 <h3>Methods</h3>
-{% include "@bolt-components-table/table.twig" with {
-  first_col_fixed_width: false,
-  headers: {
-    top: {
-      cells: [
-        "Name",
-        "Description",
-      ]
-    },
+{% set header %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Name',
+      header: true,
+      attributes: {
+        style: 'width: 50%'
+      }
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Description',
+      header: true,
+      attributes: {
+        style: 'width: 50%'
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row1 %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: '<code>triggerAnimIn() => boolean</code>',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'start the <code>in</code> animation, will go to <code>idle</code> animation after',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row2 %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: '<code>triggerAnimOut() => boolean</code>',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'start the <code>out</code> animation',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-table/table.twig' with {
+  header: {
+    content: header,
   },
-  rows: [
-    {
-      cells: [
-        "<code>triggerAnimIn() => boolean</code>",
-        "start the <code>in</code> animation, will go to <code>idle</code> animation after",
-      ],
-    },
-    {
-      cells: [
-        "<code>triggerAnimOut() => boolean</code>",
-        "start the <code>out</code> animation",
-      ],
-    },
-  ],
+  body: {
+    content: [
+      row1,
+      row2,
+    ],
+  },
+  attributes: {
+    class: [
+      'u-bolt-block',
+      'u-bolt-margin-bottom-medium'
+    ]
+  }
 } only %}
 
 <h3>Events</h3>
-{% include "@bolt-components-table/table.twig" with {
-  first_col_fixed_width: false,
-  headers: {
-    top: {
-      cells: [
-        "Name",
-        "Detail",
-        "Description",
-      ]
-    },
+{% set header %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Name',
+      header: true,
+      attributes: {
+        style: 'width: 33.33%'
+      }
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Detail',
+      header: true,
+      attributes: {
+        style: 'width: 33.33%'
+      }
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Description',
+      header: true,
+      attributes: {
+        style: 'width: 33.33%'
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row1 %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: '<code>bolt-animate:end:in</code>',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: '<code>{}</code>',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Indicates when the <code>in</code> animation concluded',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row2 %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: '<code>bolt-animate:end:out</code>',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: '<code>{}</code>',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Indicates when the <code>out</code> animation concluded',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-table/table.twig' with {
+  header: {
+    content: header,
   },
-  rows: [
-    {
-      cells: [
-        "<code>bolt-animate:end:in</code>",
-        "<code>{}</code>",
-        "Indicates when the <code>in</code> animation concluded",
-      ]
-    },
-    {
-      cells: [
-        "<code>bolt-animate:end:out</code>",
-        "<code>{}</code>",
-        "Indicates when the <code>out</code> animation concluded",
-      ]
-    },
-  ],
+  body: {
+    content: [
+      row1,
+      row2,
+    ],
+  },
+  attributes: {
+    class: [
+      'u-bolt-block',
+      'u-bolt-margin-bottom-medium'
+    ]
+  }
 } only %}
