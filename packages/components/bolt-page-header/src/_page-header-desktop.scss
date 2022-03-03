@@ -204,6 +204,11 @@
             );
           }
         }
+
+        .c-bolt-page-header__nav-link__content__signifier--only
+          ~ .c-bolt-page-header__counter {
+          transform: translate3d(50%, -20%, 0);
+        }
       }
 
       &:not(.c-bolt-page-header__nav-link--tooltip) {
