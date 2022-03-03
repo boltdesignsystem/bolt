@@ -48,74 +48,76 @@
           <bolt-text>
             The theme colors are available for use within a container that has the <code>.t-bolt-{{ theme }}</code> class.
           </bolt-text>
-          <div class="c-bolt-table u-bolt-block" style="max-height: none;">
-            <table>
-              <thead>
-                <tr>
-                  <td style="width: 155px"></td>
-                  <th>CSS custom property</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>Text</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--text"></span>&nbsp;&nbsp;var(--m-bolt-text)</td>
-                </tr>
-                <tr>
-                  <th>Background</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--background"></span>&nbsp;&nbsp;var(--m-bolt-bg)</td>
-                </tr>
-                <tr>
-                  <th>Primary</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--primary"></span>&nbsp;&nbsp;var(--m-bolt-primary)</td>
-                </tr>
-                <tr>
-                  <th>Text on Primary</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--text-on-primary"></span>&nbsp;&nbsp;var(--m-bolt-text-on-primary)</td>
-                </tr>
-                <tr>
-                  <th>Secondary</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--secondary"></span>&nbsp;&nbsp;var(--m-bolt-secondary)</td>
-                </tr>
-                <tr>
-                  <th>Text on Secondary</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--text-on-secondary"></span>&nbsp;&nbsp;var(--m-bolt-text-on-secondary)</td>
-                </tr>
-                <tr>
-                  <th>Tertiary</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--tertiary"></span>&nbsp;&nbsp;var(--m-bolt-tertiary)</td>
-                </tr>
-                <tr>
-                  <th>Text on Tertiary</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--text-on-tertiary"></span>&nbsp;&nbsp;var(--m-bolt-text-on-tertiary)</td>
-                </tr>
-                <tr>
-                  <th>Link Text</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--link"></span>&nbsp;&nbsp;var(--m-bolt-link)</td>
-                </tr>
-                <tr>
-                  <th>Disabled</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--text-disabled"></span>&nbsp;&nbsp;var(--m-bolt-text-on-disabled)</td>
-                </tr>
-                <tr>
-                  <th>Text on Disabled</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--disabled"></span>&nbsp;&nbsp;var(--m-bolt-disabled)</td>
-                </tr>
-                <tr>
-                  <th>Headline Text</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--headline"></span>&nbsp;&nbsp;var(--m-bolt-headline)</td>
-                </tr>
-                <tr>
-                  <th>Border</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--border"></span>&nbsp;&nbsp;var(--m-bolt-border)</td>
-                </tr>
-                <tr>
-                  <th>Neutral</th>
-                  <td><span class="c-bds-color-chip c-bds-color-chip--neutral"></span>&nbsp;&nbsp;var(--m-bolt-neutral)</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <bolt-stack>
+            <div class="c-bolt-table" style="max-height: none;">
+              <table>
+                <thead>
+                  <tr>
+                    <td></td>
+                    <th>CSS custom property</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Text</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--text"></span>&nbsp;&nbsp;var(--m-bolt-text)</td>
+                  </tr>
+                  <tr>
+                    <th>Background</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--background"></span>&nbsp;&nbsp;var(--m-bolt-bg)</td>
+                  </tr>
+                  <tr>
+                    <th>Primary</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--primary"></span>&nbsp;&nbsp;var(--m-bolt-primary)</td>
+                  </tr>
+                  <tr>
+                    <th>Text on Primary</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--text-on-primary"></span>&nbsp;&nbsp;var(--m-bolt-text-on-primary)</td>
+                  </tr>
+                  <tr>
+                    <th>Secondary</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--secondary"></span>&nbsp;&nbsp;var(--m-bolt-secondary)</td>
+                  </tr>
+                  <tr>
+                    <th>Text on Secondary</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--text-on-secondary"></span>&nbsp;&nbsp;var(--m-bolt-text-on-secondary)</td>
+                  </tr>
+                  <tr>
+                    <th>Tertiary</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--tertiary"></span>&nbsp;&nbsp;var(--m-bolt-tertiary)</td>
+                  </tr>
+                  <tr>
+                    <th>Text on Tertiary</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--text-on-tertiary"></span>&nbsp;&nbsp;var(--m-bolt-text-on-tertiary)</td>
+                  </tr>
+                  <tr>
+                    <th>Link Text</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--link"></span>&nbsp;&nbsp;var(--m-bolt-link)</td>
+                  </tr>
+                  <tr>
+                    <th>Disabled</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--text-disabled"></span>&nbsp;&nbsp;var(--m-bolt-text-on-disabled)</td>
+                  </tr>
+                  <tr>
+                    <th>Text on Disabled</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--disabled"></span>&nbsp;&nbsp;var(--m-bolt-disabled)</td>
+                  </tr>
+                  <tr>
+                    <th>Headline Text</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--headline"></span>&nbsp;&nbsp;var(--m-bolt-headline)</td>
+                  </tr>
+                  <tr>
+                    <th>Border</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--border"></span>&nbsp;&nbsp;var(--m-bolt-border)</td>
+                  </tr>
+                  <tr>
+                    <th>Neutral</th>
+                    <td><span class="c-bds-color-chip c-bds-color-chip--neutral"></span>&nbsp;&nbsp;var(--m-bolt-neutral)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </bolt-stack>
 
           {% include "@bolt-components-headline/subheadline.twig" with {
             tag: "h2",
