@@ -619,13 +619,26 @@
 
   function toggleButtonState() {
     const sortingButtonWrap = document.querySelectorAll('.js-bolt-table-sorting');
+    const sortingButtonUnsorted = document.querySelectorAll('.js-bolt-table-sorting-button-unsorted');
+    const sortingButtonAsc = document.querySelectorAll('.js-bolt-table-sorting-button-ascending');
+    const sortingButtonDesc = document.querySelectorAll('.js-bolt-table-sorting-button-descending');
     sortingButtonWrap.forEach(el => {
       el.addEventListener('click', event => {
+        sortingButtonUnsorted.forEach(unsorted =>{
+          unsorted.classList.remove('u-bolt-hidden')
+        })
+        sortingButtonAsc.forEach(asc => {
+          asc.classList.add('u-bolt-hidden')
+        })
+        sortingButtonDesc.forEach(desc => {
+          desc.classList.add('u-bolt-hidden')
+        })
         if(event.target.matches('.js-bolt-table-sorting-button-unsorted')) {
           event.target.classList.add('u-bolt-hidden')
           event.target.parentElement.querySelector('.js-bolt-table-sorting-button-ascending').classList.remove('u-bolt-hidden')
         }
         else if(event.target.matches('.js-bolt-table-sorting-button-ascending')) {
+          event.target.previousElementSibling.classList.add('u-bolt-hidden')
           event.target.classList.add('u-bolt-hidden')
           event.target.parentElement.querySelector('.js-bolt-table-sorting-button-descending').classList.remove('u-bolt-hidden')
         }
