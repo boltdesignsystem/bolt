@@ -48,11 +48,11 @@
           <bolt-text>
             The theme colors are available for use within a container that has the <code>.t-bolt-{{ theme }}</code> class.
           </bolt-text>
-          <bolt-table>
+          <div class="c-bolt-table u-bolt-block" style="max-height: none;">
             <table>
               <thead>
                 <tr>
-                  <td></td>
+                  <td style="width: 155px"></td>
                   <th>CSS custom property</th>
                 </tr>
               </thead>
@@ -115,7 +115,7 @@
                 </tr>
               </tbody>
             </table>
-          </bolt-table>
+          </div>
 
           {% include "@bolt-components-headline/subheadline.twig" with {
             tag: "h2",

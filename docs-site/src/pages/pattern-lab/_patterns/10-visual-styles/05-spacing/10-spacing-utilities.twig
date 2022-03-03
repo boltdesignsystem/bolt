@@ -22,7 +22,7 @@
         <bolt-text headline font-size="xlarge" tag="h3">
           All directions
         </bolt-text>
-        <bolt-table first-col-fixed-width>
+        <div class="c-bolt-table">
           <table>
             <thead>
               <tr>
@@ -43,7 +43,7 @@
               {% endfor %}
             </tbody>
           </table>
-        </bolt-table>
+        </div>
 
         {% for direction in spacing_direction_map %}
           {% for size_name, size_value in spacing_size_map %}
@@ -52,7 +52,7 @@
                 <bolt-text headline font-size="xlarge" tag="h3">
                   {{ direction|capitalize }}
                 </bolt-text>
-                <bolt-table first-col-fixed-width>
+                <div class="c-bolt-table">
                   <table>
                     <thead>
                       <tr>
@@ -69,14 +69,14 @@
                       {% endfor %}
                     </tbody>
                   </table>
-                </bolt-table>
+                </div>
               {% endif %}
             {% else %}
               {% if direction == "top" or direction == "bottom" %}
                 <bolt-text headline font-size="xlarge" tag="h3">
                   {{ direction|capitalize }}
                 </bolt-text>
-                <bolt-table first-col-fixed-width>
+                <div class="c-bolt-table">
                   <table>
                     <thead>
                       <tr>
@@ -93,7 +93,7 @@
                       {% endfor %}
                     </tbody>
                   </table>
-                </bolt-table>
+                </div>
               {% endif %}
             {% endif %}
           {% endfor %}
