@@ -119,6 +119,87 @@ describe('Bolt Table', () => {
   });
 });
 
+describe('Bolt Table Column Width', () => {
+  test(`The usage of inline width styles`, async () => {
+    const results = await renderString(`
+      {% set header_250px %}
+        {% set cells %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: '250px wide column',
+            header: true,
+            attributes: {
+              style: 'width: 250px;',
+            },
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: '250px wide column',
+            header: true,
+            attributes: {
+              style: 'width: 250px;',
+            },
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: '250px wide column',
+            header: true,
+            attributes: {
+              style: 'width: 250px;',
+            },
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: '250px wide column',
+            header: true,
+            attributes: {
+              style: 'width: 250px;',
+            },
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+      
+      {# Do not set widths for body row cells #}
+      {% set row %}
+        {% set cells %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'This is a regular cell.',
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'This is a regular cell.',
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'This is a regular cell.',
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'This is a regular cell.',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+      
+      {# Change the table component's container to block display to render a full width table #}
+      {% include '@bolt-components-table/table.twig' with {
+        header: {
+          content: header_250px,
+        },
+        body: {
+          content: [
+            row,
+          ],
+        },
+        attributes: {
+          class: 'u-bolt-block',
+        },
+      } only %}
+    `);
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+});
+
 describe('Bolt Table prop -', () => {
   // Target each of the schema keys with the following pattern
   sticky_headers.enum.forEach(async option => {
