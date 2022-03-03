@@ -1,14 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Bolt Floating Action Buttons default 1`] = `
-<div class="c-bolt-floating-action-buttons c-bolt-floating-action-buttons--position-bottom-right"
-     aria-hidden="true"
-     data-show-on-load
->
+<div class="c-bolt-floating-action-buttons c-bolt-floating-action-buttons--hidden c-bolt-floating-action-buttons--placement-right-end">
   <ul class="c-bolt-floating-action-buttons__list js-bolt-floating-action-buttons-list">
-    <li class="c-bolt-floating-action-buttons__list-item">
+    <li class="c-bolt-floating-action-buttons__list-item js-bolt-floating-action-buttons-list-item">
       <button type="button"
               class="e-bolt-button e-bolt-button--icon-only"
+              aria-label="This is a button"
       >
         <span class="e-bolt-button__icon-center"
               aria-hidden="true"
@@ -26,14 +24,12 @@ exports[`Bolt Floating Action Buttons default 1`] = `
             </g>
           </svg>
         </span>
-        <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">
-          This is a button
-        </span>
       </button>
     </li>
-    <li class="c-bolt-floating-action-buttons__list-item">
+    <li class="c-bolt-floating-action-buttons__list-item js-bolt-floating-action-buttons-list-item">
       <button type="button"
               class="e-bolt-button e-bolt-button--icon-only"
+              aria-label="This is a button"
       >
         <span class="e-bolt-button__icon-center"
               aria-hidden="true"
@@ -51,53 +47,50 @@ exports[`Bolt Floating Action Buttons default 1`] = `
             </g>
           </svg>
         </span>
-        <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">
-          This is a button
-        </span>
       </button>
     </li>
-    <li class="c-bolt-floating-action-buttons__list-item">
-      <button type="button"
-              aria-expanded="false"
-              class="e-bolt-button e-bolt-button--icon-only c-bolt-floating-action-buttons__toggle js-bolt-floating-action-buttons-toggle e-bolt-button--medium e-bolt-button--primary e-bolt-button--border-radius-small"
+    <li class="c-bolt-floating-action-buttons__list-item js-bolt-floating-action-buttons-list-item c-bolt-floating-action-buttons__list-item--has-children">
+      <bolt-tooltip placement="left"
+                    uuid="12345"
       >
-        <span class="e-bolt-button__icon-center c-bolt-floating-action-buttons__toggle-icon js-bolt-floating-action-buttons-toggle-icon"
-              aria-hidden="false"
+        <button type="button"
+                aria-expanded="false"
+                class="e-bolt-button--icon-only js-bolt-floating-action-buttons-toggle e-bolt-button"
         >
-          <svg class="e-bolt-icon"
-               xmlns="http://www.w3.org/2000/svg"
-               viewbox="0 0 32 32"
-               aria-hidden="true"
-          >
-            <g fill="#151619"
-               fill-rule="evenodd"
-               clip-rule="evenodd"
+          <span class="e-bolt-button__icon-center js-bolt-floating-action-buttons-toggle-icon">
+            <svg class="e-bolt-icon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewbox="0 0 32 32"
+                 aria-hidden="true"
             >
-              <path d="M19.2 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M6.4 16c0 1.8-1.4 3.2-3.2 3.2S0 17.8 0 16s1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M32 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2S32 14.2 32 16">
+              <g fill="#151619"
+                 fill-rule="evenodd"
+                 clip-rule="evenodd"
+              >
+                <path d="M19.2 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M6.4 16c0 1.8-1.4 3.2-3.2 3.2S0 17.8 0 16s1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M32 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2S32 14.2 32 16">
+                </path>
+              </g>
+            </svg>
+          </span>
+          <span class="e-bolt-button__icon-center js-bolt-floating-action-buttons-toggle-icon-close">
+            <svg class="e-bolt-icon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewbox="0 0 32 32"
+                 aria-hidden="true"
+            >
+              <path fill="#151619"
+                    fill-rule="evenodd"
+                    d="M18.6 16l9.8-9.8c.7-.7.7-1.9 0-2.6s-1.9-.7-2.6 0L16 13.4 6.2 3.5c-.7-.7-1.9-.7-2.6 0s-.7 1.9 0 2.6l9.8 9.8-9.8 9.8c-.7.7-.7 1.9 0 2.6.3.5.8.7 1.3.7s1-.2 1.3-.6l9.8-9.8 9.8 9.8c.3.3.8.6 1.3.6s1-.2 1.3-.6c.7-.7.7-1.9 0-2.6z"
+                    clip-rule="evenodd"
+              >
               </path>
-            </g>
-          </svg>
-        </span>
-        <span class="e-bolt-button__icon-center c-bolt-floating-action-buttons__toggle-icon js-bolt-floating-action-buttons-toggle-icon-close"
-              aria-hidden="true"
-        >
-          <svg class="e-bolt-icon"
-               xmlns="http://www.w3.org/2000/svg"
-               viewbox="0 0 32 32"
-               aria-hidden="true"
-          >
-            <path fill="#151619"
-                  fill-rule="evenodd"
-                  d="M18.6 16l9.8-9.8c.7-.7.7-1.9 0-2.6s-1.9-.7-2.6 0L16 13.4 6.2 3.5c-.7-.7-1.9-.7-2.6 0s-.7 1.9 0 2.6l9.8 9.8-9.8 9.8c-.7.7-.7 1.9 0 2.6.3.5.8.7 1.3.7s1-.2 1.3-.6l9.8-9.8 9.8 9.8c.3.3.8.6 1.3.6s1-.2 1.3-.6c.7-.7.7-1.9 0-2.6z"
-                  clip-rule="evenodd"
-            >
-            </path>
-          </svg>
-        </span>
-        <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">
+            </svg>
+          </span>
+        </button>
+        <span slot="content">
           Toggle Menu
         </span>
-      </button>
+      </bolt-tooltip>
       <ul class="c-bolt-floating-action-buttons__list js-bolt-floating-action-buttons-list">
       </ul>
     </li>
@@ -105,15 +98,13 @@ exports[`Bolt Floating Action Buttons default 1`] = `
 </div>
 `;
 
-exports[`Bolt Floating Action Buttons position: bottom-right 1`] = `
-<div class="c-bolt-floating-action-buttons c-bolt-floating-action-buttons--position-bottom-right"
-     aria-hidden="true"
-     data-show-on-load
->
+exports[`Bolt Floating Action Buttons placement: right 1`] = `
+<div class="c-bolt-floating-action-buttons c-bolt-floating-action-buttons--hidden c-bolt-floating-action-buttons--placement-right">
   <ul class="c-bolt-floating-action-buttons__list js-bolt-floating-action-buttons-list">
-    <li class="c-bolt-floating-action-buttons__list-item">
+    <li class="c-bolt-floating-action-buttons__list-item js-bolt-floating-action-buttons-list-item">
       <button type="button"
               class="e-bolt-button e-bolt-button--icon-only"
+              aria-label="This is a button"
       >
         <span class="e-bolt-button__icon-center"
               aria-hidden="true"
@@ -131,14 +122,12 @@ exports[`Bolt Floating Action Buttons position: bottom-right 1`] = `
             </g>
           </svg>
         </span>
-        <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">
-          This is a button
-        </span>
       </button>
     </li>
-    <li class="c-bolt-floating-action-buttons__list-item">
+    <li class="c-bolt-floating-action-buttons__list-item js-bolt-floating-action-buttons-list-item">
       <button type="button"
               class="e-bolt-button e-bolt-button--icon-only"
+              aria-label="This is a button"
       >
         <span class="e-bolt-button__icon-center"
               aria-hidden="true"
@@ -156,53 +145,50 @@ exports[`Bolt Floating Action Buttons position: bottom-right 1`] = `
             </g>
           </svg>
         </span>
-        <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">
-          This is a button
-        </span>
       </button>
     </li>
-    <li class="c-bolt-floating-action-buttons__list-item">
-      <button type="button"
-              aria-expanded="false"
-              class="e-bolt-button e-bolt-button--icon-only c-bolt-floating-action-buttons__toggle js-bolt-floating-action-buttons-toggle e-bolt-button--medium e-bolt-button--primary e-bolt-button--border-radius-small"
+    <li class="c-bolt-floating-action-buttons__list-item js-bolt-floating-action-buttons-list-item c-bolt-floating-action-buttons__list-item--has-children">
+      <bolt-tooltip placement="left"
+                    uuid="12345"
       >
-        <span class="e-bolt-button__icon-center c-bolt-floating-action-buttons__toggle-icon js-bolt-floating-action-buttons-toggle-icon"
-              aria-hidden="false"
+        <button type="button"
+                aria-expanded="false"
+                class="e-bolt-button--icon-only js-bolt-floating-action-buttons-toggle e-bolt-button"
         >
-          <svg class="e-bolt-icon"
-               xmlns="http://www.w3.org/2000/svg"
-               viewbox="0 0 32 32"
-               aria-hidden="true"
-          >
-            <g fill="#151619"
-               fill-rule="evenodd"
-               clip-rule="evenodd"
+          <span class="e-bolt-button__icon-center js-bolt-floating-action-buttons-toggle-icon">
+            <svg class="e-bolt-icon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewbox="0 0 32 32"
+                 aria-hidden="true"
             >
-              <path d="M19.2 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M6.4 16c0 1.8-1.4 3.2-3.2 3.2S0 17.8 0 16s1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M32 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2S32 14.2 32 16">
+              <g fill="#151619"
+                 fill-rule="evenodd"
+                 clip-rule="evenodd"
+              >
+                <path d="M19.2 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M6.4 16c0 1.8-1.4 3.2-3.2 3.2S0 17.8 0 16s1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M32 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2S32 14.2 32 16">
+                </path>
+              </g>
+            </svg>
+          </span>
+          <span class="e-bolt-button__icon-center js-bolt-floating-action-buttons-toggle-icon-close">
+            <svg class="e-bolt-icon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewbox="0 0 32 32"
+                 aria-hidden="true"
+            >
+              <path fill="#151619"
+                    fill-rule="evenodd"
+                    d="M18.6 16l9.8-9.8c.7-.7.7-1.9 0-2.6s-1.9-.7-2.6 0L16 13.4 6.2 3.5c-.7-.7-1.9-.7-2.6 0s-.7 1.9 0 2.6l9.8 9.8-9.8 9.8c-.7.7-.7 1.9 0 2.6.3.5.8.7 1.3.7s1-.2 1.3-.6l9.8-9.8 9.8 9.8c.3.3.8.6 1.3.6s1-.2 1.3-.6c.7-.7.7-1.9 0-2.6z"
+                    clip-rule="evenodd"
+              >
               </path>
-            </g>
-          </svg>
-        </span>
-        <span class="e-bolt-button__icon-center c-bolt-floating-action-buttons__toggle-icon js-bolt-floating-action-buttons-toggle-icon-close"
-              aria-hidden="true"
-        >
-          <svg class="e-bolt-icon"
-               xmlns="http://www.w3.org/2000/svg"
-               viewbox="0 0 32 32"
-               aria-hidden="true"
-          >
-            <path fill="#151619"
-                  fill-rule="evenodd"
-                  d="M18.6 16l9.8-9.8c.7-.7.7-1.9 0-2.6s-1.9-.7-2.6 0L16 13.4 6.2 3.5c-.7-.7-1.9-.7-2.6 0s-.7 1.9 0 2.6l9.8 9.8-9.8 9.8c-.7.7-.7 1.9 0 2.6.3.5.8.7 1.3.7s1-.2 1.3-.6l9.8-9.8 9.8 9.8c.3.3.8.6 1.3.6s1-.2 1.3-.6c.7-.7.7-1.9 0-2.6z"
-                  clip-rule="evenodd"
-            >
-            </path>
-          </svg>
-        </span>
-        <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">
+            </svg>
+          </span>
+        </button>
+        <span slot="content">
           Toggle Menu
         </span>
-      </button>
+      </bolt-tooltip>
       <ul class="c-bolt-floating-action-buttons__list js-bolt-floating-action-buttons-list">
       </ul>
     </li>
@@ -210,15 +196,13 @@ exports[`Bolt Floating Action Buttons position: bottom-right 1`] = `
 </div>
 `;
 
-exports[`Bolt Floating Action Buttons position: middle-right 1`] = `
-<div class="c-bolt-floating-action-buttons c-bolt-floating-action-buttons--position-middle-right"
-     aria-hidden="true"
-     data-show-on-load
->
+exports[`Bolt Floating Action Buttons placement: right-end 1`] = `
+<div class="c-bolt-floating-action-buttons c-bolt-floating-action-buttons--hidden c-bolt-floating-action-buttons--placement-right-end">
   <ul class="c-bolt-floating-action-buttons__list js-bolt-floating-action-buttons-list">
-    <li class="c-bolt-floating-action-buttons__list-item">
+    <li class="c-bolt-floating-action-buttons__list-item js-bolt-floating-action-buttons-list-item">
       <button type="button"
               class="e-bolt-button e-bolt-button--icon-only"
+              aria-label="This is a button"
       >
         <span class="e-bolt-button__icon-center"
               aria-hidden="true"
@@ -236,14 +220,12 @@ exports[`Bolt Floating Action Buttons position: middle-right 1`] = `
             </g>
           </svg>
         </span>
-        <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">
-          This is a button
-        </span>
       </button>
     </li>
-    <li class="c-bolt-floating-action-buttons__list-item">
+    <li class="c-bolt-floating-action-buttons__list-item js-bolt-floating-action-buttons-list-item">
       <button type="button"
               class="e-bolt-button e-bolt-button--icon-only"
+              aria-label="This is a button"
       >
         <span class="e-bolt-button__icon-center"
               aria-hidden="true"
@@ -261,53 +243,50 @@ exports[`Bolt Floating Action Buttons position: middle-right 1`] = `
             </g>
           </svg>
         </span>
-        <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">
-          This is a button
-        </span>
       </button>
     </li>
-    <li class="c-bolt-floating-action-buttons__list-item">
-      <button type="button"
-              aria-expanded="false"
-              class="e-bolt-button e-bolt-button--icon-only c-bolt-floating-action-buttons__toggle js-bolt-floating-action-buttons-toggle e-bolt-button--medium e-bolt-button--primary e-bolt-button--border-radius-small"
+    <li class="c-bolt-floating-action-buttons__list-item js-bolt-floating-action-buttons-list-item c-bolt-floating-action-buttons__list-item--has-children">
+      <bolt-tooltip placement="left"
+                    uuid="12345"
       >
-        <span class="e-bolt-button__icon-center c-bolt-floating-action-buttons__toggle-icon js-bolt-floating-action-buttons-toggle-icon"
-              aria-hidden="false"
+        <button type="button"
+                aria-expanded="false"
+                class="e-bolt-button--icon-only js-bolt-floating-action-buttons-toggle e-bolt-button"
         >
-          <svg class="e-bolt-icon"
-               xmlns="http://www.w3.org/2000/svg"
-               viewbox="0 0 32 32"
-               aria-hidden="true"
-          >
-            <g fill="#151619"
-               fill-rule="evenodd"
-               clip-rule="evenodd"
+          <span class="e-bolt-button__icon-center js-bolt-floating-action-buttons-toggle-icon">
+            <svg class="e-bolt-icon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewbox="0 0 32 32"
+                 aria-hidden="true"
             >
-              <path d="M19.2 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M6.4 16c0 1.8-1.4 3.2-3.2 3.2S0 17.8 0 16s1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M32 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2S32 14.2 32 16">
+              <g fill="#151619"
+                 fill-rule="evenodd"
+                 clip-rule="evenodd"
+              >
+                <path d="M19.2 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M6.4 16c0 1.8-1.4 3.2-3.2 3.2S0 17.8 0 16s1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M32 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2S32 14.2 32 16">
+                </path>
+              </g>
+            </svg>
+          </span>
+          <span class="e-bolt-button__icon-center js-bolt-floating-action-buttons-toggle-icon-close">
+            <svg class="e-bolt-icon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewbox="0 0 32 32"
+                 aria-hidden="true"
+            >
+              <path fill="#151619"
+                    fill-rule="evenodd"
+                    d="M18.6 16l9.8-9.8c.7-.7.7-1.9 0-2.6s-1.9-.7-2.6 0L16 13.4 6.2 3.5c-.7-.7-1.9-.7-2.6 0s-.7 1.9 0 2.6l9.8 9.8-9.8 9.8c-.7.7-.7 1.9 0 2.6.3.5.8.7 1.3.7s1-.2 1.3-.6l9.8-9.8 9.8 9.8c.3.3.8.6 1.3.6s1-.2 1.3-.6c.7-.7.7-1.9 0-2.6z"
+                    clip-rule="evenodd"
+              >
               </path>
-            </g>
-          </svg>
-        </span>
-        <span class="e-bolt-button__icon-center c-bolt-floating-action-buttons__toggle-icon js-bolt-floating-action-buttons-toggle-icon-close"
-              aria-hidden="true"
-        >
-          <svg class="e-bolt-icon"
-               xmlns="http://www.w3.org/2000/svg"
-               viewbox="0 0 32 32"
-               aria-hidden="true"
-          >
-            <path fill="#151619"
-                  fill-rule="evenodd"
-                  d="M18.6 16l9.8-9.8c.7-.7.7-1.9 0-2.6s-1.9-.7-2.6 0L16 13.4 6.2 3.5c-.7-.7-1.9-.7-2.6 0s-.7 1.9 0 2.6l9.8 9.8-9.8 9.8c-.7.7-.7 1.9 0 2.6.3.5.8.7 1.3.7s1-.2 1.3-.6l9.8-9.8 9.8 9.8c.3.3.8.6 1.3.6s1-.2 1.3-.6c.7-.7.7-1.9 0-2.6z"
-                  clip-rule="evenodd"
-            >
-            </path>
-          </svg>
-        </span>
-        <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">
+            </svg>
+          </span>
+        </button>
+        <span slot="content">
           Toggle Menu
         </span>
-      </button>
+      </bolt-tooltip>
       <ul class="c-bolt-floating-action-buttons__list js-bolt-floating-action-buttons-list">
       </ul>
     </li>
@@ -315,15 +294,13 @@ exports[`Bolt Floating Action Buttons position: middle-right 1`] = `
 </div>
 `;
 
-exports[`Bolt Floating Action Buttons position: top-right 1`] = `
-<div class="c-bolt-floating-action-buttons c-bolt-floating-action-buttons--position-top-right"
-     aria-hidden="true"
-     data-show-on-load
->
+exports[`Bolt Floating Action Buttons placement: right-start 1`] = `
+<div class="c-bolt-floating-action-buttons c-bolt-floating-action-buttons--hidden c-bolt-floating-action-buttons--placement-right-start">
   <ul class="c-bolt-floating-action-buttons__list js-bolt-floating-action-buttons-list">
-    <li class="c-bolt-floating-action-buttons__list-item">
+    <li class="c-bolt-floating-action-buttons__list-item js-bolt-floating-action-buttons-list-item">
       <button type="button"
               class="e-bolt-button e-bolt-button--icon-only"
+              aria-label="This is a button"
       >
         <span class="e-bolt-button__icon-center"
               aria-hidden="true"
@@ -341,14 +318,12 @@ exports[`Bolt Floating Action Buttons position: top-right 1`] = `
             </g>
           </svg>
         </span>
-        <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">
-          This is a button
-        </span>
       </button>
     </li>
-    <li class="c-bolt-floating-action-buttons__list-item">
+    <li class="c-bolt-floating-action-buttons__list-item js-bolt-floating-action-buttons-list-item">
       <button type="button"
               class="e-bolt-button e-bolt-button--icon-only"
+              aria-label="This is a button"
       >
         <span class="e-bolt-button__icon-center"
               aria-hidden="true"
@@ -366,53 +341,50 @@ exports[`Bolt Floating Action Buttons position: top-right 1`] = `
             </g>
           </svg>
         </span>
-        <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">
-          This is a button
-        </span>
       </button>
     </li>
-    <li class="c-bolt-floating-action-buttons__list-item">
-      <button type="button"
-              aria-expanded="false"
-              class="e-bolt-button e-bolt-button--icon-only c-bolt-floating-action-buttons__toggle js-bolt-floating-action-buttons-toggle e-bolt-button--medium e-bolt-button--primary e-bolt-button--border-radius-small"
+    <li class="c-bolt-floating-action-buttons__list-item js-bolt-floating-action-buttons-list-item c-bolt-floating-action-buttons__list-item--has-children">
+      <bolt-tooltip placement="left"
+                    uuid="12345"
       >
-        <span class="e-bolt-button__icon-center c-bolt-floating-action-buttons__toggle-icon js-bolt-floating-action-buttons-toggle-icon"
-              aria-hidden="false"
+        <button type="button"
+                aria-expanded="false"
+                class="e-bolt-button--icon-only js-bolt-floating-action-buttons-toggle e-bolt-button"
         >
-          <svg class="e-bolt-icon"
-               xmlns="http://www.w3.org/2000/svg"
-               viewbox="0 0 32 32"
-               aria-hidden="true"
-          >
-            <g fill="#151619"
-               fill-rule="evenodd"
-               clip-rule="evenodd"
+          <span class="e-bolt-button__icon-center js-bolt-floating-action-buttons-toggle-icon">
+            <svg class="e-bolt-icon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewbox="0 0 32 32"
+                 aria-hidden="true"
             >
-              <path d="M19.2 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M6.4 16c0 1.8-1.4 3.2-3.2 3.2S0 17.8 0 16s1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M32 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2S32 14.2 32 16">
+              <g fill="#151619"
+                 fill-rule="evenodd"
+                 clip-rule="evenodd"
+              >
+                <path d="M19.2 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M6.4 16c0 1.8-1.4 3.2-3.2 3.2S0 17.8 0 16s1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2M32 16c0 1.8-1.4 3.2-3.2 3.2s-3.2-1.4-3.2-3.2 1.4-3.2 3.2-3.2S32 14.2 32 16">
+                </path>
+              </g>
+            </svg>
+          </span>
+          <span class="e-bolt-button__icon-center js-bolt-floating-action-buttons-toggle-icon-close">
+            <svg class="e-bolt-icon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewbox="0 0 32 32"
+                 aria-hidden="true"
+            >
+              <path fill="#151619"
+                    fill-rule="evenodd"
+                    d="M18.6 16l9.8-9.8c.7-.7.7-1.9 0-2.6s-1.9-.7-2.6 0L16 13.4 6.2 3.5c-.7-.7-1.9-.7-2.6 0s-.7 1.9 0 2.6l9.8 9.8-9.8 9.8c-.7.7-.7 1.9 0 2.6.3.5.8.7 1.3.7s1-.2 1.3-.6l9.8-9.8 9.8 9.8c.3.3.8.6 1.3.6s1-.2 1.3-.6c.7-.7.7-1.9 0-2.6z"
+                    clip-rule="evenodd"
+              >
               </path>
-            </g>
-          </svg>
-        </span>
-        <span class="e-bolt-button__icon-center c-bolt-floating-action-buttons__toggle-icon js-bolt-floating-action-buttons-toggle-icon-close"
-              aria-hidden="true"
-        >
-          <svg class="e-bolt-icon"
-               xmlns="http://www.w3.org/2000/svg"
-               viewbox="0 0 32 32"
-               aria-hidden="true"
-          >
-            <path fill="#151619"
-                  fill-rule="evenodd"
-                  d="M18.6 16l9.8-9.8c.7-.7.7-1.9 0-2.6s-1.9-.7-2.6 0L16 13.4 6.2 3.5c-.7-.7-1.9-.7-2.6 0s-.7 1.9 0 2.6l9.8 9.8-9.8 9.8c-.7.7-.7 1.9 0 2.6.3.5.8.7 1.3.7s1-.2 1.3-.6l9.8-9.8 9.8 9.8c.3.3.8.6 1.3.6s1-.2 1.3-.6c.7-.7.7-1.9 0-2.6z"
-                  clip-rule="evenodd"
-            >
-            </path>
-          </svg>
-        </span>
-        <span class="e-bolt-button__tooltip e-bolt-button__tooltip-left">
+            </svg>
+          </span>
+        </button>
+        <span slot="content">
           Toggle Menu
         </span>
-      </button>
+      </bolt-tooltip>
       <ul class="c-bolt-floating-action-buttons__list js-bolt-floating-action-buttons-list">
       </ul>
     </li>

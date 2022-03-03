@@ -116,6 +116,12 @@
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
     content: button_secondary,
   } only %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
+    content: button_secondary,
+  } only %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
+    content: button_secondary,
+  } only %}
 {% endset %}
 
 {% set list_secondary %}
@@ -127,10 +133,6 @@
 {% set list_primary %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
     content: button_share,
-  } only %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: button_toggle,
-    children: list_secondary
   } only %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
     content: button_scroll_to_top,
@@ -152,10 +154,23 @@
 } only %}
 {% endset %}
 
+
+
+
+
 {% set twig_markup %}{% verbatim %}
+{% set button %}
+  {% include '@bolt-elements-button/button.twig' with {
+    ...
+  } only %}
+{% endset %}
+
 {% set button_toggle %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig' with {
-    content: 'Toggle Menu'
+    content: 'Toggle Menu',
+    attributes: {
+      type: 'button',
+    }
   } only %}
 {% endset %}
 

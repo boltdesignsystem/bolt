@@ -28,7 +28,6 @@ beforeAll(async () => {
   const primaryButton = await render('@bolt-elements-button/button.twig', {
     content: 'This is a button',
     icon_only: exampleIcon.html,
-    icon_only_tooltip: 'left',
     attributes: {
       type: 'button',
     },
@@ -38,7 +37,6 @@ beforeAll(async () => {
     content: 'This is a button',
     heirarch: ' secondary',
     icon_only: exampleIcon.html,
-    icon_only_tooltip: 'left',
     attributes: {
       type: 'button',
     },
@@ -71,7 +69,12 @@ beforeAll(async () => {
   );
 
   const toggleButton = await render(
-    '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig',
+    '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig', {
+      content: 'Toggle Menu',
+      attributes: {
+        type: 'button',
+      }
+    }
   );
 
   const toggleButtonListItem = await render(
@@ -82,8 +85,7 @@ beforeAll(async () => {
     },
   );
 
-  let primaryContent = '';
-  primaryContent = primaryContent.concat(primaryListItem.html);
+  let primaryContent = primaryListItem.html;
   primaryContent = primaryContent.concat(primaryListItem.html);
   primaryContent = primaryContent.concat(toggleButtonListItem.html);
 

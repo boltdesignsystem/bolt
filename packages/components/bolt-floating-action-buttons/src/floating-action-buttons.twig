@@ -1,9 +1,3 @@
-{# @TODO:
-- remove button tooltip in favor of tooltip work on DS-734
-- animation overhaul (talk to marcin)
-- check tooltip in safari
-#}
-
 {% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema['floating-action-buttons'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}

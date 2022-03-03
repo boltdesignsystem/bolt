@@ -12,7 +12,7 @@ $_bolt-fab-y-offset: var(--bolt-spacing-y-xsmall);
 
 .c-bolt-floating-action-buttons {
   z-index: bolt-z-index('fab');
-  transition: opacity var(--bolt-transition);
+  transition: opacity var(--bolt-transition) var(--bolt-transition-timing);
 
   // must both be ready && not have c-bolt-floating-action-buttons--hidden class before showing
   &:not([data-bolt-ready]),
@@ -31,71 +31,39 @@ $_bolt-fab-y-offset: var(--bolt-spacing-y-xsmall);
     flex-direction: column-reverse;
     position: relative;
     margin-bottom: var(--bolt-spacing-y-xxsmall);
-    // transition: all var(--bolt-transition);
   }
 
-  .c-bolt-floating-action-buttons__list-item--has-children .e-bolt-button {
-    span {
-      // transition: all var(--bolt-transition);
-    }
-  }
-
-  // Hide secondary list and toggle close icon
   .c-bolt-floating-action-buttons__list-item--has-children {
+    // hide and animate secondary list
+    .c-bolt-floating-action-buttons__list {
+      max-height: 50vh;
+      overflow: hidden;
+      transition: max-height calc(var(--bolt-transition-timing) * 2) var(--bolt-transition-ease);
+
+      &--hidden {
+        z-index: -1;
+        max-height: 0;
+        transition: max-height var(--bolt-transition);
+      }
+
+      &-item {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: opacity var(--bolt-transition), transform var(--bolt-transition);
+
+        &--hidden {
+          opacity: 0;
+          transform: translate3d(0, 4rem, 0);
+        }
+      }
+    }
+
+    // hide close icon in toggle button
     .e-bolt-button[aria-expanded='false'] {
       > span:nth-child(2) {
         visibility: hidden;
         opacity: 0;
       }
-    }
-
-    .c-bolt-floating-action-buttons__list {
-      max-height: 50vh;
-      overflow: hidden;
-      transition: max-height, 500ms ease-out;
-
-      .e-bolt-button {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-        transition: opacity, transform 250ms ease-out;
-      }
-
-      > .c-bolt-floating-action-buttons__list-item:nth-child(1) {
-        .e-bolt-button {
-          transition-delay: 50ms;
-        }
-      }
-
-      > .c-bolt-floating-action-buttons__list-item:nth-child(2) {
-        .e-bolt-button {
-          transition-delay: 100ms;
-        }
-      }
-
-      > .c-bolt-floating-action-buttons__list-item:nth-child(3) {
-        .e-bolt-button {
-          transition-delay: 150ms;
-        }
-      }
-    }
-
-    .c-bolt-floating-action-buttons__list--hidden {
-      z-index: -1;
-      max-height: 0;
-      transition: max-height, 250ms ease-out;
-
-      .e-bolt-button {
-        opacity: 0;
-        transform: translate3d(0, 4rem, 0);
-      }
-    }
-
-    .c-bolt-floating-action-buttons__list--hidden
-      .c-bolt-floating-action-buttons__list-item {
-      // display: none;
-      // visibility: hidden;
-      // opacity: 0;
-      // margin-bottom: -100%;
     }
   }
 

@@ -1,10 +1,4 @@
 {% set usage %}{% verbatim %}
-{% set content %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-item.twig' with {
-    content: fabItem,
-  } only %}
-{% endset %}
-
 {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
   content: content,
 } only %}
