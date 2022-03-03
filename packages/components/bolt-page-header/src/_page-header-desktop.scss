@@ -134,6 +134,7 @@
     display: flex;
     position: absolute;
     top: 0;
+    min-height: $bolt-page-header-desktop-util-nav-height;
     font-family: var(--bolt-type-font-family-headline);
     font-size: var(--bolt-type-font-size-xsmall);
     font-weight: var(--bolt-type-font-weight-semibold);
@@ -159,41 +160,88 @@
         box-shadow: inset 0 0 0 1px currentColor;
         outline: none; // Repeated here to remove Firefox default outline.
       }
+
+      &.c-bolt-page-header__nav-link--tooltip {
+        .c-bolt-page-header__nav-link__content__signifier--only
+          + .c-bolt-page-header__nav-link__content__text {
+          @include bolt-shadow('level-10');
+
+          visibility: hidden;
+          opacity: 0;
+          position: absolute;
+          top: 0;
+          left: calc(50% - var(--bolt-spacing-x-xsmall) / 2);
+          transform: translate3d(
+            -50%,
+            calc(var(--bolt-spacing-y-medium) - 6px),
+            0
+          );
+          z-index: bolt-z-index(modal);
+          width: var(--c-bolt-page-header-desktop-popover-width);
+          padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+          color: var(--m-bolt-text);
+          line-height: 1;
+          border-radius: bolt-border-radius(small);
+          border-width: $bolt-border-width;
+          border-style: $bolt-border-style;
+          border-color: var(--m-bolt-border);
+          background-color: var(--m-bolt-bg);
+          transition: opacity var(--bolt-transition),
+            visibility var(--bolt-transition), transform var(--bolt-transition);
+          white-space: nowrap;
+        }
+
+        &:hover,
+        &:focus {
+          .c-bolt-page-header__nav-link__content__signifier--only
+            + .c-bolt-page-header__nav-link__content__text {
+            visibility: visible;
+            opacity: 1;
+            transform: translate3d(
+              -50%,
+              calc(#{$bolt-page-header-desktop-util-nav-height} - 2px),
+              0
+            );
+          }
+        }
+      }
+
+      &:not(.c-bolt-page-header__nav-link--tooltip) {
+        .c-bolt-page-header__nav-link__content__signifier--only
+          + .c-bolt-page-header__nav-link__content__text {
+          @include bolt-visuallyhidden;
+        }
+      }
     }
 
     .c-bolt-page-header__nav-link__content {
       position: relative;
+      min-height: inherit;
+    }
 
-      .c-bolt-page-header__nav-link__content__signifier {
-        font-size: calc(#{$bolt-page-header-desktop-util-nav-height} * 0.6);
-      }
+    .c-bolt-page-header__nav-link__content__signifier {
+      font-size: calc(#{$bolt-page-header-desktop-util-nav-height} * 0.6);
+    }
 
-      .c-bolt-page-header__nav-link__content__signifier
-        + .c-bolt-page-header__nav-link__content__text {
-        margin-left: var(--bolt-spacing-x-xxsmall);
-      }
+    .c-bolt-page-header__nav-link__content__signifier
+      + .c-bolt-page-header__nav-link__content__text {
+      margin-left: var(--bolt-spacing-x-xxsmall);
+    }
 
-      .c-bolt-page-header__nav-link__content__signifier--only
-        + .c-bolt-page-header__nav-link__content__text {
-        @include bolt-visuallyhidden;
-      }
+    .c-bolt-page-header__counter {
+      position: absolute;
+      top: calc(#{$bolt-page-header-desktop-util-nav-height} * 0.2);
+      right: 0;
+    }
 
-      .c-bolt-page-header__counter {
-        position: absolute;
-        top: 0;
-      }
+    .c-bolt-page-header__nav-link__content__signifier--only
+      ~ .c-bolt-page-header__counter {
+      transform: translate3d(25%, -20%, 0);
+    }
 
-      .c-bolt-page-header__nav-link__content__signifier--only
-        ~ .c-bolt-page-header__counter {
-        right: 0;
-        transform: translate3d(25%, -20%, 0);
-      }
-
-      .c-bolt-page-header__nav-link__content__signifier--before
-        ~ .c-bolt-page-header__counter {
-        left: 0;
-        transform: translate3d(125%, 40%, 0);
-      }
+    .c-bolt-page-header__nav-link__content__signifier--before
+      ~ .c-bolt-page-header__counter {
+      transform: translate3d(75%, 0, 0);
     }
 
     .c-bolt-page-header__nav-content {
