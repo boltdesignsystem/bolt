@@ -295,7 +295,7 @@ class BoltInteractivePathways extends withLitContext {
     `;
 
     return html`
-      ${this.addStyles([styles, themes])}
+      ${this.addStyles([styles])}
       <div class="${classes}">
         <div class="c-bolt-interactive-pathways__header">
           ${props.hidePathwaysImage

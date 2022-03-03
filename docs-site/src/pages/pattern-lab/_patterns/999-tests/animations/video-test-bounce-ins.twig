@@ -1,0 +1,431 @@
+{% set main_content %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% set item %}
+    <h2>Video with No Meta Data</h2>
+
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  {% set video_1 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-preview
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% set item_1 %}
+    <h2>Video with Preview</h2>
+
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video_1,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  {% set video_2 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-title
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% set item_2 %}
+    <h2>Video with Title</h2>
+
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video_2,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  {% set video_3 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-duration
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% set item_3 %}
+  <h2>Video with Duration</h2>
+
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video_3,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  {% set video_4 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-title
+      data-media-duration
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% set item_4 %}
+    <h2>Video with Title and Duration</h2>
+
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video_4,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  {% set video_5 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-preview
+      data-media-duration
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% set item_5 %}
+  <h2>Video with Preview and Duration</h2>
+
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video_5,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  {% set video_6 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-preview
+      data-media-title
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% set item_6 %}
+    <h2>Video with Preview and Title</h2>
+
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video_6,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  {% set video_7 %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="4892122320001"
+      data-media-preview
+      data-media-title
+      data-media-duration
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% set item_7 %}
+    <h2>Video with Preview, Title and Duration</h2>
+
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video_7,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-grid/grid.twig' with {
+    gutter: 'small',
+    items: [
+      {
+        column_start: '1',
+        column_span: '3',
+        content: item,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '4',
+        column_span: '3',
+        content: item_1,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '7',
+        column_span: '3',
+        content: item_2,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+              {
+        column_start: '10',
+        column_span: '3',
+        content: item_3,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '1',
+        column_span: '3',
+        content: item_4,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '4',
+        column_span: '3',
+        content: item_5,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+              {
+        column_start: '7',
+        column_span: '3',
+        content: item_6,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '10',
+        column_span: '3',
+        content: item_7,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '1',
+        column_span: '3',
+        content: item,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+              {
+        column_start: '4',
+        column_span: '3',
+        content: item_1,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '7',
+        column_span: '3',
+        content: item_2,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '10',
+        column_span: '3',
+        content: item_3,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+              {
+        column_start: '1',
+        column_span: '3',
+        content: item_4,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '4',
+        column_span: '3',
+        content: item_5,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '7',
+        column_span: '3',
+        content: item_6,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+              {
+        column_start: '10',
+        column_span: '3',
+        content: item_7,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '1',
+        column_span: '3',
+        content: item,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '4',
+        column_span: '3',
+        content: item_1,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '7',
+        column_span: '3',
+        content: item_2,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+      {
+        column_start: '10',
+        column_span: '3',
+        content: item_3,
+        attributes: {
+          class: [
+            
+            'a-bolt-in--bounce-up',
+            'a-bolt-cascade-fast'
+          ]
+        }
+      },
+    ]
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}
+{# 
+<script>
+
+function playStateRunningOnLoad() {
+  document.querySelectorAll('.a-bolt-fade').forEach((fade) => {
+    fade.classList.add('a-bolt-fade--running');
+  })
+}
+
+window.onload = () => {
+  playStateRunningOnLoad();
+};
+
+</script> #}
