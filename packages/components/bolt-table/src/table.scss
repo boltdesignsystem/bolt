@@ -5,7 +5,7 @@
 @import '@bolt/core-v3.x';
 
 // Register Custom Block Element
-@include bolt-custom-element('bolt-responsive-table', block, medium);
+@include bolt-custom-element('bolt-table', block, medium);
 
 /**
  * Long-form comment.
@@ -17,7 +17,7 @@
  */
 
 .c-bolt-table {
-  @include bolt-horizontal-scroll;
+  @include bolt-scroll;
 
   display: inline-block;
   max-width: 100%;
