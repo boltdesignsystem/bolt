@@ -25,5 +25,16 @@
 /// }
 @mixin bolt-horizontal-scroll {
   overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/// Provides a bolt method for controlling horizontal and vertical scroll
+/// @example scss
+/// .element {
+///    @include bolt-scroll();
+/// }
+@mixin bolt-scroll {
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
