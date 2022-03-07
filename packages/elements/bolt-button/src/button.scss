@@ -104,23 +104,8 @@ a.e-bolt-button {
 $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
 
 @each $hierarchy-name in $_bolt-button-hierarchy {
-  .e-bolt-button--#{$hierarchy-name} {
-    @if $hierarchy-name == tertiary or $hierarchy-name == transparent {
-      button.e-bolt-button,
-      a.e-bolt-button {
-        &:hover {
-          transform: translate3d(0, 0, 0);
-
-          &:after {
-            opacity: 0.2;
-            box-shadow: none;
-            background-color: var(--bolt-color-gray);
-          }
-        }
-      }
-    }
-
-    @if $hierarchy-name != transparent {
+  @if $hierarchy-name != transparent {
+    .e-bolt-button--#{$hierarchy-name} {
       --e-bolt-button-text-color: var(--m-bolt-text-on-#{$hierarchy-name});
       --e-bolt-button-bg-color: var(--m-bolt-#{$hierarchy-name});
 
@@ -141,7 +126,9 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
           box-shadow: 0 0 0 2px var(--m-bolt-primary);
         }
       }
-    } @else {
+    }
+  } @else {
+    .e-bolt-button--#{$hierarchy-name} {
       --e-bolt-button-text-color: var(--m-bolt-link);
       --e-bolt-button-bg-color: transparent;
 
@@ -149,14 +136,31 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
       &:after {
         display: none;
       }
+    }
+  }
 
-      button.e-bolt-button,
-      a.e-bolt-button {
-        &:hover {
-          text-decoration: underline;
-          text-decoration-thickness: 2px;
-          text-underline-offset: 3px;
+  @if $hierarchy-name == tertiary or $hierarchy-name == transparent {
+    button.e-bolt-button--#{$hierarchy-name},
+    a.e-bolt-button--#{$hierarchy-name} {
+      &:hover {
+        transform: translate3d(0, 0, 0);
+
+        &:after {
+          opacity: 0.2;
+          box-shadow: none;
+          background-color: var(--bolt-color-gray);
         }
+      }
+    }
+  }
+
+  @if $hierarchy-name == transparent {
+    button.e-bolt-button--#{$hierarchy-name},
+    a.e-bolt-button--#{$hierarchy-name} {
+      &:hover {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
       }
     }
   }
