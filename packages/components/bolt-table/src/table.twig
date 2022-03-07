@@ -13,7 +13,6 @@
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  'js-bolt-table',
   'c-bolt-table',
   borderless ? 'c-bolt-table--borderless',
   this.data.sticky_headers.value != schema.properties.sticky_headers.default ? 'c-bolt-table--sticky-' ~ this.data.sticky_headers.value ~ '-headers',
