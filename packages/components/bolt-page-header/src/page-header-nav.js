@@ -49,6 +49,7 @@ export class BoltPageHeaderNav {
     this.handleEscapeKeypress = this.handleEscapeKeypress.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.handleExternalClick = this.handleExternalClick.bind(this);
+    this.handleAnchorClick = this.handleAnchorClick.bind(this);
     this.updateResponsiveMenu = this.updateResponsiveMenu.bind(this);
 
     this.updateResponsiveMenu();
@@ -222,6 +223,8 @@ export class BoltPageHeaderNav {
     this.setState(el);
     this.options.isNested && this.setActiveMenu(el);
 
+    document.addEventListener('click', this.handleAnchorClick);
+
     if (!this.state.isMobile) {
       document.addEventListener('click', this.handleExternalClick);
     }
@@ -235,6 +238,8 @@ export class BoltPageHeaderNav {
     el.setAttribute('aria-expanded', 'false');
     this.setState(el, false);
     this.options.isNested && this.setActiveMenu(el, false);
+
+    document.removeEventListener('click', this.handleAnchorClick);
 
     if (!this.state.isMobile) {
       document.removeEventListener('click', this.handleExternalClick);
@@ -315,6 +320,12 @@ export class BoltPageHeaderNav {
     }
 
     this.hideMenu(this.state.activeMenu.trigger);
+  }
+
+  handleAnchorClick(e) {
+    if (e.target.hash || e.target.parentNode.hash) {
+      this.hideMenu(this.state.activeMenu.trigger);
+    }
   }
 }
 
