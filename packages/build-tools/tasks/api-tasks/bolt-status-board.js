@@ -71,9 +71,7 @@ async function finishRendering(rows, callback) {
         content: header,
       },
       body: {
-        content: [
-          'rows'
-        ]
+        content: ${JSON.stringify(arraySort(rows))},
       },
       attributes: {
         class: [
@@ -103,6 +101,7 @@ async function finishRendering(rows, callback) {
       },
     );
   });
+  console.log(rows);
 }
 
 async function generateStatusBoard() {
@@ -222,18 +221,16 @@ async function generateStatusBoard() {
           `);
           const html = results.html;
 
-          tableRows.push({
-            cells: [
-              isPrivate ? `${html} (unreleased)` : html,
-              hasScss ? '✅' : '',
-              hasTwig ? '✅' : '',
-              probablyAWebComponent ? '✅' : hasJs ? '' : '',
-              hasjestTests ? '✅' : '🚫',
-              hasNightwatchTests ? '✅' : '🚫',
-              hasManualTestingDocs ? '✅' : '🚫',
-              docsFound.size >= 300 ? '✅' : '❓',
-            ],
-          });
+          tableRows.push(
+            isPrivate ? `${html} (unreleased)` : html,
+            hasScss ? '✅' : '',
+            hasTwig ? '✅' : '',
+            probablyAWebComponent ? '✅' : hasJs ? '' : '',
+            hasjestTests ? '✅' : '🚫',
+            hasNightwatchTests ? '✅' : '🚫',
+            hasManualTestingDocs ? '✅' : '🚫',
+            docsFound.size >= 300 ? '✅' : '❓',
+          );
 
           pendingRequests.pop();
 
