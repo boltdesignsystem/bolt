@@ -2,6 +2,17 @@
   Add a pixel, <code>'200px'</code>, or percentage, <code>'20%'</code>, value to reveal the Floating Action Buttons once the user scrolls to meet that value.
 {% endset %}
 
+{% set demo %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'View full page demo',
+    attributes: {
+      href: link['components-floating-action-buttons-demo-show-on-scroll'],
+      target: '_blank',
+      rel: 'noopener'
+    }
+  } only %}
+{% endset %}
+
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
   content: content,
@@ -12,5 +23,6 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Floating Action Buttons Scroll on Show',
   description: description,
+  demo: demo,
   twig_markup: twig_markup,
 } only %}

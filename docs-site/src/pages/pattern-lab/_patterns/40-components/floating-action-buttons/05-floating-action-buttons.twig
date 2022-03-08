@@ -1,211 +1,65 @@
 {% set description %}
-  This component is used to contain and place floating action buttons, or FABs.
+  Floating Action Buttons (FAB) are a list of fixed positioned buttons placed on the right side of the browser screen.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>This is the demo you see floating in the <code>bottom-right</code>.</bolt-li>
+    <bolt-li>One or many action buttons can be used.</bolt-li>
+    <bolt-li>The most common use case is a &ldquo;back to top&rdquo; button.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
-{% set button_share %}
-  {% set share_menu %}
-    {% include '@bolt-components-share/share.twig' with {
-      display: 'menu',
-      text: 'Share this content',
-      sources: [
-        {
-          name: 'linkedin',
-          attributes: {
-            href: 'https://www.linkedin.com/shareArticle?url=https://google.com'
-          }
-        },
-        {
-          name: 'email',
-          attributes: {
-            href: 'mailto:?&body=Sample%20Text%20--%20https%3A//mail.com'
-          }
-        }
-      ],
-      copy_to_clipboard: {
-        text_to_copy: 'https://google.com',
-      },
-    } only %}
-  {% endset %}
-  {% set share_popover_trigger %}
-    {% set icon_share %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'share',
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'View full page demo',
+    attributes: {
+      href: link['components-floating-action-buttons-demo'],
+      target: '_blank',
+      rel: 'noopener'
+    }
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{# Assemble the button(s) as list item(s) #}
+{% set scroll_to_top_button %}
+  {% set trigger %}
+    {% set icon_chevron_up %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'chevron-up',
       } only %}
     {% endset %}
     {% include '@bolt-elements-button/button.twig' with {
-      content: 'Share this page',
-      icon_only: icon_share,
+      content: 'Back to top',
+      border_radius: 'full',
+      icon_only: icon_chevron_up,
       attributes: {
-        type: 'button'
-      }
+        href: '#main-content',
+      },
     } only %}
   {% endset %}
-  {% include '@bolt-components-popover/popover.twig' with {
-    trigger: share_popover_trigger,
-    content: share_menu,
-    spacing: 'none',
-    boundary: '.js-bolt-target-teaser',
-  } only %}
-{% endset %}
-
-{% set button_scroll_to_top %}
-  {% set icon_up %}
-    {% include '@bolt-components-icon/icon.twig' with {
-      name: 'chevron-up',
-    } only %}
-  {% endset %}
-
   {% include '@bolt-components-tooltip/tooltip.twig' with {
     content: 'Back to top',
     placement: 'left',
-    trigger: include('@bolt-elements-button/button.twig', {
-      content: 'Back to top',
-      icon_only: icon_up,
-      attributes: {
-        href: '#components-floating-action-buttons-docs',
-      },
-    }),
+    trigger: trigger,
+  } only %}
+{% endset %}
+{% set fab_list_items %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
+    content: scroll_to_top_button,
   } only %}
 {% endset %}
 
-{% set button_secondary %}
-  {% set icon_link %}
-    {% include '@bolt-elements-icon/icon.twig' with {
-      name: 'external-link',
-    } only %}
-  {% endset %}
-  {% include '@bolt-components-tooltip/tooltip.twig' with {
-    content: 'Go to Google',
-    placement: 'left',
-    trigger: include('@bolt-elements-button/button.twig', {
-      content: 'Go to Google',
-      icon_only: icon_link,
-      hierarchy: 'secondary',
-      attributes: {
-        href: 'https://www.google.com',
-        rel: 'noopener',
-        target: '_blank'
-      },
-    }),
-  } only %}
-{% endset %}
-
-{% set button_toggle %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig' with {
-    content: 'Toggle Menu',
-    attributes: {
-      type: 'button',
-    }
-  } only %}
-{% endset %}
-
-{% set content_secondary %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: button_secondary,
-  } only %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: button_secondary,
-  } only %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: button_secondary,
-  } only %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: button_secondary,
-  } only %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: button_secondary,
-  } only %}
-{% endset %}
-
-{% set list_secondary %}
+{# Pass the list items into the list template #}
+{% set fab_list %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig' with {
-    content: content_secondary,
+    content: fab_list_items,
   } only %}
 {% endset %}
 
-{% set list_primary %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: button_share,
-  } only %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: button_scroll_to_top,
-  } only %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: button_toggle,
-    children: list_secondary
-  } only %}
-{% endset %}
-
-{% set content %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig' with {
-    content: list_primary,
-  } only %}
-{% endset %}
-
+{# Pass the list into the main template #}
 {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
-  content: content,
-} only %}
-{% endset %}
-
-
-
-
-
-{% set twig_markup %}{% verbatim %}
-{% set button %}
-  {% include '@bolt-elements-button/button.twig' with {
-    ...
-  } only %}
-{% endset %}
-
-{% set button_toggle %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig' with {
-    content: 'Toggle Menu',
-    attributes: {
-      type: 'button',
-    }
-  } only %}
-{% endset %}
-
-{% set content_secondary %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: button,
-  } only %}
-  ...
-{% endset %}
-
-{% set list_secondary %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig' with {
-    content: content_secondary,
-  } only %}
-{% endset %}
-
-{% set list_primary %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: button,
-  } only %}
-  ...
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: button_toggle,
-    children: list_secondary
-  } only %}
-{% endset %}
-
-{% set content %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig' with {
-    content: list_primary,
-  } only %}
-{% endset %}
-
-{% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
-  content: content,
+  content: fab_list,
 } only %}
 {% endverbatim %}{% endset %}
 

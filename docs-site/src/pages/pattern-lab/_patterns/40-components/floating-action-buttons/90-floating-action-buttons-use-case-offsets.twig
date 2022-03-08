@@ -20,6 +20,17 @@
   </bolt-ol>
 {% endset %}
 
+{% set demo %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'View full page demo',
+    attributes: {
+      href: link['components-floating-action-buttons-demo-use-case-offsets'],
+      target: '_blank',
+      rel: 'noopener'
+    }
+  } only %}
+{% endset %}
+
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
   content: _content,
@@ -34,5 +45,6 @@
   title: 'Floating Action Buttons Advanced Use',
   description: description,
   notes: notes,
+  demo: demo,
   twig_markup: twig_markup,
 } only %}

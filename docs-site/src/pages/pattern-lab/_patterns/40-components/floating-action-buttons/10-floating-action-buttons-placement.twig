@@ -2,6 +2,17 @@
   Use this to place the Floating Action Buttons in the <code>right-end</code>, <code>right</code>, or <code>right-start</code>.
 {% endset %}
 
+{% set demo %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'View full page demo',
+    attributes: {
+      href: link['components-floating-action-buttons-demo-placement'],
+      target: '_blank',
+      rel: 'noopener'
+    }
+  } only %}
+{% endset %}
+
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
   content: content,
@@ -12,5 +23,6 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Floating Action Buttons Placement',
   description: description,
+  demo: demo,
   twig_markup: twig_markup,
 } only %}

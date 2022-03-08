@@ -1,0 +1,90 @@
+{% set description %}
+  FAB comes with its own toggle button which can be used to toggle on/off a secondary list of action buttons.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>floating-action-buttons-toggle-button.twig</code> template renders the toggle button.</bolt-li>
+    <bolt-li>The toogle button is recommended if there is a total of more than 3 action buttons.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'View full page demo',
+    attributes: {
+      href: link['components-floating-action-buttons-demo-toggle-button'],
+      target: '_blank',
+      rel: 'noopener'
+    }
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{# Assemble the buttons into list items #}
+{% set button_scroll_to_top %}
+  {% set icon_chevron_up %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'chevron-up',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    content: 'Back to top',
+    placement: 'left',
+    trigger: include('@bolt-elements-button/button.twig', {
+      content: 'Back to top',
+      icon_only: icon_chevron_up,
+      attributes: {
+        href: '#main-content',
+      },
+    }),
+  } only %}
+{% endset %}
+{% set button_download %}
+  {% set icon_download %}
+    {% include '@bolt-components-icon/icon.twig' with {
+      name: 'download',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    content: 'Download',
+    placement: 'left',
+    trigger: include('@bolt-elements-button/button.twig', {
+      content: 'Download',
+      icon_only: icon_download,
+      attributes: {
+        href: 'https://via.placeholder.com/400x225',
+        download: true,
+      },
+    }),
+  } only %}
+{% endset %}
+{% set fab_list_items %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
+    content: button_scroll_to_top,
+  } only %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
+    content: button_download,
+  } only %}
+{% endset %}
+
+{# Pass the list items into the list template #}
+{% set fab_list %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig' with {
+    content: fab_list_items,
+  } only %}
+{% endset %}
+
+{# Pass the list into the main template #}
+{% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
+  content: fab_list,
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Toggle Button',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
