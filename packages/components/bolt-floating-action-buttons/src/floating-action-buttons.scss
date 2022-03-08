@@ -6,6 +6,7 @@
 
 $_bolt-fab-x-offset: var(--bolt-spacing-x-small);
 $_bolt-fab-y-offset: var(--bolt-spacing-y-small);
+$_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
 
 .c-bolt-floating-action-buttons {
   position: fixed;
@@ -42,36 +43,11 @@ $_bolt-fab-placement: 'right-end', 'right', 'right-start';
   }
 }
 
-// Remove transitions when @media (prefers-reduced-motion) {} is true.
-@media (prefers-reduced-motion) {
-  .c-bolt-floating-action-buttons {
-    transition: none;
-
-    .c-bolt-floating-action-buttons__list-item--has-children {
-      .c-bolt-floating-action-buttons__list {
-        transition: none;
-
-        &--hidden {
-          transition: none;
-        }
-
-        &-item {
-          transition: none;
-
-          &--hidden {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
-          }
-        }
-      }
-    }
-  }
-}
-
 .c-bolt-floating-action-buttons__list {
   display: flex;
   flex-direction: column;
-  gap: var(--bolt-spacing-y-xsmall);
+  align-items: center;
+  gap: $_bolt-fab-list-gap;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -84,49 +60,65 @@ $_bolt-fab-placement: 'right-end', 'right', 'right-start';
 }
 
 .c-bolt-floating-action-buttons__list-item--has-children {
-  // hide and animate secondary list
-  .c-bolt-floating-action-buttons__list {
-    max-height: 50vh;
-    overflow: hidden;
-    transition: max-height calc(var(--bolt-transition-timing) * 2) var(--bolt-transition-ease);
-
-    &--hidden {
-      z-index: -1;
-      max-height: 0;
-      transition: max-height var(--bolt-transition);
+  // Animate "more icon" and "close icon" in toggle button
+  .e-bolt-button[aria-expanded='true'] {
+    > span:nth-child(1) {
+      visibility: hidden;
+      opacity: 0;
     }
-
-    &-item {
+  
+    > span:nth-child(2) {
+      visibility: visible;
       opacity: 1;
-      transform: translate3d(0, 0, 0);
-      transition: opacity var(--bolt-transition), transform var(--bolt-transition);
-
-      &--hidden {
-        opacity: 0;
-        transform: translate3d(0, 4rem, 0);
-      }
     }
   }
-
-  // hide close icon in toggle button
+  
   .e-bolt-button[aria-expanded='false'] {
     > span:nth-child(2) {
       visibility: hidden;
       opacity: 0;
     }
   }
-}
 
-// change toggle icon
-.c-bolt-floating-action-buttons__list-item--has-children
-  .e-bolt-button[aria-expanded='true'] {
-  > span:nth-child(1) {
-    visibility: hidden;
-    opacity: 0;
+  // Animate children list
+  .c-bolt-floating-action-buttons__list {
+    opacity: 1;
+    max-height: 50vh;
+    transition: max-height calc(var(--bolt-transition-timing) * 2) var(--bolt-transition-ease), opacity calc(var(--bolt-transition-timing) * 2) var(--bolt-transition-ease);
   }
 
-  > span:nth-child(2) {
-    visibility: visible;
+  .c-bolt-floating-action-buttons__list--hidden {
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
+    transition: max-height var(--bolt-transition);
+  }
+
+  .c-bolt-floating-action-buttons__list-item {
     opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: opacity var(--bolt-transition), transform var(--bolt-transition);
+
+    &:first-of-type {
+      margin-top: $_bolt-fab-list-gap;
+    }
+
+    &:last-of-type {
+      margin-bottom: calc(#{$_bolt-fab-list-gap} * 2);
+    }
+  }
+
+  .c-bolt-floating-action-buttons__list-item--hidden {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+// Remove transitions when @media (prefers-reduced-motion) {} is true.
+@media (prefers-reduced-motion) {
+  .c-bolt-floating-action-buttons,
+  .c-bolt-floating-action-buttons * {
+    transition: none !important;
   }
 }
