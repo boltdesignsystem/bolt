@@ -87,7 +87,8 @@ a.e-bolt-button {
 }
 
 button.e-bolt-button,
-a.e-bolt-button {
+a.e-bolt-button,
+input[type='file'].e-bolt-button {
   &:focus,
   &:active:not(:disabled) {
     transform: translate3d(0, 0, 0);
@@ -97,7 +98,8 @@ a.e-bolt-button {
 }
 
 button.e-bolt-button,
-a.e-bolt-button {
+a.e-bolt-button,
+input[type='file'].e-bolt-button {
   cursor: pointer;
 }
 
@@ -141,7 +143,8 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
 
   @if $hierarchy-name == tertiary or $hierarchy-name == transparent {
     button.e-bolt-button--#{$hierarchy-name},
-    a.e-bolt-button--#{$hierarchy-name} {
+    a.e-bolt-button--#{$hierarchy-name},
+    input[type='file'].e-bolt-button--#{$hierarchy-name} {
       &:hover {
         transform: translate3d(0, 0, 0);
 
