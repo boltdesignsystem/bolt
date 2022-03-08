@@ -59,24 +59,36 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
   // Animate "more icon" and "close icon" in toggle button
   .e-bolt-button[aria-expanded] {
     z-index: 1; // Raises the toggle button's stacking context higher than children list.
+    > * {
+      transition: opacity var(--bolt-transition), transform var(--bolt-transition);
+    }  
   }
 
   .e-bolt-button[aria-expanded='true'] {
-    > span:nth-child(1) {
+    > *:nth-child(1) {
       visibility: hidden;
       opacity: 0;
+      transform: translate3d(-50%, -50%, 0) rotate(360deg);
     }
   
-    > span:nth-child(2) {
+    > *:nth-child(2) {
       visibility: visible;
       opacity: 1;
+      transform: translate3d(-50%, -50%, 0) rotate(0deg);
     }
   }
   
   .e-bolt-button[aria-expanded='false'] {
-    > span:nth-child(2) {
+    > *:nth-child(1) {
+      visibility: visible;
+      opacity: 1;
+      transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+
+    > *:nth-child(2) {
       visibility: hidden;
       opacity: 0;
+      transform: translate3d(-50%, -50%, 0) rotate(360deg);
     }
   }
 
