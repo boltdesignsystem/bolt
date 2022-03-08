@@ -4,81 +4,20 @@
 
 @import '@bolt/core-v3.x';
 
-// Register Custom Block Element
-@include bolt-custom-element('bolt-floating-action-buttons', block, medium);
-
-$_bolt-fab-x-offset: var(--bolt-spacing-x-xsmall);
-$_bolt-fab-y-offset: var(--bolt-spacing-y-xsmall);
+$_bolt-fab-x-offset: var(--bolt-spacing-x-small);
+$_bolt-fab-y-offset: var(--bolt-spacing-y-small);
 
 .c-bolt-floating-action-buttons {
+  position: fixed;
   z-index: bolt-z-index('fab');
-  transition: opacity var(--bolt-transition) var(--bolt-transition-timing);
+  transition: opacity var(--bolt-transition);
+  transition-delay: var(--bolt-transition-timing); // Allow children elements to transition first, and then fade in the entire container.
 
   // must both be ready && not have c-bolt-floating-action-buttons--hidden class before showing
   &:not([data-bolt-ready]),
   &.c-bolt-floating-action-buttons--hidden {
     visibility: hidden;
     opacity: 0;
-  }
-
-  &__list {
-    margin-bottom: 0;
-    margin-left: 0;
-  }
-
-  &__list-item {
-    display: flex;
-    flex-direction: column-reverse;
-    position: relative;
-    margin-bottom: var(--bolt-spacing-y-xxsmall);
-  }
-
-  .c-bolt-floating-action-buttons__list-item--has-children {
-    // hide and animate secondary list
-    .c-bolt-floating-action-buttons__list {
-      max-height: 50vh;
-      overflow: hidden;
-      transition: max-height calc(var(--bolt-transition-timing) * 2) var(--bolt-transition-ease);
-
-      &--hidden {
-        z-index: -1;
-        max-height: 0;
-        transition: max-height var(--bolt-transition);
-      }
-
-      &-item {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-        transition: opacity var(--bolt-transition), transform var(--bolt-transition);
-
-        &--hidden {
-          opacity: 0;
-          transform: translate3d(0, 4rem, 0);
-        }
-      }
-    }
-
-    // hide close icon in toggle button
-    .e-bolt-button[aria-expanded='false'] {
-      > span:nth-child(2) {
-        visibility: hidden;
-        opacity: 0;
-      }
-    }
-  }
-
-  // change toggle icon
-  .c-bolt-floating-action-buttons__list-item--has-children
-    .e-bolt-button[aria-expanded='true'] {
-    > span:nth-child(1) {
-      visibility: hidden;
-      opacity: 0;
-    }
-
-    > span:nth-child(2) {
-      visibility: visible;
-      opacity: 1;
-    }
   }
 }
 
@@ -87,7 +26,6 @@ $_bolt-fab-placement: 'right-end', 'right', 'right-start';
 
 @each $placement in $_bolt-fab-placement {
   .c-bolt-floating-action-buttons--placement-#{$placement} {
-    position: fixed;
     right: var(--c-bolt-floating-action-buttons-offset-x, $_bolt-fab-x-offset);
 
     @if index($placement, 'right') {
@@ -127,5 +65,68 @@ $_bolt-fab-placement: 'right-end', 'right', 'right-start';
         }
       }
     }
+  }
+}
+
+.c-bolt-floating-action-buttons__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bolt-spacing-y-xsmall);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.c-bolt-floating-action-buttons__list-item {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+}
+
+.c-bolt-floating-action-buttons__list-item--has-children {
+  // hide and animate secondary list
+  .c-bolt-floating-action-buttons__list {
+    max-height: 50vh;
+    overflow: hidden;
+    transition: max-height calc(var(--bolt-transition-timing) * 2) var(--bolt-transition-ease);
+
+    &--hidden {
+      z-index: -1;
+      max-height: 0;
+      transition: max-height var(--bolt-transition);
+    }
+
+    &-item {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      transition: opacity var(--bolt-transition), transform var(--bolt-transition);
+
+      &--hidden {
+        opacity: 0;
+        transform: translate3d(0, 4rem, 0);
+      }
+    }
+  }
+
+  // hide close icon in toggle button
+  .e-bolt-button[aria-expanded='false'] {
+    > span:nth-child(2) {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+}
+
+// change toggle icon
+.c-bolt-floating-action-buttons__list-item--has-children
+  .e-bolt-button[aria-expanded='true'] {
+  > span:nth-child(1) {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  > span:nth-child(2) {
+    visibility: visible;
+    opacity: 1;
   }
 }
