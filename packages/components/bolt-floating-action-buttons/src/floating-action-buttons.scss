@@ -10,6 +10,7 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
 
 .c-bolt-floating-action-buttons {
   position: fixed;
+  right: var(--c-bolt-floating-action-buttons-offset-x, $_bolt-fab-x-offset);
   z-index: bolt-z-index('fab');
   transition: opacity var(--bolt-transition);
   transition-delay: var(--bolt-transition-timing); // Allow children elements to transition first, and then fade in the entire container.
@@ -27,7 +28,6 @@ $_bolt-fab-placement: 'right-end', 'right', 'right-start';
 
 @each $placement in $_bolt-fab-placement {
   .c-bolt-floating-action-buttons--placement-#{$placement} {
-    right: var(--c-bolt-floating-action-buttons-offset-x, $_bolt-fab-x-offset);
 
     @if index($placement, 'right') {
       top: calc(50% + var(--c-bolt-floating-action-buttons-offset-y));
@@ -61,6 +61,10 @@ $_bolt-fab-placement: 'right-end', 'right', 'right-start';
 
 .c-bolt-floating-action-buttons__list-item--has-children {
   // Animate "more icon" and "close icon" in toggle button
+  .e-bolt-button[aria-expanded] {
+    z-index: 1; // Raises the toggle button's stacking context higher than children list.
+  }
+
   .e-bolt-button[aria-expanded='true'] {
     > span:nth-child(1) {
       visibility: hidden;
