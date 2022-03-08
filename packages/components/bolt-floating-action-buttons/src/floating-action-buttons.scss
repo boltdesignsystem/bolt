@@ -4,8 +4,6 @@
 
 @import '@bolt/core-v3.x';
 
-$_bolt-fab-placement-x: var(--bolt-spacing-x-small);
-$_bolt-fab-placement-y: var(--bolt-spacing-y-small);
 $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
 
 .c-bolt-floating-action-buttons {
@@ -13,7 +11,7 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
   --c-bolt-floating-action-buttons-offset-y: 0px;
 
   position: fixed;
-  right: var(--c-bolt-floating-action-buttons-offset-x, $_bolt-fab-placement-x);
+  right: var(--bolt-spacing-x-small, var(--c-bolt-floating-action-buttons-offset-x));
   z-index: bolt-z-index('fab');
   transition: opacity var(--bolt-transition);
   transition-delay: var(--bolt-transition-timing); // Allow children elements to transition first, and then fade in the entire container.
@@ -32,32 +30,12 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
 }
 
 .c-bolt-floating-action-buttons--placement-right-start {
-  top: calc(var(--c-bolt-floating-action-buttons-offset-y, $_bolt-fab-placement-y) + var(--bolt-page-header-height));
+  top: calc(var(--bolt-spacing-y-small, calc(--c-bolt-floating-action-buttons-offset-y)) + var(--bolt-page-header-height));
 }
 
 .c-bolt-floating-action-buttons--placement-right-end {
-  bottom: var(--c-bolt-floating-action-buttons-offset-y, $_bolt-fab-placement-y);
+  bottom: var(--bolt-spacing-y-small, calc(--c-bolt-floating-action-buttons-offset-y));
 }
-
-// placement prop
-// @todo: can't figure out what's wrong with this logic, CSS isn't compiling correctly.
-
-// $_bolt-fab-placement: 'right-end', 'right', 'right-start';
-// @each $placement in $_bolt-fab-placement {
-//   .c-bolt-floating-action-buttons--placement-#{$placement} {
-//     @if index($placement, 'right') {
-//       top: calc(50% + var(--c-bolt-floating-action-buttons-offset-y));
-//       transform: translateY(-50%);
-//     } @else if index($placement, 'right-top') {
-//       top: var(--c-bolt-floating-action-buttons-offset-y, $_bolt-fab-placement-y);
-//     } @else {
-//       bottom: var(
-//         --c-bolt-floating-action-buttons-offset-y,
-//         $_bolt-fab-placement-y
-//       );
-//     }
-//   }
-// }
 
 .c-bolt-floating-action-buttons__list {
   display: flex;
