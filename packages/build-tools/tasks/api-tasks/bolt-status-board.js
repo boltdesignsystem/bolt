@@ -11,11 +11,11 @@ const events = require('@bolt/build-utils/events');
 
 const tableRows = [];
 
-let config,
-  boltUrls,
-  filteredBoltPackages,
-  pendingRequests = [],
-  processedComponents = [];
+let config;
+let boltUrls;
+let filteredBoltPackages;
+const pendingRequests = [];
+const processedComponents = [];
 
 async function finishRendering(rows, callback) {
   config = config || (await getConfig());
@@ -71,14 +71,15 @@ async function finishRendering(rows, callback) {
         content: header,
       },
       body: {
-        content: ${JSON.stringify(arraySort(rows))},
+        content: ${JSON.stringify(arraySort(rows))}
       },
       attributes: {
         class: [
           't-bolt-xlight',
           'u-bolt-block'
         ],
-        id: 'component-status'
+        id: 'component-status',
+        style: 'max-height: none;'
       },
     } only %}
   `).then(renderedResults => {
@@ -101,7 +102,6 @@ async function finishRendering(rows, callback) {
       },
     );
   });
-  console.log(rows);
 }
 
 async function generateStatusBoard() {
@@ -219,18 +219,63 @@ async function generateStatusBoard() {
               }
             } %}
           `);
-          const html = results.html;
 
-          tableRows.push(
-            isPrivate ? `${html} (unreleased)` : html,
-            hasScss ? '✅' : '',
-            hasTwig ? '✅' : '',
-            probablyAWebComponent ? '✅' : hasJs ? '' : '',
-            hasjestTests ? '✅' : '🚫',
-            hasNightwatchTests ? '✅' : '🚫',
-            hasManualTestingDocs ? '✅' : '🚫',
-            docsFound.size >= 300 ? '✅' : '❓',
+          const resultCell = await renderString(`
+            {% include '@bolt-components-table/table-cell.twig' with {
+              content: '${
+                isPrivate ? `${results.html} (unreleased)` : results.html
+              }'
+            } only %}
+          `);
+
+          const html = resultCell.html;
+
+          const checkMark = await renderString(`
+            {% include '@bolt-components-table/table-cell.twig' with {
+              content: '✅'
+            } only %}
+          `);
+
+          const questionMark = await renderString(`
+            {% include '@bolt-components-table/table-cell.twig' with {
+              content: '❓'
+            } only %}
+          `);
+
+          const cancelMark = await renderString(`
+            {% include '@bolt-components-table/table-cell.twig' with {
+              content: '🚫'
+            } only %}
+          `);
+
+          const emptyCell = await renderString(`
+            {% include '@bolt-components-table/table-cell.twig' with {
+              content: ''
+            } only %}
+          `);
+
+          const singleRow = [];
+
+          singleRow.push(
+            html,
+            hasScss ? checkMark.html : emptyCell.html,
+            hasTwig ? checkMark.html : emptyCell.html,
+            probablyAWebComponent
+              ? checkMark.html
+              : hasJs
+              ? emptyCell.html
+              : emptyCell.html,
+            hasjestTests ? checkMark.html : cancelMark.html,
+            hasNightwatchTests ? checkMark.html : cancelMark.html,
+            hasManualTestingDocs ? checkMark.html : cancelMark.html,
+            docsFound.size >= 300 ? checkMark.html : questionMark.html,
           );
+          const singleRowRender = await renderString(`
+            {% include '@bolt-components-table/table-row.twig' with {
+              content: '${singleRow.join('')}'
+            } only %}
+          `);
+          tableRows.push(singleRowRender.html);
 
           pendingRequests.pop();
 
