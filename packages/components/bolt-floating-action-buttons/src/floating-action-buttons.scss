@@ -54,12 +54,14 @@ $_bolt-fab-placement: 'right-end', 'right', 'right-start';
 }
 
 .c-bolt-floating-action-buttons__list-item {
-  display: flex;
-  flex-direction: column-reverse;
-  position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 .c-bolt-floating-action-buttons__list-item--has-children {
+  display: flex;
+  flex-direction: column-reverse;
+  
   // Animate "more icon" and "close icon" in toggle button
   .e-bolt-button[aria-expanded] {
     z-index: 1; // Raises the toggle button's stacking context higher than children list.
