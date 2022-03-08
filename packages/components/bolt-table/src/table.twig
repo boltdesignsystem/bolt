@@ -20,6 +20,11 @@
 ] %}
 <div {{ attributes_wrapper.addClass(classes) }}>
   <table>
+    {% if caption %}
+      <caption {{ caption_attributes }}>
+        {{ caption.content }}
+      </caption>
+    {% endif %}
     {% if header %}
       <thead {{ header_attributes }}>
         {{ header.content }}
@@ -36,11 +41,6 @@
       <tfoot {{ footer_attributes }}>
         {{ footer.content }}
       </tfoot>
-    {% endif %}
-    {% if caption %}
-      <caption {{ caption_attributes }}>
-        {{ caption.content }}
-      </caption>
     {% endif %}
   </table>
 </div>
