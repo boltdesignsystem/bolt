@@ -1,4 +1,4 @@
-A sticky floating container for action buttons.
+A sticky list container for action buttons.
 
 ###### Install via NPM
 
