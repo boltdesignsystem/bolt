@@ -1,9 +1,9 @@
 {% set description %}
-  Floating action buttons are fixed positioned on the right side of the screen. The vertical placement can be adjusted based on the page layout.
+  The <code>hide_on_load</code> prop allows floating action buttons to be hidden on initial page load.
 {% endset %}
 
 {% set notes %}
-  Reference the <a href="{{ link['viewall-components-floating-action-buttons'] }}?selected-tab=schema">schema</a> for all options.
+  Only use this prop if you are using JavaScript to build more conditions on when/how FAB should show.
 {% endset %}
 
 {% set demo %}
@@ -16,7 +16,7 @@
     content: 'View full page demo',
     icon_after: icon_external_link,
     attributes: {
-      href: link['components-floating-action-buttons-demo-placement'],
+      href: link['components-floating-action-buttons-demo-hide-on-load'],
       target: '_blank',
       rel: 'noopener'
     }
@@ -26,12 +26,12 @@
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
   content: content,
-  placement: 'right-start',
+  hide_on_load: true,
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'FAB placement',
+  title: 'Hide FAB on page load',
   description: description,
   notes: notes,
   demo: demo,

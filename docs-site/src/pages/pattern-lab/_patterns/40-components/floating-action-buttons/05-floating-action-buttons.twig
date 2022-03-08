@@ -1,17 +1,24 @@
 {% set description %}
-  Floating Action Buttons (FAB) are a list of fixed positioned buttons placed on the right side of the browser screen.
+  Floating action buttons (FAB) are a list of fixed positioned buttons placed on the right side of the screen.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
     <bolt-li>One or many action buttons can be used.</bolt-li>
     <bolt-li>The most common use case is a &ldquo;back to top&rdquo; button.</bolt-li>
+    <bolt-li>When using a <a href="link['viewall-elements-button']">Button element</a> as FAB, it is recommended to use an icon-only button with tooltip. Set <code>placement</code> of tooltip to <code>left</code> to avoid clashing with other buttons.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
+  {% set icon_external_link %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'external-link',
+    } only %}
+  {% endset %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'View full page demo',
+    icon_after: icon_external_link,
     attributes: {
       href: link['components-floating-action-buttons-demo'],
       target: '_blank',
@@ -64,7 +71,7 @@
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Floating Action Buttons',
+  title: 'Basic floating action buttons',
   description: description,
   notes: notes,
   demo: demo,
