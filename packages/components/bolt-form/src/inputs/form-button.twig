@@ -17,24 +17,32 @@
  */
 #}
 
-{% set attributes = create_attribute(attributes | default({})) %}
+{% set _button_attributes = attributes|default({}) %}
 
-{% set classes = [
-  "c-bolt-button",
-  "c-bolt-button--center",
-  "c-bolt-button--medium",
-  "c-bolt-button--primary",
-  width is not empty ? "c-bolt-button--" ~ width : "",
-] %}
+{% set _button_attributes = _button_attributes|merge({ type: 'button' }) %}
 
-<button {{ attributes.addClass(classes) }}>
-  {% if icon %}
-    <span class="c-bolt-button__icon">
-      {% include "@bolt-elements-icon/icon.twig" with icon only %}
-    </span>
+{% set _button_props = {
+  content: text,
+  attributes: _button_attributes,
+} %}
+
+{% if width is not empty %}
+  {% if width == 'full' %}
+    {% set _display = 'block' %}
+  {% elseif width == 'full@small' %}
+    {% set _display = 'inline@from-small' %}
   {% endif %}
 
-  <span class="c-bolt-button__item">
-    {{ text }}
-  </span>
-</button>
+  {% set _button_props = _button_props|merge({ display: _display }) %}
+{% endif %}
+
+
+{% if icon %}
+  {% set _icon_rendered %}
+    {% include '@bolt-elements-icon/icon.twig' with icon only %}
+  {% endset %}
+
+  {% set _button_props = _button_props|merge({ icon_before: _icon_rendered }) %}
+{% endif %}
+
+{% include '@bolt-elements-button/button.twig' with _button_props only %}
