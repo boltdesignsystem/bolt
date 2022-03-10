@@ -2,6 +2,10 @@
   If a design calls for borderless tables, use the <code>borderless</code> prop to remove all borders.
 {% endset %}
 
+{% set notes %}
+  Take a look at <a href="{{ link['components-table-examples'] }}" class="e-bolt-text-link">real examples of tables</a> currently on our sites
+{% endset %}
+
 {% set demo %}
   {% set header %}
     {% set cells %}
@@ -179,6 +183,7 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Borderless table',
   description: description,
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
 } only %}

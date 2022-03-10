@@ -1,5 +1,5 @@
 {% set description %}
-  Existing use cases on our sites.
+  Real examples of tables currently on our sites.
 {% endset %}
 
 {% set demo %}
@@ -493,14 +493,244 @@
       },
     } only %}
   </bolt-stack>
+
+  <hr>
+
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Number',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Date Created',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Author',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Type',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Title',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Closed',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Solved',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Replies',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Votes',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Last activity by',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set type_icon %}
+      <span aria-label="Question">
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'pega-chat-question',
+        } only %}
+      </span>
+    {% endset %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '324484',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '03/10/2022',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Firstname Lastname',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: type_icon,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Title of the question. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique debitis odio architecto.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '35',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '162',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Firstname Lastname',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set type_icon %}
+      <span aria-label="Discussion">
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'pega-chat-typing',
+        } only %}
+      </span>
+    {% endset %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '324481',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '03/10/2022',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Firstname Lastname',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: type_icon,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Title of the discussion. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique debitis odio architecto.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '66',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '12',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Firstname Lastname',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set type_icon %}
+      <span aria-label="Idea">
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'ideas',
+        } only %}
+      </span>
+    {% endset %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '324481',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '03/10/2022',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Firstname Lastname',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: type_icon,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Title of the idea. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique debitis odio architecto.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '3',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '100',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Firstname Lastname',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  <bolt-text headline tag="h4" font-size="small">Collaboration Center Mod Dashboard Table</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+          row3,
+          row3,
+          row3,
+          row1,
+          row2,
+          row3,
+          row1,
+          row1,
+          row1,
+          row1,
+          row2,
+          row3,
+          row1,
+          row2,
+          row2,
+          row2,
+          row3,
+          row1,
+          row2,
+          row3,
+          row1,
+          row2,
+          row3,
+          row1,
+          row2,
+          row3,
+          row1,
+          row2,
+          row3,
+        ],
+      },
+      sticky_headers: 'top',
+      attributes: {
+        class: 'u-bolt-block',
+      },
+    } only %}
+  </bolt-stack>
 {% endset %}
 
-{% set twig_markup %}{% verbatim %}
-{% endverbatim %}{% endset %}
-
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Table use cases',
+  title: 'Table examples',
   description: description,
   demo: demo,
-  twig_markup: twig_markup,
 } only %}

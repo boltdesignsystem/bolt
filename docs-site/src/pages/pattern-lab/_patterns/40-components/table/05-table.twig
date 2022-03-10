@@ -2,6 +2,10 @@
   A basic table is composed of table head, body, footer, rows, cells, and caption.
 {% endset %}
 
+{% set notes %}
+  Take a look at <a href="{{ link['components-table-examples'] }}" class="e-bolt-text-link">real examples of tables</a> currently on our sites
+{% endset %}
+
 {% set demo %}
   {% set header %}
     {% set cells %}
@@ -223,6 +227,7 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Basic table',
   description: description,
+  notes: notes,
   demo: demo,
   demo_light_dark: true,
   twig_markup: twig_markup,
