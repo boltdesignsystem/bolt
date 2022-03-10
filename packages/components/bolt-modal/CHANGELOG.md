@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v5.2.1...v5.2.2) (2022-02-07)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
 # [5.2.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v5.1.1...v5.2.0) (2022-01-25)
 
 **Note:** Version bump only for package @bolt/components-modal

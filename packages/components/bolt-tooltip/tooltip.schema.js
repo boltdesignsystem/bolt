@@ -77,6 +77,13 @@ module.exports = {
       description:
         "An array of different placement options that Popper.js should try if there isn't enough space for the ideal placement. Normally this defaults to all placement options however this lets you limit the options to pick from in certain situations.",
     },
+    aria_type: {
+      type: 'string',
+      description:
+        "This sets the specific aria attribute for rendering the tooltip, the 2 available options do different things. 'labelledby' sets the tooltip text as the accessible name for the trigger, while 'describedby' keeps the trigger's accessible name (it must have one in such case) and provides additional description.",
+      enum: ['labelledby', 'describedby'],
+      default: 'labelledby',
+    },
     direction: {
       type: 'any',
       title: 'DEPRECATED',

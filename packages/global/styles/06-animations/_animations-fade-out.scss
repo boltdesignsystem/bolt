@@ -1,0 +1,93 @@
+/* ------------------------------------ *\
+   Animation fade out
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-fade {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.a-bolt-out--fade {
+  animation-name: a-bolt-out-fade;
+}
+
+/* ------------------------------------ *\
+   Animation fade out up
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-fade-up {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -1rem, 0);
+  }
+}
+
+.a-bolt-out--fade-up {
+  animation-name: a-bolt-out-fade-up;
+}
+
+/* ------------------------------------ *\
+   Animation fade out down
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-fade-down {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+  }
+}
+
+.a-bolt-out--fade-down {
+  animation-name: a-bolt-out-fade-down;
+}
+
+/* ------------------------------------ *\
+   Animation fade out left
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-fade-left {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-1rem, 0, 0);
+  }
+}
+
+.a-bolt-out--fade-left {
+  animation-name: a-bolt-out-fade-left;
+}
+
+/* ------------------------------------ *\
+   Animation fade out right
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-fade-right {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(1rem, 0, 0);
+  }
+}
+
+.a-bolt-out--fade-right {
+  animation-name: a-bolt-out-fade-right;
+}

@@ -1,0 +1,98 @@
+/* ------------------------------------ *\
+   Animation zoom out
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-zoom {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+}
+
+.a-bolt-out--zoom {
+  animation-name: a-bolt-out-zoom;
+}
+
+/* ------------------------------------ *\
+   Animation zoom out up
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-zoom-up {
+  40% {
+    opacity: 1;
+    transform: scale3d(0.4, 0.4, 0.4) translate3d(0, 30%, 0);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -500%, 0);
+  }
+}
+
+.a-bolt-out--zoom-up {
+  animation-name: a-bolt-out-zoom-up;
+}
+
+/* ------------------------------------ *\
+   Animation zoom out down
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-zoom-down {
+  40% {
+    opacity: 1;
+    transform: scale3d(0.4, 0.4, 0.4) translate3d(0, -30%, 0);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 500%, 0);
+  }
+}
+
+.a-bolt-out--zoom-down {
+  animation-name: a-bolt-out-zoom-down;
+}
+
+/* ------------------------------------ *\
+   Animation zoom out left
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-zoom-left {
+  40% {
+    opacity: 1;
+    transform: scale3d(0.4, 0.4, 0.4) translate3d(30%, 0, 0);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(-500%, 0, 0);
+  }
+}
+
+.a-bolt-out--zoom-left {
+  animation-name: a-bolt-out-zoom-left;
+}
+
+/* ------------------------------------ *\
+   Animation zoom out right
+\* ------------------------------------ */
+
+@keyframes a-bolt-out-zoom-right {
+  40% {
+    opacity: 1;
+    transform: scale3d(0.4, 0.4, 0.4) translate3d(-30%, 0, 0);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(500%, 0, 0);
+  }
+}
+
+.a-bolt-out--zoom-right {
+  animation-name: a-bolt-out-zoom-right;
+}
