@@ -132,18 +132,15 @@ jobs:
       install:
         - yarn
         - npx lerna run postbootstrap
-      # before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
         - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
-        # - travis_retry yarn run test:e2e:full
       after_success:
         - ./scripts/deploy-branch-alias.js
         - export NOW_BRANCH_URL=$(./scripts/get-branch-alias.js)
         - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH} -l ${NOW_BRANCH_URL}
         - ./scripts/deploy-tagged-release.js
-        # - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
       after_script:
         - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
 
