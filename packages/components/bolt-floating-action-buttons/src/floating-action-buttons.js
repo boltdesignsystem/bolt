@@ -12,15 +12,21 @@ export class BoltFloatingActionButtons {
     this.secondaryList = this.primaryList.querySelector(
       '.js-bolt-floating-action-buttons-list',
     );
-    this.toggleButton = this.primaryList.querySelector('.js-bolt-floating-action-buttons-toggle',);
+    this.toggleButton = this.primaryList.querySelector(
+      '.js-bolt-floating-action-buttons-toggle',
+    );
     this.showOnScroll = this.el.dataset.showOnScroll;
     this.hideOnLoad = this.el.dataset.hideOnLoad;
     this.isOpen = false;
 
-    this.secondaryList.classList.add('c-bolt-floating-action-buttons__list--hidden');
-    Array.from(this.secondaryList.children).forEach((el) => {
-      el.classList.add('c-bolt-floating-action-buttons__list-item--hidden');
-    });
+    if (this.secondaryList) {
+      this.secondaryList.classList.add(
+        'c-bolt-floating-action-buttons__list--hidden',
+      );
+      Array.from(this.secondaryList.children).forEach(el => {
+        el.classList.add('c-bolt-floating-action-buttons__list-item--hidden');
+      });
+    }
 
     if (this.showOnScroll) {
       this.handleShowOnScroll();
@@ -46,22 +52,34 @@ export class BoltFloatingActionButtons {
       // close this
       this.isOpen = false;
       this.toggleButton.setAttribute('aria-expanded', 'false');
-      this.secondaryList.classList.add('c-bolt-floating-action-buttons__list--hidden');
-      Array.from(this.secondaryList.children).forEach((el) => {
-        setTimeout(() => {
-          el.classList.add('c-bolt-floating-action-buttons__list-item--hidden');
-        }, 200);
-      });
+      if (this.secondaryList) {
+        this.secondaryList.classList.add(
+          'c-bolt-floating-action-buttons__list--hidden',
+        );
+        Array.from(this.secondaryList.children).forEach(el => {
+          setTimeout(() => {
+            el.classList.add(
+              'c-bolt-floating-action-buttons__list-item--hidden',
+            );
+          }, 200);
+        });
+      }
     } else {
       // open this
       this.isOpen = true;
       this.toggleButton.setAttribute('aria-expanded', 'true');
-      this.secondaryList.classList.remove('c-bolt-floating-action-buttons__list--hidden');
-      Array.from(this.secondaryList.children).forEach((el, index) => {
-        setTimeout(() => {
-          el.classList.remove('c-bolt-floating-action-buttons__list-item--hidden');
-        }, index * 50);
-      });
+      if (this.secondaryList) {
+        this.secondaryList.classList.remove(
+          'c-bolt-floating-action-buttons__list--hidden',
+        );
+        Array.from(this.secondaryList.children).forEach((el, index) => {
+          setTimeout(() => {
+            el.classList.remove(
+              'c-bolt-floating-action-buttons__list-item--hidden',
+            );
+          }, index * 50);
+        });
+      }
     }
   }
 

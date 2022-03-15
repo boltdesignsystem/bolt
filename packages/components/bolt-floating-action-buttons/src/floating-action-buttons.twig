@@ -10,7 +10,7 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-floating-action-buttons',
-  'c-bolt-floating-action-buttons--hidden',
+  (this.data.hide_on_load.value or this.data.show_on_scroll.value) ? 'c-bolt-floating-action-buttons--hidden' : '',
   'c-bolt-floating-action-buttons--placement-' ~ this.data.placement.value,
 ] %}
 

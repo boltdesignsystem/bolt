@@ -80,6 +80,9 @@
 
     {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
       content: fab_list,
+      attributes: {
+        style: '--c-bolt-floating-action-buttons-offset-y: 100px',
+      }
     } only %}
   {% endset %}
 

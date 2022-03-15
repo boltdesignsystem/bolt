@@ -14,10 +14,10 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
   right: var(--c-bolt-floating-action-buttons-offset-x);
   z-index: bolt-z-index('fab');
   transition: opacity var(--bolt-transition);
-  transition-delay: var(--bolt-transition-timing); // Allow children elements to transition first, and then fade in the entire container.
+  transition-delay: var(
+    --bolt-transition-timing
+  ); // Allow children elements to transition first, and then fade in the entire container.
 
-  // must both be ready && not have c-bolt-floating-action-buttons--hidden class before showing
-  &:not([data-bolt-ready]),
   &.c-bolt-floating-action-buttons--hidden {
     visibility: hidden;
     opacity: 0;
@@ -30,7 +30,10 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
 }
 
 .c-bolt-floating-action-buttons--placement-right-start {
-  top: calc(var(--c-bolt-floating-action-buttons-offset-y) + var(--bolt-page-header-height));
+  top: calc(
+    var(--c-bolt-floating-action-buttons-offset-y) +
+      var(--bolt-page-header-height)
+  );
 }
 
 .c-bolt-floating-action-buttons--placement-right-end {
@@ -55,13 +58,14 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
 .c-bolt-floating-action-buttons__list-item--has-children {
   display: flex;
   flex-direction: column-reverse;
-  
+
   // Animate "more icon" and "close icon" in toggle button
   .e-bolt-button[aria-expanded] {
     z-index: 1; // Raises the toggle button's stacking context higher than children list.
     > * {
-      transition: opacity var(--bolt-transition), transform var(--bolt-transition);
-    }  
+      transition: opacity var(--bolt-transition),
+        transform var(--bolt-transition);
+    }
   }
 
   .e-bolt-button[aria-expanded='true'] {
@@ -70,14 +74,14 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
       opacity: 0;
       transform: translate3d(-50%, -50%, 0) rotate(360deg);
     }
-  
+
     > *:nth-child(2) {
       visibility: visible;
       opacity: 1;
       transform: translate3d(-50%, -50%, 0) rotate(0deg);
     }
   }
-  
+
   .e-bolt-button[aria-expanded='false'] {
     > *:nth-child(1) {
       visibility: visible;
@@ -96,7 +100,10 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
   .c-bolt-floating-action-buttons__list {
     opacity: 1;
     max-height: 50vh;
-    transition: max-height calc(var(--bolt-transition-timing) * 2) var(--bolt-transition-ease), opacity calc(var(--bolt-transition-timing) * 2) var(--bolt-transition-ease);
+    transition: max-height calc(var(--bolt-transition-timing) * 2)
+        var(--bolt-transition-ease),
+      opacity calc(var(--bolt-transition-timing) * 2)
+        var(--bolt-transition-ease);
   }
 
   .c-bolt-floating-action-buttons__list--hidden {
