@@ -64,7 +64,7 @@ module.exports = {
     },
     caption: {
       type: 'any',
-      description: 'Generates a table caption &lt;tr&gt; element.',
+      description: 'Generates a table caption &lt;caption&gt; element.',
       properties: {
         content: {
           type: 'any',
