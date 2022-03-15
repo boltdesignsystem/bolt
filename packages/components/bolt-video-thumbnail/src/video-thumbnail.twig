@@ -20,7 +20,7 @@
     {{ content }}
   </div>
   {% if chip or video_title %}
-    <div class="c-bolt-video-thumbnail__meta">
+    <div class="c-bolt-video-thumbnail__top-meta">
       {% if chip %}
         {{ chip }}
       {% endif %}
@@ -32,9 +32,28 @@
     </div>
   {% endif %}
   <div class="c-bolt-video-thumbnail__play-icon" aria-hidden="true"></div>
-  {% if duration %}
-    <div class="c-bolt-video-thumbnail__duration">
-      <span class="u-bolt-visuallyhidden">{{ 'Video duration'|t }}:</span> {{ duration }}
+  {% if subtitles or duration %}
+    <div class="c-bolt-video-thumbnail__bottom-meta">
+      {% if duration %}
+        <div class="c-bolt-video-thumbnail__duration">
+          <span class="u-bolt-visuallyhidden">{{ 'Video duration'|t }}:</span> {{ duration }}
+        </div>
+      {% endif %}
+      {% if subtitles %}
+        <div class="c-bolt-video-thumbnail__subtitles">
+          {% set icon %}
+            {% include '@bolt-elements-icon/icon.twig' with {
+              name: 'pega-subtitle',
+              size: 'small'
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-tooltip/tooltip.twig' with {
+            trigger: icon,
+            content: 'Subtitles available'
+          } only %}
+          <span class="u-bolt-visuallyhidden">{{ 'Subtitle available'|t }}</span>
+        </div>
+      {% endif %}
     </div>
   {% endif %}
 </div>

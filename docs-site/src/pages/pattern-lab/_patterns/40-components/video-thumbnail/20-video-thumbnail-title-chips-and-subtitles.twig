@@ -27,6 +27,8 @@
       content: image,
       video_title: 'This is a Video Title',
       chip: chip,
+      subtitles: true,
+      duration: '4:26'
     } only %}
   </div>
 {% endset %}
@@ -50,7 +52,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Video Thumbnail Title & Chips',
+  title: 'Video Thumbnail Title, Chips and Subtitles',
   description: 'Title & Chips can be added or removed per use case.',
   notes: notes,
   demo: demo,

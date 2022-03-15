@@ -30,6 +30,12 @@ module.exports = {
       description:
         'Display the video duration that overlays the video thumbnail. This should only be plain text.',
     },
+    subtitles: {
+      type: 'boolean',
+      description:
+        'Display a subtitles icon that overlays the video thumbnail.',
+      default: false,
+    },
     video_title: {
       type: 'any',
       description:
