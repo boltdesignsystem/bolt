@@ -1,214 +1,329 @@
-{% extends "@pl/_site-layout-template.twig" %}
+{% extends '@pl/_site-layout-template.twig' %}
 
 {% block main_content %}
-  {% set layout_item_content %}
-    {% set form_children %}
-      {% set fieldset_children %}
-        {% set label %}
-          {% include '@bolt-components-form/form-label.twig' with {
-            title: 'Text input type',
-            displayType: 'floating',
+  {% set layout_content %}
+    {% set layout_item_content %}
+      {% set form_children %}
+        {% set category_input %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'Category',
+              displayType: 'floating',
+              attributes: {
+                for: 'category',
+              },
+            } only %}
+          {% endset %}
+          {% set select %}
+            {% include '@bolt-components-form/form-select.twig' with {
+              options: [
+                {
+                  type: 'option',
+                  value: '',
+                  label: '- Select a category -',
+                },
+                {
+                  type: 'option',
+                  value: 'option-a',
+                  label: 'Option A'
+                },
+                {
+                  type: 'option',
+                  value: 'option-b',
+                  label: 'Option B'
+                }
+              ],
+              attributes: {
+                id: 'category',
+                required: true,
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: select,
+          } only %}
+        {% endset %}
+        {% set first_name_input %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'First name',
+              displayType: 'floating',
+              attributes: {
+                for: 'first-name',
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                placeholder: 'Enter first name',
+                type: 'text',
+                id: 'first-name',
+                required: true,
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+        {% endset %}
+        {% set last_name_input %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'Last name',
+              displayType: 'floating',
+              attributes: {
+                for: 'last-name',
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                placeholder: 'Enter last name',
+                type: 'text',
+                id: 'last-name',
+                required: true,
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+        {% endset %}
+        {% set work_email_input %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'Work email',
+              displayType: 'floating',
+              attributes: {
+                for: 'work-email',
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                placeholder: 'Enter work email',
+                type: 'email',
+                id: 'work-email',
+                required: true,
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+        {% endset %}
+        {% set phone_number_input %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'Phone number',
+              displayType: 'floating',
+              attributes: {
+                for: 'phone-number',
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                placeholder: 'Enter phone number',
+                type: 'tel',
+                id: 'phone-number',
+                required: true,
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+        {% endset %}
+        {% set country_input %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'Country',
+              displayType: 'floating',
+              attributes: {
+                for: 'country',
+              },
+            } only %}
+          {% endset %}
+          {% set select %}
+            {% include '@bolt-components-form/form-select.twig' with {
+              options: [
+                {
+                  type: 'option',
+                  value: '',
+                  label: '- Select a country -',
+                },
+                {
+                  type: 'option',
+                  value: 'option-a',
+                  label: 'Option A'
+                },
+                {
+                  type: 'option',
+                  value: 'option-b',
+                  label: 'Option B'
+                }
+              ],
+              attributes: {
+                id: 'country',
+                required: true,
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: select,
+          } only %}
+        {% endset %}
+        {% set message_input %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'Message',
+              displayType: 'floating',
+              attributes: {
+                for: 'message',
+              },
+            } only %}
+          {% endset %}
+          {% set textarea %}
+            {% include '@bolt-components-form/form-textarea.twig' with {
+              attributes: {
+                placeholder: 'Enter a message',
+                rows: 5,
+                required: true,
+                id: 'message',
+              }
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: textarea,
+          } only %}
+        {% endset %}
+        {% set agreement_input %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+              displayType: 'inline-checkbox',
+              attributes: {
+                for: 'agreement',
+                name: 'agreement',
+              },
+            } only %}
+          {% endset %}
+          {% set input %}
+            {% include '@bolt-components-form/form-input.twig' with {
+              attributes: {
+                type: 'checkbox',
+                id: 'agreement',
+              },
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            children: input,
+          } only %}
+        {% endset %}
+        {% set submit_button %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Send',
+            display: 'block',
             attributes: {
-              for: 'text',
+              type: 'submit'
             },
           } only %}
         {% endset %}
-        {% set input %}
-          {% include '@bolt-components-form/form-input.twig' with {
-            attributes: {
-              placeholder: 'Enter text',
-              type: 'text',
-              id: 'text',
-            },
-          } only %}
-        {% endset %}
-        {% set icon_info_circle %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'info-circle',
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-form/form-element.twig' with {
-          label: label,
-          children: input,
-          descriptionText: icon_info_circle ~ '<small>Helper text for this specific form input.</small>',
-        } only %}
 
-        {% set label %}
-          {% include '@bolt-components-form/form-label.twig' with {
-            title: 'Text input type',
-            displayType: 'floating',
-            attributes: {
-              for: 'required-text',
-            },
+        <div class="t-bolt-white u-bolt-padding-medium u-bolt-shadow-level-20 u-bolt-border-radius-small">
+          {% include '@bolt-components-grid/grid.twig' with {
+            items: [
+              {
+                column_start: '1',
+                column_span: '12',
+                content: category_input,
+              },
+              {
+                column_start: '1',
+                column_span: '12 6@small',
+                content: first_name_input,
+              },
+              {
+                column_start: '1 7@small',
+                column_span: '12 6@small',
+                content: last_name_input,
+              },
+              {
+                column_start: '1',
+                column_span: '12 6@small',
+                content: work_email_input,
+              },
+              {
+                column_start: '1 7@small',
+                column_span: '12 6@small',
+                content: phone_number_input,
+              },
+              {
+                column_start: '1',
+                column_span: '12',
+                content: country_input,
+              },
+              {
+                column_start: '1',
+                column_span: '12',
+                content: message_input,
+              },
+              {
+                column_start: '1',
+                column_span: '12',
+                content: agreement_input,
+              },
+              {
+                column_start: '1',
+                column_span: '12',
+                content: submit_button,
+              },
+            ]
           } only %}
-        {% endset %}
-        {% set input %}
-          {% include '@bolt-components-form/form-input.twig' with {
-            attributes: {
-              placeholder: 'Enter text (required)',
-              type: 'text',
-              id: 'required-text',
-              required: true,
-            },
-          } only %}
-        {% endset %}
-        {% set icon_info_circle %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'info-circle',
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-form/form-element.twig' with {
-          label: label,
-          children: input,
-        } only %}
-
-        {% set label %}
-          {% include '@bolt-components-form/form-label.twig' with {
-            title: 'Text input type',
-            displayType: 'floating',
-            attributes: {
-              for: 'disabled-text',
-            },
-          } only %}
-        {% endset %}
-        {% set input %}
-          {% include '@bolt-components-form/form-input.twig' with {
-            attributes: {
-              placeholder: 'Enter text (disabled)',
-              type: 'text',
-              id: 'disabled-text',
-              disabled: true,
-            },
-          } only %}
-        {% endset %}
-        {% set icon_info_circle %}
-          {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'info-circle',
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-form/form-element.twig' with {
-          label: label,
-          children: input,
-        } only %}
-
-        {% set label %}
-          {% include '@bolt-components-form/form-label.twig' with {
-            title: 'Email input type',
-            displayType: 'floating',
-            attributes: {
-              for: 'email',
-            },
-          } only %}
-        {% endset %}
-        {% set input %}
-          {% include '@bolt-components-form/form-input.twig' with {
-            attributes: {
-              placeholder: 'Enter email',
-              type: 'email',
-              id: 'email',
-            },
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-form/form-element.twig' with {
-          label: label,
-          children: input,
-        } only %}
-
-        {% set label %}
-          {% include '@bolt-components-form/form-label.twig' with {
-            title: 'Password input type',
-            displayType: 'floating',
-            attributes: {
-              for: 'password',
-            },
-          } only %}
-        {% endset %}
-        {% set input %}
-          {% include '@bolt-components-form/form-input.twig' with {
-            attributes: {
-              placeholder: 'Enter password',
-              type: 'password',
-              id: 'password',
-            },
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-form/form-element.twig' with {
-          label: label,
-          children: input,
-        } only %}
-
-        {% set label %}
-          {% include '@bolt-components-form/form-label.twig' with {
-            title: 'URL input type',
-            displayType: 'floating',
-            attributes: {
-              for: 'url',
-            },
-          } only %}
-        {% endset %}
-        {% set input %}
-          {% include '@bolt-components-form/form-input.twig' with {
-            attributes: {
-              placeholder: 'Enter URL',
-              type: 'url',
-              id: 'url',
-            },
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-form/form-element.twig' with {
-          label: label,
-          children: input,
-        } only %}
-
-        {% set label %}
-          {% include '@bolt-components-form/form-label.twig' with {
-            title: 'Telephone input type',
-            displayType: 'floating',
-            attributes: {
-              for: 'tel',
-            },
-          } only %}
-        {% endset %}
-        {% set input %}
-          {% include '@bolt-components-form/form-input.twig' with {
-            attributes: {
-              placeholder: 'Enter telephone number',
-              type: 'tel',
-              id: 'tel',
-            },
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-form/form-element.twig' with {
-          label: label,
-          children: input,
-        } only %}
+        </div>
       {% endset %}
 
-      {% include '@bolt-components-form/form-fieldset.twig' with {
-        legendTitle: 'Fieldset Legend',
-        legendInnerAttributes: {
-          class: 'u-bolt-visuallyhidden',
+      {% include '@bolt-components-form/form.twig' with {
+        children: form_children,
+        attributes: {
+          class: [
+            'u-bolt-height-full',
+          ],
         },
-        children: fieldset_children,
       } only %}
     {% endset %}
-
-    {% include '@bolt-components-form/form.twig' with {
-      children: form_children
-    } only %}
-  {% endset %}
-
-  {% set layout_content %}
+    
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: layout_item_content,
     } only %}
   {% endset %}
+
   {% include '@bolt-layouts-layout/layout.twig' with {
     content: layout_content,
-    padding_top: 'large',
-    padding_bottom: 'large',
+    padding_top: 'xlarge',
+    padding_bottom: 'xlarge',
+    template: [
+      '75@from-small',
+    ],
+    align_items: 'center',
     attributes: {
-      class: 't-bolt-navy',
+      class: [
+        't-bolt-navy-light',
+        'u-bolt-height-full',
+      ],
     },
   } only %}
 {% endblock %}
