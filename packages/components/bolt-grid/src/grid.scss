@@ -28,11 +28,11 @@ bolt-grid {
         'xxlarge'
     ) {
       &[gutter='#{$size-name}'] {
-        --c-bolt-grid-column-gap: clamp(var(--bolt-spacing-x-small), 2vw, var(--bolt-spacing-x-#{$size-name}));
+        --c-bolt-grid-column-gap: clamp(var(--bolt-spacing-x-small), 2.5vw, var(--bolt-spacing-x-#{$size-name}));
       }
 
       &[row-gutter='#{$size-name}'] {
-        --c-bolt-grid-row-gap: clamp(var(--bolt-spacing-y-small), 2vw, var(--bolt-spacing-y-#{$size-name}));
+        --c-bolt-grid-row-gap: clamp(var(--bolt-spacing-y-small), 2.5vw, var(--bolt-spacing-y-#{$size-name}));
       }
     }
   }
