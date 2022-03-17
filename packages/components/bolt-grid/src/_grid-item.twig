@@ -1,3 +1,8 @@
+{% set schema = bolt.data.components['@bolt-components-grid'].schema['grid'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
 {% set item_attributes = create_attribute(attributes|default({})) %}
 
 {% set item_row_start = item.row_start %}
