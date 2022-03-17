@@ -45,6 +45,7 @@ export class BoltPageHeaderNav {
   }
 
   init() {
+    this.handleKeypress = this.handleKeypress.bind(this);
     this.handleEscapeKeypress = this.handleEscapeKeypress.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.handleExternalClick = this.handleExternalClick.bind(this);
@@ -92,14 +93,14 @@ export class BoltPageHeaderNav {
 
   setupDesktopMenu() {
     this.addHoverHandler(this.menu);
-    this.addClickHandler(this.menu);
+    this.addKeypressHandler(this.menu);
     this.state.desktopIsSetup = true;
   }
 
   resetDesktopMenu() {
     this.resetActiveMenus();
     this.hoverListeners.forEach(listener => listener.remove());
-    this.removeClickHandler(this.menu);
+    this.removeKeypressHandler(this.menu);
     this.state.desktopIsSetup = false;
   }
 
@@ -128,11 +129,37 @@ export class BoltPageHeaderNav {
     this.toggleMenu(el);
   }
 
+  addKeypressHandler(menus = []) {
+    menus.forEach(menu => {
+      menu.trigger.addEventListener('keydown', this.handleKeypress);
+    });
+  }
+
+  removeKeypressHandler(menus = []) {
+    menus.forEach(menu => {
+      menu.trigger.removeEventListener('keydown', this.handleKeypress);
+    });
+  }
+
   getKey(e) {
     if (e.key !== undefined) {
       return e.key;
     } else if (e.keyCode !== undefined) {
       return e.keyCode;
+    }
+  }
+
+  handleKeypress(e) {
+    switch (this.getKey(e)) {
+      case 'Enter' || 13: // enter key
+        this.toggleMenu(e.target);
+        break;
+      case ' ' || 32: // space key
+        this.toggleMenu(e.target);
+        break;
+      case 'Escape' || 27: // escape key
+        this.hideMenu(e.target);
+        break;
     }
   }
 
