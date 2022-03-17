@@ -150,16 +150,8 @@ export class BoltPageHeaderNav {
   }
 
   handleKeypress(e) {
-    switch (this.getKey(e)) {
-      case 'Enter' || 13: // enter key
-        this.toggleMenu(e.target);
-        break;
-      case ' ' || 32: // space key
-        this.toggleMenu(e.target);
-        break;
-      case 'Escape' || 27: // escape key
-        this.hideMenu(e.target);
-        break;
+    if (this.getKey(e) === 'Escape' || this.getKey(e) === 27) {
+      this.hideMenu(e.target);
     }
   }
 
