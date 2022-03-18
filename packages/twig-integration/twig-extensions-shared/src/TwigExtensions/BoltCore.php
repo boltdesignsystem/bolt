@@ -48,7 +48,6 @@ class BoltCore extends AbstractExtension implements InitRuntimeInterface, Global
       Bolt\TwigFunctions::init(),
       Bolt\TwigFunctions::publicpath(),
       Bolt\TwigFunctions::base64(),
-      Bolt\TwigFunctions::bgcolor(),
       Bolt\TwigFunctions::ratio(),
       Bolt\TwigFunctions::getBoltData(),
       Bolt\TwigFunctions::getImageData(),
