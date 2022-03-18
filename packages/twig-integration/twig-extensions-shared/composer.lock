@@ -4,30 +4,28 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43c826c937b7b1f6c2a65e86cb6f332c",
+    "content-hash": "7d590567925aba4f8cebef47c982fa0f",
     "packages": [
         {
             "name": "basaltinc/twig-tools",
-            "version": "dev-master",
+            "version": "dev-feature/remove-faker",
             "source": {
                 "type": "git",
                 "url": "https://github.com/boltdesignsystem/twig-tools",
-                "reference": "2914cf7da4465aa102ffa773f6c276127a0ae139"
+                "reference": "a3fd927ca3cf2eeec8cfa6d825e74566b485ecb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/boltdesignsystem/twig-tools/zipball/2914cf7da4465aa102ffa773f6c276127a0ae139",
-                "reference": "2914cf7da4465aa102ffa773f6c276127a0ae139",
+                "url": "https://api.github.com/repos/boltdesignsystem/twig-tools/zipball/a3fd927ca3cf2eeec8cfa6d825e74566b485ecb3",
+                "reference": "a3fd927ca3cf2eeec8cfa6d825e74566b485ecb3",
                 "shasum": ""
             },
             "require": {
-                "fzaninotto/faker": "^1.7",
                 "justinrainbow/json-schema": "^5.2",
-                "symfony/yaml": "^3.2",
+                "symfony/yaml": "^3.2 || ^4.0",
                 "twig/twig": "^1.0 || ^2.0",
                 "webmozart/path-util": "^2.3"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -43,57 +41,7 @@
                     "email": "evanlovely@gmail.com"
                 }
             ],
-            "time": "2021-06-25T21:45:04+00:00"
-        },
-        {
-            "name": "fzaninotto/faker",
-            "version": "v1.9.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/fc10d778e4b84d5bd315dad194661e091d307c6f",
-                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.3 || ^7.0"
-            },
-            "require-dev": {
-                "ext-intl": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "squizlabs/php_codesniffer": "^2.9.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.9-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "time": "2019-12-12T13:22:17+00:00"
+            "time": "2022-03-15T18:01:04+00:00"
         },
         {
             "name": "gregwar/cache",
@@ -2212,7 +2160,7 @@
     "aliases": [
         {
             "package": "basaltinc/twig-tools",
-            "version": "9999999-dev",
+            "version": "dev-feature/remove-faker",
             "alias": "1.4.3",
             "alias_normalized": "1.4.3.0"
         }
@@ -2225,5 +2173,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }
