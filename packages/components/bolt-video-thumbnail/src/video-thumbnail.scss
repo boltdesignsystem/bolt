@@ -70,6 +70,14 @@
   }
 }
 
+.c-bolt-video-thumbnail__content__inline {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
 .c-bolt-video-thumbnail__play-icon {
   display: block;
   position: absolute;
@@ -123,8 +131,7 @@
   }
 }
 
-.c-bolt-video-thumbnail__top-meta,
-.c-bolt-video-thumbnail__bottom-meta {
+.c-bolt-video-thumbnail__meta {
   display: flex;
   position: absolute;
   right: var(--bolt-spacing-x-xsmall);
@@ -136,7 +143,7 @@
   }
 }
 
-.c-bolt-video-thumbnail__top-meta {
+.c-bolt-video-thumbnail__meta--top {
   top: var(--bolt-spacing-y-xsmall);
 
   > * + * {
@@ -148,7 +155,7 @@
   }
 }
 
-.c-bolt-video-thumbnail__bottom-meta {
+.c-bolt-video-thumbnail__meta--bottom {
   flex-direction: row-reverse;
   bottom: var(--bolt-spacing-y-xsmall);
 

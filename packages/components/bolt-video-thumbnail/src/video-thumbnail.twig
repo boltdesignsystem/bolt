@@ -8,19 +8,37 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
+{% if video %}
+  {% set _video_id = 'video-thumbnail-' ~ random() %}
+{% endif %}
+
 {% set classes = [
   'c-bolt-video-thumbnail',
   this.data.border_radius.value ? 'c-bolt-video-thumbnail--border-radius-' ~ this.data.border_radius.value,
   this.data.aspect_ratio.value ? 'c-bolt-video-thumbnail--aspect-ratio-' ~ this.data.aspect_ratio.value,
+  video ? 'c-bolt-video-thumbnail--inline'
 ] %}
 
 {# Template #}
 <div {{ attributes.addClass(classes) }}>
   <div class="c-bolt-video-thumbnail__content">
+    {% if video %}
+      <div class="c-bolt-video-thumbnail__content__inline">
+        {{ video }}
+      </div>
+      {% include '@bolt-elements-button/button.twig' with {
+        display: 'block',
+        content: 'Play the video',
+        attributes: {
+          type: 'button',
+          class: 'js-bolt-video-thumbnail__inline-play'
+        }
+      } %}
+    {% endif %}
     {{ content }}
   </div>
   {% if chip or video_title %}
-    <div class="c-bolt-video-thumbnail__top-meta">
+    <div class="c-bolt-video-thumbnail__meta c-bolt-video-thumbnail__meta--top">
       {% if chip %}
         {{ chip }}
       {% endif %}
@@ -33,7 +51,7 @@
   {% endif %}
   <div class="c-bolt-video-thumbnail__play-icon" aria-hidden="true"></div>
   {% if subtitles or duration %}
-    <div class="c-bolt-video-thumbnail__bottom-meta">
+    <div class="c-bolt-video-thumbnail__meta c-bolt-video-thumbnail__meta--bottom">
       {% if duration %}
         <div class="c-bolt-video-thumbnail__duration">
           <span class="u-bolt-visuallyhidden">{{ 'Video duration'|t }}:</span> {{ duration }}
@@ -49,9 +67,9 @@
           {% endset %}
           {% include '@bolt-components-tooltip/tooltip.twig' with {
             trigger: icon,
-            content: 'Subtitles'
+            content: 'Subtitles available'
           } only %}
-          <span class="u-bolt-visuallyhidden">{{ 'Subtitles'|t }}</span>
+          <span class="u-bolt-visuallyhidden">{{ 'Subtitles available'|t }}</span>
         </div>
       {% endif %}
     </div>

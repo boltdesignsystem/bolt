@@ -46,5 +46,10 @@ module.exports = {
       description:
         'Display a chip (or chip-list) that overlays the video thumbnail. Positioned before the video title. Chip or Chip-list component is expected here.',
     },
+    video: {
+      type: 'any',
+      description:
+        'A Brightcove video that will display inside the video thumbnail container.',
+    },
   },
 };
