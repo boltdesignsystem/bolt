@@ -94,6 +94,7 @@ export class BoltPageHeaderNav {
   setupDesktopMenu() {
     this.addHoverHandler(this.menu);
     this.addKeypressHandler(this.menu);
+    this.addClickHandler(this.menu);
     this.state.desktopIsSetup = true;
   }
 
@@ -101,6 +102,7 @@ export class BoltPageHeaderNav {
     this.resetActiveMenus();
     this.hoverListeners.forEach(listener => listener.remove());
     this.removeKeypressHandler(this.menu);
+    this.removeClickHandler(this.menu);
     this.state.desktopIsSetup = false;
   }
 
