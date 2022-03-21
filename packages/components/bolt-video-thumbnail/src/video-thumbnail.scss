@@ -78,6 +78,18 @@
   left: 0;
 }
 
+// These updates are to make sure the button doesn't flash due to the image not loading immediately
+.js-bolt-video-thumbnail__inline-play {
+  &:before,
+  s &:after {
+    background-color: var(--bolt-color-white);
+  }
+
+  &:before {
+    opacity: 1;
+  }
+}
+
 .c-bolt-video-thumbnail__play-icon {
   display: block;
   position: absolute;

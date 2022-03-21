@@ -1,0 +1,84 @@
+{% set description %}
+  A video thumbnail can play a video inline if the <code>video</code> prop is used.
+{% endset %}
+
+{% set notes %}
+  The video poster image from a particular Brightcove video is recommended to be used as the video thumbnail.
+{% endset %}
+
+{% set demo %}
+  {% set video_thumbnail %}
+    {% set _image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/tout-4x3-climber.jpg',
+          alt: 'A Rock Climber',
+          ratio: false,
+          background: true,
+          loading: 'lazy',
+        }
+      } only %}
+    {% endset %}
+    {% set _video %}
+      <video-js
+        data-account='1900410236'
+        data-player='O3FkeBiaDz'
+        data-embed='default'
+        data-video-id='4892122320001'
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: _image,
+      video: _video,
+      duration: '4:55',
+      subtitles:  true
+    } only %}
+  {% endset %}
+  <div style="max-width: 60ch">
+    {{ video_thumbnail }}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up the video thumbnail
+{% set video_thumbnail %}
+  {% set _image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        ratio: false,
+        background: true,
+        loading: 'lazy',
+      }
+    } only %}
+  {% endset %}
+  {% set _video %}
+    <video-js
+      data-account='1900410236'
+      data-player='O3FkeBiaDz'
+      data-embed='default'
+      data-video-id='4892122320001'
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  // Utilizing the 'video' prop will open the video inline
+  {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+    content: _image,
+    video: _video,
+    duration: '4:55'
+  } only %}
+{% endset %}
+{{ video_thumbnail }}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Video Thumbnail Inline',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

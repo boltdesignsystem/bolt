@@ -8,10 +8,6 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{% if video %}
-  {% set _video_id = 'video-thumbnail-' ~ random() %}
-{% endif %}
-
 {% set classes = [
   'c-bolt-video-thumbnail',
   this.data.border_radius.value ? 'c-bolt-video-thumbnail--border-radius-' ~ this.data.border_radius.value,
