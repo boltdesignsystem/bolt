@@ -4,7 +4,7 @@
   {% set layout_items %}
     {% set banner %}
       {% include '@bolt-components-banner/banner.twig' with {
-        content: 'This demo shows FAB to show on scroll.',
+        content: 'This demo shows FAB to show on scroll. Once the content is scrolled down 20px, the FAB will appear.',
         align: 'start',
       } only %}
     {% endset %}
@@ -80,7 +80,7 @@
 
     {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
       content: fab_list,
-      show_on_scroll: '200px'
+      show_on_scroll: '20px'
     } only %}
   {% endset %}
 
