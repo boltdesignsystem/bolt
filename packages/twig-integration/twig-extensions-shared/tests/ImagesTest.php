@@ -26,7 +26,6 @@ class ImagesTests extends TestCase {
         'file' => 'assets/500x500.jpg',
         'height'=> 500,
         'width'=> 500,
-        'color' => '#2f4962',
         'base64' => 'data:image/jpeg;base64',
         'isAbsolute' => false,
       ],
@@ -34,7 +33,6 @@ class ImagesTests extends TestCase {
         'file' => 'assets/732x945.jpg',
         'height'=> 945,
         'width'=> 732,
-        'color' => '#c9c9c9',
         'base64' => 'data:image/jpeg;base64',
         'isAbsolute' => false,
       ],
@@ -42,7 +40,6 @@ class ImagesTests extends TestCase {
         'file' => 'assets/tout-4x3-climber.jpg',
         'height'=> 480,
         'width'=> 640,
-        'color' => '#6b6764',
         'base64' => 'data:image/jpeg;base64',
         'isAbsolute' => false,
       ],
@@ -70,9 +67,6 @@ class ImagesTests extends TestCase {
       $this->assertEquals($set['width'], $results['width'], 'width of image');
       if (isset($set['base64'])) {
         $this->assertStringStartsWith($set['base64'], $results['base64']);
-      }
-      if (isset($set['color'])) {
-        $this->assertTrue(self::compareColors($set['color'], $results['color'], 0.001), "{$set['file']}, the expected value {$results['color']} did not match the actual value {$set['color']}.");
       }
     }
   }
