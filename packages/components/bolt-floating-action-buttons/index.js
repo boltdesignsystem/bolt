@@ -6,7 +6,7 @@ if (floatingActionButtons.length) {
   import(
     /* webpackChunkName: 'bolt-floating-action-buttons' */ './src/floating-action-buttons'
   ).then(({ BoltFloatingActionButtons }) => {
-    floatingActionButtons.forEach((el) => {
+    floatingActionButtons.forEach(el => {
       const floatingActionButtonsComponent = new BoltFloatingActionButtons(el);
     });
   });
