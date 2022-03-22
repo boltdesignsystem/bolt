@@ -6,15 +6,17 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-floating-action-buttons&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
     content: {
       type: 'any',
-      description: 'The main content.',
+      description:
+        'Renders a button (icon-only button with tooltip is recommended). Use the Button element or the floating-action-buttons-toggle-button.twig template.',
     },
     children: {
       type: 'any',
-      description: 'The child content.',
+      description:
+        'Renders a list of secondary buttons. Use the floating-action-buttons-ul.twig template to render a list. Only use this prop if the floating-action-buttons-toggle-button.twig template is used for the content prop.',
     },
   },
 };

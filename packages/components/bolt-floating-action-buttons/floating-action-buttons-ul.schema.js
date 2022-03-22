@@ -6,11 +6,12 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-floating-action-buttons&gt; tag.',
+        'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
     content: {
       type: 'any',
-      description: 'The main content.',
+      description:
+        'Renders a list of buttons. Use the floating-action-buttons-li.twig template to render each list item.',
     },
   },
 };
