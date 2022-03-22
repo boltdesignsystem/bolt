@@ -9,20 +9,22 @@ export class BoltVideoThumbnail {
     const inlineVideoPlayButton = this.el.querySelector(
       '.js-bolt-video-thumbnail__inline-play',
     );
-    const inlineVideoImage = this.el.querySelector('.e-bolt-image');
-    const inlineVideoPlayIcon = this.el.querySelector(
-      '.c-bolt-video-thumbnail__play-icon',
-    );
-    const inlineVideoMeta = this.el.querySelector(
-      '.c-bolt-video-thumbnail__meta',
-    );
+
+    const removeObjects = [
+      inlineVideoPlayButton,
+      this.el.querySelector('.e-bolt-image'),
+      this.el.querySelector('.c-bolt-video-thumbnail__play-icon'),
+      this.el.querySelector('.c-bolt-video-thumbnail__meta'),
+      this.el.querySelector('.c-bolt-vide'),
+    ];
 
     inlineVideoPlayButton.addEventListener('click', e => {
       this.playVideo(e);
-      this.destroyElement(inlineVideoPlayButton);
-      this.destroyElement(inlineVideoImage);
-      this.destroyElement(inlineVideoPlayIcon);
-      this.destroyElement(inlineVideoMeta);
+      removeObjects.forEach(el => {
+        if (el) {
+          el.remove();
+        }
+      });
     });
   }
 
@@ -31,8 +33,9 @@ export class BoltVideoThumbnail {
   }
 
   playVideo(el) {
-    el.currentTarget.previousElementSibling
-      .querySelector('.c-base-video')
+    el.currentTarget
+      .closest('.js-bolt-video-thumbnail__inline-play__target')
+      .querySelector('video-js')
       .player.play();
   }
 }

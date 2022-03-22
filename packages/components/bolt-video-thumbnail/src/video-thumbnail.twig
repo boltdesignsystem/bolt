@@ -15,16 +15,20 @@
   video ? 'c-bolt-video-thumbnail--inline'
 ] %}
 
+{% if has_subtitles %}
+  {% set subtitles_label = 'Subtitles available'|t %}
+{% endif %}
+
 {# Template #}
 <div {{ attributes.addClass(classes) }}>
-  <div class="c-bolt-video-thumbnail__content">
+  <div class="c-bolt-video-thumbnail__content js-bolt-video-thumbnail__inline-play__target">
     {% if video %}
       <div class="c-bolt-video-thumbnail__content__inline">
         {{ video }}
       </div>
       {% include '@bolt-elements-button/button.twig' with {
         display: 'block',
-        content: 'Play the video',
+        content: 'Play the video'|t,
         attributes: {
           type: 'button',
           class: 'js-bolt-video-thumbnail__inline-play'
@@ -46,14 +50,14 @@
     </div>
   {% endif %}
   <div class="c-bolt-video-thumbnail__play-icon" aria-hidden="true"></div>
-  {% if subtitles or duration %}
+  {% if has_subtitles or duration %}
     <div class="c-bolt-video-thumbnail__meta c-bolt-video-thumbnail__meta--bottom">
       {% if duration %}
         <div class="c-bolt-video-thumbnail__duration">
           <span class="u-bolt-visuallyhidden">{{ 'Video duration'|t }}:</span> {{ duration }}
         </div>
       {% endif %}
-      {% if subtitles %}
+      {% if has_subtitles %}
         <div class="c-bolt-video-thumbnail__subtitles">
           {% set icon %}
             {% include '@bolt-elements-icon/icon.twig' with {
@@ -63,9 +67,9 @@
           {% endset %}
           {% include '@bolt-components-tooltip/tooltip.twig' with {
             trigger: icon,
-            content: 'Subtitles available'
+            content: subtitles_label
           } only %}
-          <span class="u-bolt-visuallyhidden">{{ 'Subtitles available'|t }}</span>
+          <span class="u-bolt-visuallyhidden">{{ subtitles_label }}</span>
         </div>
       {% endif %}
     </div>

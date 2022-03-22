@@ -102,6 +102,7 @@
   min-height: 20px;
   max-height: 32px;
   overflow: hidden;
+  pointer-events: none;
   border-radius: var(
     --c-bolt-video-thumbnail-border-radius,
     #{bolt-border-radius(small)}
@@ -147,16 +148,15 @@
   display: flex;
   position: absolute;
   right: var(--bolt-spacing-x-xsmall);
-  left: var(--bolt-spacing-x-xsmall);
 
   @include bolt-mq(small) {
     right: var(--bolt-spacing-x-small);
-    left: var(--bolt-spacing-y-small);
   }
 }
 
 .c-bolt-video-thumbnail__meta--top {
   top: var(--bolt-spacing-y-xsmall);
+  left: var(--bolt-spacing-x-xsmall);
 
   > * + * {
     margin-left: var(--bolt-spacing-x-xsmall);
@@ -164,6 +164,7 @@
 
   @include bolt-mq(small) {
     top: var(--bolt-spacing-y-small);
+    left: var(--bolt-spacing-x-small);
   }
 }
 
@@ -216,6 +217,7 @@
 
 .c-bolt-video-thumbnail__duration {
   text-overflow: ellipsis;
+  pointer-events: none;
 }
 
 .c-bolt-video-thumbnail__subtitles {
