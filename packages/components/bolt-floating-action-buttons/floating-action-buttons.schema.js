@@ -13,12 +13,6 @@ module.exports = {
       description:
         'The main content. Typically, this will be a number of icon-only buttons.',
     },
-    placement: {
-      type: 'string',
-      description: 'The desired location of the floating element.',
-      enum: ['right-end', 'right', 'right-start'],
-      default: 'right-end',
-    },
     hide_on_load: {
       type: 'boolean',
       description:

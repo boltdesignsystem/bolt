@@ -12,6 +12,7 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
 
   position: fixed;
   right: var(--c-bolt-floating-action-buttons-offset-x);
+  bottom: var(--c-bolt-floating-action-buttons-offset-y);
   z-index: bolt-z-index('fab');
   transition: opacity var(--bolt-transition);
   transition-delay: var(
@@ -22,22 +23,6 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
     visibility: hidden;
     opacity: 0;
   }
-}
-
-.c-bolt-floating-action-buttons--placement-right {
-  top: calc(var(--c-bolt-floating-action-buttons-offset-y) + 50%);
-  transform: translateY(-50%);
-}
-
-.c-bolt-floating-action-buttons--placement-right-start {
-  top: calc(
-    var(--c-bolt-floating-action-buttons-offset-y) +
-      var(--bolt-page-header-height)
-  );
-}
-
-.c-bolt-floating-action-buttons--placement-right-end {
-  bottom: var(--c-bolt-floating-action-buttons-offset-y);
 }
 
 .c-bolt-floating-action-buttons__list {

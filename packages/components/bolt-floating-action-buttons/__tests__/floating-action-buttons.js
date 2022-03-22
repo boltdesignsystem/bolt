@@ -1,7 +1,7 @@
 import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../floating-action-buttons.schema';
 // eslint-disable-next-line camelcase
-const { placement, show_on_scroll } = schema.properties;
+const { show_on_scroll } = schema.properties;
 let page, fixtures;
 
 afterAll(async () => {
@@ -69,12 +69,13 @@ beforeAll(async () => {
   );
 
   const toggleButton = await render(
-    '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig', {
+    '@bolt-components-floating-action-buttons/floating-action-buttons-toggle-button.twig',
+    {
       content: 'Toggle Menu',
       attributes: {
         type: 'button',
-      }
-    }
+      },
+    },
   );
 
   const toggleButtonListItem = await render(
@@ -111,19 +112,5 @@ describe('Bolt Floating Action Buttons', () => {
     );
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
-  });
-
-  placement.enum.forEach(async option => {
-    test(`placement: ${option}`, async () => {
-      const results = await render(
-        '@bolt-components-floating-action-buttons/floating-action-buttons.twig',
-        {
-          content: fixtures.primaryList.html,
-          placement: option,
-        },
-      );
-      expect(results.ok).toBe(true);
-      expect(results.html).toMatchSnapshot();
-    });
   });
 });
