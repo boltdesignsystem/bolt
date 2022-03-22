@@ -18,7 +18,6 @@
   {{ attributes.addClass(classes) }}
   {% if this.data.hide_on_load.value %}data-hide-on-load{% endif %}
   {% if this.data.show_on_scroll.value %}data-show-on-scroll="{{ this.data.show_on_scroll.value }}"{% endif %}
-  {{ this.props|without("class")|without("placement")|without("show_on_scroll") }}
 >
   {% spaceless %}
     {{ content }}
