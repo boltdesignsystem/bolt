@@ -47,6 +47,10 @@ export class BoltFloatingActionButtons {
     this.el.classList.remove('c-bolt-floating-action-buttons--hidden');
   }
 
+  hide() {
+    this.el.classList.add('c-bolt-floating-action-buttons--hidden');
+  }
+
   toggleExpanded() {
     if (this.isOpen) {
       // close this
@@ -105,7 +109,8 @@ export class BoltFloatingActionButtons {
       scrollPosition = window.scrollY;
       if (revealPosition > 0 && scrollPosition >= revealPosition) {
         this.show();
-        window.removeEventListener('scroll', scrollHandler);
+      } else {
+        this.hide();
       }
     };
 
