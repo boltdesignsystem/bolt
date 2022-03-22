@@ -10,11 +10,12 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
   --c-bolt-floating-action-buttons-offset-x: var(--bolt-spacing-x-small);
   --c-bolt-floating-action-buttons-offset-y: var(--bolt-spacing-y-small);
 
+  visibility: visible;
   position: fixed;
   right: var(--c-bolt-floating-action-buttons-offset-x);
   bottom: var(--c-bolt-floating-action-buttons-offset-y);
   z-index: bolt-z-index('fab');
-  transition: opacity var(--bolt-transition);
+  transition: opacity var(--bolt-transition), visibility var(--bolt-transition);
   transition-delay: var(
     --bolt-transition-timing
   ); // Allow children elements to transition first, and then fade in the entire container.
