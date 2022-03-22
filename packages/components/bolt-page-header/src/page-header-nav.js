@@ -9,7 +9,6 @@ export class BoltPageHeaderNav {
       desktop: true,
       isNested: false,
       onNestedNavToggle: null,
-      closeOnEscape: false,
       ...options,
     };
 
@@ -45,7 +44,6 @@ export class BoltPageHeaderNav {
   }
 
   init() {
-    this.handleKeypress = this.handleKeypress.bind(this);
     this.handleEscapeKeypress = this.handleEscapeKeypress.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.handleExternalClick = this.handleExternalClick.bind(this);
@@ -93,7 +91,6 @@ export class BoltPageHeaderNav {
 
   setupDesktopMenu() {
     this.addHoverHandler(this.menu);
-    this.addKeypressHandler(this.menu);
     this.addClickHandler(this.menu);
     this.state.desktopIsSetup = true;
   }
@@ -101,7 +98,6 @@ export class BoltPageHeaderNav {
   resetDesktopMenu() {
     this.resetActiveMenus();
     this.hoverListeners.forEach(listener => listener.remove());
-    this.removeKeypressHandler(this.menu);
     this.removeClickHandler(this.menu);
     this.state.desktopIsSetup = false;
   }
@@ -131,18 +127,6 @@ export class BoltPageHeaderNav {
     this.toggleMenu(el);
   }
 
-  addKeypressHandler(menus = []) {
-    menus.forEach(menu => {
-      menu.trigger.addEventListener('keydown', this.handleKeypress);
-    });
-  }
-
-  removeKeypressHandler(menus = []) {
-    menus.forEach(menu => {
-      menu.trigger.removeEventListener('keydown', this.handleKeypress);
-    });
-  }
-
   getKey(e) {
     if (e.key !== undefined) {
       return e.key;
@@ -151,19 +135,10 @@ export class BoltPageHeaderNav {
     }
   }
 
-  handleKeypress(e) {
-    if (this.getKey(e) === 'Escape' || this.getKey(e) === 27) {
-      this.hideMenu(e.target);
-    }
-  }
-
   handleEscapeKeypress(e) {
     if (this.getKey(e) === 'Escape' || this.getKey(e) === 27) {
       this.state.activeMenu.trigger.focus();
       this.hideMenu(this.state.activeMenu.trigger);
-      if (!this.state.activeTrail.length) {
-        document.removeEventListener('keyup', this.handleEscapeKeypress);
-      }
     }
   }
 
@@ -220,9 +195,7 @@ export class BoltPageHeaderNav {
       document.addEventListener('click', this.handleExternalClick);
     }
 
-    if (this.options.closeOnEscape) {
-      document.addEventListener('keyup', this.handleEscapeKeypress);
-    }
+    document.addEventListener('keyup', this.handleEscapeKeypress);
   }
 
   hideMenu(el) {
@@ -232,6 +205,10 @@ export class BoltPageHeaderNav {
 
     if (!this.state.isMobile) {
       document.removeEventListener('click', this.handleExternalClick);
+    }
+
+    if (!this.state.activeTrail.length) {
+      document.removeEventListener('keyup', this.handleEscapeKeypress);
     }
   }
 
