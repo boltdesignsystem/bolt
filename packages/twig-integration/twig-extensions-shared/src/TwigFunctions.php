@@ -189,18 +189,6 @@ class TwigFunctions {
     ]);
   }
 
-
-  // Return the average color of the image path passed in
-  public static function bgcolor() {
-    return new Twig_SimpleFunction('bgcolor', function(\Twig\Environment $env, $relativeImagePath) {
-      $boltData = Utils::getData($env);
-      $wwwDir = $boltData['config']['wwwDir'];
-      return Images::calculate_average_image_color($relativeImagePath, $wwwDir);
-    }, [
-      'needs_environment' => true,
-    ]);
-  }
-
   // Return the aspect ratio of the image passed in
   public static function ratio() {
     return new Twig_SimpleFunction('ratio', function(\Twig\Environment $env, $relativeImagePath, $heightOrWidthRatio = 'width') {
