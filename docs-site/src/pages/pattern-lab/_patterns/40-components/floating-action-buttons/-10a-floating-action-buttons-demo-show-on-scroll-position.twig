@@ -96,9 +96,35 @@
       } only %}
     {% endset %}
 
+    {% set placeholder_button %}
+      {% set icon_link %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'external-link',
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-tooltip/tooltip.twig' with {
+        content: 'Go to Google',
+        placement: 'left',
+        trigger: include('@bolt-elements-button/button.twig', {
+          content: 'Go to Google',
+          border_radius: 'full',
+          icon_only: icon_link,
+          attributes: {
+            href: 'https://www.google.com',
+            rel: 'noopener',
+            target: '_blank'
+          },
+        }),
+      } only %}
+    {% endset %}
+
     {% set fab_list_items %}
       {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
         content: scroll_to_top_button,
+        show_on_scroll_position: '100px'
+      } only %}
+      {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
+        content: placeholder_button,
       } only %}
     {% endset %}
 
@@ -110,7 +136,6 @@
 
     {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
       content: fab_list,
-      show_on_scroll_position: '100px'
     } only %}
   {% endset %}
 

@@ -37,8 +37,15 @@ $_bolt-fab-list-gap: var(--bolt-spacing-y-xsmall);
 }
 
 .c-bolt-floating-action-buttons__list-item {
+  visibility: visible;
   margin: 0;
   padding: 0;
+  transition: opacity var(--bolt-transition), visibility var(--bolt-transition);
+
+  &.c-bolt-floating-action-buttons__list-item--hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
 }
 
 .c-bolt-floating-action-buttons__list-item--has-children {

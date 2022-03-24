@@ -16,7 +16,6 @@
 <div
   {{ attributes.addClass(classes) }}
   {% if this.data.hide_on_load.value %}data-hide-on-load{% endif %}
-  {% if this.data.show_on_scroll_position.value %}data-show-on-scroll-position="{{ this.data.show_on_scroll_position.value }}"{% endif %}
 >
   {% spaceless %}
     {{ content }}

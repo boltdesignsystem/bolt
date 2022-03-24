@@ -19,10 +19,5 @@ module.exports = {
         'Do not use this prop unless you plan on adding JavaScript to show the FAB based on custom logics. This prop toggles the <code>.c-bolt-floating-action-buttons--hidden</code> modifier class.',
       default: false,
     },
-    show_on_scroll_position: {
-      type: 'string',
-      description:
-        'This will leave the FAB hidden until the page is scrolled to a certain position. A percentage or pixel value must be passed here as a string (ie. "20%" or "200px").',
-    },
   },
 };

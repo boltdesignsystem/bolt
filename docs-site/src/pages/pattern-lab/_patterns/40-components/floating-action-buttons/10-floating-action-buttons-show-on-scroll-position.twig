@@ -1,9 +1,12 @@
 {% set description %}
-  The <code>show_on_scroll_position</code> prop allows floating action buttons to show on scroll.
+  The <code>show_on_scroll_position</code> prop on the list item allows floating action buttons to show on scroll.
 {% endset %}
 
 {% set notes %}
-  Use either <code>px</code> or <code>%</code> values to indicate the exact scrolled position when the floating action buttons should fade in.
+  <bolt-ol>
+    <bolt-li>Use either <code>px</code> or <code>%</code> values to indicate the exact scrolled position when the floating action buttons should fade in.</bolt-li>
+    <bolt-li>To avoid animation jump, please only use this on the first item in a FAB list.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
@@ -24,10 +27,10 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
-  content: content,
-  show_on_scroll_position: '100px',
-} only %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
+    content: content,
+    show_on_scroll_position: '100px'
+  } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {

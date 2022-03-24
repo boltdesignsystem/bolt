@@ -11,10 +11,14 @@
 {% set classes = [
   'c-bolt-floating-action-buttons__list-item',
   'js-bolt-floating-action-buttons-list-item',
-  children ? 'c-bolt-floating-action-buttons__list-item--has-children'
+  children ? 'c-bolt-floating-action-buttons__list-item--has-children',
+  show_on_scroll_position ? 'c-bolt-floating-action-buttons__list-item--hidden',
+  show_on_scroll_position ? 'js-bolt-floating-action-buttons-list-item--hidden'
 ] %}
 
-<li {{ attributes.addClass(classes) }} {{ this.props|without("class") }}>
+<li {{ attributes.addClass(classes) }}
+    {% if this.data.show_on_scroll_position.value %}data-show-on-scroll-position="{{ this.data.show_on_scroll_position.value }}"{% endif %}
+    {{ this.props|without("class")|without("show_on_scroll_position") }}>
   {{ content }}
 
   {% if children %}
