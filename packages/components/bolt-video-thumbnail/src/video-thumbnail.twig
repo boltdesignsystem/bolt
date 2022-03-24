@@ -7,71 +7,80 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set button_attributes = create_attribute(button_attributes|default({})) %}
+{% set button_attributes = video.content ? button_attributes.addClass('c-bolt-video-thumbnail__inline-button').addClass('js-bolt-video-thumbnail__inline-play') : button_attributes %}
 
 {% set classes = [
   'c-bolt-video-thumbnail',
   this.data.border_radius.value ? 'c-bolt-video-thumbnail--border-radius-' ~ this.data.border_radius.value,
   this.data.aspect_ratio.value ? 'c-bolt-video-thumbnail--aspect-ratio-' ~ this.data.aspect_ratio.value,
-  video ? 'c-bolt-video-thumbnail--inline'
+  video.content ? 'c-bolt-video-thumbnail--inline js-bolt-video-thumbnail__inline'
 ] %}
 
-{% if has_subtitles %}
-  {% set subtitles_label = 'Subtitles available'|t %}
+{# <script> #}
+  {# console.log({{this|json_encode}});
+  console.log({{video|json_encode}});
+  console.log({{video.content|json_encode}});
+  console.log({{video.duration|json_encode}});
+  console.log({{video.duration.value|json_encode}});
+  console.log({{video.properties.duration|json_encode}}); #}
+{# </script> #}
+
+{% if video.has_subtitles %}
+  {% set subtitles_label = 'Subtitles available' %}
+{% endif %}
+
+{% if video.content %}
+  {% set _has_subtitles = video.has_subtitles ? ', this video has subtitles available.' : '' %}
+  {% set play_video_label = 'Play the video ' ~ video.video_title ~ _has_subtitles %}
 {% endif %}
 
 {# Template #}
 <div {{ attributes.addClass(classes) }}>
-  <div class="c-bolt-video-thumbnail__content js-bolt-video-thumbnail__inline-play__target">
-    {% if video %}
-      <div class="c-bolt-video-thumbnail__content__inline">
-        {{ video }}
-      </div>
-      {% include '@bolt-elements-button/button.twig' with {
-        display: 'block',
-        content: 'Play the video'|t,
-        attributes: {
-          type: 'button',
-          class: 'js-bolt-video-thumbnail__inline-play'
-        }
-      } %}
-    {% endif %}
+  {% if video.content %}
+    <button {{ button_attributes|without('aria-label')|without('type') }} type="button" aria-label="{{ play_video_label|t }}">
+  {% endif %}
+  <div class="c-bolt-video-thumbnail__content">
     {{ content }}
   </div>
-  {% if chip or video_title %}
+  {% if chip or video.video_title %}
     <div class="c-bolt-video-thumbnail__meta c-bolt-video-thumbnail__meta--top">
       {% if chip %}
         {{ chip }}
       {% endif %}
-      {% if video_title %}
+      {% if video.video_title %}
         <span class="c-bolt-video-thumbnail__title">
-          {{ video_title }}
+          {{ video.video_title }}
         </span>
       {% endif %}
     </div>
   {% endif %}
   <div class="c-bolt-video-thumbnail__play-icon" aria-hidden="true"></div>
-  {% if has_subtitles or duration %}
+  {% if video.has_subtitles or video.duration %}
     <div class="c-bolt-video-thumbnail__meta c-bolt-video-thumbnail__meta--bottom">
-      {% if duration %}
+      {% if video.duration %}
         <div class="c-bolt-video-thumbnail__duration">
-          <span class="u-bolt-visuallyhidden">{{ 'Video duration'|t }}:</span> {{ duration }}
+          <span class="u-bolt-visuallyhidden">{{ 'Video duration'|t }}:</span> {{ video.duration }}
         </div>
       {% endif %}
-      {% if has_subtitles %}
-        <div class="c-bolt-video-thumbnail__subtitles">
+      {% if video.has_subtitles %}
+        <div class="c-bolt-video-thumbnail__subtitles" aria-label="{{ subtitles_label|t }}">
           {% set icon %}
             {% include '@bolt-elements-icon/icon.twig' with {
               name: 'pega-subtitle',
               size: 'small'
             } only %}
           {% endset %}
-          {% include '@bolt-components-tooltip/tooltip.twig' with {
-            trigger: icon,
-            content: subtitles_label
-          } only %}
-          <span class="u-bolt-visuallyhidden">{{ subtitles_label }}</span>
+          {{ icon }}
+          <span class="u-bolt-visuallyhidden">{{ subtitles_label|t }}</span>
         </div>
       {% endif %}
+    </div>
+  {% endif %}
+  {% if video.content %}
+    </button>
+    <div class="c-bolt-video-thumbnail__inline">
+      {{ video.content }}
     </div>
   {% endif %}
 </div>

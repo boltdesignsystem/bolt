@@ -33,17 +33,23 @@
     {% endset %}
     {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
       content: image,
-      duration: '4:55',
+      video_attributes: {
+        'data-bolt-modal-target': '#' ~ modal_id,
+      },
+      video: {
+        duration: '4:55',
+      }
     } only %}
   {% endset %}
   <div style="max-width: 60ch">
-    {% include '@bolt-components-trigger/trigger.twig' with {
+    {{ video_thumbnail }}
+    {# {% include '@bolt-components-trigger/trigger.twig' with {
       content: video_thumbnail,
       display: 'block',
       attributes: {
         'data-bolt-modal-target': '#' ~ modal_id,
       }
-    } only %}
+    } only %} #}
     {% include '@bolt-components-modal/modal.twig' with {
       content: video,
       width: 'optimal',

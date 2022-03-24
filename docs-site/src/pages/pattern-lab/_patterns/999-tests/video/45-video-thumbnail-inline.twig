@@ -23,10 +23,11 @@
     {% endset %}
     {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
       content: image,
-      video: video,
-      video_id: 'vjs-video-3',
-      duration: '4:55',
-      has_subtitles: true
+      video: {
+        content: video,
+        duration: '4:55',
+        has_subtitles: true
+      }
     } only %}
   {% endset %}
   <div style="max-width: 60ch">

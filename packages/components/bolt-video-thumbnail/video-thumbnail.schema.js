@@ -25,31 +25,42 @@ module.exports = {
       enum: ['1:1', '16:9', '4:3'],
       default: '16:9',
     },
-    duration: {
-      type: 'any',
-      description:
-        'Display the video duration that overlays the video thumbnail. This should only be plain text.',
-    },
-    has_subtitles: {
-      type: 'boolean',
-      description:
-        'Display a subtitles icon that overlays the video thumbnail.',
-      default: false,
-    },
-    video_title: {
-      type: 'any',
-      description:
-        'Display the video title that overlays the video thumbnail. This should only be plain text.',
-    },
     chip: {
       type: 'any',
       description:
         'Display a chip (or chip-list) that overlays the video thumbnail. Positioned before the video title. Chip or Chip-list component is expected here.',
     },
-    video: {
-      type: 'any',
+    button_attributes: {
+      type: 'object',
       description:
-        'A Brightcove video that will display inside the video thumbnail container.',
+        'A Drupal attributes object. Applies extra HTML attributes to the inner button element.',
+    },
+    video: {
+      type: 'object',
+      description: 'Props that pertain to the Brightcove video',
+      properties: {
+        content: {
+          type: 'any',
+          description:
+            'A Brightcove video that will display inside the video thumbnail container.',
+        },
+        duration: {
+          type: 'any',
+          description:
+            'Display the video duration that overlays the video thumbnail. This should only be plain text.',
+        },
+        has_subtitles: {
+          type: 'boolean',
+          description:
+            'Display a subtitles icon that overlays the video thumbnail.',
+          default: false,
+        },
+        video_title: {
+          type: 'any',
+          description:
+            'Display the video title that overlays the video thumbnail. This should only be plain text.',
+        },
+      },
     },
   },
 };

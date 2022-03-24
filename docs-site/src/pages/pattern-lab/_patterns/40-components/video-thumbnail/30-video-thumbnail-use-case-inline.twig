@@ -30,9 +30,11 @@
     {% endset %}
     {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
       content: _image,
-      video: _video,
-      duration: '4:55',
-      has_subtitles:  true
+      video: {
+        content: _video,
+        duration: '4:55',
+        has_subtitles:  true
+      }
     } only %}
   {% endset %}
   <div style="max-width: 60ch">
