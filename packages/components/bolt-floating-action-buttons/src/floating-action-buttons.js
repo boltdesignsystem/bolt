@@ -15,8 +15,8 @@ export class BoltFloatingActionButtons {
     this.toggleButton = this.primaryList.querySelector(
       '.js-bolt-floating-action-buttons-toggle',
     );
-    this.showOnScroll = this.el.dataset.showOnScroll;
-    this.hideOnLoad = this.el.dataset.hideOnLoad;
+    this.showOnScrollPosition = this.el.dataset.showOnScrollPosition;
+    this.hideOnLoad = this.el.hasAttribute('data-hide-on-load');
     this.isOpen = false;
 
     if (this.secondaryList) {
@@ -28,16 +28,16 @@ export class BoltFloatingActionButtons {
       });
     }
 
-    if (this.showOnScroll) {
-      this.handleShowOnScroll();
-    } else if (this.hideOnLoad == null) {
+    if (this.showOnScrollPosition) {
+      this.addScrollHandler();
+    } else if (!this.hideOnLoad) {
       this.show();
     }
 
     if (this.toggleButton) {
-      this.toggleButton.onclick = () => {
-        this.toggleExpanded();
-      };
+      this.toggleButton.addEventListener('click', () => {
+        this.toggleSecondaryList();
+      });
     }
 
     this.el.setAttribute('data-bolt-ready', '');
@@ -51,7 +51,7 @@ export class BoltFloatingActionButtons {
     this.el.classList.add('c-bolt-floating-action-buttons--hidden');
   }
 
-  toggleExpanded() {
+  toggleSecondaryList() {
     if (this.isOpen) {
       // close this
       this.isOpen = false;
@@ -89,19 +89,19 @@ export class BoltFloatingActionButtons {
 
   getScrollPositionFromProp() {
     let revealPosition = 0;
-    const scrollInt = parseInt(this.showOnScroll, 10);
+    const scrollInt = parseInt(this.showOnScrollPosition, 10);
     const pageHeight = window.innerHeight;
 
-    if (this.showOnScroll.includes('px')) {
+    if (this.showOnScrollPosition.includes('px')) {
       revealPosition = scrollInt;
-    } else if (this.showOnScroll.includes('%')) {
+    } else if (this.showOnScrollPosition.includes('%')) {
       // set a pixel value based on the percentage value.
       revealPosition = pageHeight * (scrollInt / 100);
     }
     return revealPosition;
   }
 
-  handleShowOnScroll() {
+  addScrollHandler() {
     let scrollPosition = window.scrollY;
     const revealPosition = this.getScrollPositionFromProp();
 

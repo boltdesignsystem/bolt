@@ -1,7 +1,7 @@
 import { render, stopServer } from '../../../testing/testing-helpers';
 import schema from '../floating-action-buttons.schema';
 // eslint-disable-next-line camelcase
-const { show_on_scroll } = schema.properties;
+const { show_on_scroll_position } = schema.properties;
 let page, fixtures;
 
 afterAll(async () => {
