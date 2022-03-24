@@ -15,7 +15,7 @@ export class BoltFloatingActionButtons {
     this.toggleButton = this.primaryList.querySelector(
       '.js-bolt-floating-action-buttons-toggle',
     );
-    this.hiddenListItem = this.el.querySelector(
+    this.hiddenListItems = this.el.querySelectorAll(
       '.js-bolt-floating-action-buttons-list-item--hidden',
     );
     this.hideOnLoad = this.el.hasAttribute('data-hide-on-load');
@@ -34,8 +34,10 @@ export class BoltFloatingActionButtons {
       this.show();
     }
 
-    if (this.hiddenListItem) {
-      this.addScrollHandler(this.hiddenListItem);
+    if (this.hiddenListItems) {
+      Array.from(this.hiddenListItems).forEach(el => {
+        this.addScrollHandler(el);
+      });
     }
 
     if (this.toggleButton) {
