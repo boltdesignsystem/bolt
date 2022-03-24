@@ -8,38 +8,40 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set button_attributes = create_attribute(button_attributes|default({})) %}
-{% set button_attributes = video.content ? button_attributes.addClass('c-bolt-video-thumbnail__inline-button').addClass('js-bolt-video-thumbnail__inline-play') : button_attributes %}
+{% set button_attributes = video.content ? button_attributes.addClass('js-bolt-video-thumbnail-inline-button') : button_attributes %}
 
 {% set classes = [
   'c-bolt-video-thumbnail',
   this.data.border_radius.value ? 'c-bolt-video-thumbnail--border-radius-' ~ this.data.border_radius.value,
   this.data.aspect_ratio.value ? 'c-bolt-video-thumbnail--aspect-ratio-' ~ this.data.aspect_ratio.value,
-  video.content ? 'c-bolt-video-thumbnail--inline js-bolt-video-thumbnail__inline'
+  video.content ? 'c-bolt-video-thumbnail--inline'
 ] %}
 
 {% if video.has_subtitles %}
   {% set subtitles_label = 'Subtitles available' %}
 {% endif %}
 
-{% if video.content %}
+{% if video.content or button_attributes %}
+  {% set play_video_label = 'Play the video' %}
   {% set _has_subtitles = video.has_subtitles ? ', this video has subtitles available.' : '' %}
-  {% set play_video_label = 'Play the video ' ~ video.video_title ~ _has_subtitles %}
+  {% set _video_title = video.video_title ? ' ' ~ video.video_title : '' %}
+  {% set play_video_label = play_video_label ~ _video_title ~ _has_subtitles %}
 {% endif %}
 
 {# Template #}
 <div {{ attributes.addClass(classes) }}>
-  {% if video.content %}
-    <button {{ button_attributes|without('aria-label')|without('type') }} type="button" aria-label="{{ play_video_label|t }}">
+  {% if video.content or button_attributes %}
+    <button {{ button_attributes.addClass('c-bolt-video-thumbnail__inline-button')|without('aria-label')|without('type') }} type="button" aria-label="{{ play_video_label|t }}">
   {% endif %}
   <div class="c-bolt-video-thumbnail__content">
     {{ content }}
   </div>
-  {% if chip or video.video_title %}
+  {% if chip or video_title_display %}
     <div class="c-bolt-video-thumbnail__meta c-bolt-video-thumbnail__meta--top">
       {% if chip %}
         {{ chip }}
       {% endif %}
-      {% if video.video_title %}
+      {% if video_title_display %}
         <span class="c-bolt-video-thumbnail__title">
           {{ video.video_title }}
         </span>
@@ -68,9 +70,11 @@
       {% endif %}
     </div>
   {% endif %}
-  {% if video.content %}
+  {% if video.content or button_attributes %}
     </button>
-    <div class="c-bolt-video-thumbnail__inline">
+  {% endif %}
+  {% if video.content %}
+    <div class="c-bolt-video-thumbnail__content-video">
       {{ video.content }}
     </div>
   {% endif %}

@@ -1,9 +1,17 @@
 {% set description %}
-  A video thumbnail can play a video inline if the <code>video</code> prop is used.
+  A video thumbnail can play a video inline if the <code>video.content</code> prop is used.
 {% endset %}
 
 {% set notes %}
-  The video poster image from a particular Brightcove video is recommended to be used as the video thumbnail.
+  {% spaceless %}
+    <bolt-ol>
+      <bolt-li>Always provide a value for the <code>video.video_title</code> prop. This will provide contextual information for screen readers.</bolt-li>
+      <bolt-li>The video poster image from a particular Brightcove video is recommended to be used as the video thumbnail.</bolt-li>
+      <bolt-li>Use the <code>video.content</code> prop to pass in the video object.</bolt-li>
+      <bolt-li>The internal button in the video thumbnail will automatically play the video on click.</bolt-li>
+      <bolt-li>The internal button will be replaced with the video after click.</bolt-li>
+    </bolt-ol>
+  {% endspaceless %}
 {% endset %}
 
 {% set demo %}
@@ -33,6 +41,7 @@
       video: {
         content: _video,
         duration: '4:55',
+        video_title: 'Video Title',
         has_subtitles:  true
       }
     } only %}
@@ -69,8 +78,12 @@
   // Utilizing the 'video' prop will open the video inline
   {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
     content: _image,
-    video: _video,
-    duration: '4:55'
+    video: {
+      content: _video,
+      duration: '4:55',
+      video_title: 'Video Title',
+      has_subtitles:  true
+    }
   } only %}
 {% endset %}
 {{ video_thumbnail }}

@@ -7,14 +7,14 @@ export class BoltVideoThumbnail {
 
   init() {
     const inlineVideoPlayButton = this.el.querySelector(
-      '.js-bolt-video-thumbnail__inline-play',
+      '.js-bolt-video-thumbnail-inline-button',
     );
 
     inlineVideoPlayButton.addEventListener('click', e => {
       this.playVideo(e);
       e.currentTarget
-        .closest('.js-bolt-video-thumbnail__inline')
-        .querySelector('.c-bolt-video-thumbnail__inline').style.display =
+        .closest('.c-bolt-video-thumbnail--inline')
+        .querySelector('.c-bolt-video-thumbnail__content-video').style.display =
         'block';
       e.currentTarget.remove();
     });
@@ -22,7 +22,7 @@ export class BoltVideoThumbnail {
 
   playVideo(el) {
     const targetVideo = el.currentTarget
-      .closest('.js-bolt-video-thumbnail__inline')
+      .closest('.c-bolt-video-thumbnail--inline')
       .querySelector('video-js');
     targetVideo.player.play();
     targetVideo.focus();

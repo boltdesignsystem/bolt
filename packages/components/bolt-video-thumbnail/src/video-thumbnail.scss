@@ -70,6 +70,15 @@
   }
 }
 
+.c-bolt-video-thumbnail__content-video {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
 .c-bolt-video-thumbnail__inline-button {
   @include bolt-button-native-styles-reset;
   display: block;
@@ -87,15 +96,6 @@
     outline: var(--bolt-focus-ring);
     outline-offset: 2px;
   }
-}
-
-.c-bolt-video-thumbnail__inline {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
 }
 
 .c-bolt-video-thumbnail__play-icon {

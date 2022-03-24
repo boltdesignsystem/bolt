@@ -30,6 +30,12 @@ module.exports = {
       description:
         'Display a chip (or chip-list) that overlays the video thumbnail. Positioned before the video title. Chip or Chip-list component is expected here.',
     },
+    video_title_display: {
+      type: 'boolean',
+      description:
+        'Display a video title chip that overlays the video thumbnail.',
+      default: false,
+    },
     button_attributes: {
       type: 'object',
       description:

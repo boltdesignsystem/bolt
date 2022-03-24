@@ -201,9 +201,11 @@
         {% endset %}
         {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
           content: image,
-          duration: '4:55',
-          video_title: 'This is a Video Title',
           chip: chip,
+          video: {
+            duration: '4:55',
+            video_title: 'Video Title'
+          }
         } only %}
       {% endset %}
       {% include '@bolt-components-trigger/trigger.twig' with {
