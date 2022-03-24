@@ -19,7 +19,7 @@
 
         {# The search icon is a special case; the icon itself needs to be a submit button #}
         <li class="o-bolt-inline-list__item">
-          <button class="c-bolt-input-icon c-bolt-input-icon--link" type="submit" aria-label="{{ search_button_label|default('Search'|t) }}">
+          <button class="c-bolt-input-icon c-bolt-input-icon--link" type="submit" aria-label="{{ search_button_label }}">
             {% include '@bolt-elements-icon/icon.twig' with {
               name: icon,
               size: icon_size
