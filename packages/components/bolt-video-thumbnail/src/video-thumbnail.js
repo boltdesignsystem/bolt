@@ -10,32 +10,21 @@ export class BoltVideoThumbnail {
       '.js-bolt-video-thumbnail__inline-play',
     );
 
-    const removeObjects = [
-      inlineVideoPlayButton,
-      this.el.querySelector('.e-bolt-image'),
-      this.el.querySelector('.c-bolt-video-thumbnail__play-icon'),
-      this.el.querySelector('.c-bolt-video-thumbnail__meta'),
-      this.el.querySelector('.c-bolt-vide'),
-    ];
-
     inlineVideoPlayButton.addEventListener('click', e => {
       this.playVideo(e);
-      removeObjects.forEach(el => {
-        if (el) {
-          el.remove();
-        }
-      });
+      e.currentTarget
+        .closest('.js-bolt-video-thumbnail__inline')
+        .querySelector('.c-bolt-video-thumbnail__inline').style.display =
+        'block';
+      e.currentTarget.remove();
     });
   }
 
-  destroyElement(el) {
-    el.remove();
-  }
-
   playVideo(el) {
-    el.currentTarget
-      .closest('.js-bolt-video-thumbnail__inline-play__target')
-      .querySelector('video-js')
-      .player.play();
+    const targetVideo = el.currentTarget
+      .closest('.js-bolt-video-thumbnail__inline')
+      .querySelector('video-js');
+    targetVideo.player.play();
+    targetVideo.focus();
   }
 }

@@ -9,7 +9,6 @@
   position: relative;
   width: 100%;
   min-width: 10rem;
-  overflow: hidden;
   border-radius: var(--c-bolt-video-thumbnail-border-radius);
   aspect-ratio: var(--c-bolt-video-thumbnail-aspect-ratio);
   //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
@@ -54,15 +53,16 @@
 .c-bolt-video-thumbnail__content {
   display: flex;
   position: absolute;
+  top: 0;
   width: 100%;
   height: 100%;
 
   > img {
     display: block;
-    object-fit: cover;
-    object-position: center center;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    object-position: center center;
   }
 
   > bolt-image {
@@ -70,24 +70,32 @@
   }
 }
 
-.c-bolt-video-thumbnail__content__inline {
+.c-bolt-video-thumbnail__inline-button {
+  @include bolt-button-native-styles-reset;
+  display: block;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 1;
+  width: 100%;
+
+  &:focus,
+  &:active:not(:disabled) {
+    transform: translate3d(0, 0, 0);
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
 }
 
-// These updates are to make sure the button doesn't flash due to the image not loading immediately
-.js-bolt-video-thumbnail__inline-play {
-  &:before,
-  &:after {
-    background-color: var(--bolt-color-white);
-  }
-
-  &:before {
-    opacity: 1;
-  }
+.c-bolt-video-thumbnail__inline {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .c-bolt-video-thumbnail__play-icon {
@@ -202,11 +210,15 @@
 .c-bolt-video-thumbnail__subtitles,
 .c-bolt-video-thumbnail__duration {
   display: inline-block;
+}
+
+.c-bolt-video-thumbnail__subtitles,
+.c-bolt-video-thumbnail__subtitles:after,
+.c-bolt-video-thumbnail__duration {
   padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xxsmall);
   font-size: var(--bolt-type-font-size-xxsmall);
   font-weight: var(--bolt-type-font-weight-semibold);
   color: var(--bolt-color-white);
-  line-height: var(--bolt-type-line-height-xxsmall);
   border-radius: var(
     --c-bolt-video-thumbnail-border-radius,
     #{bolt-border-radius(small)}
@@ -215,12 +227,31 @@
   white-space: nowrap;
 }
 
+.c-bolt-video-thumbnail__subtitles:after,
 .c-bolt-video-thumbnail__duration {
-  text-overflow: ellipsis;
+  line-height: var(--bolt-type-line-height-xxsmall);
+}
+
+.c-bolt-video-thumbnail__duration {
   pointer-events: none;
+  text-overflow: ellipsis;
 }
 
 .c-bolt-video-thumbnail__subtitles {
-  color: var(--bolt-color-white);
   line-height: 0;
+
+  &:after {
+    content: attr(aria-label);
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate3d(-65%, -120%, 0);
+  }
+
+  &:hover {
+    &:after {
+      display: block;
+    }
+  }
 }

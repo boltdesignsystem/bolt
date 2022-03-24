@@ -17,15 +17,6 @@
   video.content ? 'c-bolt-video-thumbnail--inline js-bolt-video-thumbnail__inline'
 ] %}
 
-{# <script> #}
-  {# console.log({{this|json_encode}});
-  console.log({{video|json_encode}});
-  console.log({{video.content|json_encode}});
-  console.log({{video.duration|json_encode}});
-  console.log({{video.duration.value|json_encode}});
-  console.log({{video.properties.duration|json_encode}}); #}
-{# </script> #}
-
 {% if video.has_subtitles %}
   {% set subtitles_label = 'Subtitles available' %}
 {% endif %}
