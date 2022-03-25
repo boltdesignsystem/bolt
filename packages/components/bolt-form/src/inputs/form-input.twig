@@ -21,10 +21,6 @@ Available variables:
   'c-bolt-input--' ~ attributes.type
 ] %}
 
-{% if search_button_label %}
-  {% set _search_button_label = search_button_label|default('Search'|t) %}
-{% endif %}
-
 {% if hasErrors %}
   {% set _classes = _classes|merge(['is-invalid']) %}
 {% endif %}
@@ -52,7 +48,7 @@ the icons wrapping markup, even if there are no icons to show, for the following
     {% include "@bolt-components-form/form-icons.twig" with {
       icons: _icons,
       icon_size: icon_size,
-      search_button_label: _search_button_label,
+      search_button_label: search_button_label|default('Search'|t),
     } only %}
   </div>
 {% endif %}
