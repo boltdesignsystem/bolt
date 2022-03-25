@@ -101,14 +101,14 @@ describe('Bolt Video Thumbnail Component Prop -', () => {
     });
   });
 
-  test(`video_title_display`, async () => {
+  test(`video.show_title`, async () => {
     const results = await render(
       '@bolt-components-video-thumbnail/video-thumbnail.twig',
       {
         ...fixtures.defaultData,
-        video_title_display: true,
         video: {
           title: 'Video Title Display',
+          show_title: true,
         },
       },
     );
@@ -130,19 +130,6 @@ describe('Bolt Video Thumbnail Component Prop -', () => {
     await expect(results.html).toMatchSnapshot();
   });
 
-  test(`button_attributes`, async () => {
-    const results = await render(
-      '@bolt-components-video-thumbnail/video-thumbnail.twig',
-      {
-        ...fixtures.defaultData,
-        button_attributes: {
-          'data-test-attributes': 'Test Data',
-        },
-      },
-    );
-    await expect(results.ok).toBe(true);
-    await expect(results.html).toMatchSnapshot();
-  });
   test(`video.duration`, async () => {
     const results = await render(
       '@bolt-components-video-thumbnail/video-thumbnail.twig',
@@ -182,6 +169,17 @@ describe('Bolt Video Thumbnail Component Prop -', () => {
           content: fixtures.videoObject,
           title: 'Video Title Inline Play',
         },
+      },
+    );
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  test(`static display`, async () => {
+    const results = await render(
+      '@bolt-components-video-thumbnail/video-thumbnail.twig',
+      {
+        ...fixtures.defaultData,
       },
     );
     await expect(results.ok).toBe(true);

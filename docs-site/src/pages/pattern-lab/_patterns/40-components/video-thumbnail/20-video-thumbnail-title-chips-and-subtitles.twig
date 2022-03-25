@@ -26,11 +26,11 @@
     {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
       content: image,
       chip: chip,
-      video_title_display: true,
       video: {
         title: 'This is a Video Title',
         duration: '4:26',
-        has_subtitles: true
+        has_subtitles: true,
+        show_title: true
       }
     } only %}
   </div>
@@ -48,11 +48,11 @@
 {% endset %}
 {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
   chip: chip,
-  video_title_display: true,
   video: {
     title: 'This is a Video Title',
     duration: '4:26',
-    has_subtitles: true
+    has_subtitles: true,
+    show_title: true
   }
   ...
 } only %}

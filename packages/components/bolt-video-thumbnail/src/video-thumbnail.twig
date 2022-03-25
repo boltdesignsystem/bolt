@@ -7,8 +7,10 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set button_attributes = create_attribute(button_attributes|default({})) %}
-{% set button_attributes = video.content ? button_attributes.addClass('js-bolt-video-thumbnail-inline-button') : button_attributes %}
+{% if video.content or button_attributes %}
+  {% set button_attributes = create_attribute(button_attributes|default({})) %}
+  {% set button_attributes = video.content ? button_attributes.addClass('js-bolt-video-thumbnail-inline-button') : button_attributes %}
+{% endif %}
 
 {% set classes = [
   'c-bolt-video-thumbnail',
@@ -36,12 +38,12 @@
   <div class="c-bolt-video-thumbnail__content">
     {{ content }}
   </div>
-  {% if chip or video_title_display %}
+  {% if chip or video.show_title %}
     <div class="c-bolt-video-thumbnail__meta c-bolt-video-thumbnail__meta--top">
       {% if chip %}
         {{ chip }}
       {% endif %}
-      {% if video_title_display %}
+      {% if video.show_title %}
         <span class="c-bolt-video-thumbnail__title">
           {{ video.title }}
         </span>

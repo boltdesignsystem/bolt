@@ -1,0 +1,81 @@
+{% set notes %}
+  {% spaceless %}
+    <bolt-ol>
+      <bolt-li>To prevent the presence of a button within the video thumbnail component, do not pass data to either the <code>video.content</code> or <code>button_attributes</code> props.</bolt-li>
+      <bolt-li>A video thumbnail rendered this way is static and can be passed into another component or element for display purposes.</bolt-li>
+    </bolt-ol>
+  {% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  <div style="max-width: 60ch">
+    {% set video_thumbnail %}
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: '/images/placeholders/tout-4x3-climber.jpg',
+            alt: 'A Rock Climber',
+            loading: 'lazy',
+            width: 400,
+            height: 300,
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+        content: image,
+        video: {
+          duration: '2:36'
+        }
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: video_thumbnail,
+      attributes: {
+        href: 'https://google.com',
+        target: '_blank',
+        rel: 'noopener',
+        'aria-label': 'Link to Video Resource'
+      }
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set image_thumbnail %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        loading: 'lazy',
+        width: 400,
+        height: 300,
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+    content: image
+  } only %}
+{% endset %}
+
+{% include '@bolt-elements-text-link/text-link.twig' with {
+  content: video_thumbnail,
+  attributes: {
+    href: 'https://google.com',
+    target: '_blank',
+    rel: 'noopener',
+    'aria-label': 'Link to Video Resource'
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Video Thumbnail External Link',
+  description: 'The video thumbnail can be used for an image display.',
+  demo: demo,
+  notes: notes,
+  twig_markup: twig_markup,
+} only %}
