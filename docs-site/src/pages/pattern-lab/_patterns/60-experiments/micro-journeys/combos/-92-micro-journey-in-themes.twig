@@ -1,9 +1,13 @@
+{% set micro_journeys %}
+  {% include '@pl/90-micro-journeys.twig' only %}
+{% endset %}
+
 {% include "@bolt-components-band/band.twig" with {
-  content: include('@pl/90-micro-journeys.twig'),
+  content: micro_journeys,
   theme: 'light'
 } only %}
 
 {% include "@bolt-components-band/band.twig" with {
-  content: include('@pl/90-micro-journeys.twig'),
+  content: micro_journeys,
   theme: 'dark'
 } only %}
