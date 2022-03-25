@@ -10,6 +10,8 @@ Available variables:
   - children (renderable) - Optional additional rendered elements.
   - hasErrors (boolean) - whether this input has server-side errors.  If true, this will invoke error styling for this
       field on page load.
+  - search_button_label (string) - If the type of this form input is 'search', the label that should be applied to the
+      search button that appears within the form field.  Defaults to "Search" if no value is passed.
 #}
 
 {% set attributes = create_attribute(attributes | default({})) %}
