@@ -24,16 +24,16 @@
 {% endif %}
 
 {% if video.content or button_attributes %}
-  {% set play_video_label = 'Play the video' %}
-  {% set _has_subtitles = video.has_subtitles ? ', this video has subtitles available.' : '' %}
-  {% set _title = video.title ? ' ' ~ video.title : '' %}
-  {% set play_video_label = play_video_label ~ _title ~ _has_subtitles %}
+  {% set play_video_label = video.title ? 'Play the video @title.'|t({'@title': video.title}) : 'Play the video.'|t %}
+  {% if video.has_subtitles %}
+    {% set play_video_label = play_video_label ~ ' ' ~ 'This video has subtitles available.'|t %}
+  {% endif %}
 {% endif %}
 
 {# Template #}
 <div {{ attributes.addClass(classes) }}>
   {% if video.content or button_attributes %}
-    <button {{ button_attributes.addClass('c-bolt-video-thumbnail__inline-button')|without('aria-label')|without('type') }} type="button" aria-label="{{ play_video_label|t }}">
+    <button {{ button_attributes.addClass('c-bolt-video-thumbnail__inline-button')|without('aria-label')|without('type') }} type="button" aria-label="{{ play_video_label }}">
   {% endif %}
   <div class="c-bolt-video-thumbnail__content">
     {{ content }}
