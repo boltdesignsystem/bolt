@@ -1,7 +1,7 @@
 {% set notes %}
   {% spaceless %}
     <bolt-ol>
-      <bolt-li>Always provide a value for the <code>video.video_title</code> prop. This will provide contextual information for screen readers.</bolt-li>
+      <bolt-li>Always provide a value for the <code>video.title</code> prop. This will provide contextual information for screen readers.</bolt-li>
       <bolt-li>The video poster image from a particular Brightcove video is recommended to be used as the video thumbnail.</bolt-li>
       <bolt-li>Use the <code>button_attributes</code> prop to pass in the required <code>data-bolt-modal-target</code> attribute to hook up a modal.</bolt-li>
       <bolt-li>Refer to the <a href="{{ link['viewall-components-modal'] }}" class="e-bolt-text-link">Modal Documentation</a> for more information.</bolt-li>
@@ -45,7 +45,7 @@
       },
       video: {
         duration: '4:55',
-        video_title: 'Video Title',
+        title: 'Video Title',
         has_subtitles: true
       }
     } only %}
@@ -88,7 +88,7 @@
     },
     video: {
       duration: '4:55',
-      video_title: 'Video Title',
+      title: 'Video Title',
       has_subtitles: true
     }
   } only %}

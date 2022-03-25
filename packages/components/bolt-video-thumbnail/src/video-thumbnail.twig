@@ -24,8 +24,8 @@
 {% if video.content or button_attributes %}
   {% set play_video_label = 'Play the video' %}
   {% set _has_subtitles = video.has_subtitles ? ', this video has subtitles available.' : '' %}
-  {% set _video_title = video.video_title ? ' ' ~ video.video_title : '' %}
-  {% set play_video_label = play_video_label ~ _video_title ~ _has_subtitles %}
+  {% set _title = video.title ? ' ' ~ video.title : '' %}
+  {% set play_video_label = play_video_label ~ _title ~ _has_subtitles %}
 {% endif %}
 
 {# Template #}
@@ -43,7 +43,7 @@
       {% endif %}
       {% if video_title_display %}
         <span class="c-bolt-video-thumbnail__title">
-          {{ video.video_title }}
+          {{ video.title }}
         </span>
       {% endif %}
     </div>

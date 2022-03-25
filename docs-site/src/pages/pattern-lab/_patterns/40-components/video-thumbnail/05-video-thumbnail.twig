@@ -1,7 +1,7 @@
 {% set notes %}
 {% spaceless %}
   <bolt-ol>
-    <bolt-li>Always provide a value for the <code>video.video_title</code> prop. This will provide contextual information for screen readers.</bolt-li>
+    <bolt-li>Always provide a value for the <code>video.title</code> prop. This will provide contextual information for screen readers.</bolt-li>
     <bolt-li>The video poster image from a particular Brightcove video is recommended to be used as the video thumbnail.</bolt-li>
     <bolt-li>Video thumbnail is a visual display with a built in button that can trigger a modal or play a video inline.</bolt-li>
     <bolt-li>The preferred method is to play videos within modals. <a href="{{ link['components-video-thumbnail-use-case-modal'] }}" class="e-bolt-text-link">View use case<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a></bolt-li>
@@ -28,7 +28,7 @@
     {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
       content: image,
       video: {
-        video_title: 'Title of the Video',
+        title: 'Title of the Video',
         duration: '4:55',
       }
     } only %}
@@ -52,7 +52,7 @@
 {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
   content: image,
   video: {
-    video_title: 'Title of the Video',
+    title: 'Title of the Video',
     duration: '4:55'
   }
 } only %}

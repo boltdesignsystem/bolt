@@ -61,7 +61,7 @@ module.exports = {
             'Display a subtitles icon that overlays the video thumbnail.',
           default: false,
         },
-        video_title: {
+        title: {
           type: 'any',
           description:
             'Display the video title that overlays the video thumbnail. This should only be plain text.',
