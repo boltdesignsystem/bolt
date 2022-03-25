@@ -43,7 +43,6 @@ export class BoltPageHeader {
       ...opts,
       desktop: false,
       isNested: true,
-      closeOnEscape: true,
       onNestedNavToggle: open => {
         const primaryNav = this.el.querySelector(
           '#js-bolt-page-header-primary-nav',
@@ -65,7 +64,6 @@ export class BoltPageHeader {
     // Action Nav
     this.actionMenu = new BoltPageHeaderActionNav(actionMenuArray, {
       ...opts,
-      closeOnEscape: true,
     });
   }
 
