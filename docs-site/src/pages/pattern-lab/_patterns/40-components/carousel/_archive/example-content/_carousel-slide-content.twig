@@ -1,4 +1,4 @@
-{% include "@bolt-components-card/card.twig" with {
+{# {% include "@bolt-components-card/card.twig" with {
   contentItems: [
     {
       pattern: "image",
@@ -26,4 +26,23 @@
       url: "https://google.com",
     }
   ]
+} only %} #}
+
+{% include '@bolt-components-card-replacement/card-replacement.twig' with {
+  media: {
+    image: {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      lazyload: false,
+      alt: "Anthem Video"
+    },
+  },
+  body: {
+    headline: 'Anthem: Service Desktop',
+  },
+  actions: [
+    {
+      text: 'Get the report',
+      url: 'https://google.com',
+    },
+  ],
 } only %}

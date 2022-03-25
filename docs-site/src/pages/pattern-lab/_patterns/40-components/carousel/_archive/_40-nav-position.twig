@@ -8,16 +8,18 @@
   navPosition: "outside",
 } only %} #}
 
-
+{% set slide %}
+ {% include "_carousel-slide-content.twig" only %}
+{% endset %}
 <h2>Example Carousel with Left / Right Buttons Positioned on the outside</h2>
 {% include "@bolt-components-carousel/carousel.twig" with {
   slides: [
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
+   slide,
+   slide,
+   slide,
+   slide,
+   slide,
+   slide,
   ],
   navPosition: "outside",
 } only %}
@@ -26,12 +28,12 @@
 <div class="o-bolt-wrapper">
   {% include "@bolt-components-carousel/carousel.twig" with {
     slides: [
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
+      slide,
+      slide,
+      slide,
+      slide,
+      slide,
+      slide,
     ],
     navPosition: "outside",
     fullBleed: false
@@ -43,12 +45,12 @@
 <div class="o-bolt-wrapper">
   {% include "@bolt-components-carousel/carousel.twig" with {
     slides: [
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
+      slide,
+      slide,
+      slide,
+      slide,
+      slide,
+      slide,
     ],
     navPosition: "outside",
     fullBleed: true

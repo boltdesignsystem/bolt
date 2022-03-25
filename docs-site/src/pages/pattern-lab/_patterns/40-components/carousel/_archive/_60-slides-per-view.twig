@@ -1,9 +1,12 @@
+{% set slide %}
+ {% include "_carousel-slide-content.twig" only %}
+{% endset %}
 <h2>Example Only Showing One Slide Per View</h2>
 {% include "@bolt-components-carousel/carousel.twig" with {
   slides: [
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
+    slide,
+    slide,
+    slide,
   ],
-  slidesPerView: 1,
+  slides_per_view: 1,
 } only %}

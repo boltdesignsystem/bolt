@@ -1,13 +1,16 @@
+{% set slide %}
+ {% include "_carousel-slide-content.twig" only %}
+{% endset %}
 <div class="t-bolt-xlight">
   <bolt-text headline>xlight theme</bolt-text>
   {% include "@bolt-components-carousel/carousel.twig" with {
     slides: [
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
+      slide,
+      slide,
+      slide,
+      slide,
+      slide,
+      slide,
     ]
   } only %}
 </div>
@@ -16,12 +19,12 @@
   <bolt-text headline>Light theme</bolt-text>
   {% include "@bolt-components-carousel/carousel.twig" with {
     slides: [
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
+      slide,
+      slide,
+      slide,
+      slide,
+      slide,
+      slide,
     ]
   } only %}
 </div>
@@ -30,12 +33,12 @@
   <bolt-text headline>Dark theme</bolt-text>
   {% include "@bolt-components-carousel/carousel.twig" with {
     slides: [
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
+      slide,
+      slide,
+      slide,
+      slide,
+      slide,
+      slide,
     ]
   } only %}
 </div>
@@ -44,12 +47,12 @@
   <bolt-text headline>XDark theme</bolt-text>
   {% include "@bolt-components-carousel/carousel.twig" with {
     slides: [
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
+      slide,
+      slide,
+      slide,
+      slide,
+      slide,
+      slide,
     ]
   } only %}
 </div>
