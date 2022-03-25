@@ -58,7 +58,7 @@ module.exports = {
         title: {
           type: 'any',
           description:
-            'Display the video title that overlays the video thumbnail. This should only be plain text.',
+            "Video title data that is used within the internal button's aria-label and the optional video title chip.",
         },
         show_title: {
           type: 'boolean',

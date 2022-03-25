@@ -29,21 +29,15 @@
       } only %}
     {% endset %}
 
-    {% include '@bolt-elements-text-link/text-link.twig' with {
-      content: video_thumbnail,
-      attributes: {
-        href: 'https://google.com',
-        target: '_blank',
-        rel: 'noopener',
-        'aria-label': 'Link to Video Resource'
-      }
-    } only %}
+    <a href="https://google.com" target="_blank" rel="noopener" aria-label="Link to Video Resource">
+      {{ video_thumbnail }}
+    </a>
   </div>
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
-{% set image_thumbnail %}
+{% set video_thumbnail %}
   {% set image %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
@@ -59,16 +53,9 @@
     content: image
   } only %}
 {% endset %}
-
-{% include '@bolt-elements-text-link/text-link.twig' with {
-  content: video_thumbnail,
-  attributes: {
-    href: 'https://google.com',
-    target: '_blank',
-    rel: 'noopener',
-    'aria-label': 'Link to Video Resource'
-  }
-} only %}
+<a href="https://google.com" target="_blank" rel="noopener" aria-label="Link to Video Resource">
+  {{ video_thumbnail }}
+</a>
 {% endverbatim %}
 {% endset %}
 
