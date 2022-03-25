@@ -7,6 +7,7 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-<ul {{ attributes }} class="c-bolt-floating-action-buttons__list js-bolt-floating-action-buttons-list">
+{# hidden class only styled for child list. this prevents a flash of unstyled content. #}
+<ul {{ attributes }} class="c-bolt-floating-action-buttons__list c-bolt-floating-action-buttons__list--hidden js-bolt-floating-action-buttons-list">
   {{ content }}
 </ul>

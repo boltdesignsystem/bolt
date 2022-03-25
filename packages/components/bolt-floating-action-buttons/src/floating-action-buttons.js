@@ -22,16 +22,20 @@ export class BoltFloatingActionButtons {
     this.isOpen = false;
 
     if (this.secondaryList) {
-      this.secondaryList.classList.add(
-        'c-bolt-floating-action-buttons__list--hidden',
+      this.secondaryListItems = this.secondaryList.querySelectorAll(
+        '.js-bolt-floating-action-buttons-list-item',
       );
-      Array.from(this.secondaryList.children).forEach(el => {
+
+      // hide secondary list items
+      Array.from(this.secondaryListItems).forEach(el => {
         el.classList.add('c-bolt-floating-action-buttons__list-item--hidden');
       });
     }
 
-    if (!this.hideOnLoad) {
-      this.show();
+    if (this.toggleButton) {
+      this.toggleButton.addEventListener('click', () => {
+        this.toggleSecondaryList();
+      });
     }
 
     if (this.hiddenListItems) {
@@ -40,10 +44,8 @@ export class BoltFloatingActionButtons {
       });
     }
 
-    if (this.toggleButton) {
-      this.toggleButton.addEventListener('click', () => {
-        this.toggleSecondaryList();
-      });
+    if (!this.hideOnLoad) {
+      this.show();
     }
 
     this.el.setAttribute('data-bolt-ready', '');
@@ -57,14 +59,6 @@ export class BoltFloatingActionButtons {
     this.el.classList.add('c-bolt-floating-action-buttons--hidden');
   }
 
-  showListItem(el) {
-    el.classList.remove('c-bolt-floating-action-buttons__list-item--hidden');
-  }
-
-  hideListItem(el) {
-    el.classList.add('c-bolt-floating-action-buttons__list-item--hidden');
-  }
-
   toggleSecondaryList() {
     if (this.isOpen) {
       // close this
@@ -74,7 +68,7 @@ export class BoltFloatingActionButtons {
         this.secondaryList.classList.add(
           'c-bolt-floating-action-buttons__list--hidden',
         );
-        Array.from(this.secondaryList.children).forEach(el => {
+        Array.from(this.secondaryListItems).forEach(el => {
           setTimeout(() => {
             el.classList.add(
               'c-bolt-floating-action-buttons__list-item--hidden',
@@ -90,7 +84,7 @@ export class BoltFloatingActionButtons {
         this.secondaryList.classList.remove(
           'c-bolt-floating-action-buttons__list--hidden',
         );
-        Array.from(this.secondaryList.children).forEach((el, index) => {
+        Array.from(this.secondaryListItems).forEach((el, index) => {
           setTimeout(() => {
             el.classList.remove(
               'c-bolt-floating-action-buttons__list-item--hidden',
@@ -122,9 +116,11 @@ export class BoltFloatingActionButtons {
     const scrollHandler = () => {
       scrollPosition = window.scrollY;
       if (revealPosition > 0 && scrollPosition >= revealPosition) {
-        this.showListItem(el);
+        el.classList.remove(
+          'c-bolt-floating-action-buttons__list-item--hidden',
+        );
       } else {
-        this.hideListItem(el);
+        el.classList.add('c-bolt-floating-action-buttons__list-item--hidden');
       }
     };
 
