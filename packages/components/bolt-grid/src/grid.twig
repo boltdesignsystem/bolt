@@ -6,7 +6,6 @@
 {# Variables #}
 {% set base_class = 'c-bolt-grid' %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set inner_attributes = create_attribute({}) %}
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
 {% set gutter_options = schema.properties.gutter.enum %}
