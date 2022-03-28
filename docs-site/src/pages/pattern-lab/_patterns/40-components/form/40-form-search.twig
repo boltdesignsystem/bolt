@@ -1,0 +1,84 @@
+{% set description %}
+  A search input includes a search icon as a submit button.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Set the <code>type</code> attribute to <code>search</code> for the input.</bolt-li>
+    <bolt-li>Use the <code>search_button_label</code> prop to render a unique label for the search button.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set form_children %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Employees or contractors',
+        displayType: 'floating',
+        attributes: {
+          for: 'search',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        search_button_label: 'Search people',
+        attributes: {
+          placeholder: 'Employees or contractors',
+          type: 'search',
+          id: 'search',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-form/form.twig' with {
+    children: form_children
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set form_children %}
+  {% set label %}
+    {% include '@bolt-components-form/form-label.twig' with {
+      title: 'Employees or contractors',
+      displayType: 'floating',
+      attributes: {
+        for: 'search',
+      },
+    } only %}
+  {% endset %}
+  {% set input %}
+    {% include '@bolt-components-form/form-input.twig' with {
+      search_button_label: 'Search people',
+      attributes: {
+        placeholder: 'Employees or contractors',
+        type: 'search',
+        id: 'search',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-form/form-element.twig' with {
+    label: label,
+    children: input,
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-form/form.twig' with {
+  children: form_children
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Search Input',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

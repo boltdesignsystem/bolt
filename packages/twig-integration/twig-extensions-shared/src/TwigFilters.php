@@ -50,8 +50,8 @@ class TwigFilters {
   }
 
   public static function t() {
-    return new Twig_SimpleFilter('t', function ($string) {
-      return $string;
+    return new Twig_SimpleFilter('t', function ($string, $args = []) {
+      return strtr($string, $args);
     });
   }
 

@@ -1,0 +1,164 @@
+/* ------------------------------------ *\
+   Animation bounce in
+\* ------------------------------------ */
+
+@keyframes a-bolt-in-bounce {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.a-bolt-in--bounce {
+  animation-name: a-bolt-in-bounce;
+}
+
+/* ------------------------------------ *\
+   Animation bounce in up
+\* ------------------------------------ */
+
+@keyframes a-bolt-in-bounce-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 50%, 0) scaleY(1.2);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, -2rem, 0) scaleY(0.9);
+  }
+
+  75% {
+    transform: translate3d(0, 1rem, 0) scaleY(0.95);
+  }
+
+  90% {
+    transform: translate3d(0, -0.5rem, 0) scaleY(0.985);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.a-bolt-in--bounce-up {
+  animation-name: a-bolt-in-bounce-up;
+}
+
+/* ------------------------------------ *\
+   Animation bounce in down
+\* ------------------------------------ */
+
+@keyframes a-bolt-in-bounce-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -50%, 0) scaleY(1.2);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 2.5rem, 0) scaleY(0.9);
+  }
+
+  75% {
+    transform: translate3d(0, -1rem, 0) scaleY(0.95);
+  }
+
+  90% {
+    transform: translate3d(0, 0.5rem, 0) scaleY(0.985);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.a-bolt-in--bounce-down {
+  animation-name: a-bolt-in-bounce-down;
+}
+
+/* ------------------------------------ *\
+   Animation bounce in left
+\* ------------------------------------ */
+
+@keyframes a-bolt-in-bounce-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-50%, 0, 0) scaleX(1.5);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(2.5rem, 0, 0) scaleX(1);
+  }
+
+  75% {
+    transform: translate3d(-1rem, 0, 0) scaleX(0.98);
+  }
+
+  90% {
+    transform: translate3d(0.5rem, 0, 0) scaleX(0.985);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.a-bolt-in--bounce-left {
+  animation-name: a-bolt-in-bounce-left;
+}
+
+/* ------------------------------------ *\
+   Animation bounce in right
+\* ------------------------------------ */
+
+@keyframes a-bolt-in-bounce-right {
+  from {
+    opacity: 0;
+    transform: translate3d(50%, 0, 0) scaleX(1.5);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(-2.5rem, 0, 0) scaleX(1);
+  }
+
+  75% {
+    transform: translate3d(1rem, 0, 0) scaleX(0.98);
+  }
+
+  90% {
+    transform: translate3d(-0.5rem, 0, 0) scaleX(0.985);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.a-bolt-in--bounce-right {
+  animation-name: a-bolt-in-bounce-right;
+}
