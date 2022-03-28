@@ -30,73 +30,94 @@
     ]
   } only %}
 {% endset %}
-
-{% include "@bolt-components-list/list.twig" with {
-  spacing: "medium",
-  items: [
+{% set horizontal_card_1 %}
+  {% set headline_1 %}
+     {% include "@bolt-components-headline/text.twig" with {
+        size: "small",
+        text: "1 Module",
+        weight: "semibold"
+      } only %}
+    {% endset %}
+    {% set headline_2 %}
+      {% include "@bolt-components-headline/text.twig" with {
+        size: "small",
+        text: "10 mins",
+        weight: "semibold",
+        attributes: {
+          class: "stats-item",
+        },
+      } only %}
+    {% endset %}
+    {% set popover %}
+      {% include "@bolt-components-popover/popover.twig" with {
+        trigger: trigger,
+        content: popoverContent,
+        spacing: "none",
+        placement: "top-start",
+        fallbackPlacements: [
+          "top",
+          "top-end"
+        ],
+        theme: "light"
+      } only %}
+    {% endset %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Mission",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        macros.include("@bolt-components-headline/text.twig", {
-          size: "small",
-          text: "1 Module",
-          weight: "semibold"
-        }, false),
-        macros.include("@bolt-components-headline/text.twig", {
-          size: "small",
-          text: "10 mins",
-          weight: "semibold",
-          attributes: {
-            class: "stats-item",
-          },
-        }, false),
-        macros.include("@bolt-components-popover/popover.twig", {
-          trigger: trigger,
-          content: popoverContent,
-          spacing: "none",
-          placement: "top-start",
-          fallbackPlacements: [
-            "top",
-            "top-end"
-          ],
-          theme: "light"
-        }, false),
+        headline,
+        text,
+        popover,
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
       cardDescription: bolt.faker.paragraph(3),
-    }, false),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_2 %}
+  {% set headline_1 %}
+    {% include "@bolt-components-headline/text.twig" with {
+      size: "small",
+      weight: "bold",
+      text: "#{bolt.faker.numberBetween(2,15)} tasks",
+    } only %}
+  {% endset %}
+  {% set headline_2 %}
+    {% include "@bolt-components-headline/text.twig" with {
+      size: "small",
+      weight: "bold",
+      text: "Completed",
+      icon: {
+        name: "check-solid",
+        position: "before"
+      },
+      attributes: {
+        style: [
+          'color: #3C9439;'
+        ]
+      }
+    } only %}
+  {% endset %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Challenge",
       cardTitle: bolt.faker.sentence(3),
       cardMetaItems: [
-        macros.include("@bolt-components-headline/text.twig", {
-          size: "small",
-          weight: "bold",
-          text: "#{bolt.faker.numberBetween(2,15)} tasks",
-        }, false),
-        macros.include("@bolt-components-headline/text.twig", {
-          size: "small",
-          weight: "bold",
-          text: "Completed",
-          icon: {
-            name: "check-solid",
-            position: "before"
-          },
-          attributes: {
-            style: [
-              'color: #3C9439;'
-            ]
-          }
-        }, false),
+        headline_1,
+        headline_2,
       ],
       cardGradient: "orange",
       cardIcon: "meteor",
       cardDescription: bolt.faker.paragraph(3),
-    }, false),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_3 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       completed: true,
@@ -108,8 +129,12 @@
         url: "https://google.com",
       },
       cardDescription: bolt.faker.paragraph(3),
-    }, false),
-    macros.include("@bolt-academy/_horizontal-card.twig", {
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_4 %}
+{{
+  macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       completed: true,
       cardSubtitle: "Certification",
@@ -120,7 +145,11 @@
         url: "https://.google.com",
       },
       cardDescription: bolt.faker.paragraph(3),
-    }, false),
+    }, false)
+}}
+{% endset %}
+{% set horizontal_card_5 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Module",
@@ -131,7 +160,11 @@
         url: "https://google.com",
       },
       cardDescription: bolt.faker.paragraph(3),
-    }, false),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_6 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Mission Test",
@@ -140,7 +173,11 @@
       cardIcon: "rocket",
       status: "complete",
       cardDescription: bolt.faker.paragraph(3),
-    }, false),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_7 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Mission Exercise",
@@ -149,7 +186,11 @@
       completed: true,
       cardIcon: "triangle",
       cardDescription: bolt.faker.paragraph(3),
-    }, false),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_crd_8 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Challenge",
@@ -158,7 +199,11 @@
       completed: true,
       cardIcon: "meteor",
       cardDescription: bolt.faker.paragraph(3),
-    }, false),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_9 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Mission",
@@ -166,7 +211,11 @@
       cardGradient: "pink",
       cardIcon: "molecule",
       cardDescription: bolt.faker.paragraph(3),
-    }, false),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_10 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Module",
@@ -174,6 +223,21 @@
       cardGradient: "teal",
       cardIcon: "orbit",
       cardDescription: bolt.faker.paragraph(3),
-    }, false),
+    }, false)
+  }}
+{% endset %}
+{% include "@bolt-components-list/list.twig" with {
+  spacing: "medium",
+  items: [
+    horizontal_card_1,
+    horizontal_card_2,
+    horizontal_card_3,
+    horizontal_card_4,
+    horizontal_card_5,
+    horizontal_card_6,
+    horizontal_card_7,
+    horizontal_card_8,
+    horizontal_card_9,
+    horizontal_card_10,
   ]
 } only %}
