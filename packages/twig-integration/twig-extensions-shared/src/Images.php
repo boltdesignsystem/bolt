@@ -6,7 +6,6 @@ namespace Bolt;
 use \Gregwar\Image\Image;
 use \Gregwar\Image\GarbageCollect;
 use \Webmozart\PathUtil\Path;
-use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 use PHPExif\Exif;
 use PHPExif\Reader\Reader as ExifReader;
 
@@ -72,10 +71,7 @@ class Images {
     } else if (($fileExt == "jpg") || ($fileExt == "jpeg") || ($fileExt == "png")) {
 
       if (getenv('NODE_ENV') === 'production') {
-        if (($fileExt == "jpeg") || ($fileExt == "jpg")){
-          $smallSample = Image::open($absoluteImagePath)->cropResize(320, 320)->jpeg($quality = 50);
-          $placeHolderColor = (new AvgColorPicker)->getImageAvgHexByPath($smallSample);
-
+        if (($fileExt == "jpeg") || ($fileExt == "jpg")) {
           $base64Image = Image::open($absoluteImagePath)->cropResize(32, 32)->gaussianBlur(1)->jpeg($quality = 50);
           $base64ImagePlaceholder = Image::open($base64Image)->inline();
         }
@@ -149,36 +145,6 @@ class Images {
     $hex .= str_pad(dechex($rgb[2]), 2, "0", STR_PAD_LEFT);
     return $hex; // returns the hex value including the number sign (#)
   }
-
-
-
-  // @todo: update to support publicDir via Bolt manifest data
-  public static function calculate_average_image_color($relativeImagePath, $wwwDir) {
-    // If this isn't a production compile, let's not do this long very memory intensive process.
-    if (getenv('NODE_ENV') !== 'production') {
-      // @todo: update to point to Bolt color swatch value
-      return 'hsl(233, 33%, 97%)'; // lightest gray from our colors to use as default when in dev mode
-    }
-
-    $absoluteImagePath = Utils::get_absolute_path($relativeImagePath, $wwwDir);
-
-    if(file_exists($absoluteImagePath)){
-      $fileExt = Utils::get_file_ext($absoluteImagePath);
-
-      if (($fileExt != "jpg") && ($fileExt != "png")){ // Skip over non-jpg or png files.
-        return;
-      }
-
-      // Resize and optimize the image before running through AvgColorPicker
-      $resizedImage = \Image::open($absoluteImagePath)->resize('640', '640')->jpeg($quality = 50);
-
-      $color = (new AvgColorPicker)->getImageAvgHexByPath($resizedImage);
-      return $color;
-    } else {
-      return;
-    }
-  }
-
 
   public static function get_image_dimensions($relativeImagePath, $wwwDir) {
     $absoluteImagePath = Utils::get_absolute_path($relativeImagePath, $wwwDir);
