@@ -24,6 +24,11 @@
     name: 'bell-solid',
   } only %}
 {% endset %}
+{% set icon_customer_service %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'customer-service',
+  } only %}
+{% endset %}
 {% set icon_chevron_right %}
   {% include '@bolt-elements-icon/icon.twig' with {
     name: 'chevron-right',
@@ -1032,6 +1037,16 @@
     },
     children: contact_popover_lv2,
     popover: true,
+  } only %}
+  {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
+    link: {
+      content: 'Pulse',
+      signifier_only: icon_customer_service,
+      counter: true,
+      attributes: {
+        href: 'https://google.com',
+      },
+    },
   } only %}
 {% endset %}
 
