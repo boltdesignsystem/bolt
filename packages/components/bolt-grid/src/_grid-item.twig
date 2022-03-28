@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-grid'].schema['grid'] %}
+{% set schema = bolt.data.components['@bolt-components-grid'].schema['grid-item'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
