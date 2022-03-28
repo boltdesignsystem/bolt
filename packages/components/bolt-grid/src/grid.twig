@@ -4,20 +4,13 @@
 {% endif %}
 
 {# Variables #}
+{% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-
-{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
-{% set gutter_options = schema.properties.gutter.enum %}
-{% set row_gutter_options = schema.properties.row_gutter.enum %}
-
-{# Check that the component's current prop values are valid. if not, default to the schema default #}
-{% set gutter = gutter in gutter_options ? gutter : schema.properties.gutter.default %}
-{% set row_gutter = row_gutter in row_gutter_options ? row_gutter : schema.properties.row_gutter.default %}
 
 {# Grid component's custom element wrapper #}
 <bolt-grid
-  {% if gutter %} gutter="{{ gutter }}" {% endif %}
-  {% if row_gutter %} row-gutter="{{ row_gutter }}" {% endif %}
+  {% if this.data.gutter.value %} gutter="{{ this.data.gutter.value }}" {% endif %}
+  {% if this.data.row_gutter.value %} row-gutter="{{ this.data.row_gutter.value }}" {% endif %}
   {{ attributes }}
 >
   {% for item in items %}
