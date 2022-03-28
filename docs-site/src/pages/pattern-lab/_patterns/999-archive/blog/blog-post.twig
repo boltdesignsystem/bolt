@@ -76,47 +76,53 @@
           size: 'xxxlarge',
           tag: 'h1',
         } only %}
+        {% set headline %}
+          {% include '@bolt-components-headline/text.twig' with {
+            text: 'By ' ~ auhtor_name ~ ', ' ~ article_date,
+          } only %}
+        {% endset %}
+        {% set share %}
+          {% include '@bolt-components-share/share.twig' with {
+            size: 'small',
+            text: 'Share',
+            sources: [
+              {
+                name: 'facebook',
+                attributes: {
+                  href: 'https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/40-components-action-blocks-05-action-blocks/40-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse'
+                }
+              },
+              {
+                name: 'twitter',
+                attributes: {
+                  href: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+                }
+              },
+              {
+                name: 'linkedin',
+                attributes: {
+                  href: 'https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/40-components-action-blocks-05-action-blocks/40-components-action-blocks-05-action-blocks.html'
+                }
+              },
+              {
+                name: 'email',
+                attributes: {
+                  href: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+                }
+              }
+            ],
+            copy_to_clipboard: {
+              text_to_copy: 'https://google.com'
+            }
+          } only %}
+        {% endset %}
         {% include '@bolt-components-list/list.twig' with {
           display: 'inline@small',
           tag: 'div',
           separator: 'solid',
           items: [
-            include('@bolt-components-headline/text.twig', {
-              text: 'By ' ~ auhtor_name ~ ', ' ~ article_date,
-            }),
-            include('@bolt-components-share/share.twig', {
-              size: 'small',
-              text: 'Share',
-              sources: [
-                {
-                  name: 'facebook',
-                  attributes: {
-                    href: 'https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/40-components-action-blocks-05-action-blocks/40-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse'
-                  }
-                },
-                {
-                  name: 'twitter',
-                  attributes: {
-                    href: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
-                  }
-                },
-                {
-                  name: 'linkedin',
-                  attributes: {
-                    href: 'https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/40-components-action-blocks-05-action-blocks/40-components-action-blocks-05-action-blocks.html'
-                  }
-                },
-                {
-                  name: 'email',
-                  attributes: {
-                    href: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
-                  }
-                }
-              ],
-              copy_to_clipboard: {
-                text_to_copy: 'https://google.com'
-              }
-            }),
+            headline,
+            share,
           ]
         } only %}
       {% endcell %}
@@ -158,29 +164,20 @@
         class: "u-bolt-margin-bottom-small",
       }
     } only %}
+    {% set chip %}
+      {% include '@bolt-components-chip/chip.twig' with {
+        text: 'Tag',
+        url: '#!',
+      } only %}
+    {% endset %}
     {% include '@bolt-components-list/list.twig' with {
       display: 'inline',
       items: [
-        include('@bolt-components-chip/chip.twig', {
-          text: 'Tag',
-          url: '#!',
-        }),
-        include('@bolt-components-chip/chip.twig', {
-          text: 'Tag',
-          url: '#!',
-        }),
-        include('@bolt-components-chip/chip.twig', {
-          text: 'Tag',
-          url: '#!',
-        }),
-        include('@bolt-components-chip/chip.twig', {
-          text: 'Tag',
-          url: '#!',
-        }),
-        include('@bolt-components-chip/chip.twig', {
-          text: 'Tag',
-          url: '#!',
-        }),
+        chip,
+        chip,
+        chip,
+        chip,
+        chip,
       ]
     } only %}
 
