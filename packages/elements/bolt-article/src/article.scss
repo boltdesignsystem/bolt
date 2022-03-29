@@ -122,17 +122,17 @@ $_bolt-article-element-spacing: var(--bolt-spacing-y-medium);
   }
 
   ol,
-  ol ol ol ol {
+  ol > li > ol > li > ol > li > ol {
     list-style-type: decimal;
   }
 
-  ol ol,
-  ol ol ol ol ol {
+  ol > li > ol,
+  ol > li > ol > li > ol > li > ol > li > ol {
     list-style-type: lower-alpha;
   }
 
-  ol ol ol,
-  ol ol ol ol ol ol {
+  ol > li > ol > li > ol,
+  ol > li > ol > li > ol > li > ol > li > ol > li > ol {
     list-style-type: upper-roman;
   }
 
