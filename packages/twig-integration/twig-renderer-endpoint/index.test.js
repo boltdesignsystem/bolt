@@ -1,10 +1,13 @@
 const { render } = require('@bolt/twig-renderer');
-const buttonTemplate = '@bolt-components-button/button.twig';
+const buttonTemplate = '@bolt-elements-button/button.twig';
 
 describe('Test the Bolt Twig Renderer API', () => {
   test('renders a basic button', async () => {
     const buttonData = {
-      text: 'Hello world!',
+      content: 'Hello world!',
+      attributes: {
+        type: 'button',
+      },
     };
     const result = await render(buttonTemplate, buttonData);
 
@@ -18,8 +21,11 @@ describe('Test the Bolt Twig Renderer API', () => {
   });
 
   test('handles non-existent template path', async () => {
-    const result = await render('@bolt-components-button/button2.twig', {
-      text: 'Hello world 2!',
+    const result = await render('@bolt-elements-button/button2.twig', {
+      content: 'Hello world 2!',
+      attributes: {
+        type: 'button',
+      },
     });
 
     expect(result.ok).toEqual(false);
@@ -27,7 +33,10 @@ describe('Test the Bolt Twig Renderer API', () => {
 
   test('renders the button component correctly', async () => {
     const result = await render(buttonTemplate, {
-      text: 'Hello world!2',
+      content: 'Hello world!2',
+      attributes: {
+        type: 'button',
+      },
     });
 
     expect(result.html).toMatchSnapshot();
@@ -35,9 +44,10 @@ describe('Test the Bolt Twig Renderer API', () => {
 
   test('renders attributes on the button component correctly', async () => {
     const result = await render(buttonTemplate, {
-      text: 'Hello world!',
+      content: 'Hello world!',
       attributes: {
         class: ['u-bolt-margin-bottom-large'],
+        type: 'button',
       },
     });
 
@@ -46,8 +56,11 @@ describe('Test the Bolt Twig Renderer API', () => {
 
   test('renders the secondary button correctly', async () => {
     const result = await render(buttonTemplate, {
-      text: 'Secondary Button!',
-      style: 'secondary',
+      content: 'Secondary Button!',
+      hierarchy: 'secondary',
+      attributes: {
+        type: 'button',
+      },
     });
 
     expect(result.html).toMatchSnapshot();
