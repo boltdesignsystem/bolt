@@ -273,32 +273,8 @@ class BoltImage extends BoltElement {
       }
     };
 
-    // Include <noscript> for server-side rendered components
-    const fallbackImageElement = () => {
-      // this.isSSR is undefined at the moment, placeholder for future server-side rendering
-      if (lazyload && this.src && this.isSSR) {
-        return html`
-          <noscript>
-            <img
-              class="${cx('c-bolt-image__image', {
-                'c-bolt-image--cover': this.cover,
-              })}"
-              src="${this.src}"
-              alt="${this.alt || ''}"
-              srcset="${ifDefined(
-                !lazyload ? this.srcset || this.src : undefined,
-              )}"
-              data-srcset="${ifDefined(
-                lazyload ? this.srcset || this.src : undefined,
-              )}"
-            />
-          </noscript>
-        `;
-      }
-    };
-
     const imageTemplate = html`
-      ${placeholderImageElement()} ${imageElement()} ${fallbackImageElement()}
+      ${placeholderImageElement()} ${imageElement()}
     `;
 
     const ratioTemplate = children => {
