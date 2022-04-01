@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/boltdesignsystem/bolt/compare/v5.2.4...v5.3.0) (2022-03-28)
+
+
+### Bug Fixes
+
+* add max width to regular modal ([08875a5](https://github.com/boltdesignsystem/bolt/commit/08875a56674729e06b6d40d920d9d4a0e654f1c0))
+* css scope ([216bffb](https://github.com/boltdesignsystem/bolt/commit/216bffb98465f48689babaa8b329166cad528024))
+* css scope again ([2794107](https://github.com/boltdesignsystem/bolt/commit/2794107250bff88e3c38c18940b0862b370b6888))
+* js cleanup ([be076e5](https://github.com/boltdesignsystem/bolt/commit/be076e5045c44ea095301a30f69d54ce4697c147))
+* namespace ([f1d408c](https://github.com/boltdesignsystem/bolt/commit/f1d408c530c7acb8c985a402c25bfa24c0127080))
+* typeahead icon button position ([0ffe8fa](https://github.com/boltdesignsystem/bolt/commit/0ffe8fa4201778116e43f4c90740a08fc2c50042))
+* update test ([e1b81f9](https://github.com/boltdesignsystem/bolt/commit/e1b81f94280e0cee9f21865f166cb4574c1139d9))
+
+
+### Reverts
+
+* Revert "remove keypress handler and replace it with clickhandler on desktop" ([f3e269b](https://github.com/boltdesignsystem/bolt/commit/f3e269b2d0a2b340f25f6777158a1688999d863c))
+
+
+
+
+
+## [5.2.4](https://github.com/boltdesignsystem/bolt/compare/v5.2.3...v5.2.4) (2022-03-03)
+
+
+### Bug Fixes
+
+* saleshub pulse link ([9009b50](https://github.com/boltdesignsystem/bolt/commit/9009b50eda013a28551080f4dc00113b278ac815))
+
+
+
+
+
 ## [5.2.3](https://github.com/boltdesignsystem/bolt/compare/v5.2.2...v5.2.3) (2022-02-25)
 
 **Note:** Version bump only for package bolt

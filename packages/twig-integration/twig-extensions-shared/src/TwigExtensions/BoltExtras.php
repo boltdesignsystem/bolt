@@ -16,7 +16,6 @@ class BoltExtras extends Twig_Extension implements Twig_ExtensionInterface {
       Bolt\TwigFunctions::color_contrast(),
       Bolt\TwigFunctions::getSpacingScaleSequence(),
       Bolt\TwigFunctions::github_url(),
-      Bolt\TwigFunctions::ssr(),
     ];
   }
 
@@ -25,13 +24,10 @@ class BoltExtras extends Twig_Extension implements Twig_ExtensionInterface {
       Bolt\TwigFilters::markdown(),
       Bolt\TwigFilters::rgb2hex(),
       Bolt\TwigFilters::text_contrast(),
-      Bolt\TwigFilters::bolt_ssr(),
     ];
   }
 
   public function getTokenParsers() {
-    return [
-      // Bolt\TwigTags::ssr_tag(),
-    ];
+    return [];
   }
 }

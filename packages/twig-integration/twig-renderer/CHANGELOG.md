@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v5.2.4...v5.3.0) (2022-03-28)
+
+**Note:** Version bump only for package @bolt/twig-renderer
+
+
+
+
+
 # [5.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v5.0.1...v5.1.0) (2021-12-20)
 
 **Note:** Version bump only for package @bolt/twig-renderer

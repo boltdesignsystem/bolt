@@ -1,8 +1,7 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Bolt Grid Item',
-  description:
-    'THIS WILL BE DEPRECATED. MUST REMOVE A REFERENCE OF THIS IN THE BAND SCHEMA (which would be fixed with the band refactor work).',
+  title: 'Grid Item',
+  description: 'Grid item within a 12-column grid.',
   type: 'object',
   properties: {
     attributes: {
@@ -10,17 +9,11 @@ module.exports = {
       description:
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
-    align: {
-      type: 'string',
-      description: 'Horizontal alignment of the grid item itself',
-      default: 'start',
-      enum: ['start', 'center', 'end'],
-    },
     valign: {
       type: 'string',
       description: 'Vertical alignment of the grid item itself',
-      default: 'start',
-      enum: ['start', 'center', 'end'],
+      enum: ['auto', 'start', 'center', 'end'],
+      default: 'auto',
     },
     column_start: {
       type: 'string',

@@ -13,10 +13,6 @@ $bolt-typeahead-border-radius: 6px;
 $bolt-typeahead-placeholder-color: var(--bolt-color-gray);
 $bolt-typeahead-result-highlight-color: var(--bolt-color-gray-xlight);
 
-/**
- * 1. relative z-index so doesn't need to use bolt z-index mixin
- */
-
 bolt-typeahead {
   display: flex;
   align-self: stretch;
@@ -125,7 +121,7 @@ bolt-autosuggest {
   position: absolute;
   top: calc(100% + 2px);
   right: 0;
-  z-index: 10; /* [1] */
+  z-index: 1; // Raise stacking context above the input.
   width: 100%;
   min-width: 100%;
   max-height: 0;
@@ -203,24 +199,11 @@ bolt-autosuggest {
 
 .c-bolt-typeahead__button {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1; /* [1] */
-  cursor: pointer;
-  border: 0;
-  transition: opacity 0.1s ease;
-
-  // overwrite .e-bolt-button--transparent hover and active transform
-  &:hover,
-  &:focus,
-  &:active:not(:disabled) {
-    transform: translateY(-50%);
-  }
+  top: 0;
 }
 
 .c-bolt-typeahead__button--clear {
   visibility: hidden;
-  opacity: 0;
   right: 0;
 }
 
@@ -228,29 +211,11 @@ bolt-autosuggest {
   left: 0;
 }
 
-.c-bolt-typeahead__icon {
-  color: var(--bolt-color-navy-light);
-  line-height: 1;
-}
-
-.c-bolt-typeahead__icon--clear {
-  fill: currentColor;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  z-index: 1; /* [1] */
-  width: 1rem; // needed for icon SSR rendering
-  font-size: 1rem; // needed for icon SSR rendering
+.c-bolt-typeahead__button.e-bolt-button--transparent {
+  --e-bolt-button-text-color: var(--bolt-color-navy-light); // Typeahead is not compatible with color themes. This overrides the Button element to not change with parent's color theme.
 }
 
 .c-bolt-typeahead__input[required]:valid ~ .c-bolt-typeahead__button--clear,
 .c-bolt-typeahead__button--clear.is-visible {
   visibility: visible;
-  opacity: 1;
-}
-
-.c-bolt-typeahead__input--with-clear-button
-  ~ .c-bolt-typeahead__button--submit {
-  opacity: 1;
 }
