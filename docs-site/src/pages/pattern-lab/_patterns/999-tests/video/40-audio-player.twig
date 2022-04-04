@@ -1,0 +1,160 @@
+{% set main_content %}
+  {% set audio_player %}
+    <div style="max-width: 480px;height:60px;">
+      <video-js
+        data-account="1900410236"
+        data-player="h8qT2MQfn"
+        data-video-id="6302315717001"
+        data-embed="default"
+        controls=""
+        data-application-id=""
+        class="c-base-video c-base-video--audio-only"></video-js>
+    </div>
+  {% endset %}
+
+  {% set white_theme %}
+    <div class="t-bolt-white">
+      {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% set black_theme %}
+    <div class="t-bolt-black">
+    {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% set gray_light_theme %}
+    <div class="t-bolt-gray-xlight">
+    {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% set navy_dark_theme %}
+    <div class="t-bolt-navy-dark">
+    {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% set navy_theme %}
+    <div class="t-bolt-navy">
+    {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% set navy_light_theme %}
+    <div class="t-bolt-navy-light">
+    {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% set teal_theme %}
+    <div class="t-bolt-teal">
+    {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% set yellow_theme %}
+    <div class="t-bolt-yellow">
+    {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% set orange_theme %}
+    <div class="t-bolt-orange">
+    {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% set pink_theme %}
+    <div class="t-bolt-pink">
+    {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% set wine_theme %}
+    <div class="t-bolt-wine">
+    {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% set berry_theme %}
+    <div class="t-bolt-berry">
+    {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% set violet_theme %}
+    <div class="t-bolt-violet">
+      {{ audio_player }}
+    </div>
+  {% endset %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: white_theme,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: black_theme,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: gray_light_theme,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: navy_theme,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: navy_light_theme,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: teal_theme,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: yellow_theme,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content:   orange_theme,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content:   pink_theme,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content:   wine_theme,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content:   berry_theme,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content:   violet_theme,
+    spacing: 'medium'
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}
+
+<script src="https://players.brightcove.net/1900410236/h8qT2MQfn_default/index.min.js"></script>

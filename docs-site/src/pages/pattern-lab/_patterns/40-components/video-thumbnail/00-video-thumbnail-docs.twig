@@ -1,7 +1,10 @@
 {% set usage %}{% verbatim %}
 {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
   content: image,
-  duration: '4:55',
+  video: {
+    title: 'Video Title',
+    duration: '4:55'
+  }
 } only %}
 {% endverbatim %}{% endset %}
 

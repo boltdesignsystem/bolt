@@ -31,7 +31,6 @@ async function getDefaultConfig() {
     proxyHostname: configSchema.properties.proxyHostname.default,
     proxyHeader: configSchema.properties.proxyHeader.default,
     ip,
-    enableSSR: configSchema.properties.enableSSR.default,
     mode: configSchema.properties.mode.default,
     env: process.env.NODE_ENV,
     enableCache: configSchema.properties.enableCache.default,
