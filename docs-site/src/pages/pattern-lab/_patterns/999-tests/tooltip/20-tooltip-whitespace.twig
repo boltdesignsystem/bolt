@@ -1,0 +1,9 @@
+{% set tooltip %}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    trigger: 'small piece of text',
+    content: 'This is what we call a tooltip.',
+  } only %}
+{% endset %}
+
+<h2>Tooltip whitespace around a trigger</h2>
+<p>When you use the tooltip there should be no extra whitespace around the text. For example, this is a {{ tooltip }} and there is no extra whitespace around it.</p>
