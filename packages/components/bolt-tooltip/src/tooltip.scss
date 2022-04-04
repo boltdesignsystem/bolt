@@ -21,8 +21,12 @@ bolt-tooltip {
 
   // Plain text trigger gets underlined
   &[dotted] {
+    display: inline-block;
     cursor: help;
-    border-bottom: 1px dotted var(--m-bolt-neutral);
+    text-decoration-style: dotted;
+    text-decoration-line: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 1px;
   }
 }
 
