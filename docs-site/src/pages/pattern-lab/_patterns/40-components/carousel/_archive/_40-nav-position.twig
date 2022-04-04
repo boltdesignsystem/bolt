@@ -1,13 +1,3 @@
-{# <h2>Example Nav On The Outside</h2>
-{% include "@bolt-components-carousel/carousel.twig" with {
-  slides: [
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
-  ],
-  navPosition: "outside",
-} only %} #}
-
 {% set slide %}
  {% include "_carousel-slide-content.twig" only %}
 {% endset %}
@@ -52,7 +42,7 @@
       slide,
       slide,
     ],
-    navPosition: "outside",
+    nav_position: "outside",
     fullBleed: true
   } only %}
 </div>
