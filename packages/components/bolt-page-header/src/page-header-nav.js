@@ -294,7 +294,7 @@ export class BoltPageHeaderNav {
   }
 
   handleAnchorClick(e) {
-    if (e.target.hash || e.target.parentNode.hash) {
+    if (e.target.closest('a')?.hash) {
       this.hideMenu(this.state.activeMenu.trigger);
     }
   }
