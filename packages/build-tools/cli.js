@@ -125,9 +125,6 @@ program
         config.prod =
           typeof program.prod === 'undefined' ? config.prod : program.prod;
 
-        // automatically set enableSSR to true in prod mode and false in dev mode, unless manually set.
-        config.enableSSR = false;
-
         // automatically enable i18n in production builds if undefined
         config.i18n =
           typeof options.i18n !== 'undefined'
@@ -154,12 +151,6 @@ Environment: ${config.prod ? 'Production' : 'Development'}
 
       console.log(defaultConfigLog);
 
-      // @todo: re-enable once JS-based SSR gets re-enabled and ships
-      // log.dim(
-      //   `enableSSR: ${config.enableSSR} ${
-      //     originalConfig.enableSSR ? '(manually set)' : '(auto set)'
-      //   }`,
-      // );
       // log.dim(`Rendering Mode: ${config.mode}`);
       if (config.verbosity > 2) {
         log.dim(`Opening browser: ${config.openServerAtStart}`);
@@ -176,16 +167,6 @@ Environment: ${config.prod ? 'Production' : 'Development'}
     }
 
     await log.intro();
-
-    program
-      .option(
-        '--no-ssr',
-        'Manually disables server side rendering (vs auto enable in prod mode)',
-      )
-      .option(
-        '--ssr',
-        'Manually enabless server side rendering in all enviornments (vs by default only enabling automatically in prod mode)',
-      );
 
     // `bolt build`
     program

@@ -10,6 +10,8 @@ Available variables:
   - children (renderable) - Optional additional rendered elements.
   - hasErrors (boolean) - whether this input has server-side errors.  If true, this will invoke error styling for this
       field on page load.
+  - search_button_label (string) - If the type of this form input is 'search', the label that should be applied to the
+      search button that appears within the form field.  Defaults to "Search" if no value is passed.
 #}
 
 {% set attributes = create_attribute(attributes | default({})) %}
@@ -40,14 +42,15 @@ the icons wrapping markup, even if there are no icons to show, for the following
 
 {% if _supportsIcons %}
 
-  {% if _type == "search" %}
+  {% if _type == 'search' %}
     {% set _icons = _icons|merge(['search']) %}
   {% endif %}
 
   <div class="c-bolt-input-icons">
     {% include "@bolt-components-form/form-icons.twig" with {
-      "icons": _icons,
+      icons: _icons,
       icon_size: icon_size,
+      search_button_label: search_button_label|default('Search'|t),
     } only %}
   </div>
 {% endif %}

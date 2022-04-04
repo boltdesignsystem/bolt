@@ -25,6 +25,7 @@
 {% set link_classes = [
   'c-bolt-page-header__nav-link',
   link.desktop_heading ? 'c-bolt-page-header__nav-link--heading',
+  link.signifier_only and not children ? 'c-bolt-page-header__nav-link--tooltip',
 ] %}
 
 {# Template #}
