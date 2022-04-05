@@ -1,6 +1,10 @@
 <div style="margin-top: 110vh"></div>
 
+{% set micro_journey_demo %}
+  {% include '@pl/_micro-journey-demo-1.twig' only %}
+{% endset %}
+
 {% include '@pl/_shadow-dom-demo.twig' with {
-  content: include('@pl/_micro-journey-demo-1.twig'),
+  content: micro_journey_demo,
   enableEditor: true,
 } %}

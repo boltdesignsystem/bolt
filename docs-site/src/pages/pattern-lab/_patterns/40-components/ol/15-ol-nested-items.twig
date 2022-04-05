@@ -1,3 +1,14 @@
+{% set nested_list %}
+  {% include '@bolt-components-ol/ol.twig' with {
+    items: [
+      'Item 1',
+      'Item 2',
+      'Item 3',
+      'Item 4'
+    ]
+  } only %}
+{% endset %}
+
 {% include '@bolt-components-ol/ol.twig' with {
   'theme': theme,
   'items' : [
@@ -7,14 +18,7 @@
     'Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.',
     [
       'Answer questions authoritatively and concisely.',
-      include('@bolt-components-ol/ol.twig', {
-        items: [
-          'Item 1',
-          'Item 2',
-          'Item 3',
-          'Item 4'
-        ]
-      })
+      nested_list,
     ]
   ]
 } %}

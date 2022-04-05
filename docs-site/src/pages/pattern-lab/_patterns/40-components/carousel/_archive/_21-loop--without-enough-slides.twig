@@ -1,47 +1,33 @@
+{% set slide_1 %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    body: {
+      headline: 'Slide 1',
+      paragraph: 'This is a paragraph.',
+    },
+  } only %}
+{% endset %}
+{% set slide_2 %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    body: {
+      headline: 'Slide 2',
+      paragraph: 'This is a paragraph.',
+    },
+  } only %}
+{% endset %}
+{% set slide_3 %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    body: {
+      headline: 'Slide 3',
+      paragraph: 'This is a paragraph.',
+    },
+  } only %}
+{% endset %}
+
 {% include "@bolt-components-carousel/carousel.twig" with {
   slides: [
-    include("@bolt-components-card/card.twig", {
-      contentItems: [
-        {
-          pattern: "headline",
-          tag: "h3",
-          size: "large",
-          text: "Slide 1"
-        },
-        {
-          pattern: "text",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-        }
-      ]
-    }, with_context = false),
-    include("@bolt-components-card/card.twig", {
-      contentItems: [
-        {
-          pattern: "headline",
-          tag: "h3",
-          size: "large",
-          text: "Slide 2"
-        },
-        {
-          pattern: "text",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-        }
-      ]
-    }, with_context = false),
-    include("@bolt-components-card/card.twig", {
-      contentItems: [
-        {
-          pattern: "headline",
-          tag: "h3",
-          size: "large",
-          text: "Slide 3"
-        },
-        {
-          pattern: "text",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-        }
-      ]
-    }, with_context = false),
+    slide_1,
+    slide_2,
+    slide_3,
   ],
-  loop: true,
+  autoplay: true,
 } only %}

@@ -1,4 +1,8 @@
+{% set micro_journey_demo %}
+  {% include '@pl/_micro-journey-demo-1.twig' %}
+{% endset %}
+
 {% include '@pl/_shadow-dom-demo.twig' with {
-  content: include('@pl/_micro-journey-demo-1.twig'),
+  content: micro_journey_demo,
   enableEditor: true,
 } %}

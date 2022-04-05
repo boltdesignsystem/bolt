@@ -8,12 +8,14 @@
   noJs: true,
 } only %} #}
 
-
+{% set slide %}
+ {% include "_carousel-slide-content.twig" only %}
+{% endset %}
 {% include "@bolt-components-carousel/carousel.twig" with {
   slides: [
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
+    slide,
+    slide,
+    slide,
   ],
   stacked: false
 } only %}
