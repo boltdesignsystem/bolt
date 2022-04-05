@@ -55,7 +55,7 @@ export class BoltHolyGrail {
       document.body.classList.add('u-bolt-overflow-hidden');
     }
     document.addEventListener('keydown', this.handleEscapeKeypress);
-    Cookies.set('l-bolt-holy-grail--hidden', 'false');
+    Cookies.set('l-bolt-holy-grail--hidden', 'false', { expires: 90 });
   }
 
   hide() {
@@ -66,7 +66,7 @@ export class BoltHolyGrail {
     }
     this.toggleTrigger.focus();
     document.removeEventListener('keydown', this.handleEscapeKeypress);
-    Cookies.set('l-bolt-holy-grail--hidden', 'true');
+    Cookies.set('l-bolt-holy-grail--hidden', 'true', { expires: 90 });
   }
 
   getKey(e) {
