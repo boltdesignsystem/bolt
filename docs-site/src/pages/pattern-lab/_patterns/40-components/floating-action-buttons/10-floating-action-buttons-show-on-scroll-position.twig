@@ -1,5 +1,5 @@
 {% set description %}
-  The <code>show_on_scroll_position</code> prop on the list item allows floating action buttons to show on scroll.
+  The <code>show_on_scroll_selector</code> prop on the list item allows floating action buttons to show on scroll.
 {% endset %}
 
 {% set notes %}
@@ -29,7 +29,7 @@
 {% set twig_markup %}{% verbatim %}
   {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
     content: content,
-    show_on_scroll_position: '100px'
+    show_on_scroll_selector: '#main-title'
   } only %}
 {% endverbatim %}{% endset %}
 

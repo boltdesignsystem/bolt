@@ -95,35 +95,30 @@ export class BoltFloatingActionButtons {
     }
   }
 
-  getScrollPositionFromProp(el) {
-    let revealPosition = 0;
-    const scrollInt = parseInt(el.dataset.showOnScrollPosition, 10);
-    const pageHeight = window.innerHeight;
-
-    if (el.dataset.showOnScrollPosition.includes('px')) {
-      revealPosition = scrollInt;
-    } else if (el.dataset.showOnScrollPosition.includes('%')) {
-      // set a pixel value based on the percentage value.
-      revealPosition = pageHeight * (scrollInt / 100);
-    }
-    return revealPosition;
-  }
-
   addScrollHandler(el) {
-    let scrollPosition = window.scrollY;
-    const revealPosition = this.getScrollPositionFromProp(el);
+    const callback = entries => {
+      entries.forEach(entry => {
+        const isIntersectingTop =
+          entry.intersectionRect.top >= entry.boundingClientRect.top;
+        const isLeaving = entry.intersectionRatio === 0;
 
-    const scrollHandler = () => {
-      scrollPosition = window.scrollY;
-      if (revealPosition > 0 && scrollPosition >= revealPosition) {
-        el.classList.remove(
-          'c-bolt-floating-action-buttons__list-item--hidden',
-        );
-      } else {
-        el.classList.add('c-bolt-floating-action-buttons__list-item--hidden');
-      }
+        if (isIntersectingTop) {
+          if (isLeaving) {
+            // leaving
+            el.classList.remove(
+              'c-bolt-floating-action-buttons__list-item--hidden',
+            );
+          } else {
+            // entering
+            el.classList.add(
+              'c-bolt-floating-action-buttons__list-item--hidden',
+            );
+          }
+        }
+      });
     };
 
-    window.addEventListener('scroll', scrollHandler);
+    const observer = new IntersectionObserver(callback);
+    observer.observe(document.querySelector(el.dataset.showOnScrollSelector));
   }
 }

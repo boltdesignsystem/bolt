@@ -18,10 +18,10 @@ module.exports = {
       description:
         'Renders a list of secondary buttons. Use the floating-action-buttons-ul.twig template to render a list. Only use this prop if the floating-action-buttons-toggle-button.twig template is used for the content prop.',
     },
-    show_on_scroll_position: {
+    show_on_scroll_selector: {
       type: 'string',
       description:
-        'This will leave the list item hidden until the page is scrolled to a certain position. A percentage or pixel value must be passed here as a string (ie. "20%" or "200px").',
+        'This will leave the list item hidden until the page is scrolled to to show then hide a certain element (ie. "h1").',
     },
   },
 };
