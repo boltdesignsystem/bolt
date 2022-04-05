@@ -8,8 +8,7 @@ table {
   color: var(--m-bolt-body);
 }
 
-thead,
-tfoot {
+thead {
   white-space: nowrap;
 }
 
@@ -22,14 +21,15 @@ td {
 
 th,
 thead td,
+tfoot th,
 tfoot td {
   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
   font-family: var(--bolt-type-font-family-headline);
-  font-weight: var(--bolt-type-font-weight-semibold);
 }
 
 th,
 thead td {
+  font-weight: var(--bolt-type-font-weight-semibold);
   color: var(--m-bolt-headline);
   background-color: rgba(bolt-color(gray), 0.1);
 }
@@ -38,4 +38,9 @@ tbody th,
 td {
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   vertical-align: top;
+}
+
+tfoot th,
+tfoot td {
+  font-weight: var(--bolt-type-font-weight-bold);
 }

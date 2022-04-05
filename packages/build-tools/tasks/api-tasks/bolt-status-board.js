@@ -11,47 +11,76 @@ const events = require('@bolt/build-utils/events');
 
 const tableRows = [];
 
-let config,
-  boltUrls,
-  filteredBoltPackages,
-  pendingRequests = [],
-  processedComponents = [];
+let config;
+let boltUrls;
+let filteredBoltPackages;
+const pendingRequests = [];
+const processedComponents = [];
 
 async function finishRendering(rows, callback) {
   config = config || (await getConfig());
 
   renderString(`
-    {% include "@bolt-components-table/table.twig" with {
-      first_col_fixed_width: true,
-      borderless: true,
+    {% set header %}
+      {% set cells %}
+        {% include '@bolt-components-table/table-cell.twig' with {
+          header: true,
+          content: 'Component',
+          attributes: {
+            class: [
+              'sort'
+            ],
+            'data-sort': 'component'
+          },
+        } only %}
+        {% include '@bolt-components-table/table-cell.twig' with {
+          content: 'Sass',
+          header: true,
+        } only %}
+        {% include '@bolt-components-table/table-cell.twig' with {
+          content: 'Twig',
+          header: true,
+        } only %}
+        {% include '@bolt-components-table/table-cell.twig' with {
+          content: 'Web Component',
+          header: true,
+        } only %}
+        {% include '@bolt-components-table/table-cell.twig' with {
+          content: 'Jest',
+          header: true,
+        } only %}
+        {% include '@bolt-components-table/table-cell.twig' with {
+          content: 'Nightwatch',
+          header: true,
+        } only %}
+        {% include '@bolt-components-table/table-cell.twig' with {
+          content: 'TESTING.md',
+          header: true,
+        } only %}
+        {% include '@bolt-components-table/table-cell.twig' with {
+          content: 'README.md',
+          header: true,
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-table/table-row.twig' with {
+        content: cells,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: ${JSON.stringify(arraySort(rows))}
+      },
       attributes: {
         class: [
-          "t-bolt-xlight"
+          't-bolt-xlight',
+          'u-bolt-block'
         ],
-        id: "component-status"
+        id: 'component-status',
+        style: 'max-height: none;'
       },
-      headers: {
-        top: {
-          cells: [
-            {
-              content: "Component",
-              attributes: {
-                class: [
-                  "sort"
-                ],
-                "data-sort": "component"
-              },
-            },
-            "Sass",
-            "Twig",
-            "Web Component",
-            "Jest",
-            "TESTING.md",
-            "README.md"
-          ]
-        },
-      },
-      rows: ${JSON.stringify(arraySort(rows, 'cells'))},
     } only %}
   `).then(renderedResults => {
     const formattedTable = prettier.format(renderedResults.html, {
@@ -134,7 +163,11 @@ async function generateStatusBoard() {
       const jestTestsFound = globby.sync(
         `${componentPath}/__tests__/__snapshots__/*.js.snap`,
       );
+      const nightwatchTestsFound = globby.sync(
+        `${componentPath}/__tests__/*.e2e.js`,
+      );
       const hasjestTests = jestTestsFound.length > 0;
+      const hasNightwatchTests = nightwatchTestsFound.length > 0;
       const hasJs = jsFound.length === 1;
       const probablyAWebComponent = jsFound.length > 1;
       const hasScss = scssFound.length > 0;
@@ -186,19 +219,63 @@ async function generateStatusBoard() {
               }
             } %}
           `);
-          const html = results.html;
 
-          tableRows.push({
-            cells: [
-              isPrivate ? `${html} (unreleased)` : html,
-              hasScss ? '✅' : '',
-              hasTwig ? '✅' : '',
-              probablyAWebComponent ? '✅' : hasJs ? '' : '',
-              hasjestTests ? '✅' : '🚫',
-              hasManualTestingDocs ? '✅' : '🚫',
-              docsFound.size >= 300 ? '✅' : '❓',
-            ],
-          });
+          const resultCell = await renderString(`
+            {% include '@bolt-components-table/table-cell.twig' with {
+              content: '${
+                isPrivate ? `${results.html} (unreleased)` : results.html
+              }'
+            } only %}
+          `);
+
+          const html = resultCell.html;
+
+          const checkMark = await renderString(`
+            {% include '@bolt-components-table/table-cell.twig' with {
+              content: '✅'
+            } only %}
+          `);
+
+          const questionMark = await renderString(`
+            {% include '@bolt-components-table/table-cell.twig' with {
+              content: '❓'
+            } only %}
+          `);
+
+          const cancelMark = await renderString(`
+            {% include '@bolt-components-table/table-cell.twig' with {
+              content: '🚫'
+            } only %}
+          `);
+
+          const emptyCell = await renderString(`
+            {% include '@bolt-components-table/table-cell.twig' with {
+              content: ''
+            } only %}
+          `);
+
+          const singleRow = [];
+
+          singleRow.push(
+            html,
+            hasScss ? checkMark.html : emptyCell.html,
+            hasTwig ? checkMark.html : emptyCell.html,
+            probablyAWebComponent
+              ? checkMark.html
+              : hasJs
+              ? emptyCell.html
+              : emptyCell.html,
+            hasjestTests ? checkMark.html : cancelMark.html,
+            hasNightwatchTests ? checkMark.html : cancelMark.html,
+            hasManualTestingDocs ? checkMark.html : cancelMark.html,
+            docsFound.size >= 300 ? checkMark.html : questionMark.html,
+          );
+          const singleRowRender = await renderString(`
+            {% include '@bolt-components-table/table-row.twig' with {
+              content: '${singleRow.join('')}'
+            } only %}
+          `);
+          tableRows.push(singleRowRender.html);
 
           pendingRequests.pop();
 
@@ -226,7 +303,6 @@ async function checkToSeeIfFinishedPrerendering(resolve) {
     }
   }, 100);
 }
-
 module.exports = {
   generateStatusBoard,
 };

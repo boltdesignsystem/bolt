@@ -1,5 +1,11 @@
-import { lazyQueue } from '@bolt/lazy-queue';
+const responsiveTables = document.querySelectorAll('.c-bolt-table');
 
-lazyQueue(['bolt-table'], async () => {
-  await import(/* webpackChunkName: 'bolt-table' */ './src/table');
-});
+if (responsiveTables.length) {
+  import(/* webpackChunkName: 'bolt-responsive-table' */ './src/table').then(
+    ({ BoltResponsiveTable }) => {
+      responsiveTables.forEach(el => {
+        const responsiveTableComponent = new BoltResponsiveTable(el);
+      });
+    },
+  );
+}

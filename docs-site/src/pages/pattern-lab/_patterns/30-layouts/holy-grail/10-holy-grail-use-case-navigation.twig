@@ -113,60 +113,129 @@
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis harum placeat magni voluptas maiores iure explicabo magnam delectus et molestias tempore, dolore sed voluptate voluptatibus! Voluptas pariatur rerum quidem blanditiis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae atque molestias esse iusto laboriosam, repellendus voluptate adipisci consequatur consectetur? Fuga recusandae excepturi deleniti quo natus voluptas sequi, optio nemo aspernatur.</p>
       <h2 id="section-two">Section Two</h2>
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis harum placeat magni voluptas maiores iure explicabo magnam delectus et molestias tempore, dolore sed voluptate voluptatibus! Voluptas pariatur rerum quidem blanditiis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae atque molestias esse iusto laboriosam, repellendus voluptate adipisci consequatur consectetur? Fuga recusandae excepturi deleniti quo natus voluptas sequi, optio nemo aspernatur.</p>
+
+      {% set header %}
+        {% set cells %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: '',
+            header: true,
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'Item number',
+            header: true,
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'Description',
+            header: true,
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'Assemblies',
+            header: true,
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% set row1 %}
+        {% set cells %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'Build 2.0.1.0 — SR-49969',
+            header: true,
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'SR-49941',
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.',
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% set row2 %}
+        {% set cells %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'Build 1.1.354 — SR-44889',
+            header: true,
+            attributes: {
+              rowspan: 2,
+            }
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'SR-44869',
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.',
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'OpenSpan.Updater.Git.dll',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% set row3 %}
+        {% set cells %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'SR-43163',
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe',
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% set row4 %}
+        {% set cells %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'Build 2.0.1.0 — SR-49969',
+            header: true,
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'SR-44850',
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.',
+          } only %}
+          {% include '@bolt-components-table/table-cell.twig' with {
+            content: 'ManagedOpenSsl.dll',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
       {% include '@bolt-components-table/table.twig' with {
-        first_col_fixed_width: true,
-        headers: {
-          top: {
-            cells: [
-              'Item number',
-              'Description',
-              'Assemblies',
-            ]
-          },
-          side: {
-            cells: [
-              'Build 2.0.1.0 — SR-49969',
-              {
-                content: 'Build 1.1.360 — SR-44891',
-                attributes: {
-                  rowspan: 2,
-                }
-              },
-              {},
-              'Build 1.1.354 — SR-44889',
-            ]
-          }
+        header: {
+          content: header,
         },
-        rows: [
-          {
-            cells: [
-              'SR-49941',
-              'This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.',
-              'OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe',
-            ]
-          },
-          {
-            cells: [
-              'SR-44869',
-              'This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.',
-              'OpenSpan.Updater.Git.dll',
-            ]
-          },
-          {
-            cells: [
-              'SR-43163',
-              'This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.',
-              'OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe',
-            ]
-          },
-          {
-            cells: [
-              'SR-44850',
-              'This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.',
-              'ManagedOpenSsl.dll',
-            ]
-          },
-        ],
+        body: {
+          content: [
+            row1,
+            row2,
+            row3,
+            row4
+          ],
+        },
+        attributes: {
+          class: ['u-bolt-block']
+        }
       } only %}
     </article>
   {% endset %}

@@ -615,47 +615,71 @@
       {% endset %}
       {% set projects %}
         {% set section_content %}
+          {% set header %}
+            {% set cells %}
+              {% include '@bolt-components-table/table-cell.twig' with {
+                content: 'Industry',
+                header: true,
+              } only %}
+              {% include '@bolt-components-table/table-cell.twig' with {
+                content: 'Role',
+                header: true,
+              } only %}
+              {% include '@bolt-components-table/table-cell.twig' with {
+                content: 'Product(s)',
+                header: true,
+              } only %}
+              {% include '@bolt-components-table/table-cell.twig' with {
+                content: 'From',
+                header: true,
+              } only %}
+              {% include '@bolt-components-table/table-cell.twig' with {
+                content: 'To',
+                header: true,
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-table/table-row.twig' with {
+              content: cells,
+            } only %}
+          {% endset %}
+
+          {% set row1 %}
+            {% set cells %}
+              {% include '@bolt-components-table/table-cell.twig' with {
+                content: 'Industry name',
+              } only %}
+              {% include '@bolt-components-table/table-cell.twig' with {
+                content: 'Role name',
+              } only %}
+              {% include '@bolt-components-table/table-cell.twig' with {
+                content: 'Product name',
+              } only %}
+              {% include '@bolt-components-table/table-cell.twig' with {
+                content: 'Feb 2021',
+              } only %}
+              {% include '@bolt-components-table/table-cell.twig' with {
+                content: 'Sep 2021',
+              } only %}
+            {% endset %}
+            {% include '@bolt-components-table/table-row.twig' with {
+              content: cells,
+            } only %}
+          {% endset %}
+
           {% include '@bolt-components-table/table.twig' with {
-            headers: {
-              top: {
-                cells: [
-                  'Industry',
-                  'Role',
-                  'Product(s)',
-                  'From',
-                  'To',
-                ]
-              },
+            header: {
+              content: header,
             },
-            rows: [
-              {
-                cells: [
-                  'Industry name',
-                  'Role name',
-                  'Product name',
-                  'Feb 2021',
-                  'Sep 2021',
-                ]
-              },
-              {
-                cells: [
-                  'Industry name',
-                  'Role name',
-                  'Product name',
-                  'Feb 2021',
-                  'Sep 2021',
-                ]
-              },
-              {
-                cells: [
-                  'Industry name',
-                  'Role name',
-                  'Product name',
-                  'Feb 2021',
-                  'Sep 2021',
-                ]
-              },
-            ],
+            body: {
+              content: [
+                row1,
+                row1,
+                row1,
+              ],
+            },
+            attributes: {
+              class: ['u-bolt-block']
+            }
           } only %}
         {% endset %}
         {% include '@bolt-components-info-section/info-section.twig' with {
