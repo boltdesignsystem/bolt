@@ -7,8 +7,8 @@
 	<p><strong>Note:</strong> this automatically adjusts the content order on smaller (mobile) screens so the Image displays <em>after</em> the main content instead of before.</p>
 </bolt-banner>
 
-{% include '@bolt-components-hero/hero.twig' with {
-  content: macros.include('@bolt-components-blockquote/blockquote.twig', {
+{% set blockquote %}
+  {% include '@bolt-components-blockquote/blockquote.twig' with {
     size: 'xxlarge',
     weight: 'bold',
     border: 'none',
@@ -16,8 +16,11 @@
       'name': 'Oliver Zeeb',
       'title': 'Team Lead, Application Development <br>W&W-Gruppe'
     },
-    'content': '<p>Pega is one of the key technologies that we are using to rebuild our application landscape.</p>'
-  }),
+    content: '<p>Pega is one of the key technologies that we are using to rebuild our application landscape.</p>'
+  } only %}
+{% endset %}
+{% include '@bolt-components-hero/hero.twig' with {
+  content: blockquote,
   background: '/images/heros/hero-background--teal.jpg',
   image: '/images/heros/hero-foreground--teal.png',
   imageValign: 'bottom',

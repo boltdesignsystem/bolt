@@ -5,7 +5,37 @@
     name: "external-link"
   } only %}
 {% endset %}
-
+{% set inline_list %}
+  {% set link_1 %}
+    {% include "@bolt-elements-text-link/text-link.twig" with {
+      content: "Return to Mission",
+      attributes: {
+        href: "#!",
+      },
+      reversed_underline: true,
+    } only %}
+  {% endset %}
+  {% set link_2 %}
+    {% include "@bolt-elements-text-link/text-link.twig" with {
+      content: "View your Achievements",
+      attributes: {
+        href: "#!",
+      },
+      reversed_underline: true,
+      icon_after: _external_icon
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    spacing: "small",
+    align: "center",
+    separator: "solid",
+    items: [
+      link_1,
+      link_2
+    ]
+  } only %}
+{% endset %}
 {% include "@bolt-components-band/band.twig" with {
   content: "Return to mission",
   size: "xsmall",
@@ -20,27 +50,5 @@
       "u-bolt-flex-grow-none",
     ]
   },
-  content: macros.include("@bolt-components-list/list.twig", {
-    display: "inline",
-    spacing: "small",
-    align: "center",
-    separator: "solid",
-    items: [
-      macros.include("@bolt-elements-text-link/text-link.twig", {
-        content: "Return to Mission",
-        attributes: {
-          href: "#!",
-        },
-        reversed_underline: true,
-      }),
-      macros.include("@bolt-elements-text-link/text-link.twig", {
-        content: "View your Achievements",
-        attributes: {
-          href: "#!",
-        },
-        reversed_underline: true,
-        icon_after: _external_icon
-      })
-    ]
-  })
+  content: inline_list
 } only %}

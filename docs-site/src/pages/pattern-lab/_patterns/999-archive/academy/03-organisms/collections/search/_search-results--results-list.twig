@@ -30,73 +30,94 @@
     ]
   } only %}
 {% endset %}
-
-{% include "@bolt-components-list/list.twig" with {
-  spacing: "medium",
-  items: [
+{% set horizontal_card_1 %}
+  {% set headline_1 %}
+     {% include "@bolt-components-headline/text.twig" with {
+        size: "small",
+        text: "1 Module",
+        weight: "semibold"
+      } only %}
+    {% endset %}
+    {% set headline_2 %}
+      {% include "@bolt-components-headline/text.twig" with {
+        size: "small",
+        text: "10 mins",
+        weight: "semibold",
+        attributes: {
+          class: "stats-item",
+        },
+      } only %}
+    {% endset %}
+    {% set popover %}
+      {% include "@bolt-components-popover/popover.twig" with {
+        trigger: trigger,
+        content: popoverContent,
+        spacing: "none",
+        placement: "top-start",
+        fallbackPlacements: [
+          "top",
+          "top-end"
+        ],
+        theme: "light"
+      } only %}
+    {% endset %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Mission",
       cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
       cardMetaItems: [
-        macros.include("@bolt-components-headline/text.twig", {
-          size: "small",
-          text: "1 Module",
-          weight: "semibold"
-        }, false),
-        macros.include("@bolt-components-headline/text.twig", {
-          size: "small",
-          text: "10 mins",
-          weight: "semibold",
-          attributes: {
-            class: "stats-item",
-          },
-        }, false),
-        macros.include("@bolt-components-popover/popover.twig", {
-          trigger: trigger,
-          content: popoverContent,
-          spacing: "none",
-          placement: "top-start",
-          fallbackPlacements: [
-            "top",
-            "top-end"
-          ],
-          theme: "light"
-        }, false),
+        headline,
+        text,
+        popover,
       ],
       cardGradient: "purple",
       cardIcon: "rocket",
-      cardDescription: "Repudiandae dolorem laudantium reiciendis neque et consequatur omnis. Reiciendis est aliquid quis porro tenetur. Est aut ut reprehenderit consectetur molestiae praesentium.",
-    }, false),
+      cardDescription: bolt.faker.paragraph(3),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_2 %}
+  {% set headline_1 %}
+    {% include "@bolt-components-headline/text.twig" with {
+      size: "small",
+      weight: "bold",
+      text: "#{bolt.faker.numberBetween(2,15)} tasks",
+    } only %}
+  {% endset %}
+  {% set headline_2 %}
+    {% include "@bolt-components-headline/text.twig" with {
+      size: "small",
+      weight: "bold",
+      text: "Completed",
+      icon: {
+        name: "check-solid",
+        position: "before"
+      },
+      attributes: {
+        style: [
+          'color: #3C9439;'
+        ]
+      }
+    } only %}
+  {% endset %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Challenge",
       cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
       cardMetaItems: [
-        macros.include("@bolt-components-headline/text.twig", {
-          size: "small",
-          weight: "bold",
-          text: "6 tasks",
-        }, false),
-        macros.include("@bolt-components-headline/text.twig", {
-          size: "small",
-          weight: "bold",
-          text: "Completed",
-          icon: {
-            name: "check-solid",
-            position: "before"
-          },
-          attributes: {
-            style: [
-              'color: #3C9439;'
-            ]
-          }
-        }, false),
+        headline_1,
+        headline_2,
       ],
       cardGradient: "orange",
       cardIcon: "meteor",
-      cardDescription: "Repudiandae dolorem laudantium reiciendis neque et consequatur omnis. Reiciendis est aliquid quis porro tenetur. Est aut ut reprehenderit consectetur molestiae praesentium.",
-    }, false),
+      cardDescription: bolt.faker.paragraph(3),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_3 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       completed: true,
@@ -107,9 +128,13 @@
       link: {
         url: "https://google.com",
       },
-      cardDescription: "Repudiandae dolorem laudantium reiciendis neque et consequatur omnis. Reiciendis est aliquid quis porro tenetur. Est aut ut reprehenderit consectetur molestiae praesentium.",
-    }, false),
-    macros.include("@bolt-academy/_horizontal-card.twig", {
+      cardDescription: bolt.faker.paragraph(3),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_4 %}
+{{
+  macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       completed: true,
       cardSubtitle: "Certification",
@@ -119,8 +144,12 @@
       link: {
         url: "https://.google.com",
       },
-      cardDescription: "Repudiandae dolorem laudantium reiciendis neque et consequatur omnis. Reiciendis est aliquid quis porro tenetur. Est aut ut reprehenderit consectetur molestiae praesentium.",
-    }, false),
+      cardDescription: bolt.faker.paragraph(3),
+    }, false)
+}}
+{% endset %}
+{% set horizontal_card_5 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Module",
@@ -130,8 +159,12 @@
       link: {
         url: "https://google.com",
       },
-      cardDescription: "Repudiandae dolorem laudantium reiciendis neque et consequatur omnis. Reiciendis est aliquid quis porro tenetur. Est aut ut reprehenderit consectetur molestiae praesentium.",
-    }, false),
+      cardDescription: bolt.faker.paragraph(3),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_6 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Mission Test",
@@ -139,8 +172,12 @@
       cardGradient: "pink",
       cardIcon: "rocket",
       status: "complete",
-      cardDescription: "Repudiandae dolorem laudantium reiciendis neque et consequatur omnis. Reiciendis est aliquid quis porro tenetur. Est aut ut reprehenderit consectetur molestiae praesentium.",
-    }, false),
+      cardDescription: bolt.faker.paragraph(3),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_7 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Mission Exercise",
@@ -148,8 +185,12 @@
       cardGradient: "pink",
       completed: true,
       cardIcon: "triangle",
-      cardDescription: "Repudiandae dolorem laudantium reiciendis neque et consequatur omnis. Reiciendis est aliquid quis porro tenetur. Est aut ut reprehenderit consectetur molestiae praesentium.",
-    }, false),
+      cardDescription: bolt.faker.paragraph(3),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_crd_8 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Challenge",
@@ -157,23 +198,46 @@
       cardGradient: "orange",
       completed: true,
       cardIcon: "meteor",
-      cardDescription: "Repudiandae dolorem laudantium reiciendis neque et consequatur omnis. Reiciendis est aliquid quis porro tenetur. Est aut ut reprehenderit consectetur molestiae praesentium.",
-    }, false),
+      cardDescription: bolt.faker.paragraph(3),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_9 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Mission",
       cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
       cardGradient: "pink",
       cardIcon: "molecule",
-      cardDescription: "Repudiandae dolorem laudantium reiciendis neque et consequatur omnis. Reiciendis est aliquid quis porro tenetur. Est aut ut reprehenderit consectetur molestiae praesentium.",
-    }, false),
+      cardDescription: bolt.faker.paragraph(3),
+    }, false)
+  }}
+{% endset %}
+{% set horizontal_card_10 %}
+  {{
     macros.include("@bolt-academy/_horizontal-card.twig", {
       cardUrl: "#!",
       cardSubtitle: "Module",
       cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
       cardGradient: "teal",
       cardIcon: "orbit",
-      cardDescription: "Repudiandae dolorem laudantium reiciendis neque et consequatur omnis. Reiciendis est aliquid quis porro tenetur. Est aut ut reprehenderit consectetur molestiae praesentium.",
-    }, false),
+      cardDescription: bolt.faker.paragraph(3),
+    }, false)
+  }}
+{% endset %}
+{% include "@bolt-components-list/list.twig" with {
+  spacing: "medium",
+  items: [
+    horizontal_card_1,
+    horizontal_card_2,
+    horizontal_card_3,
+    horizontal_card_4,
+    horizontal_card_5,
+    horizontal_card_6,
+    horizontal_card_7,
+    horizontal_card_8,
+    horizontal_card_9,
+    horizontal_card_10,
   ]
 } only %}

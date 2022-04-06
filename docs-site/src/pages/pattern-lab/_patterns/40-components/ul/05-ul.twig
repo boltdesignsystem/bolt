@@ -1,3 +1,14 @@
+{% set text_link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Be honest, respectful, trustworthy and helpful.',
+    attributes: {
+      href: 'https://google.com',
+      target: '_blank',
+      rel: 'noopener'
+    }
+  } only %}
+{% endset %}
+
 {% include '@bolt-components-ul/ul.twig' with {
   attributes: {
     'data-attr': 'some attribute',
@@ -5,12 +16,7 @@
   items: [
     'Do not include any data or information in your posts that are confidential!',
     'Apply basic practices for collaborative work.',
-    include('@bolt-elements-text-link/text-link.twig', {
-      content: 'Be honest, respectful, trustworthy and helpful.',
-      attributes: {
-        href: '#!'
-      }
-    }),
+    text_link,
     'Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.'
   ]
 } %}

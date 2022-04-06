@@ -26,26 +26,27 @@
             class: "u-bolt-margin-bottom-small",
           }
         } only %}
+        {% set link %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            attributes: {
+              href: 'https://www.google.com'
+            },
+            content: "Name of Mission will go here"
+          } only %}
+        {% endset %}
         {% include "@bolt-components-list/list.twig" with {
           separator: "none",
           display: "block",
           spacing: "none",
           items: [
-            macros.include('@bolt-elements-text-link/text-link.twig', {
-              attributes: {
-                href: 'https://www.google.com'
-              },
-              content: "Name of Mission will go here"
-            }),
+            link,
           ],
           attributes: {
             class: "u-bolt-margin-bottom-large",
           }
         } only %}
-
-        {% include "@bolt-components-headline/headline.twig" with {
-          size: "xlarge",
-          text: "Exam Topics " ~ macros.include("@bolt-components-headline/text.twig", {
+        {% set headline %}
+          {% include "@bolt-components-headline/text.twig" with {
             weight: "regular",
             tag: "span",
             size: "medium",
@@ -53,7 +54,11 @@
             attributes: {
               class: "u-bolt-inline",
             }
-          }),
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "xlarge",
+          text: "Exam Topics " ~ headline,
           attributes: {
             class: "u-bolt-margin-bottom-small",
           }
@@ -76,6 +81,98 @@
       {% endset %}
 
       {% set trainingTopicList %}
+        {% set headline %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            size: "xlarge",
+            text: "Before you begin...",
+            attributes: {
+              class: "u-bolt-margin-bottom-none",
+            }
+          } only %}
+        {% endset %}
+        {% set logo %}
+          {% include "@bolt-elements-image/image.twig" with {
+            attributes: {
+              src: "/images/logos/pega-logo-acd.svg",
+              style: "max-width: 170px;",
+              loading: "lazy",
+              class: [
+                "u-bolt-margin-left-auto@small"
+              ]
+            }
+          } only %}
+        {% endset %}
+        {% set headline_with_logo %}
+          {% include "@bolt-academy/_headline-with-logo.twig" with {
+            headline: headline,
+            logo: logo,
+          } only %}
+        {% endset %}
+        {% set headline_text %}
+          {% include "@bolt-components-headline/text.twig" with {
+            size: "medium",
+            text: "The <strong>Certified System Architect Test</strong> is proctored by Pearson VUE. Users must create a Pearson VUE account if you do not already have one and register for the exam through the Pearson VUE site. There are two exam delivery options:",
+            attributes: {
+              class: [
+                "u-bolt-margin-top-medium"
+              ]
+            }
+          } only %}
+        {% endset %}
+        {% set headline %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "(e.g., in a quiet, uninterrupted room in your home or office, proctored via webcam).",
+            size: "xsmall",
+            style: "italic",
+            align: "left",
+          } only %}
+        {% endset %}
+        {% set ul %}
+          {% include "@bolt-components-ul/ul.twig" with {
+            items: [
+              "Take an exam at a test center, or",
+              "Take an exam via Online Proctored delivery" ~ headline,
+            ]
+          } only %}
+        {% endset %}
+        {% set buttons %}
+          {% set button_1 %}
+            {% include "@bolt-elements-button/button.twig" with {
+              content: "Create Pearson VUE Account",
+              size: "small",
+              hierarchy: "secondary",
+              border_radius: "full",
+              attributes: {
+                href: "https://www.google.com",
+              }
+            } only %}
+          {% endset %}
+          {% set button_2 %}
+            {% include "@bolt-elements-button/button.twig" with {
+              content: "Register for Exam",
+              size: "small",
+              border_radius: "full",
+              attributes: {
+                type: "button",
+                "data-bolt-modal-target": ".js-modal-advanced-auto-open",
+              },
+            } only %}
+          {% endset %}
+          {% include "@bolt-components-list/list.twig" with {
+            display: "inline",
+            spacing: "small",
+            align: "start",
+            attributes: {
+              class: [
+                "u-bolt-margin-top-large"
+              ]
+            },
+            items: [
+              button_1,
+              button_2,
+            ]
+          } only %}
+        {% endset %}
         {% include "@bolt-components-card-replacement/card-replacement.twig" with {
           theme: "xlight",
           border_radius: "large",
@@ -87,76 +184,11 @@
           },
           body: {
             content: [
-              macros.include("@bolt-academy/_headline-with-logo.twig", {
-                headline: macros.include("@bolt-components-headline/headline.twig", {
-                  size: "xlarge",
-                  text: "Before you begin...",
-                  attributes: {
-                    class: "u-bolt-margin-bottom-none",
-                  }
-                }),
-                logo: macros.include("@bolt-elements-image/image.twig", {
-                  attributes: {
-                    src: "/images/pearson-logo.svg",
-                    style: "max-width: 170px;",
-                    loading: "lazy",
-                    class: [
-                      "u-bolt-margin-left-auto@small"
-                    ]
-                  }
-                }),
-              }),
-              macros.include("@bolt-components-headline/text.twig", {
-                size: "medium",
-                text: "The <strong>Certified System Architect Test</strong> is proctored by Pearson VUE. Users must create a Pearson VUE account if you do not already have one and register for the exam through the Pearson VUE site. There are two exam delivery options:",
-                attributes: {
-                  class: [
-                    "u-bolt-margin-top-medium"
-                  ]
-                }
-              }),
-              macros.include("@bolt-components-ul/ul.twig", {
-                items: [
-                  "Take an exam at a test center, or",
-                  "Take an exam via Online Proctored delivery" ~ macros.include("@bolt-components-headline/text.twig", {
-                    text: "(e.g., in a quiet, uninterrupted room in your home or office, proctored via webcam).",
-                    size: "xsmall",
-                    style: "italic",
-                    align: "left",
-                  }),
-                ]
-              }),
-              macros.include("@bolt-components-list/list.twig", {
-                display: "inline",
-                spacing: "small",
-                align: "start",
-                attributes: {
-                  class: [
-                    "u-bolt-margin-top-large"
-                  ]
-                },
-                items: [
-                  macros.include("@bolt-elements-button/button.twig", {
-                    content: "Create Pearson VUE Account",
-                    size: "small",
-                    hierarchy: "secondary",
-                    border_radius: "full",
-                    attributes: {
-                      href: "https://www.google.com",
-                    }
-                  }),
-                  macros.include("@bolt-elements-button/button.twig", {
-                    content: "Register for Exam",
-                    size: "small",
-                    border_radius: "full",
-                    attributes: {
-                      type: "button",
-                      "data-bolt-modal-target": ".js-modal-advanced-auto-open",
-                    },
-                  }),
-                ]
-              })
-            ] | join('')
+              headline_with_logo,
+              headline_text,
+              ul,
+              buttons,
+            ]|join('')
           }
         } only %}
       {% endset %}

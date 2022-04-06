@@ -1,8 +1,10 @@
 {% extends "@pl/_default-page-template.twig" %}
-
+{% set micro_journey_demo %}
+  {% include '@pl/_micro-journey-demo-1.twig' only %}
+{% endset %}
 {% set microJourney1Editor %}
   {% include '@bolt-components-editor/editor-in-pl.twig' with {
-    content: include('@pl/_micro-journey-demo-1.twig'),
+    content: micro_journey_demo,
   } only %}
 {% endset %}
 
