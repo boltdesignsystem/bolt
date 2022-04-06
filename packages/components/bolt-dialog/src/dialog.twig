@@ -13,25 +13,25 @@
   {% set _overlay_theme = 'dark' %}
 {% endif %}
 
-{# Array of classes based on the defined + default props #}
+{# Array of outer classes based on the defined + default props #}
 {% set _outer_classes = [
   'c-bolt-dialog',
   'c-bolt-dialog__scroll-' ~ this.data.scroll.value
 ] %}
 
-{# Array of classes based on the defined + default props #}
+{# Array of overlay classes based on the defined + default props #}
 {% set _overlay_classes = [
   'c-bolt-dialog__overlay',
   'c-bolt-dialog__overlay-' ~ _overlay_theme,
 ] %}
 
-{# Array of classes based on the defined + default props #}
+{# Array of container classes based on the defined + default props #}
 {% set _container_classes = [
   'c-bolt-dialog__container',
   'c-bolt-dialog__container--width-' ~ this.data.width.value,
 ] %}
 
-{# Array of classes based on the defined + default props #}
+{# Array of body classes based on the defined + default props #}
 {% set _body_classes = [
   'c-bolt-dialog__body',
   'c-bolt-dialog__body--spacing-' ~ this.data.spacing.value,

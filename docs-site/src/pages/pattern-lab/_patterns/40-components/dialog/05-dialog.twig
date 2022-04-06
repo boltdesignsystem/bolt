@@ -1,5 +1,5 @@
 {% set description %}
-    A dialog can be used to display interactive content over a webpage. The element is generally hidden on page load and becomes visible after interaction with a trigger. Triggers are typically a button or link element with the <code>data-dialog-trigger</code> attribute set to a unique <code>id</code>.
+    A dialog can be used to display interactive content over a webpage. The element is generally hidden on page load and becomes visible after interaction with a trigger. Triggers are typically a button or link element with the <code>data-bolt-dialog-target</code> attribute set to a unique <code>id</code>.
 {% endset %}
 
 {% set notes %}
@@ -11,7 +11,7 @@
   content: 'Demo Dialog',
   attributes: {
     type: 'button',
-    'data-dialog-trigger': 'dialog-1',
+    'data-bolt-dialog-target': 'dialog-1',
   }
 } only %}
 
@@ -34,7 +34,7 @@
   content: 'Demo Dialog',
   attributes: {
     type: 'button',
-    'data-dialog-trigger': 'dialog-1',
+    'data-bolt-dialog-target': 'dialog-1',
   }
 } only %}
 

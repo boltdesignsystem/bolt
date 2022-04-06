@@ -2,7 +2,6 @@ export class BoltDialog {
   constructor(el) {
     if (!el) return;
     this.el = el;
-    this.dialog = document.getElementById(this.el.id);
     this.init();
   }
 
@@ -93,14 +92,14 @@ export class BoltDialog {
   }
 
   addEventListeners() {
-    this.dialog.addEventListener('touchstart', event => this.onClick(event));
-    this.dialog.addEventListener('click', event => this.onClick(event));
+    this.el.addEventListener('touchstart', event => this.onClick(event));
+    this.el.addEventListener('click', event => this.onClick(event));
     document.addEventListener('keydown', event => this.onKeydown(event));
   }
 
   removeEventListeners() {
-    this.dialog.removeEventListener('touchstart', this.onClick);
-    this.dialog.removeEventListener('click', this.onClick);
+    this.el.removeEventListener('touchstart', this.onClick);
+    this.el.removeEventListener('click', this.onClick);
     document.removeEventListener('keydown', this.onKeydown);
   }
 
@@ -108,9 +107,13 @@ export class BoltDialog {
     if (event.target.hasAttribute('data-dialog-close')) {
       this.closeDialog();
     }
-    // @TODO: make this more generic?
+
     // add support for the icon child of the close button
-    if (event.target.closest('.c-bolt-dialog__close-button')) {
+    if (
+      event.target
+        .closest('.c-bolt-dialog__close-button')
+        .hasAttribute('data-dialog-close')
+    ) {
       this.closeDialog();
     }
   }
@@ -130,15 +133,15 @@ export class BoltDialog {
 
   init() {
     const trigger = document.querySelector(
-      '[data-dialog-trigger="' + this.el.id + '"]',
+      '[data-bolt-dialog-target="' + this.el.id + '"]',
     );
     trigger.addEventListener('click', event => this.showDialog());
   }
 }
 
 //     closeDialogById(targetDialog) {
-//       this.dialog = document.getElementById(targetDialog);
-//       if (this.dialog) this.closeDialog();
+//       this.el = document.getElementById(targetDialog);
+//       if (this.el) this.closeDialog();
 //     }
 
 //   /**
