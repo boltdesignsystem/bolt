@@ -1,5 +1,39 @@
 {% import "@bolt-academy/_macros.twig" as macros %}
 
+{% set headline_1  %}
+  {{
+     macros.include("@bolt-components-headline/text.twig", {
+      size: "small",
+      weight: "bold",
+      text: "#{bolt.faker.numberBetween(2,15)} tasks",
+    }, false)
+  }}
+{% endset %}
+{% set headline_2 %}
+  {{
+    macros.include("@bolt-components-headline/text.twig", {
+      size: "small",
+      weight: "bold",
+      text: "Completed",
+      icon: {
+        name: "check-solid",
+        position: "before"
+      },
+      attributes: {
+        style: [
+          'color: #3C9439;'
+        ]
+      }
+    }, false)
+  }}
+{% endset %}
+{% set badge %}
+  {{
+    macros.include("@bolt-academy/_badge.twig", {
+      locked: hideCompleted
+    })
+  }}
+{% endset %}
 {% include "@bolt-academy/_mission-landing.twig" with {
   mainBackgroundImage: mainBackgroundImage,
   toolbarIcon: toolbarIcon,
@@ -22,25 +56,8 @@
       cardSubtitle: "Challenge",
       cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
       cardMetaItems: [
-        macros.include("@bolt-components-headline/text.twig", {
-          size: "small",
-          weight: "bold",
-          text: "11 tasks",
-        }, false),
-        macros.include("@bolt-components-headline/text.twig", {
-          size: "small",
-          weight: "bold",
-          text: "Completed",
-          icon: {
-            name: "check-solid",
-            position: "before"
-          },
-          attributes: {
-            style: [
-              'color: #3C9439;'
-            ]
-          }
-        }, false),
+        headline_1,
+        headline_2 ,
       ],
       cardGradient: "orange",
       cardIcon: "meteor",
@@ -105,8 +122,6 @@
       cardIcon: "orbit",
       cardDescription: "Repudiandae dolorem laudantium reiciendis neque et consequatur omnis. Reiciendis est aliquid quis porro tenetur. Est aut ut reprehenderit consectetur molestiae praesentium.",
     },
-    macros.include("@bolt-academy/_badge.twig", {
-      locked: hideCompleted
-    }),
+    badge,
   ]
 } only %}
