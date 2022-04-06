@@ -42,17 +42,26 @@
 }
 
 .c-bolt-teaser__signifier {
+  --c-bolt-teaser-aspect-ratio: 16/9;
   display: block;
   position: relative;
-  height: 0;
   overflow: hidden;
   margin-bottom: var(--bolt-spacing-x-xsmall);
-  padding-bottom: calc(9 / 16 * 100%);
   background-color: var(--bolt-color-gray-light);
+  aspect-ratio: var(--c-bolt-teaser-aspect-ratio);
+  //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
+  @supports not (aspect-ratio: var(--c-bolt-teaser-aspect-ratio)) {
+    height: 0;
+    padding-bottom: calc(9 / 16 * 100%);
+  }
 
   @at-root .c-bolt-teaser--horizontal #{&} {
+    --c-bolt-teaser-aspect-ratio: 1/1;
     margin-bottom: 0;
-    padding-bottom: 100%;
+    //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
+    @supports not (aspect-ratio: var(--c-bolt-teaser-aspect-ratio)) {
+      padding-bottom: 100%;
+    }
   }
 
   @at-root .c-bolt-teaser--responsive #{&} {
@@ -289,11 +298,14 @@
 .c-bolt-teaser__views {
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: center;
   grid-gap: var(--bolt-spacing-x-xxsmall);
   margin-right: var(--bolt-spacing-y-small);
   font-size: var(--bolt-type-font-size-xsmall);
   line-height: var(--bolt-type-line-height-xsmall);
+}
+
+.c-bolt-teaser__views-icon {
+  @include bolt-inline-icon-wrapper;
 }
 
 .c-bolt-teaser__action-list {
@@ -301,7 +313,7 @@
   flex-wrap: nowrap;
   position: relative;
   z-index: 1; // Must use z-index to fix stacking order in FF.
-  margin: 0 0 0 auto;
+  margin: 0;
   padding: 0;
   font-size: var(--bolt-type-font-size-xsmall);
   list-style: none;
@@ -323,6 +335,11 @@
 .c-bolt-teaser__action-list-item {
   margin: 0;
   padding: 0;
+
+  .e-bolt-text-link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
 
   & + #{&} {
     margin-left: var(--bolt-spacing-y-small);

@@ -69,9 +69,9 @@
                 {{ results["levelAALarge"] }}
 
                 {% if results["levelAALarge"] == 'fail' %}
-                  <bolt-icon name="close-solid" class="u-bolt-color-error"></bolt-icon>
+                  {% include '@bolt-elements-icon/icon.twig' with { name: 'close-solid', attributes: { class: 'u-bolt-color-error' } } only %}
                 {% else %}
-                  <bolt-icon name="check-solid" class="u-bolt-color-success"></bolt-icon>
+                  {% include '@bolt-elements-icon/icon.twig' with { name: 'check-solid', attributes: { class: 'u-bolt-color-success' } } only %}
                 {% endif %}
               </span>
             </div>
@@ -83,9 +83,9 @@
                 {{ results["levelAANormal"] }}
 
                 {% if results["levelAANormal"] == 'fail' %}
-                  <bolt-icon name="close-solid" class="u-bolt-color-error"></bolt-icon>
+                  {% include '@bolt-elements-icon/icon.twig' with { name: 'close-solid', attributes: { class: 'u-bolt-color-error' } } only %}
                 {% else %}
-                  <bolt-icon name="check-solid" class="u-bolt-color-success"></bolt-icon>
+                  {% include '@bolt-elements-icon/icon.twig' with { name: 'check-solid', attributes: { class: 'u-bolt-color-success' } } only %}
                 {% endif %}
               </span>
             </div>
@@ -117,9 +117,9 @@
                 {{ results["levelAALarge"] }}
 
                 {% if results["levelAALarge"] == 'fail' %}
-                  <bolt-icon name="close-solid" class="u-bolt-color-error"></bolt-icon>
+                  {% include '@bolt-elements-icon/icon.twig' with { name: 'close-solid', attributes: { class: 'u-bolt-color-error' } } only %}
                 {% else %}
-                  <bolt-icon name="check-solid" class="u-bolt-color-success"></bolt-icon>
+                  {% include '@bolt-elements-icon/icon.twig' with { name: 'check-solid', attributes: { class: 'u-bolt-color-success' } } only %}
                 {% endif %}
               </span>
             </div>
@@ -131,9 +131,9 @@
                 {{ results["levelAANormal"] }}
 
                 {% if results["levelAANormal"] == 'fail' %}
-                  <bolt-icon name="close-solid" class="u-bolt-color-error"></bolt-icon>
+                  {% include '@bolt-elements-icon/icon.twig' with { name: 'close-solid', attributes: { class: 'u-bolt-color-error' } } only %}
                 {% else %}
-                  <bolt-icon name="check-solid" class="u-bolt-color-success"></bolt-icon>
+                  {% include '@bolt-elements-icon/icon.twig' with { name: 'check-solid', attributes: { class: 'u-bolt-color-success' } } only %}
                 {% endif %}
               </span>
             </div>

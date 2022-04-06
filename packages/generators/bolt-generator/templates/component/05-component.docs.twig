@@ -1,0 +1,37 @@
+{% set description %}
+    A description of the component and what it is used for.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-components-{{ kebabCase name }}/{{ kebabCase name }}.twig' with {
+    content: 'This is a {{ lowerCase name }} component.'
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-{{ kebabCase name }}/{{ kebabCase name }}.twig' with {
+  content: 'This is a {{ lowerCase name }} component.'
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<div class="c-bolt-{{ kebabCase name }}">
+  This is a {{ lowerCase name }} component.
+</div>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic {{ titleCase name }}',
+  description: description,
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

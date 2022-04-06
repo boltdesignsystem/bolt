@@ -21,12 +21,13 @@ beforeAll(async () => {
   const defaultData = {
     content: 'This is a text link',
     attributes: {
-      href: 'https://pega.com',
+      href: 'https://google.com',
       target: '_blank',
+      rel: 'noopener',
     },
   };
 
-  const icon = await render('@bolt-components-icon/icon.twig', {
+  const icon = await render('@bolt-elements-icon/icon.twig', {
     name: 'chevron-right',
   });
 

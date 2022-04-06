@@ -4,14 +4,16 @@
   headline: {
     text: 'Some awesome Title',
     link_attributes: {
-      href: 'https://www.pega.com',
+      href: 'https://www.google.com',
+      target: '_blank',
+      rel: 'noopener'
     }
   },
 } %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "teaser",
+{% include '@utils/docs.twig' with {
+  componentName: 'teaser',
   componentGroup: 'components',
   usage: usage
 } only %}

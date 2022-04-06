@@ -1,0 +1,15 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-profile/profile.twig' with {
+  name: {
+    content: '<strong>First Last</strong> (@username)',
+    tag: 'h2',
+  },
+  job_title: 'Lead System Architect',
+  location: 'United States',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'profile',
+  usage: usage
+} only %}

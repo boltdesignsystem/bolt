@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v5.2.4...v5.3.0) (2022-03-28)
+
+
+### Reverts
+
+* Revert "remove keypress handler and replace it with clickhandler on desktop" ([f3e269b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/commit/f3e269b2d0a2b340f25f6777158a1688999d863c))
+
+
+
+
+
+## [5.2.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v5.2.3...v5.2.4) (2022-03-03)
+
+
+### Bug Fixes
+
+* saleshub pulse link ([9009b50](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/commit/9009b50eda013a28551080f4dc00113b278ac815))
+
+
+
+
+
+# [5.2.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v5.1.1...v5.2.0) (2022-01-25)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+# [5.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v5.0.1...v5.1.0) (2021-12-20)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+## [5.0.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v5.0.0...v5.0.1) (2021-11-12)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+# [5.0.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v4.7.0...v5.0.0) (2021-11-10)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+# [4.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v4.6.2...v4.7.0) (2021-11-04)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+# [4.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v4.5.1...v4.6.0) (2021-10-12)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+# [4.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v4.4.0...v4.5.0) (2021-09-24)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+# [4.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v4.3.0...v4.4.0) (2021-09-13)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
 # [4.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v4.2.3...v4.3.0) (2021-08-30)
 
 **Note:** Version bump only for package @bolt/components-page-header

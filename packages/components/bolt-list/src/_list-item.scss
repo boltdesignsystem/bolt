@@ -19,15 +19,20 @@ $bolt-list-item-border-color: var(--m-bolt-border);
 @each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
 
-  .c-bolt-list-item--spacing-#{$size-name} {
-    margin-bottom: var(--bolt-spacing-y-#{$size-name});
-    margin-left: var(--bolt-spacing-x-#{$size-name});
+  @if (
+    $size-name !=
+      'xxlarge'
+  ) {
+    .c-bolt-list-item--spacing-#{$size-name} {
+      margin-bottom: var(--bolt-spacing-y-#{$size-name});
+      margin-left: var(--bolt-spacing-x-#{$size-name});
 
-    &.c-bolt-list-item--inset {
-      margin-bottom: 0;
-      margin-left: 0;
-      padding: var(--bolt-spacing-y-#{$size-name})
-        var(--bolt-spacing-x-#{$size-name});
+      &.c-bolt-list-item--inset {
+        margin-bottom: 0;
+        margin-left: 0;
+        padding: var(--bolt-spacing-y-#{$size-name})
+          var(--bolt-spacing-x-#{$size-name});
+      }
     }
   }
 }
@@ -64,13 +69,22 @@ $bolt-list-separator-styles: solid, dashed;
   @each $breakpoint in $bolt-breakpoints {
     $breakpoint-name: nth($breakpoint, 1);
 
-    &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
-      &:not(.c-bolt-list-item--last-item) {
-        border-bottom-width: $bolt-list-item-border-width;
+    @if (
+      $breakpoint-name !=
+        'large' and
+        $breakpoint-name !=
+        'xlarge' and
+        $breakpoint-name !=
+        'xxlarge'
+    ) {
+      &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
+        &:not(.c-bolt-list-item--last-item) {
+          border-bottom-width: $bolt-list-item-border-width;
 
-        @include bolt-mq($breakpoint-name) {
-          border-right-width: $bolt-list-item-border-width;
-          border-bottom-width: 0;
+          @include bolt-mq($breakpoint-name) {
+            border-right-width: $bolt-list-item-border-width;
+            border-bottom-width: 0;
+          }
         }
       }
     }
@@ -82,30 +96,44 @@ $bolt-list-separator-styles: solid, dashed;
   @each $size in $bolt-spacing-multiplier-system {
     $size-name: nth($size, 1);
 
-    &.c-bolt-list-item--spacing-#{$size-name} {
-      &:not(.c-bolt-list-item--last-item) {
-        &.c-bolt-list-item--display-block {
-          padding-bottom: var(--bolt-spacing-y-#{$size-name});
-        }
+    @if (
+      $size-name !=
+        'xxlarge'
+    ) {
+      &.c-bolt-list-item--spacing-#{$size-name} {
+        &:not(.c-bolt-list-item--last-item) {
+          &.c-bolt-list-item--display-block {
+            padding-bottom: var(--bolt-spacing-y-#{$size-name});
+          }
 
-        &.c-bolt-list-item--display-inline,
-        &.c-bolt-list-item--display-flex {
-          padding-right: var(--bolt-spacing-x-#{$size-name});
+          &.c-bolt-list-item--display-inline,
+          &.c-bolt-list-item--display-flex {
+            padding-right: var(--bolt-spacing-x-#{$size-name});
+          }
         }
       }
-    }
 
-    &:not(.c-bolt-list-item--inset) {
-      @each $breakpoint in $bolt-breakpoints {
-        $breakpoint-name: nth($breakpoint, 1);
+      &:not(.c-bolt-list-item--inset) {
+        @each $breakpoint in $bolt-breakpoints {
+          $breakpoint-name: nth($breakpoint, 1);
 
-        &.c-bolt-list-item--spacing-#{$size-name} {
-          &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
-            padding-bottom: var(--bolt-spacing-y-#{$size-name});
+          @if (
+            $breakpoint-name !=
+              'large' and
+              $breakpoint-name !=
+              'xlarge' and
+              $breakpoint-name !=
+              'xxlarge'
+          ) {
+            &.c-bolt-list-item--spacing-#{$size-name} {
+              &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
+                padding-bottom: var(--bolt-spacing-y-#{$size-name});
 
-            @include bolt-mq($breakpoint-name) {
-              padding-right: var(--bolt-spacing-x-#{$size-name});
-              padding-bottom: 0;
+                @include bolt-mq($breakpoint-name) {
+                  padding-right: var(--bolt-spacing-x-#{$size-name});
+                  padding-bottom: 0;
+                }
+              }
             }
           }
         }

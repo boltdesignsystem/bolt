@@ -49,7 +49,7 @@ class BoltDocsSearch extends withLitHtml {
           suggestion.url = suggestion.url.replace('#menu', '');
 
           if (self.shouldOpenInNewWindow) {
-            window.open(suggestion.url, '_blank');
+            window.open(suggestion.url, '_blank', 'noopener');
           } else {
             window.location = suggestion.url;
           }

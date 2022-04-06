@@ -4,7 +4,7 @@
 
 {% set notes %}
   <bolt-text>
-    Additional CSS custom properties are available to further customize the page header per use case. <bolt-code-snippet display="inline">px</bolt-code-snippet>, <bolt-code-snippet display="inline">em</bolt-code-snippet>, and <bolt-code-snippet display="inline">rem</bolt-code-snippet> unit values are supported in addition to tokens. These properties must be defined at the <bolt-code-snippet display="inline">:root</bolt-code-snippet> level.
+    Additional CSS custom properties are available to further customize the page header per use case. <code>px</code>, <code>em</code>, and <code>rem</code> unit values are supported in addition to tokens. These properties must be defined at the <code>:root</code> level.
   </bolt-text>
   <bolt-ol>
     <bolt-li>
@@ -27,24 +27,28 @@
   <table>
     <tbody>
       <tr>
-        <th>Pega.com</th>
+        <th>Pega</th>
         <td><a href="{{ link['components-page-header-example-main-site-with-subnav'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
+      <tr>
+        <th>Pega (logged out)</th>
+        <td><a href="{{ link['components-page-header-example-main-site-anonymous'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
         <th>Academy</th>
         <td><a href="{{ link['components-page-header-example-academy'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
-        <th>Community</th>
-        <td><a href="{{ link['components-page-header-example-community'] }}" class="e-bolt-text-link">View</a></td>
-      </tr>
-      <tr>
         <th>Collaboration Center</th>
         <td><a href="{{ link['components-page-header-example-collaboration-center'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
-        <th>SalesHub</th>
-        <td><a href="{{ link['components-page-header-example-saleshub'] }}" class="e-bolt-text-link">View</a></td>
+        <th>Community</th>
+        <td><a href="{{ link['components-page-header-example-community'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
+      <tr>
+        <th>Documentation</th>
+        <td><a href="{{ link['components-page-header-example-documentation'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
       <tr>
         <th>Partners</th>
@@ -54,6 +58,10 @@
         <th>PegaWorld</th>
         <td><a href="{{ link['components-page-header-example-pegaworld'] }}" class="e-bolt-text-link">View</a></td>
       </tr>
+      <tr>
+        <th>SalesHub</th>
+        <td><a href="{{ link['components-page-header-example-saleshub'] }}" class="e-bolt-text-link">View</a></td>
+      </tr>
     </tbody>
   </table>
 </bolt-table>
@@ -61,22 +69,23 @@
 
 {% set twig_markup %}
 {% verbatim %}
+// Reference each template's schema to learn about each props.
+
 // The main template
 {% include '@bolt-components-page-header/page-header.twig' with {
   logo: {
     image_src: '/images/logos/pega-logo.svg',
     label: 'Pegasystems',
     attributes: {
-      href: 'https://pega.com',
+      href: 'https://google.com',
     }
   },
-  subheadline: 'Subheadline text', // This appears next to the logo
+  subheadline: 'Subheadline text',
   content: primary_nav_and_search_panel,
   secondary_content: secondary_nav,
   cta: cta_button,
-  static: true, // Prevents page header from being sticky
-  full_width: true, // Sets the width to span the full viewport
-  subheadline: 'Subheadline text', // This appears next to the logo
+  static: true,
+  full_width: true,
 } only %}
 
 // Search panel template (pass to main template's content prop)
@@ -87,32 +96,35 @@
 // Primary nav template (pass to main template's content prop)
 {% include '@bolt-components-page-header/page-header-primary-nav.twig' with {
   content: content,
-  align_site_nav_items: align_site_nav_items, // ['start', 'center', 'end']
+  align_site_nav_items: align_site_nav_items,
 } only %}
 
 // Nav ul template (pass to primary nav template's content prop)
 {% include '@bolt-components-page-header/page-header-nav-ul.twig' with {
   content: content,
-  category: category, // ['site', 'related-sites', 'user']
-  popover_position: popover_position, // ['edge-start', 'edge-end']
+  category: category,
+  popover_position: popover_position,
 } only %}
 
 // Nav li template (pass to nav ul template's content prop)
 {% include '@bolt-components-page-header/page-header-nav-li.twig' with {
   link: {
     content: 'Products',
+    counter: true,
+    signifier_before: icon_before,
+    signifier_only: icon_only,
     attributes: {
-      href: 'https://pega.com/products',
+      href: 'https://google.com/products',
     },
   },
   children: children,
-  content: content, // This overrides link and children
-  view_all: false, // This is for general "view all" links
-  full_width: false, // This is for "view all" and full-width links
-  popover: false, // This is for utility nav
-  flat: false, // This is for a top level desktop site nav item to render a single level flat dropdown
-  selected: false, // This is for language select
-  current: true, // This is for marking a top level desktop site nav item as the current page
+  content: content,
+  view_all: false,
+  full_width: false,
+  popover: false,
+  flat: false,
+  selected: false,
+  current: true,
 } only %}
 {% endverbatim %}
 {% endset %}

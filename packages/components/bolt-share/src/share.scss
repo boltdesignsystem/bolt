@@ -12,12 +12,14 @@ $bolt-share-block-link-inline-spacing: 'xsmall';
 }
 
 @each $key, $value in $bolt-opacities {
-  .c-bolt-share--opacity-#{$key} {
-    @include bolt-opacity($key);
-    transition: opacity var(--bolt-transition);
+  @if ($key != '0') {
+    .c-bolt-share--opacity-#{$key} {
+      @include bolt-opacity($key);
+      transition: opacity var(--bolt-transition);
 
-    &:hover {
-      opacity: bolt-opacity(100);
+      &:hover {
+        opacity: bolt-opacity(100);
+      }
     }
   }
 }

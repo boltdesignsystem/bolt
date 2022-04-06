@@ -1,11 +1,11 @@
 {% set usage %}{% verbatim %}
-{% include "@bolt-components-tooltip/tooltip.twig" with {
-  trigger: "This is the tooltip trigger",
-  content: "This is the tooltip content."
+{% include '@bolt-components-tooltip/tooltip.twig' with {
+  trigger: 'This is the tooltip trigger',
+  content: 'This is the tooltip content.'
 } only %}
 {% endverbatim %}{% endset %}
 
-{% include "@utils/docs.twig" with {
-  componentName: "tooltip",
+{% include '@utils/docs.twig' with {
+  componentName: 'tooltip',
   usage: usage
 } only %}

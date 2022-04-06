@@ -3,6 +3,11 @@ module.exports = {
   title: 'Tabs',
   type: 'object',
   properties: {
+    attributes: {
+      type: 'object',
+      description:
+        'A Drupal-style attributes object with extra attributes to append to this component.',
+    },
     panels: {
       type: 'array',
       description:

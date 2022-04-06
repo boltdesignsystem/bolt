@@ -2,11 +2,14 @@
 
 {% block main_content %}
 
-{% include '@bolt-components-sticky/sticky.twig' with {
-  content: include('@bolt-components-banner/banner.twig', {
+{% set banner %}
+  {% include '@bolt-components-banner/banner.twig' with {
     content: 'Example Additional Sticky Element',
     status: 'warning',
-  }),
+  } only %}
+{% endset %}
+{% include '@bolt-components-sticky/sticky.twig' with {
+  content: banner,
   attributes: {
     class: [
       'u-bolt-margin-bottom-large',
@@ -46,19 +49,19 @@
 
   {% set navbar_items %}
     {% for item in navbar_data %}
-      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}
     {% endfor %}
   {% endset %}
 
   {% set navbar_links %}
-    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}
   {% endset %}
 
   {% include '@bolt-components-navbar/navbar.twig' with {
     title: {
       content: 'Title text',
       icon: {
-        name: "marketing-gray"
+        name: "bullseye"
       },
     },
     links: navbar_links,
@@ -124,19 +127,19 @@
 
   {% set navbar_items %}
     {% for item in navbar_data %}
-      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}
     {% endfor %}
   {% endset %}
 
   {% set navbar_links %}
-    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}
   {% endset %}
 
   {% include '@bolt-components-navbar/navbar.twig' with {
     title: {
       content: 'Title text',
       icon: {
-        name: "marketing-gray"
+        name: "bullseye"
       },
     },
     links: navbar_links,

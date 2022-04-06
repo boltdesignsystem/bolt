@@ -1,0 +1,26 @@
+{% set main_content %}
+  <h2>Default</h2>
+  {% include '@bolt-components-switch-button/switch-button.twig' with {
+    label: 'Toggle me',
+    attributes: {
+      class: 'js-target-the-switch-button-container'
+    },
+  } only %}
+
+  <h2>Button ID</h2>
+  {% include '@bolt-components-switch-button/switch-button.twig' with {
+    label: 'Toggle me',
+    attributes: {
+      class: 'js-target-the-switch-button-container'
+    },
+    button_attributes: {
+      id: 'super-special-id-that-is-wonderful'
+    }
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}

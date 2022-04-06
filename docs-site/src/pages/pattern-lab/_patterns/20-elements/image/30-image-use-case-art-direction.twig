@@ -1,16 +1,16 @@
 {% set description %}
-  The <bolt-code-snippet display="inline">&lt;picture&gt;</bolt-code-snippet> HTML element can help with art directing a particular graphical area of a page.
+  The <code>&lt;picture&gt;</code> HTML element can help with art directing a particular graphical area of a page.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
     <bolt-li><strong>When to use just the image element:</strong> loading different resolutions of the same image based on screen size.</bolt-li>
     <bolt-li>
-      <strong>When to use the <bolt-code-snippet display="inline">&lt;picture&gt;</bolt-code-snippet> HTML element:</strong> loading completely different images altogether based on screen size.
+      <strong>When to use the <code>&lt;picture&gt;</code> HTML element:</strong> loading completely different images altogether based on screen size.
       <bolt-ul>
-        <bolt-li>The <bolt-code-snippet display="inline">srcset</bolt-code-snippet> attribute should be used.</bolt-li>
-        <bolt-li>The <bolt-code-snippet display="inline">x</bolt-code-snippet> descriptor should be used after the image file URL. This helps with loading higher resolution images for monitors with higher DPI.</bolt-li>
-        <bolt-li>The <bolt-code-snippet display="inline">media</bolt-code-snippet> attribute should be used to indicate multiple breakpoints.</bolt-li>
+        <bolt-li>The <code>srcset</code> attribute should be used.</bolt-li>
+        <bolt-li>The <code>x</code> descriptor should be used after the image file URL. This helps with loading higher resolution images for monitors with higher DPI.</bolt-li>
+        <bolt-li>The <code>media</code> attribute should be used to indicate multiple breakpoints.</bolt-li>
         <bolt-li>For more advanced use cases, reference the <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" class="e-bolt-text-link">MDN article on responsive images</a>.</bolt-li>
       </bolt-ul>
     </bolt-li>
@@ -33,7 +33,7 @@
         },
       } only %}
     </picture>
-    <p>Completely different images are loaded via the <bolt-code-snippet display="inline">&lt;picture&gt;</bolt-code-snippet> HTML element, resize this page to see the image on the left change.</p>
+    <p>Completely different images are loaded via the <code>&lt;picture&gt;</code> HTML element, resize this page to see the image on the left change.</p>
   </div>
 {% endset %}
 

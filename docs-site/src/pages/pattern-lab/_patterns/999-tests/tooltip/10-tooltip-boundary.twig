@@ -1,12 +1,15 @@
 {% extends '@pl/_default-page-template.twig' %}
 
 {% block main_content %}
-  {% set banner %}
-    {% include '@bolt-components-sticky/sticky.twig' with {
-      content: include('@bolt-components-banner/banner.twig', {
+  {% set sticky_banner %}
+    {% set banner %}
+      {% include '@bolt-components-banner/banner.twig' with {
         content: 'Example Additional Sticky Element',
-        status: 'warning'
-      }),
+        status: 'warning',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-sticky/sticky.twig' with {
+      content: banner,
       attributes: {
         class: [
           'u-bolt-margin-bottom-large',
@@ -16,17 +19,20 @@
       },
     } only %}
   {% endset %}
-  {% set banner_tall %}
+  {% set sticky_banner_tall %}
     {% set content %}
       <div class="u-bolt-padding-bottom-large">
         <p>Example Additional Sticky Element</p>
       </div>
     {% endset %}
-    {% include '@bolt-components-sticky/sticky.twig' with {
-      content: include('@bolt-components-banner/banner.twig', {
+    {% set banner %}
+      {% include '@bolt-components-banner/banner.twig' with {
         content: content,
         status: 'warning',
-      }),
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-sticky/sticky.twig' with {
+      content: banner,
       attributes: {
         class: [
           'u-bolt-margin-bottom-large',
@@ -40,7 +46,7 @@
     {% include '@bolt-elements-text-link/text-link.twig' with {
       content: 'call to action',
       attributes: {
-        href: 'https://pega.com'
+        href: 'https://google.com'
       }
     } only %}
   {% endset %}
@@ -64,7 +70,7 @@
     } only %}
   {% endset %}
   <div>
-    {{ banner }}
+    {{ sticky_banner }}
     {{ tooltip }}
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
@@ -73,7 +79,7 @@
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
   </div>
   <div>
-    {{ banner_tall }}
+    {{ sticky_banner_tall }}
     {{ tooltip }}
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
@@ -82,7 +88,7 @@
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
   </div>
   <div>
-    {{ banner }}
+    {{ sticky_banner }}
     {{ tooltip }}
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, expedita? Aliquam dolore sequi beatae distinctio fugiat, nam repellat! Asperiores, recusandae! Laboriosam excepturi assumenda ab eveniet nulla molestias, modi quae nesciunt.</p>

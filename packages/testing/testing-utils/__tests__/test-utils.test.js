@@ -17,6 +17,7 @@ describe('test-utils', () => {
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/element',
+      '@bolt/elements-image',
       '@bolt/lazy-queue',
       '@bolt/polyfills',
     ].sort();
@@ -29,7 +30,6 @@ describe('test-utils', () => {
       '@bolt/starter-kit',
       '@bolt/components-band',
       '@bolt/components-hero',
-      '@bolt/components-page-footer',
     ]);
   });
 

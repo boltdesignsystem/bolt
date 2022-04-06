@@ -1,3 +1,7 @@
+//////////////////////////////////////////
+// The script that is currently used to do Bolt releases, ignore all the pretenders!
+//////////////////////////////////////////
+
 const shell = require('shelljs');
 const { IncomingWebhook } = require('@slack/webhook');
 const chalk = require('chalk');
@@ -123,17 +127,6 @@ async function init() {
                 'Skipped sending Slack notification about upcoming Bolt release -- missing `SLACK_WEBPACK_URL` env variable!',
               ),
             );
-          }
-
-          // Temporarily, only merge back to master if this is the release/2.x branch.
-          if (branchName === 'release/2.x') {
-            await shell.exec(`
-              git fetch --depth=50 origin master:master
-              git checkout master
-              git pull
-              git merge ${branchName}
-              git push --no-verify
-            `);
           }
         }
       }

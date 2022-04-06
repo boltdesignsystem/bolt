@@ -71,7 +71,7 @@ jobs:
     #      script:
     #        - npm run setup
 
-    # quicker build + Nightwatch tests for feature branches
+    # quicker build tests for feature branches
     - stage: Pre-deploy
       name: 'Build + Deploy Website + Lighthouse CLI'
       if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
@@ -90,7 +90,6 @@ jobs:
         - yarn run deploy
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH} -l ${NOW_URL}
-        - travis_retry yarn run test:e2e:quick-local
         # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/50-pages-10-d8-product-pages-product-t2/50-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/60-experiments-micro-journeys-90-micro-journeys/60-experiments-micro-journeys-90-micro-journeys.html
       after_success:
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
@@ -105,7 +104,7 @@ jobs:
         - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
         - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
 
-    # full build + Nightwatch tests for non-feature branches + tagged releases
+    # full build tests for non-feature branches + tagged releases
     - stage: Pre-deploy
       name: 'Build + Deploy Website (Full)'
       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
@@ -128,29 +127,29 @@ jobs:
         - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
 
     - stage: Post-deploy
-      name: 'Nightwatch End-to-End (Full)'
+      name: 'Deploy Tagged Release'
       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
       install:
         - yarn
         - npx lerna run postbootstrap
-      # before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
         - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
-        - travis_retry yarn run test:e2e:full
       after_success:
         - ./scripts/deploy-branch-alias.js
         - export NOW_BRANCH_URL=$(./scripts/get-branch-alias.js)
         - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH} -l ${NOW_BRANCH_URL}
         - ./scripts/deploy-tagged-release.js
-        # - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
       after_script:
         - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
 
     - stage: Auto-release
       name: 'Full Release'
-      if: (branch =~ /(release)\/[1-4]/)
+      # TRUST YOUR INSTINCTS!
+      # If you don't trust your instincts...
+      # release/6.x will not trigger an auto release, update the range "[1-5]" to "[1-6]" to start the 6.x release
+      if: (branch =~ /(release)\/[1-5]/)
       before_script:
         - git config --global user.email ${GITHUB_EMAIL}
         - git config --global user.name ${GITHUB_USER}

@@ -1,8 +1,8 @@
 {# Setting variables for demo purposes #}
-{% set schema = bolt.data.components["@bolt-components-list"].schema %}
+{% set schema = bolt.data.components['@bolt-components-list'].schema %}
 {% set link_1 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: "Item 1",
+    content: 'Item 1',
     attributes: {
       href: '#!'
     }
@@ -10,7 +10,7 @@
 {% endset %}
 {% set link_2 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: "Item 2",
+    content: 'Item 2',
     attributes: {
       href: '#!'
     }
@@ -18,7 +18,7 @@
 {% endset %}
 {% set link_3 %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
-    content: "Item 3",
+    content: 'Item 3',
     attributes: {
       href: '#!'
     }
@@ -30,8 +30,8 @@
 
 {% for tag in schema.properties.tag.enum %}
   <h3>{{ tag }}</h3>
-  {% include "@bolt-components-list/list.twig" with {
-    display: "inline",
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
     tag: tag,
     items: [
       link_1,

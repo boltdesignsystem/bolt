@@ -1,0 +1,148 @@
+{% import "@bolt-academy/_macros.twig" as macros %}
+
+{% set _share_icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: "share",
+    size: "small"
+  } only %}
+{% endset %}
+{% set _heart_icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: "heart",
+    size: "small"
+  } only %}
+{% endset %}
+{% set headline_1 %}
+  {% include "@bolt-components-headline/text.twig" with {
+      size: "small",
+      weight: "bold",
+      text: "6 Topics",
+    } only %}
+{% endset %}
+{% set headline_2 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "40 mins remaining",
+    attributes: {
+      class: ["u-bolt-color-yellow-dark"]
+    }
+  } only %}
+{% endset %}
+{% set headline_3 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "14 Steps",
+  } only %}
+{% endset %}
+{% set headline_4 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "In progress",
+    attributes: {
+      class: ["u-bolt-color-yellow-dark"]
+    }
+  } only %}
+{% endset %}
+{% set headline_5 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "#{bolt.faker.numberBetween(2,10)} Topics",
+  } only %}
+{% endset %}
+{% set headline_6 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "40 mins remaining",
+    attributes: {
+      class: ["u-bolt-color-yellow-dark"]
+    }
+  } only %}
+{% endset %}
+{% set share %}
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Share",
+    size: "xsmall",
+    hierarchy: "tertiary",
+    icon_only: _share_icon,
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% set favorited %}
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Favorited",
+    size: "xsmall",
+    hierarchy: "tertiary",
+    icon_only: _heart_icon,
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% include "@bolt-academy/_dashboard-band.twig" with {
+  sectionTitle: "My Favorite Training",
+  sectionTitleAlignment: "center",
+  contentItems: [
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: "Business Process Modeling - Advanced Topics",
+      favoriteButton: true,
+      isFavorited: true,
+      removeButton: true,
+      cardMetaItems: [
+        headline_1,
+        headline_2,
+      ],
+      cardGradient: "teal",
+      cardIcon: "orbit",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+        favorited,
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Challenge",
+      cardTitle: "Configuring a case type",
+      favoriteButton: true,
+      isFavorited: true,
+      addButton: true,
+      cardMetaItems: [
+        headline_3,
+        headline_4,
+      ],
+      cardGradient: "orange",
+      cardIcon: "meteor",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      favoriteButton: true,
+      isFavorited: false,
+      addButton: true,
+      cardMetaItems: [
+       headline_5,
+       headline_6,
+      ],
+      cardGradient: "teal",
+      cardIcon: "orbit",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+      ]
+    }
+  ]
+} only %}

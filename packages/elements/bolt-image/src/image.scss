@@ -2,6 +2,9 @@
 
 /**
  * Image Element
+ *
+ * Dev notes:
+ * 1. `content-visibility` conflicts with how we track scroll position in TOC and smooth-scroll components, @see https://pegadigitalit.atlassian.net/browse/DS-696
  */
 
 .e-bolt-image {
@@ -9,10 +12,11 @@
   height: auto;
   object-fit: var(--e-bolt-image-fit, cover);
   object-position: var(--e-bolt-image-position, center);
-  content-visibility: auto;
+  // content-visibility: auto; /* [1] */
 }
 
 .e-bolt-image--fill {
+  display: block;
   width: 100%;
 }
 

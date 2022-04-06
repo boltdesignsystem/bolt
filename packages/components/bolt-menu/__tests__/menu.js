@@ -17,7 +17,7 @@ describe('<bolt-menu> Component', () => {
         },
         {
           content: 'Menu item 2',
-          url: 'https://pega.com',
+          url: 'https://google.com',
         },
         {
           content: 'Menu item 2',

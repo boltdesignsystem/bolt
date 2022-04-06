@@ -1,13 +1,13 @@
 {% set schema = bolt.data.components['@bolt-elements-icon'].schema %}
 
 {% set description %}
-  An Icon is an inline SVG element. <bolt-code-snippet display="inline" lang="html">&lt;svg class="e-bolt-icon"&gt;</bolt-code-snippet> is acceptable at rendering an icon, though the Twig template is the recommended usage for Drupal.
+  An Icon is an inline SVG element. <code>&lt;svg class="e-bolt-icon"&gt;</code> is acceptable at rendering an icon, though the Twig template is the recommended usage for Drupal.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
     <bolt-li>Icon element is a replacement for the Icon component.</bolt-li>
-    <bolt-li>When writing inline SVG manually using <bolt-code-snippet display="inline" lang="html">&lt;svg&gt;</bolt-code-snippet> HTML element, be sure to minifiy the SVG, add the element class <bolt-code-snippet display="inline" lang="html">class="e-bolt-icon"</bolt-code-snippet>, and add the attribute <bolt-code-snippet display="inline" lang="html">aria-hidden="true"</bolt-code-snippet>.</bolt-li>
+    <bolt-li>When writing inline SVG manually using <code>&lt;svg&gt;</code> HTML element, be sure to minifiy the SVG, add the element class <code>class="e-bolt-icon"</code>, and add the attribute <code>aria-hidden="true"</code>.</bolt-li>
     <bolt-li>Icon element can be used in tandem with <a href="{{ link['viewall-elements-shape'] }}" class="e-bolt-text-link">Shape</a> element to create a square or circle container around the icon. In such scenario, size and color should not be set on the Icon, they should be set on the Shape instead.</bolt-li>
   </bolt-ol>
 {% endset %}
@@ -121,7 +121,7 @@
 
 {% set html_markup %}
 {% verbatim %}
-<svg class="e-bolt-icon" aria-hidden="true">...</svg>
+<svg class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">...</svg>
 {% endverbatim %}
 {% endset %}
 

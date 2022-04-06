@@ -1,0 +1,408 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use the <code>full_bleed</code> prop for building a profile header for a particular page.</bolt-li>
+    <bolt-li>While building a profile page, it is recommened to set the semantic heading level of the name to be <code>h1</code>. Use the <code>name.tag</code> prop to set it. See a <a href="{{ link['pages-user-profile'] }}" class="e-bolt-text-link">full page mockup of User Profile</a>.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set icon_facebook %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'facebook-solid',
+    } only %}
+  {% endset %}
+  {% set icon_twitter %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'twitter-solid',
+    } only %}
+  {% endset %}
+  {% set icon_linkedin %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'linkedin-solid',
+    } only %}
+  {% endset %}
+  {% set icon_email %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'email',
+    } only %}
+  {% endset %}
+  {% set icon_more %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'more',
+    } only %}
+  {% endset %}
+  {% set icon_pencil %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pencil',
+    } only %}
+  {% endset %}
+  {% set icon_share %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'share',
+    } only %}
+  {% endset %}
+  {% set icon_pega_setting %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-setting',
+    } only %}
+  {% endset %}
+
+  {% set actions %}
+    {% set popover_trigger %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Share profile',
+        icon_only: icon_share,
+        hierarchy: 'tertiary',
+        border_radius: 'full',
+        size: 'xsmall',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    {% endset %}
+    {% set popover_menu %}
+      {% include '@bolt-components-menu/menu.twig' with {
+        title: 'Share profile',
+        items: [
+          {
+            content: 'Facebook',
+            icon_before: icon_facebook,
+            url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse',
+            attributes: {
+              target: '_blank',
+              rel: 'noopener',
+            }
+          },
+          {
+            content: 'Twitter',
+            icon_before: icon_twitter,
+            url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
+            attributes: {
+              target: '_blank',
+              rel: 'noopener',
+            }
+          },
+          {
+            content: 'LinkedIn',
+            icon_before: icon_linkedin,
+            url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com',
+            attributes: {
+              target: '_blank',
+              rel: 'noopener',
+            }
+          },
+          {
+            content: 'Email',
+            icon_before: icon_email,
+            url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com',
+            attributes: {
+              target: '_blank',
+              rel: 'noopener',
+            }
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: popover_trigger,
+      content: popover_menu,
+      spacing: 'none',
+      placement: 'bottom-end',
+      trigger_event: 'hover',
+    } only %}
+
+    {% set popover_trigger %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'More options',
+        icon_only: icon_more,
+        hierarchy: 'tertiary',
+        border_radius: 'full',
+        size: 'xsmall',
+        attributes: {
+          type: 'button',
+        }
+      } only %}
+    {% endset %}
+    {% set popover_menu %}
+      {% include '@bolt-components-menu/menu.twig' with {
+        title: 'More options',
+        items: [
+          {
+            content: 'Edit profile',
+            icon_before: icon_pencil,
+          },
+          {
+            content: 'Settings',
+            icon_before: icon_pega_setting,
+          },
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: popover_trigger,
+      content: popover_menu,
+      spacing: 'none',
+      placement: 'bottom-end',
+      trigger_event: 'hover',
+    } only %}
+  {% endset %}
+
+  {% set chips %}
+    {% include '@bolt-components-chip/chip.twig' with {
+      text: 'Member since 2017',
+      border_radius: 'small',
+    } only %}
+    {% include '@bolt-components-chip/chip.twig' with {
+      text: 'Developer',
+      color: 'orange',
+      border_radius: 'small',
+    } only %}
+    {% include '@bolt-components-chip/chip.twig' with {
+      text: 'Available for hire',
+      color: 'teal',
+      border_radius: 'small',
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-profile/profile.twig' with {
+    name: {
+      content: '<strong>Toni Kukoc</strong> (@thepinkpanther)',
+      tag: 'h1',
+    },
+    job_title: 'Lead System Architect',
+    location: 'Croatia',
+    actions: actions,
+    chips: chips,
+    stats: [
+      {
+        number: '7',
+        label: 'Achievements',
+        attributes: {
+          type: 'button',
+        },
+      },
+      {
+        number: '7k',
+        label: 'Contributions',
+        attributes: {
+          type: 'button',
+        },
+      },
+    ],
+    message: {
+      label: 'Send message',
+      attributes: {
+        href: '#!',
+      },
+    },
+    full_bleed: true,
+    attributes: {
+      class: 't-bolt-gray-xlight',
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set icon_facebook %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'facebook-solid',
+  } only %}
+{% endset %}
+{% set icon_twitter %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'twitter-solid',
+  } only %}
+{% endset %}
+{% set icon_linkedin %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'linkedin-solid',
+  } only %}
+{% endset %}
+{% set icon_email %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'email',
+  } only %}
+{% endset %}
+{% set icon_more %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'more',
+  } only %}
+{% endset %}
+{% set icon_pencil %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pencil',
+  } only %}
+{% endset %}
+{% set icon_share %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'share',
+  } only %}
+{% endset %}
+{% set icon_pega_setting %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-setting',
+  } only %}
+{% endset %}
+
+{% set actions %}
+  {% set popover_trigger %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Share profile',
+      icon_only: icon_share,
+      hierarchy: 'tertiary',
+      border_radius: 'full',
+      size: 'xsmall',
+      attributes: {
+        type: 'button',
+      }
+    } only %}
+  {% endset %}
+  {% set popover_menu %}
+    {% include '@bolt-components-menu/menu.twig' with {
+      title: 'Share profile',
+      items: [
+        {
+          content: 'Facebook',
+          icon_before: icon_facebook,
+          url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse',
+          attributes: {
+            target: '_blank',
+            rel: 'noopener',
+          }
+        },
+        {
+          content: 'Twitter',
+          icon_before: icon_twitter,
+          url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
+          attributes: {
+            target: '_blank',
+            rel: 'noopener',
+          }
+        },
+        {
+          content: 'LinkedIn',
+          icon_before: icon_linkedin,
+          url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com',
+          attributes: {
+            target: '_blank',
+            rel: 'noopener',
+          }
+        },
+        {
+          content: 'Email',
+          icon_before: icon_email,
+          url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com',
+          attributes: {
+            target: '_blank',
+            rel: 'noopener',
+          }
+        },
+      ]
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: popover_trigger,
+    content: popover_menu,
+    spacing: 'none',
+    placement: 'bottom-end',
+    trigger_event: 'hover',
+  } only %}
+
+  {% set popover_trigger %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'More options',
+      icon_only: icon_more,
+      hierarchy: 'tertiary',
+      border_radius: 'full',
+      size: 'xsmall',
+      attributes: {
+        type: 'button',
+      }
+    } only %}
+  {% endset %}
+  {% set popover_menu %}
+    {% include '@bolt-components-menu/menu.twig' with {
+      title: 'More options',
+      items: [
+        {
+          content: 'Edit profile',
+          icon_before: icon_pencil,
+        },
+        {
+          content: 'Settings',
+          icon_before: icon_pega_setting,
+        },
+      ]
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: popover_trigger,
+    content: popover_menu,
+    spacing: 'none',
+    placement: 'bottom-end',
+    trigger_event: 'hover',
+  } only %}
+{% endset %}
+
+{% set chips %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Member since 2017',
+    border_radius: 'small',
+  } only %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Developer',
+    color: 'orange',
+    border_radius: 'small',
+  } only %}
+  {% include '@bolt-components-chip/chip.twig' with {
+    text: 'Available for hire',
+    color: 'teal',
+    border_radius: 'small',
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-profile/profile.twig' with {
+  name: {
+    content: '<strong>Toni Kukoc</strong> (@thepinkpanther)',
+    tag: 'h1',
+  },
+  job_title: 'Lead System Architect',
+  location: 'Croatia',
+  actions: actions,
+  chips: chips,
+  stats: [
+    {
+      number: '7',
+      label: 'Achievements',
+      attributes: {
+        type: 'button',
+      },
+    },
+    {
+      number: '7k',
+      label: 'Contributions',
+      attributes: {
+        type: 'button',
+      },
+    },
+  ],
+  message: {
+    label: 'Send message',
+    attributes: {
+      href: '#!',
+    },
+  },
+  full_bleed: true,
+  attributes: {
+    class: 't-bolt-gray-xlight',
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Full Bleed Profile',
+  description: 'Profile width can expand the full viewport.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

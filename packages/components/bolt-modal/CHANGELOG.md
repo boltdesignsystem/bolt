@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v5.2.4...v5.3.0) (2022-03-28)
+
+
+### Bug Fixes
+
+* add max width to regular modal ([08875a5](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/08875a56674729e06b6d40d920d9d4a0e654f1c0))
+
+
+
+
+
+## [5.2.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v5.2.1...v5.2.2) (2022-02-07)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [5.2.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v5.1.1...v5.2.0) (2022-01-25)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [5.1.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v5.0.1...v5.1.0) (2021-12-20)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+## [5.0.1](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v5.0.0...v5.0.1) (2021-11-12)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [5.0.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v4.7.0...v5.0.0) (2021-11-10)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [4.7.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v4.6.2...v4.7.0) (2021-11-04)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [4.6.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v4.5.1...v4.6.0) (2021-10-12)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [4.4.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v4.3.0...v4.4.0) (2021-09-13)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
 # [4.3.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v4.2.3...v4.3.0) (2021-08-30)
 
 **Note:** Version bump only for package @bolt/components-modal

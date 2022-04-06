@@ -9,15 +9,19 @@
         attributes: {
           src: '/images/placeholders/tout-4x3-climber.jpg',
           alt: 'A Rock Climber',
-          background: true,
           loading: 'lazy',
+          width: 400,
+          height: 300,
         }
       } only %}
     {% endset %}
     {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
       content: image,
       aspect_ratio: '1:1',
-      duration: '4:55',
+      video: {
+        title: 'Title of the Video',
+        duration: '4:55'
+      }
     } only %}
   </div>
 {% endset %}
@@ -27,7 +31,10 @@
 {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
   content: image,
   aspect_ratio: '1:1',
-  duration: '4:55',
+  video: {
+    title: 'Title of the Video',
+    duration: '4:55'
+  }
 } only %}
 {% endverbatim %}
 {% endset %}

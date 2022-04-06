@@ -1,5 +1,5 @@
 {% set attributes = create_attribute(attributes | default({})) %}
 
-<form{{ attributes }}>
+<form {{ attributes.addClass('c-bolt-form') }}>
   {{ children }}
 </form>

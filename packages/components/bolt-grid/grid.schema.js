@@ -1,6 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Bolt Grid',
+  title: 'Grid',
   description: 'A flexible 12-column grid with responsive breakpoint options.',
   type: 'object',
   properties: {

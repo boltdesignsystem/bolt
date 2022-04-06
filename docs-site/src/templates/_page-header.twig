@@ -19,6 +19,7 @@
       url: "https://github.com/boltdesignsystem/bolt/wiki",
       attributes: {
         target: "_blank",
+        rel: 'noopener'
       },
     },
     {
@@ -26,6 +27,7 @@
       url: "https://github.com/bolt-design-system/bolt",
       attributes: {
         target: "_blank",
+        rel: 'noopener'
       },
       icon: {
         name: "github",
@@ -33,10 +35,10 @@
       }
     },
   ] %}
-{# 
+{#
   {% set navbar_content %}
     {% for item in navbar_data %}
-      {% include "@bolt-components-navbar/navbar-item.twig" with item only %}  
+      {% include "@bolt-components-navbar/navbar-item.twig" with item only %}
     {% endfor %}
   {% endset %}
 

@@ -1,4 +1,4 @@
-{{ sentenceCase description }}
+{{ description }}
 
 ###### Install via NPM
 

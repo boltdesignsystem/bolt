@@ -5,9 +5,9 @@
   {% set thumbnail_content %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
-        src: "/images/placeholders/tout-4x3-climber.jpg",
-        alt: "A Rock Climber",
-        style: "max-width: 200px",
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        style: 'max-width: 200px',
         loading: 'lazy',
       }
     } only %}
@@ -16,39 +16,39 @@
   {% set image_content %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
-        src: "/images/placeholders/tout-4x3-climber.jpg",
-        alt: "A Rock Climber",
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
         laoding: 'lazy',
       }
     } only %}
   {% endset %}
 
   {% set modal_content %}
-    {% include "@bolt-components-trigger/trigger.twig" with {
+    {% include '@bolt-components-trigger/trigger.twig' with {
       content: image_content,
-      cursor: "zoom-out",
-      display: "block",
+      cursor: 'zoom-out',
+      display: 'block',
       attributes: {
-        "data-bolt-modal-target": ".js-image-modal-123"
+        'data-bolt-modal-target': '.js-image-modal-123'
       }
     } only %}
   {% endset %}
 
-  {% include "@bolt-components-trigger/trigger.twig" with {
+  {% include '@bolt-components-trigger/trigger.twig' with {
     content: thumbnail_content,
-    cursor: "zoom-in",
+    cursor: 'zoom-in',
     attributes: {
-      "data-bolt-modal-target": ".js-image-modal-123",
+      'data-bolt-modal-target': '.js-image-modal-123',
     }
   } only %}
 
-  {% include "@bolt-components-modal/modal.twig" with {
+  {% include '@bolt-components-modal/modal.twig' with {
     attributes: {
-      class: ["js-image-modal-123"]
+      class: ['js-image-modal-123']
     },
     content: modal_content,
-    spacing: "none",
-    theme: "none",
-    scroll: "overall",
+    spacing: 'none',
+    theme: 'none',
+    scroll: 'overall',
   } only %}
 </div>

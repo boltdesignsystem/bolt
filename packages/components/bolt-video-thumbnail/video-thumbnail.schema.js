@@ -25,10 +25,48 @@ module.exports = {
       enum: ['1:1', '16:9', '4:3'],
       default: '16:9',
     },
-    duration: {
-      type: 'string',
+    chip: {
+      type: 'any',
       description:
-        'Display the video duration that overlays the video thumbnail.',
+        'Display a chip (or chip-list) that overlays the video thumbnail. Positioned before the video title. Chip or Chip-list component is expected here.',
+    },
+    button_attributes: {
+      type: 'object',
+      description:
+        'A Drupal attributes object. Applies extra HTML attributes to the inner button element.',
+    },
+    video: {
+      type: 'object',
+      description: 'Props that pertain to the Brightcove video',
+      properties: {
+        content: {
+          type: 'any',
+          description:
+            'A Brightcove video that will display inside the video thumbnail container.',
+        },
+        duration: {
+          type: 'any',
+          description:
+            'Display the video duration that overlays the video thumbnail. This should only be plain text.',
+        },
+        has_subtitles: {
+          type: 'boolean',
+          description:
+            'Display a subtitles icon that overlays the video thumbnail.',
+          default: false,
+        },
+        title: {
+          type: 'any',
+          description:
+            "Video title data that is used within the internal button's aria-label and the optional video title chip.",
+        },
+        show_title: {
+          type: 'boolean',
+          description:
+            'Display a video title chip that overlays the video thumbnail.',
+          default: false,
+        },
+      },
     },
   },
 };

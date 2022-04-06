@@ -1,12 +1,12 @@
 {% set description %}
-  The popover bubble width is set to 250px by default, but it can be customized per use case by defining the <bolt-code-snippet display="inline">--c-bolt-popover-bubble-width</bolt-code-snippet> CSS custom property via inline style.
+  The popover bubble width is set to 250px by default, but it can be customized per use case by defining the <code>--c-bolt-popover-bubble-width</code> CSS custom property via inline style.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>It is recommended to always use the CSS function <bolt-code-snippet display="inline" lang="css">min()</bolt-code-snippet> when customizing the popover bubble width. This ensures the width will never break page layouts.</bolt-li>
-    <bolt-li>The following example uses <bolt-code-snippet display="inline" lang="css">min(80vw, 500px)</bolt-code-snippet>, which means the width is set to 500px unless the browser width is smaller than 500px, then the width will become 80% of the browser width.</bolt-li>
-    <bolt-li>Keep in mind that the <bolt-code-snippet display="inline" lang="css">min()</bolt-code-snippet> function is not supported in Microsoft Edge 42 and older. If you need to support such old browser, you should set the custom width to a plain old absolute value such as 500px.</bolt-li>
+    <bolt-li>It is recommended to always use the CSS function <code>min()</code> when customizing the popover bubble width. This ensures the width will never break page layouts.</bolt-li>
+    <bolt-li>The following example uses <code>min(80vw, 500px)</code>, which means the width is set to 500px unless the browser width is smaller than 500px, then the width will become 80% of the browser width.</bolt-li>
+    <bolt-li>Keep in mind that the <code>min()</code> function is not supported in Microsoft Edge 42 and older. If you need to support such old browser, you should set the custom width to a plain old absolute value such as 500px.</bolt-li>
   </bolt-ol>
 {% endset %}
 

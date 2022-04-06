@@ -34,6 +34,10 @@ $_bolt-icon-color: teal, navy, yellow, orange, pink, berry, wine, violet;
 
 @each $color in $_bolt-icon-color {
   .e-bolt-icon--#{$color} {
-    --e-bolt-icon-color: var(--bolt-color-#{$color});
+    @if $color == yellow {
+      --e-bolt-icon-color: var(--bolt-color-#{$color}-dark);
+    } @else {
+      --e-bolt-icon-color: var(--bolt-color-#{$color});
+    }
   }
 }

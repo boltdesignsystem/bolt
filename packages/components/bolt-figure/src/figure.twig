@@ -40,25 +40,7 @@
       {% if media %}
         <ssr-keep for="bolt-figure" class="{{ "#{base_class}__media" }}">
           <div slot="media">
-            {% set content = media.content %}
-
-            {# `image`, `icon`, `video`, and `table` are DEPRECATED. Use `content` instead. #}
-            {% set image = media.image %}
-            {% set icon = media.icon %}
-            {% set video = media.video %}
-            {% set table = media.table %}
-
-            {% if content %}
-              {{ content }}
-            {% elseif image %}
-              {% include "@bolt-components-image/image.twig" with image only %}
-            {% elseif icon %}
-              {% include "@bolt-components-icon/icon.twig" with icon only %}
-            {% elseif video %}
-              {% include "@bolt-components-video/video.twig" with video only %}
-            {% elseif table %}
-              {% include "@bolt-components-table/table.twig" with table only %}
-            {% endif %}
+            {{ media.content  }}
           </div>
         </ssr-keep>
       {% endif %}

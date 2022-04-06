@@ -3,20 +3,27 @@
 {% endset %}
 
 {% set notes %}
+{% spaceless %}
   <bolt-ol>
     <bolt-li>Although nesting is possible, it is not recommended to go more than 4 levels deep.</bolt-li>
     <bolt-li>Side nav is intended to be used as the left sidebar of a <a href="{{ link['viewall-layouts-holy-grail'] }}" class="e-bolt-text-link">Holy Grail layout</a>.</bolt-li>
-    <bolt-li>Tech Doc is a great example of using Holy Grail layout, Site layout, Side Nav, Content Pagination, and Article element together. <a href="{{ link['pages-community-doc-layout'] }}" class="e-bolt-text-link">View demo<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+    <bolt-li>Tech Doc is a great example of using Holy Grail layout, Site layout, Side Nav, Content Pagination, and Article element together. <a href="{{ link['pages-community-doc-layout'] }}" class="e-bolt-text-link">View demo<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right' } only %}</span></a></bolt-li>
   </bolt-ol>
+{% endspaceless %}
 {% endset %}
 
 {% set demo %}
+  {% set icon_external_link %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'external-link',
+    } only %}
+  {% endset %}
   {% set level_2_items %}
     {% include '@bolt-components-side-nav/side-nav-li.twig' with {
       link: {
         content: 'Level 2 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
     } only %}
@@ -24,7 +31,7 @@
       link: {
         content: 'Level 2 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
     } only %}
@@ -39,7 +46,7 @@
       link: {
         content: 'Level 1 page (with nested links)',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       children: level_2_list,
@@ -48,7 +55,7 @@
       link: {
         content: 'Level 1 page (current)',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       current: true,
@@ -57,7 +64,18 @@
       link: {
         content: 'Level 1 page',
         attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+      link: {
+        content: 'Level 1 external link',
+        icon: icon_external_link,
+        attributes: {
+          href: 'https://google.com',
+          target: '_blank',
+          rel: 'noopener',
         },
       },
     } only %}
@@ -73,7 +91,7 @@
       headline: {
         content: 'This is a side nav',
         link_attributes: {
-          href: 'https://pega.com',
+          href: 'https://google.com',
         },
       },
       content: level_1_list,
@@ -84,32 +102,42 @@
 {% set twig_markup %}
 {% verbatim %}
 // List item template
-{% include '@bolt-components-side-nav/side-nav-li.twig' with {
-  link: {
-    content: 'Item text',
-    attributes: {
-      href: 'https://pega.com',
+{% set list_items %}
+  {% set icon_external_link %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'external-link',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-side-nav/side-nav-li.twig' with {
+    link: {
+      content: 'Item text',
+      icon: icon_external_link, // Set a custom icon for external link.
+      attributes: {
+        href: 'https://google.com',
+      },
     },
-  },
-  current: true, // When set to true, the item is indicated as the current page.
-  expanded: true, // When set to true, it will show children.
-  children: children, // Pass another list in here.
-} only %}
+    current: true, // When set to true, the item is indicated as the current page.
+    expanded: true, // When set to true, it will show children.
+    children: children, // Pass another list in here.
+  } only %}
+{% endset %}
 
 // List template
-{% include '@bolt-components-side-nav/side-nav-ul.twig' with {
-  content: content, // Pass list items in here.
-} only %}
+{% set list %}
+  {% include '@bolt-components-side-nav/side-nav-ul.twig' with {
+    content: list_items, // Pass list items in here.
+  } only %}
+{% endset %}
 
 // Side nav template
 {% include '@bolt-components-side-nav/side-nav.twig' with {
   headline: {
     content: 'Headline text',
     link_attributes: {
-      href: 'https://pega.com',
+      href: 'https://google.com',
     },
   },
-  content: content, // Pass list in here.
+  content: list, // Pass list in here.
 } only %}
 {% endverbatim %}
 {% endset %}

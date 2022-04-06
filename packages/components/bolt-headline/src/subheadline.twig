@@ -1,19 +1,6 @@
-{% extends "@bolt/_typography.twig" %}
-{% set type = "subheadline" %}
-{# @todo @Salem, not sure if span should be allowed or not. There should not be two overrides of tags here. See headline as well #}
-{% set tags = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "span"] %} {# Allowed Tags #}
-{% set tags = [
-  "h1",
-  "h2",
-  "h3",
-  "h4",
-  "h5",
-  "h6",
-  "p",
-] %}
-{% set sizes = ["xxlarge", "xlarge", "large"] %}
-{% set size = size | default("xlarge") %}
-{% set weight = "regular" %}
-
-{% set styles = ["normal", "italic"] %}
-{% set style = style | default("normal") %}
+{% extends '@bolt-components-headline/_typography.twig' %}
+{% set type = 'subheadline' %}
+{% set size = size | default('xlarge') %}
+{% set weight = 'regular' %}
+{% set style = style | default('normal') %}
+{% set tag = tag | default('p') %}

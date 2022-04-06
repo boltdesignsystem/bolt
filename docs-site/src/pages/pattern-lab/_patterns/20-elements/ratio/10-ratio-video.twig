@@ -1,0 +1,66 @@
+{% set description %}
+  The most common aspect ratio for videos is wide (16/9).
+{% endset %}
+
+{% set notes %}
+  A 16/9 ratio is typically seen as optimal because it is capable of the highest resolution. It is also easy to capture this aspect ratio on almost all devices.
+{% endset %}
+
+{% set demo %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="6236693947001"
+      data-media-duration
+      data-media-title
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video,
+    ratio: 'wide',
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set video %}
+  <video-js
+    data-account="1900410236"
+    data-player="O3FkeBiaDz"
+    data-embed="default"
+    data-video-id="6236693947001"
+    data-media-duration
+    data-media-title
+    controls
+    class="c-base-video"></video-js>
+{% endset %}
+{% include '@bolt-elements-ratio/ratio.twig' with {
+  content: video,
+  ratio: 'wide',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<div class="e-bolt-ratio e-bolt-ratio--wide">
+  <video-js
+    data-account="1900410236"
+    data-player="O3FkeBiaDz"
+    data-embed="default"
+    data-video-id="6236693947001"
+    data-media-duration
+    data-media-title
+    controls
+    class="c-base-video"></video-js>
+</div>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Ratio for Videos',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

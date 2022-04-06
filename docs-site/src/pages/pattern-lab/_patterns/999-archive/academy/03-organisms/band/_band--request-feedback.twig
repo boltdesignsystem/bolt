@@ -1,0 +1,98 @@
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "dark",
+  size: "small"
+} only %}
+  {% block band_content %}
+    {% import "@bolt-academy/_macros.twig" as macros %}
+
+    <div class="u-bolt-overflow-hidden">
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--border o-bolt-grid--middle" %}
+        {% cell "u-bolt-width-12/12 u-bolt-width-7/12@small" %}
+           {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--middle o-bolt-grid--small" %}
+            {% cell %}
+              {% include "@bolt-components-headline/text.twig" with {
+                text: "Did you find this content helpful?",
+                weight: "semibold",
+                size: "medium",
+                attributes: {
+                  class: [
+                    "u-bolt-inline-block",
+                    "u-bolt-align-middle",
+                  ]
+                }
+              } only %}
+            {% endcell %}
+
+            {% cell %}
+              {% set _add_icon %}
+                {% include '@bolt-elements-icon/icon.twig' with {
+                  name: 'face-happy',
+                  size: 'small'
+                } only %}
+              {% endset %}
+              {% set _minus_icon %}
+                {% include '@bolt-elements-icon/icon.twig' with {
+                  name: 'face-sad',
+                  size: 'small'
+                } only %}
+              {% endset %}
+              {% set button_1 %}
+                {% include "@bolt-elements-button/button.twig" with {
+                  content: "Yes",
+                  hierarchy: "transparent",
+                  size: "small",
+                  icon_before: _add_icon,
+                  attributes: {
+                    type: 'button'
+                  }
+                } only %}
+              {% endset %}
+              {% set button_2 %}
+                {% include "@bolt-elements-button/button.twig" with {
+                  content: "No",
+                  hierarchy: "transparent",
+                  size: "xsmall",
+                  icon_before: _minus_icon,
+                  attributes: {
+                    type: 'button'
+                  }
+                } only %}
+              {% endset %}
+              {% set text %}
+                {% include "@bolt-components-headline/text.twig" with {
+                  text: "<strong>28%</strong> found this useful",
+                  size: "xsmall"
+                } only %}
+              {% endset %}
+              {% include "@bolt-components-list/list.twig" with {
+                  display: "inline",
+                  size: "medium",
+                  attributes: {
+                    class: [
+                      "u-bolt-inline-block",
+                      "u-bolt-align-middle",
+                    ]
+                  },
+                  items: [
+                    button_1,
+                    button_2,
+                    text,
+                  ]
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+
+        {% endcell %}
+
+        {% cell "u-bolt-width-12/12 u-bolt-width-5/12@small u-bolt-align-self-stretch u-bolt-justify-content-center u-bolt-flex u-bolt-flex-direction-column u-bolt-flex-col" %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "Want to help us improve this content? ",
+            weight: "semibold",
+            size: "medium",
+          } only %}
+        {% endcell %}
+
+      {% endgrid %}
+    </div>
+  {% endblock %}
+{% endembed %}

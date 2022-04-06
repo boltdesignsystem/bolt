@@ -1,8 +1,8 @@
 {% set image %}
-  {% include "@bolt-elements-image/image.twig" with {
+  {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      src: "/images/content/screenshots/device-screenshot--desktop.jpg",
-      loading: "lazy",
+      src: '/images/content/screenshots/device-screenshot--desktop.jpg',
+      loading: 'lazy',
     }
   } only %}
 {% endset %}
@@ -10,45 +10,45 @@
 {% set thumbnail_image %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      src: "/images/content/screenshots/device-screenshot--desktop.jpg",
-      style: "max-width: 600px"
+      src: '/images/content/screenshots/device-screenshot--desktop.jpg',
+      style: 'max-width: 600px'
     }
   } only %}
 {% endset %}
 
-{% set modal_class = "js-device-viewer-modal-642" %}
+{% set modal_class = 'js-device-viewer-modal-642' %}
 {% set modal_content %}
-  {% include "@bolt-components-trigger/trigger.twig" with {
+  {% include '@bolt-components-trigger/trigger.twig' with {
     content: image,
-    cursor: "zoom-out",
-    display: "block",
+    cursor: 'zoom-out',
+    display: 'block',
     attributes: {
-      "data-bolt-modal-target": "." ~ modal_class
+      'data-bolt-modal-target': '.' ~ modal_class
     }
   } only %}
 {% endset %}
 
 {% set trigger %}
-  {% include "@bolt-components-trigger/trigger.twig" with {
+  {% include '@bolt-components-trigger/trigger.twig' with {
     content: thumbnail_image,
-    cursor: "zoom-in",
+    cursor: 'zoom-in',
     attributes: {
-      "data-bolt-modal-target": "." ~ modal_class,
+      'data-bolt-modal-target': '.' ~ modal_class,
     }
   } only %}
 {% endset %}
 
-{% include "@bolt-components-device-viewer/device-viewer.twig" with {
-  device: "macbook",
+{% include '@bolt-components-device-viewer/device-viewer.twig' with {
+  device: 'macbook',
   content: trigger,
 } only %}
 
-{% include "@bolt-components-modal/modal.twig" with {
+{% include '@bolt-components-modal/modal.twig' with {
   attributes: {
     class: [modal_class]
   },
   content: modal_content,
-  spacing: "none",
-  theme: "none",
-  scroll: "overall",
+  spacing: 'none',
+  theme: 'none',
+  scroll: 'overall',
 } only %}

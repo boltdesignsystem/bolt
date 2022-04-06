@@ -46,7 +46,6 @@ async function finishRendering(rows, callback) {
             "Twig",
             "Web Component",
             "Jest",
-            "Nightwatch",
             "TESTING.md",
             "README.md"
           ]
@@ -135,11 +134,7 @@ async function generateStatusBoard() {
       const jestTestsFound = globby.sync(
         `${componentPath}/__tests__/__snapshots__/*.js.snap`,
       );
-      const nightwatchTestsFound = globby.sync(
-        `${componentPath}/__tests__/*.e2e.js`,
-      );
       const hasjestTests = jestTestsFound.length > 0;
-      const hasNightwatchTests = nightwatchTestsFound.length > 0;
       const hasJs = jsFound.length === 1;
       const probablyAWebComponent = jsFound.length > 1;
       const hasScss = scssFound.length > 0;
@@ -200,7 +195,6 @@ async function generateStatusBoard() {
               hasTwig ? '✅' : '',
               probablyAWebComponent ? '✅' : hasJs ? '' : '',
               hasjestTests ? '✅' : '🚫',
-              hasNightwatchTests ? '✅' : '🚫',
               hasManualTestingDocs ? '✅' : '🚫',
               docsFound.size >= 300 ? '✅' : '❓',
             ],

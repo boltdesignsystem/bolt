@@ -1,0 +1,278 @@
+/* ------------------------------------ *\
+   Notifications
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+.c-bolt-notifications {
+  display: block;
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-xsmall);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--m-bolt-text);
+  line-height: var(--bolt-type-line-height-xsmall);
+  background-color: var(--m-bolt-bg);
+}
+
+.c-bolt-notifications__list {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &:before {
+    content: '';
+    opacity: 0.06;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background-color: var(--m-bolt-neutral);
+  }
+}
+
+.c-bolt-notifications__list-item {
+  display: grid;
+  position: relative;
+  margin: 0;
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+  grid-template-columns: auto 1fr;
+  grid-gap: var(--bolt-spacing-x-small);
+  background-color: var(--m-bolt-bg);
+
+  & + #{&} {
+    border-top: 1px solid var(--m-bolt-border);
+  }
+
+  &:first-of-type {
+    border-top: 0;
+  }
+}
+
+.c-bolt-notifications__list-item--read {
+  .c-bolt-notifications__signifier {
+    color: var(--m-bolt-neutral);
+  }
+
+  .c-bolt-notifications__eyebrow,
+  .c-bolt-notifications__timestamp,
+  .c-bolt-notifications__message {
+    font-weight: var(--bolt-type-font-weight-regular);
+  }
+
+  .c-bolt-notifications__timestamp {
+    color: var(--m-bolt-neutral);
+  }
+
+  .c-bolt-notifications__timestamp:after {
+    visibility: hidden;
+  }
+}
+
+.c-bolt-notifications__list-item--section-heading,
+.c-bolt-notifications__list-item--read {
+  background-color: transparent;
+}
+
+.c-bolt-notifications__list-item--section-heading {
+  &,
+  * {
+    font-family: var(--bolt-type-font-family-headline);
+    font-size: var(--bolt-type-font-size-small);
+    font-weight: var(--bolt-type-font-weight-bold);
+    color: var(--m-bolt-text);
+    line-height: var(--bolt-type-line-height-small);
+  }
+}
+
+.c-bolt-notifications__signifier {
+  color: var(--m-bolt-primary);
+}
+
+.c-bolt-notifications__content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--bolt-spacing-x-xsmall);
+  row-gap: var(--bolt-spacing-y-xsmall);
+
+  > * {
+    font-weight: inherit;
+  }
+}
+
+.c-bolt-notifications__eyebrow,
+.c-bolt-notifications__timestamp {
+  font-family: var(--bolt-type-font-family-headline);
+}
+
+.c-bolt-notifications__eyebrow {
+  white-space: nowrap;
+  color: var(--m-bolt-neutral);
+}
+
+.c-bolt-notifications__timestamp {
+  color: var(--m-bolt-primary);
+
+  &:after {
+    content: '';
+    display: inline-block;
+    width: 0.6em;
+    height: 0.6em;
+    margin-left: var(--bolt-spacing-x-xxsmall);
+    line-height: 1;
+    border-radius: bolt-border-radius(full);
+    box-shadow: 0 0 0 3px var(--m-bolt-border);
+    background-color: var(--m-bolt-primary);
+  }
+}
+
+button.c-bolt-notifications__message {
+  @include bolt-button-native-styles-reset;
+}
+
+a.c-bolt-notifications__message,
+button.c-bolt-notifications__message {
+  &:before {
+    right: 0;
+  }
+
+  &:focus {
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+.c-bolt-notifications__message {
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+  }
+
+  &:after {
+    opacity: 0;
+    width: 5px;
+    background-color: var(--m-bolt-primary);
+    transition: opacity var(--bolt-transition);
+
+    @at-root .c-bolt-notifications__list-item:hover #{&} {
+      opacity: 1;
+    }
+  }
+
+  em {
+    font-style: normal;
+    color: var(--m-bolt-link);
+
+    @at-root .c-bolt-notifications__content:hover #{&} {
+      text-decoration: underline;
+    }
+  }
+}
+
+.c-bolt-notifications__header,
+.c-bolt-notifications__footer {
+  display: block;
+  position: relative;
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+  font-family: var(--bolt-type-font-family-headline);
+  font-size: var(--bolt-type-font-size-small);
+  font-weight: var(--bolt-type-font-weight-semibold);
+  color: var(--m-bolt-headline);
+  line-height: var(--bolt-type-line-height-small);
+  background-color: var(--m-bolt-bg);
+}
+
+.c-bolt-notifications__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--m-bolt-border);
+  gap: var(--bolt-spacing-x-medium);
+  row-gap: var(--bolt-spacing-x-small);
+
+  @include bolt-mq(large) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--bolt-spacing-x-small);
+  }
+}
+
+.c-bolt-notifications__switch {
+  white-space: nowrap;
+}
+
+.c-bolt-notifications__actions {
+  display: grid;
+  justify-items: center;
+  gap: var(--bolt-spacing-x-small);
+
+  @include bolt-mq(xsmall) {
+    display: flex;
+  }
+}
+
+.c-bolt-notifications__action-button {
+  @include bolt-button-native-styles-reset;
+  @include bolt-text-link;
+
+  display: flex;
+  position: relative;
+  text-decoration: none;
+  gap: var(--bolt-spacing-x-xsmall);
+
+  &:focus {
+    outline: var(--bolt-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+.c-bolt-notifications__action-button-text {
+  @include bolt-mq(large) {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    transform: translate3d(var(--bolt-spacing-x-xxsmall), -100%, 0);
+    z-index: bolt-z-index(popover);
+    padding: var(--bolt-spacing-y-xxsmall) var(--bolt-spacing-x-xsmall);
+    font-family: var(--bolt-type-font-family-headline);
+    font-size: var(--bolt-type-font-size-xsmall);
+    font-weight: var(--bolt-type-font-weight-semibold);
+    color: var(--m-bolt-bg);
+    line-height: var(--bolt-type-line-height-xsmall);
+    border-radius: bolt-border-radius(small);
+    background-color: var(--m-bolt-text);
+    transition: transform var(--bolt-transition), opacity var(--bolt-transition);
+    white-space: nowrap;
+
+    @at-root .c-bolt-notifications__action-button:hover #{&} {
+      visibility: visible;
+      opacity: 1;
+      transform: translate3d(
+        var(--bolt-spacing-x-xxsmall),
+        var(--bolt-spacing-y-xxsmall),
+        0
+      );
+    }
+  }
+}
+
+.c-bolt-notifications__footer {
+  text-align: center;
+  border-top: 1px solid var(--m-bolt-border);
+}

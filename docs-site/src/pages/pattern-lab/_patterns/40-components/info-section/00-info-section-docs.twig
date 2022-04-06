@@ -1,0 +1,14 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-info-section/info-section.twig' with {
+  label: {
+    content: 'This is an info section',
+    tag: 'h2',
+  },
+  content: 'This is the section content.',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'info-section',
+  usage: usage,
+} only %}

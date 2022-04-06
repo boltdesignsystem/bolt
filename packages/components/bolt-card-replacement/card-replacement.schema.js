@@ -75,7 +75,7 @@ module.exports = {
         },
         video: {
           type: 'object',
-          ref: 'video',
+          description: 'Pass in Brightcove video markup.',
         },
         content: {
           type: ['string', 'array', 'object'],

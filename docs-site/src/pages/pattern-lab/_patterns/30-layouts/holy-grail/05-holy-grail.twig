@@ -3,14 +3,16 @@
 {% endset %}
 
 {% set notes %}
+{% spaceless %}
   <bolt-ol>
     <bolt-li>The sidebars are sticky at and above the medium breakpoint.</bolt-li>
-    <bolt-li>The primary sidebar transforms into a modal below the medium breakpoint. User can tap a trigger button to activate the modal. <bolt-code-snippet display="inline">trigger_icon</bolt-code-snippet> and <bolt-code-snippet display="inline">trigger_label</bolt-code-snippet> props are available for customizing the icon and label text in the trigger button.</bolt-li>
+    <bolt-li>The primary sidebar transforms into a modal below the medium breakpoint. User can tap a trigger button to activate the modal. <code>trigger_icon</code> and <code>trigger_label</code> props are available for customizing the icon and label text in the trigger button.</bolt-li>
     <bolt-li>The secondary sidebar disappears entirely below the medium breakpoint. This sidebar is intended for non-essential information.</bolt-li>
     <bolt-li>Holy Grail layout should be used in tandem with <a href="{{ link['viewall-layouts-site'] }}" class="e-bolt-text-link">Site layout</a>. It would go into the main content area.</bolt-li>
-    <bolt-li>Tech Doc is a great example of using Holy Grail layout, Site layout, Side Nav, Content Pagination, and Article element together. <a href="{{ link['pages-community-doc-layout'] }}" class="e-bolt-text-link">View demo<span class="e-bolt-text-link__icon-after"><bolt-icon name="chevron-right"></bolt-icon></span></a></bolt-li>
+    <bolt-li>Tech Doc is a great example of using Holy Grail layout, Site layout, Side Nav, Content Pagination, and Article element together. <a href="{{ link['pages-community-doc-layout'] }}" class="e-bolt-text-link">View demo<span class="e-bolt-text-link__icon-after">{% include '@bolt-elements-icon/icon.twig' with { name: 'chevron-right', } only %}</span></a></bolt-li>
     <bolt-li>Read more about holy grail layout on <a href="https://en.wikipedia.org/wiki/Holy_grail_(web_design)" class="e-bolt-text-link">Wikipedia</a>.</bolt-li>
   </bolt-ol>
+{% endspaceless %}
 {% endset %}
 
 {% set demo %}
@@ -39,7 +41,7 @@
       content: secondary_sidebar_content,
     } only %}
   {% endset %}
-  
+
   {% include '@bolt-layouts-holy-grail/holy-grail.twig' with {
     content: content,
     sidebar: sidebar,

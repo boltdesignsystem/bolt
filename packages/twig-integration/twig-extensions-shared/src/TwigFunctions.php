@@ -48,64 +48,6 @@ class TwigFunctions {
     ]);
   }
 
-  public static function bolt_ssr($context = '', $html) {
-    // a better, more dynamic way of finding the ssr-server path is via lerna (but it's more costly to run $$)
-    // $p = new Process('npx --quiet lerna ls --json --all | npx --quiet json -a -c "this.name === \'@bolt/ssr-server\'" location');
-    // $p->run();
-    // $ssrServerPath = trim($p->getOutput()).'/cli.js';
-
-    // locate where the Bolt SSR Server script is physically located so we can call the script + pass along our HTML string to render
-    $context = new ArrayFinder($context);
-    $boltConfig = $context->get('bolt.data.config');
-
-    // if the config option used to manually set server-side rendering behavior (enabled, disabled, or auto) doesn't exist, automatically disable and exit early.
-    if (!isset($boltConfig["enableSSR"])){
-      return $html;
-    }
-
-    // disable server-side rendering web components when manually disabled, or set to auto + running in dev mode
-    if ($boltConfig["enableSSR"] == false){
-      return $html;
-    }
-
-    $ssrServerPath = dirname($boltConfig["configFileUsed"], 2) . '/node_modules/@bolt/ssr-server/cli.js';
-    $ssrServerPathAlt = dirname($boltConfig["configFileUsed"], 1) . '/node_modules/@bolt/ssr-server/cli.js';
-    $ssrServerLocation = '';
-
-    // if we found the right SSR server file in one of two places, try to render using it. Otherwise return the original HTML.
-    if (file_exists( $ssrServerPath )){
-      $ssrServerLocation = $ssrServerPath; // SSR file to use for rendering found in the node_modules folder located at the same level as .boltrc config
-    } elseif (file_exists( $ssrServerPathAlt )){
-      $ssrServerLocation = $ssrServerPathAlt; // SSR file to use for rendering found one level higher than the .boltrc config
-    } else {
-      return $html; // if the ssr-server can't be found
-    }
-
-    // auto-disable syntax highlighting via the 2nd prop
-    $process = new Process(['node', $ssrServerPath, $html, false]);
-    $process->setTimeout(3600);
-    $process->setIdleTimeout(480);
-    $process->run();
-    $result = $process->getOutput();
-
-    if (strlen($result) < 1){
-      return $html;
-    } else {
-      return $result;
-    }
-  }
-
-  public static function ssr() {
-    return new Twig_SimpleFunction('bolt_ssr', function(\Twig\Environment $env, $context, $html) {
-      $result = self::bolt_ssr($context, $html);
-      return $result;
-    }, [
-      'needs_environment' => true,
-      'needs_context' => true,
-    ]);
-  }
-
-
   public static function inlineFile() {
     return new Twig_SimpleFunction('inline', function($context, $filename) {
       if (!$filename){
@@ -189,18 +131,6 @@ class TwigFunctions {
     ]);
   }
 
-
-  // Return the average color of the image path passed in
-  public static function bgcolor() {
-    return new Twig_SimpleFunction('bgcolor', function(\Twig\Environment $env, $relativeImagePath) {
-      $boltData = Utils::getData($env);
-      $wwwDir = $boltData['config']['wwwDir'];
-      return Images::calculate_average_image_color($relativeImagePath, $wwwDir);
-    }, [
-      'needs_environment' => true,
-    ]);
-  }
-
   // Return the aspect ratio of the image passed in
   public static function ratio() {
     return new Twig_SimpleFunction('ratio', function(\Twig\Environment $env, $relativeImagePath, $heightOrWidthRatio = 'width') {
@@ -252,35 +182,33 @@ class TwigFunctions {
 
       switch ($patternName) {
         case 'button_group':
-          return '@bolt/button-group.twig';
+          return '@bolt-components-button-group/button-group.twig';
         case 'button':
-          return '@bolt/button.twig';
+          return '@bolt-components-button/button.twig';
         case 'card':
-          return '@bolt/card.twig';
+          return '@bolt-components-card-replacement/card-replacement.twig';
         case 'card-w-teaser':
-          return '@bolt/card-w-teaser.twig';
+          return '@bolt-components-card-w-teaser/card-w-teaser.twig';
         case 'eyebrow':
-          return '@bolt/eyebrow.twig';
+          return '@bolt-components-headline/eyebrow.twig';
         case 'flag':
           return '@bolt/flag.twig';
         case 'headline':
-          return '@bolt/headline.twig';
+          return '@bolt-components-headline/headline.twig';
         case 'image':
-          return '@bolt/image.twig';
+          return '@bolt-components-image/image.twig';
         case 'link':
-          return '@bolt/link.twig';
+          return '@bolt-components-link/link.twig';
         case 'teaser':
-          return '@bolt/teaser.twig';
+          return '@bolt-components-teaser/teaser.twig';
         case 'text':
-          return '@bolt/text.twig';
-        case 'video':
-          return '@bolt/video.twig';
+          return '@bolt-components-text/text.twig';
         default:
           return 'ERROR: Template not found: '. $patternName;
       }
 
       // the full list of `$patternName` that uses this is:
-      //button - @bolt/button.twig
+      //button - @bolt-components-button/button.twig
       //button_group - @bolt-button-group/button-group.twig
       //card - @bolt-card/card.twig
       //eyebrow - @bolt-headline/eyebrow.twig
@@ -289,7 +217,6 @@ class TwigFunctions {
       //image - @bolt-global/image.twig
       //teaser - @bolt-teaser/teaser.twig
       //text - @bolt-headline/text.twig
-      //video - @bolt-video/video.twig
     });
   }
 

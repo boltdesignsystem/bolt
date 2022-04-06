@@ -1,37 +1,37 @@
 {% set content %}
-  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
-    {% cell "u-bolt-width-12/12@only-small u-bolt-flex-grow" %}
-      {% include "@bolt-components-headline/eyebrow.twig" with {
-        text: "This Is a Flag",
+  {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix' %}
+    {% cell 'u-bolt-width-12/12@only-small u-bolt-flex-grow' %}
+      {% include '@bolt-components-headline/eyebrow.twig' with {
+        text: 'This Is a Flag',
       } only %}
-      {% include "@bolt-components-headline/headline.twig" with {
-        size: "large",
-        text: "With text on the left and CTAs on the right.",
+      {% include '@bolt-components-headline/headline.twig' with {
+        size: 'large',
+        text: 'With text on the left and CTAs on the right.',
       } only %}
     {% endcell %}
-    {% cell "u-bolt-width-12/12@only-small" %}
+    {% cell 'u-bolt-width-12/12@only-small' %}
       {% set button_1 %}
-        {% include "@bolt-elements-button/button.twig" with {
-          size: "small",
-          hierarchy: "primary",
-          content: "Primary action",
+        {% include '@bolt-elements-button/button.twig' with {
+          size: 'small',
+          hierarchy: 'primary',
+          content: 'Primary action',
           attributes: {
             type: 'button'
           }
         } only %}
       {% endset %}
       {% set button_2 %}
-        {% include "@bolt-elements-button/button.twig" with {
-          size: "small",
-          hierarchy: "secondary",
-          content: "Secondary action",
+        {% include '@bolt-elements-button/button.twig' with {
+          size: 'small',
+          hierarchy: 'secondary',
+          content: 'Secondary action',
           attributes: {
             type: 'button'
           }
         } only %}
       {% endset %}
-      {% include "@bolt-components-list/list.twig" with {
-        display: "inline",
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
         items: [
           button_1,
           button_2,
@@ -41,7 +41,7 @@
   {% endgrid %}
 {% endset %}
 
-{% include "@bolt-components-band/band.twig" with {
-  size: "small",
+{% include '@bolt-components-band/band.twig' with {
+  size: 'small',
   content: content,
 } only %}

@@ -1,6 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Layout-Item',
+  title: 'Layout item',
   type: 'object',
   properties: {
     attributes: {

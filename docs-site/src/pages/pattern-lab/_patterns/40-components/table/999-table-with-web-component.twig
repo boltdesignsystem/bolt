@@ -1,18 +1,10 @@
 {% macro code_example(code) %}
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--center" %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+    {% grid 'o-bolt-grid--center' %}
+      {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
         {{ code }}
       {% endcell %}
     {% endgrid %}
-  </div>
-  <div class="u-bolt-margin-bottom-large">
-    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-      {{ code | replace({
-        '<': '&lt;',
-        '>': '&gt;',
-      }) | trim | raw }}
-    {% endspaceless %}</bolt-code-snippet>
   </div>
 {% endmacro %}
 
@@ -264,30 +256,55 @@
 
 <bolt-text headline>Web Component Usage</bolt-text>
 <bolt-text>
-  Bolt Table is a web component that renders a semantic table with Bolt styles. To make a simple table, wrap a semantic <bolt-code-snippet display="inline" lang="html">&lt;table&gt;</bolt-code-snippet> element with a <bolt-code-snippet display="inline" lang="html">&lt;bolt-table&gt;</bolt-code-snippet> element.
+  Bolt Table is a web component that renders a semantic table with Bolt styles. To make a simple table, wrap a semantic <code>&lt;table&gt;</code> element with a <code>&lt;bolt-table&gt;</code> element.
 </bolt-text>
 {% include table_example.code_example(table_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: table_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}
 
 <bolt-text headline>Prop Usage</bolt-text>
 <bolt-text>
   Configure the table with the properties specified in the schema.
 </bolt-text>
 {% include table_example.code_example(table_prop_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: table_prop_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}
 
 <bolt-text headline>Advanced Usage</bolt-text>
 <bolt-text>
   Attributes and utility classes are supported on table headers and cells.
 </bolt-text>
 {% include table_example.code_example(table_advanced_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: table_advanced_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}
 
 <bolt-text headline>Accepted Data</bolt-text>
 <bolt-text>
   Each table header or cell can accept any Bolt web components, HTML markup, or just plain text.
 </bolt-text>
 {% include table_example.code_example(table_data_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: table_data_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}
 
 <bolt-text headline>Table Caption</bolt-text>
 <bolt-text>
-  Use the <bolt-code-snippet display="inline" lang="html">&lt;caption&gt;</bolt-code-snippet> tag to add a caption to your table.
+  Use the <code>&lt;caption&gt;</code> tag to add a caption to your table.
 </bolt-text>
 {% include table_example.code_example(table_caption_demo) %}
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: table_caption_demo,
+  lang: 'html',
+  mode: 'dark',
+} only %}

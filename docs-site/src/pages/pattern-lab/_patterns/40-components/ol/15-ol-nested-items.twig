@@ -1,20 +1,24 @@
-{% include "@bolt-components-ol/ol.twig" with {
-  "theme": theme,
-  "items" : [
-    "Do not include any data or information in your posts that are confidential!",
-    "Apply basic practices for collaborative work.",
-    "Be honest, respectful, trustworthy and helpful.",
-    "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.",
+{% set nested_list %}
+  {% include '@bolt-components-ol/ol.twig' with {
+    items: [
+      'Item 1',
+      'Item 2',
+      'Item 3',
+      'Item 4'
+    ]
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-ol/ol.twig' with {
+  'theme': theme,
+  'items' : [
+    'Do not include any data or information in your posts that are confidential!',
+    'Apply basic practices for collaborative work.',
+    'Be honest, respectful, trustworthy and helpful.',
+    'Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.',
     [
-      "Answer questions authoritatively and concisely.",
-      include("@bolt-components-ol/ol.twig", {
-        items: [
-          "Item 1",
-          "Item 2",
-          "Item 3",
-          "Item 4"
-        ]
-      })
+      'Answer questions authoritatively and concisely.',
+      nested_list,
     ]
   ]
 } %}

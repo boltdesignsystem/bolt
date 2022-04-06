@@ -10,7 +10,12 @@
     {% for schema in schemas %}
       {% set title = schema.title %}
       <bolt-accordion-item{% if loop.first %} open{% endif %}>
-        {% if title %}<strong slot="trigger">{{ title }}</strong>{% endif %}
+        {% if title %}
+          <div slot="trigger">
+            <strong>{{ title }}</strong>
+            <span>({{ title|replace({' ': '-'})|lower }}.twig)</span>
+          </div>
+        {% endif %}
         {{ macros.schemaWrapper(schema) }}
       </bolt-accordion-item>
     {% endfor %}

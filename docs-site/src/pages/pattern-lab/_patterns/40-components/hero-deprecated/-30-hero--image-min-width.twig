@@ -1,0 +1,54 @@
+{% import '@bolt/macros.twig' as macros %}
+{# ^ allows us to use inline includes that also work in Drupal #}
+
+<bolt-text>This demo creatively uses the <code>imageMinWidth</code> prop to "pin" the image to the right side of the screen on larger devices.</bolt-text>
+
+{% set icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'speed-dial',
+  } only %}
+{% endset %}
+{% set shape %}
+  {% include '@bolt-elements-shape/shape.twig' with {
+    content: icon,
+    size: 'large',
+    attributes: {
+      class: [
+        'u-bolt-margin-bottom-medium',
+        't-bolt-teal'
+      ]
+    }
+  } only %}
+{% endset %}
+{% set headline %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxxlarge',
+    text: 'A Prominent Headline Certainly Helps',
+  } only %}
+{% endset %}
+{% set subheadline %}
+  {% include '@bolt-components-headline/subheadline.twig' with {
+    size: 'xlarge',
+    text: 'This one even includes a tagline.',
+  } only %}
+{% endset %}
+{% set button %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Learn More',
+    hierarchy: 'primary',
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% include '@bolt-components-hero/hero.twig' with {
+  theme: 'none',
+  content: [
+    shape,
+    headline,
+    subheadline,
+    button,
+  ]|join(''),
+  imageMinWidth: '60vw',
+  image: '/images/heros/responsive-web-design.svg'
+} %}

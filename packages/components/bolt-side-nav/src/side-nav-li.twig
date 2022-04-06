@@ -13,6 +13,9 @@
 <li {{ attributes.addClass('c-bolt-side-nav__list-item') }}>
   <a {{ _link_attributes.addClass('c-bolt-side-nav__link')|without('aria-current') }} {% if current %}aria-current="page"{% endif %}>
     {{ link.content }}
+    {% if link.icon and not children %}
+      {{ link.icon }}
+    {% endif %}
   </a>
   {% if children %}
     <button type="button" {% if expanded == true %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %} aria-label="{{ 'Toggle children links'|t }}" class="c-bolt-side-nav__link c-bolt-side-nav__link--toggle-trigger js-bolt-side-nav-toggle-trigger"></button>

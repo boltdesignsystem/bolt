@@ -4,13 +4,13 @@
   <div class="u-bolt-margin-bottom-large">
     <h3>Multiple stacks with {{ spacing }} spacing</h3>
     {% set placeholder %}
-      {% include "@bolt-components-placeholder/placeholder.twig" with {
-        size: "xsmall",
-        text: "This stack has " ~ spacing ~ " spacing."
+      {% include '@bolt-components-placeholder/placeholder.twig' with {
+        size: 'xsmall',
+        text: 'This stack has ' ~ spacing ~ ' spacing.'
       } only %}
     {% endset %}
     {% set stack %}
-      {% include "@bolt-components-stack/stack.twig" with {
+      {% include '@bolt-components-stack/stack.twig' with {
         content: placeholder,
         spacing: spacing
       } only %}

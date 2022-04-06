@@ -82,11 +82,24 @@ $bolt-action-blocks-spacing: xsmall, small, medium;
 @each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
 
-  @if index($bolt-action-blocks-spacing, $size-name) {
-    .c-bolt-action-blocks--spacing-#{$size-name} {
-      .c-bolt-action-block {
-        padding: calc(var(--bolt-spacing-y-#{$size-name}) * 1.5)
-          var(--bolt-spacing-x-#{$size-name});
+  @if (
+    $size-name !=
+      'none' and
+      $size-name !=
+      'xxsmall' and
+      $size-name !=
+      'large'
+      $size-name !=
+      'xlarge'
+      $size-name !=
+      'xxlarge'
+  ) {
+    @if index($bolt-action-blocks-spacing, $size-name) {
+      .c-bolt-action-blocks--spacing-#{$size-name} {
+        .c-bolt-action-block {
+          padding: calc(var(--bolt-spacing-y-#{$size-name}) * 1.5)
+            var(--bolt-spacing-x-#{$size-name});
+        }
       }
     }
   }

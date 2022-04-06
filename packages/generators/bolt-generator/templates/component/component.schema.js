@@ -8,6 +8,14 @@ module.exports = {
       description:
         'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-{{ kebabCase name }}&gt; tag.',
     },
+    title: {
+      type: 'any',
+      description: 'Title of Example.',
+    },
+    content: {
+      type: 'any',
+      description: 'The main Example content.',
+    },
     disabled: {
       type: 'boolean',
       description:

@@ -1,12 +1,12 @@
-{% extends "@pl/_text-doc-template.twig" %}
-{% import "@pl/_text-doc-template.twig" as text_code %}
+{% extends '@pl/_text-doc-template.twig' %}
+{% import '@pl/_text-doc-template.twig' as text_code %}
 
 {% block content %}
   <bolt-text headline>
     Tag Usage
   </bolt-text>
   <bolt-text>
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> allows for separation of semantics and visual. Using a semantically correct tag will not affect the appearance of the text.
+    <code>&lt;bolt-text&gt;</code> allows for separation of semantics and visual. Using a semantically correct tag will not affect the appearance of the text.
   </bolt-text>
   {% for tag in schema.properties.tag.enum %}
 
@@ -18,5 +18,10 @@
 {% endset %}
 
     {% include text_code.code_example(text_demo, true) %}
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: text_demo,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
   {% endfor %}
 {% endblock %}

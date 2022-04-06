@@ -1,0 +1,17 @@
+{% set schema = bolt.data.components["@bolt-components-popover"].schema %}
+
+{% for theme in schema.properties.theme.enum %}
+  {% set link %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'View Details',
+      attributes: {
+        href: 'https://google.com'
+      }
+    } only %}
+  {% endset %}
+  <div class="u-bolt-padding t-bolt-{{ theme }}">
+    {% include '@bolt-components-banner/banner.twig' with {
+      content: 'This is a banner. ' ~ link,
+    } only %}
+  </div>
+{% endfor %}

@@ -8,7 +8,6 @@ const configStore = require('@bolt/build-utils/config-store');
 const log = require('@bolt/build-utils/log');
 const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const { getPort } = require('@bolt/build-utils/get-port');
-const boxen = require('boxen');
 const chalk = require('chalk');
 
 const configSchema = readYamlFileSync(
@@ -126,9 +125,6 @@ program
         config.prod =
           typeof program.prod === 'undefined' ? config.prod : program.prod;
 
-        // automatically set enableSSR to true in prod mode and false in dev mode, unless manually set.
-        config.enableSSR = false;
-
         // automatically enable i18n in production builds if undefined
         config.i18n =
           typeof options.i18n !== 'undefined'
@@ -151,33 +147,10 @@ program
       const defaultConfigLog = chalk.white(`
 Logging Verbosity: ${config.verbosity}
 Environment: ${config.prod ? 'Production' : 'Development'}
-Multi-lang: ${config.i18n}
 `);
 
-      console.log(
-        boxen(defaultConfigLog, {
-          padding: {
-            top: 0,
-            bottom: 0,
-            left: 3,
-            right: 3,
-          },
-          margin: {
-            top: 1,
-            bottom: 0,
-            left: 1,
-            right: 1,
-          },
-          borderStyle: 'double',
-        }),
-      );
+      console.log(defaultConfigLog);
 
-      // @todo: re-enable once JS-based SSR gets re-enabled and ships
-      // log.dim(
-      //   `enableSSR: ${config.enableSSR} ${
-      //     originalConfig.enableSSR ? '(manually set)' : '(auto set)'
-      //   }`,
-      // );
       // log.dim(`Rendering Mode: ${config.mode}`);
       if (config.verbosity > 2) {
         log.dim(`Opening browser: ${config.openServerAtStart}`);
@@ -194,16 +167,6 @@ Multi-lang: ${config.i18n}
     }
 
     await log.intro();
-
-    program
-      .option(
-        '--no-ssr',
-        'Manually disables server side rendering (vs auto enable in prod mode)',
-      )
-      .option(
-        '--ssr',
-        'Manually enabless server side rendering in all enviornments (vs by default only enabling automatically in prod mode)',
-      );
 
     // `bolt build`
     program

@@ -1,18 +1,18 @@
 {% set button_1 %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Learn More",
-    hierarchy: "primary"
+  {% include '@bolt-components-button/button.twig' with {
+    text: 'Learn More',
+    hierarchy: 'primary'
   } only %}
 {% endset %}
 
 {% set button_2 %}
-  {% include "@bolt-components-button/button.twig" with {
-    text: "About Pega",
-    hierarchy: "secondary"
+  {% include '@bolt-components-button/button.twig' with {
+    text: 'About Pega',
+    hierarchy: 'secondary'
   } only %}
 {% endset %}
 
-{% include "@bolt-components-button-group/button-group.twig" with {
+{% include '@bolt-components-button-group/button-group.twig' with {
   buttons: [
     button_1,
     button_2

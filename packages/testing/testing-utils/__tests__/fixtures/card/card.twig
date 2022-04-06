@@ -1,12 +1,12 @@
 <div class="card">
   <h2>{{ title }}</h2>
   <footer>
-    {% include "@x/button.twig" %}
-    <div>{% include "@x/button.twig" %}</div>
-    {% include '@x/button/button.twig' %}
-    {% include '@x/icon/icon.twig' %}
-    {% include "button.twig" %}
-    {% include "@x/button.twig" with {
+    {% include "@x/foo.twig" %}
+    <div>{% include "@x/foo.twig" %}</div>
+    {% include '@x/foo/foo.twig' %}
+    {% include '@x/bar/bar.twig' %}
+    {% include "foo.twig" %}
+    {% include "@x/foo.twig" with {
       text: "Hi",
     } %}
   </footer>

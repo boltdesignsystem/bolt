@@ -64,11 +64,11 @@ module.exports = {
     url,
     icon: {
       description:
-        "Bolt icon. Accepts either 1) an icon name as a string 2) an icon object as expected by `@bolt-components-icon` or 3) the string 'none' to explicitly remove default icons",
+        "Bolt icon. Accepts either 1) an icon name as a string 2) an icon object as expected by `@bolt-elements-icon` or 3) the string 'none' to explicitly remove default icons",
       anyOf: [
         {
           type: 'object',
-          ref: '@bolt-components-icon/icon.schema.json',
+          ref: '@bolt-elements-icon/icon.schema.json',
         },
         {
           type: 'string',
@@ -76,7 +76,7 @@ module.exports = {
         },
         {
           type: 'string',
-          ref: '@bolt-components-icon/icon.schema.json#/properties/name',
+          ref: '@bolt-elements-icon/icon.schema.json#/properties/name',
         },
       ],
     },

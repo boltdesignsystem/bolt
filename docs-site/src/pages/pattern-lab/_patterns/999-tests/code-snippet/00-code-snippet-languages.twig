@@ -1,0 +1,6 @@
+{% set schema = bolt.data.components["@bolt-components-code-snippet"].schema %}
+
+{% for item in schema.properties.lang.enum %}
+<h2><code>{{item}}</code></h2>
+<div class="c-bolt-code-snippet" data-lang="{{item}}" data-mode="light" data-custom-lang-label="FooBar"><pre><code>//</code></pre></div>
+{% endfor %}

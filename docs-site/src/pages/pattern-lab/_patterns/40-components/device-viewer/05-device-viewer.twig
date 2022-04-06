@@ -1,15 +1,15 @@
 {% set content %}
-  {% include "@bolt-elements-image/image.twig" with {
+  {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      src: "/images/content/screenshots/device-screenshot--phone.jpg",
-      loading: "lazy",
+      src: '/images/content/screenshots/device-screenshot--phone.jpg',
+      loading: 'lazy',
     }
   } only %}
 {% endset %}
 
-{% include "@bolt-components-device-viewer/device-viewer.twig" with {
-  device: "iphone8",
-  orientation: "portrait",
-  color: "silver",
+{% include '@bolt-components-device-viewer/device-viewer.twig' with {
+  device: 'iphone8',
+  orientation: 'portrait',
+  color: 'silver',
   content: content,
 } only %}

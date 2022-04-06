@@ -21,6 +21,11 @@ module.exports = {
           type: 'string',
           description: 'Text content of the link.',
         },
+        icon: {
+          type: 'any',
+          description:
+            'Set an icon after the link text. Use this to indicate external links. Do not use this if the link has children.',
+        },
       },
     },
     children: {

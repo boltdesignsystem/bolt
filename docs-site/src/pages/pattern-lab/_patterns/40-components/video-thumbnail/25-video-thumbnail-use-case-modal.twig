@@ -1,0 +1,133 @@
+{% set notes %}
+  {% spaceless %}
+    <bolt-ol>
+      <bolt-li>Always provide a value for the <code>video.title</code> prop. This will provide contextual information for screen readers.</bolt-li>
+      <bolt-li>The video poster image from a particular Brightcove video is recommended to be used as the video thumbnail.</bolt-li>
+      <bolt-li>Use the <code>button_attributes</code> prop to pass in the required <code>data-bolt-modal-target</code> attribute to hook up a modal.</bolt-li>
+      <bolt-li>Refer to the <a href="{{ link['viewall-components-modal'] }}" class="e-bolt-text-link">Modal Documentation</a> for more information.</bolt-li>
+    </bolt-ol>
+  {% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  {% set modal_id = 'js-bolt-modal-' ~ random() %}
+  {% set video %}
+    {% set video_embed %}
+      <video-js
+        data-account='1900410236'
+        data-player='O3FkeBiaDz'
+        data-embed='default'
+        data-video-id='4892122320001'
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video_embed,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+  {% set video_thumbnail %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/tout-4x3-climber.jpg',
+          alt: 'A Rock Climber',
+          ratio: false,
+          background: true,
+          loading: 'lazy',
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: image,
+      button_attributes: {
+        'data-bolt-modal-target': '#' ~ modal_id
+      },
+      video: {
+        duration: '4:55',
+        title: 'Video Title',
+        has_subtitles: true
+      }
+    } only %}
+  {% endset %}
+  <div style="max-width: 60ch">
+
+    {{ video_thumbnail }}
+
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: video,
+      width: 'optimal',
+      spacing: 'none',
+      scroll: 'overall',
+      attributes: {
+        id: modal_id,
+      },
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+// Set up the thumbnail
+{% set video_thumbnail %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        loading: 'lazy',
+        width: 400,
+        height: 300,
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+    content: image,
+    button_attributes: {
+      'data-bolt-modal-target': '#js-modal-target'
+    },
+    video: {
+      duration: '4:55',
+      title: 'Video Title',
+      has_subtitles: true
+    }
+  } only %}
+{% endset %}
+
+{{ video_thumbnail }}
+
+// Set up the modal
+{% set video %}
+  {% set video_embed %}
+    <video-js
+      data-account='1900410236'
+      data-player='O3FkeBiaDz'
+      data-embed='default'
+      data-video-id='4892122320001'
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video_embed,
+    ratio: 'wide'
+  } only %}
+{% endset %}
+{% include '@bolt-components-modal/modal.twig' with {
+  content: video,
+  width: 'optimal',
+  spacing: 'none',
+  scroll: 'overall',
+  attributes: {
+    id: 'js-modal-target',
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Video Thumbnail Modal Trigger',
+  description: 'A video thumbnail can be used as the trigger for a video modal.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
