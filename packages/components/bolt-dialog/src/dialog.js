@@ -110,6 +110,7 @@ export class BoltDialog {
 
     // add support for the icon child of the close button
     if (
+      event.target.closest('.c-bolt-dialog__close-button') &&
       event.target
         .closest('.c-bolt-dialog__close-button')
         .hasAttribute('data-dialog-close')

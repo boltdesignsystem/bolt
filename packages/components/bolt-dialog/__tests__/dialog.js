@@ -1,7 +1,8 @@
 // Refer to https://github.com/boltdesignsystem/bolt/wiki/Jest-Test:-Example-Jest-Test for more testing examples
 import { render, stopServer } from '../../../testing/testing-helpers';
-// import schema from '../dialog.schema';
-// const { [PROP KEY], [PROP KEY]... } = schema.properties;
+import schema from '../dialog.schema';
+// eslint-disable-next-line camelcase
+const { width, spacing, theme, scroll_behavior } = schema.properties;
 let page, fixtures;
 
 afterAll(async () => {
@@ -41,20 +42,58 @@ describe('Bolt Dialog component', () => {
   });
 });
 
-// describe('Bolt Dialog prop - , () => {
-//   // Target each of the schema keys with the following pattern
-//   [PROP KEY].enum.forEach(async (option) => {
-//     test(`[PROP KEY] items: ${option}`, async () => {
-//       const results = await render(
-//         '@bolt-components-dialog/dialog.twig',
-//         {
-//           ...fixtures.defaultData,
-//           [PROP KEY]: option,
-//         }
-//       );
+describe('Bolt Dialog prop -', () => {
+  width.enum.forEach(async option => {
+    test(`width items: ${option}`, async () => {
+      const results = await render('@bolt-components-dialog/dialog.twig', {
+        ...fixtures.defaultData,
+        width: option,
+      });
 
-//       await expect(results.ok).toBe(true);
-//       await expect(results.html).toMatchSnapshot();
-//     });
-//   });
-// });
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
+  });
+});
+
+describe('Bolt Dialog prop -', () => {
+  spacing.enum.forEach(async option => {
+    test(`spacing items: ${option}`, async () => {
+      const results = await render('@bolt-components-dialog/dialog.twig', {
+        ...fixtures.defaultData,
+        spacing: option,
+      });
+
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
+  });
+});
+
+describe('Bolt Dialog prop -', () => {
+  theme.enum.forEach(async option => {
+    test(`theme items: ${option}`, async () => {
+      const results = await render('@bolt-components-dialog/dialog.twig', {
+        ...fixtures.defaultData,
+        theme: option,
+      });
+
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
+  });
+});
+
+describe('Bolt Dialog prop -', () => {
+  scroll_behavior.enum.forEach(async option => {
+    test(`scroll_behavior items: ${option}`, async () => {
+      const results = await render('@bolt-components-dialog/dialog.twig', {
+        ...fixtures.defaultData,
+        scroll_behavior: option,
+      });
+
+      await expect(results.ok).toBe(true);
+      await expect(results.html).toMatchSnapshot();
+    });
+  });
+});

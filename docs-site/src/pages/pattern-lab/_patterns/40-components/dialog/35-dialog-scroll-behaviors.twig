@@ -1,7 +1,7 @@
 {% set schema = bolt.data.components['@bolt-components-dialog'].schema %}
 
 {% set description %}
-    The scrollable area can be adjusted by using the <code>scroll</code> prop. The default is set to <code>container</code>.
+    The scrollable area can be adjusted by using the <code>scroll_behavior</code> prop. The default is set to <code>container</code>.
 {% endset %}
 
 {% set notes %}
@@ -32,10 +32,10 @@
 <p>Laboris velit deserunt ipsum pariatur ad mollit fugiat aute aliqua aliquip irure id sunt. Nulla irure consequat eiusmod ad cupidatat et quis ut. Velit anim id dolore Lorem sit dolor adipisicing esse fugiat dolor quis incididunt. Aute non aliqua voluptate proident. Exercitation et incididunt mollit labore ipsum occaecat nostrud deserunt minim voluptate officia nulla consectetur. Ut duis reprehenderit cillum elit mollit quis eu nisi proident cupidatat.</p>
 <button type="button" class="e-bolt-button">Button</button>
 {% endset %}
-{% for scroll in schema.properties.scroll.enum %}
+{% for scroll_behavior in schema.properties.scroll_behavior.enum %}
   <bolt-list-item>
   {% include '@bolt-elements-button/button.twig' with {
-    content: '"' ~ scroll ~ '" Scroll Behavior',
+    content: '"' ~ scroll_behavior ~ '" Scroll Behavior',
     attributes: {
       type: 'button',
       'data-bolt-dialog-target': 'dialog-scroll-' ~ loop.index0,
@@ -45,7 +45,7 @@
   {% include '@bolt-components-dialog/dialog.twig' with {
     content: _content,
     width: 'optimal',
-    scroll: scroll,
+    scroll_behavior: scroll_behavior,
     attributes: {
       id: 'dialog-scroll-' ~ loop.index0
     },
@@ -57,13 +57,13 @@
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialog/dialog.twig' with {
-  scroll: 'overall',
+  scroll_behavior: 'overall',
   ...
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Dialog Scroll Behaviors',
+  title: 'Dialog Scroll Behavior',
   description: description,
   notes: notes,
   demo: demo,

@@ -40,7 +40,7 @@ module.exports = {
       enum: ['none', 'xlight', 'light', 'dark', 'xdark'],
       default: 'light',
     },
-    scroll: {
+    scroll_behavior: {
       type: 'string',
       description: 'Controls the scrolling area.',
       default: 'container',
