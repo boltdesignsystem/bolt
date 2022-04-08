@@ -1,0 +1,637 @@
+{% set header %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Top table header',
+      header: true,
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Top table header',
+      header: true,
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Top table header',
+      header: true,
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Top table header',
+      header: true,
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Top table header',
+      header: true,
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row1 %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Side table header',
+      header: true,
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row2 %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Side table header',
+      header: true,
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row3 %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Side table header',
+      header: true,
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set footer %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'Side table header',
+      header: true,
+    } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell in table footer.',
+    } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell in table footer.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{# {% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-navy',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-navy-dark',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-navy-light',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-teal',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-yellow',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-orange',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-navy',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-navy-dark',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-navy-light',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-berry',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-wine',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-pink',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  sticky_headers: 'side',
+  attributes: {
+    style: 'display: block;',
+    class: [
+      't-bolt-violet',
+      'u-bolt-margin-bottom-large'
+    ]
+  },
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
+} only %} #}
+
+{% set table %}
+  {% include '@bolt-components-table/table.twig' with {
+    sticky_headers: 'side',
+    attributes: {
+      style: 'display: block; max-width: 500px;',
+    },
+    header: {
+      content: header,
+    },
+    body: {
+      content: [
+        row1,
+        row2,
+        row3,
+      ],
+    },
+    footer: {
+      content: footer,
+    },
+    caption: {
+      content: 'This is the table caption.',
+    },
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+} only %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+  attributes: {
+    class: [
+      't-bolt-black'
+    ]
+  }
+} only %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+  attributes: {
+    class: [
+      't-bolt-gray-xlight'
+    ]
+  }
+} only %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+  attributes: {
+    class: [
+      't-bolt-navy-dark'
+    ]
+  }
+} only %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+  attributes: {
+    class: [
+      't-bolt-navy'
+    ]
+  }
+} only %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+  attributes: {
+    class: [
+      't-bolt-navy-light'
+    ]
+  }
+} only %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+  attributes: {
+    class: [
+      't-bolt-teal'
+    ]
+  }
+} only %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+  attributes: {
+    class: [
+      't-bolt-yellow'
+    ]
+  }
+} only %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+  attributes: {
+    class: [
+      't-bolt-orange'
+    ]
+  }
+} only %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+  attributes: {
+    class: [
+      't-bolt-pink'
+    ]
+  }
+} only %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+  attributes: {
+    class: [
+      't-bolt-wine'
+    ]
+  }
+} only %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+  attributes: {
+    class: [
+      't-bolt-berry'
+    ]
+  }
+} only %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: table,
+  attributes: {
+    class: [
+      't-bolt-violet'
+    ]
+  }
+} only %}
