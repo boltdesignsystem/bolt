@@ -25,7 +25,7 @@
   font-size: var(--bolt-type-font-size-xsmall);
   line-height: var(--bolt-type-line-height-xsmall);
   border-radius: bolt-border-radius(small);
-  box-shadow: 0 0 0 1px var(--m-bolt-table-highlight);
+  box-shadow: 0 0 0 1px var(--m-bolt-neutral);
 
   @media print {
     max-width: unset;
@@ -46,7 +46,7 @@
 
   table {
     width: 100%;
-    background-color: var(--m-bolt-table-highlight);
+    background-color: var(--m-bolt-neutral);
   }
 
   thead {
@@ -60,7 +60,7 @@
 
   thead td,
   th {
-    background-color: var(--m-bolt-table-header);
+    background-color: var(--bolt-color-gray-light);
   }
 
   thead td,
@@ -101,7 +101,7 @@
     tr:hover {
       th,
       td {
-        background-color: var(--m-bolt-table-highlight);
+        background-color: var(--bolt-color-gray-xlight);
       }
 
       th {
@@ -115,7 +115,7 @@
     padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
     text-align: start;
     caption-side: bottom;
-    border-top: 1px solid var(--m-bolt-table-highlight);
+    border-top: 1px solid var(--m-bolt-neutral);
   }
 }
 
@@ -124,7 +124,7 @@
     &:first-of-type {
       position: sticky;
       left: 1px;
-      box-shadow: 0 0 0 1px var(--m-bolt-table-highlight);
+      box-shadow: 0 0 0 1px var(--m-bolt-neutral);
     }
   }
 
@@ -142,7 +142,8 @@
   thead th {
     position: sticky;
     top: 1px;
-    box-shadow: 0 0 0 1px var(--m-bolt-table-highlight);
+    // box-shadow: 0 0 0 1px var(--m-bolt-table-highlight);
+    box-shadow: 0 0 0 1px var(--m-bolt-neutral);
   }
 
   &.c-bolt-table--borderless {
@@ -166,5 +167,231 @@
 
   .e-bolt-text-link__icon-after {
     pointer-events: none;
+  }
+}
+
+.t-bolt-dark,
+.t-bolt-navy {
+  thead td,
+  th {
+    background-color: var(--bolt-color-navy-dark);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-navy-light);
+      }
+    }
+  }
+}
+
+.t-bolt-xdark,
+.t-bolt-navy-dark {
+  thead td,
+  th {
+    background-color: var(--bolt-color-navy-xdark);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-navy-light);
+      }
+    }
+  }
+}
+
+.t-bolt-navy-light {
+  thead td,
+  th {
+    background-color: var(--bolt-color-navy);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-navy-dark);
+      }
+    }
+  }
+}
+
+.t-bolt-teal {
+  thead td,
+  th {
+    background-color: var(--bolt-color-teal-dark);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-teal-xdark);
+      }
+    }
+  }
+}
+
+.t-bolt-orange {
+  thead td,
+  th {
+    background-color: var(--bolt-color-orange-dark);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-orange-xdark);
+      }
+    }
+  }
+}
+
+.t-bolt-yellow {
+  thead td,
+  th {
+    background-color: var(--bolt-color-yellow-dark);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-yellow-light);
+      }
+    }
+  }
+}
+
+.t-bolt-wine {
+  thead td,
+  th {
+    background-color: var(--bolt-color-wine-dark);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-wine-xdark);
+      }
+    }
+  }
+}
+
+.t-bolt-pink {
+  thead td,
+  th {
+    background-color: var(--bolt-color-pink-dark);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-pink-xdark);
+      }
+    }
+  }
+}
+
+.t-bolt-berry {
+  thead td,
+  th {
+    background-color: var(--bolt-color-berry-dark);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-berry-xdark);
+      }
+    }
+  }
+}
+
+.t-bolt-violet {
+  thead td,
+  th {
+    background-color: var(--bolt-color-violet-dark);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-violet-xdark);
+      }
+    }
+  }
+}
+
+.t-bolt-xlight,
+.t-bolt-white {
+  thead td,
+  th {
+    background-color: var(--bolt-color-gray-xlight);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-gray-light);
+      }
+    }
+  }
+}
+
+.t-bolt-light,
+.t-bolt-gray-xlight {
+  thead td,
+  th {
+    background-color: var(--bolt-color-gray-light);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-gray-light);
+      }
+    }
+  }
+}
+
+.t-bolt-xxdark,
+.t-bolt-black {
+  thead td,
+  th {
+    background-color: var(--bolt-color-gray-dark);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--bolt-color-gray-xdark);
+      }
+    }
   }
 }
