@@ -8,6 +8,7 @@
       content: 'This is the banner content fade' ~ fade,
       attributes: {
         class: [
+          'a-bolt-base',
           'a-bolt' ~ fade,
           'a-bolt-cascade-fast'
         ],
@@ -18,7 +19,7 @@
 
 <script>
 
-  const fadeEl = document.querySelectorAll('[class*="a-bolt-"]');
+  const fadeEl = document.querySelectorAll('.a-bolt-base');
 
   // Repeat single specific fade on click
   function triggerThisEl({ target }) {
