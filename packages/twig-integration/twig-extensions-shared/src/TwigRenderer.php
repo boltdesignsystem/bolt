@@ -126,20 +126,6 @@ class TwigRenderer {
 
     $html = $template->render($data);
     return $html;
-
-    // Work in Progress Web Component Server-side Rendering (SSR) -- ignore for now!
-    // $tag_templates = ['bolt-button' => '@bolt-components-button/button-inner.twig'];
-    // $renderer = new Bolt\TwigRendererSSR($tag_templates, $this->twig);
-    // $elements = array('bolt-button');
-
-    // foreach($elements as $element){
-    //   if (strpos($html, $element) !== false) {
-    //     $rendered_html = $renderer->render($html);
-    //     return $rendered_html;
-    //   } else {
-    //     return $html;
-    //   }
-    // }
   }
 
   /**

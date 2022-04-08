@@ -10,10 +10,10 @@ describe('dependency mapper', () => {
     );
 
     expect(results).toStrictEqual([
-      '@x/button.twig',
-      '@x/button/button.twig',
-      '@x/icon/icon.twig',
-      'button.twig',
+      '@x/foo.twig',
+      '@x/foo/foo.twig',
+      '@x/bar/bar.twig',
+      'foo.twig',
     ]);
   });
 
@@ -22,12 +22,12 @@ describe('dependency mapper', () => {
 <div class="card">
   <h2>{{ title }}</h2>
   <footer>
-    {% include "@x/button.twig" %}
-    <div>{% include "@x/button.twig" %}</div>
-    {% include '@x/button/button.twig' %}
-    {% include '@x/icon/icon.twig' %}
-    {% include "button.twig" %}
-    {% include "@x/button.twig" with {
+    {% include "@x/foo.twig" %}
+    <div>{% include "@x/foo.twig" %}</div>
+    {% include '@x/foo/foo.twig' %}
+    {% include '@x/bar/bar.twig' %}
+    {% include "foo.twig" %}
+    {% include "@x/foo.twig" with {
       text: "Hi",
     } %}
   </footer>
@@ -37,20 +37,20 @@ describe('dependency mapper', () => {
     const results = dm.findTwigFilesUsedInString(twigString);
 
     expect(results).toStrictEqual([
-      '@x/button.twig',
-      '@x/button/button.twig',
-      '@x/icon/icon.twig',
-      'button.twig',
+      '@x/foo.twig',
+      '@x/foo/foo.twig',
+      '@x/bar/bar.twig',
+      'foo.twig',
     ]);
   });
 
   test('getTwigFilePath', async () => {
     const filePath = await dm.getTwigFilePath(
-      '@bolt-components-button/button.twig',
+      '@bolt-components-menu/menu.twig',
     );
 
     expect(filePath).toBe(
-      join(repoRoot, 'packages/components/bolt-button/src/button.twig'),
+      join(repoRoot, 'packages/components/bolt-menu/src/menu.twig'),
     );
   });
 

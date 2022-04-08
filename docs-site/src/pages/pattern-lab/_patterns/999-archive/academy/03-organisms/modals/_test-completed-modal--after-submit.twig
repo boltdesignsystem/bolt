@@ -1,6 +1,126 @@
 {% set modalContent %}
   {% import "@bolt-academy/_macros.twig" as macros %}
-
+  {% set card_content_1 %}
+    {% set image %}
+      {% include "@bolt-elements-image/image.twig" with {
+        attributes: {
+          src: "/images/mission-test-badge-example.svg",
+          style: "max-width: 200px",
+          loading: "lazy",
+          class: [
+            "u-bolt-margin-top-medium",
+            "u-bolt-margin-left-auto",
+            "u-bolt-margin-right-auto",
+            "u-bolt-margin-bottom-medium"
+          ]
+        }
+      } only %}
+    {% endset %}
+    {% set headline %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxxlarge",
+        autoshrink: false,
+        text: "Congratulations #{userFirstName}!",
+        align: "center",
+        attributes: {
+          class: [
+            "u-bolt-margin-top-small",
+            "u-bolt-margin-left-auto",
+            "u-bolt-margin-right-auto",
+            "c-bolt-headline--xxxlarge-min"
+          ]
+        }
+      } only %}
+    {% endset %}
+    {% set subheadline %}
+      {% include "@bolt-components-headline/subheadline.twig" with {
+        text: "You’ve completed the #{missionName} and earned a new badge!",
+        align: "center",
+        size: "xlarge",
+        weight: "semibold",
+        attributes: {
+          class: [
+            "u-bolt-margin-left-auto",
+            "u-bolt-margin-right-auto",
+            "u-bolt-line-length-medium",
+            "u-bolt-margin-bottom-large",
+          ]
+        }
+      } only %}
+    {% endset %}
+    {% set note %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "<strong>NOTE:</strong> Please allow 24-48 hours for the badge to appear on your Achievements page.",
+        size: "xsmall",
+        align: "center",
+        attributes: {
+          class: [
+            "u-bolt-margin-top-small",
+            "u-bolt-negative-margin-bottom-small",
+            "u-bolt-margin-left-auto",
+            "u-bolt-margin-right-auto",
+          ]
+        }
+      } only %}
+    {% endset %}
+    {% include "@bolt-components-card-replacement/_card-replacement-body.twig" with {
+      body: {
+        content: [
+          image,
+          headline,
+          subheadline,
+          note,
+        ] | join('')
+      },
+    } only %}
+  {% endset %}
+  {% set card_content_2 %}
+    {% set headline_1 %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "large",
+        text: "Thank You!",
+        align: "center",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-none",
+          ]
+        }
+      } only %}
+    {% endset %}
+    {% set headline_2 %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "medium",
+        tag: "p",
+        weight: "semibold",
+        text: "We appreciate your feedback.",
+        align: "center",
+        attributes: {
+          class: [
+            "u-bolt-margin-top-none",
+          ]
+        }
+      } only %}
+    {% endset %}
+    {% include "@bolt-components-card-replacement/_card-replacement-body.twig" with {
+      body: {
+        attributes: {
+          class: [
+            "t-bolt-xlight",
+            "u-bolt-position-relative",
+            "u-bolt-padding-top-small",
+            "u-bolt-padding-bottom-small",
+          ]
+        },
+        content: [
+          headline_1,
+          headline_2,
+        ] | join('')
+      }
+    } only %}
+  {% endset %}
+  {% set modal_return_to_mission %}
+    {{ macros.include("@bolt-academy/_test-completed-modal--return-to-mission.twig") }}
+  {% endset %}
   {% include "@bolt-components-card-replacement/card-replacement.twig" with {
     theme: "dark",
     border_radius: "large",
@@ -16,104 +136,9 @@
       ]
     },
     content: [
-      macros.include("@bolt-components-card-replacement/_card-replacement-body.twig", {
-        body: {
-          content: [
-            macros.include("@bolt-elements-image/image.twig", {
-              attributes: {
-                src: "/images/mission-test-badge-example.svg",
-                style: "max-width: 200px",
-                loading: "lazy",
-                class: [
-                  "u-bolt-margin-top-medium",
-                  "u-bolt-margin-left-auto",
-                  "u-bolt-margin-right-auto",
-                  "u-bolt-margin-bottom-medium"
-                ]
-              }
-  
-            }),
-            macros.include("@bolt-components-headline/headline.twig", {
-              size: "xxxlarge",
-              autoshrink: false,
-              text: "Congratulations #{userFirstName}!",
-              align: "center",
-              attributes: {
-                class: [
-                  "u-bolt-margin-top-small",
-                  "u-bolt-margin-left-auto",
-                  "u-bolt-margin-right-auto",
-                  "c-bolt-headline--xxxlarge-min"
-                ]
-              }
-            }),
-            macros.include("@bolt-components-headline/subheadline.twig", {
-              text: "You’ve completed the #{missionName} and earned a new badge!",
-              align: "center",
-              size: "xlarge",
-              weight: "semibold",
-              attributes: {
-                class: [
-                  "u-bolt-margin-left-auto",
-                  "u-bolt-margin-right-auto",
-                  "u-bolt-line-length-medium",
-                  "u-bolt-margin-bottom-large",
-                ]
-              }
-            }),
-            macros.include("@bolt-components-headline/text.twig", {
-              text: "<strong>NOTE:</strong> Please allow 24-48 hours for the badge to appear on your Achievements page.",
-              size: "xsmall",
-              align: "center",
-              attributes: {
-                class: [
-                  "u-bolt-margin-top-small",
-                  "u-bolt-negative-margin-bottom-small",
-                  "u-bolt-margin-left-auto",
-                  "u-bolt-margin-right-auto",
-                ]
-              }
-            }),
-          ] | join('')
-        },
-      }),
-      macros.include("@bolt-academy/_test-completed-modal--return-to-mission.twig"),
-      macros.include("@bolt-components-card-replacement/_card-replacement-body.twig", {
-        body: {
-          attributes: {
-            class: [
-              "t-bolt-xlight",
-              "u-bolt-position-relative",
-              "u-bolt-padding-top-small",
-              "u-bolt-padding-bottom-small",
-            ]
-          },
-          content: [
-            macros.include("@bolt-components-headline/headline.twig", {
-              size: "large",
-              text: "Thank You!",
-              align: "center",
-              attributes: {
-                class: [
-                  "u-bolt-margin-bottom-none",
-                ]
-              }
-            }),
-            macros.include("@bolt-components-headline/headline.twig", {
-              size: "medium",
-              tag: "p",
-              weight: "semibold",
-              text: "We appreciate your feedback.",
-              align: "center",
-              attributes: {
-                class: [
-                  "u-bolt-margin-top-none",
-                ]
-              }
-            }),
-          ] | join('')
-        }
-      })
+      card_content_1,
+      modal_return_to_mission,
+      card_content_2,
     ] | join('')
   } only %}
 

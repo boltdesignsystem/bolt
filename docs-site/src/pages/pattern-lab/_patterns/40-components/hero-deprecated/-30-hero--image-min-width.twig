@@ -8,35 +8,46 @@
     name: 'speed-dial',
   } only %}
 {% endset %}
-
+{% set shape %}
+  {% include '@bolt-elements-shape/shape.twig' with {
+    content: icon,
+    size: 'large',
+    attributes: {
+      class: [
+        'u-bolt-margin-bottom-medium',
+        't-bolt-teal'
+      ]
+    }
+  } only %}
+{% endset %}
+{% set headline %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxxlarge',
+    text: 'A Prominent Headline Certainly Helps',
+  } only %}
+{% endset %}
+{% set subheadline %}
+  {% include '@bolt-components-headline/subheadline.twig' with {
+    size: 'xlarge',
+    text: 'This one even includes a tagline.',
+  } only %}
+{% endset %}
+{% set button %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Learn More',
+    hierarchy: 'primary',
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
 {% include '@bolt-components-hero/hero.twig' with {
   theme: 'none',
   content: [
-    macros.include('@bolt-elements-shape/shape.twig', {
-      content: icon,
-      size: 'large',
-      attributes: {
-        class: [
-          'u-bolt-margin-bottom-medium',
-          't-bolt-teal'
-        ]
-      }
-    }),
-    macros.include('@bolt-components-headline/headline.twig', {
-      size: 'xxxlarge',
-      text: 'A Prominent Headline Certainly Helps',
-    }),
-    macros.include('@bolt-components-headline/subheadline.twig', {
-      size: 'xlarge',
-      text: 'This one even includes a tagline.',
-    }),
-    macros.include('@bolt-elements-button/button.twig', {
-      content: 'Learn More',
-      hierarchy: 'primary',
-      attributes: {
-        type: 'button'
-      }
-    }),
+    shape,
+    headline,
+    subheadline,
+    button,
   ]|join(''),
   imageMinWidth: '60vw',
   image: '/images/heros/responsive-web-design.svg'

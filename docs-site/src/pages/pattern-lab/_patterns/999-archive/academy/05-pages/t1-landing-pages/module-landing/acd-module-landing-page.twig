@@ -56,6 +56,30 @@
             ]
           }
         } only %}
+        {% set link_1 %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            attributes: {
+              href: 'https://www.google.com'
+            },
+            content: "Name of Mission will go here"
+          } only %},
+        {% endset %}
+        {% set link_2 %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            attributes: {
+              href: 'https://www.google.com'
+            },
+            content: "Name of Mission"
+          } only %}
+        {% endset %}
+        {% set link_3 %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            attributes: {
+              href: 'https://www.google.com'
+            },
+            content: "Adding another mission here"
+          } only %}
+        {% endset %}
         {% include "@bolt-components-list/list.twig" with {
           separator: "none",
           display: "block",
@@ -66,28 +90,88 @@
             ]
           },
           items: [
-            macros.include('@bolt-elements-text-link/text-link.twig', {
-              attributes: {
-                href: 'https://www.google.com'
-              },
-              content: "Name of Mission will go here"
-            }),
-            macros.include('@bolt-elements-text-link/text-link.twig', {
-              attributes: {
-                href: 'https://www.google.com'
-              },
-              content: "Name of Mission"
-            }),
-            macros.include('@bolt-elements-text-link/text-link.twig', {
-              attributes: {
-                href: 'https://www.google.com'
-              },
-              content: "Adding another mission here"
-            }),
+            link_1,
+            link_2,
+            link_3,
           ]
         } only %}
       {% endset %}
 
+      {% set headline %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "xlarge",
+          text: "Topics",
+          attributes: {
+            class: "u-bolt-margin-bottom-small",
+          }
+        } only %}
+      {% endset %}
+      {% set list %}
+        {% set list_item_1 %}
+          {% include "@bolt-academy/_module-topic-item.twig" with {
+            text: "Data types",
+            duration: "10 mins",
+            viewed: true,
+          } only %}
+        {% endset %}
+        {% set list_item_2 %}
+          {% include "@bolt-academy/_module-topic-item.twig" with {
+            text: "Data types",
+            duration: "10 mins",
+            viewed: true,
+          } only %}
+        {% endset %}
+        {% set list_item_3 %}
+          {% include "@bolt-academy/_module-topic-item.twig" with {
+            text: "Creating a data type",
+            duration: "5 mins",
+          } only %}
+        {% endset %}
+        {% set list_item_4 %}
+          {% include "@bolt-academy/_module-topic-item.twig" with {
+            text: "Creating a data type with a really long title donec quam felis",
+            duration: "5 mins",
+          } only %}
+        {% endset %}
+        {% set list_item_5 %}
+          {% include "@bolt-academy/_module-quiz-item.twig" with {
+            text: "Module Quiz",
+            numberOfQuestionsText: "3 Questions",
+          } only %}
+        {% endset %}
+        {% set list_item_6 %}
+          {% include "@bolt-academy/_module-quiz-item.twig" with {
+            text: "Module Quiz",
+            numberOfQuestionsText: "3 Questions",
+            status: "passed"
+          } only %}
+        {% endset %}
+        {% set list_item_7 %}
+          {% include "@bolt-academy/_module-quiz-item.twig" with {
+              text: "Module Quiz",
+              numberOfQuestionsText: "3 Questions",
+              status: "failed"
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-list/list.twig" with {
+          separator: "solid",
+          attributes: {
+            class: [
+              "u-bolt-negative-margin-right-small",
+              "u-bolt-padding-right-medium",
+            ],
+          },
+          items: [
+            list_item_1,
+            list_item_2,
+            list_item_3,
+            list_item_4,
+            list_item_5,
+            list_item_6,
+            list_item_7,
+          ]
+        } only %}
+      {% endset %}
       {% set trainingTopicList %}
         {% include "@bolt-components-card-replacement/card-replacement.twig" with {
           theme: "xlight",
@@ -100,57 +184,9 @@
           },
           body: {
             content: [
-              macros.include("@bolt-components-headline/headline.twig", {
-                size: "xlarge",
-                text: "Topics",
-                attributes: {
-                  class: "u-bolt-margin-bottom-small",
-                }
-              }),
-              macros.include("@bolt-components-list/list.twig", {
-                separator: "solid",
-                attributes: {
-                  class: [
-                    "u-bolt-negative-margin-right-small",
-                    "u-bolt-padding-right-medium",
-                  ],
-                },
-                items: [
-                  macros.include("@bolt-academy/_module-topic-item.twig", {
-                    text: "Data types",
-                    duration: "10 mins",
-                    viewed: true,
-                  }),
-                  macros.include("@bolt-academy/_module-topic-item.twig", {
-                    text: "Low-code application development in consectetuer turpis",
-                    duration: "10 mins",
-                    viewed: true,
-                  }),
-                  macros.include("@bolt-academy/_module-topic-item.twig", {
-                    text: "Creating a data type",
-                    duration: "5 mins",
-                  }),
-                  macros.include("@bolt-academy/_module-topic-item.twig", {
-                    text: "Creating a data type with a really long title donec quam felis",
-                    duration: "5 mins",
-                  }),
-                  macros.include("@bolt-academy/_module-quiz-item.twig", {
-                    text: "Module Quiz",
-                    numberOfQuestionsText: "3 Questions",
-                  }),
-                  macros.include("@bolt-academy/_module-quiz-item.twig", {
-                    text: "Module Quiz",
-                    numberOfQuestionsText: "3 Questions",
-                    status: "passed"
-                  }),
-                  macros.include("@bolt-academy/_module-quiz-item.twig", {
-                    text: "Module Quiz",
-                    numberOfQuestionsText: "3 Questions",
-                    status: "failed"
-                  }),
-                ]
-              }),
-            ] | join('')
+              headline,
+              list
+            ]|join('')
           }
         } only %}
       {% endset %}

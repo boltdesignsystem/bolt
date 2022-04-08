@@ -41,37 +41,6 @@
 </bolt-carousel>
 {% endset %}
 
-{% set carousel_ssr_demo_noshadow %}
-{% filter bolt_ssr %}
-<bolt-carousel>
-  <bolt-carousel-slide>
-    <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
-  </bolt-carousel-slide>
-  <bolt-carousel-slide>
-    <div class="u-bolt-padding-large t-bolt-dark">Slide 2</div>
-  </bolt-carousel-slide>
-  <bolt-carousel-slide>
-    <div class="u-bolt-padding-large t-bolt-light">Slide 3</div>
-  </bolt-carousel-slide>
-</bolt-carousel>
-{% endfilter %}
-{% endset %}
-
-{% set carousel_ssr_demo %}
-{% verbatim %} {% filter bolt_ssr %} {% endverbatim %}
-<bolt-carousel>
-  <bolt-carousel-slide>
-    <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
-  </bolt-carousel-slide>
-  <bolt-carousel-slide>
-    <div class="u-bolt-padding-large t-bolt-dark">Slide 2</div>
-  </bolt-carousel-slide>
-  <bolt-carousel-slide>
-    <div class="u-bolt-padding-large t-bolt-light">Slide 3</div>
-  </bolt-carousel-slide>
-</bolt-carousel>
-{% verbatim %} {% endfilter %} {% endverbatim %}
-{% endset %}
 
 
 <div class="o-bolt-wrapper">
@@ -103,28 +72,5 @@
       lang: 'html',
       mode: 'dark',
     } only %}
-  </div>
-
-  <div class="u-bolt-margin-bottom-large">
-    <bolt-text headline>
-      Server-side Rendered Web Components (Experimental)
-    </bolt-text>
-    <bolt-text>
-      The <code>&lt;bolt-carousel&gt;</code> component, among many other web components in Bolt, will support server-side rendering via the new upcoming <code>{% verbatim %}{% filter bolt_ssr %}{% endverbatim %}</code> custom Twig filter. Check out the docs on <a href="https://master.boltdesignsystem.com/docs/development/server-side-rendering.html">server-side rendering</a> for information!
-    </bolt-text>
-    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid %}
-        {% cell 'u-bolt-width-12/12' %}
-          {{ carousel_ssr_demo_noshadow }}
-        {% endcell %}
-      {% endgrid %}
-    </div>
-    <div class="u-bolt-margin-bottom-large">
-      {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-        content: carousel_ssr_demo,
-        lang: 'html',
-        mode: 'dark',
-      } only %}
-    </div>
   </div>
 </div>

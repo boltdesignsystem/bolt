@@ -36,7 +36,34 @@
                   size: 'small'
                 } only %}
               {% endset %}
-
+              {% set button_1 %}
+                {% include "@bolt-elements-button/button.twig" with {
+                  content: "Yes",
+                  hierarchy: "transparent",
+                  size: "small",
+                  icon_before: _add_icon,
+                  attributes: {
+                    type: 'button'
+                  }
+                } only %}
+              {% endset %}
+              {% set button_2 %}
+                {% include "@bolt-elements-button/button.twig" with {
+                  content: "No",
+                  hierarchy: "transparent",
+                  size: "xsmall",
+                  icon_before: _minus_icon,
+                  attributes: {
+                    type: 'button'
+                  }
+                } only %}
+              {% endset %}
+              {% set text %}
+                {% include "@bolt-components-headline/text.twig" with {
+                  text: "<strong>28%</strong> found this useful",
+                  size: "xsmall"
+                } only %}
+              {% endset %}
               {% include "@bolt-components-list/list.twig" with {
                   display: "inline",
                   size: "medium",
@@ -47,28 +74,9 @@
                     ]
                   },
                   items: [
-                    macros.include("@bolt-elements-button/button.twig", {
-                      content: "Yes",
-                      hierarchy: "transparent",
-                      size: "small",
-                      icon_before: _add_icon,
-                      attributes: {
-                        type: 'button'
-                      }
-                    }, false),
-                    macros.include("@bolt-elements-button/button.twig", {
-                      content: "No",
-                      hierarchy: "transparent",
-                      size: "xsmall",
-                      icon_before: _minus_icon,
-                      attributes: {
-                        type: 'button'
-                      }
-                    }, false),
-                    macros.include("@bolt-components-headline/text.twig", {
-                      text: "<strong>28%</strong> found this useful",
-                      size: "xsmall"
-                    }, false),
+                    button_1,
+                    button_2,
+                    text,
                   ]
                 } only %}
               {% endcell %}

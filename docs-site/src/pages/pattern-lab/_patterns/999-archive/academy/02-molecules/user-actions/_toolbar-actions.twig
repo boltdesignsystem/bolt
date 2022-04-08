@@ -12,13 +12,9 @@
     name: 'download'
   } only %}
 {% endset %}
-{% include "@bolt-components-list/list.twig" with {
-  display: "flex",
-  align: "end",
-  spacing: "xsmall",
-  nowrap: true,
-  items: [
-    editButton ? macros.include("@bolt-elements-button/button.twig", {
+{% set edit %}
+  {{
+    macros.include("@bolt-elements-button/button.twig", {
       content: "Edit",
       size: "small",
       hierarchy: "tertiary",
@@ -26,8 +22,12 @@
       attributes: {
         type: 'button'
       }
-    }, false) : '',
-    downloadButton ? macros.include("@bolt-elements-button/button.twig", {
+    }, false)
+  }}
+{% endset %}
+{% set download %}
+  {{
+    macros.include("@bolt-elements-button/button.twig", {
       content: "Download",
       size: "small",
       hierarchy: "tertiary",
@@ -35,11 +35,46 @@
       attributes: {
         type: 'button'
       }
-    }, false) : '',
-    shareButton ? macros.include("@bolt-academy/toolbar-buttons/_share.twig", {}, false) : '',
-    favoriteButton and isFavorited ? macros.include("@bolt-academy/toolbar-buttons/_unfavorite.twig", {}, false) : '',
-    favoriteButton and not isFavorited ? macros.include("@bolt-academy/toolbar-buttons/_favorite.twig", {}, false) : '',
-    addButton ? macros.include("@bolt-academy/toolbar-buttons/_add.twig", {}, false) : '',
-    removeButton ? macros.include("@bolt-academy/toolbar-buttons/_remove.twig", {}, false) : '',
+    }, false)
+  }}
+{% endset %}
+{% set share %}
+  {{
+    macros.include("@bolt-academy/toolbar-buttons/_share.twig", {}, false)
+  }}
+{% endset %}
+{% set unfavorite %}
+  {{
+    macros.include("@bolt-academy/toolbar-buttons/_unfavorite.twig", {}, false)
+  }}
+{% endset %}
+{% set favorite %}
+  {{
+    macros.include("@bolt-academy/toolbar-buttons/_favorite.twig", {}, false)
+  }}
+{% endset %}
+{% set add %}
+  {{
+    macros.include("@bolt-academy/toolbar-buttons/_add.twig", {}, false)
+  }}
+{% endset %}
+{% set remove %}
+  {{
+    macros.include("@bolt-academy/toolbar-buttons/_remove.twig", {}, false)
+  }}
+{% endset %}
+{% include "@bolt-components-list/list.twig" with {
+  display: "flex",
+  align: "end",
+  spacing: "xsmall",
+  nowrap: true,
+  items: [
+    editButton ? edit : '',
+    downloadButton ? download : '',
+    shareButton ? share : '',
+    favoriteButton and isFavorited ? unfavorite : '',
+    favoriteButton and not isFavorited ? favorite : '',
+    addButton ? add : '',
+    removeButton ? remove : '',
   ]
 } only %}
