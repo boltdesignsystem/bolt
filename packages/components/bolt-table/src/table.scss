@@ -25,7 +25,7 @@
   font-size: var(--bolt-type-font-size-xsmall);
   line-height: var(--bolt-type-line-height-xsmall);
   border-radius: bolt-border-radius(small);
-  box-shadow: 0 0 0 1px var(--m-bolt-table-highlight);
+  box-shadow: 0 0 0 1px var(--m-bolt-table-border);
 
   @media print {
     max-width: unset;
@@ -46,7 +46,7 @@
 
   table {
     width: 100%;
-    background-color: var(--m-bolt-table-highlight);
+    background-color: var(--m-bolt-table-border); // The bg color here severs as border color because the cells have spacing in-between which will expose the bg color of the table. It creates the illusion of borders.
   }
 
   thead {
@@ -115,7 +115,7 @@
     padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
     text-align: start;
     caption-side: bottom;
-    border-top: 1px solid var(--m-bolt-table-highlight);
+    border-top: 1px solid var(--m-bolt-table-border);
   }
 }
 
@@ -124,7 +124,7 @@
     &:first-of-type {
       position: sticky;
       left: 1px;
-      box-shadow: 0 0 0 1px var(--m-bolt-table-highlight);
+      box-shadow: 0 0 0 1px var(--m-bolt-table-border);
     }
   }
 
@@ -142,7 +142,7 @@
   thead th {
     position: sticky;
     top: 1px;
-    box-shadow: 0 0 0 1px var(--m-bolt-table-highlight);
+    box-shadow: 0 0 0 1px var(--m-bolt-table-border);
   }
 
   &.c-bolt-table--borderless {
