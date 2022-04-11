@@ -13,11 +13,5 @@ module.exports = {
       description:
         'Renders a list of buttons. Use the floating-action-buttons-ul.twig template to render a list.',
     },
-    hide_on_load: {
-      type: 'boolean',
-      description:
-        'Do not use this prop unless you plan on adding JavaScript to show the FAB based on custom logics. This prop toggles the <code>.c-bolt-floating-action-buttons--hidden</code> modifier class.',
-      default: false,
-    },
   },
 };

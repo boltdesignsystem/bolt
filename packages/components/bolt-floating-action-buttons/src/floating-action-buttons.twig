@@ -10,12 +10,10 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-floating-action-buttons',
-  this.data.hide_on_load.value ? 'c-bolt-floating-action-buttons--hidden' : '',
 ] %}
 
 <div
   {{ attributes.addClass(classes) }}
-  {% if this.data.hide_on_load.value %}data-hide-on-load{% endif %}
 >
   {% spaceless %}
     {{ content }}

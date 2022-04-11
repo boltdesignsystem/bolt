@@ -18,7 +18,6 @@ export class BoltFloatingActionButtons {
     this.hiddenListItems = this.el.querySelectorAll(
       '.js-bolt-floating-action-buttons-list-item--hidden',
     );
-    this.hideOnLoad = this.el.hasAttribute('data-hide-on-load');
     this.isOpen = false;
 
     if (this.secondaryList) {
@@ -44,10 +43,7 @@ export class BoltFloatingActionButtons {
       });
     }
 
-    if (!this.hideOnLoad) {
-      this.show();
-    }
-
+    this.show();
     this.el.setAttribute('data-bolt-ready', '');
   }
 
