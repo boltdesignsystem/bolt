@@ -123,17 +123,28 @@
     }
   } only %}
 
+  {% set image %}
+    {% include "@bolt-elements-image/image.twig" with {
+      attributes: {
+        src: "/images/placeholders/1200x660.jpg",
+        alt: "A placeholder image",
+        style: "max-width: 450px",
+        loading: "lazy",
+      }
+    } only %}
+  {% endset %}
+  {% set image %}
+    {% include "@bolt-elements-image/image.twig" with {
+      attributes: {
+        src: "/images/placeholders/1200x660.jpg",
+        loading: "lazy",
+      }
+    } only %}
+  {% endset %}
   {% set trigger_content %}
     {% include "@bolt-components-figure/figure.twig" with {
       media: {
-        content: macros.include("@bolt-elements-image/image.twig", {
-          attributes: {
-            src: "/images/placeholders/1920x1200.jpg",
-            alt: "A placeholder image",
-            style: "max-width: 450px",
-            loading: "lazy",
-          }
-        }),
+        content: image,
       },
       caption: "Example of an image with caption + modal.",
     } only %}
@@ -197,15 +208,17 @@
         id: "checking-out-a-rule"
       }
     } only %}
-
+    {% set image %}
+      {% include "@bolt-elements-image/image.twig" with {
+        attributes: {
+          src: "/images/placeholders/1200x660.jpg",
+          loading: "lazy",
+        }
+      } only %}
+    {% endset %}
     {% include "@bolt-components-figure/figure.twig" with {
       media: {
-        content: macros.include("@bolt-elements-image/image.twig", {
-          attributes: {
-            src: "/images/placeholders/1920x1440.jpg",
-            loading: "lazy",
-          }
-        }),
+        content: image,
       },
       caption: "Lorem ipsum caption for the thumbnail.",
       attributes: {
@@ -240,15 +253,17 @@
         id: "checking-in-a-rule"
       }
     } only %}
-
+    {% set image %}
+      {% include "@bolt-elements-image/image.twig" with {
+        attributes: {
+          src: "/images/placeholders/1200x660.jpg",
+          loading: "lazy",
+        }
+      } only %}
+    {% endset %}
     {% include "@bolt-components-figure/figure.twig" with {
       media: {
-        content: macros.include("@bolt-elements-image/image.twig", {
-          attributes: {
-            src: "/images/placeholders/1920x960.jpg",
-            loading: "lazy",
-          }
-        }),
+        content: iamge,
       },
       caption: "Lorem ipsum caption for the thumbnail.",
       attributes: {

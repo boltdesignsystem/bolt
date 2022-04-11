@@ -69,37 +69,46 @@
     </fieldset>
 
     {% import "@bolt-academy/_macros.twig" as macros %}
-
-    {% include "@bolt-components-form/form-element.twig" with {
-      labelDisplay: "after",
-      label: macros.include("@bolt-components-form/form-label.twig", {
+    
+    {% set label %}
+      {% include "@bolt-components-form/form-label.twig" with {
         "title": "Leave a comment",
         "displayType": "floating"
-      }),
-      children: macros.include("@bolt-components-form/form-textarea.twig", {
+      } only %}
+    {% endset %}
+    {% set textarea %}
+      {% include "@bolt-components-form/form-textarea.twig" with {
         "attributes": {
           "required": false,
           "placeholder": "Leave a comment",
         }
-      }),
+      } only %}
+    {% endset %}
+    {% include "@bolt-components-form/form-element.twig" with {
+      labelDisplay: "after",
+      label: label,
+      children: textarea,
     } only %}
 
+    {% set submit %}
+      {% include "@bolt-elements-button/button.twig" with {
+        content: "Submit",
+        border_radius: "full",
+        attributes: {
+          type: "submit",
+          disabled: '',
+          class: [
+            "js-mission-rating-submit",
+            "u-bolt-margin-left-auto",
+            "u-bolt-margin-right-auto",
+          ]
+        }
+      } only %}
+    {% endset %}
     {% grid "o-bolt-grid--center" %}
       {% cell %}
         {% include "@bolt-components-form/form-element.twig" with {
-          children: macros.include("@bolt-elements-button/button.twig", {
-            content: "Submit",
-            border_radius: "full",
-            attributes: {
-              type: "submit",
-              disabled: '',
-              class: [
-                "js-mission-rating-submit",
-                "u-bolt-margin-left-auto",
-                "u-bolt-margin-right-auto",
-              ]
-            }
-          })
+          children: submit
         } only %}
       {% endcell %}
     {% endgrid %}

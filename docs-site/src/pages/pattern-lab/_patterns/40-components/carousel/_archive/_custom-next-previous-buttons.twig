@@ -1,8 +1,11 @@
+{% set slide %}
+ {% include "_carousel-slide-content.twig" only %}
+{% endset %}
 {% embed "@bolt-components-carousel/carousel.twig" with {
   slides: [
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
-    include("_carousel-slide-content.twig"),
+    slide,
+    slide,
+    slide,
   ],
 } only %}
   {% block controls %}

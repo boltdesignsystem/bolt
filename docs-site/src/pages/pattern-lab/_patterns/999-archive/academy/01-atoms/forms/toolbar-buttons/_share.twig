@@ -5,61 +5,76 @@
 {% set buttonIcon = "share" %}
 {% set buttonText = "Share" %}
 {% set popover %}
+  {% set facebook %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Facebook",
+      size: "medium",
+      icon: {
+        name: "facebook-solid",
+        position: "before"
+      }
+    } only %}
+  {% endset %}
+  {% set twitter %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Twitter",
+      size: "medium",
+      icon: {
+        name: "twitter",
+        position: "before"
+      }
+    } only %}
+  {% endset %}
+  {% set LinkedIn %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "LinkedIn",
+      size: "medium",
+      icon: {
+        name: "linkedin",
+        position: "before"
+      }
+    } only %}
+  {% endset %}
+  {% set Link %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Link",
+      size: "medium",
+      icon: {
+        name: "link",
+        position: "before"
+      }
+    } only %}
+  {% endset %}
+  {% set Email %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Email",
+      size: "medium",
+      icon: {
+        name: "email",
+        position: "before"
+      }
+    } only %}
+  {% endset %}
   {% include "@bolt-components-menu/menu.twig" with {
     items: [
       {
-        content: macros.include("@bolt-components-headline/text.twig", {
-          text: "Facebook",
-          size: "medium",
-          icon: {
-            name: "facebook-solid",
-            position: "before"
-          }
-        }, false),
+        content: facebook,
         url: "#!"
       },
       {
-        content: macros.include("@bolt-components-headline/text.twig", {
-          text: "Twitter",
-          size: "medium",
-          icon: {
-            name: "twitter",
-            position: "before"
-          }
-        }, false),
+        content: twitter,
         url: "#!"
       },
       {
-        content: macros.include("@bolt-components-headline/text.twig", {
-          text: "LinkedIn",
-          size: "medium",
-          icon: {
-            name: "linkedin",
-            position: "before"
-          }
-        }, false),
+        content: LinkedIn,
         url: "#!"
       },
       {
-        content: macros.include("@bolt-components-headline/text.twig", {
-          text: "Email",
-          size: "medium",
-          icon: {
-            name: "email",
-            position: "before"
-          }
-        }, false),
+        content: Email,
         url: "#!"
       },
       {
-        content: macros.include("@bolt-components-headline/text.twig", {
-          text: "Link",
-          size: "medium",
-          icon: {
-            name: "link",
-            position: "before"
-          }
-        }, false),
+        content: Link,
         url: "#!"
       },
     ]

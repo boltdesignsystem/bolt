@@ -1,5 +1,9 @@
+{% set step_four %}
+  {% include '@pl/_step-four.twig' only %}
+{% endset %}
+
 {% include '@pl/_shadow-dom-demo.twig' with {
-  content: include('@pl/_step-four.twig'),
+  content: step_four,
   enableEditor: true,
   addAnimateButtons: true,
 } only %}

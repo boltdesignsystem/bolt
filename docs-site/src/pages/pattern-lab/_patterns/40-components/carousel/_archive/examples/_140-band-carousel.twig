@@ -1,15 +1,18 @@
+{% set slide %}
+ {% include "_carousel-slide-content.twig" only %}
+{% endset %}
 {% include "@bolt-components-carousel/carousel.twig" with {
   slides: [
-    include("_band-carousel--slide-1.twig"),
-    include("_band-carousel--slide-2.twig"),
-    include("_band-carousel--slide-1.twig"),
+    slide,
+    slide,
+    slide,
   ],
-  slidesPerView: 1,
+  slides_per_view: 1,
   loop: true,
   autoplay: true,
   loop: true,
-  spaceBetween: "none",
-  noPagination: false,
-  noNavButtons: true,
-  navButtonPosition: "inside",
+  space_between: "none",
+  no_pagination: false,
+  no_nav_buttons: true,
+  nav_button_position: "inside",
 } only %}

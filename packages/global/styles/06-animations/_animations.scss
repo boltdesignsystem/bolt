@@ -8,7 +8,7 @@
  * 2. Start animation one after another.
  */
 
-[class*='a-bolt-'] {
+.a-bolt-base {
   visibility: hidden; /* [1] */
   animation-delay: var(--bolt-animation-delay);
   animation-duration: var(--bolt-animation-duration);
@@ -20,11 +20,11 @@
   }
 }
 
-[class*='a-bolt-in'] {
+.a-bolt-in {
   animation-timing-function: ease-out;
 }
 
-[class*='a-bolt-out'] {
+.a-bolt-out {
   animation-timing-function: ease-in;
   @media print, (prefers-reduced-motion: reduce) {
     opacity: 0;

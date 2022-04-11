@@ -1,31 +1,43 @@
 {% set usage %}{% verbatim %}
+{% set item_home %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Home',
+    attributes: {
+      href: '#!'
+    }
+  } only %}
+{% endset %}
+{% set item_landing %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Landing Page',
+    attributes: {
+      href: '#!'
+    }
+  } only %}
+{% endset %}
+{% set item_sub %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Sub Page',
+    attributes: {
+      href: '#!'
+    }
+  } only %}
+{% endset %}
+{% set item_current %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Current Page',
+    attributes: {
+      href: '#!',
+      'aria-current': 'page',
+    }
+  } only %}
+{% endset %}
 {% include '@bolt-components-breadcrumb/breadcrumb.twig' with {
   contentItems: [
-    include('@bolt-elements-text-link/text-link.twig', {
-      content: 'Home',
-      attributes: {
-        href: '#!'
-      }
-    }),
-    include('@bolt-elements-text-link/text-link.twig', {
-      content: 'Landing Page',
-      attributes: {
-        href: '#!'
-      }
-    }),
-    include('@bolt-elements-text-link/text-link.twig', {
-      content: 'Sub Page',
-      attributes: {
-        href: '#!'
-      }
-    }),
-    include('@bolt-elements-text-link/text-link.twig', {
-      content: 'Current Page',
-      attributes: {
-        href: '#!'
-        'aria-current': 'page',
-      }
-    }),
+    item_home,
+    item_landing,
+    item_sub,
+    item_current,
   ]
 } only %}
 {% endverbatim %}{% endset %}
