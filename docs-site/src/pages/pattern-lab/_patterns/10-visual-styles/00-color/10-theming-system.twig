@@ -30,11 +30,11 @@
         <bolt-text slot="label">{{ theme|capitalize }}</bolt-text>
 
         {% if theme == 'teal' or theme == 'pink' or theme == 'orange' %}
-          <bolt-banner align="start">
+          <bolt-banner status="warning" align="start">
             {% include '@bolt-elements-icon/icon.twig' with {
-              name: 'info-circle',
+              name: 'warning',
             } only %}
-            This theme should only be used with large text not body or small text (which fails accessible color contrast ratio).
+            This theme should only be used with large text, not body or small text (which fails accessible color contrast ratio).
           </bolt-banner>
         {% endif %}
         <div class="{{ "t-bolt-#{theme}" }} u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-right-medium u-bolt-padding-left-medium">
