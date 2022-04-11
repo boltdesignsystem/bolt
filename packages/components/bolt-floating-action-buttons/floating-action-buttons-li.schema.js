@@ -21,7 +21,7 @@ module.exports = {
     show_on_scroll_selector: {
       type: 'string',
       description:
-        'This will leave the list item hidden until the page is scrolled to to show then hide a certain element (ie. "h1").',
+        'Select an element (usually a page title) which when scrolled offscreen will show/hide the list-item. Must be a valid CSS selector.',
     },
   },
 };

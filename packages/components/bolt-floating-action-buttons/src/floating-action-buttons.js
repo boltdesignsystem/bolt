@@ -16,7 +16,7 @@ export class BoltFloatingActionButtons {
       '.js-bolt-floating-action-buttons-toggle',
     );
     this.hiddenListItems = this.el.querySelectorAll(
-      '.js-bolt-floating-action-buttons-list-item--hidden',
+      '[data-show-on-scroll-selector]',
     );
     this.isOpen = false;
 
@@ -92,6 +92,14 @@ export class BoltFloatingActionButtons {
   }
 
   addScrollHandler(el) {
+    const observerElement = document.querySelector(
+      el.dataset.showOnScrollSelector,
+    );
+
+    if (!observerElement) {
+      return;
+    }
+
     const callback = entries => {
       entries.forEach(entry => {
         const isIntersectingTop =
@@ -115,6 +123,6 @@ export class BoltFloatingActionButtons {
     };
 
     const observer = new IntersectionObserver(callback);
-    observer.observe(document.querySelector(el.dataset.showOnScrollSelector));
+    observer.observe(observerElement);
   }
 }
