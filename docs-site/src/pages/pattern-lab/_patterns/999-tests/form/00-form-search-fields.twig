@@ -1,0 +1,141 @@
+<div class="u-bolt-padding-medium">
+  <h2>Test 1: with placeholder text</h2>
+  <div class="u-bolt-padding-small t-bolt-gray-xlight">
+    <bolt-stack>
+      {% set label %}
+        {% set label_text %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'Find People',
+            tag: 'span',
+            size: 'large',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: label_text,
+          displayType: 'block',
+          attributes: {
+            for: 'search-people-1',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          search_button_label: 'Search people',
+          attributes: {
+            placeholder: 'Search for employees or contractors',
+            type: 'search',
+            id: 'search-people-1',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+        labelDisplay: 'before',
+      } only %}
+    </bolt-stack>
+    <bolt-stack>
+      {% set label %}
+        {% set label_text %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'Find Content',
+            tag: 'span',
+            size: 'large',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: label_text,
+          displayType: 'block',
+          attributes: {
+            for: 'search-content-1',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          search_button_label: 'Search content',
+          attributes: {
+            placeholder: 'Enter a keyword or phrase',
+            type: 'search',
+            id: 'search-content-1',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+        labelDisplay: 'before',
+      } only %}
+    </bolt-stack>
+  </div>
+
+  <hr>
+
+  <h2>Test 2: without placeholder text</h2>
+  <div class="u-bolt-padding-small t-bolt-gray-xlight">
+    <bolt-stack>
+      {% set label %}
+        {% set label_text %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'Find People',
+            tag: 'span',
+            size: 'large',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: label_text,
+          displayType: 'block',
+          attributes: {
+            for: 'search-people-2',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          search_button_label: 'Search for employees or contractors',
+          attributes: {
+            type: 'search',
+            id: 'search-people-2',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+        labelDisplay: 'before',
+      } only %}
+    </bolt-stack>
+    <bolt-stack>
+      {% set label %}
+        {% set label_text %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'Find Content',
+            tag: 'span',
+            size: 'large',
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: label_text,
+          displayType: 'block',
+          attributes: {
+            for: 'search-content-2',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          search_button_label: 'Search a keyword or phrase',
+          attributes: {
+            type: 'search',
+            id: 'search-content-2',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: input,
+        labelDisplay: 'before',
+      } only %}
+    </bolt-stack>
+  </div>
+</div>

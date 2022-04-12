@@ -1,5 +1,12 @@
 {% set notes %}
-  The video poster image from a particular Brightcove video is recommended to be used as the video thumbnail.
+  {% spaceless %}
+    <bolt-ol>
+      <bolt-li>Always provide a value for the <code>video.title</code> prop. This will provide contextual information for screen readers.</bolt-li>
+      <bolt-li>The video poster image from a particular Brightcove video is recommended to be used as the video thumbnail.</bolt-li>
+      <bolt-li>Use the <code>button_attributes</code> prop to pass in the required <code>data-bolt-modal-target</code> attribute to hook up a modal.</bolt-li>
+      <bolt-li>Refer to the <a href="{{ link['viewall-components-modal'] }}" class="e-bolt-text-link">Modal Documentation</a> for more information.</bolt-li>
+    </bolt-ol>
+  {% endspaceless %}
 {% endset %}
 
 {% set demo %}
@@ -33,17 +40,20 @@
     {% endset %}
     {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
       content: image,
-      duration: '4:55',
+      button_attributes: {
+        'data-bolt-modal-target': '#' ~ modal_id
+      },
+      video: {
+        duration: '4:55',
+        title: 'Video Title',
+        has_subtitles: true
+      }
     } only %}
   {% endset %}
   <div style="max-width: 60ch">
-    {% include '@bolt-components-trigger/trigger.twig' with {
-      content: video_thumbnail,
-      display: 'block',
-      attributes: {
-        'data-bolt-modal-target': '#' ~ modal_id,
-      }
-    } only %}
+
+    {{ video_thumbnail }}
+
     {% include '@bolt-components-modal/modal.twig' with {
       content: video,
       width: 'optimal',
@@ -58,7 +68,7 @@
 
 {% set twig_markup %}
 {% verbatim %}
-// Set up the trigger
+// Set up the thumbnail
 {% set video_thumbnail %}
   {% set image %}
     {% include '@bolt-elements-image/image.twig' with {
@@ -73,16 +83,18 @@
   {% endset %}
   {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
     content: image,
-    duration: '4:55',
+    button_attributes: {
+      'data-bolt-modal-target': '#js-modal-target'
+    },
+    video: {
+      duration: '4:55',
+      title: 'Video Title',
+      has_subtitles: true
+    }
   } only %}
 {% endset %}
-{% include '@bolt-components-trigger/trigger.twig' with {
-  content: video_thumbnail,
-  display: 'block',
-  attributes: {
-    'data-bolt-modal-target': '#js-modal-target',
-  }
-} only %}
+
+{{ video_thumbnail }}
 
 // Set up the modal
 {% set video %}

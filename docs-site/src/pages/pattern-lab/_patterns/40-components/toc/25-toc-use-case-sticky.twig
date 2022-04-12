@@ -7,11 +7,14 @@
 {% endset %}
 
 {% set demo %}
-  {% include '@bolt-components-sticky/sticky.twig' with {
-    content: include('@bolt-components-banner/banner.twig', {
+  {% set banner %}
+    {% include '@bolt-components-banner/banner.twig' with {
       content: 'Example Additional Sticky Element',
       status: 'warning',
-    }),
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-sticky/sticky.twig' with {
+    content: banner,
     attributes: {
       class: [
         'u-bolt-margin-bottom-large',

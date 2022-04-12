@@ -8,9 +8,6 @@ use \Webmozart\PathUtil\Path; // https://github.com/webmozart/path-util
 use Twig\Extension\InitRuntimeInterface;
 use Twig\Extension\GlobalsInterface;
 use Twig\Extension\AbstractExtension;
-
-require_once 'Faker.php';
-
 class BoltCore extends AbstractExtension implements InitRuntimeInterface, GlobalsInterface {
 
   public $data = [];
@@ -39,7 +36,6 @@ class BoltCore extends AbstractExtension implements InitRuntimeInterface, Global
     return [
       'bolt' => [
         'data' => $this->data,
-        'faker' => new Bolt\TwigExtensions\TwigFaker(),
       ],
       'enable_json_schema_validation' => true,
     ];
@@ -52,7 +48,6 @@ class BoltCore extends AbstractExtension implements InitRuntimeInterface, Global
       Bolt\TwigFunctions::init(),
       Bolt\TwigFunctions::publicpath(),
       Bolt\TwigFunctions::base64(),
-      Bolt\TwigFunctions::bgcolor(),
       Bolt\TwigFunctions::ratio(),
       Bolt\TwigFunctions::getBoltData(),
       Bolt\TwigFunctions::getImageData(),

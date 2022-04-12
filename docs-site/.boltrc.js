@@ -27,7 +27,6 @@ const config = deepmerge(baseConfig, {
   },
   sourceMaps: !(process.env.TRAVIS || argv.prod),
   enableCache: !(process.env.TRAVIS || argv.prod),
-  enableSSR: false, // temp disabled till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
@@ -88,9 +87,6 @@ const config = deepmerge(baseConfig, {
        */
 
       '@bolt/components-radio-switch',
-      '@bolt/docs-search',
-      // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
-      '@bolt/shadow-toggle',
       '@bolt/theme-switcher',
 
       // Components that are excluded from the base release build.

@@ -81,6 +81,31 @@ async function finishRendering(rows, callback) {
         id: 'component-status',
         style: 'max-height: none;'
       },
+<<<<<<< HEAD
+=======
+      headers: {
+        top: {
+          cells: [
+            {
+              content: "Component",
+              attributes: {
+                class: [
+                  "sort"
+                ],
+                "data-sort": "component"
+              },
+            },
+            "Sass",
+            "Twig",
+            "Web Component",
+            "Jest",
+            "TESTING.md",
+            "README.md"
+          ]
+        },
+      },
+      rows: ${JSON.stringify(arraySort(rows, 'cells'))},
+>>>>>>> master
     } only %}
   `).then(renderedResults => {
     const formattedTable = prettier.format(renderedResults.html, {
@@ -163,11 +188,7 @@ async function generateStatusBoard() {
       const jestTestsFound = globby.sync(
         `${componentPath}/__tests__/__snapshots__/*.js.snap`,
       );
-      const nightwatchTestsFound = globby.sync(
-        `${componentPath}/__tests__/*.e2e.js`,
-      );
       const hasjestTests = jestTestsFound.length > 0;
-      const hasNightwatchTests = nightwatchTestsFound.length > 0;
       const hasJs = jsFound.length === 1;
       const probablyAWebComponent = jsFound.length > 1;
       const hasScss = scssFound.length > 0;
@@ -266,7 +287,6 @@ async function generateStatusBoard() {
               ? emptyCell.html
               : emptyCell.html,
             hasjestTests ? checkMark.html : cancelMark.html,
-            hasNightwatchTests ? checkMark.html : cancelMark.html,
             hasManualTestingDocs ? checkMark.html : cancelMark.html,
             docsFound.size >= 300 ? checkMark.html : questionMark.html,
           );

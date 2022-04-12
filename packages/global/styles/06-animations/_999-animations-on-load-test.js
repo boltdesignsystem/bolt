@@ -1,7 +1,7 @@
 function playStateRunningOnLoad() {
   const cascadeAnimations = { slow: [], fast: [] };
   const onLoadAnimations = [
-    ...document.querySelectorAll('[class*="a-bolt-"]'),
+    ...document.querySelectorAll('.a-bolt-base'),
   ].filter(el => {
     if (el.classList.contains('a-bolt-cascade-fast')) {
       cascadeAnimations.fast.push(el);

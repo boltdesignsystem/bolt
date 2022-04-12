@@ -60,7 +60,7 @@
       window.bolt.data.fullManifest.version = window.bolt.data.fullManifest.version || {{ bolt.data.fullManifest.version|json_encode|raw }};
     </script>
 
-    <script type="module" src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
+    <script type="module" src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}"></script>
 
     <noscript>
       <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">

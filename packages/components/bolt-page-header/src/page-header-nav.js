@@ -9,7 +9,6 @@ export class BoltPageHeaderNav {
       desktop: true,
       isNested: false,
       onNestedNavToggle: null,
-      closeOnEscape: false,
       ...options,
     };
 
@@ -45,10 +44,10 @@ export class BoltPageHeaderNav {
   }
 
   init() {
-    this.handleKeypress = this.handleKeypress.bind(this);
     this.handleEscapeKeypress = this.handleEscapeKeypress.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.handleExternalClick = this.handleExternalClick.bind(this);
+    this.handleAnchorClick = this.handleAnchorClick.bind(this);
     this.updateResponsiveMenu = this.updateResponsiveMenu.bind(this);
 
     this.updateResponsiveMenu();
@@ -93,14 +92,14 @@ export class BoltPageHeaderNav {
 
   setupDesktopMenu() {
     this.addHoverHandler(this.menu);
-    this.addKeypressHandler(this.menu);
+    this.addClickHandler(this.menu);
     this.state.desktopIsSetup = true;
   }
 
   resetDesktopMenu() {
     this.resetActiveMenus();
     this.hoverListeners.forEach(listener => listener.remove());
-    this.removeKeypressHandler(this.menu);
+    this.removeClickHandler(this.menu);
     this.state.desktopIsSetup = false;
   }
 
@@ -129,18 +128,6 @@ export class BoltPageHeaderNav {
     this.toggleMenu(el);
   }
 
-  addKeypressHandler(menus = []) {
-    menus.forEach(menu => {
-      menu.trigger.addEventListener('keydown', this.handleKeypress);
-    });
-  }
-
-  removeKeypressHandler(menus = []) {
-    menus.forEach(menu => {
-      menu.trigger.removeEventListener('keydown', this.handleKeypress);
-    });
-  }
-
   getKey(e) {
     if (e.key !== undefined) {
       return e.key;
@@ -149,27 +136,10 @@ export class BoltPageHeaderNav {
     }
   }
 
-  handleKeypress(e) {
-    switch (this.getKey(e)) {
-      case 'Enter' || 13: // enter key
-        this.toggleMenu(e.target);
-        break;
-      case ' ' || 32: // space key
-        this.toggleMenu(e.target);
-        break;
-      case 'Escape' || 27: // escape key
-        this.hideMenu(e.target);
-        break;
-    }
-  }
-
   handleEscapeKeypress(e) {
     if (this.getKey(e) === 'Escape' || this.getKey(e) === 27) {
       this.state.activeMenu.trigger.focus();
       this.hideMenu(this.state.activeMenu.trigger);
-      if (!this.state.activeTrail.length) {
-        document.removeEventListener('keyup', this.handleEscapeKeypress);
-      }
     }
   }
 
@@ -222,13 +192,13 @@ export class BoltPageHeaderNav {
     this.setState(el);
     this.options.isNested && this.setActiveMenu(el);
 
+    document.addEventListener('click', this.handleAnchorClick);
+
     if (!this.state.isMobile) {
       document.addEventListener('click', this.handleExternalClick);
     }
 
-    if (this.options.closeOnEscape) {
-      document.addEventListener('keyup', this.handleEscapeKeypress);
-    }
+    document.addEventListener('keyup', this.handleEscapeKeypress);
   }
 
   hideMenu(el) {
@@ -236,8 +206,14 @@ export class BoltPageHeaderNav {
     this.setState(el, false);
     this.options.isNested && this.setActiveMenu(el, false);
 
+    document.removeEventListener('click', this.handleAnchorClick);
+
     if (!this.state.isMobile) {
       document.removeEventListener('click', this.handleExternalClick);
+    }
+
+    if (!this.state.activeTrail.length) {
+      document.removeEventListener('keyup', this.handleEscapeKeypress);
     }
   }
 
@@ -315,6 +291,12 @@ export class BoltPageHeaderNav {
     }
 
     this.hideMenu(this.state.activeMenu.trigger);
+  }
+
+  handleAnchorClick(e) {
+    if (e.target.closest('a')?.hash) {
+      this.hideMenu(this.state.activeMenu.trigger);
+    }
   }
 }
 

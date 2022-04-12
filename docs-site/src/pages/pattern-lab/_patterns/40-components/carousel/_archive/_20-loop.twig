@@ -1,89 +1,20 @@
+{% set slide %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    body: {
+      headline: 'This is a slide',
+      paragraph: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum incidunt assumenda, reprehenderit aliquid quis consequatur nesciunt iste corrupti aut minus itaque laudantium pariatur rem fuga ipsam magni voluptates, enim molestiae.',
+    },
+  } only %}
+{% endset %}
+
 {% include "@bolt-components-carousel/carousel.twig" with {
   slides: [
-    include("@bolt-components-card/card.twig", {
-      contentItems: [
-        {
-          pattern: "headline",
-          tag: "h3",
-          size: "large",
-          text: "Slide 1"
-        },
-        {
-          pattern: "text",
-          text: faker.text(100),
-        }
-      ]
-    }, with_context = false),
-    include("@bolt-components-card/card.twig", {
-      contentItems: [
-        {
-          pattern: "headline",
-          tag: "h3",
-          size: "large",
-          text: "Slide 2"
-        },
-        {
-          pattern: "text",
-          text: faker.text(100),
-        }
-      ]
-    }, with_context = false),
-    include("@bolt-components-card/card.twig", {
-      contentItems: [
-        {
-          pattern: "headline",
-          tag: "h3",
-          size: "large",
-          text: "Slide 3"
-        },
-        {
-          pattern: "text",
-          text: faker.text(100),
-        }
-      ]
-    }, with_context = false),
-    include("@bolt-components-card/card.twig", {
-      contentItems: [
-        {
-          pattern: "headline",
-          tag: "h3",
-          size: "large",
-          text: "Slide 4"
-        },
-        {
-          pattern: "text",
-          text: faker.text(100),
-        }
-      ]
-    }, with_context = false),
-    include("@bolt-components-card/card.twig", {
-      contentItems: [
-        {
-          pattern: "headline",
-          tag: "h3",
-          size: "large",
-          text: "Slide 5"
-        },
-        {
-          pattern: "text",
-          text: faker.text(100),
-        }
-      ]
-    }, with_context = false),
-    include("@bolt-components-card/card.twig", {
-      contentItems: [
-        {
-          pattern: "headline",
-          tag: "h3",
-          size: "large",
-          text: "Slide 6"
-        },
-        {
-          pattern: "text",
-          text: faker.text(100),
-        }
-      ]
-    }, with_context = false),
+    slide,
+    slide,
+    slide,
+    slide,
+    slide,
+    slide,
   ],
-  loop: true,
+  autoplay: true,
 } only %}
