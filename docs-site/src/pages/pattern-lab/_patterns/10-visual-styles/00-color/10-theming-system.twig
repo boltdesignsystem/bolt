@@ -1,17 +1,17 @@
 {% set themes = [
-  "white",
-  "black",
-  "gray-xlight",
-  "navy-dark",
-  "navy",
-  "navy-light",
-  "teal",
-  "yellow",
-  "orange",
-  "pink",
-  "wine",
-  "berry",
-  "violet",
+  'white',
+  'black',
+  'gray-xlight',
+  'navy-dark',
+  'navy',
+  'navy-light',
+  'teal',
+  'yellow',
+  'orange',
+  'pink',
+  'wine',
+  'berry',
+  'violet',
 ] %}
 
 {% set content %}
@@ -29,6 +29,14 @@
       <bolt-tab-panel>
         <bolt-text slot="label">{{ theme|capitalize }}</bolt-text>
 
+        {% if theme == 'teal' or theme == 'pink' or theme == 'orange' %}
+          <bolt-banner status="warning" align="start">
+            {% include '@bolt-elements-icon/icon.twig' with {
+              name: 'warning',
+            } only %}
+            This theme should only be used with large text, not body or small text (which fails accessible color contrast ratio).
+          </bolt-banner>
+        {% endif %}
         <div class="{{ "t-bolt-#{theme}" }} u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-right-medium u-bolt-padding-left-medium">
           {% include "@bolt-components-headline/subheadline.twig" with {
             tag: "h2",
@@ -244,8 +252,8 @@
   </bolt-tabs>
 {% endset %}
 
-{% include "@bolt-components-band/band.twig" with {
+{% include '@bolt-components-band/band.twig' with {
   content: content,
-  theme: "none",
-  size: "large",
+  theme: 'none',
+  size: 'large',
 } only %}
