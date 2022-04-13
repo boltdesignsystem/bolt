@@ -38,17 +38,22 @@
         u-bolt-padding-top-{{_imagePaddingTop}}@{{_mediumBreakpoint}}
         u-bolt-padding-bottom-{{_imagePaddingBottom}}@{{_mediumBreakpoint}}
       ">
-      {% include "@bolt-components-image/image.twig" with {
-        src: this.data["image"].value,
-        srcset: this.data["image_srcset"].value ? this.data["image_srcset"].value : this.data["image"].value,
-        max_width: this.data["image_max_width"].value,
+
+      {% set style = 'min-width: ' ~ (this.data['image_min_width'].value ? this.data['image_min_width'].value : 'none') ~ ';' %}
+      {% if this.data['image_max_width'].value %}
+        {% set style = style ~ 'max-width:' ~ this.data['image_max_width'].value ~ ';' %}
+      {% endif %}
+
+      {% include '@bolt-elements-image/image.twig' with {
         attributes: {
-          style: "min-width: " ~ (this.data["image_min_width"].value ? this.data["image_min_width"].value : 'none') ~ ";",
+          src: this.data['image'].value,
+          srcset: this.data['image_srcset'].value ? this.data['image_srcset'].value : this.data['image'].value,
+          style: style,
           class: [
-            imageAlign == 'center' ? "u-bolt-margin-left-auto" : "",
-            imageAlign == 'center' ? "u-bolt-margin-right-auto" : "",
-            imageAlign == 'left' ? "u-bolt-margin-right-auto" : "",
-            imageAlign == 'right' ? "u-bolt-margin-left-auto" : "",
+            imageAlign == 'center' ? 'u-bolt-margin-left-auto' : '',
+            imageAlign == 'center' ? 'u-bolt-margin-right-auto' : '',
+            imageAlign == 'left' ? 'u-bolt-margin-right-auto' : '',
+            imageAlign == 'right' ? 'u-bolt-margin-left-auto' : '',
           ]
         }
       } only %}
