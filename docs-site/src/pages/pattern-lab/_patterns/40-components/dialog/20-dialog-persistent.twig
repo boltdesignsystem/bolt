@@ -35,8 +35,14 @@ You will need to add an item with the <code>data-dialog-close</code> attribute t
   } only %}
 {% endset %}
 
+{% set _body %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: _content,
+  } only %}
+{% endset %}
+
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: _content,
+  content: _body,
   persistent: true,
   attributes: {
     id: 'dialog-4'
@@ -63,8 +69,13 @@ You will need to add an item with the <code>data-dialog-close</code> attribute t
   } only %}
 {% endset %}
 
-{% include '@bolt-components-dialog/dialog.twig' with {
+{% set _body %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
   content: _content,
+{% endset %}
+
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: _body,
   persistent: true,
   ...
 } only %}

@@ -64,11 +64,17 @@
   position: relative;
   min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
   max-width: calc(100% - var(--bolt-spacing-x-medium) * 2);
+}
 
-  .c-bolt-dialog__body {
-    width: 100%;
-    border-radius: bolt-border-radius(small);
-  }
+.c-bolt-dialog__content {
+  width: 100%;
+  border-radius: bolt-border-radius(small);
+}
+
+.c-bolt-dialog__header,
+.c-bolt-dialog__body,
+.c-bolt-dialog__footer {
+  width: 100%;
 }
 
 // Content width options
@@ -89,9 +95,11 @@
 // Container spacing options
 @each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
-  .c-bolt-dialog__body--spacing-#{$size-name} {
-    padding: var(--bolt-spacing-y-#{$size-name})
-      var(--bolt-spacing-x-#{$size-name});
+  .c-bolt-dialog__spacing-#{$size-name} {
+    .c-bolt-dialog__body {
+      padding: var(--bolt-spacing-y-#{$size-name})
+        var(--bolt-spacing-x-#{$size-name});
+    }
   }
 }
 

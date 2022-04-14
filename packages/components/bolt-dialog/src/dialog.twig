@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-dialog'].schema %}
+{% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -16,7 +16,9 @@
 {# Array of outer classes based on the defined + default props #}
 {% set _outer_classes = [
   'c-bolt-dialog',
-  'c-bolt-dialog__scroll-' ~ this.data.scroll_behavior.value
+  this.data.scroll_behavior.value ? 'c-bolt-dialog__scroll-' ~ this.data.scroll_behavior.value : '',
+  this.data.theme.value ? 'c-bolt-dialog__theme-' ~ this.data.theme.value : '',
+  this.data.spacing.value ? 'c-bolt-dialog__spacing-' ~ this.data.spacing.value : '',
 ] %}
 
 {# Array of overlay classes based on the defined + default props #}
@@ -28,13 +30,11 @@
 {# Array of container classes based on the defined + default props #}
 {% set _container_classes = [
   'c-bolt-dialog__container',
-  'c-bolt-dialog__container--width-' ~ this.data.width.value,
+  this.data.width.value ? 'c-bolt-dialog__container--width-' ~ this.data.width.value : '',
 ] %}
-
-{# Array of body classes based on the defined + default props #}
-{% set _body_classes = [
-  'c-bolt-dialog__body',
-  'c-bolt-dialog__body--spacing-' ~ this.data.spacing.value,
+{# Array of container classes based on the defined + default props #}
+{% set _content_classes = [
+  'c-bolt-dialog__content',
   this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : '',
 ] %}
 
@@ -64,10 +64,13 @@
   aria-hidden="true">
   <div class="{{ _overlay_classes|join(' ') }}" tabindex="-1" {{ this.data.persistent.value ? '' : 'data-dialog-close' }}>
     <div class="{{ _container_classes|join(' ') }}" role="dialog" aria-dialog="true">
+
+      {# close button #}
       {% if not this.data.persistent.value %}
       <div class="c-bolt-dialog__close t-bolt-{{ _overlay_theme }}">{{ _close_button }}</div>
       {% endif %}
-      <div class="{{ _body_classes|join(' ') }}">
+
+      <div class="{{ _content_classes|join(' ') }}">
         {{ content }}
       </div>
     </div>

@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-dialog'].schema %}
+{% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog'] %}
 
 {% set description %}
     The modal container's coloring theme can be adjusted by the <code>theme</code> prop. The default is set to <code>xlight</code>.
@@ -24,8 +24,14 @@
     }
   } only %}
 
+  {% set _body %}
+    {% include '@bolt-components-dialog/dialog-body.twig' with {
+      content: _content,
+    } only %}
+  {% endset %}
+
   {% include '@bolt-components-dialog/dialog.twig' with {
-    content: _content,
+    content: _body,
     theme: theme,
     attributes: {
       id: 'dialog-theme-' ~ loop.index0

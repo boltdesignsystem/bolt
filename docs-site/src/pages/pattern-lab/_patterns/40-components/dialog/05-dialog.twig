@@ -21,8 +21,14 @@
   <button type="button" class="e-bolt-button">Button</button>
 {% endset %}
 
+{% set _body %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: _content,
+  } only %}
+{% endset %}
+
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: _content,
+  content: _body,
   attributes: {
     id: 'dialog-1'
   },
@@ -44,8 +50,13 @@
   <button type="button" class="e-bolt-button">Button</button>
 {% endset %}
 
-{% include '@bolt-components-dialog/dialog.twig' with {
+{% set _body %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
   content: _content,
+{% endset %}
+
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: _body,
   attributes: {
     id: 'dialog-1'
   },

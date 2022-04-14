@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-dialog'].schema %}
+{% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog'] %}
 
 {% set description %}
     The dialog container's width can be adjusted by the <code>width</code> prop. The default is set to <code>optimal</code>.
@@ -25,8 +25,14 @@
     }
   } only %}
 
+  {% set _body %}
+    {% include '@bolt-components-dialog/dialog-body.twig' with {
+      content: 'This is a dialog component.',
+    } only %}
+  {% endset %}
+
   {% include '@bolt-components-dialog/dialog.twig' with {
-    content: 'This is a dialog component.',
+    content: _body,
     width: width,
     attributes: {
       id: 'dialog-width-' ~ loop.index0
