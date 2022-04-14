@@ -35,7 +35,7 @@
             {{ item.text }}
           {% elseif item.contentItems %}
             {% for item in item.contentItems %}
-              {% include pattern_template(item.pattern) with item only %}
+              {{ item }}
             {% endfor %}
           {% endif %}
         </li>
