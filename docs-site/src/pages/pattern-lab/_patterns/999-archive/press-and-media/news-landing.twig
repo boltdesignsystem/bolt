@@ -147,52 +147,61 @@
     } only %}
 </div>
 
+  {% set card_1 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      body: {
+        eyebrow: 'Jan 18 2018',
+        headline: 'Pegasystems to Present at the Needham Growth Conference',
+        paragraph: 'CAMBRIDGE, Mass. – January 11, 2018 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced that its chief financial officer, chief...',
+      },
+      actions: [
+        {
+          text: 'Read more',
+          url: 'https://www.google.com',
+        }
+      ]
+    } only %}
+  {% endset %}
+
+  {% set card_2 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      body: {
+        eyebrow: 'Jan 18 2018',
+        headline: 'Pega Receives Highest Scores in Two Use Cases in Gartner’s Critical Capabilities for the CRM Customer Engagement Center",
+        paragraph: "CAMBRIDGE, Mass. – December 26, 2017 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced it received the highest scores in the business-...',
+      },
+      actions: [
+        {
+          text: 'Read more',
+          url: 'https://www.google.com',
+        }
+      ]
+    } only %}
+  {% endset %}
+
+  {% set card_3 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      body: {
+        eyebrow: 'Jan 04 2018',
+        headline: 'Pegasystems Announces Quarterly Cash Dividend',
+        paragraph: 'CAMBRIDGE, Mass. – December 15, 2017 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced a quarterly cash dividend of $0.03 per share,...',
+      },
+      actions: [
+        {
+          text: 'Read more',
+          url: 'https://www.google.com',
+        }
+      ]
+    } only %}
+  {% endset %}
+
   {% embed '@pl/_band--collection.twig' with {
     theme: 'xlight',
     size: 'medium',
     contentItems: [
-      {
-        pattern: 'card',
-        body: {
-          eyebrow: 'Jan 18 2018',
-          headline: 'Pegasystems to Present at the Needham Growth Conference',
-          paragraph: 'CAMBRIDGE, Mass. – January 11, 2018 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced that its chief financial officer, chief...',
-        },
-        actions: [
-          {
-            text: 'Read more',
-            url: 'https://www.google.com',
-          }
-        ]
-      },
-      {
-        pattern: 'card',
-        body: {
-          eyebrow: 'Jan 18 2018',
-          headline: 'Pega Receives Highest Scores in Two Use Cases in Gartner’s Critical Capabilities for the CRM Customer Engagement Center",
-          paragraph: "CAMBRIDGE, Mass. – December 26, 2017 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced it received the highest scores in the business-...',
-        },
-        actions: [
-          {
-            text: 'Read more',
-            url: 'https://www.google.com',
-          }
-        ]
-      },
-      {
-        pattern: 'card',
-        body: {
-          eyebrow: 'Jan 04 2018',
-          headline: 'Pegasystems Announces Quarterly Cash Dividend',
-          paragraph: 'CAMBRIDGE, Mass. – December 15, 2017 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced a quarterly cash dividend of $0.03 per share,...',
-        },
-        actions: [
-          {
-            text: 'Read more',
-            url: 'https://www.google.com',
-          }
-        ]
-      }
+      card_1,
+      card_2,
+      card_3,
     ]
   } %}
     {% block band_content %}
@@ -227,52 +236,61 @@
     {% endblock band_content %}
   {% endembed %}
 
+  {% set card_1 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      body: {
+        eyebrow: 'Jan 22 2018',
+        headline: 'A New CRM Bill of Rights for the Future Empowered Enterprise',
+        paragraph: 'Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors.',
+      },
+      actions: [
+        {
+          text: 'MARTECH ADVISOR',
+          url: 'https://www.google.com',
+        }
+      ]
+    } only %}
+  {% endset %}
+
+  {% set card_2 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      body: {
+        eyebrow: 'Jan 11 2018',
+        headline: '6 Customer Experience Trends to Watch in 2018',
+        paragraph: 'Pega\'s Don Schuerman previews customer experience questions and trends for the New Year.',
+      },
+      actions: [
+        {
+          text: 'CMS WIRE',
+          url: 'https://www.google.com',
+        }
+      ]
+    } only %}
+  {% endset %}
+
+  {% set card_3 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      body: {
+        eyebrow:  'Dec 26 2017',
+        headline: '3 Reasons Your AI-Driven Customer Experiences are Falling Short',
+        paragraph: 'Pega\'s Jeff Nicholson examines the state of AI in today\'s customer experiences.',
+      },
+      actions: [
+        {
+          text: 'CIO AUSTRALIA',
+          url: 'https://www.google.com',
+        }
+      ]
+    } only %}
+  {% endset %}
+
   {% embed '@pl/_band--collection.twig' with {
     theme: 'light',
     size: 'medium',
     contentItems: [
-      {
-        pattern: 'card',
-        body: {
-          eyebrow: 'Jan 22 2018',
-          headline: 'A New CRM Bill of Rights for the Future Empowered Enterprise',
-          paragraph: 'Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors.',
-        },
-        actions: [
-          {
-            text: 'MARTECH ADVISOR',
-            url: 'https://www.google.com',
-          }
-        ]
-      },
-      {
-        pattern: 'card',
-        body: {
-          eyebrow: 'Jan 11 2018',
-          headline: '6 Customer Experience Trends to Watch in 2018',
-          paragraph: 'Pega\'s Don Schuerman previews customer experience questions and trends for the New Year.',
-        },
-        actions: [
-          {
-            text: 'CMS WIRE',
-            url: 'https://www.google.com',
-          }
-        ]
-      },
-      {
-        pattern: 'card',
-        body: {
-          eyebrow:  'Dec 26 2017',
-          headline: '3 Reasons Your AI-Driven Customer Experiences are Falling Short',
-          paragraph: 'Pega\'s Jeff Nicholson examines the state of AI in today\'s customer experiences.',
-        },
-        actions: [
-          {
-            text: 'CIO AUSTRALIA',
-            url: 'https://www.google.com',
-          }
-        ]
-      }
+      card_1,
+      card_2,
+      card_3,
     ]
   } %}
     {% block band_content %}
@@ -307,13 +325,8 @@
     {% endblock band_content %}
   {% endembed %}
 
-  {# Featured Resources #}
-  {% embed '@pl/_band--collection.twig' with {
-  theme: 'dark',
-  size: 'medium',
-  contentItems: [
-    {
-      pattern: 'card',
+  {% set card_1 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
       media: {
         image: {
           src: '/images/placeholders/1200x660.jpg'
@@ -329,9 +342,11 @@
           hierarchy: 'text',
         },
       ]
-    },
-    {
-      pattern: 'card',
+    } only %}
+  {% endset %}
+
+  {% set card_2 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
       media: {
         image: {
           src: '/images/content/promos/promo-16x9-anthem.jpg'
@@ -354,9 +369,11 @@
           url: 'www.google.com/pega7',
         }
       ]
-    },
-    {
-      pattern: 'card',
+    } only %}
+  {% endset %}
+
+  {% set card_3 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
       media: {
         image: {
           src: '/images/content/promos/promo-16x9-ai.jpg'
@@ -373,7 +390,17 @@
           url: 'www.google.com/pega7',
         }
       ]
-    }
+    } only %}
+  {% endset %}
+
+  {# Featured Resources #}
+  {% embed '@pl/_band--collection.twig' with {
+  theme: 'dark',
+  size: 'medium',
+  contentItems: [
+    card_1,
+    card_2,
+    card_3,
   ]
 } %}
   {% block band_content %}
