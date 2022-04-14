@@ -1,5 +1,33 @@
 {% extends '@pl/_default-page-template.twig' %}
 
+{% set text_set %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Products',
+    tag: 'span',
+    url: '#!',
+    size: 'small',
+    icon: {
+      name: 'arrow-left',
+      position: 'before'
+    }
+  } only %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Dynamically recommend next-best-actions for your customers.',
+    tag: 'h1',
+    size: 'xxxlarge',
+  } only %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Pega’s AI powered CRM Suite is transforming the way enterprises drive greater engagement across the entire customer journey.',
+    size: 'xxlarge',
+  } only %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Call to action',
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+
 {% block main_content %}
   {% embed '@pl/_band--feature.twig' with {
     teaserPosition: 'left',
@@ -21,40 +49,7 @@
         lazyload: true
       }]
     },
-    primaryTeaser: {
-      headlines: [
-        {
-          type: 'headline',
-          text: 'Products',
-          size: 'xsmall',
-          tag: 'span',
-          url: 'https://google.com',
-          icon: {
-            name: 'arrow-left',
-            position: 'before'
-          }
-        },
-        {
-          type: 'headline',
-          text: 'CRM Applications for Real-Time Engagement',
-          size: 'xxxlarge',
-          tag: 'h1'
-        },
-        {
-          type: 'subheadline',
-          text: 'Pega’s AI powered CRM Suite is transforming the way enterprises drive greater engagement across the entire customer journey.',
-          size: 'xlarge',
-          tag: 'p'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Call to Action',
-          hierarchy: 'primary',
-          url: '#!'
-        }
-      ]
-    }
+    primaryTeaser: text_set,
   } only %}{% endembed %}
 
 
@@ -129,6 +124,18 @@
 
       {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
         {% set flag_item_1 %}
+          {% set info %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Marketing',
+              size: 'large',
+              url: 'https://www.google.com',
+              icon: 'chevron-right'
+            } only %}
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Engage customers with real-time 1:1 marketing on any channel.',
+              size: 'medium',
+            } only %}
+          {% endset %}
           {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
           {% include "@bolt/flag.twig" with {
             valign: "middle",
@@ -136,25 +143,22 @@
             figure: {
               content: shape_1
             },
-            items: [
-              {
-                'pattern': 'headline',
-                'size': 'large',
-                'text': 'Marketing',
-                'url': 'https://www.google.com',
-                'icon': {
-                  name: 'chevron-right'
-                }
-              },
-              {
-                'pattern': 'text',
-                'text': 'Engage customers with real-time 1:1 marketing on any channel.',
-                'size': 'medium',
-              }
-            ]
+            content: info,
           } only %}
         {% endset %}
         {% set flag_item_2 %}
+          {% set info %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Sales Automation',
+              size: 'large',
+              url: 'https://www.google.com',
+              icon: 'chevron-right'
+            } only %}
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Intelligently guide sales professionals and automate the sales process.',
+              size: 'medium',
+            } only %}
+          {% endset %}
           {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
           {% include "@bolt/flag.twig" with {
             valign: "middle",
@@ -162,25 +166,22 @@
             figure: {
               content: shape_2
             },
-            items: [
-              {
-                'pattern': 'headline',
-                'size': 'large',
-                'text': 'Sales Automation',
-                'url': 'https://www.google.com',
-                'icon': {
-                  name: 'chevron-right'
-                }
-              },
-              {
-                'pattern': 'text',
-                'text': 'Intelligently guide sales professionals and automate the sales process.',
-                'size': 'medium',
-              }
-            ]
+            content: info,
           } only %}
         {% endset %}
         {% set flag_item_3 %}
+        {% set info %}
+          {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Customer Service',
+              size: 'large',
+              url: 'https://www.google.com',
+              icon: 'chevron-right'
+            } only %}
+            {% include '@bolt-components-headline/text.twig' with {
+              text: 'Serve, satisfy and engage every customer with digital customer service.',
+              size: 'medium',
+            } only %}
+          {% endset %}
           {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
           {% include "@bolt/flag.twig" with {
             valign: "middle",
@@ -188,22 +189,7 @@
             figure: {
               content: shape_3
             },
-            items: [
-              {
-                'pattern': 'headline',
-                'size': 'large',
-                'text': 'Customer Service',
-                'url': 'https://www.google.com',
-                'icon': {
-                  name: 'chevron-right'
-                }
-              },
-              {
-                'pattern': 'text',
-                'text': 'Serve, satisfy and engage every customer with digital customer service.',
-                'size': 'medium',
-              }
-            ]
+            content: info,
           } only %}
         {% endset %}
 
@@ -275,79 +261,35 @@
   {% endblock %}
 {% endembed %}
 
-
+{% set card %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-anthem.jpg'
+        },
+      },
+      body: {
+        eyebrow: 'Article',
+        headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Learn More',
+          hierarchy: 'secondary',
+          url: 'https://www.google.com/pega7',
+        }
+      ]
+  } only %}
+{% endset %}
 
 {% embed '@pl/_band--collection.twig' with {
   theme: 'light',
   size: 'medium',
   contentItems: [
-    {
-      pattern: 'card',
-      media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg',
-          lazyload: true
-        },
-      },
-      body: {
-        eyebrow: 'Article',
-        logo: {
-          src: '/images/content/logos/logo-paypal.svg',
-          lazyload: true
-        },
-        headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
-        paragraph: 'Simplify and automate to reduce costs and improve agility.',
-      },
-      actions: [
-        {
-          text: 'Learn More',
-          hierarchy: 'secondary',
-          url: 'https://www.google.com/pega7',
-        }
-      ]
-    },
-    {
-      pattern: 'card',
-      media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg',
-          lazyload: true
-        },
-      },
-      body: {
-        eyebrow: 'Article',
-        headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
-        paragraph: 'Simplify and automate to reduce costs and improve agility.',
-      },
-      actions: [
-        {
-          text: 'Learn More',
-          hierarchy: 'secondary',
-          url: 'https://www.google.com/pega7',
-        }
-      ]
-    },
-    {
-      pattern: 'card',
-      media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg',
-          lazyload: true
-        },
-      },
-      body: {
-        eyebrow: 'Article',
-        headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
-        paragraph: 'Simplify and automate to reduce costs and improve agility.',
-      },
-      actions: [
-        {
-          text: 'Learn More',
-          hierarchy: 'secondary',
-          url: 'https://www.google.com/pega7',
-        }
-      ]
-    }
+    card,
+    card,
+    card,
   ]
 } %}
   {% block band_content %}
