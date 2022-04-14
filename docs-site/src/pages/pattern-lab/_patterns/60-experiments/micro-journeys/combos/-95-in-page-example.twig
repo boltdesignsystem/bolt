@@ -12,6 +12,30 @@
   {% include '@pl/_demo-main-site-page-header.twig' %}
 {% endblock %}
 
+{% set headings_set %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'CRM Applications',
+    tag: 'span',
+    url: '#!',
+    size: 'small',
+    icon: {
+      name: 'arrow-left',
+      position: 'before'
+    }
+  } only %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Dynamically recommend next-best-actions for your customers.',
+    tag: 'h1',
+    size: 'xxxlarge',
+  } only %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Call to action',
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+
 {% block main_content %}
   {% embed "@pl/_band--feature.twig" with {
     teaserPosition: "left",
@@ -32,34 +56,7 @@
         lazyload: false
       }]
     },
-    primaryTeaser: {
-      headlines: [
-        {
-          type: "headline",
-          text: "CRM Applications",
-          size: "xsmall",
-          tag: "span",
-          url: "https://google.com",
-          icon: {
-          name: "arrow-left",
-          position: "before"
-        }
-        },
-        {
-          type: "headline",
-          text: "Dynamically recommend next-best-actions for your customers.",
-          size: "xxxlarge",
-          tag: "h1"
-        }
-      ],
-      buttons: [
-        {
-          text: "Call to Action",
-          hierarchy: "primary",
-          url: "#!"
-        }
-      ]
-    }
+    primaryTeaser: headings_set,
   } only %}
 
   {% endembed %}
@@ -104,7 +101,7 @@
           } only %}
         {% endset %}
 
-        {% set icon_shape_1 %}
+        {% set shape_1 %}
           {% include "@bolt-elements-shape/shape.twig" with {
             content: icon_1,
             size: "xlarge",
@@ -114,7 +111,7 @@
           } only %}
         {% endset %}
 
-        {% set icon_shape_2 %}
+        {% set shape_2 %}
           {% include "@bolt-elements-shape/shape.twig" with {
             content: icon_2,
             size: "xlarge",
@@ -124,7 +121,7 @@
           } only %}
         {% endset %}
 
-        {% set icon_shape_3 %}
+        {% set shape_3 %}
           {% include "@bolt-elements-shape/shape.twig" with {
             content: icon_3,
             size: "xlarge",
@@ -136,69 +133,63 @@
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
           {% set flag_item_1 %}
-            {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
-            {% include "@bolt/flag.twig" with {
-              valign: "middle",
-              url: "#!",
-              figure: {
-                content: icon_shape_1
-              },
-              items: [
-                {
-                  pattern: "headline",
-                  size: "small",
-                  text: "Download the data Sheet",
-                  url: "https://www.google.com",
-                  icon: {
-                  name: "chevron-right"
-                },
-                  tag: "h3"
-                }
-              ]
+          {% set headline %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Download the data Sheet',
+              size: 'small',
+              url: 'https://www.google.com',
+              icon: 'chevron-right'
             } only %}
           {% endset %}
-          {% set flag_item_2 %}
           {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
-            {% include "@bolt/flag.twig" with {
-              valign: "middle",
-              url: "#!",
-              figure: {
-                content: icon_shape_2
-              },
-              items: [
-                {
-                  pattern: "headline",
-                  size: "small",
-                  text: "Download the Overview document",
-                  url: "https://www.google.com",
-                  icon: {
-                  name: "chevron-right"
-                }
-                }
-              ]
+          {% include '@bolt/flag.twig' with {
+            valign: 'middle',
+            url: '#!',
+            figure: {
+              content: shape_1
+            },
+            content: headline,
+          } only %}
+        {% endset %}
+        {% set flag_item_2 %}
+          {% set headline %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Download the Overview document',
+              size: 'small',
+              url: 'https://www.google.com',
+              icon: 'chevron-right'
             } only %}
           {% endset %}
-          {% set flag_item_3 %}
-            {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
-            {% include "@bolt/flag.twig" with {
-              valign: "middle",
-              url: "#!",
-              figure: {
-                content: icon_shape_3
-              },
-              items: [
-                {
-                  pattern: "headline",
-                  size: "small",
-                  text: "View Pricing for Pega Marketing",
-                  url: "https://www.google.com",
-                  icon: {
-                  name: "chevron-right"
-                }
-                }
-              ]
+          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
+          {% include '@bolt/flag.twig' with {
+            valign: 'middle',
+            url: '#!',
+            figure: {
+              content: shape_2
+            },
+            content: headline,
+          } only %}
+        {% endset %}
+        {% set flag_item_3 %}
+          {% set headline %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'View Pricing for Pega Marketing',
+              size: 'small',
+              url: 'https://www.google.com',
+              icon: 'chevron-right'
             } only %}
           {% endset %}
+          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
+          {% include '@bolt/flag.twig' with {
+            valign: 'middle',
+            url: '#!',
+            figure: {
+              content: shape_3
+            },
+            content: headline
+          } only %}
+        {% endset %}
+
 
           {% include "@bolt-components-headline/headline.twig" with {
             text: "Get to know Pega Marketing",

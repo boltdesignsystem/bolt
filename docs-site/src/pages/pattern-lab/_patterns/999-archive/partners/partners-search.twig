@@ -1,5 +1,21 @@
 {% extends '@pl/_default-page-template.twig' %}
 
+{% set headings_set %}
+  {% include '@bolt-components-headline/eyebrow.twig' with {
+    text: 'Partner overview',
+    url: '#!',
+    icon: {
+      name: 'arrow-left',
+      position: 'before'
+    }
+  } only %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Find a Partner',
+    tag: 'h1',
+    size: 'xxxlarge',
+  } only %}
+{% endset %}
+
 {% block main_content %}
   {% embed '@pl/_band--feature.twig' with {
     teaserPosition: 'left',
@@ -21,25 +37,7 @@
 
 
     },
-    primaryTeaser: {
-      headlines: [
-        {
-          type: 'eyebrow',
-          text: 'Partner Overview',
-          url: 'https://google.com',
-          icon: {
-            name: 'arrow-left',
-            position: 'before'
-          }
-        },
-        {
-          type: 'headline',
-          text: 'Find a Partner',
-          size: 'xxxlarge',
-          tag: 'h1'
-        }
-      ]
-    }
+    primaryTeaser: headings_set,
   } only %}{% endembed %}
 
 
