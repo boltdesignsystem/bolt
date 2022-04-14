@@ -58,41 +58,38 @@
     content: feature_band_content
   }) %}
 
+  {% set text_set %}
+    {% include '@bolt-components-headline/eyebrow.twig' with {
+      text: 'Customer service',
+    } only %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Dynamically recommend next-best-actions for your customers.',
+      tag: 'h1',
+      size: 'xxxlarge',
+    } only %}
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'We\'re able to predict that you\'re going to call before you need to actually contact us.',
+    } only %}
+    {% set icon_chevron_right %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-right',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Get real',
+      attributes: {
+        type: 'button'
+      },
+      icon_after: icon_chevron_right ,
+    } only %}
+  {% endset %}
 
   {% embed '@pl/_band--feature.twig' with {
     size: 'large',
     theme: 'dark',
     teaserPosition: 'left',
     teaserWidth: '2/3',
-    primaryTeaser: {
-      eyebrow: {
-        text: 'Customer Service'
-      },
-      headlines: [
-        {
-          type: 'headline',
-          text: 'We\'re able to predict that you\'re going to call before you need to actually contact us.',
-          size: 'xxxlarge',
-          tag: 'h1'
-        }
-      ],
-      logo: {
-        src: '/images/content/logos/logo-paypal.svg',
-        invert: true,
-        lazyload: false
-      },
-      content: 'Powered by real AI, Pega Customer Service delivers game-changing results for enterprises.',
-      buttons: [
-        {
-          text: 'Get Real',
-          hierarchy: 'primary',
-          url: '#!',
-          icon: {
-            name: 'chevron-right'
-          }
-        }
-      ]
-    },
+    primaryTeaser: text_set,
     content: feature_band.content | default(content),
     background: {
       opacity: 'heavy',
@@ -148,76 +145,83 @@
     {% endblock %}
   {% endembed %}
 
+  {% set card_1 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-forrester.jpg'
+        },
+      },
+      body: {
+        eyebrow:  'Article',
+        headline: 'Headline #1',
+        paragraph: 'Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017.',
+      },
+      actions: [
+        {
+          text: 'Learn More',
+          hierarchy: 'secondary',
+          url: '#!',
+        },
+      ]
+    } only %}
+  {% endset %}
 
+  {% set card_2 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-anthem.jpg'
+        },
+      },
+      body: {
+        eyebrow: 'Article',
+        headline: 'Headline #2',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Learn More',
+          url: '#!',
+          width: 'full'
+        },
+        {
+          text: 'About Pega',
+          url: '#!',
+          width: 'full'
+        }
+      ]
+    } only %}
+  {% endset %}
+
+  {% set card_3 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-ai.jpg'
+        },
+      },
+      body: {
+        eyebrow: 'Article',
+        headline: 'Headline #3',
+        paragraph: 'Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim.',
+      },
+      actions: [
+        {
+          text: "Learn More About Pega 7",
+          url: "#!",
+        },
+      ]
+    } only %}
+  {% endset %}
 
   {% embed '@pl/_band--collection.twig' with {
     theme: 'light',
     size: 'medium',
     contentItems: [
-      {
-        pattern: 'card',
-        media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-forrester.jpg'
-          },
-        },
-        body: {
-          eyebrow:  'Article',
-          headline: 'Headline #1',
-          paragraph: 'Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017.',
-        },
-        actions: [
-          {
-            text: 'Learn More',
-            hierarchy: 'secondary',
-            url: '#!',
-          },
-        ]
-      },
-      {
-        pattern: 'card',
-        media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-anthem.jpg'
-          },
-        },
-        body: {
-          eyebrow: 'Article',
-          headline: 'Headline #2',
-          paragraph: 'Simplify and automate to reduce costs and improve agility.',
-        },
-        actions: [
-          {
-            text: 'Learn More',
-            url: '#!',
-            width: 'full'
-          },
-          {
-            text: 'About Pega',
-            url: '#!',
-            width: 'full'
-          }
-        ]
-      },
-      {
-        pattern: 'card',
-        media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-ai.jpg'
-          },
-        },
-        body: {
-          eyebrow: 'Article',
-          headline: 'Headline #3',
-          paragraph: 'Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim.',
-        },
-        actions: [
-          {
-            text: "Learn More About Pega 7",
-            url: "#!",
-          },
-        ]
-      }
+      card_1,
+      card_2,
+      card_3,
     ]
   } %}
     {% block band_content %}

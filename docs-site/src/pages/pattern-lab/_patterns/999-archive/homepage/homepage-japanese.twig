@@ -59,41 +59,39 @@
     content: feature_band_content
   }) %}
 
+  {% set text_set %}
+    {% include '@bolt-components-headline/eyebrow.twig' with {
+      text: '営業効率',
+    } only %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: '「ペガは管理者が、すぐ目の前にあるかもしれないオポチュニティーについて代理店と話せるようにします。」',
+      tag: 'h1',
+      size: 'xxxlarge',
+    } only %}
+    {% include '@bolt-components-headline/text.twig' with {
+      text: '最高販売配信責任者Larik Hall',
+    } only %}
+    {% set icon_chevron_right %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-right',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: '今すぐ営業目標を上げる',
+      attributes: {
+        type: 'button'
+      },
+      url: 'https://www.google.com',
+      icon_after: icon_chevron_right ,
+    } only %}
+  {% endset %}
 
   {% embed '@pl/_band--feature.twig' with {
     size: 'large',
     theme: 'dark',
     teaserPosition: 'left',
     teaserWidth: '2/3',
-    primaryTeaser: {
-      eyebrow: {
-        text: '営業効率'
-      },
-      headlines: [
-        {
-          type: 'headline',
-          text: '「ペガは管理者が、すぐ目の前にあるかもしれないオポチュニティーについて代理店と話せるようにします。」',
-          size: 'xxxlarge',
-          tag: 'h1'
-        }
-      ],
-      logo: {
-        src: '/images/content/logos/logo-paypal.svg',
-        invert: true,
-        lazyload: false
-      },
-      content: '最高販売配信責任者Larik Hall',
-      buttons: [
-        {
-          text: '今すぐ営業目標を上げる',
-          hierarchy: 'primary',
-          url: 'https://www.google.com',
-          icon: {
-            name: 'chevron-right'
-          }
-        }
-      ]
-    },
+    primaryTeaser: text_set,
     content: feature_band.content | default(content),
     background: {
       opacity: 'heavy',
@@ -263,68 +261,76 @@
     {% endblock %}
   {% endembed %}
 
+  {% set card_1 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-forrester.jpg'
+        },
+      },
+      body: {
+        headline: 'iBPMSでの2017MAGIC QUADRANT',
+        paragraph: 'Gartnerは、最新のiBPMSレポートにおいてペガがトップであることを認めています。',
+      },
+      actions: [
+        {
+          text: 'レポートを読む',
+          hierarchy: 'secondary',
+          url: '#!',
+        },
+      ]
+    } only %}
+  {% endset %}
+
+  {% set card_2 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-anthem.jpg'
+        },
+      },
+      body: {
+        headline: 'Robotics and AI Are Changing the World of Work',
+        paragraph: 'Marketforce の最近の調査によると、上級管理者の 69% が労働力の一環として知能機械の導入を考えていることがわかりました。',
+      },
+      actions: [
+        {
+          text: '発見を探索',
+          hierarchy: 'secondary',
+          url: '#!',
+        },
+      ]
+    } only %}
+  {% endset %}
+
+  {% set card_3 %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-ai.jpg'
+        },
+      },
+      body: {
+        headline: 'トランサヴィア：エンドツーエンドのカスタマージャーニー',
+        paragraph: 'Marketforce の最近の調査によると、上級管理者の 69% が労働力の一環として知能機械の導入を考えていることがわかりました。',
+      },
+      actions: [
+        {
+          text: '事例を見る',
+          hierarchy: 'secondary',
+          url: '#!',
+        },
+      ]
+    } only %}
+  {% endset %}
 
   {% embed '@pl/_band--collection.twig' with {
     theme: 'xlight',
     size: 'large',
     contentItems: [
-      {
-        pattern: 'card',
-        media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-forrester.jpg'
-          },
-        },
-        body: {
-          headline: 'iBPMSでの2017MAGIC QUADRANT',
-          paragraph: 'Gartnerは、最新のiBPMSレポートにおいてペガがトップであることを認めています。',
-        },
-        actions: [
-          {
-            text: 'レポートを読む',
-            hierarchy: 'secondary',
-            url: '#!',
-          },
-        ]
-      },
-      {
-        pattern: 'card',
-        media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-anthem.jpg'
-          },
-        },
-        body: {
-          headline: 'Robotics and AI Are Changing the World of Work',
-          paragraph: 'Marketforce の最近の調査によると、上級管理者の 69% が労働力の一環として知能機械の導入を考えていることがわかりました。',
-        },
-        actions: [
-          {
-            text: '発見を探索',
-            hierarchy: 'secondary',
-            url: '#!',
-          },
-        ]
-      },
-      {
-        pattern: 'card',
-        media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-ai.jpg'
-          },
-        },
-        body: {
-          headline: 'トランサヴィア：エンドツーエンドのカスタマージャーニー',
-          paragraph: 'Marketforce の最近の調査によると、上級管理者の 69% が労働力の一環として知能機械の導入を考えていることがわかりました。',
-        },
-        actions: [
-          {
-            text: '事例を見る',
-            hierarchy: 'secondary',
-            url: '#!',
-          },
-        ]
-      },
+      card_1,
+      card_2,
+      card_3,
     ]
   } %}
     {% block band_content %}
