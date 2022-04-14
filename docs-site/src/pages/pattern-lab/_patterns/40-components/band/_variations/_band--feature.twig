@@ -6,7 +6,7 @@
     {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@small' %}
       {% if primaryTeaser %}
         {% block primary_teaser %}
-          {% include pattern_template('teaser') with primaryTeaser only %}
+          {{ primaryTeaser }}
         {% endblock primary_teaser %}
       {% endif %}
     {% endcell %}
