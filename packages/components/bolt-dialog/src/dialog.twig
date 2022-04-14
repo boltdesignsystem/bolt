@@ -62,7 +62,7 @@
   {{ attributes.addClass(_outer_classes) }}
   {{ this.data.persistent.value ? 'data-dialog-persistent' : '' }}
   aria-hidden="true">
-  <div class="{{ _overlay_classes|join(' ') }}" tabindex="-1" {{ this.data.persistent.value ? '' : 'data-dialog-close' }}>
+  <div class="{{ _overlay_classes|join(' ') }}" tabindex="-1">
     <div class="{{ _container_classes|join(' ') }}" role="dialog" aria-dialog="true">
 
       {# close button #}
