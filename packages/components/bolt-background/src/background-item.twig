@@ -55,12 +55,6 @@
           loading: _loading,
         })
       } only %}
-    {% else %}
-      {% include pattern_template(item.pattern) with item|merge({
-        ratio: _ratio_value,
-        lazyload: item.lazyload ?? true,
-        cover: item.cover ?? true
-      }) only %}
     {% endif %}
   </div>
 {% elseif (item is iterable) %}
