@@ -77,42 +77,35 @@
     'theme': 'none',
     'content': breadcrumb
   } only %}
+  {% set headings_stack %}
+    {% include '@bolt-components-headline/eyebrow.twig' with {
+      text: 'Eyebrow',
+    } only %}
+
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Headline',
+      size: 'xxxlarge',
+    } only %}
+
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: 'Subheadline',
+    } only %}
+
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'Body text',
+    } only %}
+
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This is a button',
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  {% endset %}
   {% include '@pl/_band--feature.twig' with {
-    'size': 'large',
-    'theme': 'none',
-    'primaryTeaser': {
-      'headlines': [
-        {
-          'type': 'eyebrow',
-          'text': 'Eyebrow',
-          'tag': 'span'
-        },
-        {
-          'type': 'headline',
-          'text': 'Headline',
-          'size': 'xxxlarge',
-          'tag': 'h1'
-        },
-        {
-          'type': 'subheadline',
-          'text': 'Subheadline',
-          'size': 'xxlarge',
-          'tag': 'h2'
-        },
-        {
-          'type': 'text',
-          'text': 'Body text.',
-          'tag': 'p'
-        }
-      ],
-      'buttons': [
-        {
-          'text': 'Call to Action',
-          'hierarchy': 'primary',
-          'url': 'https://www.google.com'
-        }
-      ]
-    }
+    size: 'large',
+    theme: 'none',
+    primaryTeaser: headings_stack,
   } only %}
 {% endset %}
 
