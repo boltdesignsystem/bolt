@@ -176,51 +176,6 @@ class TwigFunctions {
     });
   }
 
-  // @todo Deprecate & remove this whole `pattern_template` function
-  public static function pattern_template() {
-    return new Twig_SimpleFunction('pattern_template', function($patternName) {
-
-      switch ($patternName) {
-        case 'button_group':
-          return '@bolt-components-button-group/button-group.twig';
-        case 'button':
-          return '@bolt-components-button/button.twig';
-        case 'card':
-          return '@bolt-components-card-replacement/card-replacement.twig';
-        case 'card-w-teaser':
-          return '@bolt-components-card-w-teaser/card-w-teaser.twig';
-        case 'eyebrow':
-          return '@bolt-components-headline/eyebrow.twig';
-        case 'flag':
-          return '@bolt/flag.twig';
-        case 'headline':
-          return '@bolt-components-headline/headline.twig';
-        case 'image':
-          return '@bolt-components-image/image.twig';
-        case 'link':
-          return '@bolt-components-link/link.twig';
-        case 'teaser':
-          return '@bolt-components-teaser/teaser.twig';
-        case 'text':
-          return '@bolt-components-text/text.twig';
-        default:
-          return 'ERROR: Template not found: '. $patternName;
-      }
-
-      // the full list of `$patternName` that uses this is:
-      //button - @bolt-components-button/button.twig
-      //button_group - @bolt-button-group/button-group.twig
-      //card - @bolt-card/card.twig
-      //eyebrow - @bolt-headline/eyebrow.twig
-      //flag - @bolt-global/flag.twig
-      //headline - @bolt-headline/headline.twig
-      //image - @bolt-global/image.twig
-      //teaser - @bolt-teaser/teaser.twig
-      //text - @bolt-headline/text.twig
-    });
-  }
-
-
   // returns an array with the results of the color contrast analysis
   // it returns akey for each level (AA and AAA, both for normal and large or bold text)
   // it also returns the calculated contrast ratio
