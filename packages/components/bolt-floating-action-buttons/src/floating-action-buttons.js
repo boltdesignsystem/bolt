@@ -96,9 +96,7 @@ export class BoltFloatingActionButtons {
       el.dataset.showOnScrollSelector,
     );
 
-    if (!observerElement) {
-      return;
-    }
+    if (!observerElement) return;
 
     const callback = entries => {
       entries.forEach(entry => {
