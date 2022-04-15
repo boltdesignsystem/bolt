@@ -10,6 +10,7 @@
     <bolt-li>
       <strong>--c-bolt-floating-action-buttons-offset-y:</strong> the distance between the FAB and the bottom of the screen.
     </bolt-li>
+    <bolt-li>The value can use any CSS unit (px, rem, em, vw, vh, etc.).</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -34,7 +35,7 @@
 {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
   content: _content,
   attributes: {
-    style: '--c-bolt-floating-action-buttons-offset-y: 100px;'
+    style: '--c-bolt-floating-action-buttons-offset-x: 5vw; --c-bolt-floating-action-buttons-offset-y: 5vh;'
   }
 } only %}
 {% endverbatim %}{% endset %}

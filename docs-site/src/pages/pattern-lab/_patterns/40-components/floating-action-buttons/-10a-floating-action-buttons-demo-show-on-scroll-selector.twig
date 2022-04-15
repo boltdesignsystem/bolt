@@ -4,7 +4,7 @@
   {% set layout_items %}
     {% set banner %}
       {% include '@bolt-components-banner/banner.twig' with {
-        content: 'This demo shows FAB LI to show on scroll. Once the content is scrolled down 20px, the FAB LI will appear.',
+        content: 'This demo shows individual floating action buttons to show on scroll. Once the user scrolls past Article Title, the buttons appear.',
         align: 'start',
       } only %}
     {% endset %}
@@ -94,6 +94,29 @@
       } only %}
     {% endset %}
 
+    {% set download_button %}
+      {% set trigger %}
+        {% set icon_download %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'download',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Download',
+          border_radius: 'full',
+          icon_only: icon_download,
+          attributes: {
+            href: 'https://google.com',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-tooltip/tooltip.twig' with {
+        content: 'Download',
+        placement: 'left',
+        trigger: trigger,
+      } only %}
+    {% endset %}
+
     {% set placeholder_button %}
       {% set icon_link %}
         {% include '@bolt-elements-icon/icon.twig' with {
@@ -122,7 +145,7 @@
         show_on_scroll_selector: '#main-title'
       } only %}
       {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-        content: placeholder_button,
+        content: download_button,
         show_on_scroll_selector: '#main-title'
       } only %}
       {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {

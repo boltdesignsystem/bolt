@@ -1,11 +1,12 @@
 {% set description %}
-  The <code>show_on_scroll_selector</code> prop on the list item allows floating action buttons to show on scroll.
+  Each individual floating action button can be shown based on what element on the page has been scrolled past.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Use a CSS selector to indicate the element that must be scrolled past to reveal the floating action buttons.</bolt-li>
-    <bolt-li>To avoid animation jump, please only use this on the first item in a FAB list.</bolt-li>
+    <bolt-li>The <code>show_on_scroll_selector</code> prop accepts CSS selector names (eg. #main-title, .book-name, etc.).</bolt-li>
+    <bolt-li>The selector indicates the element that must be scrolled past to reveal a floating action button.</bolt-li>
+    <bolt-li>To avoid animation jump, please only use this on the first item in a FAB (top of the list).</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -19,7 +20,7 @@
     content: 'View full page demo',
     icon_after: icon_external_link,
     attributes: {
-      href: link['components-floating-action-buttons-demo-show-on-scroll'],
+      href: link['components-floating-action-buttons-demo-show-on-scroll-selector'],
       target: '_blank',
       rel: 'noopener'
     }
@@ -27,10 +28,10 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
-    content: content,
-    show_on_scroll_selector: '#main-title'
-  } only %}
+{% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
+  content: content,
+  show_on_scroll_selector: '#main-title'
+} only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
