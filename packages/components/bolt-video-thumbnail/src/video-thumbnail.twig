@@ -19,14 +19,20 @@
   video.content ? 'c-bolt-video-thumbnail--inline'
 ] %}
 
-{% if video.has_subtitles %}
-  {% set subtitles_label = 'Subtitles available' %}
+{% if video.has_subtitles or video.has_captions %}
+  {% set show_icon = true %}
+{% endif %}
+
+{% if video.has_subtitles or video.has_captions %}
+  {% set icon_subtitle_label = 'Subtitles available'|t %}
+  {% set aria_label = 'This video has subtitles available.' %}
 {% endif %}
 
 {% if video.content or button_attributes %}
   {% set play_video_label = video.title ? 'Play the video @title.'|t({'@title': video.title}) : 'Play the video.'|t %}
-  {% if video.has_subtitles %}
-    {% set play_video_label = play_video_label ~ ' ' ~ 'This video has subtitles available.'|t %}
+
+  {% if video.has_subtitles or video.has_captions %}
+    {% set play_video_label = play_video_label ~ ' ' ~ aria_label|t %}
   {% endif %}
 {% endif %}
 
@@ -51,15 +57,15 @@
     </div>
   {% endif %}
   <div class="c-bolt-video-thumbnail__play-icon" aria-hidden="true"></div>
-  {% if video.has_subtitles or video.duration %}
+  {% if show_icon or video.duration %}
     <div class="c-bolt-video-thumbnail__meta c-bolt-video-thumbnail__meta--bottom">
       {% if video.duration %}
         <div class="c-bolt-video-thumbnail__duration">
           <span class="u-bolt-visuallyhidden">{{ 'Video duration'|t }}:</span> {{ video.duration }}
         </div>
       {% endif %}
-      {% if video.has_subtitles %}
-        <div class="c-bolt-video-thumbnail__subtitles" aria-label="{{ subtitles_label|t }}">
+      {% if show_icon %}
+        <div class="c-bolt-video-thumbnail__subtitles" aria-label="{{ icon_subtitle_label }}">
           {% set icon %}
             {% include '@bolt-elements-icon/icon.twig' with {
               name: 'pega-subtitle',
@@ -67,7 +73,7 @@
             } only %}
           {% endset %}
           {{ icon }}
-          <span class="u-bolt-visuallyhidden">{{ subtitles_label|t }}</span>
+          <span class="u-bolt-visuallyhidden">{{ icon_subtitle_label }}</span>
         </div>
       {% endif %}
     </div>

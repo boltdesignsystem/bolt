@@ -1,7 +1,21 @@
-{% set video_uuid1 = 'js-bolt-video-uuid-card-replacement' %}
-{% set video_uuid2 = 'js-bolt-video-uuid-card-replacement-with-link' %}
+{% set video_uuid1 = 'video-1' %}
+{% set video_uuid2 = 'video-2' %}
+{% set video_uuid3 = 'video-3' %}
+{% set video_uuid4 = 'video-4' %}
 
-{% set video_1 %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/tout-4x3-climber.jpg',
+      alt: 'A Rock Climber',
+      loading: 'lazy',
+      width: 400,
+      height: 300,
+    }
+  } only %}
+{% endset %}
+
+{% set video_thumbnail_1 %}
   {% set video %}
     <video-js
       data-account="1900410236"
@@ -15,13 +29,19 @@
       class="c-base-video"></video-js>
   {% endset %}
 
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
+  {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+    content: image,
+    video: {
+      content: video,
+      title: 'Video Thumbnail in Card Action Play',
+      duration: '4:26',
+      has_captions: true,
+      show_title: true
+    }
   } only %}
 {% endset %}
 
-{% set video_2 %}
+{% set video_thumbnail_2 %}
   {% set video %}
     <video-js
       data-account="1900410236"
@@ -35,9 +55,67 @@
       class="c-base-video"></video-js>
   {% endset %}
 
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
+  {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+    content: image,
+    video: {
+      content: video,
+      title: 'Video Thumbnail in Card No Action Play',
+      duration: '4:26',
+      has_captions: true,
+      show_title: true
+    }
+  } only %}
+{% endset %}
+
+{% set video_thumbnail_3 %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="3974147489001"
+      id="{{ video_uuid3 }}"
+      data-media-title
+      data-media-duration
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+    content: image,
+    video: {
+      content: video,
+      title: 'Video Thumbnail in Card whole Card Clickablity',
+      duration: '4:26',
+      has_captions: true,
+      show_title: true
+    }
+  } only %}
+{% endset %}
+
+{% set video_thumbnail_4 %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="3974147489001"
+      id="{{ video_uuid4 }}"
+      data-media-title
+      data-media-duration
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+    content: image,
+    video: {
+      content: video,
+      title: 'Video Thumbnail in Card whole Card Clickablity with Video Play',
+      duration: '4:26',
+      has_captions: true,
+      show_title: true
+    }
   } only %}
 {% endset %}
 
@@ -46,10 +124,10 @@
     {% include '@bolt-components-card-replacement/card-replacement.twig' with {
       tag: 'article',
       media: {
-        video: video_1
+        video: video_thumbnail_1
       },
       body: {
-        headline: 'With a video as the media',
+        headline: 'Video Thumbnail in Card Action Play',
         paragraph: 'This card has a video as the media and the card action can also play/pause the video.',
       },
       actions: [
@@ -65,16 +143,58 @@
   {% endcell %}
   {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
     {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-      link: {
-        url: 'https://google.com',
-        text: 'Go to google.com',
-      },
+      tag: 'article',
       media: {
-        video: video_2
+        video: video_thumbnail_2
       },
       body: {
-        headline: 'With a video as the media and an overall link',
-        paragraph: 'This card has a link, which makes the whole card clickable. The link navigates to another page. The video in this card can still play/pause inline. The link does not cover it.',
+        headline: 'Video Thumbnail in Card No Action Play',
+        paragraph: 'This card has a video as the media and the card action can also play/pause the video.',
+      }
+    } only %}
+  {% endcell %}
+  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      tag: 'article',
+      link: {
+        url: 'https://google.com',
+        text: 'Go to google.com'
+      },
+      media: {
+        video: video_thumbnail_3
+      },
+      body: {
+        headline: 'Video Thumbnail in Card whole Card Clickablity',
+        paragraph: 'This card has a video as the media and the card action can also play/pause the video.',
+      },
+      actions: [
+        {
+          text: 'Play or Pause',
+          attributes: {
+            'data-video-target': video_uuid3,
+            class: 'js-base-video-toggle'
+          }
+        },
+      ],
+    } only %}
+  {% endcell %}
+  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
+    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+      tag: 'article',
+      link: {
+        url: '#',
+        attributes: {
+          'aria-label': 'Play the Video Thumbnail in Card whole Card Clickablity Video',
+          'data-video-target': video_uuid4,
+          class: 'js-base-video-toggle'
+        }
+      },
+      media: {
+        video: video_thumbnail_4
+      },
+      body: {
+        headline: 'Video Thumbnail in Card whole Card Clickablity with Video Play',
+        paragraph: 'This card has a video as the media and the card action can also play/pause the video.',
       }
     } only %}
   {% endcell %}
