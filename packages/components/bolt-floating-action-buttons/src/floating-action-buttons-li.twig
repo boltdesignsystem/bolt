@@ -1,0 +1,26 @@
+{% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema['floating-action-buttons-li'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-floating-action-buttons__list-item',
+  'js-bolt-floating-action-buttons-list-item',
+  children ? 'c-bolt-floating-action-buttons__list-item--has-children',
+  show_on_scroll_selector ? 'c-bolt-floating-action-buttons__list-item--hidden',
+] %}
+
+<li {{ attributes.addClass(classes) }}
+    {% if this.data.show_on_scroll_selector.value %}data-show-on-scroll-selector="{{ this.data.show_on_scroll_selector.value }}"{% endif %}
+    {{ this.props|without("class")|without("show_on_scroll_selector") }}>
+  {{ content }}
+
+  {% if children %}
+    {{ children }}
+  {% endif %}
+</li>

@@ -1,0 +1,49 @@
+{% set description %}
+  There are 2 CSS custom properties available for use to further customize the placement of floating action buttons.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>
+      <strong>--c-bolt-floating-action-buttons-offset-x:</strong> the distance between the FAB and the right side of the screen.
+    </bolt-li>
+    <bolt-li>
+      <strong>--c-bolt-floating-action-buttons-offset-y:</strong> the distance between the FAB and the bottom of the screen.
+    </bolt-li>
+    <bolt-li>The value can use any CSS unit (px, rem, em, vw, vh, etc.).</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set icon_external_link %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'external-link',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'View full page demo',
+    icon_after: icon_external_link,
+    attributes: {
+      href: link['components-floating-action-buttons-demo-use-case-offsets'],
+      target: '_blank',
+      rel: 'noopener'
+    }
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
+  content: _content,
+  attributes: {
+    style: '--c-bolt-floating-action-buttons-offset-x: 5vw; --c-bolt-floating-action-buttons-offset-y: 5vh;'
+  }
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Customize FAB placement with X and Y offsets',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
