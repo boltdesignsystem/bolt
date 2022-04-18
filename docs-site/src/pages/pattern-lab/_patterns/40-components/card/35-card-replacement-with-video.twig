@@ -33,7 +33,7 @@
     content: image,
     video: {
       content: video,
-      title: 'Video Thumbnail in Card Action Play',
+      title: 'Video Thumbnail with action play',
       duration: '4:26',
       has_captions: true,
       show_title: true
@@ -59,7 +59,7 @@
     content: image,
     video: {
       content: video,
-      title: 'Video Thumbnail in Card No Action Play',
+      title: 'Video Thumbnail without action play',
       duration: '4:26',
       has_captions: true,
       show_title: true
@@ -85,7 +85,7 @@
     content: image,
     video: {
       content: video,
-      title: 'Video Thumbnail in Card whole Card Clickablity',
+      title: 'Video Thumbnail with whole card clickablity',
       duration: '4:26',
       has_captions: true,
       show_title: true
@@ -111,7 +111,7 @@
     content: image,
     video: {
       content: video,
-      title: 'Video Thumbnail in Card whole Card Clickablity with Video Play',
+      title: 'Video Thumbnail triggered by whole card clickablity',
       duration: '4:26',
       has_captions: true,
       show_title: true
@@ -127,8 +127,8 @@
         video: video_thumbnail_1
       },
       body: {
-        headline: 'Video Thumbnail in Card Action Play',
-        paragraph: 'This card has a video as the media and the card action can also play/pause the video.',
+        headline: 'Video Thumbnail with action play',
+        paragraph: 'The Video Thumbnail with an inline video (video object passed into the video.content prop) is passed in to the card\'s media.video prop. The video play button and the card\'s action button will play/pause the video.',
       },
       actions: [
         {
@@ -148,8 +148,8 @@
         video: video_thumbnail_2
       },
       body: {
-        headline: 'Video Thumbnail in Card No Action Play',
-        paragraph: 'This card has a video as the media and the card action can also play/pause the video.',
+        headline: 'Video Thumbnail without action play',
+        paragraph: 'The Video Thumbnail with an inline video (video object passed into the video.content prop) is passed in to the card\'s media.video prop. The video\'s play button will play/pause the video.',
       }
     } only %}
   {% endcell %}
@@ -164,8 +164,8 @@
         video: video_thumbnail_3
       },
       body: {
-        headline: 'Video Thumbnail in Card whole Card Clickablity',
-        paragraph: 'This card has a video as the media and the card action can also play/pause the video.',
+        headline: 'Video Thumbnail with whole card clickablity',
+        paragraph: 'The Video Thumbnail with an inline video (video object passed into the video.content prop) is passed in to the card\'s media.video prop. The video and the card\'s action button will play/pause the video and the whole card clickability will go to a URL path.',
       },
       actions: [
         {
@@ -193,8 +193,8 @@
         video: video_thumbnail_4
       },
       body: {
-        headline: 'Video Thumbnail in Card whole Card Clickablity with Video Play',
-        paragraph: 'This card has a video as the media and the card action can also play/pause the video.',
+        headline: 'Video Thumbnail triggered by whole card clickablity',
+        paragraph: 'The Video Thumbnail with an inline video (video object passed into the video.content prop) is passed in to the card\'s media.video prop. The video will play/pause when the whole card is clicked',
       }
     } only %}
   {% endcell %}
