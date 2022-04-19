@@ -1,26 +1,16 @@
 <div class="o-bolt-wrapper">
-  {% embed "@bolt-components-card/card.twig" with {
-    contentItems: [
+  {% embed "@bolt-components-card-replacement/card-replacement.twig" with {
+    body: {
+      eyebrow: 'Video',
+      headline: 'Anthem: Service Desktop',
+      paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
+    },
+    actions: [
       {
-        pattern: "eyebrow",
-        text: "Video"
+        text: 'Get the report',
+        url: 'https://google.com',
       },
-      {
-        pattern: "headline",
-        tag: "h3",
-        size: "large",
-        text: "Anthem: Service Desktop"
-      },
-      {
-        pattern: "text",
-        text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-      },
-      {
-        pattern: "button",
-        text: "Get the report",
-        url: "https://google.com",
-      }
-    ]
+    ],
   } only %}
     {% block card_media %}
       {% include "@bolt-components-carousel/carousel.twig" with {
@@ -32,10 +22,10 @@
         '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
           '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-2.jpg)"></bolt-ratio>',
         ],
-        slidesPerView: 1,
-        spaceBetween: "small",
-        noPagination: true,
-        navButtonPosition: "inside",
+        slides_per_view: 1,
+        space_between: "small",
+        no_pagination: true,
+        nav_button_position: "inside",
       } only %}
     {% endblock %}
   {% endembed %}
