@@ -645,96 +645,35 @@
   {% endblock %}
 {% endembed %}
 
-
+{% set card %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    media: {
+      image: {
+        src: '/images/placeholders/landscape-16x9-mountains.jpg',
+        alt: 'Image alt.',
+      },
+    },
+    body: {
+      eyebrow: 'Article',
+      headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
+      paragraph: 'Simplify and automate to reduce costs and improve agility.',
+    },
+    actions: [
+      {
+        text: 'Learn More',
+        url: 'https://google.com',
+      },
+    ],
+  } only %}
+{% endset %}
 
 {% embed '@pl/_band--collection.twig' with {
   'theme': 'xlight',
   'size': 'medium',
   'contentItems': [
-    {
-      'pattern': 'card',
-      'image': {
-        'src': '/images/content/promos/promo-16x9-anthem.jpg'
-      },
-      'teaser': {
-        'eyebrow': {
-          text: 'Article'
-        },
-        'logo': {
-          src: '/images/content/logos/logo-paypal.svg'
-        },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Learn More',
-            'hierarchy': 'secondary',
-            'url': 'https://www.google.com/pega7',
-            'width': 'full'
-          }
-        ]
-      }
-    },
-    {
-      'pattern': 'card',
-      'image': {
-        'src': '/images/content/promos/promo-16x9-anthem.jpg'
-      },
-      'teaser': {
-        'eyebrow': {
-          text: 'Article'
-        },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Learn More',
-            'hierarchy': 'secondary',
-            'url': 'https://www.google.com/pega7',
-            'width': 'full'
-          }
-        ]
-      }
-    },
-    {
-      'pattern': 'card',
-      'image': {
-        'src': '/images/content/promos/promo-16x9-anthem.jpg'
-      },
-      'teaser': {
-        'eyebrow': {
-          text: 'Article'
-        },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Learn More',
-            'hierarchy': 'secondary',
-            'url': 'https://www.google.com/pega7',
-            'width': 'full'
-          }
-        ]
-      }
-    }
+    card,
+    card,
+    card,
   ]
 } %}
   {% block band_content %}
