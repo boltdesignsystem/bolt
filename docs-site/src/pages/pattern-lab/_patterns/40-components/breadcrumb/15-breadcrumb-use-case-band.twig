@@ -146,41 +146,9 @@
     'content': breadcrumb
   } only %}
   {% include '@pl/_band--feature.twig' with {
-    'size': 'large',
-    'theme': 'none',
-    'primaryTeaser': {
-      'headlines': [
-        {
-          'type': 'eyebrow',
-          'text': 'Digital Transformation',
-          'tag': 'span'
-        },
-        {
-          'type': 'headline',
-          'text': 'Be Future Empowered',
-          'size': 'xxxlarge',
-          'tag': 'h1'
-        },
-        {
-          'type': 'subheadline',
-          'text': 'Start with the outcomes you want.',
-          'size': 'xxlarge',
-          'tag': 'h2'
-        },
-        {
-          'type': 'text',
-          'text': 'Digital transformation is more than a slick new mobile app. It demands the hard work of designing for customer outcomes. Pega software gives you the power to truly transform.',
-          'tag': 'p'
-        }
-      ],
-      'buttons': [
-        {
-          'text': 'Get Smart',
-          'hierarchy': 'primary',
-          'url': 'https://www.google.com'
-        }
-      ]
-    }
+    size: 'large',
+    theme: 'none',
+    primaryTeaser: headings_stack,
   } only %}
 {% endset %}
 
@@ -231,45 +199,13 @@
 {% set stacked_bands %}
   {% include '@bolt-components-band/band.twig' with {
     'size': 'xsmall',
-    'theme': 'dark',
+    'theme': 'xdark',
     'content': breadcrumb
   } only %}
   {% include '@pl/_band--feature.twig' with {
-    'size': 'large',
-    'theme': 'xdark',
-    'primaryTeaser': {
-      'headlines': [
-        {
-          'type': 'eyebrow',
-          'text': 'Digital Transformation',
-          'tag': 'span'
-        },
-        {
-          'type': 'headline',
-          'text': 'Be Future Empowered',
-          'size': 'xxxlarge',
-          'tag': 'h1'
-        },
-        {
-          'type': 'subheadline',
-          'text': 'Start with the outcomes you want.',
-          'size': 'xxlarge',
-          'tag': 'h2'
-        },
-        {
-          'type': 'text',
-          'text': 'Digital transformation is more than a slick new mobile app. It demands the hard work of designing for customer outcomes. Pega software gives you the power to truly transform.',
-          'tag': 'p'
-        }
-      ],
-      'buttons': [
-        {
-          'text': 'Get Smart',
-          'hierarchy': 'primary',
-          'url': 'https://www.google.com'
-        }
-      ]
-    }
+    size: 'large',
+    theme: 'xdark',
+    primaryTeaser: headings_stack,
   } only %}
 {% endset %}
 
