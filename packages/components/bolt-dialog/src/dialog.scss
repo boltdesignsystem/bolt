@@ -6,25 +6,7 @@
 @import '@bolt/global/styles/00-vars/_vars-mode.scss';
 
 .c-bolt-dialog {
-  @include bolt-z-index(modal);
-  opacity: bolt-opacity(0);
-  position: relative;
-  pointer-events: none;
   transition: opacity var(--bolt-transition);
-  overflow-x: hidden;
-  overflow-y: hidden;
-
-  &.is-open {
-    opacity: bolt-opacity(100);
-    cursor: pointer;
-    pointer-events: auto;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-
-    &[data-dialog-persistent] {
-      cursor: default;
-    }
-  }
 }
 
 .c-bolt-dialog__overlay {

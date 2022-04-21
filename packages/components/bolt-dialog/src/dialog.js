@@ -1,5 +1,3 @@
-import * as focusTrap from 'focus-trap';
-
 export class BoltDialog {
   static dialogs = [];
 
@@ -40,7 +38,6 @@ export class BoltDialog {
 
     this.isPersistent = this.el.hasAttribute('data-dialog-persistent');
     this.overlay = this.el.querySelector('.c-bolt-dialog__overlay');
-    this.trap = focusTrap.createFocusTrap(this.el);
     this.handleEscape = this.handleEscape.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
 
@@ -72,8 +69,7 @@ export class BoltDialog {
   }
 
   open() {
-    this.el.setAttribute('aria-hidden', 'false');
-    this.el.classList.add('is-open');
+    this.el.classList.remove('c-bolt-dialog--hidden');
     document.body.classList.add('u-bolt-overflow-hidden');
 
     if (!this.isPersistent) {
@@ -81,13 +77,12 @@ export class BoltDialog {
       document.addEventListener('keydown', this.handleEscape);
     }
 
-    this.trap.activate();
     this.isOpen = true;
+    this.el.showModal();
   }
 
   close() {
-    this.el.setAttribute('aria-hidden', 'true');
-    this.el.classList.remove('is-open');
+    this.el.classList.add('c-bolt-dialog--hidden');
     document.body.classList.remove('u-bolt-overflow-hidden');
 
     if (!this.isPersistent) {
@@ -95,8 +90,8 @@ export class BoltDialog {
       document.removeEventListener('keydown', this.handleEscape);
     }
 
-    this.trap.deactivate();
     this.isOpen = false;
+    this.el.close();
   }
 
   toggle() {

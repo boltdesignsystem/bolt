@@ -16,6 +16,7 @@
 {# Array of outer classes based on the defined + default props #}
 {% set _outer_classes = [
   'c-bolt-dialog',
+  'c-bolt-dialog--hidden',
   this.data.scroll_behavior.value ? 'c-bolt-dialog__scroll-' ~ this.data.scroll_behavior.value : '',
   this.data.theme.value ? 'c-bolt-dialog__theme-' ~ this.data.theme.value : '',
   this.data.spacing.value ? 'c-bolt-dialog__spacing-' ~ this.data.spacing.value : '',
@@ -58,7 +59,7 @@
   } only %}
 {% endset %}
 
-<div
+<dialog
   {{ attributes.addClass(_outer_classes) }}
   {{ this.data.persistent.value ? 'data-dialog-persistent' : '' }}
   aria-hidden="true">
@@ -75,4 +76,4 @@
       </div>
     </div>
   </div>
-</div>
+</dialog>
