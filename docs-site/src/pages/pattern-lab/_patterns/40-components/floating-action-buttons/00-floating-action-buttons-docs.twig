@@ -1,0 +1,47 @@
+{% set usage %}{% verbatim %}
+{# Assemble the button(s) as list item(s) #}
+{% set scroll_to_top_button %}
+  {% set trigger %}
+    {% set icon_chevron_up %}
+      {% include '@bolt-components-icon/icon.twig' with {
+        name: 'chevron-up',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Back to top',
+      border_radius: 'full',
+      icon_only: icon_chevron_up,
+      attributes: {
+        href: '#top',
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    content: 'Back to top',
+    placement: 'left',
+    trigger: trigger,
+  } only %}
+{% endset %}
+{% set fab_list_items %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
+    content: scroll_to_top_button,
+  } only %}
+{% endset %}
+
+{# Pass the list items into the list template #}
+{% set fab_list %}
+  {% include '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig' with {
+    content: fab_list_items,
+  } only %}
+{% endset %}
+
+{# Pass the list into the main template #}
+{% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
+  content: fab_list,
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'floating-action-buttons',
+  usage: usage
+} only %}
