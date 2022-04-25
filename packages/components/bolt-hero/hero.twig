@@ -39,7 +39,10 @@
         u-bolt-padding-bottom-{{_imagePaddingBottom}}@{{_mediumBreakpoint}}
       ">
 
-      {% set style = 'min-width: ' ~ (this.data['image_min_width'].value ? this.data['image_min_width'].value : 'none') ~ ';' %}
+      {% set style = '' %}
+      {% if this.data['image_min_width'].value %}
+        {% set style = style ~ 'min-width: ' ~ this.data['image_min_width'].value ~ ';' %}
+      {% endif %}
       {% if this.data['image_max_width'].value %}
         {% set style = style ~ 'max-width:' ~ this.data['image_max_width'].value ~ ';' %}
       {% endif %}

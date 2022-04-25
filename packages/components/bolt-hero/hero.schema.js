@@ -48,7 +48,6 @@ module.exports = {
     },
     imageMinWidth: {
       description: 'Customizes the min width of the Hero Image',
-      default: 'none',
       type: 'string',
     },
     imageMaxWidth: {
