@@ -1,12 +1,42 @@
 {% set tooltip %}
-  {# Start component specific code #}
   {% include '@bolt-components-tooltip/tooltip.twig' with {
     trigger: 'this piece of text',
     content: 'This is what we call a tooltip.',
   } only %}
-  {# End component specific code #}
 {% endset %}
 
 <bolt-text>
-  A tooltip is used to provide descriptive help to the user about the control that the mouse is over. For instance, moving the mouse over {{ tooltip }} for a second can display a small popup label containing more detailed description. When the mouse is moved again, the tooltip disappears. This is a useful means of providing additional details about a user interface without cluttering up the main interface.
+  A tooltip is used to provide descriptive help to the user about the control that the mouse is over. For instance, moving the mouse over {{ tooltip }}. for a second can display a small popup label containing more detailed description. When the mouse is moved again, the tooltip disappears. This is a useful means of providing additional details about a user interface without cluttering up the main interface.
 </bolt-text>
+<bolt-text>
+  When adding an inline tooltip be sure to trim any unwanted space around the element. Especially when you want to add a special character before the tooltip. Removing the whitespace is possible using <code>spaceless</code> tag when decalring a variable.
+</bolt-text>
+
+{% set twig_code %}
+{% verbatim %}
+{% set tooltip %}{% spaceless %}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    trigger: 'This is the tooltip trigger',
+    content: 'This is the tooltip content.'
+  } only %}
+{% endspaceless %}{% endset %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: twig_code,
+  lang: 'twig',
+} only %}
+
+<p>Or use <code>|spaceless</code> filter when printing the variable.</p>
+
+{% set twig_code %}
+{% verbatim %}
+{{ tooltip|spaceless }}
+{% endverbatim %}
+{% endset %}
+
+{% include '@bolt-components-code-snippet/code-snippet.twig' with {
+  content: twig_code,
+  lang: 'twig',
+} only %}
