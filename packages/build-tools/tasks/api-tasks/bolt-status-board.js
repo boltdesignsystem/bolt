@@ -50,10 +50,6 @@ async function finishRendering(rows, callback) {
           header: true,
         } only %}
         {% include '@bolt-components-table/table-cell.twig' with {
-          content: 'Nightwatch',
-          header: true,
-        } only %}
-        {% include '@bolt-components-table/table-cell.twig' with {
           content: 'TESTING.md',
           header: true,
         } only %}
@@ -81,31 +77,6 @@ async function finishRendering(rows, callback) {
         id: 'component-status',
         style: 'max-height: none;'
       },
-<<<<<<< HEAD
-=======
-      headers: {
-        top: {
-          cells: [
-            {
-              content: "Component",
-              attributes: {
-                class: [
-                  "sort"
-                ],
-                "data-sort": "component"
-              },
-            },
-            "Sass",
-            "Twig",
-            "Web Component",
-            "Jest",
-            "TESTING.md",
-            "README.md"
-          ]
-        },
-      },
-      rows: ${JSON.stringify(arraySort(rows, 'cells'))},
->>>>>>> master
     } only %}
   `).then(renderedResults => {
     const formattedTable = prettier.format(renderedResults.html, {
