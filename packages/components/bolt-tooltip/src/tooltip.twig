@@ -1,3 +1,4 @@
+{% spaceless %}
 {% set schema = bolt.data.components["@bolt-components-tooltip"].schema %}
 
 {% if enable_json_schema_validation %}
@@ -55,7 +56,7 @@
 {% if transform %}
   {% set transform = null %}
 {% endif %}
-
+{% endspaceless %}
 {% spaceless %}<bolt-tooltip
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("trigger")|without("content")|without("class") }}
