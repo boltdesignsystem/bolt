@@ -1,9 +1,11 @@
 {% set tooltip %}
+  {# Start component specific code #}
   {% include '@bolt-components-tooltip/tooltip.twig' with {
     trigger: 'this example',
     content: 'This is an inverted tooltip.',
     inverted: true
   } only %}
+  {# End component specific code #}
 {% endset %}
 
 {% set content %}
