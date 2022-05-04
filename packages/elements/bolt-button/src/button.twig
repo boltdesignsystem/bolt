@@ -8,7 +8,7 @@
  * Dev notes
  * 1. The markup is written in one line (combined with spaceless) to avoid any unwanted white-space.
  * 2. Zero width no-break space is passed to the icon container's :before and :after pseudo elements, combine that with nowrap white-space on the icon container, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. Do not remove the icon container spans. See: https://codepen.io/mikemai2awesome/pen/OJXbqwe?editors=0100
- * 3. If type is empty for a button, an error message will be shown in place of the button to remind the developer that type is required.  However, in a prod environment, we will set a default for them to try to recover.
+ * 3. If the type attribute is empty for a semantic <button>, an error message will be shown in place of the button to remind the developer that type is required. However, in a prod environment, we will set a default (type="button") for them to try to recover.
  */
 #}
 
@@ -18,11 +18,11 @@
   {{ validate_data_schema(schema, _self)|raw }}
 
   {% if attributes.href is empty and attributes.type is empty %}
-    {% set error_message = 'The type attribute is required for any button that is not a link'|t %}
+    {% set error_message = 'The type attribute is required for a semantic <button>, while the href attribute is required for a semantic <a>. Please pass one of those attributes.'|t %}
   {% endif %}
 
   {% if attributes.href and attributes.type %}
-    {% set error_message = 'The type attribute is not supported for buttons that are links'|t %}
+    {% set error_message = 'The type attribute should be used for a semantic <button>, while the href attribute should be used for a semantic <a>. If you have a reason for using both at the same time, please contact the core team.'|t %}
   {% endif %}
 {% endif %}
 
@@ -46,8 +46,14 @@
 ] %}
 
 {% if error_message %}
+  {% set message %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'close-circle',
+    } only %}
+    {{ error_message|e }}
+  {% endset %}
   {% include '@bolt-components-banner/banner.twig' with {
-    content: error_message,
+    content: message,
     status: 'error',
   } only %}
 {% else %}
