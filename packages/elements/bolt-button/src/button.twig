@@ -8,6 +8,7 @@
  * Dev notes
  * 1. The markup is written in one line (combined with spaceless) to avoid any unwanted white-space.
  * 2. Zero width no-break space is passed to the icon container's :before and :after pseudo elements, combine that with nowrap white-space on the icon container, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. Do not remove the icon container spans. See: https://codepen.io/mikemai2awesome/pen/OJXbqwe?editors=0100
+ * 3. If type is empty for a button, an error message will be shown in place of the button to remind the developer that type is required.  However, in a prod environment, we will set a default for them to try to recover.
  */
 #}
 
@@ -15,6 +16,14 @@
 {% set schema = bolt.data.components['@bolt-elements-button'].schema %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
+
+  {% if attributes.href is empty and attributes.type is empty %}
+    {% set error_message = 'The type attribute is required for any button that is not a link'|t %}
+  {% endif %}
+
+  {% if attributes.href and attributes.type %}
+    {% set error_message = 'The type attribute is not supported for buttons that are links'|t %}
+  {% endif %}
 {% endif %}
 
 {# Variables #}
@@ -22,6 +31,7 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set tag = attributes.href ? 'a' : 'button' %}
 
+{# [3] #}
 {% if tag == 'button' and attributes.type is empty %}
   {% set attributes = attributes.setAttribute('type', 'button') %}
 {% endif %}
@@ -35,6 +45,13 @@
   icon_only ? 'e-bolt-button--icon-only',
 ] %}
 
+{% if error_message %}
+  {% include '@bolt-components-banner/banner.twig' with {
+    content: error_message,
+    status: 'error',
+  } only %}
+{% else %}
 {# Template #}
 {# [1], [2] #}
 {% spaceless %}<{{ tag }} {{ attributes.addClass(classes) }} {% if icon_only %}aria-label="{{ content|striptags|spaceless }}"{% endif %}>{% if icon_only %}<span class="e-bolt-button__icon-center" aria-hidden="true">{{ icon_only|spaceless }}</span>{% else %}{% if icon_before %}<span class="e-bolt-button__icon-before" aria-hidden="true">{{ icon_before|spaceless }}</span>{% endif %}{{ content|spaceless }}{% if icon_after %}<span class="e-bolt-button__icon-after" aria-hidden="true">{{ icon_after|spaceless }}</span>{% endif %}{% endif %}</{{ tag }}>{% endspaceless %}
+{% endif %}
