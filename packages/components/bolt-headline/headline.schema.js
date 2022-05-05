@@ -84,16 +84,24 @@ module.exports = {
       type: 'boolean',
       description: 'Adds quoted styling to text.',
     },
-    numberText: {
+    number_text: {
       description:
         'Text that displays in a small circle to the left of the main Headline text. Providing content will trigger the bullet to appear.',
       type: ['string', 'number'],
     },
-    numberColor: {
+    number_color: {
       description:
         'The optional background color of the Headline bullet. Uses inherited theme colors if unspecified.',
       type: 'string',
-      enum: ['teal', 'navy', 'orange', 'purple'],
+      enum: ['teal', 'navy', 'orange', 'violet'],
+    },
+    numberText: {
+      title: 'DEPRECATED',
+      description: 'Use number_text instead.',
+    },
+    numberColor: {
+      title: 'DEPRECATED',
+      description: 'Use number_color instead.',
     },
   },
 };
