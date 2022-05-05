@@ -35,7 +35,7 @@ module.exports = {
       type: 'string',
       description: 'Controls the color theme of the dialog container.',
       enum: ['xlight', 'light', 'dark', 'xdark'],
-      default: 'light',
+      default: 'xlight',
     },
     scroll_behavior: {
       type: 'string',

@@ -3,30 +3,30 @@
 // \* ------------------------------------ */
 
 @import '@bolt/core-v3.x';
-@import '@bolt/global/styles/00-vars/_vars-mode.scss';
 
 .c-bolt-dialog {
-  --animation-in-settings: 500ms cubic-bezier(0.25, 0, 0.3, 1) normal;
-  --animation-out-settings: 500ms cubic-bezier(0.5, -0.5, 0.1, 1.5) normal;
-  opacity: 1;
-  min-width: 200px;
-  max-width: calc(100% - var(--bolt-spacing-x-medium) * 2);
+  --c-bolt-dialog-animation-in-settings: 500ms cubic-bezier(0.25, 0, 0.3, 1) normal;
+  --c-bolt-dialog-animation-out-settings: 500ms cubic-bezier(0.5, -0.5, 0.1, 1.5) normal;
+
+  max-inline-size: 100%;
+  max-block-size: 100%;
   padding: 0;
   border: 0;
+  border-radius: bolt-border-radius(small);
 
   &[open] {
-    animation: slidein var(--animation-in-settings);
+    animation: a-bolt-dialog-slide-in var(--c-bolt-dialog-animation-in-settings);
 
     @media (prefers-reduced-motion: reduce) {
-      animation: fadein var(--animation-out-settings);
+      animation: a-bolt-dialog-fade-in var(--c-bolt-dialog-animation-out-settings);
     }
   }
 
   &.c-bolt-dialog--hidden {
-    animation: minimize var(--animation-out-settings);
+    animation: a-bolt-dialog-minimize var(--c-bolt-dialog-animation-out-settings);
 
     @media (prefers-reduced-motion: reduce) {
-      animation: fadeout var(--animation-out-settings);
+      animation: a-bolt-dialog-fade-out var(--c-bolt-dialog-animation-out-settings);
     }
   }
 }
@@ -36,14 +36,25 @@
   background-color: var(--bolt-color-navy-xdark);
 }
 
+.c-bolt-dialog__header,
+.c-bolt-dialog__footer {
+  position: sticky;
+}
+
 .c-bolt-dialog__header {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  border-bottom: 1px solid var(--bolt-color-gray-light);
+  gap: var(--bolt-spacing-x-medium);
+  border-block-end: 1px solid var(--m-bolt-border);
 }
 
 .c-bolt-dialog__body {
+  overflow-y: auto;
+}
+
+.c-bolt-dialog__footer {
+  border-block-start: 1px solid var(--m-bolt-border);
 }
 
 .c-bolt-dialog[data-dialog-persistent] {
@@ -52,22 +63,32 @@
   }
 }
 
-.c-bolt-dialog__footer {
-  border-top: 1px solid var(--bolt-color-gray-light);
+// Content width options
+@include bolt-mq($until: small) {
+  .c-bolt-dialog[open],
+  .c-bolt-dialog[open] > form {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    inline-size: 100%;
+    block-size: 100%;
+  }
 }
 
-// Content width options
-@include bolt-mq('small') {
+@include bolt-mq(small) {
+  .c-bolt-dialog {
+    max-inline-size: calc(100% - var(--bolt-spacing-x-medium) * 2);
+  }
+
   .c-bolt-dialog__width-regular {
-    width: 100% / 12 * 10;
+    inline-size: calc(100% / 12 * 10);
   }
 
   .c-bolt-dialog__width-optimal {
-    width: 75ch;
+    inline-size: 75ch;
   }
 
   .c-bolt-dialog__width-full {
-    width: calc(100% - var(--bolt-spacing-x-medium) * 2);
+    inline-size: calc(100% - var(--bolt-spacing-x-medium) * 2);
   }
 }
 
@@ -78,8 +99,21 @@
     .c-bolt-dialog__header,
     .c-bolt-dialog__footer,
     .c-bolt-dialog__body {
-      padding: var(--bolt-spacing-y-#{$size-name})
-        var(--bolt-spacing-x-#{$size-name});
+      padding-inline: var(--bolt-spacing-x-#{$size-name});
+    }
+
+    .c-bolt-dialog__header,
+    .c-bolt-dialog__footer {
+      padding-block: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
+    }
+
+    .c-bolt-dialog__body {
+      padding-block: var(--bolt-spacing-y-#{$size-name});
+    }
+
+    .c-bolt-dialog__header-close {
+      margin-block: calc(var(--bolt-spacing-y-#{$size-name}) / 4 * -1);
+      margin-inline-end: calc(var(--bolt-spacing-x-#{$size-name}) / 1.5 * -1);
     }
   }
 }
@@ -100,19 +134,8 @@
 //   }
 // }
 
-// mobile styles
-@include bolt-mq($until: 'small') {
-  .c-bolt-dialog[open],
-  .c-bolt-dialog[open] > form {
-    display: grid;
-    width: 100%;
-    height: 100%;
-    grid-template-rows: auto 1fr auto;
-  }
-}
-
 // animation
-@keyframes slidein {
+@keyframes a-bolt-dialog-slide-in {
   from {
     opacity: 0;
     transform: translateY(50%);
@@ -124,7 +147,7 @@
   }
 }
 
-@keyframes fadein {
+@keyframes a-bolt-dialog-fade-in {
   from {
     opacity: 0;
   }
@@ -134,13 +157,13 @@
   }
 }
 
-@keyframes fadeout {
+@keyframes a-bolt-dialog-fade-out {
   to {
     opacity: 0;
   }
 }
 
-@keyframes minimize {
+@keyframes a-bolt-dialog-minimize {
   to {
     opacity: 0;
     transform: scale(0);
