@@ -19,23 +19,3 @@
     number_text: range('A','Z')[loop.index0],
   } only %}
 {% endfor %}
-
-<h2>Deprecated prop <code>numberText</code> usage.</h2>
-{% for item in schema.properties.number_color.enum %}
-  {% include '@bolt-components-headline/headline.twig' with {
-    size: 'xxlarge',
-    text: 'Numbered Headline',
-    numberText: loop.index,
-  } only %}
-{% endfor %}
-
-<h2>Deprecated prop <code>numberColor</code> usage.</h2>
-<p>Note that the new color violet - <code>var(--bolt-color-violet)</code> replaced color purple - <code>var(--bolt-color-berry)</code>.</p>
-{% for item in schema.properties.number_color.enum %}
-  {% include '@bolt-components-headline/headline.twig' with {
-    size: 'xxlarge',
-    text: 'Numbered Headline, ' ~ 'color ' ~ item ~ ' <code>var(--bolt-color-'~ item ~')</code>',
-    numberColor: item,
-    numberText: range('A','Z')[loop.index0],
-  } only %}
-{% endfor %}
