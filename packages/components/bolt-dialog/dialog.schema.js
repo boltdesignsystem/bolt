@@ -8,19 +8,40 @@ module.exports = {
       description:
         'A Drupal attributes object. Applies extra HTML attributes to the &lt;bolt-dialog&gt; tag.',
     },
-    title: {
-      type: 'any',
-      description: 'Title of Example.',
-    },
     content: {
       type: 'any',
-      description: 'The main Example content.',
+      description:
+        'The dialog-header, dialog-body, and dialog-footer components.',
     },
-    disabled: {
+    width: {
+      type: 'string',
+      description: 'Controls the width of the dialog container.',
+      enum: ['full', 'regular', 'optimal', 'auto'],
+      default: 'optimal',
+    },
+    spacing: {
+      type: 'string',
+      description: 'Controls the spacing around the dialog container.',
+      enum: ['none', 'small', 'medium', 'large'],
+      default: 'medium',
+    },
+    persistent: {
       type: 'boolean',
       description:
-        'Default `disabled` prop supported globally by most Bolt components.',
+        'Enables the modal to be persistent. This will eliminate ways to close the modal and it is up to the author to provide a custom link to close the modal or redirect to another page within the modal content.',
       default: false,
+    },
+    theme: {
+      type: 'string',
+      description: 'Controls the color theme of the dialog container.',
+      enum: ['xlight', 'light', 'dark', 'xdark'],
+      default: 'light',
+    },
+    scroll_behavior: {
+      type: 'string',
+      description: 'Controls the scrolling area.',
+      default: 'container',
+      enum: ['container', 'overall'],
     },
   },
 };

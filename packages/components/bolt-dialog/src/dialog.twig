@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-dialog'].schema %}
+{% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -10,12 +10,19 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-dialog',
-  this.data.disabled.value ? 'c-bolt-dialog--disabled' : '',
+  'c-bolt-dialog--hidden',
+  this.data.width.value ? 'c-bolt-dialog__width-' ~ this.data.width.value : '',
+  this.data.spacing.value ? 'c-bolt-dialog__spacing-' ~ this.data.spacing.value : '',
+  this.data.scroll_behavior.value ? 'c-bolt-dialog__scroll-' ~ this.data.scroll_behavior.value : '',
+  this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : '',
 ] %}
 
-<dialog {{ attributes.addClass(classes) }}>
+<dialog
+  {{ attributes.addClass(classes) }}
+  {{ this.data.persistent.value ? 'data-dialog-persistent' : '' }}
+  >
+
   {% if content %}
     {{ content }}
   {% endif %}
 </dialog>
-

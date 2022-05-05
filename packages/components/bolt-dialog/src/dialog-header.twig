@@ -1,0 +1,42 @@
+{% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog-header'] %}
+{% if enable_json_schema_validation %}
+    {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+    'c-bolt-dialog__header',
+] %}
+
+{% set _icon_close %}
+{% include '@bolt-components-icon/icon.twig' with {
+    name: 'close',
+} only %}
+{% endset %}
+
+{% set _close_button %}
+{% include '@bolt-elements-button/button.twig' with {
+    content: 'Close',
+    icon_only: _icon_close,
+    hierarchy: 'transparent',
+    attributes: {
+        class: 'c-bolt-dialog__close-button',
+        type: 'button',
+        'data-dialog-close': '',
+        'aria-label': 'Close dialog',
+    }
+} only %}
+{% endset %}
+
+<header {{ attributes.addClass(classes) }}>
+    <div class="c-bolt-dialog__header-content">
+        {{ content }}
+    </div>
+
+    {# close button #}
+    <div class="c-bolt-dialog__header-close">{{ _close_button }}</div>
+</header>

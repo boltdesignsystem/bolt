@@ -1,0 +1,77 @@
+{% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog'] %}
+
+{% set description %}
+    The dialog container's width can be adjusted by the <code>width</code> prop. The default is set to <code>optimal</code>.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li><code>Full</code>: This is taking up the full width of the screen minus the gutters (about 2rem on left and right). </bolt-li>
+    <bolt-li><code>Regular</code>: This is 10 out 12 columns wide, about 80% of the screen width. </bolt-li>
+    <bolt-li><code>Optimal</code>: This is about 75 characters wide, close to optimal reading length. </bolt-li>
+    <bolt-li><code>Auto</code>: This adjusts to the width of the modal content. In most cases, the user must define a max-width in absolute value (do not use relative value such as %) on the modal content to get the desired results. Recommended for advanced usage. </bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+<bolt-list display="inline" spacing="small">
+{% for width in schema.properties.width.enum %}
+  <bolt-list-item>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: width|title ~ ' Width',
+      attributes: {
+        type: 'button',
+        'data-bolt-dialog-target': 'dialog-width-' ~ loop.index0,
+      }
+    } only %}
+
+    {% set _header_content %}
+    <h1>This is a dialog component.</h1>
+    {% endset %}
+
+    {% set _body_content %}
+    <p>This is a dialog component.</p>
+    {% endset %}
+
+    {% set _footer_content %}
+    <button type="button" class="e-bolt-button">Button</button>
+    {% endset %}
+
+    {% set _content %}
+    {% include '@bolt-components-dialog/dialog-header.twig' with {
+      content: _header_content,
+    } only %}
+    {% include '@bolt-components-dialog/dialog-body.twig' with {
+      content: _body_content,
+    } only %}
+    {% include '@bolt-components-dialog/dialog-footer.twig' with {
+      content: _footer_content,
+    } only %}
+    {% endset %}
+
+    {% include '@bolt-components-dialog/dialog.twig' with {
+      content: _content,
+      width: width,
+      attributes: {
+        id: 'dialog-width-' ~ loop.index0
+      },
+    } only %}
+  </bolt-list-item>
+{% endfor %}
+</bolt-list>
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-dialog/dialog.twig' with {
+  width: 'full',
+  ...
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Dialog Widths',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

@@ -1,0 +1,71 @@
+{% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog'] %}
+
+{% set description %}
+    The modal container's coloring theme can be adjusted by the <code>theme</code> prop. The default is set to <code>xlight</code>.
+{% endset %}
+
+{% set notes %}
+{% endset %}
+
+{% set demo %}
+<bolt-list display="inline" spacing="small">
+{% for theme in schema.properties.theme.enum %}
+  <bolt-list-item>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: '"' ~ theme ~ '" Theme',
+      attributes: {
+        type: 'button',
+        'data-bolt-dialog-target': 'dialog-theme-' ~ loop.index0,
+      }
+    } only %}
+
+    {% set _header_content %}
+    <h1>This is a dialog component.</h1>
+    {% endset %}
+
+    {% set _body_content %}
+    <p>This is a dialog component.</p>
+    {% endset %}
+
+    {% set _footer_content %}
+    <button type="button" class="e-bolt-button">Button</button>
+    {% endset %}
+
+    {% set _content %}
+    {% include '@bolt-components-dialog/dialog-header.twig' with {
+      content: _header_content,
+    } only %}
+    {% include '@bolt-components-dialog/dialog-body.twig' with {
+      content: _body_content,
+    } only %}
+    {% include '@bolt-components-dialog/dialog-footer.twig' with {
+      content: _footer_content,
+    } only %}
+    {% endset %}
+
+    {% include '@bolt-components-dialog/dialog.twig' with {
+      content: _content,
+      theme: theme,
+      attributes: {
+        id: 'dialog-theme-' ~ loop.index0
+      },
+    } only %}
+  </bolt-list-item>
+{% endfor %}
+</bolt-list>
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-dialog/dialog.twig' with {
+  theme: 'dark',
+  ...
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Dialog Spacing',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

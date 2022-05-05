@@ -1,17 +1,18 @@
 {% set description %}
-    A dialog can be used to display interactive content over a webpage. The element is generally hidden on page load and becomes visible after interaction with a trigger. Triggers are typically a button or link element with the <code>data-bolt-dialog-target</code> attribute set to a unique <code>id</code>.
+A persistent dialog is useful when creating subscription based content. To create one use the  <code>persistent</code> property and make sure to add an element in the content to either redirect users or close the dialog some other way. When a dialog is persistent the default close button is not shown. The only way to close the dialog is triggering the close element.<br /><br />
+Activate the dialog to see more instructions on setting up the twig template.
 {% endset %}
 
 {% set notes %}
-  This is a replacement for the <a href="{{ link['viewall-components-modal'] }}" class="e-bolt-text-link">Modal component</a>.
+You will need to add an item with the <code>data-dialog-close</code> attribute to close persistent dialogs, or provide a link to another page.
 {% endset %}
 
 {% set demo %}
 {% include '@bolt-elements-button/button.twig' with {
-  content: 'Demo Dialog',
+  content: 'Persistent Dialog',
   attributes: {
     type: 'button',
-    'data-bolt-dialog-target': 'dialog-1',
+    'data-bolt-dialog-target': 'dialog-persistent-1',
   }
 } only %}
 
@@ -24,7 +25,20 @@
 {% endset %}
 
 {% set _footer_content %}
-<button type="button" class="e-bolt-button">Button</button>
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Go to pega.com',
+  attributes: {
+    href: 'https://www.pega.com',
+  }
+} only %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Close the dialog',
+  hierarchy: 'secondary',
+  attributes: {
+    type: 'button',
+    'data-dialog-close': '',
+  }
+} only %}
 {% endset %}
 
 {% set _content %}
@@ -41,13 +55,18 @@
 
 {% include '@bolt-components-dialog/dialog.twig' with {
   content: _content,
+  persistent: true,
   attributes: {
-    id: 'dialog-1'
+    id: 'dialog-persistent-1'
   },
 } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-dialog/dialog.twig' with {
+  persistent: true,
+  ...
+} only %}
 {% endverbatim %}{% endset %}
 
 {# {% set html_markup %}{% verbatim %}
@@ -57,7 +76,7 @@
 {% endverbatim %}{% endset %} #}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Dialog',
+  title: 'Persistent Dialog',
   description: description,
   notes: notes,
   demo: demo,
