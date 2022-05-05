@@ -5,6 +5,16 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Headline',
   type: 'object',
+  not: {
+    anyOf: [
+      {
+        required: ['numberText'],
+      },
+      {
+        required: ['numberColor'],
+      },
+    ],
+  },
   required: ['text'],
   properties: {
     text: {
