@@ -96,9 +96,10 @@
   display: inline-block;
   position: relative;
   // z-index: 10; // @todo
+  transform: rotate(90deg);
   font-size: 1em;
   line-height: 0;
-  transition: transform 0.2s;
+  transition: opacity 0.2s;
 
   @media (prefers-reduced-motion) {
     transition: none !important;
@@ -109,7 +110,7 @@
   }
 
   @at-root .c-bolt-navbar-menu--is-open & {
-    transform: rotate(180deg);
+    opacity: 0.8;
   }
 }
 
