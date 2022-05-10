@@ -85,6 +85,14 @@
   margin-bottom: var(--bolt-spacing-y-xxsmall);
   pointer-events: none;
   grid-area: eyebrow;
+
+  .c-bolt-listing-teaser__meta {
+    > .c-bolt-listing-teaser__meta__item {
+      &:not(:last-child):after {
+        content: '\2012';
+      }
+    }
+  }
 }
 
 .c-bolt-listing-teaser__flag-heading {
@@ -181,6 +189,17 @@
     .e-bolt-icon {
       transform: translateY(0.1em);
     }
+  }
+}
+
+.c-bolt-listing-teaser__flag-content__item:not(.c-bolt-listing-teaser__flag-content__item--reply) {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @include bolt-mq($from: medium) {
+    -webkit-line-clamp: 2;
   }
 }
 
