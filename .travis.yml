@@ -15,6 +15,8 @@ cache:
     - cache
 
 before_cache:
+  # Create these folders, create parent folders if needed
+  # No error if existing
   - mkdir -p node_modules
   - mkdir -p docs-site/cache
   - mkdir -p cache
@@ -39,111 +41,165 @@ stages:
 
 jobs:
   include:
+    # This runs the JEST tests for our components
     - stage: Pre-deploy
       name: 'Smoke Tests: Jest Component-Specific Tests'
       install:
+        # yarn && yarn run setup:php
         - yarn run setup
-        - yarn workspace @bolt/website prep # creates data and manifest files
-      # before_script: ./scripts/check-run-queue.js 'Jest Component Tests'
+        # not sure this exactly does, says it does "creates data and manifest files"
+        - yarn workspace @bolt/website prep
       script:
+        # Test the Components with Jest
         - travis_retry yarn test:js
-        # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
 
-      # after_success: ./scripts/check-run-success.js 'Jest Component Tests'
-      # after_failure: ./scripts/check-run-failure.js 'Jest Component Tests'
+    # This runs the system tests, these are non-component based
     - stage: Pre-deploy
       name: 'Smoke Tests: Lint + Jest Unit Tests'
       install:
+        # yarn && yarn run setup:php
         - yarn run setup
-        - yarn workspace @bolt/website prep # creates data and manifest files
-      # before_script: ./scripts/check-run-queue.js 'Lint + Unit Tests'
+        # not sure this exactly does, says it does "creates data and manifest files"
+        - yarn workspace @bolt/website prep
       script:
+        # Not sure what this does, just seems to print out linting issues? But nothing else
         - yarn run lint
+        # cd packages/twig-integration/twig-extensions-shared && composer run test
+        # doesn't seeem to do anything, get a "Nothing to install or update" in the console
         - yarn test:php
+        # jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace --maxWorkers=1
+        # Runs a jets test for the monorep (3 tests...)
         - yarn test:monorepo --maxWorkers=1
+        # npx lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--* --stream
+        # Tests Lerna speecifically
         - yarn test:pkgs
 
-      # after_success: ./scripts/check-run-success.js 'Lint + Unit Tests'
-      # after_failure: ./scripts/check-run-failure.js 'Lint + Unit Tests'
-    #    - stage: Pre-deploy
-    #      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
-    #      name: 'Build Drupal Lab'
-    #      script:
-    #        - npm run setup
-
-    # quicker build tests for feature branches
+    # Creates a deployment based on the latest commit, this becomes the "--commit-preview" deployment
+    # Creates a deployment based on the current branch, this becomes the "--branch-preview" deployment
+    # This is run on all PRs that ARE NOT releases, bugfix or master
     - stage: Pre-deploy
       name: 'Build + Deploy Website + Lighthouse CLI'
       if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
       install:
+        # yarn && yarn run setup:php
         - yarn run setup
+        # https://github.com/lerna/lerna/tree/main/commands/bootstrap#readme
+        # "Bootstrap the packages in the current Lerna repo. Installs all of their dependencies and links any cross-dependencies."
         - npx lerna run postbootstrap
+        # Grabs the Githhub Commit number
         - export GIT_SHA=$(./scripts/get-git-sha.js)
+        # Prints the Github commit number in Travis
         - echo $GIT_SHA
-        # - yarn global add @lhci/cli@0.3.x
       script:
-        # - yarn run generate # generate static version of Drupal Lab in the integration folder
-        # - cd ../../
+        # cd docs-site && yarn run build:prod
+        # Builds the docs site
         - yarn run build
+        # gds = https://www.npmjs.com/package/github-deploy-status
+        # "create: creating a deployment [feature/DS-459-Dialog--47e512be--commit-preview] for boltdesignsystem/bolt on <feature/DS-459-Dialog>..."
+        # Kicks off tthe creation of a deployment (this can be found on the Github PR)
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+        # gds = https://www.npmjs.com/package/github-deploy-status
+        # Update the Github PR deployment indicator with "In Progress"
         - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+        # ./scripts/deploy.js
+        # Deploys using Vercel with a "npx now..." command
+        # Vercel seems to be generating the deployment URL automatically
+        # This script uses the GitSHA variable (this is tied to the commit number)
         - yarn run deploy
+        # Sets the latest now.sh deploy (what was run with the "npx now..." command) to the NOW_URL variable
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        # gds = https://www.npmjs.com/package/github-deploy-status
+        # Update the Github PR deployment indicator with "Success"
         - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH} -l ${NOW_URL}
-        # - lhci autorun --collect.numberOfRuns=3 --collect.url=$NOW_URL --collect.url=$NOW_URL/pattern-lab/patterns/50-pages-10-d8-product-pages-product-t2/50-pages-10-d8-product-pages-product-t2.html --collect.url=$NOW_URL/pattern-lab/patterns/60-experiments-micro-journeys-90-micro-journeys/60-experiments-micro-journeys-90-micro-journeys.html
       after_success:
+        # After the creation and successful deployment of the "--commit-preview", this creates a "--branch-preview" deployment based on the Github PR
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
         - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
         - ./scripts/deploy-branch-alias.js
         - export NOW_BRANCH_URL=$(./scripts/get-branch-alias.js)
         - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH} -l ${NOW_BRANCH_URL}
       after_failure:
+        # If the "--commit-branch" fails, try again...
         - travis_retry yarn gds -a failure -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
         - travis_retry yarn gds -a failure -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
       after_script:
+        # If the deployment fails, add a "Failed" label to the deployment in  the Github PR
         - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
         - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
 
-    # full build tests for non-feature branches + tagged releases
+    # Creates a deployment based on the latest commit, this becomes the "--commit-preview" deployment
+    # This is run on all PRs that ARE releases, bugfix or master
     - stage: Pre-deploy
       name: 'Build + Deploy Website (Full)'
       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
       install:
+        # yarn && yarn run setup:php
         - yarn run setup
+        # Grabs the Githhub Commit number
         - export GIT_SHA=$(./scripts/get-git-sha.js)
       before_script:
+        # Before this script runs, kill the .incache file (this will be updated later)
         - find . -name '.incache' -exec rm -rf {} +
       script:
-        # - yarn run generate # generate static version of Drupal Lab in the integration folder
-        # - cd ../../
+        # gds = https://www.npmjs.com/package/github-deploy-status
+        # "create: creating a deployment [feature/DS-459-Dialog--47e512be--commit-preview] for boltdesignsystem/bolt on <feature/DS-459-Dialog>..."
+        # Kicks off tthe creation of a deployment (this can be found on the Github PR)
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+        # cd docs-site && yarn run build:prod
+        # Builds the docs site
         - yarn run build
+        # gds = https://www.npmjs.com/package/github-deploy-status
+        # Updated the Github PR deployment indicator with "In Progress"
         - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
+        # ./scripts/deploy.js
+        # Deploys using Vercel with a "npx now..." command
+        # Vercel seems to be generating the deployment URL automatically
+        # This script uses the GitSHA variable (this is tied to the commit number)
         - yarn run deploy
       after_success:
+        # Sets the latest now.sh deploy (what was run with the "npx now..." command) to the NOW_URL variable
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        # gds = https://www.npmjs.com/package/github-deploy-status
+        # Update the Github PR deployment indicator with "Success"
         - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH} -l ${NOW_URL}
       after_script:
+        # If the deployment fails, update with a "Failed" indicator in the Github PR
         - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
 
+    # This is run on all PRs that ARE releases, bugfix or master
     - stage: Post-deploy
       name: 'Deploy Tagged Release'
       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
       install:
+        # Install the NPM packages
         - yarn
+        # https://github.com/lerna/lerna/tree/main/commands/bootstrap#readme
+        # "Bootstrap the packages in the current Lerna repo. Installs all of their dependencies and links any cross-dependencies."
         - npx lerna run postbootstrap
       script:
+        # Sets the latest now.sh deploy (what was run with the "npx now..." command) to the NOW_URL variable
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        # gds = https://www.npmjs.com/package/github-deploy-statu
+        # Kicks off the creation of a "--branch-preview" deployment (this can be found on the Github PR)
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
+        # gds = https://www.npmjs.com/package/github-deploy-status
+        # Updated the Github PR deployment indicator with "In Progress"
         - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
       after_success:
+        # Assign the master.boltdesignsystem.com alias to the latest deployment
         - ./scripts/deploy-branch-alias.js
+        # Grab the newly updated masterr.boltdesignsystem.com alias
         - export NOW_BRANCH_URL=$(./scripts/get-branch-alias.js)
+        # gds = https://www.npmjs.com/package/github-deploy-status
+        # Update the Github PR deployment indicator with "Success"
         - travis_retry yarn gds -a success -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH} -l ${NOW_BRANCH_URL}
+        # Deploy latest to both boltdesignsystem.com and www.boltdesignsystem.com
         - ./scripts/deploy-tagged-release.js
       after_script:
+        # If the deployment fails, update with a "Failed" indicator in the Github PR
         - travis_retry yarn gds -a fail_if_unsuccessful -e ${TRAVIS_BRANCH}--branch-preview -r ${TRAVIS_BRANCH}
 
+    # This is run on all PRs that ARE releases ONLY
     - stage: Auto-release
       name: 'Full Release'
       # TRUST YOUR INSTINCTS!
@@ -151,16 +207,27 @@ jobs:
       # release/6.x will not trigger an auto release, update the range "[1-5]" to "[1-6]" to start the 6.x release
       if: (branch =~ /(release)\/[1-5]/)
       before_script:
+        # https://git-scm.com/docs/git-config#Documentation/git-config.txt-username
+        # Specific a email address to use for the git commands
         - git config --global user.email ${GITHUB_EMAIL}
+        # https://git-scm.com/docs/git-config#Documentation/git-config.txt-username
+        # Specific a user name to use for the git commands
         - git config --global user.name ${GITHUB_USER}
+        # Change the URL for the remmove to GitHub Bolt
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
+        # Grab the NPM Token from the .npmrc
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+        # Checkout the current branch (this will be a 'release/X.X' branch)
         - git checkout ${TRAVIS_BRANCH}
       install:
+        # Install the dependencies, but don’t generate a yarn.lock lockfile and fail if an update is needed.
         - yarn install --frozen-lockfile
+        # Run the composer install command in the @bolt/drupal-twig-extensions, @bolt/core-php and @bolt/website folders
         - yarn run setup:php
+        # Resets the index and working tree. Any changes to tracked files in the working tree since <commit> are discarded. Any untracked files or directories in the way of writing any tracked files are simply deleted.
         - git reset --hard
       script:
+        # Run the auto-release.js file
         - yarn run release
       after_success:
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -

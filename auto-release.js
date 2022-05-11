@@ -41,6 +41,7 @@ async function getLernaPackages() {
 
 async function init() {
   if (isFullRelease) {
+    // Get semantic version type based on PR labels since last release
     const version =
       (await shell
         .exec(`./node_modules/.bin/auto version --from v${currentVersion}`, {
@@ -50,27 +51,40 @@ async function init() {
         .stdout.trim()) || 'minor';
 
     try {
+      // Return the version incremented by the release type
       const nextVersion = await semver.inc(currentVersion, version);
-
+      // Lerna's current version
       console.log('current version', currentVersion);
+      // Determine if this release is a major/minor/patch
       console.log('upcoming version type', version);
+      // Version number based on the semver.inc()
       console.log('next version', nextVersion);
 
+      // Fail if no currentVersion
+      // Fail if no nextVersion
+      // Fail if nextVersion equals currentVersion
       if (!currentVersion || !nextVersion || nextVersion === currentVersion) {
         console.error(`Unknown version to publish to!`);
         return;
       } else {
+        // Update the PHP packages based on next version value
+        // After being updated, add and commit the PHP dependencies
         await shell.exec(`
           node scripts/release/update-php-package-versions.js -v ${nextVersion}
           git add packages/twig-integration/twig-extensions-shared/composer.json packages/twig-integration/drupal-module/bolt_connect.info.yml packages/twig-integration/drupal-module/composer.json
           git commit -m "[skip travis] chore: version bump PHP-related dependencies to v${nextVersion}"
         `);
+
+        // Reset git HEAD
+        // Remove the pem (public and private key?)
+        // Publish all the NPM packages
         await shell.exec(`
           git reset --hard
           rm scripts/bolt-design-system-bot.private-key.pem
           lerna publish ${version} --yes -m "[skip travis] chore(release): release %s"
         `);
 
+        // Generate a new Git release (not a tag)
         await shell.exec(`
           ./node_modules/.bin/auto release --from v${currentVersion} --use-version v${nextVersion}
         `);
@@ -81,6 +95,7 @@ async function init() {
         const tagSpecificUrl = await normalizeUrlAlias(releaseVersion);
         const nowAliases = [];
 
+        // Populate an array with all the aliases that will be updated with the latest deployment
         nowAliases.push(branchSpecificUrl);
         nowAliases.push(tagSpecificUrl);
         nowAliases.push('www.boltdesignsystem.com');
@@ -89,6 +104,10 @@ async function init() {
         nowAliases.push('bolt-design-system.com');
         nowAliases.push(await normalizeUrlAlias('latest'));
 
+        // Create or update the "docs-site/.incache" file and create a new "bolt-tags" and "bolt-urls-to-test" objects
+        // Update the boltdesignsystem.com alias to latest tag-specific url deployment
+        // Run the build (why?)
+        // Deploy the HEAD to boltdesignsystem.com
         await shell.exec(`
           npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
           npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
@@ -99,12 +118,15 @@ async function init() {
 
         const latestUrl = await getLatestDeploy();
 
+        // Loop through nowAliases the array and push the current deployment to EACH of the URL aliases
         nowAliases.forEach(alias => {
           shell.exec(
             `npx now alias ${latestUrl} ${alias} --token=${NOW_TOKEN}`,
           );
         });
 
+        // Add and commit the newly created "docs-site/.incache" file
+        // Create and push the latest Git tag
         await shell.exec(`
           git add docs-site/.incache
           git commit -m "[skip travis] chore: update .incache file"
