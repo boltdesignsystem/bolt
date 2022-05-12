@@ -1,5 +1,6 @@
 import { html, render, unsafeCSS, unsafeHTML } from '@bolt/element';
-import { iconChevronDown } from '@bolt/elements-icon/src/icons/js/chevron-down';
+import { iconMore } from '@bolt/elements-icon/src/icons/js/more';
+import { iconClose } from '@bolt/elements-icon/src/icons/js/close';
 import '@bolt/core-v3.x/utils/optimized-resize';
 
 // @todo this JS could be shared between Navbar and Tabs, nothing Navbar-specific here
@@ -192,7 +193,12 @@ export class BoltOverflowMenu {
         >
           <span class="${baseClass}__button-text">${moreText}</span>
           <span class="${baseClass}__button-icon">
-            ${unsafeHTML(iconChevronDown())}
+            ${unsafeHTML(iconMore())}
+          </span>
+          <span
+            class="${baseClass}__button-icon ${baseClass}__button-icon--close"
+          >
+            ${unsafeHTML(iconClose())}
           </span>
         </button>
         <div class="${baseClass}__dropdown" role="menu">
