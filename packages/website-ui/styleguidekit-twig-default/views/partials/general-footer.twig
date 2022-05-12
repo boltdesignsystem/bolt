@@ -10,6 +10,8 @@
 
 <!-- Brightcove  Init-->
 <script src="https://players.brightcove.net/1900410236/O3FkeBiaDz_default/index.min.js"></script>
+<script src="https://players.brightcove.net/1900410236/h8qT2MQfn_default/index.min.js"></script>
+
 <script>
   var players = document.querySelectorAll('.c-base-video');
   // EXTERNAL CONTROLS
@@ -101,8 +103,13 @@
         this.emailSocialShare(true);
       }
       // Move the fullscreen button to the far right of the controlbar
-      var fullScreenButton = thisPlayer.controlBar.getChild('FullscreenToggle').el_;
-      thisPlayer.controlBar.el_.appendChild(fullScreenButton)
+      if(thisPlayer.controlBar.getChild('FullscreenToggle')) {
+        var fullScreenButton = thisPlayer.controlBar.getChild('FullscreenToggle').el_;
+        thisPlayer.controlBar.el_.appendChild(fullScreenButton)
+      }
+      if (this.el_.classList.contains('c-base-video--audio-only')) {
+        this.arrowNavigation();
+      }
     });
     thisPlayer.on('loadstart', function(player) {
       // OPTIONS
