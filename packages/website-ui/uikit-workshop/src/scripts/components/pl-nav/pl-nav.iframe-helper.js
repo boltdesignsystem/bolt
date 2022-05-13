@@ -28,5 +28,7 @@ Mousetrap.bind('esc', function(e) {
     // @todo: how do we want to handle exceptions here?
   }
 
-  return false;
+  // IMPORTANT: commenting this out as it prevents escape key events from returning!
+  // Not sure if this is even a part of an active PL feature, but this cannot happen.
+  // return false;
 });
