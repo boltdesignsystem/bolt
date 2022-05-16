@@ -37,9 +37,12 @@ export class BoltDialog {
     }
 
     this.isPersistent = this.el.hasAttribute('data-dialog-persistent');
-    this.handleEscape = this.handleEscape.bind(this);
+    this.onCloseCleanup = this.onCloseCleanup.bind(this);
     this.handleAnimateEnd = this.handleAnimateEnd.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
+
+    // 'cancel' event is triggered by escape keypress and skips our custom click event handlers
+    this.el.addEventListener('cancel', this.onCloseCleanup);
 
     this.setupTriggers();
     this.el.setAttribute('data-bolt-ready', '');
@@ -74,7 +77,6 @@ export class BoltDialog {
 
     if (!this.isPersistent) {
       this.el.addEventListener('click', this.handleOutsideClick);
-      document.addEventListener('keydown', this.handleEscape);
     }
 
     this.isOpen = true;
@@ -83,21 +85,24 @@ export class BoltDialog {
 
   close() {
     this.el.classList.add('c-bolt-dialog--hidden');
-    document.body.classList.remove('u-bolt-overflow-hidden');
-    this.el.addEventListener('webkitAnimationEnd', this.handleAnimateEnd);
+    this.el.addEventListener('animationend', this.handleAnimateEnd);
   }
 
   handleAnimateEnd() {
     this.el.classList.remove('c-bolt-dialog--hidden');
+    this.el.close();
+    this.onCloseCleanup();
+    this.el.removeEventListener('animationend', this.handleAnimateEnd);
+  }
+
+  onCloseCleanup() {
+    document.body.classList.add('u-bolt-overflow-hidden');
 
     if (!this.isPersistent) {
       this.el.removeEventListener('click', this.handleOutsideClick);
-      document.removeEventListener('keydown', this.handleEscape);
     }
 
     this.isOpen = false;
-    this.el.close();
-    this.el.removeEventListener('webkitAnimationEnd', this.handleAnimateEnd);
   }
 
   toggle() {
@@ -109,25 +114,7 @@ export class BoltDialog {
   }
 
   handleOutsideClick(e) {
-    if (e.target.tagName !== 'DIALOG') {
-      return;
-    }
-
-    const dialogRect = e.target.getBoundingClientRect();
-
-    const isInsideDialog =
-      dialogRect.top <= e.clientY &&
-      e.clientY <= dialogRect.top + dialogRect.height &&
-      dialogRect.left <= e.clientX &&
-      e.clientX <= dialogRect.left + dialogRect.width;
-
-    if (!isInsideDialog) {
-      this.close();
-    }
-  }
-
-  handleEscape(e) {
-    if (e.keyCode === 27) {
+    if (e.target.tagName === 'DIALOG') {
       this.close();
     }
   }
