@@ -5,8 +5,10 @@
 @import '@bolt/core-v3.x';
 
 .c-bolt-dialog {
-  --c-bolt-dialog-animation-in-settings: 500ms cubic-bezier(0.25, 0, 0.3, 1) normal;
-  --c-bolt-dialog-animation-out-settings: 500ms cubic-bezier(0.5, -0.5, 0.1, 1.5) normal;
+  --c-bolt-dialog-animation-in-settings: 500ms cubic-bezier(0.25, 0, 0.3, 1)
+    normal;
+  --c-bolt-dialog-animation-out-settings: 500ms
+    cubic-bezier(0.5, -0.5, 0.1, 1.5) normal;
 
   max-inline-size: 100%;
   max-block-size: 100%;
@@ -18,15 +20,18 @@
     animation: a-bolt-dialog-slide-in var(--c-bolt-dialog-animation-in-settings);
 
     @media (prefers-reduced-motion: reduce) {
-      animation: a-bolt-dialog-fade-in var(--c-bolt-dialog-animation-out-settings);
+      animation: a-bolt-dialog-fade-in
+        var(--c-bolt-dialog-animation-out-settings);
     }
   }
 
   &.c-bolt-dialog--hidden {
-    animation: a-bolt-dialog-minimize var(--c-bolt-dialog-animation-out-settings);
+    animation: a-bolt-dialog-minimize
+      var(--c-bolt-dialog-animation-out-settings);
 
     @media (prefers-reduced-motion: reduce) {
-      animation: a-bolt-dialog-fade-out var(--c-bolt-dialog-animation-out-settings);
+      animation: a-bolt-dialog-fade-out
+        var(--c-bolt-dialog-animation-out-settings);
     }
   }
 }

@@ -1,6 +1,6 @@
 {% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog-footer'] %}
 {% if enable_json_schema_validation %}
-    {{ validate_data_schema(schema, _self)|raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
 {# Variables #}
@@ -9,9 +9,9 @@
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-    'c-bolt-dialog__footer',
+  'c-bolt-dialog__footer',
 ] %}
 
 <div {{ attributes.addClass(classes) }}>
-    {{ content }}
+  {{ content }}
 </div>
