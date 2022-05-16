@@ -37,8 +37,17 @@
 }
 
 .c-bolt-dialog::backdrop {
-  opacity: 0.8;
-  background-color: var(--bolt-color-navy-xdark);
+  background-color: rgba(bolt-color(navy, xdark), 0.8);
+  backdrop-filter: blur(0.5rem);
+  animation: none;
+}
+
+.c-bolt-dialog[open]::backdrop {
+  animation: a-bolt-dialog-fade-in var(--c-bolt-dialog-animation-in-settings);
+}
+
+.c-bolt-dialog.c-bolt-dialog--hidden::backdrop {
+  animation: a-bolt-dialog-fade-out var(--c-bolt-dialog-animation-out-settings);
 }
 
 .c-bolt-dialog__header,
