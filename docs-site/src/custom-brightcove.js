@@ -3,17 +3,23 @@ var players = document.querySelectorAll('.c-base-video');
 // Button requires a "js-base-video-toggle" class (how the functionality will be hooked up)
 // Button requires "data-video-target" attribute (this is how the video is targeted on click)
 var externalControlButtons = document.querySelectorAll('.js-base-video-toggle');
+
+var handleExternalButtonClick = e => {
+  e.preventDefault();
+  var videoTarget = videojs.getPlayer(e.currentTarget.dataset.videoTarget);
+  var isPlaying = videoTarget.el_.classList.contains('vjs-playing');
+  if (isPlaying) {
+    videoTarget.pause();
+  } else {
+    videoTarget.play();
+  }
+};
+
 for (var eb = 0; eb < externalControlButtons.length; eb++) {
-  externalControlButtons[eb].addEventListener('click', function(e) {
-    e.preventDefault();
-    var videoTarget = videojs.getPlayer(e.currentTarget.dataset.videoTarget);
-    var isPlaying = videoTarget.el_.classList.contains('vjs-playing');
-    if (isPlaying) {
-      videoTarget.pause();
-    } else {
-      videoTarget.play();
-    }
-  });
+  externalControlButtons[eb].addEventListener(
+    'click',
+    handleExternalButtonClick,
+  );
 }
 
 var videoInit = thisPlayer => {
