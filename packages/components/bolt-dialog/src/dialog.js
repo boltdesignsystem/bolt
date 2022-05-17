@@ -99,7 +99,7 @@ export class BoltDialog {
   }
 
   onCloseCleanup() {
-    document.body.classList.add('u-bolt-overflow-hidden');
+    document.body.classList.remove('u-bolt-overflow-hidden');
 
     if (!this.isPersistent) {
       this.el.removeEventListener('click', this.handleOutsideClick);
