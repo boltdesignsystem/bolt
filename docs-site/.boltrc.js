@@ -133,6 +133,10 @@ const config = deepmerge(baseConfig, {
       to: path.join(__dirname, '../www/'),
       flatten: true,
     },
+    {
+      from: `src/custom-brightcove.js`,
+      to: path.join(__dirname, '../www/'),
+    },
   ],
   alterTwigEnv: [
     {
