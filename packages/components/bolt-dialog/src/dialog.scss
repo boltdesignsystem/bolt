@@ -82,8 +82,16 @@
 .c-bolt-dialog[open] > form {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  
-  @include bolt-mq($until: small) {
+}
+
+.c-bolt-dialog[open] > form {
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: hidden;
+}
+
+@include bolt-mq($until: small) {
+  .c-bolt-dialog[open] {
     inline-size: 100%;
     block-size: 100%;
   }
