@@ -51,6 +51,28 @@
     } only %}
   {% endset %}
 
+  {% set video_thumbnail %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/content/promos/promo-16x9-ai.jpg',
+          alt: 'Alt text',
+          loading: 'lazy',
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: image,
+      button_attributes: {
+        'data-bolt-modal-target': '#' ~ modal_id
+      },
+      video: {
+        title: 'This is a Video Title',
+        duration: '6:29',
+      }
+    } only %}
+  {% endset %}
+
   {% set share %}
     {% set share_menu %}
       {% include '@bolt-components-share/share.twig' with {
@@ -125,16 +147,6 @@
     } only %}
   {% endset %}
 
-  {% set video_image %}
-    {% include '@bolt-elements-image/image.twig' with {
-      attributes: {
-        src: '/images/content/promos/promo-16x9-ai.jpg',
-        alt: 'Alt text.',
-        loading: 'lazy',
-      }
-    } only %}
-  {% endset %}
-
   {% set external_link_image %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
@@ -181,9 +193,7 @@
 
   {% set video_teaser_props = {
     layout: 'vertical',
-    type: 'video',
-    time: '6:29',
-    signifier: video_image,
+    signifier: video_thumbnail,
     headline: {
       text: 'Video title t-bone short ribs swine biltong beef ribs capicola sausage beef',
       tag: 'h3',
