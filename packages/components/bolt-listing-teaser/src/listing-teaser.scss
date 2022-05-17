@@ -85,14 +85,6 @@
   margin-bottom: var(--bolt-spacing-y-xxsmall);
   pointer-events: none;
   grid-area: eyebrow;
-
-  .c-bolt-listing-teaser__meta {
-    > .c-bolt-listing-teaser__meta__item {
-      &:not(:last-child):after {
-        content: '\2012';
-      }
-    }
-  }
 }
 
 .c-bolt-listing-teaser__flag-heading {
@@ -285,6 +277,20 @@
     a,
     button {
       position: relative; // This raises the stacking order of the meta link above the main heading link.
+    }
+
+    .c-bolt-listing-teaser__flag-eyebrow & {
+      &:not(:last-child):after {
+        content: '';
+        display: inline-block;
+        position: relative;
+        top: 0.5px;
+        width: var(--bolt-spacing-y-xsmall);
+        height: var(--bolt-spacing-y-xsmall);
+        margin: 0 var(--bolt-spacing-x-xxsmall);
+        border-width: 1px 0 0;
+        border-style: solid;
+      }
     }
   }
 }
