@@ -1,5 +1,5 @@
 {% set description %}
-  There are currently three <code>layout</code> options, <code>vertical</code>, <code>horizontal</code>, and <code>responsive</code>. The default option is <code>vertical</code>.
+  There are currently three <code>layout</code> options, <code>vertical</code>, <code>horizontal</code>, and <code>responsive</code>. The default option is <code>vertical</code>. Each <code>layout</code> options can be presented as a <code>card</code> variant teaser or <code>transparent</code> which is a default choice.
 {% endset %}
 
 {% set notes %}
@@ -79,6 +79,61 @@
         },
         description: {
           content: 'The signifier is using a 16:9 aspect ratio image. Duis dolore labore cillum excepteur aute veniam dolore consectetur est sint exercitation sit. Dolor eiusmod officia laborum tempor. Enim eiusmod Lorem laboris aliqua dolore.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'vertical',
+        signifier: wide_image,
+        variant: 'card',
+        headline: {
+          text: 'A card variant vertical teaser',
+          link_attributes: {
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
+          }
+        },
+        description: {
+          content: 'The signifier is using a 16:9 aspect ratio image. Aliquip sint mollit irure eiusmod duis aliquip duis qui nostrud enim ea aute in enim.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'horizontal',
+        signifier: square_image,
+        variant: 'card',
+        headline: {
+          text: 'A card variant horizontal teaser',
+          link_attributes: {
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
+          }
+        },
+        description: {
+          content: 'The signifier is using a 1:1 aspect ratio image. Aliquip sint mollit irure eiusmod duis aliquip duis qui nostrud enim ea aute in enim.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-8/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'responsive',
+        gutter: 'large',
+        signifier: wide_image,
+        variant: 'card',
+        headline: {
+          text: 'A card variant responsive teaser',
+          link_attributes: {
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
+          }
+        },
+        description: {
+          content: 'The signifier is using a 16:9 aspect ratio image. Duis dolore labore cillum excepteur aute veniam dolore consectetur est sint exercitation sit. Dolor eiusmod officia laborum tempor.',
         },
       } only %}
     </div>
