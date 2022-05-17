@@ -1,0 +1,255 @@
+{% set _header_content %}
+    <h1>This is a dialog component.</h1>
+{% endset %}
+
+{% set _body_content %}
+    {% set video %}
+        <video-js
+            data-account="1900410236"
+            data-player="O3FkeBiaDz"
+            data-embed="default"
+            data-video-id="6236693947001"
+            data-media-duration
+            data-media-title
+            controls
+            class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+        content: video,
+        ratio: 'wide',
+    } only %}
+{% endset %}
+
+{% set dialog_content %}
+    {% include '@bolt-components-dialog/dialog-header.twig' with {
+        content: _header_content,
+    } only %}
+    {% include '@bolt-components-dialog/dialog-body.twig' with {
+        content: _body_content,
+    } only %}
+{% endset %}
+
+{% include '@bolt-components-dialog/dialog.twig' with {
+    content: dialog_content,
+    attributes: {
+        id: 'dialog-video-1'
+    },
+} only %}
+
+{% set modal_content %}
+    {% set video %}
+        <video-js
+        data-delayed-account='1900410236'
+        data-delayed-player='O3FkeBiaDz'
+        data-delayed-video-id='4892122320001'
+        data-video-delayed
+        data-embed='default'
+        controls
+        data-media-title
+        data-media-duration
+        class="c-base-video"></video-js>
+    {% endset %}
+
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+        content: video,
+        ratio: 'wide'
+    } only %}
+{% endset %}
+
+{% include '@bolt-components-modal/modal.twig' with {
+    content: modal_content,
+    width: 'optimal',
+    spacing: 'none',
+    theme: 'none',
+    scroll: 'overall',
+    attributes: {
+        id: 'js-bolt-modal-teaser',
+    },
+} only %}
+
+{% set like %}
+    {% set icon_heart %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'heart',
+        } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Like',
+        icon_before: icon_heart,
+        reversed_underline: true,
+        attributes: {
+        type: 'button',
+            class: 'js-bolt-like-button',
+        },
+    } only %}
+{% endset %}
+
+{% set share %}
+    {% set share_menu %}
+        {% include '@bolt-components-share/share.twig' with {
+            display: 'menu',
+            text: 'Share this content',
+            sources: [
+                {
+                name: 'facebook',
+                attributes: {
+                    href: 'https://www.facebook.com/sharer/sharer.php?u=https://google.com&amp;src=sdkpreparse'
+                }
+                },
+                {
+                name: 'twitter',
+                attributes: {
+                    href: 'https://twitter.com/intent/tweet?url=https://google.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+                }
+                },
+                {
+                name: 'linkedin',
+                attributes: {
+                    href: 'https://www.linkedin.com/shareArticle?url=https://google.com'
+                }
+                },
+                {
+                name: 'email',
+                attributes: {
+                    href: 'mailto:?&body=Sample%20Text%20--%20https%3A//mail.com'
+                }
+                }
+            ],
+            copy_to_clipboard: {
+                text_to_copy: 'https://google.com',
+            },
+        } only %}
+    {% endset %}
+    {% set share_popover_trigger %}
+        {% set icon_share %}
+            {% include '@bolt-elements-icon/icon.twig' with {
+                name: 'share',
+            } only %}
+        {% endset %}
+        {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: 'Share',
+            icon_before: icon_share,
+            reversed_underline: true,
+            attributes: {
+                type: 'button'
+            },
+        } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+        trigger: share_popover_trigger,
+        content: share_menu,
+        spacing: 'none',
+    } only %}
+{% endset %}
+
+{% set download %}
+    {% set icon_download %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'download',
+        } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Download slides',
+        icon_before: icon_download,
+        reversed_underline: true,
+        attributes: {
+            href: 'https://www.google.com/',
+        },
+    } only %}
+{% endset %}
+
+{% set video_image %}
+    {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+        src: '/images/content/promos/promo-16x9-ai.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+        }
+    } only %}
+{% endset %}
+
+{% set chip_list_content %}
+    {% include '@bolt-components-chip-list/chip-list.twig' with {
+        size: 'xsmall',
+        items: [
+        {
+            text: 'Chip 1',
+        },
+        {
+            text: 'Chip 2',
+        },
+        ],
+    } only %}
+{% endset %}
+
+{% set dialog_teaser_props = {
+    layout: 'vertical',
+    type: 'video',
+    time: '6:29',
+    signifier: video_image,
+    headline: {
+        text: 'Demo Dialog',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+            type: 'button',
+            'data-bolt-dialog-target': 'dialog-video-1',
+        },
+    },
+    description: {
+        content: 'Chicken bacon doner pancetta pork corned beef, swine jowl burgdoggen pastrami buffalo beef ribs shankle. Turducken pork porchetta shankle, salami short ribs corned beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef.',
+        show_on_hover: true,
+    },
+    chip_list: chip_list_content,
+} %}
+
+
+{% set dialog_teaser_props = dialog_teaser_props|merge({
+    like: like,
+    share: share,
+    download: download,
+    status: {
+        views: '27',
+    }
+}) %}
+
+{% set modal_teaser_props = {
+    layout: 'vertical',
+    type: 'video',
+    time: '6:29',
+    signifier: video_image,
+    headline: {
+        text: 'Demo Modal',
+        tag: 'h3',
+        size: 'large',
+        link_attributes: {
+            type: 'button',
+            'data-bolt-modal-target': '#js-bolt-modal-teaser',
+        },
+    },
+    description: {
+        content: 'Chicken bacon doner pancetta pork corned beef, swine jowl burgdoggen pastrami buffalo beef ribs shankle. Turducken pork porchetta shankle, salami short ribs corned beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef.',
+        show_on_hover: true,
+    },
+    chip_list: chip_list_content,
+} %}
+
+
+{% set modal_teaser_props = modal_teaser_props|merge({
+    like: like,
+    share: share,
+    download: download,
+    status: {
+        views: '27',
+    }
+}) %}
+
+
+<div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center">
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
+        {% include '@bolt-components-teaser/teaser.twig' with dialog_teaser_props only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium">
+        {% include '@bolt-components-teaser/teaser.twig' with modal_teaser_props only %}
+    </div>
+</div>
