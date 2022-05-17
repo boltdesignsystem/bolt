@@ -50,17 +50,18 @@ export class BoltDialog {
   }
 
   setupTriggers() {
-    if (this.el.id) {
-      const targetTriggers = document.querySelectorAll(
-        `[data-bolt-dialog-target="${this.el.id}"]`,
-      );
+    const toggleTriggers = document.querySelectorAll(
+      '[data-bolt-dialog-target]',
+    );
 
-      targetTriggers.forEach(el => {
+    toggleTriggers.forEach(el => {
+      const target = el.dataset.boltDialogTarget;
+      if (document.querySelector(target) === this.el) {
         el.addEventListener('click', () => {
           this.toggle();
         });
-      });
-    }
+      }
+    });
 
     const closeTriggers = this.el.querySelectorAll('[data-dialog-close]');
 
