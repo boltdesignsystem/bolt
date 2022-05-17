@@ -94,7 +94,7 @@ module.exports = {
     time: {
       type: 'string',
       description:
-        'Render time data (video duration or read time) for the resouce.',
+        'Render time data (video duration or read time) for the resouce. If you choose Video Thmbnail as a signifier do not use this prop since it will conflict with the Video Thumbnail`s duration prop.',
     },
     like: {
       type: 'object',
@@ -128,6 +128,12 @@ module.exports = {
           description: 'Render the view count.',
         },
       },
+    },
+    variant: {
+      type: 'string',
+      description: 'Set the style variant of the teaser.',
+      enum: ['transparent', 'card'],
+      default: 'transparent',
     },
     // @TODO: meta or meta_items reserved for author and posted date info?
   },
