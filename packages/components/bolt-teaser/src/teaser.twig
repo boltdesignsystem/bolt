@@ -13,6 +13,7 @@
   'c-bolt-teaser',
   this.data.layout.value ? 'c-bolt-teaser--' ~ this.data.layout.value,
   this.data.gutter.value ? 'c-bolt-teaser--gutter-' ~ this.data.gutter.value,
+  this.data.variant.value != 'transparent' ? 'c-bolt-teaser--variant-' ~ this.data.variant.value,
 ] %}
 
 <article {{ attributes.addClass(classes) }}>
