@@ -82,6 +82,7 @@ export class BoltDialog {
 
     this.isOpen = true;
     this.el.showModal();
+    this.el.dispatchEvent(new CustomEvent('dialog:open'));
   }
 
   close() {
@@ -94,6 +95,7 @@ export class BoltDialog {
     this.el.close();
     this.onCloseCleanup();
     this.el.removeEventListener('animationend', this.handleAnimateEnd);
+    this.el.dispatchEvent(new CustomEvent('dialog:close'));
   }
 
   onCloseCleanup() {
