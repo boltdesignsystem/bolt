@@ -78,11 +78,12 @@
 }
 
 // Content width options
-@include bolt-mq($until: small) {
-  .c-bolt-dialog[open],
-  .c-bolt-dialog[open] > form {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+.c-bolt-dialog[open],
+.c-bolt-dialog[open] > form {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  
+  @include bolt-mq($until: small) {
     inline-size: 100%;
     block-size: 100%;
   }
