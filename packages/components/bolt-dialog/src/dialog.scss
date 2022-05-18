@@ -96,16 +96,14 @@
 .c-bolt-dialog[open] > form {
   // The following is for working around a Safari bug where 100% is miscalculated.
   block-size: clamp(60vh, 100%, 100vh);
-  // @todo: stylelint does not allow new CSS units like dvb, commented out until we update stylelint.
-  // block-size: clamp(calc(60dvb), 100%, calc(100dvb));
+  block-size: clamp(calc(60dvb), 100%, calc(100dvb));
 }
 
 @include bolt-mq($until: small) {
   .c-bolt-dialog[open],
   .c-bolt-dialog[open] > form {
     block-size: 100vh;
-    // @todo: stylelint does not allow new CSS units like dvb, commented out until we update stylelint.
-    // block-size: calc(100dvb);
+    block-size: calc(100dvb);
   }
 }
 
