@@ -13,8 +13,9 @@
   max-inline-size: 100%;
   max-block-size: 100%;
   padding: 0;
-  border: 0;
+  border: 1px solid var(--m-bolt-border);
   border-radius: bolt-border-radius(small);
+  box-shadow: 0 0 var(--bolt-spacing-x-xsmall) var(--m-bolt-border);
 
   &[open] {
     animation: a-bolt-dialog-slide-in var(--c-bolt-dialog-animation-in-settings);
@@ -53,6 +54,11 @@
 .c-bolt-dialog__header,
 .c-bolt-dialog__footer {
   position: sticky;
+  right: 0;
+  left: 0;
+  z-index: 1; // Raise stacking context above body.
+  color: var(--m-bolt-headline);
+  background-color: var(--m-bolt-bg);
 }
 
 .c-bolt-dialog__header {
@@ -60,6 +66,7 @@
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: var(--bolt-spacing-x-medium);
+  top: 0;
   border-block-end: 1px solid var(--m-bolt-border);
 }
 
@@ -68,6 +75,8 @@
 }
 
 .c-bolt-dialog__footer {
+  bottom: 0;
+  margin-block-start: auto;
   border-block-start: 1px solid var(--m-bolt-border);
 }
 
@@ -80,20 +89,23 @@
 // Content width options
 .c-bolt-dialog[open],
 .c-bolt-dialog[open] > form {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .c-bolt-dialog[open] > form {
-  inline-size: 100%;
-  block-size: 100%;
-  overflow: hidden;
+  // The following is for working around a Safari bug where 100% is miscalculated.
+  block-size: clamp(60vh, 100%, 100vh);
+  // @todo: stylelint does not allow new CSS units like dvb, commented out until we update stylelint.
+  // block-size: clamp(calc(60dvb), 100%, calc(100dvb));
 }
 
 @include bolt-mq($until: small) {
-  .c-bolt-dialog[open] {
-    inline-size: 100%;
-    block-size: 100%;
+  .c-bolt-dialog[open],
+  .c-bolt-dialog[open] > form {
+    block-size: 100vh;
+    // @todo: stylelint does not allow new CSS units like dvb, commented out until we update stylelint.
+    // block-size: calc(100dvb);
   }
 }
 
