@@ -133,7 +133,7 @@ module.exports = {
       title: 'DEPRECATED',
       type: 'string',
       description:
-        'Instead of <code>type: video</code>, use Video Thumbnail component as a signifier to open a video modal.',
+        'This prop is deprecated, please stop using it. Instead of <code>type: video</code>, use Video Thumbnail component as a signifier to open a video modal.',
       enum: ['pdf', 'video', 'external-link'],
     },
     // @TODO: meta or meta_items reserved for author and posted date info?
