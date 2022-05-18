@@ -37,11 +37,5 @@ module.exports = {
       enum: ['xlight', 'light', 'dark', 'xdark'],
       default: 'xlight',
     },
-    scroll_behavior: {
-      type: 'string',
-      description: 'Controls the scrolling area.',
-      default: 'container',
-      enum: ['container', 'overall'],
-    },
   },
 };
