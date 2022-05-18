@@ -3,6 +3,9 @@ const headlineSchema = require('@bolt/components-headline/headline.schema');
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Teaser',
+  not: {
+    required: ['type'],
+  },
   type: 'object',
   properties: {
     attributes: {
