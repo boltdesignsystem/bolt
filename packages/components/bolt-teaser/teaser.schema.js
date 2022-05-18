@@ -23,12 +23,6 @@ module.exports = {
       enum: ['small', 'medium', 'large'],
       default: 'medium',
     },
-    type: {
-      type: 'string',
-      description:
-        'Set the type of teaser. A play button will display with the video teaser signifier.',
-      enum: ['pdf', 'video', 'external-link'],
-    },
     signifier: {
       type: 'object',
       description:
@@ -94,7 +88,7 @@ module.exports = {
     time: {
       type: 'string',
       description:
-        'Render time data (video duration or read time) for the resouce. If you choose Video Thmbnail as a signifier do not use this prop since it will conflict with the Video Thumbnail`s duration prop.',
+        'Use for PDF/articles teasers for estimating reading time. If you choose Video Thumbnail as a signifier do not use this prop since it will conflict with the Video Thumbnail`s <code>duration</code> prop.',
     },
     like: {
       type: 'object',
@@ -134,6 +128,13 @@ module.exports = {
       description: 'Set the style variant of the teaser.',
       enum: ['transparent', 'card'],
       default: 'transparent',
+    },
+    type: {
+      title: 'DEPRECATED',
+      type: 'string',
+      description:
+        'Instead of <code>type: video</code>, use Video Thumbnail component as a signifier to open a video modal.',
+      enum: ['pdf', 'video', 'external-link'],
     },
     // @TODO: meta or meta_items reserved for author and posted date info?
   },
