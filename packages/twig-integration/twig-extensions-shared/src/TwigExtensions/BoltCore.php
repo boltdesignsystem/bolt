@@ -11,6 +11,7 @@ use Twig\Extension\AbstractExtension;
 class BoltCore extends AbstractExtension implements InitRuntimeInterface, GlobalsInterface {
 
   public $data = [];
+  public $isDebug;
   public $version;
 
   function __construct() {
@@ -27,6 +28,7 @@ class BoltCore extends AbstractExtension implements InitRuntimeInterface, Global
       $fullManifestPath = TwigTools\Utils::resolveTwigPath($env, '@bolt-data/full-manifest.bolt.json');
       $dataDir = dirname($fullManifestPath);
       $this->data = Bolt\Utils::buildBoltData($dataDir);
+      $this->isDebug = $env->isDebug();
     } catch (\Exception $e) {
 
     }
@@ -37,7 +39,7 @@ class BoltCore extends AbstractExtension implements InitRuntimeInterface, Global
       'bolt' => [
         'data' => $this->data,
       ],
-      'enable_json_schema_validation' => true,
+      'enable_json_schema_validation' => $this->isDebug,
     ];
   }
 
