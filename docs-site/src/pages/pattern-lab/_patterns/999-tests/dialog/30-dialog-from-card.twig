@@ -193,7 +193,7 @@
         size: 'large',
         link_attributes: {
             type: 'button',
-            'data-bolt-dialog-target': 'dialog-video-1',
+            'data-bolt-dialog-target': '#dialog-video-1',
         },
     },
     description: {
@@ -201,17 +201,13 @@
         show_on_hover: true,
     },
     chip_list: chip_list_content,
-} %}
-
-
-{% set dialog_teaser_props = dialog_teaser_props|merge({
     like: like,
     share: share,
     download: download,
     status: {
         views: '27',
     }
-}) %}
+} %}
 
 {% set modal_teaser_props = {
     layout: 'vertical',
@@ -232,17 +228,13 @@
         show_on_hover: true,
     },
     chip_list: chip_list_content,
-} %}
-
-
-{% set modal_teaser_props = modal_teaser_props|merge({
     like: like,
     share: share,
     download: download,
     status: {
         views: '27',
     }
-}) %}
+} %}
 
 
 <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center">
