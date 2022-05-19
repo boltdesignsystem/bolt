@@ -16,12 +16,42 @@
   this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : '',
 ] %}
 
+{% set _icon_close %}
+{% include '@bolt-components-icon/icon.twig' with {
+  name: 'close',
+} only %}
+{% endset %}
+
+{% set _close_button %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Close'|t,
+    icon_only: _icon_close,
+    hierarchy: 'tertiary',
+    border_radius: 'full',
+    size: 'small',
+    attributes: {
+      type: 'button',
+      'data-dialog-close': '',
+      'aria-label': 'Close dialog'|t,
+    }
+  } only %}
+{% endset %}
+
 <dialog
   {{ attributes.addClass(classes) }}
   {{ this.data.persistent.value ? 'data-dialog-persistent' : '' }}
   >
 
+  {% if not this.data.persistent.value %}
+    {# close button #}
+    <div class="c-bolt-dialog__close">
+      {{ _close_button }}
+    </div>
+  {% endif %}
+
   {% if content %}
-    {{ content }}
+    <div class="c-bolt-dialog__content">
+      {{ content }}
+    </div>
   {% endif %}
 </dialog>
