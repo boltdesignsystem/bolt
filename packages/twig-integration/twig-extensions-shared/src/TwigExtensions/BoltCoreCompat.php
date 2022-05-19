@@ -13,6 +13,7 @@ class BoltCoreCompat extends Twig_Extension implements Twig_ExtensionInterface {
   public function getFunctions() {
     return [
       Bolt\TwigFunctions::create_attribute(),
+      Bolt\TwigFunctions::pattern_template(),
       Bolt\TwigFunctions::link(),
     ];
   }
