@@ -4,18 +4,23 @@
   <bolt-wrapper bolt-object="" full="true" size="xxlarge">
     <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
 
-
-      {% include "@bolt-components-background/background.twig" with {
-          opacity: "heavy",
-          fill: "gradient",
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          background: true,
+          attributes: {
+            src: '/images/backgrounds/pw19-hp-bg2.jpg',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-background/background.twig' with {
+          opacity: 'heavy',
+          fill: 'gradient',
           focalPoint: {
-            vertical: "center",
-            horizontal: "center"
+            vertical: 'center',
+            horizontal: 'center'
           },
           contentItems: [
-            {
-              src: "/images/backgrounds/pw19-hp-bg2.jpg"
-            }
+            image
           ]
       } only %}
       <div class="c-bolt-band__content">
