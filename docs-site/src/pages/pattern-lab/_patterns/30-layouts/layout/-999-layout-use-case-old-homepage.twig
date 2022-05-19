@@ -3,12 +3,18 @@
 {% endset %}
 
 <bolt-layout template="halves@from-small" valign-items="center" gutter="large" row-gutter="large" padding-top="large" padding-bottom="large" class="t-bolt-dark">
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/heros/hero-background-dark-shapes-1.jpg'
+      },
+    } only %}
+  {% endset %}
   {% include '@bolt-components-background/background.twig' with {
     overlay: 'disabled',
     contentItems: [
-      {
-        src: '/images/heros/hero-background-dark-shapes-1.jpg'
-      }
+      image
     ]
   } only %}
   <bolt-layout-item>
@@ -72,12 +78,18 @@
 </bolt-layout>
 
 <bolt-layout template="thirds@from-small" valign-items="start" gutter="large" padding-top="xlarge" padding-bottom="xlarge" valign-items="center" class="t-bolt-dark">
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/heros/hero-background-dark-shapes-2.jpg'
+      },
+    } only %}
+  {% endset %}
   {% include '@bolt-components-background/background.twig' with {
     overlay: 'disabled',
     contentItems: [
-      {
-        src: '/images/heros/hero-background-dark-shapes-2.jpg'
-      }
+      image
     ]
   } only %}
   <bolt-layout-item>

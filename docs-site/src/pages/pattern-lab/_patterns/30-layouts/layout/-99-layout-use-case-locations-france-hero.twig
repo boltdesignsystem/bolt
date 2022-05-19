@@ -76,6 +76,14 @@
   {% endset %}
 
   {% set background %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: '/images/heros/live-assets/ces-paris-team.jpg'
+        },
+      } only %}
+    {% endset %}
     {% include '@bolt-components-background/background.twig' with {
       opacity: 'heavy',
       fill_color: 'navy',
@@ -84,9 +92,7 @@
         horizontal: 'center'
       },
       contentItems: [
-        {
-          src: '/images/heros/live-assets/ces-paris-team.jpg'
-        }
+        image
       ]
     } only %}
   {% endset %}
@@ -160,6 +166,14 @@
 {% endset %}
 
 {% set background %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/heros/live-assets/ces-paris-team.jpg'
+      },
+    } only %}
+  {% endset %}
   {% include '@bolt-components-background/background.twig' with {
     opacity: 'heavy',
     fill_color: 'navy',
@@ -168,9 +182,7 @@
       horizontal: 'center'
     },
     contentItems: [
-      {
-        src: '/images/heros/live-assets/ces-paris-team.jpg'
-      }
+      image
     ]
   } only %}
 {% endset %}

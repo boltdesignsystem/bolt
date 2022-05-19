@@ -1,5 +1,17 @@
 {% set demo %}
   <bolt-layout padding-top="xlarge" padding-bottom="xlarge" class="t-bolt-dark">
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          alt: 'Alt text.',
+          loading: 'lazy',
+          src: '/images/content/backgrounds/background-tall-4.jpg',
+          width: 3840,
+          height: 2160,
+        },
+      } only %}
+    {% endset %}
     {% include '@bolt-components-background/background.twig' with {
       opacity: 'heavy',
       fill: 'gradient',
@@ -8,9 +20,7 @@
         horizontal: 'center'
       },
       contentItems: [
-        {
-          src: '/images/content/backgrounds/background-tall-4.jpg'
-        }
+        image
       ]
     } only %}
     <bolt-layout-item>
@@ -23,6 +33,15 @@
 {% verbatim %}
 // Set a background
 {% set background %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/content/backgrounds/background-tall-4.jpg',
+        ...
+      },
+    } only %}
+  {% endset %}
   {% include '@bolt-components-background/background.twig' with {
     opacity: 'heavy',
     fill: 'gradient',
@@ -31,9 +50,7 @@
       horizontal: 'center'
     },
     contentItems: [
-      {
-        src: '/images/content/backgrounds/background-tall-4.jpg'
-      }
+      image
     ]
   } only %}
 {% endset %}
