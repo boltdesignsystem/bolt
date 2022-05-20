@@ -15,45 +15,45 @@
   }
 } only %}
 
-{% set _header_content %}
-<h1>This is a dialog component.</h1>
+{% set header_content %}
+  <h1>This is a dialog component.</h1>
 {% endset %}
 
-{% set _body_content %}
-<p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+{% set body_content %}
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
 {% endset %}
 
-{% set _footer_content %}
-{% include '@bolt-elements-button/button.twig' with {
-  content: 'Go to pega.com',
-  attributes: {
-    href: 'https://www.pega.com',
-  }
-} only %}
-{% include '@bolt-elements-button/button.twig' with {
-  content: 'Close the dialog',
-  hierarchy: 'secondary',
-  attributes: {
-    type: 'button',
-    'data-dialog-close': '',
-  }
-} only %}
+{% set footer_content %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Go to pega.com',
+    attributes: {
+      href: 'https://www.pega.com',
+    }
+  } only %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Close the dialog',
+    hierarchy: 'secondary',
+    attributes: {
+      type: 'button',
+      'data-dialog-close': '',
+    }
+  } only %}
 {% endset %}
 
-{% set _content %}
-{% include '@bolt-components-dialog/dialog-header.twig' with {
-  content: _header_content,
-} only %}
-{% include '@bolt-components-dialog/dialog-body.twig' with {
-  content: _body_content,
-} only %}
-{% include '@bolt-components-dialog/dialog-footer.twig' with {
-  content: _footer_content,
-} only %}
+{% set content %}
+  {% include '@bolt-components-dialog/dialog-header.twig' with {
+    content: header_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: body_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-footer.twig' with {
+    content: footer_content,
+  } only %}
 {% endset %}
 
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: _content,
+  content: content,
   persistent: true,
   attributes: {
     id: 'dialog-persistent-1'
@@ -63,7 +63,7 @@
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: _content,
+  content: content,
   persistent: true,
   attributes: {
     id: 'dialog-persistent-1'
