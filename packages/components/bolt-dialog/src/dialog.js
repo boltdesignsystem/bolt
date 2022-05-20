@@ -76,7 +76,9 @@ export class BoltDialog {
     this.el.classList.remove('c-bolt-dialog--hidden');
     document.body.classList.add('u-bolt-overflow-hidden');
 
-    if (!this.isPersistent) {
+    if (this.isPersistent) {
+      document.addEventListener('keydown', this.handleEscape);
+    } else {
       this.el.addEventListener('click', this.handleOutsideClick);
     }
 
@@ -101,7 +103,9 @@ export class BoltDialog {
     // Important: This method is called both on 'close' and 'cancel' (when user presses escape).
     document.body.classList.remove('u-bolt-overflow-hidden');
 
-    if (!this.isPersistent) {
+    if (this.isPersistent) {
+      document.removeEventListener('keydown', this.handleEscape);
+    } else {
       this.el.removeEventListener('click', this.handleOutsideClick);
     }
 
@@ -120,6 +124,12 @@ export class BoltDialog {
   handleOutsideClick(e) {
     if (e.target.tagName === 'DIALOG') {
       this.close();
+    }
+  }
+
+  handleEscape(e) {
+    if (e.keyCode === 27) {
+      e.preventDefault();
     }
   }
 }
