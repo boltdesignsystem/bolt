@@ -12,7 +12,6 @@
 
   max-inline-size: 100%;
   max-block-size: 100%;
-  overflow: visible; // need this to show close button
   padding: 0;
   border: 1px solid var(--m-bolt-border);
   border-radius: bolt-border-radius(small);
@@ -52,21 +51,6 @@
   animation: a-bolt-dialog-fade-out var(--c-bolt-dialog-animation-out-settings);
 }
 
-.c-bolt-dialog__close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2; // raise above header
-
-  @include bolt-mq(small) {
-    transform: translate3d(0, calc(-100% - var(--bolt-spacing-x-small)), 0);
-
-    .c-bolt-icon {
-      color: var(--bolt-color-white);
-    }
-  }
-}
-
 .c-bolt-dialog__header,
 .c-bolt-dialog__footer {
   position: sticky;
@@ -78,6 +62,10 @@
 }
 
 .c-bolt-dialog__header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--bolt-spacing-x-medium);
   top: 0;
   border-block-end: 1px solid var(--m-bolt-border);
 }
@@ -92,13 +80,17 @@
   border-block-start: 1px solid var(--m-bolt-border);
 }
 
-// Content width options
+.c-bolt-dialog[data-dialog-persistent] {
+  .c-bolt-dialog__header-close {
+    display: none;
+  }
+}
 
-.c-bolt-dialog[open] .c-bolt-dialog__content,
-.c-bolt-dialog[open] .c-bolt-dialog__content > form {
+// Content width options
+.c-bolt-dialog[open],
+.c-bolt-dialog[open] > form {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .c-bolt-dialog[open] > form {
@@ -152,17 +144,9 @@
       padding-block: var(--bolt-spacing-y-#{$size-name});
     }
 
-    @include bolt-mq($until: small) {
-      .c-bolt-dialog__header {
-        padding-inline-end: calc(
-          var(--bolt-spacing-x-#{$size-name}) * 2 + 1.75rem
-        ); // avoid header content running into close button
-      }
-
-      .c-bolt-dialog__close {
-        top: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
-        right: calc(var(--bolt-spacing-y-#{$size-name}));
-      }
+    .c-bolt-dialog__header-close {
+      margin-block: calc(var(--bolt-spacing-y-#{$size-name}) / 4 * -1);
+      margin-inline-end: calc(var(--bolt-spacing-x-#{$size-name}) / 1.5 * -1);
     }
   }
 }
