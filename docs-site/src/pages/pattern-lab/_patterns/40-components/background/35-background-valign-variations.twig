@@ -1,9 +1,21 @@
 <p>
-  <mark>Note: <code>valign</code> is an Image component prop, not a Background component prop. Set <code>valign</code> on images passed in via <code>content_items</code> to control the vertical alignment.</mark>
+<mark>Note: <code>alignment</code> of an image can be achieved by <a href="{{ link['elements-image-use-case-background-fit-and-position'] }}" class="e-bolt-text-link">passing inline styles to the Image element's attributes objects</a>. Then you can pass the Image element to the Background component via <code>content_items</code>.</mark>
 </p>
 
-{% for image_valign in ['center', 'top', 'bottom', '25%'] %}
-  <p>valign: {{ image_valign }}</p>
+{% for valign in ['center', 'top', 'bottom', '25%'] %}
+  <p>valign: {{ valign }}</p>
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/content/backgrounds/background-tall-2.jpg',
+        srcset: '/images/content/backgrounds/background-tall-2-50.jpg 50w, /images/content/backgrounds/background-tall-2-100.jpg 100w, /images/content/backgrounds/background-tall-2-200.jpg 200w, /images/content/backgrounds/background-tall-2-320.jpg 320w, /images/content/backgrounds/background-tall-2-480.jpg 480w, /images/content/backgrounds/background-tall-2-640.jpg 640w, /images/content/backgrounds/background-tall-2-800.jpg 800w, /images/content/backgrounds/background-tall-2-1024.jpg 1024w, /images/content/backgrounds/background-tall-2-1366.jpg 1366w, /images/content/backgrounds/background-tall-2-1536.jpg 1536w, /images/content/backgrounds/background-tall-2-1920.jpg 1920w, /images/content/backgrounds/background-tall-2-2560.jpg 2560w, /images/content/backgrounds/background-tall-2-2880.jpg 2880w, /images/content/backgrounds/background-tall-2.jpg 4320w',
+        width: 4320,
+        height: 2880,
+        style: '--e-bolt-image-position: center ' ~ valign ~';',
+      },
+    } only %}
+  {% endset %}
   {% include './_00-background-band-demo.twig' with {
     background: {
       fill: 'color',
@@ -13,13 +25,7 @@
         horizontal: 'center'
       },
       content_items: [
-        {
-          src: '/images/content/backgrounds/background-tall-2.jpg',
-          srcset: '/images/content/backgrounds/background-tall-2-50.jpg 50w, /images/content/backgrounds/background-tall-2-100.jpg 100w, /images/content/backgrounds/background-tall-2-200.jpg 200w, /images/content/backgrounds/background-tall-2-320.jpg 320w, /images/content/backgrounds/background-tall-2-480.jpg 480w, /images/content/backgrounds/background-tall-2-640.jpg 640w, /images/content/backgrounds/background-tall-2-800.jpg 800w, /images/content/backgrounds/background-tall-2-1024.jpg 1024w, /images/content/backgrounds/background-tall-2-1366.jpg 1366w, /images/content/backgrounds/background-tall-2-1536.jpg 1536w, /images/content/backgrounds/background-tall-2-1920.jpg 1920w, /images/content/backgrounds/background-tall-2-2560.jpg 2560w, /images/content/backgrounds/background-tall-2-2880.jpg 2880w, /images/content/backgrounds/background-tall-2.jpg 4320w',
-          width: 4320,
-          height: 2880,
-          valign: image_valign
-        }
+        image
       ]
     }
   } only %}
