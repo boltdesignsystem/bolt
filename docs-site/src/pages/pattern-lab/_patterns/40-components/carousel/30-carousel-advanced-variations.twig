@@ -165,6 +165,14 @@
       </div>
     {% endset %}
     {% set band_slide_1 %}
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          background: true,
+          attributes: {
+            src: '/images/backgrounds/pw19-hp-bg2.jpg',
+          },
+        } only %}
+      {% endset %}
       {% include '@bolt-components-band/band.twig' with {
         size: 'large',
         full_bleed: false,
@@ -176,10 +184,7 @@
             horizontal: 'center'
           },
           content_items: [
-            {
-              src: '/images/backgrounds/pw19-hp-bg2.jpg',
-              lazyload: false
-            },
+            image
           ]
         },
         content: content_image
@@ -215,6 +220,14 @@
       </div>
     {% endset %}
     {% set band_slide_2 %}
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          background: true,
+          attributes: {
+            src: '/images/backgrounds/pw19-hero-banner.png',
+          },
+        } only %}
+      {% endset %}
       {% include '@bolt-components-band/band.twig' with {
         size: 'large',
         full_bleed: false,
@@ -226,10 +239,7 @@
             horizontal: 'center'
           },
           content_items: [
-            {
-              src: '/images/backgrounds/pw19-hero-banner.png',
-              lazyload: false
-            },
+            image
           ]
         },
         content: content_image
