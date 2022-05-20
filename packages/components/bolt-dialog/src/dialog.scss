@@ -61,11 +61,14 @@
   background-color: var(--m-bolt-bg);
 }
 
+.c-bolt-dialog__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2; // Raise close button above content.
+}
+
 .c-bolt-dialog__header {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: var(--bolt-spacing-x-medium);
   top: 0;
   border-block-end: 1px solid var(--m-bolt-border);
 }
@@ -143,11 +146,18 @@
     .c-bolt-dialog__body {
       padding-block: var(--bolt-spacing-y-#{$size-name});
     }
+  }
+}
 
-    .c-bolt-dialog__header-close {
-      margin-block: calc(var(--bolt-spacing-y-#{$size-name}) / 4 * -1);
-      margin-inline-end: calc(var(--bolt-spacing-x-#{$size-name}) / 1.5 * -1);
-    }
+.c-bolt-dialog__spacing-none {
+  .c-bolt-dialog__close {
+    transform: translateY(-20%);
+  }
+}
+
+.c-bolt-dialog__spacing-small {
+  .c-bolt-dialog__close {
+    transform: translateY(-5%);
   }
 }
 
