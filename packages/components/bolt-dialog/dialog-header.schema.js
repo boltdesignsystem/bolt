@@ -10,7 +10,7 @@ module.exports = {
     },
     content: {
       type: 'any',
-      description: '',
+      description: 'Main content of the dialog header.',
     },
   },
 };

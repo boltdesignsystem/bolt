@@ -15,25 +15,25 @@ module.exports = {
     },
     width: {
       type: 'string',
-      description: 'Controls the width of the dialog container.',
+      description: 'Controls the width of the dialog.',
       enum: ['full', 'regular', 'optimal', 'auto'],
       default: 'optimal',
     },
     spacing: {
       type: 'string',
-      description: 'Controls the spacing around the dialog container.',
+      description: 'Controls the spacing around the dialog.',
       enum: ['none', 'small', 'medium', 'large'],
       default: 'medium',
     },
     persistent: {
       type: 'boolean',
       description:
-        'Enables the modal to be persistent. This will eliminate ways to close the modal and it is up to the author to provide a custom link to close the modal or redirect to another page within the modal content.',
+        'Enables the dialog to be persistent. This will eliminate ways to close the dialog and it is up to the author to provide a custom link to close the dialog or redirect to another page within the dialog content.',
       default: false,
     },
     theme: {
       type: 'string',
-      description: 'Controls the color theme of the dialog container.',
+      description: 'Controls the color theme of the dialog.',
       enum: ['xlight', 'light', 'dark', 'xdark'],
       default: 'xlight',
     },
