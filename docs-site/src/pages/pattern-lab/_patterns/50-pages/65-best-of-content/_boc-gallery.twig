@@ -358,16 +358,22 @@
     </div>
   {% endset %}
 
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/backgrounds/teal-shapes.png',
+        loading: 'lazy',
+      },
+    } only %}
+  {% endset %}
   {% include '@bolt-components-band/band.twig' with {
     content: band_content,
     theme: 'light',
     background: {
       opacity: 'none',
       content_items: [
-        {
-          src: '/images/backgrounds/teal-shapes.png',
-          lazyload: true,
-        },
+        image
       ]
     },
   } only %}
