@@ -12,30 +12,8 @@
   'c-bolt-dialog__header',
 ] %}
 
-{% set _icon_close %}
-{% include '@bolt-components-icon/icon.twig' with {
-  name: 'close',
-} only %}
-{% endset %}
-
-{% set _close_button %}
-{% include '@bolt-elements-button/button.twig' with {
-  content: 'Close'|t,
-  icon_only: _icon_close,
-  hierarchy: 'transparent',
-  attributes: {
-    type: 'button',
-    'data-dialog-close': '',
-    'aria-label': 'Close dialog'|t,
-  }
-} only %}
-{% endset %}
-
 <header {{ attributes.addClass(classes) }}>
   <div class="c-bolt-dialog__header-content">
     {{ content }}
   </div>
-
-  {# close button #}
-  <div class="c-bolt-dialog__header-close">{{ _close_button }}</div>
 </header>
