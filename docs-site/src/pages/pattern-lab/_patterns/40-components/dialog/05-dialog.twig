@@ -48,13 +48,25 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% endverbatim %}{% endset %}
+{% set _content %}
+{% include '@bolt-components-dialog/dialog-header.twig' with {
+  content: _header_content,
+} only %}
+{% include '@bolt-components-dialog/dialog-body.twig' with {
+  content: _body_content,
+} only %}
+{% include '@bolt-components-dialog/dialog-footer.twig' with {
+  content: _footer_content,
+} only %}
+{% endset %}
 
-{# {% set html_markup %}{% verbatim %}
-<div class="c-bolt-dialog">
-  This is a dialog component.
-</div>
-{% endverbatim %}{% endset %} #}
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: _content,
+  attributes: {
+    id: 'dialog-1'
+  },
+} only %}
+{% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Basic Dialog',

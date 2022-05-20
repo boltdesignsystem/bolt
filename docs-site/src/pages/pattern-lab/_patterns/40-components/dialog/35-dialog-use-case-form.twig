@@ -1,7 +1,9 @@
 {% set description %}
+  A form dialog is best suited for presenting a paywall, signup/login, or content restrictions.
 {% endset %}
 
 {% set notes %}
+  You will need to wrap the content partials with a <code>form</code>, as seen in the demo.
 {% endset %}
 
 {% set demo %}
@@ -14,14 +16,14 @@
 } only %}
 
 {% set _header_content %}
-{% include '@bolt-components-headline/headline.twig' with {
-  text: 'Get the Report',
-  size: 'xlarge'
-} only %}
-{% include '@bolt-components-headline/text.twig' with {
-  text: '(all fields are required)',
-  size: 'small'
-} only %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    text: 'Get the Report',
+    size: 'xlarge'
+  } only %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: '(all fields are required)',
+    size: 'small'
+  } only %}
 {% endset %}
 
 {% set _body_content %}
@@ -211,7 +213,6 @@
     label: label,
     children: input,
   } only %}
-
 {% endset %}
 
 {% set _footer_content %}
@@ -248,10 +249,36 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
+{% set _body_content %}
+  {# form elements #}
+{% endset %}
+
+{% set _content %}
+<form class="c-bolt-form">
+  {% include '@bolt-components-dialog/dialog-header.twig' with {
+    content: _header_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: _body_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-footer.twig' with {
+    content: _footer_content,
+  } only %}
+</form>
+{% endset %}
+
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: _content,
+  width: 'auto',
+  attributes: {
+    id: 'dialog-form-1'
+  },
+} only %}
+{% endset %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Dialog Form',
+  title: 'Dialog Form Usage',
   description: description,
   notes: notes,
   demo: demo,

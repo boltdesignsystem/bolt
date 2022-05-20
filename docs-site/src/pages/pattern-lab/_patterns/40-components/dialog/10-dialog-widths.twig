@@ -8,7 +8,7 @@
   <bolt-ol>
     <bolt-li><code>Full</code>: This is taking up the full width of the screen minus the gutters (about 2rem on left and right). </bolt-li>
     <bolt-li><code>Regular</code>: This is 10 out 12 columns wide, about 80% of the screen width. </bolt-li>
-    <bolt-li><code>Optimal</code>: This is about 75 characters wide, close to optimal reading length. </bolt-li>
+    <bolt-li><code>Optimal</code>: This is about 75 characters wide, close to optimal reading length (This is the default setting).</bolt-li>
     <bolt-li><code>Auto</code>: This adjusts to the width of the modal content. In most cases, the user must define a max-width in absolute value (do not use relative value such as %) on the modal content to get the desired results. Recommended for advanced usage. </bolt-li>
   </bolt-ol>
 {% endset %}
@@ -63,8 +63,11 @@
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialog/dialog.twig' with {
+  content: _content,
   width: 'full',
-  ...
+  attributes: {
+    id: 'dialog-width-1'
+  },
 } only %}
 {% endverbatim %}{% endset %}
 

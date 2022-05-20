@@ -1,10 +1,7 @@
 {% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog'] %}
 
 {% set description %}
-  The modal container's coloring theme can be adjusted by the <code>theme</code> prop. The default is set to <code>xlight</code>.
-{% endset %}
-
-{% set notes %}
+  The dialogs's coloring theme can be adjusted by the <code>theme</code> prop. The default is set to <code>xlight</code>.
 {% endset %}
 
 {% set demo %}
@@ -57,13 +54,16 @@
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialog/dialog.twig' with {
+  content: _content,
   theme: 'dark',
-  ...
+  attributes: {
+    id: 'dialog-theme-1'
+  },
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Dialog Spacing',
+  title: 'Dialog Theme',
   description: description,
   notes: notes,
   demo: demo,

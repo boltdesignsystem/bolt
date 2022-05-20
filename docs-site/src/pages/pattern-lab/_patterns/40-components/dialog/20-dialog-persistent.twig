@@ -1,6 +1,5 @@
 {% set description %}
   A persistent dialog is useful when creating subscription based content. To create one use the  <code>persistent</code> property and make sure to add an element in the content to either redirect users or close the dialog some other way. When a dialog is persistent the default close button is not shown. The only way to close the dialog is triggering the close element.<br /><br />
-  Activate the dialog to see more instructions on setting up the twig template.
 {% endset %}
 
 {% set notes %}
@@ -64,16 +63,13 @@
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialog/dialog.twig' with {
+  content: _content,
   persistent: true,
-  ...
+  attributes: {
+    id: 'dialog-persistent-1'
+  },
 } only %}
 {% endverbatim %}{% endset %}
-
-{# {% set html_markup %}{% verbatim %}
-<div class="c-bolt-dialog">
-  This is a dialog component.
-</div>
-{% endverbatim %}{% endset %} #}
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Persistent Dialog',

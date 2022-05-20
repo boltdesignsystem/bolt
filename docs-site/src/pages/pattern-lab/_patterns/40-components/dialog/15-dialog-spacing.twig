@@ -57,8 +57,11 @@
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialog/dialog.twig' with {
+  content: _content,
   spacing: 'large',
-  ...
+  attributes: {
+    id: 'dialog-spacing-1'
+  },
 } only %}
 {% endverbatim %}{% endset %}
 

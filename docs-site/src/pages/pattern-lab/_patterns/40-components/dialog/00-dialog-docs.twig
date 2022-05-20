@@ -1,6 +1,17 @@
 {% set usage %}{% verbatim %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Demo Dialog',
+  attributes: {
+    type: 'button',
+    'data-bolt-dialog-target': '#dialog-1',
+  }
+} only %}
+
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: 'This is a dialog component.'
+  content: _content,
+  attributes: {
+    id: 'dialog-1'
+  },
 } only %}
 {% endverbatim %}{% endset %}
 
