@@ -15,7 +15,7 @@
   }
 } only %}
 
-{% set _header_content %}
+{% set header_content %}
   {% include '@bolt-components-headline/headline.twig' with {
     text: 'Get the Report',
     size: 'xlarge'
@@ -26,7 +26,7 @@
   } only %}
 {% endset %}
 
-{% set _body_content %}
+{% set body_content %}
   {% set label %}
     {% include '@bolt-components-form/form-label.twig' with {
       title: 'First Name',
@@ -215,7 +215,7 @@
   } only %}
 {% endset %}
 
-{% set _footer_content %}
+{% set footer_content %}
     {% include '@bolt-components-form/form-button.twig' with {
     text: 'Download Now',
     width: 'full',
@@ -225,22 +225,22 @@
   } only %}
 {% endset %}
 
-{% set _content %}
+{% set content %}
 <form class="c-bolt-form">
   {% include '@bolt-components-dialog/dialog-header.twig' with {
-    content: _header_content,
+    content: header_content,
   } only %}
   {% include '@bolt-components-dialog/dialog-body.twig' with {
-    content: _body_content,
+    content: body_content,
   } only %}
   {% include '@bolt-components-dialog/dialog-footer.twig' with {
-    content: _footer_content,
+    content: footer_content,
   } only %}
 </form>
 {% endset %}
 
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: _content,
+  content: content,
   width: 'auto',
   attributes: {
     id: 'dialog-form-1'
@@ -249,26 +249,26 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% set _body_content %}
+{% set body_content %}
   {# form elements #}
 {% endset %}
 
 {% set _content %}
 <form class="c-bolt-form">
   {% include '@bolt-components-dialog/dialog-header.twig' with {
-    content: _header_content,
+    content: header_content,
   } only %}
   {% include '@bolt-components-dialog/dialog-body.twig' with {
-    content: _body_content,
+    content: body_content,
   } only %}
   {% include '@bolt-components-dialog/dialog-footer.twig' with {
-    content: _footer_content,
+    content: footer_content,
   } only %}
 </form>
 {% endset %}
 
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: _content,
+  content: content,
   width: 'auto',
   attributes: {
     id: 'dialog-form-1'

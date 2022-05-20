@@ -25,32 +25,32 @@
       }
     } only %}
 
-    {% set _header_content %}
+    {% set header_content %}
     <h1>This is a dialog component.</h1>
     {% endset %}
 
-    {% set _body_content %}
+    {% set body_content %}
     <p>This is a dialog component.</p>
     {% endset %}
 
-    {% set _footer_content %}
+    {% set footer_content %}
     <button type="button" class="e-bolt-button">Button</button>
     {% endset %}
 
-    {% set _content %}
-    {% include '@bolt-components-dialog/dialog-header.twig' with {
-      content: _header_content,
-    } only %}
-    {% include '@bolt-components-dialog/dialog-body.twig' with {
-      content: _body_content,
-    } only %}
-    {% include '@bolt-components-dialog/dialog-footer.twig' with {
-      content: _footer_content,
-    } only %}
+    {% set content %}
+      {% include '@bolt-components-dialog/dialog-header.twig' with {
+        content: header_content,
+      } only %}
+      {% include '@bolt-components-dialog/dialog-body.twig' with {
+        content: body_content,
+      } only %}
+      {% include '@bolt-components-dialog/dialog-footer.twig' with {
+        content: footer_content,
+      } only %}
     {% endset %}
 
     {% include '@bolt-components-dialog/dialog.twig' with {
-      content: _content,
+      content: content,
       width: width,
       attributes: {
         id: 'dialog-width-' ~ loop.index0
@@ -63,7 +63,7 @@
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: _content,
+  content: content,
   width: 'full',
   attributes: {
     id: 'dialog-width-1'

@@ -35,66 +35,66 @@
   }
 } only %}
 
-{% set _header_content %}
-<h1>This is a dialog component.</h1>
+{% set header_content %}
+  <h1>This is a dialog component.</h1>
 {% endset %}
 
-{% set _body_content_1 %}
-{% include '@bolt-elements-image/image.twig' with {
-  attributes: {
-    alt: 'Alt text.',
-    src: 'https://via.placeholder.com/400x225',
-    width: 400,
-    height: 225,
-  },
-} only %}
+{% set body_content_1 %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/400x225',
+      width: 400,
+      height: 225,
+    },
+  } only %}
 {% endset %}
 
-{% set _body_content_2 %}
-{% set video %}
-  <video-js
-    data-account="1900410236"
-    data-player="O3FkeBiaDz"
-    data-embed="default"
-    data-video-id="6236693947001"
-    data-media-duration
-    data-media-title
-    controls
-    class="c-base-video"></video-js>
-{% endset %}
-{% include '@bolt-elements-ratio/ratio.twig' with {
-  content: video,
-  ratio: 'wide',
-} only %}
-{% endset %}
-
-{% set _content_1 %}
-{% include '@bolt-components-dialog/dialog-header.twig' with {
-  content: _header_content,
-} only %}
-{% include '@bolt-components-dialog/dialog-body.twig' with {
-  content: _body_content_1,
-} only %}
+{% set body_content_2 %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="6236693947001"
+      data-media-duration
+      data-media-title
+      controls
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video,
+    ratio: 'wide',
+  } only %}
 {% endset %}
 
-{% set _content_2 %}
-{% include '@bolt-components-dialog/dialog-header.twig' with {
-  content: _header_content,
-} only %}
-{% include '@bolt-components-dialog/dialog-body.twig' with {
-  content: _body_content_2,
-} only %}
+{% set content_1 %}
+  {% include '@bolt-components-dialog/dialog-header.twig' with {
+    content: header_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: body_content_1,
+  } only %}
+{% endset %}
+
+{% set content_2 %}
+  {% include '@bolt-components-dialog/dialog-header.twig' with {
+    content: header_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: body_content_2,
+  } only %}
 {% endset %}
 
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: _content_1,
+  content: content_1,
   width: 'auto',
   attributes: {
     id: 'dialog-media-1'
   },
 } only %}
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: _content_2,
+  content: content_2,
   width: 'full',
   attributes: {
     id: 'dialog-media-2'
@@ -103,28 +103,28 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% set _body_content %}
-{% include '@bolt-elements-image/image.twig' with {
-  attributes: {
-    alt: 'Alt text.',
-    src: 'https://via.placeholder.com/400x225',
-    width: 400,
-    height: 225,
-  },
-} only %}
+{% set body_content %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Alt text.',
+      src: 'https://via.placeholder.com/400x225',
+      width: 400,
+      height: 225,
+    },
+  } only %}
 {% endset %}
 
-{% set _content %}
-{% include '@bolt-components-dialog/dialog-header.twig' with {
-  content: _header_content,
-} only %}
-{% include '@bolt-components-dialog/dialog-body.twig' with {
-  content: _body_content,
-} only %}
+{% set content %}
+  {% include '@bolt-components-dialog/dialog-header.twig' with {
+    content: header_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: body_content,
+  } only %}
 {% endset %}
 
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: _content,
+  content: content,
   width: 'auto',
   attributes: {
     id: 'dialog-media-1'
