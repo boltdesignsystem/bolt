@@ -83,7 +83,14 @@
       icon_after: icon_chevron_right ,
     } only %}
   {% endset %}
-
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/backgrounds/pw19-hp-bg2.jpg',
+      },
+    } only %}
+  {% endset %}
   {% embed '@pl/_band--feature.twig' with {
     size: 'large',
     theme: 'dark',
@@ -98,10 +105,7 @@
         vertical: 'center'
       },
       content_items: [
-        {
-          src: '/images/backgrounds/pw19-hp-bg2.jpg',
-          lazyload: false
-        }
+        image
       ]
     }
   } only %}{% endembed %}

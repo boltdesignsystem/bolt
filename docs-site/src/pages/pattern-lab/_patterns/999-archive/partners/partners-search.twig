@@ -17,6 +17,14 @@
 {% endset %}
 
 {% block main_content %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/placeholders/landscape-16x9-mountains.jpeg'
+      },
+    } only %}
+  {% endset %}
   {% embed '@pl/_band--feature.twig' with {
     teaserPosition: 'left',
     teaserWidth: '2/3',
@@ -30,11 +38,9 @@
         vertical: 'center',
         horizontal: 'right'
       },
-      content_items: [{
-        src: '/images/placeholders/landscape-16x9-mountains.jpeg'
-      }]
-
-
+      content_items: [
+        image
+      ]
     },
     primaryTeaser: headings_set,
   } only %}{% endembed %}

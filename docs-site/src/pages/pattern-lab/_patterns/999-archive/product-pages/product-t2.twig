@@ -25,6 +25,16 @@
 {% endset %}
 
 {% block main_content %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/content/backgrounds/background-tall-3.jpg',
+        sizes: '100vw',
+        style: '--e-bolt-image-position: center 30%;',
+      },
+    } only %}
+  {% endset %}
   {% embed '@pl/_band--feature.twig' with {
     teaserPosition: 'left',
     teaserWidth: '2/3',
@@ -38,13 +48,9 @@
         vertical: 'top',
         horizontal: 'right'
       },
-      content_items: [{
-        src: '/images/content/backgrounds/background-tall-3.jpg',
-        lazyload: false,
-        placeholder_color: 'hsl(10, 14%, 8%)',
-        valign: '30%',
-        sizes: '100vw'
-      }]
+      content_items: [
+        image
+      ]
     },
     primaryTeaser: headings_set,
   } only %}

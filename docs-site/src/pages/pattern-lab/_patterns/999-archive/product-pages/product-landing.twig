@@ -29,6 +29,16 @@
 {% endset %}
 
 {% block main_content %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/content/backgrounds/background-short-1.jpg',
+        alt: 'Background banner of conference keynote',
+        loading: 'lazy'
+      },
+    } only %}
+  {% endset %}
   {% embed '@pl/_band--feature.twig' with {
     teaserPosition: 'left',
     teaserWidth: '2/3',
@@ -42,11 +52,9 @@
         vertical: 'center',
         horizontal: 'right'
       },
-      content_items: [{
-        src: '/images/content/backgrounds/background-short-1.jpg',
-        alt: 'Background banner of conference keynote',
-        lazyload: true
-      }]
+      content_items: [
+        image
+      ]
     },
     primaryTeaser: text_set,
   } only %}{% endembed %}

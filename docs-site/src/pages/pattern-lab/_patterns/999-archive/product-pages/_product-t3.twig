@@ -25,6 +25,14 @@
 {% endset %}
 
 {% block main_content %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/content/backgrounds/background-tall-3.jpg'
+      },
+    } only %}
+  {% endset %}
   {% embed '@pl/_band--feature.twig' with {
     teaserPosition: 'left',
     teaserWidth: '2/3',
@@ -38,9 +46,9 @@
         vertical: 'top',
         horizontal: 'right'
       },
-      content_items: [{
-        src: '/images/content/backgrounds/background-tall-3.jpg'
-      }]
+      content_items: [
+        image
+      ]
     },
     primaryTeaser: headings_set,
   } only %}
