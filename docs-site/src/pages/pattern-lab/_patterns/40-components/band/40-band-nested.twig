@@ -17,6 +17,16 @@
   } only %}
 {% endset %}
 
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/content/backgrounds/background-short-1.jpg',
+      width: 2320,
+      height: 800
+    },
+  } only %}
+{% endset %}
 
 {% include '@bolt-components-band/band.twig' with {
   theme: 'xdark',
@@ -28,12 +38,7 @@
       horizontal: 'center'
     },
     content_items: [
-      {
-        src: '/images/content/backgrounds/background-short-1.jpg',
-        lazyload: false,
-        width: 2320,
-        height: 800
-      },
+      image
     ]
   },
   content: parent_band_content,
