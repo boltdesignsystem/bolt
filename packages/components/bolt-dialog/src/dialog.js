@@ -95,16 +95,17 @@ export class BoltDialog {
     this.el.close();
     this.onCloseCleanup();
     this.el.removeEventListener('animationend', this.handleAnimateEnd);
-    this.el.dispatchEvent(new CustomEvent('dialog:close'));
   }
 
   onCloseCleanup() {
+    // Important: This method is called both on 'close' and 'cancel' (when user presses escape).
     document.body.classList.remove('u-bolt-overflow-hidden');
 
     if (!this.isPersistent) {
       this.el.removeEventListener('click', this.handleOutsideClick);
     }
 
+    this.el.dispatchEvent(new CustomEvent('dialog:close'));
     this.isOpen = false;
   }
 
