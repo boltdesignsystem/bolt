@@ -1,31 +1,36 @@
+{% include '@pl/00-dialog-prerelease-docs.twig' %}
+
 {% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog'] %}
 
 {% set description %}
-  The dialogs's coloring theme can be adjusted by the <code>theme</code> prop. The default is set to <code>xlight</code>.
+  The dialog container's spacing can be adjusted by the <code>spacing</code> prop. The default is set to <code>medium</code>.
+{% endset %}
+
+{% set notes %}
 {% endset %}
 
 {% set demo %}
 <bolt-list display="inline" spacing="small">
-{% for theme in schema.properties.theme.enum %}
+{% for spacing in schema.properties.spacing.enum %}
   <bolt-list-item>
     {% include '@bolt-elements-button/button.twig' with {
-      content: '"' ~ theme ~ '" Theme',
+      content: spacing|title ~ ' Spacing',
       attributes: {
         type: 'button',
-        'data-bolt-dialog-target': '#dialog-theme-' ~ loop.index0,
+        'data-bolt-dialog-target': '#dialog-spacing-' ~ loop.index0,
       }
     } only %}
 
     {% set header_content %}
-      <h1>This is a dialog component.</h1>
+    <h1>This is a dialog component.</h1>
     {% endset %}
 
     {% set body_content %}
-      <p>This is a dialog component.</p>
+    <p>This is a dialog component.</p>
     {% endset %}
 
     {% set footer_content %}
-      <button type="button" class="e-bolt-button">Button</button>
+    <button type="button" class="e-bolt-button">Button</button>
     {% endset %}
 
     {% set content %}
@@ -42,9 +47,9 @@
 
     {% include '@bolt-components-dialog/dialog.twig' with {
       content: content,
-      theme: theme,
+      spacing: spacing,
       attributes: {
-        id: 'dialog-theme-' ~ loop.index0
+        id: 'dialog-spacing-' ~ loop.index0
       },
     } only %}
   </bolt-list-item>
@@ -55,15 +60,15 @@
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialog/dialog.twig' with {
   content: content,
-  theme: 'dark',
+  spacing: 'large',
   attributes: {
-    id: 'dialog-theme-1'
+    id: 'dialog-spacing-1'
   },
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Dialog Theme',
+  title: 'Dialog Spacing',
   description: description,
   notes: notes,
   demo: demo,
