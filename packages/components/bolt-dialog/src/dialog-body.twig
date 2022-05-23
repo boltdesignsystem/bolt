@@ -12,8 +12,6 @@
   'c-bolt-dialog__body',
 ] %}
 
-<div {{ attributes.addClass(classes) }}>
-  <article>
-    {{ content }}
-  </article>
-</div>
+<article {{ attributes.addClass(classes) }}>
+  {{ content }}
+</article>
