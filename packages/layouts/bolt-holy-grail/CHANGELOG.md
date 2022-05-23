@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0](https://github.com/boltdesignsystem/bolt/tree/master/packages/layouts/bolt-holy-grail/compare/v5.3.1...v5.4.0) (2022-04-08)
+
+**Note:** Version bump only for package @bolt/layouts-holy-grail
+
+
+
+
+
 # [5.2.0](https://github.com/boltdesignsystem/bolt/tree/master/packages/layouts/bolt-holy-grail/compare/v5.1.1...v5.2.0) (2022-01-25)
 
 **Note:** Version bump only for package @bolt/layouts-holy-grail
