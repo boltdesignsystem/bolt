@@ -1,0 +1,79 @@
+{% include '@pl/00-dialog-prerelease-docs.twig' %}
+
+{% set description %}
+  A dialog can be used to display interactive content over a webpage. The element is generally hidden on page load and becomes visible after interaction with a trigger. Triggers are typically a button or link element with the <code>data-bolt-dialog-target</code> attribute set to a valid CSS selector, for example <code>#dialog-1</code>.
+{% endset %}
+
+{% set notes %}
+  This is a replacement for the <a href="{{ link['viewall-components-modal'] }}" class="e-bolt-text-link">Modal component</a>.
+{% endset %}
+
+{% set demo %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Demo Dialog',
+  attributes: {
+    type: 'button',
+    'data-bolt-dialog-target': '#dialog-1',
+  }
+} only %}
+
+{% set header_content %}
+  <h1>This is a dialog component.</h1>
+{% endset %}
+
+{% set body_content %}
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+{% endset %}
+
+{% set footer_content %}
+<button type="button" class="e-bolt-button">Button</button>
+{% endset %}
+
+{% set content %}
+  {% include '@bolt-components-dialog/dialog-header.twig' with {
+    content: header_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: body_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-footer.twig' with {
+    content: footer_content,
+  } only %}
+  {% endset %}
+
+  {% include '@bolt-components-dialog/dialog.twig' with {
+    content: content,
+    attributes: {
+      id: 'dialog-1'
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set content %}
+  {% include '@bolt-components-dialog/dialog-header.twig' with {
+    content: header_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: body_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-footer.twig' with {
+    content: footer_content,
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: content,
+  attributes: {
+    id: 'dialog-1'
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Dialog',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

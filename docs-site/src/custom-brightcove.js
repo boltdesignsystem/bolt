@@ -1,3 +1,8 @@
+// Dev Notes
+// 1. <bolt-modal> will soon be deprecated. Use <dialog class="c-bolt-dialog"> instead.
+//    Once <bolt-modal> is removed, update "modal" references to "dialog" to avoid confusion.
+//    Also, rename "show" => "open", "hide" => "close".
+
 var players = document.querySelectorAll('.c-base-video');
 // EXTERNAL CONTROLS
 // Button requires a "js-base-video-toggle" class (how the functionality will be hooked up)
@@ -164,13 +169,15 @@ players.forEach(function(player) {
     // However, there are cases where that's overkill, like when there's only one or two
     // such videos on a page and the video isn't in a place where 'is_delayed' can be easily/reliably
     // added (such as in an advanced modal).
-    const modal = player.closest('bolt-modal');
+    const modal = player.closest('bolt-modal') || player.closest('dialog'); // [1]
+    const handleModalHide = e => {
+      if (myPlayer) {
+        myPlayer.pause();
+      }
+    };
     if (modal) {
-      modal.addEventListener('modal:hide', e => {
-        if (myPlayer) {
-          myPlayer.pause();
-        }
-      });
+      modal.addEventListener('modal:hide', handleModalHide); // [1]
+      modal.addEventListener('dialog:close', handleModalHide);
     }
   } else {
     // Find all videos that have the "data-video-modal" data attribute
@@ -178,12 +185,12 @@ players.forEach(function(player) {
       'video-js[data-video-delayed]',
     );
     videoModals.forEach(video => {
-      // Find the closest bolt-modal for each of the modal videos
-      const modal = video.closest('bolt-modal');
+      // Find the closest dialog for each of the modal videos
+      const modal = video.closest('bolt-modal') || video.closest('dialog'); // [1]
       if (modal) {
         let myPlayer;
-        // Target the modal's "modal:show" event (as defined in 'packages/components/bolt-modal/src/modal.js')
-        modal.addEventListener('modal:show', e => {
+
+        const handleModalShow = e => {
           if (video.hasAttribute('data-video-delayed')) {
             // Using the temporary data attribute ("data-modal..." attributes), create the Brightcove atttributes required for init
             video.setAttribute('data-account', video.dataset.delayedAccount);
@@ -202,14 +209,22 @@ players.forEach(function(player) {
           ) {
             myPlayer.play();
           }
-        });
-        // Target the modal's "modal:hide" event (as defined in "packages/components/bolt-modal/src/modal.js")
-        modal.addEventListener('modal:hide', e => {
+        };
+
+        const handleModalHide = e => {
           if (myPlayer) {
             // Pause the video automatically
             myPlayer.pause();
           }
-        });
+        };
+
+        // Target the modal's "modal:show" event (as defined in 'packages/components/bolt-modal/src/modal.js')
+        modal.addEventListener('modal:show', handleModalShow); // [1]
+        modal.addEventListener('modal:hide', handleModalHide); // [1]
+
+        // Target the dialog's "dialog:open" event (as defined in 'packages/components/bolt-dialog/src/dialog.js')
+        modal.addEventListener('dialog:open', handleModalShow);
+        modal.addEventListener('dialog:close', handleModalHide);
       }
     });
   }
