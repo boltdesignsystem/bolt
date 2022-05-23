@@ -104,4 +104,4 @@
     patternLabFoot is not defined ? 'c-bds-layout' : '',
     patternLabFoot is not defined ? ('c-bds-layout--' ~ urlChunks | length >= 2 ? urlChunks|first : 'c-bds-layout--parent') : '',
   ] %}
-<body class="{{ bodyClasses|join(' ') }}">
+<body class="{{ bodyClasses|join(' ') }}" id="top">

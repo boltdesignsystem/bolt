@@ -34,6 +34,16 @@ module.exports = {
       description:
         'A valid image srcset value with different cuts of the image for different breakpoints',
     },
+    image_height: {
+      type: 'integer',
+      description:
+        'Height of the main image in pixels.  This prop is required if "image" is used',
+    },
+    image_width: {
+      type: 'integer',
+      description:
+        'Width of the main image in pixels.  This prop is required if "image" is used.',
+    },
     imageAlign: {
       type: 'string',
       enum: ['left', 'center', 'right'],
@@ -48,7 +58,6 @@ module.exports = {
     },
     imageMinWidth: {
       description: 'Customizes the min width of the Hero Image',
-      default: 'none',
       type: 'string',
     },
     imageMaxWidth: {

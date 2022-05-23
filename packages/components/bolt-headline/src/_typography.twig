@@ -4,6 +4,16 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
+{# DEPRECATED.  Use the property `number_text` instead of `numberText`. #}
+{% if numberText %}
+  {% set number_text = numberText %}
+{% endif %}
+
+{# DEPRECATED.  Use the property `number_color` instead of `numberColor`. #}
+{% if numberColor %}
+  {% set number_color = numberColor %}
+{% endif %}
+
 {% set types = ['headline', 'subheadline', 'eyebrow', 'text'] %} {# Pre-defined types #}
 {% set tags = schema.properties.tag.enum %}
 {% set weights = schema.properties.weight.enum %}
@@ -68,7 +78,7 @@
 
 {% set classes = [
   baseClass,
-  numberText ? baseClass ~ '--' ~ 'bulleted' : '',
+  number_text ? baseClass ~ '--' ~ 'bulleted' : '',
   quoted ? baseClass ~ '--' ~ 'quoted' : '',
   weight in weights ? baseClass ~ '--' ~ weight : '',
   align in alignments and align != null ? baseClass ~ '--' ~ align : '',
@@ -98,10 +108,10 @@
 {% set hasIcon = iconBefore or iconAfter ? true : false %}
 
 <{{ tag }} {{ attributes.addClass(classes) }}>{% apply spaceless %}
-  {% if numberText %}
+  {% if number_text %}
     <span class="c-bolt-headline__bullet c-bolt-headline__bullet--size-{{ numberSize }}">
-      <span class="c-bolt-headline__bullet-inner {{ numberColor ? 'c-bolt-headline__bullet-inner--' ~ numberColor : ''}}">
-        <span class="c-bolt-headline__bullet-text">{{ numberText }}</span>
+      <span class="c-bolt-headline__bullet-inner {{ number_color ? 'c-bolt-headline__bullet-inner--' ~ number_color : ''}}">
+        <span class="c-bolt-headline__bullet-text">{{ number_text }}</span>
       </span>
     </span>
   {% endif %}

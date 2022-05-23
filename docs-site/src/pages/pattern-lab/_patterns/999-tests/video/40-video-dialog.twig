@@ -1,0 +1,153 @@
+{% set main_content %}
+  {% set modal_content %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="4892122320001"
+        data-social-url="https://google.com"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  <h2>Video in Dialog without Delayed Loading</h2>
+
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Play the video",
+    attributes: {
+      type: 'button',
+      "data-bolt-dialog-target": ".js-bolt-dialog--demo",
+    }
+  } only %}
+
+  {% include "@bolt-components-dialog/dialog.twig" with {
+    content: modal_content,
+    width: "optimal",
+    spacing: "none",
+    attributes: {
+      class: "js-bolt-dialog--demo",
+    },
+  } only %}
+
+  {% set modal_content_1 %}
+    {% set video_1 %}
+      <video-js
+        data-delayed-account="1900410236"
+        data-delayed-player="O3FkeBiaDz"
+        data-embed="default"
+        data-delayed-video-id="4892122320001"
+        data-video-delayed
+        controls
+        class="c-base-video vjs-controls-disabled"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video_1,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  <h2>Video in Dialog with Delayed Loading</h2>
+
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Play the video",
+    attributes: {
+      type: 'button',
+      "data-bolt-dialog-target": ".js-bolt-dialog--demo-1",
+    }
+  } only %}
+
+  {% include "@bolt-components-dialog/dialog.twig" with {
+    content: modal_content_1,
+    width: "optimal",
+    spacing: "none",
+    attributes: {
+      class: "js-bolt-dialog--demo-1",
+    },
+  } only %}
+
+  {% set modal_content_2 %}
+    {% set video_2 %}
+      <video-js
+        data-delayed-account="1900410236"
+        data-delayed-player="O3FkeBiaDz"
+        data-embed="default"
+        data-delayed-video-id="973396455001"
+        data-video-delayed
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video_2,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  <h2>Video in Dialog with Autoplay</h2>
+
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Play the video",
+    attributes: {
+      type: 'button',
+      "data-bolt-dialog-target": ".js-bolt-dialog--demo-2",
+    }
+  } only %}
+
+  {% include "@bolt-components-dialog/dialog.twig" with {
+    content: modal_content_2,
+    width: "optimal",
+    spacing: "none",
+    attributes: {
+      class: "js-bolt-dialog--demo-2",
+    },
+  } only %}
+
+  {% set modal_content_3 %}
+    {% set video_3 %}
+      <video-js
+        data-delayed-account="1900410236"
+        data-delayed-player="O3FkeBiaDz"
+        data-embed="default"
+        data-delayed-video-id="973396455001"
+        data-video-delayed
+        data-video-delayed-no-autoplay
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video_3,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  <h2>Video in Dialog without Autoplay</h2>
+
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Play the video",
+    attributes: {
+      type: 'button',
+      "data-bolt-dialog-target": ".js-bolt-dialog--demo-3",
+    }
+  } only %}
+
+  {% include "@bolt-components-dialog/dialog.twig" with {
+    content: modal_content_3,
+    width: "optimal",
+    spacing: "none",
+    attributes: {
+      class: "js-bolt-dialog--demo-3",
+    },
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}
