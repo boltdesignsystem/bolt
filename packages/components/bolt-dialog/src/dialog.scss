@@ -46,12 +46,11 @@
   animation: none;
 }
 
-:where(.c-bolt-dialog[open]::backdrop) {
-  // :where() uses zero specificity, making attribute styling easier to work with.
+.c-bolt-dialog[open]::backdrop {
   animation: a-bolt-dialog-fade-in var(--c-bolt-dialog-animation-in-settings);
 }
 
-.c-bolt-dialog--hidden::backdrop {
+.c-bolt-dialog.c-bolt-dialog--hidden::backdrop {
   animation: a-bolt-dialog-fade-out var(--c-bolt-dialog-animation-out-settings);
 }
 
