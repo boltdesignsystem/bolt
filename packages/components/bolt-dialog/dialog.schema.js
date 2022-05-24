@@ -31,11 +31,5 @@ module.exports = {
         'Enables the dialog to be persistent. This will eliminate ways to close the dialog and it is up to the author to provide a custom link to close the dialog or redirect to another page within the dialog content.',
       default: false,
     },
-    theme: {
-      type: 'string',
-      description: 'Controls the color theme of the dialog.',
-      enum: ['xlight', 'light', 'dark', 'xdark'],
-      default: 'xlight',
-    },
   },
 };
