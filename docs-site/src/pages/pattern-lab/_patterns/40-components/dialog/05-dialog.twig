@@ -1,48 +1,63 @@
-{% include '@pl/00-dialog-prerelease-docs.twig' %}
-
 {% set description %}
-  A dialog can be used to display interactive content over a webpage. The element is generally hidden on page load and becomes visible after interaction with a trigger. Triggers are typically a button or link element with the <code>data-bolt-dialog-target</code> attribute set to a valid CSS selector, for example <code>#dialog-1</code>.
+  A dialog can be used to display interactive content over a webpage. The element is generally hidden on page load and becomes visible after interaction with a trigger. Triggers are typically a <a href="{{ link['viewall-elements-button'] }}" class="e-bolt-text-link">Button element</a> or <a href="{{ link['viewall-elements-text-link'] }}" class="e-bolt-text-link">Text Link element</a>.
 {% endset %}
 
 {% set notes %}
-  This is a replacement for the <a href="{{ link['viewall-components-modal'] }}" class="e-bolt-text-link">Modal component</a>.
+  <bolt-ol>
+    <bolt-li>This is a replacement for the <a href="{{ link['viewall-components-modal'] }}" class="e-bolt-text-link">Modal component</a>.</bolt-li>
+    <bolt-li>The trigger must be a semantic <code>&lt;button&gt;</code>.</bolt-li>
+    <bolt-li>To relate a trigger to a specific dialog, add the <code>data-bolt-dialog-target</code> attribute to the trigger and set the value to the <code>&lt;dialog&gt;</code>&rsquo;s unique <code>id</code> or <code>class</code> name (eg. <code>#dialog-1</code>).</bolt-li>
+    <bolt-li>
+      There are 3 content areas within a dialog: header, body, and footer. Header and footer are optional, only use them when you need sticky header and footer. Use body for regular dialog content. Each area comes with its own template:
+      <bolt-ul>
+        <bolt-li><code>dialog-header.twig</code></bolt-li>
+        <bolt-li><code>dialog-body.twig</code></bolt-li>
+        <bolt-li><code>dialog-footer.twig</code></bolt-li>
+      </bolt-ul>
+    </bolt-li>
+    <bolt-li>Reference the <a href="{{ link['viewall-components-dialog'] }}?selected-tab=schema" class="e-bolt-text-link">Dialog schema</a> for all options.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
-{% include '@bolt-elements-button/button.twig' with {
-  content: 'Demo Dialog',
-  attributes: {
-    type: 'button',
-    'data-bolt-dialog-target': '#dialog-1',
-  }
-} only %}
-
-{% set header_content %}
-  <h1>This is a dialog component.</h1>
-{% endset %}
-
-{% set body_content %}
-  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
-{% endset %}
-
-{% set footer_content %}
-<button type="button" class="e-bolt-button">Button</button>
-{% endset %}
-
-{% set content %}
-  {% include '@bolt-components-dialog/dialog-header.twig' with {
-    content: header_content,
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Open dialog',
+    attributes: {
+      type: 'button',
+      'data-bolt-dialog-target': '#dialog-1',
+    }
   } only %}
-  {% include '@bolt-components-dialog/dialog-body.twig' with {
-    content: body_content,
-  } only %}
-  {% include '@bolt-components-dialog/dialog-footer.twig' with {
-    content: footer_content,
-  } only %}
+
+  {% set header_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'This is a dialog',
+      tag: 'h1',
+    } only %}
+  {% endset %}
+
+  {% set footer_content %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This button is in the footer',
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  {% endset %}
+
+  {% set dialog_content %}
+    {% include '@bolt-components-dialog/dialog-header.twig' with {
+      content: header_content,
+    } only %}
+    {% include '@bolt-components-dialog/dialog-body.twig' with {
+      content: 'Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.',
+    } only %}
+    {% include '@bolt-components-dialog/dialog-footer.twig' with {
+      content: footer_content,
+    } only %}
   {% endset %}
 
   {% include '@bolt-components-dialog/dialog.twig' with {
-    content: content,
+    content: dialog_content,
     attributes: {
       id: 'dialog-1'
     },
@@ -50,7 +65,17 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% set content %}
+{# Render a trigger button #}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Open dialog',
+  attributes: {
+    type: 'button',
+    'data-bolt-dialog-target': '#dialog-1',
+  }
+} only %}
+
+{# Render the related dialog #}
+{% set dialog_content %}
   {% include '@bolt-components-dialog/dialog-header.twig' with {
     content: header_content,
   } only %}
@@ -61,9 +86,8 @@
     content: footer_content,
   } only %}
 {% endset %}
-
 {% include '@bolt-components-dialog/dialog.twig' with {
-  content: content,
+  content: dialog_content,
   attributes: {
     id: 'dialog-1'
   },

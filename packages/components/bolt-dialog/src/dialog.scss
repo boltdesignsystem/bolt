@@ -9,13 +9,15 @@
     normal;
   --c-bolt-dialog-animation-out-settings: 500ms
     cubic-bezier(0.5, -0.5, 0.1, 1.5) normal;
-
-  max-inline-size: 100%;
-  max-block-size: 100%;
   padding: 0;
+  color: var(--m-bolt-text);
   border: 0;
   border-radius: bolt-border-radius(small);
   box-shadow: 0 0 var(--bolt-spacing-x-xsmall) var(--m-bolt-border);
+  background-color: var(--m-bolt-bg);
+
+  max-inline-size: 100%;
+  max-block-size: 100%;
 }
 
 :where(.c-bolt-dialog[open]) {
@@ -117,7 +119,7 @@
   .c-bolt-dialog[open],
   .c-bolt-dialog__grid {
     block-size: 100vh;
-    block-size: calc(100dvb);
+    block-size: 100dvb;
   }
 }
 

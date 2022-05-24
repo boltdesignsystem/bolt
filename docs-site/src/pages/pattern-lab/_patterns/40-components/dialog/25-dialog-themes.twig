@@ -1,65 +1,85 @@
-{% include '@pl/00-dialog-prerelease-docs.twig' %}
-
-{% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog'] %}
+{% set themes = [
+  "white",
+  "black",
+  "gray-xlight",
+  "navy-dark",
+  "navy",
+  "navy-light",
+  "teal",
+  "yellow",
+  "orange",
+  "pink",
+  "wine",
+  "berry",
+  "violet",
+] %}
 
 {% set description %}
-  The dialogs's coloring theme can be adjusted by the <code>theme</code> prop. The default is set to <code>xlight</code>.
+  A dialog can apply its own color theme that is independent of the page.
+{% endset %}
+
+{% set notes %}
+  See the <a href="{{ link['visual-styles-theming-system'] }}" class="e-bolt-text-link">Theming System</a> page for all color themes.
 {% endset %}
 
 {% set demo %}
-<bolt-list display="inline" spacing="small">
-{% for theme in schema.properties.theme.enum %}
-  <bolt-list-item>
-    {% include '@bolt-elements-button/button.twig' with {
-      content: '"' ~ theme ~ '" Theme',
-      attributes: {
-        type: 'button',
-        'data-bolt-dialog-target': '#dialog-theme-' ~ loop.index0,
-      }
-    } only %}
+  <bolt-list display="inline" spacing="small">
+    {% for theme in themes %}
+      <bolt-list-item>
+        {% include '@bolt-elements-button/button.twig' with {
+          content: theme|title,
+          attributes: {
+            type: 'button',
+            'data-bolt-dialog-target': '#dialog-theme-' ~ loop.index0,
+          }
+        } only %}
 
-    {% set header_content %}
-      <h1>This is a dialog component.</h1>
-    {% endset %}
+        {% set header_content %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'This is a dialog',
+            tag: 'h1',
+          } only %}
+        {% endset %}
 
-    {% set body_content %}
-      <p>This is a dialog component.</p>
-    {% endset %}
+        {% set footer_content %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'This button is in the footer',
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
 
-    {% set footer_content %}
-      <button type="button" class="e-bolt-button">Button</button>
-    {% endset %}
+        {% set content %}
+          {% include '@bolt-components-dialog/dialog-header.twig' with {
+            content: header_content,
+          } only %}
+          {% include '@bolt-components-dialog/dialog-body.twig' with {
+            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque repellendus facere optio error quia animi nulla excepturi quaerat fugiat quam labore necessitatibus architecto praesentium inventore adipisci, maxime natus ut eius.',
+          } only %}
+          {% include '@bolt-components-dialog/dialog-footer.twig' with {
+            content: footer_content,
+          } only %}
+        {% endset %}
 
-    {% set content %}
-      {% include '@bolt-components-dialog/dialog-header.twig' with {
-        content: header_content,
-      } only %}
-      {% include '@bolt-components-dialog/dialog-body.twig' with {
-        content: body_content,
-      } only %}
-      {% include '@bolt-components-dialog/dialog-footer.twig' with {
-        content: footer_content,
-      } only %}
-    {% endset %}
-
-    {% include '@bolt-components-dialog/dialog.twig' with {
-      content: content,
-      theme: theme,
-      attributes: {
-        id: 'dialog-theme-' ~ loop.index0
-      },
-    } only %}
-  </bolt-list-item>
-{% endfor %}
-</bolt-list>
+        {% include '@bolt-components-dialog/dialog.twig' with {
+          content: content,
+          attributes: {
+            id: 'dialog-theme-' ~ loop.index0,
+            class: 't-bolt-' ~ theme,
+          },
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-components-dialog/dialog.twig' with {
   content: content,
-  theme: 'dark',
   attributes: {
-    id: 'dialog-theme-1'
+    class: 't-bolt-navy',
+    id: 'dialog-theme-1',
   },
 } only %}
 {% endverbatim %}{% endset %}
