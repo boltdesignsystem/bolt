@@ -24,7 +24,7 @@
     {% include '@bolt-components-dialog/dialog-body.twig' with {
       content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia aliquam distinctio optio debitis ab praesentium, velit magnam aliquid tenetur sequi ipsam maiores porro sapiente eaque. Maiores quibusdam eaque cupiditate placeat?',
       attributes: {
-        class: 'u-bolt-color-white',
+        class: 't-bolt-yellow',
       },
     } only %}
   {% endset %}
@@ -48,11 +48,11 @@
 } only %}
 
 {% set dialog_content %}
-  {# Manually set the text color #}
+  {# Manually set the color theme (text + background color) #}
   {% include '@bolt-components-dialog/dialog-body.twig' with {
     content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia aliquam distinctio optio debitis ab praesentium, velit magnam aliquid tenetur sequi ipsam maiores porro sapiente eaque. Maiores quibusdam eaque cupiditate placeat?',
     attributes: {
-      class: 'u-bolt-color-white',
+      class: 't-bolt-yellow',
     },
   } only %}
 {% endset %}
