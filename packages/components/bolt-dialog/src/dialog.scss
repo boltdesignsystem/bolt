@@ -15,7 +15,6 @@
   border-radius: bolt-border-radius(small);
   box-shadow: 0 0 var(--bolt-spacing-x-xsmall) var(--m-bolt-border);
   background-color: var(--m-bolt-bg);
-
   max-inline-size: 100%;
   max-block-size: 100%;
 }
@@ -52,6 +51,19 @@
 
 .c-bolt-dialog.c-bolt-dialog--hidden::backdrop {
   animation: a-bolt-dialog-fade-out var(--c-bolt-dialog-animation-out-settings);
+}
+
+@include bolt-mq(small) {
+  .c-bolt-dialog--transparent {
+    box-shadow: none;
+    background-color: transparent;
+
+    .c-bolt-dialog__close {
+      .e-bolt-button {
+        --e-bolt-button-text-color: white;
+      }
+    }
+  }
 }
 
 // Use an extra layer for layout to avoid issues that comes with changing the <dialog>'s display.
@@ -119,6 +131,7 @@
   .c-bolt-dialog__grid {
     block-size: 100vh;
     block-size: 100dvb;
+    inline-size: 100%;
   }
 }
 

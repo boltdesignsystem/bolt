@@ -1,0 +1,144 @@
+{% set description %}
+  Dialog can be used to display just an image or an image with text caption.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>When building an image only dialog, set <code>spacing</code> prop to <code>none</code> and <code>transparent</code> prop to <code>true</code>.</bolt-li>
+    <bolt-li>When building an image dialog with caption, use the footer for the caption text.</bolt-li>
+    <bolt-li>If width and height are defined on the image, set the dialog&rsquo;s <code>width</code> prop to <code>auto</code>. This allows the dialog to be as big as the image size.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    <bolt-list-item>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Image only',
+        attributes: {
+          type: 'button',
+          'data-bolt-dialog-target': '#dialog-image',
+        }
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Image + caption',
+        attributes: {
+          type: 'button',
+          'data-bolt-dialog-target': '#dialog-caption',
+        }
+      } only %}
+    </bolt-list-item>
+  </bolt-list>
+
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+        width: 640,
+        height: 480,
+      }
+    } only %}
+  {% endset %}
+
+  {% set image_dialog_content %}
+    {% include '@bolt-components-dialog/dialog-body.twig' with {
+      content: image,
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-dialog/dialog.twig' with {
+    content: image_dialog_content,
+    spacing: 'none',
+    width: 'auto',
+    transparent: true,
+    attributes: {
+      id: 'dialog-image'
+    },
+  } only %}
+
+  {% set caption_dialog_content %}
+    {% include '@bolt-components-dialog/dialog-body.twig' with {
+      content: image,
+    } only %}
+    {% include '@bolt-components-dialog/dialog-footer.twig' with {
+      content: 'This is the image caption.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-dialog/dialog.twig' with {
+    content: caption_dialog_content,
+    spacing: 'small',
+    width: 'auto',
+    attributes: {
+      id: 'dialog-caption'
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{# Image only dialog #}
+{% set image_dialog_content %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+        width: 640,
+        height: 480,
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: image,
+  } only %}
+{% endset %}
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: image_dialog_content,
+  spacing: 'none',
+  width: 'auto',
+  transparent: true,
+  attributes: {
+    id: 'dialog-image'
+  },
+} only %}
+
+{# Image + caption dialog #}
+{% set caption_dialog_content %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+        width: 640,
+        height: 480,
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: image,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-footer.twig' with {
+    content: 'This is the image caption.',
+  } only %}
+{% endset %}
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: caption_dialog_content,
+  spacing: 'small',
+  width: 'auto',
+  attributes: {
+    id: 'dialog-caption'
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Image Dialog',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

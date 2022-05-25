@@ -1,0 +1,75 @@
+{% set description %}
+  A transparent dialog is recommended when creating image or video only dialogs, and other advanced dialogs.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Set the <code>transparent</code> prop to <code>true</code> to make a dialog transparent.</bolt-li>
+    <bolt-li>When building advanced transparent dialogs, make sure to adjust text color or manually add background color because the dialog has no background at all.</bolt-li>
+    <bolt-li>See the <a href="{{ link['components-dialog-use-case-image'] }}" class="e-bolt-text-link">image only dialog</a> use case.</bolt-li>
+    <bolt-li>See the <a href="{{ link['components-dialog-use-case-video'] }}" class="e-bolt-text-link">video only dialog</a> use case.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Transparent dialog',
+    attributes: {
+      type: 'button',
+      'data-bolt-dialog-target': '#dialog-transparent',
+    }
+  } only %}
+
+  {% set dialog_content %}
+    {% include '@bolt-components-dialog/dialog-body.twig' with {
+      content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia aliquam distinctio optio debitis ab praesentium, velit magnam aliquid tenetur sequi ipsam maiores porro sapiente eaque. Maiores quibusdam eaque cupiditate placeat?',
+      attributes: {
+        class: 'u-bolt-color-white',
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-dialog/dialog.twig' with {
+    content: dialog_content,
+    transparent: true,
+    attributes: {
+      id: 'dialog-transparent'
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Transparent dialog',
+  attributes: {
+    type: 'button',
+    'data-bolt-dialog-target': '#dialog-transparent',
+  }
+} only %}
+
+{% set dialog_content %}
+  {# Manually set the text color #}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia aliquam distinctio optio debitis ab praesentium, velit magnam aliquid tenetur sequi ipsam maiores porro sapiente eaque. Maiores quibusdam eaque cupiditate placeat?',
+    attributes: {
+      class: 'u-bolt-color-white',
+    },
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: dialog_content,
+  transparent: true,
+  attributes: {
+    id: 'dialog-transparent'
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Transparent Dialog',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

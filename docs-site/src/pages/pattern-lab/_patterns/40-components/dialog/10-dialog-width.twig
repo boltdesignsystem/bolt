@@ -27,6 +27,16 @@
         } only %}
 
         {% set content %}
+          {% set header_content %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'This is a dialog',
+              tag: 'h1',
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-dialog/dialog-header.twig' with {
+            content: header_content,
+          } only %}
+
           {% if width == 'auto' %}
             {% set body_content_extra = ' It is as wide as the content.' %}
           {% else %}
