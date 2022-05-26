@@ -26,3 +26,23 @@
 @import './pages/pattern-lab/_patterns/50-pages/80-portal/portal';
 @import './pages/pattern-lab/_patterns/50-pages/99999-bolt-dev-sandbox/styles/index';
 @import './pages/pattern-lab/_patterns/999-archive/academy/index';
+
+html {
+  scroll-behavior: smooth;
+
+  @media (prefers-reduced-motion) {
+    scroll-behavior: auto;
+  }
+}
+
+[id] {
+  scroll-margin-top: var(--bolt-page-offset);
+}
+
+:root {
+  --bolt-page-sticky-height: 0;
+  --bolt-page-scroll-offset: var(--bolt-spacing-y-medium);
+  --bolt-page-offset: calc(
+    var(--bolt-page-sticky-height) + calc(var(--bolt-page-scroll-offset))
+  );
+}

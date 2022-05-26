@@ -1,8 +1,8 @@
 import { Waypoint } from '@bolt/core-v3.x/utils/waypoint';
-import {
-  smoothScroll,
-  scrollOptions,
-} from '@bolt/components-smooth-scroll/src/smooth-scroll';
+// import {
+//   smoothScroll,
+//   scrollOptions,
+// } from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import { BoltOverflowMenu } from './overflow-menu';
 import '@bolt/core-v3.x/utils/optimized-resize';
 
@@ -125,7 +125,7 @@ export class BoltNavbar {
           // Catches invalid selectors
           console.log(err);
         }
-        link.addEventListener('click', this.handleNavItemClick);
+        // link.addEventListener('click', this.handleNavItemClick);
       }
 
       // Set an initially active link if appropriate.
@@ -181,31 +181,26 @@ export class BoltNavbar {
 
   handleNavItemClick(event) {
     // sometimes target is the inner span
-    const link = event.target.closest('a');
-    const { item } = this.navbarLinks.find(item => item.link === link);
-
-    try {
-      if (item.waypointElement) {
-        event.preventDefault();
-
-        // Don't add the :focus state to the link in this scenario.  The focus state is about to get removed anyway as
-        // we move down the page, and a flash of the focused state just adds confusion.
-        document.activeElement.blur();
-
-        const scrollOpts = scrollOptions;
-        scrollOpts.offset =
-          this.stickyOffset + this.scrollOffset + this.el.offsetHeight || 0;
-        // Delete the default `header` value: https://github.com/cferdinandi/smooth-scroll#fixed-headers
-        // It works with fixed but not sticky elements. For consistency, handle scroll position entirely through `offset`.
-        delete scrollOpts.header;
-
-        smoothScroll.animateScroll(item.waypointElement, link, scrollOpts);
-
-        this.activeItem = item;
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    // const link = event.target.closest('a');
+    // const { item } = this.navbarLinks.find(item => item.link === link);
+    // try {
+    //   if (item.waypointElement) {
+    //     event.preventDefault();
+    //     // Don't add the :focus state to the link in this scenario.  The focus state is about to get removed anyway as
+    //     // we move down the page, and a flash of the focused state just adds confusion.
+    //     document.activeElement.blur();
+    //     const scrollOpts = scrollOptions;
+    //     scrollOpts.offset =
+    //       this.stickyOffset + this.scrollOffset + this.el.offsetHeight || 0;
+    //     // Delete the default `header` value: https://github.com/cferdinandi/smooth-scroll#fixed-headers
+    //     // It works with fixed but not sticky elements. For consistency, handle scroll position entirely through `offset`.
+    //     delete scrollOpts.header;
+    //     // smoothScroll.animateScroll(item.waypointElement, link, scrollOpts);
+    //     this.activeItem = item;
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
   }
 
   onEnter({ element }) {

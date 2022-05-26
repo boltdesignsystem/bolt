@@ -101,3 +101,34 @@ const quickFiltersScrollEl = document.querySelector(
 if (quickFiltersScrollEl) {
   quickFiltersScroll(quickFiltersScrollEl);
 }
+
+// Smooth scroll
+const getPageOffset = () => {
+  const stickyPageHeader = document.querySelector(
+    '.js-bolt-sticky-page-header',
+  );
+
+  const stickyElements = document.querySelectorAll('.js-bolt-sticky');
+
+  let offsetHeight = 0;
+  let tallestStickyElement = 0;
+
+  if (stickyPageHeader) {
+    offsetHeight += stickyPageHeader.offsetHeight;
+  }
+
+  if (stickyElements.length) {
+    stickyElements.forEach(el => {
+      const height = el.offsetHeight;
+      if (height > tallestStickyElement) {
+        tallestStickyElement = height;
+      }
+    });
+  }
+
+  return offsetHeight + tallestStickyElement;
+};
+
+const root = document.documentElement;
+
+root.style.setProperty('--bolt-page-sticky-height', `${getPageOffset()}px`);
