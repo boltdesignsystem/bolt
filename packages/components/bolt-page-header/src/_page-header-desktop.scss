@@ -70,13 +70,13 @@
     z-index: 1;
     padding-right: calc(var(--bolt-page-padding-x) + 8vw);
     padding-left: calc(var(--bolt-page-padding-x) + 8vw);
-    pointer-events: all;
     transition: opacity var(--bolt-transition),
       visibility var(--bolt-transition), transform var(--bolt-transition);
 
     @at-root .c-bolt-page-header__action-trigger--search[aria-expanded='true']
         ~ #{&} {
       opacity: 1;
+      pointer-events: all;
     }
 
     &:before {
