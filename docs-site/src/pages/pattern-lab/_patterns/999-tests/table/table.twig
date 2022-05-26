@@ -1,0 +1,902 @@
+{% set description %}
+  Examples of cells width maintenance.
+{% endset %}
+
+{% set demo %}
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Header titlte',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Header titlte',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Status',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem Ipsum dolor',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem Ipsum dolor',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem ipsum dolor sit amet',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem ipsum dolor sit amet',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi quia labore hic consequatur.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem ipsum dolor sit amet consecteur.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  <bolt-text headline tag="h4" font-size="small">Auto width table, undefined column width</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+    } only %}
+  </bolt-stack>
+
+  <hr>
+
+  <bolt-text headline tag="h4" font-size="small">Full width table, undefined column width</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+      attributes: {
+        class: [
+          'u-bolt-block',
+        ]
+      },
+    } only %}
+  </bolt-stack>
+
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Header titlte',
+        header: true,
+        attributes: {
+          style: 'width: 400px'
+        }
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Header titlte',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Status',
+        header: true,
+        attributes: {
+          style: 'width: 1%'
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem Ipsum dolor',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem Ipsum dolor',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem ipsum dolor sit amet',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem ipsum dolor sit amet',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+  {% set row3 %}
+
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi quia labore hic consequatur.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem ipsum dolor sit amet consecteur.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  <hr>
+
+  <bolt-text headline tag="h4" font-size="small">Auto width table, first column width defined with 400px, last column width defiend with 1% to match the column header content width</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+    } only %}
+  </bolt-stack>
+
+  <hr>
+
+  <bolt-text headline tag="h4" font-size="small">Full width table, first column width defined with 400px, last column width defiend with 1% to match the column header content width</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+      attributes: {
+        class: 'u-bolt-block'
+      }
+    } only %}
+  </bolt-stack>
+
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Header',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐵',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐶',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🦊',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐱',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🦁',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🦄',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐮',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐷',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'consectetur adipisicing elit',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Consequatur, sunt quibusdam? Ut suscipit possimus ullam velit.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  <hr>
+
+  <bolt-text headline tag="h4" font-size="small">Auto width table, undefined column width</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+    } only %}
+  </bolt-stack>
+
+  <hr>
+
+  <bolt-text headline tag="h4" font-size="small">Full width table, undefined column width</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+      attributes: {
+        class: [
+          'u-bolt-block',
+        ]
+      },
+    } only %}
+  </bolt-stack>
+
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Header',
+        header: true,
+        attributes: {
+          style: 'width: 200px'
+        }
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐵',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐶',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🦊',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐱',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🦁 🦁 🦁 wider content',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🦄',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐮',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐷',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'consectetur adipisicing elit',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Consequatur, sunt quibusdam? Ut suscipit possimus ullam velit.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  <hr>
+
+  <bolt-text headline tag="h4" font-size="small">Auto width table, first column width defined with 200px, rest of them with undefined width</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+    } only %}
+  </bolt-stack>
+
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Header',
+        header: true,
+        attributes: {
+          style: 'width: 200px'
+        }
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐵',
+        header: true,
+        attributes: {
+          style: 'width: 1%'
+        }
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐶',
+        header: true,
+        attributes: {
+          style: 'width: 1%'
+        }
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🦊',
+        header: true,
+        attributes: {
+          style: 'width: 1%'
+        }
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐱',
+        header: true,
+        attributes: {
+          style: 'width: 1%'
+        }
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🦁',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🦄',
+        header: true,
+        attributes: {
+          style: 'width: 1%'
+        }
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐮',
+        header: true,
+        attributes: {
+          style: 'width: 1%'
+        }
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '🐷',
+        header: true,
+        attributes: {
+          style: 'width: 1%'
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'consectetur adipisicing elit',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Consequatur, sunt quibusdam? Ut suscipit possimus ullam velit.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '✅',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '❌',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  <hr>
+
+  <bolt-text headline tag="h4" font-size="small">Full width table, first column width defined with 200px, rest of them (except the 4th which width is undefined) defined with 1% to match the column header width content</bolt-text>
+  <bolt-stack>
+    {% include '@bolt-components-table/table.twig' with {
+      header: {
+        content: header,
+      },
+      body: {
+        content: [
+          row1,
+          row2,
+          row3,
+        ],
+      },
+      attributes: {
+        class: [
+          'u-bolt-block',
+        ]
+      },
+    } only %}
+  </bolt-stack>
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table examples',
+  description: description,
+  demo: demo,
+} only %}
+{# {% include '@bolt-components-table/table.twig' with {
+  first_col_fixed_width: true,
+  headers: {
+    top: {
+      cells: [
+        'User story name',
+        'Pass percentage',
+        'Percentage aquiared',
+        {
+          content: 'Status',
+          attributes: {
+            style: 'width: 1%',
+          }
+        }
+      ]
+    },
+  },
+  rows: [
+    {
+      cells: [
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        '87',
+        '59',
+        '✅',
+      ]
+    },
+  ],
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  headers: {
+    side: {
+      cells: [
+        'Row 1',
+        'Row 2',
+        'Row 3',
+      ]
+    }
+  },
+  rows: [
+    {
+      cells: [
+        'R1C1',
+        'R1C2',
+        {
+          content: 'Icon',
+          attributes: {
+            style: 'width: 1%',
+          }
+        }
+      ]
+    },
+    {
+      cells: [
+        'R2C1',
+        'R2C2',
+        '✅',
+      ]
+    },
+    {
+      cells: [
+        'R3C1',
+        'R3C2',
+        '✅',
+      ]
+    }
+  ],
+} only %}
+
+{% include '@bolt-components-table/table.twig' with {
+  headers: {
+    top: {
+      cells: [
+        'Column 1',
+        'Column 2',
+        {
+          content: 'Stat',
+          attributes: {
+            style: 'width: 1%'
+          }
+        },
+      ]
+    },
+    side: {
+      cells: [
+        'Row 1',
+        'Row 2',
+        'Row 3',
+      ]
+    }
+  },
+  rows: [
+    {
+      cells: [
+        'R1C1',
+        'R1C2',
+        '✅',
+      ]
+    },
+    {
+      cells: [
+        'R2C1',
+        'R2C2',
+        '✅',
+      ]
+    },
+    {
+      cells: [
+        'R3C1',
+        'R3C2',
+        '✅',
+      ]
+    }
+  ],
+} only %} #}
