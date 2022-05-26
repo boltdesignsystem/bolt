@@ -184,6 +184,17 @@
   }
 }
 
+.c-bolt-listing-teaser__flag-content__item:not(.c-bolt-listing-teaser__flag-content__item--reply):not(.c-bolt-listing-teaser__flag-content__item--warning) {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @include bolt-mq($from: medium) {
+    -webkit-line-clamp: 3;
+  }
+}
+
 .c-bolt-listing-teaser__flag-status {
   display: flex;
   grid-area: status;
@@ -254,9 +265,13 @@
     display: inline;
 
     &:not(:last-child):after {
-      content: '\007C';
-      margin: 0 var(--bolt-spacing-x-xxsmall);
-      color: var(--m-bolt-neutral);
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: 1em;
+      margin: 0 var(--bolt-spacing-x-xsmall);
+      vertical-align: middle;
+      background-color: var(--m-bolt-neutral);
     }
 
     > * {
@@ -266,6 +281,13 @@
     a,
     button {
       position: relative; // This raises the stacking order of the meta link above the main heading link.
+    }
+
+    .c-bolt-listing-teaser__flag-eyebrow & {
+      &:not(:last-child):after {
+        width: 0.5ch;
+        height: 1px;
+      }
     }
   }
 }
