@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v5.4.0...v5.5.0) (2022-05-23)
+
+**Note:** Version bump only for package @bolt/components-page-header
+
+
+
+
+
+# [5.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v5.3.1...v5.4.0) (2022-04-08)
+
+
+### Bug Fixes
+
+* add proper navigation labels ([6638ec7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/commit/6638ec749144b73176cd7bf76558aa48b2c87298))
+
+
+
+
+
 # [5.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-header/compare/v5.2.4...v5.3.0) (2022-03-28)
 
 
