@@ -79,6 +79,11 @@
       pointer-events: all;
     }
 
+    @at-root .c-bolt-page-header__action-trigger--search[aria-expanded='false']
+        ~ #{&} {
+      pointer-events: none;
+    }
+
     &:before {
       content: '';
       opacity: 0.8;
