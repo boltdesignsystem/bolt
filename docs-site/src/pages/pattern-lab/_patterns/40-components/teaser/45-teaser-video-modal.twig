@@ -1,11 +1,12 @@
 {% set description %}
-  A signifer of a teaser can open a video within a modal.
+  A teaser about a video resource can trigger a video to be played in a modal.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Use the <a href="{{ link['viewall-components-video-thumbnail'] }}" class="e-bolt-text-link">Video Thumbnail component</a> as a teaser signifier.</bolt-li>
-    <bolt-li>Do not use <code>time</code> prop since it will conflict with the Video Thumbnail`s <code>duration</code> prop.</bolt-li>
+    <bolt-li>Use the <a href="{{ link['viewall-components-video-thumbnail'] }}" class="e-bolt-text-link">Video Thumbnail component</a> as a teaser signifier. Only set up the image, do not make it interactive.</bolt-li>
+    <bolt-li>Interactivity (triggering of the modal) should be handled via the headline&rsquo;s <code>link_attributes</code>.</bolt-li>
+    <bolt-li>Do not use <code>time</code> prop since it will conflict with the Video Thumbnail&rsquo;s <code>duration</code> prop.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -55,9 +56,6 @@
     {% endset %}
     {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
       content: image,
-      button_attributes: {
-        'data-bolt-modal-target': '#' ~ modal_id
-      },
       video: {
         title: 'This is a Video Title',
         duration: '4:26',
@@ -83,6 +81,29 @@
 
 {% set twig_markup %}
 {% verbatim %}
+{# Set up video thumbnail as image #}
+{% set video_thumbnail %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        loading: 'lazy',
+        width: 400,
+        height: 300,
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+    content: image,
+    video: {
+      title: 'This is a Video Title',
+      duration: '4:26',
+    }
+  } only %}
+{% endset %}
+
+{# Pass video thumbnail as signifier, use link attributes to handle the trigger of modal #}
 {% include '@bolt-components-teaser/teaser.twig' with {
   signifier: video_thumbnail,
   headline: {
