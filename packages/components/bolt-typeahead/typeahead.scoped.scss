@@ -203,7 +203,7 @@ bolt-autosuggest {
 }
 
 .c-bolt-typeahead__button--clear {
-  visibility: hidden;
+  display: none;
   right: 0;
 }
 
@@ -217,5 +217,5 @@ bolt-autosuggest {
 
 .c-bolt-typeahead__input[required]:valid ~ .c-bolt-typeahead__button--clear,
 .c-bolt-typeahead__button--clear.is-visible {
-  visibility: visible;
+  display: block;
 }
