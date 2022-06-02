@@ -5,7 +5,7 @@
 {% set notes %}
   <bolt-ol>
     <bolt-li><strong>Time:</strong> this represents estimated reading time (for external link and PDF, eg. 10 min read). If a value is set, the value will appear with the signifier.</bolt-li>
-    <bolt-li>If Video Thumbanil is used as a signifier don't use this prop. Please use the <strong>duration</strong> which is a Video Thumbanil's prop.</bolt-li>
+    <bolt-li>If a <a href="{{ link['viewall-components-video-thumbnail'] }}" class="e-bolt-text-link">Video Thumbnail component</a> is used as a signifier don't use this prop. Please use Video Thumbnail's <strong>duration</strong> prop instead.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -19,7 +19,7 @@
       }
     } only %}
   {% endset %}
-  
+
   <div style="max-width: 60ch;">
     {% include '@bolt-components-teaser/teaser.twig' with {
       signifier: wide_image,
