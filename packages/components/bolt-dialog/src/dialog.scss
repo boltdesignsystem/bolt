@@ -9,6 +9,8 @@
     normal;
   --c-bolt-dialog-animation-out-settings: 500ms
     cubic-bezier(0.5, -0.5, 0.1, 1.5) normal;
+  --c-bolt-dialog-section-padding-block: calc(var(--bolt-spacing-y-medium) / 2);
+  --c-bolt-dialog-section-padding-inline: var(--bolt-spacing-x-medium);
   padding: 0;
   color: var(--m-bolt-text);
   border: 0;
@@ -80,6 +82,13 @@
 }
 
 .c-bolt-dialog__header,
+.c-bolt-dialog__body,
+.c-bolt-dialog__footer {
+  padding-block: var(--c-bolt-dialog-section-padding-block);
+  padding-inline: var(--c-bolt-dialog-section-padding-inline);
+}
+
+.c-bolt-dialog__header,
 .c-bolt-dialog__footer {
   color: var(--m-bolt-headline);
 }
@@ -100,6 +109,7 @@
 }
 
 .c-bolt-dialog__body {
+  --c-bolt-dialog-section-padding-block: var(--bolt-spacing-y-medium);
   grid-area: body;
   overflow-y: auto;
 
@@ -140,15 +150,15 @@
     max-inline-size: calc(100% - var(--bolt-spacing-x-medium) * 2);
   }
 
-  .c-bolt-dialog__width-regular {
+  .c-bolt-dialog--width-regular {
     inline-size: calc(100% / 12 * 10);
   }
 
-  .c-bolt-dialog__width-optimal {
+  .c-bolt-dialog--width-optimal {
     inline-size: 75ch;
   }
 
-  .c-bolt-dialog__width-full {
+  .c-bolt-dialog--width-full {
     inline-size: calc(100% - var(--bolt-spacing-x-medium) * 2);
   }
 }
@@ -156,21 +166,33 @@
 // Container spacing options
 @each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
-  .c-bolt-dialog__spacing-#{$size-name} {
-    .c-bolt-dialog__header,
-    .c-bolt-dialog__footer,
-    .c-bolt-dialog__body {
-      padding-inline: var(--bolt-spacing-x-#{$size-name});
-    }
 
-    .c-bolt-dialog__header,
-    .c-bolt-dialog__footer {
-      padding-block: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
+  @if $size-name ==
+    xsmall or
+    $size-name ==
+    small or
+    $size-name ==
+    medium or
+    $size-name ==
+    large
+  {
+    .c-bolt-dialog--spacing-#{$size-name} {
+      --c-bolt-dialog-section-padding-block: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
+      --c-bolt-dialog-section-padding-inline: var(--bolt-spacing-x-#{$size-name});
+  
+      .c-bolt-dialog__body {
+        --c-bolt-dialog-section-padding-block: var(--bolt-spacing-y-#{$size-name});
+      }
     }
+  }
+}
 
-    .c-bolt-dialog__body {
-      padding-block: var(--bolt-spacing-y-#{$size-name});
-    }
+.c-bolt-dialog--spacing-none {
+  --c-bolt-dialog-section-padding-block: 0;
+  --c-bolt-dialog-section-padding-inline: 0;
+
+  .c-bolt-dialog__body {
+    --c-bolt-dialog-section-padding-block: 0;
   }
 }
 

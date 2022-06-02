@@ -10,8 +10,8 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-dialog',
-  this.data.width.value ? 'c-bolt-dialog__width-' ~ this.data.width.value : '',
-  this.data.spacing.value ? 'c-bolt-dialog__spacing-' ~ this.data.spacing.value : '',
+  this.data.width.value ? 'c-bolt-dialog--width-' ~ this.data.width.value : '',
+  this.data.spacing.value ? 'c-bolt-dialog--spacing-' ~ this.data.spacing.value : '',
   transparent ? 'c-bolt-dialog--transparent',
 ] %}
 
