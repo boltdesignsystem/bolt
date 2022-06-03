@@ -1,0 +1,34 @@
+{% set usage %}{% verbatim %}
+{# Render a trigger button #}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Open dialog',
+  attributes: {
+    type: 'button',
+    'data-bolt-dialog-target': '#dialog-1',
+  }
+} only %}
+
+{# Render the related dialog #}
+{% set dialog_content %}
+  {% include '@bolt-components-dialog/dialog-header.twig' with {
+    content: header_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: body_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-footer.twig' with {
+    content: footer_content,
+  } only %}
+{% endset %}
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: dialog_content,
+  attributes: {
+    id: 'dialog-1'
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'dialog',
+  usage: usage
+} only %}

@@ -1,0 +1,80 @@
+{% include '@pl/_dialog-warning.twig' %}
+
+{% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog'] %}
+
+{% set description %}
+  A width can be explicitly set on a dialog. By default, a dialog is about 75 characters wide.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use the <code>width</code> prop to adjust the dialog&rsquo;s width.</bolt-li>
+    <bolt-li><code>Full</code>: This is taking up the full width of the screen minus the gutters (about 2rem on left and right). </bolt-li>
+    <bolt-li><code>Regular</code>: This is 10 out 12 columns wide, about 80% of the screen width. </bolt-li>
+    <bolt-li><code>Optimal</code>: This is about 75 characters wide, close to optimal reading length (This is the default setting).</bolt-li>
+    <bolt-li><code>Auto</code>: This adapts the width of the dialog content. Only use this option if the dialog content has an explicit width. Recommended for advanced usage. </bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    {% for width in schema.properties.width.enum %}
+      <bolt-list-item>
+        {% include '@bolt-elements-button/button.twig' with {
+          content: width|title,
+          attributes: {
+            type: 'button',
+            'data-bolt-dialog-target': '#dialog-width-' ~ loop.index0,
+          }
+        } only %}
+
+        {% set content %}
+          {% set header_content %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'This is a dialog',
+              tag: 'h1',
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-dialog/dialog-header.twig' with {
+            content: header_content,
+          } only %}
+
+          {% if width == 'auto' %}
+            {% set body_content_extra = ' It is as wide as the content.' %}
+          {% else %}
+            {% set body_content_extra = ' Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque exercitationem obcaecati, quod quae est suscipit voluptates culpa tenetur nostrum, velit, accusantium iusto officia impedit? Eligendi pariatur nemo sint tenetur maiores. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque exercitationem obcaecati, quod quae est suscipit voluptates culpa tenetur nostrum, velit, accusantium iusto officia impedit? Eligendi pariatur nemo sint tenetur maiores.' %}
+          {% endif %}
+          {% include '@bolt-components-dialog/dialog-body.twig' with {
+            content: 'This dialog has ' ~ width ~ ' width.' ~ body_content_extra,
+          } only %}
+        {% endset %}
+
+        {% include '@bolt-components-dialog/dialog.twig' with {
+          content: content,
+          width: width,
+          attributes: {
+            id: 'dialog-width-' ~ loop.index0
+          },
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: content,
+  width: 'full',
+  attributes: {
+    id: 'dialog-width-1'
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Dialog Width',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

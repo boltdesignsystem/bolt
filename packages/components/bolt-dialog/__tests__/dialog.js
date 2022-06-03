@@ -74,15 +74,13 @@ describe('Bolt Dialog component', () => {
     });
   });
 
-  theme.enum.forEach(async option => {
-    test(`dialog theme: ${option}`, async () => {
-      const results = await render('@bolt-components-dialog/dialog.twig', {
-        ...fixtures.defaultData,
-        theme: option,
-      });
-      expect(results.ok).toBe(true);
-      expect(results.html).toMatchSnapshot();
+  test(`dialog transparent: true`, async () => {
+    const results = await render('@bolt-components-dialog/dialog.twig', {
+      ...fixtures.defaultData,
+      transparent: true,
     });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
   });
 
   test(`dialog persistent: true`, async () => {

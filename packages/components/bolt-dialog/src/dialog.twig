@@ -10,27 +10,25 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'c-bolt-dialog',
-  'c-bolt-dialog--hidden',
-  this.data.width.value ? 'c-bolt-dialog__width-' ~ this.data.width.value : '',
-  this.data.spacing.value ? 'c-bolt-dialog__spacing-' ~ this.data.spacing.value : '',
-  this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : '',
+  this.data.width.value ? 'c-bolt-dialog--width-' ~ this.data.width.value : '',
+  this.data.spacing.value ? 'c-bolt-dialog--spacing-' ~ this.data.spacing.value : '',
+  transparent ? 'c-bolt-dialog--transparent',
 ] %}
 
 {% set _icon_close %}
   {% include '@bolt-components-icon/icon.twig' with {
     name: 'close',
   } only %}
-  {% endset %}
+{% endset %}
 
-  {% set _close_button %}
+{% set _close_button %}
   {% include '@bolt-elements-button/button.twig' with {
-    content: 'Close'|t,
+    content: 'Close dialog'|t,
     icon_only: _icon_close,
     hierarchy: 'transparent',
     attributes: {
       type: 'button',
       'data-dialog-close': '',
-      'aria-label': 'Close dialog'|t,
     }
   } only %}
 {% endset %}
@@ -39,13 +37,15 @@
   {{ attributes.addClass(classes) }}
   {{ this.data.persistent.value ? 'data-dialog-persistent' : '' }}
   >
-  {% if not this.data.persistent.value %}
-    <div class="c-bolt-dialog__close">
-      {{ _close_button }}
-    </div>
-  {% endif %}
+  <div class="c-bolt-dialog__grid">
+    {% if not this.data.persistent.value %}
+      <div class="c-bolt-dialog__close">
+        {{ _close_button }}
+      </div>
+    {% endif %}
 
-  {% if content %}
-    {{ content }}
-  {% endif %}
+    {% if content %}
+      {{ content }}
+    {% endif %}
+  </div>
 </dialog>
