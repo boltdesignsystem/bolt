@@ -72,6 +72,19 @@
     }
   }
 
+  &.c-bolt-teaser--responsive {
+    &.c-bolt-teaser--gutter-small,
+    &.c-bolt-teaser--gutter-medium,
+    &.c-bolt-teaser--gutter-large {
+      .c-bolt-teaser__content {
+        @include bolt-mq($until: medium) {
+          padding: 0 var(--bolt-spacing-x-small) var(--bolt-spacing-y-xsmall)
+            var(--bolt-spacing-x-small);
+        }
+      }
+    }
+  }
+
   .c-bolt-teaser__content {
     padding: 0 var(--bolt-spacing-x-small) var(--bolt-spacing-y-xsmall)
       var(--bolt-spacing-x-small);
