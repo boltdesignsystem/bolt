@@ -1,7 +1,5 @@
 import { unsafeCSS, BoltElement, customElement, html } from '@bolt/element';
 import { withContext } from 'wc-context/lit-element';
-import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
-import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import classNames from 'classnames/bind';
 import styles from './accordion.scss';
 import schema from '../accordion.schema';
@@ -105,10 +103,8 @@ class BoltAccordion extends withContext(BoltElement) {
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const selectedItemParam = urlParams.get('selected-accordion-item');
     this.deepLinkTarget = this.querySelector(
-      `#${selectedItemParam}:not([inactive])`,
+      `${window.location.hash}:not([inactive])`,
     );
 
     if (this.single && this.deepLinkTarget) {
@@ -308,7 +304,6 @@ class BoltAccordion extends withContext(BoltElement) {
     const deepLinkTargetIndex = this.accordionItemElements.indexOf(
       this.deepLinkTarget,
     );
-    let shouldScrollIntoView;
 
     if (deepLinkTargetIndex !== -1) {
       // This Promise is a workaround for a bug that sometimes happens when you
@@ -325,39 +320,8 @@ class BoltAccordion extends withContext(BoltElement) {
           closestBand.addEventListener('error', reject);
         });
       }
-
+      console.log(this.accordion.folds[deepLinkTargetIndex]);
       this.accordion.folds[deepLinkTargetIndex].open();
-      shouldScrollIntoView = true;
-    }
-
-    if (shouldScrollIntoView) {
-      let shouldResetScroll;
-
-      if (window.history?.scrollRestoration === 'auto') {
-        // If you are refreshing the page and using a browser with `scrollRestoration`,
-        // temporarily disable `scrollRestoration` while we scroll to the element, avoids janky scroll.
-        // https://developers.google.com/web/updates/2015/09/history-api-scroll-restoration
-        window.history.scrollRestoration = 'manual';
-        shouldResetScroll = true;
-      }
-
-      setTimeout(() => {
-        smoothScroll.animateScroll(this.deepLinkTarget, 0, {
-          header: this.scrollOffsetSelector,
-          offset: this.scrollOffset || 0,
-          speed: 750,
-          easing: 'easeInOutCubic',
-          updateURL: false,
-        });
-
-        shouldScrollIntoView = false;
-
-        if (shouldResetScroll) {
-          setTimeout(() => {
-            window.history.scrollRestoration = 'auto';
-          }, 1000); // wait another second to turn 'scrollRestoration' back on, just to be safe
-        }
-      }, 750); // Must let the page load or scroll is not at all "smooth", can reduce to 500ms but not much less
     }
   }
 
