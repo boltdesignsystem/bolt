@@ -351,12 +351,7 @@
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
 
   .c-bolt-teaser__signifier {
-    --c-bolt-teaser-aspect-ratio: unset;
     width: clamp(10ch, 20vw, 18ch);
-  }
-
-  .c-bolt-teaser__signifier-image {
-    all: unset;
   }
 
   .c-bolt-teaser__signifier,
@@ -380,6 +375,14 @@
   .c-bolt-teaser__signifier img {
     border-top-right-radius: bolt-border-radius(small);
     border-top-left-radius: bolt-border-radius(small);
+  }
+
+  .c-bolt-teaser__signifier {
+    --c-bolt-teaser-aspect-ratio: unset;
+  }
+
+  .c-bolt-teaser__signifier-image {
+    all: unset;
   }
 
   .c-bolt-teaser__content {
