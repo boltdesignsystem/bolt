@@ -1,0 +1,289 @@
+{% set schema = bolt.data.components['@bolt-components-teaser'].schema %}
+
+{% set description %}
+{% endset %}
+
+{% set notes %}
+{% endset %}
+
+{% set demo %}
+  {% set modal_content %}
+    {% set video %}
+      <video-js
+        data-delayed-account='1900410236'
+        data-delayed-player='O3FkeBiaDz'
+        data-embed='default'
+        data-delayed-video-id='4892122320001'
+        data-video-delayed
+        controls
+        data-media-title
+        data-media-duration
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-modal/modal.twig' with {
+    content: modal_content,
+    width: 'optimal',
+    spacing: 'none',
+    theme: 'none',
+    scroll: 'overall',
+    attributes: {
+      id: modal_id,
+    },
+  } only %}
+  {% set wide_video_thumbnail %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/signifier-pdf.jpg',
+          alt: 'Alt text.',
+          loading: 'lazy',
+          width: 800,
+          height: 600,
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: image,
+      video: {
+        title: 'This is a Video Title',
+        duration: '4:26',
+      },
+      aspect_ratio: '4:3',
+    } only %}
+  {% endset %}
+  {% set square_video_thumbnail %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/thumb-square-abstract.jpg',
+          alt: 'Alt text.',
+          loading: 'lazy',
+          width: 500,
+          height: 500,
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: image,
+      video: {
+        title: 'This is a Video Title',
+        duration: '4:26',
+      },
+      aspect_ratio: '1:1',
+    } only %}
+  {% endset %}
+  {% set like %}
+    {% set icon_heart %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'heart',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Like',
+      icon_before: icon_heart,
+      reversed_underline: true,
+      attributes: {
+        type: 'button',
+        class: 'js-bolt-like-button',
+      },
+    } only %}
+  {% endset %}
+  {% set share %}
+    {% set share_menu %}
+      {% include '@bolt-components-share/share.twig' with {
+        display: 'menu',
+        text: 'Share this content',
+        sources: [
+          {
+            name: 'facebook',
+            attributes: {
+              href: 'https://www.facebook.com/sharer/sharer.php?u=https://google.com&amp;src=sdkpreparse'
+            }
+          },
+          {
+            name: 'twitter',
+            attributes: {
+              href: 'https://twitter.com/intent/tweet?url=https://google.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+            }
+          },
+          {
+            name: 'linkedin',
+            attributes: {
+              href: 'https://www.linkedin.com/shareArticle?url=https://google.com'
+            }
+          },
+          {
+            name: 'email',
+            attributes: {
+              href: 'mailto:?&body=Sample%20Text%20--%20https%3A//mail.com'
+            }
+          }
+        ],
+        copy_to_clipboard: {
+          text_to_copy: 'https://google.com',
+        },
+      } only %}
+    {% endset %}
+    {% set share_popover_trigger %}
+      {% set icon_share %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'share',
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Share',
+        icon_before: icon_share,
+        reversed_underline: true,
+        attributes: {
+          type: 'button'
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-popover/popover.twig' with {
+      trigger: share_popover_trigger,
+      content: share_menu,
+      spacing: 'none',
+      boundary: '.js-bolt-target-teaser',
+    } only %}
+  {% endset %}
+  {% set download %}
+    {% set icon_download %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'download',
+      } only %}
+    {% endset %}
+    {% set tooltip_trigger %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'Download slides',
+        icon_before: icon_download,
+        reversed_underline: true,
+        attributes: {
+          href: 'https://www.google.com/',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-tooltip/tooltip.twig' with {
+      trigger: tooltip_trigger,
+      content: "PDF, 3 pages, 2.3mb",
+    } only %}
+  {% endset %}
+  {% set chip_list %}
+    {% include '@bolt-components-chip-list/chip-list.twig' with {
+      size: 'xsmall',
+      items: [
+        {
+          text: 'Video',
+        },
+        {
+          text: 'Research',
+        },
+      ],
+    } only %}
+  {% endset %}
+
+  {# <div class="u-bolt-margin-bottom-medium" style="max-width:35ch">
+    {% for gutter in schema.properties.gutter.enum %}
+      <bolt-stack>
+        {% include '@bolt-components-teaser/teaser.twig' with {
+          layout: 'vertical',
+          gutter: gutter,
+          signifier: wide_video_thumbnail,
+          show_on_hover: true,
+          variant: 'card',
+          headline: {
+            text: 'Vertical teaser card',
+            link_attributes: {
+              type: 'button',
+              'data-bolt-modal-target': '#' ~ modal_id,
+            },
+          },
+          description: {
+            content: 'Any aspect ratio will work for the signifier here, best with 16:9.',
+          },
+          like: like,
+          share: share,
+          download: download,
+          status: {
+            views: '28k',
+            locked: true,
+          },
+          chip_list: chip_list,
+        } only %}
+      </bolt-stack>
+    {% endfor %}
+  </div> #}
+  <div class="u-bolt-margin-bottom-medium" style="max-width:85ch">
+      <bolt-stack>
+        {% include '@bolt-components-teaser/teaser.twig' with {
+          layout: 'horizontal',
+          signifier: square_video_thumbnail,
+          show_on_hover: true,
+          variant: 'card',
+          headline: {
+            text: 'Horizontal teaser card',
+            link_attributes: {
+              type: 'button',
+              'data-bolt-modal-target': '#' ~ modal_id,
+            },
+          },
+          description: {
+            content: '1:1 aspect ratio is recommended for the signifier in a horizontal teaser card.',
+          },
+          like: like,
+          share: share,
+          download: download,
+          status: {
+            views: '28k',
+            locked: true,
+          },
+          chip_list: chip_list,
+        } only %}
+      </bolt-stack>
+  </div>
+  <div style="max-width:85ch">
+      <bolt-stack>
+        {% include '@bolt-components-teaser/teaser.twig' with {
+          layout: 'responsive',
+          signifier: wide_video_thumbnail,
+          show_on_hover: true,
+          variant: 'card',
+          headline: {
+            text: 'Responsive teaser card',
+            link_attributes: {
+              type: 'button',
+              'data-bolt-modal-target': '#' ~ modal_id,
+            },
+          },
+          description: {
+            content: '4:3 aspect ratio is recommended for the signifier in a responsive teaser card.',
+          },
+          like: like,
+          share: share,
+          download: download,
+          status: {
+            views: '28k',
+            locked: true,
+          },
+          chip_list: chip_list,
+        } only %}
+      </bolt-stack>
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Teaser Card Variant',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
