@@ -8,7 +8,7 @@
   display: block;
   position: relative;
   width: 100%;
-  min-width: 8rem;
+  min-width: var(--c-bolt-video-thumbnail-min-width, 10ch);
   border-radius: var(--c-bolt-video-thumbnail-border-radius);
   aspect-ratio: var(--c-bolt-video-thumbnail-aspect-ratio);
   //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
