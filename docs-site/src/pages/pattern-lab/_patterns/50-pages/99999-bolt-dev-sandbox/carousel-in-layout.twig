@@ -1,0 +1,154 @@
+<h2>Carousel examples inside layout using HTML tags</h2>
+<div class="l-bolt-site">
+  <header>This is the header</header>
+  <main>
+    <div class="o-bolt-wrapper">
+      <bolt-carousel>
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
+        </bolt-carousel-slide>
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-dark">Slide 2</div>
+        </bolt-carousel-slide>
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-light">Slide 3</div>
+        </bolt-carousel-slide>
+      </bolt-carousel>
+    </div>
+    <div class="o-bolt-wrapper">
+      <bolt-carousel nav-button-position="outside">
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
+        </bolt-carousel-slide>
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-dark">Slide 2</div>
+        </bolt-carousel-slide>
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-light">Slide 3</div>
+        </bolt-carousel-slide>
+      </bolt-carousel>
+    </div>
+    <div class="o-bolt-wrapper">
+      <bolt-carousel slides-per-view=2>
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
+        </bolt-carousel-slide>
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-dark">Slide 2</div>
+        </bolt-carousel-slide>
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-light">Slide 3</div>
+        </bolt-carousel-slide>
+      </bolt-carousel>
+    </div>
+    <div class="o-bolt-wrapper">
+      <bolt-carousel nav-button-position="outside" slides-per-view=2>
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
+        </bolt-carousel-slide>
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-dark">Slide 2</div>
+        </bolt-carousel-slide>
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-light">Slide 3</div>
+        </bolt-carousel-slide>
+      </bolt-carousel>
+    </div>
+  </main>
+  <footer>This is the footer</footer>
+</div>
+
+<hr>
+
+<h2>Carousel examples in layout using twig includes</h2>
+{% set carousel %}
+  {% set slide %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Slide',
+      size: 'xlarge',
+    } only %}
+  {% endset %}
+  <div class="o-bolt-wrapper">
+    {% include '@bolt-components-carousel/carousel.twig' with {
+      slides: [
+        slide,
+        slide,
+        slide
+      ],
+    } only %}
+    {% include '@bolt-components-carousel/carousel.twig' with {
+      slides: [
+        slide,
+        slide,
+        slide
+      ],
+      nav_button_position: 'outside',
+    } only %}
+  </div>
+{% endset %}
+{% include '@bolt-layouts-site/site.twig' with {
+  header: 'This is the header.',
+  main: {
+    content: carousel,
+  },
+  footer: 'This is the footer.',
+} only %}
+
+<hr>
+
+<h2>Carousel examples not nested in layout</h2>
+<div class="o-bolt-wrapper">
+  <bolt-carousel>
+    <bolt-carousel-slide>
+      <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
+    </bolt-carousel-slide>
+    <bolt-carousel-slide>
+      <div class="u-bolt-padding-large t-bolt-dark">Slide 2</div>
+    </bolt-carousel-slide>
+    <bolt-carousel-slide>
+      <div class="u-bolt-padding-large t-bolt-light">Slide 3</div>
+    </bolt-carousel-slide>
+  </bolt-carousel>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-carousel nav-button-position="outside">
+    <bolt-carousel-slide>
+      <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
+    </bolt-carousel-slide>
+    <bolt-carousel-slide>
+      <div class="u-bolt-padding-large t-bolt-dark">Slide 2</div>
+    </bolt-carousel-slide>
+    <bolt-carousel-slide>
+      <div class="u-bolt-padding-large t-bolt-light">Slide 3</div>
+    </bolt-carousel-slide>
+  </bolt-carousel>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-carousel slides-per-view=2>
+    <bolt-carousel-slide>
+      <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
+    </bolt-carousel-slide>
+    <bolt-carousel-slide>
+      <div class="u-bolt-padding-large t-bolt-dark">Slide 2</div>
+    </bolt-carousel-slide>
+    <bolt-carousel-slide>
+      <div class="u-bolt-padding-large t-bolt-light">Slide 3</div>
+    </bolt-carousel-slide>
+  </bolt-carousel>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-carousel nav-button-position="outside" slides-per-view=2>
+    <bolt-carousel-slide>
+      <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
+    </bolt-carousel-slide>
+    <bolt-carousel-slide>
+      <div class="u-bolt-padding-large t-bolt-dark">Slide 2</div>
+    </bolt-carousel-slide>
+    <bolt-carousel-slide>
+      <div class="u-bolt-padding-large t-bolt-light">Slide 3</div>
+    </bolt-carousel-slide>
+  </bolt-carousel>
+</div>
