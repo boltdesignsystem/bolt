@@ -5,68 +5,74 @@
 \* ------------------------------------ */
 
 .c-bolt-teaser {
+  --c-bolt-teaser-gutter: unset;
+  --c-bolt-teaser-signifier-aspect-ratio: 16/9;
+
   display: grid;
+  column-gap: var(--c-bolt-teaser-gutter);
   position: relative;
   margin-bottom: var(--bolt-spacing-y-medium);
 
   &:last-child {
     margin-bottom: 0;
   }
+}
 
-  &--horizontal {
-    display: grid;
-    column-gap: var(--c-bolt-teaser-gutter, var(--bolt-spacing-x-medium));
-    grid-template-columns: minmax(50px, 125px) minmax(160px, 1fr);
-  }
+.c-bolt-teaser--horizontal {
+  --c-bolt-teaser-signifier-aspect-ratio: 1/1;
+  
+  align-items: center;
+  grid-template-columns: auto 1fr;
+}
 
-  &--responsive {
-    @include bolt-mq(medium) {
-      display: grid;
-      align-items: center;
-      column-gap: var(--c-bolt-teaser-gutter, var(--bolt-spacing-x-medium));
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  &--gutter-small {
-    --c-bolt-teaser-gutter: var(--bolt-spacing-x-small);
-  }
-
-  &--gutter-medium {
-    --c-bolt-teaser-gutter: var(--bolt-spacing-x-medium);
-  }
-
-  &--gutter-large {
-    --c-bolt-teaser-gutter: var(--bolt-spacing-x-large);
+.c-bolt-teaser--responsive {
+  @include bolt-mq(medium) {
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
+.c-bolt-teaser--gutter-small {
+  --c-bolt-teaser-gutter: var(--bolt-spacing-x-small);
+}
+
+.c-bolt-teaser--horizontal,
+.c-bolt-teaser--responsive,
+.c-bolt-teaser--gutter-medium {
+  --c-bolt-teaser-gutter: var(--bolt-spacing-x-medium);
+}
+
+.c-bolt-teaser--gutter-large {
+  --c-bolt-teaser-gutter: var(--bolt-spacing-x-large);
+}
+
 .c-bolt-teaser__signifier {
-  --c-bolt-teaser-aspect-ratio: 16/9;
   display: block;
   position: relative;
   overflow: hidden;
   margin-bottom: var(--bolt-spacing-x-xsmall);
   background-color: var(--bolt-color-gray-light);
-  aspect-ratio: var(--c-bolt-teaser-aspect-ratio);
+  aspect-ratio: var(--c-bolt-teaser-signifier-aspect-ratio);
+
   //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
-  @supports not (aspect-ratio: var(--c-bolt-teaser-aspect-ratio)) {
+  @supports not (aspect-ratio: auto) {
     height: 0;
     padding-bottom: calc(9 / 16 * 100%);
   }
 
   @at-root .c-bolt-teaser--horizontal #{&} {
-    --c-bolt-teaser-aspect-ratio: 1/1;
-    margin-bottom: 0;
+    width: clamp(10ch, 20vw, 14ch);
+    margin-bottom: auto;
+
     //@supports can be removed when aspect-ratio is fully supported by the newest browsers. See caniuse for the reference.
-    @supports not (aspect-ratio: var(--c-bolt-teaser-aspect-ratio)) {
+    @supports not (aspect-ratio: auto) {
       padding-bottom: 100%;
     }
   }
 
   @at-root .c-bolt-teaser--responsive #{&} {
     @include bolt-mq(medium) {
-      margin-bottom: 0;
+      margin-bottom: auto;
     }
   }
 }
@@ -82,6 +88,7 @@
   place-items: center;
 
   img {
+    display: block;
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -222,13 +229,13 @@
   ); // Height and line-height must match to limit to 3 lines of text.
   hyphens: auto;
   word-break: normal;
+}
 
-  &--line-clamp {
-    // https://css-tricks.com/almanac/properties/l/line-clamp/
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
+.c-bolt-teaser__signifier-description-text--line-clamp {
+  // https://css-tricks.com/almanac/properties/l/line-clamp/
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .c-bolt-teaser__content {
@@ -256,8 +263,7 @@
   margin-bottom: var(--bolt-spacing-y-xxsmall);
 }
 
-.c-bolt-teaser__description,
-.c-bolt-teaser__actions-and-views {
+.c-bolt-teaser__description {
   margin-bottom: var(--bolt-spacing-y-small);
 }
 
@@ -277,24 +283,42 @@
   order: 1;
 }
 
-.c-bolt-teaser__actions-and-views {
+.c-bolt-teaser__action-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  gap: var(--bolt-spacing-y-xxsmall);
+  column-gap: var(--bolt-spacing-x-small);
   order: 0;
-  column-gap: var(--bolt-spacing-x-xsmall);
+  position: relative;
+  z-index: 1; // Must use z-index to fix stacking order in FF.
+  margin: 0 0 var(--bolt-spacing-y-small) 0;
+  padding: 0;
+  font-size: var(--bolt-type-font-size-xsmall);
+  list-style: none;
+  line-height: var(--bolt-type-line-height-xsmall);
   white-space: nowrap;
 
   @at-root .c-bolt-teaser--horizontal #{&} {
     order: 2;
-    margin-bottom: var(--bolt-spacing-y-xxsmall);
+    margin-bottom: var(--bolt-spacing-y-xsmall);
   }
 
   @at-root .c-bolt-teaser--responsive #{&} {
     @include bolt-mq(medium) {
       order: 2;
-      margin-bottom: var(--bolt-spacing-y-xxsmall);
+      margin-bottom: var(--bolt-spacing-y-xsmall);
     }
+  }
+}
+
+.c-bolt-teaser__action-list-item {
+  margin: 0;
+  padding: 0;
+
+  .e-bolt-text-link {
+    display: grid;
+    grid-template-columns: 1fr auto;
   }
 }
 
@@ -310,49 +334,8 @@
   @include bolt-inline-icon-wrapper;
 }
 
-.c-bolt-teaser__action-list {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: var(--bolt-spacing-x-xsmall);
-  position: relative;
-  z-index: 1; // Must use z-index to fix stacking order in FF.
-  margin: 0;
-  padding: 0;
-  font-size: var(--bolt-type-font-size-xsmall);
-  list-style: none;
-  line-height: var(--bolt-type-line-height-xsmall);
-
-  @at-root .c-bolt-teaser--horizontal #{&} {
-    margin-left: 0;
-  }
-
-  @at-root .c-bolt-teaser--responsive #{&} {
-    margin-left: auto;
-
-    @include bolt-mq(medium) {
-      margin-left: 0;
-    }
-  }
-}
-
-.c-bolt-teaser__action-list-item {
-  margin: 0;
-  padding: 0;
-
-  .e-bolt-text-link {
-    display: grid;
-    grid-template-columns: 1fr auto;
-  }
-}
-
 @mixin bolt-teaser-horizontal-variant-card {
-  grid-template-columns: auto 1fr;
-  align-items: start;
   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
-
-  .c-bolt-teaser__signifier {
-    width: clamp(10ch, 20vw, 18ch);
-  }
 
   .c-bolt-teaser__signifier,
   .c-bolt-teaser__signifier img {
@@ -378,7 +361,7 @@
   }
 
   .c-bolt-teaser__signifier {
-    --c-bolt-teaser-aspect-ratio: unset;
+    --c-bolt-teaser-signifier-aspect-ratio: unset;
   }
 
   .c-bolt-teaser__signifier-image {
@@ -389,27 +372,13 @@
     padding: 0 var(--bolt-spacing-x-small) var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
   }
 
-  .c-bolt-teaser__action-list {
-    margin-left: 0;
-  }
-
   &.c-bolt-teaser--horizontal {
     @include bolt-teaser-horizontal-variant-card;
-  }
-
-  &.c-bolt-teaser--responsive {
-    .c-bolt-teaser__actions-and-views {
-      justify-content: space-between;
-    }
   }
 
   @include bolt-mq(medium) {
     &.c-bolt-teaser--responsive {
       @include bolt-teaser-horizontal-variant-card;
-
-      .c-bolt-teaser__actions-and-views {
-        justify-content: start;
-      }
     }
   }
 }

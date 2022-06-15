@@ -1,5 +1,12 @@
 {% set description %}
-  The space between columns on the horizontal and responsive teasers can be modified with the <code>gutter</code> prop. It can be small, medium, or large.
+  Gutter is the spacing in between columns in the horizontal and responsive teasers.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>gutter</code> prop has no effects on vertical teasers.</bolt-li>
+    <bolt-li>Reference <a href="{{ link['viewall-components-teaser'] }}?selected-tab=schema" class="e-bolt-text-link">the schema</a> for all options.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
@@ -77,6 +84,7 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Gutter Size for Horizontal and Responsive Teasers',
   description: description,
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
 } only %}

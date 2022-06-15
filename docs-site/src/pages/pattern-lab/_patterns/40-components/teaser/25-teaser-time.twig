@@ -1,11 +1,12 @@
 {% set description %}
-  The <code>time</code> prop can be used to display additional information about a resource.
+  Certain resources come with estimated reading time. A teaser can display that information as an overlay on the signifier.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li><strong>Time:</strong> this represents estimated reading time (for external link and PDF, eg. 10 min read). If a value is set, the value will appear with the signifier.</bolt-li>
-    <bolt-li>If a <a href="{{ link['viewall-components-video-thumbnail'] }}" class="e-bolt-text-link">Video Thumbnail component</a> is used as a signifier don't use this prop. Please use Video Thumbnail's <strong>duration</strong> prop instead.</bolt-li>
+    <bolt-li>Use the <code>time</code> prop to render such information.</bolt-li>
+    <bolt-li>This option is perfect for external articles and PDF resources.</bolt-li>
+    <bolt-li>This option is not to be used with a video resource. If a <a href="{{ link['viewall-components-video-thumbnail'] }}" class="e-bolt-text-link">Video Thumbnail component</a> is used as a signifier do not use the <code>time</code> prop. Please use Video Thumbnail&rsquo;s <strong>duration</strong> prop instead.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -34,7 +35,7 @@
       description: {
         content: 'Lorem reprehenderit aute aliqua duis anim ex ullamco sunt occaecat nostrud ex tempor occaecat in. Ex veniam eu mollit magna.',
       },
-      time: '10:00',
+      time: '10 min read',
     } only %}
   </div>
 {% endset %}
@@ -42,14 +43,14 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-components-teaser/teaser.twig' with {
-  time: '10:00',
+  time: '10 min read',
   ...
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Teaser Time',
+  title: 'Estimated Reading Time',
   description: description,
   notes: notes,
   demo: demo,
