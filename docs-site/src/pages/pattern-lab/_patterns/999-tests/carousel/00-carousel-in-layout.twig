@@ -13,6 +13,9 @@
         <bolt-carousel-slide>
           <div class="u-bolt-padding-large t-bolt-light">Slide 3</div>
         </bolt-carousel-slide>
+        <bolt-carousel-slide>
+          <div class="u-bolt-padding-large t-bolt-light">Slide 4</div>
+        </bolt-carousel-slide>
       </bolt-carousel>
     </div>
     <div class="o-bolt-wrapper">
@@ -75,6 +78,7 @@
         slide,
         slide
       ],
+      overflow: true,
     } only %}
     {% include '@bolt-components-carousel/carousel.twig' with {
       slides: [
@@ -83,6 +87,7 @@
         slide
       ],
       nav_button_position: 'outside',
+      overflow: true,
     } only %}
   </div>
 {% endset %}
@@ -112,7 +117,7 @@
 </div>
 
 <div class="o-bolt-wrapper">
-  <bolt-carousel nav-button-position="outside">
+  <bolt-carousel nav-button-position="outside" overflow>
     <bolt-carousel-slide>
       <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
     </bolt-carousel-slide>
@@ -152,3 +157,34 @@
     </bolt-carousel-slide>
   </bolt-carousel>
 </div>
+
+{# <div class="l-bolt-site">
+  <header>This is the header</header>
+  <main>
+    <div class="o-bolt-wrapper">
+      {% include '@bolt-components-accordion/accordion.twig' with {
+        items: [
+          {
+            trigger: 'Accordion item 1',
+            content: 'This is the accordion content.',
+          },
+          {
+            trigger: 'Accordion item 2',
+            content: 'This is the accordion content.',
+          },
+          {
+            trigger: 'Accordion item 3',
+            content: 'This is the accordion content.',
+          }
+        ]
+      } only %}
+    </div>
+  </main>
+  <footer>This is the footer</footer>
+</div>
+
+<div class="o-bolt-wrapper">
+  {% include '@bolt-components-banner/banner.twig' with {
+    content: 'This is the banner content.'
+  } only %}
+</div> #}
