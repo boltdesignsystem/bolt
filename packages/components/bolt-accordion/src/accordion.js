@@ -179,6 +179,24 @@ class BoltAccordion extends withContext(BoltElement) {
     this.accordion.on('fold:closed', fold => {
       this.dispatchLayoutChanged();
     });
+
+    this.accordionItemElements.forEach(item => {
+      this.deepLinkTriggers = document.querySelectorAll(`[href="#${item.id}"]`);
+    });
+
+    this.deepLinkTriggers.forEach(el =>
+      el.addEventListener('click', e => {
+        const deepLinkTarget = this.querySelector(
+          `${e.currentTarget.hash}:not([inactive])`,
+        );
+
+        const deepLinkTargetIndex = this.accordionItemElements.indexOf(
+          deepLinkTarget,
+        );
+
+        this.accordion.folds[deepLinkTargetIndex].open();
+      }),
+    );
   }
 
   dispatchLayoutChanged() {
@@ -320,7 +338,6 @@ class BoltAccordion extends withContext(BoltElement) {
           closestBand.addEventListener('error', reject);
         });
       }
-      console.log(this.accordion.folds[deepLinkTargetIndex]);
       this.accordion.folds[deepLinkTargetIndex].open();
     }
   }
