@@ -1,0 +1,233 @@
+// /* ------------------------------------ *\
+//    Dialog
+// \* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+.c-bolt-dialog {
+  --c-bolt-dialog-animation-in-settings: 500ms cubic-bezier(0.25, 0, 0.3, 1)
+    normal;
+  --c-bolt-dialog-animation-out-settings: 500ms
+    cubic-bezier(0.5, -0.5, 0.1, 1.5) normal;
+  --c-bolt-dialog-section-padding-block: calc(var(--bolt-spacing-y-medium) / 2);
+  --c-bolt-dialog-section-padding-inline: var(--bolt-spacing-x-medium);
+  padding: 0;
+  color: var(--m-bolt-text);
+  border: 0;
+  border-radius: bolt-border-radius(small);
+  box-shadow: 0 0 var(--bolt-spacing-x-xsmall) var(--m-bolt-border);
+  background-color: var(--m-bolt-bg);
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
+
+:where(.c-bolt-dialog[open]) {
+  // :where() uses zero specificity, making attribute styling easier to work with.
+  animation: a-bolt-dialog-slide-in var(--c-bolt-dialog-animation-in-settings);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: a-bolt-dialog-fade-in
+      var(--c-bolt-dialog-animation-out-settings);
+  }
+}
+
+.c-bolt-dialog--hidden {
+  animation: a-bolt-dialog-minimize
+    var(--c-bolt-dialog-animation-out-settings);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: a-bolt-dialog-fade-out
+      var(--c-bolt-dialog-animation-out-settings);
+  }
+}
+
+.c-bolt-dialog::backdrop {
+  background-color: rgba(bolt-color(navy, xdark), 0.8);
+  backdrop-filter: blur(0.5rem);
+  animation: none;
+}
+
+.c-bolt-dialog[open]::backdrop {
+  animation: a-bolt-dialog-fade-in var(--c-bolt-dialog-animation-in-settings);
+}
+
+.c-bolt-dialog.c-bolt-dialog--hidden::backdrop {
+  animation: a-bolt-dialog-fade-out var(--c-bolt-dialog-animation-out-settings);
+}
+
+@include bolt-mq(small) {
+  .c-bolt-dialog--transparent {
+    box-shadow: none;
+    background-color: transparent;
+
+    .c-bolt-dialog__close {
+      .e-bolt-button {
+        --e-bolt-button-text-color: white;
+      }
+    }
+  }
+}
+
+// Use an extra layer for layout to avoid issues that comes with changing the <dialog>'s display.
+.c-bolt-dialog__grid {
+  display: grid;
+  grid-template-areas: 
+    'header close'
+    'body body'
+    'footer footer';
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr auto;
+  max-block-size: 100vh;
+  max-block-size: 100dvb;
+}
+
+.c-bolt-dialog__header,
+.c-bolt-dialog__body,
+.c-bolt-dialog__footer {
+  padding-block: var(--c-bolt-dialog-section-padding-block);
+  padding-inline: var(--c-bolt-dialog-section-padding-inline);
+}
+
+.c-bolt-dialog__header,
+.c-bolt-dialog__footer {
+  color: var(--m-bolt-headline);
+}
+
+.c-bolt-dialog__close {
+  display: grid;
+  place-items: center;
+  grid-area: close;
+  padding-block: var(--bolt-spacing-y-xsmall);
+  padding-inline: var(--bolt-spacing-x-xsmall);
+}
+
+.c-bolt-dialog__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  grid-area: header;
+}
+
+.c-bolt-dialog__body {
+  --c-bolt-dialog-section-padding-block: var(--bolt-spacing-y-medium);
+  grid-area: body;
+  overflow-y: auto;
+
+  @at-root .c-bolt-dialog__header ~ #{&} {
+    border-block-start: 1px solid var(--m-bolt-border);
+  }
+}
+
+.c-bolt-dialog__footer {
+  grid-area: footer;
+  margin-block-start: auto;
+  border-block-start: 1px solid var(--m-bolt-border);
+}
+
+.c-bolt-dialog[data-dialog-persistent] {
+  .c-bolt-dialog__header-close {
+    display: none;
+  }
+}
+
+// Content width options
+.c-bolt-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+@include bolt-mq($until: small) {
+  .c-bolt-dialog[open],
+  .c-bolt-dialog__grid {
+    block-size: 100vh;
+    block-size: 100dvb;
+    inline-size: 100%;
+  }
+}
+
+@include bolt-mq(small) {
+  .c-bolt-dialog {
+    max-inline-size: calc(100% - var(--bolt-spacing-x-medium) * 2);
+  }
+
+  .c-bolt-dialog--width-regular {
+    inline-size: calc(100% / 12 * 10);
+  }
+
+  .c-bolt-dialog--width-optimal {
+    inline-size: 75ch;
+  }
+
+  .c-bolt-dialog--width-full {
+    inline-size: calc(100% - var(--bolt-spacing-x-medium) * 2);
+  }
+}
+
+// Container spacing options
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+
+  @if $size-name ==
+    xsmall or
+    $size-name ==
+    small or
+    $size-name ==
+    medium or
+    $size-name ==
+    large
+  {
+    .c-bolt-dialog--spacing-#{$size-name} {
+      --c-bolt-dialog-section-padding-block: calc(var(--bolt-spacing-y-#{$size-name}) / 2);
+      --c-bolt-dialog-section-padding-inline: var(--bolt-spacing-x-#{$size-name});
+  
+      .c-bolt-dialog__body {
+        --c-bolt-dialog-section-padding-block: var(--bolt-spacing-y-#{$size-name});
+      }
+    }
+  }
+}
+
+.c-bolt-dialog--spacing-none {
+  --c-bolt-dialog-section-padding-block: 0;
+  --c-bolt-dialog-section-padding-inline: 0;
+
+  .c-bolt-dialog__body {
+    --c-bolt-dialog-section-padding-block: 0;
+  }
+}
+
+// animation
+@keyframes a-bolt-dialog-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes a-bolt-dialog-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes a-bolt-dialog-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes a-bolt-dialog-minimize {
+  to {
+    opacity: 0;
+    transform: scale(0);
+  }
+}

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0](https://github.com/bolt-design-system/bolt/compare/v5.4.0...v5.5.0) (2022-05-23)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [5.4.0](https://github.com/bolt-design-system/bolt/compare/v5.3.1...v5.4.0) (2022-04-08)
+
+
+### Bug Fixes
+
+* search input test ([ac2d61c](https://github.com/bolt-design-system/bolt/commit/ac2d61ca17b7e56fe513910a507bb11ec079233e))
+* update button labels ([7d2b36e](https://github.com/bolt-design-system/bolt/commit/7d2b36e0b0161c7afa38373421a25ddb61b043f1))
+
+
+
+
+
 ## [5.3.1](https://github.com/bolt-design-system/bolt/compare/v5.3.0...v5.3.1) (2022-04-04)
 
 **Note:** Version bump only for package @bolt/website

@@ -1,0 +1,33 @@
+{
+  "name": "@bolt/components-dialog",
+  "version": "5.5.0",
+  "description": "A content container that usually presents users with a short task or gathered information without losing context of the underlying page.",
+  "keywords": [
+    "bolt design system"
+  ],
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-dialog"
+  },
+  "license": "MIT",
+  "author": "CJ White <hello@cjwhitedev.com>",
+  "main": "index.js",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/core-v3.x": "^5.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "schema": [
+    "dialog.schema.js",
+    "dialog-header.schema.js",
+    "dialog-body.schema.js",
+    "dialog-footer.schema.js"
+  ],
+  "twig": "src/dialog.twig"
+}
