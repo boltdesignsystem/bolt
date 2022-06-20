@@ -221,6 +221,8 @@
     </bolt-carousel>
   </div>
 
+  <hr>
+
   {% set schema = bolt.data.components['@bolt-components-carousel'].schema %}
   {% set slide_1 %}
     {% include '@bolt-components-placeholder/placeholder.twig' with {
@@ -277,7 +279,69 @@
     } only %}
   {% endset %}
 
+
   <h2>Carousel examples inside layout with nav buttons inside and all slides per view examples</h2>
+
+  <div class="l-bolt-site">
+    <header>This is the header</header>
+    <main>
+      <div class="o-bolt-wrapper">
+        {% for slides_per_view in schema.properties.slides_per_view.enum %}
+          <h3>Slides Per View: {{ slides_per_view|capitalize }}</h3>
+          {% include '@bolt-components-carousel/carousel.twig' with {
+            slides_per_view: slides_per_view,
+            slides: [
+              slide_1,
+              slide_2,
+              slide_3,
+              slide_4,
+              slide_5,
+              slide_6,
+              slide_7,
+              slide_8,
+              slide_9,
+            ]
+          } only %}
+        {% endfor %}
+      </div>
+    </main>
+    <footer>This is the footer</footer>
+  </div>
+
+  <hr>
+
+  <h2>Carousel examples inside layout with nav buttons outside and all slides per view examples</h2>
+
+  <div class="l-bolt-site">
+    <header>This is the header</header>
+    <main>
+      <div class="o-bolt-wrapper">
+        {% for slides_per_view in schema.properties.slides_per_view.enum %}
+          <h3>Slides Per View: {{ slides_per_view|capitalize }}</h3>
+          {% include '@bolt-components-carousel/carousel.twig' with {
+            slides_per_view: slides_per_view,
+            nav_button_position: 'outside',
+            slides: [
+              slide_1,
+              slide_2,
+              slide_3,
+              slide_4,
+              slide_5,
+              slide_6,
+              slide_7,
+              slide_8,
+              slide_9,
+            ]
+          } only %}
+        {% endfor %}
+      </div>
+    </main>
+    <footer>This is the footer</footer>
+  </div>
+
+  <hr>
+
+  <h2>Carousel examples inside layout with nav buttons inside, all slides per view examples and prop overflow set to true</h2>
 
   <div class="l-bolt-site">
     <header>This is the header</header>
@@ -306,7 +370,9 @@
     <footer>This is the footer</footer>
   </div>
 
-  <h2>Carousel examples inside layout with nav buttons outside and all slides per view examples</h2>
+  <hr>
+
+  <h2>Carousel examples inside layout with nav buttons outside, all slides per view examples and property overflow set to true</h2>
 
   <div class="l-bolt-site">
     <header>This is the header</header>
