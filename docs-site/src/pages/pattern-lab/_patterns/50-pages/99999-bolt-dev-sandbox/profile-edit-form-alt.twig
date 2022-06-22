@@ -1,0 +1,630 @@
+{% set form_children %}
+  {% set name %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'First Name (required)',
+        displayType: 'block',
+        attributes: {
+          for: 'first-name',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter your first name',
+          required: true,
+          type: 'text',
+          id: 'first-name',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      labelDisplay: 'before',
+      children: input,
+    } only %}
+  {% endset %}
+
+  {% set surname %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Last Name (required)',
+        displayType: 'block',
+        attributes: {
+          for: 'last-name',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter your last name',
+          required: true,
+          type: 'text',
+          id: 'last-name',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      labelDisplay: 'before',
+      children: input,
+    } only %}
+  {% endset %}
+
+  {% set phone_number %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Phone Number (required)',
+        displayType: 'block',
+        attributes: {
+          for: 'phone-number',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter your phone number',
+          required: true,
+          type: 'tel',
+          id: 'phone-number',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      labelDisplay: 'before',
+      children: input,
+    } only %}
+  {% endset %}
+
+  {% set extension %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Extension',
+        displayType: 'block',
+        attributes: {
+          for: 'extension',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter the extension',
+          type: 'text',
+          id: 'extension',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      labelDisplay: 'before',
+      children: input,
+    } only %}
+  {% endset %}
+
+  {% set location  %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Location (required)',
+        displayType: 'block',
+      } only %}
+    {% endset %}
+
+    {% set select %}
+      {% include '@bolt-components-form/form-select.twig' with {
+        attributes: {
+          required: true
+        },
+        options: [
+          {
+            type: 'option',
+            value: '',
+            label: '- Select the country -',
+            attributes: {
+              disabled: true
+            }
+          },
+          {
+            type: 'option',
+            value: 'a',
+            label: 'Argentina'
+          },
+          {
+            type: 'option',
+            value: 'b',
+            label: 'Belgium'
+          },
+          {
+            type: 'option',
+            value: 'c',
+            label: 'Croatia'
+          }
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      labelDisplay: 'before',
+      children: select,
+    } only %}
+  {% endset %}
+
+  {% set postal_code %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Postal Code',
+        displayType: 'block',
+        attributes: {
+          for: 'postal-code',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter your postal code',
+          type: 'number',
+          id: 'postal-code',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      labelDisplay: 'before',
+      children: input,
+    } only %}
+  {% endset %}
+
+  {% set time_zone %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Time Zone',
+        displayType: 'block',
+      } only %}
+    {% endset %}
+
+    {% set select %}
+      {% include '@bolt-components-form/form-select.twig' with {
+        options: [
+          {
+            type: 'option',
+            value: '',
+            label: '- Select the timezone -',
+            attributes: {
+              disabled: true
+            }
+          },
+          {
+            type: 'option',
+            value: 'a',
+            label: 'Time Zone A'
+          },
+          {
+            type: 'option',
+            value: 'b',
+            label: 'Time Zone B'
+          },
+          {
+            type: 'option',
+            value: 'c',
+            label: 'Time Zone C'
+          }
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      labelDisplay: 'before',
+      children: select,
+    } only %}
+  {% endset %}
+
+  {% set contact_information_form %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Contact Information',
+      size: 'xlarge'
+    } only %}
+
+    {% include '@bolt-components-grid/grid.twig' with {
+      gutter: 'small',
+      row_gutter: 'small',
+      items: [
+        {
+          column_start: '1',
+          column_span: '12',
+          content: name,
+        },
+        {
+          column_start: '1',
+          column_span: '12',
+          content: surname,
+        },
+        {
+          column_start: '1',
+          column_span: '12 6@xsmall',
+          content: phone_number,
+        },
+        {
+          column_start: '1 7@xsmall',
+          column_span: '12 6@xsmall',
+          content: extension,
+        },
+        {
+          column_start: '1',
+          column_span: '12',
+          content: location,
+        },
+        {
+          column_start: '1',
+          column_span: '12 6@xsmall',
+          content: postal_code,
+        },
+        {
+          column_start: '1 7@xsmall',
+          column_span: '12 6@xsmall',
+          content: time_zone,
+        },
+      ]
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: contact_information_form,
+    spacing: 'large'
+  } only %}
+
+  {% set job_title %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Job Title',
+        displayType: 'block',
+        attributes: {
+          for: 'job-title',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter your job title',
+          type: 'text',
+          id: 'job-title',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      labelDisplay: 'before',
+      children: input,
+    } only %}
+  {% endset %}
+
+  {% set organization_name %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Organization Name (required)',
+        displayType: 'block',
+        attributes: {
+          for: 'organization-name',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          placeholder: 'Enter your organization name',
+          type: 'text',
+          id: 'organization-name',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      labelDisplay: 'before',
+      children: input,
+    } only %}
+  {% endset %}
+
+  {% set job_function  %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Job Function',
+        displayType: 'block',
+      } only %}
+    {% endset %}
+
+    {% set select %}
+      {% include '@bolt-components-form/form-select.twig' with {
+        options: [
+          {
+            type: 'option',
+            value: '',
+            label: '- Select -',
+            attributes: {
+              disabled: true
+            }
+          },
+          {
+            type: 'option',
+            value: 'business',
+            label: 'Business'
+          },
+          {
+            type: 'option',
+            value: 'pega-developer',
+            label: 'Pega Devloper'
+          },
+          {
+            type: 'option',
+            value: 'manager',
+            label: 'Manager'
+          }
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      labelDisplay: 'before',
+      children: select,
+    } only %}
+  {% endset %}
+
+  {% set job_information_form %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Job Information',
+      size: 'xlarge'
+    } only %}
+
+    {% include '@bolt-components-grid/grid.twig' with {
+      gutter: 'small',
+      row_gutter: 'small',
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 6@xsmall',
+          content: job_title,
+        },
+        {
+          column_start: '1 7@xsmall',
+          column_span: '12 6@xsmall',
+          content: organization_name,
+        },
+        {
+          column_start: '1',
+          column_span: '12',
+          content: job_function,
+        },
+      ]
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: job_information_form,
+    spacing: 'large'
+  } only %}
+
+  {% set availability %}
+    {% set info_icon_trigger %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'info-solid',
+      } only %}
+    {% endset %}
+    {% set popover %}
+      {% include '@bolt-components-popover/popover.twig' with {
+        trigger: info_icon_trigger,
+        trigger_event: 'hover',
+        content: 'This is the content of the popover. We can provide some helpful text here for the user',
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Project Availability' ~ popover,
+      size: 'xlarge'
+    } only %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Available',
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'availability',
+          name: 'availability'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'availability',
+          checked: true,
+        },
+      } only %}
+    {% endset %}
+    {% set icon_info_circle %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'info-circle',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+      descriptionText: icon_info_circle ~ '<small>By checking this box, anyone who views your profile will see that you\'re available. Your availability status will remain active for 30 days, you will need to revisit your profile to set your availability after it expires.</small>',
+    } only %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Start Date (required)',
+        displayType: 'block',
+        attributes: {
+          for: 'start-date',
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          required: true,
+          placeholder: 'Enter the date you can start',
+          type: 'date',
+          id: 'start-date',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      labelDisplay: 'before',
+      children: input,
+    } only %}
+  {% endset %}
+
+  <hr>
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: availability,
+    spacing: 'large'
+  } only %}
+  
+  {% set about_me %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'About Me',
+      size: 'xlarge'
+    } only %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Social Media',
+      size: 'medium'
+    } only %}
+    {% set label %}
+      {% include '@bolt-components-form/form-label.twig' with {
+        title: 'Show social media links on my public profile.',
+        displayType: 'inline-checkbox',
+        attributes: {
+          for: 'social-media-agreement',
+          name: 'social-media-agreement'
+        },
+      } only %}
+    {% endset %}
+    {% set input %}
+      {% include '@bolt-components-form/form-input.twig' with {
+        attributes: {
+          type: 'checkbox',
+          id: 'social-media-agreement',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-form/form-element.twig' with {
+      label: label,
+      children: input,
+    } only %}
+
+    {% set twitter %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Twitter',
+          displayType: 'block',
+          attributes: {
+            for: 'twitter',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Enter your Twitter URL',
+            type: 'url',
+            id: 'twitter',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        labelDisplay: 'before',
+        children: input,
+      } only %}
+    {% endset %}
+
+    {% set linkedin %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'LinkedIn',
+          displayType: 'block',
+          attributes: {
+            for: 'linkedin',
+          },
+        } only %}
+      {% endset %}
+      {% set input %}
+        {% include '@bolt-components-form/form-input.twig' with {
+          attributes: {
+            placeholder: 'Enter your organization name',
+            type: 'url',
+            id: 'linkedin',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        labelDisplay: 'before',
+        children: input,
+      } only %}
+    {% endset %}
+
+    {% set bio %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Bio',
+          displayType: 'block',
+        } only %}
+      {% endset %}
+
+      {% set textarea %}
+        {% include '@bolt-components-form/form-textarea.twig' with {
+          attributes: {
+            placeholder: 'Add a short bio here',
+            rows: 6
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        labelDisplay: 'before',
+        children: textarea,
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-grid/grid.twig' with {
+      gutter: 'small',
+      row_gutter: 'small',
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 6@xsmall',
+          content: twitter,
+        },
+        {
+          column_start: '1 7@xsmall',
+          column_span: '12 6@xsmall',
+          content: linkedin,
+        },
+        {
+          column_start: '1',
+          column_span: '12',
+          content: bio,
+        },
+      ]
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: about_me,
+    spacing: 'large'
+  } only %}
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  {% include '@bolt-components-form/form.twig' with {
+    children: form_children
+  } only  %}
+</div>
