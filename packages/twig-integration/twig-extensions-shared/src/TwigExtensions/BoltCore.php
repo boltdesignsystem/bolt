@@ -8,12 +8,10 @@ use \Webmozart\PathUtil\Path; // https://github.com/webmozart/path-util
 use Twig\Extension\InitRuntimeInterface;
 use Twig\Extension\GlobalsInterface;
 use Twig\Extension\AbstractExtension;
-
-require_once 'Faker.php';
-
 class BoltCore extends AbstractExtension implements InitRuntimeInterface, GlobalsInterface {
 
   public $data = [];
+  public $isDebug;
   public $version;
 
   function __construct() {
@@ -30,6 +28,7 @@ class BoltCore extends AbstractExtension implements InitRuntimeInterface, Global
       $fullManifestPath = TwigTools\Utils::resolveTwigPath($env, '@bolt-data/full-manifest.bolt.json');
       $dataDir = dirname($fullManifestPath);
       $this->data = Bolt\Utils::buildBoltData($dataDir);
+      $this->isDebug = $env->isDebug();
     } catch (\Exception $e) {
 
     }
@@ -39,9 +38,8 @@ class BoltCore extends AbstractExtension implements InitRuntimeInterface, Global
     return [
       'bolt' => [
         'data' => $this->data,
-        'faker' => new Bolt\TwigExtensions\TwigFaker(),
       ],
-      'enable_json_schema_validation' => true,
+      'enable_json_schema_validation' => $this->isDebug,
     ];
   }
 
@@ -52,7 +50,6 @@ class BoltCore extends AbstractExtension implements InitRuntimeInterface, Global
       Bolt\TwigFunctions::init(),
       Bolt\TwigFunctions::publicpath(),
       Bolt\TwigFunctions::base64(),
-      Bolt\TwigFunctions::bgcolor(),
       Bolt\TwigFunctions::ratio(),
       Bolt\TwigFunctions::getBoltData(),
       Bolt\TwigFunctions::getImageData(),

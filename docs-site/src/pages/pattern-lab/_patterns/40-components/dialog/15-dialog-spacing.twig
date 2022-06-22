@@ -1,0 +1,84 @@
+{% include '@pl/_dialog-warning.twig' %}
+
+{% set schema = bolt.data.components['@bolt-components-dialog'].schema['dialog'] %}
+
+{% set description %}
+  The inset spacing of the dialog&rsquo;s header, body, and footer is adjustable.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use the <code>spacing</code> prop to control the spacing. It can even be set to <code>none</code> to remove all spacing.</bolt-li>
+    <bolt-li>Reference the <a href="{{ link['viewall-components-dialog'] }}?selected-tab=schema" class="e-bolt-text-link">Dialog schema</a> for all options.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    {% for spacing in schema.properties.spacing.enum %}
+      <bolt-list-item>
+        {% include '@bolt-elements-button/button.twig' with {
+          content: spacing|title,
+          attributes: {
+            type: 'button',
+            'data-bolt-dialog-target': '#dialog-spacing-' ~ loop.index0,
+          }
+        } only %}
+
+        {% set header_content %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'This is a dialog',
+            tag: 'h1',
+          } only %}
+        {% endset %}
+
+        {% set footer_content %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'This button is in the footer',
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+
+        {% set content %}
+          {% include '@bolt-components-dialog/dialog-header.twig' with {
+            content: header_content,
+          } only %}
+          {% include '@bolt-components-dialog/dialog-body.twig' with {
+            content: 'The spacing is set to ' ~ spacing ~ '. Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.',
+          } only %}
+          {% include '@bolt-components-dialog/dialog-footer.twig' with {
+            content: footer_content,
+          } only %}
+        {% endset %}
+
+        {% include '@bolt-components-dialog/dialog.twig' with {
+          content: content,
+          spacing: spacing,
+          attributes: {
+            id: 'dialog-spacing-' ~ loop.index0
+          },
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: content,
+  spacing: 'large',
+  attributes: {
+    id: 'dialog-spacing-1'
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Dialog Spacing',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

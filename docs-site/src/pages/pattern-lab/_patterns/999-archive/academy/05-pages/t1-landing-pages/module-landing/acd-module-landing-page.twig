@@ -1,0 +1,206 @@
+{% extends "@bolt-academy/_academy-landing-page-template.twig" %}
+
+{% import "@bolt-academy/_macros.twig" as macros %}
+
+{% set breadcrumbs = [
+  {
+    "text": "Home",
+    "url": link["pages-acd-dashboard"]
+  },
+  {
+    "text": "Mission Name Goes Here",
+    "url": link["pages-acd-mission-landing"]
+  },
+  {
+    "text": "Module name goes here"
+  }
+] %}
+
+{% block page_content %}
+
+  {% embed "@bolt-academy/_landing-page-inner-layout.twig" %}
+
+    {% block hero_content %}
+      {% include "@bolt-academy/_landing-page-hero.twig" %}
+    {% endblock %}
+
+    {% block main_content %}
+
+      {% set trainingSupplementalContent %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "medium",
+          text: "After completing this module, you should be able to:",
+          attributes: {
+            class: [
+              "u-bolt-margin-bottom-small",
+            ]
+          }
+        } only %}
+        <div class="u-bolt-margin-bottom-large">
+          {# @todo: discovered a bug, you cannot pass classes to ul component #}
+          {% include "@bolt-components-ul/ul.twig" with {
+            items: [
+              "Explain how data types group related fields to model a single entity",
+              "Explain how data types group related fields to model a single entity",
+              "Explain how data types group related fields to model a single entity",
+            ]
+          } only %}
+        </div>
+
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "medium",
+          text: "This module is available in the following Missions:",
+          attributes: {
+            class: [
+              "u-bolt-margin-bottom-small",
+            ]
+          }
+        } only %}
+        {% set link_1 %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            attributes: {
+              href: 'https://www.google.com'
+            },
+            content: "Name of Mission will go here"
+          } only %},
+        {% endset %}
+        {% set link_2 %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            attributes: {
+              href: 'https://www.google.com'
+            },
+            content: "Name of Mission"
+          } only %}
+        {% endset %}
+        {% set link_3 %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            attributes: {
+              href: 'https://www.google.com'
+            },
+            content: "Adding another mission here"
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-list/list.twig" with {
+          separator: "none",
+          display: "block",
+          spacing: "none",
+          attributes: {
+            class: [
+              "u-bolt-margin-bottom-large",
+            ]
+          },
+          items: [
+            link_1,
+            link_2,
+            link_3,
+          ]
+        } only %}
+      {% endset %}
+
+      {% set headline %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "xlarge",
+          text: "Topics",
+          attributes: {
+            class: "u-bolt-margin-bottom-small",
+          }
+        } only %}
+      {% endset %}
+      {% set list %}
+        {% set list_item_1 %}
+          {% include "@bolt-academy/_module-topic-item.twig" with {
+            text: "Data types",
+            duration: "10 mins",
+            viewed: true,
+          } only %}
+        {% endset %}
+        {% set list_item_2 %}
+          {% include "@bolt-academy/_module-topic-item.twig" with {
+            text: "Data types",
+            duration: "10 mins",
+            viewed: true,
+          } only %}
+        {% endset %}
+        {% set list_item_3 %}
+          {% include "@bolt-academy/_module-topic-item.twig" with {
+            text: "Creating a data type",
+            duration: "5 mins",
+          } only %}
+        {% endset %}
+        {% set list_item_4 %}
+          {% include "@bolt-academy/_module-topic-item.twig" with {
+            text: "Creating a data type with a really long title donec quam felis",
+            duration: "5 mins",
+          } only %}
+        {% endset %}
+        {% set list_item_5 %}
+          {% include "@bolt-academy/_module-quiz-item.twig" with {
+            text: "Module Quiz",
+            numberOfQuestionsText: "3 Questions",
+          } only %}
+        {% endset %}
+        {% set list_item_6 %}
+          {% include "@bolt-academy/_module-quiz-item.twig" with {
+            text: "Module Quiz",
+            numberOfQuestionsText: "3 Questions",
+            status: "passed"
+          } only %}
+        {% endset %}
+        {% set list_item_7 %}
+          {% include "@bolt-academy/_module-quiz-item.twig" with {
+              text: "Module Quiz",
+              numberOfQuestionsText: "3 Questions",
+              status: "failed"
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-list/list.twig" with {
+          separator: "solid",
+          attributes: {
+            class: [
+              "u-bolt-negative-margin-right-small",
+              "u-bolt-padding-right-medium",
+            ],
+          },
+          items: [
+            list_item_1,
+            list_item_2,
+            list_item_3,
+            list_item_4,
+            list_item_5,
+            list_item_6,
+            list_item_7,
+          ]
+        } only %}
+      {% endset %}
+      {% set trainingTopicList %}
+        {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+          theme: "xlight",
+          border_radius: "large",
+          height: "auto",
+          attributes: {
+            class: [
+              "u-bolt-margin-bottom-small",
+            ]
+          },
+          body: {
+            content: [
+              headline,
+              list
+            ]|join('')
+          }
+        } only %}
+      {% endset %}
+
+      {% embed "@bolt-academy/_landing-page-main-2-col.twig" %}
+        {% block supplemental_content %}
+          {{ trainingSupplementalContent }}
+        {% endblock %}
+        {% block right_column %}
+          {{ trainingTopicList }}
+        {% endblock %}
+      {% endembed %}
+
+    {% endblock %}
+  {% endembed %}
+
+{% endblock %}

@@ -1,0 +1,144 @@
+{% import "@bolt-academy/_macros.twig" as macros %}
+
+{% set _share_icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: "share"
+  } only %}
+{% endset %}
+{% set _close_icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: "close"
+  } only %}
+{% endset %}
+{% set headline_1 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "#{bolt.faker.numberBetween(2,10)} Modules",
+  } only %}
+{% endset %}
+{% set headline_2 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "1 Challenge",
+  } only %}
+{% endset %}
+{% set headline_3 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "25% complete",
+    attributes: {
+      class: ["u-bolt-color-orange"]
+    }
+  } only %}
+{% endset %}
+{% set headline_4 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "#{bolt.faker.numberBetween(2,10)} Topics",
+  } only %}
+{% endset %}
+{% set headline_5 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "In progress",
+    attributes: {
+      class: ["u-bolt-color-orange"]
+    }
+  } only %}
+{% endset %}
+{% set headline_6 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "#{bolt.faker.numberBetween(2,10)} Topics",
+  } only %}
+{% endset %}
+{% set headline_7 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "40 mins remaining",
+    attributes: {
+      class: ["u-bolt-color-orange"]
+    }
+  } only %}
+{% endset %}
+{% set share %}
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Share",
+    size: "xsmall",
+    hierarchy: "tertiary",
+    icon_only: _share_icon,
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% set remove %}
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Remove from Dashboard",
+    size: "xsmall",
+    hierarchy: "tertiary",
+    icon_only: _close_icon,
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% include "@bolt-academy/_dashboard-band.twig" with {
+  sectionTitle: "New Training",
+  contentItems: [
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        headline_1,
+        headline_2,
+        headline_3
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+        remove,
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        headline_4,
+        headline_5,
+      ],
+      cardGradient: "orange",
+      cardIcon: "meteor",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        headline_6,
+        headline_7,
+      ],
+      cardGradient: "teal",
+      cardIcon: "orbit",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+      ]
+    }
+  ]
+} only %}

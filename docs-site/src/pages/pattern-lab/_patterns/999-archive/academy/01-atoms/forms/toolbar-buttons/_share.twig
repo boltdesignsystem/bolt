@@ -1,0 +1,82 @@
+{% extends "@bolt-academy/toolbar-buttons/_toolbar-button.twig" %}
+
+{% import "@bolt-academy/_macros.twig" as macros %}
+
+{% set buttonIcon = "share" %}
+{% set buttonText = "Share" %}
+{% set popover %}
+  {% set facebook %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Facebook",
+      size: "medium",
+      icon: {
+        name: "facebook-solid",
+        position: "before"
+      }
+    } only %}
+  {% endset %}
+  {% set twitter %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Twitter",
+      size: "medium",
+      icon: {
+        name: "twitter",
+        position: "before"
+      }
+    } only %}
+  {% endset %}
+  {% set LinkedIn %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "LinkedIn",
+      size: "medium",
+      icon: {
+        name: "linkedin",
+        position: "before"
+      }
+    } only %}
+  {% endset %}
+  {% set Link %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Link",
+      size: "medium",
+      icon: {
+        name: "link",
+        position: "before"
+      }
+    } only %}
+  {% endset %}
+  {% set Email %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Email",
+      size: "medium",
+      icon: {
+        name: "email",
+        position: "before"
+      }
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-menu/menu.twig" with {
+    items: [
+      {
+        content: facebook,
+        url: "#!"
+      },
+      {
+        content: twitter,
+        url: "#!"
+      },
+      {
+        content: LinkedIn,
+        url: "#!"
+      },
+      {
+        content: Email,
+        url: "#!"
+      },
+      {
+        content: Link,
+        url: "#!"
+      },
+    ]
+  } only %}
+{% endset %}

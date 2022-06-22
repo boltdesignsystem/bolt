@@ -1,0 +1,112 @@
+{% import "@bolt-academy/_macros.twig" as macros %}
+
+{% set _share_icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: "share",
+    size: "small"
+  } only %}
+{% endset %}
+{% set headline_1 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "#{bolt.faker.numberBetween(2,10)} Topics",
+  } only %}
+{% endset %}
+{% set headline_2 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "40 mins remaining",
+    attributes: {
+      class: ["u-bolt-color-orange"]
+    }
+  } only %}
+{% endset %}
+{% set share %}
+{% include "@bolt-elements-button/button.twig" with {
+    content: "Share",
+    size: "xsmall",
+    hierarchy: "transparent",
+    icon_only: _share_icon,
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% set eyebrow_1 %}
+  {% include "@bolt-components-headline/eyebrow.twig" with {
+    text: "Last activity: 3 days ago",
+    align: "center",
+    attributes: {
+      class: ["u-bolt-padding-small"]
+    }
+  } only %}
+{% endset %}
+{% set headline_3 %}
+{% include "@bolt-components-headline/text.twig" with {
+  size: "small",
+  weight: "bold",
+  text: "#{bolt.faker.numberBetween(2,10)} Topics",
+} only %}
+{% endset %}
+{% set headline_4 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "In progress",
+    attributes: {
+      class: ["u-bolt-color-orange"]
+    }
+  } only %}
+{% endset %}
+{% set eyebrow_2 %}
+  {% include "@bolt-components-headline/eyebrow.twig" with {
+    text: "Last activity: 12/21/19",
+    align: "center",
+    attributes: {
+      class: ["u-bolt-padding-small"]
+    }
+  } only %}
+{% endset %}
+{% include "@bolt-academy/_dashboard-band.twig" with {
+  sectionTitle: "In Progress",
+  contentItems: [
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        headline_1,
+        headline_2,
+      ],
+      cardGradient: "teal",
+      cardIcon: "orbit",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+      ],
+      cardStatusItems: [
+        eyebrow_1,
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Module",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        headline_3,
+        headline_4,
+      ],
+      cardGradient: "orange",
+      cardIcon: "meteor",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+      ],
+      cardStatusItems: [
+        eyebrow_2
+      ]
+    }
+  ]
+} only %}

@@ -27,7 +27,6 @@ const config = deepmerge(baseConfig, {
   },
   sourceMaps: !(process.env.TRAVIS || argv.prod),
   enableCache: !(process.env.TRAVIS || argv.prod),
-  enableSSR: false, // temp disabled till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
@@ -35,7 +34,7 @@ const config = deepmerge(baseConfig, {
     },
     'bolt-academy': {
       recursive: true,
-      paths: ['./src/pages/pattern-lab/_patterns/999-tests/academy'],
+      paths: ['./src/pages/pattern-lab/_patterns/999-archive/academy'],
     },
     pl: {
       recursive: true,
@@ -88,9 +87,6 @@ const config = deepmerge(baseConfig, {
        */
 
       '@bolt/components-radio-switch',
-      '@bolt/docs-search',
-      // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
-      '@bolt/shadow-toggle',
       '@bolt/theme-switcher',
 
       // Components that are excluded from the base release build.
@@ -136,6 +132,10 @@ const config = deepmerge(baseConfig, {
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
       flatten: true,
+    },
+    {
+      from: `src/custom-brightcove.js`,
+      to: path.join(__dirname, '../www/'),
     },
   ],
   alterTwigEnv: [

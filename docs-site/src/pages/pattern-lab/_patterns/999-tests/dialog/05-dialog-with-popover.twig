@@ -1,0 +1,137 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+
+<div class="u-bolt-margin-top-large u-bolt-margin-bottom-large">
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Demo Dialog',
+  attributes: {
+    type: 'button',
+    'data-bolt-dialog-target': '#dialog-1',
+  }
+} only %}
+
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Demo Dialog (long)',
+  attributes: {
+    type: 'button',
+    'data-bolt-dialog-target': '#dialog-2',
+  }
+} only %}
+
+{% set _header_content %}
+<h1>This is a dialog component.</h1>
+{% endset %}
+
+{% set _body_content %}
+<p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+{% endset %}
+
+{% set _footer_content %}
+<button type="button" class="e-bolt-button">Button</button>
+{% endset %}
+
+{% set _content %}
+{% include '@bolt-components-dialog/dialog-header.twig' with {
+  content: _header_content,
+} only %}
+{% include '@bolt-components-dialog/dialog-body.twig' with {
+  content: _body_content,
+} only %}
+{% include '@bolt-components-dialog/dialog-footer.twig' with {
+  content: _footer_content,
+} only %}
+{% endset %}
+
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: _content,
+  attributes: {
+    id: 'dialog-1'
+  },
+} only %}
+
+{% set _content_long %}
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum nemo, incidunt nesciunt soluta nisi accusantium temporibus voluptas ipsa aperiam labore quasi quos eligendi cupiditate quod laborum corporis rerum, adipisci asperiores.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum nemo, incidunt nesciunt soluta nisi accusantium temporibus voluptas ipsa aperiam labore quasi quos eligendi cupiditate quod laborum corporis rerum, adipisci asperiores.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum nemo, incidunt nesciunt soluta nisi accusantium temporibus voluptas ipsa aperiam labore quasi quos eligendi cupiditate quod laborum corporis rerum, adipisci asperiores.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum nemo, incidunt nesciunt soluta nisi accusantium temporibus voluptas ipsa aperiam labore quasi quos eligendi cupiditate quod laborum corporis rerum, adipisci asperiores.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum nemo, incidunt nesciunt soluta nisi accusantium temporibus voluptas ipsa aperiam labore quasi quos eligendi cupiditate quod laborum corporis rerum, adipisci asperiores.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum nemo, incidunt nesciunt soluta nisi accusantium temporibus voluptas ipsa aperiam labore quasi quos eligendi cupiditate quod laborum corporis rerum, adipisci asperiores.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum nemo, incidunt nesciunt soluta nisi accusantium temporibus voluptas ipsa aperiam labore quasi quos eligendi cupiditate quod laborum corporis rerum, adipisci asperiores.</p>
+{% endset %}
+
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: _content_long,
+  attributes: {
+    id: 'dialog-2'
+  },
+} only %}
+
+{% set link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'call to action',
+    attributes: {
+      href: 'https://google.com'
+    }
+  } only %}
+{% endset %}
+{% set trigger %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'This triggers a popover',
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% set content %}
+  {% include '@bolt-elements-button/button.twig' with {
+      content: 'Demo Dialog',
+      attributes: {
+        type: 'button',
+        'data-bolt-dialog-target': '#dialog-1',
+      }
+    } only %}
+{% endset %}
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: trigger,
+  content: content,
+} only %}
+</div>
+
+<bolt-stack>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+</bolt-stack>
+<bolt-stack>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+</bolt-stack>
+<bolt-stack>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+</bolt-stack>
+<bolt-stack>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+</bolt-stack>
+<bolt-stack>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+</bolt-stack>
+<bolt-stack>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+</bolt-stack>
+{% endblock %}

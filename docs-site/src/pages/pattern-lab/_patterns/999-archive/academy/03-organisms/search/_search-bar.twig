@@ -1,0 +1,33 @@
+{% import "@bolt-academy/_macros.twig" as macros %}
+
+{% set content %}
+  {% set search %}
+    {% include "@bolt-components-typeahead/typeahead.twig" with {
+      attributes: {
+        class: [
+          "js-typeahead-hook--exact-result"
+        ]
+      },
+      max_results: 5,
+    } only %}
+  {% endset %}
+  {% grid "o-bolt-grid o-bolt-grid--center" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-10/12@large" %}
+      {% include "@bolt-components-form/form.twig" with {
+        children: search,
+        attributes: {
+          action: "https://www.google.com/search",
+          target: "_blank",
+          rel: 'noopener',
+          method: "GET"
+        }
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "dark",
+  size: "xsmall",
+  content: content
+} only %}

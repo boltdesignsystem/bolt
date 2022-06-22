@@ -11,9 +11,9 @@
 
   <h2>Video with No Quality Default</h2>
 
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video,
-    ratio: '16/9'
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video,
+    ratio: 'wide'
   } only %}
 
   {% set video_1 %}
@@ -29,9 +29,9 @@
 
   <h2>Video with 540p Quality Resolution</h2>
 
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video_1,
-    ratio: '16/9'
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video_1,
+    ratio: 'wide'
   } only %}
 
   {% set video_2 %}
@@ -47,9 +47,9 @@
 
   <h2>Video with 360p Quality Resolution</h2>
 
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video_2,
-    ratio: '16/9'
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video_2,
+    ratio: 'wide'
   } only %}
 
   {% set video_3 %}
@@ -65,9 +65,9 @@
 
   <h2>Video with 270p Quality Resolution</h2>
 
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video_3,
-    ratio: '16/9'
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video_3,
+    ratio: 'wide'
   } only %}
 
   {% set video_4 %}
@@ -83,9 +83,9 @@
 
   <h2>Video with Wrong Quality Resolution</h2>
 
-  {% include '@bolt-components-ratio/ratio.twig' with {
-    children: video_4,
-    ratio: '16/9'
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video_4,
+    ratio: 'wide'
   } only %}
 {% endset %}
 

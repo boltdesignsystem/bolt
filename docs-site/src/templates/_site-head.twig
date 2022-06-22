@@ -60,7 +60,7 @@
       window.bolt.data.fullManifest.version = window.bolt.data.fullManifest.version || {{ bolt.data.fullManifest.version|json_encode|raw }};
     </script>
 
-    <script type="module" src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
+    <script type="module" src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}"></script>
 
     <noscript>
       <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
@@ -104,4 +104,4 @@
     patternLabFoot is not defined ? 'c-bds-layout' : '',
     patternLabFoot is not defined ? ('c-bds-layout--' ~ urlChunks | length >= 2 ? urlChunks|first : 'c-bds-layout--parent') : '',
   ] %}
-<body class="{{ bodyClasses|join(' ') }}">
+<body class="{{ bodyClasses|join(' ') }}" id="top">

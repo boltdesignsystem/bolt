@@ -1,0 +1,544 @@
+{% import "@bolt-academy/_macros.twig" as macros %}
+
+{% set _chevron_icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: "chevron-down"
+  } only %}
+{% endset %}
+{% set _share_icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: "share"
+  } only %}
+{% endset %}
+{% set _close_icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: "close"
+  } only %}
+{% endset %}
+{% set _add_icon %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: "add-circle"
+  } only %}
+{% endset %}
+
+{% set trigger %}
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Pega Customer Decision Hub 8.5",
+    size: "xsmall",
+    hierarchy: "tertiary",
+    icon_after: _chevron_icon,
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+
+{% set popoverContent %}
+  {% include "@bolt-components-menu/menu.twig" with {
+    items: [
+      {
+        content: "Pega Customer Decision Hub 8.1",
+        url: "https://google.com"
+      },
+      {
+        content: "Pega Customer Decision Hub 8.3",
+        url: "https://google.com"
+      },
+    ]
+  } only %}
+{% endset %}
+{% set card_1_headline_1 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    text: "1 Module",
+    weight: "bold"
+  } only %}
+{% endset %}
+{% set card_1_headline_2 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    text: "10 mins",
+    weight: "bold",
+    attributes: {
+      class: "stats-item",
+    },
+  } only %}
+{% endset %}
+{% set card_1_popover %}
+  {% include "@bolt-components-popover/popover.twig" with {
+    trigger: trigger,
+    content: popoverContent,
+    spacing: "none",
+    boundary: "bolt-card-replacement",
+    placement: "top-start",
+    fallbackPlacements: [
+      "top",
+      "top-end"
+    ],
+    theme: "light"
+  } only %}
+{% endset %}
+{% set card_1_eyebrow_1 %}
+  {% include "@bolt-components-headline/eyebrow.twig" with {
+    text: "Last activity: 3 days ago",
+    align: "center",
+    attributes: {
+      class: ["u-bolt-padding-small"]
+    }
+  } only %}
+{% endset %}
+{% set card_2_headline_1 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "#{bolt.faker.numberBetween(2,10)} Modules",
+  } only %}
+{% endset %}
+{% set card_2_headline_2 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "1 Challange",
+  } only %}
+{% endset %}
+{% set card_2_headline_3 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "10% complete",
+    attributes: {
+      class: ["u-bolt-color-orange"]
+    }
+  } only %}
+{% endset %}
+{% set card_2_eyebrow_1 %}
+  {% include "@bolt-components-headline/eyebrow.twig" with {
+    text: "Last activity: 12/21/19",
+    align: "center",
+    attributes: {
+      class: ["u-bolt-padding-small"]
+    }
+  } only %}
+{% endset %}
+{% set card_2_eyebrow_2 %}
+  {% include "@bolt-components-headline/eyebrow.twig" with {
+    text: "Assigned",
+    align: "center",
+    attributes: {
+      class: ["u-bolt-padding-small"]
+    }
+  } only %}
+{% endset %}
+{% set card_3_headline_1 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "#{bolt.faker.numberBetween(2,10)} Modules",
+  } only %}
+{% endset %}
+{% set card_3_headline_2 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "1 Challange",
+  } only %}
+{% endset %}
+{% set card_3_headline_3 %}
+  {% include "@bolt-components-headline/text.twig" with {
+    size: "small",
+    weight: "bold",
+    text: "10% complete",
+    attributes: {
+      class: ["u-bolt-color-orange"]
+    }
+  } only %}
+{% endset %}
+{% set card_3_eyebrow_1 %}
+  {% include "@bolt-components-headline/eyebrow.twig" with {
+    text: "Last activity: 12/21/19",
+    align: "center",
+    attributes: {
+      class: ["u-bolt-padding-small"]
+    }
+  } only %}
+{% endset %}
+{% set share %}
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Share",
+    size: "xsmall",
+    hierarchy: "tertiary",
+    icon_only: _share_icon,
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% set close %}
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Remove from Dashboard",
+    size: "xsmall",
+    hierarchy: "tertiary",
+    icon_only: _close_icon,
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% set cardContentItems = [
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        card_1_headline_1,
+        card_1_headline_2,
+        card_1_popover,
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      removeButton: true,
+      cardStatusItems: [
+        card_1_eyebrow_1
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        card_2_headline_1,
+        card_2_headline_2,
+        card_2_headline_3,
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      removeButton: true,
+      cardStatusItems: [
+        card_2_eyebrow_1,
+        card_2_eyebrow_2
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        card_3_headline_1,
+        card_3_headline_2,
+        card_3_headline_3,
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      removeButton: true,
+      cardStatusItems: [
+        card_3_eyebrow_1
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        card_1_headline_1,
+        card_1_headline_2,
+        card_1_popover,
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+        close,
+      ],
+      cardStatusItems: [
+        card_1_eyebrow_1
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        card_2_headline_1,
+        card_2_headline_2,
+        card_2_headline_3,
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+        close,
+      ],
+      cardStatusItems: [
+        card_2_eyebrow_1,
+        card_2_eyebrow_2
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        card_3_headline_1,
+        card_3_headline_2,
+        card_3_headline_3,
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+        close,
+      ],
+      cardStatusItems: [
+        card_3_eyebrow_1,
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        card_1_headline_1,
+        card_1_headline_2,
+        card_1_popover,
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+        close,
+      ],
+      cardStatusItems: [
+        card_1_eyebrow_1
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        card_2_headline_1,
+        card_2_headline_2,
+        card_2_headline_3,
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+        close,
+      ],
+      cardStatusItems: [
+        card_2_eyebrow_1,
+        card_2_eyebrow_2,
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        card_3_headline_1,
+        card_3_headline_2,
+        card_3_headline_3,
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+        close,
+      ],
+      cardStatusItems: [
+        card_3_eyebrow_1
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        card_1_headline_1,
+        card_1_headline_2,
+        card_1_popover,
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+        close,
+      ],
+      cardStatusItems: [
+        card_1_eyebrow_1,
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        card_2_headline_1,
+        card_2_headline_2,
+        card_2_headline_3,
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+        close,
+      ],
+      cardStatusItems: [
+        card_2_eyebrow_1,
+        card_2_eyebrow_2,
+      ]
+    },
+    {
+      cardUrl: "#!",
+      cardSubtitle: "Mission",
+      cardTitle: "Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.",
+      cardMetaItems: [
+        card_3_headline_1,
+        card_3_headline_2,
+        card_3_headline_3,
+      ],
+      cardGradient: "pink",
+      cardIcon: "rocket",
+      cardDescription: "Aut modi eos iure et dolorum molestiae consequatur. Ad velit dolorem officiis odit dolores assumenda omnis vero.",
+      cardUtilityItems: [
+        share,
+        close,
+      ],
+      cardStatusItems: [
+        card_3_eyeebrow_1,
+      ]
+    },
+] %}
+
+
+{# @todo: uncomment + rename the cardContentItems variable used in the include w/ processedCards below to auto-add extra whitespace to better equalize card heights #}
+
+{#
+{% set maxLength = 0 %}
+{% for item in cardContentItems %}
+  {% if item.cardTitle | length > maxLength %}
+    {% set maxLength = item.cardTitle | length %}
+  {% endif %}
+{% endfor %}
+
+{% set processedCards = [] %}
+{% for item in cardContentItems %}
+  {% if item.cardTitle | length < maxLength %}
+    {% set numberOfExtraChars = maxLength - item.cardTitle | length %}
+    {% set extraChars = '' %}
+
+    {% for i in 0..numberOfExtraChars %}
+      {% set extraChars = extraChars ~ '&emsp;' %}
+    {% endfor %}
+    {% set item = item | merge({
+      cardTitle: item.cardTitle ~ ' ' ~ extraChars
+    }) %}
+  {% endif %}
+
+  {% set processedCards = processedCards | merge([item]) %}
+{% endfor %} #}
+
+{% if showAll %}
+  {% set count %}{% spaceless %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "(12)",
+      size: "small",
+      tag: "span",
+      attributes: {
+        class: [
+          "u-bolt-inline"
+        ]
+      }
+    } only %}
+  {% endspaceless %}{% endset %}
+  {% set sectionTitle = "My Missions " ~ count %}
+  {% set sectionButtons = false %}
+  {% set useCarousel = false %}
+{% endif %}
+
+{% if addMission %}
+  {% set content %}
+    <div class="u-bolt-padding-medium u-bolt-padding-top-xlarge u-bolt-padding-bottom-xlarge u-bolt-text-align-center">
+      {% include "@bolt-elements-icon/icon.twig" with {
+        name: "add",
+        size: "large",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-small",
+            "u-bolt-color-gray"
+          ]
+        }
+      }%}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Add Mission",
+        size: "xlarge",
+        attributes: {
+          class: [
+            "u-bolt-color-gray"
+          ]
+        }
+      } only %}
+    </div>
+  {% endset %}
+
+  {% set emptyCard %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      link: {
+        url: "#!",
+        text: "Add Mission"
+      },
+      theme: "none",
+      body: {
+        content: content
+      }
+    } only %}
+  {% endset %}
+
+  {% set cardContentItems = [emptyCard] %}
+  {% set sectionButtons = false %}
+{% endif %}
+
+{% set show_all_button %}
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Show all (12)",
+    size: "small",
+    hierarchy: "secondary",
+    border_radius: "full",
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% set add_missions_button %}
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Add Missions",
+    size: "large",
+    hierarchy: "transparent",
+    icon_before: _add_icon,
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% include "@bolt-academy/_dashboard-band.twig" with {
+  sectionTitle: sectionTitle|default("My Missions"),
+  theme: "light",
+  sectionButtons: sectionButtons ?? [
+    show_all_button,
+    add_missions_button,
+  ],
+  useCarousel: useCarousel,
+  contentItems: cardContentItems
+} only %}

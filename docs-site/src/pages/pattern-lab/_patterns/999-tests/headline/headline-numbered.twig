@@ -1,0 +1,21 @@
+{% set schema = bolt.data.components['@bolt-components-headline'].schema %}
+
+<h2>New prop <code>number_text</code> usage.</h2>
+{% for item in schema.properties.number_color.enum %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxlarge',
+    text: 'Numbered Headline',
+    number_text: loop.index,
+  } only %}
+{% endfor %}
+
+<h2>New prop <code>number_color</code> usage.</h2>
+<p>Note that the new color violet - <code>var(--bolt-color-violet)</code> replaced color purple - <code>var(--bolt-color-berry)</code>.</p>
+{% for item in schema.properties.number_color.enum %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxlarge',
+    text: 'Numbered Headline, ' ~ 'color ' ~ item ~ ' <code>var(--bolt-color-'~ item ~')</code>',
+    number_color: item,
+    number_text: range('A','Z')[loop.index0],
+  } only %}
+{% endfor %}

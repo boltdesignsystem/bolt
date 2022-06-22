@@ -1,4 +1,5 @@
 import '@bolt/core-v3.x/utils/optimized-resize';
+import Cookies from 'js-cookie';
 
 export class BoltHolyGrail {
   constructor(el) {
@@ -33,6 +34,14 @@ export class BoltHolyGrail {
       }
     });
 
+    // hide or show nav based on previous user experience / preference
+    // nothing happens if user has not interacted with this before, setting the cookie
+    if (Cookies.get('l-bolt-holy-grail--hidden') === 'true') {
+      this.hide();
+    } else if (Cookies.get('l-bolt-holy-grail--hidden') === 'false') {
+      this.show();
+    }
+
     this.setOffsetTop();
     this.checkScreenSize();
 
@@ -46,6 +55,7 @@ export class BoltHolyGrail {
       document.body.classList.add('u-bolt-overflow-hidden');
     }
     document.addEventListener('keydown', this.handleEscapeKeypress);
+    Cookies.set('l-bolt-holy-grail--hidden', 'false', { expires: 90 });
   }
 
   hide() {
@@ -56,6 +66,7 @@ export class BoltHolyGrail {
     }
     this.toggleTrigger.focus();
     document.removeEventListener('keydown', this.handleEscapeKeypress);
+    Cookies.set('l-bolt-holy-grail--hidden', 'true', { expires: 90 });
   }
 
   getKey(e) {

@@ -1,0 +1,148 @@
+{% set modalContent %}
+  {% import "@bolt-academy/_macros.twig" as macros %}
+    {% set card_content_1 %}
+    {% set image %}
+      {% include "@bolt-elements-image/image.twig" with {
+        attributes: {
+          src: "/images/mission-test-badge-example.svg",
+          style: "max-width: 200px",
+          loading: "lazy",
+          class: [
+            "u-bolt-margin-top-medium",
+            "u-bolt-margin-left-auto",
+            "u-bolt-margin-right-auto",
+            "u-bolt-margin-bottom-medium"
+          ]
+        }
+      } only %}
+    {% endset %}
+    {% set headline %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxxlarge",
+        autoshrink: false,
+        text: "Congratulations #{userFirstName}!",
+        align: "center",
+        attributes: {
+          class: [
+            "u-bolt-margin-top-small",
+            "u-bolt-margin-left-auto",
+            "u-bolt-margin-right-auto",
+            "c-bolt-headline--xxxlarge-min"
+          ]
+        }
+      } only %}
+    {% endset %}
+    {% set subheadline %}
+      {% include "@bolt-components-headline/subheadline.twig" with {
+        text: "You’ve completed the #{missionName} and earned a new badge!",
+        align: "center",
+        size: "xlarge",
+        weight: "semibold",
+        attributes: {
+          class: [
+            "u-bolt-margin-left-auto",
+            "u-bolt-margin-right-auto",
+            "u-bolt-line-length-medium",
+            "u-bolt-margin-bottom-large",
+          ]
+        }
+      } only %}
+    {% endset %}
+    {% set note %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "<strong>NOTE:</strong> Please allow 24-48 hours for the badge to appear on your Achievements page.",
+        size: "xsmall",
+        align: "center",
+        attributes: {
+          class: [
+            "u-bolt-margin-top-small",
+            "u-bolt-negative-margin-bottom-small",
+            "u-bolt-margin-left-auto",
+            "u-bolt-margin-right-auto",
+          ]
+        }
+      } only %}
+    {% endset %}
+    {% include "@bolt-components-card-replacement/_card-replacement-body.twig" with {
+      body: {
+        content: [
+          image,
+          headline,
+          subheadline,
+          note,
+        ] | join('')
+      },
+    } only %}
+  {% endset %}
+  {% set modal_return_to_mission %}
+    {{ macros.include("@bolt-academy/_test-completed-modal--return-to-mission.twig") }}
+  {% endset %}
+  {% set modal_rating %}
+    {{ macros.include("@bolt-academy/_test-completed-modal--rating.twig") }}
+  {% endset %}
+  {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+    theme: "dark",
+    border_radius: "large",
+    overlay: "disabled",
+    background: {
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/images/orion-nebula.jpg",
+          lazyload: false,
+          valign: "-22rem",
+        }
+      ]
+    },
+    content: [
+      card_content_1,
+      modal_return_to_mission,
+      modal_rating
+    ] | join('')
+  } only %}
+
+
+{% endset %}
+
+{% include "@bolt-components-modal/modal.twig" with {
+  content: modalContent,
+  spacing: "none",
+  theme: "none",
+  width: "optimal",
+  scroll: "overall",
+  attributes: {
+    class: [
+      "js-modal-advanced-auto-open",
+    ],
+    id: "js-modal-advanced-auto-open"
+  },
+} only %}
+
+<script>
+  // Demo code to open the Modal as soon as the page loads
+
+  // Reference to the modal
+  var autoOpenModal = document.querySelector('#js-modal-advanced-auto-open');
+
+  // Calls modal 'show' method after a delay
+  var setAutoOpenModal = function(el) {
+    setTimeout(function(){
+      // adjust which window is being checked against if inside an iframe
+      // makes sure that this modal doesn't fire on the main viewall section
+      var windowToSearch = window.self !== window.top ? window.top.location : window.location;
+      if (windowToSearch.search.includes('viewall-pages') === false){
+        el.show();
+      }
+    }, 100)
+  }
+
+  // Callback on modal 'ready'
+  var onModalReady = function(e) {
+    setAutoOpenModal(autoOpenModal);
+    // IMPORTANT: remove this event listener unless you want it called each time the modal component renders
+    e.target.removeEventListener('modal:ready', onModalReady);
+  }
+
+  // Add 'ready' callback
+  autoOpenModal.addEventListener('modal:ready', onModalReady);
+</script>

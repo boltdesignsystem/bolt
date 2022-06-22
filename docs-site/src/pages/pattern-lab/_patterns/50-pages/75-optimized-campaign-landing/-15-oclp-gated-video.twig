@@ -174,9 +174,9 @@
             controls
             class="c-base-video"></video-js>
         {% endset %}
-        {% include '@bolt-components-ratio/ratio.twig' with {
-          children: video_embed,
-          ratio: '16/9'
+        {% include '@bolt-elements-ratio/ratio.twig' with {
+          content: video_embed,
+          ratio: 'wide'
         } only %}
       {% endset %}
       {% set video_thumbnail %}
@@ -201,9 +201,11 @@
         {% endset %}
         {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
           content: image,
-          duration: '4:55',
-          video_title: 'This is a Video Title',
           chip: chip,
+          video: {
+            duration: '4:55',
+            title: 'Video Title'
+          }
         } only %}
       {% endset %}
       {% include '@bolt-components-trigger/trigger.twig' with {

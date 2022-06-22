@@ -1,0 +1,33 @@
+{
+  "name": "@bolt/components-floating-action-buttons",
+  "version": "5.5.0",
+  "description": "A sticky list container for action buttons.",
+  "keywords": [
+    "bolt design system"
+  ],
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-floating-action-buttons"
+  },
+  "license": "MIT",
+  "author": "CJ White <hello@cjwhitedev.com>",
+  "main": "index.js",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/core-v3.x": "^5.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "schema": [
+    "floating-action-buttons.schema.js",
+    "floating-action-buttons-ul.schema.js",
+    "floating-action-buttons-li.schema.js",
+    "floating-action-buttons-toggle-button.schema.js"
+  ],
+  "twig": "src/floating-action-buttons.twig"
+}

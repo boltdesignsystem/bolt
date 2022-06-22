@@ -418,7 +418,7 @@
         tag: 'h3',
       },
       category: 'language',
-      content: language_list_items
+      content: language_list_items,
     } only %}
     {% include '@bolt-components-page-footer/page-footer-nav-ul.twig' with {
       headline: {
@@ -426,7 +426,8 @@
         tag: 'h3',
       },
       category: 'legal',
-      content: legal_list_items
+      content: legal_list_items,
+      open: true,
     } only %}
   {% endset %}
 
@@ -463,6 +464,7 @@
   },
   content: content, // Use page-footer-nav-li.twig to render each link
   category: category, // Set the category for a particular list of navigation
+  open: true, // Set to true if a nav list needs to be expanded by default in mobile view
 } only %}
 
 // Nav list item template

@@ -1,0 +1,577 @@
+<p>An example of a fade--in-up on teasers, (21 elements), triggered on window load</p>
+
+{% set modal_id = 'js-bolt-modal-' ~ random() %}
+
+{% set modal_content %}
+  {% set video %}
+    <video-js
+      data-delayed-account='1900410236'
+      data-delayed-player='O3FkeBiaDz'
+      data-delayed-video-id='4892122320001'
+      data-video-delayed
+      data-embed='default'
+      controls
+      data-media-title
+      data-media-duration
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  {% include '@bolt-components-ratio/ratio.twig' with {
+    children: video,
+    ratio: '16/9'
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-modal/modal.twig' with {
+  content: modal_content,
+  width: 'optimal',
+  spacing: 'none',
+  theme: 'none',
+  scroll: 'overall',
+  attributes: {
+    id: modal_id,
+  },
+} only %}
+
+{% set like %}
+  {% set icon_heart %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'heart',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Like',
+    icon_before: icon_heart,
+    reversed_underline: true,
+    attributes: {
+      type: 'button',
+      class: 'js-bolt-like-button',
+    },
+  } only %}
+{% endset %}
+
+{% set share %}
+  {% set share_menu %}
+    {% include '@bolt-components-share/share.twig' with {
+      display: 'menu',
+      text: 'Share this content',
+      sources: [
+        {
+          name: 'facebook',
+          attributes: {
+            href: 'https://www.facebook.com/sharer/sharer.php?u=https://google.com&amp;src=sdkpreparse'
+          }
+        },
+        {
+          name: 'twitter',
+          attributes: {
+            href: 'https://twitter.com/intent/tweet?url=https://google.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+          }
+        },
+        {
+          name: 'linkedin',
+          attributes: {
+            href: 'https://www.linkedin.com/shareArticle?url=https://google.com'
+          }
+        },
+        {
+          name: 'email',
+          attributes: {
+            href: 'mailto:?&body=Sample%20Text%20--%20https%3A//mail.com'
+          }
+        }
+      ],
+      copy_to_clipboard: {
+        text_to_copy: 'https://google.com',
+      },
+    } only %}
+  {% endset %}
+  {% set share_popover_trigger %}
+    {% set icon_share %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'share',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: 'Share',
+      icon_before: icon_share,
+      reversed_underline: true,
+      attributes: {
+        type: 'button'
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: share_popover_trigger,
+    content: share_menu,
+    spacing: 'none',
+  } only %}
+{% endset %}
+
+{% set video_image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/content/promos/promo-16x9-ai.jpg',
+      alt: 'Alt text.',
+      loading: 'lazy',
+    }
+  } only %}
+{% endset %}
+
+{% set external_link_image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/signifier-external-link.jpg',
+      alt: 'Alt text.',
+      loading: 'lazy',
+    }
+  } only %}
+{% endset %}
+
+{% set pdf_image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/signifier-pdf.jpg',
+      alt: 'Alt text.',
+      loading: 'lazy',
+    }
+  } only %}
+{% endset %}
+
+{% set locked_image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/content/promos/promo-16x9-mask.jpg',
+      alt: 'Alt text.',
+      loading: 'lazy',
+    }
+  } only %}
+{% endset %}
+
+{% set chip_list_content %}
+  {% include '@bolt-components-chip-list/chip-list.twig' with {
+    size: 'xsmall',
+    items: [
+      {
+        text: 'Chip 1',
+      },
+      {
+        text: 'Chip 2',
+      },
+    ],
+  } only %}
+{% endset %}
+
+{% set video_teaser_props = {
+  layout: 'vertical',
+  type: 'video',
+  time: '6:29',
+  signifier: video_image,
+  headline: {
+    text: 'Video title t-bone short ribs swine biltong beef ribs capicola sausage beef',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '#' ~ modal_id,
+    },
+  },
+  description: {
+    content: 'Chicken bacon doner pancetta pork corned beef, swine jowl burgdoggen pastrami buffalo beef ribs shankle. Turducken pork porchetta shankle, salami short ribs corned beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef.',
+    show_on_hover: true,
+  },
+  chip_list: chip_list_content,
+} %}
+
+{% set external_link_teaser_props = {
+  layout: 'vertical',
+  type: 'external-link',
+  time: '10 min read',
+  signifier: external_link_image,
+  headline: {
+    text: 'External link title fatback jerky chuck landjaeger corned beef pork t-bone jowl',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '#' ~ modal_id,
+    },
+  },
+  description: {
+    content: 'Chicken bacon doner pancetta pork corned beef, swine jowl burgdoggen pastrami buffalo beef ribs shankle. Turducken pork porchetta shankle, salami short ribs corned beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef.',
+    show_on_hover: true,
+  },
+  chip_list: chip_list_content,
+} %}
+
+{% set pdf_teaser_props = {
+  layout: 'vertical',
+  type: 'pdf',
+  time: '7 pages',
+  signifier: pdf_image,
+  headline: {
+    text: 'PDF title pastrami buffalo beef ribs shankle turducken pork porchetta shankle',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '#' ~ modal_id,
+    },
+  },
+  description: {
+    content: 'Chicken bacon doner pancetta pork corned beef, swine jowl burgdoggen pastrami buffalo beef ribs shankle. Turducken pork porchetta shankle, salami short ribs corned beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef.',
+    show_on_hover: true,
+  },
+  chip_list: chip_list_content,
+} %}
+
+{% set locked_teaser_props = {
+  layout: 'vertical',
+  type: 'pdf',
+  time: '6 min read',
+  signifier: locked_image,
+  headline: {
+    text: 'Locked title pastrami buffalo beef ribs shankle turducken pork porchetta shankle',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '#' ~ modal_id,
+    },
+  },
+  description: {
+    content: 'Chicken bacon doner pancetta pork corned beef, swine jowl burgdoggen pastrami buffalo beef ribs shankle. Turducken pork porchetta shankle, salami short ribs corned beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef.',
+    show_on_hover: true,
+  },
+  chip_list: chip_list_content,
+} %}
+
+{% set video_teaser_props = video_teaser_props|merge({ 
+  like: like,
+  share: share,
+  status: {
+    views: '27',
+  } 
+}) %}
+{% set external_link_teaser_props = external_link_teaser_props|merge({ 
+  like: like,
+  share: share,
+  status: {
+    views: '3k',
+  } 
+}) %}
+{% set pdf_teaser_props = pdf_teaser_props|merge({ 
+  like: like,
+  share: share,
+  status: {
+    views: '66',
+  } 
+}) %}
+{% set locked_teaser_props = locked_teaser_props|merge({ 
+  like: like,
+  share: share, 
+  status: {
+    views: '20k',
+    locked: true,
+  } 
+}) %}
+
+{% set item_video %}
+  {% include '@bolt-components-teaser/teaser.twig' with video_teaser_props only %}
+{% endset %}
+
+{% set item_external_link %}
+  {% include '@bolt-components-teaser/teaser.twig' with external_link_teaser_props only %}
+{% endset %}
+
+{% set item_pdf %}
+  {% include '@bolt-components-teaser/teaser.twig' with pdf_teaser_props only %}
+{% endset %}
+
+{% set item_locked %}
+  {% include '@bolt-components-teaser/teaser.twig' with locked_teaser_props only %}
+{% endset %}
+{% set main_content %}
+  {% include '@bolt-components-grid/grid.twig' with {
+    gutter: 'small',
+    items: [
+      {
+        column_start: '1 1@small',
+        column_span: '6 4@small',
+        content: item_video,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '7 5@small',
+        column_span: '6 4@small',
+        content: item_external_link,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '1 9@small',
+        column_span: '6 4@small',
+        content: item_locked,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+              {
+        column_start: '7 1@small',
+        column_span: '6 4@small',
+        content: item_video,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '1 5@small',
+        column_span: '6 4@small',
+        content: item_pdf,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '7 9@small',
+        column_span: '6 4@small',
+        content: item_locked,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+              {
+        column_start: '1 1@small',
+        column_span: '6 4@small',
+        content: item_video,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '7 5@small',
+        column_span: '6 4@small',
+        content: item_external_link,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '1 9@small',
+        column_span: '6 4@small',
+        content: item_locked,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+              {
+        column_start: '7 1@small',
+        column_span: '6 4@small',
+        content: item_video,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '1 5@small',
+        column_span: '6 4@small',
+        content: item_pdf,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '7 9@small',
+        column_span: '6 4@small',
+        content: item_locked,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+              {
+        column_start: '1 1@small',
+        column_span: '6 4@small',
+        content: item_video,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '7 5@small',
+        column_span: '6 4@small',
+        content: item_external_link,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '1 9@small',
+        column_span: '6 4@small',
+        content: item_locked,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+              {
+        column_start: '7 1@small',
+        column_span: '6 4@small',
+        content: item_video,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '1 5@small',
+        column_span: '6 4@small',
+        content: item_external_link,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '7 9@small',
+        column_span: '6 4@small',
+        content: item_locked,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+              {
+        column_start: '1 1@samll',
+        column_span: '6 4@small',
+        content: item_video,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '7 5@small',
+        column_span: '6 4@small',
+        content: item_pdf,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+      {
+        column_start: '1 9@small',
+        column_span: '6 4@small',
+        content: item_locked,
+        attributes: {
+          class: [
+            'a-bolt-base',
+            'a-bolt-in',
+            'a-bolt-in--fade-up',
+            'a-bolt-cascade-slow'
+          ]
+        }
+      },
+    ]
+  } only %}
+{% endset %}
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}

@@ -3,36 +3,50 @@
 
 <bolt-text>This Hero demo sets the <code>imageAlign</code> prop so the image is right-aligned within it's Grid column instead of being center (default) or left aligned. This horizonal alignment is especially visible on smaller screens or when using smaller-width images.</bolt-text>
 
+{% set headline_1 %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxxlarge',
+    text: 'It\'s show time.',
+  } only %}
+{% endset %}
+{% set subheadline %}
+  {% include '@bolt-components-headline/subheadline.twig' with {
+    size: 'xlarge',
+    text: 'Please join us for PegaWorld 2019 event at MGM Grand in Las&nbsp;Vegas',
+    attributes: {
+      class: [
+        'u-bolt-line-length-medium'
+      ]
+    }
+  } only %}
+{% endset %}
+{% set headline_2 %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'Monday, June 3rd, 2019 <br>10AM - 3PM EST',
+    weight: 'bold',
+  } only %}
+{% endset %}
+{% set button %}
+{% include '@bolt-elements-button/button.twig' with {
+  content: 'Watch livestream',
+  hierarchy: 'secondary',
+  attributes: {
+    type: 'button'
+  }
+} only %}
+{% endset %}
 {% include '@bolt-components-hero/hero.twig' with {
   content: [
-    macros.include('@bolt-components-headline/headline.twig', {
-      size: 'xxxlarge',
-      text: 'It\'s show time.',
-    }),
-    macros.include('@bolt-components-headline/subheadline.twig', {
-      size: 'xlarge',
-      text: 'Please join us for PegaWorld 2019 event at MGM Grand in Las&nbsp;Vegas',
-      attributes: {
-        class: [
-          'u-bolt-line-length-medium'
-        ]
-      }
-    }),
-    macros.include('@bolt-components-headline/text.twig', {
-      text: 'Monday, June 3rd, 2019 <br>10AM - 3PM EST',
-      weight: 'bold',
-    }),
-    macros.include('@bolt-elements-button/button.twig', {
-      content: 'Watch livestream',
-      hierarchy: 'secondary',
-      attributes: {
-        type: 'button'
-      }
-    })
+    headline_1,
+    subheadline,
+    headline_2,
+    button,
   ]|join(''),
   theme: 'light',
   background: '/images/heros/hero-background--yellow.svg',
   image: '/images/heros/hero-foreground--yellow.png',
+  image_width: 600,
+  image_height: 880,
   imageValign: 'bottom',
   imageMaxWidth: '375px',
   imageAlign: 'right'

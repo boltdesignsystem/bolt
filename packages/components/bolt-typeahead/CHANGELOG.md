@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v5.4.0...v5.5.0) (2022-05-23)
+
+**Note:** Version bump only for package @bolt/components-typeahead
+
+
+
+
+
+# [5.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v5.2.4...v5.3.0) (2022-03-28)
+
+
+### Bug Fixes
+
+* css scope ([216bffb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/216bffb98465f48689babaa8b329166cad528024))
+* css scope again ([2794107](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/2794107250bff88e3c38c18940b0862b370b6888))
+* js cleanup ([be076e5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/be076e5045c44ea095301a30f69d54ce4697c147))
+* typeahead icon button position ([0ffe8fa](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/0ffe8fa4201778116e43f4c90740a08fc2c50042))
+* update test ([e1b81f9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/e1b81f94280e0cee9f21865f166cb4574c1139d9))
+
+
+
+
+
+# [5.2.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v5.1.1...v5.2.0) (2022-01-25)
+
+**Note:** Version bump only for package @bolt/components-typeahead
+
+
+
+
+
 # [5.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v5.0.1...v5.1.0) (2021-12-20)
 
 **Note:** Version bump only for package @bolt/components-typeahead

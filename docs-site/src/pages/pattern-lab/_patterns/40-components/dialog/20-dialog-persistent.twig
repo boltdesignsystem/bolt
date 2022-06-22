@@ -1,0 +1,98 @@
+{% include '@pl/_dialog-warning.twig' %}
+
+{% set description %}
+  A persistent dialog is useful when creating paywall or subscription-wall.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Set the <code>persistent</code> prop to <code>true</code> to make a dialog persistent.</bolt-li>
+    <bolt-li>When a dialog is persistent the default close button is not shown and clicking anywhere outside the dialog will not close the dialog.</bolt-li>
+    <bolt-li>A close method is mandatory, make sure to manually add a trigger with the <code>data-dialog-close</code> attribute to close a persistent dialog or a link to navigate to another page in the dialog content.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Persistent dialog',
+    attributes: {
+      type: 'button',
+      'data-bolt-dialog-target': '#dialog-persistent-1',
+    }
+  } only %}
+
+  {% set header_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'This is a persistent dialog',
+      tag: 'h1',
+    } only %}
+  {% endset %}
+
+  {% set footer_content %}
+    {% set yes %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Yes, go to homepage',
+        display: 'block',
+        attributes: {
+          href: 'https://www.pega.com',
+        }
+      } only %}
+    {% endset %}
+    {% set no %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'No, close this',
+        hierarchy: 'secondary',
+        display: 'block',
+        attributes: {
+          type: 'button',
+          'data-dialog-close': '',
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline@small',
+      items: [
+        yes,
+        no,
+      ],
+    } only %}
+  {% endset %}
+
+  {% set content %}
+    {% include '@bolt-components-dialog/dialog-header.twig' with {
+      content: header_content,
+    } only %}
+    {% include '@bolt-components-dialog/dialog-body.twig' with {
+      content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia aliquam distinctio optio debitis ab praesentium, velit magnam aliquid tenetur sequi ipsam maiores porro sapiente eaque. Maiores quibusdam eaque cupiditate placeat?',
+    } only %}
+    {% include '@bolt-components-dialog/dialog-footer.twig' with {
+      content: footer_content,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-dialog/dialog.twig' with {
+    content: content,
+    persistent: true,
+    attributes: {
+      id: 'dialog-persistent-1'
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: content,
+  persistent: true,
+  attributes: {
+    id: 'dialog-persistent-1'
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Persistent Dialog',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

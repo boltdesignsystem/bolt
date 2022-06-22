@@ -1,0 +1,46 @@
+<p>An example of all fade ins on a banner component, (20 elements in total), triggered on window load. Click on the banner to see the specific single animation.</p>
+
+{% set fades = ['-in--fade', '-in--fade-up', '-in--fade-down', '-in--fade-left', '-in--fade-right'] %}
+
+{% for i in 1..4 %}
+  {% for fade in fades %}
+    {% include '@bolt-components-banner/banner.twig' with {
+      content: 'This is the banner content fade' ~ fade,
+      attributes: {
+        class: [
+          'a-bolt-base',
+          'a-bolt-in',
+          'a-bolt' ~ fade,
+          'a-bolt-cascade-fast'
+        ],
+      }
+    } only %}
+  {% endfor %}
+{% endfor %}
+
+<script>
+
+  const fadeEl = document.querySelectorAll('.a-bolt-base');
+
+  // Repeat single specific fade on click
+  function triggerThisEl({ target }) {
+    const prefix = 'a-bolt-in--';
+    const runAnimationClasses = [];
+
+    target.classList.forEach(c => {
+      if (c.startsWith(prefix)) {
+        runAnimationClasses.push(c);
+        target.classList.remove(c);
+      }
+    });
+
+    setTimeout(() => {
+      target.classList.add(...runAnimationClasses);
+    }, 0);
+  }
+
+  fadeEl.forEach(el => {
+    el.addEventListener('click', triggerThisEl);
+  });
+
+</script>

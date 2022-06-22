@@ -62,6 +62,12 @@ class BoltPopover extends BoltElement {
       (this.boundary && this.closest(this.boundary)) ||
       undefined;
 
+    // The <dialog> element sits in a separate layer above the <body>.
+    // Append to <dialog> element or popover will not show up.
+    this.$targetElement = this.closest('dialog')
+      ? this.closest('dialog')
+      : document.body;
+
     // Note: trigger cannot not be a shadow DOM element or Tippy doesn't always hide properly
     this.popover = tippy(this.trigger, {
       content: this.content,
@@ -71,7 +77,7 @@ class BoltPopover extends BoltElement {
       interactive: true,
       theme: 'popover',
       role: null,
-      appendTo: document.body,
+      appendTo: this.$targetElement,
       maxWidth: 'none', // Set width via CSS variable, requires legacy Edge support
       offset: [0, 0],
       plugins: [hideOnEsc, handleFocus],
@@ -163,9 +169,9 @@ class BoltPopover extends BoltElement {
   }
 
   render() {
-    return html`
-      ${this.slotify('default')} ${this.slotify('content')}
-    `;
+    // Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
+    // prettier-ignore
+    return html`${this.slotify('default')}${this.slotify('content')}`;
   }
 }
 

@@ -34,7 +34,7 @@
 <label {{ attributes.addClass(classes)|without('for') }} for="{{ _switch_button_id }}">
   <div class="c-bolt-switch-button__label">{% if label %}{{ label }}{% else %}{{ 'Switch'|t }}{% endif %}</div>
   <button {{ button_attributes.addClass('c-bolt-switch-button__button')|without('type')|without('id')|without('role')|without('aria-checked') }} type="button" id="{{ _switch_button_id }}" role="switch" aria-checked="{{ _checked }}">
-    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--checked">{{ 'on'|t }}</span>
-    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--unchecked ">{{ 'off'|t }}</span>
+    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--checked" aria-hidden="true">{{ 'on'|t }}</span>
+    <span class="c-bolt-switch-button__button-text c-bolt-switch-button__button-text--unchecked" aria-hidden="true">{{ 'off'|t }}</span>
   </button>
 </label>

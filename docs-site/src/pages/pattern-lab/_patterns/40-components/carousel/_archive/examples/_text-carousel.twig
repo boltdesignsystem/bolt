@@ -1,37 +1,44 @@
 <div class="o-bolt-wrapper">
+  {% set slide_1 %}
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Configure platform authentication with the basic credentials authentication service type (8.2)",
+      url: "#!",
+      is_headline: true,
+    } only %}
+  {% endset %}
+  {% set slide_2 %}
+    {% include "@bolt-components-link/link.twig" with {
+      text: "System Administration",
+      url: "#!",
+      is_headline: true,
+    } only %}
+  {% endset %}
+  {% set slide_3 %}
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Eliminate manual tasks with the improved import experience",
+      url: "#!",
+      is_headline: true,
+    } only %}
+  {% endset %}
+  {% set slide_4 %}
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Enhance keystore maintenance by using dynamic data",
+      url: "#!",
+      is_headline: true,
+    } only %}
+  {% endset %}
   {% include "@bolt-components-carousel/carousel.twig" with {
     slides: [
-      include("@bolt-components-link/link.twig", {
-        text: "Configure platform authentication with the basic credentials authentication service type (8.2)",
-        url: "#!",
-        is_headline: true,
-      }),
-      include("@bolt-components-link/link.twig", {
-        text: "System Administration",
-        url: "#!",
-        is_headline: true,
-      }),
-      include("@bolt-components-link/link.twig", {
-        text: "Eliminate manual tasks with the improved import experience",
-        url: "#!",
-        is_headline: true,
-      }),
-      include("@bolt-components-link/link.twig", {
-        text: "Enhance keystore maintenance by using dynamic data",
-        url: "#!",
-        is_headline: true,
-      }),
-      include("@bolt-components-headline/headline.twig", {
-        text: "Improve your system security by regenerating the master key",
-        url: "#!",
-        size: "medium",
-      }),
+      slide_1,
+      slide_2,
+      slide_3,
+      slide_4,
     ],
-    slidesPerView: 2,
+    slides_per_view: 2,
     loop: true,
-    spaceBetween: "small",
-    noMinWidth: true,
-    noPagination: true,
-    navButtonPosition: "outside",
+    space_between: "small",
+    no_min_width: true,
+    no_pagination: true,
+    nav_button_position: "outside",
   } only %}
 </div>

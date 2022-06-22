@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0](https://github.com/bolt-design-system/bolt/compare/v5.4.0...v5.5.0) (2022-05-23)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [5.4.0](https://github.com/bolt-design-system/bolt/compare/v5.3.1...v5.4.0) (2022-04-08)
+
+
+### Bug Fixes
+
+* search input test ([ac2d61c](https://github.com/bolt-design-system/bolt/commit/ac2d61ca17b7e56fe513910a507bb11ec079233e))
+* update button labels ([7d2b36e](https://github.com/bolt-design-system/bolt/commit/7d2b36e0b0161c7afa38373421a25ddb61b043f1))
+
+
+
+
+
+## [5.3.1](https://github.com/bolt-design-system/bolt/compare/v5.3.0...v5.3.1) (2022-04-04)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [5.3.0](https://github.com/bolt-design-system/bolt/compare/v5.2.4...v5.3.0) (2022-03-28)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [5.2.4](https://github.com/bolt-design-system/bolt/compare/v5.2.3...v5.2.4) (2022-03-03)
+
+
+### Bug Fixes
+
+* saleshub pulse link ([9009b50](https://github.com/bolt-design-system/bolt/commit/9009b50eda013a28551080f4dc00113b278ac815))
+
+
+
+
+
+## [5.2.3](https://github.com/bolt-design-system/bolt/compare/v5.2.2...v5.2.3) (2022-02-25)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [5.2.2](https://github.com/bolt-design-system/bolt/compare/v5.2.1...v5.2.2) (2022-02-07)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [5.2.1](https://github.com/bolt-design-system/bolt/compare/v5.2.0...v5.2.1) (2022-02-01)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [5.2.0](https://github.com/bolt-design-system/bolt/compare/v5.1.1...v5.2.0) (2022-01-25)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
 ## [5.1.1](https://github.com/bolt-design-system/bolt/compare/v5.1.0...v5.1.1) (2021-12-29)
 
 **Note:** Version bump only for package @bolt/website

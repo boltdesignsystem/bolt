@@ -1,0 +1,37 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema['floating-action-buttons-toggle-button'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set _content %}
+  <span class="e-bolt-button__icon-center js-bolt-floating-action-buttons-toggle-icon">
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'more'
+    } only %}
+  </span>
+  <span class="e-bolt-button__icon-center js-bolt-floating-action-buttons-toggle-icon-close">
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'close'
+    } only %}
+  </span>
+{% endset %}
+
+{% set attributes = attributes.setAttribute("aria-expanded", "false") %}
+{% set attributes = attributes.setAttribute("class", "e-bolt-button--icon-only js-bolt-floating-action-buttons-toggle") %}
+
+{% include '@bolt-components-tooltip/tooltip.twig' with {
+  content: content,
+  placement: 'left',
+  trigger: include('@bolt-elements-button/button.twig', {
+    content: _content,
+    hierarchy: this.data.hierarchy.value,
+    border_radius: this.data.border_radius.value,
+    size: this.data.size.value,
+    attributes: attributes
+  }),
+} only %}

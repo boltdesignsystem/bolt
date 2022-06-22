@@ -3,37 +3,48 @@
 
 <bolt-text>This demo sets the <code>imageValign</code> prop to <code>top</code> so the image is always flush with the top-edge of the Hero container.</bolt-text>
 
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/heros/hero-foreground--orange--logo.svg',
+      alt: 'PegaWorld iNspire logo',
+      loading: 'eager',
+      class: [
+        'u-bolt-margin-bottom-medium',
+      ]
+    }
+  } only %}
+{% endset %}
+{% set subheadline %}
+  {% include '@bolt-components-headline/subheadline.twig' with {
+    size: 'xlarge',
+    text: 'Boston Convention & Exhibition Center May&nbsp;31&nbsp;-&nbsp;June&nbsp;2,&nbsp;2020',
+    attributes: {
+      class: [
+        'u-bolt-line-length-medium'
+      ]
+    }
+  } only %}
+{% endset %}
+{% set button %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'See full agenda',
+    hierarchy: 'secondary',
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
 {% include '@bolt-components-hero/hero.twig' with {
   content: [
-    macros.include('@bolt-elements-image/image.twig', {
-      attributes: {
-        src: '/images/heros/hero-foreground--orange--logo.svg',
-        alt: 'PegaWorld iNspire logo',
-        loading: 'eager',
-        class: [
-          'u-bolt-margin-bottom-medium',
-        ]
-      }
-    }),
-    macros.include('@bolt-components-headline/subheadline.twig', {
-      size: 'xlarge',
-      text: 'Boston Convention & Exhibition Center May&nbsp;31&nbsp;-&nbsp;June&nbsp;2,&nbsp;2020',
-      attributes: {
-        class: [
-          'u-bolt-line-length-medium'
-        ]
-      }
-    }),
-    macros.include('@bolt-elements-button/button.twig', {
-      content: 'See full agenda',
-      hierarchy: 'secondary',
-      attributes: {
-        type: 'button'
-      }
-    }),
+    image,
+    subheadline,
+    button,
   ]|join(''),
   background: '/images/heros/hero-background--indigo.jpg',
   image: '/images/heros/hero-foreground--indigo.png',
+  image_height: 1394,
+  image_width: 1400,
   imageValign: 'top',
   theme: 'dark',
 } %}

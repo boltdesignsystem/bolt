@@ -1,0 +1,13 @@
+{% set schema = bolt.data.components['@bolt-components-floating-action-buttons'].schema['floating-action-buttons-ul'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# hidden class only styled for child list. this prevents a flash of unstyled content. #}
+<ul {{ attributes }} class="c-bolt-floating-action-buttons__list c-bolt-floating-action-buttons__list--hidden js-bolt-floating-action-buttons-list">
+  {{ content }}
+</ul>

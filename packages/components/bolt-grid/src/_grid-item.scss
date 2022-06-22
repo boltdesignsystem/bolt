@@ -13,9 +13,6 @@ $bolt-grid-item-directions: (
 );
 
 bolt-grid-item {
-  display: block;
-  width: auto;
-
   @each $valignment in $bolt-grid-item-alignments {
     &[valign='#{$valignment}'] {
       align-self: #{$valignment};

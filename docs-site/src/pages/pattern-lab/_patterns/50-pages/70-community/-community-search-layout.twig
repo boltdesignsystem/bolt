@@ -559,6 +559,9 @@
           content: image,
           aspect_ratio: '16:9',
           border_radius: 'small',
+          video: {
+            title: 'Video Title'
+          }
         } only %}
       {% endset %}
       {% include '@bolt-components-trigger/trigger.twig' with {
@@ -584,9 +587,9 @@
           controls
           class="c-base-video"></video-js>
       {% endset %}
-      {% include '@bolt-components-ratio/ratio.twig' with {
-        children: video_embed,
-        ratio: '16/9'
+      {% include '@bolt-elements-ratio/ratio.twig' with {
+        content: video_embed,
+        ratio: 'wide'
       } only %}
     {% endset %}
     {% include '@bolt-components-modal/modal.twig' with {

@@ -3,6 +3,104 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0](https://github.com/boltdesignsystem/bolt/compare/v5.4.0...v5.5.0) (2022-05-23)
+
+
+### Reverts
+
+* Revert "DS-459: move close button outside of container." ([eeecdba](https://github.com/boltdesignsystem/bolt/commit/eeecdbad4a2ffecac3dee8ee14935a7b315fc751))
+
+
+
+
+
+# [5.4.0](https://github.com/boltdesignsystem/bolt/compare/v5.3.1...v5.4.0) (2022-04-08)
+
+
+### Bug Fixes
+
+* add proper navigation labels ([6638ec7](https://github.com/boltdesignsystem/bolt/commit/6638ec749144b73176cd7bf76558aa48b2c87298))
+* footer nav labels ([bb5c5b3](https://github.com/boltdesignsystem/bolt/commit/bb5c5b3fbf6dc1522db948492a643359fe80f7ec))
+* search input test ([ac2d61c](https://github.com/boltdesignsystem/bolt/commit/ac2d61ca17b7e56fe513910a507bb11ec079233e))
+* update button labels ([7d2b36e](https://github.com/boltdesignsystem/bolt/commit/7d2b36e0b0161c7afa38373421a25ddb61b043f1))
+
+
+
+
+
+## [5.3.1](https://github.com/boltdesignsystem/bolt/compare/v5.3.0...v5.3.1) (2022-04-04)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+# [5.3.0](https://github.com/boltdesignsystem/bolt/compare/v5.2.4...v5.3.0) (2022-03-28)
+
+
+### Bug Fixes
+
+* add max width to regular modal ([08875a5](https://github.com/boltdesignsystem/bolt/commit/08875a56674729e06b6d40d920d9d4a0e654f1c0))
+* css scope ([216bffb](https://github.com/boltdesignsystem/bolt/commit/216bffb98465f48689babaa8b329166cad528024))
+* css scope again ([2794107](https://github.com/boltdesignsystem/bolt/commit/2794107250bff88e3c38c18940b0862b370b6888))
+* js cleanup ([be076e5](https://github.com/boltdesignsystem/bolt/commit/be076e5045c44ea095301a30f69d54ce4697c147))
+* namespace ([f1d408c](https://github.com/boltdesignsystem/bolt/commit/f1d408c530c7acb8c985a402c25bfa24c0127080))
+* typeahead icon button position ([0ffe8fa](https://github.com/boltdesignsystem/bolt/commit/0ffe8fa4201778116e43f4c90740a08fc2c50042))
+* update test ([e1b81f9](https://github.com/boltdesignsystem/bolt/commit/e1b81f94280e0cee9f21865f166cb4574c1139d9))
+
+
+### Reverts
+
+* Revert "remove keypress handler and replace it with clickhandler on desktop" ([f3e269b](https://github.com/boltdesignsystem/bolt/commit/f3e269b2d0a2b340f25f6777158a1688999d863c))
+
+
+
+
+
+## [5.2.4](https://github.com/boltdesignsystem/bolt/compare/v5.2.3...v5.2.4) (2022-03-03)
+
+
+### Bug Fixes
+
+* saleshub pulse link ([9009b50](https://github.com/boltdesignsystem/bolt/commit/9009b50eda013a28551080f4dc00113b278ac815))
+
+
+
+
+
+## [5.2.3](https://github.com/boltdesignsystem/bolt/compare/v5.2.2...v5.2.3) (2022-02-25)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+## [5.2.2](https://github.com/boltdesignsystem/bolt/compare/v5.2.1...v5.2.2) (2022-02-07)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+## [5.2.1](https://github.com/boltdesignsystem/bolt/compare/v5.2.0...v5.2.1) (2022-02-01)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+# [5.2.0](https://github.com/boltdesignsystem/bolt/compare/v5.1.1...v5.2.0) (2022-01-25)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
 ## [5.1.1](https://github.com/boltdesignsystem/bolt/compare/v5.1.0...v5.1.1) (2021-12-29)
 
 **Note:** Version bump only for package bolt

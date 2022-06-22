@@ -1,0 +1,104 @@
+<h2>Listing teaser with eyebrows separated with dash symbol and breadcrumbs separeted with chevron-right symbol.</h2>
+<br>
+{% set eyebrow_1 %}
+  {% include '@bolt-components-headline/eyebrow.twig' with {
+    text: 'Eyebrow 1',
+  } only %}
+{% endset %}
+{% set eyebrow_2 %}
+  {% include '@bolt-components-headline/eyebrow.twig' with {
+    text: 'Eyebrow 2',
+  } only %}
+{% endset %}
+{% set description %}
+  {% include '@bolt-components-headline/text.twig' with {
+    text: 'This is the description.',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set book %}
+  {% set icon_documentation %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'documentation',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Book name',
+    icon_before: icon_documentation,
+    reversed_underline: true,
+    attributes: {
+      href: 'https://google.com',
+    }
+  } only %}
+{% endset %}
+{% set chapter %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Next level',
+    reversed_underline: true,
+    attributes: {
+      href: 'https://google.com',
+    }
+  } only %}
+{% endset %}
+{% set last %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'Last level',
+    reversed_underline: true,
+    attributes: {
+      href: 'https://google.com',
+    }
+  } only %}
+{% endset %}
+{% set breadcrumbs %}
+  {% include '@bolt-components-breadcrumb/breadcrumb.twig' with {
+    contentItems: [
+      book,
+      chapter,
+      '&hellip;',
+      last
+    ]
+  } only %}
+{% endset %}
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+  eyebrow_items: [
+    eyebrow_1,
+    eyebrow_2,
+  ],
+  headline: {
+    text: 'This listing has a large headline',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      href: 'https://google.com'
+    },
+  },
+  meta_items: [
+    breadcrumbs
+  ],
+  description: description,
+} only %}
+<hr>
+<h2>Listing teaser with eyebrows separated with dash symbol, breadcrumbs separeted with chevron-right symbol and meta items separated with pipeline symbol.</h2>
+<p>Here below is a long description which is truncated to 3 lines on screens above medium break-point and 2 lines for screens below medium break-point.</p>
+<br>
+{% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+  eyebrow_items: [
+    eyebrow_1,
+    eyebrow_2,
+  ],
+  headline: {
+    text: 'This listing has a large headline',
+    tag: 'h3',
+    size: 'large',
+    link_attributes: {
+      href: 'https://google.com'
+    },
+  },
+  meta_items: [
+    'meta list item 1',
+    'meta list item 2',
+    'meta list item 3',
+    'meta list item 4',
+  ],
+  description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. At nemo beatae voluptate temporibus expedita fuga fugit dolore voluptatibus ad voluptates suscipit modi neque saepe eos nisi, impedit recusandae, sunt possimus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. At nemo beatae voluptate temporibus expedita fuga fugit dolore voluptatibus ad voluptates suscipit modi neque saepe eos nisi, impedit recusandae, sunt possimus.',
+} only %}
