@@ -9,7 +9,7 @@ module.exports = {
         'A Drupal-style attributes object with extra attributes to append to this element.',
     },
     content: {
-      type: 'string',
+      type: 'any',
       description: 'Content of the type element.',
     },
     tag: {
