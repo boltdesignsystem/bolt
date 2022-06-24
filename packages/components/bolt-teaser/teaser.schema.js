@@ -3,6 +3,9 @@ const headlineSchema = require('@bolt/components-headline/headline.schema');
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Teaser',
+  not: {
+    required: ['type'],
+  },
   type: 'object',
   properties: {
     attributes: {
@@ -22,12 +25,6 @@ module.exports = {
         'Set the spacing in between columns for horizontal and responsive layouts.',
       enum: ['small', 'medium', 'large'],
       default: 'medium',
-    },
-    type: {
-      type: 'string',
-      description:
-        'Set the type of teaser. A play button will display with the video teaser signifier.',
-      enum: ['pdf', 'video', 'external-link'],
     },
     signifier: {
       type: 'object',
@@ -94,7 +91,7 @@ module.exports = {
     time: {
       type: 'string',
       description:
-        'Render time data (video duration or read time) for the resouce.',
+        'Use for PDF/articles teasers for estimating reading time. If you choose Video Thumbnail as a signifier do not use this prop since it will conflict with the Video Thumbnail`s <code>duration</code> prop.',
     },
     like: {
       type: 'object',
@@ -128,6 +125,18 @@ module.exports = {
           description: 'Render the view count.',
         },
       },
+    },
+    variant: {
+      type: 'string',
+      description: 'Set the style variant of the teaser.',
+      enum: ['transparent', 'card'],
+      default: 'transparent',
+    },
+    type: {
+      title: 'DEPRECATED',
+      type: 'string',
+      description:
+        'This prop is deprecated, please stop using it. Instead of <code>type: "video"</code>, use Video Thumbnail component as a signifier to open a video modal.',
     },
     // @TODO: meta or meta_items reserved for author and posted date info?
   },
