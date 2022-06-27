@@ -17,13 +17,13 @@
     } only %}
 {% endset %}
 
-<div class="pl-placeholder-fixed-element" style="background: yellow; padding: 2rem; text-align: center; top: 0; height: 100px; width: 100%;">
+<div class="pl-placeholder-fixed-element js-bolt-sticky" style="background: yellow; padding: 2rem; text-align: center; top: 0; height: 100px; width: 100%;">
   Placeholder "fixed" element, should not overlap tabs when page first loads.
 </div>
 
 <div style="padding-top: 100px;">
   <bolt-text class="u-bolt-margin-top">
-    Deep linking will auto-scroll to your selected tab. If there is a "fixed" element on the page, it may overlap your tabs. To fix this, use <code>scrollOffsetSelector</code> to select the "fixed" element. That will offset the scroll position by the "fixed" element's height. Use <code>scrollOffset</code> for any additional adjstments. See a demo: <a href="?selected-tab=tab-3" class="e-bolt-text-link">?selected-tab=tab-3</a>.
+    Deep linking will auto-scroll to your selected tab. If there is a "fixed" element on the page, it may overlap your tabs. To fix this, use <code>scrollOffsetSelector</code> to select the "fixed" element. That will offset the scroll position by the "fixed" element's height. Use <code>scrollOffset</code> for any additional adjstments. See a demo: <a href="#selected-tab-3" class="e-bolt-text-link">#selected-tab-3</a>.
   </bolt-text>
 
   <div style="margin-top: 100vh; margin-bottom: 100vh;">
@@ -34,17 +34,17 @@
         {
           label: 'Tab label 1',
           content: tab_content_1,
-          id: 'tab-1',
+          id: 'selected-tab-1',
         },
         {
           label: 'Tab label 2',
           content: tab_content_2,
-          id: 'tab-2',
+          id: 'selected-tab-2',
         },
         {
           label: 'Tab label 3',
           content: tab_content_3,
-          id: 'tab-3',
+          id: 'selected-tab-3',
         }
       ]
     } only %}

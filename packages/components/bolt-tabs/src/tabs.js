@@ -13,8 +13,6 @@ import {
 } from '@bolt/core-v3.x/utils';
 import { withContext } from 'wc-context/lit-element';
 
-import { smoothScroll } from '@bolt/components-smooth-scroll/src/smooth-scroll';
-import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import { iconChevronDown } from '@bolt/elements-icon/src/icons/js/chevron-down';
 import classNames from 'classnames/bind';
 import iconStyles from '@bolt/elements-icon/index.scss';
@@ -89,15 +87,14 @@ class BoltTabs extends withContext(BoltElement) {
         : this.validateIndex(this.selectedTab - 1);
 
     // If there is a deep link in the URL (i.e. a query param with `tab` as name, `TAB_ID` as value), it overrides`initialSelectedTab`
-    const urlParams = new URLSearchParams(window.location.search);
-    const selectedTabParam = urlParams.get('selected-tab');
+    // remove # from has for find function below
+    const selectedTabParam = window.location.hash.split('#')[1];
     const selectedTabParamIndex = this.panels.indexOf(
       this.panels.find(element => element.id === selectedTabParam),
     );
 
     if (selectedTabParamIndex !== -1) {
       this.setSelectedTab(selectedTabParamIndex);
-      this.shouldScrollIntoView = true;
     } else {
       this.setSelectedTab(initialSelectedTab);
     }
@@ -432,41 +429,32 @@ class BoltTabs extends withContext(BoltElement) {
     this.dropdownButton.addEventListener('click', this._handleDropdownToggle);
   }
 
-  setupAutoscroll() {
-    if (this.shouldScrollIntoView) {
-      let shouldResetScroll;
-
-      if (window.history?.scrollRestoration === 'auto') {
-        // If you are refreshing the page and using a browser with `scrollRestoration`,
-        // temporarily disable `scrollRestoration` while we scroll to the element, avoids janky scroll.
-        // https://developers.google.com/web/updates/2015/09/history-api-scroll-restoration
-        window.history.scrollRestoration = 'manual';
-        shouldResetScroll = true;
-      }
-
-      setTimeout(() => {
-        // Must scroll to focusable element or smoothScroll will set tabindex="-1" on target element.
-        // @see https://github.com/cferdinandi/smooth-scroll/blob/master/src/core.js#L320
-        const targetTab = this.renderRoot.querySelector(
-          'bolt-trigger[aria-selected="true"]',
+  deepLinking() {
+    this.allItems.forEach(item => {
+      this.targetDropdown = item.id.split('tab-label-').pop();
+      const targetElement = document.querySelectorAll(
+        `[href="#${this.targetDropdown}"]`,
+      );
+      //filter out any elements do not match
+      if (targetElement.length > 0) {
+        this.deepLinkTriggers = document.querySelectorAll(
+          `[href="#${this.targetDropdown}"]`,
         );
+      }
+    });
 
-        smoothScroll.animateScroll(targetTab, 0, {
-          header: this.scrollOffsetSelector,
-          offset: this.scrollOffset || 0,
-          speed: 750,
-          easing: 'easeInOutCubic',
-          updateURL: false,
-        });
-
-        this.shouldScrollIntoView = false;
-
-        if (shouldResetScroll) {
-          setTimeout(() => {
-            window.history.scrollRestoration = 'auto';
-          }, 1000); // wait another second to turn 'scrollRestoration' back on, just to be safe
-        }
-      }, 750); // Must let the page load or scroll is not at all "smooth", can reduce to 500ms but not much less
+    if (this.deepLinkTriggers.length > 0) {
+      this.deepLinkTriggers.forEach(el =>
+        el.addEventListener('click', e => {
+          const stripDropdown = this.targetDropdown
+            .split('tab-dropdown-')
+            .pop();
+          const selectedTabIndex = this.panels.indexOf(
+            this.panels.find(element => element.id === stripDropdown),
+          );
+          this.setSelectedTab(selectedTabIndex);
+        }),
+      );
     }
   }
 
@@ -478,7 +466,6 @@ class BoltTabs extends withContext(BoltElement) {
         if (this.panels.length) {
           // Wait for panels to be set (and have length) before proceeding with the rest of the Tabs setup.
           this.setupDropdown();
-          this.setupAutoscroll();
 
           if (!this.observer) {
             this.addMutationObserver();
@@ -505,6 +492,9 @@ class BoltTabs extends withContext(BoltElement) {
 
     // Wait until after `this.panels` is set and component re-renders before calling super which dispaches "ready" event
     await this.updateComplete;
+
+    await this.deepLinking();
+
     super.firstUpdated && super.firstUpdated();
   }
 
