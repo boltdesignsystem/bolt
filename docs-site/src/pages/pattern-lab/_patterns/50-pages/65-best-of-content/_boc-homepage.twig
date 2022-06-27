@@ -31,6 +31,51 @@
   },
 } only %}
 
+{% set video_thumbnail_wide %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/promos/promo-16x9-ai.jpg',
+        alt: 'Alt text',
+        loading: 'lazy',
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+    content: image,
+    button_attributes: {
+      'data-bolt-modal-target': '#' ~ modal_id
+    },
+    video: {
+      title: 'This is a Video Title',
+      duration: '6:29',
+    }
+  } only %}
+{% endset %}
+
+{% set video_thumbnail_square %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/thumb-square-abstract.jpg',
+        alt: 'Alt text',
+        loading: 'lazy',
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+    content: image,
+    button_attributes: {
+      'data-bolt-modal-target': '#' ~ modal_id
+    },
+    aspect_ratio: '1:1',
+    video: {
+      title: 'This is a Video Title',
+      duration: '6:29',
+    }
+  } only %}
+{% endset %}
+
 {% set like %}
   {% set icon_heart %}
     {% include '@bolt-elements-icon/icon.twig' with {
@@ -121,15 +166,6 @@
     },
   } only %}
 {% endset %}
-{% set wide_image %}
-  {% include '@bolt-elements-image/image.twig' with {
-    attributes: {
-      src: '/images/content/promos/promo-16x9-ai.jpg',
-      alt: 'Alt text.',
-      loading: 'lazy',
-    }
-  } only %}
-{% endset %}
 
 {% set square_image %}
   {% include '@bolt-elements-image/image.twig' with {
@@ -156,9 +192,8 @@
 {% endset %}
 
 {% set main_teaser_props = {
-  signifier: wide_image,
+  signifier: video_thumbnail_wide,
   locked: true,
-  time: '6:29',
   headline: {
     text: 'The future of work',
     tag: 'h2',
@@ -168,7 +203,6 @@
       'data-bolt-modal-target': '#' ~ modal_id,
     },
   },
-  type: 'video',
   description: {
     content: 'Chicken bacon doner pancetta pork corned beef, swine jowl burgdoggen pastrami buffalo beef ribs shankle. Turducken pork porchetta shankle, salami short ribs corned beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef.',
   },
@@ -176,7 +210,7 @@
 } %}
 
 {% set side_teaser_1_props = {
-  signifier: square_image,
+  signifier: video_thumbnail_square,
   headline: {
     text: 'Rethink your business architecture with a center-out approach',
     tag: 'h4',
@@ -186,9 +220,7 @@
       'data-bolt-modal-target': '#' ~ modal_id,
     },
   },
-  time: '4:55',
   layout: 'horizontal',
-  type: 'video',
   description: {
     content: 'Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger.',
   },
@@ -207,7 +239,6 @@
   },
   time: '15 min read',
   layout: 'horizontal',
-  type: 'external-link',
   description: {
     content: 'Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
   },
@@ -226,7 +257,6 @@
   },
   time: '29 min read',
   layout: 'horizontal',
-  type: 'external-link',
   description: {
     content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim.',
   },

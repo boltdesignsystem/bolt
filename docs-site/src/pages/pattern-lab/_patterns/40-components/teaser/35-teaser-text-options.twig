@@ -1,10 +1,10 @@
 {% set description %}
-  The teaser allows for a few different text options, including <code>eyebrow_text</code>, <code>headline</code>, <code>subheadline</code>, and <code>description.</code>
+  When creating text content in a teaser, the full features of headline, subheadline, and eyebrow can be used.
 {% endset %}
 
 {% set notes %}
 <bolt-ol>
-  <bolt-li>When setting the <code>headline</code> and <code>subheadline</code> please be sure to set the proper HTML tag to ensure SEO and accessibility best practices.</bolt-li>
+  <bolt-li>When setting the <code>eyebrow</code>, <code>headline</code>, and <code>subheadline</code> please be sure to set the proper HTML tag to ensure SEO and accessibility best practices.</bolt-li>
   <bolt-li>The traditional eyebrow/headline/subheadline lockup is best used in responsive layout.</bolt-li>
 </bolt-ol>
 {% endset %}
@@ -20,33 +20,31 @@
     } only %}
   {% endset %}
 
-  <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large">
-    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-8/12@small">
-      {% include '@bolt-components-teaser/teaser.twig' with {
-        layout: 'responsive',
-        gutter: 'large',
-        signifier: wide_image,
-        eyebrow_text: 'This is the eyebrow',
-        headline: {
-          text: 'This is the headline',
-          tag: 'h2',
-          size: 'xxlarge',
-          link_attributes: {
-            href: 'https://www.google.com',
-            target: '_blank',
-            rel: 'noopener'
-          }
-        },
-        subheadline: {
-          text: 'This is the subheadline',
-          tag: 'h3',
-          size: 'xlarge',
-        },
-        description: {
-          content: 'This is the description.',
-        },
-      } only %}
-    </div>
+  <div style="max-width:50rem">
+    {% include '@bolt-components-teaser/teaser.twig' with {
+      layout: 'responsive',
+      gutter: 'large',
+      signifier: wide_image,
+      eyebrow_text: 'This is the eyebrow',
+      headline: {
+        text: 'This is the headline',
+        tag: 'h2',
+        size: 'xxlarge',
+        link_attributes: {
+          href: 'https://www.google.com',
+          target: '_blank',
+          rel: 'noopener'
+        }
+      },
+      subheadline: {
+        text: 'This is the subheadline',
+        tag: 'h3',
+        size: 'xlarge',
+      },
+      description: {
+        content: 'This is the description.',
+      },
+    } only %}
   </div>
 {% endset %}
 
