@@ -119,7 +119,7 @@
         } only %}
       {% endset %}
 
-      {% set edit_phone_number_button %}
+      {% set edit_button %}
         {% set icon_pencil %}
           {% include '@bolt-elements-icon/icon.twig' with {
             name: 'pencil',
@@ -414,7 +414,7 @@
             {
               column_start: '12 10@medium',
               column_span: '1',
-              content: edit_phone_number_button,
+              content: edit_button,
               valign: 'end'
             },
             {
@@ -801,6 +801,7 @@
           size: 'large',
           tag: 'h3'
         } only %}
+
         {% set industry %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
@@ -1138,6 +1139,30 @@
           } only %}
         {% endset %}
 
+        {% set drag_project_button %}
+          {% set icon_drag %}
+            {% include '@bolt-elements-icon/icon.twig' with {
+              name: 'grid',
+            } only %}
+          {% endset %}
+          {% set tooltip_trigger %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'you can move this project by holding down this button',
+              display: 'block',
+              icon_only: icon_drag,
+              hierarchy: 'transparent',
+              attributes: {
+                type: 'button',
+                style: 'width: 100%;',
+              }
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-tooltip/tooltip.twig' with {
+            trigger: tooltip_trigger,
+            content: 'you can move this project by holding down this button',
+          } only %}
+        {% endset %}
+
         {% set add_project_button %}
           {% set icon_add %}
             {% include '@bolt-elements-icon/icon.twig' with {
@@ -1146,7 +1171,7 @@
           {% endset %}
           {% include '@bolt-elements-button/button.twig' with {
             content: 'Add Project',
-            display: 'block',
+            display: 'inline@from-small',
             icon_before: icon_add,
             hierarchy: 'transparent',
             attributes: {
@@ -1154,6 +1179,99 @@
             }
           } only %}
         {% endset %}
+
+        {% set saved_project %}
+          {% set selected_industry = 'Education' %}
+          {% set selected_role = 'Business User' %}
+          {% set project_starting_date = '14/06/22' %}
+          {% set selected_product_1 = 'Individual Sales Process Manager (ISPM)' %}
+          {% set selected_vers_1 = '6.5' %}
+          {% set selected_product_2 = 'Default Management/Loan Loss Mitigation' %}
+          {% set selected_vers_2 = '2.0' %}
+          {% set selected_product_3 = 'Pega Automated Unit Testing' %}
+
+          {% include '@bolt-components-headline/eyebrow.twig' with {
+            text: 'The Industry: ' ~ selected_industry ~', The role: '~ selected_role,
+          } only %}
+
+          {% set chip_list %}
+            {% include '@bolt-components-chip-list/chip-list.twig' with {
+              items: [
+                {
+                  text: selected_product_1 ~' '~ selected_vers_1,
+                },
+                {
+                  text: selected_product_2 ~' '~ selected_vers_2,
+                },
+                {
+                  text: selected_product_3
+                }
+              ]
+            } only %}
+          {% endset %}
+
+          {% include '@bolt-components-headline/lead.twig' with {
+            text: '<strong>Products: </strong>' ~ chip_list,
+          } only %}
+
+          {% include '@bolt-components-headline/text.twig' with {
+            text: project_starting_date ~ ' - current',
+            size: 'small'
+          } only %}
+        {% endset %}
+
+        {% set edit_profile_button %}
+          {% set icon_pencil %}
+            {% include '@bolt-elements-icon/icon.twig' with {
+              name: 'pencil',
+            } only %}
+          {% endset %}
+          {% set tooltip_trigger %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Edit this project',
+              display: 'inline@from-small',
+              icon_only: icon_pencil,
+              hierarchy: 'tertiary',
+              attributes: {
+                type: 'button',
+              }
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-tooltip/tooltip.twig' with {
+            trigger: tooltip_trigger,
+            content: 'Edit this project',
+          } only %}
+        {% endset %}
+
+        {% set saved_projects_grid %}
+          {% include '@bolt-components-grid/grid.twig' with {
+            gutter: 'small',
+            row_gutter: 'small',
+            items: [
+              {
+                column_start: '1',
+                column_span: '12 11@medium',
+                content: saved_project,
+              },
+              {
+                column_start: '1 12@medium',
+                column_span: '12 1@medium',
+                content: edit_profile_button,
+                valign: 'end'
+              },
+            ]
+          } only %}
+        {% endset %}
+
+        {% include '@bolt-components-stack/stack.twig' with {
+          content: saved_projects_grid,
+          attributes: {
+            class: [
+              't-bolt-gray-xlight',
+              'u-bolt-padding-medium'
+            ]
+          }
+        } only %}
 
         {% include '@bolt-components-grid/grid.twig' with {
           gutter: 'small',
@@ -1171,33 +1289,33 @@
             },
             {
               column_start: '1',
-              column_span: '12 6@small',
+              column_span: '12 6@medium',
               content: start_date,
             },
             {
-              column_start: '1 7@small',
-              column_span: '8 4@small',
+              column_start: '1 7@medium',
+              column_span: '8 4@medium',
               content: end_date,
             },
             {
-              column_start: '9 11@small',
-              column_span: '4 2@small',
+              column_start: '9 11@medium',
+              column_span: '4 2@medium',
               content: current_project,
               valign: 'end'
             },
             {
               column_start: '1',
-              column_span: '12 6@small',
+              column_span: '12 6@medium',
               content: product,
             },
             {
-              column_start: '1 7@small',
-              column_span: '10 5@small',
+              column_start: '1 7@medium',
+              column_span: '10 5@medium',
               content: version,
             },
             {
-              column_start: '11 12@small',
-              column_span: '2 1@small',
+              column_start: '11 12@medium',
+              column_span: '2 1@medium',
               content: trash_button,
               valign: 'end',
             },
@@ -1217,12 +1335,14 @@
               content: save_project_button,
             },
             {
-              column_start: '1 7@medium',
-              column_span: '12 3@medium',
-              content: add_project_button,
+              column_start: '1 12@medium',
+              column_span: '12 1@medium',
+              content: drag_project_button ,
+              valign: 'end'
             },
           ]
         } only %}
+        {{ add_project_button }}
       {% endset %}
 
       {# Languages elements #}
@@ -1232,6 +1352,127 @@
           size: 'large',
           tag: 'h3'
         } only %}
+        {% set language_chosen %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'Language',
+              displayType: 'block',
+              attributes: {
+                for: 'language'
+              }
+            } only %}
+          {% endset %}
+
+          {% set select %}
+            {% include '@bolt-components-form/form-select.twig' with {
+              attributes: {
+                id: 'language'
+              },
+              options: [
+                {
+                  type: 'option',
+                  value: 'no-languages',
+                  label: 'Select the language',
+                },
+                {
+                  type: 'option',
+                  value: 'arabic',
+                  label: 'Arabic'
+                },
+                {
+                  type: 'option',
+                  value: 'chinese',
+                  label: 'Chinese'
+                },
+                {
+                  type: 'option',
+                  value: 'czech',
+                  label: 'Czech',
+                  attributes: {
+                    selected: true,
+                  }
+                }
+              ]
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            labelDisplay: 'before',
+            children: select,
+          } only %}
+        {% endset %}
+        {% set proficiency_chosen %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'Proficiency',
+              displayType: 'block',
+              attributes: {
+                for: 'proficiency'
+              }
+            } only %}
+          {% endset %}
+
+          {% set select %}
+            {% include '@bolt-components-form/form-select.twig' with {
+              attributes: {
+                id: 'proficiency'
+              },
+              options: [
+                {
+                  type: 'option',
+                  value: 'no-proficiency',
+                  label: 'Select the proficiency',
+                },
+                {
+                  type: 'option',
+                  value: 'elementary',
+                  label: 'Elementary',
+                  attributes: {
+                    selected: true,
+                  }
+                },
+                {
+                  type: 'option',
+                  value: 'limited',
+                  label: 'Limited'
+                },
+                {
+                  type: 'option',
+                  value: 'pro',
+                  label: 'Pro'
+                }
+              ]
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            labelDisplay: 'before',
+            children: select,
+          } only %}
+        {% endset %}
+        {% set trash_button %}
+          {% set icon_trash %}
+            {% include '@bolt-elements-icon/icon.twig' with {
+              name: 'trash',
+            } only %}
+          {% endset %}
+          {% set tooltip_trigger %}
+            {% include '@bolt-elements-button/button.twig' with {
+              content: 'Remove this language',
+              display: 'block',
+              icon_only: icon_trash,
+              hierarchy: 'tertiary',
+              attributes: {
+                type: 'button',
+                style: 'width: 100%;',
+              }
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-tooltip/tooltip.twig' with {
+            trigger: tooltip_trigger,
+            content: 'Remove this language',
+          } only %}
+        {% endset %}
         {% set language %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
@@ -1360,19 +1601,35 @@
           gutter: 'small',
           row_gutter: 'small',
           items: [
+          {
+              column_start: '1',
+              column_span: '12 6@medium',
+              content: language_chosen,
+            },
+            {
+              column_start: '1 7@medium',
+              column_span: '10 5@medium',
+              content: proficiency_chosen,
+            },
+            {
+              column_start: '11 12@medium',
+              column_span: '2 1@medium',
+              content: trash_button,
+              valign: 'end'
+            },
             {
               column_start: '1',
-              column_span: '12 6@small',
+              column_span: '12 6@medium',
               content: language,
             },
             {
-              column_start: '1 7@small',
-              column_span: '10 5@small',
+              column_start: '1 7@medium',
+              column_span: '10 5@medium',
               content: proficiency,
             },
             {
-              column_start: '11 12@small',
-              column_span: '2 1@small',
+              column_start: '11 12@medium',
+              column_span: '2 1@medium',
               content: trash_button,
               valign: 'end'
             },
