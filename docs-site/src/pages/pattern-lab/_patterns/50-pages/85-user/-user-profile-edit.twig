@@ -64,7 +64,83 @@
         } only %}
       {% endset %}
 
-      {# {% set phone_number %} #}
+      {% set phone_number_current %}
+        {% set label %}
+          {% include '@bolt-components-form/form-label.twig' with {
+            title: 'Phone Number',
+            displayType: 'block',
+            attributes: {
+              for: 'phone-number-current'
+            }
+          } only %}
+        {% endset %}
+        {% set input %}
+          {% include '@bolt-components-form/form-input.twig' with {
+            attributes: {
+              disabled: true,
+              type: 'tel',
+              id: 'phone-number-current',
+              value: '+48123456789'
+            },
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-form/form-element.twig' with {
+          label: label,
+          labelDisplay: 'before',
+          children: input,
+        } only %}
+      {% endset %}
+
+      {% set extension_current %}
+        {% set label %}
+          {% include '@bolt-components-form/form-label.twig' with {
+            title: 'Extension',
+            displayType: 'block',
+            attributes: {
+              for: 'extension-current',
+            },
+          } only %}
+        {% endset %}
+        {% set input %}
+          {% include '@bolt-components-form/form-input.twig' with {
+            attributes: {
+              placeholder: 'Enter the extension',
+              disabled: true,
+              type: 'text',
+              id: 'extension-current',
+              value: 'no extension'
+            },
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-form/form-element.twig' with {
+          label: label,
+          labelDisplay: 'before',
+          children: input,
+        } only %}
+      {% endset %}
+
+      {% set edit_phone_number_button %}
+        {% set icon_pencil %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pencil',
+          } only %}
+        {% endset %}
+        {% set tooltip_trigger %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Edit this phone number',
+            icon_only: icon_pencil,
+            hierarchy: 'tertiary',
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-tooltip/tooltip.twig' with {
+          trigger: tooltip_trigger,
+          content: 'Edit this phone number',
+        } only %}
+      {% endset %}
+
       {% set area_code %}
         {% set label %}
           {% include '@bolt-components-form/form-label.twig' with {
@@ -137,9 +213,15 @@
             },
           } only %}
         {% endset %}
+        {% set icon_info_circle %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'info-circle',
+          } only %}
+        {% endset %}
         {% include '@bolt-components-form/form-element.twig' with {
           label: label,
           labelDisplay: 'before',
+          descriptionText: icon_info_circle ~ '<small>CURRENT: +48123456789</small>',
           children: input,
         } only %}
       {% endset %}
@@ -318,6 +400,22 @@
               column_start: '1',
               column_span: '12',
               content: surname,
+            },
+            {
+              column_start: '1',
+              column_span: '12 6@medium',
+              content: phone_number_current,
+            },
+            {
+              column_start: '1 7@medium',
+              column_span: '11 3@medium',
+              content: extension_current,
+            },
+            {
+              column_start: '12 10@medium',
+              column_span: '1',
+              content: edit_phone_number_button,
+              valign: 'end'
             },
             {
               column_start: '1',
