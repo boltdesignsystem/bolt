@@ -1194,29 +1194,30 @@
             text: 'The Industry: ' ~ selected_industry ~', The role: '~ selected_role,
           } only %}
 
-          {% set chip_list %}
-            {% include '@bolt-components-chip-list/chip-list.twig' with {
-              items: [
-                {
-                  text: selected_product_1 ~' '~ selected_vers_1,
-                },
-                {
-                  text: selected_product_2 ~' '~ selected_vers_2,
-                },
-                {
-                  text: selected_product_3
-                }
-              ]
-            } only %}
-          {% endset %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'Products',
+            tag: 'h3',
+            size: 'medium'
+          } only %}
 
-          {% include '@bolt-components-headline/lead.twig' with {
-            text: '<strong>Products: </strong>' ~ chip_list,
+          {% include '@bolt-components-chip-list/chip-list.twig' with {
+            items: [
+              {
+                text: selected_product_1 ~' '~ selected_vers_1,
+              },
+              {
+                text: selected_product_2 ~' '~ selected_vers_2,
+              },
+              {
+                text: selected_product_3
+              }
+            ]
           } only %}
 
           {% include '@bolt-components-headline/text.twig' with {
             text: project_starting_date ~ ' - current',
-            size: 'small'
+            size: 'xsmall',
+            weight: 'semibold'
           } only %}
         {% endset %}
 
@@ -1229,11 +1230,12 @@
           {% set tooltip_trigger %}
             {% include '@bolt-elements-button/button.twig' with {
               content: 'Edit this project',
-              display: 'inline@from-small',
+              display: 'block',
               icon_only: icon_pencil,
               hierarchy: 'tertiary',
               attributes: {
                 type: 'button',
+                style: 'margin-left: auto;'
               }
             } only %}
           {% endset %}
