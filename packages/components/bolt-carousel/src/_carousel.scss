@@ -48,17 +48,19 @@ bolt-carousel {
   padding: 0;
   list-style: none;
 
-  &--overflow {
-    overflow: visible;
-  }
-
+  &--overflow,
   &--no-overflow {
     min-width: calc(100% + var(--c-bolt-carousel-space-around) * 2);
+    max-width: 0;
     overflow: hidden;
     margin-right: calc(var(--c-bolt-carousel-space-around) * -1);
     margin-left: calc(var(--c-bolt-carousel-space-around) * -1);
     padding-right: var(--c-bolt-carousel-space-around);
     padding-left: var(--c-bolt-carousel-space-around);
+  }
+
+  &--overflow {
+    overflow: visible;
   }
 }
 
