@@ -1,0 +1,12 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'This is a type element.'
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'type',
+  componentGroup: 'elements',
+  usage: usage
+} only %}
+

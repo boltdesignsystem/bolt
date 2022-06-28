@@ -1,0 +1,110 @@
+/* ------------------------------------ *\
+   Type
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+/**
+ * Dev notes:
+ *
+ * 1. Special tricks are used here to make inline icon work, reference the mixin scss to understand it.
+ * 2. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
+ * 3. Reset margins for inline text.
+ */
+
+.e-bolt-type {
+  --e-bolt-type-font-family: unset;
+  --e-bolt-type-font-size: unset;
+  --e-bolt-type-font-weight: unset;
+  --e-bolt-type-color: unset;
+  --e-bolt-type-line-height: unset;
+  --e-bolt-type-letter-spacing: unset;
+  --e-bolt-type-margin-bottom: var(--bolt-spacing-y-medium);
+
+  margin: 0 0 var(--e-bolt-type-margin-bottom) 0;
+  padding: 0;
+  font-family: var(--e-bolt-type-font-family);
+  font-size: var(--e-bolt-type-font-size);
+  font-weight: var(--e-bolt-type-font-weight);
+  color: var(--e-bolt-type-color);
+  line-height: var(--e-bolt-type-line-height);
+  letter-spacing: var(--e-bolt-type-letter-spacing);
+
+  &:last-child {
+    margin: 0;
+  }
+
+  // Font size
+  @each $size in $bolt-type-font-size-system {
+    $size-name: nth($size, 1);
+
+    &--size-#{$size-name} {
+      --e-bolt-type-font-size: var(--bolt-type-font-size-#{$size-name});
+      --e-bolt-type-line-height: var(--bolt-type-line-height-#{$size-name});
+    }
+  }
+}
+
+// Headline, subheadline, eyebrow
+.e-bolt-type--headline {
+  --e-bolt-type-font-weight: var(--bolt-type-font-weight-bold);
+
+  &.e-bolt-type--size-small {
+    --e-bolt-type-letter-spacing: var(--bolt-type-letter-spacing-wide);
+
+    text-transform: uppercase;
+  }
+}
+
+.e-bolt-type--subheadline {
+  --e-bolt-type-font-weight: var(--bolt-type-font-weight-regular);
+}
+
+.e-bolt-type--eyebrow {
+  --e-bolt-type-font-size: var(--bolt-type-font-size-xsmall);
+  --e-bolt-type-font-weight: var(--bolt-type-font-weight-regular);
+  --e-bolt-type-color: var(--m-bolt-neutral);
+  --e-bolt-type-line-height: var(--bolt-type-line-height-xsmall);
+  --e-bolt-type-letter-spacing: var(--bolt-type-letter-spacing-wide);
+
+  text-transform: uppercase;
+}
+
+.e-bolt-type--headline,
+.e-bolt-type--subheadline,
+.e-bolt-type--eyebrow {
+  --e-bolt-type-margin-bottom: var(--bolt-spacing-y-xsmall);
+  --e-bolt-type-font-family: var(--bolt-type-font-family-headline);
+}
+
+.e-bolt-type--headline,
+.e-bolt-type--subheadline {
+  --e-bolt-type-color: var(--m-bolt-headline);
+
+  &.e-bolt-type--size-xxxlarge,
+  &.e-bolt-type--size-xxlarge {
+    --e-bolt-type-letter-spacing: var(--bolt-type-letter-spacing-narrow);
+  }
+}
+
+// Icons
+[class*='e-bolt-type__icon'] {
+  @include bolt-inline-icon-wrapper; /* [1] */
+}
+
+.e-bolt-type__icon-before {
+  margin-right: calc(
+    var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xsmall) * 1em
+  ); /* [2] */
+}
+
+.e-bolt-type__icon-after {
+  margin-left: calc(
+    var(--bolt-spacing-x) * var(--bolt-spacing-multiplier-xsmall) * 1em
+  ); /* [2] */
+}
+
+// Inline text
+span.e-bolt-type {
+  margin: 0; /* [3] */
+}

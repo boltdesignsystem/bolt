@@ -1,0 +1,37 @@
+{% set schema = bolt.data.components['@bolt-elements-type'].schema %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>If size is not defined or set to auto, font-size inherits from parent container.</bolt-li>
+    <bolt-li>Each size is paired with a specific line-height to improve legibility.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% for size in schema.properties.size.enum %}
+    {% include '@bolt-elements-type/type.twig' with {
+      content: 'This is size ' ~ size ~ '.',
+      size: size,
+    } only %}
+  {% endfor %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'This is size xxxlarge.'
+  size: 'xxxlarge',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<p class="e-bolt-type e-bolt-type--xxxlarge">This is size xxxlarge.</p>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Type Size',
+  description: 'Size defines the font-size of the type element.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

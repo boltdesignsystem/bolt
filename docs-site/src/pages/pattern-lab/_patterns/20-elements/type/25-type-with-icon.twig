@@ -1,0 +1,147 @@
+{% set description %}
+  Icon can be appended before and/or after a paragraph of text. <a href="{{ link['viewall-elements-icon'] }}">The Icon element</a> is recommended for appending icons. However, an <code>&lt;img&gt;</code> element is also acceptable.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Icon added via <code>icon_before</code> or <code>icon_after</code> are rendered to flow with text, so its size will grow or shrink with text size. The <code>size</code> prop for the Icon element is not supported in this scenario.</bolt-li>
+    <bolt-li>Instead of adding icons before and after the entire paragraph of text, it can also be done to inline text. To create inline text within a paragraph, set <code>tag</code> to <code>span</code>.</bolt-li>
+    <bolt-li>When writing plain HTML, all white space must be eliminated to have the text and icon align correctly. The markup must be written all in one line and spaces between HTML elements must be removed.</bolt-li>
+    <bolt-li>When writing plain HTML, <code>&lt;span class="e-bolt-type__icon-before"&gt;</code> and <code>&lt;span class="e-bolt-type__icon-after"&gt;</code> are required to wrap around the icon markup. The wrapper ensures that the icon will always wrap with the final word of the text. It will never wrap to the next line on its own.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set icon_pega_thumbs_up %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-thumbs-up',
+      size: 'large',
+    } only %}
+  {% endset %}
+  {% set icon_pega_timer %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-timer',
+    } only %}
+  {% endset %}
+  {% set icon_arrow_left %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'arrow-left',
+    } only %}
+  {% endset %}
+
+  <bolt-tabs inset="off" label-spacing="medium">
+    <bolt-tab-panel>
+      <bolt-text slot="label">Block Text</bolt-text>
+      <div class="t-bolt-gray-xlight u-bolt-padding-medium">
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'Eyebrow with an icon before',
+          icon_before: icon_arrow_left,
+          hierarchy: 'eyebrow',
+        } only %}
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'Headline with an icon after',
+          icon_after: icon_pega_thumbs_up,
+          hierarchy: 'headline',
+          tag: 'h1',
+          size: 'xxxlarge',
+        } only %}
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'Subheadline with an icon before and after',
+          icon_before: icon_pega_timer,
+          icon_after: icon_pega_thumbs_up,
+          hierarchy: 'subheadline',
+          tag: 'h2',
+          size: 'xlarge',
+        } only %}
+      </div>
+    </bolt-tab-panel>
+
+    <bolt-tab-panel>
+      <bolt-text slot="label">Inline Text</bolt-text>
+      <div class="t-bolt-gray-xlight u-bolt-padding-medium">
+        {% set inline_text %}
+          {% include '@bolt-elements-type/type.twig' with {
+            content: 'inline text with icons',
+            icon_before: icon_pega_timer,
+            icon_after: icon_pega_thumbs_up,
+            tag: 'span',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-type/type.twig' with {
+          content: 'This is a paragraph of text. In the middle of it, it has ' ~ inline_text|spaceless ~ '. This inline text is a type element with its tag set to <code>span</code>.',
+        } only %}
+      </div>
+    </bolt-tab-panel>
+  </bolt-tabs>
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set icon_pega_thumbs_up %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-thumbs-up',
+    size: 'large',
+  } only %}
+{% endset %}
+{% set icon_pega_timer %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-timer',
+  } only %}
+{% endset %}
+{% set icon_arrow_left %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'arrow-left',
+  } only %}
+{% endset %}
+
+{# Block Text #}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'Eyebrow with an icon before',
+  icon_before: icon_arrow_left,
+  hierarchy: 'eyebrow',
+} only %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'Headline with an icon after',
+  icon_after: icon_pega_thumbs_up,
+  hierarchy: 'headline',
+  tag: 'h1',
+  size: 'xxxlarge',
+} only %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'Subheadline with an icon before and after',
+  icon_before: icon_pega_timer,
+  icon_after: icon_pega_thumbs_up,
+  hierarchy: 'subheadline',
+  tag: 'h2',
+  size: 'xlarge',
+} only %}
+
+{# Inline Text #}
+{% set inline_text %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'inline text with icons',
+    icon_before: icon_pega_timer,
+    icon_after: icon_pega_thumbs_up,
+    tag: 'span',
+  } only %}
+{% endset %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'This is a paragraph of text. In the middle of it, it has ' ~ inline_text|spaceless ~ '. This inline text is a type element with its tag set to <code>span</code>.',
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<!-- Block Text -->
+<h1 class="e-bolt-type e-bolt-type--headline e-bolt-type--xxxlarge"><span class="e-bolt-type__icon-before"><!-- Icon or image markup --></span>Subheadline with an icon before and after<span class="e-bolt-type__icon-after"><!-- Icon or image markup --></span></h1>
+
+<!-- Inline Text -->
+<p class="e-bolt-type">This is a paragraph of text. In the middle of it, it has <span class="e-bolt-type"><span class="e-bolt-type__icon-before"><!-- Icon or image markup --></span>inline text with icons<span class="e-bolt-type__icon-after"><!-- Icon or image markup --></span></span>. This inline text is a type element with its tag set to <code>span</code>.</p>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Type with Icon',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}
