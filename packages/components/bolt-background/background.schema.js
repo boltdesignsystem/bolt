@@ -57,8 +57,8 @@ module.exports = {
         enum: ['center', 'top', 'bottom'],
       },
     },
-    content_items: {
-      type: 'array',
+    content: {
+      type: 'any',
       description:
         'An array of objects to place in the background.Works with Image and Shape components.Video option is deprecated.',
       items: {
