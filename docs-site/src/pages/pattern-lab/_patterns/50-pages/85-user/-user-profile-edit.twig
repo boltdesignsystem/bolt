@@ -1180,7 +1180,7 @@
           } only %}
         {% endset %}
 
-        {% set saved_project %}
+        {% set saved_project_1 %}
           {% set selected_industry = 'Education' %}
           {% set selected_role = 'Business User' %}
           {% set project_starting_date = '14/06/22' %}
@@ -1191,11 +1191,11 @@
           {% set selected_product_3 = 'Pega Automated Unit Testing' %}
 
           {% include '@bolt-components-headline/eyebrow.twig' with {
-            text: 'The Industry: ' ~ selected_industry ~', The role: '~ selected_role,
+            text: selected_industry ~', ' ~ selected_role,
           } only %}
 
           {% include '@bolt-components-headline/headline.twig' with {
-            text: 'Products',
+            text: 'Products:',
             tag: 'h3',
             size: 'medium'
           } only %}
@@ -1216,6 +1216,44 @@
 
           {% include '@bolt-components-headline/text.twig' with {
             text: project_starting_date ~ ' - current',
+            size: 'xsmall',
+            weight: 'semibold'
+          } only %}
+        {% endset %}
+
+        {% set saved_project_2 %}
+          {% set selected_industry = 'Financial Services' %}
+          {% set selected_role = 'Account Executive' %}
+          {% set project_starting_date = '01/04/20' %}
+          {% set project_ending_date = '28/05/21' %}
+          {% set selected_product_1 = 'PegaRESEARCH Manager for Wholesale Check' %}
+          {% set selected_vers_1 = '5.5 SP1' %}
+          {% set selected_product_2 = 'Citizen Benefit Delivery' %}
+          {% set selected_vers_2 = 'All Versions' %}
+
+          {% include '@bolt-components-headline/eyebrow.twig' with {
+            text: selected_industry ~', ' ~ selected_role,
+          } only %}
+
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: 'Products:',
+            tag: 'h3',
+            size: 'medium'
+          } only %}
+
+          {% include '@bolt-components-chip-list/chip-list.twig' with {
+            items: [
+              {
+                text: selected_product_1 ~' '~ selected_vers_1,
+              },
+              {
+                text: selected_product_2 ~' '~ selected_vers_2,
+              },
+            ]
+          } only %}
+
+          {% include '@bolt-components-headline/text.twig' with {
+            text: project_starting_date ~ ' - ' ~ project_ending_date,
             size: 'xsmall',
             weight: 'semibold'
           } only %}
@@ -1245,7 +1283,7 @@
           } only %}
         {% endset %}
 
-        {% set saved_projects_grid %}
+        {% set saved_projects_grid_1 %}
           {% include '@bolt-components-grid/grid.twig' with {
             gutter: 'small',
             row_gutter: 'small',
@@ -1253,7 +1291,7 @@
               {
                 column_start: '1',
                 column_span: '12 11@medium',
-                content: saved_project,
+                content: saved_project_1,
               },
               {
                 column_start: '1 12@medium',
@@ -1266,7 +1304,37 @@
         {% endset %}
 
         {% include '@bolt-components-stack/stack.twig' with {
-          content: saved_projects_grid,
+          content: saved_projects_grid_1,
+          attributes: {
+            class: [
+              't-bolt-gray-xlight',
+              'u-bolt-padding-medium'
+            ]
+          }
+        } only %}
+
+        {% set saved_projects_grid_2 %}
+          {% include '@bolt-components-grid/grid.twig' with {
+            gutter: 'small',
+            row_gutter: 'small',
+            items: [
+              {
+                column_start: '1',
+                column_span: '12 11@medium',
+                content: saved_project_2,
+              },
+              {
+                column_start: '1 12@medium',
+                column_span: '12 1@medium',
+                content: edit_profile_button,
+                valign: 'end'
+              },
+            ]
+          } only %}
+        {% endset %}
+
+        {% include '@bolt-components-stack/stack.twig' with {
+          content: saved_projects_grid_2,
           attributes: {
             class: [
               't-bolt-gray-xlight',
@@ -1354,7 +1422,8 @@
           size: 'large',
           tag: 'h3'
         } only %}
-        {% set language_chosen %}
+        
+        {% set language_chosen_1 %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
               title: 'Language',
@@ -1393,6 +1462,11 @@
                   attributes: {
                     selected: true,
                   }
+                },
+                {
+                  type: 'option',
+                  value: 'polish',
+                  label: 'Polish',
                 }
               ]
             } only %}
@@ -1403,7 +1477,7 @@
             children: select,
           } only %}
         {% endset %}
-        {% set proficiency_chosen %}
+        {% set proficiency_chosen_1 %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
               title: 'Proficiency',
@@ -1452,29 +1526,111 @@
             children: select,
           } only %}
         {% endset %}
-        {% set trash_button %}
-          {% set icon_trash %}
-            {% include '@bolt-elements-icon/icon.twig' with {
-              name: 'trash',
-            } only %}
-          {% endset %}
-          {% set tooltip_trigger %}
-            {% include '@bolt-elements-button/button.twig' with {
-              content: 'Remove this language',
-              display: 'block',
-              icon_only: icon_trash,
-              hierarchy: 'tertiary',
+
+        {% set language_chosen_2 %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'Language',
+              displayType: 'block',
               attributes: {
-                type: 'button',
-                style: 'width: 100%;',
+                for: 'language'
               }
             } only %}
           {% endset %}
-          {% include '@bolt-components-tooltip/tooltip.twig' with {
-            trigger: tooltip_trigger,
-            content: 'Remove this language',
+
+          {% set select %}
+            {% include '@bolt-components-form/form-select.twig' with {
+              attributes: {
+                id: 'language'
+              },
+              options: [
+                {
+                  type: 'option',
+                  value: 'no-languages',
+                  label: 'Select the language',
+                },
+                {
+                  type: 'option',
+                  value: 'arabic',
+                  label: 'Arabic'
+                },
+                {
+                  type: 'option',
+                  value: 'chinese',
+                  label: 'Chinese'
+                },
+                {
+                  type: 'option',
+                  value: 'czech',
+                  label: 'Czech',
+                },
+                {
+                  type: 'option',
+                  value: 'polish',
+                  label: 'Polish',
+                  attributes: {
+                    selected: true,
+                  }
+                }
+              ]
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            labelDisplay: 'before',
+            children: select,
           } only %}
         {% endset %}
+        {% set proficiency_chosen_2 %}
+          {% set label %}
+            {% include '@bolt-components-form/form-label.twig' with {
+              title: 'Proficiency',
+              displayType: 'block',
+              attributes: {
+                for: 'proficiency'
+              }
+            } only %}
+          {% endset %}
+
+          {% set select %}
+            {% include '@bolt-components-form/form-select.twig' with {
+              attributes: {
+                id: 'proficiency'
+              },
+              options: [
+                {
+                  type: 'option',
+                  value: 'no-proficiency',
+                  label: 'Select the proficiency',
+                },
+                {
+                  type: 'option',
+                  value: 'elementary',
+                  label: 'Elementary',
+                },
+                {
+                  type: 'option',
+                  value: 'limited',
+                  label: 'Limited'
+                },
+                {
+                  type: 'option',
+                  value: 'pro',
+                  label: 'Pro',
+                  attributes: {
+                    selected: true,
+                  }
+                }
+              ]
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-form/form-element.twig' with {
+            label: label,
+            labelDisplay: 'before',
+            children: select,
+          } only %}
+        {% endset %}
+
         {% set language %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
@@ -1515,6 +1671,11 @@
                   type: 'option',
                   value: 'czech',
                   label: 'Czech'
+                },
+                {
+                  type: 'option',
+                  value: 'polish',
+                  label: 'Polish'
                 }
               ]
             } only %}
@@ -1575,6 +1736,7 @@
             children: select,
           } only %}
         {% endset %}
+
         {% set trash_button %}
           {% set icon_trash %}
             {% include '@bolt-elements-icon/icon.twig' with {
@@ -1603,15 +1765,31 @@
           gutter: 'small',
           row_gutter: 'small',
           items: [
-          {
+            {
               column_start: '1',
               column_span: '12 6@medium',
-              content: language_chosen,
+              content: language_chosen_1,
             },
             {
               column_start: '1 7@medium',
               column_span: '10 5@medium',
-              content: proficiency_chosen,
+              content: proficiency_chosen_1,
+            },
+            {
+              column_start: '11 12@medium',
+              column_span: '2 1@medium',
+              content: trash_button,
+              valign: 'end'
+            },
+            {
+              column_start: '1',
+              column_span: '12 6@medium',
+              content: language_chosen_2,
+            },
+            {
+              column_start: '1 7@medium',
+              column_span: '10 5@medium',
+              content: proficiency_chosen_2,
             },
             {
               column_start: '11 12@medium',
