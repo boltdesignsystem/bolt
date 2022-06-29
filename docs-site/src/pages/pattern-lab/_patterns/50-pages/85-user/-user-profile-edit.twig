@@ -1180,7 +1180,10 @@
             icon_before: icon_add,
             hierarchy: 'transparent',
             attributes: {
-              type: 'button'
+              type: 'button',
+              class: [
+                'u-bolt-margin-top-medium'
+              ]
             }
           } only %}
         {% endset %}
@@ -1987,6 +1990,13 @@
         } only %}
       {% endset %}
 
+      {% set banner_warning %}
+        {% include '@bolt-components-banner/banner.twig' with {
+          content: '<strong>Please note that below form elements (Project Roles and Pega Specializations) should behave differently. For a solution for form select elements that accept multiple values please use <a href="https://gitlab.com/pegadigital/pm/pega_react/-/tree/1.x/modules/pega_react_multi_select" class="e-bolt-text-link" target="_blank" rel="noopener">pega_react_multi_select</a> module.</strong>',
+          status: 'warning'
+        } only %}
+      {% endset %}
+
       <div class="t-bolt-white u-bolt-padding-medium u-bolt-border-radius-small">
         {% include '@bolt-components-stack/stack.twig' with {
           content: contact_information_form_elements,
@@ -2017,6 +2027,8 @@
           content: languages_form_elements,
           spacing: 'large'
         } only %}
+
+        {{ banner_warning }}
 
         {% include '@bolt-components-stack/stack.twig' with {
           content: projects_role_form_elements,
