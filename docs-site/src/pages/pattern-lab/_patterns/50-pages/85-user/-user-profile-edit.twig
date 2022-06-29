@@ -805,7 +805,7 @@
         {% set industry %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
-              title: 'Industry',
+              title: 'Industry (required)',
               displayType: 'block',
               attributes: {
                 for: 'industry'
@@ -816,7 +816,8 @@
           {% set select %}
             {% include '@bolt-components-form/form-select.twig' with {
               attributes: {
-                id: 'industry'
+                id: 'industry',
+                required: true
               },
               options: [
                 {
@@ -855,7 +856,7 @@
         {% set role %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
-              title: 'Role',
+              title: 'Role (required)',
               displayType: 'block',
               attributes: {
                 for: 'role'
@@ -866,7 +867,8 @@
           {% set select %}
             {% include '@bolt-components-form/form-select.twig' with {
               attributes: {
-                id: 'role'
+                id: 'role',
+                required: true
               },
               options: [
                 {
@@ -905,7 +907,7 @@
         {% set start_date %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
-              title: 'Starting Date',
+              title: 'Starting Date (required)',
               displayType: 'block',
               attributes: {
                 for: 'start-date',
@@ -918,6 +920,7 @@
                 placeholder: 'Enter the start date',
                 type: 'date',
                 id: 'start-date',
+                required: true
               },
             } only %}
           {% endset %}
@@ -930,7 +933,7 @@
         {% set end_date %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
-              title: 'Ending Date',
+              title: 'Ending Date (required)',
               displayType: 'block',
               attributes: {
                 for: 'end-date',
@@ -943,6 +946,7 @@
                 placeholder: 'Enter the end date',
                 type: 'date',
                 id: 'end-date',
+                required: true
               },
             } only %}
           {% endset %}
@@ -979,7 +983,7 @@
         {% set product %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
-              title: 'Product',
+              title: 'Product (required)',
               displayType: 'block',
               attributes: {
                 for: 'product'
@@ -990,7 +994,8 @@
           {% set select %}
             {% include '@bolt-components-form/form-select.twig' with {
               attributes: {
-                id: 'product'
+                id: 'product',
+                required: true,
               },
               options: [
                 {
@@ -1346,6 +1351,9 @@
         {% include '@bolt-components-grid/grid.twig' with {
           gutter: 'small',
           row_gutter: 'small',
+          attributes: {
+            class: 'u-bolt-margin-bottom-medium'
+          },
           items: [
             {
               column_start: '1',
