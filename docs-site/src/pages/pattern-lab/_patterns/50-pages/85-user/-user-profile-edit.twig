@@ -1777,58 +1777,106 @@
           } only %}
         {% endset %}
 
+        {% set language_row_1 %}
+          <div class="u-bolt-padding-bottom-large">
+            {% include '@bolt-components-grid/grid.twig' with {
+              gutter: 'small',
+              row_gutter: 'small',
+              items: [
+                {
+                  column_start: '1',
+                  column_span: '12 6@medium',
+                  content: language_chosen_1,
+                },
+                {
+                  column_start: '1 7@medium',
+                  column_span: '10 5@medium',
+                  content: proficiency_chosen_1,
+                },
+                {
+                  column_start: '11 12@medium',
+                  column_span: '2 1@medium',
+                  content: trash_button,
+                  valign: 'end'
+                }
+              ]
+            } only %}
+          </div>
+        {% endset %}
+
+        {% set language_row_2 %}
+          <div class="u-bolt-padding-bottom-large">
+            {% include '@bolt-components-grid/grid.twig' with {
+              gutter: 'small',
+              row_gutter: 'small',
+              items: [
+                {
+                  column_start: '1',
+                  column_span: '12 6@medium',
+                  content: language_chosen_2,
+                },
+                {
+                  column_start: '1 7@medium',
+                  column_span: '10 5@medium',
+                  content: proficiency_chosen_2,
+                },
+                {
+                  column_start: '11 12@medium',
+                  column_span: '2 1@medium',
+                  content: trash_button,
+                  valign: 'end'
+                },
+              ]
+            } only %}
+          </div>
+        {% endset %}
+
+        {% set language_row_3 %}
+          <div class="u-bolt-padding-bottom-large">
+            {% include '@bolt-components-grid/grid.twig' with {
+              gutter: 'small',
+              row_gutter: 'small',
+              items: [
+                {
+                  column_start: '1',
+                  column_span: '12 6@medium',
+                  content: language,
+                },
+                {
+                  column_start: '1 7@medium',
+                  column_span: '10 5@medium',
+                  content: proficiency,
+                },
+                {
+                  column_start: '11 12@medium',
+                  column_span: '2 1@medium',
+                  content: trash_button,
+                  valign: 'end'
+                },
+              ]
+            } only %}
+          </div>
+        {% endset %}
+
         {% include '@bolt-components-grid/grid.twig' with {
-          gutter: 'small',
-          row_gutter: 'small',
+          gutter: 'none',
+          row_gutter: 'none',
           items: [
-            {
-              column_start: '1',
-              column_span: '12 6@medium',
-              content: language_chosen_1,
-            },
-            {
-              column_start: '1 7@medium',
-              column_span: '10 5@medium',
-              content: proficiency_chosen_1,
-            },
-            {
-              column_start: '11 12@medium',
-              column_span: '2 1@medium',
-              content: trash_button,
-              valign: 'end'
-            },
-            {
-              column_start: '1',
-              column_span: '12 6@medium',
-              content: language_chosen_2,
-            },
-            {
-              column_start: '1 7@medium',
-              column_span: '10 5@medium',
-              content: proficiency_chosen_2,
-            },
-            {
-              column_start: '11 12@medium',
-              column_span: '2 1@medium',
-              content: trash_button,
-              valign: 'end'
-            },
-            {
-              column_start: '1',
-              column_span: '12 6@medium',
-              content: language,
-            },
-            {
-              column_start: '1 7@medium',
-              column_span: '10 5@medium',
-              content: proficiency,
-            },
-            {
-              column_start: '11 12@medium',
-              column_span: '2 1@medium',
-              content: trash_button,
-              valign: 'end'
-            },
+              {
+                column_start: '1',
+                column_span: '12',
+                content: language_row_1,
+              },
+              {
+                column_start: '1',
+                column_span: '12',
+                content: language_row_2,
+              },
+              {
+                column_start: '1',
+                column_span: '12',
+                content: language_row_3,
+              },
           ]
         } only %}
 
