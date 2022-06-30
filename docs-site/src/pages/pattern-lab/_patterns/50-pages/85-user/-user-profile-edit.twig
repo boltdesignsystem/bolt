@@ -1152,19 +1152,20 @@
           {% endset %}
           {% set tooltip_trigger %}
             {% include '@bolt-elements-button/button.twig' with {
-              content: 'you can move this project by holding down this button',
+              content: 'You can move this project by holding down this button',
               display: 'block',
               icon_only: icon_drag,
+              size: 'small',
               hierarchy: 'transparent',
               attributes: {
                 type: 'button',
-                style: 'width: 100%;',
+                style: 'width: 100%;'
               }
             } only %}
           {% endset %}
           {% include '@bolt-components-tooltip/tooltip.twig' with {
             trigger: tooltip_trigger,
-            content: 'you can move this project by holding down this button',
+            content: 'You can move this project by holding down this button',
           } only %}
         {% endset %}
 
@@ -1277,11 +1278,12 @@
             {% include '@bolt-elements-button/button.twig' with {
               content: 'Edit this project',
               display: 'block',
+              size: 'small',
               icon_only: icon_pencil,
-              hierarchy: 'tertiary',
+              hierarchy: 'transparent',
               attributes: {
                 type: 'button',
-                style: 'margin-left: auto;'
+                style: 'width: 100%;'
               }
             } only %}
           {% endset %}
@@ -1298,14 +1300,20 @@
             items: [
               {
                 column_start: '1',
-                column_span: '12 11@medium',
+                column_span: '12 1@medium',
+                content: drag_project_button,
+                valign: 'center'
+              },
+              {
+                column_start: '1 2@medium',
+                column_span: '12 10@medium',
                 content: saved_project_1,
               },
               {
                 column_start: '1 12@medium',
                 column_span: '12 1@medium',
                 content: edit_profile_button,
-                valign: 'end'
+                valign: 'center'
               },
             ]
           } only %}
@@ -1328,14 +1336,20 @@
             items: [
               {
                 column_start: '1',
-                column_span: '12 11@medium',
+                column_span: '12 1@medium',
+                content: drag_project_button,
+                valign: 'center'
+              },
+              {
+                column_start: '1 2@medium',
+                column_span: '12 10@medium',
                 content: saved_project_2,
               },
               {
                 column_start: '1 12@medium',
                 column_span: '12 1@medium',
                 content: edit_profile_button,
-                valign: 'end'
+                valign: 'center'
               },
             ]
           } only %}
@@ -1411,12 +1425,6 @@
               column_start: '1 4@medium',
               column_span: '12 3@medium',
               content: save_project_button,
-            },
-            {
-              column_start: '1 12@medium',
-              column_span: '12 1@medium',
-              content: drag_project_button ,
-              valign: 'end'
             },
           ]
         } only %}
