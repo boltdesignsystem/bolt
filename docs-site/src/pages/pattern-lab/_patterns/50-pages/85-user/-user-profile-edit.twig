@@ -1438,7 +1438,7 @@
           size: 'large',
           tag: 'h3'
         } only %}
-        
+
         {% set language_chosen_1 %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
@@ -2023,7 +2023,7 @@
           children: select,
         } only %}
       {% endset %}
-    
+
       {# Form buttons #}
       {% set reset_button %}
         {% include '@bolt-elements-button/button.twig' with {
@@ -2035,7 +2035,7 @@
           }
         } only %}
       {% endset %}
-      
+
       {% set save_profile_button %}
         {% include '@bolt-elements-button/button.twig' with {
           content: 'Save Profile',
@@ -2119,7 +2119,7 @@
         }
       } only %}
     {% endset %}
-    
+
     {% include '@bolt-components-form/form.twig' with {
       children: form_children
     } only  %}
@@ -2129,7 +2129,7 @@
     padding_top: 'large',
     padding_bottom: 'large',
     template: [
-      '75@from-small',
+      '75@from-medium',
     ],
     align_items: 'center',
     attributes: {
