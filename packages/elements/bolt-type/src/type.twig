@@ -1,0 +1,38 @@
+{#
+/**
+ * Type Element
+ *
+ * Available variables:
+ * - Reference type.schema.js
+#}
+
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-elements-type'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'e-bolt-type',
+  this.data.size.value != schema.properties.size.default ? 'e-bolt-type--size-' ~ this.data.size.value,
+  this.data.hierarchy.value != schema.properties.hierarchy.default ? 'e-bolt-type--' ~ this.data.hierarchy.value,
+] %}
+
+{# Template #}
+{% spaceless %}<{{ this.data.tag.value }} {{ attributes.addClass(classes) }}>
+  {% if link_attributes %}
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: content|spaceless,
+      icon_before: icon_before ? icon_before : null,
+      icon_after: icon_after ? icon_after : null,
+      reversed_underline: true ? this.data.hierarchy.value != schema.properties.hierarchy.default,
+      attributes: link_attributes,
+    } only %}
+  {% else %}
+    {% if icon_before %}<span class="e-bolt-type__icon-before" aria-hidden="true">{{ icon_before|spaceless }}</span>{% endif %}{{ content|spaceless }}{% if icon_after %}<span class="e-bolt-type__icon-after" aria-hidden="true">{{ icon_after|spaceless }}</span>{% endif %}
+  {% endif %}
+</{{ this.data.tag.value }}>{% endspaceless %}

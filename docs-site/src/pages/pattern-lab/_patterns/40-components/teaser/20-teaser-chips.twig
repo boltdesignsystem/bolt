@@ -1,5 +1,12 @@
 {% set description %}
-  If you would like to show chips at the bottom of the teaser, just pass rendered Chip List component into the <code>chip_list</code> prop.
+  Chips can be rendered at the bottom of a teaser to display more information.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use the <code>chip_list</code> prop to pass a Chip List component.</bolt-li>
+    <bolt-li>If linked chips are used, they will work as expected and be excluded from the overall clickable area of the teaser.</bolt-li>
+  </bolt-ol>
 {% endset %}
 
 {% set demo %}
@@ -72,6 +79,7 @@
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Teaser Chips',
   description: description,
+  notes: notes,
   demo: demo,
   twig_markup: twig_markup,
 } only %}

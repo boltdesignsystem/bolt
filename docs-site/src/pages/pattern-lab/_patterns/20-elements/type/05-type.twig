@@ -1,0 +1,33 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>For regular body text, the type element is the same as a <code>&lt;p&gt;</code> HTML element. Only when additional branded typographic styles are needed, the type element should be used.</bolt-li>
+    <bolt-li>There are many HTML elements to style inline text within a type element such as <code>&lt;em&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;small&gt;</code>, <code>&lt;code&gt;</code>, and <code>&lt;kbd&gt;</code> to name a few.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'This is a type element. Use common inline HTML elements to <em>emphasize</em>, <strong>bold</strong>, <a href="#!">link</a>, and more.'
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-elements-type/type.twig' with {
+  content: 'This is a type element. Use common inline HTML elements to <em>emphasize</em>, <strong>bold</strong>, <a href="#!">link</a>, and more.'
+} only %}
+<p>If no props are set, the above is exactly the same as a <p> HTML element.</p>
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<p class="e-bolt-type">This is a type element. Use common inline HTML elements to <em>emphasize</em>, <strong>bold</strong>, <a href="#!">link</a>, and more.</p>
+<p>If no props are set, the above is exactly the same as a <p> HTML element.</p>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Type',
+  description: 'The type element displays text in Pega branded typographic styles.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

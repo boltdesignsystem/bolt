@@ -1,0 +1,171 @@
+{% include '@pl/_dialog-warning.twig' %}
+
+{% set description %}
+  Dialog can be used to display just an video or an video with text description.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>When building a video only dialog, set <code>spacing</code> prop to <code>none</code> and <code>transparent</code> prop to <code>true</code>.</bolt-li>
+    <bolt-li>When building a video dialog with description, use the footer for the description text.</bolt-li>
+    <bolt-li>
+      To automatically play a Brightcove video when a dialog opens, you must add some specific data-attributes. These attributes delay the video initialization. When these attributes are present, the video will initialize when the dialog opens, automatically begin playing, and pause when the dialog closes:
+      <bolt-ul>
+        <bolt-li><strong>data-delayed-account</strong> (replaces <em>data-account</em>)</bolt-li>
+        <bolt-li><strong>data-delayed-player</strong/> (replaces <em>data-player</em>)</bolt-li>
+        <bolt-li><strong>data-delayed-video-id</strong/> (replaces <em>data-video-id</em>)</bolt-li>
+        <bolt-li><strong>data-video-delayed</strong/> (flag to delay the initialization)</bolt-li>
+      </bolt-ul>
+    </bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-list display="inline" spacing="small">
+    <bolt-list-item>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Video only',
+        attributes: {
+          type: 'button',
+          'data-bolt-dialog-target': '#dialog-video',
+        }
+      } only %}
+    </bolt-list-item>
+    <bolt-list-item>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Video + description',
+        attributes: {
+          type: 'button',
+          'data-bolt-dialog-target': '#dialog-description',
+        }
+      } only %}
+    </bolt-list-item>
+  </bolt-list>
+
+  {% set video %}
+    {% set brightcove %}
+      <video-js
+        data-delayed-account="1900410236"
+        data-delayed-player="O3FkeBiaDz"
+        data-delayed-video-id="4892122320001"
+        data-video-delayed
+        data-embed="default"
+        controls
+        data-media-title
+        data-media-duration
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: brightcove,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  {% set image_dialog_content %}
+    {% include '@bolt-components-dialog/dialog-body.twig' with {
+      content: video,
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-dialog/dialog.twig' with {
+    content: image_dialog_content,
+    spacing: 'none',
+    transparent: true,
+    attributes: {
+      id: 'dialog-video'
+    },
+  } only %}
+
+  {% set caption_dialog_content %}
+    {% include '@bolt-components-dialog/dialog-body.twig' with {
+      content: video,
+    } only %}
+    {% include '@bolt-components-dialog/dialog-footer.twig' with {
+      content: 'This is the video description.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-dialog/dialog.twig' with {
+    content: caption_dialog_content,
+    spacing: 'small',
+    attributes: {
+      id: 'dialog-description'
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{# Video only dialog #}
+{% set image_dialog_content %}
+  {% set video %}
+    {% set brightcove %}
+      <video-js
+        data-delayed-account="1900410236"
+        data-delayed-player="O3FkeBiaDz"
+        data-delayed-video-id="4892122320001"
+        data-video-delayed
+        data-embed="default"
+        controls
+        data-media-title
+        data-media-duration
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: brightcove,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: video,
+  } only %}
+{% endset %}
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: image_dialog_content,
+  spacing: 'none',
+  transparent: true,
+  attributes: {
+    id: 'dialog-video'
+  },
+} only %}
+
+{# Video + description dialog #}
+{% set caption_dialog_content %}
+  {% set video %}
+    {% set brightcove %}
+      <video-js
+        data-delayed-account="1900410236"
+        data-delayed-player="O3FkeBiaDz"
+        data-delayed-video-id="4892122320001"
+        data-video-delayed
+        data-embed="default"
+        controls
+        data-media-title
+        data-media-duration
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: brightcove,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: video,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-footer.twig' with {
+    content: 'This is the video description.',
+  } only %}
+{% endset %}
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: caption_dialog_content,
+  spacing: 'small',
+  attributes: {
+    id: 'dialog-description'
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Dialog Video',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

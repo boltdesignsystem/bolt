@@ -1,14 +1,14 @@
 {% set description %}
-  The <code>status</code> prop can be used to display status information about a resource such as locked and view count. Like, share and download buttons can be generated via the <code>actions</code> prop.
+  A teaser can display certain metadata and additional actions as a list.
 {% endset %}
 
 {% set notes %}
 <bolt-ol>
   <bolt-li>View count can be set via the <code>status.views</code> prop. It can be numbers or string (eg. 28k).</bolt-li>
   <bolt-li>Locked status can be set via the <code>status.locked</code> prop. If this is set, a lock icon will appear with the signifier.</bolt-li>
-  <bolt-li>Pass a like button into the <code>like</code> prop. Example code snippet is shown below.</bolt-li>
-  <bolt-li>Pass a share popover menu into the <code>share</code> prop. Boundary is required on the popover. Example code snippet is shown below.</bolt-li>
-  <bolt-li>Pass a download link into the <code>download</code> prop. Example code snippet is shown below.</bolt-li>
+  <bolt-li>A like button can be set via the <code>like</code> prop. Additional JavaScript is required for the like button to function.</bolt-li>
+  <bolt-li>A share popover menu can be set via the <code>share</code> prop. <code>boundary</code> is required on the popover so that the popover would be rendered within the teaser.</bolt-li>
+  <bolt-li>A download button can be set via the <code>download</code> prop.</bolt-li>
 </bolt-ol>
 {% endset %}
 
