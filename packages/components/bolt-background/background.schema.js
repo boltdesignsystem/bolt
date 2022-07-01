@@ -10,6 +10,10 @@ module.exports = {
       description:
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
+    // content: {
+    //   type: 'any',
+    //   description: 'anything',
+    // },
     opacity: {
       type: 'string',
       description: 'Overlay opacity',
@@ -57,14 +61,6 @@ module.exports = {
         enum: ['center', 'top', 'bottom'],
       },
     },
-    content: {
-      type: 'any',
-      description:
-        'An array of objects to place in the background.Works with Image and Shape components.Video option is deprecated.',
-      items: {
-        type: 'any',
-      },
-    },
     overlay: {
       title: 'DEPRECATED',
       description: 'Use opacity instead',
@@ -88,6 +84,10 @@ module.exports = {
     contentItems: {
       title: 'DEPRECATED',
       description: 'Use content_items instead.',
+    },
+    content_items: {
+      title: 'DEPRECATED',
+      description: 'Use content instead.',
     },
   },
 };
