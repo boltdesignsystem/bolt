@@ -40,7 +40,7 @@ class BoltToc extends withContext(BoltElement) {
   static get providedContexts() {
     return {
       activeItem: { property: 'activeItem' },
-      scrollOffsetSelector: { property: 'scrollOffsetSelector' },
+      stickyOffsetSelector: { property: 'stickyOffsetSelector' },
       scrollOffset: { property: 'scrollOffset' },
     };
   }
@@ -49,7 +49,7 @@ class BoltToc extends withContext(BoltElement) {
     super.connectedCallback && super.connectedCallback();
 
     this.addEventListener('toc:activate', this.onActivate);
-    this.scrollOffsetEl = document.querySelector(this.scrollOffsetSelector);
+    this.scrollOffsetEl = document.querySelector(this.stickyOffsetSelector);
   }
 
   disconnectedCallback() {

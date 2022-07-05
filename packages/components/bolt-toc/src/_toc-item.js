@@ -36,7 +36,7 @@ class BoltTocItem extends withContext(BoltElement) {
       scrollOffset: {
         type: Number,
       },
-      scrollOffsetSelector: {
+      stickyOffsetSelector: {
         type: String,
       },
     };
@@ -52,7 +52,7 @@ class BoltTocItem extends withContext(BoltElement) {
   }
 
   static get observedContexts() {
-    return ['activeItem', 'scrollOffsetSelector', 'scrollOffset'];
+    return ['activeItem', 'stickyOffsetSelector', 'scrollOffset'];
   }
 
   connectedCallback() {

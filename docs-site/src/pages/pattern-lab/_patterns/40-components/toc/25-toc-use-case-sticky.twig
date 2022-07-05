@@ -3,7 +3,7 @@
 {% endset %}
 
 {% set notes %}
-  Additional props are available to adjust the sticky placement in relation to other sticky elements on the same page: <code>scrollOffsetSelector</code> and <code>scrollOffset</code>.
+  Additional props are available to adjust the sticky placement in relation to other sticky elements on the same page: <code>stickyOffsetSelector</code> and <code>scrollOffset</code>.
 {% endset %}
 
 {% set demo %}
@@ -41,7 +41,7 @@
           },
         ],
         sticky: true,
-        scrollOffsetSelector: '.js-sticky-target',
+        stickyOffsetSelector: '.js-sticky-target',
         scrollOffset: 20,
       } only %}
     {% endcell %}
@@ -117,7 +117,7 @@
     },
   ],
   sticky: true,
-  scrollOffsetSelector: '.js-sticky-target',
+  stickyOffsetSelector: '.js-sticky-target',
   scrollOffset: 20,
 } only %}
 {% endverbatim %}

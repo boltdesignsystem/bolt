@@ -13,9 +13,9 @@ module.exports = {
     sticky: {
       type: 'boolean',
       description:
-        'When enabled, TOC will automatically use sticky positioning + add a `top` offset style based on the height of the `scrollOffsetSelector` plus the `scrollOffset` (if defined),',
+        'When enabled, TOC will automatically use sticky positioning + add a `top` offset style based on the height of the `stickyOffsetSelector` plus the `scrollOffset` (if defined),',
     },
-    scrollOffsetSelector: {
+    stickyOffsetSelector: {
       type: 'string',
       description:
         'Selects a fixed element on the page, offsets smooth scrolling by the height of that element. Must be a valid CSS selector.',
