@@ -443,7 +443,7 @@ class BoltTabs extends withContext(BoltElement) {
       }
     });
 
-    if (this.deepLinkTriggers.length > 0) {
+    if (this.deepLinkTriggers && this.deepLinkTriggers.length > 0) {
       this.deepLinkTriggers.forEach(el =>
         el.addEventListener('click', e => {
           const stripDropdown = this.targetDropdown
