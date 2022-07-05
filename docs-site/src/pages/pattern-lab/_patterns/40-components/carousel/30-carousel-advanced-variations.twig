@@ -1,6 +1,6 @@
-<div class="o-bolt-wrapper">
+{# <div class="o-bolt-wrapper">
   <h3>Advanced Usage</h3>
-  <p>Use specific combination of props to create different kinds of advanced carousel.</p>
+  <p>Use specific combination of props to create different kinds of advanced carousel.</p> #}
 
   {#<div class="u-bolt-margin-bottom-large">
     <h3>Image Gallery</h3>
@@ -102,7 +102,7 @@
     </script>
   </div>#}
 
-  <div class="u-bolt-margin-bottom-large">
+  {# <div class="u-bolt-margin-bottom-large">
     <h3>Card Carousel</h3>
     {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
       body: {
@@ -116,9 +116,9 @@
       ],
     } only %}
 
-      {% block media %}
+      {% block media %} #}
         {# Specific Combination of Props to Create Card Carousel #}
-        {% include '@bolt-components-carousel/carousel.twig' with {
+        {# {% include '@bolt-components-carousel/carousel.twig' with {
           slides: [
             '<div class="e-bolt-ratio e-bolt-ratio--wide" style="background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></div>',
             '<div class="e-bolt-ratio e-bolt-ratio--wide" style=" background-size: cover; background-image:url(/images/content/backgrounds/background-tall-2.jpg)"></div>',
@@ -238,11 +238,11 @@
       } only %}
     {% endset %}
   </div>
-</div>
+</div> #}
 
-<h3>Hero Band Carousel</h3>
+{# <h3>Hero Band Carousel</h3> #}
 {# Specific Combination of Props to Create Hero Band Carousel #}
-{% include '@bolt-components-carousel/carousel.twig' with {
+{# {% include '@bolt-components-carousel/carousel.twig' with {
   slides: [
     band_slide_1,
     band_slide_2,
@@ -255,4 +255,4 @@
   no_pagination: false,
   no_nav_buttons: true,
   nav_button_position: 'inside',
-} only %}
+} only %} #}

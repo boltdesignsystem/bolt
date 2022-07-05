@@ -1,5 +1,5 @@
 {# Setting variables for demo purposes #}
-{% set item_home %}
+{# {% set item_home %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Home',
     attributes: {
@@ -76,15 +76,15 @@
 <bolt-text headline>Page sections popover</bolt-text>
 <bolt-text>
   In addition to passing the Link component as an item, you may also pass the Popover component as an item, and use the Menu component in the popover to allow the user to navigate to a particular page's top sections.
-</bolt-text>
+</bolt-text> #}
 
 {# Start component specific code #}
-{% include '@bolt-components-breadcrumb/breadcrumb.twig' with {
+{# {% include '@bolt-components-breadcrumb/breadcrumb.twig' with {
   contentItems: [
     item_home,
     item_landing,
     item_sub,
     popover,
   ]
-} only %}
+} only %} #}
 {# End component specific code #}

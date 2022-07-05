@@ -1,4 +1,4 @@
-{% extends '@pl/_default-page-template.twig' %}
+{# {% extends '@pl/_default-page-template.twig' %}
 
 {% block main_content %}
   {% embed '@pl/_band--feature.twig' with {
@@ -142,9 +142,9 @@
           } only %}
         {% endset %}
 
-        {% set flag_item_1 %}
+        {% set flag_item_1 %} #}
           {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
-          {% include "@bolt/flag.twig" with {
+          {# {% include "@bolt/flag.twig" with {
             valign: "middle",
             url: "#!",
             figure: {
@@ -164,9 +164,9 @@
             ]
           } only %}
         {% endset %}
-        {% set flag_item_2 %}
+        {% set flag_item_2 %} #}
           {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
-          {% include "@bolt/flag.twig" with {
+          {# {% include "@bolt/flag.twig" with {
             valign: "middle",
             url: "#!",
             figure: {
@@ -185,9 +185,9 @@
             ]
           } only %}
         {% endset %}
-        {% set flag_item_3 %}
+        {% set flag_item_3 %} #}
           {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
-          {% include "@bolt/flag.twig" with {
+          {# {% include "@bolt/flag.twig" with {
             valign: "middle",
             url: "#!",
             figure: {
@@ -205,9 +205,9 @@
               }
             ]
           } only %}
-        {% endset %}
+        {% endset %} #}
 
-        {% include "@bolt-components-list/list.twig" with {
+        {# {% include "@bolt-components-list/list.twig" with {
           display: "block",
           separator: "solid",
           spacing: "small",
@@ -1122,4 +1122,4 @@
 
 
 
-{% endblock %}
+{% endblock %} #}

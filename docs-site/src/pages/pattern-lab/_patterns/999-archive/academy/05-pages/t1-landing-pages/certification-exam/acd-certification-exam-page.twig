@@ -1,4 +1,4 @@
-{% extends "@bolt-academy/_academy-landing-page-template.twig" %}
+{# {% extends "@bolt-academy/_academy-landing-page-template.twig" %}
 
 {% import "@bolt-academy/_macros.twig" as macros %}
 
@@ -62,11 +62,11 @@
           attributes: {
             class: "u-bolt-margin-bottom-small",
           }
-        } only %}
+        } only %} #}
 
-        <div class="u-bolt-margin-bottom-large">
+        {# <div class="u-bolt-margin-bottom-large"> #}
           {# @todo: discovered a bug, you cannot pass classes to ul component #}
-          {% include "@bolt-components-ul/ul.twig" with {
+          {# {% include "@bolt-components-ul/ul.twig" with {
             items: [
               "Pega Platform <strong>(8%)</strong>",
               "Case Lifecycle <strong>(25%)</strong>",
@@ -210,4 +210,4 @@
 {% block global_footer %}
   {% include "@bolt-academy/_band--request-feedback.twig" %}
   {{ parent() }}
-{% endblock %}
+{% endblock %} #}

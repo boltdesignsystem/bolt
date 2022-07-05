@@ -1,6 +1,6 @@
 {# Hidden - Sticky is no longer used with Navbar  #}
-{% embed '@bolt-components-sticky/sticky.twig' %}
-  {% block sticky_content %}
+{# {% embed '@bolt-components-sticky/sticky.twig' %}
+  {% block sticky_content %} #}
     {# {% include '@bolt-components-navbar/navbar.twig' with {
       'theme': 'dark',
       'title':
@@ -36,10 +36,10 @@
         }
       ]
     } only %} #}
-  {% endblock %}
-{% endembed %}
+  {# {% endblock %}
+{% endembed %} #}
 
-{% embed '@bolt-components-band/band.twig' with {
+{# {% embed '@bolt-components-band/band.twig' with {
   size: 'large',
   theme: 'dark',
   full_bleed: true,
@@ -222,7 +222,7 @@
 {% endembed %}
 
 {% embed '@bolt-components-sticky/sticky.twig' %}
-  {% block sticky_content %}
+  {% block sticky_content %} #}
     {# {% include '@bolt-components-navbar/navbar.twig' with {
       theme: 'light',
       center: true,
@@ -242,7 +242,7 @@
         }
       ]
     } only %} #}
-  {% endblock %}
+  {# {% endblock %}
 {% endembed %}
 
 {% embed '@bolt-components-band/band.twig' with {
@@ -272,7 +272,7 @@
     } only %}
 
   {% endblock band_content %}
-{% endembed %}
+{% endembed %} #}
 
 {# @todo: re-enable when working on navbar edge cases (multiple heights + non-existent links #}
 {# {% embed '@bolt-components-sticky/sticky.twig' %}
@@ -299,7 +299,7 @@
 {% endembed %} #}
 
 
-{% embed '@bolt-components-band/band.twig' with {
+{# {% embed '@bolt-components-band/band.twig' with {
   size: 'large',
   theme: 'light',
   full_bleed: true,
@@ -326,4 +326,4 @@
     } only %}
 
   {% endblock band_content %}
-{% endembed %}
+{% endembed %} #}

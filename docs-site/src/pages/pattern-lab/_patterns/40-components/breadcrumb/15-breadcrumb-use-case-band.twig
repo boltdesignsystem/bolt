@@ -1,5 +1,5 @@
 {# Setting variables for demo purposes #}
-{% set item_home %}
+{# {% set item_home %}
   {% include '@bolt-elements-text-link/text-link.twig' with {
     content: 'Home',
     attributes: {
@@ -33,29 +33,29 @@
   } only %}
 {% endset %}
 
-{% set breadcrumb %}
+{% set breadcrumb %} #}
   {# Start component specific code #}
-  {% include '@bolt-components-breadcrumb/breadcrumb.twig' with {
+  {# {% include '@bolt-components-breadcrumb/breadcrumb.twig' with {
     contentItems: [
       item_home,
       item_landing,
       item_sub,
       item_current,
     ]
-  } only %}
+  } only %} #}
   {# End component specific code #}
-{% endset %}
+{# {% endset %} #}
 
 
 {# Breadcrumb Component in a Band #}
-{% include '@bolt-components-band/band.twig' with {
+{# {% include '@bolt-components-band/band.twig' with {
   'size': 'xsmall',
   'theme': 'light',
   'content': breadcrumb
-} only %}
+} only %} #}
 
 {# Demo notes #}
-{% set band_content %}
+{# {% set band_content %}
   {% include '@bolt-components-headline/headline.twig' with {
     'size': 'xlarge',
     'text': 'Breadcrumb Component in a Band ^'
@@ -67,11 +67,11 @@
 {% include '@bolt-components-band/band.twig' with {
   'theme': 'none',
   'content': band_content
-} only %}
+} only %} #}
 
 
 {# Breadcrumb Band Stacking On Top of Featured Band #}
-{% set stacked_bands %}
+{# {% set stacked_bands %}
   {% include '@bolt-components-band/band.twig' with {
     'size': 'small',
     'theme': 'none',
@@ -114,16 +114,16 @@
       ]
     }
   } only %}
-{% endset %}
+{% endset %} #}
 
-{% include '@bolt-components-band/band.twig' with {
+{# {% include '@bolt-components-band/band.twig' with {
   'size': 'none',
   'theme': 'dark',
   'content': stacked_bands
-} only %}
+} only %} #}
 
 {# Demo notes #}
-{% set band_content %}
+{# {% set band_content %}
   {% include '@bolt-components-headline/headline.twig' with {
     'size': 'xlarge',
     'text': 'Breadcrumb Band Stacking On Top of Featured Band ^'
@@ -142,11 +142,11 @@
 {% include '@bolt-components-band/band.twig' with {
   'theme': 'none',
   'content': band_content
-} only %}
+} only %} #}
 
 
 {# Breadcrumb Band Stacking On Top of Featured Band with Outer Background Band #}
-{% set stacked_bands %}
+{# {% set stacked_bands %}
   {% include '@bolt-components-band/band.twig' with {
     'size': 'small',
     'theme': 'none',
@@ -209,10 +209,10 @@
     }]
   },
   'content': stacked_bands
-} only %}
+} only %} #}
 
 {# Demo notes #}
-{% set band_content %}
+{# {% set band_content %}
   {% include '@bolt-components-headline/headline.twig' with {
     'size': 'xlarge',
     'text': 'Breadcrumb Band Stacking On Top of Featured Band with Outer Background Band ^'
@@ -231,11 +231,11 @@
 {% include '@bolt-components-band/band.twig' with {
   'theme': 'none',
   'content': band_content
-} only %}
+} only %} #}
 
 
 {# Breadcrumb Band Stacking On Top of Featured Band #}
-{% set stacked_bands %}
+{# {% set stacked_bands %}
   {% include '@bolt-components-band/band.twig' with {
     'size': 'xsmall',
     'theme': 'dark',
@@ -284,10 +284,10 @@
   'size': 'none',
   'theme': 'none',
   'content': stacked_bands
-} only %}
+} only %} #}
 
 {# Demo notes #}
-{% set band_content %}
+{# {% set band_content %}
   {% include '@bolt-components-headline/headline.twig' with {
     'size': 'xlarge',
     'text': 'Breadcrumb Band Stacking On Top of Featured Band (individually themed)^'
@@ -306,4 +306,4 @@
 {% include '@bolt-components-band/band.twig' with {
   'theme': 'none',
   'content': band_content
-} only %}
+} only %} #}

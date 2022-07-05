@@ -1,7 +1,7 @@
-{% import '@bolt/macros.twig' as macros %}
+{# {% import '@bolt/macros.twig' as macros %} #}
 {# ^ allows us to use inline includes that also work in Drupal #}
 
-<bolt-text>This demo uses the <code>reverseOrder</code> prop to reverse the Hero's default column order so that on larger screens, the Image shows up on the left and the Content shows up on the right.</bolt-text>
+{# <bolt-text>This demo uses the <code>reverseOrder</code> prop to reverse the Hero's default column order so that on larger screens, the Image shows up on the left and the Content shows up on the right.</bolt-text>
 {% set image %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
@@ -49,5 +49,5 @@
   imageValign: 'middle',
   reverseOrder: true,
   theme: 'dark',
-} %}
+} %} #}
 

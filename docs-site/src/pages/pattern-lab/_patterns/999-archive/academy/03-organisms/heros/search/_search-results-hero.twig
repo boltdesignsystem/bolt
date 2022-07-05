@@ -1,4 +1,4 @@
-{% set content %}
+{# {% set content %}
   {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
     {% cell "u-bolt-width-12/12 u-bolt-width-7/12@medium" %}
       {% block headline %}
@@ -40,10 +40,10 @@
       {% endblock %}
     {% endcell %}
   {% endgrid %}
-{% endset %}
+{% endset %} #}
 
 {# Note: `valign` prop of this band is tied to this particular image, subject to change with the image #}
-{% include "@bolt-components-band/band.twig" with {
+{# {% include "@bolt-components-band/band.twig" with {
   theme: "xdark",
   size: size|default("small"),
   content: content,
@@ -58,4 +58,4 @@
       },
     ]
   })
-} only %}
+} only %} #}

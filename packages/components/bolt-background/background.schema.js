@@ -10,10 +10,10 @@ module.exports = {
       description:
         'A Drupal-style attributes object with extra attributes to append to this component.',
     },
-    // content: {
-    //   type: 'any',
-    //   description: 'anything',
-    // },
+    content: {
+      type: 'any',
+      description: 'anything',
+    },
     opacity: {
       type: 'string',
       description: 'Overlay opacity',
