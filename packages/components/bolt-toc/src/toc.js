@@ -41,7 +41,6 @@ class BoltToc extends withContext(BoltElement) {
     return {
       activeItem: { property: 'activeItem' },
       stickyOffsetSelector: { property: 'stickyOffsetSelector' },
-      scrollOffset: { property: 'scrollOffset' },
     };
   }
 
@@ -119,8 +118,14 @@ class BoltToc extends withContext(BoltElement) {
   }
 
   get stickyOffset() {
+    const cssScrollOffset = getComputedStyle(this).getPropertyValue(
+      '--bolt-toc-sticky-offset',
+    );
     if (!this.sticky) return;
-    return (this.scrollOffsetEl?.offsetHeight || 0) + (this.scrollOffset || 0);
+    return (
+      (this.scrollOffsetEl?.offsetHeight || 0) +
+      (parseInt(cssScrollOffset) || 0)
+    );
   }
 
   setStickyOffset() {

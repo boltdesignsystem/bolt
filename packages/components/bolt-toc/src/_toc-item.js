@@ -6,10 +6,6 @@ import {
   unsafeCSS,
 } from '@bolt/element';
 import { withContext } from 'wc-context/lit-element';
-import {
-  smoothScroll,
-  scrollOptions,
-} from '@bolt/components-smooth-scroll/src/smooth-scroll';
 import classNames from 'classnames/bind';
 import styles from './_toc-item.scss';
 import schema from '../toc.schema';
@@ -33,9 +29,6 @@ class BoltTocItem extends withContext(BoltElement) {
         type: String,
         reflect: true,
       },
-      scrollOffset: {
-        type: Number,
-      },
       stickyOffsetSelector: {
         type: String,
       },
@@ -52,7 +45,7 @@ class BoltTocItem extends withContext(BoltElement) {
   }
 
   static get observedContexts() {
-    return ['activeItem', 'stickyOffsetSelector', 'scrollOffset'];
+    return ['activeItem', 'stickyOffsetSelector'];
   }
 
   connectedCallback() {
@@ -72,35 +65,6 @@ class BoltTocItem extends withContext(BoltElement) {
   }
 
   handleClick(event) {
-    try {
-      if (this.waypointElement) {
-        event.preventDefault();
-        let scrollOpts = scrollOptions;
-
-        const scrollOffset = this.scrollOffset || 0;
-        const scrollOffsetElemHeight =
-          this.scrollOffsetSelector &&
-          document.querySelector(this.scrollOffsetSelector)
-            ? document.querySelector(this.scrollOffsetSelector).clientHeight
-            : 0;
-
-        scrollOpts.offset = scrollOffset + scrollOffsetElemHeight;
-
-        // Delete the default `header` value: https://github.com/cferdinandi/smooth-scroll#fixed-headers
-        // It works with fixed but not sticky elements. For consistency, handle scroll position entirely through `offset`.
-        // @todo We need a solution for multiple stacked fixed/sticky elements. Also see `onPositionChange()` in toc.js.
-        delete scrollOpts.header;
-
-        smoothScroll.animateScroll(
-          this.waypointElement,
-          this.shadowLink,
-          scrollOpts,
-        );
-      }
-    } catch (err) {
-      console.log(err);
-    }
-
     this.dispatchEvent(
       new CustomEvent('toc:activate', {
         detail: {
@@ -110,14 +74,6 @@ class BoltTocItem extends withContext(BoltElement) {
         bubbles: true,
       }),
     );
-  }
-
-  firstUpdated() {
-    super.firstUpdated && super.firstUpdated();
-    // `smoothScroll` needs the anchor as its second argument, does not
-    // appear to do anything but throws an error if missing
-    // https://github.com/cferdinandi/smooth-scroll#animatescroll
-    this.shadowLink = this.renderRoot.querySelector('a');
   }
 
   render() {

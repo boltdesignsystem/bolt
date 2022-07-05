@@ -3,7 +3,7 @@
 {% endset %}
 
 {% set notes %}
-  Additional props are available to adjust the sticky placement in relation to other sticky elements on the same page: <code>stickyOffsetSelector</code> and <code>scrollOffset</code>.
+  Additional props are available to adjust the sticky placement in relation to other sticky elements on the same page: <code>stickyOffsetSelector</code> and <code>--bolt-toc-sticky-offset</code>.
 {% endset %}
 
 {% set demo %}
@@ -42,7 +42,9 @@
         ],
         sticky: true,
         stickyOffsetSelector: '.js-sticky-target',
-        scrollOffset: 20,
+        attributes: {
+          style: '--bolt-toc-sticky-offset: 20;'
+        }
       } only %}
     {% endcell %}
     {% cell 'u-bolt-width-12/12 u-bolt-width-8/12@small' %}
@@ -118,7 +120,9 @@
   ],
   sticky: true,
   stickyOffsetSelector: '.js-sticky-target',
-  scrollOffset: 20,
+  attributes: {
+    style: '--bolt-toc-sticky-offset: 20;'
+  }
 } only %}
 {% endverbatim %}
 {% endset %}
