@@ -1,3 +1,2 @@
-// Calculate intrinsic ratio
-import './05-objects/objects-ratio/ratio';
+// Triger animations on load
 import './06-animations/_999-animations-on-load-test';
