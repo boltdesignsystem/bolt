@@ -4,6 +4,16 @@ module.exports = {
   description:
     'A content container that delivers important messages to the user.',
   type: 'object',
+  not: {
+    anyOf: [
+      {
+        required: ['contentItems'],
+      },
+      {
+        required: ['content_items'],
+      },
+    ],
+  },
   properties: {
     attributes: {
       type: 'object',
