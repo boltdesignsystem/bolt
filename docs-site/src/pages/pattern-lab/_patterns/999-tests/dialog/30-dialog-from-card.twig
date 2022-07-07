@@ -1,0 +1,96 @@
+<div style="max-width:45ch">
+  {% set card_content %}
+    <p>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Dialog in a card',
+        attributes: {
+          type: 'button',
+          'data-bolt-dialog-target': '#dialog-in-card',
+        }
+      } only %}
+    </p>
+    <p>
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Modal in a card',
+        attributes: {
+          type: 'button',
+          'data-bolt-modal-target': '.js-bolt-modal-in-card',
+        },
+      } only %}
+    </p>
+
+    {% set header_content %}
+      <h1>This is a dialog component.</h1>
+    {% endset %}
+
+    {% set body_content %}
+      <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+    {% endset %}
+
+    {% set footer_content %}
+      <button type="button" class="e-bolt-button">Button</button>
+    {% endset %}
+
+    {% set dialog_content %}
+      {% include '@bolt-components-dialog/dialog-header.twig' with {
+        content: header_content,
+      } only %}
+      {% include '@bolt-components-dialog/dialog-body.twig' with {
+        content: body_content,
+      } only %}
+      {% include '@bolt-components-dialog/dialog-footer.twig' with {
+        content: footer_content,
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-dialog/dialog.twig' with {
+      content: dialog_content,
+      attributes: {
+        id: 'dialog-in-card'
+      },
+    } only %}
+
+    {% set modal_content %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'This is the modal container\'s header.',
+        attributes: {
+        slot: 'header',
+        }
+      } only %}
+      <div>
+        {% include '@bolt-components-headline/headline.twig' with {
+          size: 'xlarge',
+          text: 'This is the modal container\'s body'
+        } only %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'This is the modal container\'s body.'
+        } only %}
+      </div>
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'This is the modal container\'s footer.',
+        attributes: {
+          slot: 'footer',
+        }
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-modal/modal.twig' with {
+      content: modal_content,
+      attributes: {
+        class: 'js-bolt-modal-in-card',
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    media: {
+      image: {
+        src: '/images/placeholders/landscape-16x9-mountains.jpg',
+        alt: 'Image alt.',
+      },
+    },
+    body: {
+      content: card_content,
+    },
+  } only %}
+</div>

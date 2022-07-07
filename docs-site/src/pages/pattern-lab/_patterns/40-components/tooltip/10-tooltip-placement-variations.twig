@@ -4,6 +4,7 @@
 {% set tooltips_top %}
   <bolt-list display="inline" spacing="xlarge" align="center">
     <bolt-list-item>
+      {# Start component specific code #}
       {% include '@bolt-components-tooltip/tooltip.twig' with {
         trigger: 'bottom-start',
         content: content,
@@ -11,6 +12,7 @@
       } only %}
     </bolt-list-item>
     <bolt-list-item>
+      {# Start component specific code #}
       {% include '@bolt-components-tooltip/tooltip.twig' with {
         trigger: 'bottom',
         content: content,
@@ -18,6 +20,7 @@
       } only %}
     </bolt-list-item>
     <bolt-list-item>
+      {# Start component specific code #}
       {% include '@bolt-components-tooltip/tooltip.twig' with {
         trigger: 'bottom-end',
         content: content,
@@ -30,6 +33,7 @@
   <bolt-list spacing="medium">
     <bolt-list-item>
       <div class="u-bolt-text-align-right">
+        {# Start component specific code #}
         {% include '@bolt-components-tooltip/tooltip.twig' with {
           trigger: 'left-start',
           content: content,
@@ -39,6 +43,7 @@
     </bolt-list-item>
     <bolt-list-item>
       <div class="u-bolt-text-align-right">
+        {# Start component specific code #}
         {% include '@bolt-components-tooltip/tooltip.twig' with {
           trigger: 'left',
           content: content,
@@ -48,6 +53,7 @@
     </bolt-list-item>
     <bolt-list-item>
       <div class="u-bolt-text-align-right">
+        {# Start component specific code #}
         {% include '@bolt-components-tooltip/tooltip.twig' with {
           trigger: 'left-end',
           content: content,
@@ -60,6 +66,7 @@
 {% set tooltips_bottom %}
   <bolt-list display="inline" spacing="xlarge" align="center">
     <bolt-list-item>
+      {# Start component specific code #}
       {% include '@bolt-components-tooltip/tooltip.twig' with {
         trigger: 'top-start',
         content: content,
@@ -67,6 +74,7 @@
       } only %}
     </bolt-list-item>
     <bolt-list-item>
+      {# Start component specific code #}
       {% include '@bolt-components-tooltip/tooltip.twig' with {
         trigger: 'top',
         content: content,
@@ -74,6 +82,7 @@
       } only %}
     </bolt-list-item>
     <bolt-list-item>
+      {# Start component specific code #}
       {% include '@bolt-components-tooltip/tooltip.twig' with {
         trigger: 'top-end',
         content: content,
@@ -85,6 +94,7 @@
 {% set tooltips_left %}
   <bolt-list spacing="medium">
     <bolt-list-item>
+      {# Start component specific code #}
       {% include '@bolt-components-tooltip/tooltip.twig' with {
         trigger: 'right-start',
         content: content,
@@ -92,6 +102,7 @@
       } only %}
     </bolt-list-item>
     <bolt-list-item>
+      {# Start component specific code #}
       {% include '@bolt-components-tooltip/tooltip.twig' with {
         trigger: 'right',
         content: content,
@@ -99,6 +110,7 @@
       } only %}
     </bolt-list-item>
     <bolt-list-item>
+      {# Start component specific code #}
       {% include '@bolt-components-tooltip/tooltip.twig' with {
         trigger: 'right-end',
         content: content,
@@ -150,6 +162,7 @@
 {% set trigger = 'CRM' %}
 {% set content = 'Customer relationship management' %}
 {% set tooltip %}
+  {# Start component specific code #}
   {% include '@bolt-components-tooltip/tooltip.twig' with {
     trigger: trigger,
     content: content,

@@ -363,7 +363,7 @@ module.exports = {
     'string-no-newline': null,
     'string-quotes': 'single',
     'unit-case': 'lower',
-    'unit-no-unknown': true,
+    'unit-no-unknown': [true, { ignoreUnits: ['dvb'] }],
     'value-list-comma-space-after': 'always-single-line',
     'value-list-comma-space-before': 'never',
   },

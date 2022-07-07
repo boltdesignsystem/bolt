@@ -32,6 +32,7 @@
 
 {% grid 'o-bolt-grid--center' %}
   {% cell %}
+    {# Start component specific code #}
     {% include '@bolt-components-tooltip/tooltip.twig' with {
       trigger: lock_icon,
       content: 'Closed for replies',
@@ -44,5 +45,6 @@
       trigger: close_icon,
       content: 'This is no bueno. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttito. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.',
     } only %}
+    {# End component specific code #}
   {% endcell %}
 {% endgrid %}

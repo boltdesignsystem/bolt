@@ -2,6 +2,7 @@
   {% cell %}
     <bolt-list display="inline" spacing="large">
       <bolt-list-item>
+        {# Start component specific code #}
         {% set text_link %}
           {% include '@bolt-elements-text-link/text-link.twig' with {
             content: 'CRM',
@@ -14,8 +15,10 @@
           trigger: text_link,
           content: 'Customer relationship management',
         } only %}
+        {# End component specific code #}
       </bolt-list-item>
       <bolt-list-item>
+        {# Start component specific code #}
         {% set button %}
           {% include '@bolt-elements-button/button.twig' with {
             content: 'Download',
@@ -28,6 +31,7 @@
           trigger: button,
           content: 'File size: 25MB',
         } only %}
+        {# End component specific code #}
       </bolt-list-item>
     </bolt-list>
   {% endcell %}

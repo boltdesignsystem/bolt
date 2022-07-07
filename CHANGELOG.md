@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0](https://github.com/boltdesignsystem/bolt/compare/v5.4.0...v5.5.0) (2022-05-23)
+
+
+### Reverts
+
+* Revert "DS-459: move close button outside of container." ([eeecdba](https://github.com/boltdesignsystem/bolt/commit/eeecdbad4a2ffecac3dee8ee14935a7b315fc751))
+
+
+
+
+
+# [5.4.0](https://github.com/boltdesignsystem/bolt/compare/v5.3.1...v5.4.0) (2022-04-08)
+
+
+### Bug Fixes
+
+* add proper navigation labels ([6638ec7](https://github.com/boltdesignsystem/bolt/commit/6638ec749144b73176cd7bf76558aa48b2c87298))
+* footer nav labels ([bb5c5b3](https://github.com/boltdesignsystem/bolt/commit/bb5c5b3fbf6dc1522db948492a643359fe80f7ec))
+* search input test ([ac2d61c](https://github.com/boltdesignsystem/bolt/commit/ac2d61ca17b7e56fe513910a507bb11ec079233e))
+* update button labels ([7d2b36e](https://github.com/boltdesignsystem/bolt/commit/7d2b36e0b0161c7afa38373421a25ddb61b043f1))
+
+
+
+
+
 ## [5.3.1](https://github.com/boltdesignsystem/bolt/compare/v5.3.0...v5.3.1) (2022-04-04)
 
 **Note:** Version bump only for package bolt
