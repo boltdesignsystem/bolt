@@ -1,7 +1,15 @@
 {% extends '@pl/_default-page-template.twig' %}
 
 {% block main_content %}
-
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/content/backgrounds/events-landing.png',
+        lazyload: true
+      },
+    } only %}
+  {% endset %}
   {% embed '@bolt-components-band/band.twig' with {
     size: 'medium',
     theme: 'xdark',
@@ -14,11 +22,7 @@
         'horizontal': 'center'
       },
       items: [
-        {
-          'pattern': 'image',
-          'src': '/images/content/backgrounds/events-landing.png',
-          'lazyload': true
-        }
+        image
       ]
     }
   } only %}

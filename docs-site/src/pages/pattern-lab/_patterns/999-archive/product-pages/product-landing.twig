@@ -1,6 +1,16 @@
 {% extends '@pl/_default-page-template.twig' %}
 
 {% block main_content %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/content/backgrounds/background-short-1.jpg',
+        alt: 'Background banner of conference keynote',
+        lazyload: true
+      },
+    } only %}
+  {% endset %}
   {% embed '@pl/_band--feature.twig' with {
     teaserPosition: 'left',
     teaserWidth: '2/3',
@@ -14,12 +24,9 @@
         vertical: 'center',
         horizontal: 'right'
       },
-      items: [{
-        pattern: 'image',
-        src: '/images/content/backgrounds/background-short-1.jpg',
-        alt: 'Background banner of conference keynote',
-        lazyload: true
-      }]
+      items: [
+        image
+      ]
     },
     primaryTeaser: {
       headlines: [
@@ -392,7 +399,15 @@
 {% endembed %}
 
 
-
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/content/backgrounds/background-tall-4.jpg',
+      lazyload: true
+    },
+  } only %}
+{% endset %}
 {% embed '@bolt-components-band/band.twig' with {
   size: 'medium',
   theme: 'xdark',
@@ -405,11 +420,7 @@
       'horizontal': 'center'
     },
     items: [
-      {
-        'pattern': 'image',
-        'src': '/images/content/backgrounds/background-tall-4.jpg',
-        'lazyload': true
-      }
+      image
     ]
   }
 } only %}

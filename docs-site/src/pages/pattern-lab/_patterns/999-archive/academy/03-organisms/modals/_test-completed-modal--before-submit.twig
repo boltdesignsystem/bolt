@@ -80,18 +80,22 @@
   {% set modal_rating %}
     {{ macros.include("@bolt-academy/_test-completed-modal--rating.twig") }}
   {% endset %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: "/images/orion-nebula.jpg",
+        style: '--e-bolt-image-position: center -22rem;',
+      },
+    } only %}
+  {% endset %}
   {% include "@bolt-components-card-replacement/card-replacement.twig" with {
     theme: "dark",
     border_radius: "large",
     overlay: "disabled",
     background: {
       items: [
-        {
-          pattern: "image",
-          src: "/images/orion-nebula.jpg",
-          lazyload: false,
-          valign: "-22rem",
-        }
+        image
       ]
     },
     content: [

@@ -1,6 +1,14 @@
 {% extends "@bolt-academy/_academy-default-page-template.twig" %}
 
 {% block page_content %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: "/images/dashboard-hero.jpg",
+      },
+    } only %}
+  {% endset %}
   {% embed "@bolt-components-band/band.twig" with {
     theme: "xdark",
     size: "small",
@@ -8,11 +16,7 @@
       opacity: "light",
       fill: "gradient",
       items: [
-        {
-          pattern: "image",
-          src: "/images/dashboard-hero.jpg",
-          placeholder_color: "#000000"
-        },
+        image
       ]
     }
   } only %}
