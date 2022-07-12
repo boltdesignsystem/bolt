@@ -369,18 +369,21 @@
       </div>
     </div>
   {% endset %}
-
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/backgrounds/navy-light-circles.jpg',
+      },
+    } only %}
+  {% endset %}
   {% include '@bolt-components-band/band.twig' with {
     content: band_content,
     theme: 'dark',
     background: {
       opacity: 'none',
       items: [
-        {
-          pattern: 'image',
-          src: '/images/backgrounds/navy-light-circles.jpg',
-          lazyload: true,
-        },
+        image
       ]
     },
   } only %}
