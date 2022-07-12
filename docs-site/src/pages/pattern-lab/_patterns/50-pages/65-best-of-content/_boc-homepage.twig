@@ -306,18 +306,22 @@
     </div>
   </div>
 {% endset %}
-
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/backgrounds/teal-stripes.png',
+      lazyload: true,
+    },
+  } only %}
+{% endset %}
 {% include '@bolt-components-band/band.twig' with {
   content: band_content,
   theme: 'xlight',
   background: {
     opacity: 'none',
     items: [
-      {
-        pattern: 'image',
-        src: '/images/backgrounds/teal-stripes.png',
-        lazyload: true,
-      },
+      image
     ]
   },
 } only %}
