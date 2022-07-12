@@ -43,6 +43,15 @@
 {% endset %}
 
 {# Note: `valign` prop of this band is tied to this particular image, subject to change with the image #}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: "/images/background-satellite-dish.jpg",
+      style: '--e-bolt-image-position: center 42%;',
+    },
+  } only %}
+{% endset %}
 {% include "@bolt-components-band/band.twig" with {
   theme: "xdark",
   size: size|default("small"),
@@ -51,11 +60,7 @@
     opacity: "light",
     fill: "gradient",
     items: [
-      {
-        pattern: "image",
-        src: "/images/background-satellite-dish.jpg",
-        valign: "42%"
-      },
+      image
     ]
   })
 } only %}
