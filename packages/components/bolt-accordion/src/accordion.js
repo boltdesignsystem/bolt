@@ -302,7 +302,7 @@ class BoltAccordion extends withContext(BoltElement) {
     }
   }
 
-  async handleDeepLink() {
+  handleDeepLink() {
     if (!this.deepLinkTarget) return;
 
     const deepLinkTargetIndex = this.accordionItemElements.indexOf(
