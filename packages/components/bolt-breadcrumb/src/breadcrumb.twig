@@ -2,6 +2,10 @@
   {{ validate_data_schema(bolt.data.components['@bolt-components-breadcrumb'].schema, _self) | raw }}
 {% endif %}
 
+{% if contentItems %}
+  {% set items = contentItems %}
+{% endif %}
+
 {% set prefix = "c-bolt-" %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set componentName = "breadcrumb" %}
@@ -14,7 +18,7 @@
 <bolt-{{ componentName }} bolt-component>
   <nav {{ attributes.addClass(classes) }} aria-label="Breadcrumb" role="navigation">
     <ol class="{{ "#{baseClass}__list" }}">
-      {% for item in contentItems %}
+      {% for item in items %}
         <li class="{{ "#{baseClass}__item" }}">
           {{ item }}
         </li>
