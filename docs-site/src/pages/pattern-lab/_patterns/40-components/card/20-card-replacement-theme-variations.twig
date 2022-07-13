@@ -37,17 +37,22 @@
         {{ card_replacements }}
       {% endblock %}
     {% endembed %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: '/images/content/backgrounds/background-tall-2.jpg',
+          lazyload: false
+        },
+      } only %}
+    {% endset %}
     {% embed '@bolt-components-band/band.twig' with {
       theme: container_theme,
       background: {
         opacity: 'heavy',
         fill: 'color',
-        content_items: [
-          {
-            pattern: 'image',
-            src: '/images/content/backgrounds/background-tall-2.jpg',
-            lazyload: false
-          }
+        items: [
+          image
         ]
       }
     } %}

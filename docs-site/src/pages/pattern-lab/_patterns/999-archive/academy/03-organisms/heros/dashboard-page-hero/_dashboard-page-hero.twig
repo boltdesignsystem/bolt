@@ -3,19 +3,22 @@
     {{ block('heroButtonRow') }}
   {% endset %}
 {% endif %}
-
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: "/images/dashboard-hero.jpg",
+    },
+  } only %}
+{% endset %}
 {% embed "@bolt-components-band/band.twig" with {
   theme: "xdark",
   size: "medium",
   background: {
     opacity: "light",
     fill: "gradient",
-    content_items: [
-      {
-        pattern: "image",
-        src: "/images/dashboard-hero.jpg",
-        placeholder_color: "#000000"
-      },
+    items: [
+      image
     ]
   },
   heroSubTitle: heroSubTitle,

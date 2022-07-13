@@ -16,7 +16,7 @@
       {% import "@bolt-academy/_macros.twig" as macros %}
 
       {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
-        "contentItems": breadcrumbs | map(breadcrumb => breadcrumb.text and breadcrumb.url ? macros.include("@bolt-elements-text-link/text-link.twig", {
+        items : breadcrumbs | map(breadcrumb => breadcrumb.text and breadcrumb.url ? macros.include("@bolt-elements-text-link/text-link.twig", {
           content: breadcrumb.text,
           attributes: {
             href: breadcrumb.url,

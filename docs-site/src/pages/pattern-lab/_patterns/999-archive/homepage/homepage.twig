@@ -58,6 +58,15 @@
     content: feature_band_content
   }) %}
 
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/backgrounds/pw19-hp-bg2.jpg',
+        lazyload: false
+      },
+    } only %}
+  {% endset %}
 
   {% embed '@pl/_band--feature.twig' with {
     size: 'large',
@@ -100,12 +109,8 @@
       focal_point: {
         vertical: 'center'
       },
-      content_items: [
-        {
-          pattern: 'image',
-          src: '/images/backgrounds/pw19-hp-bg2.jpg',
-          lazyload: false
-        }
+      items: [
+        image
       ]
     }
   } only %}{% endembed %}

@@ -3,6 +3,14 @@
 
 
 {% block main_content %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/content/backgrounds/background-tall-3.jpg'
+      },
+    } only %}
+  {% endset %}
   {% embed '@pl/_band--feature.twig' with {
     teaserPosition: 'left',
     teaserWidth: '2/3',
@@ -16,10 +24,9 @@
         vertical: 'center',
         horizontal: 'right'
       },
-      content_items: [{
-        pattern: 'image',
-        src: '/images/content/backgrounds/background-tall-3.jpg'
-      }]
+      items: [
+        image
+      ]
     },
     primaryTeaser: {
       headlines: [
@@ -1072,7 +1079,14 @@
 {% endembed %}
 
 
-
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/content/backgrounds/background-tall-3.jpg'
+    },
+  } only %}
+{% endset %}
 {% embed '@bolt-components-band/band.twig' with {
   size: 'medium',
   theme: 'xdark',
@@ -1084,11 +1098,8 @@
       'vertical': 'center',
       'horizontal': 'center'
     },
-    'content_items': [
-      {
-        'pattern': 'image',
-        'src': '/images/content/backgrounds/background-tall-3.jpg'
-      }
+    items: [
+      image
     ]
   }
 } only %}

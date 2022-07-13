@@ -1,6 +1,14 @@
 {% extends '@pl/_default-page-template.twig' %}
 
 {% block main_content %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+       src: '/images/content/backgrounds/background-tall-3.jpg'
+      },
+    } only %}
+  {% endset %}
   {% embed '@pl/_band--feature.twig' with {
     teaserPosition: 'left',
     teaserWidth: '2/3',
@@ -11,13 +19,10 @@
       opacity: 'medium',
       fill: 'gradient',
       focal_point: {
-        vertical: 'center',
+        vertical: 'top',
         horizontal: 'right'
       },
-      content_items: [{
-        pattern: 'image',
-        src: '/images/content/backgrounds/background-tall-3.jpg'
-      }]
+      items: [image]
     },
     primaryTeaser: {
       headlines: [
@@ -870,7 +875,14 @@
 {% endembed %}
 
 
-
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/content/backgrounds/background-tall-1.jpg'
+    },
+  } only %}
+{% endset %}
 {% embed '@bolt-components-band/band.twig' with {
   size: 'medium',
   theme: 'xdark',
@@ -882,11 +894,8 @@
       'vertical': 'center',
       'horizontal': 'center'
     },
-    'content_items': [
-      {
-        'pattern': 'image',
-        'src': '/images/content/backgrounds/background-tall-1.jpg'
-      }
+    items: [
+      image
     ]
   }
 } only %}

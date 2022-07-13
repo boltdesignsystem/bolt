@@ -21,18 +21,22 @@
     {% endcell %}
   {% endgrid %}
 {% endset %}
-
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+        src: "/images/content/backgrounds/background-night-sky.jpg",
+    },
+  } only %}
+{% endset %}
 {% include "@bolt-components-band/band.twig" with {
   theme: "xdark",
   content: content,
   background: {
     opacity: "light",
     fill: "gradient",
-    content_items: [
-      {
-        pattern: "image",
-        src: "/images/content/backgrounds/background-night-sky.jpg",
-      },
+    items: [
+      image
     ]
   },
 } only %}
