@@ -69,37 +69,17 @@
 } only %}
   {% block band_content %}
 
-    {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
-
-      {% cell 'o-u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-        {% include '@bolt-components-headline/headline.twig' with {
-          text: 'Explore the Pega CRM Suite',
-          size: 'xxlarge'
-        } only %}
-        {% include '@bolt-components-headline/text.twig' with {
-          text: 'Move past traditional CRM systems to a true journey-enabled, customer engagement suite. Learn how Pega is helping enterprises revolutionize their customer engagement with end-to-end automation and real-time AI on the only unified CRM platform.',
-          size: 'medium'
-        } only %}
-      {% endcell %}
-
+    {% set chevron_right_icon %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-right',
+      } only %}
+    {% endset %}
+    {% set flag_item_1 %}
       {% set icon_1 %}
         {% include '@bolt-elements-icon/icon.twig' with {
           name: 'app-development',
         } only %}
       {% endset %}
-
-      {% set icon_2 %}
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'sales-automation',
-        } only %}
-      {% endset %}
-
-      {% set icon_3 %}
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'customer-service',
-        } only %}
-      {% endset %}
-
       {% set shape_1 %}
         {% include '@bolt-elements-shape/shape.twig' with {
           content: icon_1,
@@ -110,6 +90,52 @@
         } only %}
       {% endset %}
 
+      {% set flag_headline %}
+        {% set text_link %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: 'Download the data Sheet',
+            reversed_underline: true,
+            icon_after: chevron_right_icon,
+            attributes: {
+              href: 'https://google.com',
+              target: '_blank',
+              rel: 'noopener'
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: text_link,
+          size: 'small',
+          tag: 'h3',
+        } only %}
+      {% endset %}
+      {% set layout_items %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: shape_1
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: flag_headline
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        content: layout_items,
+        template: [
+          'flag',
+        ],
+        valign_items: 'center',
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: auto;'
+        }
+      } only %}
+    {% endset %}
+
+    {% set flag_item_2 %}
+      {% set icon_2 %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'sales-automation',
+        } only %}
+      {% endset %}
       {% set shape_2 %}
         {% include '@bolt-elements-shape/shape.twig' with {
           content: icon_2,
@@ -120,6 +146,51 @@
         } only %}
       {% endset %}
 
+      {% set flag_headline %}
+        {% set text_link %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: 'Download the Overview document',
+            reversed_underline: true,
+            icon_after: chevron_right_icon,
+            attributes: {
+              href: 'https://google.com',
+              target: '_blank',
+              rel: 'noopener'
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: text_link,
+          size: 'small',
+          tag: 'h3'
+        } only %}
+      {% endset %}
+      {% set layout_items %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: shape_2
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: flag_headline
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        content: layout_items,
+        template: [
+          'flag',
+        ],
+        valign_items: 'center',
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: auto;'
+        }
+      } only %}
+    {% endset %}
+    {% set flag_item_3 %}
+      {% set icon_3 %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'customer-service',
+        } only %}
+      {% endset %}
       {% set shape_3 %}
         {% include '@bolt-elements-shape/shape.twig' with {
           content: icon_3,
@@ -130,91 +201,90 @@
         } only %}
       {% endset %}
 
-      {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-        {% set flag_item_1 %}
-          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
-          {% include '@bolt/flag.twig' with {
-            valign: 'middle',
-            url: '#!',
-            figure: {
-              content: shape_1
-            },
-            items: [
-              {
-                pattern: 'headline',
-                size: 'small',
-                text: 'Download the data Sheet',
-                url: 'https://www.google.com',
-                icon: {
-                  name: 'chevron-right'
-                },
-                tag: 'h3'
-              }
-            ]
+      {% set flag_headline %}
+        {% set text_link %}
+          {% include '@bolt-elements-text-link/text-link.twig' with {
+            content: 'View Pricing for Pega Marketing',
+            reversed_underline: true,
+            icon_after: chevron_right_icon,
+            attributes: {
+              href: 'https://google.com',
+              target: '_blank',
+              rel: 'noopener'
+            }
           } only %}
         {% endset %}
-        {% set flag_item_2 %}
-          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
-          {% include '@bolt/flag.twig' with {
-            valign: 'middle',
-            url: '#!',
-            figure: {
-              content: shape_2
-            },
-            items: [
-              {
-                pattern: 'headline',
-                size: 'small',
-                text: 'Download the Overview document',
-                url: 'https://www.google.com',
-                icon: {
-                  name: 'chevron-right'
-                }
-              }
-            ]
-          } only %}
-        {% endset %}
-        {% set flag_item_3 %}
-          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
-          {% include '@bolt/flag.twig' with {
-            valign: 'middle',
-            url: '#!',
-            figure: {
-              content: shape_3
-            },
-            items: [
-              {
-                pattern: 'headline',
-                size: 'small',
-                text: 'View Pricing for Pega Marketing',
-                url: 'https://www.google.com',
-                icon: {
-                  name: 'chevron-right'
-                }
-              }
-            ]
-          } only %}
-        {% endset %}
-
         {% include '@bolt-components-headline/headline.twig' with {
-          text: 'Get to know Pega Marketing',
-          size: 'xlarge',
-          tag: 'h2'
+          text: text_link,
+          size: 'small',
+          tag: 'h3'
         } only %}
-
-        {% include '@bolt-components-list/list.twig' with {
-          display: 'block',
-          separator: 'solid',
-          spacing: 'small',
-          items: [
-            flag_item_1,
-            flag_item_2,
-            flag_item_3,
-          ]
+      {% endset %}
+      {% set layout_items %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: shape_3
         } only %}
-      {% endcell %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: flag_headline
+        } only %}
+      {% endset %}
 
-    {% endgrid %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        content: layout_items,
+        template: [
+          'flag',
+        ],
+        valign_items: 'center',
+        attributes: {
+          style: '--l-bolt-layout-flag-media-width: auto;'
+        }
+      } only %}
+    {% endset %}
+
+    {% set section_headline %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Explore the Pega CRM Suite',
+        size: 'xxlarge'
+      } only %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Move past traditional CRM systems to a true journey-enabled, customer engagement suite. Learn how Pega is helping enterprises revolutionize their customer engagement with end-to-end automation and real-time AI on the only unified CRM platform.',
+        size: 'medium'
+      } only %}
+    {% endset %}
+
+    {% set flag_list %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Get to know Pega Marketing',
+        size: 'xlarge',
+        tag: 'h2'
+      } only %}
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'block',
+        separator: 'solid',
+        spacing: 'small',
+        items: [
+          flag_item_1,
+          flag_item_2,
+          flag_item_3,
+        ]
+      } only %}
+    {% endset %}
+
+    {% set layout_items %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: section_headline
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: flag_list
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layout_items,
+      template: [
+        'halves@from-medium',
+      ],
+    } only %}
 
 
   {% endblock %}

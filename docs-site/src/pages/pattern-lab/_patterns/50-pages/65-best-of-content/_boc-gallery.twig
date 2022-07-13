@@ -270,35 +270,35 @@
     chip_list: chip_list_content,
   } %}
 
-  {% set video_teaser_props = video_teaser_props|merge({ 
+  {% set video_teaser_props = video_teaser_props|merge({
     like: like,
     share: share,
     download: download,
     status: {
       views: '27',
-    } 
+    }
   }) %}
-  {% set external_link_teaser_props = external_link_teaser_props|merge({ 
+  {% set external_link_teaser_props = external_link_teaser_props|merge({
     like: like,
     share: share,
     status: {
       views: '3k',
-    } 
+    }
   }) %}
-  {% set pdf_teaser_props = pdf_teaser_props|merge({ 
+  {% set pdf_teaser_props = pdf_teaser_props|merge({
     like: like,
     share: share,
     status: {
       views: '66',
-    } 
+    }
   }) %}
-  {% set locked_teaser_props = locked_teaser_props|merge({ 
+  {% set locked_teaser_props = locked_teaser_props|merge({
     like: like,
-    share: share, 
+    share: share,
     status: {
       views: '20k',
       locked: true,
-    } 
+    }
   }) %}
 
   {% set item_video %}
@@ -369,7 +369,7 @@
       background: true,
       attributes: {
         src: '/images/backgrounds/teal-shapes.png',
-        lazyload: true,
+        loading: 'lazy'
       },
     } only %}
   {% endset %}
@@ -460,7 +460,7 @@
         text: 'PegaWorld Replays',
         size: 'xxlarge',
         tag: 'h2',
-      } only %} 
+      } only %}
     {% endset %}
 
     {% include '@bolt-components-list/list.twig' with {
@@ -488,7 +488,7 @@
         text: 'Customer Success',
         size: 'xxlarge',
         tag: 'h2',
-      } only %} 
+      } only %}
     {% endset %}
 
     {% include '@bolt-components-list/list.twig' with {
@@ -499,7 +499,7 @@
         headline,
         view_all_button
       ],
-    } only %} 
+    } only %}
     {{ carousel }}
   {% endset %}
 

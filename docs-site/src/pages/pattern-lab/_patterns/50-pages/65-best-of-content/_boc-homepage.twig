@@ -263,35 +263,35 @@
   chip_list: chip_list_content,
 } %}
 
-{% set main_teaser_props = main_teaser_props|merge({ 
+{% set main_teaser_props = main_teaser_props|merge({
   like: like,
-  share: share, 
+  share: share,
   status: {
     views: '27',
   },
   download: download
 }) %}
-{% set side_teaser_1_props = side_teaser_1_props|merge({ 
+{% set side_teaser_1_props = side_teaser_1_props|merge({
   like: like,
-  share: share, 
+  share: share,
   status: {
     views: '35',
   },
   download: download
 }) %}
-{% set side_teaser_2_props = side_teaser_2_props|merge({ 
+{% set side_teaser_2_props = side_teaser_2_props|merge({
   like: like,
-  share: share, 
+  share: share,
   status: {
     views: '66',
-  } 
+  }
 }) %}
-{% set side_teaser_3_props = side_teaser_3_props|merge({ 
+{% set side_teaser_3_props = side_teaser_3_props|merge({
   like: like,
-  share: share, 
+  share: share,
   status: {
     views: '14',
-  } 
+  }
 }) %}
 
 {% set band_content %}
@@ -341,7 +341,7 @@
     background: true,
     attributes: {
       src: '/images/backgrounds/teal-stripes.png',
-      lazyload: true,
+      loading: 'lazy'
     },
   } only %}
 {% endset %}
