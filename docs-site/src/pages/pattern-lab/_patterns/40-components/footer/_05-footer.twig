@@ -46,65 +46,64 @@
 
 
                 <div class="c-page-footer__social-links c-share--bold c-share">
-                  <div class="o-bolt-inline-list">
-                    <span class="o-bolt-inline-list__item">
+                  <bolt-list display="inline">
+                    <bolt-list-item>
                       <span class="c-bolt-text c-bolt-text--small c-bolt-text--semibold u-bolt-margin-right u-bolt-padding-bottom-small">Join the conversation</span>
-                    </span>
+                    </bolt-list-item>
 
-                    <span class="o-bolt-inline-list__item">
-                      <ul class="o-bolt-inline-list o-bolt-inline-list--small c-share__items">
-                    <li class="o-bolt-inline-list__item c-share__item">
-                      <a href="https://twitter.com/" class="c-bolt-link u-bolt-color-info" target="_blank" rel="noopener">
-                        <span class="u-bolt-visuallyhidden">Follow Us On Twitter</span>
-                        {% include '@bolt-elements-icon/icon.twig' with {
-                          name: 'twitter',
-                          size: 'medium',
-                          attributes: {
-                            class: 'c-share__icon c-share__icon--twitter'
-                          }
-                        } only %}
-                      </a>
-                    </li>
-                    <li class="o-bolt-inline-list__item c-share__item">
-                      <a href="https://www.facebook.com/" class="c-bolt-link u-bolt-color-info" target="_blank" rel="noopener">
-                        <span class="u-bolt-visuallyhidden">Follow Us On Facebook</span>
-                        {% include '@bolt-elements-icon/icon.twig' with {
-                          name: 'facebook',
-                          size: 'medium',
-                          attributes: {
-                            class: 'c-share__icon c-share__icon--facebook'
-                          }
-                        } only %}
-                      </a>
-                    </li>
-                    <li class="o-bolt-inline-list__item c-share__item">
-                      <a href="https://www.linkedin.com/" class="c-bolt-link u-bolt-color-info" target="_blank" rel="noopener">
-                        <span class="u-bolt-visuallyhidden">Connect with us on LinkedIn</span>
-                        {% include '@bolt-elements-icon/icon.twig' with {
-                          name: 'linkedin-solid',
-                          size: 'medium',
-                          attributes: {
-                            class: 'c-share__icon c-share__icon--linkedin'
-                          }
-                        } only %}
-                      </a>
-                    </li>
-                    <li class="o-bolt-inline-list__item c-share__item">
-                      <a href="https://www.youtube.com/" class="c-bolt-link u-bolt-color-info" target="_blank" rel="noopener">
-                        <span class="u-bolt-visuallyhidden">Check us out on YouTube</span>
-                        {% include '@bolt-elements-icon/icon.twig' with {
-                          name: 'youtube-solid',
-                          size: 'medium',
-                          attributes: {
-                            class: 'c-share__icon c-share__icon--youtube'
-                          }
-                        } only %}
-                      </a>
-                    </li>
-                  </ul>
-
-                    </span>
-                  </div>
+                    <bolt-list-item>
+                      <bolt-list display="inline" spacing="small" class="c-share__items">
+                        <bolt-list-item class="c-share__item">
+                          <a href="https://twitter.com/" class="c-bolt-link u-bolt-color-info" target="_blank" rel="noopener">
+                            <span class="u-bolt-visuallyhidden">Follow Us On Twitter</span>
+                            {% include '@bolt-elements-icon/icon.twig' with {
+                              name: 'twitter',
+                              size: 'medium',
+                              attributes: {
+                                class: 'c-share__icon c-share__icon--twitter'
+                              }
+                            } only %}
+                          </a>
+                        </bolt-list-item>
+                        <bolt-list-item class="c-share__item">
+                          <a href="https://www.facebook.com/" class="c-bolt-link u-bolt-color-info" target="_blank" rel="noopener">
+                            <span class="u-bolt-visuallyhidden">Follow Us On Facebook</span>
+                            {% include '@bolt-elements-icon/icon.twig' with {
+                              name: 'facebook',
+                              size: 'medium',
+                              attributes: {
+                                class: 'c-share__icon c-share__icon--facebook'
+                              }
+                            } only %}
+                          </a>
+                        </bolt-list-item>
+                        <bolt-list-item class="c-share__item">
+                          <a href="https://www.linkedin.com/" class="c-bolt-link u-bolt-color-info" target="_blank" rel="noopener">
+                            <span class="u-bolt-visuallyhidden">Connect with us on LinkedIn</span>
+                            {% include '@bolt-elements-icon/icon.twig' with {
+                              name: 'linkedin-solid',
+                              size: 'medium',
+                              attributes: {
+                                class: 'c-share__icon c-share__icon--linkedin'
+                              }
+                            } only %}
+                          </a>
+                        </bolt-list-item>
+                        <bolt-list-item class="c-share__item">
+                          <a href="https://www.youtube.com/" class="c-bolt-link u-bolt-color-info" target="_blank" rel="noopener">
+                            <span class="u-bolt-visuallyhidden">Check us out on YouTube</span>
+                            {% include '@bolt-elements-icon/icon.twig' with {
+                              name: 'youtube-solid',
+                              size: 'medium',
+                              attributes: {
+                                class: 'c-share__icon c-share__icon--youtube'
+                              }
+                            } only %}
+                          </a>
+                        </bolt-list-item>
+                      </bolt-list>
+                    </bolt-list-item>
+                  </bolt-list>
 
 
 
@@ -297,100 +296,100 @@
 
 
 
-                  <ul data-region="footer" class="o-bolt-inline-list o-bolt-inline-list--small c-page-footer__i18n u-bolt-margin-bottom">
+                  <bolt-list display="inline" spacing="small" data-region="footer" class="c-page-footer__i18n u-bolt-margin-bottom">
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall u-bolt-color-info" title="English Homepage">
                         <span class="c-link__text">English</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall u-bolt-color-info" title="Français">
                         <span class="c-link__text">Français</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall u-bolt-color-info" title="Deutsch">
                         <span class="c-link__text">Deutsch</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall u-bolt-color-info" title="Italiano">
                         <span class="c-link__text">Italiano</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall u-bolt-color-info" title="日本語">
                         <span class="c-link__text">日本語</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall u-bolt-color-info" title="Português">
                         <span class="c-link__text">Português</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall u-bolt-color-info" title="Español">
                         <span class="c-link__text">Español</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall u-bolt-color-info" title="Türkçe">
                         <span class="c-link__text">Türkçe</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall u-bolt-color-info" title="Pусский">
                         <span class="c-link__text">Pусский</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
-                  </ul>
+                  </bolt-list>
 
 
 
@@ -410,77 +409,77 @@
 
 
 
-                  <ul data-region="footer" class="o-bolt-inline-list o-bolt-inline-list--small c-page-footer__legal u-bolt-font-size-xsmall">
+                  <bolt-list display="inline" spacing="small" data-region="footer" class="c-page-footer__legal u-bolt-font-size-xsmall">
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall" title="Terms of Use">
                         <span class="c-link__text">Terms of Use</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" title="Contact" class="c-link c-bolt-text c-bolt-text--xsmall" data-drupal-link-system-path="node/54646">
                         <span class="c-link__text">Contact</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall" title="Glossary">
                         <span class="c-link__text">Glossary</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall" title="Site Map">
                         <span class="c-link__text">Site Map</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" target="_self" rel="" class="c-link c-bolt-text c-bolt-text--xsmall" title="Trademarks">
                         <span class="c-link__text">Trademarks</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    <li class="o-bolt-inline-list__item">
+                    <bolt-list-item>
                       <a href="#!" title="Privacy" class="c-link c-bolt-text c-bolt-text--xsmall" data-drupal-link-system-path="node/54196">
                         <span class="c-link__text">Privacy</span>
                       </a>
-                    </li>
+                    </bolt-list-item>
 
 
 
 
 
-                    {# <li class="o-bolt-inline-list__item">
+                    {# <bolt-list-item>
                       <div id="teconsent" class="js-teconsent"></div>
                       <script async="async" type="text/javascript" crossorigin="" src="//consent.truste.com/notice?domain=pegasystems.com&amp;c=teconsent&amp;text=true&amp;language=en"></script>
 
-                    </li> #}
+                    </bolt-list-item> #}
 
 
                   </ul>
@@ -491,10 +490,10 @@
 
               </div>
               <div class="o-bolt-grid__cell">
-                <ul class="o-bolt-inline-list--small o-bolt-inline-list">
-                  <li class="o-bolt-inline-list__item">
+                <bolt-list display="inline" spacing="small">
+                  <bolt-list-item>
                     <span class="c-page-footer__copyright c-bolt-text c-bolt-text--xsmall">©2018 Pegasystems Inc.</span>
-                  </li>
+                  </bolt-list-item>
                 </ul>
               </div>
             </div>
