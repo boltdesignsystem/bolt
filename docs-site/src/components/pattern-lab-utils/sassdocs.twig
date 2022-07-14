@@ -370,14 +370,14 @@
   </div>
 
   <div class="c-bds-docs__page-nav c-bds-docs__page-nav--sassdoc">
-    <ul class="o-bolt-ui-list o-bolt-ui-list--xsmall c-bds-docs__page-nav-list">
-      <li class="o-bolt-ui-list__item">
-        <ul class="o-bolt-ui-list o-bolt-ui-list--xxsmall o-bolt-ui-list--borderless o-bolt-ui-list--sassdoc">
-          <li class="o-bolt-ui-list__item t-bolt-xlight">
+    <bolt-list class="c-bds-docs__page-nav-list">
+      <bolt-list-item>
+        <bolt-list spacing="xxsmall" class="c-bds-docs__page-nav-list--sassdoc">
+          <bolt-list-item class="t-bolt-xlight">
             {{ macros.sassdocNavFlat(contentItems) }}
-          </li>
-        </ul>
-      </li>
-    </ul>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-list-item>
+    </bolt-list>
   </div>
 </div>
