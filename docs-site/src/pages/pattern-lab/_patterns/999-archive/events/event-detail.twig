@@ -32,8 +32,8 @@
             tag: 'p',
         } only %}
 
-        <ul class="o-bolt-inline-list o-bolt-inline-list--medium">
-          <li class="o-bolt-inline-list__item">
+        <bolt-list display="inline" spacing="medium">
+          <bolt-list-item>
             {% include '@bolt-components-headline/headline.twig' with {
               text: 'January 25, 2018',
               size: 'large',
@@ -45,8 +45,8 @@
                 size: 'medium'
               },
             } only %}
-          </li>
-          <li class="o-bolt-inline-list__item">
+          </bolt-list-item>
+          <bolt-list-item>
             {% include '@bolt-components-headline/headline.twig' with {
               text: '10:00 AM EST',
               size: 'large',
@@ -58,8 +58,8 @@
                 size: 'medium'
               }
             } only %}
-          </li>
-          <li class="o-bolt-inline-list__item">
+          </bolt-list-item>
+          <bolt-list-item>
             {% include '@bolt-components-headline/headline.twig' with {
               text: 'New York, NY',
               size: 'large',
@@ -71,8 +71,8 @@
                 size: 'medium'
               }
             } only %}
-          </li>
-        </ul>
+          </bolt-list-item>
+        </bolt-list>
       {% endcell %}
     {% endgrid %}
     {% endblock %}
