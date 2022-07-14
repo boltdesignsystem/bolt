@@ -28,11 +28,11 @@
     {% endif %}
   {% endgrid %}
 
-  {% if contentItems %}
+  {% if items %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-top-medium" %}
-      {% if contentItems|length > 1 and useCarousel %}
+      {% if items|length > 1 and useCarousel %}
         {% set slides = [] %}
-        {% for item in contentItems %}
+        {% for item in items %}
           {# @todo: why do we do this check? #}
           {% if item.cardTitle %}
             {% set slides = slides|merge([macros.include("@bolt-academy/_vertical-card.twig", item)]) %}
@@ -41,7 +41,7 @@
           {% endif %}
         {% endfor %}
 
-        {% cell "u-bolt-width-12/12 #{contentItems|length == 2 ? 'u-bolt-width-2/3@large' : ''}" %}
+        {% cell "u-bolt-width-12/12 #{items|length == 2 ? 'u-bolt-width-2/3@large' : ''}" %}
           {% include "@bolt-components-carousel/carousel.twig" with {
             slides_per_view: "auto",
             nav_button_position: "outside",
@@ -49,7 +49,7 @@
           } only %}
         {% endcell %}
       {% else %}
-        {% for item in contentItems %}
+        {% for item in items %}
           {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium" %}
             {% if item.cardTitle %}
               {% include "@bolt-academy/_vertical-card.twig" with item %}
