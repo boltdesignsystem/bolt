@@ -1,15 +1,12 @@
 {% set description %}
-    The icon element can also be used in javascript, see below for details.
     <bolt-ol>
-        <bolt-li>Import the icon you need: <code>import { iconChevronDown } from '@bolt/elements-icon/src/icons/js/chevron-down';</code>. Importing the icons once at a time allows for a much smaller compiled js file.</bolt-li>
+        <bolt-li>Import the icon you need: <code>import { iconChevronDown, iconChevronUp } from '@bolt/elements-icon/src/icons/js/chevron-down';</code>. Importing the icons once at a time allows for a much smaller compiled js file.</bolt-li>
         <bolt-li>Once you have the icon imported, you can print it with <code>unsafeHTML()</code> as follows: <code>${unsafeHTML(iconChevronDown())}</code>. If it is not already, this must first be imported from the bolt element: <code>import { html, unsafeHTML } from '@bolt/element';</code>.</bolt-li>
     </bolt-ol>
 {% endset %}
 
 {% set notes %}
-    <bolt-ul>
-        <bolt-li>A real-world example can currently bo found in <em>AccordionItemTrigger.js</em>, shown in an altered demo below.</bolt-li>
-    </bolt-ul>
+A real-world example can currently be found in <em>AccordionItemTrigger.js</em>, shown in an altered demo below.
 {% set code_snippet %}
 import { html, unsafeHTML } from '@bolt/element';
 import { iconChevronDown } from '@bolt/elements-icon/src/icons/js/chevron-down';
