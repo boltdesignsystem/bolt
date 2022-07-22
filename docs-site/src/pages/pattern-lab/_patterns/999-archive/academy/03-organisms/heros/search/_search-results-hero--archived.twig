@@ -19,28 +19,29 @@
 {% endblock %}
 
 {% block cta %}
-  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix o-bolt-grid--small" %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
-      {% include "@bolt-components-headline/text.twig" with {
-        size: "large",
-        text: "Looking for instructor-led training?",
-        attributes: {
-          class: "u-bolt-margin-bottom-none",
-        }
-      } only %}
-    {% endcell %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
-      {% include "@bolt-elements-button/button.twig" with {
-        content: "View Class Schedule",
-        border_radius: "full",
-        attributes: {
-          type: 'button'
-        }
-      } only %}
-    {% endcell %}
-  {% endgrid %}
-  {% include "@bolt-components-list/list.twig" with {
-    display: "flex",
+  {% set description %}
+    {% include "@bolt-components-headline/text.twig" with {
+      size: "large",
+      text: "Looking for instructor-led training?",
+      attributes: {
+        class: "u-bolt-margin-bottom-none",
+      }
+    } only %}
+  {% endset %}
+  {% set button %}
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "View Class Schedule",
+      border_radius: "full",
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    spacing: 'small',
+    align: 'end',
+    valign: 'center',
     items: [
       description,
       button,
