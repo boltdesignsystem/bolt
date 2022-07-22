@@ -69,43 +69,34 @@
   {% endblock band_background %}
 
   {% block band_content %}
-    {% grid with {
+    {% set teaser %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Visualization & Simulation',
+        size: 'xxxlarge',
+        tag: 'h1'
+      } only %}
+
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Continuously improve results by visualizing how future adjustments to your strategies can impact business performance. Simulate and test your ideas, evaluate the results using intuitive views, and then deploy optimal alterations.'
+      } only %}
+
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'View the data sheet',
         attributes: {
-          class: [
-            'o-bolt-grid--flex',
-            'o-bolt-grid--middle',
-            'o-bolt-grid--large',
-            'o-bolt-grid--matrix'
-          ]
+          type: 'button'
         }
-      } %}
-
-      {% cell with {
-        attributes: {
-          class: [
-            'u-bolt-width-1/1',
-            'u-bolt-width-2/3@small'
-          ]
-        }
-      } %}
-        {% include '@bolt-components-headline/headline.twig' with {
-          text: 'Visualization & Simulation',
-          size: 'xxxlarge',
-          tag: 'h1'
-        } only %}
-
-        {% include '@bolt-components-headline/text.twig' with {
-          text: 'Continuously improve results by visualizing how future adjustments to your strategies can impact business performance. Simulate and test your ideas, evaluate the results using intuitive views, and then deploy optimal alterations.'
-        } only %}
-
-        {% include '@bolt-elements-button/button.twig' with {
-          content: 'View the data sheet',
-          attributes: {
-            type: 'button'
-          }
-        } only %}
-      {% endcell %}
-    {% endgrid %}
+      } only %}
+    {% endset %}
+    
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 8@small',
+          content: teaser,
+        },
+      ]
+    } only %}
 
   {% endblock band_content %}
 {% endembed %}
