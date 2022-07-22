@@ -122,34 +122,32 @@
     full_bleed: true
   } only %}
     {% block band_content %}
+      {% set text %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Pega is #1 in software for customer engagement and operational excellence.',
+          size: 'large',
+          weight: 'regular'
+        } only %}
+      {% endset %}
 
-      {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix' %}
+      {% set button %}
+        {% include '@bolt-components-button/button.twig' with {
+          text: 'Learn More',
+          width: 'full',
+          size: 'medium'
+        } only %}
+      {% endset %}
 
-        {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-flex-grow' %}
-
-          {% grid %}
-            {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-              {% include '@bolt-components-headline/text.twig' with {
-                text: 'Pega is #1 in software for customer engagement and operational excellence.',
-                size: 'large',
-                weight: 'regular'
-              } only %}
-            {% endcell %}
-          {% endgrid %}
-        {% endcell %}
-
-
-        {% cell 'u-bolt-width-1/1@only-small' %}
-          {% include '@bolt-components-button/button.twig' with {
-            text: 'Learn More',
-            width: 'full',
-            size: 'medium'
-          } only %}
-        {% endcell %}
-
-      {% endgrid %}
-
-
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        spacing: 'medium',
+        align: 'justify',
+        valign: 'center',
+        items: [
+          text,
+          button
+        ]
+      } only %}
     {% endblock %}
   {% endembed %}
 
@@ -245,31 +243,46 @@
     full_bleed: true
   } only %}
     {% block band_content %}
-      {% grid 'o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--center' %}
-        {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@small' %}
-          {% include '@bolt-elements-image/image.twig' with {
-            attributes: {
-              src: '/images/content/promos/promo-16x9-salesforce-vs-pega.png',
-              loading: 'lazy'
-            }
-          } only %}
-        {% endcell %}
-        {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-          {% include '@bolt-components-headline/headline.twig' with {
-            text: 'There’s a real alternative to the Salesforce.com hype: Pega CRM.',
-            size: 'xlarge',
-            tag: 'h3'
-          } only %}
-          {% include '@bolt-components-headline/text.twig' with {
-            text: 'Considering Salesforce.com? Don’t fall for the hype. See why today’s leading enterprises choose Pega CRM.'
-          } only %}
-          {% include '@bolt-components-button/button.twig' with {
-            text: 'Get Real',
-            hierarchy: 'primary',
-            size: 'small'
-          } only %}
-        {% endcell %}
-      {% endgrid %}
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: '/images/content/promos/promo-16x9-salesforce-vs-pega.png',
+            loading: 'lazy'
+          }
+        } only %}
+      {% endset %}
+      {% set desc %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'There’s a real alternative to the Salesforce.com hype: Pega CRM.',
+          size: 'xlarge',
+          tag: 'h3'
+        } only %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Considering Salesforce.com? Don’t fall for the hype. See why today’s leading enterprises choose Pega CRM.'
+        } only %}
+        {% include '@bolt-components-button/button.twig' with {
+          text: 'Get Real',
+          hierarchy: 'primary',
+          size: 'small'
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        gutter: 'large',
+        items: [
+          {
+            column_start: '1 2@small',
+            column_span: '12 4@small',
+            content: image,
+            valign: 'center'
+          },
+          {
+            column_start: '1 6@small',
+            column_span: '12 6@small',
+            content: desc,
+            valign: 'center'
+          },
+        ]
+      } only %}
     {% endblock %}
   {% endembed %}
 

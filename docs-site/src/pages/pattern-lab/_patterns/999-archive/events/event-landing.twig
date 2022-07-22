@@ -36,19 +36,27 @@
 
         {% block band_content  %}
 
-          {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center' %}
-            {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-text-align-center' %}
-              {% include '@bolt-components-headline/headline.twig' with {
-                text: 'Events at Pega: Meet the people behind the tech',
-                size: 'xxxlarge',
-                tag: 'h1'
-              } only %}
+          {% set heading %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Events at Pega: Meet the people behind the tech',
+              size: 'xxxlarge',
+              tag: 'h1'
+            } only %}
 
-              {% include '@bolt-components-headline/subheadline.twig' with {
-                text: 'Join Pega thought leaders, customers, and partners from around the world and explore the power of Pega firsthand.'
-              } only %}
-            {% endcell %}
-          {% endgrid %}
+            {% include '@bolt-components-headline/subheadline.twig' with {
+              text: 'Join Pega thought leaders, customers, and partners from around the world and explore the power of Pega firsthand.'
+            } only %}
+          {% endset %}
+
+          {% include '@bolt-components-grid/grid.twig' with {
+            items: [
+              {
+                column_start: '1',
+                column_span: '12 8@medium',
+                content: heading,
+              },
+            ]
+          } only %}
 
         {% endblock %}
       {% endembed %}
@@ -59,132 +67,152 @@
       } only %}
 
         {% block band_content  %}
+          {% set col_1 %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Featured Pega Events',
+              size: 'xxlarge'
+            } only %}
 
-          {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
-            {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
-              {% include '@bolt-components-headline/headline.twig' with {
-                text: 'Featured Pega Events',
-                size: 'xxlarge'
+            {% set card_1 %}
+              {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
+                actions: [
+                  {
+                    text: 'Learn more',
+                    url: 'https://google.com',
+                  },
+                ],
+              } only %}
+                {% block body %}
+                  {% include '@bolt-components-headline/eyebrow.twig' with {
+                    text: 'Conference | June 3-6, 2018',
+                  } only %}
+
+                  {% include '@bolt-components-headline/headline.twig' with {
+                    text: 'PEGAWORLD 2018'
+                  } only %}
+
+                  <p>
+                    We get it. Plenty of events promise big things, or to make dreams come true. At our flagship
+                    event, PegaWorld, we definitely think big - but we also empower you with the technology and
+                    know-how to turn ideas into actual results.
+                  </p>
+
+                {% endblock %}
+              {% endembed %}
+            {% endset %}
+
+            {% set card_2 %}
+              {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
+                actions: [
+                  {
+                    text: 'Learn more',
+                    url: 'https://google.com',
+                  },
+                ],
               } only %}
 
-              {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
-                {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@medium' %}
-                  {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
-                    actions: [
-                      {
-                        text: 'Learn more',
-                        url: 'https://google.com',
-                      },
-                    ],
-                  } only %}
-                    {% block body %}
-                      {% include '@bolt-components-headline/eyebrow.twig' with {
-                        text: 'Conference | June 3-6, 2018',
-                      } only %}
-
-                      {% include '@bolt-components-headline/headline.twig' with {
-                        text: 'PEGAWORLD 2018'
-                      } only %}
-
-                      <p>
-                        We get it. Plenty of events promise big things, or to make dreams come true. At our flagship
-                        event, PegaWorld, we definitely think big - but we also empower you with the technology and
-                        know-how to turn ideas into actual results.
-                      </p>
-
-                    {% endblock %}
-                  {% endembed %}
-                {% endcell %}
-
-                {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@medium' %}
-
-                  {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
-                    actions: [
-                      {
-                        text: 'Learn more',
-                        url: 'https://google.com',
-                      },
-                    ],
+                {% block body %}
+                  {% include '@bolt-components-headline/eyebrow.twig' with {
+                    text: 'Networking | Multiple Dates',
                   } only %}
 
-                    {% block body %}
-                      {% include '@bolt-components-headline/eyebrow.twig' with {
-                        text: 'Networking | Multiple Dates',
-                      } only %}
-
-                      {% include '@bolt-components-headline/headline.twig' with {
-                        text: 'Customer Engagement Summits',
-                      } only %}
-
-                      <p>
-                        Customer engagement, digital transformation - where do you stand?  Which technology is best?
-                        Artifical Intelligence?  Robotics?  The Customer Engagement Summits offers you the opportunity to
-                        meet your peers, talk to experts, listen to business experiences and turn your digital
-                        transformation into a reality!
-                      </p>
-
-                    {% endblock %}
-                  {% endembed %}
-
-                {% endcell %}
-              {% endgrid %}
-
-            {% endcell %}
-            {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@medium' %}
-              {% include '@bolt-components-headline/headline.twig' with {
-                text: 'Find Us Here Also',
-                size: 'xxlarge'
-              } only %}
-
-                {% set list_item_1 %}
                   {% include '@bolt-components-headline/headline.twig' with {
-                    text: 'Mobil World Congress, 2/26-3/1',
-                    url: '#',
-                    icon: 'external-link',
-                    size: 'large'
+                    text: 'Customer Engagement Summits',
                   } only %}
-                {% endset %}
 
-                {% set list_item_2 %}
-                  {% include '@bolt-components-headline/headline.twig' with {
-                    text: 'CCW 2018, 2/27 - 3/1',
-                    url: '#',
-                    icon: 'external-link',
-                    size: 'large'
-                  } only %}
-                {% endset %}
+                  <p>
+                    Customer engagement, digital transformation - where do you stand?  Which technology is best?
+                    Artifical Intelligence?  Robotics?  The Customer Engagement Summits offers you the opportunity to
+                    meet your peers, talk to experts, listen to business experiences and turn your digital
+                    transformation into a reality!
+                  </p>
 
-                {% set list_item_3 %}
-                  {% include '@bolt-components-headline/headline.twig' with {
-                    text: 'HIMSS18, 3/5 - 3/10',
-                    url: '#',
-                    icon: 'external-link',
-                    size: 'large'
-                  } only %}
-                {% endset %}
+                {% endblock %}
+              {% endembed %}
+            {% endset %}
 
-                {% set list_item_4 %}
-                  {% include '@bolt-components-headline/headline.twig' with {
-                    text: 'ACAMS 2018, 4/9',
-                    url: '#',
-                    icon: 'external-link',
-                    size: 'large'
-                  } only %}
-                {% endset %}
+            {% include '@bolt-components-grid/grid.twig' with {
+              items: [
+                {
+                  column_start: '1',
+                  column_span: '12 6@medium',
+                  content: card_1,
+                },
+                {
+                  column_start: '1 7@medium',
+                  column_span: '12 6@medium',
+                  content: card_2,
+                },
+              ]
+            } only %}
+          {% endset %}
+          {% set col_2  %}
+            {% include '@bolt-components-headline/headline.twig' with {
+              text: 'Find Us Here Also',
+              size: 'xxlarge'
+            } only %}
 
-                {% include "@bolt-components-list/list.twig" with {
-                  items: [
-                    list_item_1,
-                    list_item_2,
-                    list_item_3,
-                    list_item_4,
-                  ],
-                  spacing: 'small',
-                  separator: 'solid'
-                } %}
+              {% set list_item_1 %}
+                {% include '@bolt-components-headline/headline.twig' with {
+                  text: 'Mobil World Congress, 2/26-3/1',
+                  url: '#',
+                  icon: 'external-link',
+                  size: 'large'
+                } only %}
+              {% endset %}
 
-            {% endcell %}
-          {% endgrid %}
+              {% set list_item_2 %}
+                {% include '@bolt-components-headline/headline.twig' with {
+                  text: 'CCW 2018, 2/27 - 3/1',
+                  url: '#',
+                  icon: 'external-link',
+                  size: 'large'
+                } only %}
+              {% endset %}
+
+              {% set list_item_3 %}
+                {% include '@bolt-components-headline/headline.twig' with {
+                  text: 'HIMSS18, 3/5 - 3/10',
+                  url: '#',
+                  icon: 'external-link',
+                  size: 'large'
+                } only %}
+              {% endset %}
+
+              {% set list_item_4 %}
+                {% include '@bolt-components-headline/headline.twig' with {
+                  text: 'ACAMS 2018, 4/9',
+                  url: '#',
+                  icon: 'external-link',
+                  size: 'large'
+                } only %}
+              {% endset %}
+
+              {% include "@bolt-components-list/list.twig" with {
+                items: [
+                  list_item_1,
+                  list_item_2,
+                  list_item_3,
+                  list_item_4,
+                ],
+                spacing: 'small',
+                separator: 'solid'
+              } %}
+          {% endset %}
+          {% include '@bolt-components-grid/grid.twig' with {
+            items: [
+              {
+                column_start: '1',
+                column_span: '12 8@medium',
+                content: col_1,
+              },
+              {
+                column_start: '1 9@medium',
+                column_span: '12 4@medium',
+                content: col_2,
+              },
+            ]
+          } only %}
         {% endblock %}
       {% endembed %}
     {% endblock %}
