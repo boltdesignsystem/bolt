@@ -1,5 +1,5 @@
-{% grid "o-bolt-grid--flex o-bolt-grid--center" %}
-  {% cell "u-bolt-flex-shrink" %}
+<bolt-grid gutter="medium" row-gutter="medium">
+  <bolt-grid-item column-start="1" column-span="12">
     <div class="c-acd-badge">
       {% include "@bolt-elements-image/image.twig" with {
         attributes: {
@@ -29,5 +29,5 @@
         } only %}
       {% endif %}
     </div>
-  {% endcell %}
-{% endgrid %}
+  </bolt-grid-item>
+</bolt-grid>
