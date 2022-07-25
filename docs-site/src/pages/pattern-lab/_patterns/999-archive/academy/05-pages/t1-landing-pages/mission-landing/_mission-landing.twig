@@ -22,7 +22,7 @@
         {% if items %}
           {% set main_content %}
 
-            {% grid "o-bolt-grid--matrix o-bolt-grid--small" %}
+            <bolt-grid gutter="medium" row-gutter="medium">
 
               {% if hideCompleted %}
                 {% set numberOfCompletedItems = 0 %}
@@ -49,21 +49,21 @@
                 {% endif %}
 
                 {% for item in itemsConsolidated %}
-                  {% cell "u-bolt-width-12/12" %}
+                  <bolt-grid-item column-start="1" column-span="12">
                     {% if item.cardTitle %}
                       {% include "@bolt-academy/_horizontal-card.twig" with item %}
                     {% else %}
                       {{ item }}
                     {% endif %}
-                  {% endcell %}
+                  </bolt-grid-item>
 
                   {% if not loop.last %}
-                    {% cell "u-bolt-width-12/12" %}
+                    <bolt-grid-item column-start="1" column-span="12">
                       {% include "@bolt-academy/_card-spacer.twig" %}
-                    {% endcell %}
+                    </bolt-grid-item>
                   {% endif %}
               {% endfor %}
-            {% endgrid %}
+            </bolt-grid>
           {% endset %}
         {% endif %}
         {% include '@bolt-components-grid/grid.twig' with {
