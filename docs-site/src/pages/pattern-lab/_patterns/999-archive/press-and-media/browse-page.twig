@@ -564,9 +564,9 @@
       {% endset %}
 
       {% set card %}
-        {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
+        <bolt-grid gutter="media" row-gutter="media">
           {% for i in 0..4 %}
-            {% cell 'u-bolt-width-1/1' %}
+            <bolt-grid-item column-start="1" column-span="12">
               {% set text_group %}
                 {% include '@bolt-components-headline/eyebrow.twig' with {
                   text: 'June 5, 2018'
@@ -586,8 +586,8 @@
                   content: text_group,
                 },
               } only %}
-            {% endcell %}
-            {% cell 'u-bolt-width-1/1' %}
+            </bolt-grid-item>
+            <bolt-grid-item column-start="1" column-span="12">
               {% set text_group %}
                 {% include '@bolt-components-headline/eyebrow.twig' with {
                   text: 'Jan 18, 2018'
@@ -607,8 +607,8 @@
                   content: text_group,
                 },
               } only %}
-            {% endcell %}
-            {% cell 'u-bolt-width-1/1' %}
+            </bolt-grid-item>
+            <bolt-grid-item column-start="1" column-span="12">
               {% set text_group %}
                 {% include '@bolt-components-headline/eyebrow.twig' with {
                   text: 'Jan 18, 2018'
@@ -628,8 +628,8 @@
                   content: text_group,
                 },
               } only %}
-            {% endcell %}
-            {% cell 'u-bolt-width-1/1' %}
+            </bolt-grid-item>
+            <bolt-grid-item column-start="1" column-span="12">
               {% set text_group %}
                 {% include '@bolt-components-headline/eyebrow.twig' with {
                   text: 'Jan 18, 2018'
@@ -649,8 +649,8 @@
                   content: text_group,
                 },
               } only %}
-            {% endcell %}
-            {% cell 'u-bolt-width-1/1' %}
+            </bolt-grid-item>
+            <bolt-grid-item column-start="1" column-span="12">
               {% set text_group %}
                 {% include '@bolt-components-headline/eyebrow.twig' with {
                   text: 'Date'
@@ -670,9 +670,9 @@
                   content: text_group,
                 },
               } only %}
-            {% endcell %}
+            </bolt-grid-item>
           {% endfor %}
-        {% endgrid %}
+        </bolt-grid>
       {% endset %}
       {% include '@bolt-components-grid/grid.twig' with {
         items: [
