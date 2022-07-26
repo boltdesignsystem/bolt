@@ -65,32 +65,45 @@
   } only %}
 {% endset %}
 
+{% set card_1 %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    height: 'auto',
+    content: block_list,
+  } only %}
+{% endset %}
 
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
-    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-      height: 'auto',
-      content: block_list,
-    } only %}
-  {% endcell %}
-  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
-    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-      media: {
-        image: {
-          src: '/images/placeholders/landscape-16x9-mountains.jpg',
-          alt: 'Image alt.',
-        },
+{% set card_2 %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    media: {
+      image: {
+        src: '/images/placeholders/landscape-16x9-mountains.jpg',
+        alt: 'Image alt.',
       },
-      height: 'auto',
-      body: {
-        content: text_group_5,
+    },
+    height: 'auto',
+    body: {
+      content: text_group_5,
+    },
+    actions: [
+      {
+        text: 'This is a button',
+        url: 'https://google.com',
       },
-      actions: [
-        {
-          text: 'This is a button',
-          url: 'https://google.com',
-        },
-      ],
-    } only %}
-  {% endcell %}
-{% endgrid %}
+    ],
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-grid/grid.twig' with {
+  items: [
+    {
+      column_start: '1 3@small',
+      column_span: '6 4@small',
+      content: card_1,
+    },
+    {
+      column_start: '7',
+      column_span: '6 4@small',
+      content: card_2,
+    },
+  ]
+} only %}

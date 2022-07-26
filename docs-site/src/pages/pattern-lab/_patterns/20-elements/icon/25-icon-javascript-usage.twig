@@ -1,0 +1,33 @@
+{% set description %}
+  <bolt-ol>
+    <bolt-li>Import icons individually: <code>import { iconChevronDown } from '@bolt/elements-icon/src/icons/js/chevron-down';</code>. Importing icons individually reduces the compiled JS file size.</bolt-li>
+    <bolt-li>The imported icon is a function that returns an <code>&lt;svg&gt;</code> element as a string. It automatically includes the <code>e-bolt-icon</code> class on the SVG. The function accepts a JSON object as an argument. It supports the same props as the Icon element, for example: <code>chevronDown({ size: 'xsmall', class: 'u-bolt-margin-right-xsmall' })</code>.</bolt-li>
+    <bolt-li>If you are using a web component, wrap the icon in <code>unsafeHTML()</code> as follows: <code>${unsafeHTML(iconChevronDown())}</code>.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set code_snippet %}
+import { html, unsafeHTML } from '@bolt/element';
+import { iconChevronDown } from '@bolt/elements-icon/src/icons/js/chevron-down';
+
+return html`
+  <div class="c-bolt-accordion-item__trigger-icons-inner">
+    ${unsafeHTML(iconChevronDown())}
+  </div>
+`;
+{% endset %}
+
+{% set notes %}
+  A real-world example can currently be found in <em>AccordionItemTrigger.js</em>, shown in an altered demo below.
+
+  <div class="c-bolt-code-snippet" data-lang="js" data-mode="light">
+    <pre><code>{{ code_snippet|trim }}</code></pre>
+  </div>
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Icon Javascript Use',
+  description: description,
+  notes: notes,
+} only %}
+

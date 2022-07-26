@@ -77,11 +77,7 @@
     Tabs is a web component. Add the <code>&lt;bolt-tabs&gt;</code> element containing multiple <code>&lt;bolt-tabs-panel&gt;</code> elements to create a set of tabs. Inside each <code>&lt;bolt-tab-panel&gt;</code> mark the "label" content with the attribute <code>slot="label"</code>. Everything else is considered tab "content".
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% cell "u-bolt-width-1/1" %}
-        {{ basic_usage }}
-      {% endcell %}
-    {% endgrid %}
+    {{ basic_usage }}
   </div>
   <div class="u-bolt-margin-bottom-large">
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
@@ -100,11 +96,7 @@
     Configure the tabs with the properties specified in the schema.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% cell "u-bolt-width-1/1" %}
-        {{ prop_usage }}
-      {% endcell %}
-    {% endgrid %}
+    {{ prop_usage }}
   </div>
   <div class="u-bolt-margin-bottom-large">
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
@@ -123,11 +115,7 @@
     Two advanced options are shown below. Automatically show a <code>&lt;bolt-tab-panel&gt;</code> by setting <code>selected-tab</code> on <code>&lt;bolt-tabs&gt;</code> or by adding <code>selected</code> to a single <code>&lt;bolt-tab-panel&gt;</code>.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% cell "u-bolt-width-1/1" %}
-        {{ advanced_usage }}
-      {% endcell %}
-    {% endgrid %}
+    {{ advanced_usage }}
   </div>
   <div class="u-bolt-margin-bottom-large">
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {

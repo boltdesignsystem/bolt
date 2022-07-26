@@ -10,40 +10,70 @@
   {% endset %}
 {% endif %}
 
-{% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-  {% if trainingMetaItems %}
-    {% cell "u-bolt-width-1/1" %}
-      {% include "@bolt-academy/_training-meta-items.twig" with {
-        items: trainingMetaItems
-      } only %}
-    {% endcell %}
+{% if trainingMetaItems %}
+  {% set train_meta_items %}
+    {% include "@bolt-academy/_training-meta-items.twig" with {
+      items: trainingMetaItems
+    } only %}
+  {% endset %}
+{% endif %}
+{% set col_1 %}
+  {% if trainingDescription or trainingTags %}
+    {% set desc %}
+      {% if trainingDescription %}
+        {% include "@bolt-academy/_training-description.twig" with {
+          text: trainingDescription
+        } only %}
+      {% endif %}
+      {% if trainingTags %}
+        {% include "@bolt-academy/_training-tags.twig" with {
+          items: trainingTags
+        } only %}
+      {% endif %}
+    {% endset %}
   {% endif %}
-  {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-      {% if trainingDescription or trainingTags %}
-        {% cell "u-bolt-width-1/1" %}
-          {% if trainingDescription %}
-            {% include "@bolt-academy/_training-description.twig" with {
-              text: trainingDescription
-            } only %}
-          {% endif %}
-          {% if trainingTags %}
-            {% include "@bolt-academy/_training-tags.twig" with {
-              items: trainingTags
-            } only %}
-          {% endif %}
-        {% endcell %}
-      {% endif %}
-      {% if supplementalContentBlock %}
-        {% cell "u-bolt-width-1/1" %}
-          {{ supplementalContentBlock }}
-        {% endcell %}
-      {% endif %}
-    {% endgrid %}
-  {% endcell %}
-  {% if rightColumnBlock %}
-    {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
+  {% if supplementalContentBlock %}
+    {% set content_block %}
+      {{ supplementalContentBlock }}
+    {% endset %}
+  {% endif %}
+  {% include '@bolt-components-grid/grid.twig' with {
+    items: [
+      {
+        column_start: '1',
+        column_span: '12',
+        content: desc,
+      },
+      {
+        column_start: '1',
+        column_span: '12',
+        content: content_block,
+      },
+    ]
+  } only %}
+{% endset %}
+{% if rightColumnBlock %}
+  {% set col_2 %}
       {{ rightColumnBlock }}
-    {% endcell %}
-  {% endif %}
-{% endgrid %}
+  {% endset %}
+{% endif %}
+
+{% include '@bolt-components-grid/grid.twig' with {
+  items: [
+    {
+      column_start: '1',
+      column_span: '12',
+      content: train_meta_items,
+    },
+    {
+      column_start: '1',
+      column_span: '12 6@medium',
+      content: col_1,
+    },
+    {
+      column_start: '1 7@medium',
+      column_span: '12 6@medium',
+      content: col_2,
+    }
+  ]
+} only %}

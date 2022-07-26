@@ -41,41 +41,55 @@
   } only %}
 {% endset %}
 
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
-    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-      tag: 'article',
-      media: {
-        video: video_1
+{% set card_1 %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    tag: 'article',
+    media: {
+      video: video_1
+    },
+    body: {
+      headline: 'With a video as the media',
+      paragraph: 'This card has a video as the media and the card action can also play/pause the video.',
+    },
+    actions: [
+      {
+        text: 'Play or Pause',
+        attributes: {
+          'data-video-target': video_uuid1,
+          class: 'js-base-video-toggle'
+        }
       },
-      body: {
-        headline: 'With a video as the media',
-        paragraph: 'This card has a video as the media and the card action can also play/pause the video.',
-      },
-      actions: [
-        {
-          text: 'Play or Pause',
-          attributes: {
-            'data-video-target': video_uuid1,
-            class: 'js-base-video-toggle'
-          }
-        },
-      ],
-    } only %}
-  {% endcell %}
-  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
-    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-      link: {
-        url: 'https://google.com',
-        text: 'Go to google.com',
-      },
-      media: {
-        video: video_2
-      },
-      body: {
-        headline: 'With a video as the media and an overall link',
-        paragraph: 'This card has a link, which makes the whole card clickable. The link navigates to another page. The video in this card can still play/pause inline. The link does not cover it.',
-      }
-    } only %}
-  {% endcell %}
-{% endgrid %}
+    ],
+  } only %}
+{% endset %}
+
+{% set card_2 %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    link: {
+      url: 'https://google.com',
+      text: 'Go to google.com',
+    },
+    media: {
+      video: video_2
+    },
+    body: {
+      headline: 'With a video as the media and an overall link',
+      paragraph: 'This card has a link, which makes the whole card clickable. The link navigates to another page. The video in this card can still play/pause inline. The link does not cover it.',
+    }
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-grid/grid.twig' with {
+  items: [
+    {
+      column_start: '1 3@small',
+      column_span: '6 4@small',
+      content: card_1,
+    },
+    {
+      column_start: '7',
+      column_span: '6 4@small',
+      content: card_2,
+    },
+  ]
+} only %}

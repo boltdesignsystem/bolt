@@ -30,21 +30,19 @@
   </span>
 {% endset %}
 
-{% grid 'o-bolt-grid--center' %}
-  {% cell %}
-    {# Start component specific code #}
-    {% include '@bolt-components-tooltip/tooltip.twig' with {
-      trigger: lock_icon,
-      content: 'Closed for replies',
-    } only %}
-    {% include '@bolt-components-tooltip/tooltip.twig' with {
-      trigger: check_icon,
-      content: 'Solved',
-    } only %}
-    {% include '@bolt-components-tooltip/tooltip.twig' with {
-      trigger: close_icon,
-      content: 'This is no bueno. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttito. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.',
-    } only %}
-    {# End component specific code #}
-  {% endcell %}
-{% endgrid %}
+<div class="u-bolt-text-align-center">
+  {# Start component specific code #}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    trigger: lock_icon,
+    content: 'Closed for replies',
+  } only %}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    trigger: check_icon,
+    content: 'Solved',
+  } only %}
+  {% include '@bolt-components-tooltip/tooltip.twig' with {
+    trigger: close_icon,
+    content: 'This is no bueno. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttito. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.',
+  } only %}
+  {# End component specific code #}
+</div>

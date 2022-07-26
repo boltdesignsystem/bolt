@@ -13,61 +13,73 @@
     {% block main_content %}
 
       {% set trainingList %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-10/12@medium" %}
-            {% include "@bolt-academy/_hide-show-completed.twig" with {
-              hideCompleted: hideCompleted | default(false)
-            } only %}
-          {% endcell %}
+        {% set checkbox_element %}
+          {% include "@bolt-academy/_hide-show-completed.twig" with {
+            hideCompleted: hideCompleted | default(false)
+          } only %}
+        {% endset %}
 
-          {% if contentItems %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-10/12@medium" %}
+        {% if items %}
+          {% set main_content %}
 
-              {% grid "o-bolt-grid--matrix o-bolt-grid--small" %}
+            <bolt-grid gutter="medium" row-gutter="medium">
 
-                {% if hideCompleted %}
-                  {% set numberOfCompletedItems = 0 %}
-                  {% set contentItemsConsolidated = [] %}
+              {% if hideCompleted %}
+                {% set numberOfCompletedItems = 0 %}
+                {% set itemsConsolidated = [] %}
 
-                    {% for item in contentItems %}
-                      {% if item.completed %}
-                        {% set numberOfCompletedItems = numberOfCompletedItems + 1 %}
-                        {% if loop.last %}
-                          {% set contentItemsConsolidated = contentItemsConsolidated | merge([numberOfCompletedItems]) %}
-                        {% endif %}
-                      {% else %}
-                        {% if numberOfCompletedItems != 0 %}
-                          {% set contentItemsConsolidated = contentItemsConsolidated | merge([
-                            macros.include("@bolt-academy/_horizontal-divider.twig", { dividerText: "Completed (" ~ numberOfCompletedItems ~ ")" })
-                          ]) %}
-                          {% set numberOfCompletedItems = 0 %}
-                        {% endif %}
-                        {% set contentItemsConsolidated = contentItemsConsolidated | merge([item]) %}
+                  {% for item in items %}
+                    {% if item.completed %}
+                      {% set numberOfCompletedItems = numberOfCompletedItems + 1 %}
+                      {% if loop.last %}
+                        {% set itemsConsolidated = itemsConsolidated | merge([numberOfCompletedItems]) %}
                       {% endif %}
-                    {% endfor %}
-                  {% else %}
-                    {% set contentItemsConsolidated = contentItems %}
-                  {% endif %}
-
-                  {% for item in contentItemsConsolidated %}
-                    {% cell "u-bolt-width-12/12" %}
-                      {% if item.cardTitle %}
-                        {% include "@bolt-academy/_horizontal-card.twig" with item %}
-                      {% else %}
-                        {{ item }}
+                    {% else %}
+                      {% if numberOfCompletedItems != 0 %}
+                        {% set itemsConsolidated = itemsConsolidated | merge([
+                          macros.include("@bolt-academy/_horizontal-divider.twig", { dividerText: "Completed (" ~ numberOfCompletedItems ~ ")" })
+                        ]) %}
+                        {% set numberOfCompletedItems = 0 %}
                       {% endif %}
-                    {% endcell %}
+                      {% set itemsConsolidated = itemsConsolidated | merge([item]) %}
+                    {% endif %}
+                  {% endfor %}
+                {% else %}
+                  {% set itemsConsolidated = items %}
+                {% endif %}
+
+                {% for item in itemsConsolidated %}
+                  <bolt-grid-item column-start="1" column-span="12">
+                    {% if item.cardTitle %}
+                      {% include "@bolt-academy/_horizontal-card.twig" with item %}
+                    {% else %}
+                      {{ item }}
+                    {% endif %}
+                  </bolt-grid-item>
 
                   {% if not loop.last %}
-                    {% cell "u-bolt-width-12/12" %}
+                    <bolt-grid-item column-start="1" column-span="12">
                       {% include "@bolt-academy/_card-spacer.twig" %}
-                    {% endcell %}
+                    </bolt-grid-item>
                   {% endif %}
-                {% endfor %}
-              {% endgrid %}
-            {% endcell %}
-          {% endif %}
-        {% endgrid %}
+              {% endfor %}
+            </bolt-grid>
+          {% endset %}
+        {% endif %}
+        {% include '@bolt-components-grid/grid.twig' with {
+          items: [
+            {
+              column_start: '1 2@small',
+              column_span: '12 10@small',
+              content: checkbox_element,
+            },
+            {
+              column_start: '1 2@small',
+              column_span: '12 10@small',
+              content: main_content,
+            },
+          ]
+        } only %}
       {% endset %}
 
       {% embed "@bolt-academy/_landing-page-main-1-col.twig" %}
