@@ -48,26 +48,28 @@
         </bolt-grid-item>
       {% else %}
         {% for item in items %}
-        {% set card %}
-          {% if item.cardTitle %}
-            {% include "@bolt-academy/_vertical-card.twig" with item %}
+          {% set card %}
+            {% if item.cardTitle %}
+              {% include "@bolt-academy/_vertical-card.twig" with item %}
+            {% else %}
+              {{ item }}
+            {% endif %}
+          {% endset %}
+          {% set second_iteration = loop.index % 3 == 2 %}
+          {% set third_iteration = loop.index % 3 == 0 %}
+          {% if third_iteration %}
+            <bolt-grid-item column-start="1 9@medium" column-span="12 4@medium">
+              {{ card }}
+            </bolt-grid-item>
+          {% elseif second_iteration %}
+            <bolt-grid-item column-start="1 5@medium" column-span="12 4@medium">
+              {{ card }}
+            </bolt-grid-item>
           {% else %}
-            {{ item }}
+            <bolt-grid-item column-start="1" column-span="12 4@medium">
+              {{ card }}
+            </bolt-grid-item>
           {% endif %}
-        {% endset %}
-        {% if loop.index % 3 == 0 %}
-          <bolt-grid-item column-start="1 9@medium" column-span="12 4@medium">
-            {{ card }}
-          </bolt-grid-item>
-        {% elseif loop.index % 2 == 0 %}
-          <bolt-grid-item column-start="1 5@medium" column-span="12 4@medium">
-            {{ card }}
-          </bolt-grid-item>
-        {% else %}
-          <bolt-grid-item column-start="1" column-span="12 4@medium">
-            {{ card }}
-          </bolt-grid-item>
-        {% endif %}
         {% endfor %}
       {% endif %}
     </bolt-grid>
