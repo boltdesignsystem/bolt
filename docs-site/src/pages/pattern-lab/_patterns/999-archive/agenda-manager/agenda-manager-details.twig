@@ -47,9 +47,8 @@
         tag: 'h1'
       } only %}
 
-      {% grid 'o-bolt-grid--matrix o-bolt-grid--large' %}
-
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@medium' %}
+      <bolt-grid gutter="medium" row-gutter="medium">
+        <bolt-grid-item column-start="1" column-span="12 4@medium">
           {% include '@bolt-components-headline/headline.twig' with {
             size: 'xsmall',
             transform: 'uppercase',
@@ -72,10 +71,9 @@
             } only %}
             {{ eventLocation|default('Insert Location Here') }}
           </div>
+        </bolt-grid-item>
 
-        {% endcell %}
-
-        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
+        <bolt-grid-item column-start="1 5@medium" column-span="12 8@medium">
           {% include '@bolt-components-headline/headline.twig' with {
             size: 'xsmall',
             transform: 'uppercase',
@@ -83,7 +81,7 @@
             text: 'Speaker(s)',
           } only %}
 
-          {% grid 'o-bolt-grid--matrix o-bolt-grid--large' %}
+          <bolt-grid gutter="medium" row-gutter="medium">
 
             {% set speakers = [
               {
@@ -104,8 +102,7 @@
             ] %}
 
             {% for speaker in speakers %}
-
-              {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@xsmall' %}
+              {% set speaker_desc %}
                 {% include '@bolt-components-headline/headline.twig' with {
                   size: 'xsmall',
                   tag: 'h3',
@@ -123,14 +120,24 @@
                   size: 'xsmall',
                   weight: 'bold'
                 } only %}
-
-              {% endcell %}
-
+              {% endset %}
+              {% if speaker.name == 'Alan Trefler' %}
+                <bolt-grid-item column-start="1" column-span="12 4@small">
+                  {{ speaker_desc }}
+                </bolt-grid-item>
+              {% elseif speaker.name == 'Micheal Hines' %}
+                <bolt-grid-item column-start="1 5@small" column-span="12 4@small">
+                  {{ speaker_desc }}
+                </bolt-grid-item>
+              {% else %}
+                <bolt-grid-item column-start="1 9@small" column-span="12 4@small">
+                  {{ speaker_desc }}
+                </bolt-grid-item>
+              {% endif %}
             {% endfor %}
-          {% endgrid %}
-
-        {% endcell %}
-      {% endgrid %}
+          </bolt-grid>
+        </bolt-grid-item>
+      </bolt-grid>
 
     {% endblock %}
   {% endembed %}
@@ -141,8 +148,8 @@
   } only %}
     {% block band_content  %}
 
-      {% grid %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-9/12@medium' %}
+      <bolt-grid guttter="medium" row-gutter="medium">
+        <bolt-grid-item column-start="1" column-span="12 9@medium">
           {% include '@bolt-components-headline/text.twig' with {
             text: eventDescription|default('Insert Event Description Here. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum.')
           } only %}
@@ -159,8 +166,8 @@
               'The role of decisioning technology'
             ]
           } only %}
-        {% endcell %}
-      {% endgrid %}
+        </bolt-grid-item>
+      </bolt-grid>
 
     {% endblock %}
   {% endembed %}
@@ -174,9 +181,8 @@
 
       <hr>
 
-      {% grid 'o-bolt-grid--matrix o-bolt-grid--large' %}
-
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+      <bolt-grid gutter="medium" row-gutter="medium">
+        <bolt-grid-item column-start="1" column-span="12 4@medium">
           {% include '@bolt-components-headline/headline.twig' with {
             text: 'Topics',
             size: 'small'
@@ -218,9 +224,9 @@
               }
             ]
           } only %}
-        {% endcell %}
+        </bolt-grid-item>
 
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        <bolt-grid-item column-start="1 5@medium" column-span="12 4@medium">
           {% include '@bolt-components-headline/headline.twig' with {
             text: 'Industries',
             size: 'small'
@@ -242,9 +248,9 @@
               }
             ]
           } only %}
-        {% endcell %}
-
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        </bolt-grid-item>
+        
+        <bolt-grid-item column-start="1 9@medium" column-span="12 4@medium">
           {% include '@bolt-components-headline/headline.twig' with {
             text: 'Products',
             size: 'small'
@@ -262,9 +268,8 @@
               }
             ]
           } only %}
-        {% endcell %}
-
-      {% endgrid %}
+        </bolt-grid-item>
+      </bolt-grid>
 
     {% endblock %}
   {% endembed %}
@@ -281,15 +286,15 @@
 
       <hr>
 
-      {% include '@bolt-componenst-headline/headline.twig' with {
+      {% include '@bolt-components-headline/headline.twig' with {
         size: 'xlarge',
         tag: 'h2',
         text: 'Related Sessions',
       } only %}
 
-      {% grid 'o-bolt-grid--matrix' %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
 
+      <bolt-grid gutter="medium" row-gutter="medium">
+        <bolt-grid-item column-start="1" column-span="12 4@small">
           {% include '@bolt-components-headline/eyebrow.twig' with {
             text: 'Spark Talk'
           } only %}
@@ -300,9 +305,9 @@
             tag: 'h3',
             url: '#!'
           } only %}
-        {% endcell %}
+        </bolt-grid-item>
 
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        <bolt-grid-item column-start="1 5@small" column-span="12 4@small">
           {% include '@bolt-components-headline/eyebrow.twig' with {
             text: 'Spark Talk'
           } only %}
@@ -313,9 +318,9 @@
             tag: 'h3',
             url: '#!'
           } only %}
-        {% endcell %}
+        </bolt-grid-item>
 
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        <bolt-grid-item column-start="1 9@small" column-span="12 4@small">
           {% include '@bolt-components-headline/eyebrow.twig' with {
             text: 'Spark Talk'
           } only %}
@@ -326,9 +331,8 @@
             tag: 'h3',
             url: '#!'
           } only %}
-        {% endcell %}
-
-      {% endgrid %}
+        </bolt-grid-item>
+      </bolt-grid>
     {% endblock %}
   {% endembed %}
 
@@ -337,9 +341,9 @@
     size: 'medium'
   } %}
 
-    {% block band_content  %}
-      {% grid 'o-bolt-grid--matrix' %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+    {% block band_content %}
+      <bolt-grid gutter="medium" row-gutter="medium">
+        <bolt-grid-item column-start="1" column-span="12 4@small">
           {% include '@bolt-components-headline/headline.twig' with {
             size: 'large',
             text: 'Register Now',
@@ -353,9 +357,9 @@
               type: 'button'
             }
           } only %}
-        {% endcell %}
+        </bolt-grid-item>
 
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        <bolt-grid-item column-start="1 5@small" column-span="12 4@small">
           {% include '@bolt-components-headline/headline.twig' with {
             size: 'large',
             text: 'Become a PegaWorld Insider',
@@ -370,9 +374,9 @@
               type: 'button'
             }
           } only %}
-        {% endcell %}
+        </bolt-grid-item>
 
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        <bolt-grid-item column-start="1 9@small" column-span="12 4@small">
           {% include '@bolt-components-headline/headline.twig' with {
             text: 'Connect to start a conversation',
             size: 'large'
@@ -408,15 +412,15 @@
           ] %}
 
           {% for icon in socialIcons %}
-            <a class="u-bolt-margin-right-small" href="{{ icon.url }}">
+            <a class="u-bolt-margin-right-small" href="{{icon.url}}">
               {% include '@bolt-elements-icon/icon.twig' with {
                 name: icon.name,
                 size: 'medium'
               } only %}
             </a>
           {% endfor %}
-        {% endcell %}
-      {% endgrid %}
+        </bolt-grid-item>
+      </bolt-grid>
     {% endblock %}
   {% endembed %}
 {% endblock %}

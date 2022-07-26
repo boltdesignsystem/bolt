@@ -34,52 +34,53 @@
     }
   } only %}
 
-  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--bottom u-bolt-padding-bottom-medium" %}
-    {% cell "u-bolt-width-1/1" %}
-      {% set _icon_upload %}
-        {% include "@bolt-elements-icon/icon.twig" with {
-          name: "upload",
-          size: "medium",
-        } only %}
-      {% endset %}
-      {% set _icon_print %}
-        {% include "@bolt-elements-icon/icon.twig" with {
-          name: "print",
-          size: "medium",
-        } only %}
-      {% endset %}
-      {% set button_upload %}
-        {% include "@bolt-elements-button/button.twig" with {
-            content: "Upload",
-            hierarchy: "tertiary",
-            icon_only: _icon_upload,
-            attributes: {
-              type: 'button'
-            }
-          } only %}
-        {% endset %}
-      {% set button_print %}
-        {% include "@bolt-elements-button/button.twig" with {
-          content: "Print",
+
+  {% set icons_group %}
+    {% set _icon_upload %}
+      {% include "@bolt-elements-icon/icon.twig" with {
+        name: "upload",
+        size: "medium",
+      } only %}
+    {% endset %}
+    {% set _icon_print %}
+      {% include "@bolt-elements-icon/icon.twig" with {
+        name: "print",
+        size: "medium",
+      } only %}
+    {% endset %}
+    {% set button_upload %}
+      {% include "@bolt-elements-button/button.twig" with {
+          content: "Upload",
           hierarchy: "tertiary",
-          icon_only: _icon_print,
+          icon_only: _icon_upload,
           attributes: {
             type: 'button'
           }
         } only %}
       {% endset %}
-      {% include "@bolt-components-list/list.twig" with {
-        spacing: "none",
-        display: "inline",
-        align: "end",
-        items: [
-          button_upload,
-          button_print,
-        ]
+    {% set button_print %}
+      {% include "@bolt-elements-button/button.twig" with {
+        content: "Print",
+        hierarchy: "tertiary",
+        icon_only: _icon_print,
+        attributes: {
+          type: 'button'
+        }
       } only %}
-    {% endcell %}
+    {% endset %}
+    {% include "@bolt-components-list/list.twig" with {
+      spacing: "xsmall",
+      display: "inline",
+      align: "end",
+      items: [
+        button_upload,
+        button_print,
+      ]
+    } only %}
+  {% endset %}
 
-    {% cell "u-bolt-flex-grow" %}
+  {% set form %}
+    {% set search %}
       {% set select %}
         {% include "@bolt-academy/_select.twig" with {
           title: "Sort",
@@ -110,8 +111,8 @@
           style: "min-width: 10rem;"
         }
       } only  %}
-    {% endcell %}
-    {% cell %}
+    {% endset %}
+    {% set sort_tags %}
       {% set label_1 %}
         {% include "@bolt-components-headline/text.twig" with {
           text: "Sort by: <strong>Latest Activity</strong>",
@@ -161,8 +162,34 @@
           class: ["u-bolt-padding-top-small"]
         }
       } only %}
-    {% endcell %}
-  {% endgrid %}
+    {% endset %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      spacing: 'xsmall',
+      align: 'justify',
+      valign: 'center',
+      items: [
+        search,
+        sort_tags,
+      ]
+    } only %}
+  {% endset %}
+  <div class="u-bolt-margin-bottom-small">
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12',
+          content: icons_group,
+        },
+        {
+          column_start: '1',
+          column_span: '12',
+          content: form,
+        },
+      ]
+    } only %}
+  </div>
   {% set completed_training_item_1 %}
     {% include "@bolt-academy/_completed-training-item.twig" with {
       icon: {

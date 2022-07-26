@@ -23,26 +23,24 @@
   Use <code>label_spacing</code> and <code>panel_spacing</code> props, in conjunction with <code>inset</code>, to set spacing around tab labels and panels. See <a href="/pattern-lab/patterns/40-components-tabs-10-tabs-inset/40-components-tabs-10-tabs-inset.html" class="e-bolt-text-link">Inset variations</a> page for more on the <code>inset</code> prop.
 </bolt-text>
 
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
-
-  {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium' %}
-    {# Empty white space #}
-  {% endcell %}
-
-  {% cell 'u-bolt-width-12/12' %}
+<bolt-grid gutter="medium" row-gutter="medium">
+  <bolt-grid-item column-start="1" column-span="12">
     <bolt-text headline font-size="xlarge">Label spacing</bolt-text>
     <bolt-text>
       Use <code>label_spacing</code> to set spacing around (or between) tab labels.
     </bolt-text>
-  {% endcell %}
+  </bolt-grid-item>
 
   {% for spacing in schema.properties.label_spacing.enum %}
-    {% cell 'u-bolt-width-12/12' %}
+    {% set text %}
       <bolt-text headline font-size="large">Spacing: <code>{{ spacing }}</code></bolt-text>
-    {% endcell %}
+    {% endset %}
+    <bolt-grid-item column-start="1" column-span="12">
+      {{ text }}
+    </bolt-grid-item>
 
     {% for inset in schema.properties.inset.enum %}
-      {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@medium' %}
+      {% set spacing_example %}
         <bolt-text font-size="small" class="u-bolt-margin-bottom-small">Inset: <code>{{ inset }}</code></bolt-text>
         {% include '@bolt-components-tabs/tabs.twig' with {
           label_spacing: spacing,
@@ -62,51 +60,74 @@
             }
           ]
         } only %}
-      {% endcell %}
+        {% endset %}
+        {% if inset == 'auto' %}
+          <bolt-grid-item column-start="1" column-span="12 4@small">
+            {{ spacing_example }}
+          </bolt-grid-item>
+        {% elseif inset == 'on'%}
+          <bolt-grid-item column-start="1 5@small" column-span="12 4@small">
+            {{ spacing_example }}
+          </bolt-grid-item>
+          {% else %}
+          <bolt-grid-item column-start="1 9@small" column-span="12 4@small">
+            {{ spacing_example }}
+          </bolt-grid-item>
+        {% endif %}
     {% endfor %}
 
   {% endfor %}
 
-  {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium' %}
-    {# Empty white space #}
-  {% endcell %}
-
-  {% cell 'u-bolt-width-12/12' %}
+  <bolt-grid-item column-start="1" column-span="12">
     <bolt-text headline>Panel spacing</bolt-text>
     <bolt-text>
       Use <code>panel_spacing</code> to set spacing around tab panels.
     </bolt-text>
-  {% endcell %}
+  </bolt-grid-item>
+
 
   {% for spacing in schema.properties.panel_spacing.enum %}
-    {% cell 'u-bolt-width-12/12' %}
-      <bolt-text headline font-size="large">Spacing: <code>{{ spacing }}</code></bolt-text>
-    {% endcell %}
+  <bolt-grid-item column-start="1" column-span="12">
+    <bolt-text headline font-size="large">Spacing: <code>{{ spacing }}</code></bolt-text>
+  </bolt-grid-item>
+
 
     {% for inset in schema.properties.inset.enum %}
-      {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@medium' %}
-        <bolt-text font-size="small" class="u-bolt-margin-bottom-small">Inset: <code>{{ inset }}</code></bolt-text>
-        {% include '@bolt-components-tabs/tabs.twig' with {
-          panel_spacing: spacing,
-          inset: inset,
-          panels: [
-            {
-              label: 'Tab label 1',
-              content: tab_content_1,
-            },
-            {
-              label: 'Tab label 2',
-              content: tab_content_2,
-            },
-            {
-              label: 'Tab label 3',
-              content: tab_content_3,
-            }
-          ]
-        } only %}
-      {% endcell %}
+        {% set spacing_example %}
+          <bolt-text font-size="small" class="u-bolt-margin-bottom-small">Inset: <code>{{ inset }}</code></bolt-text>
+          {% include '@bolt-components-tabs/tabs.twig' with {
+            panel_spacing: spacing,
+            inset: inset,
+            panels: [
+              {
+                label: 'Tab label 1',
+                content: tab_content_1,
+              },
+              {
+                label: 'Tab label 2',
+                content: tab_content_2,
+              },
+              {
+                label: 'Tab label 3',
+                content: tab_content_3,
+              }
+            ]
+          } only %}
+        {% endset %}
+        {% if inset == 'auto' %}
+          <bolt-grid-item column-start="1" column-span="12 4@small">
+            {{ spacing_example }}
+          </bolt-grid-item>
+        {% elseif inset == 'on'%}
+          <bolt-grid-item column-start="1 5@small" column-span="12 4@small">
+            {{ spacing_example }}
+          </bolt-grid-item>
+          {% else %}
+          <bolt-grid-item column-start="1 9@small" column-span="12 4@small">
+            {{ spacing_example }}
+          </bolt-grid-item>
+        {% endif %}
     {% endfor %}
 
   {% endfor %}
-
-{% endgrid %}
+</bolt-grid>

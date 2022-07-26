@@ -47,53 +47,94 @@
 <p>There are 2 different types of spacing styles and you can use it to your advantage. Different layouts call for different spacing styles, use your best judgment to apply the more applicable style.</p>
 
 <h3>The advantage of using regular spacing style</h3>
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-medium' %}
-  {% cell 'u-bolt-width-8/12' %}
-    <p><mark>This is the regular spacing style, which adds space only in between items. So when it is put side by side next to a paragraph of text, the top of the list will line up with the paragraph of text (optically).</mark> Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante.</p>
-  {% endcell %}
-  {% cell 'u-bolt-width-4/12' %}
+{% set text_1 %}
+  <p><mark>This is the regular spacing style, which adds space only in between items. So when it is put side by side next to a paragraph of text, the top of the list will line up with the paragraph of text (optically).</mark> Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante.</p>
+{% endset %}
+{% set list_1 %}
+  {% include '@bolt-components-list/list.twig' with {
+    separator: 'solid',
+    items: [
+      link_1,
+      link_2,
+      link_3,
+    ]
+  } only %}
+{% endset %}
+  
+{% set text_2 %}
+  <p><mark>The same applies to items with a background color.</mark> Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante.</p>
+{% endset %}
+
+{% set list_2 %}
+  {% include '@bolt-components-list/list.twig' with {
+    items: [
+      placeholder_1,
+      placeholder_2,
+      placeholder_3,
+    ]
+  } only %}
+{% endset %}
+
+<div class="u-bolt-margin-bottom-large">
+  {% include '@bolt-components-grid/grid.twig' with {
+    items: [
+      {
+        column_start: '1',
+        column_span: '12 8@small',
+        content: text_1,
+      },
+      {
+        column_start: '1 9@small',
+        column_span: '12 4@small',
+        content: list_1,
+      },
+      {
+        column_start: '1',
+        column_span: '12 8@small',
+        content: text_2,
+      },
+      {
+        column_start: '1 9@small',
+        column_span: '12 4@small',
+        content: list_2,
+      },
+    ]
+  } only %}
+</div>
+
+<h3>The advantage of using inset spacing style</h3>
+{% set text_3 %}
+  <p><mark>Inset spacing puts spacing around each item, this is very useful if you are putting the list inside any kind of box container.</mark> Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante.</p>
+{% endset %}
+{% set list_3 %}
+  <div class="t-bolt-dark u-bolt-margin-bottom-medium">
     {% include '@bolt-components-list/list.twig' with {
+      spacing: 'medium',
+      inset: true,
       separator: 'solid',
-      items: [
-        link_1,
-        link_2,
-        link_3,
-      ]
-    } only %}
-  {% endcell %}
-  {% cell 'u-bolt-width-8/12' %}
-    <p><mark>The same applies to items with a background color.</mark> Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante.</p>
-  {% endcell %}
-  {% cell 'u-bolt-width-4/12' %}
-    {% include '@bolt-components-list/list.twig' with {
       items: [
         placeholder_1,
         placeholder_2,
         placeholder_3,
       ]
     } only %}
-  {% endcell %}
-{% endgrid %}
+  </div>
+  <p>^ This list is inside a colored box.</p>
+{% endset %}
 
-<h3>The advantage of using inset spacing style</h3>
-{% grid %}
-  {% cell 'u-bolt-width-8/12' %}
-    <p><mark>Inset spacing puts spacing around each item, this is very useful if you are putting the list inside any kind of box container.</mark> Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante.</p>
-  {% endcell %}
-  {% cell 'u-bolt-width-4/12' %}
-    <div class="t-bolt-dark u-bolt-margin-bottom-medium">
-      {% include '@bolt-components-list/list.twig' with {
-        spacing: 'medium',
-        inset: true,
-        separator: 'solid',
-        items: [
-          placeholder_1,
-          placeholder_2,
-          placeholder_3,
-        ]
-      } only %}
-    </div>
-    <p>^ This list is inside a colored box.</p>
-  {% endcell %}
-{% endgrid %}
+
+{% include '@bolt-components-grid/grid.twig' with {
+  items: [
+    {
+      column_start: '1',
+      column_span: '12 8@small',
+      content: text_3,
+    },
+    {
+      column_start: '1 9@small',
+      column_span: '12 4@small',
+      content: list_3,
+    },
+  ]
+} only %}
 {# End component specific code #}

@@ -3,11 +3,11 @@
 
 {% for container_theme in container_themes %}
   {% set card_replacements %}
-    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-      {% cell 'u-bolt-width-12/12' %}
-        {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+    <bolt-grid gutter="medium" row-gutter="medium">
+      <bolt-grid-item column-start="1" column-span="12">
+        <bolt-grid gutter="medium" row-gutter="medium">
           {% for theme in schema.properties.theme.enum %}
-            {% cell 'u-bolt-width-6/12 u-bolt-width-5/12@small' %}
+            {% set card %}
               {% include '@bolt-components-card-replacement/card-replacement.twig' with {
                 theme: theme,
                 body: {
@@ -21,11 +21,20 @@
                   }
                 ],
               } only %}
-            {% endcell %}
+            {% endset %}
+            {% if theme == 'xlight' or theme == 'dark' or theme == 'none' %}
+              <bolt-grid-item column-start="1 2@small" column-span="12 5@small">
+                {{ card }}
+              </bolt-grid-item>
+              {% else %}
+              <bolt-grid-item column-start="1 7@small" column-span="12 5@small">
+                {{ card }}
+              </bolt-grid-item>
+            {% endif %}
           {% endfor %}
-        {% endgrid %}
-      {% endcell %}
-    {% endgrid %}
+        </bolt-grid>
+      </bolt-grid-item>
+    </bolt-grid>
   {% endset %}
 
   <h3>Inside {{ container_theme|upper }} Parent Container</h3>

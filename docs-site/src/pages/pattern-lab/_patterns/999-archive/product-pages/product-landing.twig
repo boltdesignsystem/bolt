@@ -304,41 +304,52 @@
 } only %}
   {% block band_content %}
 
-    {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
-
-      {% cell 'u-bolt-width-1/1 u-bolt-width-7/12@small' %}
-        {% include '@bolt-elements-image/image.twig' with {
-          attributes: {
-            src: '/images/content/charts/decision-hub-chart.png',
-            loading: 'lazy',
-          }
-        } only %}
-      {% endcell %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/content/charts/decision-hub-chart.png',
+          loading: 'lazy',
+        }
+      } only %}
+      {% endset %}
 
 
-      {% cell 'u-bolt-width-1/1 u-bolt-width-5/12@small' %}
-        {% include '@bolt-components-headline/headline.twig' with {
-          text: 'Customer Decision Hub',
-          size: 'xxxlarge',
-          tag: 'h2'
-        } only %}
-        {% include '@bolt-components-headline/subheadline.twig' with {
-          text: 'Infuse real-time AI into every customer engagement',
-          size: 'xlarge',
-          tag: 'p'
-        } only %}
-        {% include '@bolt-components-headline/text.twig' with {
-          text: 'There’s nothing artificial about Pega’s proven AI. This always-on brain gets results. Using pragmatic artificial intelligence and decision management, you can improve response rates by up to 6X, NPS by 30 points, and get ROI as high as 500%.',
-          size: 'medium'
-        } only %}
-        {% include '@bolt-components-button/button.twig' with {
-          text: 'Call to Action',
-          url: 'https://www.google.com'
-        } only %}
-      {% endcell %}
+    {% set description %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Customer Decision Hub',
+        size: 'xxxlarge',
+        tag: 'h2'
+      } only %}
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: 'Infuse real-time AI into every customer engagement',
+        size: 'xlarge',
+        tag: 'p'
+      } only %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'There’s nothing artificial about Pega’s proven AI. This always-on brain gets results. Using pragmatic artificial intelligence and decision management, you can improve response rates by up to 6X, NPS by 30 points, and get ROI as high as 500%.',
+        size: 'medium'
+      } only %}
+      {% include '@bolt-components-button/button.twig' with {
+        text: 'Call to Action',
+        url: 'https://www.google.com'
+      } only %}
+    {% endset %}
 
-    {% endgrid %}
-
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 7@small',
+          content: image,
+          valign: 'center'
+        },
+        {
+          column_start: '1 8@small',
+          column_span: '12 5@small',
+          content: description,
+        },
+      ]
+    } only %}
 
   {% endblock %}
 {% endembed %}
@@ -348,7 +359,7 @@
 {% embed '@pl/_band--collection.twig' with {
   theme: 'light',
   size: 'medium',
-  contentItems: [
+  content: [
     {
       pattern: 'card',
       media: {
@@ -420,40 +431,37 @@
 } %}
   {% block band_content %}
 
+    {% set headline %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Analyst Reports',
+        size: 'xlarge',
+        tag: 'h3'
+      } only %}
+    {% endset %}
 
+    {% set link %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'See all analyst reports',
+        size: 'small',
+        weight: 'bold',
+        tag: 'p',
+        url: 'https://google.com',
+        icon: {
+          name: 'chevron-right',
+          position: 'after'
+        }
+      } only %}
+    {% endset %}
 
-   {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-margin-bottom' %}
-
-      {% cell 'u-bolt-flex-grow' %}
-
-        {% grid %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-            {% include '@bolt-components-headline/headline.twig' with {
-              text: 'Analyst Reports',
-              size: 'xlarge',
-              tag: 'h3'
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endcell %}
-
-
-      {% cell %}
-        {% include '@bolt-components-headline/text.twig' with {
-          text: 'See all analyst reports',
-          size: 'small',
-          weight: 'bold',
-          tag: 'p',
-          url: 'https://google.com',
-          icon: {
-            name: 'chevron-right',
-            position: 'after'
-          }
-        } only %}
-      {% endcell %}
-
-    {% endgrid %}
-
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      align: 'justify',
+      valign: 'center',
+      items: [
+        headline,
+        link
+      ]
+    } only %}
 
     {{ parent() }}
   {% endblock band_content %}
@@ -487,32 +495,27 @@
 } only %}
   {% block band_content %}
 
-    {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center' %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-text-align-center' %}
-
-
-
-        {% include '@bolt-components-blockquote/blockquote.twig' with {
-          size: 'xlarge',
-          border: 'horizontal',
-          alignItems: 'center',
-          logo: {
-            src: '/images/content/logos/logo-paypal.svg',
-            invert: true,
+    {% set quote %}
+      {% include '@bolt-components-blockquote/blockquote.twig' with {
+        size: 'xlarge',
+        border: 'horizontal',
+        alignItems: 'center',
+        logo: {
+          src: '/images/content/logos/logo-paypal.svg',
+          invert: true,
+          lazyload: true
+        },
+        author: {
+          image: {
+            src: '/images/placeholders/500x500.jpg',
             lazyload: true
           },
-          author: {
-            image: {
-              src: '/images/placeholders/500x500.jpg',
-              lazyload: true
-            },
-            name: 'Jessica Cuthbertson',
-            title: 'CEO, RBS'
-          },
-          content: '<p>We’re creating an environment where we know our customers individually, and we want to use what we know to really understand what’s important to them – so we can be there in the moments that matter.</p>'
-        } only %}
-
-
+          name: 'Jessica Cuthbertson',
+          title: 'CEO, RBS'
+        },
+        content: '<p>We’re creating an environment where we know our customers individually, and we want to use what we know to really understand what’s important to them – so we can be there in the moments that matter.</p>'
+      } only %}
+      <div class="u-bolt-text-align-center">
         {% include '@bolt-components-headline/text.twig' with {
           text: 'Watch Birgit König, Ph.D., CEO, Allianz Health Germany, share how the Pega platform meets rapidly changing customer expectations.'
         } only %}
@@ -522,17 +525,20 @@
           url: 'https://www.google.com',
           hierarchy: 'secondary'
         } only %}
+      </div>
+    {% endset %}
 
-
-      {% endcell %}
-    {% endgrid %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1 3@small',
+          column_span: '12 8@small',
+          content: quote,
+        },
+      ]
+    } only %}
   {% endblock %}
 {% endembed %}
-
-
-
-
-
 
 {% embed '@bolt-components-band/band.twig' with {
   size: 'small',
@@ -540,42 +546,32 @@
   full_bleed: true
 } only %}
   {% block band_content %}
-
-    {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix' %}
-
-      {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-flex-grow' %}
-
-        {% grid %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-            {% include '@bolt-components-headline/headline.twig' with {
-              text: 'See How Pega Can Help Your Business',
-              size: 'xlarge'
-            } only %}
-            {% include '@bolt-components-headline/text.twig' with {
-              text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endcell %}
-
-
-      {% cell 'u-bolt-width-1/1@only-small' %}
-        {% include '@bolt-components-button/button.twig' with {
-          text: 'Call to action',
-          width: 'full',
-          size: 'medium'
-        } only %}
-      {% endcell %}
-
-    {% endgrid %}
-
-
+    {% set headlines %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'See How Pega Can Help Your Business',
+        size: 'xlarge'
+      } only %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
+      } only %}
+    {% endset %}
+    {% set button %}
+      {% include '@bolt-components-button/button.twig' with {
+        text: 'Call to action',
+        width: 'full',
+        size: 'medium'
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      align: 'justify',
+      spacing: 'medium',
+      valign: 'center',
+      items: [
+        headlines,
+        button
+      ]
+    } only %}
   {% endblock %}
 {% endembed %}
-
-
-
-
-
-
 {% endblock %}
