@@ -39,21 +39,21 @@
   {% endif %}
 
   {% block content_after %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--right" %}
+    <bolt-grid gutter="medium" row-gutter="medium">
       {% if completion_percentage %}
-        {% cell 'o-bolt-grid__cell--middle' %}
+        <bolt-grid-item column-start="1" columns-span="12">
           {% include "@bolt-components-progress-bar/progress-bar.twig" with {
             value: completion_percentage,
           } only %}
-        {% endcell %}
+        </bolt-grid-item>
       {% endif %}
 
-      {% cell %}
+      <bolt-grid-item column-start="12" columns-span="2">
         {% include "@bolt-academy/_toolbar-actions.twig" with {
           downloadButton: true
         } only %}
-      {% endcell %}
-    {% endgrid %}
+      </bolt-grid-item>
+    </bolt-grid>
   {% endblock %}
 {% endembed %}
 

@@ -101,11 +101,15 @@
 		<code>&lt;bolt-card-replacement-actions&gt;</code>.
 	</bolt-text>
 	<div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-		{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-		{% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-		{{ card_replacement_web_component_demo }}
-		{% endcell %}
-		{% endgrid %}
+		{% include '@bolt-components-grid/grid.twig' with {
+			items: [
+				{
+					column_start: '1',
+					column_span: '12 6@small',
+					content: card_replacement_web_component_demo,
+				},
+			]
+		} only %}
 	</div>
 	<div class="u-bolt-margin-bottom-large">
 		{% include '@bolt-components-code-snippet/code-snippet.twig' with {
@@ -128,11 +132,15 @@
 		prop for accessibility.
 	</bolt-text>
 	<div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-		{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-		{% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-		{{ simple_link_demo }}
-		{% endcell %}
-		{% endgrid %}
+		{% include '@bolt-components-grid/grid.twig' with {
+			items: [
+				{
+					column_start: '1',
+					column_span: '12 6@small',
+					content: simple_link_demo,
+				},
+			]
+		} only %}
 	</div>
 	<div class="u-bolt-margin-bottom-large">
 		{% include '@bolt-components-code-snippet/code-snippet.twig' with {
@@ -163,11 +171,15 @@
 		element inside.
 	</bolt-text>
 	<div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-		{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-		{% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-		{{ advanced_link_demo }}
-		{% endcell %}
-		{% endgrid %}
+		{% include '@bolt-components-grid/grid.twig' with {
+			items: [
+				{
+					column_start: '1',
+					column_span: '12 6@small',
+					content: advanced_link_demo,
+				},
+			]
+		} only %}
 	</div>
 	<div class="u-bolt-margin-bottom-large">
 		{% include '@bolt-components-code-snippet/code-snippet.twig' with {
@@ -188,11 +200,15 @@
 		will work as expected.
 	</bolt-text>
 	<div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-		{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-		{% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-		{{ nested_links_demo }}
-		{% endcell %}
-		{% endgrid %}
+		{% include '@bolt-components-grid/grid.twig' with {
+			items: [
+				{
+					column_start: '1',
+					column_span: '12 6@small',
+					content: nested_links_demo,
+				},
+			]
+		} only %}
 	</div>
 	<div class="u-bolt-margin-bottom-large">
 		{% include '@bolt-components-code-snippet/code-snippet.twig' with {

@@ -1,8 +1,8 @@
 {% set schema = bolt.data.components['@bolt-components-progress-bar'].schema %}
 
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large' %}
+<bolt-grid gutter="medium" row-gutter="medium">
   {% for valueFormat in schema.properties.valueFormat.enum %}
-    {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
+    {% set progressbar %}
       <bolt-text headline>
         {{ valueFormat|capitalize }} format
       </bolt-text>
@@ -10,6 +10,15 @@
         value: 65,
         valueFormat: valueFormat,
       } only %}
-    {% endcell %}
+    {% endset %}
+    {% if valueFormat == 'percent' %}
+      <bolt-grid-item column-start="1" column-span="12 6@small">
+        {{ progressbar }}
+      </bolt-grid-item>
+    {% else %}
+      <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
+        {{ progressbar }}
+      </bolt-grid-item>
+    {% endif %}
   {% endfor %}
-{% endgrid %}
+</bolt-grid>

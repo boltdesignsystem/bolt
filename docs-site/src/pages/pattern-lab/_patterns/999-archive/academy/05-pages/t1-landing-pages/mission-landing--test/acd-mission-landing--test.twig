@@ -14,23 +14,33 @@
 
       {% set trainingSupplementalContent %}
         {% include "@bolt-academy/_h5p-embed.twig" %}
-        {% grid "o-bolt-grid--center o-bolt-grid--center o-bolt-grid--flex"  %}
-          {% cell %}
-            {% include '@bolt-elements-button/button.twig' with {
-              content: "Return to mission",
-              size: "small",
-              border_radius: "full",
+        {% set cta %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: "Return to mission",
+            size: "small",
+            border_radius: "full",
+            attributes: {
+              href: '#!',
+              class: [
+                "u-bolt-margin-top-medium",
+                "u-bolt-margin-left-auto",
+                "u-bolt-margin-right-auto",
+              ]
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-grid/grid.twig' with {
+          items: [
+            {
+              column_start: '1',
+              column_span: '12',
+              content: cta,
               attributes: {
-                href: '#!',
-                class: [
-                  "u-bolt-margin-top-medium",
-                  "u-bolt-margin-left-auto",
-                  "u-bolt-margin-right-auto",
-                ]
+                class: 'u-bolt-text-align-center'
               }
-            } only %}
-          {% endcell %}
-        {% endgrid %}
+            },
+          ]
+        } only %}
       {% endset %}
 
       {% embed "@bolt-academy/_landing-page-main-1-col.twig" %}

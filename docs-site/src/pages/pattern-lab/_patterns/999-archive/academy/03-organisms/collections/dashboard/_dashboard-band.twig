@@ -3,33 +3,31 @@
 {% set useCarousel = useCarousel ?? true %}
 
 {% set content %}
-  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--middle" %}
-    {% if sectionTitle %}
-      {% cell "u-bolt-width-1/1 #{sectionButtons ? 'u-bolt-width-1/2@small' : 'u-bolt-width-3/4@small'} u-bolt-flex-grow" %}
-        {% include "@bolt-components-headline/headline.twig" with {
-          text: sectionTitle,
-          size: "xxlarge",
-          weight: "semibold",
-          align: sectionTitleAlignment | default("left")
-        } only %}
-      {% endcell %}
-    {% endif %}
+  <div class="u-bolt-margin-bottom-medium">
+    <bolt-grid gutter="small" row-gutter="small">
+      {% if sectionTitle %}
+        <bolt-grid-item column-start="1" column-span="12">
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: sectionTitle,
+            size: "xxlarge",
+            weight: "semibold",
+            align: sectionTitleAlignment | default("left")
+          } only %}
+        </bolt-grid-item>
+      {% endif %}
 
-    {% if sectionButtons %}
-      {% cell %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--middle o-bolt-grid--xsmall" %}
+      {% if sectionButtons %}
+        <bolt-grid-item column-start="1" column-span="8">
           {% for button in sectionButtons %}
-            {% cell %}
-              {{ button }}
-            {% endcell %}
+            {{ button }}
           {% endfor %}
-        {% endgrid %}
-      {% endcell %}
-    {% endif %}
-  {% endgrid %}
+        </bolt-grid-item>
+      {% endif %}
+    </bolt-grid>
+  </div>
 
   {% if items %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-top-medium" %}
+    <bolt-grid gutter="small" row-gutter="small">
       {% if items|length > 1 and useCarousel %}
         {% set slides = [] %}
         {% for item in items %}
@@ -41,25 +39,40 @@
           {% endif %}
         {% endfor %}
 
-        {% cell "u-bolt-width-12/12 #{items|length == 2 ? 'u-bolt-width-2/3@large' : ''}" %}
+        <bolt-grid-item column-start="1" column-span="12">
           {% include "@bolt-components-carousel/carousel.twig" with {
             slides_per_view: "auto",
             nav_button_position: "outside",
             slides: slides
           } only %}
-        {% endcell %}
+        </bolt-grid-item>
       {% else %}
         {% for item in items %}
-          {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small u-bolt-width-4/12@medium" %}
+          {% set card %}
             {% if item.cardTitle %}
               {% include "@bolt-academy/_vertical-card.twig" with item %}
             {% else %}
               {{ item }}
             {% endif %}
-          {% endcell %}
+          {% endset %}
+          {% set second_iteration = loop.index % 3 == 2 %}
+          {% set third_iteration = loop.index % 3 == 0 %}
+          {% if third_iteration %}
+            <bolt-grid-item column-start="1 9@medium" column-span="12 4@medium">
+              {{ card }}
+            </bolt-grid-item>
+          {% elseif second_iteration %}
+            <bolt-grid-item column-start="1 5@medium" column-span="12 4@medium">
+              {{ card }}
+            </bolt-grid-item>
+          {% else %}
+            <bolt-grid-item column-start="1" column-span="12 4@medium">
+              {{ card }}
+            </bolt-grid-item>
+          {% endif %}
         {% endfor %}
       {% endif %}
-    {% endgrid %}
+    </bolt-grid>
   {% endif %}
 {% endset %}
 

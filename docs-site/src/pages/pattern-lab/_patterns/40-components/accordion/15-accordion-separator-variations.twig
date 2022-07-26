@@ -2,8 +2,7 @@
   By setting the <code>no_separator</code> prop to <code>true</code>, it will remove the separator in between items.
 </p>
 
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
-  {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@medium' %}
+  {% set accordion_1 %}
     <h3>Accordion with separators</h3>
     {% include '@bolt-components-accordion/accordion.twig' with {
       items: [
@@ -21,8 +20,9 @@
         },
       ]
     } only %}
-  {% endcell %}
-  {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@medium' %}
+  {% endset %}
+
+  {% set accordion_2 %}
     <h3>Accordion without separators</h3>
     {% include '@bolt-components-accordion/accordion.twig' with {
       no_separator: true,
@@ -41,5 +41,19 @@
         },
       ]
     } only %}
-  {% endcell %}
-{% endgrid %}
+  {% endset %}
+
+{% include '@bolt-components-grid/grid.twig' with {
+  items: [
+    {
+      column_start: '1',
+      column_span: '12 4@medium',
+      content: accordion_1,
+    },
+    {
+      column_start: '1 5@medium',
+      column_span: '12 4@medium',
+      content: accordion_2,
+    },
+  ]
+} only %}

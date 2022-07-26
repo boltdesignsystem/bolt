@@ -122,55 +122,59 @@
     full_bleed: true
   } only %}
     {% block band_content %}
-      {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix' %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-flex-grow' %}
-          {% grid %}
-            {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-              {% include '@bolt-components-headline/eyebrow.twig' with {
-                text: 'ペガジャパン株式会社とは？',
-              } only %}
-              {% include '@bolt-components-headline/text.twig' with {
-                text: 'Pega は顧客の仕事とデジタル プロセス オートメーションをつなぐナンバーワン ソフトウェアです。',
-                size: 'large',
-                weight: 'regular'
-              } only %}
-            {% endcell %}
-          {% endgrid %}
-        {% endcell %}
+      {% set text %}
+        {% include '@bolt-components-headline/eyebrow.twig' with {
+          text: 'ペガジャパン株式会社とは？',
+        } only %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Pega は顧客の仕事とデジタル プロセス オートメーションをつなぐナンバーワン ソフトウェアです。',
+          size: 'large',
+          weight: 'regular'
+        } only %}
+      {% endset %}
 
-        {% cell 'u-bolt-width-1/1@only-small' %}
-
-          {% set button_cta_primary %}
-            {% include '@bolt-elements-button/button.twig' with {
-              content: '会社概要',
-              hierarchy: 'primary',
-              size: 'small',
-              attributes: {
-                type: 'button'
-              }
-            } only %}
-          {% endset %}
-
-          {% set button_cta_secondary %}
-            {% include '@bolt-elements-button/button.twig' with {
-              content: 'ビジョンと主要な概念',
-              hierarchy: 'secondary',
-              size: 'small',
-              attributes: {
-                type: 'button'
-              }
-            } only %}
-          {% endset %}
-
-          {% include '@bolt-components-list/list.twig' with {
-            display: 'inline',
-            items: [
-              button_cta_primary,
-              button_cta_secondary,
-            ]
+      {% set button_group %}
+        {% set button_cta_primary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: '会社概要',
+            hierarchy: 'primary',
+            size: 'small',
+            attributes: {
+              type: 'button'
+            }
           } only %}
-        {% endcell %}
-      {% endgrid %}
+        {% endset %}
+
+        {% set button_cta_secondary %}
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'ビジョンと主要な概念',
+            hierarchy: 'secondary',
+            size: 'small',
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+        {% endset %}
+
+        {% include '@bolt-components-list/list.twig' with {
+          display: 'inline',
+          items: [
+            button_cta_primary,
+            button_cta_secondary,
+          ]
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        spacing: 'medium',
+        align: 'justify',
+        valign: 'center',
+        items: [
+          text,
+          button_group
+        ]
+      } only %}
     {% endblock %}
   {% endembed %}
 
@@ -349,31 +353,46 @@
     full_bleed: true
   } only %}
     {% block band_content %}
-        {% grid 'o-bolt-grid--matrix o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--center' %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-4/12@small' %}
-            {% include '@bolt-elements-image/image.twig' with {
-              attributes: {
-                src: '/images/content/promos/promo-16x9-salesforce-vs-pega.png',
-                loading: 'lazy',
-              }
-            } only %}
-          {% endcell %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-6/12@small' %}
-            {% include '@bolt-components-headline/headline.twig' with {
-              text: '誇大広告のSalesforce.comの本当に代わりとなるもの：Pega CRM',
-              size: 'xlarge',
-              tag: 'h3'
-            } only %}
-            {% include '@bolt-components-headline/text.twig' with {
-              text: 'Salesforce.comをご検討中ですか？誇大宣伝を信じてはいけません。現代のトップ企業がぺガを選ぶ理由をご覧ください。'
-            } only %}
-            {% include '@bolt-components-button/button.twig' with {
-              text: '本物を知る',
-              hierarchy: 'primary',
-              size: 'small'
-            } only %}
-          {% endcell %}
-        {% endgrid %}
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: '/images/content/promos/promo-16x9-salesforce-vs-pega.png',
+            loading: 'lazy'
+          }
+        } only %}
+      {% endset %}
+      {% set desc %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: '誇大広告のSalesforce.comの本当に代わりとなるもの：Pega CRM',
+          size: 'xlarge',
+          tag: 'h3'
+        } only %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Salesforce.comをご検討中ですか？誇大宣伝を信じてはいけません。現代のトップ企業がぺガを選ぶ理由をご覧ください。'
+        } only %}
+        {% include '@bolt-components-button/button.twig' with {
+          text: '本物を知る',
+          hierarchy: 'primary',
+          size: 'small'
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        gutter: 'large',
+        items: [
+          {
+            column_start: '1 2@small',
+            column_span: '12 4@small',
+            content: image,
+            valign: 'center'
+          },
+          {
+            column_start: '1 6@small',
+            column_span: '12 6@small',
+            content: desc,
+            valign: 'center'
+          },
+        ]
+      } only %}
     {% endblock %}
   {% endembed %}
 {% endblock %}

@@ -1,11 +1,11 @@
-{% grid "o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--matrix o-bolt-grid--middle" %}
-  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+<bolt-grid gutter="medium" row-gutter="medium">
+  <bolt-grid-item column-start="1" column-span="12 6@small">
     {{ headline }}
-  {% endcell %}
+  </bolt-grid-item>
 
-  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+  <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
     {{ logo }}
-  {% endcell %}
-{% endgrid %}
+  </bolt-grid-item>
+</bolt-grid>
 
 

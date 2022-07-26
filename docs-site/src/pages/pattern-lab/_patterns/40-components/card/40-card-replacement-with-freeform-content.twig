@@ -1,144 +1,158 @@
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
-    <h3>Passing free-form content inside the card-replacement body only</h3>
-    {% set card_replacement_body_content %}
-      {% include '@bolt-elements-image/image.twig' with {
-        attributes: {
-          src: '/images/placeholders/tout-4x3-climber.jpg',
-          alt: 'A Rock Climber',
-          class: 'u-bolt-margin-bottom-medium',
-          loading: 'lazy'
-        }
-      } only %}
-      {% include '@bolt-components-headline/headline.twig' with {
-        text: 'Anything can be passed inside the card body container. Woohoo!',
-        size: 'xlarge',
-      } only %}
-      {% include '@bolt-elements-button/button.twig' with {
-        content: 'This is a button',
-        attributes: {
-          type: 'button'
-        }
-      } only %}
-    {% endset %}
-    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-      tag: 'article',
-      height: 'auto',
-      body: {
-        content: card_replacement_body_content,
-      },
+
+{% set card_1 %}
+  <h3>Passing free-form content inside the card-replacement body only</h3>
+  {% set card_replacement_body_content %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        class: 'u-bolt-margin-bottom-medium',
+        loading: 'lazy'
+      }
     } only %}
-  {% endcell %}
-  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
-    <h3>Passing free-form content for the entire card</h3>
-    {% set card_replacement_content %}
-      {% include '@bolt-components-card-replacement/_card-replacement-actions.twig' with {
-        actions: [
-          {
-            text: 'This is a button',
-            url: 'https://google.com',
-          },
-          {
-            text: 'Verylongunbrokenword',
-            url: 'https://google.com',
-          }
-        ],
-      } %}
-      {% include '@bolt-components-card-replacement/_card-replacement-body.twig' with {
-        body: {
-          eyebrow: 'This is an eyebrow',
-          headline: 'This is a headline',
-          paragraph: 'This is a paragraph.',
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Anything can be passed inside the card body container. Woohoo!',
+      size: 'xlarge',
+    } only %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'This is a button',
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    tag: 'article',
+    height: 'auto',
+    body: {
+      content: card_replacement_body_content,
+    },
+  } only %}
+{% endset %}
+{% set card_2 %}
+  <h3>Passing free-form content for the entire card</h3>
+  {% set card_replacement_content %}
+    {% include '@bolt-components-card-replacement/_card-replacement-actions.twig' with {
+      actions: [
+        {
+          text: 'This is a button',
+          url: 'https://google.com',
         },
-      } %}
-      {% include '@bolt-components-card-replacement/_card-replacement-actions.twig' with {
-        actions: [
-          {
-            text: 'This is a button',
-            url: 'https://google.com',
-          },
-          {
-            text: 'Verylongunbrokenword',
-            url: 'https://google.com',
-          }
-        ],
-      } %}
-      {% include '@bolt-components-card-replacement/_card-replacement-body.twig' with {
-        body: {
-          eyebrow: 'This is an eyebrow',
-          headline: 'This is a headline',
-          paragraph: 'This is a paragraph.',
+        {
+          text: 'Verylongunbrokenword',
+          url: 'https://google.com',
+        }
+      ],
+    } %}
+    {% include '@bolt-components-card-replacement/_card-replacement-body.twig' with {
+      body: {
+        eyebrow: 'This is an eyebrow',
+        headline: 'This is a headline',
+        paragraph: 'This is a paragraph.',
+      },
+    } %}
+    {% include '@bolt-components-card-replacement/_card-replacement-actions.twig' with {
+      actions: [
+        {
+          text: 'This is a button',
+          url: 'https://google.com',
         },
-      } %}
-      <hr class="u-bolt-margin-none">
-      {% include '@bolt-components-band/band.twig' with {
-        theme: 'none',
-        size: 'xsmall',
-        full_bleed: false,
-        content: 'Anything can be passed inside the card container. Woohoo!',
-      } only %}
-      {% include '@bolt-components-table/table.twig' with {
-        headers: {
-          top: {
-            cells: [
-              'This card is',
-              'completely customized',
-              'using the content prop',
-            ]
-          },
-          side: {
-            cells: [
-              'Row 1',
-              'Row 2',
-              'Row 3',
-              'Footer',
-            ]
-          }
-        },
-        rows: [
-          {
-            cells: [
-              'R1C1',
-              'R1C2',
-              'R1C3',
-            ]
-          },
-          {
-            cells: [
-              'R2C1',
-              'R2C2',
-              'R2C3',
-            ]
-          },
-          {
-            cells: [
-              'R3C1',
-              'R3C2',
-              'R3C3',
-            ]
-          }
-        ],
-        footer: {
+        {
+          text: 'Verylongunbrokenword',
+          url: 'https://google.com',
+        }
+      ],
+    } %}
+    {% include '@bolt-components-card-replacement/_card-replacement-body.twig' with {
+      body: {
+        eyebrow: 'This is an eyebrow',
+        headline: 'This is a headline',
+        paragraph: 'This is a paragraph.',
+      },
+    } %}
+    <hr class="u-bolt-margin-none">
+    {% include '@bolt-components-band/band.twig' with {
+      theme: 'none',
+      size: 'xsmall',
+      full_bleed: false,
+      content: 'Anything can be passed inside the card container. Woohoo!',
+    } only %}
+    {% include '@bolt-components-table/table.twig' with {
+      headers: {
+        top: {
           cells: [
-            'FC1',
-            'FC2',
-            'FC3',
+            'This card is',
+            'completely customized',
+            'using the content prop',
+          ]
+        },
+        side: {
+          cells: [
+            'Row 1',
+            'Row 2',
+            'Row 3',
+            'Footer',
           ]
         }
-      } only %}
-      {% include '@bolt-components-card-replacement/_card-replacement-media.twig' with {
-        media: {
-          image: {
-            src: '/images/placeholders/landscape-16x9-mountains.jpg',
-            alt: 'Image alt.',
-          },
+      },
+      rows: [
+        {
+          cells: [
+            'R1C1',
+            'R1C2',
+            'R1C3',
+          ]
+        },
+        {
+          cells: [
+            'R2C1',
+            'R2C2',
+            'R2C3',
+          ]
+        },
+        {
+          cells: [
+            'R3C1',
+            'R3C2',
+            'R3C3',
+          ]
         }
-      } %}
-    {% endset %}
-    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-      tag: 'article',
-      height: 'auto',
-      content: card_replacement_content,
+      ],
+      footer: {
+        cells: [
+          'FC1',
+          'FC2',
+          'FC3',
+        ]
+      }
     } only %}
-  {% endcell %}
-{% endgrid %}
+    {% include '@bolt-components-card-replacement/_card-replacement-media.twig' with {
+      media: {
+        image: {
+          src: '/images/placeholders/landscape-16x9-mountains.jpg',
+          alt: 'Image alt.',
+        },
+      }
+    } %}
+  {% endset %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    tag: 'article',
+    height: 'auto',
+    content: card_replacement_content,
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-grid/grid.twig' with {
+  items: [
+    {
+      column_start: '1 3@small',
+      column_span: '6 4@small',
+      content: card_1,
+    },
+    {
+      column_start: '7',
+      column_span: '6 4@small',
+      content: card_2,
+    },
+  ]
+} only %}

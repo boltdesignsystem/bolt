@@ -86,11 +86,15 @@
     Bolt Button is a web component, you can simply use <code>&lt;bolt-button&gt;</code> in the markup to make it render.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid %}
-      {% cell %}
-        {{ button_demo }}
-      {% endcell %}
-    {% endgrid %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12',
+          content: button_demo,
+        },
+      ]
+    } only %}
   </div>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
     content: button_demo,
@@ -110,11 +114,15 @@
     <mark>Note: the slot attribute is required in order for the icon to be placed and spaced correctly within the button. Even if icon-only option is turned on, slot is still required.</mark>
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid %}
-      {% cell %}
-        {{ button_basic_demo }}
-      {% endcell %}
-    {% endgrid %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12',
+          content: button_basic_demo,
+        },
+      ]
+    } only %}
   </div>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
     content: button_basic_demo_code,
@@ -134,11 +142,15 @@
     <mark>Note: the hierarchy prop is named color instead.</mark>
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid %}
-      {% cell %}
-        {{ button_advanced_demo }}
-      {% endcell %}
-    {% endgrid %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12',
+          content: button_advanced_demo,
+        },
+      ]
+    } only %}
   </div>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
     content: button_advanced_demo_code,

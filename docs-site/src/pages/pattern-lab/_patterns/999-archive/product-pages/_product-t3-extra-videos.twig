@@ -308,56 +308,80 @@
   full_bleed: true
 } only %}
   {% block band_content %}
+    {% set description %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
+        weight: 'regular',
+        size: 'xxlarge',
+        tag: 'h2'
+      } only %}
 
-    {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
+        size: 'medium'
+      } only %}
 
-      {% cell 'u-bolt-width-1/1 u-bolt-width-5/12@small' %}
-        {% include '@bolt-components-headline/headline.twig' with {
-          text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
-          weight: 'regular',
-          size: 'xxlarge',
-          tag: 'h2'
+      {% set button_cta_primary %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Call to action',
+          hierarchy: 'primary',
+          attributes: {
+            type: 'button'
+          }
         } only %}
+      {% endset %}
 
-        {% include '@bolt-components-headline/text.twig' with {
-          text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
-          size: 'medium'
+      {% set button_cta_secondary %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Call to action',
+          hierarchy: 'secondary',
+          attributes: {
+            type: 'button'
+          }
         } only %}
+      {% endset %}
 
-        {% include '@bolt-components-button-group/button-group.twig' with {
-          'buttons': [
-            {
-              'text': 'Call to action',
-              'hierarchy': 'primary'
-            },
-            {
-              'text': 'Call to action',
-              'hierarchy': 'secondary'
-            }
-          ]
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        items: [
+          button_cta_primary,
+          button_cta_secondary,
+        ]
+      } only %}
+    {% endset %}
+
+    {% set image %}
+      {% set device_viewer_image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: '/images/content/screenshots/device-screenshot--tablet.jpg',
+            sizes: '(min-width: 1400px) 40.64285714vw, (min-width: 600px) 41vw, 72.5vw',
+            loading: 'lazy',
+          }
         } only %}
-      {% endcell %}
-
-      {% cell 'u-bolt-width-1/1 u-bolt-width-7/12@small' %}
-        {% set device_viewer_image %}
-          {% include '@bolt-elements-image/image.twig' with {
-            attributes: {
-              src: '/images/content/screenshots/device-screenshot--tablet.jpg',
-              loading: 'lazy',
-            }
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-device-viewer/device-viewer.twig' with {
-          device: 'ipad',
-          orientation: 'landscape',
-          color: 'black',
-          content: device_viewer_image,
-        } only %}
-      {% endcell %}
-
-    {% endgrid %}
-
-
+      {% endset %}
+      {% include '@bolt-components-device-viewer/device-viewer.twig' with {
+        device: 'ipad',
+        orientation: 'landscape',
+        color: 'black',
+        content: device_viewer_image,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 5@medium',
+          content: description,
+          valign: 'center'
+        },
+        {
+          column_start: '1 6@medium',
+          column_span: '12 7@medium',
+          content: image,
+        },
+      ]
+    } only %}
   {% endblock %}
 {% endembed %}
 
@@ -370,56 +394,79 @@
   full_bleed: true
 } only %}
   {% block band_content %}
-
-    {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
-
-      {% cell 'u-bolt-width-1/1 u-bolt-width-7/12@small' %}
-        {% set device_viewer_image %}
-          {% include '@bolt-elements-image/image.twig' with {
-            attributes: {
-              src: '/images/content/screenshots/device-screenshot--tablet-portrait.jpg',
-              loading: 'lazy',
-            }
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-device-viewer/device-viewer.twig' with {
-          device: 'ipad',
-          orientation: 'portrait',
-          color: 'black',
-          content: device_viewer_image,
+    {% set image %}
+      {% set device_viewer_image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: '/images/content/screenshots/device-screenshot--tablet-portrait.jpg',
+            loading: 'lazy',
+          }
         } only %}
-      {% endcell %}
+      {% endset %}
+      {% include '@bolt-components-device-viewer/device-viewer.twig' with {
+        device: 'ipad',
+        orientation: 'portrait',
+        color: 'black',
+        content: device_viewer_image,
+      } only %}
+    {% endset %}
 
+    {% set description %}
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
+        size: 'xxlarge',
+        tag: 'span'
+      } only %}
 
-      {% cell 'u-bolt-width-1/1 u-bolt-width-5/12@small' %}
-        {% include '@bolt-components-headline/subheadline.twig' with {
-          text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
-          size: 'xxlarge',
-          tag: 'span'
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
+        size: 'medium'
+      } only %}
+
+      {% set button_cta_primary %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Call to action',
+          hierarchy: 'primary',
+          attributes: {
+            type: 'button'
+          }
         } only %}
+      {% endset %}
 
-        {% include '@bolt-components-headline/text.twig' with {
-          text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
-          size: 'medium'
+      {% set button_cta_secondary %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Call to action',
+          hierarchy: 'secondary',
+          attributes: {
+            type: 'button'
+          }
         } only %}
+      {% endset %}
 
-        {% include '@bolt-components-button-group/button-group.twig' with {
-          'buttons': [
-            {
-              'text': 'Call to action',
-              'hierarchy': 'primary'
-            },
-            {
-              'text': 'Call to action',
-              'hierarchy': 'secondary'
-            }
-          ]
-        } only %}
-      {% endcell %}
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        items: [
+          button_cta_primary,
+          button_cta_secondary,
+        ]
+      } only %}
+    {% endset %}
 
-    {% endgrid %}
-
-
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 7@medium',
+          content: image,
+        },
+        {
+          column_start: '1 8@medium',
+          column_span: '12 5@medium',
+          content: description,
+          valign: 'center'
+        },
+      ]
+    } only %}
   {% endblock %}
 {% endembed %}
 
@@ -429,45 +476,59 @@
     full_bleed: true
   } only %}
     {% block band_content %}
-      {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-          {% set videoUuid1 = 'js-bolt-video-uuid--1' %}
-          {% set video %}
-            <video-js
-            data-account="1900410236"
-            data-player="O3FkeBiaDz"
-            data-embed="default"
-            data-video-id="5609376179001"
-            controls
-            id="{{ videoUuid1 }}"
-            class="c-base-video"></video-js>
-          {% endset %}
-            {% include '@bolt-elements-ratio/ratio.twig' with {
-              content: video,
-              ratio: 'wide'
-            } only %}
-        {% endcell %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-          {% include '@bolt-components-headline/subheadline.twig' with {
-            text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
-            size: 'xxlarge',
-            tag: 'span'
-          } only %}
+    {% set video_player %}
+      {% set videoUuid3 = 'js-bolt-video-uuid--3b' %}
+      {% set video %}
+        <video-js
+          data-account="1900410236"
+          data-player="O3FkeBiaDz"
+          data-embed="default"
+          data-video-id="5609376179001"
+          controls
+          id="{{ videoUuid3 }}"
+          class="c-base-video"></video-js>
+      {% endset %}
 
-          {% include '@bolt-components-headline/text.twig' with {
-            text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
-            size: 'medium'
-          } only %}
-          {% include '@bolt-components-button/button.twig' with {
-            text: 'Toggle video',
-            type: 'button',
-            attributes: {
-              'on-click': 'toggle',
-              'on-click-target': videoUuid3
-            }
-          } only %}
-        {% endcell %}
-      {% endgrid %}
+      {% include '@bolt-elements-ratio/ratio.twig' with {
+        content: video,
+        ratio: 'wide'
+      } only %}
+    {% endset %}
+    {% set description %}
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
+        size: 'xxlarge',
+        tag: 'span'
+      } only %}
+
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
+        size: 'medium'
+      } only %}
+      {% include '@bolt-components-button/button.twig' with {
+        text: 'Toggle video',
+        type: 'button',
+        attributes: {
+          class: 'js-base-video-toggle',
+          'data-video-target': videoUuid3
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 6@medium',
+          content: video_player,
+        },
+        {
+          column_start: '1 7@medium',
+          column_span: '12 6@medium',
+          content: description,
+          valign: 'center'
+        },
+      ]
+    } only %}
     {% endblock %}
   {% endembed %}
 
@@ -477,70 +538,84 @@
   full_bleed: true
 } only %}
   {% block band_content %}
+    {% set description %}
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
+        size: 'xxlarge',
+        tag: 'span'
+      } only %}
 
-    {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
+        size: 'medium'
+      } only %}
 
-      {% cell 'u-bolt-width-1/1 u-bolt-width-5/12@small' %}
-        {% include '@bolt-components-headline/subheadline.twig' with {
-          text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
-          size: 'xxlarge',
-          tag: 'span'
+      {% include '@bolt-components-button-group/button-group.twig' with {
+        'buttons': [
+          {
+            'text': 'Call to action',
+            'hierarchy': 'primary'
+          },
+          {
+            'text': 'Call to action',
+            'hierarchy': 'secondary'
+          }
+        ]
+      } only %}
+    {% endset %}
+
+    {% set image_1 %}
+      {% set device_viewer_image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: '/images/content/screenshots/device-screenshot--phone.jpg',
+            loading: 'lazy',
+          }
         } only %}
+      {% endset %}
+      {% include '@bolt-components-device-viewer/device-viewer.twig' with {
+        device: 'iphone8',
+        orientation: 'portrait',
+        color: 'black',
+        content: device_viewer_image,
+      } only %}
+    {% endset %}
 
-        {% include '@bolt-components-headline/text.twig' with {
-          text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
-          size: 'medium'
+    {% set image_2 %}
+      {% set device_viewer_image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: '/images/content/screenshots/device-screenshot--phone.jpg',
+            loading: 'lazy',
+          }
         } only %}
+      {% endset %}
+      {% include '@bolt-components-device-viewer/device-viewer.twig' with {
+        device: 'iphone8',
+        orientation: 'portrait',
+        color: 'gold',
+        content: device_viewer_image,
+      } only %}
+    {% endset %}
 
-        {% include '@bolt-components-button-group/button-group.twig' with {
-          'buttons': [
-            {
-              'text': 'Call to action',
-              'hierarchy': 'primary'
-            },
-            {
-              'text': 'Call to action',
-              'hierarchy': 'secondary'
-            }
-          ]
+    {% set image_3 %}
+      {% set device_viewer_image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: '/images/content/screenshots/device-screenshot--phone.jpg',
+            loading: 'lazy',
+          }
         } only %}
-      {% endcell %}
+      {% endset %}
+      {% include '@bolt-components-device-viewer/device-viewer.twig' with {
+        device: 'iphone8',
+        orientation: 'landscape',
+        color: 'gold',
+        content: device_viewer_image,
+      } only %}
+    {% endset %}
 
-      {% cell 'u-bolt-width-1/1 u-bolt-width-7/12@small' %}
-        {% set device_viewer_image %}
-          {% include '@bolt-elements-image/image.twig' with {
-            attributes: {
-              src: '/images/content/screenshots/device-screenshot--phone.jpg',
-              loading: 'lazy',
-            }
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-device-viewer/device-viewer.twig' with {
-          device: 'iphone8',
-          orientation: 'portrait',
-          color: 'black',
-          content: device_viewer_image,
-        } only %}
-      {% endcell %}
-
-       {% cell 'u-bolt-width-1/1 u-bolt-width-7/12@small' %}
-         {% set device_viewer_image %}
-           {% include '@bolt-elements-image/image.twig' with {
-             attributes: {
-              src: '/images/content/screenshots/device-screenshot--phone.jpg',
-              loading: 'lazy',
-             }
-           } only %}
-         {% endset %}
-        {% include '@bolt-components-device-viewer/device-viewer.twig' with {
-          device: 'iphone8',
-          orientation: 'portrait',
-          color: 'gold',
-          content: device_viewer_image,
-        } only %}
-      {% endcell %}
-
-      {% cell 'u-bolt-width-1/1 u-bolt-width-7/12@small' %}
+      {% set image_4 %}
         {% set device_viewer_image %}
           {% include '@bolt-elements-image/image.twig' with {
             attributes: {
@@ -552,31 +627,41 @@
         {% include '@bolt-components-device-viewer/device-viewer.twig' with {
           device: 'iphone8',
           orientation: 'landscape',
-          color: 'gold',
+          color: 'black',
           content: device_viewer_image,
         } only %}
-      {% endcell %}
+    {% endset %}
 
-
-       {% cell 'u-bolt-width-1/1' %}
-         {% set device_viewer_image %}
-           {% include '@bolt-elements-image/image.twig' with {
-             attributes: {
-                src: '/images/content/screenshots/device-screenshot--phone.jpg',
-                loading: 'lazy',
-             }
-           } only %}
-         {% endset %}
-         {% include '@bolt-components-device-viewer/device-viewer.twig' with {
-           device: 'iphone8',
-           orientation: 'landscape',
-           color: 'black',
-           content: device_viewer_image,
-         } only %}
-      {% endcell %}
-
-    {% endgrid %}
-
+    {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1',
+            column_span: '12 5@medium',
+            content: description,
+            valign: 'center'
+          },
+          {
+            column_start: '1 6@medium',
+            column_span: '12 7@medium',
+            content: image_1,
+          },
+          {
+            column_start: '1',
+            column_span: '12 7@medium',
+            content: image_2,
+          },
+          {
+            column_start: '1',
+            column_span: '12 7@medium',
+            content: image_3,
+          },
+          {
+            column_start: '1 2@medium',
+            column_span: '12 10@medium',
+            content: image_4,
+          },
+        ]
+      } only %}
 
   {% endblock %}
 {% endembed %}
@@ -587,58 +672,7 @@
     full_bleed: true
   } only %}
     {% block band_content %}
-      {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-          {% include '@bolt-components-headline/subheadline.twig' with {
-            text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
-            size: 'xxlarge',
-            tag: 'span'
-          } only %}
-
-          {% include '@bolt-components-headline/text.twig' with {
-            text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
-            size: 'medium'
-          } only %}
-          {% set videoUuid3 = 'js-bolt-video-uuid--3' %}
-          {% include '@bolt-components-button/button.twig' with {
-            text: 'Toggle video',
-            type: 'button',
-            attributes: {
-              'on-click': 'toggle',
-              'on-click-target': videoUuid3
-            }
-          } only %}
-        {% endcell %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-          {% set video %}
-            <video-js
-              data-account="1900410236"
-              data-player="O3FkeBiaDz"
-              data-embed="default"
-              data-video-id="5609376179001"
-              controls
-              id="{{ videoUuid3 }}"
-              class="c-base-video"></video-js>
-          {% endset %}
-          {% include '@bolt-elements-ratio/ratio.twig' with {
-            content: video,
-            ratio: 'wide'
-          } only %}
-        {% endcell %}
-      {% endgrid %}
-    {% endblock %}
-  {% endembed %}
-
-{% embed '@bolt-components-band/band.twig' with {
-  size: 'medium',
-  theme: 'light',
-  full_bleed: true
-} only %}
-  {% block band_content %}
-
-    {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix o-bolt-grid--center' %}
-
-      {% cell 'u-bolt-width-1/1 u-bolt-width-6/12@small' %}
+      {% set description %}
         {% include '@bolt-components-headline/subheadline.twig' with {
           text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
           size: 'xxlarge',
@@ -649,38 +683,116 @@
           text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
           size: 'medium'
         } only %}
-
-        {% include '@bolt-components-button-group/button-group.twig' with {
-          'buttons': [
-            {
-              'text': 'Call to action',
-              'hierarchy': 'primary'
-            },
-            {
-              'text': 'Call to action',
-              'hierarchy': 'secondary'
-            }
-          ]
+        {% set videoUuid2 = 'js-bolt-video-uuid--2' %}
+        {% include '@bolt-components-button/button.twig' with {
+          text: 'Toggle video',
+          type: 'button',
+          attributes: {
+            'on-click': 'toggle',
+            'on-click-target': videoUuid2
+          }
         } only %}
-      {% endcell %}
+      {% endset %}
 
-      {% cell 'u-bolt-width-1/1 u-bolt-width-6/12@small' %}
-        {% set device_viewer_image %}
-          {% include '@bolt-elements-image/image.twig' with {
-            attributes: {
-              src: '/images/content/screenshots/device-screenshot--desktop.jpg',
-              loading: 'lazy',
-            }
-          } only %}
+      {% set video_player %}
+        {% set video %}
+          <video-js
+            data-account="1900410236"
+            data-player="O3FkeBiaDz"
+            data-embed="default"
+            data-video-id="5609376179001"
+            controls
+            id="{{ videoUuid2 }}"
+            class="c-base-video"></video-js>
         {% endset %}
-        {% include '@bolt-components-device-viewer/device-viewer.twig' with {
-          device: 'macbook',
-          orientation: 'landscape',
-          color: 'black',
-          content: device_viewer_image,
+        {% include '@bolt-elements-ratio/ratio.twig' with {
+          content: video,
+          ratio: 'wide'
         } only %}
-      {% endcell %}
-    {% endgrid %}
+      {% endset %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1',
+            column_span: '12 6@medium',
+            content: description,
+            valign: 'center'
+          },
+          {
+            column_start: '1 7@medium',
+            column_span: '12 6@medium',
+            content: video_player,
+          },
+        ]
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+{% embed '@bolt-components-band/band.twig' with {
+  size: 'medium',
+  theme: 'light',
+  full_bleed: true
+} only %}
+  {% block band_content %}
+
+    {% set description %}
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
+        size: 'xxlarge',
+        tag: 'span'
+      } only %}
+
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
+        size: 'medium'
+      } only %}
+
+      {% include '@bolt-components-button-group/button-group.twig' with {
+        'buttons': [
+          {
+            'text': 'Call to action',
+            'hierarchy': 'primary'
+          },
+          {
+            'text': 'Call to action',
+            'hierarchy': 'secondary'
+          }
+        ]
+      } only %}
+    {% endset %}
+
+    {% set image %}
+      {% set device_viewer_image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            src: '/images/content/screenshots/device-screenshot--desktop.jpg',
+            loading: 'lazy',
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-device-viewer/device-viewer.twig' with {
+        device: 'macbook',
+        orientation: 'landscape',
+        color: 'black',
+        content: device_viewer_image,
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 6@medium',
+          content: description,
+          valign: 'center'
+        },
+        {
+          column_start: '1 7@medium',
+          column_span: '12 6@medium',
+          content: image,
+        },
+      ]
+    } only %}
   {% endblock %}
 {% endembed %}
 
@@ -691,177 +803,166 @@
   full_bleed: true
 } only %}
   {% block band_content %}
-    {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-        {% set videoUuid3 = 'js-bolt-video-uuid--3b' %}
-        {% set video %}
-          <video-js
-            data-account="1900410236"
-            data-player="O3FkeBiaDz"
-            data-embed="default"
-            data-video-id="5609376179001"
-            controls
-            id="{{ videoUuid3 }}"
-            class="c-base-video"></video-js>
-        {% endset %}
-        {% include '@bolt-elements-ratio/ratio.twig' with {
-          content: video,
-          ratio: 'wide'
-        } only %}
-        {% endcell %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
-          {% include '@bolt-components-headline/subheadline.twig' with {
-            text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
-            size: 'xxlarge',
-            tag: 'span'
-          } only %}
+    {% set video_player %}
+      {% set videoUuid3b = 'js-bolt-video-uuid--3b' %}
 
-          {% include '@bolt-components-headline/text.twig' with {
-            text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
-            size: 'medium'
-          } only %}
-          {% include '@bolt-components-button/button.twig' with {
-            text: 'Toggle video',
-            type: 'button',
-            attributes: {
-              'on-click': 'toggle',
-              'on-click-target': videoUuid3
-            }
-          } only %}
-        {% endcell %}
-      {% endgrid %}
+      {% set video %}
+        <video-js
+          data-account="1900410236"
+          data-player="O3FkeBiaDz"
+          data-embed="default"
+          data-video-id="5609376179001"
+          controls
+          id="{{ videoUuid3b }}"
+          class="c-base-video"></video-js>
+      {% endset %}
+      {% include '@bolt-elements-ratio/ratio.twig' with {
+        content: video,
+        ratio: 'wide'
+      } only %}
+    {% endset %}
+
+    {% set description %}
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: 'Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>',
+        size: 'xxlarge',
+        tag: 'span'
+      } only %}
+
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.',
+        size: 'medium'
+      } only %}
+      {% include '@bolt-components-button/button.twig' with {
+        text: 'Toggle video',
+        type: 'button',
+        attributes: {
+          'on-click': 'toggle',
+          'on-click-target': videoUuid3b
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 6@medium',
+          content: video_player,
+        },
+        {
+          column_start: '1 7@medium',
+          column_span: '12 6@medium',
+          content: description,
+          valign: 'center'
+        },
+      ]
+    } only %}
   {% endblock %}
 {% endembed %}
 
 
 
 {% embed '@pl/_band--collection.twig' with {
-  'theme': 'xlight',
-  'size': 'medium',
+  theme: 'xlight',
+  size: 'medium',
   content: [
     {
-      'pattern': 'card',
-      'image': {
-        'src': '/images/content/promos/promo-16x9-anthem.jpg'
-      },
-      'teaser': {
-        'eyebrow': {
-          text: 'Article'
+      pattern: 'card',
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-anthem.jpg'
         },
-        'logo': {
+      },
+      body: {
+        eyebrow: 'Article',
+        logo: {
           src: '/images/content/logos/logo-paypal.svg'
         },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Learn More',
-            'hierarchy': 'secondary',
-            'url': 'https://www.google.com/pega7',
-            'width': 'full'
-          }
-        ]
-      }
+        headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Learn More',
+          hierarchy: 'secondary',
+          url: 'https://www.google.com/pega7',
+        }
+      ]
     },
     {
-      'pattern': 'card',
-      'image': {
-        'src': '/images/content/promos/promo-16x9-anthem.jpg'
-      },
-      'teaser': {
-        'eyebrow': {
-          text: 'Article'
+      pattern: 'card',
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-anthem.jpg'
         },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Learn More',
-            'hierarchy': 'secondary',
-            'url': 'https://www.google.com/pega7',
-            'width': 'full'
-          }
-        ]
-      }
+      },
+      body: {
+        eyebrow: 'Article',
+        headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Learn More',
+          hierarchy: 'secondary',
+          url: 'https://www.google.com/pega7',
+        }
+      ]
     },
     {
-      'pattern': 'card',
-      'image': {
-        'src': '/images/content/promos/promo-16x9-anthem.jpg'
-      },
-      'teaser': {
-        'eyebrow': {
-          text: 'Article'
+      pattern: 'card',
+      media: {
+        image: {
+          src: '/images/content/promos/promo-16x9-anthem.jpg'
         },
-        'headlines': [
-          {
-            'type': 'headline',
-            'text': 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
-            'size': 'large'
-          }
-        ],
-        'content': 'Simplify and automate to reduce costs and improve agility.',
-        'buttons': [
-          {
-            'text': 'Learn More',
-            'hierarchy': 'secondary',
-            'url': 'https://www.google.com/pega7',
-            'width': 'full'
-          }
-        ]
-      }
+      },
+      body: {
+        eyebrow: 'Article',
+        headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Learn More',
+          hierarchy: 'secondary',
+          url: 'https://www.google.com/pega7',
+        }
+      ]
     }
   ]
 } %}
   {% block band_content %}
+    {% set headline %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Analyst Reports',
+        size: 'xlarge',
+        tag: 'h3'
+      } only %}
+    {% endset %}
 
+    {% set link %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'See all analyst reports',
+        size: 'small',
+        weight: 'bold',
+        tag: 'p',
+        url: 'https://google.com',
+        icon: {
+          name: 'chevron-right',
+          position: 'after'
+        }
+      } only %}
+    {% endset %}
 
-
-   {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-margin-bottom' %}
-
-      {% cell 'u-bolt-flex-grow' %}
-
-        {% grid %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-            {% include '@bolt-components-headline/headline.twig' with {
-              text: 'Analyst Reports',
-              size: 'xlarge',
-              tag: 'h3'
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endcell %}
-
-
-      {% cell %}
-        {% include '@bolt-components-headline/text.twig' with {
-          text: 'See all analyst reports',
-          size: 'small',
-          weight: 'bold',
-          tag: 'p',
-          url: 'https://google.com',
-          icon: {
-            name: 'chevron-right',
-            position: 'after'
-          }
-        } only %}
-      {% endcell %}
-
-    {% endgrid %}
-
-
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      align: 'justify',
+      valign: 'center',
+      items: [
+        headline,
+        link
+      ]
+    } only %}
     {{ parent() }}
   {% endblock band_content %}
 {% endembed %}
@@ -893,30 +994,27 @@
 } only %}
   {% block band_content %}
 
-    {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center' %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-text-align-center' %}
-
-
-
-        {% include '@bolt-components-blockquote/blockquote.twig' with {
-          size: 'xlarge',
-          border: 'horizontal',
-          alignItems: 'center',
-          logo: {
-            src: '/images/content/logos/logo-paypal.svg',
-            invert: true
+    {% set quote %}
+      {% include '@bolt-components-blockquote/blockquote.twig' with {
+        size: 'xlarge',
+        border: 'horizontal',
+        alignItems: 'center',
+        logo: {
+          src: '/images/content/logos/logo-paypal.svg',
+          invert: true,
+          lazyload: true
+        },
+        author: {
+          image: {
+            src: '/images/placeholders/500x500.jpg',
+            lazyload: true
           },
-          author: {
-            image: {
-              src: '/images/placeholders/500x500.jpg'
-            },
-            name: 'Jessica Cuthbertson',
-            title: 'CEO, RBS'
-          },
-          content: '<p>We’re creating an environment where we know our customers individually, and we want to use what we know to really understand what’s important to them – so we can be there in the moments that matter.</p>'
-        } only %}
-
-
+          name: 'Jessica Cuthbertson',
+          title: 'CEO, RBS'
+        },
+        content: '<p>We’re creating an environment where we know our customers individually, and we want to use what we know to really understand what’s important to them – so we can be there in the moments that matter.</p>'
+      } only %}
+      <div class="u-bolt-text-align-center">
         {% include '@bolt-components-headline/text.twig' with {
           text: 'Watch Birgit König, Ph.D., CEO, Allianz Health Germany, share how the Pega platform meets rapidly changing customer expectations.'
         } only %}
@@ -926,10 +1024,18 @@
           url: 'https://www.google.com',
           hierarchy: 'secondary'
         } only %}
+      </div>
+    {% endset %}
 
-
-      {% endcell %}
-    {% endgrid %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1 3@small',
+          column_span: '12 8@small',
+          content: quote,
+        },
+      ]
+    } only %}
   {% endblock %}
 {% endembed %}
 
@@ -945,257 +1051,257 @@
 } only %}
   {% block band_content %}
 
-    {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix' %}
+    {% set headlines %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'See How Pega Can Help Your Business',
+        size: 'xlarge'
+      } only %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
+      } only %}
+    {% endset %}
+    {% set button %}
+      {% include '@bolt-components-button/button.twig' with {
+        text: 'Call to action',
+        width: 'full',
+        size: 'medium'
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      align: 'justify',
+      spacing: 'medium',
+      valign: 'center',
+      items: [
+        headlines,
+        button
+      ]
+    } only %}
 
-      {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-flex-grow' %}
 
-        {% grid %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-            {% include '@bolt-components-headline/headline.twig' with {
-              text: 'See How Pega Can Help Your Business',
-              size: 'xlarge'
-            } only %}
-            {% include '@bolt-components-headline/text.twig' with {
-              text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endcell %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="3973999413001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="5138448829001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-      {% cell 'u-bolt-width-1/1@only-small' %}
-        {% include '@bolt-components-button/button.twig' with {
-          text: 'Call to action',
-          width: 'full',
-          size: 'medium'
-        } only %}
-      {% endcell %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="3974028469001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-    {% endgrid %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="5400908626001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="3973999413001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="4584402777001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="5138448829001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="3979775517001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="3974028469001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="4175249227001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="5400908626001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="4236820085001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="4584402777001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="4922500787001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="3979775517001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="5103362380001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="4175249227001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="3974028459001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="4236820085001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="4763108346001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="4922500787001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="3974012235001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="5103362380001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="5214595752001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="3974028459001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="5273142065001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="4763108346001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
-
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="3974012235001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
-
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="5214595752001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
-
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="5273142065001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
-
-  {% set video %}
-    <video-js
-      data-account="1900410236"
-      data-player="O3FkeBiaDz"
-      data-embed="default"
-      data-video-id="4944556027001"
-      controls
-      class="c-base-video"></video-js>
-  {% endset %}
-  {% include '@bolt-elements-ratio/ratio.twig' with {
-    content: video,
-    ratio: 'wide'
-  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="4944556027001"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
 
   {% endblock %}
 {% endembed %}

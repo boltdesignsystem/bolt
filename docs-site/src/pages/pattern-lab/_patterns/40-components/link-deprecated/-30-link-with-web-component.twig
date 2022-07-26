@@ -47,11 +47,7 @@
       Bolt Link is a web component that renders a semantic link with Bolt styles. To make a simple link, wrap a semantic <code>&lt;a&gt;</code> element with a <code>&lt;bolt-link&gt;</code> element. Common HTML attributes such as <code>href</code> and <code>target</code> placed on the <code>&lt;a&gt;</code> would work as expected.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-12/12" %}
-          {{ link_demo_advanced }}
-        {% endcell %}
-      {% endgrid %}
+      {{ link_demo_advanced }}
     </div>
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
       content: link_demo_advanced,
@@ -68,11 +64,7 @@
       When using inline links, do not add line breaks in or around your <code>&lt;bolt-icon&gt;</code> tag. Inline links will show the white-space added by line breaks, so removing them is necessary to eliminate unwanted space.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-12/12" %}
-          {{ link_demo_inline }}
-        {% endcell %}
-      {% endgrid %}
+      {{ link_demo_inline }}
     </div>
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
       content: link_demo_inline_code,
@@ -88,11 +80,7 @@
     To add icons to <code>&lt;bolt-link&gt;</code>, place a <code>&lt;bolt-icon&gt;</code> next to your link text. For icons to have the correct spacing, you <em>must</em> add the <code>slot</code> attribute to <code>&lt;bolt-icon&gt;</code>. The <code>slot</code> value can be <code>before</code> or <code>after</code>.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% cell "u-bolt-width-12/12" %}
-        {{ link_demo_icon }}
-      {% endcell %}
-    {% endgrid %}
+    {{ link_demo_icon }}
   </div>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
     content: link_demo_icon_code,

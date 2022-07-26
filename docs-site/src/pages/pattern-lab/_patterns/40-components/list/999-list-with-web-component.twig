@@ -50,11 +50,7 @@
     Bolt Button is a web component, you can simply use <code>&lt;bolt-list&gt;</code> in the markup to make it render.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid %}
-      {% cell "u-bolt-width-12/12" %}
-        {{ list_demo }}
-      {% endcell %}
-    {% endgrid %}
+    {{ list_demo }}
   </div>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
     content: list_demo,
@@ -71,11 +67,7 @@
     All the props defined in the schema table can be used directly on the <code>&lt;bolt-list&gt;</code> element.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid %}
-      {% cell "u-bolt-width-12/12" %}
-        {{ list_basic_demo }}
-      {% endcell %}
-    {% endgrid %}
+    {{ list_basic_demo }}
   </div>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
     content: list_basic_demo,
@@ -92,11 +84,7 @@
     Instead of passing plain text into each item, you may also pass other Bolt components or regular HTML.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid %}
-      {% cell "u-bolt-width-12/12" %}
-        {{ list_advanced_demo }}
-      {% endcell %}
-    {% endgrid %}
+    {{ list_advanced_demo }}
   </div>
   {% include '@bolt-components-code-snippet/code-snippet.twig' with {
     content: list_advanced_demo,
