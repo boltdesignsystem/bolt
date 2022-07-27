@@ -23,6 +23,12 @@ class BoltTooltip extends BoltElement {
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
   }
 
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+
+    this.popover?.destroy();
+  }
+
   getPaddingTop() {
     const stickyPageHeader =
       document.querySelector('.c-bolt-page-header') ||
