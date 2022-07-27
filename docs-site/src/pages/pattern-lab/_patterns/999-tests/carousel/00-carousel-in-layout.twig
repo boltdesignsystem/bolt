@@ -402,3 +402,75 @@
     <footer>This is the footer</footer>
   </div>
 </div>
+
+{% set carousel_test %}
+  {% include '@bolt-components-carousel/carousel.twig' with {
+    slides_per_view: '1',
+    slides_per_group: '1',
+    space_between: 'small',
+    autoplay: true,
+    nav_button_position: 'inside',
+    slides: [
+      slide_1,
+      slide_2,
+      slide_3,
+      slide_4,
+      slide_5,
+      slide_6,
+      slide_7,
+      slide_8,
+      slide_9,
+    ]
+  } only %}
+{% endset %}
+
+{% set inner_layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: carousel_test
+  } only %}
+{% endset %}
+
+{% set inner_layout %}
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: inner_layout_items,
+    gutter: 'large',
+    padding_top: 'large',
+    padding_bottom: 'large',
+    attributes: {
+      'style': '--l-bolt-layout-tile-min-width: 300px'
+    },
+    template: [
+      'tiles@from-medium',
+    ],
+  } only %}
+{% endset %}
+
+{% set another_layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: inner_layout
+  } only %}
+{% endset %}
+
+{% set another_inner_layout %}
+  <h1 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xxxlarge">The future of work</h1>
+  <h2 class="c-bolt-subheadline c-bolt-subheadline--regular c-bolt-subheadline--xlarge">How new technology is changing the workplace as we know it.</h2>
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: another_layout_items,
+  } only %}
+{% endset %}
+
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: another_inner_layout
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  gutter: 'large',
+  padding_top: 'large',
+  padding_bottom: 'large',
+  template: [
+    '67/33@from-medium',
+  ],
+} only %}
