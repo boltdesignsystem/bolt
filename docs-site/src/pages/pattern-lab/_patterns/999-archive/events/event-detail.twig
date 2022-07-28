@@ -1,13 +1,12 @@
 {% extends '@pl/_default-page-template.twig' %}
 
 {% block main_content %}
-
   {% embed '@bolt-components-band/band.twig' with {
     size: 'medium',
     theme: 'dark'
   } only %}
-    {% block band_content  %}
-      {% set hero %}
+    {% block band_content %}
+      {# {% set hero %} #}
         {% include '@bolt-components-headline/headline.twig' with {
           text: 'Pega Events',
           size: 'xsmall',
@@ -31,8 +30,8 @@
           tag: 'p',
         } only %}
 
-        <ul class="o-bolt-inline-list o-bolt-inline-list--medium">
-          <li class="o-bolt-inline-list__item">
+        <bolt-list display="inline" spacing="medium">
+          <bolt-list-item>
             {% include '@bolt-components-headline/headline.twig' with {
               text: 'January 25, 2018',
               size: 'large',
@@ -44,8 +43,8 @@
                 size: 'medium'
               },
             } only %}
-          </li>
-          <li class="o-bolt-inline-list__item">
+          </bolt-list-item>
+          <bolt-list-item>
             {% include '@bolt-components-headline/headline.twig' with {
               text: '10:00 AM EST',
               size: 'large',
@@ -57,8 +56,8 @@
                 size: 'medium'
               }
             } only %}
-          </li>
-          <li class="o-bolt-inline-list__item">
+          </bolt-list-item>
+          <bolt-list-item>
             {% include '@bolt-components-headline/headline.twig' with {
               text: 'New York, NY',
               size: 'large',
@@ -70,18 +69,9 @@
                 size: 'medium'
               }
             } only %}
-          </li>
-        </ul>
-      {% endset %}
-      {% include '@bolt-components-grid/grid.twig' with {
-        items: [
-          {
-            column_start: '1',
-            column_span: '12 8@small',
-            content: hero,
-          },
-        ]
-      } only %}
+          </bolt-list-item>
+        </bolt-list>
+      {# {% endset %} #}
     {% endblock %}
   {% endembed %}
 
