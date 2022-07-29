@@ -22,7 +22,13 @@ module.exports = {
         decoratorsBeforeExport: true,
       },
     ],
+
+    // I don't know why this was orginally set to true. It may or may not be safe to set to false (the default).
+    // Until then, @see https://github.com/rails/webpacker/issues/3008
     ['@babel/plugin-proposal-class-properties', { loose: true }],
+    ['@babel/plugin-proposal-private-methods', { loose: true }],
+    ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
+
     '@babel/plugin-syntax-jsx',
     [
       '@babel/plugin-transform-react-jsx',
