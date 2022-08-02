@@ -1,39 +1,110 @@
 {% set description %}
-    A description of the element and what it is used for.
+    A wrapper has no semantic meaning. It simply holds visual elements and content on the page.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>List out important information about this element and its usage.</bolt-li>
+    <bolt-li>The wrapper <code>max-width</code> is 1400px. The width and a space on the sides adjusts to the smaller device screen. Content or visual elements added inside the wrapper don't overflow the imposed width of 1400px.</bolt-li>
+    <bolt-li>In the use case when you need another maximum width use the <code>attributes</code> prop and add inline style.</bolt-li>
   </bolt-ol>
 {% endset %}
 
 {% set demo %}
+  <div class="u-bolt-margin-bottom-xlarge">
+    {% include '@bolt-elements-wrapper/wrapper.twig' with {
+      content: '<p>An example of a text added inside the wrapper.</p>
+      <p>Chicken bacon doner pancetta pork corned beef, swine jowl burgdoggen pastrami buffalo beef ribs shankle. Turducken pork porchetta shankle, salami short ribs corned beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef. Chicken bacon doner pancetta pork corned beef, swine jowl burgdoggen pastrami buffalo beef ribs shankle. Turducken pork porchetta shankle, salami short ribs corned beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef. Short ribs turkey burgdoggen, fatback jerky chuck landjaeger corned beef pork t-bone jowl hamburger brisket strip steak. Tenderloin cow bacon cupim t-bone short ribs swine biltong beef ribs capicola sausage beef.</p>'
+    } only %}
+  </div>
+
+  {% set image %}
+    <p>An example of an image added inside the wrapper.</p>
+    {% include '@bolt-elements-image/image.twig' with {
+      fill: true,
+      attributes: {
+        alt: 'Alt text.',
+        src: 'https://via.placeholder.com/800x450',
+        srcset: 'https://via.placeholder.com/400x225 400w, https://via.placeholder.com/800x450 800w',
+        sizes: '96vw',
+        width: 800,
+        height: 450,
+      },
+    } only %}
+  {% endset %}
+
+  <div class="u-bolt-margin-bottom-xlarge">
+    {% include '@bolt-elements-wrapper/wrapper.twig' with {
+      content: image
+    } only %}
+  </div>
+
+  {% set item_aside %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Aside',
+    } only %}
+  {% endset %}
+
+  {% set item_main %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Main',
+    } only %}
+  {% endset %}
+  {% set grid %}
+    <p>An example of a grid added inside the wrapper.</p>
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 8@xsmall',
+          content: item_main,
+        },
+        {
+          column_start: '1 9@xsmall',
+          column_span: '12 4@xsmall',
+          content: item_aside,
+        },
+      ]
+    } only %}
+  {% endset %}
   {% include '@bolt-elements-wrapper/wrapper.twig' with {
-    content: 'This is a wrapper element.'
+    content: grid
   } only %}
 {% endset %}
 
+
 {% set twig_markup %}{% verbatim %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    fill: true,
+    attributes: {
+      alt: 'Alt text.',
+      src: 'path/image-800.jpg',
+      srcset: 'path/image-400.jpg 400w, path/image-800.jpg 800w',
+      sizes: '96vw',
+      width: 800,
+      height: 450,
+    },
+  } only %}
+{% endset %}
 {% include '@bolt-elements-wrapper/wrapper.twig' with {
-  content: 'This is a wrapper element.'
+  content: image
 } only %}
 {% endverbatim %}{% endset %}
 
 {% set html_markup %}
 {% verbatim %}
 <div class="e-bolt-wrapper">
-  This is a wrapper element.
+  <img alt="Alt text." src="path/image-800.jpg" srcset="path/image-400.jpg 400w, path/image-800.jpg 800w" sizes="96vw" width=800 height=450
+  class="e-bolt-image e-bolt-image--fill">
 </div>
 {% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic Wrapper',
+  title: 'Wrapper',
   description: description,
   notes: notes,
   demo: demo,
-  demo_light_dark: true,
   twig_markup: twig_markup,
   html_markup: html_markup
 } only %}
