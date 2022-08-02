@@ -1,7 +1,6 @@
 // Refer to https://github.com/boltdesignsystem/bolt/wiki/Jest-Test:-Example-Jest-Test for more testing examples
 import { render, stopServer } from '../../../testing/testing-helpers';
-// import schema from '../wrapper.schema';
-// const { [PROP KEY], [PROP KEY]... } = schema.properties;
+
 let page, fixtures;
 
 afterAll(async () => {
@@ -39,21 +38,3 @@ describe('Bolt Wrapper element', () => {
     expect(results.html).toMatchSnapshot();
   });
 });
-
-// describe('Bolt Wrapper prop -', () => {
-//   // Target each of the schema keys with the following pattern
-//   [PROP KEY].enum.forEach(async (option) => {
-//     test(`[PROP KEY] items: ${option}`, async () => {
-//       const results = await render(
-//         '@bolt-components-wrapper/wrapper.twig',
-//         {
-//           ...fixtures.defaultData,
-//           [PROP KEY]: option,
-//         }
-//       );
-
-//       await expect(results.ok).toBe(true);
-//       await expect(results.html).toMatchSnapshot();
-//     });
-//   });
-// });
