@@ -32,12 +32,9 @@ beforeAll(async () => {
 
 describe('Bolt Wrapper element', () => {
   test('default', async () => {
-    const results = await render(
-      '@bolt-elements-wrapper/wrapper.twig',
-      {
-        ...fixtures.defaultData,
-      },
-    );
+    const results = await render('@bolt-elements-wrapper/wrapper.twig', {
+      ...fixtures.defaultData,
+    });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
