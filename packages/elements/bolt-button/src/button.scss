@@ -195,7 +195,13 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
         --e-bolt-button-padding-x: var(--bolt-spacing-x-#{$size-name});
       }
 
-      @if $size-name == xsmall or $size-name == small {
+      @if $size-name == small {
+        --e-bolt-button-font-size: var(--bolt-type-font-size-small);
+        --e-bolt-button-line-height: var(--bolt-type-line-height-small);
+        --e-bolt-button-icon-only-size: 1.1em;
+      }
+
+      @if $size-name == xsmall {
         --e-bolt-button-font-size: var(--bolt-type-font-size-xsmall);
         --e-bolt-button-line-height: var(--bolt-type-line-height-xsmall);
         --e-bolt-button-icon-only-size: 1.1em;
