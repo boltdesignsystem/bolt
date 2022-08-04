@@ -1,12 +1,12 @@
 {% set description %}
-    A wrapper has no semantic meaning. It simply holds visual elements and content on the page.
+    A wrapper has no semantic meaning. This element contains visual elements and content within itself.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>The wrapper <code>max-width</code> is 1400px. The width and a space on the sides adjusts to the smaller device screen. Content or visual elements added inside the wrapper don't overflow the imposed width of 1400px.</bolt-li>
-    <bolt-li>In the use case when you need another maximum width use the <code>attributes</code> prop and add inline style.</bolt-li>
-  </bolt-ol>
+    <bolt-li>The wrapper has a default <code>max-width</code> of 1400px. If you need a different maximum width specified, use the <code>attributes</code> prop and with inline styling.</bolt-li>
+    <bolt-li>This element automatically adjusts to the device width. Content or visual elements contained within this element will not overflow past the max width.</bolt-li>
+    </bolt-ol>
 {% endset %}
 
 {% set demo %}
