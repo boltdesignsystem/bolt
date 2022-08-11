@@ -1,0 +1,68 @@
+{% set main_content %}
+  <style>
+    .table-layout-auto { table-layout: auto; }
+    .cc-post { word-break: break-word; }
+    .cc-post bolt-table { word-break: initial; }
+  </style>
+  ​
+  <div class="o-bolt-wrapper" style="max-width: 800px;">
+    <div class="cc-post">
+      <bolt-table>
+          <table cellspacing="0" class="table-layout-auto">
+              <thead>
+                  <tr>
+                      <th><span><strong><span><a id="E338" name="E338">SR #</a></span></strong></span></th>
+                      <th><span><strong><span>Issue #</span></strong></span></th>
+                      <th><span><strong><span>Title</span></strong></span></th>
+                      <th><span><strong><span>Description</span></strong></span></th>
+                      <th><span><strong><span>Product Area</span></strong></span></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td><span>D39264</span></td>
+                      <td><span>518839</span></td>
+                      <td><span>Multiple files uploaded using "select file" will be handled asynchronously</span></td>
+                      <td><span>In order to resolve an intermittent error when uploading multiple files using the "select file" button, each file will be uploaded asynchronously to avoid overloading the browser threshold.</span></td>
+                      <td><span>Case Management</span></td>
+                  </tr>
+                  <tr>
+                      <td><span>D47018</span></td>
+                      <td><span>517031</span></td>
+                      <td><span>Corrected parameter being encrypted during change portal configuration</span></td>
+                      <td><span>After configuring a changePortalLayout control using .pyDescription as property, trying to switch the portal was throwing a error page. The same configuration worked in earlier platform versions. This was traced to recent updates where the activity parameter ended up being encrypted along with the activity name, and has been resolved by removing the parameter from encryption input and adding it to encryption output.</span></td>
+                      <td><span>Case Management</span></td>
+                  </tr>
+                  <tr>
+                      <td><span>D47146</span></td>
+                      <td><span>515646</span></td>
+                      <td><span>Pick Values modal updated for deprecated list view handling</span></td>
+                      <td><span>Pick values were not displaying in the menus below Case Management-&gt; Tools -&gt; My Work, including "Work entered by me", "Work by workbasket", and "Work resolved by me recently". This was due to the use of deprecated list views: the pick values modal was failing to show and hide the busy indicator because the indicator now uses jQuery, but list view does not include jQuery. In order to resolve this, the equivalent Report Definition pyEnteredByMe has now been added under the navigation rule : pzProcessAndCaseRulesMainMenu.</span></td>
+                      <td><span>Case Management</span></td>
+                  </tr>
+                  <tr>
+                      <td><span>D51535</span></td>
+                      <td><span>519474</span></td>
+                      <td><span>Enhanced discrimination for tasks in MyPega spaces</span></td>
+                      <td><span>When using My Pega for spaces and tasks, using drag and drop to move many cases around quickly resulted in tasks intermittently ending up in a state where they could not be updated further and became unusable. Analysis showed that because the milliseconds part of the update time was rounded, the logic of comparing for value between 0 and 1000 failed when the comparison returned -ve value. To resolve this, the comparison has been modified to !=0 and the 'when' rule pyContinueTaskProcessing has been added as an extension along with the appropriate usage guide to restrict processing. By default, the system will consider task name, description, due date, assignee, and rank properties; if more properties are needed to evaluate, this when rule can help.</span></td>
+                      <td><span>Case Management</span></td>
+                  </tr>
+                  <tr>
+                      <td><span>D54200</span></td>
+                      <td><span>516775</span></td>
+                      <td><span>Custom attachment category parameter passed to dropdown</span></td>
+                      <td><span>Attempting to use the out-of-the-box “Attachments control” which was configured at design time to use a custom category where both the custom category and the section class were in the same work class resulted in the attachment category dropdown defaulting to “File” instead of the custom category. Investigation showed that the custom attachment category name configured on the control was missing in one of the pre-processing activities sequence. To resolve this, the activity Work-.pzInitAttachContent and the initAttachmentPage activity have been updated to pass the custom attachment category parameter.</span></td>
+                      <td><span>Case Management</span></td>
+                  </tr>
+              </tbody>
+          </table>
+      </bolt-table>
+    </div>
+  </div>
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}
