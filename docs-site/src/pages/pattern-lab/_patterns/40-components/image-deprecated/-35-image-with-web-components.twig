@@ -24,7 +24,7 @@
 
 
 
-<div class="o-bolt-wrapper">
+<div class="e-bolt-wrapper">
   <div class="u-bolt-margin-bottom-large">
     <bolt-text headline>
       Web Component Usage
@@ -33,11 +33,15 @@
       Bolt Image is a web component that renders a semantic <code>&lt;img&gt;</code> tag with Bolt styles. All that's required to make a <code>&lt;bolt-image&gt;</code> are the <code>src</code> and <code>alt</code> attributes.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@large' %}
-          {{ image_demo_basic }}
-        {% endcell %}
-      {% endgrid %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1 3@small',
+            column_span: '12 8@small',
+            content: image_demo_basic,
+          },
+        ]
+      } only %}
     </div>
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
       content: image_demo_basic,
@@ -53,11 +57,15 @@
       Optionally, pass <code>srcset</code> and <code>sizes</code> to <code>&lt;bolt-image&gt;</code> for responsive images.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@large' %}
-          {{ image_demo_responsive }}
-        {% endcell %}
-      {% endgrid %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1 3@small',
+            column_span: '12 8@small',
+            content: image_demo_responsive,
+          },
+        ]
+      } only %}
     </div>
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
       content: image_demo_responsive,
@@ -73,11 +81,15 @@
       Setting the aspect ratio on an image provides a placeholder while the image is loading. Do this by adding the <code>ratio</code> attribute with the image's aspect-ratio as slash-separated values, e.g. "4/3" or "400/300".
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@large' %}
-          {{ image_demo_ratio }}
-        {% endcell %}
-      {% endgrid %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1 3@small',
+            column_span: '12 8@small',
+            content: image_demo_ratio,
+          },
+        ]
+      } only %}
     </div>
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
       content: image_demo_ratio,
@@ -93,11 +105,15 @@
       Lazyloading is on by default. Turn it off with the <code>no-lazy</code> attribute.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@large' %}
-          {{ image_demo_lazy }}
-        {% endcell %}
-      {% endgrid %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1 3@small',
+            column_span: '12 8@small',
+            content: image_demo_lazy,
+          },
+        ]
+      } only %}
     </div>
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
       content: image_demo_lazy,
@@ -113,11 +129,15 @@
       Placeholder image and color options can be set via the attributes <code>placeholder-image</code> and <code>placeholder-color</code> where "image" is an image path and "color" is a valid CSS background-color. Note: the <code>ratio</code> attribute must be provided for placholder image or color to display.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@large' %}
-          {{ image_demo_placeholder }}
-        {% endcell %}
-      {% endgrid %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1 3@small',
+            column_span: '12 8@small',
+            content: image_demo_placeholder,
+          },
+        ]
+      } only %}
     </div>
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
       content: image_demo_placeholder,

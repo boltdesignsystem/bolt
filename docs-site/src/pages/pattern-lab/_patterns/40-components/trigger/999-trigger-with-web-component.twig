@@ -31,7 +31,7 @@
 </bolt-modal>
 {% endset %}
 
-<div class="o-bolt-wrapper">
+<div class="e-bolt-wrapper">
   <div class="u-bolt-margin-bottom-large">
     <bolt-text headline>
       Web Component Usage
@@ -40,11 +40,7 @@
       Bolt Trigger is a web component. You can use it by simply including the <code>&lt;bolt-trigger&gt;</code> element in the markup.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid %}
-        {% cell %}
-          {{ trigger_demo }}
-        {% endcell %}
-      {% endgrid %}
+      {{ trigger_demo }}
     </div>
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
       content: trigger_demo,
@@ -61,11 +57,7 @@
       By default Bolt Trigger renders a semantic <code>button</code> tag. Set the <code>url</code> prop to render a semantic <code>a</code> tag.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid %}
-        {% cell %}
-          {{ trigger_basic_demo }}
-        {% endcell %}
-      {% endgrid %}
+      {{ trigger_basic_demo }}
     </div>
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
       content: trigger_basic_demo,
@@ -82,11 +74,7 @@
       Customize the cursor style by setting the <code>cursor</code> prop.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid %}
-        {% cell %}
-          {{ trigger_additional_demo }}
-        {% endcell %}
-      {% endgrid %}
+      {{ trigger_additional_demo }}
     </div>
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
       content: trigger_additional_demo,
@@ -103,11 +91,7 @@
       Use the <code>on-click</code> and <code>on-click-target</code> props to call a method on another component. See schema for more info.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid %}
-        {% cell "u-bolt-width-1/2 u-bolt-width-1/4@medium" %}
-          {{ trigger_advanced_demo }}
-        {% endcell %}
-      {% endgrid %}
+      {{ trigger_advanced_demo }}
     </div>
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
       content: trigger_advanced_demo,

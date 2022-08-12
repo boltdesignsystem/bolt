@@ -65,6 +65,14 @@
   {% endset %}
 
   {% set background %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: '/images/heros/live-assets/artificial-intelligence-hero.jpg'
+        },
+      } only %}
+    {% endset %}
     {% include '@bolt-components-background/background.twig' with {
       opacity: 'heavy',
       fill: 'gradient',
@@ -72,11 +80,8 @@
         vertical: 'center',
         horizontal: 'center'
       },
-      contentItems: [
-        {
-          pattern: 'image',
-          src: '/images/heros/live-assets/artificial-intelligence-hero.jpg'
-        }
+      items: [
+       image
       ]
     } only %}
   {% endset %}
@@ -141,6 +146,14 @@
 {% endset %}
 
 {% set background %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/heros/live-assets/artificial-intelligence-hero.jpg'
+      },
+    } only %}
+  {% endset %}
   {% include '@bolt-components-background/background.twig' with {
     opacity: 'heavy',
     fill: 'gradient',
@@ -148,11 +161,8 @@
       vertical: 'center',
       horizontal: 'center'
     },
-    contentItems: [
-      {
-        pattern: 'image',
-        src: '/images/heros/live-assets/artificial-intelligence-hero.jpg'
-      }
+    items: [
+      image
     ]
   } only %}
 {% endset %}

@@ -25,14 +25,15 @@
 {# Template #}
 {% spaceless %}<{{ this.data.tag.value }} {{ attributes.addClass(classes) }}>
   {% if link_attributes %}
+    {% set spaceless_content %}{% spaceless %}{{ content }}{% endspaceless %}{% endset %}
     {% include '@bolt-elements-text-link/text-link.twig' with {
-      content: content|spaceless,
+      content: spaceless_content,
       icon_before: icon_before ? icon_before : null,
       icon_after: icon_after ? icon_after : null,
       reversed_underline: true ? this.data.hierarchy.value != schema.properties.hierarchy.default,
       attributes: link_attributes,
     } only %}
   {% else %}
-    {% if icon_before %}<span class="e-bolt-type__icon-before" aria-hidden="true">{{ icon_before|spaceless }}</span>{% endif %}{{ content|spaceless }}{% if icon_after %}<span class="e-bolt-type__icon-after" aria-hidden="true">{{ icon_after|spaceless }}</span>{% endif %}
+    {% if icon_before %}<span class="e-bolt-type__icon-before" aria-hidden="true">{% spaceless %}{{ icon_before }}{% endspaceless %}</span>{% endif %}{% spaceless %}{{ content }}{% endspaceless %}{% if icon_after %}<span class="e-bolt-type__icon-after" aria-hidden="true">{% spaceless %}{{ icon_after }}{% endspaceless %}</span>{% endif %}
   {% endif %}
 </{{ this.data.tag.value }}>{% endspaceless %}

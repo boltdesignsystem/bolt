@@ -5,7 +5,15 @@
 {% endblock %}
 
 {% block main_content %}
-
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/content/backgrounds/background-robotics-customer-service.jpg',
+        loading: 'lazy'
+      },
+    } only %}
+  {% endset %}
   {# hero band #}
   {% embed '@bolt-components-band/band.twig' with {
     size: 'large',
@@ -18,19 +26,14 @@
         'vertical': 'center',
         'horizontal': 'center'
       },
-      'content_items': [
-        {
-          'pattern': 'image',
-          'src': '/images/content/backgrounds/background-robotics-customer-service.jpg',
-          'lazyload': true
-        }
+      items: [
+        image
       ]
     }
   } only %}
 
     {% block band_content  %}
-    {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix' %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
+      {% set headlines %}
         {% include '@bolt-components-headline/headline.twig' with {
             text: 'ROBOTIC AUTOMATION',
             size: 'xsmall',
@@ -48,12 +51,17 @@
             size: 'xlarge',
             tag: 'p',
         } only %}
+      {% endset %}
 
-
-          </li>
-        </ul>
-      {% endcell %}
-    {% endgrid %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1',
+            column_span: '12 8@medium',
+            content: headlines,
+          },
+        ]
+      } only %}
     {% endblock %}
   {% endembed %}
   {# End hero band #}
@@ -113,12 +121,12 @@
 
   {% set navbar_items %}
     {% for item in navbar_data %}
-      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}  
+      {% include '@bolt-components-navbar/navbar-li.twig' with item only %}
     {% endfor %}
   {% endset %}
 
   {% set navbar_list %}
-    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}  
+    {% include '@bolt-components-navbar/navbar-ul.twig' with { content: navbar_items } only %}
   {% endset %}
 
   {% include '@bolt-components-navbar/navbar.twig' with {
@@ -146,43 +154,56 @@
   }
 } %}
 
-      {% block band_content  %}
-        {% grid 'o-bolt-grid--large o-bolt-grid--matrix' %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include '@bolt-components-headline/headline.twig' with {
-            text: 'Automation is a Journey',
-            size: 'xxlarge',
-            tag: 'h2'
-            } only %}
-            <p>At Pega, we’re obsessed with being unified. Our mobility, real-time AI, robotic automation, BPM, and case management are best in breed – go ask the analysts. But we didn’t cobble this together from pieces of dead companies – we built it from the ground up on a unified, enterprise-ready architecture.</p>
+  {% block band_content  %}
+    {% set text %}
+      {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Automation is a Journey',
+      size: 'xxlarge',
+      tag: 'h2'
+      } only %}
+      <p>At Pega, we’re obsessed with being unified. Our mobility, real-time AI, robotic automation, BPM, and case management are best in breed – go ask the analysts. But we didn’t cobble this together from pieces of dead companies – we built it from the ground up on a unified, enterprise-ready architecture.</p>
 
-            <p>When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market.'</p>
-          {% endcell %}
+      <p>When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market.'</p>
+    {% endset %}
 
-          {% cell 'u-bolt-width-1/1 u-bolt-width-2/5@medium' %}
-            {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-              media: {
-                image: {
-                  src: '/images/content/backgrounds/background-short-1.jpg',
-                  alt: 'Anthem Video',
-                },
-              },
-              body: {
-                eyebrow: 'Whitepaper',
-                headline: 'Anthem: Service Desktop',
-                paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-              },
-              actions: [
-                {
-                  text: 'Get the report',
-                  url: 'https://google.com',
-                },
-              ],
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endblock %}
-    {% endembed %}
+    {% set card %}
+      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+        media: {
+          image: {
+            src: '/images/content/backgrounds/background-short-1.jpg',
+            alt: 'Anthem Video',
+          },
+        },
+        body: {
+          eyebrow: 'Whitepaper',
+          headline: 'Anthem: Service Desktop',
+          paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
+        },
+        actions: [
+          {
+            text: 'Get the report',
+            url: 'https://google.com',
+          },
+        ],
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 7@medium',
+          content: text,
+        },
+        {
+          column_start: '1 8@medium',
+          column_span: '12 5@medium',
+          content: card,
+        },
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %}
 {# End Automation #}
 
 {# Transformational Results #}
@@ -197,46 +218,61 @@
   }
 } %}
 
-      {% block band_content  %}
-        {% grid 'o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev' %}
-            {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include '@bolt-components-headline/headline.twig' with {
-            text: 'Transformational Results',
-            size: 'xxlarge',
-            tag: 'h2'
-            } only %}
-            <p>321% ROI in less than 12 months. 75% cost savings. 75% productivity improvements. These are transformational outcomes. Getting there takes more than just a few robots. You need one unified automation engine.</p>
+  {% block band_content  %}
+    {% set text %}
+      {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Transformational Results',
+      size: 'xxlarge',
+      tag: 'h2'
+      } only %}
+      <p>321% ROI in less than 12 months. 75% cost savings. 75% productivity improvements. These are transformational outcomes. Getting there takes more than just a few robots. You need one unified automation engine.</p>
 
-            <p>Use business process management to orchestrate people and systems. Deploy RPA to take repetitive work out of your operation. Use case management to manage it all from end to end.</p>
+      <p>Use business process management to orchestrate people and systems. Deploy RPA to take repetitive work out of your operation. Use case management to manage it all from end to end.</p>
 
-            <p>You define service level agreements, route work, and apply rules and advanced intelligence. You can jumpstart with RPA, sure – but you’ll be able to fly past the 20% improvement companies see from robotics alone.</p>
+      <p>You define service level agreements, route work, and apply rules and advanced intelligence. You can jumpstart with RPA, sure – but you’ll be able to fly past the 20% improvement companies see from robotics alone.</p>
 
-            <p>Why? Because Pega’s capabilities are unified on one platform. No duct tape. No wiring a bunch of things together. You think about outcomes from end to end. Your technology should be able to get that end to end work done.</p>
-          {% endcell %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-2/5@small' %}
-            {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-              media: {
-                image: {
-                  src: '/images/content/backgrounds/background-tall-2.jpg',
-                  alt: 'Anthem Video',
-                },
-              },
-              body: {
-                eyebrow: 'Whitepaper',
-                headline: 'Anthem: Service Desktop',
-                paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-              },
-              actions: [
-                {
-                  text: 'Get the report',
-                  url: 'https://google.com',
-                },
-              ],
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endblock %}
-    {% endembed %}
+      <p>Why? Because Pega’s capabilities are unified on one platform. No duct tape. No wiring a bunch of things together. You think about outcomes from end to end. Your technology should be able to get that end to end work done.</p>
+    {% endset %}
+
+    {% set card %}
+      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+        media: {
+          image: {
+            src: '/images/content/backgrounds/background-tall-2.jpg',
+            alt: 'Anthem Video',
+          },
+        },
+        body: {
+          eyebrow: 'Whitepaper',
+          headline: 'Anthem: Service Desktop',
+          paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
+        },
+        actions: [
+          {
+            text: 'Get the report',
+            url: 'https://google.com',
+          },
+        ],
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 5@medium',
+          row_start: '2 1@medium',
+          content: card,
+        },
+        {
+          column_start: '1 6@medium',
+          column_span: '12 7@medium',
+          content: text,
+        },
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %}
 {# End Transformational Results #}
 
 {# Employee Productivity #}
@@ -251,44 +287,56 @@
   }
 } %}
 
-      {% block band_content  %}
-        {% grid 'o-bolt-grid--large o-bolt-grid--matrix' %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include '@bolt-components-headline/headline.twig' with {
-            text: 'Give Your Employees a Robot',
-            size: 'xxlarge',
-            tag: 'h2'
-            } only %}
-            <p>Imagine if you could give back five minutes of every employee’s day. You can if you free them from wrangling across systems and process siloes for information. How? Software robots that automate the desktop tasks that frustrate your people and slow them down. We call these “productivity bots.”</p>
+  {% block band_content  %}
+    {% set text %}
+      {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Give Your Employees a Robot',
+      size: 'xxlarge',
+      tag: 'h2'
+      } only %}
+      <p>Imagine if you could give back five minutes of every employee’s day. You can if you free them from wrangling across systems and process siloes for information. How? Software robots that automate the desktop tasks that frustrate your people and slow them down. We call these “productivity bots.”</p>
 
-            <p>Productivity bots collaborate with your employees to bridge systems and process siloes. They do work like tabbing, searching, and copying and pasting – so your people can focus on your customers.</p>
+      <p>Productivity bots collaborate with your employees to bridge systems and process siloes. They do work like tabbing, searching, and copying and pasting – so your people can focus on your customers.</p>
 
-            <p>Leveraging productivity bots that simplify the employee experience injects instant ROI into your business. In just two to three weeks you'll turn all your service agents, back-office workers, or front-line sellers into productivity ninjas. They’ll be happier. You’ll be happier. And your customers will be happier.</p>
-          {% endcell %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-2/5@medium' %}
-            {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-              media: {
-                image: {
-                  src: '/images/content/backgrounds/background-tall-3.jpg',
-                  alt: 'Anthem Video',
-                },
-              },
-              body: {
-                eyebrow: 'Whitepaper',
-                headline: 'Anthem: Service Desktop',
-                paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-              },
-              actions: [
-                {
-                  text: 'Get the report',
-                  url: 'https://google.com',
-                },
-              ],
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endblock %}
-    {% endembed %}
+      <p>Leveraging productivity bots that simplify the employee experience injects instant ROI into your business. In just two to three weeks you'll turn all your service agents, back-office workers, or front-line sellers into productivity ninjas. They’ll be happier. You’ll be happier. And your customers will be happier.</p>
+    {% endset %}
+    {% set card %}
+      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+        media: {
+          image: {
+            src: '/images/content/backgrounds/background-tall-3.jpg',
+            alt: 'Anthem Video',
+          },
+        },
+        body: {
+          eyebrow: 'Whitepaper',
+          headline: 'Anthem: Service Desktop',
+          paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
+        },
+        actions: [
+          {
+            text: 'Get the report',
+            url: 'https://google.com',
+          },
+        ],
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 7@medium',
+          content: text,
+        },
+        {
+          column_start: '1 8@medium',
+          column_span: '12 5@medium',
+          content: card,
+        },
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %}
 {# End Employee Productivity #}
 
 
@@ -304,46 +352,59 @@
   }
 } %}
 
-      {% block band_content  %}
-        {% grid 'o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev' %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include '@bolt-components-headline/headline.twig' with {
-            text: 'Find Improvement Opportunities',
-            size: 'xxlarge',
-            tag: 'h2'
-            } only %}
-            <p>It’s 3 p.m. Do you know how your employees are doing? What are they struggling with? What best practices have they discovered? How do you help them be more effective?</p>
+  {% block band_content  %}
+    {% set text %}
+      {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Find Improvement Opportunities',
+      size: 'xxlarge',
+      tag: 'h2'
+      } only %}
+      <p>It’s 3 p.m. Do you know how your employees are doing? What are they struggling with? What best practices have they discovered? How do you help them be more effective?</p>
 
-            <p>You might have KPIs, but do you know what contributes to those KPIs? What systems are effective? What workarounds your employees are taking? New apps get deployed, processes change, regulatory environments shift – it’s the never-ending cycle of change. You need continuous insights to measure the impact of these changes.</p>
+      <p>You might have KPIs, but do you know what contributes to those KPIs? What systems are effective? What workarounds your employees are taking? New apps get deployed, processes change, regulatory environments shift – it’s the never-ending cycle of change. You need continuous insights to measure the impact of these changes.</p>
 
-            <p>Pega Workforce Intelligence captures insights at the desktop. It gets you the details of how work gets done. It uses real-time AI to tell you what systems and processes are getting in the way of employee productivity.</p>
+      <p>Pega Workforce Intelligence captures insights at the desktop. It gets you the details of how work gets done. It uses real-time AI to tell you what systems and processes are getting in the way of employee productivity.</p>
 
-            <p>Because once you know the details, you can act. And that makes all the difference.</p>
-          {% endcell %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-2/5@small' %}
-             {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-              media: {
-                image: {
-                  src: '/images/content/backgrounds/background-tall-2.jpg',
-                  alt: 'Anthem Video',
-                },
-              },
-              body: {
-                eyebrow: 'Whitepaper',
-                headline: 'Anthem: Service Desktop',
-                paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-              },
-              actions: [
-                {
-                  text: 'Get the report',
-                  url: 'https://google.com',
-                },
-              ],
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endblock %}
-    {% endembed %}
+      <p>Because once you know the details, you can act. And that makes all the difference.</p>
+    {% endset %}
+    {% set card %}
+        {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+        media: {
+          image: {
+            src: '/images/content/backgrounds/background-tall-2.jpg',
+            alt: 'Anthem Video',
+          },
+        },
+        body: {
+          eyebrow: 'Whitepaper',
+          headline: 'Anthem: Service Desktop',
+          paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
+        },
+        actions: [
+          {
+            text: 'Get the report',
+            url: 'https://google.com',
+          },
+        ],
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 5@medium',
+          row_start: '2 1@medium',
+          content: card,
+        },
+        {
+          column_start: '1 6@medium',
+          column_span: '12 7@medium',
+          content: text,
+        },
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %}
 {# End Intelligence #}
 
 {# Integration #}
@@ -358,44 +419,56 @@
   }
 } %}
 
-      {% block band_content  %}
-        {% grid 'o-bolt-grid--large o-bolt-grid--matrix' %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include '@bolt-components-headline/headline.twig' with {
-            text: 'The Last Mile of Integration',
-            size: 'xxlarge',
-            tag: 'h2'
-            } only %}
-            <p>Mainframes without APIs? CRM and other mission critical apps? You can’t automate if you can’t connect to the systems that matter. Pega gives you the tools you need to bridge the last mile of integration. It’s everything you need to wrap and renew your enterprise applications.</p>
+  {% block band_content  %}
+    {% set text %}
+      {% include '@bolt-components-headline/headline.twig' with {
+      text: 'The Last Mile of Integration',
+      size: 'xxlarge',
+      tag: 'h2'
+      } only %}
+      <p>Mainframes without APIs? CRM and other mission critical apps? You can’t automate if you can’t connect to the systems that matter. Pega gives you the tools you need to bridge the last mile of integration. It’s everything you need to wrap and renew your enterprise applications.</p>
 
-            <p>Productivity bots collaborate with your employees to bridge systems and process siloes. They do work like tabbing, searching, and copying and pasting – so your people can focus on your customers.</p>
+      <p>Productivity bots collaborate with your employees to bridge systems and process siloes. They do work like tabbing, searching, and copying and pasting – so your people can focus on your customers.</p>
 
-            <p>Leveraging productivity bots that simplify the employee experience injects instant ROI into your business. In just two to three weeks you'll turn all your service agents, back-office workers, or front-line sellers into productivity ninjas. They’ll be happier. You’ll be happier. And your customers will be happier.</p>
-          {% endcell %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-2/5@medium' %}
-            {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-              media: {
-                image: {
-                  src: '/images/content/backgrounds/background-tall-3.jpg',
-                  alt: 'Anthem Video',
-                },
-              },
-              body: {
-                eyebrow: 'Whitepaper',
-                headline: 'Anthem: Service Desktop',
-                paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-              },
-              actions: [
-                {
-                  text: 'Get the report',
-                  url: 'https://google.com',
-                },
-              ],
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endblock %}
-    {% endembed %}
+      <p>Leveraging productivity bots that simplify the employee experience injects instant ROI into your business. In just two to three weeks you'll turn all your service agents, back-office workers, or front-line sellers into productivity ninjas. They’ll be happier. You’ll be happier. And your customers will be happier.</p>
+    {% endset %}
+    {% set card %}
+      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+        media: {
+          image: {
+            src: '/images/content/backgrounds/background-tall-3.jpg',
+            alt: 'Anthem Video',
+          },
+        },
+        body: {
+          eyebrow: 'Whitepaper',
+          headline: 'Anthem: Service Desktop',
+          paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
+        },
+        actions: [
+          {
+            text: 'Get the report',
+            url: 'https://google.com',
+          },
+        ],
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 7@medium',
+          content: text,
+        },
+        {
+          column_start: '1 8@medium',
+          column_span: '12 5@medium',
+          content: card,
+        },
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %}
 {# End Integration #}
 
 
@@ -411,44 +484,57 @@
   }
 } %}
 
-      {% block band_content  %}
-        {% grid 'o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev' %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include '@bolt-components-headline/headline.twig' with {
-            text: 'Ensure Governance and Oversight',
-            size: 'xxlarge',
-            tag: 'h2'
-            } only %}
-            <p>As organizations continue to collect software robots, the speed of application updates accelerates, and the application of artificial intelligence broadens. Sooner or later, you’ll get caught up in a management nightmare if you have not considered how to provide consistent oversight and governance over bots, cognitive or not.</p>
+  {% block band_content  %}
+    {% set text %}
+      {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Ensure Governance and Oversight',
+      size: 'xxlarge',
+      tag: 'h2'
+      } only %}
+      <p>As organizations continue to collect software robots, the speed of application updates accelerates, and the application of artificial intelligence broadens. Sooner or later, you’ll get caught up in a management nightmare if you have not considered how to provide consistent oversight and governance over bots, cognitive or not.</p>
 
-            <p>Pega’s enterprise process transformation platform helps orchestrate complex processes, and the Pega Customer Decision Hub supports deterministic rules in addition to advanced adaptive analytics. Rest assured regulatory compliance is maintained across the enterprise.</p>
+      <p>Pega’s enterprise process transformation platform helps orchestrate complex processes, and the Pega Customer Decision Hub supports deterministic rules in addition to advanced adaptive analytics. Rest assured regulatory compliance is maintained across the enterprise.</p>
 
-            <p>Capabilities such as auto self-documentation ensure an audit trail is maintained of all activities so compliance risk is minimized and required reporting is streamlined and automated.</p>
-          {% endcell %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-2/5@small u-bolt-margin---small' %}
-            {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-              media: {
-                image: {
-                  src: '/images/content/backgrounds/background-tall-2.jpg',
-                  alt: 'Anthem Video',
-                },
-              },
-              body: {
-                eyebrow: 'Whitepaper',
-                headline: 'Anthem: Service Desktop',
-                paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-              },
-              actions: [
-                {
-                  text: 'Get the report',
-                  url: 'https://google.com',
-                },
-              ],
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endblock %}
-    {% endembed %}
+      <p>Capabilities such as auto self-documentation ensure an audit trail is maintained of all activities so compliance risk is minimized and required reporting is streamlined and automated.</p>
+    {% endset %}
+    {% set card %}
+      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+        media: {
+          image: {
+            src: '/images/content/backgrounds/background-tall-2.jpg',
+            alt: 'Anthem Video',
+          },
+        },
+        body: {
+          eyebrow: 'Whitepaper',
+          headline: 'Anthem: Service Desktop',
+          paragraph: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
+        },
+        actions: [
+          {
+            text: 'Get the report',
+            url: 'https://google.com',
+          },
+        ],
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 5@medium',
+          row_start: '2 1@medium',
+          content: card,
+        },
+        {
+          column_start: '1 6@medium',
+          column_span: '12 7@medium',
+          content: text,
+        },
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %}
 {# End governance #}
 
 

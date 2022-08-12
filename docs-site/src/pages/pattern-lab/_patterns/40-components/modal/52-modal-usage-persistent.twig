@@ -76,8 +76,10 @@
     width: 'full'
   } only %}
 {% endset %}
-{% set persistent_modal_content %}
-  {% cell 'u-bolt-width-12/12 u-bolt-width-8/12@medium' %}
+
+{# Band inside the modal that handles the grid #}
+{% set band_content %}
+  {% set texts %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Template Instructions',
       size: 'xxxlarge',
@@ -86,8 +88,8 @@
     {% include '@bolt-components-headline/text.twig' with {
       text: 'Modal content can be anything. Content authors are free to set up single or multiple column layouts. The recommended format is text content on the left and form on the right. The return link is required, which is in its own cell under both the text content and form cells. It should not be part of the free-form authorable content, instead two required fields are required for content authors to input: return link url and return link text.',
     } only %}
-  {% endcell %}
-  {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@medium' %}
+  {% endset %}
+  {% set form %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: 'Sign in to view restricted content',
       size: 'xlarge',
@@ -96,30 +98,43 @@
     {% include '@bolt-components-form/form.twig' with {
       children: persistent_modal_form_children,
     } only  %}
-  {% endcell %}
-{% endset %}
-
-{# Band inside the modal that handles the grid #}
-{% set band_content %}
-  {% grid 'o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix' %}
-    {{ persistent_modal_content }}
-    {% cell 'u-bolt-width-12/12' %}
-      {% set icon_chevron_left %}
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'chevron-left',
-        } only %}
-      {% endset %}
-
-      {% include '@bolt-elements-text-link/text-link.twig' with {
-        content: return_link_text,
-        icon_before: icon_chevron_left,
-        attributes: {
-          href: return_link_url,
-          'data-bolt-autofocus': ''
-        }
+  {% endset %}
+  {% set link %}
+    {% set icon_chevron_left %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-left',
       } only %}
-    {% endcell %}
-  {% endgrid %}
+    {% endset %}
+
+    {% include '@bolt-elements-text-link/text-link.twig' with {
+      content: return_link_text,
+      icon_before: icon_chevron_left,
+      attributes: {
+        href: return_link_url,
+        'data-bolt-autofocus': ''
+      }
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-grid/grid.twig' with {
+    items: [
+      {
+        column_start: '1',
+        column_span: '12 8@medium',
+        content: texts,
+      },
+      {
+        column_start: '1 9@medium',
+        column_span: '12 4@medium',
+        content: form,
+      },
+      {
+        column_start: '1',
+        column_span: '12',
+        content: link,
+      },
+    ]
+  } only %}
 {% endset %}
 {% set modal_content %}
   {% include '@bolt-components-band/band.twig' with {

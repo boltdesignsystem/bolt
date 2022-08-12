@@ -1,38 +1,36 @@
-{% grid 'o-bolt-grid--center' %}
-  {% cell %}
-    <bolt-list display="inline" spacing="large">
-      <bolt-list-item>
-        {# Start component specific code #}
-        {% set text_link %}
-          {% include '@bolt-elements-text-link/text-link.twig' with {
-            content: 'CRM',
-            attributes: {
-              href: 'https://google.com'
-            }
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-tooltip/tooltip.twig' with {
-          trigger: text_link,
-          content: 'Customer relationship management',
-        } only %}
-        {# End component specific code #}
-      </bolt-list-item>
-      <bolt-list-item>
-        {# Start component specific code #}
-        {% set button %}
-          {% include '@bolt-elements-button/button.twig' with {
-            content: 'Download',
-            attributes: {
-              type: 'button'
-            }
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-tooltip/tooltip.twig' with {
-          trigger: button,
-          content: 'File size: 25MB',
-        } only %}
-        {# End component specific code #}
-      </bolt-list-item>
-    </bolt-list>
-  {% endcell %}
-{% endgrid %}
+
+<bolt-list display="inline" spacing="large" align="center">
+  <bolt-list-item>
+    {# Start component specific code #}
+    {% set text_link %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'CRM',
+        attributes: {
+          href: 'https://google.com'
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-tooltip/tooltip.twig' with {
+      trigger: text_link,
+      content: 'Customer relationship management',
+    } only %}
+    {# End component specific code #}
+  </bolt-list-item>
+  <bolt-list-item>
+    {# Start component specific code #}
+    {% set button %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Download',
+        attributes: {
+          type: 'button'
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-tooltip/tooltip.twig' with {
+      trigger: button,
+      content: 'File size: 25MB',
+    } only %}
+    {# End component specific code #}
+  </bolt-list-item>
+</bolt-list>
+

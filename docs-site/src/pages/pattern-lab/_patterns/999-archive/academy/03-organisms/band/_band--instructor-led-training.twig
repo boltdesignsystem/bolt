@@ -1,38 +1,52 @@
 {% set content %}
-  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
-      {% include "@bolt-components-headline/headline.twig" with {
-        size: "xxlarge",
-        text: "Instructor-led Training"
-      } only %}
-      {% include "@bolt-components-headline/text.twig" with {
-        size: "xlarge",
-        text: "View the class schedule to see the latest in person training"
-      } only %}
-    {% endcell %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium o-bolt-grid--right" %}
-      {% include "@bolt-elements-button/button.twig" with {
-        content: "View Class Schedule",
-        border_radius: "full",
-        attributes: {
-          type: 'button'
-        }
-      } only %}
-    {% endcell %}
-  {% endgrid %}
-{% endset %}
+  {% set title %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xxlarge",
+      text: "Instructor-led Training"
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      size: "xlarge",
+      text: "View the class schedule to see the latest in person training"
+    } only %}
+  {% endset %}
 
+  {% set button %}
+    {% include "@bolt-elements-button/button.twig" with {
+      content: "View Class Schedule",
+      border_radius: "full",
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    spacing: 'small',
+    align: 'justify',
+    valign: 'center',
+    items: [
+      title,
+      button,
+    ]
+  } only %}
+{% endset %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+        src: "/images/content/backgrounds/background-night-sky.jpg",
+    },
+  } only %}
+{% endset %}
 {% include "@bolt-components-band/band.twig" with {
   theme: "xdark",
   content: content,
   background: {
     opacity: "light",
     fill: "gradient",
-    content_items: [
-      {
-        pattern: "image",
-        src: "/images/content/backgrounds/background-night-sky.jpg",
-      },
+    items: [
+      image
     ]
   },
 } only %}

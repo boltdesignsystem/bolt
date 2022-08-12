@@ -1,0 +1,154 @@
+{% set main_content %}
+  {% set card %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      media: {
+        image: {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Image alt.",
+        },
+      },
+      body: {
+        headline: "Card Example",
+        paragraph: "This example uses a Card Replacement Component, it is not recommended to use this component since it is deprecated.",
+      },
+      attributes: {
+        'data-test-attribute': 'foo'
+      }
+    } only %}
+  {% endset %}
+
+  {% set card_with_buttons %}
+    {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+      media: {
+        image: {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Image alt.",
+        },
+      },
+      body: {
+        headline: "Card Example (DUE TO THE NESTED BUTTON THIS WILL BE BROKEN)",
+        paragraph: "This example uses a Card Replacement Component, it is not recommended to use this component since it is deprecated.",
+      },
+      attributes: {
+        'data-test-attribute': 'foo'
+      },
+      actions: [
+        {
+          text: "Open a modal",
+          attributes: {
+            "data-bolt-modal-target": ".js-bolt-modal"
+          }
+        }
+      ]
+    } only %}
+  {% endset %}
+
+  {% set modal_content %}
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'This is the modal container\'s header.',
+      attributes: {
+        slot: 'header',
+      }
+    } only %}
+    <div>
+      {% include '@bolt-components-headline/headline.twig' with {
+        size: 'xlarge',
+        text: 'This is the modal container\'s body'
+      } only %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'This is the modal container\'s body.'
+      } only %}
+    </div>
+    {% include '@bolt-components-headline/text.twig' with {
+      text: 'This is the modal container\'s footer.',
+      attributes: {
+        slot: 'footer',
+      }
+    } only %}
+  {% endset %}
+
+  {% set image %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      alt: 'A Turtle'
+    } only %}
+  {% endset %}
+
+  <bolt-layout template="thirds@from-medium">
+    <bolt-layout-item>
+      <h2>Teaser (Recommended Solution)</h2>
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        signifier: image,
+        variant: 'card',
+        headline: {
+          text: 'Teaser Component Example',
+          link_attributes: {
+            type: 'button',
+            'data-bolt-modal-target': '.js-bolt-modal'
+          },
+        },
+        description: {
+          content: 'This example uses a Teaser Component, it is recommended to use this component.',
+        }
+      } only %}
+    </bolt-layout-item>
+    <bolt-layout-item>
+      <h2>Existing Card</h2>
+      {% include '@bolt-components-trigger/trigger.twig' with {
+        content: card,
+        attributes: {
+          'data-bolt-modal-target': '.js-bolt-modal',
+          'aria-label': 'Open a modal'
+        }
+      } only %}
+    </bolt-layout-item>
+    <bolt-layout-item>
+      <h2>Existing Card With Button</h2>
+      {% include '@bolt-components-trigger/trigger.twig' with {
+        content: card_with_buttons,
+        attributes: {
+          'data-bolt-modal-target': '.js-bolt-modal',
+        }
+      } only %}
+    </bolt-layout-item>
+    <bolt-layout-item>
+      <h2>Existing Card With Modal Button Only</h2>
+      {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+        media: {
+          image: {
+            src: "/images/placeholders/landscape-16x9-mountains.jpg",
+            alt: "Image alt.",
+          },
+        },
+        body: {
+          headline: "Card Example with Button Only",
+          paragraph: "This example uses a Card Replacement Component, it is not recommended to use this component since it is deprecated.",
+        },
+        attributes: {
+          'data-test-attribute': 'foo'
+        },
+        actions: [
+          {
+            text: "Open a modal",
+            attributes: {
+              "data-bolt-modal-target": ".js-bolt-modal"
+            }
+          }
+        ]
+      } only %}
+    </bolt-layout-item>
+  </bolt-layout>
+
+  {% include '@bolt-components-modal/modal.twig' with {
+    content: modal_content,
+    attributes: {
+      class: 'js-bolt-modal',
+    },
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}

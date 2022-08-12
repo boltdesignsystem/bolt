@@ -106,7 +106,7 @@
                 name: 'eye',
               } only %}
             {% endset %}
-            <div class="c-bolt-teaser__views"><span class="c-bolt-teaser__views-icon">{{ _icon_eye|spaceless }}</span>{{ status.views }} {{ 'views'|t }}</div>
+            <div class="c-bolt-teaser__views"><span class="c-bolt-teaser__views-icon">{% spaceless %}{{ _icon_eye }}{% endspaceless %}</span>{{ status.views }} {{ 'views'|t }}</div>
           </li>
         {% endif %}
         {% if like %}

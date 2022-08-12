@@ -25,8 +25,8 @@
 
 {# Start component specific code #}
 {% for display in regular_display_options %}
-  {% grid 'o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-large' %}
-    {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@medium' %}
+  <bolt-grid gutter="medium" row-gutter="medium">
+    <bolt-grid-item column-start="1" column-span="12 4@medium">
       <h3>Regular spacing in a {{ display }} list</h3>
       {% include '@bolt-components-list/list.twig' with {
         display: display,
@@ -38,8 +38,8 @@
           placeholder_3,
         ]
       } only %}
-    {% endcell %}
-    {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@medium' %}
+    </bolt-grid-item>
+    <bolt-grid-item column-start="1" column-span="12 4@medium">
       <h3>Inset spacing in a {{ display }} list</h3>
       {% include '@bolt-components-list/list.twig' with {
         display: display,
@@ -52,7 +52,7 @@
           placeholder_3,
         ]
       } only %}
-    {% endcell %}
-  {% endgrid %}
+    </bolt-grid-item>
+</bolt-grid>
 {% endfor %}
 {# End component specific code #}

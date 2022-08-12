@@ -1,10 +1,14 @@
 {% macro code_example(code) %}
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid %}
-      {% cell 'u-bolt-width-12/12' %}
-        {{ code }}
-      {% endcell %}
-    {% endgrid %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12',
+          content: code,
+        },
+      ]
+    } only %}
   </div>
 {% endmacro %}
 
@@ -43,7 +47,7 @@
 
 
 
-<div class="o-bolt-wrapper">
+<div class="e-bolt-wrapper">
   <div class="u-bolt-margin-bottom-large">
     <bolt-text headline>
       Web Component Usage

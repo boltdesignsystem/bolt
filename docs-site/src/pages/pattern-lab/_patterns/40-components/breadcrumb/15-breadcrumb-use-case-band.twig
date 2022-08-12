@@ -36,7 +36,7 @@
 {% set breadcrumb %}
   {# Start component specific code #}
   {% include '@bolt-components-breadcrumb/breadcrumb.twig' with {
-    contentItems: [
+    items: [
       item_home,
       item_landing,
       item_sub,
@@ -190,7 +190,14 @@
     }
   } only %}
 {% endset %}
-
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/content/backgrounds/background-tall-3.jpg'
+    },
+  } only %}
+{% endset %}
 {% include '@bolt-components-band/band.twig' with {
   'teaserPosition': 'left',
   'teaserWidth': '2/3',
@@ -203,10 +210,9 @@
       'vertical': 'center',
       'horizontal': 'right'
     },
-    'content_items': [{
-      'pattern': 'image',
-      'src': '/images/content/backgrounds/background-tall-3.jpg'
-    }]
+    items: [
+      image
+    ]
   },
   'content': stacked_bands
 } only %}
