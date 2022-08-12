@@ -1,11 +1,11 @@
-<div class="o-bolt-wrapper">
+<div class="e-bolt-wrapper">
   <h1>Carousel in a layout tests</h1>
   <hr>
   <h2>Carousel examples inside layout using HTML tags</h2>
   <div class="l-bolt-site">
     <header>This is the header</header>
     <main>
-      <div class="o-bolt-wrapper">
+      <div class="e-bolt-wrapper">
         <bolt-carousel>
           <bolt-carousel-slide>
             <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -18,7 +18,7 @@
           </bolt-carousel-slide>
         </bolt-carousel>
       </div>
-      <div class="o-bolt-wrapper">
+      <div class="e-bolt-wrapper">
         <bolt-carousel nav-button-position="outside">
           <bolt-carousel-slide>
             <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -31,7 +31,7 @@
           </bolt-carousel-slide>
         </bolt-carousel>
       </div>
-      <div class="o-bolt-wrapper">
+      <div class="e-bolt-wrapper">
         <bolt-carousel slides-per-view=2>
           <bolt-carousel-slide>
             <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -44,7 +44,7 @@
           </bolt-carousel-slide>
         </bolt-carousel>
       </div>
-      <div class="o-bolt-wrapper">
+      <div class="e-bolt-wrapper">
         <bolt-carousel nav-button-position="outside" slides-per-view=2>
           <bolt-carousel-slide>
             <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -57,7 +57,7 @@
           </bolt-carousel-slide>
         </bolt-carousel>
       </div>
-      <div class="o-bolt-wrapper">
+      <div class="e-bolt-wrapper">
         <bolt-carousel overflow>
           <bolt-carousel-slide>
             <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -70,7 +70,7 @@
           </bolt-carousel-slide>
         </bolt-carousel>
       </div>
-      <div class="o-bolt-wrapper">
+      <div class="e-bolt-wrapper">
         <bolt-carousel overflow nav-button-position="outside">
           <bolt-carousel-slide>
             <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -83,7 +83,7 @@
           </bolt-carousel-slide>
         </bolt-carousel>
       </div>
-      <div class="o-bolt-wrapper">
+      <div class="e-bolt-wrapper">
         <bolt-carousel slides-per-view=2 overflow>
           <bolt-carousel-slide>
             <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -96,7 +96,7 @@
           </bolt-carousel-slide>
         </bolt-carousel>
       </div>
-      <div class="o-bolt-wrapper">
+      <div class="e-bolt-wrapper">
         <bolt-carousel nav-button-position="outside" slides-per-view=2 overflow>
           <bolt-carousel-slide>
             <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -116,7 +116,7 @@
   <hr>
 
   <h2>Carousel examples not nested in layout</h2>
-  <div class="o-bolt-wrapper">
+  <div class="e-bolt-wrapper">
     <bolt-carousel>
       <bolt-carousel-slide>
         <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -129,7 +129,7 @@
       </bolt-carousel-slide>
     </bolt-carousel>
   </div>
-  <div class="o-bolt-wrapper">
+  <div class="e-bolt-wrapper">
     <bolt-carousel nav-button-position="outside">
       <bolt-carousel-slide>
         <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -142,7 +142,7 @@
       </bolt-carousel-slide>
     </bolt-carousel>
   </div>
-  <div class="o-bolt-wrapper">
+  <div class="e-bolt-wrapper">
     <bolt-carousel slides-per-view=2>
       <bolt-carousel-slide>
         <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -155,7 +155,7 @@
       </bolt-carousel-slide>
     </bolt-carousel>
   </div>
-  <div class="o-bolt-wrapper">
+  <div class="e-bolt-wrapper">
     <bolt-carousel nav-button-position="outside" slides-per-view=2>
       <bolt-carousel-slide>
         <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -168,7 +168,7 @@
       </bolt-carousel-slide>
     </bolt-carousel>
   </div>
-  <div class="o-bolt-wrapper">
+  <div class="e-bolt-wrapper">
     <bolt-carousel overflow>
       <bolt-carousel-slide>
         <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -181,7 +181,7 @@
       </bolt-carousel-slide>
     </bolt-carousel>
   </div>
-  <div class="o-bolt-wrapper">
+  <div class="e-bolt-wrapper">
     <bolt-carousel overflow nav-button-position="outside">
       <bolt-carousel-slide>
         <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -194,7 +194,7 @@
       </bolt-carousel-slide>
     </bolt-carousel>
   </div>
-  <div class="o-bolt-wrapper">
+  <div class="e-bolt-wrapper">
     <bolt-carousel slides-per-view=2 overflow>
       <bolt-carousel-slide>
         <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -207,7 +207,7 @@
       </bolt-carousel-slide>
     </bolt-carousel>
   </div>
-  <div class="o-bolt-wrapper">
+  <div class="e-bolt-wrapper">
     <bolt-carousel nav-button-position="outside" slides-per-view=2 overflow>
       <bolt-carousel-slide>
         <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
@@ -285,7 +285,7 @@
   <div class="l-bolt-site">
     <header>This is the header</header>
     <main>
-      <div class="o-bolt-wrapper">
+      <div class="e-bolt-wrapper">
         {% for slides_per_view in schema.properties.slides_per_view.enum %}
           <h3>Slides Per View: {{ slides_per_view|capitalize }}</h3>
           {% include '@bolt-components-carousel/carousel.twig' with {
@@ -315,7 +315,7 @@
   <div class="l-bolt-site">
     <header>This is the header</header>
     <main>
-      <div class="o-bolt-wrapper">
+      <div class="e-bolt-wrapper">
         {% for slides_per_view in schema.properties.slides_per_view.enum %}
           <h3>Slides Per View: {{ slides_per_view|capitalize }}</h3>
           {% include '@bolt-components-carousel/carousel.twig' with {
@@ -346,7 +346,7 @@
   <div class="l-bolt-site">
     <header>This is the header</header>
     <main>
-      <div class="o-bolt-wrapper">
+      <div class="e-bolt-wrapper">
         {% for slides_per_view in schema.properties.slides_per_view.enum %}
           <h3>Slides Per View: {{ slides_per_view|capitalize }}</h3>
           {% include '@bolt-components-carousel/carousel.twig' with {
@@ -377,7 +377,7 @@
   <div class="l-bolt-site">
     <header>This is the header</header>
     <main>
-      <div class="o-bolt-wrapper">
+      <div class="e-bolt-wrapper">
         {% for slides_per_view in schema.properties.slides_per_view.enum %}
           <h3>Slides Per View: {{ slides_per_view|capitalize }}</h3>
           {% include '@bolt-components-carousel/carousel.twig' with {
