@@ -265,6 +265,7 @@
             }
           } only %}
         {% endset %}
+        {% set spaceless_privacy_link %}{% spaceless %}{{ privacy_link }}{% endspaceless %}{% endset %}
         {% set terms_link %}
           {% include '@bolt-elements-text-link/text-link.twig' with {
             content: 'Terms of Use',
@@ -273,8 +274,9 @@
             }
           } only %}
         {% endset %}
+        {% set spaceless_terms_link %}{% spaceless %}{{ terms_link }}{% endspaceless %}{% endset %}
         {% include '@bolt-components-headline/text.twig' with {
-          text: 'By clicking &ldquo;Sign up&rdquo; I agree that I have read and agree to ' ~ privacy_link|spaceless ~ ' and ' ~ terms_link|spaceless ~ '.',
+          text: 'By clicking &ldquo;Sign up&rdquo; I agree that I have read and agree to ' ~ spaceless_privacy_link ~ ' and ' ~ spaceless_terms_link ~ '.',
           size: 'small',
         } only %}
 
