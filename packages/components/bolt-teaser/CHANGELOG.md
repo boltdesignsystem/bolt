@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.7.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser/compare/v5.6.0...v5.7.0) (2022-08-12)
+
+**Note:** Version bump only for package @bolt/components-teaser
+
+
+
+
+
 # [5.6.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser/compare/v5.5.0...v5.6.0) (2022-07-01)
 
 **Note:** Version bump only for package @bolt/components-teaser
