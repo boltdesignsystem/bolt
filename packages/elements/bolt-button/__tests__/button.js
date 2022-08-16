@@ -49,6 +49,31 @@ describe('Bolt button', () => {
   });
 });
 
+describe('Button element missing type', () => {
+  test(`default`, async () => {
+    const results = await render('@bolt-elements-button/button.twig', {
+      content: 'This is a button with missing type',
+    });
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+});
+
+describe('Button element with href', () => {
+  test(`default`, async () => {
+    const results = await render('@bolt-elements-button/button.twig', {
+      content: 'This is a button with an href attribute',
+      attributes: {
+        href: 'example.com',
+      },
+    });
+
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+});
+
 describe('Bolt button Props', () => {
   test(`icon after`, async () => {
     const results = await render('@bolt-elements-button/button.twig', {

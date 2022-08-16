@@ -124,14 +124,14 @@
 {% endmacro %}
 
 {# Renders the categorized right side floating navigation #}
-{% macro sassdocNav(contentItems) %}
-  {% if contentItems %}
+{% macro sassdocNav(items) %}
+  {% if items %}
     {% set navItems = {} %}
 
     {% set group = '' %}
     {% set section = '' %}
 
-    {% for item in contentItems %}
+    {% for item in items %}
       {% set group = item.group[0] ? item.group[0] : group %}
       {% set section = item.context.type ? item.context.type : section %}
 
@@ -185,12 +185,12 @@
 {% endmacro %}
 
 {# Renders the flat right side floating navigation #}
-{% macro sassdocNavFlat(contentItems) %}
-  {% if contentItems %}
+{% macro sassdocNavFlat(items) %}
+  {% if items %}
 
     {% set navItems = {} %}
 
-    {% for item in contentItems %}
+    {% for item in items %}
       {% set groupName = "#{item.group[0]}" %}
       {% if navItems[groupName] is defined %}
           {% set navItems = navItems|merge({
@@ -245,10 +245,10 @@
 
 <div class="c-bds-docs c-bds-docs--sassdoc t-bolt-xlight u-bolt-padding-left-none u-bolt-padding-right-none">
   <div class="c-bds-docs__page-content u-bolt-padding-left-none">
-    {% if contentItems %}
+    {% if items %}
       {% set group = '' %}
       {% set section = '' %}
-      {% for item in contentItems %}
+      {% for item in items %}
         <div class="c-bds-docs--sassdoc__item">
           {% if item %}
             {% if group != item.group[0] %}
@@ -370,14 +370,14 @@
   </div>
 
   <div class="c-bds-docs__page-nav c-bds-docs__page-nav--sassdoc">
-    <ul class="o-bolt-ui-list o-bolt-ui-list--xsmall c-bds-docs__page-nav-list">
-      <li class="o-bolt-ui-list__item">
-        <ul class="o-bolt-ui-list o-bolt-ui-list--xxsmall o-bolt-ui-list--borderless o-bolt-ui-list--sassdoc">
-          <li class="o-bolt-ui-list__item t-bolt-xlight">
+    <bolt-list class="c-bds-docs__page-nav-list">
+      <bolt-list-item>
+        <bolt-list spacing="xxsmall" class="c-bds-docs__page-nav-list--sassdoc">
+          <bolt-list-item class="t-bolt-xlight">
             {{ macros.sassdocNavFlat(contentItems) }}
-          </li>
-        </ul>
-      </li>
-    </ul>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-list-item>
+    </bolt-list>
   </div>
 </div>

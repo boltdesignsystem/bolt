@@ -7,7 +7,7 @@
 </bolt-figure>
 {% endset %}
 
-<div class="o-bolt-wrapper">
+<div class="e-bolt-wrapper">
   <bolt-text headline>
     Web Component Usage
   </bolt-text>
@@ -15,11 +15,15 @@
     Bolt Figure is a web component. Use the custom element <code>&lt;bolt-figure&gt;</code> to wrap your figure media and caption. The figure media must have the attribute <code>slot="media"</code> or be wrapped by an element with that attribute. Everything else inside the <code>&lt;bolt-figure&gt;</code> tag is considered the caption. We recommend simply using text with optional inline markup (as seen below).
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-      {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-        {{ figure_web_component_demo }}
-      {% endcell %}
-    {% endgrid %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1 4@small',
+          column_span: '12 6@small',
+          content: figure_web_component_demo,
+        },
+      ]
+    } only %}
   </div>
   <div class="u-bolt-margin-bottom-large">
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {

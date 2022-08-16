@@ -5,7 +5,11 @@
   {% set change_log_file = "@bolt-#{componentGroup}-#{componentName}/CHANGELOG.md" %}
   {% set pkg = get_data("@bolt-#{componentGroup}-#{componentName}/package.json") %}
   {# Handle multiple schemas #}
-  {% if data.components["@bolt-#{componentGroup}-#{componentName}"].schema["#{componentName}"] is defined %}
+  {# `has_single_schema` is mainly a workaround for the "Type" element. When we check for schema["type"] it could either be
+     the schema's "type": "oject" key/value pair or an array containing multiple schemas for the element "Type". We don't want
+     to restructure the Bolt data right now, so just adding this workaround. #}
+  {% set has_single_schema = data.components["@bolt-#{componentGroup}-#{componentName}"].schema["$schema"] is defined %}
+  {% if data.components["@bolt-#{componentGroup}-#{componentName}"].schema["#{componentName}"] is defined and not has_single_schema %}
     {% set component_schemas = data.components["@bolt-#{componentGroup}-#{componentName}"].schema %}
     {% set schema = component_schemas["#{componentName}"] %}
   {% else %}

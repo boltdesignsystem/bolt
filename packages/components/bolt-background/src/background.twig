@@ -9,6 +9,11 @@
   {% set content_items = contentItems %}
 {% endif %}
 
+{# DEPRECATED.  Use the property `content` instead of `content_items`. #}
+{% if content_items %}
+  {% set items = content_items %}
+{% endif %}
+
 {# DEPRECATED.  Use the property `shape_group` instead of `shapeGroup`. #}
 {% if shapeGroup %}
   {% set shape_group = shapeGroup %}
@@ -34,10 +39,15 @@
 
 <bolt-background bolt-component>
   <div {{ attributes.addClass(['c-bolt-background']) }}>
-    {% if content_items %}
-      {% for item in content_items %}
-        {% if item %}
+    {% if items %}
+      {% for item in items %}
+        {% if item is iterable and item.pattern %}
+          {# DEPRECATED.  pattern_template() should no longer be used to render each item. #}
           {% include '@bolt-components-background/background-item.twig' %}
+        {% else %}
+          <div class="c-bolt-background__item">
+            {{ item }}
+          </div>
         {% endif %}
       {% endfor %}
     {% endif %}

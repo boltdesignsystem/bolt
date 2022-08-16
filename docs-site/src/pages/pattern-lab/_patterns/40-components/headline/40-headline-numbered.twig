@@ -20,13 +20,13 @@
 } only %}
 
 {% set withoutColorExample %}{% verbatim %}{% include '@bolt-components-headline/headline.twig' with {
-  text: 'Example numbered headline (w/o numberColor)',
-  numberText: 7,
+  text: 'Example numbered headline (w/o number_color)',
+  number_text: 7,
 } only %}{% endverbatim %}{% endset %}
 
 {% include '@bolt-components-headline/headline.twig' with {
-  text: 'Example numbered headline (w/o numberColor)',
-  numberText: 7,
+  text: 'Example numbered headline (w/o number_color)',
+  number_text: 7,
 } only %}
 
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
@@ -35,15 +35,15 @@
 } %}
 
 {% set withColorExample %}{% verbatim %}{% include '@bolt-components-headline/headline.twig' with {
-  text: 'Example numbered headline (w/ numberColor)',
-  numberText: 42,
-  numberColor: 'orange'
+  text: 'Example numbered headline (w/ number_color)',
+  number_text: 42,
+  number_color: 'orange'
 } only %}{% endverbatim %}{% endset %}
 
 {% include '@bolt-components-headline/headline.twig' with {
-  text: 'Example numbered headline (w/ numberColor)',
-  numberText: 42,
-  numberColor: 'orange'
+  text: 'Example numbered headline (w/ number_color)',
+  number_text: 42,
+  number_color: 'orange'
 } only %}
 
 {% include '@bolt-components-code-snippet/code-snippet.twig' with {
@@ -53,42 +53,60 @@
 
 <hr>
 
-{% grid %}
-  {% cell 'u-bolt-width-12/12' %}
-    {% include '@bolt-components-headline/headline.twig' with {
-      size: 'xxlarge',
-      text: 'Up to 3 digits supported',
-      tag: 'h2',
-      attributes: {
-        class: ['u-bolt-margin-bottom-xsmall']
-      }
-    } only %}
-  {% endcell %}
 
-  {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@small' %}
-    {% include '@bolt-components-headline/headline.twig' with {
-      size: 'xxlarge',
-      text: 'Single-digit',
-      numberText: 7,
-    } only %}
-  {% endcell %}
+{% include '@bolt-components-headline/headline.twig' with {
+  size: 'xxlarge',
+  text: 'Up to 3 digits supported',
+  tag: 'h2',
+  attributes: {
+    class: ['u-bolt-margin-bottom-xsmall']
+  }
+} only %}
 
-  {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@small' %}
-    {% include '@bolt-components-headline/headline.twig' with {
-      size: 'xxlarge',
-      text: 'Double-digit',
-      numberText: 42,
-    } only %}
-  {% endcell %}
 
-  {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@small' %}
-    {% include '@bolt-components-headline/headline.twig' with {
-      size: 'xxlarge',
-      text: 'Triple-digit',
-      numberText: 123,
-    } only %}
-  {% endcell %}
-{% endgrid %}
+{% set headline_1 %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxlarge',
+    text: 'Single-digit',
+    number_text: 7,
+  } only %}
+{% endset %}
+
+{% set headline_2 %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxlarge',
+    text: 'Double-digit',
+    number_text: 42,
+  } only %}
+{% endset %}
+
+{% set headline_3 %}
+  {% include '@bolt-components-headline/headline.twig' with {
+    size: 'xxlarge',
+    text: 'Triple-digit',
+    number_text: 123,
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-grid/grid.twig' with {
+  items: [
+    {
+      column_start: '1',
+      column_span: '12 4@small',
+      content: headline_1,
+    },
+    {
+      column_start: '1 5@small',
+      column_span: '12 4@small',
+      content: headline_2,
+    },
+    {
+      column_start: '1 9@small',
+      column_span: '12 4@small',
+      content: headline_3,
+    },
+  ]
+} only %}
 
 
 <hr>
@@ -102,7 +120,7 @@
 {% include '@bolt-components-headline/headline.twig' with {
   size: 'xxlarge',
   text: 'Numbered Headline With Left Icon',
-  numberText: 1,
+  number_text: 1,
   icon: {
     name: 'arrow-left',
     position: 'before'
@@ -112,7 +130,7 @@
 {% include '@bolt-components-headline/headline.twig' with {
   size: 'xxlarge',
   text: 'Numbered Headline With Right Icons',
-  numberText: 2,
+  number_text: 2,
   icon: {
     name: 'chevron-right',
     position: 'after'
@@ -133,21 +151,21 @@
 {% include '@bolt-components-headline/headline.twig' with {
   size: 'xlarge',
   text: 'Numbered Headline - Left',
-  numberText: 1,
+  number_text: 1,
   align: 'left'
 } only %}
 
 {% include '@bolt-components-headline/headline.twig' with {
   size: 'xlarge',
   text: 'Numbered Headline - Center',
-  numberText: 2,
+  number_text: 2,
   align: 'center'
 } only %}
 
 {% include '@bolt-components-headline/headline.twig' with {
   size: 'xlarge',
   text: 'Numbered Headline - Right',
-  numberText: 3,
+  number_text: 3,
   align: 'right'
 } only %}
 
@@ -156,27 +174,27 @@
 <bolt-stack>
   {% include '@bolt-components-headline/eyebrow.twig' with {
     text: 'Numbered Eyebrow',
-    numberText: 4,
+    number_text: 4,
   } only %}
 </bolt-stack>
 <bolt-stack>
   {% include '@bolt-components-headline/headline.twig' with {
     size: 'xxxlarge',
     text: 'Numbered Headline (xxxlarge)',
-    numberText: 1,
+    number_text: 1,
   } only %}
 </bolt-stack>
 <bolt-stack>
   {% include '@bolt-components-headline/subheadline.twig' with {
     size: 'xxlarge',
     text: 'Numbered Subheadline (xxlarge)',
-    numberText: 2,
+    number_text: 2,
   } only %}
 </bolt-stack>
 <bolt-stack>
   {% include '@bolt-components-headline/text.twig' with {
     text: 'Numbered Text',
-    numberText: 3,
+    number_text: 3,
   } only %}
 </bolt-stack>
 
@@ -188,8 +206,8 @@
       {% include '@bolt-components-headline/headline.twig' with {
         size: size,
         text: 'Numbered Headline (' ~ size ~ ')',
-        numberText: loop.index,
-        numberColor: 'navy',
+        number_text: loop.index,
+        number_color: 'navy',
       } only %}
     </bolt-stack>
   {% endif %}
@@ -199,38 +217,56 @@
 
 {% include '@bolt-components-headline/headline.twig' with {
   size: 'xxlarge',
-  text: 'numberColor',
+  text: 'number_color',
   tag: 'h2',
 } only %}
 
 <p>
-  By setting the <code>numberColor</code> prop to <code>navy</code>, <code>purple</code>, <code>teal</code>, or <code>orange</code>, you can choose the background color of the Headline Number.
+  By setting the <code>number_color</code> prop to <code>navy</code>, <code>violet</code>, <code>teal</code>, or <code>orange</code>, you can choose the background color of the Headline Number.
 </p>
 
-{% grid 'o-bolt-grid--medium o-bolt-grid--matrix' %}
-  {% for color in schema.properties.numberColor.enum %}
-    {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
+<bolt-grid gutter="medium"  row-gutter="medium">
+  {% for color in schema.properties.number_color.enum %}
+    {% set numbered_headline %}
       {% include '@bolt-components-headline/headline.twig' with {
         size: 'xxlarge',
         text: 'Numbered Headline w/ Number',
-        numberText: loop.index,
-        numberColor: color
+        number_text: loop.index,
+        number_color: color
       } only %}
-    {% endcell %}
+    {% endset %}
+    {% if color == 'teal' or color == 'orange' %}
+    <bolt-grid-item column-start="1" column-span="12 6@small">
+      {{ numbered_headline }}
+    </bolt-grid-item>
+    {% else %}
+    <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
+      {{ numbered_headline }}
+    </bolt-grid-item>
+    {% endif %}
   {% endfor %}
 
   {% set letters = ['A', 'B', 'C', 'D'] %}
   {% for letter in letters %}
-    {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
+    {% set numbered_headline %}
       {% include '@bolt-components-headline/headline.twig' with {
         size: 'xxlarge',
         text: 'Numbered Headline w/ Letter',
-        numberText: letter,
-        numberColor: schema.properties.numberColor.enum[loop.index0]
+        number_text: letter,
+        number_color: schema.properties.number_color.enum[loop.index0]
       } only %}
-    {% endcell %}
+    {% endset %}
+    {% if letter == 'A' or letter == 'C' %}
+      <bolt-grid-item column-start="1" column-span="12 6@small">
+        {{ numbered_headline }}
+      </bolt-grid-item>
+      {% else %}
+      <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
+        {{ numbered_headline }}
+      </bolt-grid-item>
+    {% endif %}
   {% endfor %}
-{% endgrid %}
+</bolt-grid>
 
 <hr>
 
@@ -243,47 +279,70 @@
 } only %}
 
 <p>
-  If you don't specify a <code>numberColor</code>, the current theme's colors will be used instead.
+  If you don't specify a <code>number_color</code>, the current theme's colors will be used instead.
 </p>
 
-{% grid 'o-bolt-grid--full' %}
-  {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-    <div class="t-bolt-xlight u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-left-small u-bolt-padding-right-small">
-      {% include '@bolt-components-headline/headline.twig' with {
-        size: 'xxlarge',
-        text: 'Without numberColor',
-        numberText: 1,
-      } only %}
-    </div>
-  {% endcell %}
+{% set no_text_1 %}
+  <div class="t-bolt-xlight u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-left-small u-bolt-padding-right-small">
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xxlarge',
+      text: 'Without number_color',
+      number_text: 1,
+    } only %}
+  </div>
+  {% endset %}
 
-  {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-    <div class="t-bolt-light u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-left-small u-bolt-padding-right-small">
-      {% include '@bolt-components-headline/headline.twig' with {
-        size: 'xxlarge',
-        text: 'Without numberColor',
-        numberText: 2,
-      } only %}
-    </div>
-  {% endcell %}
+{% set no_text_2 %}
+  <div class="t-bolt-light u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-left-small u-bolt-padding-right-small">
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xxlarge',
+      text: 'Without number_color',
+      number_text: 2,
+    } only %}
+  </div>
+  {% endset %}
 
-  {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-    <div class="t-bolt-dark u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-left-small u-bolt-padding-right-small">
-      {% include '@bolt-components-headline/headline.twig' with {
-        size: 'xxlarge',
-        text: 'Without numberColor',
-        numberText: 3,
-      } only %}
-    </div>
-  {% endcell %}
+{% set no_text_3 %}
+  <div class="t-bolt-dark u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-left-small u-bolt-padding-right-small">
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xxlarge',
+      text: 'Without number_color',
+      number_text: 3,
+    } only %}
+  </div>
+  {% endset %}
 
-  {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-    <div class="t-bolt-xdark u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-left-small u-bolt-padding-right-small">
-      {% include '@bolt-components-headline/headline.twig' with {
-        size: 'xxlarge',
-        text: 'Without numberColor',
-        numberText: 4,
-      } only %}
-    </div>
-  {% endcell %}
-{% endgrid %}
+{% set no_text_4 %}
+  <div class="t-bolt-xdark u-bolt-padding-top-small u-bolt-padding-bottom-small u-bolt-padding-left-small u-bolt-padding-right-small">
+    {% include '@bolt-components-headline/headline.twig' with {
+      size: 'xxlarge',
+      text: 'Without number_color',
+      number_text: 4,
+    } only %}
+  </div>
+{% endset %}
+
+{% include '@bolt-components-grid/grid.twig' with {
+  items: [
+    {
+      column_start: '1',
+      column_span: '12 6@medium',
+      content: no_text_1,
+    },
+    {
+      column_start: '1 7@medium',
+      column_span: '12 6@medium',
+      content: no_text_2,
+    },
+    {
+      column_start: '1',
+      column_span: '12 6@medium',
+      content: no_text_3,
+    },
+    {
+      column_start: '1 7@medium',
+      column_span: '12 6@medium',
+      content: no_text_4,
+    },
+  ]
+} only %}

@@ -25,23 +25,37 @@
     } only %}
   {% endset %}
 
-  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--small u-bolt-padding-top-xsmall u-bolt-padding-bottom-xsmall u-bolt-padding-top-medium@xsmall u-bolt-padding-bottom-medium@xsmall" %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-1/2@xxsmall u-bolt-flex-grow" %}
-      {% include '@bolt-components-headline/headline.twig' with {
-        text: 'Navbar title',
-        size: 'large'
-      } only %}
-    {% endcell %}
-    {% cell "u-bolt-padding-top-xsmall u-bolt-padding-top-none@xxsmall" %}
-      {% include '@bolt-components-list/list.twig' with {
-        display: 'inline',
-        items: [
-          link_1,
-          link_2
-        ]
-      } only %}
-    {% endcell %}
-  {% endgrid %}
+  {% set title %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: 'Navbar title',
+      size: 'large'
+    } only %}
+    {% endset %}
+  {% set links %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      items: [
+        link_1,
+        link_2
+      ]
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-list/list.twig' with {
+    display: 'inline',
+    spacing: 'medium',
+    align: 'justify',
+    valign: 'center',
+    items: [
+      title,
+      links,
+    ],
+    attributes: {
+      class: [
+        'u-bolt-padding-top-medium',
+        'u-bolt-padding-bottom-medium'
+      ]
+    }
+  } only %}
 {% endset %}
 
 {% set section_content %}

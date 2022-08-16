@@ -25,6 +25,12 @@ class BoltPopover extends BoltElement {
     this.uuid = this.uuid || Math.floor(10000 + Math.random() * 90000);
   }
 
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+
+    this.popover?.destroy();
+  }
+
   getPaddingTop() {
     const stickyPageHeader =
       document.querySelector('.c-bolt-page-header') ||
@@ -62,6 +68,12 @@ class BoltPopover extends BoltElement {
       (this.boundary && this.closest(this.boundary)) ||
       undefined;
 
+    // The <dialog> element sits in a separate layer above the <body>.
+    // Append to <dialog> element or popover will not show up.
+    this.$targetElement = this.closest('dialog')
+      ? this.closest('dialog')
+      : document.body;
+
     // Note: trigger cannot not be a shadow DOM element or Tippy doesn't always hide properly
     this.popover = tippy(this.trigger, {
       content: this.content,
@@ -71,7 +83,7 @@ class BoltPopover extends BoltElement {
       interactive: true,
       theme: 'popover',
       role: null,
-      appendTo: document.body,
+      appendTo: this.$targetElement,
       maxWidth: 'none', // Set width via CSS variable, requires legacy Edge support
       offset: [0, 0],
       plugins: [hideOnEsc, handleFocus],

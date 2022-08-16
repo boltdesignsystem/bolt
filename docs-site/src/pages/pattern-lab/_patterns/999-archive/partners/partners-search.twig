@@ -1,6 +1,14 @@
 {% extends '@pl/_default-page-template.twig' %}
 
 {% block main_content %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/placeholders/landscape-16x9-mountains.jpeg'
+      },
+    } only %}
+  {% endset %}
   {% embed '@pl/_band--feature.twig' with {
     teaserPosition: 'left',
     teaserWidth: '2/3',
@@ -14,10 +22,7 @@
         vertical: 'center',
         horizontal: 'right'
       },
-      content_items: [{
-        pattern: 'image',
-        src: '/images/placeholders/landscape-16x9-mountains.jpeg'
-      }]
+      items: [image]
 
 
     },
@@ -63,8 +68,8 @@
         and <strong>"search term"</strong>
         (<a href="#!" class="c-bolt-link">Clear filters</a>)
       </p>
-      {% grid %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-3/12@medium' %}
+      <bolt-grid gutter="medium" row-gutter="medium">
+        <bolt-grid-item column-start="1" column-span="12 3@medium">
           <div class="c-bolt-search-filter">
             <div class="c-bolt-search-filter__trigger">
               {% set _icon_filter %}
@@ -328,12 +333,12 @@
               </div>
             </div>
           </div>
-        {% endcell %}
+        </bolt-grid-item>
 
-        {% cell 'u-bolt-width-1/1 u-bolt-width-9/12@medium' %}
-          {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
+        <bolt-grid-item column-start="1 4@small" column-span="12 9@small">
+          <bolt-grid gutter="medium" row-gutter="medium">
             {% for i in 1..12 %}
-              {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@small' %}
+              {% set card %}
                 {% include '@bolt-components-card-replacement/card-replacement.twig' with {
                   theme: 'xlight',
                   media: {
@@ -358,13 +363,22 @@
                     },
                   ],
                 } only %}
-              {% endcell %}
+              {% endset %}
+              {% if (loop.index is odd) %}
+              <bolt-grid-item column-start="1" column-span="12 6@small">
+                {{ card }}
+              </bolt-grid-item>
+              {% else %}
+              <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
+                {{ card }}
+              </bolt-grid-item>
+              {% endif %}
             {% endfor %}
-          {% endgrid %}
+          </bolt-grid>
 
           <div class="u-bolt-margin-top-large u-bolt-margin-bottom-medium">
-            {% grid 'o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix' %}
-              {% cell 'o-bolt-grid__cell' %}
+            <bolt-grid gutter="medium" row-gutter="medium">
+              <bolt-grid-item column-start="1" column-span="12">
                 {% include '@bolt-components-pagination/pagination.twig' with {
                   current: 5,
                   total: 10,
@@ -398,11 +412,11 @@
                     href: 'page-10-url'
                   }
                 } only %}
-              {% endcell %}
-            {% endgrid %}
+              </bolt-grid-item>
+            </bolt-grid>
           </div>
-        {% endcell %}
-      {% endgrid %}
+        </bolt-grid-item>
+      </bolt-grid>
     {% endblock %}
   {% endembed %}
 {% endblock %}

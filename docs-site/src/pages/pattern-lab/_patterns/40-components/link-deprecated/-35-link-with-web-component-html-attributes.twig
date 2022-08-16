@@ -20,43 +20,55 @@
 {% endset %}
 
 <div class="u-bolt-margin-bottom-small">
-  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-    {% cell "u-bolt-width-12/12" %}
-      <bolt-text headline>
-        Adding Additional HTML Attributes to Link
-      </bolt-text>
+  {% set example_1 %}
+    <bolt-text headline>
+      Adding Additional HTML Attributes to Link
+    </bolt-text>
 
-      <div class="u-bolt-padding-small t-bolt-xlight">
-       <bolt-text>Any initial HTML attributes on a <code>&lt;bolt-link&gt;</code>'s inner <code>&lt;a&gt;</code> tag will be retained with two exceptions: inline styles (auto-removed to avoid styling issues) and any HTML attributes that are in direct conflict with the props passed into the web component.</bolt-text>
-      </div>
+    <div class="u-bolt-padding-small t-bolt-xlight">
+      <bolt-text>Any initial HTML attributes on a <code>&lt;bolt-link&gt;</code>'s inner <code>&lt;a&gt;</code> tag will be retained with two exceptions: inline styles (auto-removed to avoid styling issues) and any HTML attributes that are in direct conflict with the props passed into the web component.</bolt-text>
+    </div>
 
-      <div class="u-bolt-padding-small t-bolt-light">
-        <p>{{ link_with_data_attributes }}</p>
-      </div>
+    <div class="u-bolt-padding-small t-bolt-light">
+      <p>{{ link_with_data_attributes }}</p>
+    </div>
 
-      {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-        content: link_with_data_attributes,
-        lang: 'html',
-        mode: 'dark',
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: link_with_data_attributes,
+      lang: 'html',
+      mode: 'dark',
+    } only %}
+  {% endset %}
+
+  {% set example_2 %}
+    <bolt-text headline>
+      Most (But Not All) HTML Attributes Supported
+    </bolt-text>
+
+    <bolt-text>For example, the <code>url</code> prop passed along to this web component will override any initial HTML <code>href</code> attribute present.</bolt-text>
+
+    <div class="u-bolt-padding-small t-bolt-light">
+      <p>{{ link_with_prop_conflict }}</p>
+    </div>
+
+    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+      content: link_with_prop_conflict,
+      lang: 'html',
+      mode: 'dark',
       } only %}
-    {% endcell %}
-
-    {% cell "u-bolt-width-12/12" %}
-      <bolt-text headline>
-        Most (But Not All) HTML Attributes Supported
-      </bolt-text>
-
-      <bolt-text>For example, the <code>url</code> prop passed along to this web component will override any initial HTML <code>href</code> attribute present.</bolt-text>
-
-      <div class="u-bolt-padding-small t-bolt-light">
-        <p>{{ link_with_prop_conflict }}</p>
-      </div>
-
-      {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-        content: link_with_prop_conflict,
-        lang: 'html',
-        mode: 'dark',
-      } only %}
-    {% endcell %}
-  {% endgrid %}
+  {% endset %}
+  {% include '@bolt-components-grid/grid.twig' with {
+  items: [
+    {
+      column_start: '1',
+      column_span: '12',
+      content: example_1,
+    },
+    {
+      column_start: '1',
+      column_span: '12',
+      content: example_2,
+    },
+  ]
+} only %}
 </div>

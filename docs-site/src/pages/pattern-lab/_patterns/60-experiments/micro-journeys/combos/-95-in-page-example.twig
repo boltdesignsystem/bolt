@@ -13,6 +13,15 @@
 {% endblock %}
 
 {% block main_content %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: "/images/content/backgrounds/background-tall-3.jpg",
+        lazyload: false
+      },
+    } only %}
+  {% endset %}
   {% embed "@pl/_band--feature.twig" with {
     teaserPosition: "left",
     teaserWidth: "2/3",
@@ -26,11 +35,9 @@
         vertical: "center",
         horizontal: "right"
       },
-      content_items: [{
-        pattern: "image",
-        src: "/images/content/backgrounds/background-tall-3.jpg",
-        lazyload: false
-      }]
+      items: [
+        image
+      ]
     },
     primaryTeaser: {
       headlines: [
@@ -72,155 +79,222 @@
     full_bleed: true
   } only %}
     {% block band_content %}
-
-      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
-
-        {% cell "o-u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-          {% include "@bolt-components-headline/headline.twig" with {
-            text: "Explore the Pega CRM Suite",
-            size: "xxlarge"
-          } only %}
-          {% include "@bolt-components-headline/text.twig" with {
-            text: "Move past traditional CRM systems to a true journey-enabled, customer engagement suite. Learn how Pega is helping enterprises revolutionize their customer engagement with end-to-end automation and real-time AI on the only unified CRM platform.",
-            size: "medium"
-          } only %}
-        {% endcell %}
-
+      {% set chevron_right_icon %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'chevron-right',
+        } only %}
+      {% endset %}
+      {% set flag_item_1 %}
         {% set icon_1 %}
-          {% include "@bolt-elements-icon/icon.twig" with {
-            name: "app-development",
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'app-development',
           } only %}
         {% endset %}
-
-        {% set icon_2 %}
-          {% include "@bolt-elements-icon/icon.twig" with {
-            name: "sales-automation",
-          } only %}
-        {% endset %}
-
-        {% set icon_3 %}
-          {% include "@bolt-elements-icon/icon.twig" with {
-            name: "customer-service",
-          } only %}
-        {% endset %}
-
-        {% set icon_shape_1 %}
-          {% include "@bolt-elements-shape/shape.twig" with {
+        {% set shape_1 %}
+          {% include '@bolt-elements-shape/shape.twig' with {
             content: icon_1,
-            size: "xlarge",
+            size: 'large',
             attributes: {
-              class: "t-bolt-teal"
+              class: 't-bolt-teal'
             }
           } only %}
         {% endset %}
 
-        {% set icon_shape_2 %}
-          {% include "@bolt-elements-shape/shape.twig" with {
+        {% set flag_headline %}
+          {% set text_link %}
+            {% include '@bolt-elements-text-link/text-link.twig' with {
+              content: 'Download the data Sheet',
+              reversed_underline: true,
+              icon_after: chevron_right_icon,
+              attributes: {
+                href: 'https://google.com',
+                target: '_blank',
+                rel: 'noopener'
+              }
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: text_link,
+            size: 'small',
+            tag: 'h3',
+          } only %}
+        {% endset %}
+        {% set layout_items %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: shape_1
+          } only %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: flag_headline
+          } only %}
+        {% endset %}
+
+        {% include '@bolt-layouts-layout/layout.twig' with {
+          content: layout_items,
+          template: [
+            'flag',
+          ],
+          valign_items: 'center',
+          attributes: {
+            style: '--l-bolt-layout-flag-media-width: auto;'
+          }
+        } only %}
+      {% endset %}
+
+      {% set flag_item_2 %}
+        {% set icon_2 %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'sales-automation',
+          } only %}
+        {% endset %}
+        {% set shape_2 %}
+          {% include '@bolt-elements-shape/shape.twig' with {
             content: icon_2,
-            size: "xlarge",
+            size: 'large',
             attributes: {
-              class: "t-bolt-teal"
+              class: 't-bolt-teal'
             }
           } only %}
         {% endset %}
 
-        {% set icon_shape_3 %}
-          {% include "@bolt-elements-shape/shape.twig" with {
+        {% set flag_headline %}
+          {% set text_link %}
+            {% include '@bolt-elements-text-link/text-link.twig' with {
+              content: 'Download the Overview document',
+              reversed_underline: true,
+              icon_after: chevron_right_icon,
+              attributes: {
+                href: 'https://google.com',
+                target: '_blank',
+                rel: 'noopener'
+              }
+            } only %}
+          {% endset %}
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: text_link,
+            size: 'small',
+            tag: 'h3'
+          } only %}
+        {% endset %}
+        {% set layout_items %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: shape_2
+          } only %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: flag_headline
+          } only %}
+        {% endset %}
+
+        {% include '@bolt-layouts-layout/layout.twig' with {
+          content: layout_items,
+          template: [
+            'flag',
+          ],
+          valign_items: 'center',
+          attributes: {
+            style: '--l-bolt-layout-flag-media-width: auto;'
+          }
+        } only %}
+      {% endset %}
+      {% set flag_item_3 %}
+        {% set icon_3 %}
+          {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'customer-service',
+          } only %}
+        {% endset %}
+        {% set shape_3 %}
+          {% include '@bolt-elements-shape/shape.twig' with {
             content: icon_3,
-            size: "xlarge",
+            size: 'large',
             attributes: {
-              class: "t-bolt-teal"
+              class: 't-bolt-teal'
             }
           } only %}
         {% endset %}
 
-        {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-          {% set flag_item_1 %}
-            {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
-            {% include "@bolt/flag.twig" with {
-              valign: "middle",
-              url: "#!",
-              figure: {
-                content: icon_shape_1
-              },
-              items: [
-                {
-                  pattern: "headline",
-                  size: "small",
-                  text: "Download the data Sheet",
-                  url: "https://www.google.com",
-                  icon: {
-                  name: "chevron-right"
-                },
-                  tag: "h3"
-                }
-              ]
+        {% set flag_headline %}
+          {% set text_link %}
+            {% include '@bolt-elements-text-link/text-link.twig' with {
+              content: 'View Pricing for Pega Marketing',
+              reversed_underline: true,
+              icon_after: chevron_right_icon,
+              attributes: {
+                href: 'https://google.com',
+                target: '_blank',
+                rel: 'noopener'
+              }
             } only %}
           {% endset %}
-          {% set flag_item_2 %}
-          {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
-            {% include "@bolt/flag.twig" with {
-              valign: "middle",
-              url: "#!",
-              figure: {
-                content: icon_shape_2
-              },
-              items: [
-                {
-                  pattern: "headline",
-                  size: "small",
-                  text: "Download the Overview document",
-                  url: "https://www.google.com",
-                  icon: {
-                  name: "chevron-right"
-                }
-                }
-              ]
-            } only %}
-          {% endset %}
-          {% set flag_item_3 %}
-            {# flag is an object, it’s a legacy thing we didn’t deprecate yet #}
-            {% include "@bolt/flag.twig" with {
-              valign: "middle",
-              url: "#!",
-              figure: {
-                content: icon_shape_3
-              },
-              items: [
-                {
-                  pattern: "headline",
-                  size: "small",
-                  text: "View Pricing for Pega Marketing",
-                  url: "https://www.google.com",
-                  icon: {
-                  name: "chevron-right"
-                }
-                }
-              ]
-            } only %}
-          {% endset %}
-
-          {% include "@bolt-components-headline/headline.twig" with {
-            text: "Get to know Pega Marketing",
-            size: "xlarge",
-            tag: "h2"
+          {% include '@bolt-components-headline/headline.twig' with {
+            text: text_link,
+            size: 'small',
+            tag: 'h3'
           } only %}
-
-          {% include "@bolt-components-list/list.twig" with {
-            display: "block",
-            separator: "solid",
-            spacing: "small",
-            items: [
-              flag_item_1,
-              flag_item_2,
-              flag_item_3,
-            ]
+        {% endset %}
+        {% set layout_items %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: shape_3
           } only %}
-        {% endcell %}
+          {% include '@bolt-layouts-layout/layout-item.twig' with {
+            content: flag_headline
+          } only %}
+        {% endset %}
 
-      {% endgrid %}
+        {% include '@bolt-layouts-layout/layout.twig' with {
+          content: layout_items,
+          template: [
+            'flag',
+          ],
+          valign_items: 'center',
+          attributes: {
+            style: '--l-bolt-layout-flag-media-width: auto;'
+          }
+        } only %}
+      {% endset %}
 
+      {% set section_headline %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'Explore the Pega CRM Suite',
+          size: 'xxlarge'
+        } only %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Move past traditional CRM systems to a true journey-enabled, customer engagement suite. Learn how Pega is helping enterprises revolutionize their customer engagement with end-to-end automation and real-time AI on the only unified CRM platform.',
+          size: 'medium'
+        } only %}
+      {% endset %}
 
+      {% set flag_list %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'Get to know Pega Marketing',
+          size: 'xlarge',
+          tag: 'h2'
+        } only %}
+        {% include '@bolt-components-list/list.twig' with {
+          display: 'block',
+          separator: 'solid',
+          spacing: 'small',
+          items: [
+            flag_item_1,
+            flag_item_2,
+            flag_item_3,
+          ]
+        } only %}
+      {% endset %}
+
+      {% set layout_items %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: section_headline
+        } only %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: flag_list
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        content: layout_items,
+        template: [
+          'halves@from-medium',
+        ],
+      } only %}
     {% endblock %}
   {% endembed %}
 
@@ -230,137 +304,110 @@
   } only %}
 
 
-  {% embed "@pl/_band--collection.twig" with {
-    "theme": "dark",
-    "size": "medium",
-    "contentItems": [
-      {
-        "pattern": "card",
-        "image": {
-        "src": "/images/content/promos/promo-16x9-anthem.jpg",
-        "lazyload": false
-      },
-        "teaser": {
-        "eyebrow": {
-          text: "Article"
-        },
-        "logo": {
-          src: "/images/content/logos/logo-paypal.svg",
-          "lazyload": false
-        },
-        "headlines": [
-          {
-            "type": "headline",
-            "text": "Gartner Magic Quadrant for the CRM Customer Engagement Center",
-            "size": "large"
-          }
-        ],
-        "content": "Simplify and automate to reduce costs and improve agility.",
-        "buttons": [
-          {
-            "text": "Learn More",
-            "hierarchy": "secondary",
-            "url": "https://www.google.com/pega7",
-            "width": "full"
-          }
-        ]
-      }
-      },
-      {
-        "pattern": "card",
-        "image": {
-        "src": "/images/content/promos/promo-16x9-anthem.jpg",
-        "lazyload": false
-      },
-        "teaser": {
-        "eyebrow": {
-          text: "Article"
-        },
-        "headlines": [
-          {
-            "type": "headline",
-            "text": "Gartner Magic Quadrant for the CRM Customer Engagement Center",
-            "size": "large"
-          }
-        ],
-        "content": "Simplify and automate to reduce costs and improve agility.",
-        "buttons": [
-          {
-            "text": "Learn More",
-            "hierarchy": "secondary",
-            "url": "https://www.google.com/pega7",
-            "width": "full"
-          }
-        ]
-      }
-      },
-      {
-        "pattern": "card",
-        "image": {
-        "src": "/images/content/promos/promo-16x9-anthem.jpg",
-        "lazyload": false
-      },
-        "teaser": {
-        "eyebrow": {
-          text: "Article"
-        },
-        "headlines": [
-          {
-            "type": "headline",
-            "text": "Gartner Magic Quadrant for the CRM Customer Engagement Center",
-            "size": "large"
-          }
-        ],
-        "content": "Simplify and automate to reduce costs and improve agility.",
-        "buttons": [
-          {
-            "text": "Learn More",
-            "hierarchy": "secondary",
-            "url": "https://www.google.com/pega7",
-            "width": "full"
-          }
-        ]
-      }
-      }
-    ]
-  } %}
-    {% block band_content %}
-
-
-
-      {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-margin-bottom" %}
-
-        {% cell "u-bolt-flex-grow" %}
-
-          {% grid %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-              {% include "@bolt-components-headline/headline.twig" with {
-                text: "Analyst Reports",
-                size: "xlarge",
-                tag: "h3"
-              } only %}
-            {% endcell %}
-          {% endgrid %}
-        {% endcell %}
-
-
-        {% cell %}
-          {% include "@bolt-components-headline/text.twig" with {
-            text: "See all analyst reports",
-            size: "small",
-            weight: "bold",
-            tag: "p",
-            url: "https://google.com",
-            icon: {
-              name: "chevron-right",
-              position: "after"
+    {% embed '@pl/_band--collection.twig' with {
+      theme: 'dark',
+      size: 'medium',
+      content: [
+        {
+          pattern: 'card',
+          media: {
+            image: {
+              src: '/images/content/promos/promo-16x9-anthem.jpg',
+              placeholder_color: '#8d9598'
+            },
+          },
+          body: {
+            eyebrow: 'Article',
+            logo: {
+              src: '/images/content/logos/logo-paypal.svg',
+            },
+            headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
+            paragraph: 'Simplify and automate to reduce costs and improve agility.',
+          },
+          actions: [
+            {
+              text: 'Learn More',
+              hierarchy: 'secondary',
+              url: 'https://www.google.com/pega7',
             }
-          } only %}
-        {% endcell %}
+          ]
+        },
+        {
+          pattern: 'card',
+          media: {
+            image: {
+              src: '/images/content/promos/promo-16x9-anthem.jpg',
+              placeholder_color: '#8d9598'
+            },
+          },
+          body: {
+            eyebrow: 'Article',
+            headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
+            paragraph: 'Simplify and automate to reduce costs and improve agility.',
+          },
+          actions: [
+            {
+              text: 'Learn More',
+              hierarchy: 'secondary',
+              url: 'https://www.google.com/pega7',
+            }
+          ]
+        },
+        {
+          pattern: 'card',
+          media: {
+            image: {
+              src: '/images/content/promos/promo-16x9-anthem.jpg',
+              placeholder_color: '#8d9598'
+            },
+          },
+          body: {
+            eyebrow: 'Article',
+            headline: 'Gartner Magic Quadrant for the CRM Customer Engagement Center',
+            paragraph: 'Simplify and automate to reduce costs and improve agility.',
+          },
+          actions: [
+            {
+              text: "Learn More",
+              hierarchy: "secondary",
+              url: "https://www.google.com/pega7",
+            }
+          ]
+        }
+      ]
+    } %}
+    {% block band_content %}
+      {% set headline %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'Analyst Reports',
+          size: 'xlarge',
+          tag: 'h3'
+        } only %}
+      {% endset %}
 
-      {% endgrid %}
+      {% set link %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'See all analyst reports',
+          size: 'small',
+          weight: 'bold',
+          tag: 'p',
+          url: 'https://google.com',
+          icon: {
+            name: 'chevron-right',
+            position: 'after'
+          }
+        } only %}
+      {% endset %}
 
-
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        align: 'justify',
+        valign: 'center',
+        items: [
+          headline,
+          link
+        ]
+      } only %}
       {{ parent() }}
     {% endblock band_content %}
   {% endembed %}
@@ -373,52 +420,64 @@
   } only %}
     {% block band_content %}
 
-      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+      {% set desc %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+          weight: "regular",
+          size: "xxlarge",
+          tag: "h2"
+        } only %}
 
-        {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-          {% include "@bolt-components-headline/headline.twig" with {
-            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
-            weight: "regular",
-            size: "xxlarge",
-            tag: "h2"
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+          size: "medium"
+        } only %}
+
+        {% include "@bolt-components-button-group/button-group.twig" with {
+          "buttons": [
+            {
+              "text": "Call to action",
+              "hierarchy": "primary"
+            },
+            {
+              "text": "Call to action",
+              "hierarchy": "secondary"
+            }
+          ]
+        } only %}
+      {% endset %}
+
+      {% set image %}
+        {% set device_viewer_image %}
+          {% include '@bolt-components-image/image.twig' with {
+            src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+            lazyload: false,
           } only %}
+        {% endset %}
 
-          {% include "@bolt-components-headline/text.twig" with {
-            text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
-            size: "medium"
-          } only %}
+        {% include "@bolt-components-device-viewer/device-viewer.twig" with {
+          device: "ipad",
+          orientation: "landscape",
+          color: "black",
+          content: device_viewer_image,
+        } only %}
+      {% endset %}
 
-          {% include "@bolt-components-button-group/button-group.twig" with {
-            "buttons": [
-              {
-                "text": "Call to action",
-                "hierarchy": "primary"
-              },
-              {
-                "text": "Call to action",
-                "hierarchy": "secondary"
-              }
-            ]
-          } only %}
-        {% endcell %}
-
-        {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-          {% set device_viewer_image %}
-            {% include '@bolt-components-image/image.twig' with {
-              src: "/images/content/screenshots/device-screenshot--tablet.jpg",
-              lazyload: false,
-            } only %}
-          {% endset %}
-
-          {% include "@bolt-components-device-viewer/device-viewer.twig" with {
-            device: "ipad",
-            orientation: "landscape",
-            color: "black",
-            content: device_viewer_image,
-          } only %}
-        {% endcell %}
-
-      {% endgrid %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1',
+            column_span: '12 5@small',
+            content: desc,
+            valign: 'center'
+          },
+          {
+            column_start: '1 6@small',
+            column_span: '12 7@small',
+            content: image,
+          },
+        ]
+      } only %}
 
 
     {% endblock %}
@@ -436,53 +495,63 @@
   } only %}
     {% block band_content %}
 
-      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
-
-        {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-          {% set device_viewer_image %}
-            {% include '@bolt-components-image/image.twig' with {
-              src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
-              lazyload: false,
-            } only %}
-          {% endset %}
-
-          {% include "@bolt-components-device-viewer/device-viewer.twig" with {
-            device: "ipad",
-            orientation: "portrait",
-            color: "black",
-            content: device_viewer_image,
+      {% set image %}
+        {% set device_viewer_image %}
+          {% include '@bolt-components-image/image.twig' with {
+            src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+            lazyload: false,
           } only %}
-        {% endcell %}
+        {% endset %}
 
+        {% include "@bolt-components-device-viewer/device-viewer.twig" with {
+          device: "ipad",
+          orientation: "portrait",
+          color: "black",
+          content: device_viewer_image,
+        } only %}
+      {% endset %}
 
-        {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-          {% include "@bolt-components-headline/subheadline.twig" with {
-            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
-            size: "xxlarge",
-            tag: "span"
-          } only %}
+      {% set desc %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+          size: "xxlarge",
+          tag: "span"
+        } only %}
 
-          {% include "@bolt-components-headline/text.twig" with {
-            text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
-            size: "medium"
-          } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+          size: "medium"
+        } only %}
 
-          {% include "@bolt-components-button-group/button-group.twig" with {
-            "buttons": [
-              {
-                "text": "Call to action",
-                "hierarchy": "primary"
-              },
-              {
-                "text": "Call to action",
-                "hierarchy": "secondary"
-              }
-            ]
-          } only %}
-        {% endcell %}
+        {% include "@bolt-components-button-group/button-group.twig" with {
+          "buttons": [
+            {
+              "text": "Call to action",
+              "hierarchy": "primary"
+            },
+            {
+              "text": "Call to action",
+              "hierarchy": "secondary"
+            }
+          ]
+        } only %}
+      {% endset %}
 
-      {% endgrid %}
-
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1',
+            column_span: '12 7@small',
+            content: image,
+          },
+          {
+            column_start: '1 8@small',
+            column_span: '12 5@small',
+            content: desc,
+            valign: 'center'
+          },
+        ]
+      } only %}
 
     {% endblock %}
   {% endembed %}
@@ -494,51 +563,63 @@
   } only %}
     {% block band_content %}
 
-      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+      {% set desc %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+          size: "xxlarge",
+          tag: "span"
+        } only %}
 
-        {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-          {% include "@bolt-components-headline/subheadline.twig" with {
-            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
-            size: "xxlarge",
-            tag: "span"
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+          size: "medium"
+        } only %}
+
+        {% include "@bolt-components-button-group/button-group.twig" with {
+          "buttons": [
+            {
+              "text": "Call to action",
+              "hierarchy": "primary"
+            },
+            {
+              "text": "Call to action",
+              "hierarchy": "secondary"
+            }
+          ]
+        } only %}
+      {% endset %}
+
+      {% set image %}
+        {% set device_viewer_image %}
+          {% include '@bolt-components-image/image.twig' with {
+            src: "/images/content/screenshots/device-screenshot--phone.jpg",
+            lazyload: false,
           } only %}
+        {% endset %}
 
-          {% include "@bolt-components-headline/text.twig" with {
-            text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
-            size: "medium"
-          } only %}
+        {% include "@bolt-components-device-viewer/device-viewer.twig" with {
+          device: "iphone8",
+          orientation: "portrait",
+          color: "black",
+          content: device_viewer_image,
+        } only %}
+      {% endset %}
 
-          {% include "@bolt-components-button-group/button-group.twig" with {
-            "buttons": [
-              {
-                "text": "Call to action",
-                "hierarchy": "primary"
-              },
-              {
-                "text": "Call to action",
-                "hierarchy": "secondary"
-              }
-            ]
-          } only %}
-        {% endcell %}
-
-        {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-          {% set device_viewer_image %}
-            {% include '@bolt-components-image/image.twig' with {
-              src: "/images/content/screenshots/device-screenshot--phone.jpg",
-              lazyload: false,
-            } only %}
-          {% endset %}
-
-          {% include "@bolt-components-device-viewer/device-viewer.twig" with {
-            device: "iphone8",
-            orientation: "portrait",
-            color: "black",
-            content: device_viewer_image,
-          } only %}
-        {% endcell %}
-
-      {% endgrid %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1',
+            column_span: '12 5@small',
+            content: desc,
+            valign: 'center'
+          },
+          {
+            column_start: '1 6@small',
+            column_span: '12 7@small',
+            content: image,
+          },
+        ]
+      } only %}
 
 
     {% endblock %}
@@ -551,54 +632,74 @@
   } only %}
     {% block band_content %}
 
-      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% set desc %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+          size: "xxlarge",
+          tag: "span"
+        } only %}
 
-        {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-          {% include "@bolt-components-headline/subheadline.twig" with {
-            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
-            size: "xxlarge",
-            tag: "span"
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+          size: "medium"
+        } only %}
+
+        {% include "@bolt-components-button-group/button-group.twig" with {
+          "buttons": [
+            {
+              "text": "Call to action",
+              "hierarchy": "primary"
+            },
+            {
+              "text": "Call to action",
+              "hierarchy": "secondary"
+            }
+          ]
+        } only %}
+      {% endset %}
+
+      {% set image  %}
+        {% set device_viewer_image %}
+          {% include '@bolt-components-image/image.twig' with {
+            src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+            lazyload: false,
           } only %}
+        {% endset %}
 
-          {% include "@bolt-components-headline/text.twig" with {
-            text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
-            size: "medium"
-          } only %}
-
-          {% include "@bolt-components-button-group/button-group.twig" with {
-            "buttons": [
-              {
-                "text": "Call to action",
-                "hierarchy": "primary"
-              },
-              {
-                "text": "Call to action",
-                "hierarchy": "secondary"
-              }
-            ]
-          } only %}
-        {% endcell %}
-
-        {% cell "u-bolt-width-1/1" %}
-          {% set device_viewer_image %}
-            {% include '@bolt-components-image/image.twig' with {
-              src: "/images/content/screenshots/device-screenshot--desktop.jpg",
-              lazyload: false,
-            } only %}
-          {% endset %}
-
-          {% include "@bolt-components-device-viewer/device-viewer.twig" with {
-            device: "macbook",
-            orientation: "landscape",
-            color: "black",
-            content: device_viewer_image
-          } only %}
-        {% endcell %}
-      {% endgrid %}
+        {% include "@bolt-components-device-viewer/device-viewer.twig" with {
+          device: "macbook",
+          orientation: "landscape",
+          color: "black",
+          content: device_viewer_image
+        } only %}
+      {% endset %}
+      
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1 4@small',
+            column_span: '12 6@small',
+            content: desc,
+          },
+          {
+            column_start: '1 4@small',
+            column_span: '12 6@small',
+            content: image,
+          },
+        ]
+      } only %}
     {% endblock %}
   {% endembed %}
 
-
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: "/images/content/backgrounds/background-tall-4.jpg",
+        lazyload: false
+      },
+    } only %}
+  {% endset %}
   {% embed "@bolt-components-band/band.twig" with {
     size: "medium",
     theme: "xdark",
@@ -610,56 +711,54 @@
         "vertical": "center",
         "horizontal": "center"
       },
-      "content_items": [
-        {
-          "pattern": "image",
-          "src": "/images/content/backgrounds/background-tall-4.jpg",
-          "lazyload": false
-        }
+      items: [
+        image
       ]
     }
   } only %}
     {% block band_content %}
-
-      {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-text-align-center" %}
-
-
-
-          {% include "@bolt-components-blockquote/blockquote.twig" with {
-            size: "xlarge",
-            border: "horizontal",
-            alignItems: "center",
-            logo: {
-              src: "/images/content/logos/logo-paypal.svg",
-              invert: true,
-              lazyload: false
+      {% set quote %}
+        {% include '@bolt-components-blockquote/blockquote.twig' with {
+          size: 'xlarge',
+          border: 'horizontal',
+          alignItems: 'center',
+          logo: {
+            src: '/images/content/logos/logo-paypal.svg',
+            invert: true,
+            lazyload: true
+          },
+          author: {
+            image: {
+              src: '/images/placeholders/500x500.jpg',
+              lazyload: true
             },
-            author: {
-              image: {
-                src: "/images/placeholders/500x500.jpg",
-                lazyload: false
-              },
-              name: "Jessica Cuthbertson",
-              title: "CEO, RBS"
-            },
-            content: "<p>We’re creating an environment where we know our customers individually, and we want to use what we know to really understand what’s important to them – so we can be there in the moments that matter.</p>"
+            name: 'Jessica Cuthbertson',
+            title: 'CEO, RBS'
+          },
+          content: '<p>We’re creating an environment where we know our customers individually, and we want to use what we know to really understand what’s important to them – so we can be there in the moments that matter.</p>'
+        } only %}
+        <div class="u-bolt-text-align-center">
+          {% include '@bolt-components-headline/text.twig' with {
+            text: 'Watch Birgit König, Ph.D., CEO, Allianz Health Germany, share how the Pega platform meets rapidly changing customer expectations.'
           } only %}
 
-
-          {% include "@bolt-components-headline/text.twig" with {
-            text: "Watch Birgit König, Ph.D., CEO, Allianz Health Germany, share how the Pega platform meets rapidly changing customer expectations."
+          {% include '@bolt-components-button/button.twig' with {
+            text: 'Call to Action',
+            url: 'https://www.google.com',
+            hierarchy: 'secondary'
           } only %}
+        </div>
+      {% endset %}
 
-          {% include "@bolt-components-button/button.twig" with {
-            text: "Call to Action",
-            url: "https://www.google.com",
-            hierarchy: "secondary"
-          } only %}
-
-
-        {% endcell %}
-      {% endgrid %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1 3@small',
+            column_span: '12 8@small',
+            content: quote,
+          },
+        ]
+      } only %}
     {% endblock %}
   {% endembed %}
 
@@ -674,36 +773,32 @@
     full_bleed: true
   } only %}
     {% block band_content %}
-
-      {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
-
-        {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-flex-grow" %}
-
-          {% grid %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-              {% include "@bolt-components-headline/headline.twig" with {
-                text: "See How Pega Can Help Your Business",
-                size: "xlarge"
-              } only %}
-              {% include "@bolt-components-headline/text.twig" with {
-                text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
-              } only %}
-            {% endcell %}
-          {% endgrid %}
-        {% endcell %}
-
-
-        {% cell "u-bolt-width-1/1@only-small" %}
-          {% include "@bolt-components-button/button.twig" with {
-            text: "Call to action",
-            width: "full",
-            size: "medium"
-          } only %}
-        {% endcell %}
-
-      {% endgrid %}
-
-
+      {% set headlines %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'See How Pega Can Help Your Business',
+          size: 'xlarge'
+        } only %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
+        } only %}
+      {% endset %}
+      {% set button %}
+        {% include '@bolt-components-button/button.twig' with {
+          text: 'Call to action',
+          width: 'full',
+          size: 'medium'
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        align: 'justify',
+        spacing: 'medium',
+        valign: 'center',
+        items: [
+          headlines,
+          button
+        ]
+      } only %}
     {% endblock %}
   {% endembed %}
 

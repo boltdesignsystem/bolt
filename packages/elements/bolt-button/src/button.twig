@@ -8,6 +8,7 @@
  * Dev notes
  * 1. The markup is written in one line (combined with spaceless) to avoid any unwanted white-space.
  * 2. Zero width no-break space is passed to the icon container's :before and :after pseudo elements, combine that with nowrap white-space on the icon container, and it will make sure that an icon never wraps to the next line by itself, it will always wrap with the final word of the text. Do not remove the icon container spans. See: https://codepen.io/mikemai2awesome/pen/OJXbqwe?editors=0100
+ * 3. If the type attribute is empty for a semantic <button>, an error message will be shown in place of the button to remind the developer that type is required. However, in a prod environment, we will set a default (type="button") for them to try to recover.
  */
 #}
 
@@ -15,12 +16,25 @@
 {% set schema = bolt.data.components['@bolt-elements-button'].schema %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
+
+  {% if attributes.href is empty and attributes.type is empty %}
+    {% set error_message = 'The type attribute is required for a semantic <button>, while the href attribute is required for a semantic <a>. Please pass one of those attributes.'|t %}
+  {% endif %}
+
+  {% if attributes.href and attributes.type %}
+    {% set error_message = 'The type attribute should be used for a semantic <button>, while the href attribute should be used for a semantic <a>. If you have a reason for using both at the same time, please contact the core team.'|t %}
+  {% endif %}
 {% endif %}
 
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set tag = attributes.type and not attributes.href ? 'button' : attributes.href and not attributes.type ? 'a' %}
+{% set tag = attributes.href ? 'a' : 'button' %}
+
+{# [3] #}
+{% if tag == 'button' and attributes.type is empty %}
+  {% set attributes = attributes.setAttribute('type', 'button') %}
+{% endif %}
 
 {% set classes = [
   'e-bolt-button',
@@ -33,4 +47,16 @@
 
 {# Template #}
 {# [1], [2] #}
-{% spaceless %}<{{ tag }} {{ attributes.addClass(classes) }} {% if icon_only %}aria-label="{{ content|striptags|spaceless }}"{% endif %}>{% if icon_only %}<span class="e-bolt-button__icon-center" aria-hidden="true">{{ icon_only|spaceless }}</span>{% else %}{% if icon_before %}<span class="e-bolt-button__icon-before" aria-hidden="true">{{ icon_before|spaceless }}</span>{% endif %}{{ content|spaceless }}{% if icon_after %}<span class="e-bolt-button__icon-after" aria-hidden="true">{{ icon_after|spaceless }}</span>{% endif %}{% endif %}</{{ tag }}>{% endspaceless %}
+{% spaceless %}<{{ tag }} {{ attributes.addClass(classes) }} {% if icon_only %}aria-label="{% spaceless %}{{ content|striptags }}{% endspaceless %}"{% endif %}>{% if icon_only %}<span class="e-bolt-button__icon-center" aria-hidden="true">{% spaceless %}{{ icon_only }}{% endspaceless %}</span>{% else %}{% if icon_before %}<span class="e-bolt-button__icon-before" aria-hidden="true">{% spaceless %}{{ icon_before }}{% endspaceless %}</span>{% endif %}{% spaceless %}{{ content }}{% endspaceless %}{% if icon_after %}<span class="e-bolt-button__icon-after" aria-hidden="true">{% spaceless %}{{ icon_after }}{% endspaceless %}</span>{% endif %}{% endif %}</{{ tag }}>{% endspaceless %}
+{% if error_message %}
+  {% set message %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'close-circle',
+    } only %}
+    {{ error_message|e }}
+  {% endset %}
+  {% include '@bolt-components-banner/banner.twig' with {
+    content: message,
+    status: 'error',
+  } only %}
+{% endif %}

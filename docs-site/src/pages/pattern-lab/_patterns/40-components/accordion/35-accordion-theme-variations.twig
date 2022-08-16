@@ -1,37 +1,48 @@
 {% set themes = ['dark', 'light'] %}
 
 <h3>Accordion inside various themes</h3>
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-medium' %}
-  {% for theme in themes %}
-    {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium' %}
-      {% embed '@utils/theme-demo.twig' %}
-        {% block demo_content %}
-          {% include '@bolt-components-accordion/accordion.twig' with {
-            items: [
-              {
-                trigger: 'Accordion item 1',
-                content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.',
-              },
-              {
-                trigger: 'Accordion item 2',
-                content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.',
-              },
-              {
-                trigger: 'Accordion item 3',
-                content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.',
-              },
-            ]
-          } only %}
-        {% endblock %}
-      {% endembed %}
-    {% endcell %}
-  {% endfor %}
-{% endgrid %}
+<div class="u-bolt-margin-bottom-medium">
+  <bolt-grid gutter="medium" row-gutter="medium">
+    {% for theme in themes %}
+      {% set accordion %}
+        {% embed '@utils/theme-demo.twig' %}
+          {% block demo_content %}
+            {% include '@bolt-components-accordion/accordion.twig' with {
+              items: [
+                {
+                  trigger: 'Accordion item 1',
+                  content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.',
+                },
+                {
+                  trigger: 'Accordion item 2',
+                  content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.',
+                },
+                {
+                  trigger: 'Accordion item 3',
+                  content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.',
+                },
+              ]
+            } only %}
+          {% endblock %}
+        {% endembed %}
+      {% endset %}
+      {% if theme == 'dark'  %}
+        <bolt-grid-item column-start="1" column-span="12 6@small">
+          {{ accordion }}
+        </bolt-grid-item>
+        {% else %}
+        <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
+          {{ accordion }}
+        </bolt-grid-item>
+      {% endif %}
+    {% endfor %}
+  </bolt-grid>
+</div>
 
 <h3>Accordion with shadow inside various themes</h3>
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
+<bolt-grid gutter="medium" row-gutter="medium">
   {% for theme in themes %}
-    {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@medium' %}
+    {% set accordion %}
       {% embed '@utils/theme-demo.twig' %}
         {% block demo_content %}
           {% include '@bolt-components-accordion/accordion.twig' with {
@@ -53,6 +64,15 @@
           } only %}
         {% endblock %}
       {% endembed %}
-    {% endcell %}
+    {% endset %}
+    {% if theme == 'dark'  %}
+      <bolt-grid-item column-start="1" column-span="12 6@small">
+        {{ accordion }}
+      </bolt-grid-item>
+      {% else %}
+      <bolt-grid-item column-start="1 7@small" column-span="12 6@small">
+        {{ accordion }}
+      </bolt-grid-item>
+    {% endif %}
   {% endfor %}
-{% endgrid %}
+</bolt-grid>

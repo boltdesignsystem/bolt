@@ -4,10 +4,9 @@
   By setting the <code>icon_valign</code> prop to <code>top</code> or <code>center</code>, it will vertically align the trigger and the icon accordingly.
 </p>
 
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
+<bolt-grid gutter="medium" row-gutter="medium">
   {% for icon_valign in schema.properties.icon_valign.enum %}
-    {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@medium' %}
-      <h3>Icon Valign: {{ icon_valign }}</h3>
+    {% set accord %}
       {% include '@bolt-components-accordion/accordion.twig' with {
         icon_valign: icon_valign,
         items: [
@@ -25,6 +24,17 @@
           },
         ]
       } only %}
-    {% endcell %}
+    {% endset %}
+    {% if icon_valign == 'top' %}
+      <bolt-grid-item column-start="1" column-span="12 4@medium">
+        <h3>Icon Valign: {{ icon_valign }}</h3>
+        {{ accord }}
+      </bolt-grid-item>
+      {% else %}
+      <bolt-grid-item column-start="1 5@medium" column-span="12 4@medium">
+        <h3>Icon Valign: {{ icon_valign }}</h3>
+        {{ accord }}
+      </bolt-grid-item>
+    {% endif %}
   {% endfor %}
-{% endgrid %}
+</bolt-grid>

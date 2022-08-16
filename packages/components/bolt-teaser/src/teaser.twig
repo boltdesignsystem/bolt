@@ -13,6 +13,7 @@
   'c-bolt-teaser',
   this.data.layout.value ? 'c-bolt-teaser--' ~ this.data.layout.value,
   this.data.gutter.value ? 'c-bolt-teaser--gutter-' ~ this.data.gutter.value,
+  this.data.variant.value != 'transparent' ? 'c-bolt-teaser--variant-' ~ this.data.variant.value,
 ] %}
 
 <article {{ attributes.addClass(classes) }}>
@@ -97,35 +98,33 @@
     {% endif %}
 
     {% if status.views or like or share or download %}
-      <div class="c-bolt-teaser__actions-and-views">
+      <ul class="c-bolt-teaser__action-list">
         {% if status.views %}
-          {% set _icon_eye %}
-            {% include '@bolt-elements-icon/icon.twig' with {
-              name: 'eye',
-            } only %}
-          {% endset %}
-          <div class="c-bolt-teaser__views"><span class="c-bolt-teaser__views-icon">{{ _icon_eye|spaceless }}</span>{{ status.views }} {{ 'views'|t }}</div>
+          <li class="c-bolt-teaser__action-list-item">
+            {% set _icon_eye %}
+              {% include '@bolt-elements-icon/icon.twig' with {
+                name: 'eye',
+              } only %}
+            {% endset %}
+            <div class="c-bolt-teaser__views"><span class="c-bolt-teaser__views-icon">{% spaceless %}{{ _icon_eye }}{% endspaceless %}</span>{{ status.views }} {{ 'views'|t }}</div>
+          </li>
         {% endif %}
-        {% if like or share or download %}
-          <ul class="c-bolt-teaser__action-list">
-            {% if like %}
-              <li class="c-bolt-teaser__action-list-item">
-                {{ like }}
-              </li>
-            {% endif %}
-            {% if share %}
-              <li class="c-bolt-teaser__action-list-item">
-                {{ share }}
-              </li>
-            {% endif %}
-            {% if download %}
-              <li class="c-bolt-teaser__action-list-item">
-                {{ download }}
-              </li>
-            {% endif %}
-          </ul>
+        {% if like %}
+          <li class="c-bolt-teaser__action-list-item">
+            {{ like }}
+          </li>
         {% endif %}
-      </div>
+        {% if share %}
+          <li class="c-bolt-teaser__action-list-item">
+            {{ share }}
+          </li>
+        {% endif %}
+        {% if download %}
+          <li class="c-bolt-teaser__action-list-item">
+            {{ download }}
+          </li>
+        {% endif %}
+      </ul>
     {% endif %}
 
     {% if description.content %}

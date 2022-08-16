@@ -1,0 +1,128 @@
+{% set header_content %}
+  <h1>This is a dialog component.</h1>
+{% endset %}
+
+{% set body_content %}
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+{% endset %}
+
+{% set footer_content %}
+  <button type="button" class="e-bolt-button">Button</button>
+{% endset %}
+
+{% set dialog_content %}
+  {% include '@bolt-components-dialog/dialog-header.twig' with {
+    content: header_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: body_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-footer.twig' with {
+    content: footer_content,
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: dialog_content,
+  attributes: {
+    id: 'dialog-1'
+  },
+} only %}
+
+{% set long_content %}
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+  <p>Esse qui aliqua cupidatat anim duis exercitation aliquip occaecat consectetur cupidatat. Labore nisi pariatur adipisicing minim enim amet consectetur voluptate occaecat ipsum dolore laboris et. Consequat non voluptate excepteur consequat pariatur Lorem est ea. Nisi enim elit quis dolore fugiat officia nulla.</p>
+{% endset %}
+
+{% set dialog_content %}
+  {% include '@bolt-components-dialog/dialog-header.twig' with {
+    content: header_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-body.twig' with {
+    content: long_content,
+  } only %}
+  {% include '@bolt-components-dialog/dialog-footer.twig' with {
+    content: footer_content,
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-dialog/dialog.twig' with {
+  content: dialog_content,
+  attributes: {
+    id: 'dialog-2'
+  },
+} only %}
+
+<p>
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Short dialog',
+    attributes: {
+      type: 'button',
+      'data-bolt-dialog-target': '#dialog-1',
+    }
+  } only %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Long dialog',
+    attributes: {
+      type: 'button',
+      'data-bolt-dialog-target': '#dialog-2',
+    }
+  } only %}
+
+  {% set popover_trigger %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Dialog inside a popover (does not work)',
+      attributes: {
+        type: 'button'
+      }
+    } only %}
+  {% endset %}
+  {% set popover_content %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Open dialog (does not work)',
+      attributes: {
+        type: 'button',
+        'data-bolt-dialog-target': '#dialog-3',
+      }
+    } only %}
+    {% set dialog_content %}
+      {% include '@bolt-components-dialog/dialog-body.twig' with {
+        content: 'Dialog inside a popover.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-dialog/dialog.twig' with {
+      content: dialog_content,
+      attributes: {
+        id: 'dialog-2'
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-popover/popover.twig' with {
+    trigger: popover_trigger,
+    content: popover_content,
+  } only %}
+</p>
+
+{{ long_content }}

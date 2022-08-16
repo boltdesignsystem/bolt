@@ -52,7 +52,7 @@
 </bolt-accordion>
 {% endset %}
 
-<div class="o-bolt-wrapper">
+<div class="e-bolt-wrapper">
   <bolt-text headline>
     Web Component Usage
   </bolt-text>
@@ -60,11 +60,15 @@
     Bolt Accordion is a fully client-side renderable web component. Add the <code>bolt-accordion</code> element containing any number of <code>bolt-accordion-item</code> elements to create an accordion. Inside each <code>bolt-accordion-item</code> mark the "trigger" content with the attribute <code>slot="trigger"</code>. Everything else is considered accordion "content".
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-      {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-        {{ basic_usage }}
-      {% endcell %}
-    {% endgrid %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1 4@medium',
+          column_span: '12 6@medium',
+          content: basic_usage,
+        },
+      ]
+    } only %}
   </div>
   <div class="u-bolt-margin-bottom-large">
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
@@ -75,7 +79,7 @@
   </div>
 </div>
 
-<div class="o-bolt-wrapper">
+<div class="e-bolt-wrapper">
   <bolt-text headline>
     Prop Usage
   </bolt-text>
@@ -83,11 +87,15 @@
     Configure the accordion with the properties specified in the schema. One property that is unique to the Web component is <code>no-separator</code>. Use this prop rather than the <code>separator</code> prop used in Twig.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-      {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-        {{ prop_usage }}
-      {% endcell %}
-    {% endgrid %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1 4@medium',
+          column_span: '12 6@medium',
+          content: prop_usage,
+        },
+      ]
+    } only %}
   </div>
   <div class="u-bolt-margin-bottom-large">
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {
@@ -98,7 +106,7 @@
   </div>
 </div>
 
-<div class="o-bolt-wrapper">
+<div class="e-bolt-wrapper">
   <bolt-text headline>
     Advanced Usage
   </bolt-text>
@@ -106,11 +114,15 @@
     Two advanced options are shown below. Automatically show an <code>bolt-accordion-item</code> by adding the <code>open</code> prop.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-      {% cell 'u-bolt-width-12/12 u-bolt-width-6/12@small' %}
-        {{ advanced_usage }}
-      {% endcell %}
-    {% endgrid %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1 4@medium',
+          column_span: '12 6@medium',
+          content: advanced_usage,
+        },
+      ]
+    } only %}
   </div>
   <div class="u-bolt-margin-bottom-large">
     {% include '@bolt-components-code-snippet/code-snippet.twig' with {

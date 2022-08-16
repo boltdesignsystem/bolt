@@ -3,19 +3,22 @@
     {{ block('heroButtonRow') }}
   {% endset %}
 {% endif %}
-
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: "/images/dashboard-hero.jpg",
+    },
+  } only %}
+{% endset %}
 {% embed "@bolt-components-band/band.twig" with {
   theme: "xdark",
   size: "medium",
   background: {
     opacity: "light",
     fill: "gradient",
-    content_items: [
-      {
-        pattern: "image",
-        src: "/images/dashboard-hero.jpg",
-        placeholder_color: "#000000"
-      },
+    items: [
+      image
     ]
   },
   heroSubTitle: heroSubTitle,
@@ -24,33 +27,45 @@
   heroButtonRowBlock: heroButtonRowBlock
 } only %}
   {% block band_content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium u-bolt-flex-grow" %}
+    {% set title %}
+      {% include "@bolt-academy/_headline-with-eyebrow.twig" with {
+        eyebrow: heroSubTitle,
+        headline: heroTitle
+      } only %}
 
-        {% include "@bolt-academy/_headline-with-eyebrow.twig" with {
-          eyebrow: heroSubTitle,
-          headline: heroTitle
+      {% if trainingDescription %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          size: "xxlarge",
+          text: trainingDescription,
+          attributes: {
+            class: [
+              "u-bolt-line-length-optimal"
+            ]
+          }
         } only %}
-
-        {% if trainingDescription %}
-          {% include "@bolt-components-headline/subheadline.twig" with {
-            size: "xxlarge",
-            text: trainingDescription,
-            attributes: {
-              class: [
-                "u-bolt-line-length-optimal"
-              ]
-            }
-          } only %}
-        {% endif %}
-      {% endcell %}
-
-      {% if heroButtonRowBlock %}
-        {% cell "u-bolt-flex-shrink u-bolt-margin-top-auto" %}
-          {{ heroButtonRowBlock }}
-        {% endcell %}
       {% endif %}
+    {% endset %}
 
-    {% endgrid %}
+    {% if heroButtonRowBlock %}
+      {% set buttons %}
+        {{ heroButtonRowBlock }}
+      {% endset %}
+    {% endif %}
+
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 6@medium',
+          content: title,
+        },
+        {
+          column_start: '1 7@medium',
+          column_span: '12 6@medium',
+          content: buttons,
+          valign: 'end'
+        },
+      ]
+    } only %}
   {% endblock %}
 {% endembed %}

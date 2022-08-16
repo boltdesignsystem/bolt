@@ -1,0 +1,92 @@
+{% extends '@pl/_site-layout-template.twig' %}
+
+{% block main_content %}
+  {% set layout_items %}
+    {% set banner %}
+      {% include '@bolt-components-banner/banner.twig' with {
+        content: 'This demo shows using offsets to further adjust the placement of FAB. Please note that the scroll to top button will not animate properly unless the demo is opened in a new page (outside the pattern-lab wrapper).',
+        align: 'start',
+      } only %}
+    {% endset %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: banner,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Bacon ipsum dolor amet burgdoggen beef rump sausage. Chislic beef hamburger turducken pork chop. Shank drumstick biltong, landjaeger ham hock meatloaf swine flank. Swine tenderloin shank, sirloin pork chicken jerky chislic ball tip.',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Ground round kielbasa meatloaf, bacon flank rump pancetta. Burgdoggen hamburger jowl turducken chicken, jerky flank kielbasa pork belly beef ribs fatback boudin shankle rump turkey. Fatback andouille chicken ground round beef, tail buffalo pastrami capicola chislic sausage leberkas short ribs. Kielbasa jowl jerky, swine porchetta boudin drumstick andouille chicken flank ribeye.',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Picanha biltong salami pork chop capicola t-bone jowl tongue. Cow pork chop jowl capicola, doner pork jerky short loin spare ribs turducken frankfurter shankle sausage. Spare ribs pork biltong, chicken alcatra cow picanha brisket drumstick tongue prosciutto shank beef tail pig. Kielbasa t-bone venison chislic, tongue pork tenderloin capicola chuck pastrami jerky.',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Hamburger pastrami short loin pork belly salami pig. Spare ribs sausage t-bone ham hock turkey pork chop tri-tip picanha. Venison turducken beef ribs cow, corned beef swine spare ribs pork chop. Turducken venison pork chop short ribs, fatback tri-tip turkey leberkas t-bone pig andouille ham brisket tongue. Meatloaf bresaola frankfurter pork loin chicken doner, flank beef ground round biltong beef ribs landjaeger pastrami leberkas.',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Short loin andouille ball tip, filet mignon beef ribs chicken cupim ground round pork chop beef tongue. Swine flank jerky pastrami kielbasa short loin tenderloin short ribs prosciutto turkey sirloin turducken jowl. Salami ribeye ball tip, buffalo kielbasa tail doner burgdoggen leberkas meatball. Rump buffalo salami chislic venison landjaeger boudin, ribeye tongue.',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Bacon ipsum dolor amet burgdoggen beef rump sausage. Chislic beef hamburger turducken pork chop. Shank drumstick biltong, landjaeger ham hock meatloaf swine flank. Swine tenderloin shank, sirloin pork chicken jerky chislic ball tip.',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Ground round kielbasa meatloaf, bacon flank rump pancetta. Burgdoggen hamburger jowl turducken chicken, jerky flank kielbasa pork belly beef ribs fatback boudin shankle rump turkey. Fatback andouille chicken ground round beef, tail buffalo pastrami capicola chislic sausage leberkas short ribs. Kielbasa jowl jerky, swine porchetta boudin drumstick andouille chicken flank ribeye.',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Picanha biltong salami pork chop capicola t-bone jowl tongue. Cow pork chop jowl capicola, doner pork jerky short loin spare ribs turducken frankfurter shankle sausage. Spare ribs pork biltong, chicken alcatra cow picanha brisket drumstick tongue prosciutto shank beef tail pig. Kielbasa t-bone venison chislic, tongue pork tenderloin capicola chuck pastrami jerky.',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Hamburger pastrami short loin pork belly salami pig. Spare ribs sausage t-bone ham hock turkey pork chop tri-tip picanha. Venison turducken beef ribs cow, corned beef swine spare ribs pork chop. Turducken venison pork chop short ribs, fatback tri-tip turkey leberkas t-bone pig andouille ham brisket tongue. Meatloaf bresaola frankfurter pork loin chicken doner, flank beef ground round biltong beef ribs landjaeger pastrami leberkas.',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: 'Short loin andouille ball tip, filet mignon beef ribs chicken cupim ground round pork chop beef tongue. Swine flank jerky pastrami kielbasa short loin tenderloin short ribs prosciutto turkey sirloin turducken jowl. Salami ribeye ball tip, buffalo kielbasa tail doner burgdoggen leberkas meatball. Rump buffalo salami chislic venison landjaeger boudin, ribeye tongue.',
+    } only %}
+  {% endset %}
+  {% set fab %}
+    {% set scroll_to_top_button %}
+      {% set trigger %}
+        {% set icon_chevron_up %}
+          {% include '@bolt-components-icon/icon.twig' with {
+            name: 'chevron-up',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Back to top',
+          border_radius: 'full',
+          icon_only: icon_chevron_up,
+          attributes: {
+            href: '#top',
+          },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-tooltip/tooltip.twig' with {
+        content: 'Back to top',
+        placement: 'left',
+        trigger: trigger,
+      } only %}
+    {% endset %}
+
+    {% set fab_list_items %}
+      {% include '@bolt-components-floating-action-buttons/floating-action-buttons-li.twig' with {
+        content: scroll_to_top_button,
+      } only %}
+    {% endset %}
+
+    {% set fab_list %}
+      {% include '@bolt-components-floating-action-buttons/floating-action-buttons-ul.twig' with {
+        content: fab_list_items,
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-floating-action-buttons/floating-action-buttons.twig' with {
+      content: fab_list,
+      attributes: {
+        style: '--c-bolt-floating-action-buttons-offset-x: 5vw; --c-bolt-floating-action-buttons-offset-y: 5vh;',
+      }
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_items ~ fab,
+  } only %}
+{% endblock %}

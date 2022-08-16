@@ -119,83 +119,106 @@
   } only %}
 {% endset %}
 
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
-    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-      tag: 'article',
-      media: {
-        video: video_thumbnail_1
-      },
-      body: {
-        headline: 'Video Thumbnail with action play',
-        paragraph: 'The Video Thumbnail with an inline video (video object passed into the video.content prop) is passed in to the card\'s media.video prop. The video play button and the card\'s action button will play/pause the video.',
-      },
-      actions: [
-        {
-          text: 'Play or Pause',
-          attributes: {
-            'data-video-target': video_uuid1,
-            class: 'js-base-video-toggle'
-          }
-        },
-      ],
-    } only %}
-  {% endcell %}
-  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
-    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-      tag: 'article',
-      media: {
-        video: video_thumbnail_2
-      },
-      body: {
-        headline: 'Video Thumbnail without action play',
-        paragraph: 'The Video Thumbnail with an inline video (video object passed into the video.content prop) is passed in to the card\'s media.video prop. The video\'s play button will play/pause the video.',
-      }
-    } only %}
-  {% endcell %}
-  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
-    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-      tag: 'article',
-      link: {
-        url: 'https://google.com',
-        text: 'Go to google.com'
-      },
-      media: {
-        video: video_thumbnail_3
-      },
-      body: {
-        headline: 'Video Thumbnail with whole card clickablity',
-        paragraph: 'The Video Thumbnail with an inline video (video object passed into the video.content prop) is passed in to the card\'s media.video prop. The video and the card\'s action button will play/pause the video and the whole card clickability will go to a URL path.',
-      },
-      actions: [
-        {
-          text: 'Play or Pause',
-          attributes: {
-            'data-video-target': video_uuid3,
-            class: 'js-base-video-toggle'
-          }
-        },
-      ],
-    } only %}
-  {% endcell %}
-  {% cell 'u-bolt-width-6/12 u-bolt-width-4/12@small' %}
-    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-      tag: 'article',
-      link: {
-        url: '#',
+{% set card_1 %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    tag: 'article',
+    media: {
+      video: video_thumbnail_1
+    },
+    body: {
+      headline: 'Video Thumbnail with action play',
+      paragraph: 'The Video Thumbnail with an inline video (video object passed into the video.content prop) is passed in to the card\'s media.video prop. The video play button and the card\'s action button will play/pause the video.',
+    },
+    actions: [
+      {
+        text: 'Play or Pause',
         attributes: {
-          'aria-label': 'Play the Video Thumbnail in Card whole Card Clickablity Video',
-          'data-video-target': video_uuid4,
+          'data-video-target': video_uuid1,
           class: 'js-base-video-toggle'
         }
       },
-      media: {
-        video: video_thumbnail_4
+    ],
+  } only %}
+{% endset %}
+
+{% set card_2 %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    tag: 'article',
+    media: {
+      video: video_thumbnail_2
+    },
+    body: {
+      headline: 'Video Thumbnail without action play',
+      paragraph: 'The Video Thumbnail with an inline video (video object passed into the video.content prop) is passed in to the card\'s media.video prop. The video\'s play button will play/pause the video.',
+    }
+  } only %}
+{% endset %}
+
+{% set card_3 %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    tag: 'article',
+    link: {
+      url: 'https://google.com',
+      text: 'Go to google.com'
+    },
+    media: {
+      video: video_thumbnail_3
+    },
+    body: {
+      headline: 'Video Thumbnail with whole card clickablity',
+      paragraph: 'The Video Thumbnail with an inline video (video object passed into the video.content prop) is passed in to the card\'s media.video prop. The video and the card\'s action button will play/pause the video and the whole card clickability will go to a URL path.',
+    },
+    actions: [
+      {
+        text: 'Play or Pause',
+        attributes: {
+          'data-video-target': video_uuid3,
+          class: 'js-base-video-toggle'
+        }
       },
-      body: {
-        headline: 'Video Thumbnail triggered by whole card clickablity',
-        paragraph: 'The Video Thumbnail with an inline video (video object passed into the video.content prop) is passed in to the card\'s media.video prop. The video will play/pause when the whole card is clicked',
+    ],
+  } only %}
+{% endset %}
+
+{% set card_4 %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    tag: 'article',
+    link: {
+      url: '#',
+      attributes: {
+        'aria-label': 'Play the Video Thumbnail in Card whole Card Clickablity Video',
+        'data-video-target': video_uuid4,
+        class: 'js-base-video-toggle'
       }
-    } only %}
-  {% endcell %}
-{% endgrid %}
+    },
+    media: {
+      video: video_thumbnail_4
+    },
+    body: {
+      headline: 'Video Thumbnail triggered by whole card clickablity',
+      paragraph: 'The Video Thumbnail with an inline video (video object passed into the video.content prop) is passed in to the card\'s media.video prop. The video will play/pause when the whole card is clicked',
+    }
+  } only %}
+{% endset %}
+
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: card_1
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: card_2
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: card_3
+  } only %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: card_4
+  } only %}
+{% endset %}
+
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  template: [
+    'thirds@from-small',
+  ],
+} only %}

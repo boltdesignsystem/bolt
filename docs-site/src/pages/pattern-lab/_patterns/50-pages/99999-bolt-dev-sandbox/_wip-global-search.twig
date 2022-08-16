@@ -165,11 +165,15 @@
 
   <bolt-list-item>
     <div class="t-bolt-dark u-bolt-padding-top-small u-bolt-padding-right-medium u-bolt-padding-bottom-small u-bolt-padding-left-medium">
-      {% grid "o-bolt-grid--center" %}
-        {% cell "u-bolt-width-12/12 u-bolt-width-6/12@large" %}
-          {{ search_bar_themed }}
-        {% endcell %}
-      {% endgrid %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        items: [
+          {
+            column_start: '1 4@large',
+            column_span: '12 6@large',
+            content: search_bar_themed ,
+          },
+        ]
+      } only %}
     </div>
   </bolt-list-item>
 

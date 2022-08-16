@@ -1,0 +1,26 @@
+{#
+/**
+ * Wrapper Element
+ *
+ * Available variables:
+ * - Reference wrapper.schema.js
+ *
+#}
+
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-elements-wrapper'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'e-bolt-wrapper',
+] %}
+
+{# Template #}
+<div {{ attributes.addClass(classes) }}>{{ content }}</div>
+
