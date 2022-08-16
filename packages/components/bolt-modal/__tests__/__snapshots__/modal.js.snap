@@ -268,20 +268,15 @@ exports[`<bolt-modal> Component Long content usage<bolt-modal> with band at vari
   <bolt-band class="is-ready">
     <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center">
       <div class="c-bolt-band__content">
-        <bolt-wrapper size="xxlarge"
-                      full="true"
-                      bolt-object
-        >
-          <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
-            <div>
-              This is very long content.
-            </div>
-            <bolt-image src="/fixtures/1200x2500.jpg"
-                        alt="Placeholder"
-            >
-            </bolt-image>
+        <div class="e-bolt-wrapper">
+          <div>
+            This is very long content.
           </div>
-        </bolt-wrapper>
+          <bolt-image src="/fixtures/1200x2500.jpg"
+                      alt="Placeholder"
+          >
+          </bolt-image>
+        </div>
       </div>
     </div>
   </bolt-band>
@@ -523,16 +518,11 @@ exports[`<bolt-modal> Component Simple usage<bolt-modal> with band at various vi
   <bolt-band class="is-ready">
     <div class="c-bolt-band c-bolt-band--medium c-bolt-band--valign-center">
       <div class="c-bolt-band__content">
-        <bolt-wrapper size="xxlarge"
-                      full="true"
-                      bolt-object
-        >
-          <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
-            <div>
-              Default slot.
-            </div>
+        <div class="e-bolt-wrapper">
+          <div>
+            Default slot.
           </div>
-        </bolt-wrapper>
+        </div>
       </div>
     </div>
   </bolt-band>
