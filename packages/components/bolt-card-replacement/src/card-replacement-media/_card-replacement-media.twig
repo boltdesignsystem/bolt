@@ -4,46 +4,34 @@
 
 {% set attributes = create_attribute(media.attributes|default({})) %}
 
-{# Image Component props #}
-{% set image_component_prop = 
-'placeholder_color' in _card_replacement_image|keys or 
-'lazyload' in _card_replacement_image|keys or
-'no_lazy' in _card_replacement_image|keys or
-'placeholder_image' in _card_replacement_image|keys or
-'ratio' in _card_replacement_image|keys or
-'max_width' in _card_replacement_image|keys or
-'valign' in _card_replacement_image|keys or
-'align' in _card_replacement_image|keys or
-'cover' in _card_replacement_image|keys %}
-
-{% if horizontal and image_component_prop %}
-  {% set _card_replacement_image = _card_replacement_image|merge({
-    ratio: false,
-    cover: true,
-  }) %}
-{% elseif horizontal and _card_replacement_image %}
-  {# Background prop need for cropping Image Element when horizontal card is used #}
-  {% set _card_replacement_image = _card_replacement_image|merge({
-    background: true,
-  }) %}
-{% endif %}
-
 {% if _card_replacement_media_content %}
   {{ _card_replacement_media_content }}
 {% else %}
   {% if _card_replacement_image or block('media') is defined %}
     <bolt-card-replacement-media {{ attributes }}>
       <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media">
-        {# Check if Image Component prop was used, then use Image Component #}
-        {% if image_component_prop %}
-          {% include '@bolt-components-image/image.twig' with _card_replacement_image only %}
+        {% if _card_replacement_image %}
+          {# DEPRECATED. Pass a renderable image for media.image instead of structured data.  #}
+          {% if _card_replacement_image is iterable and  _card_replacement_image.src %}
+            {% if horizontal and _card_replacement_image %}
+              {% set _card_replacement_image = _card_replacement_image|merge({
+                ratio: false,
+                cover: true,
+              }) %}
+            {% endif %}
+            {% include '@bolt-components-image/image.twig' with _card_replacement_image only %}
+          {% else %}
+            {# {% if horizontal and _card_replacement_image %} #}
+              {# Background prop need for cropping Image Element when horizontal card is used #}
+              {# {% set _card_replacement_image = _card_replacement_image|merge({
+                background: true,
+              }) %}
+            {% endif %} #}
+            {{ _card_replacement_image }}
+          {% endif %}
         {% elseif block('media') is defined %}
+          {# DEPRECATED. Pass a renderable image for media.image instead of using a twig block.  #}
           {{ block('media') }}
-        {# If not, use Image Element #}
-        {% else %}
-          {% include '@bolt-elements-image/image.twig' with {
-            attributes: _card_replacement_image
-          } only %}
         {% endif %}
       </ssr-keep>
     </bolt-card-replacement-media>
