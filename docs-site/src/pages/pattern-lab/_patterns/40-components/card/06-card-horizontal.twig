@@ -18,6 +18,16 @@
 }{% endverbatim %}
 {% endset %}
 
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+    },
+  } only %}
+{% endset %}
+
 {% set card %}
   <bolt-text headline>
     Default horizontal card
@@ -26,10 +36,7 @@
     horizontal: true,
     height: 'auto',
     media: {
-      image: {
-        src: '/images/placeholders/landscape-16x9-mountains.jpg',
-        alt: 'Image alt.',
-      },
+      image: image
     },
     body: {
       eyebrow: 'This is an eyebrow',
@@ -77,10 +84,7 @@
           horizontal: true,
           height: 'auto',
           media: {
-            image: {
-              src: '/images/placeholders/landscape-16x9-mountains.jpg',
-              alt: 'Image alt.',
-            },
+            image: image,
             attributes: {
               style: 'min-width:' ~ width,
             }
