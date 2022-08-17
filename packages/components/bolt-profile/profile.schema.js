@@ -12,6 +12,11 @@ module.exports = {
       type: 'any',
       description: 'Render a custom avatar image.',
     },
+    avatar_editable: {
+      type: 'boolean',
+      description: 'Adds a button that allows users to change their avatar.',
+      default: false,
+    },
     cover: {
       type: 'any',
       description: 'Render a custom cover image.',

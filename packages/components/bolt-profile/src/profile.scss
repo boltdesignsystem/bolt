@@ -83,9 +83,30 @@
     }
   }
 
+  &.c-bolt-profile__avatar--editable::after {
+    content: '';
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--bolt-color-white);
+  }
+
   svg {
     width: 100%;
     height: auto;
+  }
+
+  .c-bolt-profile__avatar-edit-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 1;
+    text-align: center;
   }
 }
 

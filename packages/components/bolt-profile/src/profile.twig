@@ -13,6 +13,10 @@
   this.data.full_bleed.value ? 'c-bolt-profile--full-bleed' : '',
 ] %}
 
+<script>
+	console.log({{ this.data | json_encode }})
+</script>
+
 <div {{ attributes.addClass(classes) }}>
   <div class="c-bolt-profile__cover">
     {% if cover %}
@@ -21,11 +25,29 @@
       {% include '@bolt-components-profile/_profile-default-cover.twig' %}
     {% endif %}
   </div>
-  <div class="c-bolt-profile__avatar">
+  <div class="c-bolt-profile__avatar {{ avatar_editable ? 'c-bolt-profile__avatar--editable' : '' }}">
     {% if avatar %}
       {{ avatar }}
     {% else %}
       {% include '@bolt-components-profile/_profile-default-avatar.twig' %}
+    {% endif %}
+    {% if avatar_editable %}
+      {% set icon_pencil %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+          name: 'pencil',
+        } only %}
+      {% endset %}
+      <div class="c-bolt-profile__avatar-edit-btn">
+          {% include '@bolt-elements-button/button.twig' with {
+            content: 'Edit Profile Image',
+            border_radius: 'full',
+            icon_only: icon_pencil,
+            size: 'large',
+            attributes: {
+              type: 'button'
+            }
+          } only %}
+      </div>
     {% endif %}
   </div>
   <div class="c-bolt-profile__user-info">
