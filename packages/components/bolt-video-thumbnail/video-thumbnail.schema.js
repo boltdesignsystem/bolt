@@ -55,6 +55,12 @@ module.exports = {
             'Display a subtitles icon that overlays the video thumbnail.',
           default: false,
         },
+        has_captions: {
+          type: 'boolean',
+          description:
+            'Display a captions icon that overlays the video thumbnail.',
+          default: false,
+        },
         title: {
           type: 'any',
           description:

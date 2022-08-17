@@ -11,12 +11,30 @@ var externalControlButtons = document.querySelectorAll('.js-base-video-toggle');
 
 var handleExternalButtonClick = e => {
   e.preventDefault();
-  var videoTarget = videojs.getPlayer(e.currentTarget.dataset.videoTarget);
-  var isPlaying = videoTarget.el_.classList.contains('vjs-playing');
-  if (isPlaying) {
-    videoTarget.pause();
-  } else {
-    videoTarget.play();
+  var videoTargetPlayer = videojs.getPlayer(
+    e.currentTarget.dataset.videoTarget,
+  );
+  if (videoTargetPlayer) {
+    var isVideoThumbnail = videoTargetPlayer.el_.closest(
+      '.c-bolt-video-thumbnail',
+    );
+    var isPlaying = videoTargetPlayer.el_.classList.contains('vjs-playing');
+
+    if (isVideoThumbnail) {
+      var playButton = isVideoThumbnail.querySelector(
+        '.js-bolt-video-thumbnail-inline-button',
+      );
+
+      if (playButton) {
+        playButton.dispatchEvent(new Event('click'));
+      }
+    }
+
+    if (isPlaying) {
+      videoTargetPlayer.pause();
+    } else {
+      videoTargetPlayer.play();
+    }
   }
 };
 
