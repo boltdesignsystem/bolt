@@ -240,12 +240,13 @@ class BoltTabs extends withContext(BoltElement) {
     // If button is hidden, we need to show it before we get the width.
     // Explicitly check for 'is-hidden', as we'll be re-adding the class when we're done.
     if (this.showMoreItem.classList.contains('is-hidden')) {
-      this.showMoreItem.classList.add('is-invisible');
       this.showMoreItem.classList.remove('is-hidden');
       width = this.dropdownButton.offsetWidth;
       this.showMoreItem.classList.add('is-hidden');
-      this.showMoreItem.classList.remove('is-invisible');
     }
+
+    // remove default invisibility that prevents unstyled flash
+    this.showMoreItem.classList.remove('is-invisible');
 
     return width;
   }
@@ -593,7 +594,13 @@ class BoltTabs extends withContext(BoltElement) {
 
     const dropdown = () => {
       return html`
-        <div class="${cx('c-bolt-tabs__item', 'c-bolt-tabs__show-more')}">
+        <div
+          class="${cx(
+            'c-bolt-tabs__item',
+            'c-bolt-tabs__show-more',
+            'is-invisible',
+          )}"
+        >
           <button
             type="button"
             aria-haspopup="true"
