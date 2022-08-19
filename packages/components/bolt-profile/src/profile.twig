@@ -13,10 +13,6 @@
   this.data.full_bleed.value ? 'c-bolt-profile--full-bleed' : '',
 ] %}
 
-<script>
-	console.log({{ this.data | json_encode }})
-</script>
-
 <div {{ attributes.addClass(classes) }}>
   <div class="c-bolt-profile__cover">
     {% if cover %}
