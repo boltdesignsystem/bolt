@@ -1,33 +1,19 @@
 {% set notes %}
     <bolt-ol>
-        <bolt-li></bolt-li>
+        <bolt-li>This is a conditional property, set `avatar_editable: true`, then <em>hover</em> to see the edit button.</bolt-li>
     </bolt-ol>
 {% endset %}
 
 {% set demo %}
-<bolt-list display="flex" spacing="small">
-    <bolt-list-item>
-        {% include '@bolt-components-profile/profile.twig' with {
-            name: {
-                content: '<strong>First Last</strong> (@username)',
-                tag: 'h2',
-            },
-            job_title: 'Lead System Architect',
-            location: 'United States',
-        } only %}
-    </bolt-list-item>
-    <bolt-list-item>
-        {% include '@bolt-components-profile/profile.twig' with {
-            name: {
-                content: '<strong>First Last</strong> (@username)',
-                tag: 'h2',
-            },
-            job_title: 'Lead System Architect',
-            location: 'United States',
-            avatar_editable: true,
-        } only %}
-    </bolt-list-item>
-</bolt-list>
+    {% include '@bolt-components-profile/profile.twig' with {
+        name: {
+            content: '<strong>First Last</strong> (@username)',
+            tag: 'h2',
+        },
+        job_title: 'Lead System Architect',
+        location: 'United States',
+        avatar_editable: true,
+    } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
