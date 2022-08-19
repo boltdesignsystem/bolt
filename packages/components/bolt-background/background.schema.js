@@ -12,6 +12,9 @@ module.exports = {
       {
         required: ['content_items'],
       },
+      {
+        required: ['fill_color'],
+      },
     ],
   },
   properties: {
@@ -41,14 +44,8 @@ module.exports = {
     fill: {
       type: 'string',
       description: 'Type of fill to use for the overlay.',
-      default: 'color',
-      enum: ['color', 'gradient', 'linear-gradient', 'radial-gradient'],
-    },
-    fill_color: {
-      type: 'string',
-      description: 'Color of the fill to use in the overlay.',
-      default: 'default',
-      enum: ['default', 'pink', 'navy', 'black'],
+      default: 'solid',
+      enum: ['solid', 'gradient'],
     },
     focal_point: {
       type: 'object',
@@ -88,7 +85,8 @@ module.exports = {
     },
     fillColor: {
       title: 'DEPRECATED',
-      description: 'Use fill_color instead.',
+      description:
+        'This is deprecated. Solid overlay on the background component can be achieved by adding <a href="/pattern-lab/?p=visual-styles-theming-system" class="e-bolt-text-link" target="_blank" rel="noopener">theming class</a> <code>t-bolt-*</code> to the parent of a background component.',
     },
     focalPoint: {
       title: 'DEPRECATED',
@@ -101,7 +99,12 @@ module.exports = {
     content_items: {
       title: 'DEPRECATED',
       description:
-        'Use items instead (each item must be renderable, e.g. a string or render array.  Arrays inteded to be rendered with pattern_template() are no longer supported)',
+        'Use items instead (each item must be renderable, e.g. a string or render array.  Arrays inteded to be rendered with pattern_template() are no longer supported).',
+    },
+    fill_color: {
+      title: 'DEPRECATED',
+      description:
+        'This is deprecated. Solid overlay on the background component can be achieved by adding <a href="/pattern-lab/?p=visual-styles-theming-system" class="e-bolt-text-link" target="_blank" rel="noopener">theming class</a> <code>t-bolt-*</code> to the parent of a background component.',
     },
   },
 };
