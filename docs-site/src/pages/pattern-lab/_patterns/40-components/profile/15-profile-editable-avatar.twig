@@ -1,9 +1,3 @@
-{% set notes %}
-    <bolt-ol>
-        <bolt-li>This is a conditional property, set `avatar_editable: true`, then <em>hover</em> to see the edit button.</bolt-li>
-    </bolt-ol>
-{% endset %}
-
 {% set demo %}
     {% include '@bolt-components-profile/profile.twig' with {
         name: {
@@ -30,8 +24,7 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
     title: 'Profile with Editable Avatar',
-    description: '',
-    notes: notes,
+    description: 'This is a conditional property. Hover the avatar to see the edit button.',
     demo: demo,
     twig_markup: twig_markup,
 } only %}
