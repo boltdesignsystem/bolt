@@ -137,13 +137,18 @@
 {% endset %}
 
 {% set card_slide_1 %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/landscape-16x9-mountains.jpg',
+        alt: "Image alt.",
+        loading: 'lazy'
+      },
+    } only %}
+  {% endset %}
   {% include '@bolt-components-card-replacement/card-replacement.twig' with {
     media: {
-      image: {
-        src: '/images/placeholders/landscape-16x9-mountains.jpg',
-        alt: 'Image',
-        loading: 'lazy',
-      },
+      image: image,
     },
     body: {
       eyebrow: 'Slide 1',
@@ -158,13 +163,18 @@
   } only %}
 {% endset %}
 {% set card_slide_2 %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/landscape-16x9-mountains.jpg',
+        alt: "Image alt.",
+        loading: 'lazy'
+      },
+    } only %}
+  {% endset %}
   {% include '@bolt-components-card-replacement/card-replacement.twig' with {
     media: {
-      image: {
-        src: '/images/placeholders/landscape-16x9-mountains.jpg',
-        alt: 'Image',
-        loading: 'lazy',
-      },
+      image: image,
     },
     body: {
       eyebrow: 'Slide 2',
@@ -181,11 +191,7 @@
 {% set card_slide_3 %}
   {% include '@bolt-components-card-replacement/card-replacement.twig' with {
     media: {
-      image: {
-        src: '/images/placeholders/landscape-16x9-mountains.jpg',
-        alt: 'Image',
-        loading: 'lazy',
-      },
+      image: image,
     },
     body: {
       eyebrow: 'Slide 3',
@@ -200,13 +206,18 @@
   } only %}
 {% endset %}
 {% set card_slide_4 %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/landscape-16x9-mountains.jpg',
+        alt: "Image alt.",
+        loading: 'lazy'
+      },
+    } only %}
+  {% endset %}
   {% include '@bolt-components-card-replacement/card-replacement.twig' with {
     media: {
-      image: {
-        src: '/images/placeholders/landscape-16x9-mountains.jpg',
-        alt: 'Image',
-        loading: 'lazy',
-      },
+      image: image,
     },
     body: {
       eyebrow: 'Slide 4',

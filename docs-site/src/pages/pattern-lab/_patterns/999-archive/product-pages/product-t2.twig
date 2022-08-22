@@ -633,7 +633,14 @@
   {% endblock %}
 {% endembed %}
 
-
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/content/promos/promo-16x9-anthem.jpg',
+      loading: 'lazy'
+    },
+  } only %}
+{% endset %}
 
 {% embed '@pl/_band--collection.twig' with {
   theme: 'xlight',
@@ -642,9 +649,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg',
-        },
+        image: image,
       },
       body: {
         eyebrow: 'Article',
@@ -665,9 +670,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg',
-        },
+        image: image,
       },
       body: {
         eyebrow: 'Article',
@@ -685,9 +688,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg',
-        },
+        image: image,
       },
       body: {
         eyebrow: 'Article',

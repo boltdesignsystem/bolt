@@ -303,7 +303,16 @@
     theme: 'light'
   } only %}
 
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          alt: '/alt text',
+          src: '/images/placeholders/500x500.jpg',
+          loading: 'lazy',
 
+        },
+      } only %}
+    {% endset %}
     {% embed '@pl/_band--collection.twig' with {
       theme: 'dark',
       size: 'medium',
@@ -311,9 +320,7 @@
         {
           pattern: 'card',
           media: {
-            image: {
-              src: '/images/content/promos/promo-16x9-anthem.jpg',
-            },
+            image: image,
           },
           body: {
             eyebrow: 'Article',
@@ -334,9 +341,7 @@
         {
           pattern: 'card',
           media: {
-            image: {
-              src: '/images/content/promos/promo-16x9-anthem.jpg',
-            },
+            image: image,
           },
           body: {
             eyebrow: 'Article',
@@ -354,9 +359,7 @@
         {
           pattern: 'card',
           media: {
-            image: {
-              src: '/images/content/promos/promo-16x9-anthem.jpg',
-            },
+            image: image,
           },
           body: {
             eyebrow: 'Article',

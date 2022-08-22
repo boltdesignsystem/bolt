@@ -151,8 +151,27 @@
     {% endblock %}
   {% endembed %}
 
-
-
+  {% set image_1 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/promos/promo-16x9-forrester.jpg',
+      },
+    } only %}
+  {% endset %}
+  {% set image_2 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/promos/promo-16x9-anthem.jpg',
+      },
+    } only %}
+  {% endset %}
+  {% set image_3 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/promos/promo-16x9-ai.jpg',
+      },
+    } only %}
+  {% endset %}
   {% embed '@pl/_band--collection.twig' with {
     theme: 'light',
     size: 'medium',
@@ -160,9 +179,7 @@
       {
         pattern: 'card',
         media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-forrester.jpg'
-          },
+          image: image_1,
         },
         body: {
           eyebrow:  'Article',
@@ -180,9 +197,7 @@
       {
         pattern: 'card',
         media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-anthem.jpg'
-          },
+          image: image_2,
         },
         body: {
           eyebrow: 'Article',
@@ -205,9 +220,7 @@
       {
         pattern: 'card',
         media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-ai.jpg'
-          },
+          image: image_3,
         },
         body: {
           eyebrow: 'Article',
