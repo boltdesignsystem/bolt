@@ -593,7 +593,13 @@ class BoltTabs extends withContext(BoltElement) {
 
     const dropdown = () => {
       return html`
-        <div class="${cx('c-bolt-tabs__item', 'c-bolt-tabs__show-more')}">
+        <div
+          class="${cx(
+            'c-bolt-tabs__item',
+            'c-bolt-tabs__show-more',
+            'is-hidden',
+          )}"
+        >
           <button
             type="button"
             aria-haspopup="true"
