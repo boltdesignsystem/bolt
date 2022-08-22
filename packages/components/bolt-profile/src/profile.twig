@@ -27,22 +27,9 @@
     {% else %}
       {% include '@bolt-components-profile/_profile-default-avatar.twig' %}
     {% endif %}
-    {% if avatar_editable %}
-      {% set icon_pencil %}
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'pencil',
-        } only %}
-      {% endset %}
+    {% if avatar_edit %}
       <div class="c-bolt-profile__avatar-edit-btn">
-          {% include '@bolt-elements-button/button.twig' with {
-            content: 'Edit Profile Image',
-            border_radius: 'full',
-            icon_only: icon_pencil,
-            size: 'large',
-            attributes: {
-              type: 'button'
-            }
-          } only %}
+        {{ avatar_edit }}
       </div>
     {% endif %}
   </div>

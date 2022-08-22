@@ -1,4 +1,20 @@
 {% set demo %}
+    {% set icon_pencil %}
+        {% include '@bolt-elements-icon/icon.twig' with {
+            name: 'pencil',
+        } only %}
+    {% endset %}
+    {% set edit_button %}
+        {% include '@bolt-elements-button/button.twig' with {
+            content: 'Edit Profile Image',
+            border_radius: 'full',
+            icon_only: icon_pencil,
+            size: 'large',
+            attributes: {
+                type: 'button'
+            }
+        } only %}
+    {% endset %}
     {% include '@bolt-components-profile/profile.twig' with {
         name: {
             content: '<strong>First Last</strong> (@username)',
@@ -6,11 +22,22 @@
         },
         job_title: 'Lead System Architect',
         location: 'United States',
-        avatar_editable: true,
+        avatar_edit: edit_button,
     } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
+{% set edit_button %}
+    {% include '@bolt-elements-button/button.twig' with {
+        content: 'Edit Profile Image',
+        border_radius: 'full',
+        icon_only: icon_pencil,
+        size: 'large',
+        attributes: {
+            type: 'button'
+        }
+    } only %}
+{% endset %}
 {% include '@bolt-components-profile/profile.twig' with {
     name: {
         content: '<strong>First Last</strong> (@username)',
@@ -18,7 +45,7 @@
     },
     job_title: 'Lead System Architect',
     location: 'United States',
-    avatar_editable: true,
+    avatar_edit: edit_button,
 } only %}
 {% endverbatim %}{% endset %}
 
