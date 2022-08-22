@@ -13,6 +13,27 @@
 }{% endverbatim %}
 {% endset %}
 
+{% set image_element_usage %}{% verbatim %}
+  {% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      alt: 'Image alt text',
+      src: 'path/image.jpg',
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-components-card-replacement/card-replacement.twig' with {
+  horizontal: true,
+  height: 'auto',
+  media: {
+    image: image,
+  },
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
 {% set customBodyDemo %}{% verbatim %}body: {
   content: customContentWithGrid,
 }{% endverbatim %}
@@ -32,6 +53,14 @@
   <bolt-text headline>
     Default horizontal card
   </bolt-text>
+  <bolt-text>
+    When using background element set <code>background: true</code>. This will crop the image in the horizontal card.
+</bolt-text>
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: image_element_usage,
+    lang: 'twig',
+    mode: 'dark',
+  } only %}
   {% include '@bolt-components-card-replacement/card-replacement.twig' with {
     horizontal: true,
     height: 'auto',
