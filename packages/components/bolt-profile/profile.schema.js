@@ -12,10 +12,10 @@ module.exports = {
       type: 'any',
       description: 'Render a custom avatar image.',
     },
-    avatar_button: {
+    avatar_edit_button: {
       type: 'any',
       description:
-        'Allows a button to be passed for users to edit their avatar.',
+        'Content of the edit button. profile-avatar-edit-button template is expected here.',
     },
     cover: {
       type: 'any',

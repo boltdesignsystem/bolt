@@ -1,6 +1,6 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Profile Avatar Button',
+  title: 'Profile Avatar Edit Button',
   type: 'object',
   properties: {
     attributes: {

@@ -1,6 +1,12 @@
 {% set demo %}
   {% set edit_button %}
-    {% include '@bolt-components-profile/profile-avatar-button.twig' only %}
+    {% include '@bolt-components-profile/profile-avatar-edit-button.twig' with {
+      content: 'Edit Text'|t,
+      attributes: {
+        class: 'js-button-edit',
+        'data-foo': 'bar'
+      },
+    } only %}
   {% endset %}
   {% include '@bolt-components-profile/profile.twig' with {
     name: {
@@ -9,16 +15,17 @@
     },
     job_title: 'Lead System Architect',
     location: 'United States',
-    avatar_button: edit_button,
+    avatar_edit_button: edit_button,
   } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
 {% set edit_button %}
-  {% include '@bolt-components-profile/profile-avatar-button.twig' with {
-    content: 'Edit Text',
+  {% include '@bolt-components-profile/profile-avatar-edit-button.twig' with {
+    content: 'Edit Text'|t,
     attributes: {
       class: 'js-button-edit',
+      'data-foo': 'bar'
     },
   } only %}
 {% endset %}
@@ -29,13 +36,13 @@
   },
   job_title: 'Lead System Architect',
   location: 'United States',
-  avatar_button: edit_button,
+  avatar_edit_button: edit_button,
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Profile with Editable Avatar',
-  description: 'This is a conditional property. Hover the avatar to see the edit button.',
+  title: 'Profile with Avatar Edit Button',
+  description: 'The avatar can display an edit button on hover and focus.',
   demo: demo,
   twig_markup: twig_markup,
 } only %}
