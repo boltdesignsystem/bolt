@@ -104,6 +104,7 @@
       position: static;
       // used to prevent default .e-bolt-button animation
       transform: none;
+      will-change: opacity;
       transition: opacity var(--bolt-transition);
 
       &:after {
@@ -125,6 +126,7 @@
       left: 0;
       z-index: -1;
       background-color: var(--bolt-color-white);
+      will-change: opacity;
       transition: opacity var(--bolt-transition);
     }
 
