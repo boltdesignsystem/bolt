@@ -1,57 +1,57 @@
 {% set demo %}
-    {% set icon_pencil %}
-        {% include '@bolt-elements-icon/icon.twig' with {
-            name: 'pencil',
-        } only %}
-    {% endset %}
-    {% set edit_button %}
-        {% include '@bolt-elements-button/button.twig' with {
-            content: 'Edit Profile Image',
-            border_radius: 'full',
-            icon_only: icon_pencil,
-            size: 'large',
-            attributes: {
-                type: 'button'
-            }
-        } only %}
-    {% endset %}
-    {% include '@bolt-components-profile/profile.twig' with {
-        name: {
-            content: '<strong>First Last</strong> (@username)',
-            tag: 'h2',
-        },
-        job_title: 'Lead System Architect',
-        location: 'United States',
-        avatar_edit: edit_button,
+  {% set icon_pencil %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pencil',
     } only %}
-{% endset %}
-
-{% set twig_markup %}{% verbatim %}
-{% set edit_button %}
+  {% endset %}
+  {% set edit_button %}
     {% include '@bolt-elements-button/button.twig' with {
-        content: 'Edit Profile Image',
-        border_radius: 'full',
-        icon_only: icon_pencil,
-        size: 'large',
-        attributes: {
-            type: 'button'
-        }
+      content: 'Edit Profile Image',
+      border_radius: 'full',
+      icon_only: icon_pencil,
+      size: 'large',
+      attributes: {
+        type: 'button'
+      }
     } only %}
-{% endset %}
-{% include '@bolt-components-profile/profile.twig' with {
+  {% endset %}
+  {% include '@bolt-components-profile/profile.twig' with {
     name: {
-        content: '<strong>First Last</strong> (@username)',
-        tag: 'h2',
+      content: '<strong>First Last</strong> (@username)',
+      tag: 'h2',
     },
     job_title: 'Lead System Architect',
     location: 'United States',
     avatar_edit: edit_button,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set edit_button %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'Edit Profile Image',
+    border_radius: 'full',
+    icon_only: icon_pencil,
+    size: 'large',
+    attributes: {
+      type: 'button'
+    }
+  } only %}
+{% endset %}
+{% include '@bolt-components-profile/profile.twig' with {
+  name: {
+    content: '<strong>First Last</strong> (@username)',
+    tag: 'h2',
+  },
+  job_title: 'Lead System Architect',
+  location: 'United States',
+  avatar_edit: edit_button,
 } only %}
 {% endverbatim %}{% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-    title: 'Profile with Editable Avatar',
-    description: 'This is a conditional property. Hover the avatar to see the edit button.',
-    demo: demo,
-    twig_markup: twig_markup,
+  title: 'Profile with Editable Avatar',
+  description: 'This is a conditional property. Hover the avatar to see the edit button.',
+  demo: demo,
+  twig_markup: twig_markup,
 } only %}
