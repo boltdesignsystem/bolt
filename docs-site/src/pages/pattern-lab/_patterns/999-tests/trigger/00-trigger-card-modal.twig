@@ -1,11 +1,16 @@
 {% set main_content %}
   {% set card %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/landscape-16x9-mountains.jpg',
+        alt: "Image alt.",
+      },
+    } only %}
+  {% endset %}
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
       media: {
-        image: {
-          src: "/images/placeholders/landscape-16x9-mountains.jpg",
-          alt: "Image alt.",
-        },
+        image: image,
       },
       body: {
         headline: "Card Example",
@@ -20,10 +25,7 @@
   {% set card_with_buttons %}
     {% include "@bolt-components-card-replacement/card-replacement.twig" with {
       media: {
-        image: {
-          src: "/images/placeholders/landscape-16x9-mountains.jpg",
-          alt: "Image alt.",
-        },
+        image: image,
       },
       body: {
         headline: "Card Example (DUE TO THE NESTED BUTTON THIS WILL BE BROKEN)",
@@ -115,10 +117,7 @@
       <h2>Existing Card With Modal Button Only</h2>
       {% include "@bolt-components-card-replacement/card-replacement.twig" with {
         media: {
-          image: {
-            src: "/images/placeholders/landscape-16x9-mountains.jpg",
-            alt: "Image alt.",
-          },
+          image: image,
         },
         body: {
           headline: "Card Example with Button Only",

@@ -126,12 +126,17 @@
         ]
       }
     } only %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          alt: 'Image alt text',
+          src: '/images/placeholders/landscape-16x9-mountains.jpg',
+        },
+      } only %}
+    {% endset %}
     {% include '@bolt-components-card-replacement/_card-replacement-media.twig' with {
       media: {
-        image: {
-          src: '/images/placeholders/landscape-16x9-mountains.jpg',
-          alt: 'Image alt.',
-        },
+        image: image,
       }
     } %}
   {% endset %}

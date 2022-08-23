@@ -339,13 +339,17 @@
           <bolt-grid gutter="medium" row-gutter="medium">
             {% for i in 1..12 %}
               {% set card %}
+                {% set image %}
+                  {% include '@bolt-elements-image/image.twig' with {
+                    attributes: {
+                      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+                    },
+                  } only %}
+                {% endset %}
                 {% include '@bolt-components-card-replacement/card-replacement.twig' with {
                   theme: 'xlight',
                   media: {
-                    image: {
-                      src: '/images/placeholders/landscape-16x9-mountains.jpg',
-                      alt: 'Image alt.',
-                    },
+                    image: image,
                   },
                   body: {
                     eyebrow: 'Systems Integrator',

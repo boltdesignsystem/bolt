@@ -4,14 +4,18 @@
     href: 'https://yahoo.com'
   }
 } only %}{% endspaceless %}{% endset %}
-
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+    },
+  } only %}
+{% endset %}
 {% set card_1 %}
   {% include '@bolt-components-card-replacement/card-replacement.twig' with {
     media: {
-      image: {
-        src: '/images/placeholders/landscape-16x9-mountains.jpg',
-        alt: 'Image alt.',
-      },
+      image: image,
     },
     body: {
       headline: 'No link',
@@ -33,10 +37,7 @@
       text: 'Go to google.com'
     },
     media: {
-      image: {
-        src: '/images/placeholders/landscape-16x9-mountains.jpg',
-        alt: 'Image alt.',
-      },
+      image: image,
     },
     body: {
       headline: 'With link',

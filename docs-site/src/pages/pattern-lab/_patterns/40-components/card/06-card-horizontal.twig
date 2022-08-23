@@ -13,24 +13,59 @@
 }{% endverbatim %}
 {% endset %}
 
+{% set image_element_usage %}{% verbatim %}
+  {% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      alt: 'Image alt text',
+      src: 'path/image.jpg',
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-components-card-replacement/card-replacement.twig' with {
+  horizontal: true,
+  height: 'auto',
+  media: {
+    image: image,
+  },
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
 {% set customBodyDemo %}{% verbatim %}body: {
   content: customContentWithGrid,
 }{% endverbatim %}
+{% endset %}
+
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+    },
+  } only %}
 {% endset %}
 
 {% set card %}
   <bolt-text headline>
     Default horizontal card
   </bolt-text>
+  <bolt-text>
+    When creating a horizontal card by setting the <code>horizontal</code> prop to <code>true</code> remember to set <code>height</code> prop to <code>auto</code>. The image you pass for card media should also have its <code>background</code> prop set to <code>true</code> in order to allow the image to be cropped and display properly.
+  </bolt-text>
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: image_element_usage,
+    lang: 'twig',
+    mode: 'dark',
+  } only %}
   {% include '@bolt-components-card-replacement/card-replacement.twig' with {
     horizontal: true,
     height: 'auto',
     media: {
-      image: {
-        src: '/images/placeholders/landscape-16x9-mountains.jpg',
-        alt: 'Image alt.',
-        placeholder_color: '#afcde6',
-      },
+      image: image
     },
     body: {
       eyebrow: 'This is an eyebrow',
@@ -78,11 +113,7 @@
           horizontal: true,
           height: 'auto',
           media: {
-            image: {
-              src: '/images/placeholders/landscape-16x9-mountains.jpg',
-              alt: 'Image alt.',
-              placeholder_color: '#afcde6',
-            },
+            image: image,
             attributes: {
               style: 'min-width:' ~ width,
             }
@@ -196,4 +227,4 @@
       } only %}
     </bolt-grid-item>
   {% endfor %}
-</bolt-grid>>
+</bolt-grid>
