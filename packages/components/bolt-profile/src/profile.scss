@@ -102,18 +102,20 @@
     > * {
       opacity: 0;
       position: static;
+      // used to prevent default .e-bolt-button animation
       transform: none;
       transition: opacity var(--bolt-transition);
 
-      &::after {
+      &:after {
         content: '';
         position: absolute;
+        // used to prevent default .e-bolt-button animation
         transform: none;
         pointer-events: all;
       }
     }
 
-    &::after {
+    &:after {
       content: '';
       opacity: 0;
       position: absolute;
@@ -130,10 +132,11 @@
     &:focus {
       > * {
         opacity: 1;
+        // used to prevent default .e-bolt-button animation
         transform: none;
       }
 
-      &::after {
+      &:after {
         opacity: 0.8;
       }
     }

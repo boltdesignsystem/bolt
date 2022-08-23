@@ -27,10 +27,8 @@
     {% else %}
       {% include '@bolt-components-profile/_profile-default-avatar.twig' %}
     {% endif %}
-    {% if avatar_edit %}
-      <div class="c-bolt-profile__avatar-edit-btn">
-        {{ avatar_edit }}
-      </div>
+    {% if avatar_button %}
+      {{ avatar_button }}
     {% endif %}
   </div>
   <div class="c-bolt-profile__user-info">

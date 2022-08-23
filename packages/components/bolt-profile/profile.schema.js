@@ -12,7 +12,7 @@ module.exports = {
       type: 'any',
       description: 'Render a custom avatar image.',
     },
-    avatar_edit: {
+    avatar_button: {
       type: 'any',
       description:
         'Allows a button to be passed for users to edit their avatar.',

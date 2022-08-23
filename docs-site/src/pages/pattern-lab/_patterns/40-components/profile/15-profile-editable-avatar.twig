@@ -1,19 +1,6 @@
 {% set demo %}
-  {% set icon_pencil %}
-    {% include '@bolt-elements-icon/icon.twig' with {
-      name: 'pencil',
-    } only %}
-  {% endset %}
   {% set edit_button %}
-    {% include '@bolt-elements-button/button.twig' with {
-      content: 'Edit Profile Image',
-      border_radius: 'full',
-      icon_only: icon_pencil,
-      size: 'large',
-      attributes: {
-        type: 'button'
-      }
-    } only %}
+    {% include '@bolt-components-profile/profile-avatar-button.twig' only %}
   {% endset %}
   {% include '@bolt-components-profile/profile.twig' with {
     name: {
@@ -22,20 +9,17 @@
     },
     job_title: 'Lead System Architect',
     location: 'United States',
-    avatar_edit: edit_button,
+    avatar_button: edit_button,
   } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
 {% set edit_button %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Edit Profile Image',
-    border_radius: 'full',
-    icon_only: icon_pencil,
-    size: 'large',
+  {% include '@bolt-components-profile/profile-avatar-button.twig' with {
+    content: 'Edit Text',
     attributes: {
-      type: 'button'
-    }
+      class: 'js-button-edit',
+    },
   } only %}
 {% endset %}
 {% include '@bolt-components-profile/profile.twig' with {
@@ -45,7 +29,7 @@
   },
   job_title: 'Lead System Architect',
   location: 'United States',
-  avatar_edit: edit_button,
+  avatar_button: edit_button,
 } only %}
 {% endverbatim %}{% endset %}
 
