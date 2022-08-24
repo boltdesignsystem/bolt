@@ -22,7 +22,7 @@ module.exports = {
         decoratorsBeforeExport: true,
       },
     ],
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
+    ['@babel/plugin-proposal-class-properties'],
     '@babel/plugin-syntax-jsx',
     [
       '@babel/plugin-transform-react-jsx',
