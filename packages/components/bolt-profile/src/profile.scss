@@ -87,50 +87,60 @@
     width: 100%;
     height: auto;
   }
+}
 
-  .c-bolt-profile__avatar-edit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transform: translate3d(0, 0, 0);
+.c-bolt-profile__avatar-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translate3d(0, 0, 0);
+}
 
-    .c-bolt-profile__avatar-edit-button {
-      opacity: 0;
-      position: static;
-      transform: none; // used to prevent default .e-bolt-button animation
-      transition: opacity var(--bolt-transition);
+.c-bolt-profile__avatar-edit-button {
+  opacity: 0;
+  position: static; // allows pseudo-element to fill container
+  transform: none; // prevents default .e-bolt-button animation
+  transition: opacity var(--bolt-transition);
 
-      &:after {
-        content: '';
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        transform: none; // used to prevent default .e-bolt-button animation
-        z-index: -1;
-        pointer-events: all;
-        background-color: var(--bolt-color-white);
-        transition: opacity var(--bolt-transition);
-      }
+  &:hover,
+  &:focus {
+    opacity: 1;
+    transform: none !important; // prevents default .e-bolt-button animation
 
-      &:hover,
-      &:focus {
-        opacity: 1;
-        transform: none; // used to prevent default .e-bolt-button animation
+    &:before {
+      box-shadow: none !important; // prevents default .e-bolt-button style
+    }
 
-        &:after {
-          opacity: 0.8;
-        }
-      }
+    & ~ .c-bolt-profile__avatar-edit-background {
+      opacity: 0.8;
     }
   }
+
+  &:before {
+    pointer-events: all;
+    box-shadow: none !important;
+  }
+
+  &:after {
+    content: none; // turns off default :after pseudo-element which adds box-shadow on hover
+  }
+}
+
+.c-bolt-profile__avatar-edit-background {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background-color: var(--bolt-color-white);
+  transition: opacity var(--bolt-transition);
 }
 
 .c-bolt-profile__actions {
