@@ -88,7 +88,7 @@
     height: auto;
   }
 
-  .c-bolt-profile__avatar-edit-btn {
+  .c-bolt-profile__avatar-edit {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,7 +99,7 @@
     left: 0;
     transform: translate3d(0, 0, 0);
 
-    > * {
+    .c-bolt-profile__avatar-edit-button {
       opacity: 0;
       position: static;
       // used to prevent default .e-bolt-button animation
@@ -132,7 +132,7 @@
 
     &:hover,
     &:focus {
-      > * {
+      .c-bolt-profile__avatar-edit-button {
         opacity: 1;
         // used to prevent default .e-bolt-button animation
         transform: none;
