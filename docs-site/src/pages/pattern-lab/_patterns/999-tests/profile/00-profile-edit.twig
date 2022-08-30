@@ -1,0 +1,29 @@
+{% set edit_button %}
+  {% include '@bolt-components-profile/profile-avatar-edit-button.twig' with {
+    content: 'Edit Text'|t,
+    type: 'button',
+    attributes: {
+      id: "pega-image-edit-button",
+      href: "#",
+      rel: "nofollow",
+      class: [
+        'use-ajax',
+        'js-pega-accounts-modal-open-button',
+        'pega-accounts-modal-open-button',
+      ],
+      'data-dialog-type': 'dialog',
+      'data-dialog-renderer': 'pega_accounts_modal',
+      'data-dialog-options': '[\"width\": \"auto\"]'
+    }
+  } only %}
+{% endset %}
+{% include '@bolt-components-profile/profile.twig' with {
+  name: {
+    content: '<strong>First Last</strong> (@username)',
+    tag: 'h2',
+  },
+  job_title: 'Lead System Architect',
+  location: 'United States',
+  avatar_edit_button: edit_button,
+} only %}
+
