@@ -68,6 +68,7 @@
 }
 
 .c-bolt-profile__avatar {
+  z-index: 1; // Fixes bug where "action" block covers up bottom half of avatar edit button
   width: var(--c-bolt-profile-header-avatar-size);
   height: var(--c-bolt-profile-header-avatar-size);
   overflow: hidden;
