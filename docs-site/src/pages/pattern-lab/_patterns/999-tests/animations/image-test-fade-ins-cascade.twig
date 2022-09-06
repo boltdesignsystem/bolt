@@ -1,0 +1,24 @@
+<p>An example of a fade--in-up cascade type, looped 50 times, triggered on scroll</p>
+<bolt-grid gutter="small" row-gutter="medium">
+{% for i in 1..50 %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: 'https://via.placeholder.com/450x250',
+        width: 450,
+        height: 250,
+        class: [
+          'a-bolt-base',
+          'a-bolt-in',
+          'a-bolt-in--fade-up',
+          'a-bolt-cascade-slow',
+        ]
+      },
+    } only %}
+{% endset %}
+  <bolt-grid-item row-start="auto" row-span="auto" column-start="auto" column-span="4" valign="auto" class="u-bolt-padding-medium">
+    {{ image }}
+  </bolt-grid-item>
+{% endfor %}
+</bolt-grid>
