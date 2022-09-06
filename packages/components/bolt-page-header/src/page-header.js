@@ -130,7 +130,7 @@ export class BoltPageHeader {
   setPageHeaderHeight() {
     const pageHeaderHeight = this.el.clientHeight;
     if (!this.el.classList.contains('c-bolt-page-header--static')) {
-      this.el.setAttribute('data-header-height', `${pageHeaderHeight}px`);
+      this.el.setAttribute('data-header-height', `${pageHeaderHeight}`);
     }
   }
 }
