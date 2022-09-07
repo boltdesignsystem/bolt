@@ -2,6 +2,7 @@ import {
   BoltPageHeaderNav,
   BoltPageHeaderActionNav,
 } from './page-header-nav.js';
+import '@bolt/core-v3.x/utils/optimized-resize';
 
 export class BoltPageHeader {
   constructor(el) {
