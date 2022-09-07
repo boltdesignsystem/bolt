@@ -2,7 +2,7 @@
 {% set image %}
   {% for i  in 1..3 %}
     {% include '@bolt-components-banner/banner.twig' with {
-      content: 'inner banner',
+      content: 'this inner banner is delayed by 500ms',
       attributes: {
         class: [
           'a-bolt-base',
