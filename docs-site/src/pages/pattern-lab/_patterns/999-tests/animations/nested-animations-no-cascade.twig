@@ -1,18 +1,17 @@
 p>An example of a fade--in-up (nested animated elements) no-cascadde type, looped 50 times, triggered
 {% set image %}
   {% for i  in 1..3 %}
-    {% include '@bolt-elements-image/image.twig' with {
+    {% include '@bolt-components-banner/banner.twig' with {
+      content: 'inner banner',
       attributes: {
-        alt: 'Image alt text',
-        src: 'https://via.placeholder.com/450x250',
-        width: 250,
-        height: 250,
         class: [
           'a-bolt-base',
           'a-bolt-in',
           'a-bolt-in--fade-up',
-        ]
-      },
+          'a-bolt-duration-long',
+          'a-bolt-delay-long'
+        ],
+      }
     } only %}
   {% endfor %}
 {% endset %}
@@ -26,6 +25,7 @@ p>An example of a fade--in-up (nested animated elements) no-cascadde type, loope
           'a-bolt-base',
           'a-bolt-in',
           'a-bolt-in--fade-up',
+          'a-bolt-duration-long'
         ],
       }
     } only %}
