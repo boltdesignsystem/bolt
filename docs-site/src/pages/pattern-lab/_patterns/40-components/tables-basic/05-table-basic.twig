@@ -1,0 +1,51 @@
+{% set notes %}
+{% spaceless %}
+  <bolt-ol>
+    <bolt-li>Always provide a value for the <code>video.title</code> prop. This will provide contextual information for screen readers.</bolt-li>
+  </bolt-ol>
+{% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  <div style="max-width: 60ch">
+    {% include '@bolt-components-table/table.twig' with {
+      rows: [
+        {
+          cells: [
+            'R1C1',
+            'R1C2',
+            'R1C3',
+          ]
+        },
+        {
+          cells: [
+            'R2C1',
+            'R2C2',
+            'R2C3',
+          ]
+        },
+        {
+          cells: [
+            'R3C1',
+            'R3C2',
+            'R3C3',
+          ]
+        }
+      ],
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+  Verbatim
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table Basic',
+  description: 'A table that provides basic display options',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
