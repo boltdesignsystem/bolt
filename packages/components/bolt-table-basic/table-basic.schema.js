@@ -122,6 +122,12 @@ module.exports = {
         'Sets the width of the first column to be as wide as the longest text.',
       default: false,
     },
+    second_col_fixed_width: {
+      type: 'boolean',
+      description:
+        'Sets the width of the first two columns to be as wide as the longest text.',
+      default: false,
+    },
     caption: {
       type: 'string',
       description: 'Set a table caption, displayed below the table content.',
