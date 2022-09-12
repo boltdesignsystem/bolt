@@ -179,7 +179,7 @@ bolt-background {
   opacity: $bolt-bg-dark-overlay-opacity-light; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
-.c-bolt-background__overlay--color-fill {
+.c-bolt-background__overlay--solid-fill {
   background-color: var(--m-bolt-bg);
 }
 
@@ -269,55 +269,59 @@ bolt-background {
   background-color: transparent !important;
 }
 
-.c-bolt-background__overlay--radial-gradient-fill {
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+/* DEPRECATED. Radial gradient is deprecated. Commented for future reference */
 
-  &.c-bolt-background__overlay-fill-color--navy {
-    background-image: radial-gradient(
-        circle at 80vh 10vw,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(4, 4, 4, 0.5) 100%,
-        rgba(0, 0, 0, 0.5) 100%
-      ),
-      radial-gradient(
-        circle at 80% 40%,
-        var(--bolt-color-navy-light) 20%,
-        var(--bolt-color-navy-dark) 60%
-      );
-    background-position: top right;
-  }
+// .c-bolt-background__overlay--radial-gradient-fill {
+//   background-repeat: no-repeat;
+//   background-size: 100% 100%;
 
-  &.c-bolt-background__overlay-fill-color--pink {
-    background-image: radial-gradient(
-      54% 190% at top -20% left 10%,
-      var(--bolt-color-pink) 10%,
-      var(--bolt-color-berry) 96%
-    );
-    background-position: top left;
-  }
-}
+//   &.c-bolt-background__overlay-fill-color--navy {
+//     background-image: radial-gradient(
+//         circle at 80vh 10vw,
+//         rgba(255, 255, 255, 0) 0%,
+//         rgba(4, 4, 4, 0.5) 100%,
+//         rgba(0, 0, 0, 0.5) 100%
+//       ),
+//       radial-gradient(
+//         circle at 80% 40%,
+//         var(--bolt-color-navy-light) 20%,
+//         var(--bolt-color-navy-dark) 60%
+//       );
+//     background-position: top right;
+//   }
 
-.c-bolt-background__overlay--linear-gradient-fill {
-  &.c-bolt-background__overlay-fill-color--navy {
-    background: linear-gradient(
-      350.07deg,
-      var(--bolt-color-navy-light) 0%,
-      var(--bolt-color-navy) 6.56%,
-      var(--bolt-color-navy-dark) 100%
-    );
-  }
+//   &.c-bolt-background__overlay-fill-color--pink {
+//     background-image: radial-gradient(
+//       54% 190% at top -20% left 10%,
+//       var(--bolt-color-pink) 10%,
+//       var(--bolt-color-berry) 96%
+//     );
+//     background-position: top left;
+//   }
+// }
 
-  &.c-bolt-background__overlay-fill-color--pink {
-    background: linear-gradient(
-      350.07deg,
-      var(--bolt-color-pink) 0%,
-      var(--bolt-color-berry) 6.56%,
-      var(--bolt-color-wine) 100%
-    );
-  }
+/* DEPRECATED. Linear gradient is deprecated. Commented for future reference */
 
-  &.c-bolt-background__overlay-fill-color--black {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0.02%, #000000 100%);
-  }
-}
+// .c-bolt-background__overlay--linear-gradient-fill {
+//   &.c-bolt-background__overlay-fill-color--navy {
+//     background: linear-gradient(
+//       350.07deg,
+//       var(--bolt-color-navy-light) 0%,
+//       var(--bolt-color-navy) 6.56%,
+//       var(--bolt-color-navy-dark) 100%
+//     );
+//   }
+
+//   &.c-bolt-background__overlay-fill-color--pink {
+//     background: linear-gradient(
+//       350.07deg,
+//       var(--bolt-color-pink) 0%,
+//       var(--bolt-color-berry) 6.56%,
+//       var(--bolt-color-wine) 100%
+//     );
+//   }
+
+//   &.c-bolt-background__overlay-fill-color--black {
+//     background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0.02%, #000000 100%);
+//   }
+// }
