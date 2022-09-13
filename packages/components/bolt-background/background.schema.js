@@ -26,7 +26,7 @@ module.exports = {
     opacity: {
       type: 'string',
       description: 'Overlay opacity',
-      default: 'medium',
+      default: 'none',
       enum: ['none', 'light', 'medium', 'heavy', 'full'],
     },
     shape_group: {
