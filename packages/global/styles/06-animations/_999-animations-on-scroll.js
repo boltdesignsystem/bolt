@@ -1,27 +1,28 @@
 const animatedElements = document.querySelectorAll('.a-bolt-base');
 
 const callback = (entries, observer) => {
-  const runAnimation = 'a-bolt-running';
-  const timeInterval = (entry, index, delay) => {
-    setTimeout(() => {
-      entry.target.classList.add(runAnimation);
-    }, index * delay);
-  };
+  const runAnimationClass = 'a-bolt-running';
+
   entries.forEach((entry, index) => {
     if (entry.isIntersecting) {
+      let timeInterval;
+
       if (entry.target.classList.contains('a-bolt-cascade-slow')) {
-        timeInterval(entry, index, 75);
-        // stop observing this element
-        observer.unobserve(entry.target);
+        timeInterval = 75;
       } else if (entry.target.classList.contains('a-bolt-cascade-fast')) {
-        timeInterval(entry, index, 25);
-        // stop observing this element
-        observer.unobserve(entry.target);
-      } else {
-        entry.target.classList.add(runAnimation);
-        // stop observing this element
-        observer.unobserve(entry.target);
+        timeInterval = 25;
       }
+
+      if (timeInterval) {
+        setTimeout(() => {
+          entry.target.classList.add(runAnimationClass);
+        }, index * timeInterval);
+      } else {
+        entry.target.classList.add(runAnimationClass);
+      }
+
+      // stop observing this element
+      observer.unobserve(entry.target);
     }
   });
 };
