@@ -116,18 +116,25 @@ module.exports = {
       description: 'Removes the vertical border in between cells.',
       default: false,
     },
-    first_col_fixed_width: {
-      type: 'boolean',
+    fixed_width_columns: {
+      type: 'string',
       description:
-        'Sets the width of the first column to be as wide as the longest text.',
-      default: false,
+        'Sets the number of columns that will be the width of the longest text.',
+      default: 'none',
+      enum: ['none', 'first', 'second', 'first-two'],
     },
-    second_col_fixed_width: {
-      type: 'boolean',
-      description:
-        'Sets the width of the first two columns to be as wide as the longest text.',
-      default: false,
-    },
+    // first_col_fixed_width: {
+    //   type: 'boolean',
+    //   description:
+    //     'Sets the width of the first column to be as wide as the longest text.',
+    //   default: false,
+    // },
+    // second_col_fixed_width: {
+    //   type: 'boolean',
+    //   description:
+    //     'Sets the width of the first two columns to be as wide as the longest text.',
+    //   default: false,
+    // },
     caption: {
       type: 'string',
       description: 'Set a table caption, displayed below the table content.',

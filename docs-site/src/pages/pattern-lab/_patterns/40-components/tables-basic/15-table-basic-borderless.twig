@@ -1,0 +1,65 @@
+{% set notes %}
+{% spaceless %}
+  <bolt-ol>
+    <bolt-li></bolt-li>
+  </bolt-ol>
+{% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-components-table-basic/table-basic.twig' with {
+    borderless: true,
+    headers: {
+      top: {
+        cells: [
+          'Description',
+          'Team',
+          'Vehicle Form',
+        ]
+      },
+      side: {
+        cells: [
+          'Optimus Prime',
+          'Bumblebee',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          'The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.',
+          'Autobots',
+          'Peterbilt Truck',
+        ]
+      },
+      {
+        cells: [
+          'One of Optimus Prime\'s most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.',
+          'Autobots',
+          'VW Beetle',
+        ]
+      },
+    ],
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+Verbatim
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+Verbatim
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table Basic Borderless',
+  description: 'Remove the vertical border in between cells.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

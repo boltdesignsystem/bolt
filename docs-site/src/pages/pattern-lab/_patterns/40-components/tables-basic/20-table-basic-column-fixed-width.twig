@@ -1,0 +1,225 @@
+{% set notes %}
+{% spaceless %}
+  <bolt-ol>
+    <bolt-li></bolt-li>
+  </bolt-ol>
+{% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  <h3>Set column widths to be flexible.</h3>
+  {% include '@bolt-components-table-basic/table-basic.twig' with {
+    headers: {
+      top: {
+        cells: [
+          'Prop',
+          'Number',
+          'Description',
+          'Type',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          'attributes',
+          '1',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>object</code>',
+        ]
+      },
+      {
+        cells: [
+          'headers',
+          '2',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>object</code>',
+        ]
+      },
+      {
+        cells: [
+          'rows',
+          '3',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>array</code>',
+        ]
+      },
+      {
+        cells: [
+          'format',
+          '4',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>string</code>',
+        ]
+      },
+    ]
+  } only %}
+
+  <h3>Set the width of the first column to be as wide as the longest text.</h3>
+  {% include '@bolt-components-table-basic/table-basic.twig' with {
+    fixed_width_columns: 'first',
+    headers: {
+      top: {
+        cells: [
+          'Prop',
+          'Number',
+          'Description',
+          'Type',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          'attributes',
+          '1',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>object</code>',
+        ]
+      },
+      {
+        cells: [
+          'headers',
+          '2',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>object</code>',
+        ]
+      },
+      {
+        cells: [
+          'rows',
+          '3',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>array</code>',
+        ]
+      },
+      {
+        cells: [
+          'format',
+          '4',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>string</code>',
+        ]
+      },
+    ]
+  } only %}
+
+  <h3>Set the width of the second column to be as wide as the longest text.</h3>
+  {% include '@bolt-components-table-basic/table-basic.twig' with {
+    fixed_width_columns: 'second',
+    headers: {
+      top: {
+        cells: [
+          'Prop',
+          'Number',
+          'Description',
+          'Type',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          'attributes',
+          '1',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>object</code>',
+        ]
+      },
+      {
+        cells: [
+          'headers',
+          '2',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>object</code>',
+        ]
+      },
+      {
+        cells: [
+          'rows',
+          '3',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>array</code>',
+        ]
+      },
+      {
+        cells: [
+          'format',
+          '4',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>string</code>',
+        ]
+      },
+    ]
+  } only %}
+
+  <h3>Set the width of the first two columns to be as wide as the longest text.</h3>
+  {% include '@bolt-components-table-basic/table-basic.twig' with {
+    fixed_width_columns: 'first-two',
+    headers: {
+      top: {
+        cells: [
+          'Prop',
+          'Number',
+          'Description',
+          'Type',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          'attributes',
+          '1',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>object</code>',
+        ]
+      },
+      {
+        cells: [
+          'headers',
+          '2',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>object</code>',
+        ]
+      },
+      {
+        cells: [
+          'rows',
+          '3',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>array</code>',
+        ]
+      },
+      {
+        cells: [
+          'format',
+          '4',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>string</code>',
+        ]
+      },
+    ]
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+Verbatim
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+Verbatim
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table Basic Fixed Width for First Column',
+  description: 'A table with the firsts column matching the width of the content',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
