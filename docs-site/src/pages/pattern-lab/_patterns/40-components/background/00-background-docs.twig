@@ -10,17 +10,19 @@
       },
     } only %}
   {% endset %}
-{% include '@bolt-components-background/background.twig' with {
-  opacity: 'heavy',
-  fill: 'gradient',
-  focal_point: {
-    vertical: 'center',
-    horizontal: 'center'
-  },
-  items: [
-    image
-  ]
-} only %}
+  <div style="height: 400px; position: relative;" class="t-bolt-navy-dark">
+    {% include '@bolt-components-background/background.twig' with {
+      opacity: 'heavy',
+      fill: 'gradient',
+      focal_point: {
+        vertical: 'center',
+        horizontal: 'center'
+      },
+      items: [
+        image
+      ]
+    } only %}
+  </div>
 {% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {
