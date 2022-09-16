@@ -1,0 +1,47 @@
+{% for theme_class in ['t-bolt-black', 't-bolt-white', 't-bolt-xdark', 't-bolt-dark', 't-bolt-light', 't-bolt-x-light', 't-bolt-gray-xlight', 't-bolt-navy', 't-bolt-navy-light', 't-bolt-teal', 't-bolt-yellow', 't-bolt-orange', 't-bolt-pink', 't-bolt-wine', 't-bolt-berry', 't-bolt-violet',] %}
+  <p>Fill: solid with <code>{{ theme_class }}</code> theming class.</p>
+  <div class="{{ theme_class }} u-bolt-margin-bottom-large" style="height: 400px; position: relative;">
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          alt: 'Alt text.',
+          loading: 'lazy',
+          src: '/images/content/backgrounds/background-tall-4.jpg',
+          width: 3840,
+          height: 2160,
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-background/background.twig' with {
+      fill: 'solid',
+      opacity: 'heavy',
+      items: [
+        image
+      ]
+  } only %}
+  </div>
+
+  <p>Fill: gradient with <code>{{ theme_class }}</code> theming class.</p>
+  <div class="{{ theme_class }} u-bolt-margin-bottom-large" style="height: 400px; position: relative;">
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          alt: 'Alt text.',
+          loading: 'lazy',
+          src: '/images/content/backgrounds/background-tall-4.jpg',
+          width: 3840,
+          height: 2160,
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-background/background.twig' with {
+      fill: 'gradient',
+      opacity: 'heavy',
+      items: [
+        image
+      ]
+  } only %}
+  </div>
+{% endfor %}
