@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  cli:
+    hostname: cli
+    platform: linux/amd64
+    # Extend the stock cli image (see .docksal/cli/Dockerfile)
+    build: ./.docksal/cli
+    volumes:
+      # Project root volume
+      - project_root:/var/www:rw,nocopy,cached
+      # Shared ssh-agent socket
+      - docksal_ssh_agent:/.ssh-agent:ro
