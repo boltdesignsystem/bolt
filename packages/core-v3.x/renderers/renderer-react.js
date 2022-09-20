@@ -1,8 +1,7 @@
 import { withComponent, props } from 'skatejs';
-import { h, render } from 'preact';
+import { createElement as h } from 'react';
+import { createRoot } from 'react-dom/client';
 import { BoltBase, shadow } from './bolt-base';
-export { default as Markup } from './preact-markup.js';
-export { Fragment, h } from 'preact';
 
 var _extends =
   Object.assign ||
@@ -18,7 +17,7 @@ var _extends =
     return target;
   };
 
-export class withPreact extends BoltBase {
+export class withReact extends BoltBase {
   get props() {
     // We override props so that we can satisfy most use
     // cases for children by using a slot.
@@ -42,8 +41,16 @@ export class withPreact extends BoltBase {
   }
 
   renderer(root, call) {
+    if (!this.reactRoot) {
+      this.reactRoot = createRoot(root);
+    }
+
+    // Note: I don't know if `this._renderRoot` is ever used
     this._renderRoot = root;
-    this._preactDom = render(call(), root);
+
+    // Note: I don't know if `this._reactDom` is ever used, BUT
+    // `this.reactRoot.render(call())` is what renders our React component.
+    this._reactDom = this.reactRoot.render(call());
   }
 
   get renderRoot() {

@@ -1,6 +1,7 @@
 // ported over from https://raw.githubusercontent.com/alphagov/accessible-autocomplete/master/src/status.js
 
-import { createElement, Component } from 'preact'; /** @jsx createElement */
+// Note: `React` is required here even though it isn't used explicitly
+import React, { Component } from 'react';
 
 const debounce = function(func, wait, immediate) {
   var timeout;
@@ -41,9 +42,9 @@ export class TypeaheadStatus extends Component {
     debounced: false,
   };
 
-  componentWillMount() {
+  debounceStatusUpdate() {
     const that = this;
-    this.debounceStatusUpdate = debounce(function() {
+    debounce(function() {
       if (!that.state.debounced) {
         const shouldSilence =
           !that.props.isInFocus || that.props.validChoiceMade;
@@ -53,11 +54,7 @@ export class TypeaheadStatus extends Component {
           silenced: shouldSilence,
         }));
       }
-    }, statusDebounceMillis);
-  }
-
-  componentWillReceiveProps({ queryLength }) {
-    this.setState({ debounced: false });
+    }, statusDebounceMillis)();
   }
 
   render() {

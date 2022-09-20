@@ -13,6 +13,7 @@ module.exports = {
         },
       },
     ],
+    '@babel/preset-react',
   ],
   plugins: [
     '@babel/plugin-proposal-optional-chaining',
@@ -23,16 +24,6 @@ module.exports = {
       },
     ],
     ['@babel/plugin-proposal-class-properties', { loose: true }],
-    '@babel/plugin-syntax-jsx',
-    [
-      '@babel/plugin-transform-react-jsx',
-      {
-        pragma: 'h',
-        pragmaFrag: 'Fragment',
-        throwIfNamespace: false,
-        useBuiltIns: false,
-      },
-    ],
     '@babel/plugin-proposal-nullish-coalescing-operator',
   ],
 };

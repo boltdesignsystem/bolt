@@ -43,10 +43,6 @@ module.exports = {
   settings: {
     'import/resolver': {
       alias: {
-        map: [
-          ['react', 'preact/compat'],
-          ['react-dom', 'preact/compat'],
-        ],
         extensions: ['.ts', '.js', '.jsx', '.json'],
       },
     },

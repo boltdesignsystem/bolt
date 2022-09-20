@@ -1,7 +1,9 @@
 // @ts-nocheck
+// Note: `React` is required here even though it isn't used explicitly
+import React from 'react';
 import { customElement } from '@bolt/element';
 import { props } from 'skatejs';
-import { h, withPreact, Fragment } from '@bolt/core-v3.x/renderers';
+import { withReact } from '@bolt/core-v3.x/renderers';
 import { getUniqueId } from '@bolt/core-v3.x/utils/get-unique-id';
 import Fuse from 'fuse.js';
 import ReactHtmlParser from 'react-html-parser';
@@ -49,7 +51,7 @@ export const highlightSearchResults = function(item) {
 };
 
 @customElement('bolt-autosuggest')
-class BoltAutosuggest extends withPreact {
+class BoltAutosuggest extends withReact {
   get getParent() {
     return this.$parent;
   }
@@ -372,26 +374,25 @@ class BoltAutosuggest extends withPreact {
    */
   onChange = (event, { newValue, method }) => {
     this._fire('onChange', method, newValue);
-
-    // @todo: replace this workaround with this.results.findIndex(findSelectedIndex) once `findIndex` can be safely polyfilled
-    const suggestionIndex = this.results.indexOf(
-      this.results.find(result => result.item.label === newValue),
-    );
-
     this.setState({
       value: newValue,
-      selectedOptionText: suggestionIndex === -1 ? null : newValue,
-      selectedOptionIndex: suggestionIndex === -1 ? -1 : suggestionIndex,
     });
   };
 
   // Autosuggest calls this every time you need to update suggestions.
   onSuggestionsFetchRequested = async ({ value }) => {
     await this._fire('onSuggestionsFetchRequested', value);
-    await this._setState({ isOpen: true });
+
+    const suggestions = await this.getSuggestions(value);
+    const suggestionIndex = this.results.findIndex(
+      result => result.item.label === value,
+    );
 
     await this._setState({
-      suggestions: await this.getSuggestions(value),
+      suggestions,
+      selectedOptionText: suggestionIndex === -1 ? null : value,
+      selectedOptionIndex: suggestionIndex === -1 ? -1 : suggestionIndex,
+      isOpen: true,
     });
   };
 
@@ -510,8 +511,8 @@ class BoltAutosuggest extends withPreact {
 
     return (
       <div
-        class={cx('c-bolt-typeahead__wrapper')}
-        style={`--typeahead-height: ${this.offsetHeight}px;`}>
+        className={cx('c-bolt-typeahead__wrapper')}
+        style={{ '--typeahead-height': `${this.offsetHeight}px` }}>
         {this.addStyles([styles])}
         <Autosuggest
           theme={theme}
