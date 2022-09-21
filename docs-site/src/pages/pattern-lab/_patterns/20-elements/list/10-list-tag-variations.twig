@@ -1,0 +1,73 @@
+{# {% set description %}
+    A tag variations.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this element and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set schema = bolt.data.components['@bolt-components-list'].schema %}
+  {% set placeholder_1 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 1',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_2 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 2',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_3 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 3',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+
+  {% for tag in schema.properties.tag.enum %}
+    <h3>{{ tag|capitalize }}</h3>
+    {% include '@bolt-elements-list/list.twig' with {
+      tag: tag,
+      items: [
+        placeholder_1,
+        placeholder_2,
+        placeholder_3,
+      ]
+    } only %}
+  {% endfor %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-elements-list/list.twig' with {
+  tag: 'div',
+  items: [
+    placeholder_1,
+    placeholder_2,
+    placeholder_3,
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<div class="e-bolt-list">
+  <div class="e-bolt-list__item">1</div>
+  <div class="e-bolt-list__item">2</div>
+  <div class="e-bolt-list__item">3</div>
+</div>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic List',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %} #}
