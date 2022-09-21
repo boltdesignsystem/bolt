@@ -1,0 +1,51 @@
+{#
+/**
+ * List Element
+ *
+ * Available variables:
+ * - Reference list.schema.js
+ *
+#}
+
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'e-bolt-list',
+  this.data.display.value != schema.properties.display.default ? 'e-bolt-list--display-' ~ this.data.display.value,
+  this.data.spacing.value != schema.properties.spacing.default ? 'e-bolt-list--spacing-' ~ this.data.spacing.value,
+  this.data.separator.value != schema.properties.separator.default ? 'e-bolt-list--separator-' ~ this.data.separator.value,
+  this.data.inset.value != schema.properties.inset.default ? 'e-bolt-list--' ~ this.data.inset.value,
+  this.data.nowrap.value != schema.properties.nowrap.default ? 'e-bolt-list--nowrap',
+] %}
+{# {% set classes_item = 'e-bolt-list__item' %} #}
+{# <pre>
+  {{ dump(items, attributes_list, attributes_list_item) }}
+</pre> #}
+{# Template #}
+{# {% if items %}
+  <{{ this.data.tag.value }} {{ attributes_list.addClass(classes) }}>
+    {% for item in items %}
+    <pre>
+      {{ dump(attributes_list_item) }}
+    </pre>
+      {% if this.data.tag.value == 'ul' or this.data.tag.value == 'ol' %}
+        <li {{ attributes_list_item.addClass(classes_item) }}>{{ item.content }}</li>
+      {% else %}
+        <div {{ attributes_list_item.addClass(classes_item) }}>{{ item.content }}</div>
+      {% endif %}
+    {% endfor %}
+  </{{ this.data.tag.value }}> 
+{% endif %} #}
+<{{ this.data.tag.value }} {{ attributes.addClass(classes) }}>
+  {{ items }}
+</{{ this.data.tag.value }}>
+
+

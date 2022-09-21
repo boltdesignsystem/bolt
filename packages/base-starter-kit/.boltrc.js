@@ -1,6 +1,7 @@
 module.exports = {
   components: {
     global: [
+      '@bolt/elements-list',
       '@bolt/elements-wrapper',
       '@bolt/components-dialog',
       '@bolt/elements-ratio',

@@ -1,0 +1,181 @@
+/* ------------------------------------ *\
+   List
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+
+.e-bolt-list {
+  // Styles go here. /* [1] */
+  display: flex;
+  flex-direction: column;
+  gap: var(--bolt-spacing-y-small) 0;
+  margin: 0 0 var(--bolt-spacing-y-medium) 0;
+  padding: 0;
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-regular);
+  list-style: none;
+  list-style-type: none;
+  line-height: var(--bolt-type-line-height-medium);
+  text-align: start;
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+// Display variations
+.e-bolt-list--display-flex {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0 var(--bolt-spacing-x-small);
+
+  .e-bolt-list__item {
+    flex: 1;
+  }
+}
+
+.e-bolt-list--display-inline {
+  display: inline-flex;
+  flex-flow: row wrap;
+  gap: 0 var(--bolt-spacing-x-small);
+}
+
+@each $breakpoint in $bolt-breakpoints {
+  $breakpoint-name: nth($breakpoint, 1);
+
+  @if (
+    $breakpoint-name !=
+      'large' and
+      $breakpoint-name !=
+      'xlarge' and
+      $breakpoint-name !=
+      'xxlarge'
+  ) {
+    .e-bolt-list--display-inline\@#{$breakpoint-name} {
+      display: flex;
+      flex-flow: column wrap;
+
+      @include bolt-mq($breakpoint-name) {
+        display: inline-flex;
+        flex-flow: row wrap;
+      }
+    }
+  }
+}
+
+// Spacing Prop
+.e-bolt-list--spacing-none {
+  gap: 0;
+}
+
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+  @if ($size-name != 'xxlarge') {
+    .e-bolt-list--spacing-#{$size-name}:not(.e-bolt-list--inset) {
+      gap: var(--bolt-spacing-y-#{$size-name}) 0;
+    }
+
+    .e-bolt-list--spacing-#{$size-name}.e-bolt-list--inset {
+      // margin-bottom: 0;
+      // margin-left: 0;
+    }
+
+    .e-bolt-list--spacing-#{$size-name}:not(.e-bolt-list--inset) {
+      &.e-bolt-list--display-inline,
+      &.e-bolt-list--display-flex {
+        // width: calc(100% + var(--bolt-spacing-x-#{$size-name})); // [3]
+        gap: 0 var(--bolt-spacing-y-#{$size-name});
+      }
+
+      @each $breakpoint in $bolt-breakpoints {
+        $breakpoint-name: nth($breakpoint, 1);
+
+        @if (
+          $breakpoint-name !=
+            'large' and
+            $breakpoint-name !=
+            'xlarge' and
+            $breakpoint-name !=
+            'xxlarge'
+        ) {
+          &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+            @include bolt-mq($breakpoint-name) {
+              gap: 0 var(--bolt-spacing-x-#{$size-name});
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // @media not all and (min-resolution: 0.001dpcm) {
+  //   .e-bolt-list--spacing-#{$size-name}:not(.e-bolt-list--inset) {
+  //     &.e-bolt-list--display-inline,
+  //     &.e-bolt-list--display-flex {
+  //       width: calc(100% + var(--bolt-spacing-x-#{$size-name}) + 1px); // [4]
+  //     }
+
+  //     @each $breakpoint in $bolt-breakpoints {
+  //       $breakpoint-name: nth($breakpoint, 1);
+
+  //       @if (
+  //         $breakpoint-name !=
+  //           'large' and
+  //           $breakpoint-name !=
+  //           'xlarge' and
+  //           $breakpoint-name !=
+  //           'xxlarge'
+  //       ) {
+  //         &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+  //           @include bolt-mq($breakpoint-name) {
+  //             width: calc(
+  //               100% + var(--bolt-spacing-x-#{$size-name}) + 1px
+  //             ); // [4]
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+}
+
+// Nowrap
+.e-bolt-list--nowrap {
+  &.e-bolt-list--display-inline,
+  &.e-bolt-list--display-flex {
+    flex-flow: row nowrap;
+  }
+
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    @if (
+      $breakpoint-name !=
+        'large' and
+        $breakpoint-name !=
+        'xlarge' and
+        $breakpoint-name !=
+        'xxlarge'
+    ) {
+      &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+        @include bolt-mq($breakpoint-name) {
+          flex-flow: row nowrap;
+        }
+      }
+    }
+  }
+}
+
+// .e-bolt-list--spacing-none {
+//   gap: 0;
+// }
