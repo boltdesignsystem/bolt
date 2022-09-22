@@ -462,6 +462,16 @@
   } only %}
 
   {% set card %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          alt: 'alt text',
+          src: '/images/placeholders/landscape-16x9-mountains.jpg',
+          loading: 'lazy',
+
+        },
+      } only %}
+    {% endset %}
     {% set card_body_content %}
       {% include '@bolt-components-headline/headline.twig' with {
         text: 'Placeholder Card',
@@ -479,10 +489,7 @@
         text: 'Go to google.com'
       },
       media: {
-        image: {
-          src: '/images/placeholders/landscape-16x9-mountains.jpg',
-          alt: 'Image alt.',
-        },
+        image: image,
       },
       body: {
         content: card_body_content,

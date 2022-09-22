@@ -495,6 +495,27 @@
 {# End Speakers section #}
 
 {# Start 2017 Highlights section #}
+  {% set image_1 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/1200x660.jpg',
+      },
+    } only %}
+  {% endset %}
+  {% set image_2 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/promos/promo-16x9-anthem.jpg',
+      },
+    } only %}
+  {% endset %}
+  {% set image_3 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/promos/promo-16x9-ai.jpg',
+      },
+    } only %}
+  {% endset %}
   {% embed '@pl/_band--collection.twig' with {
   theme: 'xlight',
   size: 'large',
@@ -502,13 +523,11 @@
     {
       pattern: 'card',
       media: {
-        image: {
-            src: '/images/placeholders/1200x660.jpg'
-          },
+        image: image_1,
       },
       body: {
         eyebrow: 'Article',
-        headline: 'Headline #2',
+        headline: 'Headline #1',
         paragraph: 'Simplify and automate to reduce costs and improve agility.',
       },
       actions: [
@@ -522,9 +541,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg'
-        },
+        image: image_2,
       },
       body: {
         eyebrow: 'Article',
@@ -542,9 +559,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-ai.jpg'
-        },
+        image: image_3,
       },
       body: {
         eyebrow: 'Article',
@@ -614,9 +629,25 @@
     {
       pattern: 'card',
       media: {
-        image: {
-            src: '/images/placeholders/1200x660.jpg'
-          },
+        image: image_1,
+      },
+      body: {
+        eyebrow: 'Article',
+        headline: 'Headline #1',
+        paragraph: 'Simplify and automate to reduce costs and improve agility.',
+      },
+      actions: [
+        {
+          text: 'Call to action',
+          hierarchy: 'secondary',
+          url: '#',
+        }
+      ]
+    },
+    {
+      pattern: 'card',
+      media: {
+        image: image_2,
       },
       body: {
         eyebrow: 'Article',
@@ -634,29 +665,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg'
-        },
-      },
-      body: {
-        eyebrow: 'Article',
-        headline: 'Headline #2',
-        paragraph: 'Simplify and automate to reduce costs and improve agility.',
-      },
-      actions: [
-        {
-          text: 'Call to action',
-          hierarchy: 'secondary',
-          url: '#',
-        }
-      ]
-    },
-    {
-      pattern: 'card',
-      media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-ai.jpg'
-        },
+        image: image_3,
       },
       body: {
         eyebrow: 'Article',
