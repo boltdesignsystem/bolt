@@ -1,0 +1,21 @@
+/* ------------------------------------ *\
+   Wrapper
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+$bolt-wrapper--max-width: bolt-breakpoint(xxlarge);
+
+.e-bolt-wrapper {
+  display: block;
+  max-width: $bolt-wrapper--max-width;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $bolt-wrapper-padding;
+  padding-left: $bolt-wrapper-padding;
+
+  @include bolt-mq(medium) {
+    padding-right: $bolt-wrapper-padding-at-medium-bp;
+    padding-left: $bolt-wrapper-padding-at-medium-bp;
+  }
+}

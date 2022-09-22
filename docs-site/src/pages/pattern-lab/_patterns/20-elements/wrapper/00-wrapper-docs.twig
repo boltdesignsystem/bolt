@@ -1,0 +1,12 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-elements-wrapper/wrapper.twig' with {
+  content: 'This is a wrapper'
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'wrapper',
+  componentGroup: 'elements',
+  usage: usage
+} only %}
+

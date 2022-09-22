@@ -60,73 +60,86 @@
 
   {# Hero #}
   {% set hero %}
-    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--middle' %}
-      {% cell 'u-bolt-width-12/12 u-bolt-width-5/12@medium' %}
-        {% include '@bolt-elements-image/image.twig' with {
-          attributes: {
-            src: featured_image,
-            alt: article_title,
-            loading: 'lazy',
+    {% set col_1 %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: featured_image,
+          alt: article_title,
+          loading: 'lazy',
+        }
+      } only %}
+    {% endset %}
+    {% set col_2 %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: article_title,
+        size: 'xxxlarge',
+        tag: 'h1',
+      } only %}
+      {% set headline %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'By ' ~ auhtor_name ~ ', ' ~ article_date,
+        } only %}
+      {% endset %}
+      {% set share %}
+        {% include '@bolt-components-share/share.twig' with {
+          size: 'small',
+          text: 'Share',
+          sources: [
+            {
+              name: 'facebook',
+              attributes: {
+                href: 'https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/40-components-action-blocks-05-action-blocks/40-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse'
+              }
+            },
+            {
+              name: 'twitter',
+              attributes: {
+                href: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+              }
+            },
+            {
+              name: 'linkedin',
+              attributes: {
+                href: 'https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/40-components-action-blocks-05-action-blocks/40-components-action-blocks-05-action-blocks.html'
+              }
+            },
+            {
+              name: 'email',
+              attributes: {
+                href: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+              }
+            }
+          ],
+          copy_to_clipboard: {
+            text_to_copy: 'https://google.com'
           }
         } only %}
-      {% endcell %}
-      {% cell 'u-bolt-width-12/12 u-bolt-width-7/12@medium' %}
-        {% include '@bolt-components-headline/headline.twig' with {
-          text: article_title,
-          size: 'xxxlarge',
-          tag: 'h1',
-        } only %}
-        {% set headline %}
-          {% include '@bolt-components-headline/text.twig' with {
-            text: 'By ' ~ auhtor_name ~ ', ' ~ article_date,
-          } only %}
-        {% endset %}
-        {% set share %}
-          {% include '@bolt-components-share/share.twig' with {
-            size: 'small',
-            text: 'Share',
-            sources: [
-              {
-                name: 'facebook',
-                attributes: {
-                  href: 'https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/40-components-action-blocks-05-action-blocks/40-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse'
-                }
-              },
-              {
-                name: 'twitter',
-                attributes: {
-                  href: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
-                }
-              },
-              {
-                name: 'linkedin',
-                attributes: {
-                  href: 'https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/40-components-action-blocks-05-action-blocks/40-components-action-blocks-05-action-blocks.html'
-                }
-              },
-              {
-                name: 'email',
-                attributes: {
-                  href: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
-                }
-              }
-            ],
-            copy_to_clipboard: {
-              text_to_copy: 'https://google.com'
-            }
-          } only %}
-        {% endset %}
-        {% include '@bolt-components-list/list.twig' with {
-          display: 'inline@small',
-          tag: 'div',
-          separator: 'solid',
-          items: [
-            headline,
-            share,
-          ]
-        } only %}
-      {% endcell %}
-    {% endgrid %}
+      {% endset %}
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline@small',
+        tag: 'div',
+        separator: 'solid',
+        items: [
+          headline,
+          share,
+        ]
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 5@medium',
+          content: col_1,
+        },
+        {
+          column_start: '1 6@medium',
+          column_span: '12 7@medium',
+          content: col_2,
+          valign: 'center'
+        },
+      ]
+    } only %}
   {% endset %}
 
   {% include '@bolt-components-band/band.twig' with {
@@ -138,11 +151,15 @@
 
   {# Main Article #}
   {% set main_article %}
-    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-      {% cell 'u-bolt-width-12/12 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large' %}
-        {{ article_body }}
-      {% endcell %}
-    {% endgrid %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1 2@small 3@medium',
+          column_span: '12 10@small 8@medium',
+          content: article_body ,
+        },
+      ]
+    } only %}
   {% endset %}
 
   <article>
@@ -227,17 +244,24 @@
     } only %}
   {% endset %}
 
-  <div class="o-bolt-wrapper u-bolt-margin-bottom-large">
-    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-      {% cell 'u-bolt-width-12/12 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large' %}
-        {% include '@bolt-components-band/band.twig' with {
-          theme: 'light',
-          size: 'small',
-          full_bleed: false,
-          content: article_meta,
-        } only %}
-      {% endcell %}
-    {% endgrid %}
+  <div class="e-bolt-wrapper u-bolt-margin-bottom-large">
+    {% set band %}
+      {% include '@bolt-components-band/band.twig' with {
+        theme: 'light',
+        size: 'small',
+        full_bleed: false,
+        content: article_meta,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-grid/grid.twig' with {
+      items: [
+        {
+          column_start: '1 2@small 3@medium',
+          column_span: '12 10@small 8@medium',
+          content: band,
+        },
+      ]
+    } only %}
   </div>
   {# End Article Meta #}
 

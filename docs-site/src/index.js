@@ -101,3 +101,29 @@ const quickFiltersScrollEl = document.querySelector(
 if (quickFiltersScrollEl) {
   quickFiltersScroll(quickFiltersScrollEl);
 }
+
+// Popover/Tooltip disconnectedCallback test
+const setupPopoverCallbackTest = async () => {
+  const poppers = document.querySelectorAll(
+    '.js-test-tippy-disconnected bolt-popover, .js-test-tippy-disconnected bolt-tooltip',
+  );
+
+  // Wait for popovers to initialize
+  await Promise.all([[...poppers].map(el => el.updateComplete)]);
+
+  poppers.forEach(el => {
+    const container = el.closest('.js-test-tippy-disconnected');
+
+    el.addEventListener('click', () => {
+      [...container.children].forEach(el => el.remove());
+    });
+  });
+};
+
+Promise.all(
+  ['bolt-popover', 'bolt-tooltip'].map(name =>
+    customElements.whenDefined(name),
+  ),
+).then(() => {
+  setupPopoverCallbackTest();
+});

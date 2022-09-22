@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-profile'].schema %}
+{% set schema = bolt.data.components['@bolt-components-profile'].schema['profile'] %}
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
@@ -26,6 +26,9 @@
       {{ avatar }}
     {% else %}
       {% include '@bolt-components-profile/_profile-default-avatar.twig' %}
+    {% endif %}
+    {% if avatar_edit_button %}
+      {{ avatar_edit_button }}
     {% endif %}
   </div>
   <div class="c-bolt-profile__user-info">

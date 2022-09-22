@@ -23,71 +23,106 @@
 ] %}
 
 {% set mainContentBlock %}
-  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--medium" %}
-    {% cell "u-bolt-width-12/12 u-bolt-text-align-right" %}
-      {% include "@bolt-components-band/band.twig" with {
-        content: pageControls,
-        size: "small",
-        theme: "none",
-      } only %}
-    {% endcell %}
-  {% endgrid %}
+  {% set buttons %}
+    {% include "@bolt-components-band/band.twig" with {
+      content: pageControls,
+      size: "small",
+      theme: "none",
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-grid/grid.twig' with {
+    items: [
+      {
+        column_start: '1',
+        column_span: '12',
+        content: buttons,
+      },
+    ]
+  } only %}
 
-  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--medium" %}
-    {% if sideNav %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-3/12@medium" %}
-        {{ sideNav }}
-      {% endcell %}
+  {% if sideNav %}
+    {% set side_nav %}
+      {{ sideNav }}
+    {% endset %}
+  {% endif %}
+
+  {% set main_content %}
+    {% if showBanner %}
+      {% set banner_content %}
+        <div class="u-bolt-overflow-hidden">
+          {% set col_1 %}
+            <div class="u-bolt-flex u-bolt-align-items-center u-bolt-justify-content-center u-bolt-height-full u-bolt-padding-xsmall">
+              {% include '@bolt-elements-image/image.twig' with {
+                attributes: {
+                  src: "/images/pega-community.svg",
+                  alt: "Community logo",
+                  style: "max-width: 250px",
+                  loading: "lazy",
+                }
+              } only %}
+            </div>
+          {% endset %}
+          {% set col_2 %}
+            <div class="u-bolt-flex u-bolt-align-items-center u-bolt-height-full u-bolt-padding-xsmall u-bolt-padding-xsmall">
+              {% include "@bolt-components-headline/text.twig" with {
+                text: "<strong>Note:</strong> The following content, referenced from Pega Community, is included here to help you better achieve the module learning objectives.",
+                size: "small"
+              } only %}
+            </div>
+          {% endset %}
+          {% include '@bolt-components-grid/grid.twig' with {
+            items: [
+              {
+                column_start: '1',
+                column_span: '12 4@small',
+                content: col_1,
+              },
+              {
+                column_start: '1 5@small',
+                column_span: '12 8@small',
+                content: col_2,
+              },
+            ]
+          } only %}
+        </div>
+      {% endset %}
+
+      {% include "@bolt-components-banner/banner.twig" with {
+        content: banner_content,
+        align: "start"
+      } only %}
     {% endif %}
 
-    {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium u-bolt-padding-left-large@medium e-bolt-printable__article" %}
+    {% include "@bolt-academy/_details-page-hero.twig" %}
+    {{ block("page_content") }}
+  {% endset %}
 
-      {% if showBanner %}
-        {% set banner_content %}
-          <div class="u-bolt-overflow-hidden">
-            {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--border" %}
-              {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
-                <div class="u-bolt-flex u-bolt-align-items-center u-bolt-justify-content-center u-bolt-height-full u-bolt-padding-xsmall">
-                  {% include '@bolt-elements-image/image.twig' with {
-                    attributes: {
-                      src: "/images/pega-community.svg",
-                      alt: "Community logo",
-                      style: "max-width: 250px",
-                      loading: "lazy",
-                    }
-                  } only %}
-                </div>
-              {% endcell %}
-              {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
-                <div class="u-bolt-flex u-bolt-align-items-center u-bolt-height-full u-bolt-padding-xsmall u-bolt-padding-xsmall">
-                  {% include "@bolt-components-headline/text.twig" with {
-                    text: "<strong>Note:</strong> The following content, referenced from Pega Community, is included here to help you better achieve the module learning objectives.",
-                    size: "small"
-                  } only %}
-                </div>
-              {% endcell %}
-            {% endgrid %}
-          </div>
-        {% endset %}
-
-        {% include "@bolt-components-banner/banner.twig" with {
-          content: banner_content,
-          align: "start"
-        } only %}
-      {% endif %}
-
-      {% include "@bolt-academy/_details-page-hero.twig" %}
-      {{ block("page_content") }}
-    {% endcell %}
-
-    {% cell "u-bolt-width-1/1 u-bolt-text-align-right" %}
-      {% include "@bolt-components-band/band.twig" with {
-        content: pageControls,
-        size: "medium",
-        theme: "none",
-      } only %}
-    {% endcell %}
-  {% endgrid %}
+  {% set buttons %}
+    {% include "@bolt-components-band/band.twig" with {
+      content: pageControls,
+      size: "medium",
+      theme: "none",
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-grid/grid.twig' with {
+    items: [
+      {
+        column_start: '1',
+        column_span: '12 3@medium',
+        content: side_nav,
+      },
+      {
+        column_start: '1 4@medium',
+        column_span: '12 9@medium',
+        content: main_content,
+      },
+      {
+        column_start: '1',
+        column_span: '12',
+        content: buttons,
+      },
+    ]
+  } only %}
 {% endset %}
 
 <div class="c-bolt-site">
@@ -110,7 +145,7 @@
     } only %}
   </main>
   <div class="c-bolt-site__footer c-bolt-page-footer">
-    <div class="o-bolt-wrapper">
+    <div class="e-bolt-wrapper">
       {% block global_footer %}
         {% include "@bolt-components-page-footer/page-footer.twig" only %}
       {% endblock %}

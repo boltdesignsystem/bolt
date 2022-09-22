@@ -1,16 +1,19 @@
 {% set schema = bolt.data.components['@bolt-components-card-replacement'].schema %}
-
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+    },
+  } only %}
+{% endset %}
+<bolt-grid gutter="medium" row-gutter="medium">
   {% for spacing in schema.properties.spacing.enum %}
-    {% cell 'u-bolt-width-12/12 u-bolt-width-4/12@small' %}
+    {% set card %}
       {% include '@bolt-components-card-replacement/card-replacement.twig' with {
         spacing: spacing,
         media: {
-          image: {
-            src: '/images/placeholders/landscape-16x9-mountains.jpg',
-            alt: 'Image alt.',
-            placeholder_color: '#afcde6',
-          },
+          image: image,
         },
         body: {
           headline: 'This card has ' ~ spacing ~ ' spacing',
@@ -23,7 +26,15 @@
           },
         ],
       } only %}
-    {% endcell %}
+    {% endset %}
+    {% if spacing == 'small' %}
+      <bolt-grid-item column-start="1 3@small" column-span="12 4@small">
+        {{ card }}
+      </bolt-grid-item>
+    {% else %}
+      <bolt-grid-item column-start="1 7@small" column-span="12 4@small">
+        {{ card }}
+      </bolt-grid-item>
+    {% endif %}
   {% endfor %}
-{% endgrid %}
-{# End component specific code #}
+</bolt-grid>

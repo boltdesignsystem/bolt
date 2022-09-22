@@ -2,8 +2,8 @@
   {% include "@bolt-academy/_card.twig" %}
 {% endset %}
 
-{% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-  {% cell "u-bolt-width-1/1" %}
+<bolt-grid gutter="small" row-gutter="small">
+  <bolt-grid-item column-start="1" column-span="12">
     {% include "@bolt-components-list/list.twig" with {
       spacing: "medium",
       items: [
@@ -12,5 +12,5 @@
         card,
       ]
     } only %}
-  {% endcell %}
-{% endgrid %}
+  </bolt-grid-item>
+</bolt-grid>

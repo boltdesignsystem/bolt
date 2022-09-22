@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.3](https://github.com/boltdesignsystem/bolt/compare/v5.7.2...v5.7.3) (2022-09-07)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+## [5.7.2](https://github.com/boltdesignsystem/bolt/compare/v5.7.1...v5.7.2) (2022-08-30)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+## [5.7.1](https://github.com/boltdesignsystem/bolt/compare/v5.7.0...v5.7.1) (2022-08-29)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+# [5.7.0](https://github.com/boltdesignsystem/bolt/compare/v5.6.0...v5.7.0) (2022-08-12)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
+# [5.6.0](https://github.com/boltdesignsystem/bolt/compare/v5.5.0...v5.6.0) (2022-07-01)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
 # [5.5.0](https://github.com/boltdesignsystem/bolt/compare/v5.4.0...v5.5.0) (2022-05-23)
 
 

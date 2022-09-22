@@ -10,60 +10,84 @@
   <form class="js-mission-rating-form">
     <fieldset class="c-acd-rating">
       <div class="c-acd-rating__inner">
-        {% grid "o-bolt-grid--xsmall o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--middle o-bolt-grid--flex" %}
-          {% cell "u-bolt-text-align-left u-bolt-margin-right-auto" %}
-            <span class="c-acd-rating__helper-text c-acd-rating__helper-text--before">
-              Not very likely
-            </span>
-          {% endcell %}
+        {% set left_label %}
+          <span class="c-acd-rating__helper-text c-acd-rating__helper-text--before">
+            Not very likely
+          </span>
+        {% endset %}
 
-          {% cell "u-bolt-text-align-center u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
-            <div class="c-acd-rating__inputs">
-              <input class="c-acd-rating__input c-acd-rating__input--no-rating js-mission-rating-input" type="radio" name="mission-rating" id="no-rating">
+        {% set rating_btns %}
+          <div class="c-acd-rating__inputs">
+            <input class="c-acd-rating__input c-acd-rating__input--no-rating js-mission-rating-input" type="radio" name="mission-rating" id="no-rating">
 
-              <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate0" name="mission-rating" value="0">
-              <label class="c-acd-rating__label c-acd-rating__label--0/10" for="rate0" title="0 out of 10 - highly unlikely">0</label>
+            <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate0" name="mission-rating" value="0">
+            <label class="c-acd-rating__label c-acd-rating__label--0/10" for="rate0" title="0 out of 10 - highly unlikely">0</label>
 
-              <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate1" name="mission-rating" value="1">
-              <label class="c-acd-rating__label c-acd-rating__label--1/10" for="rate1" title="1 out of 10 - very unlikely">1</label>
+            <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate1" name="mission-rating" value="1">
+            <label class="c-acd-rating__label c-acd-rating__label--1/10" for="rate1" title="1 out of 10 - very unlikely">1</label>
 
-              <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate2" name="mission-rating" value="2">
-              <label class="c-acd-rating__label c-acd-rating__label--2/10" for="rate2" title="2 out of 10 - unlikely">2</label>
+            <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate2" name="mission-rating" value="2">
+            <label class="c-acd-rating__label c-acd-rating__label--2/10" for="rate2" title="2 out of 10 - unlikely">2</label>
 
-              <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate3" name="mission-rating" value="3">
-              <label class="c-acd-rating__label c-acd-rating__label--3/10" for="rate3" title="3 out of 10 - more unlikely">3</label>
+            <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate3" name="mission-rating" value="3">
+            <label class="c-acd-rating__label c-acd-rating__label--3/10" for="rate3" title="3 out of 10 - more unlikely">3</label>
 
-              <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate4" name="mission-rating" value="4">
-              <label class="c-acd-rating__label c-acd-rating__label--4/10" for="rate4" title="4 out of 10 - neutral, slightly unlikely">4</label>
+            <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate4" name="mission-rating" value="4">
+            <label class="c-acd-rating__label c-acd-rating__label--4/10" for="rate4" title="4 out of 10 - neutral, slightly unlikely">4</label>
 
-              <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate5" name="mission-rating" value="5">
-              <label class="c-acd-rating__label c-acd-rating__label--5/10" for="rate5" title="5 out of 10 - neutral">5</label>
+            <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate5" name="mission-rating" value="5">
+            <label class="c-acd-rating__label c-acd-rating__label--5/10" for="rate5" title="5 out of 10 - neutral">5</label>
 
-              <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate6" name="mission-rating" value="6">
-              <label class="c-acd-rating__label c-acd-rating__label--6/10" for="rate6" title="6 out of 10 - neutral, slightly likely">6</label>
+            <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate6" name="mission-rating" value="6">
+            <label class="c-acd-rating__label c-acd-rating__label--6/10" for="rate6" title="6 out of 10 - neutral, slightly likely">6</label>
 
-              <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate7" name="mission-rating" value="7">
-              <label class="c-acd-rating__label c-acd-rating__label--7/10" for="rate7" title="7 out of 10 - more likely">7</label>
+            <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate7" name="mission-rating" value="7">
+            <label class="c-acd-rating__label c-acd-rating__label--7/10" for="rate7" title="7 out of 10 - more likely">7</label>
 
-              <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate8" name="mission-rating" value="8">
-              <label class="c-acd-rating__label c-acd-rating__label--8/10" for="rate8" title="8 out of 10 - likely">8</label>
+            <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate8" name="mission-rating" value="8">
+            <label class="c-acd-rating__label c-acd-rating__label--8/10" for="rate8" title="8 out of 10 - likely">8</label>
 
-              <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate9" name="mission-rating" value="9">
-              <label class="c-acd-rating__label c-acd-rating__label--9/10" for="rate9" title="9 out of 10 - very likely">9</label>
+            <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate9" name="mission-rating" value="9">
+            <label class="c-acd-rating__label c-acd-rating__label--9/10" for="rate9" title="9 out of 10 - very likely">9</label>
 
-              <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate10" name="mission-rating" value="10">
-              <label class="c-acd-rating__label c-acd-rating__label--10/10" for="rate10" title="10 out of 10 - highly likely">10</label>
+            <input class="c-acd-rating__input js-mission-rating-input" required type="radio" id="rate10" name="mission-rating" value="10">
+            <label class="c-acd-rating__label c-acd-rating__label--10/10" for="rate10" title="10 out of 10 - highly likely">10</label>
 
-              <span class="c-acd-rating__no-rating-outline"></span>
-            </div>
-          {% endcell %}
+            <span class="c-acd-rating__no-rating-outline"></span>
+          </div>
+        {% endset %}
 
-          {% cell "u-bolt-text-align-right u-bolt-margin-left-auto" %}
-            <span class="c-acd-rating__helper-text c-acd-rating__helper-text--after">
-              Extremely likely
-            </span>
-          {% endcell %}
-        {% endgrid %}
+        {% set right_label %}
+          <span class="c-acd-rating__helper-text c-acd-rating__helper-text--after">
+            Extremely likely
+          </span>
+        {% endset %}
+        {% include '@bolt-components-grid/grid.twig' with {
+          gutter: 'large',
+          items: [
+            {
+              column_start: '1',
+              column_span: '12 2@small',
+              content: left_label,
+            },
+            {
+              column_start: '1 3@small',
+              column_span: '12 8@small',
+              content: rating_btns,
+              attributes: {
+                class: 'u-bolt-text-align-center'
+              }
+            },
+            {
+              column_start: '1 11@small',
+              column_span: '12 2@small',
+              content: right_label,
+              attributes: {
+                class: 'u-bolt-text-align-right'
+              }
+            },
+          ]
+        } only %}
         </div>
 
     </fieldset>
@@ -105,13 +129,14 @@
         }
       } only %}
     {% endset %}
-    {% grid "o-bolt-grid--center" %}
-      {% cell %}
-        {% include "@bolt-components-form/form-element.twig" with {
-          children: submit
-        } only %}
-      {% endcell %}
-    {% endgrid %}
+    {% include "@bolt-components-form/form-element.twig" with {
+      children: submit,
+      attributes: {
+        class: [
+          'u-bolt-text-align-center'
+        ]
+      }
+    } only %}
   </form>
 {% endset %}
 

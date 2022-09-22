@@ -67,8 +67,9 @@
             tag: 'span',
           } only %}
         {% endset %}
+        {% set spaceless_inline_text %}{% spaceless %}{{ inline_text }}{% endspaceless %}{% endset %}
         {% include '@bolt-elements-type/type.twig' with {
-          content: 'This is a paragraph of text. In the middle of it, it has ' ~ inline_text|spaceless ~ '. This inline text is a type element with its tag set to <code>span</code>.',
+          content: 'This is a paragraph of text. In the middle of it, it has ' ~ spaceless_inline_text ~ '. This inline text is a type element with its tag set to <code>span</code>.',
         } only %}
       </div>
     </bolt-tab-panel>
@@ -124,8 +125,9 @@
     tag: 'span',
   } only %}
 {% endset %}
+{% set spaceless_inline_text %}{% spaceless %}{{ inline_text }}{% endspaceless %}{% endset %}
 {% include '@bolt-elements-type/type.twig' with {
-  content: 'This is a paragraph of text. In the middle of it, it has ' ~ inline_text|spaceless ~ '. This inline text is a type element with its tag set to <code>span</code>.',
+  content: 'This is a paragraph of text. In the middle of it, it has ' ~ spaceless_inline_text ~ '. This inline text is a type element with its tag set to <code>span</code>.',
 } only %}
 {% endverbatim %}{% endset %}
 

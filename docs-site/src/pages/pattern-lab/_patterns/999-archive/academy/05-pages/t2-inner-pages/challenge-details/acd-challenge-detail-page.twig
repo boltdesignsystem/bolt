@@ -17,33 +17,41 @@
 
   <!-- todo: refactor into pre-built component / template -->
   <div class="t-bolt-xlight u-bolt-padding-small u-bolt-margin-bottom-medium u-bolt-border-radius-large u-bolt-shadow-level-10 u-bolt-overflow-hidden">
-    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-8/12 u-bolt-flex-grow" %}
-        {% include "@bolt-components-headline/text.twig" with {
-          text: "Before beginning the challenge, you must launch your own Pega cloud environment.",
-          icon: {
-            name: "cloud",
-            position: "before",
-          },
+    {% set title %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Before beginning the challenge, you must launch your own Pega cloud environment.",
+        icon: {
+          name: "cloud",
+          position: "before",
+        },
+      } only %}
+    {% endset %}
+    {% set cta %}
+      {% set _link_icon %}
+        {% include "@bolt-elements-icon/icon.twig" with {
+          name: "external-link"
         } only %}
-      {% endcell %}
-      {% cell "u-bolt-flex-shrink" %}
-        {% set _link_icon %}
-          {% include "@bolt-elements-icon/icon.twig" with {
-            name: "external-link"
-          } only %}
-        {% endset %}
-        {% include '@bolt-elements-button/button.twig' with {
-          content: "Launch Pega",
-          size: "small",
-          border_radius: "full",
-          icon_after: _link_icon,
-          attributes: {
-            type: 'button'
-          }
-        } only %}
-      {% endcell %}
-    {% endgrid %}
+      {% endset %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: "Launch Pega",
+        size: "small",
+        border_radius: "full",
+        icon_after: _link_icon,
+        attributes: {
+          type: 'button'
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      spacing: 'xsmall',
+      align: 'justify',
+      valign: 'center',
+      items: [
+        title,
+        cta,
+      ]
+    } only %}
   </div>
 
   {% include "@bolt-components-headline/text.twig" with {

@@ -25,15 +25,8 @@
   heroContentBlock: heroContentBlock,
   background: {
     overlay: "disabled",
-    content_items: mainBackgroundImage ? [
-      {
-        pattern: "image",
-        src: mainBackgroundImage,
-        lazyload: false,
-        align: "75%",
-        valign: "25%",
-        sizes: "300vw"
-      },
+    items: mainBackgroundImage ? [
+      mainBackgroundImage,
       mainBackgroundGradient
     ] : []
   },

@@ -13,88 +13,128 @@
 }{% endverbatim %}
 {% endset %}
 
+{% set image_element_usage %}{% verbatim %}
+  {% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      alt: 'Image alt text',
+      src: 'path/image.jpg',
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-components-card-replacement/card-replacement.twig' with {
+  horizontal: true,
+  height: 'auto',
+  media: {
+    image: image,
+  },
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
 {% set customBodyDemo %}{% verbatim %}body: {
   content: customContentWithGrid,
 }{% endverbatim %}
 {% endset %}
 
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center u-bolt-margin-bottom-large' %}
-  {% cell 'u-bolt-width-12/12 u-bolt-width-8/12@small' %}
-    <bolt-text headline>
-      Default horizontal card
-    </bolt-text>
-    {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-      horizontal: true,
-      height: 'auto',
-      media: {
-        image: {
-          src: '/images/placeholders/landscape-16x9-mountains.jpg',
-          alt: 'Image alt.',
-          placeholder_color: '#afcde6',
-        },
-      },
-      body: {
-        eyebrow: 'This is an eyebrow',
-        headline: 'This Is a Headline',
-        paragraph: 'This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.',
-      },
-      actions: [
-        {
-          text: 'This is a button',
-          url: 'https://google.com',
-        },
-      ],
-    } only %}
-    <bolt-banner align="start" status="warning">
-      {% include '@bolt-elements-icon/icon.twig' with { name: 'warning' } only %} The media container will crop the image and video is not supported.
-    </bolt-banner>
-  {% endcell %}
-{% endgrid %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+    },
+  } only %}
+{% endset %}
 
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center u-bolt-margin-bottom-large' %}
-  {% cell 'u-bolt-width-12/12 u-bolt-width-8/12@small' %}
-    <bolt-text headline>
-      Advanced usage: manually override horizontal media size
-    </bolt-text>
-    <bolt-text>
-      To finely control the width of the card media based on your use case, set inline style of <code>min-width</code> to the card media. Please use your best judgment when doing this, because absolute units such as px, em, and rem will break responsive layouts. % is the recommended unit to use.
-    </bolt-text>
-    {% include '@bolt-components-code-snippet/code-snippet.twig' with {
-      content: mediaWidthDemo,
-      lang: 'twig',
-      mode: 'dark',
-    } only %}
-    {% for width in widths %}
-      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-        horizontal: true,
-        height: 'auto',
-        media: {
-          image: {
-            src: '/images/placeholders/landscape-16x9-mountains.jpg',
-            alt: 'Image alt.',
-            placeholder_color: '#afcde6',
-          },
-          attributes: {
-            style: 'min-width:' ~ width,
-          }
-        },
-        body: {
-          headline: 'This card\'s media is ' ~ width ~ ' wide',
-          paragraph: 'This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.',
-        },
-        actions: [
-          {
-            text: 'This is a button',
-            url: 'https://google.com',
-          },
-        ],
+{% set card %}
+  <bolt-text headline>
+    Default horizontal card
+  </bolt-text>
+  <bolt-text>
+    When creating a horizontal card by setting the <code>horizontal</code> prop to <code>true</code> remember to set <code>height</code> prop to <code>auto</code>. The image you pass for card media should also have its <code>background</code> prop set to <code>true</code> in order to allow the image to be cropped and display properly.
+  </bolt-text>
+  {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+    content: image_element_usage,
+    lang: 'twig',
+    mode: 'dark',
+  } only %}
+  {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+    horizontal: true,
+    height: 'auto',
+    media: {
+      image: image
+    },
+    body: {
+      eyebrow: 'This is an eyebrow',
+      headline: 'This Is a Headline',
+      paragraph: 'This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.',
+    },
+    actions: [
+      {
+        text: 'This is a button',
+        url: 'https://google.com',
+      },
+    ],
+  } only %}
+  <bolt-banner align="start" status="warning">
+    {% include '@bolt-elements-icon/icon.twig' with { name: 'warning' } only %} The media container will crop the image and video is not supported.
+  </bolt-banner>
+{% endset %}
+<div class="u-bolt-margin-bottom-large">
+  {% include '@bolt-components-grid/grid.twig' with {
+    items: [
+      {
+        column_start: '1 3@small',
+        column_span: '12 8@small',
+        content: card,
+      },
+    ]
+  } only %}
+</div>
+<div class="u-bolt-margin-bottom-large">
+  <bolt-grid gutter="medium" row-gutter="medium">
+    <bolt-grid-item column-start="1 3@small" column-span="12 8@small">
+      <bolt-text headline>
+        Advanced usage: manually override horizontal media size
+      </bolt-text>
+      <bolt-text>
+        To finely control the width of the card media based on your use case, set inline style of <code>min-width</code> to the card media. Please use your best judgment when doing this, because absolute units such as px, em, and rem will break responsive layouts. % is the recommended unit to use.
+      </bolt-text>
+      {% include '@bolt-components-code-snippet/code-snippet.twig' with {
+        content: mediaWidthDemo,
+        lang: 'twig',
+        mode: 'dark',
       } only %}
-    {% endfor %}
-  {% endcell %}
-{% endgrid %}
-
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
-  {% cell 'u-bolt-width-12/12 u-bolt-width-8/12@small' %}
+      {% for width in widths %}
+        {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+          horizontal: true,
+          height: 'auto',
+          media: {
+            image: image,
+            attributes: {
+              style: 'min-width:' ~ width,
+            }
+          },
+          body: {
+            headline: 'This card\'s media is ' ~ width ~ ' wide',
+            paragraph: 'This is a paragraph. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus.',
+          },
+          actions: [
+            {
+              text: 'This is a button',
+              url: 'https://google.com',
+            },
+          ],
+        } only %}
+      {% endfor %}
+    </bolt-grid-item>
+  </bolt-grid>
+</div>
+<bolt-grid gutter="medium" row-gutter="medium">
+  <bolt-grid-item column-start="1 3@small" column-span="12 8@small">
     <bolt-text headline>
       DIY horizontal card
     </bolt-text>
@@ -109,7 +149,7 @@
     <bolt-banner align="start">
       {% include '@bolt-elements-icon/icon.twig' with { name: 'info-circle' } only %} <strong>Design recommendations:</strong> 1) use a square image or video; 2) make the headline and/or the whole card clickable; 3) set spacing prop to small.
     </bolt-banner>
-  {% endcell %}
+  </bolt-grid-item>
 
   {% for width in widths %}
     {% if width == '80px' or width == '150px' %}
@@ -173,7 +213,7 @@
         {% endgrid %}
       {% endset %}
     {% endif %}
-    {% cell 'u-bolt-width-12/12 u-bolt-width-8/12@small' %}
+    <bolt-grid-item column-start="1 3@small" column-span="12 8@small">
       {% include '@bolt-components-card-replacement/card-replacement.twig' with {
         link: {
           url: 'https://google.com',
@@ -185,6 +225,6 @@
           content: altHorizontalCardContent,
         }
       } only %}
-    {% endcell %}
+    </bolt-grid-item>
   {% endfor %}
-{% endgrid %}
+</bolt-grid>

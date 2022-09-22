@@ -1,20 +1,24 @@
 {% set schema = bolt.data.components['@bolt-components-card-replacement'].schema %}
-
-{% grid 'o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center' %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'Image alt text',
+      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+    },
+  } only %}
+{% endset %}
+<bolt-grid gutter="medium" row-gutter="medium">
   {% for height in schema.properties.height.enum %}
     {% if height == 'full' %}
       {% set more_text = 'In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie.' %}
     {% else %}
       {% set more_text = '' %}
     {% endif %}
-    {% cell 'u-bolt-width-6/12 u-bolt-width-3/12@medium' %}
+    {% set card_variation %}
       {% include '@bolt-components-card-replacement/card-replacement.twig' with {
         height: height,
         media: {
-          image: {
-            src: '/images/placeholders/landscape-16x9-mountains.jpg',
-            alt: 'Image alt.',
-          },
+          image: image,
         },
         body: {
           headline: 'This card has ' ~ height ~ ' height. ' ~ more_text,
@@ -26,16 +30,22 @@
           }
         ],
       } only %}
-    {% endcell %}
+    {% endset %}
+    {% if height == 'auto' %}
+    <bolt-grid-item column-start="1" column-span="12 4@small">
+      {{ card_variation }}
+    </bolt-grid-item>
+    {% else %}
+    <bolt-grid-item column-start="1 5@small" column-span="12 4@small">
+      {{ card_variation }}
+    </bolt-grid-item>
+    {% endif %}
   {% endfor %}
-  {% cell 'u-bolt-width-6/12 u-bolt-width-3/12@medium' %}
+  <bolt-grid-item column-start="1 9@small" column-span="12 4@small">
     {% include '@bolt-components-card-replacement/card-replacement.twig' with {
       height: 'full',
       media: {
-        image: {
-          src: '/images/placeholders/landscape-16x9-mountains.jpg',
-          alt: 'Image alt.',
-        },
+        image: image,
       },
       body: {
         headline: 'This card also has full height.',
@@ -47,5 +57,5 @@
         }
       ],
     } only %}
-  {% endcell %}
-{% endgrid %}
+  </bolt-grid-item>
+</bolt-grid>

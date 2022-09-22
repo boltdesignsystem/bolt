@@ -150,7 +150,7 @@
   {% embed '@pl/_band--collection.twig' with {
     theme: 'xlight',
     size: 'medium',
-    contentItems: [
+    content: [
       {
         pattern: 'card',
         body: {
@@ -196,32 +196,35 @@
     ]
   } %}
     {% block band_content %}
-      {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-padding-bottom-medium' %}
-        {% cell 'u-bolt-flex-grow' %}
-          {% grid %}
-            {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-              {% include '@bolt-components-headline/headline.twig' with {
-                text: 'Featured Press Releases',
-                size: 'xlarge',
-                tag: 'h3'
-              } only %}
-            {% endcell %}
-          {% endgrid %}
-        {% endcell %}
-        {% cell %}
-          {% include '@bolt-components-headline/text.twig' with {
-            text: 'See all press releases',
-            size: 'small',
-            weight: 'bold',
-            tag: 'p',
-            url: '/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-press-browse--list-view/50-pages-100-d8-Press-and-Media-press-browse--list-view.html',
-            icon: {
-              name: 'chevron-right',
-              position: 'after'
-            }
-          } only %}
-        {% endcell %}
-      {% endgrid %}
+      {% set headline %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'Featured Press Releases',
+          size: 'xlarge',
+          tag: 'h3'
+        } only %}
+      {% endset %}
+      {% set link %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'See all press releases',
+          size: 'small',
+          weight: 'bold',
+          tag: 'p',
+          url: '/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-press-browse--list-view/50-pages-100-d8-Press-and-Media-press-browse--list-view.html',
+          icon: {
+            name: 'chevron-right',
+            position: 'after'
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        align: 'justify',
+        valign: 'center',
+        items: [
+          headline,
+          link
+        ]
+      } only %}
 
       {{ parent() }}
     {% endblock band_content %}
@@ -230,7 +233,7 @@
   {% embed '@pl/_band--collection.twig' with {
     theme: 'light',
     size: 'medium',
-    contentItems: [
+    content: [
       {
         pattern: 'card',
         body: {
@@ -276,48 +279,69 @@
     ]
   } %}
     {% block band_content %}
-      {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-padding-bottom-medium' %}
-        {% cell 'u-bolt-flex-grow' %}
-          {% grid %}
-            {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-              {% include '@bolt-components-headline/headline.twig' with {
-                text: 'Featured Media Coverage',
-                size: 'xlarge',
-                tag: 'h3'
-              } only %}
-            {% endcell %}
-          {% endgrid %}
-        {% endcell %}
-        {% cell %}
-          {% include '@bolt-components-headline/text.twig' with {
-            text: 'See all media coverage',
-            size: 'small',
-            weight: 'bold',
-            tag: 'p',
-            url: '/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-d8-media-browse--list-view/50-pages-100-d8-Press-and-Media-d8-media-browse--list-view.html',
-            icon: {
-              name: 'chevron-right',
-              position: 'after'
-            }
-          } only %}
-        {% endcell %}
-      {% endgrid %}
+      {% set headline %}
+        {% include '@bolt-components-headline/headline.twig' with {
+          text: 'Featured Media Coverage',
+          size: 'xlarge',
+          tag: 'h3'
+        } only %}
+      {% endset %}
+      {% set link %}
+        {% include '@bolt-components-headline/text.twig' with {
+          text: 'See all media releases',
+          size: 'small',
+          weight: 'bold',
+          tag: 'p',
+          url: '/pattern-lab/patterns/50-pages-100-d8-Press-and-Media-press-browse--list-view/50-pages-100-d8-Press-and-Media-press-browse--list-view.html',
+          icon: {
+            name: 'chevron-right',
+            position: 'after'
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-list/list.twig' with {
+        display: 'inline',
+        align: 'justify',
+        valign: 'center',
+        items: [
+          headline,
+          link
+        ]
+      } only %}
 
       {{ parent() }}
     {% endblock band_content %}
   {% endembed %}
-
+  {% set image_1 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/1200x660.jpg',
+      },
+    } only %}
+  {% endset %}
+  {% set image_2 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/promos/promo-16x9-anthem.jpg',
+      },
+    } only %}
+  {% endset %}
+  {% set image_3 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/promos/promo-16x9-ai.jpg',
+      },
+    } only %}
+  {% endset %}
   {# Featured Resources #}
   {% embed '@pl/_band--collection.twig' with {
   theme: 'dark',
   size: 'medium',
-  contentItems: [
+  content: [
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/placeholders/1200x660.jpg'
-        },
+        image: image_1,
       },
       body: {
         headline: 'First resource',
@@ -333,9 +357,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg'
-        },
+        image: image_2,
       },
       body: {
         eyebrow: 'Optional resource type',
@@ -358,9 +380,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-ai.jpg'
-        },
+        image: image_3,
       },
       body: {
         headline: 'Third resource',

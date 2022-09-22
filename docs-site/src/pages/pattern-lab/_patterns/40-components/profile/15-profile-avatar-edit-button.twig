@@ -1,0 +1,57 @@
+{% set demo %}
+  {% set edit_button %}
+    {% include '@bolt-components-profile/profile-avatar-edit-button.twig' with {
+      content: 'Edit Text'|t,
+      attributes: {
+        type: 'button',
+        class: 'js-button-edit',
+        'data-foo': 'bar'
+      },
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-profile/profile.twig' with {
+    name: {
+      content: '<strong>First Last</strong> (@username)',
+      tag: 'h2',
+    },
+    job_title: 'Lead System Architect',
+    location: 'United States',
+    avatar_edit_button: edit_button,
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set edit_button %}
+  {% include '@bolt-components-profile/profile-avatar-edit-button.twig' with {
+    content: 'Edit Text'|t,
+    attributes: {
+      type: 'button',
+      class: 'js-button-edit',
+      'data-foo': 'bar'
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-components-profile/profile.twig' with {
+  name: {
+    content: '<strong>First Last</strong> (@username)',
+    tag: 'h2',
+  },
+  job_title: 'Lead System Architect',
+  location: 'United States',
+  avatar_edit_button: edit_button,
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Depending on if the <code>&lt;a&gt;</code> element or the <code>&lt;button&gt;</code> element is being used, the proper HTML attributes should be passed in via the edit button's <code>attributes</code> prop. See <a href="{{ link['elements-button-attributes'] }}" class="e-bolt-text-link">Button element docs</a> for more info.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Profile with Avatar Edit Button',
+  description: 'The avatar can display an edit button on hover and focus.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

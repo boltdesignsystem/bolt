@@ -1,40 +1,16 @@
-{# {% include "@bolt-components-card/card.twig" with {
-  contentItems: [
-    {
-      pattern: "image",
-      src: "/images/placeholders/landscape-16x9-mountains.jpg",
-      lazyload: false,
-      alt: "Anthem Video"
-    },
-    {
-      pattern: "eyebrow",
-      text: "Video"
-    },
-    {
-      pattern: "headline",
-      tag: "h3",
-      size: "large",
-      text: "Anthem: Service Desktop"
-    },
-    {
-      pattern: "text",
-      text: "Example card text.",
-    },
-    {
-      pattern: "button",
-      text: "Get the report",
-      url: "https://google.com",
-    }
-  ]
-} only %} #}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'alt text',
+      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+      loading: 'lazy',
 
+    },
+  } only %}
+{% endset %}
 {% include '@bolt-components-card-replacement/card-replacement.twig' with {
   media: {
-    image: {
-      src: "/images/placeholders/landscape-16x9-mountains.jpg",
-      lazyload: false,
-      alt: "Anthem Video"
-    },
+    image: image,
   },
   body: {
     headline: 'Anthem: Service Desktop',

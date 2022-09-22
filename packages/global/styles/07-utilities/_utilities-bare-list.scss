@@ -1,0 +1,19 @@
+/* ------------------------------------ *\
+   #BARE LIST UTILITY
+\* ------------------------------------ */
+
+/**
+ *
+ * Dev notes:
+ * 1. Prevent space inconsistencies of nested lists when within an article (.e-bolt-article).
+ */
+
+.u-bolt-bare-list {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.u-bolt-bare-list li {
+  margin-bottom: 0 !important; /* [1] */
+}

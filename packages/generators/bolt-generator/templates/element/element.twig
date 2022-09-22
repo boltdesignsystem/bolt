@@ -30,5 +30,5 @@
 
 {# Template #}
 {# [1], [2] #}
-{% spaceless %}<div \{{ attributes.addClass(classes) }}>\{{ this.data.content.value|spaceless }}</div>{% endspaceless %}
+{% spaceless %}<div \{{ attributes.addClass(classes) }}>\{% spaceless %}{{ this.data.content.value }}{% endspaceless %}</div>{% endspaceless %}
 

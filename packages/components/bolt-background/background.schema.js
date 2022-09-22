@@ -4,6 +4,16 @@ module.exports = {
   description:
     'A content container that delivers important messages to the user.',
   type: 'object',
+  not: {
+    anyOf: [
+      {
+        required: ['contentItems'],
+      },
+      {
+        required: ['content_items'],
+      },
+    ],
+  },
   properties: {
     attributes: {
       type: 'object',
@@ -57,10 +67,9 @@ module.exports = {
         enum: ['center', 'top', 'bottom'],
       },
     },
-    content_items: {
+    items: {
       type: 'array',
-      description:
-        'An array of objects to place in the background.Works with Image and Shape components.Video option is deprecated.',
+      description: 'An array of renderable items to place in the background.',
       items: {
         type: 'any',
       },
@@ -88,6 +97,11 @@ module.exports = {
     contentItems: {
       title: 'DEPRECATED',
       description: 'Use content_items instead.',
+    },
+    content_items: {
+      title: 'DEPRECATED',
+      description:
+        'Use items instead (each item must be renderable, e.g. a string or render array.  Arrays inteded to be rendered with pattern_template() are no longer supported)',
     },
   },
 };
