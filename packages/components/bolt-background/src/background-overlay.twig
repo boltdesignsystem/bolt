@@ -5,6 +5,11 @@
   {% set focal_point = focalPoint %}
 {% endif %}
 
+{# DEPRECATED.  Use the property `focal_point` instead of `focalPoint`. #}
+{% if fillColor %}
+  {% set fill_color = fillColor %}
+{% endif %}
+
 {# DEPRECATED. Solid overlay on the background component can be achieved by adding theming class to the parent of a background component. #}
 {% if fill_color %}
   {% if fill == 'solid' %}
