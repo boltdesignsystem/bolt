@@ -1,5 +1,1 @@
-import { lazyQueue } from '@bolt/lazy-queue';
-
-lazyQueue(['bolt-table'], async () => {
-  await import(/* webpackChunkName: 'bolt-table' */ './src/table');
-});
+// @TODO: Setup advanced table features that require JS
