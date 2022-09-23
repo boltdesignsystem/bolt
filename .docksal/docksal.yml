@@ -3,6 +3,7 @@ version: "3.9"
 services:
   cli:
     hostname: cli
+    platform: linux/x86_64
     # Extend the stock cli image (see .docksal/cli/Dockerfile)
     build: ./.docksal/cli
     volumes:
@@ -10,6 +11,11 @@ services:
       - project_root:/var/www:rw,nocopy,cached
       # Shared ssh-agent socket
       - docksal_ssh_agent:/.ssh-agent:ro
-    ports:
-      - "3000:3000"
-      - "3001:3001"
+    labels:
+      - io.docksal.virtual-host=${VIRTUAL_HOST},*.${VIRTUAL_HOST},${VIRTUAL_HOST}.*
+      - io.docksal.virtual-port=3000
+#      - io.docksal.cert-name=${VIRTUAL_HOST_CERT_NAME:-none}
+#      - io.docksal.project-root=${PROJECT_ROOT}/www
+#      - io.docksal.permanent=${SANDBOX_PERMANENT:-false}
+#    ports:
+#      - "3000:3000"
