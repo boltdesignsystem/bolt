@@ -12,7 +12,7 @@ module.exports = {
       type: 'string',
       description:
         'Text to use for the inital copy button.  Ignored if the custom_trigger property is used.',
-      default: 'Copy Link Default',
+      default: 'Copy Link',
     },
     text_to_copy: {
       type: 'string',
