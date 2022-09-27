@@ -27,3 +27,81 @@
     }
   } %}
 {% endfor %}
+
+<h2>Fill and color combinations</h2>
+
+{% for fill in ['color', 'gradient', 'linear-gradient', 'radial-gradient'] %}
+  <h3>Fill type: {{ fill|capitalize }}</h3>
+  {% if fill in ['color', 'gradient'] %}
+    {% include '@bolt-components-banner/banner.twig' with {
+      content: 'As shown below, the <em>color</em> prop has no effect when fill is <em>' ~ fill ~ '</em>',
+      status: 'error',
+    } only %}
+  {% endif %}
+
+  {% if fill in ['linear-gradient', 'radial-gradient'] %}
+    {% include '@bolt-components-banner/banner.twig' with {
+      content: 'As shown below, <em>' ~ fill ~ '</em> does not work if color is not set or set to <em>default</em>',
+      status: 'error',
+    } only %}
+  {% endif %}
+
+  {% for color in ['default', 'pink', 'navy', 'black'] %}
+    <p>Fill Color: {{ color|capitalize }} </p>
+
+    {% include '@bolt-components-band/band.twig' with {
+      content: 'This is a band.',
+      background: {
+        fill: fill,
+        fill_color: color,
+        opacity: 'heavy',
+        focal_point: {
+          vertical: 'center',
+          horizontal: 'center'
+        },
+        items: [
+          image
+        ]
+      },
+    } only %}
+  {% endfor %}
+{% endfor %}
+
+{% for fill in ['color', 'gradient', 'linear-gradient', 'radial-gradient'] %}
+  <h2>Fill type: {{ fill|capitalize }}</h2>
+
+  {% if fill == 'color' %}
+    {% include '@bolt-components-banner/banner.twig' with {
+      content: 'When fill is set to <em>color</em>, themes work beautifully!',
+      status: 'success',
+    } only %}
+  {% else %}
+    {% include '@bolt-components-banner/banner.twig' with {
+      content: 'Colors are hard coded for gradient backgrounds.',
+      status: 'error',
+    } only %}
+  {% endif %}
+
+  {% for theme in ['white', 'black', 'gray-xlight', 'navy-dark', 'navy', 'navy-light', 'teal', 'yellow', 'dark', 'xdark', 'xxdark'] %}
+    <p>Theme: {{ theme|capitalize }} </p>
+
+    <div class="t-bolt-{{ theme }} u-bolt-padding-top-small">
+      {% include '@bolt-components-band/band.twig' with {
+        content: 'This is a band.',
+        theme: 'none',
+        background: {
+          fill: fill,
+          fill_color: 'pink',
+          opacity: 'heavy',
+          focal_point: {
+            vertical: 'center',
+            horizontal: 'center'
+          },
+          items: [
+            image
+          ]
+        },
+      } only %}
+    </div>
+  {% endfor %}
+{% endfor %}
