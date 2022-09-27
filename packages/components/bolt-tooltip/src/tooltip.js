@@ -26,7 +26,7 @@ class BoltTooltip extends BoltElement {
   disconnectedCallback() {
     super.disconnectedCallback && super.disconnectedCallback();
 
-    this.popover?.destroy();
+    this.popover?.hide();
   }
 
   getPaddingTop() {
