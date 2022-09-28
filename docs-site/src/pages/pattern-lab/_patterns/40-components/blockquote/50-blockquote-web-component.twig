@@ -1,19 +1,19 @@
 {% import _self as blockquote_demo %}
 
 {% set blockquote_demo_simple %}
-<bolt-blockquote author-name="Michelangelo di Lodovico Buonarroti Simoni" author-title="Renaissance Artist" author-image="/images/placeholders/500x500.jpg">
+<bolt-blockquote author-name="Michelangelo di Lodovico Buonarroti Simoni" author-title="Renaissance Artist" author-image="/images/placeholders/square.jpg">
   <p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>
 </bolt-blockquote>
 {% endset %}
 
 {% set blockquote_demo_attributes %}
-<bolt-blockquote align-items="center" border="horizontal" author-name="Michelangelo di Lodovico Buonarroti Simoni" author-title="Renaissance Artist" author-image="/images/placeholders/500x500.jpg">
+<bolt-blockquote align-items="center" border="horizontal" author-name="Michelangelo di Lodovico Buonarroti Simoni" author-title="Renaissance Artist" author-image="/images/placeholders/square.jpg">
   <p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>
 </bolt-blockquote>
 {% endset %}
 
 {% set blockquote_demo_logo %}
-<bolt-blockquote author-name="Michelangelo di Lodovico Buonarroti Simoni" author-title="Renaissance Artist" author-image="/images/placeholders/500x500.jpg">
+<bolt-blockquote author-name="Michelangelo di Lodovico Buonarroti Simoni" author-title="Renaissance Artist" author-image="/images/placeholders/square.jpg">
   <img slot="logo" src="/images/content/logos/logo-paypal.svg" alt="PayPal Logo">
   <p>The greater danger for most of us lies not in setting our aim too high and falling short...</p>
   <p>In fact, the greater danger is setting our aim too low and achieving our mark.</p>
@@ -25,7 +25,7 @@
     Web Component Usage
   </bolt-text>
   <bolt-text>
-    Bolt Link is a web component that renders a semantic blockquote with Bolt styles. For a simple blockquote, wrap your quote content in the <code>&lt;bolt-blockquote&gt;</code> custom element. Note: you must wrap your quote text in <code>&lt;p&gt;</code> tags for the appropriate quotation marks to appear. Add attribution to the quote by adding the <code>author-name</code>, <code>author-title</code>, and <code>author-image</code> attributes to <code>&lt;bolt-blockquote&gt;</code>. 
+    Bolt Link is a web component that renders a semantic blockquote with Bolt styles. For a simple blockquote, wrap your quote content in the <code>&lt;bolt-blockquote&gt;</code> custom element. Note: you must wrap your quote text in <code>&lt;p&gt;</code> tags for the appropriate quotation marks to appear. Add attribution to the quote by adding the <code>author-name</code>, <code>author-title</code>, and <code>author-image</code> attributes to <code>&lt;bolt-blockquote&gt;</code>.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% include '@bolt-components-grid/grid.twig' with {

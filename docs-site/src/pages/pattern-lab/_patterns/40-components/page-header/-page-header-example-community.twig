@@ -182,7 +182,7 @@
 {% set teaser_lv3_ul_content %}
   {% set teaser %}
     {% set signifier %}
-      <img src="/images/placeholders/thumb-square-abstract.jpg" alt="" width=40 height=40 class="u-bolt-border-radius-full">
+      <img src="/images/placeholders/square.jpg" alt="" width=40 height=40 class="u-bolt-border-radius-full">
     {% endset %}
     {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
       signifier: signifier,
@@ -361,7 +361,7 @@
 
 {% set user_flag %}
   <div class="c-bolt-page-header__user-flag">
-    <img src="/images/docs/500x500.jpg" alt="CEO Alan" class="c-bolt-page-header__user-flag__img">
+    <img src="/images/placeholders/square.jpg" alt="CEO Alan" class="c-bolt-page-header__user-flag__img">
     <div class="c-bolt-page-header__user-flag__content">
       {% include '@bolt-components-headline/eyebrow.twig' with {
         text: 'Hello',
@@ -1185,7 +1185,7 @@
         content: pega_sites_teaser_list_2,
       } only %}
     {% endset %}
-    
+
     {% include '@bolt-layouts-layout/layout.twig' with {
       template: [
         'tiles'
@@ -1244,7 +1244,7 @@
         content: pega_sites_teaser_support,
       } only %}
     {% endset %}
-    
+
     {% include '@bolt-layouts-layout/layout.twig' with {
       template: [
         'tiles'
@@ -1333,7 +1333,7 @@
 
 {% include '@bolt-components-page-header/page-header.twig' with {
   logo: {
-    image_src: '/images/logos/pega-logo-com.svg',
+    image_src: '/images/content/logos/pega-logo-com.svg',
     label: 'Community',
     attributes: {
       href: 'https://google.com',

@@ -16,7 +16,7 @@
   {% endif %}
 {% endif %}
 
-{% set _image_data_bolt = bolt.data.images[src] %} {# Data from Bolt Manifest #}
+{# {% set _image_data_bolt = bolt.data.images[src] %} {# Data from Bolt Manifest #}
 {% set _image_data_twig = getImageData(src)  %} {# Data from processing image file #}
 
 {% set _is_jpg = src|split('.')|last == 'jpg' %}
@@ -27,14 +27,14 @@
 {% set lazyload = lazyload ?? true %}
 {% set srcset = srcset|default(src) %}
 
-{% if _image_data_bolt.srcset and not _is_gif %}
+{# {% if _image_data_bolt.srcset and not _is_gif %}
   {% set srcset = _image_data_bolt.srcset %}
-{% endif %}
+{% endif %} #}
 
 {# Temp: prefix 'ph' to preserve original value for web component, better pattern in the works #}
-{% set _ph_color = placeholder_color|default(_image_data_bolt.color|default(schema.properties.placeholder_color.default)) %}
+{% set _ph_color = placeholder_color|default(schema.properties.placeholder_color.default) %}
 {# Note: image-specific base64 data is only generated in production mode, default data is used for local development #}
-{% set _ph_image = placeholder_image|default(_image_data_bolt.base64|default(schema.properties.placeholder_image.default)) %}
+{% set _ph_image = placeholder_image|default(schema.properties.placeholder_image.default) %}
 
 {% set _use_ratio = useAspectRatio or _ratio_bool ?? true %}
 {% set _can_use_ratio = _use_ratio is same as(true) and _ratio_string != 'none' and width > 0 and height > 0 and not cover %}
