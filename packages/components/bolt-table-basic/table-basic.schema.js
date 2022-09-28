@@ -116,6 +116,12 @@ module.exports = {
       description: 'Removes the vertical border in between cells.',
       default: false,
     },
+    fixed_width_table: {
+      type: 'boolean',
+      description:
+        "The table's layout ignores the content and instead uses the table's width. Makes each column of the same width. With this prop table doesn't have horizontal scroll but squeezes on smaller screens.<code>fixed_width_columns</code> doesn't work with this prop together.",
+      default: false,
+    },
     fixed_width_columns: {
       type: 'string',
       description:
@@ -123,18 +129,6 @@ module.exports = {
       default: 'none',
       enum: ['none', 'first', 'second', 'first-two'],
     },
-    // first_col_fixed_width: {
-    //   type: 'boolean',
-    //   description:
-    //     'Sets the width of the first column to be as wide as the longest text.',
-    //   default: false,
-    // },
-    // second_col_fixed_width: {
-    //   type: 'boolean',
-    //   description:
-    //     'Sets the width of the first two columns to be as wide as the longest text.',
-    //   default: false,
-    // },
     caption: {
       type: 'string',
       description: 'Set a table caption, displayed below the table content.',
