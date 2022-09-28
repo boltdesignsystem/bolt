@@ -88,6 +88,10 @@
     .e-bolt-list--spacing-#{$size-name}.e-bolt-list--inset {
       // margin-bottom: 0;
       // margin-left: 0;
+      & .e-bolt-list__item {
+        padding: var(--bolt-spacing-y-#{$size-name})
+          var(--bolt-spacing-x-#{$size-name});
+      }
     }
 
     .e-bolt-list--spacing-#{$size-name}:not(.e-bolt-list--inset) {
