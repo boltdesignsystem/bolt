@@ -1,4 +1,4 @@
-{# {% set description %}
+{% set description %}
     A tag variations.
 {% endset %}
 
@@ -9,7 +9,7 @@
 {% endset %}
 
 {% set demo %}
-  {% set schema = bolt.data.components['@bolt-components-list'].schema %}
+  {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
   {% set placeholder_1 %}
     {% include '@bolt-components-placeholder/placeholder.twig' with {
       text: 'Item 1',
@@ -29,37 +29,41 @@
     } only %}
   {% endset %}
 
+  {% set list_items %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+  {% endset %}
+
   {% for tag in schema.properties.tag.enum %}
     <h3>{{ tag|capitalize }}</h3>
     {% include '@bolt-elements-list/list.twig' with {
       tag: tag,
-      items: [
-        placeholder_1,
-        placeholder_2,
-        placeholder_3,
-      ]
+      items: list_items
     } only %}
   {% endfor %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-elements-list/list.twig' with {
-  tag: 'div',
-  items: [
-    placeholder_1,
-    placeholder_2,
-    placeholder_3,
-  ]
+  tag: 'ol',
+  items: list_items
 } only %}
 {% endverbatim %}{% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<div class="e-bolt-list">
-  <div class="e-bolt-list__item">1</div>
-  <div class="e-bolt-list__item">2</div>
-  <div class="e-bolt-list__item">3</div>
-</div>
+<ol class="e-bolt-list">
+  <li class="e-bolt-list__item">1</li>
+  <li class="e-bolt-list__item">2</li>
+  <li class="e-bolt-list__item">3</li>
+</ol>
 {% endverbatim %}
 {% endset %}
 
@@ -70,4 +74,4 @@
   demo: demo,
   twig_markup: twig_markup,
   html_markup: html_markup
-} only %} #}
+} only %}

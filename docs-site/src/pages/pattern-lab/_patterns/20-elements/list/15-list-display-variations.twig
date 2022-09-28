@@ -1,4 +1,4 @@
-{# {% set description %}
+{% set description %}
     A display variations.
 {% endset %}
 
@@ -9,7 +9,7 @@
 {% endset %}
 
 {% set demo %}
-  {% set schema = bolt.data.components['@bolt-components-list'].schema %}
+  {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
   {% set placeholder_1 %}
     {% include '@bolt-components-placeholder/placeholder.twig' with {
       text: 'Item 1',
@@ -29,15 +29,23 @@
     } only %}
   {% endset %}
 
+  {% set list_items %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+  {% endset %}
+
   {% for display in schema.properties.display.enum %}
     <h3>{{ display|capitalize }}</h3>
     {% include '@bolt-elements-list/list.twig' with {
       display: display,
-      items: [
-        placeholder_1,
-        placeholder_2,
-        placeholder_3,
-      ]
+      items: list_items
     } only %}
   {% endfor %}
 
@@ -48,11 +56,7 @@
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-elements-list/list.twig' with {
   display: 'flex',
-  items: [
-    placeholder_1,
-    placeholder_2,
-    placeholder_3,
-  ]
+  items: list_items
 } only %}
 {% endverbatim %}{% endset %}
 
@@ -73,4 +77,4 @@
   demo: demo,
   twig_markup: twig_markup,
   html_markup: html_markup
-} only %} #}
+} only %}

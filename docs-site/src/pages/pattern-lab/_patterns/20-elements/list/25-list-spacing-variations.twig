@@ -9,7 +9,7 @@
 {% endset %}
 
 {% set demo %}
-  {% set schema = bolt.data.components['@bolt-components-list'].schema %}
+  {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
   {% set spacing = schema.properties.spacing.enum %}
   {% set display = schema.properties.display.enum %}
   {% set placeholder_1 %}

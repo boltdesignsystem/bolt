@@ -1,4 +1,4 @@
-{# {% set description %}
+{% set description %}
     A display variations.
 {% endset %}
 
@@ -46,37 +46,41 @@
     } only %}
   {% endset %}
 
+  {% set list_items %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+      {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_4,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_5,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_6,
+    } only %}
+  {% endset %}
+
   <p><mark>Nowrap prop only works with inline and flex display, it has no effects on block display.</mark></p>
 
   <h3>Inline list with nowrap</h3>
   {% include '@bolt-elements-list/list.twig' with {
     display: 'inline',
     nowrap: true,
-    items: [
-      placeholder_1,
-      placeholder_2,
-      placeholder_3,
-      placeholder_4,
-      placeholder_5,
-      placeholder_6,
-    ]
+    items: list_items
   } only %}
 
   <h3>Flex list with nowrap</h3>
   {% include '@bolt-elements-list/list.twig' with {
     display: 'flex',
     nowrap: true,
-    items: [
-      placeholder_1,
-      placeholder_2,
-      placeholder_3,
-      placeholder_4,
-      placeholder_5,
-      placeholder_6,
-      placeholder_6,
-      placeholder_6,
-      placeholder_6,
-    ]
+    items: list_items
   } only %}
 {% endset %}
 
@@ -84,14 +88,7 @@
 {% include '@bolt-elements-list/list.twig' with {
   display: 'inline',
   nowrap: true,
-  items: [
-    placeholder_1,
-    placeholder_2,
-    placeholder_3,
-    placeholder_4,
-    placeholder_5,
-    placeholder_6,
-  ]
+  items: list_items
 } only %}
 {% endverbatim %}{% endset %}
 
@@ -115,4 +112,4 @@
   demo: demo,
   twig_markup: twig_markup,
   html_markup: html_markup
-} only %} #}
+} only %}
