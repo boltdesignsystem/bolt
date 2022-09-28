@@ -7,7 +7,6 @@
 {# Variables #}
 {% set base_class = 'c-bolt-table-basic' %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{# {% set inner_attributes = create_attribute({}) %} #}
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
 {% set format_options = schema.properties.format.enum %}
@@ -20,116 +19,61 @@
 {% set top_headers = headers.top %}
 {% set side_headers = headers.side %}
 
-{# Table component's custom element wrapper #}
-{# <bolt-table
-  {% if format %} format="{{ format }}" {% endif %}
-  {% if borderless %} borderless {% endif %}
-  {% if first_col_fixed_width %} first-col-fixed-width {% endif %}
-  {{ attributes }}
-> #}
-
 {# Array of classes based on the defined + default props #}
 {% set classes = [
+  'js-bolt-table-basic',
   'c-bolt-table-basic',
   format != 'regular' ? 'c-bolt-table-basic--numeric',
   borderless ? 'c-bolt-table-basic--borderless',
-  fixed_width_columns ? 'c-bolt-table-basic--fixed-width-columns--' ~ fixed_width_columns,
+  fixed_width_table ? 'c-bolt-table-basic--fixed-width-table' : fixed_width_columns ? 'c-bolt-table-basic--fixed-width-columns--' ~ fixed_width_columns,
+  side_headers ? 'c-bolt-table-basic--side-headers',
 ] %}
 
-{# {% set classes = [
-  'c-bolt-table-basic',
-  format != 'regular' ? 'c-bolt-table-basic--numeric',
-  borderless ? 'c-bolt-table-basic--borderless',
-  fixed_width_columns ? 'c-bolt-table-basic--first-col-fixed-width',
-] %} #}
-
-
-{# {% set classes = [
-  'c-bolt-navbar',
-  this.data.static.value ? 'c-bolt-navbar--static' : 'js-bolt-sticky',
-  this.data.width.value == 'auto' ? 'c-bolt-navbar--auto-width',
-  this.data.center.value ? 'c-bolt-navbar--center' : '',
-  this.data.spacing.value ? 'c-bolt-navbar--spacing-' ~ this.data.spacing.value : '',
-  this.data.theme.value and this.data.theme.value != 'none' ? 't-bolt-' ~ this.data.theme.value : '',
-  content ? 'c-bolt-navbar--custom' : ''
-] %} #}
-
-  {# {% if caption %}
-    <figure class="{{ '#{base_class}__figure' }}">
-  {% endif %} #}
-
-  <table {{ attributes.addClass(classes) }}>
-    {% if top_headers %}
-      <thead>
-        <tr>
-          {% if side_headers %}
-            <td></td>
-          {% endif %}
-          {% for cell in top_headers.cells %}
-            {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
-            <th {{ cell_attributes }} scope="col">
-              {% if cell.content %}
-                {{ cell.content }}
-              {% else %}
-                {{ cell }}
-              {% endif %}
-            </th>
-          {% endfor %}
-        </tr>
-      </thead>
-    {% endif %}
-    {% if rows %}
-      <tbody>
-        {% for row in rows %}
-          <tr>
-            {% if side_headers.cells %}
-              {% set index = loop.index0 %}
-              {% set cell = side_headers.cells[index] %}
-              {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
-              {% if cell is not empty %}
-                <th {{ cell_attributes }} scope="row">
-                  {% if cell.content %}
-                    {{ cell.content }}
-                  {% else %}
-                    {{ cell }}
-                  {% endif %}
-                </th>
-              {% endif %}
+<table {{ attributes.addClass(classes) }}>
+  {% if caption %}
+    <caption>{{ caption }}</caption>
+  {% endif %}
+  {% if top_headers %}
+    <thead>
+      <tr>
+        {% if side_headers %}
+          <td></td>
+        {% endif %}
+        {% for cell in top_headers.cells %}
+          {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+          <th {{ cell_attributes }} scope="col">
+            {% if cell.content %}
+              {{ cell.content }}
+            {% else %}
+              {{ cell }}
             {% endif %}
-            {% for cell in row.cells %}
-              {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
-              <td {{ cell_attributes }}>
-                {% if cell is iterable %}
+          </th>
+        {% endfor %}
+      </tr>
+    </thead>
+  {% endif %}
+  {% if rows %}
+    <tbody>
+      {% for row in rows %}
+        <tr>
+          {% if side_headers.cells %}
+            {% set index = loop.index0 %}
+            {% set cell = side_headers.cells[index] %}
+            {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+            {% if cell is not empty %}
+              <th {{ cell_attributes }} scope="row">
+                {% if cell.content %}
                   {{ cell.content }}
                 {% else %}
                   {{ cell }}
                 {% endif %}
-              </td>
-            {% endfor %}
-          </tr>
-        {% endfor %}
-      </tbody>
-    {% endif %}
-    {% if footer %}
-      <tfoot>
-        <tr>
-          {% if side_headers.cells %}
-            {% for cell in side_headers.cells %}
-              {% if loop.last %}
-                <th>
-                  {% if cell.content %}
-                    {{ cell.content }}
-                  {% else %}
-                    {{ cell }}
-                  {% endif %}
-                </th>
-              {% endif %}
-            {% endfor %}
+              </th>
+            {% endif %}
           {% endif %}
-          {% for cell in footer.cells %}
+          {% for cell in row.cells %}
             {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
             <td {{ cell_attributes }}>
-              {% if cell.content %}
+              {% if cell is iterable %}
                 {{ cell.content }}
               {% else %}
                 {{ cell }}
@@ -137,15 +81,36 @@
             </td>
           {% endfor %}
         </tr>
-      </tfoot>
-    {% endif %}
-  </table>
-
-  {# {% if caption %}
-      <replace-with-grandchildren>
-        <figcaption class="{{ '#{base_class}__caption' }}">
-          <div slot="caption">{{ caption }}</div>
-        </figcaption>
-      </replace-with-grandchildren>
-  </figure>
-  {% endif %} #}
+      {% endfor %}
+    </tbody>
+  {% endif %}
+  {% if footer %}
+    <tfoot>
+      <tr>
+        {% if side_headers.cells %}
+          {% for cell in side_headers.cells %}
+            {% if loop.last %}
+              <th>
+                {% if cell.content %}
+                  {{ cell.content }}
+                {% else %}
+                  {{ cell }}
+                {% endif %}
+              </th>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% for cell in footer.cells %}
+          {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+          <td {{ cell_attributes }}>
+            {% if cell.content %}
+              {{ cell.content }}
+            {% else %}
+              {{ cell }}
+            {% endif %}
+          </td>
+        {% endfor %}
+      </tr>
+    </tfoot>
+  {% endif %}
+</table>
