@@ -3,16 +3,6 @@
   <h3>Set column widths to be flexible.</h3>
 
   {% include '@bolt-components-table-basic/table-basic.twig' with {
-    headers: {
-      top: {
-        cells: [
-          'Prop',
-          'Number',
-          'Description',
-          'Type',
-        ]
-      }
-    },
     rows: [
       {
         cells: [
@@ -51,15 +41,7 @@
 
   <h3>Set column widths to be flexible. (HTML)</h3>
 
-  <table class="c-bolt-table-basic">
-    <thead>
-      <tr>
-        <th scope="col">Prop</th>
-        <th scope="col">Number</th>
-        <th scope="col">Description</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
+  <table class="js-bolt-table-basic c-bolt-table-basic">
     <tbody>
       <tr>
         <td>attributes</td>
@@ -90,15 +72,7 @@
 
   <h3>Set column widths to be flexible. (HTML/no tbody)</h3>
 
-  <table class="c-bolt-table-basic">
-    <thead>
-      <tr>
-        <th scope="col">Prop</th>
-        <th scope="col">Number</th>
-        <th scope="col">Description</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
+  <table class="js-bolt-table-basic c-bolt-table-basic">
     <tr>
       <td>attributes</td>
       <td>1</td>
@@ -128,16 +102,6 @@
   <h3>Set the width of the first column to be as wide as the longest text.</h3>
   {% include '@bolt-components-table-basic/table-basic.twig' with {
     fixed_width_columns: 'first',
-    headers: {
-      top: {
-        cells: [
-          'Prop',
-          'Number',
-          'Description',
-          'Type',
-        ]
-      }
-    },
     rows: [
       {
         cells: [
@@ -176,15 +140,7 @@
 
   <h3>Set the width of the first column to be as wide as the longest text. (HTML)</h3>
 
-  <table class="c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--first">
-    <thead>
-      <tr>
-        <th scope="col">Prop</th>
-        <th scope="col">Number</th>
-        <th scope="col">Description</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
+  <table class="js-bolt-table-basic c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--first">
     <tbody>
       <tr>
         <td>attributes</td>
@@ -215,15 +171,7 @@
 
   <h3>Set the width of the first column to be as wide as the longest text. (HTML/no tbody)</h3>
 
-  <table class="c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--first">
-    <thead>
-      <tr>
-        <th scope="col">Prop</th>
-        <th scope="col">Number</th>
-        <th scope="col">Description</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
+  <table class="js-bolt-table-basic c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--first">
     <tr>
       <td>attributes</td>
       <td>1</td>
@@ -253,16 +201,6 @@
   <h3>Set the width of the second column to be as wide as the longest text.</h3>
   {% include '@bolt-components-table-basic/table-basic.twig' with {
     fixed_width_columns: 'second',
-    headers: {
-      top: {
-        cells: [
-          'Prop',
-          'Number',
-          'Description',
-          'Type',
-        ]
-      }
-    },
     rows: [
       {
         cells: [
@@ -301,15 +239,7 @@
 
   <h3>Set the width of the second column to be as wide as the longest text. (HTML)</h3>
 
-  <table class="c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--second">
-    <thead>
-      <tr>
-        <th scope="col">Prop</th>
-        <th scope="col">Number</th>
-        <th scope="col">Description</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
+  <table class="js-bolt-table-basic c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--second">
     <tbody>
       <tr>
         <td>attributes</td>
@@ -340,15 +270,7 @@
 
   <h3>Set the width of the second column to be as wide as the longest text. (HTML/no tbody)</h3>
 
-  <table class="c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--second">
-    <thead>
-      <tr>
-        <th scope="col">Prop</th>
-        <th scope="col">Number</th>
-        <th scope="col">Description</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
+  <table class="js-bolt-table-basic c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--second">
     <tr>
       <td>attributes</td>
       <td>1</td>
@@ -378,16 +300,6 @@
   <h3>Set the width of the first two columns to be as wide as the longest text.</h3>
   {% include '@bolt-components-table-basic/table-basic.twig' with {
     fixed_width_columns: 'first-two',
-    headers: {
-      top: {
-        cells: [
-          'Prop',
-          'Number',
-          'Description',
-          'Type',
-        ]
-      }
-    },
     rows: [
       {
         cells: [
@@ -426,15 +338,7 @@
 
   <h3>Set the width of the first two columns to be as wide as the longest text. (HTML)</h3>
 
-  <table class="c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--first-two">
-    <thead>
-      <tr>
-        <th scope="col">Prop</th>
-        <th scope="col">Number</th>
-        <th scope="col">Description</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
+  <table class="js-bolt-table-basic c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--first-two">
     <tbody>
       <tr>
         <td>attributes</td>
@@ -465,15 +369,7 @@
 
 <h3>Set the width of the first two columns to be as wide as the longest text. (HTML/no tbody)</h3>
 
-  <table class="c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--first-two">
-    <thead>
-      <tr>
-        <th scope="col">Prop</th>
-        <th scope="col">Number</th>
-        <th scope="col">Description</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
+  <table class="js-bolt-table-basic c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--first-two">
     <tr>
       <td>attributes</td>
       <td>1</td>
