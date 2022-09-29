@@ -29,7 +29,7 @@ const defaultConfig = {
   sourceMaps: true,
   watch: argv.watch ? true : false,
   publicPath: './styleguide/',
-  copy: [{ from: './src/images/**', to: 'images', flatten: true }],
+  // copy: { from: './src/images/**', to: 'images', flatten: true },
   noViewAll: false,
 };
 
@@ -280,7 +280,26 @@ module.exports = function(apiConfig) {
       },
       plugins: [
         new WebpackBar(),
-        new CopyPlugin(config.copy),
+        // new CopyPlugin(config.copy),
+        new CopyPlugin([
+          { from: './src/images/**', to: 'images', flatten: true },
+          {
+            from: `${config.rootDir}/docs-site/src/assets/images/**/*`,
+            to: `${config.rootDir}`,
+          },
+        ]),
+        // new CopyPlugin({
+        //   patterns: [
+        //     { from: './src/images/**', to: 'images', flatten: true },
+        //     { from: './docs-site/src/assets/images', to: './www/build/images' },
+        //   ],
+        // }),
+        // new CopyPlugin({
+        //   patterns: [
+        //     config.copy,
+        //     { from: './docs-site/src/assets/images', to: './www/build/images' },
+        //   ],
+        // }),
         new NoEmitPlugin(['css/pattern-lab.js']),
         new HardSourceWebpackPlugin({
           info: {
