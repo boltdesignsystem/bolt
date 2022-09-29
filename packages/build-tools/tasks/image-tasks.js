@@ -33,21 +33,7 @@ const svgo = new SVGO({
 });
 
 // full set of image sizes used by default unless being run on a feature-specific branch
-let boltImageSizes = [
-  50,
-  100,
-  200,
-  320,
-  480,
-  640,
-  800,
-  1024,
-  1366,
-  1536,
-  1920,
-  2560,
-  2880,
-];
+let boltImageSizes = [640, 1024, 1920];
 
 function makeWebPath(imagePath) {
   return `/${path.relative(config.wwwDir, imagePath)}`;
