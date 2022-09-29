@@ -1,22 +1,28 @@
 const path = require('path');
 const webpack = require('webpack');
+
+// Plugins/loaders
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
-const TerserPlugin = require('terser-webpack-plugin');
+// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch'); // Remove?
+const TerserPlugin = require('terser-webpack-plugin'); // Check for performance
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const npmSass = require('npm-sass'); // Remove?
+
+const merge = require('webpack-merge');
+
 const fs = require('fs');
 const deepmerge = require('deepmerge');
+
+// Unused
 const resolve = require('resolve');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const npmSass = require('npm-sass');
-const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
+
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const {
   webpackStats,
   statsPreset,
@@ -215,6 +221,7 @@ async function createWebpackConfig(buildConfig) {
               },
             },
           ],
+          type: 'javascript/auto', // @todo, rework
         },
         {
           test: /\.svg$/,
@@ -235,6 +242,7 @@ async function createWebpackConfig(buildConfig) {
                   },
                 },
               ],
+              type: 'javascript/auto', // @todo, rework
             },
             {
               use: [
@@ -243,13 +251,6 @@ async function createWebpackConfig(buildConfig) {
                   options: {
                     babelrc: false,
                     presets: [babelConfig],
-                  },
-                },
-                {
-                  loader: 'svg-sprite-loader',
-                  options: {
-                    spriteFilename: svgPath =>
-                      `bolt-svg-sprite${svgPath.substr(-4)}`,
                   },
                 },
                 {
@@ -279,6 +280,7 @@ async function createWebpackConfig(buildConfig) {
               },
             },
           ],
+          type: 'javascript/auto', // @todo, rework
         },
         {
           test: [/\.yml$/, /\.yaml$/],
@@ -287,6 +289,7 @@ async function createWebpackConfig(buildConfig) {
         {
           test: [/\.html$/],
           loader: 'raw-loader', // file as string
+          type: 'javascript/auto', // @todo, rework
         },
       ],
     },
@@ -309,15 +312,15 @@ async function createWebpackConfig(buildConfig) {
         : [],
     },
     plugins: [
-      new SpriteLoaderPlugin({
-        plainSprite: true,
-        spriteAttrs: {
-          id: '__SVG_SPRITE_NODE__',
-          style: 'position: absolute; width: 0; height: 0',
-        },
-      }),
+      // new SpriteLoaderPlugin({
+      //   plainSprite: true,
+      //   spriteAttrs: {
+      //     id: '__SVG_SPRITE_NODE__',
+      //     style: 'position: absolute; width: 0; height: 0',
+      //   },
+      // }),
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
-      new webpack.NoEmitOnErrorsPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(), // ?
     ],
   };
 
@@ -350,12 +353,12 @@ async function createWebpackConfig(buildConfig) {
 
     // @todo evaluate best source map approach for production builds -- particularly source-map vs hidden-source-map
     sharedWebpackConfig.devtool =
-      config.sourceMaps === false ? '' : 'hidden-source-map';
+      config.sourceMaps === false ? false : 'hidden-source-map';
   } else {
     // not prod
     // @todo fix source maps
     sharedWebpackConfig.devtool =
-      config.sourceMaps === false ? '' : 'eval-source-map';
+      config.sourceMaps === false ? false : 'eval-source-map';
   }
 
   // Simple Configuration
@@ -419,7 +422,8 @@ async function createWebpackConfig(buildConfig) {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
     },
     output: {
-      futureEmitAssets: true,
+      // https://v4.webpack.js.org/configuration/output/#outputfutureemitassets
+      // futureEmitAssets: true,
       path: path.resolve(process.cwd(), config.buildDir),
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
       filename: `[name]${langSuffix}${
@@ -436,7 +440,7 @@ async function createWebpackConfig(buildConfig) {
         chunkFilename: `[id]${langSuffix}.css`,
       }),
       // @todo This needs to be in `config.dataDir`
-      new ManifestPlugin({
+      new WebpackManifestPlugin({
         fileName: `bolt-webpack-manifest${langSuffix}${
           config.mode === 'client' ? '' : `.${config.mode}`
         }.json`,
@@ -490,23 +494,23 @@ async function createWebpackConfig(buildConfig) {
 
   // cache mode significantly speeds up subsequent build times
   if (config.enableCache) {
-    webpackConfig.plugins.push(
-      new HardSourceWebpackPlugin({
-        info: {
-          level: 'warn',
-        },
-        cacheDirectory: path.join(process.cwd(), `./cache/webpack`),
-        // Clean up large, old caches automatically.
-        cachePrune: {
-          // Caches younger than `maxAge` are not considered for deletion. They must
-          // be at least this (default: 2 days) old in milliseconds.
-          maxAge: 2 * 24 * 60 * 60 * 1000,
-          // All caches together must be larger than `sizeThreshold` before any
-          // caches will be deleted. Together they must be at least 300MB in size
-          sizeThreshold: 300 * 1024 * 1024,
-        },
-      }),
-    );
+    // webpackConfig.plugins.push(
+    //   new HardSourceWebpackPlugin({
+    //     info: {
+    //       level: 'warn',
+    //     },
+    //     cacheDirectory: path.join(process.cwd(), `./cache/webpack`),
+    //     // Clean up large, old caches automatically.
+    //     cachePrune: {
+    //       // Caches younger than `maxAge` are not considered for deletion. They must
+    //       // be at least this (default: 2 days) old in milliseconds.
+    //       maxAge: 2 * 24 * 60 * 60 * 1000,
+    //       // All caches together must be larger than `sizeThreshold` before any
+    //       // caches will be deleted. Together they must be at least 300MB in size
+    //       sizeThreshold: 300 * 1024 * 1024,
+    //     },
+    //   }),
+    // );
   }
 
   let outputConfig = [];
