@@ -1,0 +1,30 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-profile'].schema['profile-avatar-edit-button'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema.properties.content) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'c-bolt-profile__avatar-edit-button',
+] %}
+
+{% set icon_pencil %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pencil',
+  } only %}
+{% endset %}
+
+<div class="c-bolt-profile__avatar-edit">
+  {% include '@bolt-elements-button/button.twig' with {
+    content: content|default('Edit Profile Image'|t),
+    border_radius: 'full',
+    icon_only: icon_pencil,
+    size: 'large',
+    attributes: attributes.addClass(classes)
+  } only %}
+  <span class="c-bolt-profile__avatar-edit-background"></span>
+</div>

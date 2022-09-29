@@ -372,13 +372,18 @@
     } only %}
 
     {% set card_1 %}
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            alt: 'alt text',
+            src: '/images/content/promos/promo-16x9-anthem.jpg',
+            loading: 'lazy',
+          },
+        } only %}
+      {% endset %}
       {% include '@bolt-components-card-replacement/card-replacement.twig' with {
         media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-anthem.jpg',
-            alt: 'Anthem Video',
-            lazyload: false,
-          },
+          image: image,
         },
         body: {
           eyebrow: 'Eyebrow',
@@ -394,13 +399,18 @@
     {% endset %}
 
     {% set card_2 %}
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            alt: 'alt text',
+            src: '/images/content/promos/promo-16x9-anthem.jpg',
+            loading: 'lazy',
+          },
+        } only %}
+      {% endset %}
       {% include '@bolt-components-card-replacement/card-replacement.twig' with {
         media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-anthem.jpg',
-            alt: 'Anthem Video',
-            lazyload: false,
-          },
+          image: image,
         },
         body: {
           headline: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',

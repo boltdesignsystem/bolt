@@ -2,6 +2,7 @@ import {
   BoltPageHeaderNav,
   BoltPageHeaderActionNav,
 } from './page-header-nav.js';
+import '@bolt/core-v3.x/utils/optimized-resize';
 
 export class BoltPageHeader {
   constructor(el) {
@@ -65,6 +66,9 @@ export class BoltPageHeader {
     this.actionMenu = new BoltPageHeaderActionNav(actionMenuArray, {
       ...opts,
     });
+    this.setPageHeaderHeight = this.setPageHeaderHeight.bind(this);
+    window.addEventListener('throttledResize', this.setPageHeaderHeight);
+    this.setPageHeaderHeight();
   }
 
   getMenusArray(triggers = []) {
@@ -123,4 +127,11 @@ export class BoltPageHeader {
     }
     return nextSibling;
   };
+
+  setPageHeaderHeight() {
+    const pageHeaderHeight = this.el.clientHeight;
+    if (!this.el.classList.contains('c-bolt-page-header--static')) {
+      this.el.setAttribute('data-header-height', `${pageHeaderHeight}`);
+    }
+  }
 }

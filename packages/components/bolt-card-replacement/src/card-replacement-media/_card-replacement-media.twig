@@ -4,13 +4,6 @@
 
 {% set attributes = create_attribute(media.attributes|default({})) %}
 
-{% if horizontal and _card_replacement_image %}
-  {% set _card_replacement_image = _card_replacement_image|merge({
-    ratio: false,
-    cover: true,
-  }) %}
-{% endif %}
-
 {% if _card_replacement_media_content %}
   {{ _card_replacement_media_content }}
 {% else %}
@@ -18,8 +11,20 @@
     <bolt-card-replacement-media {{ attributes }}>
       <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media">
         {% if _card_replacement_image %}
-          {% include '@bolt-components-image/image.twig' with _card_replacement_image only %}
+          {# DEPRECATED. Pass a renderable image for media.image instead of structured data.  #}
+          {% if _card_replacement_image is iterable and  _card_replacement_image.src %}
+            {% if horizontal and _card_replacement_image %}
+              {% set _card_replacement_image = _card_replacement_image|merge({
+                ratio: false,
+                cover: true,
+              }) %}
+            {% endif %}
+            {% include '@bolt-components-image/image.twig' with _card_replacement_image only %}
+          {% else %}
+            {{ _card_replacement_image }}
+          {% endif %}
         {% elseif block('media') is defined %}
+          {# DEPRECATED. Pass a renderable image for media.image instead of using a twig block.  #}
           {{ block('media') }}
         {% endif %}
       </ssr-keep>

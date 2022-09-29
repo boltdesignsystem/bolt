@@ -166,12 +166,17 @@
     {% endset %}
 
     {% set card %}
-      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-        media: {
-          image: {
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
             src: '/images/content/backgrounds/background-short-1.jpg',
             alt: 'Anthem Video',
           },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+        media: {
+          image: image,
         },
         body: {
           eyebrow: 'Whitepaper',
@@ -234,12 +239,17 @@
     {% endset %}
 
     {% set card %}
-      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-        media: {
-          image: {
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
             src: '/images/content/backgrounds/background-tall-2.jpg',
             alt: 'Anthem Video',
           },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+        media: {
+          image: image,
         },
         body: {
           eyebrow: 'Whitepaper',
@@ -300,12 +310,17 @@
       <p>Leveraging productivity bots that simplify the employee experience injects instant ROI into your business. In just two to three weeks you'll turn all your service agents, back-office workers, or front-line sellers into productivity ninjas. They’ll be happier. You’ll be happier. And your customers will be happier.</p>
     {% endset %}
     {% set card %}
-      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-        media: {
-          image: {
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
             src: '/images/content/backgrounds/background-tall-3.jpg',
             alt: 'Anthem Video',
           },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+        media: {
+          image: image,
         },
         body: {
           eyebrow: 'Whitepaper',
@@ -367,12 +382,17 @@
       <p>Because once you know the details, you can act. And that makes all the difference.</p>
     {% endset %}
     {% set card %}
-        {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-        media: {
-          image: {
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
             src: '/images/content/backgrounds/background-tall-2.jpg',
             alt: 'Anthem Video',
           },
+        } only %}
+      {% endset %}
+        {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+        media: {
+          image: image,
         },
         body: {
           eyebrow: 'Whitepaper',
@@ -432,12 +452,17 @@
       <p>Leveraging productivity bots that simplify the employee experience injects instant ROI into your business. In just two to three weeks you'll turn all your service agents, back-office workers, or front-line sellers into productivity ninjas. They’ll be happier. You’ll be happier. And your customers will be happier.</p>
     {% endset %}
     {% set card %}
-      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-        media: {
-          image: {
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
             src: '/images/content/backgrounds/background-tall-3.jpg',
             alt: 'Anthem Video',
           },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+        media: {
+          image: image,
         },
         body: {
           eyebrow: 'Whitepaper',
@@ -497,12 +522,17 @@
       <p>Capabilities such as auto self-documentation ensure an audit trail is maintained of all activities so compliance risk is minimized and required reporting is streamlined and automated.</p>
     {% endset %}
     {% set card %}
-      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-        media: {
-          image: {
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
             src: '/images/content/backgrounds/background-tall-2.jpg',
             alt: 'Anthem Video',
           },
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
+        media: {
+          image: image,
         },
         body: {
           eyebrow: 'Whitepaper',
