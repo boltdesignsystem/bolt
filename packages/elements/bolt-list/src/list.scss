@@ -86,19 +86,37 @@
     }
 
     .e-bolt-list--spacing-#{$size-name}.e-bolt-list--inset {
-      // margin-bottom: 0;
-      // margin-left: 0;
+      gap: 0 var(--bolt-spacing-y-small);
+
+      &.e-bolt-list--display-inline,
+      &.e-bolt-list--display-flex {
+        // width: calc(100% + var(--bolt-spacing-x-#{$size-name})); // [3]
+        gap: var(--bolt-spacing-y-#{$size-name}) 0;
+      }
+
       & .e-bolt-list__item {
         padding: var(--bolt-spacing-y-#{$size-name})
           var(--bolt-spacing-x-#{$size-name});
       }
     }
 
-    .e-bolt-list--spacing-#{$size-name}:not(.e-bolt-list--inset) {
+    // .e-bolt-list--spacing-#{$size-name}.e-bolt-list--inset {
+    //   &.e-bolt-list--display-inline,
+    //   &.e-bolt-list--display-flex {
+    //     // width: calc(100% + var(--bolt-spacing-x-#{$size-name})); // [3]
+    //     gap: var(--bolt-spacing-y-#{$size-name}) 0;
+    //   }
+    // }
+
+    .e-bolt-list--spacing-#{$size-name} {
       &.e-bolt-list--display-inline,
       &.e-bolt-list--display-flex {
         // width: calc(100% + var(--bolt-spacing-x-#{$size-name})); // [3]
-        gap: 0 var(--bolt-spacing-y-#{$size-name});
+        gap: 0 var(--bolt-spacing-x-#{$size-name});
+
+        .e-bolt-list__item {
+          margin-bottom: var(--bolt-spacing-y-#{$size-name});
+        }
       }
 
       @each $breakpoint in $bolt-breakpoints {
@@ -115,6 +133,18 @@
           &.e-bolt-list--display-inline\@#{$breakpoint-name} {
             @include bolt-mq($breakpoint-name) {
               gap: 0 var(--bolt-spacing-x-#{$size-name});
+
+              .e-bolt-list__item {
+                margin-bottom: var(--bolt-spacing-y-#{$size-name});
+              }
+            }
+          }
+          &.e-bolt-list--display-inline\@#{$breakpoint-name}.e-bolt-list--inset {
+            @include bolt-mq($breakpoint-name) {
+              gap: var(--bolt-spacing-x-#{$size-name}) 0;
+              // .e-bolt-list__item {
+              //   margin-bottom: 0;
+              // }
             }
           }
         }
@@ -151,6 +181,156 @@
   //     }
   //   }
   // }
+}
+
+// Separator Prop
+$bolt-list-separator-styles: solid, dashed;
+
+@each $separator-style in $bolt-list-separator-styles {
+  .e-bolt-list--separator-#{$separator-style} {
+    .e-bolt-list__item {
+      border-width: 0;
+      border-style: #{$separator-style};
+      border-color: var(--m-bolt-border);
+    }
+  }
+}
+
+[class*='e-bolt-list--separator'] {
+  // &.e-bolt-list--display-block {
+  //   &:not(.e-bolt-list--last-item) {
+  //     border-bottom-width: 1px;
+  //   }
+  // }
+  .e-bolt-list__item {
+    &:not(.e-bolt-list__item:last-of-type) {
+      border-bottom-width: 1px;
+    }
+  }
+
+  &.e-bolt-list--display-inline,
+  &.e-bolt-list--display-flex {
+    .e-bolt-list__item {
+      &:not(.e-bolt-list__item:last-of-type) {
+        border-right-width: 1px;
+        border-bottom-width: 0;
+      }
+    }
+    // &:not(.e-bolt-list--last-item) {
+    //   border-right-width: 1px;
+    // }
+  }
+
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    @if (
+      $breakpoint-name !=
+        'large' and
+        $breakpoint-name !=
+        'xlarge' and
+        $breakpoint-name !=
+        'xxlarge'
+    ) {
+      &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+        .e-bolt-list__item {
+          &:not(.e-bolt-list__item:last-of-type) {
+            border-bottom-width: 1px;
+
+            @include bolt-mq($breakpoint-name) {
+              border-right-width: 1px;
+              border-bottom-width: 0;
+            }
+          }
+        }
+        // &:not(.e-bolt-list--last-item) {
+        //   border-bottom-width: 1px;
+
+        //   @include bolt-mq($breakpoint-name) {
+        //     border-right-width: 1px;
+        //     border-bottom-width: 0;
+        //   }
+        // }
+      }
+    }
+  }
+}
+
+[class*='e-bolt-list--separator'] {
+  @each $size in $bolt-spacing-multiplier-system {
+    $size-name: nth($size, 1);
+
+    @if ($size-name != 'xxlarge') {
+      &.e-bolt-list--spacing-#{$size-name} {
+        .e-bolt-list__item {
+          &:not(.e-bolt-list__item:last-of-type) {
+            padding-bottom: var(--bolt-spacing-y-#{$size-name});
+          }
+        }
+
+        &.e-bolt-list--display-inline,
+        &.e-bolt-list--display-flex {
+          .e-bolt-list__item {
+            &:not(.e-bolt-list__item:last-of-type) {
+              padding-right: var(--bolt-spacing-x-#{$size-name});
+              padding-bottom: 0;
+            }
+          }
+        }
+
+        &.e-bolt-list--display-inline,
+        &.e-bolt-list--display-flex {
+          &.e-bolt-list--inset {
+            .e-bolt-list__item {
+              &:not(.e-bolt-list__item:last-of-type) {
+                padding-bottom: var(--bolt-spacing-y-#{$size-name});
+              }
+            }
+          }
+        }
+      }
+      // &.c-bolt-list--spacing-#{$size-name} {
+      //   &:not(.c-bolt-list-item--last-item) {
+      //     &.c-bolt-list-item--display-block {
+      //       padding-bottom: var(--bolt-spacing-y-#{$size-name});
+      //     }
+
+      //     &.c-bolt-list-item--display-inline,
+      //     &.c-bolt-list-item--display-flex {
+      //       padding-right: var(--bolt-spacing-x-#{$size-name});
+      //     }
+      //   }
+      // }
+
+      &:not(.e-bolt-list--inset) {
+        @each $breakpoint in $bolt-breakpoints {
+          $breakpoint-name: nth($breakpoint, 1);
+
+          @if (
+            $breakpoint-name !=
+              'large' and
+              $breakpoint-name !=
+              'xlarge' and
+              $breakpoint-name !=
+              'xxlarge'
+          ) {
+            &.e-bolt-list--spacing-#{$size-name} {
+              &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+                .e-bolt-list__item {
+                  padding-bottom: var(--bolt-spacing-y-#{$size-name});
+
+                  @include bolt-mq($breakpoint-name) {
+                    padding-right: var(--bolt-spacing-x-#{$size-name});
+                    padding-bottom: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 // Nowrap
