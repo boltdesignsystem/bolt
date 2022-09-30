@@ -22,28 +22,12 @@
   this.data.display.value != schema.properties.display.default ? 'e-bolt-list--display-' ~ this.data.display.value,
   this.data.spacing.value != schema.properties.spacing.default ? 'e-bolt-list--spacing-' ~ this.data.spacing.value : 'e-bolt-list--spacing-' ~ schema.properties.spacing.default,
   this.data.separator.value != schema.properties.separator.default ? 'e-bolt-list--separator-' ~ this.data.separator.value,
+  this.data.align.value != schema.properties.align.default ? 'e-bolt-list--align-' ~ this.data.align.value : 'e-bolt-list--align-' ~ schema.properties.align.default,
+  this.data.valign.value != schema.properties.valign.default ? 'e-bolt-list--valign-' ~ this.data.valign.value : 'e-bolt-list--valign-' ~ schema.properties.valign.default,
   this.data.inset.value != schema.properties.inset.default ? 'e-bolt-list--inset',
   this.data.nowrap.value != schema.properties.nowrap.default ? 'e-bolt-list--nowrap',
 ] %}
-{# {% set classes_item = 'e-bolt-list__item' %} #}
-{# <pre>
-  {{ dump(items, attributes_list, attributes_list_item) }}
-</pre> #}
-{# Template #}
-{# {% if items %}
-  <{{ this.data.tag.value }} {{ attributes_list.addClass(classes) }}>
-    {% for item in items %}
-    <pre>
-      {{ dump(attributes_list_item) }}
-    </pre>
-      {% if this.data.tag.value == 'ul' or this.data.tag.value == 'ol' %}
-        <li {{ attributes_list_item.addClass(classes_item) }}>{{ item.content }}</li>
-      {% else %}
-        <div {{ attributes_list_item.addClass(classes_item) }}>{{ item.content }}</div>
-      {% endif %}
-    {% endfor %}
-  </{{ this.data.tag.value }}> 
-{% endif %} #}
+
 <{{ this.data.tag.value }} {{ attributes.addClass(classes) }}>
   {{ items }}
 </{{ this.data.tag.value }}>
