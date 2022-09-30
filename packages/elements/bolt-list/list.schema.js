@@ -53,6 +53,18 @@ module.exports = {
       description: 'Turn spacing to the inside of each item.',
       default: false,
     },
+    align: {
+      type: 'string',
+      description: 'Control the horizontal alignment of items.',
+      default: 'start',
+      enum: ['start', 'center', 'end', 'justify'],
+    },
+    valign: {
+      type: 'string',
+      description: 'Control the vertical alignment of items.',
+      default: 'center',
+      enum: ['start', 'center', 'end'],
+    },
     nowrap: {
       type: 'boolean',
       description:
