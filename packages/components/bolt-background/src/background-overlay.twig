@@ -5,12 +5,6 @@
   {% set focal_point = focalPoint %}
 {% endif %}
 
-{# DEPRECATED. Whenever `linear-grdient` or `radial-gradient` is passed to the `fill` prop, set it to fill: 'gradient'. #}
-{% if fill == 'linear-gradient' or fill == 'radial-gradient' %}
-  {% set fill = 'gradient' %}
-{% endif %}
-
-
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute({}) %}
