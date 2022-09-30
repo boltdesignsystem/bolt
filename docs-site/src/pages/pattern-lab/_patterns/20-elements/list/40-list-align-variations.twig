@@ -1,21 +1,13 @@
 {% set description %}
-   There are 2 different types of spacing styles and you can use it to your advantage.
+  A list items horizontal alignment can be modified per use case.
 {% endset %}
 
 {% set notes %}
-  <bolt-ol>
-    <bolt-li>Regular spacing style, adds space only in between items.</bolt-li>
-    <bolt-li>Inset spacing puts spacing around each item.</bolt-li>
-  </bolt-ol>
+  Align prop only works with inline display, it has no effects on block and flex display.</
 {% endset %}
 
 {% set demo %}
 {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
-{% set regular_display_options = [
-  'block',
-  'inline',
-  'flex',
-] %}
 {% set placeholder_1 %}
   {% include '@bolt-components-placeholder/placeholder.twig' with {
     text: 'Item 1',
@@ -46,28 +38,17 @@
   } only %}
 {% endset %}
 
-{% for display in schema.properties.display.enum %}
-  <bolt-grid gutter="medium" row-gutter="medium">
-    <bolt-grid-item column-start="1" column-span="12 6@medium">
-      <h3>Regular spacing in a {{ display }} list</h3>
+{% for align in schema.properties.align.enum %}
+  {% for display in schema.properties.display.enum %}
+    {% if display != 'block' and display != 'flex' %}
+      <h3>Horizontally align {{ display }} items: {{ align }}</h3>
       {% include '@bolt-elements-list/list.twig' with {
         display: display,
-        spacing: 'medium',
-        separator: 'solid',
+        align: align,
         items: list_items
       } only %}
-    </bolt-grid-item>
-    <bolt-grid-item column-start="1 7@medium" column-span="12 6@medium">
-      <h3>Inset spacing in a {{ display }} list</h3>
-      {% include '@bolt-elements-list/list.twig' with {
-        display: display,
-        spacing: 'medium',
-        separator: 'solid',
-        inset: true,
-        items: list_items
-      } only %}
-    </bolt-grid-item>
-</bolt-grid>
+    {% endif %}
+  {% endfor %}
 {% endfor %}
 {% endset %}
 
@@ -83,17 +64,15 @@
     content: placeholder_3,
   } only %}
 {% endset %}
-
 {% include '@bolt-elements-list/list.twig' with {
-  separator: 'solid',
-  inset: true,
+  align: 'justify',
   items: list_items
 } only %}
 {% endverbatim %}{% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<ul class="e-bolt-list e-bolt-list--inset">
+<ul class="e-bolt-list e-bolt-list--align-justify">
   <li class="e-bolt-list__item">First item</li>
   <li class="e-bolt-list__item">Second item</li>
   <li class="e-bolt-list__item">Third item</li>

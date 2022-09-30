@@ -1,10 +1,11 @@
 {% set description %}
-    A tag variations.
+    Choose between <code>ul</code> and <code>ol</code> tags when creating a list.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>List out important information about this element and its usage.</bolt-li>
+    <bolt-li>The <code>ul</code> tag is for grouping a collection of items that do not have a numerical ordering, and their order in the list is meaningless.</bolt-li>
+    <bolt-li>On the other hand, with the <code>ol</code> tag, the order is meaningful</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -51,6 +52,18 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
+{% set list_items %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_1,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_2,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_3,
+  } only %}
+{% endset %}
+
 {% include '@bolt-elements-list/list.twig' with {
   tag: 'ol',
   items: list_items
@@ -60,15 +73,15 @@
 {% set html_markup %}
 {% verbatim %}
 <ol class="e-bolt-list">
-  <li class="e-bolt-list__item">1</li>
-  <li class="e-bolt-list__item">2</li>
-  <li class="e-bolt-list__item">3</li>
+  <li class="e-bolt-list__item">First item</li>
+  <li class="e-bolt-list__item">Second item</li>
+  <li class="e-bolt-list__item">Third item</li>
 </ol>
 {% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic List',
+  title: 'List semantics',
   description: description,
   notes: notes,
   demo: demo,

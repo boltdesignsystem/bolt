@@ -1,11 +1,5 @@
 {% set description %}
-    A description of the element and what it is used for.
-{% endset %}
-
-{% set notes %}
-  <bolt-ol>
-    <bolt-li>List out important information about this element and its usage.</bolt-li>
-  </bolt-ol>
+  A space between list items can be modified per usecase.
 {% endset %}
 
 {% set demo %}
@@ -54,13 +48,29 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-TBA
+{% set list_items %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_1,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_2,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_3,
+  } only %}
+{% endset %}
+{% include '@bolt-elements-list/list.twig' with {
+  spacing: 'large',
+  items: list_items,
+} only %}
 {% endverbatim %}{% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<ul class="e-bolt-list">
-  <li class="e-bolt-list__item">TBA</li>
+<ul class="e-bolt-list e-bolt-list--spacing-medium">
+  <li class="e-bolt-list__item">First item</li>
+  <li class="e-bolt-list__item">Second item</li>
+  <li class="e-bolt-list__item">Third item</li>
 </ul>
 {% endverbatim %}
 {% endset %}

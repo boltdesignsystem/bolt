@@ -1,11 +1,13 @@
 {% set description %}
-    A display variations.
+  Preventing wrapping list elements can be achieved with the <code>nowrap</code> prop.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>List out important information about this element and its usage.</bolt-li>
+    <bolt-li>Nowrap prop only works with inline and flex display, it has no effects on block display.</bolt-li>
+    <bolt-li>This prop prevents list elements from wrapping. This means that list items can overflow the parent container when there's no space enough. Resize the window to see how element behave below.</bolt-li>
   </bolt-ol>
+  
 {% endset %}
 
 {% set demo %}
@@ -45,7 +47,25 @@
       size: 'xsmall',
     } only %}
   {% endset %}
-
+  {% set placeholder_7 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 7',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_8 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 8',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_9 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 9',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  
   {% set list_items %}
     {% include '@bolt-elements-list/list-item.twig' with {
       content: placeholder_1,
@@ -65,9 +85,16 @@
     {% include '@bolt-elements-list/list-item.twig' with {
       content: placeholder_6,
     } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_7,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_8,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_9,
+    } only %}
   {% endset %}
-
-  <p><mark>Nowrap prop only works with inline and flex display, it has no effects on block display.</mark></p>
 
   <h3>Inline list with nowrap</h3>
   {% include '@bolt-elements-list/list.twig' with {
@@ -85,6 +112,18 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
+{% set list_items %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_1,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_2,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_3,
+  } only %}
+  ...
+{% endset %}
 {% include '@bolt-elements-list/list.twig' with {
   display: 'inline',
   nowrap: true,
@@ -94,13 +133,16 @@
 
 {% set html_markup %}
 {% verbatim %}
-<ul class="e-bolt-list e-bolt-list--display-inline">
-  <li class="e-bolt-list__item">1</li>
-  <li class="e-bolt-list__item">2</li>
-  <li class="e-bolt-list__item">3</li>
-  <li class="e-bolt-list__item">4</li>
-  <li class="e-bolt-list__item">5</li>
-  <li class="e-bolt-list__item">6</li>
+<ul class="e-bolt-list e-bolt-list--display-inline e-bolt-list--nowrap">
+  <li class="e-bolt-list__item">First item</li>
+  <li class="e-bolt-list__item">Second item</li>
+  <li class="e-bolt-list__item">Third item</li>
+  <li class="e-bolt-list__item">Fourth item</li>
+  <li class="e-bolt-list__item">Fifth item</li>
+  <li class="e-bolt-list__item">Sixth item</li>
+  <li class="e-bolt-list__item">Seventh item</li>
+  <li class="e-bolt-list__item">Eighth item</li>
+  <li class="e-bolt-list__item">Ninth item</li>
 </ul>
 {% endverbatim %}
 {% endset %}

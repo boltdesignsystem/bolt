@@ -1,11 +1,9 @@
 {% set description %}
-    A display variations.
+    The display of a list items can be changed from block (full width), thru flex to inline, and there is an extra option to make it transform from inline to block at the small breakpoint.
 {% endset %}
 
 {% set notes %}
-  <bolt-ol>
-    <bolt-li>List out important information about this element and its usage.</bolt-li>
-  </bolt-ol>
+  When <code>display</code> prop is set to <code>Inline@breakpoint</code>, it means the button is block display below the chosen breakpoint, and transform to inline display from specific breakpoint and up. Resize the browser to see the demo below.
 {% endset %}
 
 {% set demo %}
@@ -49,11 +47,20 @@
     } only %}
   {% endfor %}
 
-  <h3>Inline@breakpoint</h3>
-  <p><mark>Note: this type of display option will transform a block list to inline when the browser is equal to or greater than the breakpoint specified.</mark></p>
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
+  {% set list_items %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+  {% endset %}
 {% include '@bolt-elements-list/list.twig' with {
   display: 'flex',
   items: list_items
@@ -63,9 +70,9 @@
 {% set html_markup %}
 {% verbatim %}
 <ul class="e-bolt-list e-bolt-list--display-flex">
-  <li class="e-bolt-list__item">1</li>
-  <li class="e-bolt-list__item">2</li>
-  <li class="e-bolt-list__item">3</li>
+  <li class="e-bolt-list__item">First item</li>
+  <li class="e-bolt-list__item">Second item</li>
+  <li class="e-bolt-list__item">Thitd item</li>
 </ul>
 {% endverbatim %}
 {% endset %}
