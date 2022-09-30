@@ -5,11 +5,6 @@
 @import '@bolt/core-v3.x';
 
 /**
- * Long-form comment.
- *
- * This spans multiple lines and is also constrained to no longer than 80
- * characters in width.
- *
  * 1. Provide line-comments like this.
  */
 
@@ -17,6 +12,7 @@
   // Styles go here. /* [1] */
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: var(--bolt-spacing-y-small) 0;
   margin: 0 0 var(--bolt-spacing-y-medium) 0;
   padding: 0;
@@ -81,7 +77,7 @@
 @each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
   @if ($size-name != 'xxlarge') {
-    .e-bolt-list--spacing-#{$size-name}:not(.e-bolt-list--inset) {
+    .e-bolt-list--spacing-#{$size-name} {
       gap: var(--bolt-spacing-y-#{$size-name}) 0;
     }
 
@@ -90,8 +86,7 @@
 
       &.e-bolt-list--display-inline,
       &.e-bolt-list--display-flex {
-        // width: calc(100% + var(--bolt-spacing-x-#{$size-name})); // [3]
-        gap: var(--bolt-spacing-y-#{$size-name}) 0;
+        gap: 0;
       }
 
       & .e-bolt-list__item {
@@ -100,23 +95,11 @@
       }
     }
 
-    // .e-bolt-list--spacing-#{$size-name}.e-bolt-list--inset {
-    //   &.e-bolt-list--display-inline,
-    //   &.e-bolt-list--display-flex {
-    //     // width: calc(100% + var(--bolt-spacing-x-#{$size-name})); // [3]
-    //     gap: var(--bolt-spacing-y-#{$size-name}) 0;
-    //   }
-    // }
-
     .e-bolt-list--spacing-#{$size-name} {
       &.e-bolt-list--display-inline,
       &.e-bolt-list--display-flex {
-        // width: calc(100% + var(--bolt-spacing-x-#{$size-name})); // [3]
-        gap: 0 var(--bolt-spacing-x-#{$size-name});
-
-        .e-bolt-list__item {
-          margin-bottom: var(--bolt-spacing-y-#{$size-name});
-        }
+        gap: var(--bolt-spacing-y-#{$size-name})
+          var(--bolt-spacing-x-#{$size-name});
       }
 
       @each $breakpoint in $bolt-breakpoints {
@@ -132,55 +115,19 @@
         ) {
           &.e-bolt-list--display-inline\@#{$breakpoint-name} {
             @include bolt-mq($breakpoint-name) {
-              gap: 0 var(--bolt-spacing-x-#{$size-name});
-
-              .e-bolt-list__item {
-                margin-bottom: var(--bolt-spacing-y-#{$size-name});
-              }
+              gap: var(--bolt-spacing-y-#{$size-name})
+                var(--bolt-spacing-x-#{$size-name});
             }
           }
           &.e-bolt-list--display-inline\@#{$breakpoint-name}.e-bolt-list--inset {
             @include bolt-mq($breakpoint-name) {
               gap: var(--bolt-spacing-x-#{$size-name}) 0;
-              // .e-bolt-list__item {
-              //   margin-bottom: 0;
-              // }
             }
           }
         }
       }
     }
   }
-
-  // @media not all and (min-resolution: 0.001dpcm) {
-  //   .e-bolt-list--spacing-#{$size-name}:not(.e-bolt-list--inset) {
-  //     &.e-bolt-list--display-inline,
-  //     &.e-bolt-list--display-flex {
-  //       width: calc(100% + var(--bolt-spacing-x-#{$size-name}) + 1px); // [4]
-  //     }
-
-  //     @each $breakpoint in $bolt-breakpoints {
-  //       $breakpoint-name: nth($breakpoint, 1);
-
-  //       @if (
-  //         $breakpoint-name !=
-  //           'large' and
-  //           $breakpoint-name !=
-  //           'xlarge' and
-  //           $breakpoint-name !=
-  //           'xxlarge'
-  //       ) {
-  //         &.e-bolt-list--display-inline\@#{$breakpoint-name} {
-  //           @include bolt-mq($breakpoint-name) {
-  //             width: calc(
-  //               100% + var(--bolt-spacing-x-#{$size-name}) + 1px
-  //             ); // [4]
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 // Separator Prop
@@ -197,11 +144,6 @@ $bolt-list-separator-styles: solid, dashed;
 }
 
 [class*='e-bolt-list--separator'] {
-  // &.e-bolt-list--display-block {
-  //   &:not(.e-bolt-list--last-item) {
-  //     border-bottom-width: 1px;
-  //   }
-  // }
   .e-bolt-list__item {
     &:not(.e-bolt-list__item:last-of-type) {
       border-bottom-width: 1px;
@@ -216,9 +158,6 @@ $bolt-list-separator-styles: solid, dashed;
         border-bottom-width: 0;
       }
     }
-    // &:not(.e-bolt-list--last-item) {
-    //   border-right-width: 1px;
-    // }
   }
 
   @each $breakpoint in $bolt-breakpoints {
@@ -243,14 +182,6 @@ $bolt-list-separator-styles: solid, dashed;
             }
           }
         }
-        // &:not(.e-bolt-list--last-item) {
-        //   border-bottom-width: 1px;
-
-        //   @include bolt-mq($breakpoint-name) {
-        //     border-right-width: 1px;
-        //     border-bottom-width: 0;
-        //   }
-        // }
       }
     }
   }
@@ -289,18 +220,6 @@ $bolt-list-separator-styles: solid, dashed;
           }
         }
       }
-      // &.c-bolt-list--spacing-#{$size-name} {
-      //   &:not(.c-bolt-list-item--last-item) {
-      //     &.c-bolt-list-item--display-block {
-      //       padding-bottom: var(--bolt-spacing-y-#{$size-name});
-      //     }
-
-      //     &.c-bolt-list-item--display-inline,
-      //     &.c-bolt-list-item--display-flex {
-      //       padding-right: var(--bolt-spacing-x-#{$size-name});
-      //     }
-      //   }
-      // }
 
       &:not(.e-bolt-list--inset) {
         @each $breakpoint in $bolt-breakpoints {
@@ -325,6 +244,87 @@ $bolt-list-separator-styles: solid, dashed;
                   }
                 }
               }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Align options
+$bolt-list-alignments: start, center, end, justify;
+
+@each $alignment in $bolt-list-alignments {
+  .e-bolt-list--align-#{$alignment} {
+    &.e-bolt-list--display-inline {
+      @if $alignment != center and $alignment != justify {
+        justify-content: flex-#{$alignment};
+      } @else if $alignment == justify {
+        justify-content: space-between;
+      } @else {
+        justify-content: #{$alignment};
+      }
+    }
+
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
+
+      @if (
+        $breakpoint-name !=
+          'large' and
+          $breakpoint-name !=
+          'xlarge' and
+          $breakpoint-name !=
+          'xxlarge'
+      ) {
+        &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+          @include bolt-mq($breakpoint-name) {
+            @if $alignment != center and $alignment != justify {
+              justify-content: flex-#{$alignment};
+            } @else if $alignment == justify {
+              justify-content: space-between;
+            } @else {
+              justify-content: #{$alignment};
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Valign options
+$bolt-list-valignments: start, center, end;
+
+@each $alignment in $bolt-list-valignments {
+  .e-bolt-list--valign-#{$alignment} {
+    &.e-bolt-list--display-inline,
+    &.e-bolt-list--display-flex {
+      @if $alignment != center {
+        align-items: flex-#{$alignment};
+      } @else {
+        align-items: #{$alignment};
+      }
+    }
+
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
+
+      @if (
+        $breakpoint-name !=
+          'large' and
+          $breakpoint-name !=
+          'xlarge' and
+          $breakpoint-name !=
+          'xxlarge'
+      ) {
+        &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+          @include bolt-mq($breakpoint-name) {
+            @if $alignment != center {
+              align-items: flex-#{$alignment};
+            } @else {
+              align-items: #{$alignment};
             }
           }
         }
@@ -359,7 +359,3 @@ $bolt-list-separator-styles: solid, dashed;
     }
   }
 }
-
-// .e-bolt-list--spacing-none {
-//   gap: 0;
-// }
