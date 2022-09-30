@@ -280,26 +280,21 @@ module.exports = function(apiConfig) {
       },
       plugins: [
         new WebpackBar(),
-        // new CopyPlugin(config.copy),
         new CopyPlugin([
-          { from: './src/images/**', to: 'images', flatten: true },
           {
-            from: `${config.rootDir}/docs-site/src/assets/images/**/*`,
-            to: `${config.rootDir}`,
+            from: path.join(__dirname, './src/images/**'),
+            to: path.join(__dirname, 'images'),
+            flatten: true,
+          },
+          {
+            from: path.join(
+              __dirname,
+              './../../../docs-site/src/assets/images',
+            ),
+            // to: 'images',
+            to: path.join(__dirname, '../../../www/build/images'),
           },
         ]),
-        // new CopyPlugin({
-        //   patterns: [
-        //     { from: './src/images/**', to: 'images', flatten: true },
-        //     { from: './docs-site/src/assets/images', to: './www/build/images' },
-        //   ],
-        // }),
-        // new CopyPlugin({
-        //   patterns: [
-        //     config.copy,
-        //     { from: './docs-site/src/assets/images', to: './www/build/images' },
-        //   ],
-        // }),
         new NoEmitPlugin(['css/pattern-lab.js']),
         new HardSourceWebpackPlugin({
           info: {
