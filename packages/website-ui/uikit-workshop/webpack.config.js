@@ -1,6 +1,5 @@
 // webpack.config.js
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
 const TerserPlugin = require('terser-webpack-plugin');
 const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -248,17 +247,19 @@ module.exports = function(apiConfig) {
       mode: config.prod ? 'production' : 'development',
       optimization: {
         minimize: config.prod,
-        occurrenceOrder: true,
-        namedChunks: true,
         removeAvailableModules: true,
         removeEmptyChunks: true,
         nodeEnv: 'production',
         mergeDuplicateChunks: true,
         concatenateModules: true,
+        chunkIds: 'named',
+        // chunkIds: 'total-size',
+        // moduleIds: 'size',
+
         splitChunks: {
           chunks: 'async',
           cacheGroups: {
-            vendors: {
+            defaultVendors: {
               test: /[\\/]node_modules[\\/]/,
               name: 'vendors',
               chunks: 'async',
@@ -282,20 +283,6 @@ module.exports = function(apiConfig) {
         new WebpackBar(),
         new CopyPlugin(config.copy),
         new NoEmitPlugin(['css/pattern-lab.js']),
-        new HardSourceWebpackPlugin({
-          info: {
-            level: 'warn',
-          },
-          // Clean up large, old caches automatically.
-          cachePrune: {
-            // Caches younger than `maxAge` are not considered for deletion. They must
-            // be at least this (default: 2 days) old in milliseconds.
-            maxAge: 2 * 24 * 60 * 60 * 1000,
-            // All caches together must be larger than `sizeThreshold` before any
-            // caches will be deleted. Together they must be at least 300MB in size
-            sizeThreshold: 300 * 1024 * 1024,
-          },
-        }),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
           config.watch
@@ -313,28 +300,28 @@ module.exports = function(apiConfig) {
             beforeEmit: false,
           },
         ),
-        new PrerenderSPAPlugin({
-          // Required - The path to the webpack-outputted app to prerender.
-          // staticDir: path.join(__dirname, 'dist'),
-          staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
-          // Required - Routes to render.
-          routes: ['/'],
-          postProcess(context) {
-            context.html = context.html.replace(
-              /<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi,
-              '',
-            );
-            return context;
-          },
-          renderer: new Renderer({
-            // Optional - The name of the property to add to the window object with the contents of `inject`.
-            injectProperty: '__PRERENDER_INJECTED',
-            // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
-            inject: {
-              foo: 'bar',
-            },
-          }),
-        }),
+        // new PrerenderSPAPlugin({
+        //   // Required - The path to the webpack-outputted app to prerender.
+        //   // staticDir: path.join(__dirname, 'dist'),
+        //   staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
+        //   // Required - Routes to render.
+        //   routes: ['/'],
+        //   postProcess(context) {
+        //     context.html = context.html.replace(
+        //       /<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi,
+        //       '',
+        //     );
+        //     return context;
+        //   },
+        //   renderer: new Renderer({
+        //     // Optional - The name of the property to add to the window object with the contents of `inject`.
+        //     injectProperty: '__PRERENDER_INJECTED',
+        //     // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
+        //     inject: {
+        //       foo: 'bar',
+        //     },
+        //   }),
+        // }),
         new HtmlWebpackPlugin({
           filename: '../index.html',
           template: path.resolve(__dirname, 'src/html/index.html'),
