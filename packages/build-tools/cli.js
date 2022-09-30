@@ -266,15 +266,6 @@ Environment: ${config.prod ? 'Production' : 'Development'}
         await updateConfig(options, program);
       });
 
-    // program
-    //   .command('img')
-    //   .alias('images')
-    //   .description('Image process')
-    //   .action(async options => {
-    //     await updateConfig(options, program);
-    //     require('./tasks/task-collections').images();
-    //   });
-
     program
       .command('webpack')
       .alias('wp')
