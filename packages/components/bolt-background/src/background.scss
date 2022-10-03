@@ -269,36 +269,108 @@ bolt-background {
   background-color: transparent !important;
 }
 
-/* DEPRECATED. Radial gradient is deprecated. Commented for future reference */
+:root,
+.t-bolt-gray-xlight {
+  --m-bolt-bg-highlight: var(--bolt-color-gray-xlight);
+  --m-bolt-bg-lowlight: var(--bolt-color-gray-light);
+}
 
-// .c-bolt-background__overlay--radial-gradient-fill {
-//   background-repeat: no-repeat;
-//   background-size: 100% 100%;
+.t-bolt-white {
+  --m-bolt-bg-highlight: var(--bolt-color-white);
+  --m-bolt-bg-lowlight: var(--bolt-color-gray-xlight);
+}
 
-//   &.c-bolt-background__overlay-fill-color--navy {
-//     background-image: radial-gradient(
-//         circle at 80vh 10vw,
-//         rgba(255, 255, 255, 0) 0%,
-//         rgba(4, 4, 4, 0.5) 100%,
-//         rgba(0, 0, 0, 0.5) 100%
-//       ),
-//       radial-gradient(
-//         circle at 80% 40%,
-//         var(--bolt-color-navy-light) 20%,
-//         var(--bolt-color-navy-dark) 60%
-//       );
-//     background-position: top right;
-//   }
+.t-bolt-black {
+  --m-bolt-bg-highlight: var(--bolt-color-gray-dark);
+  --m-bolt-bg-lowlight: var(--bolt-color-black);
+}
 
-//   &.c-bolt-background__overlay-fill-color--pink {
-//     background-image: radial-gradient(
-//       54% 190% at top -20% left 10%,
-//       var(--bolt-color-pink) 10%,
-//       var(--bolt-color-berry) 96%
-//     );
-//     background-position: top left;
-//   }
-// }
+.t-bolt-navy,
+.t-bolt-dark {
+  --m-bolt-bg-highlight: var(--bolt-color-navy-light);
+  --m-bolt-bg-lowlight: var(--bolt-color-navy-dark);
+}
+
+.t-bolt-navy-dark {
+  --m-bolt-bg-highlight: var(--bolt-color-navy);
+  --m-bolt-bg-lowlight: var(--bolt-color-navy-xdark);
+}
+
+.t-bolt-navy-light {
+  --m-bolt-bg-highlight: var(--bolt-color-navy-xlight);
+  --m-bolt-bg-lowlight: var(--bolt-color-navy-light);
+}
+
+.t-bolt-yellow {
+  --m-bolt-bg-highlight: var(--bolt-color-yellow);
+  --m-bolt-bg-lowlight: var(--bolt-color-yellow-dark);
+}
+
+.t-bolt-pink {
+  --m-bolt-bg-highlight: var(--bolt-color-pink);
+  --m-bolt-bg-lowlight: var(--bolt-color-berry);
+}
+
+.t-bolt-berry {
+  --m-bolt-bg-highlight: var(--bolt-color-berry);
+  --m-bolt-bg-lowlight: var(--bolt-color-wine);
+}
+
+.t-bolt-wine {
+  --m-bolt-bg-highlight: var(--bolt-color-wine);
+  --m-bolt-bg-lowlight: var(--bolt-color-black);
+}
+
+.t-bolt-violet {
+  --m-bolt-bg-highlight: var(--bolt-color-violet);
+  --m-bolt-bg-lowlight: var(--bolt-color-navy);
+}
+
+.t-bolt-orange {
+  --m-bolt-bg-highlight: var(--bolt-color-orange);
+  --m-bolt-bg-lowlight: var(--bolt-color-orange-dark);
+}
+
+.t-bolt-teal {
+  --m-bolt-bg-highlight: var(--bolt-color-teal);
+  --m-bolt-bg-lowlight: var(--bolt-color-teal-dark);
+}
+
+.c-bolt-background__overlay--radial-gradient-fill {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: radial-gradient(
+      circle at 80vh 10vw,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(4, 4, 4, 0.5) 100%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    radial-gradient(
+      circle at 80% 40%,
+      var(--m-bolt-bg-highlight) 20%,
+      var(--m-bolt-bg-lowlight) 60%
+    );
+  background-position: top right;
+  background-color: var(--m-bolt-bg);
+}
+
+.c-bolt-background__overlay--radial-gradient-reversed-fill {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: radial-gradient(
+      circle at 20vh 10vw,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(4, 4, 4, 0.5) 100%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    radial-gradient(
+      circle at 80% 40%,
+      var(--m-bolt-bg-highlight) 20%,
+      var(--m-bolt-bg-lowlight) 60%
+    );
+  background-position: top right;
+  background-color: var(--m-bolt-bg);
+}
 
 /* DEPRECATED. Linear gradient is deprecated. Commented for future reference */
 

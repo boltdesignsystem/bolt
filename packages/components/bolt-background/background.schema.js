@@ -45,7 +45,7 @@ module.exports = {
       type: 'string',
       description: 'Type of fill to use for the overlay.',
       default: 'solid',
-      enum: ['solid', 'gradient'],
+      enum: ['solid', 'gradient', 'radial-gradient'],
     },
     focal_point: {
       type: 'object',

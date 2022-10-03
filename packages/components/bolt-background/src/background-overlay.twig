@@ -5,12 +5,17 @@
   {% set focal_point = focalPoint %}
 {% endif %}
 
+{# Radial gradients do not support opacity. #}
+{% if fill == 'radial-gradient' %}
+  {% set opacity = 'full' %}
+{% endif %}
+
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute({}) %}
 
-{% set _is_reversed = focal_point and focal_point.horizontal == 'left' and this.data.fill.value == 'gradient' %}
-{% set fill_value = _is_reversed ? 'gradient-reversed' : this.data.fill.value %}
+{% set _is_reversed = focal_point and focal_point.horizontal == 'left' and this.data.fill.value in ['gradient', 'radial-gradient'] %}
+{% set fill_value = _is_reversed ? this.data.fill.value ~ '-reversed' : this.data.fill.value %}
 
 {% set classes = [
   'c-bolt-background__overlay',

@@ -1,4 +1,4 @@
-{% for fill in ['solid', 'gradient'] %}
+{% for fill in ['solid', 'gradient', 'radial-gradient'] %}
 <p>Fill: {{ fill|capitalize }}</p>
   {% set image %}
     {% include '@bolt-elements-image/image.twig' with {
