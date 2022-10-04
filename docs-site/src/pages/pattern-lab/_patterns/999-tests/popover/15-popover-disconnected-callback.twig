@@ -1,5 +1,3 @@
-<p>When you click on the Popover or the Tooltip custom JS will remove the component from the DOM. This test verifies that the disconnected callback fires on removal and the Popover/Tooltip disappears and is destroyed.</p>
-
 {% set trigger %}
   {% include '@bolt-elements-button/button.twig' with {
     content: 'This triggers a popover on hover',
@@ -21,27 +19,60 @@
   This is the content of the popover with a {{ link }}.
 {% endset %}
 
-<div class="js-test-tippy-disconnected">
+{% set popover %}
   {% include '@bolt-components-popover/popover.twig' with {
     trigger: trigger,
     trigger_event: 'hover',
     content: content,
   } only %}
-</div>
+{% endset %}
 
-<div class="js-test-tippy-disconnected">
-  {% set check_icon %}
-    <span class="u-bolt-color-success">
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'check-solid',
-        attributes: {
-          'aria-label': 'Yay',
-        }
-      } only %}
-    </span>
-  {% endset %}
+{% set check_icon %}
+  <span class="u-bolt-color-success">
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'check-solid',
+      attributes: {
+        'aria-label': 'Yay',
+      }
+    } only %}
+  </span>
+{% endset %}
+
+{% set tooltip %}
   {% include '@bolt-components-tooltip/tooltip.twig' with {
     trigger: check_icon,
     content: 'Solved',
   } only %}
-</div>
+{% endset %}
+
+<bolt-stack>
+  <p>When you click on the Popover or the Tooltip custom JS will remove the component from the DOM. This test verifies that the disconnected callback fires on removal and the Popover/Tooltip disappears and is destroyed.</p>
+
+  <div class="js-test-tippy-disconnected">
+    {{ popover }}
+  </div>
+
+  <div class="js-test-tippy-disconnected">
+    {{ tooltip }}
+  </div>
+</bolt-stack>
+
+<bolt-stack>
+  <p>This example shows a popover and a tooltip inside another web component which may trigger disconnectedCallback if the outer component loads last.</p>
+
+  <div class="js-test-tippy-disconnected">
+    {% include '@bolt-components-list/list.twig' with {
+      items: [
+        popover
+      ]
+    } only %}
+  </div>
+
+  <div class="js-test-tippy-disconnected">
+    {% include '@bolt-components-list/list.twig' with {
+      items: [
+        tooltip
+      ]
+    } only %}
+  </div>
+</bolt-stack>

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.4](https://github.com/boltdesignsystem/bolt/compare/v5.7.3...v5.7.4) (2022-09-27)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
+## [5.7.3](https://github.com/boltdesignsystem/bolt/compare/v5.7.2...v5.7.3) (2022-09-07)
+
+**Note:** Version bump only for package @bolt/starter-kit
+
+
+
+
+
 ## [5.7.2](https://github.com/boltdesignsystem/bolt/compare/v5.7.1...v5.7.2) (2022-08-30)
 
 **Note:** Version bump only for package @bolt/starter-kit
