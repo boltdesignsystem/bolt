@@ -3,9 +3,7 @@ const webpack = require('webpack');
 
 // Plugins/loaders
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch'); // Remove?
-const TerserPlugin = require('terser-webpack-plugin'); // Check for performance
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
@@ -294,22 +292,10 @@ async function createWebpackConfig(buildConfig) {
       ],
     },
     mode: config.prod ? 'production' : 'development',
+    cache: config.enableCache,
     optimization: {
       sideEffects: true,
       usedExports: true,
-      minimizer: config.prod
-        ? [
-            new TerserPlugin({
-              test: /\.m?js(\?.*)?$/i,
-              sourceMap: config.sourceMaps,
-              cache: true,
-              parallel: true,
-              terserOptions: {
-                safari10: true,
-              },
-            }),
-          ]
-        : [],
     },
     plugins: [
       // new SpriteLoaderPlugin({
@@ -330,12 +316,13 @@ async function createWebpackConfig(buildConfig) {
       new webpack.optimize.ModuleConcatenationPlugin(),
     );
 
-    // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
-    sharedWebpackConfig.plugins.push(
-      new OptimizeCssAssetsPlugin({
-        canPrint: config.verbosity > 2,
-        cssProcessor: require('cssnano'),
-        cssProcessorPluginOptions: {
+    sharedWebpackConfig.devtool =
+      config.sourceMaps === false ? false : 'hidden-source-map';
+    sharedWebpackConfig.optimization.minimize = true;
+    sharedWebpackConfig.optimization.minimizer = [
+      `...`,
+      new CssMinimizerPlugin({
+        minimizerOptions: {
           preset: [
             'default',
             {
@@ -349,11 +336,7 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
       }),
-    );
-
-    // @todo evaluate best source map approach for production builds -- particularly source-map vs hidden-source-map
-    sharedWebpackConfig.devtool =
-      config.sourceMaps === false ? false : 'hidden-source-map';
+    ];
   } else {
     // not prod
     // @todo fix source maps
@@ -491,27 +474,6 @@ async function createWebpackConfig(buildConfig) {
       ],
     },
   });
-
-  // cache mode significantly speeds up subsequent build times
-  if (config.enableCache) {
-    // webpackConfig.plugins.push(
-    //   new HardSourceWebpackPlugin({
-    //     info: {
-    //       level: 'warn',
-    //     },
-    //     cacheDirectory: path.join(process.cwd(), `./cache/webpack`),
-    //     // Clean up large, old caches automatically.
-    //     cachePrune: {
-    //       // Caches younger than `maxAge` are not considered for deletion. They must
-    //       // be at least this (default: 2 days) old in milliseconds.
-    //       maxAge: 2 * 24 * 60 * 60 * 1000,
-    //       // All caches together must be larger than `sizeThreshold` before any
-    //       // caches will be deleted. Together they must be at least 300MB in size
-    //       sizeThreshold: 300 * 1024 * 1024,
-    //     },
-    //   }),
-    // );
-  }
 
   let outputConfig = [];
 
