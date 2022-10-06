@@ -1,8 +1,2 @@
-module.exports = [
-  'last 2 Chrome versions',
-  'last 2 Safari versions',
-  'last 2 iOS versions',
-  'last 2 Edge versions',
-  'Firefox ESR',
-  'Edge 18',
-];
+// https://browsersl.ist/#q=%3E+2%25%2C+last+2+versions%2C+not+dead
+module.exports = ['> 2%', 'last 2 versions', 'Firefox ESR', 'not dead'];
