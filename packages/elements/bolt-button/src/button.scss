@@ -8,6 +8,7 @@
  * 2. `em` unit is used to make sure the spacing between icon and text is relative to the text's font-size.
  * 3. Offsets the white space around chevron icons' SVG files.
  * 4. Icon only button should be a square, the width and height must be of equal values.
+ * 5. https://stackoverflow.com/questions/57455245/how-to-i-solve-this-sass-interpolation-issue
  */
 
 .e-bolt-button {
@@ -130,7 +131,8 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
       }
     }
   } @else {
-    .e-bolt-button--#{$hierarchy-name} {
+    // [5]
+    .e-bolt-button--#{'' + $hierarchy-name} {
       --e-bolt-button-text-color: var(--m-bolt-link);
       --e-bolt-button-bg-color: transparent;
 
@@ -142,9 +144,10 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
   }
 
   @if $hierarchy-name == tertiary or $hierarchy-name == transparent {
-    button.e-bolt-button--#{$hierarchy-name},
-    a.e-bolt-button--#{$hierarchy-name},
-    input[type='file'].e-bolt-button--#{$hierarchy-name} {
+    // [5]
+    button.e-bolt-button--#{'' + $hierarchy-name},
+    a.e-bolt-button--#{'' + $hierarchy-name},
+    input[type='file'].e-bolt-button--#{'' + $hierarchy-name} {
       &:hover {
         transform: translate3d(0, 0, 0);
 
@@ -158,8 +161,9 @@ $_bolt-button-hierarchy: primary, secondary, tertiary, transparent;
   }
 
   @if $hierarchy-name == transparent {
-    button.e-bolt-button--#{$hierarchy-name},
-    a.e-bolt-button--#{$hierarchy-name} {
+    // [5]
+    button.e-bolt-button--#{'' + $hierarchy-name},
+    a.e-bolt-button--#{'' + $hierarchy-name} {
       &:hover {
         text-decoration: underline;
         text-decoration-thickness: 2px;
