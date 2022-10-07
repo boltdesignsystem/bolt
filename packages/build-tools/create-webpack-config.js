@@ -8,6 +8,7 @@ const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const npmSass = require('npm-sass'); // Remove?
 
 const merge = require('webpack-merge');
@@ -252,6 +253,13 @@ async function createWebpackConfig(buildConfig) {
                   },
                 },
                 {
+                  loader: 'svg-sprite-loader',
+                  options: {
+                    spriteFilename: svgPath =>
+                      `bolt-svg-sprite${svgPath.substr(-4)}`,
+                  },
+                },
+                {
                   loader: '@bolt/file-passthrough-loader',
                   options: {
                     name: 'icons/[name].[ext]',
@@ -298,13 +306,13 @@ async function createWebpackConfig(buildConfig) {
       usedExports: true,
     },
     plugins: [
-      // new SpriteLoaderPlugin({
-      //   plainSprite: true,
-      //   spriteAttrs: {
-      //     id: '__SVG_SPRITE_NODE__',
-      //     style: 'position: absolute; width: 0; height: 0',
-      //   },
-      // }),
+      new SpriteLoaderPlugin({
+        plainSprite: true,
+        spriteAttrs: {
+          id: '__SVG_SPRITE_NODE__',
+          style: 'position: absolute; width: 0; height: 0',
+        },
+      }),
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
       new webpack.NoEmitOnErrorsPlugin(), // ?
     ],
