@@ -247,10 +247,7 @@ async function createWebpackConfig(buildConfig) {
               use: [
                 {
                   loader: 'babel-loader',
-                  options: {
-                    babelrc: false,
-                    presets: [babelConfig],
-                  },
+                  options: babelConfig,
                 },
                 {
                   loader: 'svg-sprite-loader',
@@ -319,11 +316,6 @@ async function createWebpackConfig(buildConfig) {
   };
 
   if (config.prod) {
-    // https://webpack.js.org/plugins/module-concatenation-plugin/
-    sharedWebpackConfig.plugins.push(
-      new webpack.optimize.ModuleConcatenationPlugin(),
-    );
-
     sharedWebpackConfig.devtool =
       config.sourceMaps === false ? false : 'hidden-source-map';
     sharedWebpackConfig.optimization.minimize = true;
@@ -452,10 +444,7 @@ async function createWebpackConfig(buildConfig) {
           use: [
             {
               loader: 'babel-loader',
-              options: {
-                babelrc: false,
-                presets: [babelConfig],
-              },
+              options: babelConfig,
             },
           ],
         },

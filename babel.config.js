@@ -20,7 +20,6 @@ module.exports = {
         pragma: 'h',
         pragmaFrag: '"span"',
         throwIfNamespace: false,
-        useBuiltIns: false,
       },
     ],
   ],

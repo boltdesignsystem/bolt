@@ -1,6 +1,5 @@
 // webpack.config.js
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const CriticalCssPlugin = require('critical-css-webpack-plugin');
@@ -59,28 +58,13 @@ module.exports = function(apiConfig) {
             '@babel/preset-env',
             {
               targets: {
-                browsers: [
-                  // NOTE: I'm not using the `esmodules` target due to this issue:
-                  // https://github.com/babel/babel/issues/8809
-                  'last 2 Chrome versions',
-                  'last 2 Safari versions',
-                  'last 2 iOS versions',
-                  'last 2 Edge versions',
-                  'Firefox ESR',
-                  'Edge 18',
-                ],
+                browsers: require('@bolt/browserslist-config'),
               },
-              useBuiltIns: 'entry',
-              corejs: 3,
-              modules: false,
-              debug: false,
             },
           ],
         ],
         plugins: [
-          '@babel/plugin-proposal-optional-chaining',
-          ['@babel/plugin-proposal-decorators', { legacy: true }],
-          ['@babel/plugin-proposal-class-properties', { loose: true }],
+          ['@babel/plugin-proposal-decorators', { version: 'legacy' }],
           '@babel/plugin-syntax-jsx' /* [1] */,
           [
             '@babel/plugin-transform-react-jsx' /* [1] */,
@@ -88,7 +72,6 @@ module.exports = function(apiConfig) {
               pragma: 'h',
               pragmaFrag: 'Fragment',
               throwIfNamespace: false,
-              useBuiltIns: false,
             },
           ],
         ],
@@ -267,17 +250,6 @@ module.exports = function(apiConfig) {
             },
           },
         },
-        minimizer: config.prod
-          ? [
-              new TerserPlugin({
-                test: /\.m?js(\?.*)?$/i,
-                sourceMap: config.prod ? false : config.sourceMaps,
-                terserOptions: {
-                  safari10: true,
-                },
-              }),
-            ]
-          : [],
       },
       plugins: [
         new WebpackBar(),
