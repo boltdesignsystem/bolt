@@ -18,7 +18,6 @@ const deepmerge = require('deepmerge');
 
 // Unused
 const resolve = require('resolve');
-const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
