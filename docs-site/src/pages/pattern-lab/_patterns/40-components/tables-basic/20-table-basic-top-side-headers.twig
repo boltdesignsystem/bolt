@@ -2,12 +2,31 @@
 {% spaceless %}
   <bolt-ol>
     <bolt-li>The Table Basic component is designed to work with both Twig and vanilla HTML (Twig is the recommended method).</bolt-li>
+    <bolt-li>Refer to the <a href="{{ link['components-table-basic-top-header'] }}" class="e-bolt-text-link">Table Basic with Top Header</a> page for information on adding a top header.</bolt-li>
+    <bolt-li>Refer to the <a href="{{ link['components-table-basic-side-header'] }}" class="e-bolt-text-link">Table Basic with Side Header</a> page for information on adding a side header.</bolt-li>
+    <bolt-li><strong>HTML:</strong> To align the table columns correctly, include a <code>&lt;td&gt;</code> to the <code>&lt;thead&gt;</code> as the first cell.</bolt-li>
   </bolt-ol>
 {% endspaceless %}
 {% endset %}
 
 {% set demo %}
   {% include '@bolt-components-table-basic/table-basic.twig' with {
+    headers: {
+      top: {
+        cells: [
+          'Column 1',
+          'Column 2',
+          'Column 3',
+        ]
+      },
+      side: {
+        cells: [
+          'Row 1',
+          'Row 2',
+          'Row 3',
+        ]
+      }
+    },
     rows: [
       {
         cells: [
@@ -37,6 +56,22 @@
 {% set twig_markup %}
 {% verbatim %}
 {% include '@bolt-components-table-basic/table-basic.twig' with {
+  headers: {
+    top: {
+      cells: [
+        'Column 1',
+        'Column 2',
+        'Column 3',
+      ]
+    },
+    side: {
+      cells: [
+        'Row 1',
+        'Row 2',
+        'Row 3',
+      ]
+    }
+  },
   rows: [
     {
       cells: [
@@ -66,19 +101,30 @@
 
 {% set html_markup %}
 {% verbatim %}
-<table class="c-bolt-table-basic">
+<table class="c-bolt-table-basic c-bolt-table-basic--side-headers">
+  <thead>
+    <tr>
+      <td></td>
+      <th scope="col">Column 1</th>
+      <th scope="col">Column 2</th>
+      <th scope="col">Column 3</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
+      <th scope="row">Row 1</th>
       <td>R1C1</td>
       <td>R1C2</td>
       <td>R1C3</td>
     </tr>
     <tr>
+      <th scope="row">Row 2</th>
       <td>R2C1</td>
       <td>R2C2</td>
       <td>R2C3</td>
     </tr>
     <tr>
+      <th scope="row">Row 3</th>
       <td>R3C1</td>
       <td>R3C2</td>
       <td>R3C3</td>
@@ -89,8 +135,8 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Table Basic with Rows Only',
-  description: 'This is the most basic usage of the Table Basic component.',
+  title: 'Table Basic with Top and Side Headers',
+  description: 'A table that provides basic display options',
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,

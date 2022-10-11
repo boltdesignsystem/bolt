@@ -1,0 +1,213 @@
+{% set notes %}
+{% spaceless %}
+  <bolt-ol>
+    <bolt-li>The Table Basic component is designed to work with both Twig and vanilla HTML (Twig is the recommended method).</bolt-li>
+    <bolt-li>Refer to the <a href="{{ link['components-table-basic-headers-footers'] }}" class="e-bolt-text-link">Table Basic with Headers and Footer</a> page for information on adding the headers and footer.</bolt-li>
+    <bolt-li><strong>Twig:</strong> Use the <code>format</code> prop to update the table to display numeric data.</bolt-li>
+    <bolt-li><strong>HTML:</strong> Add a <code>c-bolt-table-basic--numeric</code> class to the <code>&lt;table&gt;</code> to style the side headers.</bolt-li>
+  </bolt-ol>
+{% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  {% set schema = bolt.data.components['@bolt-components-table'].schema %}
+
+  {% for format in schema.properties.format.enum %}
+    {% set format_table %}
+      <h3>{{ format|capitalize }} Format</h3>
+      {% include '@bolt-components-table-basic/table-basic.twig' with {
+        format: format,
+        headers: {
+          top: {
+            cells: [
+              'Pts',
+              'Reb',
+              'Ast',
+              'Stl',
+              'Blk',
+            ]
+          },
+          side: {
+            cells: [
+              'Michael Jordan',
+              'Toni Kukoc',
+              'Steve Kerr',
+              'Total',
+            ]
+          }
+        },
+        rows: [
+          {
+            cells: [
+              '70',
+              '10',
+              '2',
+              '5',
+              '1',
+            ]
+          },
+          {
+            cells: [
+              '21',
+              '15',
+              '10',
+              '3',
+              '4',
+            ]
+          },
+          {
+            cells: [
+              '5',
+              '2',
+              '20',
+              '5',
+              '0',
+            ]
+          }
+        ],
+        footer: {
+          cells: [
+            '91',
+            '27',
+            '32',
+            '13',
+            '5',
+          ]
+        }
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-stack/stack.twig' with {
+      content: format_table,
+      spacing: 'medium'
+    } only %}
+
+  {% endfor %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-table-basic/table-basic.twig' with {
+  format: 'numeric',
+  headers: {
+    top: {
+      cells: [
+        'Pts',
+        'Reb',
+        'Ast',
+        'Stl',
+        'Blk',
+      ]
+    },
+    side: {
+      cells: [
+        'Michael Jordan',
+        'Toni Kukoc',
+        'Steve Kerr',
+        'Total',
+      ]
+    }
+  },
+  rows: [
+    {
+      cells: [
+        '70',
+        '10',
+        '2',
+        '5',
+        '1',
+      ]
+    },
+    {
+      cells: [
+        '21',
+        '15',
+        '10',
+        '3',
+        '4',
+      ]
+    },
+    {
+      cells: [
+        '5',
+        '2',
+        '20',
+        '5',
+        '0',
+      ]
+    }
+  ],
+  footer: {
+    cells: [
+      '91',
+      '27',
+      '32',
+      '13',
+      '5',
+    ]
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<table class="c-bolt-table-basic c-bolt-table-basic--numeric c-bolt-table-basic--side-headers">
+  <thead>
+    <tr>
+      <td></td>
+      <th scope="col">Pts</th>
+      <th scope="col">Reb</th>
+      <th scope="col">Ast</th>
+      <th scope="col">Stl</th>
+      <th scope="col">Blk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Michael Jordan</th>
+      <td>70</td>
+      <td>10</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th scope="row">Toni Kukoc</th>
+      <td>21</td>
+      <td>15</td>
+      <td>10</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th scope="row">Steve Kerr</th>
+      <td>5</td>
+      <td>2</td>
+      <td>20</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Total</th>
+      <td>91</td>
+      <td>27</td>
+      <td>32</td>
+      <td>13</td>
+      <td>5</td>
+    </tr>
+  </tfoot>
+</table>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table Basic Numeric Formatting',
+  description: 'Updates the table display to best display numbers.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

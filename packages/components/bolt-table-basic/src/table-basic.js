@@ -21,7 +21,7 @@ export class BoltBasicTable {
   }
 }
 
-const BasicTables = document.querySelectorAll('.js-bolt-table-basic');
+const BasicTables = document.querySelectorAll('.c-bolt-table-basic');
 
 BasicTables.forEach(el => {
   const component = new BoltBasicTable(el);
