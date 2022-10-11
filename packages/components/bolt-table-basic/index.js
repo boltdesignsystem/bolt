@@ -1,1 +1,1 @@
-import(/* webpackChunkName: 'bolt-page-footer' */ './src/table-basic.js');
+import(/* webpackChunkName: 'bolt-table-basic' */ './src/table-basic.js');

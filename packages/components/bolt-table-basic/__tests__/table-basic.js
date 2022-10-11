@@ -191,4 +191,16 @@ describe('Bolt Table Basic Component Prop -', () => {
       await expect(results.html).toMatchSnapshot();
     });
   });
+
+  test(`caption`, async () => {
+    const results = await render(
+      '@bolt-components-table-basic/table-basic.twig',
+      {
+        ...fixtures.defaultData,
+        caption: 'This is a caption',
+      },
+    );
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
 });
