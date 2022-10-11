@@ -1,274 +1,378 @@
 {% set notes %}
 {% spaceless %}
   <bolt-ol>
-    <bolt-li></bolt-li>
+    <bolt-li>The Table Basic component is designed to work with both Twig and vanilla HTML.</bolt-li>
+    <bolt-li>It is recommended to use Twig whenever possible.</bolt-li>
+    <bolt-li>All options can be created with default HTML and CSS</bolt-li>
   </bolt-ol>
 {% endspaceless %}
 {% endset %}
 
 {% set demo %}
-  <h3>With Rows Only</h3>
-  {% include '@bolt-components-table-basic/table-basic.twig' with {
-    rows: [
-      {
-        cells: [
-          'R1C1',
-          'R1C2',
-          'R1C3',
-        ]
+  {% set rows_only %}
+    <h3>With Rows Only</h3>
+    {% include '@bolt-components-table-basic/table-basic.twig' with {
+      rows: [
+        {
+          cells: [
+            'R1C1',
+            'R1C2',
+            'R1C3',
+          ]
+        },
+        {
+          cells: [
+            'R2C1',
+            'R2C2',
+            'R2C3',
+          ]
+        },
+        {
+          cells: [
+            'R3C1',
+            'R3C2',
+            'R3C3',
+          ]
+        }
+      ],
+    } only %}
+  {% endset %}
+
+  {% set top_headers %}
+    <h3>With Top Headers</h3>
+    {% include '@bolt-components-table-basic/table-basic.twig' with {
+      headers: {
+        top: {
+          cells: [
+            'Column 1',
+            'Column 2',
+            'Column 3',
+          ]
+        },
       },
-      {
-        cells: [
-          'R2C1',
-          'R2C2',
-          'R2C3',
-        ]
+      rows: [
+        {
+          cells: [
+            'R1C1',
+            'R1C2',
+            'R1C3',
+          ]
+        },
+        {
+          cells: [
+            'R2C1',
+            'R2C2',
+            'R2C3',
+          ]
+        },
+        {
+          cells: [
+            'R3C1',
+            'R3C2',
+            'R3C3',
+          ]
+        }
+      ],
+    } only %}
+  {% endset %}
+
+  {% set side_headers %}
+    <h3>With Side Headers</h3>
+    {% include '@bolt-components-table-basic/table-basic.twig' with {
+      headers: {
+        side: {
+          cells: [
+            'Row 1',
+            'Row 2',
+            'Row 3',
+            'Footer',
+          ]
+        }
       },
-      {
+      rows: [
+        {
+          cells: [
+            'R1C1',
+            'R1C2',
+            'R1C3',
+          ]
+        },
+        {
+          cells: [
+            'R2C1',
+            'R2C2',
+            'R2C3',
+          ]
+        },
+        {
+          cells: [
+            'R3C1',
+            'R3C2',
+            'R3C3',
+          ]
+        }
+      ],
+    } only %}
+  {% endset %}
+
+  {% set all_headers %}
+    <h3>With Top and Side Headers</h3>
+    {% include '@bolt-components-table-basic/table-basic.twig' with {
+      headers: {
+        top: {
+          cells: [
+            'Column 1',
+            'Column 2',
+            'Column 3',
+          ]
+        },
+        side: {
+          cells: [
+            'Row 1',
+            'Row 2',
+            'Row 3',
+            'Footer',
+          ]
+        }
+      },
+      rows: [
+        {
+          cells: [
+            'R1C1',
+            'R1C2',
+            'R1C3',
+          ]
+        },
+        {
+          cells: [
+            'R2C1',
+            'R2C2',
+            'R2C3',
+          ]
+        },
+        {
+          cells: [
+            'R3C1',
+            'R3C2',
+            'R3C3',
+          ]
+        }
+      ],
+    } only %}
+  {% endset %}
+
+  {% set headers_footers %}
+    <h3>With Headers and Footer</h3>
+    {% include '@bolt-components-table-basic/table-basic.twig' with {
+      headers: {
+        top: {
+          cells: [
+            'Column 1',
+            'Column 2',
+            'Column 3',
+          ]
+        },
+        side: {
+          cells: [
+            'Row 1',
+            'Row 2',
+            'Row 3',
+            'Footer',
+          ]
+        }
+      },
+      rows: [
+        {
+          cells: [
+            'R1C1',
+            'R1C2',
+            'R1C3',
+          ]
+        },
+        {
+          cells: [
+            'R2C1',
+            'R2C2',
+            'R2C3',
+          ]
+        },
+        {
+          cells: [
+            'R3C1',
+            'R3C2',
+            'R3C3',
+          ]
+        }
+      ],
+      footer: {
         cells: [
-          'R3C1',
-          'R3C2',
-          'R3C3',
+          'FC1',
+          'FC2',
+          'FC3',
         ]
       }
-    ],
+    } only %}
+  {% endset %}
+
+  {% set real_example %}
+    <h3>Real Example</h3>
+    {% include '@bolt-components-table-basic/table-basic.twig' with {
+      first_col_fixed_width: true,
+      headers: {
+        top: {
+          cells: [
+            'Item number',
+            'Description',
+            'Assemblies',
+          ]
+        },
+        side: {
+          cells: [
+            'Build 2.0.1.0 — SR-49969',
+            {
+              content: 'Build 1.1.360 — SR-44891',
+              attributes: {
+                rowspan: 2,
+              }
+            },
+            {},
+            'Build 1.1.354 — SR-44889',
+          ]
+        }
+      },
+      rows: [
+        {
+          cells: [
+            'SR-49941',
+            'This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.',
+            'OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe',
+          ]
+        },
+        {
+          cells: [
+            'SR-44869',
+            'This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.',
+            'OpenSpan.Updater.Git.dll',
+          ]
+        },
+        {
+          cells: [
+            'SR-43163',
+            'This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.',
+            'OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe',
+          ]
+        },
+        {
+          cells: [
+            'SR-44850',
+            'This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.',
+            'ManagedOpenSsl.dll',
+          ]
+        },
+      ],
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: rows_only,
+    spacing: 'medium'
   } only %}
 
-  <h3>With Top Headers</h3>
-  {% include '@bolt-components-table-basic/table-basic.twig' with {
-    headers: {
-      top: {
-        cells: [
-          'Column 1',
-          'Column 2',
-          'Column 3',
-        ]
-      },
-    },
-    rows: [
-      {
-        cells: [
-          'R1C1',
-          'R1C2',
-          'R1C3',
-        ]
-      },
-      {
-        cells: [
-          'R2C1',
-          'R2C2',
-          'R2C3',
-        ]
-      },
-      {
-        cells: [
-          'R3C1',
-          'R3C2',
-          'R3C3',
-        ]
-      }
-    ],
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: top_headers,
+    spacing: 'medium'
   } only %}
 
-  <h3>With Side Headers</h3>
-  {% include '@bolt-components-table-basic/table-basic.twig' with {
-    headers: {
-      side: {
-        cells: [
-          'Row 1',
-          'Row 2',
-          'Row 3',
-          'Footer',
-        ]
-      }
-    },
-    rows: [
-      {
-        cells: [
-          'R1C1',
-          'R1C2',
-          'R1C3',
-        ]
-      },
-      {
-        cells: [
-          'R2C1',
-          'R2C2',
-          'R2C3',
-        ]
-      },
-      {
-        cells: [
-          'R3C1',
-          'R3C2',
-          'R3C3',
-        ]
-      }
-    ],
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: side_headers,
+    spacing: 'medium'
   } only %}
 
-  <h3>With Top and Side Headers</h3>
-  {% include '@bolt-components-table-basic/table-basic.twig' with {
-    headers: {
-      top: {
-        cells: [
-          'Column 1',
-          'Column 2',
-          'Column 3',
-        ]
-      },
-      side: {
-        cells: [
-          'Row 1',
-          'Row 2',
-          'Row 3',
-          'Footer',
-        ]
-      }
-    },
-    rows: [
-      {
-        cells: [
-          'R1C1',
-          'R1C2',
-          'R1C3',
-        ]
-      },
-      {
-        cells: [
-          'R2C1',
-          'R2C2',
-          'R2C3',
-        ]
-      },
-      {
-        cells: [
-          'R3C1',
-          'R3C2',
-          'R3C3',
-        ]
-      }
-    ],
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: all_headers,
+    spacing: 'medium'
   } only %}
 
-  <h3>With Headers and Footer</h3>
-  {% include '@bolt-components-table-basic/table-basic.twig' with {
-    headers: {
-      top: {
-        cells: [
-          'Column 1',
-          'Column 2',
-          'Column 3',
-        ]
-      },
-      side: {
-        cells: [
-          'Row 1',
-          'Row 2',
-          'Row 3',
-          'Footer',
-        ]
-      }
-    },
-    rows: [
-      {
-        cells: [
-          'R1C1',
-          'R1C2',
-          'R1C3',
-        ]
-      },
-      {
-        cells: [
-          'R2C1',
-          'R2C2',
-          'R2C3',
-        ]
-      },
-      {
-        cells: [
-          'R3C1',
-          'R3C2',
-          'R3C3',
-        ]
-      }
-    ],
-    footer: {
-      cells: [
-        'FC1',
-        'FC2',
-        'FC3',
-      ]
-    }
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: headers_footers,
+    spacing: 'medium'
   } only %}
 
-  <h3>Real Example</h3>
-  {% include '@bolt-components-table-basic/table-basic.twig' with {
-    first_col_fixed_width: true,
-    headers: {
-      top: {
-        cells: [
-          'Item number',
-          'Description',
-          'Assemblies',
-        ]
-      },
-      side: {
-        cells: [
-          'Build 2.0.1.0 — SR-49969',
-          {
-            content: 'Build 1.1.360 — SR-44891',
-            attributes: {
-              rowspan: 2,
-            }
-          },
-          {},
-          'Build 1.1.354 — SR-44889',
-        ]
-      }
-    },
-    rows: [
-      {
-        cells: [
-          'SR-49941',
-          'This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.',
-          'OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe',
-        ]
-      },
-      {
-        cells: [
-          'SR-44869',
-          'This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.',
-          'OpenSpan.Updater.Git.dll',
-        ]
-      },
-      {
-        cells: [
-          'SR-43163',
-          'This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.',
-          'OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe',
-        ]
-      },
-      {
-        cells: [
-          'SR-44850',
-          'This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.',
-          'ManagedOpenSsl.dll',
-        ]
-      },
-    ],
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: real_example,
+    spacing: 'medium'
   } only %}
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
-Verbatim
+{% include '@bolt-components-table-basic/table-basic.twig' with {
+  rows: [
+    {
+      cells: [
+        'R1C1',
+        'R1C2',
+        'R1C3',
+      ]
+    },
+    {
+      cells: [
+        'R2C1',
+        'R2C2',
+        'R2C3',
+      ]
+    },
+    {
+      cells: [
+        'R3C1',
+        'R3C2',
+        'R3C3',
+      ]
+    }
+  ],
+} only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-Verbatim
+<table class="js-bolt-table-basic c-bolt-table-basic">
+  <tbody>
+    <tr>
+      <td>
+                        R1C1
+                    </td>
+                            <td>
+                        R1C2
+                    </td>
+                            <td>
+                        R1C3
+                    </td>
+            </tr>
+        <tr>
+                                      <td>
+                        R2C1
+                    </td>
+                            <td>
+                        R2C2
+                    </td>
+                            <td>
+                        R2C3
+                    </td>
+            </tr>
+        <tr>
+                                      <td>
+                        R3C1
+                    </td>
+                            <td>
+                        R3C2
+                    </td>
+                            <td>
+                        R3C3
+                    </td>
+            </tr>
+  </tbody>
+</table>
 {% endverbatim %}
 {% endset %}
 

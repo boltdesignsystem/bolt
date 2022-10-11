@@ -1,0 +1,69 @@
+{% set notes %}
+{% spaceless %}
+  <bolt-ol>
+    <bolt-li></bolt-li>
+  </bolt-ol>
+{% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  <h3>Set column widths to be flexible.</h3>
+  {% include '@bolt-components-table-basic/table-basic.twig' with {
+    rows: [
+      {
+        cells: [
+          'attributes',
+          '1',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>object</code>',
+        ]
+      },
+      {
+        cells: [
+          'headers',
+          '2',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>object</code>',
+        ]
+      },
+      {
+        cells: [
+          'rows',
+          '3',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>array</code>',
+        ]
+      },
+      {
+        cells: [
+          'format',
+          '4',
+          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+          '<code>string</code>',
+        ]
+      },
+    ],
+    caption: "This is a caption to this table"
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+Verbatim
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+Verbatim
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table Basic Fixed Width for First Column',
+  description: 'A table with the firsts column matching the width of the content',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
