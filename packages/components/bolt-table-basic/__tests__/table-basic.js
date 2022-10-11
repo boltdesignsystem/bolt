@@ -57,6 +57,17 @@ beforeAll(async () => {
     },
   };
 
+  const bothHeadersData = {
+    headers: {
+      top: {
+        cells: ['Column 1', 'Column 2', 'Column 3'],
+      },
+      side: {
+        cells: ['Row 1', 'Row 2', 'Row 3', 'Footer'],
+      },
+    },
+  };
+
   const footerData = {
     footer: {
       cells: ['FC1', 'FC2', 'FC3'],
@@ -67,6 +78,7 @@ beforeAll(async () => {
     defaultData,
     headerData,
     sideHeaderData,
+    bothHeadersData,
     footerData,
   };
 });
@@ -82,6 +94,43 @@ describe('Bolt Table Basic', () => {
     await expect(results.ok).toBe(true);
     await expect(results.html).toMatchSnapshot();
   });
+
+  test(`top header table basic`, async () => {
+    const results = await render(
+      '@bolt-components-table-basic/table-basic.twig',
+      {
+        ...fixtures.defaultData,
+        ...fixtures.headerData,
+      },
+    );
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  test(`side header table basic`, async () => {
+    const results = await render(
+      '@bolt-components-table-basic/table-basic.twig',
+      {
+        ...fixtures.defaultData,
+        ...fixtures.sideHeaderData,
+      },
+    );
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
+  test(`footer table basic`, async () => {
+    const results = await render(
+      '@bolt-components-table-basic/table-basic.twig',
+      {
+        ...fixtures.defaultData,
+        ...fixtures.bothHeadersData,
+        ...fixtures.footerData,
+      },
+    );
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
 });
 
 describe('Bolt Table Basic Component Prop -', () => {
@@ -92,6 +141,8 @@ describe('Bolt Table Basic Component Prop -', () => {
         '@bolt-components-table-basic/table-basic.twig',
         {
           ...fixtures.defaultData,
+          ...fixtures.bothHeadersData,
+          ...fixtures.footerData,
           format: option,
         },
       );
@@ -105,6 +156,7 @@ describe('Bolt Table Basic Component Prop -', () => {
       '@bolt-components-table-basic/table-basic.twig',
       {
         ...fixtures.defaultData,
+        ...fixtures.sideHeaderData,
         borderless: true,
       },
     );
@@ -117,6 +169,7 @@ describe('Bolt Table Basic Component Prop -', () => {
       '@bolt-components-table-basic/table-basic.twig',
       {
         ...fixtures.defaultData,
+        ...fixtures.headerData,
         fixed_width_table: true,
       },
     );
@@ -130,6 +183,7 @@ describe('Bolt Table Basic Component Prop -', () => {
         '@bolt-components-table-basic/table-basic.twig',
         {
           ...fixtures.defaultData,
+          ...fixtures.headerData,
           fixed_width_columns: option,
         },
       );

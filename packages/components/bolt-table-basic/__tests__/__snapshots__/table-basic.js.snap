@@ -1,9 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Bolt Table Basic Component Prop - borderless: true 1`] = `
-<table class="c-bolt-table-basic c-bolt-table-basic--borderless">
+<table class="c-bolt-table-basic c-bolt-table-basic--borderless c-bolt-table-basic--side-headers">
   <tbody>
     <tr>
+      <th scope="row">
+        Row 1
+      </th>
       <td>
         R1C1
       </td>
@@ -15,6 +18,9 @@ exports[`Bolt Table Basic Component Prop - borderless: true 1`] = `
       </td>
     </tr>
     <tr>
+      <th scope="row">
+        Row 2
+      </th>
       <td>
         R2C1
       </td>
@@ -26,6 +32,9 @@ exports[`Bolt Table Basic Component Prop - borderless: true 1`] = `
       </td>
     </tr>
     <tr>
+      <th scope="row">
+        Row 3
+      </th>
       <td>
         R3C1
       </td>
@@ -42,6 +51,19 @@ exports[`Bolt Table Basic Component Prop - borderless: true 1`] = `
 
 exports[`Bolt Table Basic Component Prop - fixed_width_columns items: first 1`] = `
 <table class="c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--first">
+  <thead>
+    <tr>
+      <th scope="col">
+        Column 1
+      </th>
+      <th scope="col">
+        Column 2
+      </th>
+      <th scope="col">
+        Column 3
+      </th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
       <td>
@@ -82,6 +104,19 @@ exports[`Bolt Table Basic Component Prop - fixed_width_columns items: first 1`] 
 
 exports[`Bolt Table Basic Component Prop - fixed_width_columns items: first-two 1`] = `
 <table class="c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--first-two">
+  <thead>
+    <tr>
+      <th scope="col">
+        Column 1
+      </th>
+      <th scope="col">
+        Column 2
+      </th>
+      <th scope="col">
+        Column 3
+      </th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
       <td>
@@ -122,6 +157,19 @@ exports[`Bolt Table Basic Component Prop - fixed_width_columns items: first-two 
 
 exports[`Bolt Table Basic Component Prop - fixed_width_columns items: none 1`] = `
 <table class="c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--none">
+  <thead>
+    <tr>
+      <th scope="col">
+        Column 1
+      </th>
+      <th scope="col">
+        Column 2
+      </th>
+      <th scope="col">
+        Column 3
+      </th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
       <td>
@@ -162,6 +210,19 @@ exports[`Bolt Table Basic Component Prop - fixed_width_columns items: none 1`] =
 
 exports[`Bolt Table Basic Component Prop - fixed_width_columns items: second 1`] = `
 <table class="c-bolt-table-basic c-bolt-table-basic--fixed-width-columns--second">
+  <thead>
+    <tr>
+      <th scope="col">
+        Column 1
+      </th>
+      <th scope="col">
+        Column 2
+      </th>
+      <th scope="col">
+        Column 3
+      </th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
       <td>
@@ -202,6 +263,19 @@ exports[`Bolt Table Basic Component Prop - fixed_width_columns items: second 1`]
 
 exports[`Bolt Table Basic Component Prop - fixed_width_table: true 1`] = `
 <table class="c-bolt-table-basic c-bolt-table-basic--fixed-width-table">
+  <thead>
+    <tr>
+      <th scope="col">
+        Column 1
+      </th>
+      <th scope="col">
+        Column 2
+      </th>
+      <th scope="col">
+        Column 3
+      </th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
       <td>
@@ -241,9 +315,27 @@ exports[`Bolt Table Basic Component Prop - fixed_width_table: true 1`] = `
 `;
 
 exports[`Bolt Table Basic Component Prop - format items: numeric 1`] = `
-<table class="c-bolt-table-basic c-bolt-table-basic--numeric">
+<table class="c-bolt-table-basic c-bolt-table-basic--numeric c-bolt-table-basic--side-headers">
+  <thead>
+    <tr>
+      <td>
+      </td>
+      <th scope="col">
+        Column 1
+      </th>
+      <th scope="col">
+        Column 2
+      </th>
+      <th scope="col">
+        Column 3
+      </th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
+      <th scope="row">
+        Row 1
+      </th>
       <td>
         R1C1
       </td>
@@ -255,6 +347,9 @@ exports[`Bolt Table Basic Component Prop - format items: numeric 1`] = `
       </td>
     </tr>
     <tr>
+      <th scope="row">
+        Row 2
+      </th>
       <td>
         R2C1
       </td>
@@ -266,6 +361,9 @@ exports[`Bolt Table Basic Component Prop - format items: numeric 1`] = `
       </td>
     </tr>
     <tr>
+      <th scope="row">
+        Row 3
+      </th>
       <td>
         R3C1
       </td>
@@ -277,13 +375,47 @@ exports[`Bolt Table Basic Component Prop - format items: numeric 1`] = `
       </td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <th>
+        Footer
+      </th>
+      <td>
+        FC1
+      </td>
+      <td>
+        FC2
+      </td>
+      <td>
+        FC3
+      </td>
+    </tr>
+  </tfoot>
 </table>
 `;
 
 exports[`Bolt Table Basic Component Prop - format items: regular 1`] = `
-<table class="c-bolt-table-basic">
+<table class="c-bolt-table-basic c-bolt-table-basic--side-headers">
+  <thead>
+    <tr>
+      <td>
+      </td>
+      <th scope="col">
+        Column 1
+      </th>
+      <th scope="col">
+        Column 2
+      </th>
+      <th scope="col">
+        Column 3
+      </th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
+      <th scope="row">
+        Row 1
+      </th>
       <td>
         R1C1
       </td>
@@ -295,6 +427,9 @@ exports[`Bolt Table Basic Component Prop - format items: regular 1`] = `
       </td>
     </tr>
     <tr>
+      <th scope="row">
+        Row 2
+      </th>
       <td>
         R2C1
       </td>
@@ -306,6 +441,9 @@ exports[`Bolt Table Basic Component Prop - format items: regular 1`] = `
       </td>
     </tr>
     <tr>
+      <th scope="row">
+        Row 3
+      </th>
       <td>
         R3C1
       </td>
@@ -317,11 +455,209 @@ exports[`Bolt Table Basic Component Prop - format items: regular 1`] = `
       </td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <th>
+        Footer
+      </th>
+      <td>
+        FC1
+      </td>
+      <td>
+        FC2
+      </td>
+      <td>
+        FC3
+      </td>
+    </tr>
+  </tfoot>
 </table>
 `;
 
 exports[`Bolt Table Basic default 1`] = `
 <table class="c-bolt-table-basic">
+  <tbody>
+    <tr>
+      <td>
+        R1C1
+      </td>
+      <td>
+        R1C2
+      </td>
+      <td>
+        R1C3
+      </td>
+    </tr>
+    <tr>
+      <td>
+        R2C1
+      </td>
+      <td>
+        R2C2
+      </td>
+      <td>
+        R2C3
+      </td>
+    </tr>
+    <tr>
+      <td>
+        R3C1
+      </td>
+      <td>
+        R3C2
+      </td>
+      <td>
+        R3C3
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Bolt Table Basic footer table basic 1`] = `
+<table class="c-bolt-table-basic c-bolt-table-basic--side-headers">
+  <thead>
+    <tr>
+      <td>
+      </td>
+      <th scope="col">
+        Column 1
+      </th>
+      <th scope="col">
+        Column 2
+      </th>
+      <th scope="col">
+        Column 3
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">
+        Row 1
+      </th>
+      <td>
+        R1C1
+      </td>
+      <td>
+        R1C2
+      </td>
+      <td>
+        R1C3
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">
+        Row 2
+      </th>
+      <td>
+        R2C1
+      </td>
+      <td>
+        R2C2
+      </td>
+      <td>
+        R2C3
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">
+        Row 3
+      </th>
+      <td>
+        R3C1
+      </td>
+      <td>
+        R3C2
+      </td>
+      <td>
+        R3C3
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>
+        Footer
+      </th>
+      <td>
+        FC1
+      </td>
+      <td>
+        FC2
+      </td>
+      <td>
+        FC3
+      </td>
+    </tr>
+  </tfoot>
+</table>
+`;
+
+exports[`Bolt Table Basic side header table basic 1`] = `
+<table class="c-bolt-table-basic c-bolt-table-basic--side-headers">
+  <tbody>
+    <tr>
+      <th scope="row">
+        Row 1
+      </th>
+      <td>
+        R1C1
+      </td>
+      <td>
+        R1C2
+      </td>
+      <td>
+        R1C3
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">
+        Row 2
+      </th>
+      <td>
+        R2C1
+      </td>
+      <td>
+        R2C2
+      </td>
+      <td>
+        R2C3
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">
+        Row 3
+      </th>
+      <td>
+        R3C1
+      </td>
+      <td>
+        R3C2
+      </td>
+      <td>
+        R3C3
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Bolt Table Basic top header table basic 1`] = `
+<table class="c-bolt-table-basic">
+  <thead>
+    <tr>
+      <th scope="col">
+        Column 1
+      </th>
+      <th scope="col">
+        Column 2
+      </th>
+      <th scope="col">
+        Column 3
+      </th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
       <td>
