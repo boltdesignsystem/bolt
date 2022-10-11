@@ -24,7 +24,7 @@ Then pass it into the component:
 
 ```
 {% include '@bolt-components-image/image.twig' with {
-  src: "/images/placeholders/tout-4x3-climber.jpg",
+  src: "/images/placeholders/16x9.jpg",
   alt: "A Rock Climber",
   imageAttributes: classes,
 } only %}
