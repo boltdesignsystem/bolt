@@ -184,11 +184,6 @@ async function createWebpackConfig(buildConfig) {
         '.tsx',
         '.jpg',
       ],
-      alias: {
-        react: 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat',
-      },
     },
     module: {
       rules: [
