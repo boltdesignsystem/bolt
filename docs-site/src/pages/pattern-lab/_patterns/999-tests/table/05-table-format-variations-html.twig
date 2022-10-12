@@ -1,0 +1,341 @@
+{% set main_content %}
+  <h3>Regular Format</h3>
+  {% include '@bolt-elements-table/table.twig' with {
+    format: 'regular',
+    headers: {
+      top: {
+        cells: [
+          'Pts',
+          'Reb',
+          'Ast',
+          'Stl',
+          'Blk',
+        ]
+      },
+      side: {
+        cells: [
+          'Michael Jordan',
+          'Toni Kukoc',
+          'Steve Kerr',
+          'Total',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          '70',
+          '10',
+          '2',
+          '5',
+          '1',
+        ]
+      },
+      {
+        cells: [
+          '21',
+          '15',
+          '10',
+          '3',
+          '4',
+        ]
+      },
+      {
+        cells: [
+          '5',
+          '2',
+          '20',
+          '5',
+          '0',
+        ]
+      }
+    ],
+    footer: {
+      cells: [
+        '91',
+        '27',
+        '32',
+        '13',
+        '5',
+      ]
+    }
+  } only %}
+
+  <h3>Regular Format (HTML)</h3>
+
+  <table class="e-bolt-table">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">Pts</th>
+        <th scope="col">Reb</th>
+        <th scope="col">Ast</th>
+        <th scope="col">Stl</th>
+        <th scope="col">Blk</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Michael Jordan</th>
+        <td>70</td>
+        <td>10</td>
+        <td>2</td>
+        <td>5</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th scope="row">Toni Kukoc</th>
+        <td>21</td>
+        <td>15</td>
+        <td>10</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <th scope="row">Steve Kerr</th>
+        <td>5</td>
+        <td>2</td>
+        <td>20</td>
+        <td>5</td>
+        <td>0</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <td>91</td>
+        <td>27</td>
+        <td>32</td>
+        <td>13</td>
+        <td>5</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <h3>Regular Format (HTML/no tbody)</h3>
+
+  <table class="e-bolt-table">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">Pts</th>
+        <th scope="col">Reb</th>
+        <th scope="col">Ast</th>
+        <th scope="col">Stl</th>
+        <th scope="col">Blk</th>
+      </tr>
+    </thead>
+    <tr>
+      <th scope="row">Michael Jordan</th>
+      <td>70</td>
+      <td>10</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th scope="row">Toni Kukoc</th>
+      <td>21</td>
+      <td>15</td>
+      <td>10</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th scope="row">Steve Kerr</th>
+      <td>5</td>
+      <td>2</td>
+      <td>20</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <td>91</td>
+        <td>27</td>
+        <td>32</td>
+        <td>13</td>
+        <td>5</td>
+      </tr>
+    </tfoot>
+  </table>
+
+
+
+
+
+
+
+
+
+
+
+<h3>Numeric Format</h3>
+  {% include '@bolt-elements-table/table.twig' with {
+    format: 'numeric',
+    headers: {
+      top: {
+        cells: [
+          'Pts',
+          'Reb',
+          'Ast',
+          'Stl',
+          'Blk',
+        ]
+      },
+      side: {
+        cells: [
+          'Michael Jordan',
+          'Toni Kukoc',
+          'Steve Kerr',
+          'Total',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          '70',
+          '10',
+          '2',
+          '5',
+          '1',
+        ]
+      },
+      {
+        cells: [
+          '21',
+          '15',
+          '10',
+          '3',
+          '4',
+        ]
+      },
+      {
+        cells: [
+          '5',
+          '2',
+          '20',
+          '5',
+          '0',
+        ]
+      }
+    ],
+    footer: {
+      cells: [
+        '91',
+        '27',
+        '32',
+        '13',
+        '5',
+      ]
+    }
+  } only %}
+
+  <h3>Numeric Format (HTML)</h3>
+
+  <table class="e-bolt-table e-bolt-table--numeric">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">Pts</th>
+        <th scope="col">Reb</th>
+        <th scope="col">Ast</th>
+        <th scope="col">Stl</th>
+        <th scope="col">Blk</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Michael Jordan</th>
+        <td>70</td>
+        <td>10</td>
+        <td>2</td>
+        <td>5</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th scope="row">Toni Kukoc</th>
+        <td>21</td>
+        <td>15</td>
+        <td>10</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <th scope="row">Steve Kerr</th>
+        <td>5</td>
+        <td>2</td>
+        <td>20</td>
+        <td>5</td>
+        <td>0</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <td>91</td>
+        <td>27</td>
+        <td>32</td>
+        <td>13</td>
+        <td>5</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <h3>Numeric Format (HTML/no tbody)</h3>
+
+  <table class="e-bolt-table e-bolt-table--numeric">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">Pts</th>
+        <th scope="col">Reb</th>
+        <th scope="col">Ast</th>
+        <th scope="col">Stl</th>
+        <th scope="col">Blk</th>
+      </tr>
+    </thead>
+    <tr>
+      <th scope="row">Michael Jordan</th>
+      <td>70</td>
+      <td>10</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th scope="row">Toni Kukoc</th>
+      <td>21</td>
+      <td>15</td>
+      <td>10</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th scope="row">Steve Kerr</th>
+      <td>5</td>
+      <td>2</td>
+      <td>20</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <td>91</td>
+        <td>27</td>
+        <td>32</td>
+        <td>13</td>
+        <td>5</td>
+      </tr>
+    </tfoot>
+  </table>
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}

@@ -1,0 +1,539 @@
+{% set main_content %}
+  <h3>Real Example</h3>
+  {% include '@bolt-elements-table/table.twig' with {
+    headers: {
+      top: {
+        cells: [
+          {
+            content: 'Item number',
+          },
+          'Description',
+          'Assemblies',
+        ]
+      },
+      side: {
+        cells: [
+          'Build 2.0.1.0 — SR-49969',
+          {
+            content: 'Build 1.1.360 — SR-44891',
+            attributes: {
+              rowspan: 2,
+            }
+          },
+          {},
+          'Build 1.1.354 — SR-44889',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          'SR-49941',
+          'This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.',
+          'OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe',
+        ]
+      },
+      {
+        cells: [
+          'SR-44869',
+          'This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.',
+          'OpenSpan.Updater.Git.dll',
+        ]
+      },
+      {
+        cells: [
+          'SR-43163',
+          'This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.',
+          'OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe',
+        ]
+      },
+      {
+        cells: [
+          'SR-44850',
+          'This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.',
+          'ManagedOpenSsl.dll',
+        ]
+      },
+    ],
+  } only %}
+
+  <h3>Real Example (HTML)</h3>
+
+  <table class="e-bolt-table">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">Item number</th>
+        <th scope="col"> Description</th>
+        <th scope="col">Assemblies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Build 2.0.1.0 — SR-49969</th>
+        <td>SR-49941</td>
+        <td>This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.</td>
+        <td>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe</td>
+      </tr>
+      <tr>
+        <th rowspan="2" scope="row">Build 1.1.360 — SR-44891</th>
+        <td>SR-44869</td>
+        <td>This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.</td>
+        <td>OpenSpan.Updater.Git.dll</td>
+      </tr>
+      <tr>
+        <td>SR-43163</td>
+        <td>This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.</td>
+        <td>OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe</td>
+      </tr>
+      <tr>
+        <th scope="row">Build 1.1.354 — SR-44889</th>
+        <td>SR-44850</td>
+        <td>This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.</td>
+        <td>ManagedOpenSsl.dll</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Real Example (HTML/no tbody)</h3>
+
+  <table class="e-bolt-table">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">Item number</th>
+        <th scope="col"> Description</th>
+        <th scope="col">Assemblies</th>
+      </tr>
+    </thead>
+    <tr>
+      <th scope="row">Build 2.0.1.0 — SR-49969</th>
+      <td>SR-49941</td>
+      <td>This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.</td>
+      <td>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe</td>
+    </tr>
+    <tr>
+      <th rowspan="2" scope="row">Build 1.1.360 — SR-44891</th>
+      <td>SR-44869</td>
+      <td>This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.</td>
+      <td>OpenSpan.Updater.Git.dll</td>
+    </tr>
+    <tr>
+      <td>SR-43163</td>
+      <td>This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.</td>
+      <td>OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe</td>
+    </tr>
+    <tr>
+      <th scope="row">Build 1.1.354 — SR-44889</th>
+      <td>SR-44850</td>
+      <td>This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.</td>
+      <td>ManagedOpenSsl.dll</td>
+    </tr>
+  </table>
+
+
+  <h3>Real Example. Set the width of the first column to be as wide as the longest text.</h3>
+  {% include '@bolt-elements-table/table.twig' with {
+    fixed_width_columns: 'first',
+    headers: {
+      top: {
+        cells: [
+          {
+            content: 'Item number',
+          },
+          'Description',
+          'Assemblies',
+        ]
+      },
+      side: {
+        cells: [
+          'Build 2.0.1.0 — SR-49969',
+          {
+            content: 'Build 1.1.360 — SR-44891',
+            attributes: {
+              rowspan: 2,
+            }
+          },
+          {},
+          'Build 1.1.354 — SR-44889',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          'SR-49941',
+          'This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.',
+          'OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe',
+        ]
+      },
+      {
+        cells: [
+          'SR-44869',
+          'This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.',
+          'OpenSpan.Updater.Git.dll',
+        ]
+      },
+      {
+        cells: [
+          'SR-43163',
+          'This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.',
+          'OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe',
+        ]
+      },
+      {
+        cells: [
+          'SR-44850',
+          'This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.',
+          'ManagedOpenSsl.dll',
+        ]
+      },
+    ],
+  } only %}
+
+  <h3>Real Example. Set the width of the first column to be as wide as the longest text. (HTML)</h3>
+
+  <table class="e-bolt-table e-bolt-table--fixed-width-columns--first e-bolt-table--side-headers">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">Item number</th>
+        <th scope="col"> Description</th>
+        <th scope="col">Assemblies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Build 2.0.1.0 — SR-49969</th>
+        <td>SR-49941</td>
+        <td>This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.</td>
+        <td>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe</td>
+      </tr>
+      <tr>
+        <th rowspan="2" scope="row">Build 1.1.360 — SR-44891</th>
+        <td>SR-44869</td>
+        <td>This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.</td>
+        <td>OpenSpan.Updater.Git.dll</td>
+      </tr>
+      <tr>
+        <td>SR-43163</td>
+        <td>This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.</td>
+        <td>OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe</td>
+      </tr>
+      <tr>
+        <th scope="row">Build 1.1.354 — SR-44889</th>
+        <td>SR-44850</td>
+        <td>This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.</td>
+        <td>ManagedOpenSsl.dll</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Real Example. Set the width of the first column to be as wide as the longest text. (HTML/no tbody)</h3>
+
+  <table class="e-bolt-table e-bolt-table--fixed-width-columns--first e-bolt-table--side-headers">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">Item number</th>
+        <th scope="col"> Description</th>
+        <th scope="col">Assemblies</th>
+      </tr>
+    </thead>
+    <tr>
+      <th scope="row">Build 2.0.1.0 — SR-49969</th>
+      <td>SR-49941</td>
+      <td>This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.</td>
+      <td>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe</td>
+    </tr>
+    <tr>
+      <th rowspan="2" scope="row">Build 1.1.360 — SR-44891</th>
+      <td>SR-44869</td>
+      <td>This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.</td>
+      <td>OpenSpan.Updater.Git.dll</td>
+    </tr>
+    <tr>
+      <td>SR-43163</td>
+      <td>This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.</td>
+      <td>OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe</td>
+    </tr>
+    <tr>
+      <th scope="row">Build 1.1.354 — SR-44889</th>
+      <td>SR-44850</td>
+      <td>This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.</td>
+      <td>ManagedOpenSsl.dll</td>
+    </tr>
+  </table>
+
+    <h3>Real Example. Set the width of the second column to be as wide as the longest text.</h3>
+  {% include '@bolt-elements-table/table.twig' with {
+    fixed_width_columns: 'second',
+    headers: {
+      top: {
+        cells: [
+          {
+            content: 'Item number',
+          },
+          'Description',
+          'Assemblies',
+        ]
+      },
+      side: {
+        cells: [
+          'Build 2.0.1.0 — SR-49969',
+          {
+            content: 'Build 1.1.360 — SR-44891',
+            attributes: {
+              rowspan: 2,
+            }
+          },
+          {},
+          'Build 1.1.354 — SR-44889',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          'SR-49941',
+          'This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.',
+          'OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe',
+        ]
+      },
+      {
+        cells: [
+          'SR-44869',
+          'This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.',
+          'OpenSpan.Updater.Git.dll',
+        ]
+      },
+      {
+        cells: [
+          'SR-43163',
+          'This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.',
+          'OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe',
+        ]
+      },
+      {
+        cells: [
+          'SR-44850',
+          'This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.',
+          'ManagedOpenSsl.dll',
+        ]
+      },
+    ],
+  } only %}
+
+  <h3>Real Example. Set the width of the second column to be as wide as the longest text. (HTML)</h3>
+
+  <table class="e-bolt-table e-bolt-table--fixed-width-columns--second e-bolt-table--side-headers">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">Item number</th>
+        <th scope="col"> Description</th>
+        <th scope="col">Assemblies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Build 2.0.1.0 — SR-49969</th>
+        <td>SR-49941</td>
+        <td>This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.</td>
+        <td>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe</td>
+      </tr>
+      <tr>
+        <th rowspan="2" scope="row">Build 1.1.360 — SR-44891</th>
+        <td>SR-44869</td>
+        <td>This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.</td>
+        <td>OpenSpan.Updater.Git.dll</td>
+      </tr>
+      <tr>
+        <td>SR-43163</td>
+        <td>This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.</td>
+        <td>OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe</td>
+      </tr>
+      <tr>
+        <th scope="row">Build 1.1.354 — SR-44889</th>
+        <td>SR-44850</td>
+        <td>This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.</td>
+        <td>ManagedOpenSsl.dll</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Real Example. Set the width of the second column to be as wide as the longest text. (HTML/no tbody)</h3>
+
+  <table class="e-bolt-table e-bolt-table--fixed-width-columns--second e-bolt-table--side-headers">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">Item number</th>
+        <th scope="col"> Description</th>
+        <th scope="col">Assemblies</th>
+      </tr>
+    </thead>
+    <tr>
+      <th scope="row">Build 2.0.1.0 — SR-49969</th>
+      <td>SR-49941</td>
+      <td>This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.</td>
+      <td>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe</td>
+    </tr>
+    <tr>
+      <th rowspan="2" scope="row">Build 1.1.360 — SR-44891</th>
+      <td>SR-44869</td>
+      <td>This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.</td>
+      <td>OpenSpan.Updater.Git.dll</td>
+    </tr>
+    <tr>
+      <td>SR-43163</td>
+      <td>This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.</td>
+      <td>OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe</td>
+    </tr>
+    <tr>
+      <th scope="row">Build 1.1.354 — SR-44889</th>
+      <td>SR-44850</td>
+      <td>This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.</td>
+      <td>ManagedOpenSsl.dll</td>
+    </tr>
+  </table>
+
+      <h3>Real Example. Set the width of the first two column to be as wide as the longest text.</h3>
+  {% include '@bolt-elements-table/table.twig' with {
+    fixed_width_columns: 'first-two',
+    headers: {
+      top: {
+        cells: [
+          {
+            content: 'Item number',
+          },
+          'Description',
+          'Assemblies',
+        ]
+      },
+      side: {
+        cells: [
+          'Build 2.0.1.0 — SR-49969',
+          {
+            content: 'Build 1.1.360 — SR-44891',
+            attributes: {
+              rowspan: 2,
+            }
+          },
+          {},
+          'Build 1.1.354 — SR-44889',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          'SR-49941',
+          'This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.',
+          'OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe',
+        ]
+      },
+      {
+        cells: [
+          'SR-44869',
+          'This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.',
+          'OpenSpan.Updater.Git.dll',
+        ]
+      },
+      {
+        cells: [
+          'SR-43163',
+          'This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.',
+          'OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe',
+        ]
+      },
+      {
+        cells: [
+          'SR-44850',
+          'This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.',
+          'ManagedOpenSsl.dll',
+        ]
+      },
+    ],
+  } only %}
+
+  <h3>Real Example. Set the width of the first two column to be as wide as the longest text. (HTML)</h3>
+
+  <table class="e-bolt-table e-bolt-table--fixed-width-columns--first-two e-bolt-table--side-headers">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">Item number</th>
+        <th scope="col"> Description</th>
+        <th scope="col">Assemblies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Build 2.0.1.0 — SR-49969</th>
+        <td>SR-49941</td>
+        <td>This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.</td>
+        <td>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe</td>
+      </tr>
+      <tr>
+        <th rowspan="2" scope="row">Build 1.1.360 — SR-44891</th>
+        <td>SR-44869</td>
+        <td>This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.</td>
+        <td>OpenSpan.Updater.Git.dll</td>
+      </tr>
+      <tr>
+        <td>SR-43163</td>
+        <td>This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.</td>
+        <td>OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe</td>
+      </tr>
+      <tr>
+        <th scope="row">Build 1.1.354 — SR-44889</th>
+        <td>SR-44850</td>
+        <td>This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.</td>
+        <td>ManagedOpenSsl.dll</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Real Example. Set the width of the first two column to be as wide as the longest text. (HTML/no tbody)</h3>
+
+  <table class="e-bolt-table e-bolt-table--fixed-width-columns--first-two e-bolt-table--side-headers">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">Item number</th>
+        <th scope="col"> Description</th>
+        <th scope="col">Assemblies</th>
+      </tr>
+    </thead>
+    <tr>
+      <th scope="row">Build 2.0.1.0 — SR-49969</th>
+      <td>SR-49941</td>
+      <td>This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.</td>
+      <td>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.Git.dll<br>OpenSpan.VersionFinder.exe<br>OpenSpan.UpdaterService.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.Initializer.exe</td>
+    </tr>
+    <tr>
+      <th rowspan="2" scope="row">Build 1.1.360 — SR-44891</th>
+      <td>SR-44869</td>
+      <td>This hotfix changes the system to better handle long file names. It also enhances VersionFinder to sort the list of branches, making it easier to find a specific branch.</td>
+      <td>OpenSpan.Updater.Git.dll</td>
+    </tr>
+    <tr>
+      <td>SR-43163</td>
+      <td>This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.</td>
+      <td>OpenSpan.Updater.Git.dll<br>OpenSpan.Updater.Initializer.exe<br>OpenSpan.Updater.InstallHelper.exe<br>OpenSpan.Updater.PrePostOperation.dll<br>OpenSpan.Updater.PreReqCheck.dll<br>OpenSpan.Updater.RuntimeLauncher.exe<br>OpenSpan.Updater.ScheduledTasks.dll<br>OpenSpan.Updater.ServerClientInterface.dll<br>OpenSpan.Updater.ServerClientInterface.Tester.exe<br>OpenSpan.Updater.UninstallHelper.exe<br>OpenSpan.Updater.UserHelper.exe<br>OpenSpan.Updater.X509tool.exe<br>OpenSpan.UpdaterService.Remoting.dll<br>OpenSpan.UpdaterService.exe</td>
+    </tr>
+    <tr>
+      <th scope="row">Build 1.1.354 — SR-44889</th>
+      <td>SR-44850</td>
+      <td>This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.</td>
+      <td>ManagedOpenSsl.dll</td>
+    </tr>
+  </table>
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}

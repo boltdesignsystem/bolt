@@ -1,0 +1,125 @@
+{% set notes %}
+{% spaceless %}
+  <bolt-ol>
+    <bolt-li>The Table Element is designed to work with both Twig and vanilla HTML (Twig is the recommended method).</bolt-li>
+    <bolt-li><strong>Twig:</strong> Use the <code>headers.top</code> prop to render a top header row.</bolt-li>
+    <bolt-li><strong>HTML:</strong> Add a <code>&lt;thead&gt;</code> to the <code>&lt;table&gt;</code> to render a top header row.</bolt-li>
+  </bolt-ol>
+{% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-elements-table/table.twig' with {
+    headers: {
+      top: {
+        cells: [
+          'Column 1',
+          'Column 2',
+          'Column 3',
+        ]
+      },
+    },
+    rows: [
+      {
+        cells: [
+          'R1C1',
+          'R1C2',
+          'R1C3',
+        ]
+      },
+      {
+        cells: [
+          'R2C1',
+          'R2C2',
+          'R2C3',
+        ]
+      },
+      {
+        cells: [
+          'R3C1',
+          'R3C2',
+          'R3C3',
+        ]
+      }
+    ],
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-table/table.twig' with {
+  headers: {
+    top: {
+      cells: [
+        'Column 1',
+        'Column 2',
+        'Column 3',
+      ]
+    },
+  },
+  rows: [
+    {
+      cells: [
+        'R1C1',
+        'R1C2',
+        'R1C3',
+      ]
+    },
+    {
+      cells: [
+        'R2C1',
+        'R2C2',
+        'R2C3',
+      ]
+    },
+    {
+      cells: [
+        'R3C1',
+        'R3C2',
+        'R3C3',
+      ]
+    }
+  ],
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<table class="e-bolt-table">
+  <thead>
+    <tr>
+      <th scope="col">Column 1</th>
+      <th scope="col">Column 2</th>
+      <th scope="col">Column 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>R1C1</td>
+      <td>R1C2</td>
+      <td>R1C3</td>
+    </tr>
+    <tr>
+      <td>R2C1</td>
+      <td>R2C2</td>
+      <td>R2C3</td>
+    </tr>
+    <tr>
+      <td>R3C1</td>
+      <td>R3C2</td>
+      <td>R3C3</td>
+    </tr>
+  </tbody>
+</table>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table Element with Top Headers',
+  description: 'Example of a top header being rendered in a Table Element.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

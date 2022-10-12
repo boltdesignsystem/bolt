@@ -1,0 +1,124 @@
+{% set notes %}
+{% spaceless %}
+  <bolt-ol>
+    <bolt-li>The Table Element is designed to work with both Twig and vanilla HTML (Twig is the recommended method).</bolt-li>
+    <bolt-li><strong>Twig:</strong> Use the <code>headers.side</code> prop to render a top header row.</bolt-li>
+    <bolt-li><strong>HTML:</strong> Add <code>&lt;th scope="row"&gt;</code> cells to the <code>&lt;tr&gt;</code> to render a side header column (must be the first cell in a row).</bolt-li>
+    <bolt-li><strong>HTML:</strong> Add a <code>e-bolt-table--side-headers</code> class to the <code>&lt;table&gt;</code> to style the side headers.</bolt-li>
+  </bolt-ol>
+{% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  {% include '@bolt-elements-table/table.twig' with {
+    headers: {
+      side: {
+        cells: [
+          'Row 1',
+          'Row 2',
+          'Row 3',
+          'Footer',
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          'R1C1',
+          'R1C2',
+          'R1C3',
+        ]
+      },
+      {
+        cells: [
+          'R2C1',
+          'R2C2',
+          'R2C3',
+        ]
+      },
+      {
+        cells: [
+          'R3C1',
+          'R3C2',
+          'R3C3',
+        ]
+      }
+    ],
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-elements-table/table.twig' with {
+  headers: {
+    side: {
+      cells: [
+        'Row 1',
+        'Row 2',
+        'Row 3',
+        'Footer',
+      ]
+    }
+  },
+  rows: [
+    {
+      cells: [
+        'R1C1',
+        'R1C2',
+        'R1C3',
+      ]
+    },
+    {
+      cells: [
+        'R2C1',
+        'R2C2',
+        'R2C3',
+      ]
+    },
+    {
+      cells: [
+        'R3C1',
+        'R3C2',
+        'R3C3',
+      ]
+    }
+  ],
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<table class="e-bolt-table e-bolt-table--side-headers">
+  <tbody>
+    <tr>
+      <th scope="row">Row 1</th>
+      <td>R1C1</td>
+      <td>R1C2</td>
+      <td>R1C3</td>
+    </tr>
+    <tr>
+      <th scope="row">Row 2</th>
+      <td>R2C1</td>
+      <td>R2C2</td>
+      <td>R2C3</td>
+    </tr>
+    <tr>
+      <th scope="row">Row 3</th>
+      <td>R3C1</td>
+      <td>R3C2</td>
+      <td>R3C3</td>
+    </tr>
+  </tbody>
+</table>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table Element with Side Headers',
+  description: 'Example of a side header being rendered in a Table Element.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
