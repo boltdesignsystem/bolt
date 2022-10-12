@@ -23,6 +23,10 @@ export class BoltBasicTable {
 
 const BasicTables = document.querySelectorAll('.c-bolt-table-basic');
 
-BasicTables.forEach(el => {
-  const component = new BoltBasicTable(el);
-});
+if (BasicTables.length > 0) {
+  BasicTables.forEach(el => {
+    if (!el.parentNode.classList.contains('c-bolt-table-basic-wrapper')) {
+      const component = new BoltBasicTable(el);
+    }
+  });
+}

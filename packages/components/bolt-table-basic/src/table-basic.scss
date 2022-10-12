@@ -19,9 +19,8 @@ $bolt-table-row-hover-background-color: rgba(bolt-color(gray), 0.1);
 
 .c-bolt-table-basic-wrapper {
   @include bolt-horizontal-scroll;
-  display: inline-block;
+  display: block;
   max-width: 100%;
-  vertical-align: top;
   background: -webkit-radial-gradient(
         left,
         ellipse,
@@ -54,6 +53,7 @@ caption {
   @include bolt-table-border(left);
 
   width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
 
@@ -111,28 +111,6 @@ caption {
     text-align: left;
     vertical-align: top;
 
-    // &:first-child:empty ~ td {
-    //   width: auto;
-    // }
-
-    // @at-root th #{&} {
-    //   // width: 1%;
-    //   padding: calc(var(--bolt-spacing-y-small) / 2) var(--bolt-spacing-x-small);
-    //   background-color: $bolt-table-header-background-color;
-    // }
-
-    // @at-root .c-bolt-table__body:first-child #{&} {
-    //   // width: 1%;
-    // }
-
-    // @at-root .c-bolt-table > *:not(th) #{&} {
-    //   padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
-    // }
-
-    // @at-root .c-bolt-table__foot #{&} {
-    //   font-weight: var(--bolt-type-font-weight-bold);
-    // }
-
     img {
       max-width: 100%;
     }
@@ -146,14 +124,6 @@ caption {
     line-height: var(--bolt-type-line-height-small);
     background-color: $bolt-table-header-background-color;
     white-space: nowrap;
-
-    // &:first-child {
-    //   // width: 1%;
-
-    //   & ~ td {
-    //     width: auto;
-    //   }
-    // }
   }
 
   &.c-bolt-table-basic--borderless {
@@ -165,18 +135,6 @@ caption {
     tbody th:not(:last-child) {
       @include bolt-table-border(right);
     }
-
-    // td[rowspan]:not(:last-child) {
-    //   @include bolt-table-border(right);
-    // }
-
-    // td[rowspan]:not(:first-of-type) {
-    //   @include bolt-table-border(left);
-    // }
-
-    // > *:not(th) .c-bolt-table__cell--header:first-child {
-    //   @include bolt-table-border(right);
-    // }
   }
 
   &.c-bolt-table-basic--numeric {
@@ -196,10 +154,6 @@ caption {
     tbody th {
       font-family: var(--bolt-type-font-family-body);
     }
-
-    // > *:not(.c-bolt-table__head) .c-bolt-table__cell--header:first-child {
-    //   text-align: right;
-    // }
   }
 
   &.c-bolt-table-basic--fixed-width-columns {
@@ -208,7 +162,6 @@ caption {
       tr td:first-of-type {
         width: 1%;
         white-space: nowrap;
-        // box-shadow: inset 0px 0px 0px 5px red; //this line is only for demo purposes and should be deleted later
       }
 
       &.c-bolt-table-basic--side-headers {
@@ -217,7 +170,6 @@ caption {
         tfoot tr td:nth-of-type(1) {
           width: auto;
           white-space: normal;
-          // box-shadow: none; //this line is only for demo purposes and should be deleted later
         }
       }
     }
@@ -229,7 +181,6 @@ caption {
       tr td:first-of-type + th {
         width: 1%;
         white-space: nowrap;
-        // box-shadow: inset 0px 0px 0px 5px red; //this line is only for demo purposes and should be deleted later
       }
 
       &.c-bolt-table-basic--side-headers {
@@ -238,7 +189,6 @@ caption {
         tfoot tr td:nth-of-type(2) {
           width: auto;
           white-space: normal;
-          // box-shadow: none; //this line is only for demo purposes and should be deleted later
         }
       }
     }
@@ -248,7 +198,6 @@ caption {
       tr td:first-of-type {
         width: 1%;
         white-space: nowrap;
-        // box-shadow: inset 0px 0px 0px 5px red; //this line is only for demo purposes and should be deleted later
       }
 
       tr th:first-of-type + th,
@@ -256,7 +205,6 @@ caption {
       tr td:first-of-type + td {
         width: 1%;
         white-space: nowrap;
-        // box-shadow: inset 0px 0px 0px 5px red; //this line is only for demo purposes and should be deleted later
       }
 
       &.c-bolt-table-basic--side-headers {
@@ -265,7 +213,6 @@ caption {
         tfoot tr td:nth-of-type(2) {
           width: auto;
           white-space: normal;
-          // box-shadow: none; //this line is only for demo purposes and should be deleted later
         }
       }
     }
@@ -285,11 +232,10 @@ caption {
       width: auto;
       white-space: normal;
       word-break: break-all;
-      // box-shadow: none; //this line is only for demo purposes and should be deleted later
     }
   }
 }
-//A workaround to have horizontally scrolable table when nested inside bolt-layout
+// A workaround to have horizontally scrolable table when nested inside bolt-layout
 .l-bolt-site > main {
   min-width: 0;
 }
