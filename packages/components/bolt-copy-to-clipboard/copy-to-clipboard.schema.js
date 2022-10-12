@@ -32,31 +32,6 @@ module.exports = {
       type: ['string', 'object', 'array'],
       description: '(optional) Custom content to show after a successful copy.',
     },
-    text: {
-      type: 'string',
-      title: 'DEPRECATED',
-      description: 'This property has been renamed <em>trigger_text</em>',
-      default: 'Copy Link',
-    },
-    copiedText: {
-      type: 'string',
-      title: 'DEPRECATED',
-      description:
-        'Use the custom_confirmation property instead if you need to change the confirmation text.',
-      default: 'Copied!',
-    },
-    iconSize: {
-      type: 'string',
-      title: 'DEPRECATED',
-      description:
-        'Use custom_trigger, custom_transition, and custom_confirmation properties if you need to change icon size.',
-      default: 'medium',
-    },
-    url: {
-      type: 'string',
-      title: 'DEPRECATED',
-      description: 'This property has been renamed <em>text_to_copy</em>',
-    },
   },
   required: ['text_to_copy'],
   not: {
