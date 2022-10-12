@@ -83,7 +83,7 @@ beforeAll(async () => {
   };
 });
 
-describe('Bolt Table', () => {
+describe('Bolt Table Element', () => {
   test(`default`, async () => {
     const results = await render('@bolt-elements-table/table.twig', {
       ...fixtures.defaultData,
@@ -92,7 +92,7 @@ describe('Bolt Table', () => {
     await expect(results.html).toMatchSnapshot();
   });
 
-  test(`top header table basic`, async () => {
+  test(`top header table element`, async () => {
     const results = await render('@bolt-elements-table/table.twig', {
       ...fixtures.defaultData,
       ...fixtures.headerData,
@@ -101,7 +101,7 @@ describe('Bolt Table', () => {
     await expect(results.html).toMatchSnapshot();
   });
 
-  test(`side header table basic`, async () => {
+  test(`side header table element`, async () => {
     const results = await render('@bolt-elements-table/table.twig', {
       ...fixtures.defaultData,
       ...fixtures.sideHeaderData,
@@ -110,7 +110,7 @@ describe('Bolt Table', () => {
     await expect(results.html).toMatchSnapshot();
   });
 
-  test(`footer table basic`, async () => {
+  test(`footer table element`, async () => {
     const results = await render('@bolt-elements-table/table.twig', {
       ...fixtures.defaultData,
       ...fixtures.bothHeadersData,
@@ -121,7 +121,7 @@ describe('Bolt Table', () => {
   });
 });
 
-describe('Bolt Table Basic Component Prop -', () => {
+describe('Bolt Table Element Prop -', () => {
   // // Target each of the schema keys with the following pattern
   format.enum.forEach(async option => {
     test(`format items: ${option}`, async () => {
