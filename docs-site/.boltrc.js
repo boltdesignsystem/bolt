@@ -110,6 +110,10 @@ const config = deepmerge(baseConfig, {
   },
   copy: [
     {
+      from: `src/assets/images`,
+      to: path.join(__dirname, '../www/images'),
+    },
+    {
       from: path.join(
         path.dirname(require.resolve(`@bolt/components-typeahead`)),
         '__demos__/typeahead.data.json',
