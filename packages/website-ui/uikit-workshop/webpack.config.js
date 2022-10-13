@@ -52,33 +52,6 @@ module.exports = function(apiConfig) {
     // Allow external flags for modifying PL's prod mode, on top of the .patternlabrc config file
     const config = Object.assign({}, defaultConfig, customConfig, apiConfig);
 
-    function getBabelConfig() {
-      return {
-        presets: [
-          [
-            '@babel/preset-env',
-            {
-              targets: {
-                browsers: require('@bolt/browserslist-config'),
-              },
-            },
-          ],
-        ],
-        plugins: [
-          ['@babel/plugin-proposal-decorators', { version: 'legacy' }],
-          '@babel/plugin-syntax-jsx' /* [1] */,
-          [
-            '@babel/plugin-transform-react-jsx' /* [1] */,
-            {
-              pragma: 'h',
-              pragmaFrag: 'Fragment',
-              throwIfNamespace: false,
-            },
-          ],
-        ],
-      };
-    }
-
     // organize the series of plugins to run our Sass through as an external array -- this is necessary since we need to add additional loaders when compiling Sass to standalone CSS files vs compiling Sass and returning an inline-able <style> block of CSS (which we need to do both)
     const scssLoaders = [
       {
@@ -155,7 +128,7 @@ module.exports = function(apiConfig) {
             exclude: /(node_modules)/,
             use: {
               loader: 'babel-loader',
-              options: getBabelConfig(true),
+              options: babelConfig,
             },
           },
           {
