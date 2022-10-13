@@ -1,16 +1,80 @@
+{% set schema = bolt.data.components['@bolt-elements-table'].schema['table'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set header_attributes = create_attribute(header.attributes|default({})) %}
+{% set body_attributes = create_attribute(body.attributes|default({})) %}
+{% set footer_attributes = create_attribute(footer.attributes|default({})) %}
+{% set caption_attributes = create_attribute(caption.attributes|default({})) %}
+
+{# Check that the component's current prop values are valid. if not, default to the schema default #}
+{% set first_col_fixed_width = first_col_fixed_width is same as(true) or first_col_fixed_width is same as(false) ? first_col_fixed_width : schema.properties.first_col_fixed_width.default %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'e-bolt-table',
+  borderless ? 'e-bolt-table--borderless',
+  this.data.format.value != schema.properties.format.default ? 'e-bolt-table--numeric',
+  this.data.sticky_headers.value != schema.properties.sticky_headers.default ? 'c-bolt-table--sticky-' ~ this.data.sticky_headers.value ~ '-headers',
+  fixed_width_table ? 'e-bolt-table--fixed-width-table' : fixed_width_columns ? 'e-bolt-table--fixed-width-columns--' ~ fixed_width_columns,
+] %}
+<div class="e-bolt-table-wrapper">
+  <table {{ attributes.addClass(classes) }}>
+    {% if caption %}
+      <caption {{ caption_attributes }}>
+        {{ caption.content }}
+      </caption>
+    {% endif %}
+    {% if header %}
+      <thead {{ header_attributes }}>
+        {{ header.content }}
+      </thead>
+    {% endif %}
+    {% if body %}
+      <tbody {{ body_attributes }}>
+        {% for row in body.content %}
+          {{ row }}
+        {% endfor %}
+      </tbody>
+    {% endif %}
+    {% if footer %}
+      <tfoot {{ footer_attributes }}>
+        {{ footer.content }}
+      </tfoot>
+    {% endif %}
+  </table>
+</div>
+{#
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 {% set schema = bolt.data.components["@bolt-elements-table-basic"].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{# Variables #}
+{# Variables #
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #
 {% set format_options = schema.properties.format.enum %}
 
-{# Check that the component's current prop values are valid. if not, default to the schema default #}
+{# Check that the component's current prop values are valid. if not, default to the schema default #
 {% set format = format in format_options ? format : schema.properties.format.default %}
 {% set borderless = borderless is same as(true) or borderless is same as(false) ? borderless : schema.properties.borderless.default %}
 {% set first_col_fixed_width = first_col_fixed_width is same as(true) or first_col_fixed_width is same as(false) ? first_col_fixed_width : schema.properties.first_col_fixed_width.default %}
@@ -18,7 +82,7 @@
 {% set top_headers = headers.top %}
 {% set side_headers = headers.side %}
 
-{# Array of classes based on the defined + default props #}
+{# Array of classes based on the defined + default props #
 {% set classes = [
   'e-bolt-table',
   format != 'regular' ? 'e-bolt-table--numeric',
@@ -113,4 +177,4 @@
       </tfoot>
     {% endif %}
   </table>
-</div>
+</div> #}

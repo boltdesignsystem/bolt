@@ -1,3 +1,7 @@
+{% set description %}
+  A table element is composed of table head, body, footer, rows, cells, and caption.
+{% endset %}
+
 {% set notes %}
 {% spaceless %}
   <bolt-ol>
@@ -7,59 +11,221 @@
 {% endset %}
 
 {% set demo %}
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a header cell in table header',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a header cell in table header',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a header cell in table header',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set footer %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell in table footer.',
+      } only %}
+        {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell in table footer.',
+      } only %}
+        {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell in table footer.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
   {% include '@bolt-elements-table/table.twig' with {
-    rows: [
-      {
-        cells: [
-          'R1C1',
-          'R1C2',
-          'R1C3',
-        ]
-      },
-      {
-        cells: [
-          'R2C1',
-          'R2C2',
-          'R2C3',
-        ]
-      },
-      {
-        cells: [
-          'R3C1',
-          'R3C2',
-          'R3C3',
-        ]
-      }
-    ],
+    header: {
+      content: header,
+    },
+    body: {
+      content: [
+        row1,
+        row2,
+        row3,
+      ],
+    },
+    footer: {
+      content: footer,
+    },
+    caption: {
+      content: 'This is the table caption.',
+    },
   } only %}
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
+{% set header %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a header cell in table header',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a header cell in table header',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a header cell in table header',
+      header: true,
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row1 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row2 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row3 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set footer %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell in table footer.',
+    } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell in table footer.',
+    } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell in table footer.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
 {% include '@bolt-elements-table/table.twig' with {
-  rows: [
-    {
-      cells: [
-        'R1C1',
-        'R1C2',
-        'R1C3',
-      ]
-    },
-    {
-      cells: [
-        'R2C1',
-        'R2C2',
-        'R2C3',
-      ]
-    },
-    {
-      cells: [
-        'R3C1',
-        'R3C2',
-        'R3C3',
-      ]
-    }
-  ],
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+  caption: {
+    content: 'This is the table caption.',
+  },
 } only %}
 {% endverbatim %}
 {% endset %}
@@ -69,19 +235,37 @@
 <table class="e-bolt-table">
   <tbody>
     <tr>
-      <td>R1C1</td>
-      <td>R1C2</td>
-      <td>R1C3</td>
+      <td>
+        This is a regular cell.
+      </td>
+      <td>
+        This is a regular cell.
+      </td>
+      <td>
+        This is a regular cell.
+      </td>
     </tr>
     <tr>
-      <td>R2C1</td>
-      <td>R2C2</td>
-      <td>R2C3</td>
+      <td>
+        This is a regular cell.
+      </td>
+      <td>
+        This is a regular cell.
+      </td>
+      <td>
+        This is a regular cell.
+      </td>
     </tr>
     <tr>
-      <td>R3C1</td>
-      <td>R3C2</td>
-      <td>R3C3</td>
+      <td>
+        This is a regular cell.
+      </td>
+      <td>
+        This is a regular cell.
+      </td>
+      <td>
+        This is a regular cell.
+      </td>
     </tr>
   </tbody>
 </table>
@@ -89,8 +273,8 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Table Element with Rows Only',
-  description: 'This is the most basic usage of the Table Element.',
+  title: 'Table Element',
+  description: description,
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,

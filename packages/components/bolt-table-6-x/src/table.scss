@@ -1,0 +1,171 @@
+/* ------------------------------------ *\
+   Responsive Table
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-table', block, medium);
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+
+.c-bolt-table {
+  @include bolt-scroll;
+
+  display: inline-block;
+  max-width: 100%;
+  max-height: 75vh;
+  font-size: var(--bolt-type-font-size-xsmall);
+  line-height: var(--bolt-type-line-height-xsmall);
+  border-radius: bolt-border-radius(small);
+  box-shadow: 0 0 0 1px var(--m-bolt-table-border);
+
+  @media print {
+    max-width: unset;
+    max-height: unset;
+  }
+
+  &.c-bolt-table--borderless {
+    box-shadow: none;
+
+    table {
+      border-spacing: 0;
+    }
+
+    th {
+      box-shadow: none;
+    }
+  }
+
+  table {
+    width: 100%;
+    background-color: var(--m-bolt-table-border);
+    // The bg color here serves as border color because the cells have spacing in-between which will expose the bg color of the table. It creates the illusion of borders.
+  }
+
+  thead {
+    --m-bolt-text: var(--m-bolt-headline);
+    --m-bolt-link: var(--m-bolt-headline);
+  }
+
+  td {
+    background-color: var(--m-bolt-bg);
+  }
+
+  thead td,
+  th {
+    background-color: var(--m-bolt-table-header);
+  }
+
+  thead td,
+  thead th,
+  tbody:first-child tr:first-of-type td,
+  tbody:first-child tr:first-of-type th {
+    &:first-child {
+      border-top-left-radius: bolt-border-radius(small);
+    }
+
+    &:last-child {
+      border-top-right-radius: bolt-border-radius(small);
+    }
+  }
+
+  tbody:last-child tr:last-of-type td,
+  tbody:last-child tr:last-of-type th,
+  tfoot:last-child td,
+  tfoot:last-child th {
+    &:first-child {
+      border-bottom-left-radius: bolt-border-radius(small);
+    }
+
+    &:last-child {
+      border-bottom-right-radius: bolt-border-radius(small);
+    }
+  }
+
+  th,
+  td {
+    padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+    transition: box-shadow var(--bolt-transition),
+      background-color var(--bolt-transition);
+  }
+
+  tbody,
+  tfoot {
+    tr:hover {
+      th,
+      td {
+        background-color: var(--m-bolt-table-highlight);
+      }
+
+      th {
+        z-index: 1;
+        box-shadow: 0 0 0 1px var(--m-bolt-headline);
+      }
+    }
+  }
+
+  caption {
+    padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+    text-align: start;
+    caption-side: bottom;
+    border-top: 1px solid var(--m-bolt-table-border);
+  }
+}
+
+.c-bolt-table--sticky-side-headers {
+  th {
+    &:first-of-type {
+      position: sticky;
+      left: 1px;
+      box-shadow: 0 0 0 1px var(--m-bolt-table-border);
+    }
+  }
+
+  &.c-bolt-table--borderless {
+    th {
+      &:first-of-type {
+        left: 0;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.c-bolt-table--sticky-top-headers {
+  thead th {
+    position: sticky;
+    top: 1px;
+    box-shadow: 0 0 0 1px var(--m-bolt-table-border);
+  }
+
+  &.c-bolt-table--borderless {
+    thead th {
+      top: 0;
+    }
+  }
+}
+
+.c-bolt-table__expand-button[aria-expanded='true'] {
+  .e-bolt-icon {
+    transform: rotate(180deg);
+  }
+}
+
+.c-bolt-table__controls {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--bolt-spacing-x-small);
+  align-items: center;
+
+  .e-bolt-text-link__icon-after {
+    pointer-events: none;
+  }
+}

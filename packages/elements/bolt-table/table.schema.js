@@ -3,106 +3,22 @@ module.exports = {
   title: 'Table',
   description: 'Table layout for tabular content.',
   type: 'object',
-  required: ['rows'],
   properties: {
     attributes: {
       type: 'object',
       description:
-        'A Drupal-style attributes object with extra attributes to append to this component.',
+        'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
     },
-    headers: {
-      type: 'object',
-      description:
-        'Generates top and side headers, each can contain an array of `cells`.',
-      properties: {
-        top: {
-          type: 'object',
-          properties: {
-            cells: {
-              description:
-                "Each item represents a cell in the top header.  Accepts either a renderable item (shorthand) or an item with 'content' and 'attributes' keys.",
-              type: 'array',
-              items: {
-                type: 'any',
-                properties: {
-                  content: {
-                    type: 'string',
-                  },
-                  attributes: {
-                    type: 'object',
-                  },
-                },
-              },
-            },
-          },
-        },
-        side: {
-          type: 'object',
-          properties: {
-            cells: {
-              description:
-                "Each item represents a cell in the side header.  Accepts either a renderable item (shorthand) or an item with 'content' and 'attributes' keys",
-              type: 'array',
-              items: {
-                type: 'any',
-                properties: {
-                  content: {
-                    type: 'string',
-                  },
-                  attributes: {
-                    type: 'object',
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
+    borderless: {
+      type: 'boolean',
+      description: 'Removes all borders from the table.',
+      default: false,
     },
-    rows: {
-      type: 'array',
-      description:
-        'Generates an array of rows, each can contain an array of `cells`.',
-      properties: {
-        cells: {
-          description:
-            "Each item represents a cell in a row.  Accepts either a renderable item (shorthand) or an item with 'content' and 'attributes' keys",
-          type: 'array',
-          items: {
-            type: 'any',
-            properties: {
-              content: {
-                type: 'string',
-              },
-              attributes: {
-                type: 'object',
-              },
-            },
-          },
-        },
-      },
-    },
-    footer: {
-      type: 'object',
-      description: 'Generates a table footer, can contain an array of `cells`.',
-      properties: {
-        cells: {
-          description:
-            "Each item represents a cell in the footer.  Accepts either a renderable item (shorthand) or an item with 'content' and 'attributes' keys",
-          type: 'array',
-          items: {
-            type: 'any',
-            properties: {
-              content: {
-                type: 'string',
-              },
-              attributes: {
-                type: 'object',
-              },
-            },
-          },
-        },
-      },
+    sticky_headers: {
+      type: 'string',
+      description: 'Enables/disables sticky table headers.',
+      default: 'none',
+      enum: ['top', 'side', 'none'],
     },
     format: {
       type: 'string',
@@ -110,11 +26,6 @@ module.exports = {
         'Display either a regular table or a more complex numeric table.',
       default: 'regular',
       enum: ['regular', 'numeric'],
-    },
-    borderless: {
-      type: 'boolean',
-      description: 'Removes the vertical border in between cells.',
-      default: false,
     },
     fixed_width_table: {
       type: 'boolean',
@@ -130,8 +41,59 @@ module.exports = {
       enum: ['none', 'first', 'second', 'first-two'],
     },
     caption: {
-      type: 'string',
-      description: 'Set a table caption, displayed below the table content.',
+      type: 'any',
+      description: 'Generates a table caption &lt;caption&gt; element.',
+      properties: {
+        content: {
+          type: 'any',
+          description: 'Displays a caption at the bottom of the table.',
+        },
+        attributes: {
+          type: 'object',
+        },
+      },
+    },
+    header: {
+      type: 'object',
+      description: 'Generates a table head &lt;thead&gt; element.',
+      properties: {
+        content: {
+          type: 'object',
+          description:
+            'Content must be a table row. Use table-row.twig to render a single table row.',
+        },
+        attributes: {
+          type: 'object',
+        },
+      },
+    },
+    body: {
+      type: 'object',
+      description: 'Generates a main table content &lt;tbody&gt; element.',
+      properties: {
+        content: {
+          type: 'array',
+          description:
+            'Content must be a collection of table rows. Use table-row.twig to render table rows.',
+        },
+        attributes: {
+          type: 'object',
+        },
+      },
+    },
+    footer: {
+      type: 'object',
+      description: 'Generates a table footer &lt;tfoot&gt; element.',
+      properties: {
+        content: {
+          type: 'object',
+          description:
+            'Content must be a collection of table rows. Use table-row.twig to render table rows.',
+        },
+        attributes: {
+          type: 'object',
+        },
+      },
     },
   },
 };
