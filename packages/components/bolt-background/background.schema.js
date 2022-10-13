@@ -49,19 +49,21 @@ module.exports = {
     },
     focal_point: {
       type: 'object',
-      description: 'Where the opacity background should originate.',
+      description:
+        'Point where the background gradient highlight should originate.',
       properties: {
         horizontal: {
           type: 'string',
-          description: "Currently only reverses gradient on 'left'.",
+          description: 'X-axis positioning for the background focal point',
           enum: ['center', 'left', 'right'],
+          default: 'right',
         },
-      },
-      vertical: {
-        type: 'string',
-        description:
-          "Currently doesn't use this value. Intended future application.",
-        enum: ['center', 'top', 'bottom'],
+        vertical: {
+          type: 'string',
+          description: 'Y-axis positioning for the background focal point',
+          enum: ['center', 'top', 'bottom'],
+          default: 'bottom',
+        },
       },
     },
     items: {
