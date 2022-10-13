@@ -18,6 +18,7 @@ const WebpackBar = require('webpackbar');
 
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('patternlab');
+const babelConfig = require('@bolt/babel-preset-bolt');
 
 // @todo: wire these two ocnfigs up to use cosmicconfig!
 const defaultConfig = {
@@ -27,7 +28,7 @@ const defaultConfig = {
   sourceMaps: true,
   watch: argv.watch ? true : false,
   publicPath: './styleguide/',
-  copy: [{ from: './src/images/**', to: 'images', flatten: true }],
+  copy: [{ from: './src/images/**', to: 'images/[name][ext]' }],
   noViewAll: false,
 };
 
@@ -253,7 +254,7 @@ module.exports = function(apiConfig) {
       },
       plugins: [
         new WebpackBar(),
-        new CopyPlugin(config.copy),
+        new CopyPlugin({ patterns: config.copy }),
         new NoEmitPlugin(['css/pattern-lab.js']),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
