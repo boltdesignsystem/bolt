@@ -1,6 +1,5 @@
 // webpack.config.js
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const CriticalCssPlugin = require('critical-css-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -210,9 +209,6 @@ module.exports = function(apiConfig) {
         mergeDuplicateChunks: true,
         concatenateModules: true,
         chunkIds: 'named',
-        // chunkIds: 'total-size',
-        // moduleIds: 'size',
-
         splitChunks: {
           chunks: 'async',
           cacheGroups: {
@@ -228,7 +224,6 @@ module.exports = function(apiConfig) {
       plugins: [
         new WebpackBar(),
         new CopyPlugin({ patterns: config.copy }),
-        new NoEmitPlugin(['css/pattern-lab.js']),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
           config.watch
@@ -276,7 +271,6 @@ module.exports = function(apiConfig) {
         new MiniCssExtractPlugin({
           filename: `[name].css`,
           chunkFilename: `[id].css`,
-          allChunks: true,
         }),
       ],
     };
