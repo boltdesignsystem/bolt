@@ -20,7 +20,7 @@
     "webpack.config.js"
   ],
   "scripts": {
-    "build": "webpack-cli --config webpack.config.js --stats=minimal && RESULT=$( inline-critical -c ../../../www/pattern-lab/styleguide/css/pattern-lab.css  -h ../../../www/pattern-lab/index.html) && echo $RESULT > ../../../www/pattern-lab/index.html",
+    "build": "webpack-cli --config webpack.config.js --stats=minimal",
     "prepublish": "npm run build",
     "start": "node ./build-tools.js",
     "watch": "webpack-cli --config webpack.config.js --progress --watch --stats=minimal"
@@ -46,7 +46,6 @@
     "better-opn": "^1.0.0",
     "browser-sync": "^2.26.7",
     "classnames": "^2.2.6",
-    "clean-css-loader": "^2.0.0",
     "clean-webpack-plugin": "0.1.19",
     "clipboard": "^2.0.4",
     "copy-webpack-plugin": "^11.0.0",
@@ -67,7 +66,6 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^5.5.0",
     "iframe-resizer": "^4.2.9",
-    "inline-critical": "^5.3.1",
     "lit-element": "^2.2.1",
     "lit-html": "^1.1.2",
     "local-chrome": "^0.1.0",
@@ -110,7 +108,7 @@
     "webpack-dev-middleware": "^3.7.3",
     "webpack-hot-middleware": "^2.25.2",
     "webpack-merge": "^4.2.2",
-    "webpackbar": "^4.0.0",
+    "webpackbar": "^5.0.2",
     "whendefined": "^0.0.1",
     "wolfy87-eventemitter": "^5.2.9",
     "yargs": "^15.1.0"

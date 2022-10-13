@@ -67,14 +67,6 @@ module.exports = function(apiConfig) {
         },
       },
       {
-        loader: 'clean-css-loader',
-        options: {
-          compatibility: 'ie9',
-          level: 1, // @todo: test bumping this up to 2
-          inline: ['remote'],
-        },
-      },
-      {
         loader: 'sass-loader',
         options: {
           sassOptions: {
