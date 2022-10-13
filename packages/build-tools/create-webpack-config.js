@@ -202,29 +202,19 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(woff|woff2)$/,
-          use: [
-            {
-              loader: 'url-loader',
-              options: {
-                limit: 500,
-                name: 'fonts/[name].[ext]',
-              },
-            },
-          ],
-          type: 'javascript/auto', // @todo, rework
+          type: 'asset/resource',
+          generator: {
+            filename: 'fonts/[name].[ext]',
+          },
         },
         {
           test: /\.svg$/,
           oneOf: [
             {
               issuer: /\.scss$/,
+              // @see: https://dev.to/smelukov/webpack-5-asset-modules-2o3h
+              type: 'asset/resource',
               use: [
-                {
-                  loader: 'file-loader',
-                  options: {
-                    name: '[name].[ext]',
-                  },
-                },
                 {
                   loader: 'svgo-loader',
                   options: {
@@ -232,7 +222,6 @@ async function createWebpackConfig(buildConfig) {
                   },
                 },
               ],
-              type: 'javascript/auto', // @todo, rework
             },
             {
               use: [
@@ -266,15 +255,7 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(cur|png|jpg)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: '[name].[ext]',
-              },
-            },
-          ],
-          type: 'javascript/auto', // @todo, rework
+          type: 'asset/resource',
         },
         {
           test: [/\.yml$/, /\.yaml$/],
@@ -282,8 +263,7 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: [/\.html$/],
-          loader: 'raw-loader', // file as string
-          type: 'javascript/auto', // @todo, rework
+          type: 'asset/source',
         },
       ],
     },
