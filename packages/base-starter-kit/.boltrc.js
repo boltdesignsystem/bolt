@@ -73,7 +73,6 @@ module.exports = {
       '@bolt/components-sticky',
       '@bolt/components-switch-button',
       '@bolt/components-table',
-      '@bolt/components-table-6-x',
       '@bolt/components-tabs',
       '@bolt/components-teaser',
       '@bolt/components-text',

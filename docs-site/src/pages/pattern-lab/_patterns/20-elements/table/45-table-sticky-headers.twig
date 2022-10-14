@@ -618,7 +618,6 @@
 
 {% include '@bolt-elements-table/table.twig' with {
   sticky_headers: 'side',
-  format: 'numeric',
   header: {
     content: header,
   },
@@ -638,7 +637,7 @@
 
 {% set html_markup %}
 {% verbatim %}
-<table class="e-bolt-table e-bolt-table--numeric e-bolt-table--sticky-side-headers">
+<table class="e-bolt-table e-bolt-table--sticky-side-headers">
   <thead>
     <tr>
       <td></td>

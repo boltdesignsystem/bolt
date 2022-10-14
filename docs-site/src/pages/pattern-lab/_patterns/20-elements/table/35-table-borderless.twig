@@ -1,14 +1,14 @@
 {% set description %}
-  An example of a Table Element with top and side headers.
+  An example of a Table Element with no borders between cells.
 {% endset %}
 
 {% set notes %}
 {% spaceless %}
   <bolt-ol>
     <bolt-li>The Table Element is designed to work with both Twig and vanilla HTML (Twig is the recommended method).</bolt-li>
-    <bolt-li>Refer to the <a href="{{ link['elements-table-top-header'] }}" class="e-bolt-text-link">Table Element with Top Header</a> page for information on adding a top header.</bolt-li>
-    <bolt-li>Refer to the <a href="{{ link['elements-table-side-header'] }}" class="e-bolt-text-link">Table Element with Side Header</a> page for information on adding a side header.</bolt-li>
-    <bolt-li><strong>HTML:</strong> To align the table columns correctly, include a blank <code>&lt;th&gt;</code> to the <code>&lt;thead&gt;</code> as the first cell.</bolt-li>
+    <bolt-li>Refer to the <a href="{{ link['elements-table-top-side-headers'] }}" class="e-bolt-text-link">Table Element with Top and Side Headers</a> page for information on adding the headers.</bolt-li>
+    <bolt-li><strong>Twig:</strong> Use the <code>borderless</code> boolean prop to remove the table borders.</bolt-li>
+    <bolt-li><strong>HTML:</strong> Add a <code>e-bolt-table--borderless</code> class to the <code>&lt;table&gt;</code> to remove the table borders.</bolt-li>
   </bolt-ol>
 {% endspaceless %}
 {% endset %}
@@ -21,15 +21,15 @@
         header: true,
       } only %}
       {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'Top table header.',
+        content: 'Description',
         header: true,
       } only %}
       {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'Top table header.',
+        content: 'Team',
         header: true,
       } only %}
       {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'Top table header.',
+        content: 'Vehicle Form',
         header: true,
       } only %}
     {% endset %}
@@ -41,17 +41,17 @@
   {% set row1 %}
     {% set cells %}
       {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'Side table header.',
-        header: true
+        content: 'Optimus Prime',
+        header: true,
       } only %}
       {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.',
       } only %}
       {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'Autobots',
       } only %}
       {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'Peterbilt Truck',
       } only %}
     {% endset %}
     {% include '@bolt-elements-table/table-row.twig' with {
@@ -62,38 +62,17 @@
   {% set row2 %}
     {% set cells %}
       {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'Side table header.',
-        header: true
+        content: 'Bumblebee',
+        header: true,
       } only %}
       {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'One of Optimus Prime\'s most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.'
       } only %}
       {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'Autobots',
       } only %}
       {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
-      } only %}
-    {% endset %}
-    {% include '@bolt-elements-table/table-row.twig' with {
-      content: cells,
-    } only %}
-  {% endset %}
-
-  {% set row3 %}
-    {% set cells %}
-      {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'Side table header.',
-        header: true
-      } only %}
-      {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
-      } only %}
-      {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
-      } only %}
-      {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'This is a regular cell.',
+        content: 'VW Beetle',
       } only %}
     {% endset %}
     {% include '@bolt-elements-table/table-row.twig' with {
@@ -102,14 +81,14 @@
   {% endset %}
 
   {% include '@bolt-elements-table/table.twig' with {
+    borderless: true,
     header: {
       content: header,
     },
     body: {
       content: [
         row1,
-        row2,
-        row3,
+        row2
       ],
     },
   } only %}
@@ -124,15 +103,15 @@
       header: true,
     } only %}
     {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'Top table header.',
+      content: 'Description',
       header: true,
     } only %}
     {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'Top table header.',
+      content: 'Team',
       header: true,
     } only %}
     {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'Top table header.',
+      content: 'Vehicle Form',
       header: true,
     } only %}
   {% endset %}
@@ -144,17 +123,17 @@
 {% set row1 %}
   {% set cells %}
     {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'Side table header.',
-      header: true
+      content: 'Optimus Prime',
+      header: true,
     } only %}
     {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'This is a regular cell.',
+      content: 'The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.',
     } only %}
     {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'This is a regular cell.',
+      content: 'Autobots',
     } only %}
     {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'This is a regular cell.',
+      content: 'Peterbilt Truck',
     } only %}
   {% endset %}
   {% include '@bolt-elements-table/table-row.twig' with {
@@ -165,38 +144,17 @@
 {% set row2 %}
   {% set cells %}
     {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'Side table header.',
-      header: true
+      content: 'Bumblebee',
+      header: true,
     } only %}
     {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'This is a regular cell.',
+      content: 'One of Optimus Prime\'s most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.'
     } only %}
     {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'This is a regular cell.',
+      content: 'Autobots',
     } only %}
     {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'This is a regular cell.',
-    } only %}
-  {% endset %}
-  {% include '@bolt-elements-table/table-row.twig' with {
-    content: cells,
-  } only %}
-{% endset %}
-
-{% set row3 %}
-  {% set cells %}
-    {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'Side table header.',
-      header: true
-    } only %}
-    {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'This is a regular cell.',
-    } only %}
-    {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'This is a regular cell.',
-    } only %}
-    {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'This is a regular cell.',
+      content: 'VW Beetle',
     } only %}
   {% endset %}
   {% include '@bolt-elements-table/table-row.twig' with {
@@ -205,14 +163,14 @@
 {% endset %}
 
 {% include '@bolt-elements-table/table.twig' with {
+  borderless: true,
   header: {
     content: header,
   },
   body: {
     content: [
       row1,
-      row2,
-      row3,
+      row2
     ],
   },
 } only %}
@@ -221,33 +179,27 @@
 
 {% set html_markup %}
 {% verbatim %}
-<table class="e-bolt-table">
+<table class="e-bolt-table e-bolt-table--borderless">
   <thead>
     <tr>
-      <th></th>
-      <th>Top table header.</th>
-      <th>Top table header.</th>
-      <th>Top table header.</th>
+      <td></td>
+      <th>Description</th>
+      <th>Team</th>
+      <th>Vehicle Form</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>Side table header.</th>
-      <td>This is a regular cell.</td>
-      <td>This is a regular cell.</td>
-      <td>This is a regular cell.</td>
+      <th>Optimus Prime</th>
+      <td>The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.</td>
+      <td>Autobots</td>
+      <td>Peterbilt Truck</td>
     </tr>
     <tr>
-      <th>Side table header.</th>
-      <td>This is a regular cell.</td>
-      <td>This is a regular cell.</td>
-      <td>This is a regular cell.</td>
-    </tr>
-    <tr>
-      <th>Side table header.</th>
-      <td>This is a regular cell.</td>
-      <td>This is a regular cell.</td>
-      <td>This is a regular cell.</td>
+      <th>Bumblebee</th>
+      <td>One of Optimus Prime's most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.</td>
+      <td>Autobots</td>
+      <td>VW Beetle</td>
     </tr>
   </tbody>
 </table>
@@ -255,8 +207,8 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Table Element with Top and Side Headers',
-  description: 'A table that provides basic display options',
+  title: 'Table Element Borderless',
+  description: description,
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,

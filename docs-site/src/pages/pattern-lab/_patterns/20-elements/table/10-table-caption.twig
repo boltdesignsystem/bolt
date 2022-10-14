@@ -1,3 +1,7 @@
+{% set description %}
+  An example of a Table Element with a table caption.
+{% endset %}
+
 {% set notes %}
 {% spaceless %}
   <bolt-ol>
@@ -169,7 +173,7 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Table Element with a Caption',
-  description: 'Add a caption to a Table Element component',
+  description: description,
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,

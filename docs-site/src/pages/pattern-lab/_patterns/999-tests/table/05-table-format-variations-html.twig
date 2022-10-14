@@ -1,64 +1,161 @@
-{# {% set main_content %}
+{% set main_content %}
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Pts',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Reb',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Ast',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Stl',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Blk',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Michael Jordan',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '70',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '10',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '2',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '5',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '1',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Toni Kukoc',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '21',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '15',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '10',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '3',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '4',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Steve Kerr',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '5',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '2',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '20',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '5',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '0',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set footer %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Total',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '91',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '27',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '32',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '13',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '5',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
   <h3>Regular Format</h3>
+
   {% include '@bolt-elements-table/table.twig' with {
     format: 'regular',
-    headers: {
-      top: {
-        cells: [
-          'Pts',
-          'Reb',
-          'Ast',
-          'Stl',
-          'Blk',
-        ]
-      },
-      side: {
-        cells: [
-          'Michael Jordan',
-          'Toni Kukoc',
-          'Steve Kerr',
-          'Total',
-        ]
-      }
+    header: {
+      content: header,
     },
-    rows: [
-      {
-        cells: [
-          '70',
-          '10',
-          '2',
-          '5',
-          '1',
-        ]
-      },
-      {
-        cells: [
-          '21',
-          '15',
-          '10',
-          '3',
-          '4',
-        ]
-      },
-      {
-        cells: [
-          '5',
-          '2',
-          '20',
-          '5',
-          '0',
-        ]
-      }
-    ],
+    body: {
+      content: [
+        row1,
+        row2,
+        row3,
+      ],
+    },
     footer: {
-      cells: [
-        '91',
-        '27',
-        '32',
-        '13',
-        '5',
-      ]
-    }
+      content: footer,
+    },
   } only %}
 
   <h3>Regular Format (HTML)</h3>
@@ -161,76 +258,23 @@
     </tfoot>
   </table>
 
+  <h3>Numeric Format</h3>
 
-
-
-
-
-
-
-
-
-
-<h3>Numeric Format</h3>
-  {% include '@bolt-elements-table/table.twig' with {
+    {% include '@bolt-elements-table/table.twig' with {
     format: 'numeric',
-    headers: {
-      top: {
-        cells: [
-          'Pts',
-          'Reb',
-          'Ast',
-          'Stl',
-          'Blk',
-        ]
-      },
-      side: {
-        cells: [
-          'Michael Jordan',
-          'Toni Kukoc',
-          'Steve Kerr',
-          'Total',
-        ]
-      }
+    header: {
+      content: header,
     },
-    rows: [
-      {
-        cells: [
-          '70',
-          '10',
-          '2',
-          '5',
-          '1',
-        ]
-      },
-      {
-        cells: [
-          '21',
-          '15',
-          '10',
-          '3',
-          '4',
-        ]
-      },
-      {
-        cells: [
-          '5',
-          '2',
-          '20',
-          '5',
-          '0',
-        ]
-      }
-    ],
+    body: {
+      content: [
+        row1,
+        row2,
+        row3,
+      ],
+    },
     footer: {
-      cells: [
-        '91',
-        '27',
-        '32',
-        '13',
-        '5',
-      ]
-    }
+      content: footer,
+    },
   } only %}
 
   <h3>Numeric Format (HTML)</h3>
@@ -338,4 +382,4 @@
   main: {
     content: main_content,
   }
-} only %} #}
+} only %}

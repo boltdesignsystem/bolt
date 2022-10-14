@@ -1,39 +1,83 @@
-{# {% set main_content %}
+{% set main_content %}
   <h3>Borderless</h3>
+
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Description',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Team',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Vehicle Form',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Optimus Prime',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Autobots',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Peterbilt Truck',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Bumblebee',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'One of Optimus Prime\'s most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.'
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Autobots',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'VW Beetle',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
 
   {% include '@bolt-elements-table/table.twig' with {
     borderless: true,
-    headers: {
-      top: {
-        cells: [
-          'Description',
-          'Team',
-          'Vehicle Form',
-        ]
-      },
-      side: {
-        cells: [
-          'Optimus Prime',
-          'Bumblebee',
-        ]
-      }
+    header: {
+      content: header,
     },
-    rows: [
-      {
-        cells: [
-          'The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.',
-          'Autobots',
-          'Peterbilt Truck',
-        ]
-      },
-      {
-        cells: [
-          'One of Optimus Prime\'s most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.',
-          'Autobots',
-          'VW Beetle',
-        ]
-      },
-    ],
+    body: {
+      content: [
+        row1,
+        row2
+      ],
+    },
   } only %}
 
   <h3>Borderless (HTML)</h3>
@@ -93,4 +137,4 @@
   main: {
     content: main_content,
   }
-} only %} #}
+} only %}

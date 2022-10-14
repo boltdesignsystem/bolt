@@ -1,5 +1,5 @@
-{% set desciption %}
-  Modifies the first two column widths
+{% set description %}
+  An example of a Table Element with modified first two column widths.
 {% endset %}
 
 {% set notes %}
@@ -15,6 +15,22 @@
 {% endset %}
 
 {% set demo %}
+  <style>
+    .e-bolt-table--fixed-width-columns--first tr th:first-of-type:not(th:nth-child(2)),
+    .e-bolt-table--fixed-width-columns--first tr td:first-of-type:not(td:nth-child(2)),
+    .e-bolt-table--fixed-width-columns--second tr th:first-of-type + th:not(th:nth-child(3)),
+    .e-bolt-table--fixed-width-columns--second tr th:first-of-type + td:not(td:nth-child(3)),
+    .e-bolt-table--fixed-width-columns--second tr td:first-of-type + td:not(td:nth-child(3)),
+    .e-bolt-table--fixed-width-columns--second tr td:first-of-type + th:not(th:nth-child(3)),
+    .e-bolt-table--fixed-width-columns--first-two tr th:first-of-type:not(th:nth-child(2)),
+    .e-bolt-table--fixed-width-columns--first-two tr td:first-of-type:not(td:nth-child(2)),
+    .e-bolt-table--fixed-width-columns--first-two tr th:first-of-type + th:not(th:nth-child(3)),
+    .e-bolt-table--fixed-width-columns--first-two tr th:first-of-type + td:not(td:nth-child(3)),
+    .e-bolt-table--fixed-width-columns--first-two tr td:first-of-type + td:not(td:nth-child(3)),
+    .e-bolt-table--fixed-width-columns--first-two tr td:first-of-type + th:not(th:nth-child(3)) {
+      background-color: #ff7b7b;
+    }
+  </style>
   {% set header %}
     {% set cells %}
       {% include '@bolt-elements-table/table-cell.twig' with {
@@ -151,13 +167,6 @@
     } only %}
   {% endset %}
 
-
-
-
-
-
-
-
   {% set row1_with_header %}
     {% set cells %}
       {% include '@bolt-elements-table/table-cell.twig' with {
@@ -265,17 +274,6 @@
       content: cells,
     } only %}
   {% endset %}
-
-
-
-
-
-
-
-
-
-
-
 
   {% set base_table %}
     <h3>Set column widths to be flexible.</h3>
@@ -424,7 +422,7 @@
   {% endset %}
 
   {% set flexible_first_column_with_fixed_layout %}
-    <h3>Fixed Width Prop Override.</h3>
+    <h3>Fixed Width Table Prop Override.</h3>
     {% include '@bolt-elements-table/table.twig' with {
       fixed_width_table: true,
       fixed_width_columns: 'first-two',
@@ -610,38 +608,51 @@
 <table class="e-bolt-table e-bolt-table--fixed-width-columns--first-two">
   <thead>
     <tr>
-      <th scope="col">Prop</th>
-      <th scope="col">Number</th>
-      <th scope="col">Description</th>
-      <th scope="col">Type</th>
+      <th>
+      </th>
+      <th>Pts</th>
+      <th>Reb</th>
+      <th>Ast</th>
+      <th>Stl</th>
+      <th>Blk</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>attributes</td>
-      <td>1</td>
-      <td>Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.</td>
-      <td><code>object</code></td>
-    </tr>
-    <tr>
-      <td>headers</td>
+      <td>Michael Jordan</td>
+      <td>70</td>
+      <td>10</td>
       <td>2</td>
-      <td>Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.</td>
-      <td><code>object</code></td>
+      <td>5</td>
+      <td>1</td>
     </tr>
     <tr>
-      <td>rows</td>
+      <td>Toni Kukoc</td>
+      <td>21</td>
+      <td>15</td>
+      <td>10</td>
       <td>3</td>
-      <td>Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.</td>
-      <td><code>array</code></td>
+      <td>4</td>
     </tr>
     <tr>
-      <td>format</td>
-      <td>4</td>
-      <td>Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.</td>
-      <td><code>string</code></td>
+      <td>Steve Kerr</td>
+      <td>5</td>
+      <td>2</td>
+      <td>20</td>
+      <td>5</td>
+      <td>0</td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <td>Total</td>
+      <td>91</td>
+      <td>27</td>
+      <td>32</td>
+      <td>13</td>
+      <td>5</td>
+    </tr>
+  </tfoot>
 </table>
 {% endverbatim %}
 {% endset %}

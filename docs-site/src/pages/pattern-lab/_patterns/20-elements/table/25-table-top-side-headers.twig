@@ -1,14 +1,14 @@
 {% set description %}
-  An example of a Table Element with top and side headers and a table footer.
+  An example of a Table Element with top and side headers.
 {% endset %}
 
 {% set notes %}
 {% spaceless %}
   <bolt-ol>
     <bolt-li>The Table Element is designed to work with both Twig and vanilla HTML (Twig is the recommended method).</bolt-li>
-    <bolt-li>Refer to the <a href="{{ link['elements-table-top-side-headers'] }}" class="e-bolt-text-link">Table Element with Top and Side Headers</a> page for information on adding the headers.</bolt-li>
-    <bolt-li><strong>Twig:</strong> Use the <code>footer</code> prop to render a footer row.</bolt-li>
-    <bolt-li><strong>HTML:</strong> Add a <code>&lt;tfoot&gt;</code> to the <code>&lt;table&gt;</code> to render a footer row.</bolt-li>
+    <bolt-li>Refer to the <a href="{{ link['elements-table-top-header'] }}" class="e-bolt-text-link">Table Element with Top Header</a> page for information on adding a top header.</bolt-li>
+    <bolt-li>Refer to the <a href="{{ link['elements-table-side-header'] }}" class="e-bolt-text-link">Table Element with Side Header</a> page for information on adding a side header.</bolt-li>
+    <bolt-li><strong>Twig/HTML:</strong> To align the table columns correctly, include a blank <code>&lt;th&gt;</code> to the <code>&lt;thead&gt;</code> as the first cell.</bolt-li>
   </bolt-ol>
 {% endspaceless %}
 {% endset %}
@@ -101,29 +101,7 @@
     } only %}
   {% endset %}
 
-  {% set footer %}
-    {% set cells %}
-      {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'Side table header.',
-        header: true
-      } only %}
-      {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'This is a table footer cell.',
-      } only %}
-        {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'This is a table footer cell.',
-      } only %}
-        {% include '@bolt-elements-table/table-cell.twig' with {
-        content: 'This is a table footer cell.',
-      } only %}
-    {% endset %}
-    {% include '@bolt-elements-table/table-row.twig' with {
-      content: cells,
-    } only %}
-  {% endset %}
-
   {% include '@bolt-elements-table/table.twig' with {
-    sticky_headers: 'side',
     header: {
       content: header,
     },
@@ -133,9 +111,6 @@
         row2,
         row3,
       ],
-    },
-    footer: {
-      content: footer,
     },
   } only %}
 {% endset %}
@@ -229,29 +204,7 @@
   } only %}
 {% endset %}
 
-{% set footer %}
-  {% set cells %}
-    {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'Side table header.',
-      header: true
-    } only %}
-    {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'This is a table footer cell.',
-    } only %}
-      {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'This is a table footer cell.',
-    } only %}
-      {% include '@bolt-elements-table/table-cell.twig' with {
-      content: 'This is a table footer cell.',
-    } only %}
-  {% endset %}
-  {% include '@bolt-elements-table/table-row.twig' with {
-    content: cells,
-  } only %}
-{% endset %}
-
 {% include '@bolt-elements-table/table.twig' with {
-  sticky_headers: 'side',
   header: {
     content: header,
   },
@@ -262,16 +215,13 @@
       row3,
     ],
   },
-  footer: {
-    content: footer,
-  },
 } only %}
 {% endverbatim %}
 {% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<table class="e-bolt-table e-bolt-table--sticky-side-headers">
+<table class="e-bolt-table">
   <thead>
     <tr>
       <th></th>
@@ -300,20 +250,12 @@
       <td>This is a regular cell.</td>
     </tr>
   </tbody>
-  <tfoot>
-    <tr>
-      <th>Side table header.</th>
-      <td>This is a table footer cell.</td>
-      <td>This is a table footer cell.</td>
-      <td>This is a table footer cell.</td>
-    </tr>
-  </tfoot>
 </table>
 {% endverbatim %}
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Table Element with Headers and Footer',
+  title: 'Table Element with Top and Side Headers',
   description: description,
   notes: notes,
   demo: demo,
