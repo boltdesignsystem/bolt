@@ -41,7 +41,7 @@
         {% include '@bolt-elements-image/image.twig' with {
           attributes: {
             alt: 'Pegasystems, Inc.',
-            src: '/images/logos/pega-logo.svg',
+            src: '/images/content/logos/pega-logo.svg',
             width: 139,
             height: 30,
           },
@@ -341,13 +341,13 @@
       {% include '@bolt-elements-image/image.twig' with {
         attributes: {
           alt: 'Pega softwares',
-          src: '/images/heros/hero-foreground-pega-registration.png',
+          src: '/images/content/user/pega-registration.png',
           width: 388,
           height: 332,
         },
       } only %}
     </p>
-    
+
     {% set list_content %}
       {% set icon_check_solid %}
         {% include '@bolt-elements-icon/icon.twig' with {
@@ -395,7 +395,7 @@
       {% include '@bolt-layouts-layout/layout-item.twig' with {
         content: list_text,
       } only %}
-      
+
       {% set list_text %}
         {% include '@bolt-components-headline/text.twig' with {
           text: '<strong>Get technical support, comprehensive tutorials,</strong> and converse with Pega professionals from all over the world on the Pega Community.',
