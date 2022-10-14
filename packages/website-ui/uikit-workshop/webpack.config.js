@@ -1,21 +1,19 @@
 // webpack.config.js
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const CriticalCssPlugin = require('critical-css-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const selectorImporter = require('node-sass-selector-importer');
-const webpack = require('webpack');
-const CopyPlugin = require('copy-webpack-plugin');
-const PrerenderSPAPlugin = require('@bolt/prerender-spa-plugin');
 const path = require('path');
-const Renderer = require('@bolt/uikit-prerenderer');
-const puppeteer = require('puppeteer');
 const argv = require('yargs').argv;
-const WebpackBar = require('webpackbar');
-
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('patternlab');
+
+// Plugins/loaders
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const WebpackBar = require('webpackbar');
+const autoprefixer = require('autoprefixer');
+const selectorImporter = require('node-sass-selector-importer');
+
+// Config
 const babelConfig = require('@bolt/babel-preset-bolt');
 
 // @todo: wire these two ocnfigs up to use cosmicconfig!
@@ -233,28 +231,6 @@ module.exports = function(apiConfig) {
             beforeEmit: false,
           },
         ),
-        // new PrerenderSPAPlugin({
-        //   // Required - The path to the webpack-outputted app to prerender.
-        //   // staticDir: path.join(__dirname, 'dist'),
-        //   staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
-        //   // Required - Routes to render.
-        //   routes: ['/'],
-        //   postProcess(context) {
-        //     context.html = context.html.replace(
-        //       /<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi,
-        //       '',
-        //     );
-        //     return context;
-        //   },
-        //   renderer: new Renderer({
-        //     // Optional - The name of the property to add to the window object with the contents of `inject`.
-        //     injectProperty: '__PRERENDER_INJECTED',
-        //     // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
-        //     inject: {
-        //       foo: 'bar',
-        //     },
-        //   }),
-        // }),
         new HtmlWebpackPlugin({
           filename: '../index.html',
           template: path.resolve(__dirname, 'src/html/index.html'),
@@ -266,55 +242,6 @@ module.exports = function(apiConfig) {
         }),
       ],
     };
-
-    // if (localChrome) {
-    //   const browserPromise = puppeteer.launch({
-    //     executablePath: localChrome,
-    //     ignoreHTTPSErrors: true,
-    //     args: ['--disable-setuid-sandbox', '--no-sandbox'],
-    //     // not required to specify here, but saves Penthouse some work if you will
-    //     // re-use the same viewport for most penthouse calls.
-    //     defaultViewport: {
-    //       width: 1300,
-    //       height: 900,
-    //     },
-    //   });
-
-    //   modernConfig.plugins.push(
-    //     new CriticalCssPlugin({
-    //       base: path.resolve(__dirname, config.buildDir),
-    //       src: 'index.html',
-    //       dest: 'index.html',
-    //       inline: true,
-    //       minify: true,
-    //       extract: false,
-    //       width: 1300,
-    //       height: 900,
-    //       penthouse: {
-    //         keepLargerMediaQueries: true,
-
-    //         // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
-    //         forceInclude: [
-    //           'pl-logo',
-    //           '.pl-c-logo',
-    //           '.pl-c-logo__img',
-    //           '.pl-c-body--theme-light',
-    //           '.pl-c-body--theme-sidebar',
-    //           '.pl-c-body--theme-sidebar .pl-c-viewport',
-    //           '.pl-c-body--theme-density-compact',
-    //         ],
-    //         timeout: 30000, // ms; abort critical CSS generation after this timeout
-    //         maxEmbeddedBase64Length: 1000,
-    //         renderWaitTime: 1000,
-    //         blockJSRequests: false,
-    //         puppeteer: {
-    //           executablePath: localChrome,
-    //           getBrowser: () => browserPromise
-    //         }
-    //       },
-    //     })
-    //   );
-    // }
 
     return resolve(webpackConfig);
   });

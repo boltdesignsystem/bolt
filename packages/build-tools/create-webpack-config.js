@@ -114,7 +114,9 @@ async function createWebpackConfig(buildConfig) {
         loader: 'css-loader',
         options: {
           sourceMap: config.sourceMaps,
-          modules: false, // needed for JS referencing classNames directly, such as critical fonts
+          // needed for JS referencing classNames directly, such as critical fonts
+          // @todo: see if we still need this now that critical css has been removed
+          modules: false,
         },
       },
       {
@@ -416,11 +418,10 @@ async function createWebpackConfig(buildConfig) {
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: [
-                // 'css-hot-loader',
-                MiniCssExtractPlugin.loader,
-                getSassLoaders(true),
-              ].reduce((acc, val) => acc.concat(val), []),
+              use: [MiniCssExtractPlugin.loader, getSassLoaders(true)].reduce(
+                (acc, val) => acc.concat(val),
+                [],
+              ),
             },
           ],
         },
