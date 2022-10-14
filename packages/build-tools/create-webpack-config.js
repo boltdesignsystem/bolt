@@ -4,8 +4,8 @@ const webpack = require('webpack');
 // Plugins/loaders
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
+const autoprefixer = require('autoprefixer');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
@@ -138,19 +138,21 @@ async function createWebpackConfig(buildConfig) {
         loader: 'postcss-loader',
         options: {
           sourceMap: config.sourceMaps,
-          plugins: () => [
-            postcssDiscardDuplicates,
-            autoprefixer({
-              grid: true,
-            }),
-          ],
+          postcssOptions: {
+            plugins: [
+              postcssDiscardDuplicates,
+              // @todo: Consider switching to postcss-preset-env which polyfills modern CSS
+              autoprefixer,
+            ],
+          },
         },
       },
       {
         loader: 'resolve-url-loader',
       },
-
       {
+        // Note: intentionally not upgrading sass-loader yet. Compile time was
+        // ~1.5x slower after trial upgrade. Wait until we switch to Dart.
         loader: 'sass-loader',
         options: {
           sourceMap: config.sourceMaps,

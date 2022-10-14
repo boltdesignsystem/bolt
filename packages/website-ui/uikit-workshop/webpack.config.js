@@ -62,8 +62,9 @@ module.exports = function(apiConfig) {
       {
         loader: 'postcss-loader',
         options: {
-          sourceMap: config.sourceMaps,
-          plugins: () => [autoprefixer()],
+          postcssOptions: {
+            plugins: [autoprefixer],
+          },
         },
       },
       {
