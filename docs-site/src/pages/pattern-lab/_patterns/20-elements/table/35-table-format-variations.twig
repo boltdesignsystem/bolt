@@ -1,0 +1,411 @@
+{% set description %}
+  An example of a Table Element with numeric data styling.
+{% endset %}
+
+{% set notes %}
+{% spaceless %}
+  <bolt-ol>
+    <bolt-li>The Table Element is designed to work with both Twig and vanilla HTML (Twig is the recommended method).</bolt-li>
+    <bolt-li>Refer to the <a href="{{ link['elements-table-headers-footers'] }}" class="e-bolt-text-link">Table Element with Headers and Footer</a> page for information on adding the headers and footer.</bolt-li>
+    <bolt-li><strong>Twig:</strong> Use the <code>format</code> prop to style the table in numeric format.</bolt-li>
+    <bolt-li><strong>HTML:</strong> Add a <code>e-bolt-table--numeric</code> class to the <code>&lt;table&gt;</code> to style the table in numeric format.</bolt-li>
+  </bolt-ol>
+{% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  {% set schema = bolt.data.components['@bolt-elements-table'].schema['table'] %}
+
+  {% for format in schema.properties.format.enum %}
+    {% set format_table %}
+      <h3>{{ format|capitalize }} Format</h3>
+      {% set header %}
+        {% set cells %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '',
+            header: true,
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'Pts',
+            header: true,
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'Reb',
+            header: true,
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'Ast',
+            header: true,
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'Stl',
+            header: true,
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'Blk',
+            header: true,
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% set row1 %}
+        {% set cells %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'Michael Jordan',
+            header: true
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '70',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '10',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '2',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '5',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '1',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% set row2 %}
+        {% set cells %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'Toni Kukoc',
+            header: true
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '21',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '15',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '10',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '3',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '4',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% set row3 %}
+        {% set cells %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'Steve Kerr',
+            header: true
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '5',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '2',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '20',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '5',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '0',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% set footer %}
+        {% set cells %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'Total',
+            header: true
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '91',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '27',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '32',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '13',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: '5',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-elements-table/table.twig' with {
+        sticky_headers: 'side',
+        format: format,
+        header: {
+          content: header,
+        },
+        body: {
+          content: [
+            row1,
+            row2,
+            row3,
+          ],
+        },
+        footer: {
+          content: footer,
+        },
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-stack/stack.twig' with {
+      content: format_table,
+      spacing: 'medium'
+    } only %}
+
+  {% endfor %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set header %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Pts',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Reb',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Ast',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Stl',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Blk',
+      header: true,
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row1 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Michael Jordan',
+      header: true
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '70',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '10',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '2',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '5',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '1',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row2 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Toni Kukoc',
+      header: true
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '21',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '15',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '10',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '3',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '4',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row3 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Steve Kerr',
+      header: true
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '5',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '2',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '20',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '5',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '0',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set footer %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Total',
+      header: true
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '91',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '27',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '32',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '13',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '5',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% include '@bolt-elements-table/table.twig' with {
+  sticky_headers: 'side',
+  format: 'numeric',
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+  footer: {
+    content: footer,
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<table class="e-bolt-table e-bolt-table--numeric">
+  <thead>
+    <tr>
+      <td></td>
+      <th>Pts</th>
+      <th>Reb</th>
+      <th>Ast</th>
+      <th>Stl</th>
+      <th>Blk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Michael Jordan</th>
+      <td>70</td>
+      <td>10</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Toni Kukoc</th>
+      <td>21</td>
+      <td>15</td>
+      <td>10</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>Steve Kerr</th>
+      <td>5</td>
+      <td>2</td>
+      <td>20</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Total</th>
+      <td>91</td>
+      <td>27</td>
+      <td>32</td>
+      <td>13</td>
+      <td>5</td>
+    </tr>
+  </tfoot>
+</table>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table Element Numeric Formatting',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

@@ -1,4 +1,7 @@
-{#
+{% set description %}
+  Sets the table display with even column widths
+{% endset %}
+
 {% set notes %}
 {% spaceless %}
   <bolt-ol>
@@ -11,103 +14,237 @@
 {% endset %}
 
 {% set demo %}
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Prop',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Number',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Description',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Type',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'attributes',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '1',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '<code>object</code>',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'headers',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '2',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '<code>object</code>',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'rows',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '3',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '<code>array</code>',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row4 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'format',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '4',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '<code>string</code>',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
   {% include '@bolt-elements-table/table.twig' with {
     fixed_width_table: true,
-    headers: {
-      top: {
-        cells: [
-          'Prop',
-          'Number',
-          'Description',
-          'Type',
-        ]
-      }
+    header: {
+      content: header,
     },
-    rows: [
-      {
-        cells: [
-          'attributes',
-          '1',
-          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
-          '<code>object</code>',
-        ]
-      },
-      {
-        cells: [
-          'headers',
-          '2',
-          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
-          '<code>object</code>',
-        ]
-      },
-      {
-        cells: [
-          'rows',
-          '3',
-          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
-          '<code>array</code>',
-        ]
-      },
-      {
-        cells: [
-          'format',
-          '4',
-          'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
-          '<code>string</code>',
-        ]
-      },
-    ]
+    body: {
+      content: [
+        row1,
+        row2,
+        row3,
+        row4,
+      ],
+    },
   } only %}
 {% endset %}
 
 {% set twig_markup %}
 {% verbatim %}
+{% set header %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Prop',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Number',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Description',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Type',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row1 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'attributes',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '1',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '<code>object</code>',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row2 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'headers',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '2',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '<code>object</code>',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row3 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'rows',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '3',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '<code>array</code>',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row4 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'format',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '4',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '<code>string</code>',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
 {% include '@bolt-elements-table/table.twig' with {
   fixed_width_table: true,
-  headers: {
-    top: {
-      cells: [
-        'Prop',
-        'Number',
-        'Description',
-        'Type',
-      ]
-    }
+  header: {
+    content: header,
   },
-  rows: [
-    {
-      cells: [
-        'attributes',
-        '1',
-        'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
-        '<code>object</code>',
-      ]
-    },
-    {
-      cells: [
-        'headers',
-        '2',
-        'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
-        '<code>object</code>',
-      ]
-    },
-    {
-      cells: [
-        'rows',
-        '3',
-        'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
-        '<code>array</code>',
-      ]
-    },
-    {
-      cells: [
-        'format',
-        '4',
-        'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
-        '<code>string</code>',
-      ]
-    },
-  ]
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+      row4,
+    ],
+  },
 } only %}
 {% endverbatim %}
 {% endset %}
@@ -155,10 +292,9 @@
 
 {% include '@utils/pattern-doc-page.twig' with {
   title: 'Table Element with a Fixed Width Layout',
-  description: 'Sets the table display with even column widths',
+  description: desciption,
   notes: notes,
   demo: demo,
   twig_markup: twig_markup,
   html_markup: html_markup,
 } only %}
-#}

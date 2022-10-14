@@ -16,18 +16,20 @@
 .e-bolt-table-wrapper {
   @include bolt-scroll;
 
-  display: inline-block;
+  display: block;
   max-width: 100%;
   max-height: 75vh;
+  line-height: var(--bolt-type-line-height-xsmall);
+  border-radius: bolt-border-radius(small);
+  box-shadow: 0 0 0 1px var(--m-bolt-table-border);
+  background-color: var(--m-bolt-table-border);
 }
 
 .e-bolt-table {
   width: 100%;
   font-size: var(--bolt-type-font-size-xsmall);
-  line-height: var(--bolt-type-line-height-xsmall);
   border-radius: bolt-border-radius(small);
   box-shadow: 0 0 0 1px var(--m-bolt-table-border);
-  background-color: var(--m-bolt-table-border);
   // The bg color here serves as border color because the cells have spacing in-between which will expose the bg color of the table. It creates the illusion of borders.
 
   @media print {
@@ -40,6 +42,7 @@
     --m-bolt-link: var(--m-bolt-headline);
   }
 
+  caption,
   td {
     background-color: var(--m-bolt-bg);
   }
@@ -82,6 +85,11 @@
       background-color var(--bolt-transition);
   }
 
+  tfoot td,
+  tfoot th {
+    font-weight: var(--bolt-type-font-weight-bold);
+  }
+
   tbody,
   tfoot {
     tr:hover {
@@ -102,6 +110,38 @@
     text-align: start;
     border-top: 1px solid var(--m-bolt-table-border);
     caption-side: bottom;
+  }
+
+  &.e-bolt-table--borderless {
+    box-shadow: none;
+    border-spacing: 0;
+
+    // tbody th:not(:last-child) {
+    //       @include bolt-table-border(right);
+    // }
+
+    th {
+      box-shadow: none;
+    }
+  }
+}
+
+.e-bolt-table--numeric {
+  td,
+  th {
+    font-family: var(--bolt-type-font-family-code);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  tbody th,
+  tfoot th {
+    width: 1%;
+    text-align: right;
+  }
+
+  tbody th {
+    font-family: var(--bolt-type-font-family-body);
   }
 }
 
@@ -135,6 +175,58 @@
     thead th {
       top: 0;
     }
+  }
+}
+
+.e-bolt-table--fixed-width-columns {
+  &--first {
+    tr th:first-of-type:not(th:nth-child(2)),
+    tr td:first-of-type:not(td:nth-child(2)) {
+      width: 1%;
+      white-space: nowrap;
+      border: 1px solid red;
+    }
+  }
+
+  &--second {
+    tr th:first-of-type + th:not(th:nth-child(3)),
+    tr th:first-of-type + td:not(td:nth-child(3)),
+    tr td:first-of-type + td:not(td:nth-child(3)),
+    tr td:first-of-type + th:not(th:nth-child(3)) {
+      width: 1%;
+      white-space: nowrap;
+      border: 1px solid red;
+    }
+  }
+
+  &--first-two {
+    tr th:first-of-type:not(th:nth-child(2)),
+    tr td:first-of-type:not(td:nth-child(2)),
+    tr th:first-of-type + th:not(th:nth-child(3)),
+    tr th:first-of-type + td:not(td:nth-child(3)),
+    tr td:first-of-type + td:not(td:nth-child(3)),
+    tr td:first-of-type + th:not(th:nth-child(3)) {
+      width: 1%;
+      white-space: nowrap;
+      border: 1px solid red;
+    }
+  }
+}
+
+.e-bolt-table--fixed-width-table {
+  table-layout: fixed;
+
+  tr th,
+  tr td,
+  tr th:first-of-type,
+  tr td:first-of-type,
+  tr th:first-of-type + th,
+  tr th:first-of-type + td,
+  tr td:first-of-type + td,
+  tr td:first-of-type + th {
+    width: auto;
+    white-space: normal;
+    word-break: break-all;
   }
 }
 

@@ -19,7 +19,7 @@
   'e-bolt-table',
   borderless ? 'e-bolt-table--borderless',
   this.data.format.value != schema.properties.format.default ? 'e-bolt-table--numeric',
-  this.data.sticky_headers.value != schema.properties.sticky_headers.default ? 'c-bolt-table--sticky-' ~ this.data.sticky_headers.value ~ '-headers',
+  this.data.sticky_headers.value != schema.properties.sticky_headers.default ? 'e-bolt-table--sticky-' ~ this.data.sticky_headers.value ~ '-headers',
   fixed_width_table ? 'e-bolt-table--fixed-width-table' : fixed_width_columns ? 'e-bolt-table--fixed-width-columns--' ~ fixed_width_columns,
 ] %}
 <div class="e-bolt-table-wrapper">
