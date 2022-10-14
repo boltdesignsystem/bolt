@@ -1,6 +1,6 @@
 import { query } from '@bolt/core-v3.x/utils';
-import { version } from 'grapesjs/package.json';
 import { detect } from 'detect-browser';
+import packageInfo from 'grapesjs/package.json';
 
 const defaultConfig = {};
 
@@ -40,7 +40,7 @@ function createEditorUiHtml(appendTo = document.body) {
  */
 function addGrapesCssToPage() {
   return new Promise((resolve, reject) => {
-    const href = `//unpkg.com/grapesjs@${version}/dist/css/grapes.min.css`;
+    const href = `//unpkg.com/grapesjs@${packageInfo.version}/dist/css/grapes.min.css`;
     if (document.querySelector(`link[href="${href}"]`)) {
       resolve();
     } else {

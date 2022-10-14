@@ -1,37 +1,25 @@
+const fs = require('fs');
 const path = require('path');
+const deepmerge = require('deepmerge');
 const webpack = require('webpack');
+const { merge } = require('webpack-merge');
 
 // Plugins/loaders
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const postcssDiscardDuplicates = require('postcss-discard-duplicates');
-const autoprefixer = require('autoprefixer');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
-const npmSass = require('npm-sass'); // Remove?
+const postcssDiscardDuplicates = require('postcss-discard-duplicates');
+const autoprefixer = require('autoprefixer');
 
-const merge = require('webpack-merge');
-
-const fs = require('fs');
-const deepmerge = require('deepmerge');
-
-// Unused
-const resolve = require('resolve');
-
+// Helpers/config
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
-const {
-  webpackStats,
-  statsPreset,
-} = require('@bolt/build-utils/webpack-verbosity');
-
+const { getBoltManifest } = require('@bolt/build-utils/manifest');
+const npmSass = require('npm-sass'); // @todo: Remove when we switch to Dart sass
+const sassExportData = require('@bolt/sass-export-data'); // @todo: Solve this problem without node-sass
 const babelConfig = require('@bolt/babel-preset-bolt');
-
-const {
-  getBoltManifest,
-  mapComponentNameToTwigNamespace,
-} = require('@bolt/build-utils/manifest');
 const log = require('@bolt/build-utils/log');
 
 // Store set of webpack configs used in multiple builds
@@ -48,11 +36,6 @@ async function createWebpackConfig(buildConfig) {
     : config.wwwDir
     ? `/${path.relative(config.wwwDir, config.buildDir)}/`
     : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
-
-  // @TODO: move this setting to .boltrc config
-  const sassExportData = require('@bolt/sass-export-data')({
-    path: config.dataDir,
-  });
 
   // map out Twig namespaces with the NPM package name
 
@@ -160,7 +143,9 @@ async function createWebpackConfig(buildConfig) {
           sassOptions: {
             outputStyle: 'nested',
             importer: [npmSass.importer],
-            functions: sassExportData,
+            functions: sassExportData({
+              path: config.dataDir,
+            }),
             precision: 3,
           },
         },
@@ -378,8 +363,6 @@ async function createWebpackConfig(buildConfig) {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
     },
     output: {
-      // https://v4.webpack.js.org/configuration/output/#outputfutureemitassets
-      // futureEmitAssets: true,
       path: path.resolve(process.cwd(), config.buildDir),
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
       filename: `[name]${langSuffix}${

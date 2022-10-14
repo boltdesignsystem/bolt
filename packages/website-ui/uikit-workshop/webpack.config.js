@@ -12,7 +12,6 @@ const path = require('path');
 const Renderer = require('@bolt/uikit-prerenderer');
 const puppeteer = require('puppeteer');
 const argv = require('yargs').argv;
-const merge = require('webpack-merge');
 const WebpackBar = require('webpackbar');
 
 const cosmiconfig = require('cosmiconfig');

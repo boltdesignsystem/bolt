@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const express = require('express');
 const browserSync = require('browser-sync').create();
 const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
 const chalk = require('chalk');
 const opn = require('better-opn');
 const { handleRequest } = require('@bolt/api');
@@ -145,10 +144,7 @@ async function server(customWebpackConfig) {
     );
     app.use(
       webpackDevMiddleware(compiler, {
-        quiet: true,
-        stats: 'errors-warnings',
         writeToDisk: true,
-        logLevel: 'error',
         stats: statsPreset(webpackStats[boltBuildConfig.verbosity]),
       }),
     );
