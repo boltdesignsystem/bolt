@@ -375,7 +375,10 @@ async function createWebpackConfig(buildConfig) {
     },
     plugins: [
       new webpack.DefinePlugin(getGlobalJSData(true)),
-      new CopyWebpackPlugin({ patterns: config.copy ? config.copy : [] }),
+      // CopyWebpackPlugin throws an error if you don't pass it a configuration object
+      config.copy
+        ? new CopyWebpackPlugin({ patterns: config.copy })
+        : undefined,
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
@@ -391,7 +394,7 @@ async function createWebpackConfig(buildConfig) {
           name: 'Bolt Modern Manifest',
         },
       }),
-    ],
+    ].filter(item => item !== undefined),
     module: {
       rules: [
         {
