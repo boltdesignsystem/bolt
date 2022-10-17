@@ -116,6 +116,8 @@
     ],
   } only %}
 {# END CONTENT LAYER #}
+
+{# START RELATED LAYER #}
   {% set layer_teaser %}
     {% set video_thumbnail %}
       {% set image %}
@@ -140,19 +142,69 @@
 
     {% include '@bolt-components-teaser/teaser.twig' with {
       signifier: video_thumbnail,
+      variant: 'card',
+      eyebrow_text: 'Explainer',
       headline: {
         text: 'Center-out Explained',
-        eyebrow: 'Explainer',
         link_attributes: {
           type: 'button',
           'data-bolt-modal-target': '#' ~ '0000',
+          class: 'u-bolt-padding-bottom-medium',
         },
       },
     } %}
   {% endset %}
 
   {% set layer_list %}
-    [list]
+    {% set flag_icon %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'media',
+        size: 'xlarge',
+      } only %}
+    {% endset %}
+
+    {% set flag_text %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: "Download our whitepaper, “Why real-time decisioning really matters”",
+        tag: 'h3',
+        size: 'large',
+        url: '#!',
+      } only %}
+    {% endset %}
+
+    {% set flag_content %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: flag_icon,
+      } only %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: flag_text,
+      } only %}
+    {% endset %}
+
+    {% set flag_list_item %}
+      {% include '@bolt-layouts-layout/layout.twig' with {
+        content: flag_content,
+        padding_top: 'none',
+        padding_bottom: 'none',
+        valign_items: 'center',
+        template: [
+          'flag@from-medium',
+        ],
+        attributes: {
+          style :'--l-bolt-layout-flag-media-width: 40px'
+        }
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-list/list.twig' with {
+      separator: 'solid',
+      spacing: 'small',
+      items: [
+        flag_list_item,
+        flag_list_item,
+        flag_list_item,
+      ]
+    } only %}
   {% endset %}
 
   {% set layer_items %}
@@ -179,3 +231,102 @@
       class: 't-bolt-dark',
     },
   } only %}
+{# END RELATED LAYER #}
+
+{# START ABOUT LAYER #}
+  {% set layer_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Tags",
+      tag: 'h3',
+      size: 'xlarge',
+    } only %}
+
+    {% include '@bolt-components-chip-list/chip-list.twig' with {
+      items: [
+        {
+          text: 'Chip 1',
+        },
+        {
+          text: 'Chip 2',
+        },
+        {
+          text: 'Chip 3',
+        }
+      ]
+    } only %}
+
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "About the Author",
+      tag: 'h3',
+      size: 'xlarge',
+    } only %}
+
+    <p>As Head of Brand, Creative, and Content Marketing at Pega, <a href="#!">Molly Sullivan</a> helps tell Pega’s story of crushing complexity.</p>
+
+    {% include '@bolt-components-share/share.twig' with {
+      size: 'medium',
+      sources: [
+        {
+          name: 'facebook',
+          attributes: {
+            href: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse'
+          }
+        },
+        {
+          name: 'twitter',
+          attributes: {
+            href:  'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+          }
+        },
+        {
+          name: 'linkedin',
+          attributes: {
+            href: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com'
+          }
+        },
+        {
+          name: 'email',
+          attributes: {
+            href: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+          }
+        }
+      ],
+      copy_to_clipboard: {
+        text_to_copy: 'https://boltdesignsystem.com'
+      },
+    } only %}
+  {% endset %}
+
+  {% set layer_item %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+    } only %}
+  {% endset %}
+
+  {% set nested_layer %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layer_item,
+      padding_top: 'large',
+      padding_bottom: 'large',
+    } only %}
+  {% endset %}
+
+  {% set nested_item %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: nested_layer,
+      attributes: {
+        class: 't-bolt-light u-bolt-padding-right-large u-bolt-padding-left-large',
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: nested_item,
+    align_items: 'center',
+    padding_top: 'none',
+    padding_bottom: 'large',
+    template: [
+      '67@from-medium',
+    ],
+  } only %}
+{# END ABOUT LAYER #}
