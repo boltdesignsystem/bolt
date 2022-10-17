@@ -20,13 +20,3 @@ export class BoltTableElement {
     tableWrapper.appendChild(table);
   }
 }
-
-const tableElements = document.querySelectorAll('.e-bolt-table');
-
-if (tableElements.length > 0) {
-  tableElements.forEach(el => {
-    if (!el.parentNode.classList.contains('e-bolt-table-wrapper')) {
-      const component = new BoltTableElement(el);
-    }
-  });
-}
