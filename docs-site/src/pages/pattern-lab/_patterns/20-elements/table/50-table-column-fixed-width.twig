@@ -8,6 +8,7 @@
     <bolt-li>Refer to the <a href="{{ link['elements-table-headers-footers'] }}" class="e-bolt-text-link">Table Element with Headers and Footer</a> page for information on adding the headers and footer.</bolt-li>
     <bolt-li><strong>Twig:</strong> Use the <code>fixed_width_columns</code> prop to adjust the column widths.</bolt-li>
     <bolt-li><strong>HTML:</strong> Add a <code>e-bolt-table--fixed-width-columns--first</code>, <code>e-bolt-table--fixed-width-columns--second</code> or <code>e-bolt-table--fixed-width-columns--first-two</code> class to the <code>&lt;table&gt;</code> to adjust the column widths.</bolt-li>
+    <bolt-li><strong>HTML:</strong> To get this layout to correctly render, you first must manually wrap the table in a div with the following classes, <code>e-bolt-table-wrapper</code> and <code>a e-bolt-table-wrapper--block</code>.</bolt-li>
     <bolt-li>The <code>fixed_width_table</code> boolean prop will disable the <code>fixed_width_columns</code> column adjustments. Refer to the <a href="{{ link['elements-table-fixed-width'] }}" class="e-bolt-text-link">Table Element with a Fixed Width Layout</a> page for information.</bolt-li>
     <bolt-li>The pink table cell backgrounds found on this page are for demonstration purposes only.</bolt-li>
   </bolt-ol>
@@ -277,22 +278,57 @@
 
   {% set base_table %}
     <h3>Set column widths to be flexible.</h3>
-    {% include '@bolt-elements-table/table.twig' with {
-      header: {
-        content: header,
-      },
-      body: {
-        content: [
-          row1,
-          row2,
-          row3,
-          row4,
-        ],
-      },
-      footer: {
-        content: footer,
-      },
-    } only %}
+    <div class="e-bolt-table-wrapper e-bolt-table-wrapper--block">
+      <table class="e-bolt-table">
+        <thead>
+          <tr>
+            <th>
+            </th>
+            <th>Pts</th>
+            <th>Reb</th>
+            <th>Ast</th>
+            <th>Stl</th>
+            <th>Blk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Michael Jordan</td>
+            <td>70</td>
+            <td>10</td>
+            <td>2</td>
+            <td>5</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>Toni Kukoc</td>
+            <td>21</td>
+            <td>15</td>
+            <td>10</td>
+            <td>3</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>Steve Kerr</td>
+            <td>5</td>
+            <td>2</td>
+            <td>20</td>
+            <td>5</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total</td>
+            <td>91</td>
+            <td>27</td>
+            <td>32</td>
+            <td>13</td>
+            <td>5</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   {% endset %}
 
   {% set flexible_first_column %}
@@ -658,7 +694,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Table Element Fixed Width for First Column',
+  title: 'Table Element with Flexible Start Columns',
   description: description,
   notes: notes,
   demo: demo,
