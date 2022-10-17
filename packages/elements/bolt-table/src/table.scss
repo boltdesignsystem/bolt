@@ -79,6 +79,10 @@
     }
   }
 
+  tr {
+    position: relative;
+  }
+
   th,
   td {
     padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
@@ -94,8 +98,6 @@
   tbody,
   tfoot {
     th:first-of-type {
-      position: relative;
-
       &:before {
         content: '';
         opacity: 0;
@@ -120,6 +122,7 @@
 
         &:before {
           opacity: 1;
+          border-left: 2px solid var(--m-bolt-headline);
         }
       }
     }
