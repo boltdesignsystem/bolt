@@ -97,6 +97,8 @@
   tbody,
   tfoot {
     th:first-of-type {
+      position: relative;
+
       &:before {
         content: '';
         opacity: 0;
@@ -121,7 +123,6 @@
 
         &:before {
           opacity: 1;
-          border-left: 2px solid var(--m-bolt-headline);
         }
       }
     }
@@ -190,6 +191,7 @@
   thead th {
     position: sticky;
     top: 1px;
+    z-index: 2;
     box-shadow: 0 0 0 1px var(--m-bolt-table-border);
   }
 
