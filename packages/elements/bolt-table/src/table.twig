@@ -14,13 +14,14 @@
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
 {% set first_col_fixed_width = first_col_fixed_width is same as(true) or first_col_fixed_width is same as(false) ? first_col_fixed_width : schema.properties.first_col_fixed_width.default %}
 
-{% set wrapper_block = fixed_width_columns ? ' e-bolt-table-wrapper--block' %}
+{% set wrapper_block = fixed_width_columns or full_width ? ' e-bolt-table-wrapper--full-width' %}
 {% set wrapper_classes = 'e-bolt-table-wrapper' ~ wrapper_block %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   'e-bolt-table',
   borderless ? 'e-bolt-table--borderless',
+  full_width ? 'e-bolt-table--full-width',
   this.data.format.value != schema.properties.format.default ? 'e-bolt-table--numeric',
   this.data.sticky_headers.value != schema.properties.sticky_headers.default ? 'e-bolt-table--sticky-' ~ this.data.sticky_headers.value ~ '-headers',
   fixed_width_table ? 'e-bolt-table--fixed-width-table' : fixed_width_columns ? 'e-bolt-table--fixed-width-columns--' ~ fixed_width_columns,

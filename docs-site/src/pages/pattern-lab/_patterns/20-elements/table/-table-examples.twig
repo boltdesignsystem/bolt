@@ -76,6 +76,7 @@
   <bolt-text headline tag="h4" font-size="small">Data page details (full width table, percentage column width)</bolt-text>
   <bolt-stack>
     {% include '@bolt-elements-table/table.twig' with {
+      full_width: true,
       header: {
         content: header,
       },
@@ -83,10 +84,7 @@
         content: [
           row1,
         ],
-      },
-      attributes: {
-        class: 'u-bolt-block',
-      },
+      }
     } only %}
   </bolt-stack>
 
@@ -191,6 +189,7 @@
   <bolt-text headline tag="h4" font-size="small">Data page parameters (full width table, pixel column width)</bolt-text>
   <bolt-stack>
     {% include '@bolt-elements-table/table.twig' with {
+      full_width: true,
       header: {
         content: header,
       },
@@ -200,11 +199,6 @@
           row2,
           row3,
         ],
-      },
-      attributes: {
-        class: [
-          'u-bolt-block',
-        ]
       },
     } only %}
   </bolt-stack>
@@ -288,6 +282,7 @@
   <bolt-text headline tag="h4" font-size="small">Capabilities (full width table, undefined column width)</bolt-text>
   <bolt-stack>
     {% include '@bolt-elements-table/table.twig' with {
+      full_width: true,
       header: {
         content: header,
       },
@@ -297,12 +292,7 @@
           row2,
           row3,
         ],
-      },
-      attributes: {
-        class: [
-          'u-bolt-block',
-        ]
-      },
+      }
     } only %}
   </bolt-stack>
 
@@ -476,6 +466,7 @@
   <bolt-text headline tag="h4" font-size="small">Chatbots and other virtual assistants (full width table, undefined column width)</bolt-text>
   <bolt-stack>
     {% include '@bolt-elements-table/table.twig' with {
+      full_width: true,
       header: {
         content: header,
       },
@@ -485,12 +476,7 @@
           row2,
           row3,
         ],
-      },
-      attributes: {
-        class: [
-          'u-bolt-block',
-        ]
-      },
+      }
     } only %}
   </bolt-stack>
 
@@ -722,9 +708,6 @@
         ],
       },
       sticky_headers: 'top',
-      attributes: {
-        class: 'u-bolt-block',
-      },
     } only %}
   </bolt-stack>
 

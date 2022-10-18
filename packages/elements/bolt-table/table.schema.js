@@ -14,6 +14,11 @@ module.exports = {
       description: 'Removes all borders from the table.',
       default: false,
     },
+    full_width: {
+      type: 'boolean',
+      description: "Update the table to render full width of it's container.",
+      default: false,
+    },
     sticky_headers: {
       type: 'string',
       description: 'Enables/disables sticky table headers.',

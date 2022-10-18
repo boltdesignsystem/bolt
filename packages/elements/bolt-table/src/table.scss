@@ -16,13 +16,16 @@
   background-color: var(--m-bolt-table-border);
   overscroll-behavior: none;
 
-  &--block {
+  &--full-width {
     display: block;
+  }
+
+  & > .e-bolt-table {
+    width: 100%;
   }
 }
 
 .e-bolt-table {
-  width: 100%;
   font-size: var(--bolt-type-font-size-xsmall);
   border-radius: bolt-border-radius(small);
   box-shadow: 0 0 0 1px var(--m-bolt-table-border);
@@ -143,6 +146,10 @@
       box-shadow: none;
     }
   }
+}
+
+.e-bolt-table--full-width {
+  width: 100%;
 }
 
 .e-bolt-table--numeric {
