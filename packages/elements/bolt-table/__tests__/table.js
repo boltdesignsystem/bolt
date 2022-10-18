@@ -681,6 +681,100 @@ describe('Bolt Table Element Prop -', () => {
     await expect(results.html).toMatchSnapshot();
   });
 
+  test(`full_width: true`, async () => {
+    const results = await renderString(`
+      {% set header %}
+        {% set cells %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'This is a header cell in table header',
+            header: true,
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'This is a header cell in table header',
+            header: true,
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'This is a header cell in table header',
+            header: true,
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% set row1 %}
+        {% set cells %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'This is a side header.',
+            header: true,
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'This is a regular cell.',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'This is a regular cell.',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% set row2 %}
+        {% set cells %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'This is a side header.',
+            header: true,
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'This is a regular cell.',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'This is a regular cell.',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% set row3 %}
+        {% set cells %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'This is a side header.',
+            header: true,
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'This is a regular cell.',
+          } only %}
+          {% include '@bolt-elements-table/table-cell.twig' with {
+            content: 'This is a regular cell.',
+          } only %}
+        {% endset %}
+        {% include '@bolt-elements-table/table-row.twig' with {
+          content: cells,
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-elements-table/table.twig' with {
+        full_width: true,
+        header: {
+          content: header,
+        },
+        body: {
+          content: [
+            row1,
+            row2,
+            row3,
+          ],
+        },
+      } only %}
+    `);
+    await expect(results.ok).toBe(true);
+    await expect(results.html).toMatchSnapshot();
+  });
+
   fixed_width_columns.enum.forEach(async option => {
     test(`fixed_width_columns items: ${option}`, async () => {
       const results = await renderString(`
