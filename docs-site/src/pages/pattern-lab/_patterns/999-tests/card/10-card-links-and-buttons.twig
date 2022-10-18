@@ -30,12 +30,17 @@
 } only %}
 
 {% set card %}
-  {% include "@bolt-components-card-replacement/card-replacement.twig" with {
-    media: {
-      image: {
-        src: "/images/placeholders/landscape-16x9-mountains.jpg",
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/16x9.jpg',
         alt: "Image alt.",
       },
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-card-replacement/card-replacement.twig" with {
+    media: {
+      image: image,
     },
     body: {
       headline: "No link",

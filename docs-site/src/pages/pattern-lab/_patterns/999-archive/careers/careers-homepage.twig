@@ -10,7 +10,7 @@
 {# Variables that are editable by the content editor #}
 {% set hero_headline = 'Powerful software. Powered by you.' %}
 {# {% set hero_text = 'We are on a mission to change the way the world builds software to create unprecedented business outcomes in customer engagement and operational excellence.' %} #}
-{% set hero_background_video_poster = '/images/placeholders/landscape-16x9-mountains.jpg' %}
+{% set hero_background_video_poster = '/images/placeholders/backgrounds/background-light2.jpg' %}
 {% set hero_background_video_id = '5999324539001' %}
 {% set themes = ['light', 'dark'] %}
 
@@ -374,13 +374,18 @@
     } only %}
 
     {% set card_1 %}
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            alt: 'alt text',
+            src: '/images/placeholders/16x9.jpg',
+            loading: 'lazy',
+          },
+        } only %}
+      {% endset %}
       {% include '@bolt-components-card-replacement/card-replacement.twig' with {
         media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-anthem.jpg',
-            alt: 'Anthem Video',
-            lazyload: false,
-          },
+          image: image,
         },
         body: {
           eyebrow: 'Eyebrow',
@@ -396,13 +401,18 @@
     {% endset %}
 
     {% set card_2 %}
+      {% set image %}
+        {% include '@bolt-elements-image/image.twig' with {
+          attributes: {
+            alt: 'alt text',
+            src: '/images/placeholders/16x9.jpg',
+            loading: 'lazy',
+          },
+        } only %}
+      {% endset %}
       {% include '@bolt-components-card-replacement/card-replacement.twig' with {
         media: {
-          image: {
-            src: '/images/content/promos/promo-16x9-anthem.jpg',
-            alt: 'Anthem Video',
-            lazyload: false,
-          },
+          image: image,
         },
         body: {
           headline: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',

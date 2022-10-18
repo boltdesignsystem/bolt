@@ -1,12 +1,19 @@
 {% set usage %}
 {% verbatim %}
 // Standard card-replacement
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      alt: 'alt text',
+      src: '/images/placeholders/backgrounds/background-light2.jpg',
+      loading: 'lazy',
+
+    },
+  } only %}
+{% endset %}
 {% include '@bolt-components-card-replacement/card-replacement.twig' with {
   media: {
-    image: {
-      src: '/images/placeholders/landscape-16x9-mountains.jpg',
-      alt: 'Image alt.',
-    },
+    image: image,
   },
   body: {
     eyebrow: 'This is an eyebrow',

@@ -23,7 +23,7 @@
     } only %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
-        src: '/images/placeholders/tout-4x3-climber.jpg',
+        src: '/images/placeholders/16x9.jpg',
         alt: 'A Rock Climber',
         loading: 'lazy',
         class: 'u-bolt-margin-bottom-medium',
@@ -121,13 +121,19 @@
   {% set card_band_content %}
     <bolt-grid gutter="small" row-gutter="small">
       <bolt-grid-item column-start="1" column-span="12 4@small">
+        {% set image %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              alt: 'alt text',
+              src: '/images/placeholders/backgrounds/background-light2.jpg',
+              loading: 'lazy',
+
+            },
+          } only %}
+        {% endset %}
         {% include '@bolt-components-card-replacement/card-replacement.twig' with {
           media: {
-            image: {
-              src: '/images/placeholders/landscape-16x9-mountains.jpg',
-              alt: 'Image alt.',
-              lazyload: false,
-            },
+            image: image,
           },
           body: {
             headline: 'Collection 1',
@@ -143,11 +149,7 @@
       <bolt-grid-item column-start="1 5@small" column-span="12 4@small">
         {% include '@bolt-components-card-replacement/card-replacement.twig' with {
           media: {
-            image: {
-              src: '/images/placeholders/landscape-16x9-mountains.jpg',
-              alt: 'Image alt.',
-              lazyload: false,
-            },
+            image: image,
           },
           body: {
             headline: 'Collection 2',
@@ -163,11 +165,7 @@
       <bolt-grid-item column-start="1 9@small" column-span="12 4@small">
         {% include '@bolt-components-card-replacement/card-replacement.twig' with {
           media: {
-            image: {
-              src: '/images/placeholders/landscape-16x9-mountains.jpg',
-              alt: 'Image alt.',
-              lazyload: false,
-            },
+            image: image,
           },
           body: {
             headline: 'Collection 3',
@@ -308,7 +306,7 @@
   {% set modal_content %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
-        src: '/images/content/backgrounds/background-robotics-customer-service.jpg',
+        src: '/images/placeholders/backgrounds/background-dark2.jpg',
         alt: 'This is the alt text.',
         loading: 'lazy',
       }

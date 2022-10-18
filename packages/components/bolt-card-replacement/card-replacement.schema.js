@@ -71,7 +71,8 @@ module.exports = {
       properties: {
         image: {
           type: 'object',
-          ref: 'image',
+          description:
+            '<a href="/pattern-lab/?p=viewall-elements-image" target="_blank" rel="noopener" class="e-bolt-text-link">Refer to the Image Element schema options</a>',
         },
         video: {
           type: 'object',

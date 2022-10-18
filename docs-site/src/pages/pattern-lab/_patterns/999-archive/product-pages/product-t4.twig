@@ -7,7 +7,7 @@
     {% include '@bolt-elements-image/image.twig' with {
       background: true,
       attributes: {
-        src: '/images/content/backgrounds/background-tall-3.jpg'
+        src: '/images/placeholders/backgrounds/background-dark-tall.jpg'
       },
     } only %}
   {% endset %}
@@ -1086,7 +1086,14 @@
   {% endblock %}
 {% endembed %}
 
-
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/16x9.jpg',
+      loading: 'lazy'
+    },
+  } only %}
+{% endset %}
 
 {% embed '@pl/_band--collection.twig' with {
   theme: 'xlight',
@@ -1095,9 +1102,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg'
-        },
+        image: image,
       },
       body: {
         eyebrow: 'Article',
@@ -1118,9 +1123,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg'
-        },
+        image: image,
       },
       body: {
         eyebrow: 'Article',
@@ -1138,9 +1141,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg'
-        },
+        image: image,
       },
       body: {
         eyebrow: 'Article',
@@ -1198,7 +1199,7 @@
   {% include '@bolt-elements-image/image.twig' with {
     background: true,
     attributes: {
-      src: '/images/content/backgrounds/background-tall-3.jpg'
+      src: '/images/placeholders/backgrounds/background-dark-tall.jpg'
     },
   } only %}
 {% endset %}
@@ -1232,7 +1233,7 @@
         },
         author: {
           image: {
-            src: '/images/placeholders/500x500.jpg',
+            src: '/images/placeholders/square.jpg',
             lazyload: true
           },
           name: 'Jessica Cuthbertson',

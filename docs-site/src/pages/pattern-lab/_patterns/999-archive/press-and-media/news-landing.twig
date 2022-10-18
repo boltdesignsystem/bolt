@@ -312,7 +312,27 @@
       {{ parent() }}
     {% endblock band_content %}
   {% endembed %}
-
+  {% set image_1 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/16x9.jpg',
+      },
+    } only %}
+  {% endset %}
+  {% set image_2 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/16x9.jpg',
+      },
+    } only %}
+  {% endset %}
+  {% set image_3 %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/16x9.jpg',
+      },
+    } only %}
+  {% endset %}
   {# Featured Resources #}
   {% embed '@pl/_band--collection.twig' with {
   theme: 'dark',
@@ -321,9 +341,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/placeholders/1200x660.jpg'
-        },
+        image: image_1,
       },
       body: {
         headline: 'First resource',
@@ -339,9 +357,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-anthem.jpg'
-        },
+        image: image_2,
       },
       body: {
         eyebrow: 'Optional resource type',
@@ -364,9 +380,7 @@
     {
       pattern: 'card',
       media: {
-        image: {
-          src: '/images/content/promos/promo-16x9-ai.jpg'
-        },
+        image: image_3,
       },
       body: {
         headline: 'Third resource',

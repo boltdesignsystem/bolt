@@ -4,7 +4,7 @@
   {% set card_replacement_body_content %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
-        src: '/images/placeholders/tout-4x3-climber.jpg',
+        src: '/images/placeholders/16x9.jpg',
         alt: 'A Rock Climber',
         class: 'u-bolt-margin-bottom-medium',
         loading: 'lazy'
@@ -126,12 +126,17 @@
         ]
       }
     } only %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          alt: 'Image alt text',
+          src: '/images/placeholders/16x9.jpg',
+        },
+      } only %}
+    {% endset %}
     {% include '@bolt-components-card-replacement/_card-replacement-media.twig' with {
       media: {
-        image: {
-          src: '/images/placeholders/landscape-16x9-mountains.jpg',
-          alt: 'Image alt.',
-        },
+        image: image,
       }
     } %}
   {% endset %}

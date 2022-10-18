@@ -522,13 +522,20 @@
 
     {% set main_content %}
       {% set card_1 %}
+        {% set image %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              alt: 'alt text',
+              src: '/images/placeholders/16x9.jpg',
+              loading: 'lazy',
+
+            },
+          } only %}
+        {% endset %}
         {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
           theme: 'xlight',
           media: {
-            image: {
-              src: '/images/content/promos/promo-blog-1.jpg',
-              alt: '',
-            },
+            image: image,
           },
           actions: [
             {
@@ -553,13 +560,20 @@
         {% endembed %}
       {% endset %}
       {% set card_2 %}
+        {% set image %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              alt: 'alt text',
+              src: '/images/placeholders/16x9.jpg',
+              loading: 'lazy',
+
+            },
+          } only %}
+        {% endset %}
         {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
           theme: 'xlight',
           media: {
-            image: {
-              src: '/images/content/promos/promo-blog-2.jpg',
-              alt: '',
-            },
+            image: image,
           },
           actions: [
             {
@@ -584,13 +598,20 @@
         {% endembed %}
       {% endset %}
       {% set card_3 %}
+        {% set image %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              alt: 'alt text',
+              src: '/images/placeholders/16x9.jpg',
+              loading: 'lazy',
+
+            },
+          } only %}
+        {% endset %}
         {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
           theme: 'xlight',
           media: {
-            image: {
-              src: '/images/content/promos/promo-blog-3.jpg',
-              alt: '',
-            },
+            image: image,
           },
           actions: [
             {
@@ -615,13 +636,19 @@
         {% endembed %}
       {% endset %}
       {% set card_4 %}
+        {% set image %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              alt: 'alt text',
+              src: '/images/placeholders/16x9.jpg',
+              loading: 'lazy',
+            },
+          } only %}
+        {% endset %}
         {% include '@bolt-components-card-replacement/card-replacement.twig' with {
           theme: 'xlight',
           media: {
-            image: {
-              src: '/images/content/promos/promo-16x9-ai.jpg',
-              alt: '',
-            },
+            image: image
           },
           body: {
             eyebrow: 'Kate Fowler',
@@ -636,13 +663,19 @@
         } only %}
       {% endset %}
       {% set card_5 %}
+        {% set image %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              alt: 'alt text',
+              src: '/images/placeholders/16x9.jpg',
+              loading: 'lazy',
+            },
+          } only %}
+        {% endset %}
         {% include '@bolt-components-card-replacement/card-replacement.twig' with {
           theme: 'xlight',
           media: {
-            image: {
-              src: '/images/content/promos/promo-16x9-ai.jpg',
-              alt: '',
-            },
+            image: image,
           },
           body: {
             eyebrow: 'Anthony Abdulla',
@@ -657,13 +690,19 @@
         } only %}
       {% endset %}
       {% set card_6 %}
+        {% set image %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              alt: 'alt text',
+              src: '/images/placeholders/16x9.jpg',
+              loading: 'lazy',
+            },
+          } only %}
+        {% endset %}
         {% include '@bolt-components-card-replacement/card-replacement.twig' with {
           theme: 'xlight',
           media: {
-            image: {
-              src: '/images/content/promos/promo-16x9-ai.jpg',
-              alt: '',
-            },
+            image: image,
           },
           body: {
             eyebrow: 'Baruch Sachs and Leanne Russell',
