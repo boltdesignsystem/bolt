@@ -16,7 +16,7 @@ module.exports = {
     },
     full_width: {
       type: 'boolean',
-      description: "Update the table to render full width of it's container.",
+      description: 'Update the table to render full width of its container.',
       default: false,
     },
     sticky_headers: {
