@@ -82,10 +82,6 @@
     }
   }
 
-  tr {
-    position: relative;
-  }
-
   th,
   td {
     padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
@@ -101,32 +97,20 @@
   tbody,
   tfoot {
     th:first-of-type {
-      &:before {
-        content: '';
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        width: 2px;
-        background-color: var(--m-bolt-headline);
-        transition: opacity var(--bolt-transition);
-      }
+      border-left: 2px solid var(--m-bolt-table-header);
+      transition: border-left var(--bolt-transition),
+        box-shadow var(--bolt-transition),
+        background-color var(--bolt-transition);
     }
 
     tr:hover {
+      th:first-of-type {
+        border-left: 2px solid var(--m-bolt-headline);
+      }
+
       th,
       td {
         background-color: var(--m-bolt-table-highlight);
-      }
-
-      th {
-        z-index: 1;
-
-        &:before {
-          opacity: 1;
-          border-left: 2px solid var(--m-bolt-headline);
-        }
       }
     }
   }
