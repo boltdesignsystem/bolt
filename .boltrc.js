@@ -57,7 +57,6 @@ nonImageFixtures.forEach(fixturePath => {
       adjustRelativePath(siteConfig.wwwDir),
       'fixtures/videos',
     ),
-    flatten: true,
   });
 });
 

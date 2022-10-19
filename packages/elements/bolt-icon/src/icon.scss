@@ -1,5 +1,8 @@
 @import '@bolt/core-v3.x';
 
+// Dev Notes
+// 1. https://stackoverflow.com/questions/57455245/how-to-i-solve-this-sass-interpolation-issue
+
 .e-bolt-icon {
   --e-bolt-icon-size: 1em;
   --e-bolt-icon-color: inherit;
@@ -33,7 +36,8 @@
 $_bolt-icon-color: teal, navy, yellow, orange, pink, berry, wine, violet;
 
 @each $color in $_bolt-icon-color {
-  .e-bolt-icon--#{$color} {
+  // [1]
+  .e-bolt-icon--#{'' + $color} {
     @if $color == yellow {
       --e-bolt-icon-color: var(--bolt-color-#{$color}-dark);
     } @else {

@@ -3,9 +3,7 @@ const log = require('@bolt/build-utils/log');
 const manifest = require('@bolt/build-utils/manifest');
 const timer = require('@bolt/build-utils/timer');
 const { getConfig } = require('@bolt/build-utils/config-store');
-const events = require('@bolt/build-utils/events');
 const webpackTasks = require('./webpack-tasks');
-// const criticalcssTasks = require('./criticalcss-tasks');
 const internalTasks = require('./internal-tasks');
 const iconComponentTasks = require('./icon-component-tasks');
 const iconTasks = require('./icon-tasks');
@@ -152,16 +150,6 @@ async function serve(buildTime = timer.start()) {
   }
 }
 
-// async function criticalcss() {
-//   try {
-//     const criticalTasks = [];
-//     criticalTasks.push(criticalcssTasks.build());
-//     return Promise.all(criticalTasks);
-//   } catch (error) {
-//     log.errorAndExit('Critical CSS failed', error);
-//   }
-// }
-
 async function buildPrep(cleanAll = false) {
   config = config || (await getConfig());
   try {
@@ -275,5 +263,4 @@ module.exports = {
   buildPrep,
   watch,
   clean,
-  // criticalcss,
 };
