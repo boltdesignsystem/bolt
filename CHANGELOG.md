@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.8.2](https://github.com/boltdesignsystem/bolt/compare/v5.8.1...v5.8.2) (2022-10-19)
+
+**Note:** Version bump only for package bolt
+
+
+
+
+
 ## [5.8.1](https://github.com/boltdesignsystem/bolt/compare/v5.8.0...v5.8.1) (2022-10-19)
 
 **Note:** Version bump only for package bolt
