@@ -40,7 +40,6 @@ async function compile(customWebpackConfig) {
         return resolve();
       }
     });
-    // compiler.close() // @todo add this?
   });
 }
 

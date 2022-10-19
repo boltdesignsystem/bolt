@@ -10,16 +10,5 @@ module.exports = {
     ],
     '@babel/preset-react',
   ],
-  plugins: [
-    ['@babel/plugin-proposal-decorators', { version: 'legacy' }],
-    // '@babel/plugin-syntax-jsx',
-    // [
-    //   '@babel/plugin-transform-react-jsx',
-    //   {
-    //     pragma: 'h',
-    //     pragmaFrag: 'Fragment',
-    //     throwIfNamespace: false,
-    //   },
-    // ],
-  ],
+  plugins: [['@babel/plugin-proposal-decorators', { version: 'legacy' }]],
 };
