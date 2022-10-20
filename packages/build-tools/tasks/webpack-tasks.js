@@ -34,6 +34,7 @@ async function compile(customWebpackConfig) {
   return new Promise((resolve, reject) => {
     const compiler = boltWebpackMessages(webpack(webpackConfig));
     compiler.run((err, stats) => {
+      compiler.close();
       if (err) {
         return reject(err);
       } else {

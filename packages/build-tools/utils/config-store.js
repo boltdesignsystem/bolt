@@ -35,6 +35,7 @@ async function getDefaultConfig() {
     env: process.env.NODE_ENV,
     enableCache: configSchema.properties.enableCache.default,
     watch: configSchema.properties.watch.default,
+    analyze: configSchema.properties.analyze.default,
     sourceMaps: configSchema.properties.sourceMaps.default,
     i18n: configSchema.properties.i18n.default,
     renderingService: configSchema.properties.renderingService.default,

@@ -10,6 +10,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const autoprefixer = require('autoprefixer');
 
@@ -266,7 +267,6 @@ async function createWebpackConfig(buildConfig) {
         },
       }),
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
-      new webpack.NoEmitOnErrorsPlugin(), // ?
     ],
   };
 
@@ -314,6 +314,10 @@ async function createWebpackConfig(buildConfig) {
 
   if (config.configureWebpack) {
     sharedWebpackConfig = merge(sharedWebpackConfig, config.configureWebpack);
+  }
+
+  if (config.analyze) {
+    sharedWebpackConfig.plugins.push(new BundleAnalyzerPlugin());
   }
 
   // Generate global JS data based on if the build is for ES Module-supporting browsers or not
