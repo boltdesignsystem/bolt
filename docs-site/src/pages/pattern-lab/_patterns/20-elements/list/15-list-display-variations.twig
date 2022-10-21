@@ -1,9 +1,16 @@
 {% set description %}
-    The display of a list items can be changed from block (full width), thru flex to inline, and there is an extra option to make it transform from inline to block at the small breakpoint.
+    The display of a list items can be changed from block, thru flex to inline, and there is an extra option to make it transform from inline to block at the specific breakpoint.
 {% endset %}
 
 {% set notes %}
-  When <code>display</code> prop is set to <code>Inline@breakpoint</code>, it means the button is block display below the chosen breakpoint, and transform to inline display from specific breakpoint and up. Resize the browser to see the demo below.
+<bolt-ol>
+  <bolt-li>When<code>display</code> prop set to <code>block</code> makes all list items full width stacked one on another.</bolt-li>
+  <bolt-li>When <code>display</code> prop set to <code>flex</code> all list elements are side by side, have equal size and take the all available space. When there is not enough space, list items start to wrap. Resize the browser to small and see the behavior below.</bolt-li>
+  <bolt-li>When <code>display</code> prop set to <code>inline</code> all list elements are side by side and take the width of the content. This means those list items can be of different widths if the content differs in length. Resize the browser to small and see the behavior below.</bolt-li>
+  <bolt-li>If we want o use <code>inline/inline@breakpoint</code> prop and have all the list items equal widths, add <code>inline_full_width</code> prop.</bolt-li>
+  <bolt-li>The difference between <code>flex</code> and <code>inline</code> prop is that <code>flex</code> lists will stack one on another if we have more than one and <code>inline</code> lists will be rendered side by side. See the behavior below.</bolt-li>
+  <bolt-li>When <code>display</code> prop is set to <code>Inline@breakpoint</code>, it means the list is block display below the chosen breakpoint, and transform to inline display from specific breakpoint and up. Resize the browser to see the demo below.</bolt-li>
+</bolt-ol>
 {% endset %}
 
 {% set demo %}
@@ -26,6 +33,24 @@
       size: 'xsmall',
     } only %}
   {% endset %}
+  {% set placeholder_4 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 4',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_5 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 5',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_6 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 6',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
 
   {% set list_items %}
     {% include '@bolt-elements-list/list-item.twig' with {
@@ -37,16 +62,60 @@
     {% include '@bolt-elements-list/list-item.twig' with {
       content: placeholder_3,
     } only %}
-  {% endset %}
-
-  {% for display in schema.properties.display.enum %}
-    <h3>{{ display|capitalize }}</h3>
-    {% include '@bolt-elements-list/list.twig' with {
-      display: display,
-      items: list_items
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_4,
     } only %}
-  {% endfor %}
-
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_5,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_6,
+    } only %}
+  {% endset %}
+  <h3>Block list items take full width.</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'block',
+    items: list_items
+  } only %}
+  <h3>Flex list items wrap and take the whole available space.</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'flex',
+    items: list_items
+  } only %}
+  <h3>If there is more than one of Flex list, they are stacked one on another.</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'flex',
+    items: list_items,
+  } only %}
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'flex',
+    items: list_items,
+  } only %}
+  <h3>Inline list items wrap and take only content width.</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'inline',
+    items: list_items
+  } only %}
+  <h3>If there is more than one of inline/inline@breakpoint list, they are side by side if there is space enough.</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'inline',
+    items: list_items
+  } only %}
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'inline',
+    items: list_items
+  } only %}
+  <h3>Inline full width.</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'inline',
+    inline_full_width: true,
+    items: list_items
+  } only %}
+  <h3>An example of Inline@medium list that has inline behavior above chosen breakpoint. Below that breakpoint list items are block.</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'inline@medium',
+    items: list_items
+  } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
@@ -78,7 +147,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic List',
+  title: 'List display behavior',
   description: description,
   notes: notes,
   demo: demo,

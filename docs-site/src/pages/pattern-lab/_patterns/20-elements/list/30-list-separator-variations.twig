@@ -8,6 +8,7 @@
   'block',
   'flex',
   'inline',
+  'inline@medium'
 ] %}
 {% set item_1 = 'Item 1' %}
 {% set item_2 = 'Item 2' %}
@@ -27,7 +28,7 @@
   {% if separator != 'none' %}
   <div class="u-bolt-margin-bottom-large">
     <bolt-grid gutter="medium" row-gutter="medium">
-      {% for display in schema.properties.display.enum %}
+      {% for display in regular_display_options %}
         {% set separator_variation %}
           <h3>{{ separator|capitalize }} separators in a {{ display }} list</h3>
           {% include '@bolt-elements-list/list.twig' with {
@@ -37,15 +38,19 @@
           } only %}
         {% endset %}
         {% if display == 'block' %}
-          <bolt-grid-item column-start="1" column-span="12 4@small">
+          <bolt-grid-item column-start="1" column-span="12 3@small">
             {{ separator_variation }}
           </bolt-grid-item>
         {% elseif display == 'flex' %}
-          <bolt-grid-item column-start="1 5@small" column-span="12 4@small">
+          <bolt-grid-item column-start="1 4@small" column-span="12 3@small">
             {{ separator_variation }}
           </bolt-grid-item>
-        {% else %}
-          <bolt-grid-item column-start="1 9@small" column-span="12 4@small">
+        {% elseif display == 'inline' %}
+          <bolt-grid-item column-start="1 7@small" column-span="12 3@small">
+            {{ separator_variation }}
+          </bolt-grid-item>
+          {% else %}
+          <bolt-grid-item column-start="1 10@small" column-span="12 3@small">
             {{ separator_variation }}
           </bolt-grid-item>
         {% endif %}
@@ -84,7 +89,7 @@
 {% endverbatim %}
 {% endset %}
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic List',
+  title: 'List separators',
   description: description,
   notes: notes,
   demo: demo,

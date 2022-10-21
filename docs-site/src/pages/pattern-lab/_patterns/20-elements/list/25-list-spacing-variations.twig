@@ -5,7 +5,7 @@
 {% set demo %}
   {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
   {% set spacing = schema.properties.spacing.enum %}
-  {% set display = schema.properties.display.enum %}
+  {% set display = ['block', 'flex', 'inline', 'inline@medium'] %}
   {% set placeholder_1 %}
     {% include '@bolt-components-placeholder/placeholder.twig' with {
       text: 'Item 1',
@@ -60,7 +60,7 @@
   } only %}
 {% endset %}
 {% include '@bolt-elements-list/list.twig' with {
-  spacing: 'large',
+  spacing: 'medium',
   items: list_items,
 } only %}
 {% endverbatim %}{% endset %}
@@ -75,7 +75,7 @@
 {% endverbatim %}
 {% endset %}
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Basic List',
+  title: 'List spacing',
   description: description,
   notes: notes,
   demo: demo,
