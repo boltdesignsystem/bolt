@@ -36,6 +36,11 @@ module.exports = {
         'inline@medium',
       ],
     },
+    inline_full_width: {
+      type: 'boolean',
+      description: 'Makes inline list items take up eual space.',
+      default: false,
+    },
     spacing: {
       type: 'string',
       description: 'Control the spacing in between items.',
