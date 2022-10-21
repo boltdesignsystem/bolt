@@ -3,17 +3,23 @@
     <bolt-text headline tag="h4" font-size="small">Support Center Support Documents Tables</bolt-text>
     <style>
       .cc-post { word-break: break-word; }
-      .cc-1017-test-style {
-        word-break: break-word;
+      .cc-post--tables {
+        overflow-wrap: break-word;
       }
-      .cc-1017-test-style tr th:nth-child(3), .cc-1017-test-style tr td:nth-child(3) {
+      .cc-post--tables tr th:nth-child(3), .cc-post--tables tr td:nth-child(3) {
+        width:20%;
+      }
+      .cc-post--tables--additional tr th:nth-child(4), .cc-post--tables--additional tr td:nth-child(4) {
+        width:46%;
+      }
+      .cc-post--tables--additional tr th:nth-child(5), .cc-post--tables--additional tr td:nth-child(5) {
         width:20%;
       }
     </style>
 
     {% set table %}
       <div class="cc-post">
-        <table class="cc-1017-test-style e-bolt-table e-bolt-table--fixed-width-columns--first-two e-bolt-table--sticky-top-headers">
+        <table class="cc-post--tables e-bolt-table e-bolt-table--fixed-width-columns--first-two e-bolt-table--sticky-top-headers">
           <thead>
             <tr>
               <th>
@@ -5765,6 +5771,93 @@
             </tr>
           </tbody>
         </table>
+
+
+
+
+
+
+        <hr>
+
+
+
+        <table class="cc-post--tables cc-post--tables--additional e-bolt-table e-bolt-table--sticky-top-headers e-bolt-table--fixed-width-columns--first-two" cellspacing="0"><colgroup><col><col><col><col><col></colgroup><tbody><tr><td><span><strong><span>SR #</span></strong></span></td>
+          <td><span><strong><span>Issue #</span></strong></span></td>
+          <td><span><strong><span>Title</span></strong></span></td>
+          <td><span><strong><span>Description</span></strong></span></td>
+          <td><span><strong><span>Product Area</span></strong></span></td>
+        </tr><tr><td><span>D39264</span></td>
+          <td><span>518839</span></td>
+          <td><span>Multiple files uploaded using "select file" will be handled asynchronously</span></td>
+          <td><span>In order to resolve an intermittent error when uploading multiple files using the "select file" button, each file will be uploaded asynchronously to avoid overloading the browser threshold.</span></td>
+          <td><span>Case Management</span></td>
+        </tr><tr><td><span>D47018</span></td>
+          <td><span>517031</span></td>
+          <td><span>Corrected parameter being encrypted during change portal configuration</span></td>
+          <td><span>After configuring a changePortalLayout control using .pyDescription as property, trying to switch the portal was throwing a error page. The same configuration worked in earlier platform versions. This was traced to recent updates where the activity parameter ended up being encrypted along with the activity name, and has been resolved by removing the parameter from encryption input and adding it to encryption output.</span></td>
+          <td><span>Case Management</span></td>
+        </tr><tr><td><span>D47146</span></td>
+          <td><span>515646</span></td>
+          <td><span>Pick Values modal updated for deprecated list view handling</span></td>
+          <td><span>Pick values were not displaying in the menus below Case Management-&gt; Tools -&gt; My Work, including "Work entered by me", "Work by workbasket", and "Work resolved by me recently". This was due to the use of deprecated list views: the pick values modal was failing to show and hide the busy indicator because the indicator now uses jQuery, but list view does not include jQuery. In order to resolve this, the equivalent Report Definition pyEnteredByMe has now been added under the navigation rule : pzProcessAndCaseRulesMainMenu.</span></td>
+          <td><span>Case Management</span></td>
+        </tr><tr><td><span>D51535</span></td>
+          <td><span>519474</span></td>
+          <td><span>Enhanced discrimination for tasks in MyPega spaces</span></td>
+          <td><span>When using My Pega for spaces and tasks, using drag and drop to move many cases around quickly resulted in tasks intermittently ending up in a state where they could not be updated further and became unusable. Analysis showed that because the milliseconds part of the update time was rounded, the logic of comparing for value between 0 and 1000 failed when the comparison returned -ve value. To resolve this, the comparison has been modified to !=0 and the 'when' rule pyContinueTaskProcessing has been added as an extension along with the appropriate usage guide to restrict processing. By default, the system will consider task name, description, due date, assignee, and rank properties; if more properties are needed to evaluate, this when rule can help.</span></td>
+          <td><span>Case Management</span></td>
+        </tr><tr><td><span>D54200</span></td>
+          <td><span>516775</span></td>
+          <td><span>Custom attachment category parameter passed to dropdown</span></td>
+          <td><span>Attempting to use the out-of-the-box “Attachments control” which was configured at design time to use a custom category where both the custom category and the section class were in the same work class resulted in the attachment category dropdown defaulting to “File” instead of the custom category. Investigation showed that the custom attachment category name configured on the control was missing in one of the pre-processing activities sequence. To resolve this, the activity Work-.pzInitAttachContent and the initAttachmentPage activity have been updated to pass the custom attachment category parameter.</span></td>
+          <td><span>Case Management</span></td>
+        </tr><tr><td><span>D59504</span></td>
+          <td><span>524640</span></td>
+          <td><span>Attachment drag drop searches only current Ajax context</span></td>
+          <td><span>When the Interaction for customer service was open and more than 1 task from the sidebar was open, the drag and drop zone was missing on any subsequent Task/Cases past the first.&nbsp; In an Ajax container scenario, getElementByID js was searching in all the containers because they were present in DOM, and it was losing context. To resolve this, the code has been updated to only search in the current context when using an Ajax container.</span></td>
+          <td><span>Case Management</span></td>
+        </tr><tr><td><span>D63976</span></td>
+          <td><span>524220</span></td>
+          <td><span>Double decompression of Attachment BLOBs corrected</span></td>
+          <td><span>Attachment streams were being double-decompressed on download. This was traced to the GetAttachmentReference activity in which the file was opened then performing a show-html of DisplayAttachment HTML. This internally called the DisplayAttachFile activity which attempted to open the file again, resulting in a double de-compression of the attachment BLOB. This has been corrected.</span></td>
+          <td><span>Case Management</span></td>
+        </tr><tr><td><span>D64506</span></td>
+          <td><span>529333</span></td>
+          <td><span>Improved accessibility around page landmarks</span></td>
+          <td><span>Accessibility testing revealed an issue with pages where the main landmark was contained in another landmark. This has been resolved by removing the main role in the FlowActionHTML rule.&nbsp;</span></td>
+          <td><span>Case Management</span></td>
+        </tr><tr><td><span>D65513</span></td>
+          <td><span>530181</span></td>
+          <td><span>URL encryption modified for ShowAllOperators</span></td>
+          <td><span>In the control ShowAllOperators the call to pzEncryptURLActionString was introduced to encrypt URLs to avoid hijacking. The content of the URL relied on the pxRequestor.pxWorkGroup property which was resolved using pega:reference tags. This approach worked in versions below 8.x, but in higher versions the tags were not resolved at runtime and results were not displayed. To resolve this,&nbsp; the requestorWorkGroup will be treated as string and passed as parameter instead of using pega:reference tags.</span></td>
+          <td><span>Case Management</span></td>
+        </tr><tr><td><span>D67323</span></td>
+          <td><span>529946</span></td>
+          <td><span>Cross-site scripting filtering added for CreateMergedWordDoc</span></td>
+          <td><span>Cross-site scripting filtering has been added for the TemplateName parameter value in the CreateMergedWordDoc section.</span></td>
+          <td><span>Case Management</span></td>
+        </tr><tr><td><span>D79113</span></td>
+          <td><span>543721</span></td>
+          <td><span>Updated DisplayAttachment to handle SIngleClick download from Case Worker portal</span></td>
+          <td><span>On using the script "pega.ui.HarnessActions.doAttachmentSingleClick" in the Worker portal to download attachments displayed within a screen flow, the entire application was hanging and no action was invoked even on clicking the Continue or Finish buttons of the screen flow. Whenever an attachment is downloaded using the script function pega.ui.HarnessActions.doAttachmentSingleClick() , an iframe is used and changetracker is called to communicate data between different iframes. However, the case worker portal is a single thread model while the manager and admin portals are multi threaded, which resulted in changetracker freezing on the worker portal. To resolve this, the DisplayAttachment HTML rule has been updated to build the necessary changeTrackerMap for the worker portal.</span></td>
+          <td><span>Case Management</span></td>
+        </tr><tr><td><span>D80120</span></td>
+          <td><span>544213</span></td>
+          <td><span>Custom attachment category parameter passed to dropdown</span></td>
+          <td><span>Attempting to use the out-of-the-box “Attachments control” which was configured at design time to use a custom category where both the custom category and the section class were in the same work class resulted in the attachment category dropdown defaulting to “File” instead of the custom category. Investigation showed that the custom attachment category name configured on the control was missing in one of the pre-processing activities sequence. To resolve this, the activity Work-.pzInitAttachContent and the initAttachmentPage activity have been updated to pass the custom attachment category parameter.</span></td>
+          <td><span>Case Management</span></td>
+        </tr></tbody>
+      </table>
+
+
+
+
+
+
+
+
+
+
       </div>
     {% endset %}
 
