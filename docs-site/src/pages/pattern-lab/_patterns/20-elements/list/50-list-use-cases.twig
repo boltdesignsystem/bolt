@@ -1,10 +1,11 @@
 {# Only demo purpose #}
 <style>
-  .list-with-icons,
-  .list-with-buttons {
-    display: inline-block;
+  .list-demo {
     background: var(--bolt-color-navy-xlight);
     border: 2px dashed #545da6;
+  }
+  .list-demo--buttons {
+    display: inline-block;
   }
 </style>
 
@@ -119,7 +120,7 @@
       size: 'xxlarge',
     } only %}
     {# this div below is only for demo purpose #}
-    <div class="u-bolt-margin-bottom-small list-with-icons">
+    <div class="u-bolt-margin-bottom-small list-demo">
     {% include '@bolt-elements-list/list.twig' with {
       display: 'inline@medium',
       spacing: 'medium',
@@ -167,26 +168,36 @@
     {% include '@bolt-elements-type/type.twig' with {
       content: 'The Pega Platform™ makes it simpler for enterprises to work smarter, unify experiences, and adapt instantly. Thanks to our scalable, made-to-measure architecture, even the biggest organizations can stay streamlined and ready for what’s next.',
     } only %}
-    {% set buttons %}
-      {% include '@bolt-elements-button/button.twig' with {
-        content: 'Explore products',
-        attributes: {
-          href: 'https://google.com',
-        }
+    {% set list_items %}
+      {% set button_1 %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Explore products',
+          attributes: {
+            href: 'https://google.com',
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-list/list-item.twig' with {
+        content: button_1,
       } only %}
-      {% include '@bolt-elements-button/button.twig' with {
-        content: 'Why Pega',
-        hierarchy: 'secondary',
-        attributes: {
-          href: 'https://google.com',
-        }
+      {% set button_2 %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Why Pega',
+          hierarchy: 'secondary',
+          attributes: {
+            href: 'https://google.com',
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-list/list-item.twig' with {
+        content: button_2,
       } only %}
     {% endset %}
     {# this div below is only for demo purpose #}
-    <div class="u-bolt-padding-small list-with-buttons">
+    <div class="u-bolt-padding-small list-demo list-demo--buttons">
     {% include '@bolt-elements-list/list.twig' with {
       display: 'inline',
-      items: buttons,
+      items: list_items,
     } only %}
     </div>
   {% endset %}
@@ -199,6 +210,111 @@
     content: layout_items,
     template: [
       '50@from-medium',
+    ],
+  } only %}
+
+  <hr>
+
+  {% set intro %}
+    {% include '@bolt-elements-type/type.twig' with {
+      content: 'Governance',
+      hierarchy: 'headline',
+      tag: 'h2',
+      size: 'xxlarge',
+    } only %}
+    {% include '@bolt-elements-type/type.twig' with {
+      content: 'One of the objectives of Pega is to build a fast-growing, profitable enterprise that rewards our employees, shareholders, and partners. To achieve this, we must continuously earn the trust of our many stakeholders: employees, customers, partners, suppliers, shareholders, government officials, and the general public.',
+    } only %}
+  {% endset %}
+
+  {% set icon_chevron_right %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'chevron-right',
+    } only %}
+  {% endset %}
+  {% set list_items %}
+    {% set list_1 %}
+      {% include '@bolt-elements-type/type.twig' with {
+        content: 'Code of Conduct',
+        hierarchy: 'headline',
+        tag: 'h3',
+        size: 'large',
+        icon_after: icon_chevron_right,
+        link_attributes: {
+          href: '#!',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: list_1,
+    } only %}
+    {% set list_2 %}
+      {% include '@bolt-elements-type/type.twig' with {
+        content: 'Reporting Accounting Control Concerns',
+        hierarchy: 'headline',
+        tag: 'h3',
+        size: 'large',
+        icon_after: icon_chevron_right,
+        link_attributes: {
+          href: '#!',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: list_2,
+    } only %}
+    {% set list_3 %}
+      {% include '@bolt-elements-type/type.twig' with {
+        content: 'Related Person Transaction Policy',
+        hierarchy: 'headline',
+        tag: 'h3',
+        size: 'large',
+        icon_after: icon_chevron_right,
+        link_attributes: {
+          href: '#!',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: list_3,
+    } only %}
+    {% set list_4 %}
+      {% include '@bolt-elements-type/type.twig' with {
+        content: 'Audit Committee',
+        hierarchy: 'headline',
+        tag: 'h3',
+        size: 'large',
+        icon_after: icon_chevron_right,
+        link_attributes: {
+          href: '#!',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: list_4,
+    } only %}
+  {% endset %}
+  {% set list_of_links %}
+    {# this div below is only for demo purpose #}
+    <div class="u-bolt-padding-small list-demo">
+    {% include '@bolt-elements-list/list.twig' with {
+      items: list_items,
+      separator: 'solid'
+    } only %}
+    </div>
+  {% endset %}
+  {% set layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: intro
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: list_of_links
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_items,
+    template: [
+      'halves@from-small',
     ],
   } only %}
 {% endset %}
