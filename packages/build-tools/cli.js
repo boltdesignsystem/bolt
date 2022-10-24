@@ -196,16 +196,6 @@ Environment: ${config.prod ? 'Production' : 'Development'}
         require('./tasks/task-collections').buildPrep();
       });
 
-    // `bolt prep`
-    program
-      .command('criticalcss')
-      .description('Generate Critical CSS')
-      .action(async options => {
-        log.info('Starting critical CSS');
-        await updateConfig(options, program);
-        require('./tasks/task-collections').criticalcss();
-      });
-
     program
       .command('serve')
       .description('Spin up local server')

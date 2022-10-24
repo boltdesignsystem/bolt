@@ -43,10 +43,6 @@ async function startServer() {
     res.redirect('/pattern-lab');
   });
 
-  app.get('/favicon.ico', (req, res) => {
-    res.redirect('/pattern-lab/favicons/favicon.ico');
-  });
-
   app.use('/api', handleRequest);
 
   app.use(express.static(path.relative(process.cwd(), config.wwwDir)));

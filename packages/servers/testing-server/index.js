@@ -38,10 +38,6 @@ getConfig().then(async boltConfig => {
     res.redirect('/pattern-lab');
   });
 
-  app.get('/favicon.ico', (req, res) => {
-    res.redirect('/pattern-lab/favicons/favicon.ico');
-  });
-
   app.use('/api', handleRequest);
 
   server = app.listen(port, () => {
