@@ -21,7 +21,8 @@ module.exports = {
     },
     spacing: {
       type: 'string',
-      description: 'Controls the inset spacing of the dialog header, body, and footer.',
+      description:
+        'Controls the inset spacing of the dialog header, body, and footer.',
       enum: ['none', 'small', 'medium', 'large'],
       default: 'medium',
     },
