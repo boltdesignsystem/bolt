@@ -1,0 +1,561 @@
+{% set main_content %}
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Column 1',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Column 2',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Column 3',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set header_with_space %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Column 1',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Column 2',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Column 3',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R1C1',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R12',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R1C3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R1C1',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R2C2',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R2C3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R3C1',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R3C2',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R3C3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set footer %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'FC1',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'FC2',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'FC3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1_with_header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Row 1',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R1C1',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R12',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R1C3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2_with_header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Row 2',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R2C1',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R2C2',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R2C3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3_with_header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Row 3',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R3C1',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R32',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R3C3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set footer_with_header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Footer',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'FC1',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'FC2',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'FC3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  <h3>With Rows Only</h3>
+  {% include '@bolt-elements-table/table.twig' with {
+    body: {
+      content: [
+        row1,
+        row2,
+        row3
+      ],
+    },
+  } only %}
+
+  <h3>With Rows Only (HTML)</h3>
+
+  <table class="e-bolt-table">
+    <tbody>
+      <tr>
+        <td>R1C1</td>
+        <td>R1C2</td>
+        <td>R1C3</td>
+      </tr>
+      <tr>
+        <td>R2C1</td>
+        <td>R2C2</td>
+        <td>R2C3</td>
+      </tr>
+      <tr>
+        <td>R3C1</td>
+        <td>R3C2</td>
+        <td>R3C3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>With Rows Only (HTML/no tbody)</h3>
+
+  <table class="e-bolt-table">
+    <tr>
+      <td>R1C1</td>
+      <td>R1C2</td>
+      <td>R1C3</td>
+    </tr>
+    <tr>
+      <td>R2C1</td>
+      <td>R2C2</td>
+      <td>R2C3</td>
+    </tr>
+    <tr>
+      <td>R3C1</td>
+      <td>R3C2</td>
+      <td>R3C3</td>
+    </tr>
+  </table>
+
+  <h3>With Top Headers</h3>
+  {% include '@bolt-elements-table/table.twig' with {
+    header: {
+      content: header
+    },
+    body: {
+      content: [
+        row1,
+        row2,
+        row3
+      ],
+    },
+  } only %}
+
+  <h3>With Top Headers (HTML)</h3>
+
+  <table class="e-bolt-table">
+    <thead>
+      <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>R1C1</td>
+        <td>R1C2</td>
+        <td>R1C3</td>
+      </tr>
+      <tr>
+        <td>R2C1</td>
+        <td>R2C2</td>
+        <td>R2C3</td>
+      </tr>
+      <tr>
+        <td>R3C1</td>
+        <td>R3C2</td>
+        <td>R3C3</td>
+      </tr>
+    </tbody>
+  </table>
+
+<h3>With Top Headers (HTML/no tbody)</h3>
+
+  <table class="e-bolt-table">
+    <thead>
+      <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+      </tr>
+    </thead>
+    <tr>
+      <td>R1C1</td>
+      <td>R1C2</td>
+      <td>R1C3</td>
+    </tr>
+    <tr>
+      <td>R2C1</td>
+      <td>R2C2</td>
+      <td>R2C3</td>
+    </tr>
+    <tr>
+      <td>R3C1</td>
+      <td>R3C2</td>
+      <td>R3C3</td>
+    </tr>
+  </table>
+
+  <h3>With Side Headers</h3>
+  {% include '@bolt-elements-table/table.twig' with {
+    body: {
+      content: [
+        row1_with_header,
+        row2_with_header,
+        row3_with_header
+      ],
+    },
+  } only %}
+
+  <h3>With Side Headers (HTML)</h3>
+
+  <table class="e-bolt-table">
+    <tbody>
+      <tr>
+        <th>Row 1</th>
+        <td>R1C1</td>
+        <td>R1C2</td>
+        <td>R1C3</td>
+      </tr>
+      <tr>
+        <th>Row 2</th>
+        <td>R2C1</td>
+        <td>R2C2</td>
+        <td>R2C3</td>
+      </tr>
+      <tr>
+        <th>Row 3</th>
+        <td>R3C1</td>
+        <td>R3C2</td>
+        <td>R3C3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>With Side Headers (HTML/no tbody)</h3>
+
+  <table class="e-bolt-table">
+    <tr>
+      <th>Row 1</th>
+      <td>R1C1</td>
+      <td>R1C2</td>
+      <td>R1C3</td>
+    </tr>
+    <tr>
+      <th>Row 2</th>
+      <td>R2C1</td>
+      <td>R2C2</td>
+      <td>R2C3</td>
+    </tr>
+    <tr>
+      <th>Row 3</th>
+      <td>R3C1</td>
+      <td>R3C2</td>
+      <td>R3C3</td>
+    </tr>
+  </table>
+
+  <h3>With Top and Side Headers</h3>
+  {% include '@bolt-elements-table/table.twig' with {
+    header: {
+      content: header_with_space
+    },
+    body: {
+      content: [
+        row1_with_header,
+        row2_with_header,
+        row3_with_header
+      ],
+    },
+  } only %}
+
+  <h3>With Top and Side Headers (HTML)</h3>
+
+  <table class="e-bolt-table">
+    <thead>
+      <tr>
+        <td></td>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Row 1</th>
+        <td>R1C1</td>
+        <td>R1C2</td>
+        <td>R1C3</td>
+      </tr>
+      <tr>
+        <th>Row 2</th>
+        <td>R2C1</td>
+        <td>R2C2</td>
+        <td>R2C3</td>
+      </tr>
+      <tr>
+        <th>Row 3</th>
+        <td>R3C1</td>
+        <td>R3C2</td>
+        <td>R3C3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>With Top and Side Headers (HTML/no tbody)</h3>
+
+  <table class="e-bolt-table">
+    <thead>
+      <tr>
+        <td></td>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+      </tr>
+    </thead>
+    <tr>
+      <th>Row 1</th>
+      <td>R1C1</td>
+      <td>R1C2</td>
+      <td>R1C3</td>
+    </tr>
+    <tr>
+      <th>Row 2</th>
+      <td>R2C1</td>
+      <td>R2C2</td>
+      <td>R2C3</td>
+    </tr>
+    <tr>
+      <th>Row 3</th>
+      <td>R3C1</td>
+      <td>R3C2</td>
+      <td>R3C3</td>
+    </tr>
+  </table>
+
+  <h3>With Headers and Footer</h3>
+
+  {% include '@bolt-elements-table/table.twig' with {
+    header: {
+      content: header_with_space
+    },
+    body: {
+      content: [
+        row1_with_header,
+        row2_with_header,
+        row3_with_header
+      ],
+    },
+    footer: {
+      content: footer_with_header
+    }
+  } only %}
+
+  <h3>With Headers and Footer (HTML)</h3>
+
+  <table class="e-bolt-table">
+    <thead>
+      <tr>
+        <td></td>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Row 1</th>
+        <td>R1C1</td>
+        <td>R1C2</td>
+        <td>R1C3</td>
+      </tr>
+      <tr>
+        <th>Row 2</th>
+        <td>R2C1</td>
+        <td>R2C2</td>
+        <td>R2C3</td>
+      </tr>
+      <tr>
+        <th>Row 3</th>
+        <td>R3C1</td>
+        <td>R3C2</td>
+        <td>R3C3</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Footer</th>
+        <td>FC1</td>
+        <td>FC2</td>
+        <td>FC3</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <h3>With Headers and Footer (HTML/no tbody)</h3>
+
+  <table class="e-bolt-table">
+    <thead>
+      <tr>
+        <td></td>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+      </tr>
+    </thead>
+    <tr>
+      <th>Row 1</th>
+      <td>R1C1</td>
+      <td>R1C2</td>
+      <td>R1C3</td>
+    </tr>
+    <tr>
+      <th>Row 2</th>
+      <td>R2C1</td>
+      <td>R2C2</td>
+      <td>R2C3</td>
+    </tr>
+    <tr>
+      <th>Row 3</th>
+      <td>R3C1</td>
+      <td>R3C2</td>
+      <td>R3C3</td>
+    </tr>
+    <tfoot>
+      <tr>
+        <th>Footer</th>
+        <td>FC1</td>
+        <td>FC2</td>
+        <td>FC3</td>
+      </tr>
+    </tfoot>
+  </table>
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}

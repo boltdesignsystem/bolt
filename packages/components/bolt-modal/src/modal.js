@@ -404,12 +404,12 @@ class BoltModal extends BoltElement {
                   `
                 : ''}
               <header class="${headerClasses}">
-                <h1
+                <h2
                   id="dialog-title-${uuid}"
                   class="c-bolt-modal__dialog-title"
                 >
                   Dialog content
-                </h1>
+                </h2>
                 ${this.slotify('header')}
               </header>
               <div class="c-bolt-modal__container-body">
