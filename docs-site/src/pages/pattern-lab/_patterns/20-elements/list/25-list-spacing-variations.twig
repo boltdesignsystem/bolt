@@ -2,6 +2,10 @@
   A space between list items can be modified per usecase.
 {% endset %}
 
+{% set notes %}
+  Regular spacing used in combination with <a href="{{ link['elements-list-inset-variations'] }}" class="e-bolt-text-link">the inset prop</a>, puts additional spacing around each item.
+{% endset %}
+
 {% set demo %}
   {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
   {% set spacing = schema.properties.spacing.enum %}
