@@ -11,9 +11,6 @@ module.exports = {
     items: {
       type: 'any',
       description: 'An array of renderable items to place in the list.',
-      content: {
-        type: 'any',
-      },
     },
     tag: {
       type: 'string',
@@ -36,11 +33,6 @@ module.exports = {
         'inline@medium',
       ],
     },
-    inline_full_width: {
-      type: 'boolean',
-      description: 'Makes inline list items take up eual space.',
-      default: false,
-    },
     spacing: {
       type: 'string',
       description: 'Control the spacing in between items.',
@@ -52,11 +44,6 @@ module.exports = {
       description: 'Display a separator in between items.',
       default: 'none',
       enum: ['none', 'solid', 'dashed'],
-    },
-    inset: {
-      type: 'boolean',
-      description: 'Turn spacing to the inside of each item.',
-      default: false,
     },
     align: {
       type: 'string',
@@ -70,10 +57,20 @@ module.exports = {
       default: 'center',
       enum: ['start', 'center', 'end'],
     },
+    inset: {
+      type: 'boolean',
+      description: 'Turn spacing to the inside of each item.',
+      default: false,
+    },
     nowrap: {
       type: 'boolean',
       description:
         'Prevent inline/flex list items from wrapping to a second line.',
+      default: false,
+    },
+    inline_full_width: {
+      type: 'boolean',
+      description: 'Makes inline list items take up eual space.',
       default: false,
     },
   },
