@@ -110,6 +110,10 @@ const config = deepmerge(baseConfig, {
   },
   copy: [
     {
+      from: `src/assets/images`,
+      to: path.join(__dirname, '../www/images'),
+    },
+    {
       from: path.join(
         path.dirname(require.resolve(`@bolt/components-typeahead`)),
         '__demos__/typeahead.data.json',
@@ -119,19 +123,16 @@ const config = deepmerge(baseConfig, {
     {
       from: `src/assets/bolt-sketch.zip`,
       to: path.join(__dirname, '../www/assets'),
-      flatten: true,
     },
     {
       from: `src/assets/videos`,
       to: path.join(__dirname, '../www/videos'),
-      flatten: true,
     },
     {
       from: `${path.dirname(
         resolve.sync('@bolt/global/package.json'),
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
-      flatten: true,
     },
     {
       from: `src/custom-brightcove.js`,

@@ -23,7 +23,7 @@
 {% endset %}
 
 {% set demo %}
-<bolt-table>
+<div class="c-bolt-table">
   <table>
     <tbody>
       <tr>
@@ -64,7 +64,7 @@
       </tr>
     </tbody>
   </table>
-</bolt-table>
+</div>
 {% endset %}
 
 {% set twig_markup %}
@@ -74,7 +74,7 @@
 // The main template
 {% include '@bolt-components-page-header/page-header.twig' with {
   logo: {
-    image_src: '/images/logos/pega-logo.svg',
+    image_src: '/images/content/logos/pega-logo.svg',
     label: 'Pegasystems',
     attributes: {
       href: 'https://google.com',

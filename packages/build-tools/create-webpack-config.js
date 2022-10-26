@@ -1,33 +1,25 @@
-const path = require('path');
-const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
-const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const postcssDiscardDuplicates = require('postcss-discard-duplicates');
-const ManifestPlugin = require('webpack-manifest-plugin');
 const fs = require('fs');
+const path = require('path');
 const deepmerge = require('deepmerge');
-const resolve = require('resolve');
+const webpack = require('webpack');
+const { merge } = require('webpack-merge');
+
+// Plugins/loaders
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const npmSass = require('npm-sass');
-const merge = require('webpack-merge');
-const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const postcssDiscardDuplicates = require('postcss-discard-duplicates');
+const autoprefixer = require('autoprefixer');
+
+// Helpers/config
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
-const {
-  webpackStats,
-  statsPreset,
-} = require('@bolt/build-utils/webpack-verbosity');
-
+const { getBoltManifest } = require('@bolt/build-utils/manifest');
+const npmSass = require('npm-sass'); // @todo: Remove when we switch to Dart sass
+const sassExportData = require('@bolt/sass-export-data'); // @todo: Solve this problem without node-sass
 const babelConfig = require('@bolt/babel-preset-bolt');
-
-const {
-  getBoltManifest,
-  mapComponentNameToTwigNamespace,
-} = require('@bolt/build-utils/manifest');
 const log = require('@bolt/build-utils/log');
 
 const { ThemeRegistry } = require('@pega_bolt_theme/theme-util');
@@ -46,11 +38,6 @@ async function createWebpackConfig(buildConfig) {
     : config.wwwDir
     ? `/${path.relative(config.wwwDir, config.buildDir)}/`
     : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
-
-  // @TODO: move this setting to .boltrc config
-  const sassExportData = require('@bolt/sass-export-data')({
-    path: config.dataDir,
-  });
 
   // map out Twig namespaces with the NPM package name
 
@@ -129,34 +116,30 @@ async function createWebpackConfig(buildConfig) {
         loader: 'css-loader',
         options: {
           sourceMap: config.sourceMaps,
-          modules: false, // needed for JS referencing classNames directly, such as critical fonts
+          // needed for JS referencing classNames directly, such as critical fonts
+          // @todo: see if we still need this now that critical css has been removed
+          modules: false,
         },
       },
       {
         loader: 'postcss-loader',
         options: {
           sourceMap: config.sourceMaps,
-          plugins: () => [
-            postcssDiscardDuplicates,
-            autoprefixer({
-              grid: true,
-            }),
-          ],
-        },
-      },
-      {
-        loader: 'clean-css-loader',
-        options: {
-          level: config.prod ? 1 : 0,
-          format: config.prod ? false : 'beautify',
-          inline: ['remote'],
+          postcssOptions: {
+            plugins: [
+              postcssDiscardDuplicates,
+              // @todo: Consider switching to postcss-preset-env which polyfills modern CSS
+              autoprefixer,
+            ],
+          },
         },
       },
       {
         loader: 'resolve-url-loader',
       },
-
       {
+        // Note: intentionally not upgrading sass-loader yet. Compile time was
+        // ~1.5x slower after trial upgrade. Wait until we switch to Dart.
         loader: 'sass-loader',
         options: {
           sourceMap: config.sourceMaps,
@@ -164,7 +147,9 @@ async function createWebpackConfig(buildConfig) {
           sassOptions: {
             outputStyle: 'nested',
             importer: [npmSass.importer],
-            functions: sassExportData,
+            functions: sassExportData({
+              path: config.dataDir,
+            }),
             precision: 3,
           },
         },
@@ -186,11 +171,6 @@ async function createWebpackConfig(buildConfig) {
         '.tsx',
         '.jpg',
       ],
-      alias: {
-        react: 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat',
-      },
     },
     module: {
       rules: [
@@ -208,28 +188,19 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(woff|woff2)$/,
-          use: [
-            {
-              loader: 'url-loader',
-              options: {
-                limit: 500,
-                name: 'fonts/[name].[ext]',
-              },
-            },
-          ],
+          type: 'asset/resource',
+          generator: {
+            filename: 'fonts/[name].[ext]',
+          },
         },
         {
           test: /\.svg$/,
           oneOf: [
             {
               issuer: /\.scss$/,
+              // @see: https://dev.to/smelukov/webpack-5-asset-modules-2o3h
+              type: 'asset/resource',
               use: [
-                {
-                  loader: 'file-loader',
-                  options: {
-                    name: '[name].[ext]',
-                  },
-                },
                 {
                   loader: 'svgo-loader',
                   options: {
@@ -242,10 +213,7 @@ async function createWebpackConfig(buildConfig) {
               use: [
                 {
                   loader: 'babel-loader',
-                  options: {
-                    babelrc: false,
-                    presets: [babelConfig],
-                  },
+                  options: babelConfig,
                 },
                 {
                   loader: 'svg-sprite-loader',
@@ -273,14 +241,7 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(cur|png|jpg)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: '[name].[ext]',
-              },
-            },
-          ],
+          type: 'asset/resource',
         },
         {
           test: [/\.yml$/, /\.yaml$/],
@@ -288,27 +249,15 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: [/\.html$/],
-          loader: 'raw-loader', // file as string
+          type: 'asset/source',
         },
       ],
     },
     mode: config.prod ? 'production' : 'development',
+    cache: config.enableCache,
     optimization: {
       sideEffects: true,
       usedExports: true,
-      minimizer: config.prod
-        ? [
-            new TerserPlugin({
-              test: /\.m?js(\?.*)?$/i,
-              sourceMap: config.sourceMaps,
-              cache: true,
-              parallel: true,
-              terserOptions: {
-                safari10: true,
-              },
-            }),
-          ]
-        : [],
     },
     plugins: [
       new SpriteLoaderPlugin({
@@ -319,22 +268,18 @@ async function createWebpackConfig(buildConfig) {
         },
       }),
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
-      new webpack.NoEmitOnErrorsPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(), // ?
     ],
   };
 
   if (config.prod) {
-    // https://webpack.js.org/plugins/module-concatenation-plugin/
-    sharedWebpackConfig.plugins.push(
-      new webpack.optimize.ModuleConcatenationPlugin(),
-    );
-
-    // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
-    sharedWebpackConfig.plugins.push(
-      new OptimizeCssAssetsPlugin({
-        canPrint: config.verbosity > 2,
-        cssProcessor: require('cssnano'),
-        cssProcessorPluginOptions: {
+    sharedWebpackConfig.devtool =
+      config.sourceMaps === false ? false : 'hidden-source-map';
+    sharedWebpackConfig.optimization.minimize = true;
+    sharedWebpackConfig.optimization.minimizer = [
+      `...`,
+      new CssMinimizerPlugin({
+        minimizerOptions: {
           preset: [
             'default',
             {
@@ -348,16 +293,12 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
       }),
-    );
-
-    // @todo evaluate best source map approach for production builds -- particularly source-map vs hidden-source-map
-    sharedWebpackConfig.devtool =
-      config.sourceMaps === false ? '' : 'hidden-source-map';
+    ];
   } else {
     // not prod
     // @todo fix source maps
     sharedWebpackConfig.devtool =
-      config.sourceMaps === false ? '' : 'eval-source-map';
+      config.sourceMaps === false ? false : 'eval-source-map';
   }
 
   // Simple Configuration
@@ -421,7 +362,6 @@ async function createWebpackConfig(buildConfig) {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
     },
     output: {
-      futureEmitAssets: true,
       path: path.resolve(process.cwd(), config.buildDir),
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
       filename: `[name]${langSuffix}${
@@ -432,13 +372,16 @@ async function createWebpackConfig(buildConfig) {
     },
     plugins: [
       new webpack.DefinePlugin(getGlobalJSData(true)),
-      new CopyWebpackPlugin(config.copy ? config.copy : []),
+      // CopyWebpackPlugin throws an error if you don't pass it a configuration object
+      config.copy
+        ? new CopyWebpackPlugin({ patterns: config.copy })
+        : undefined,
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
       }),
       // @todo This needs to be in `config.dataDir`
-      new ManifestPlugin({
+      new WebpackManifestPlugin({
         fileName: `bolt-webpack-manifest${langSuffix}${
           config.mode === 'client' ? '' : `.${config.mode}`
         }.json`,
@@ -448,7 +391,7 @@ async function createWebpackConfig(buildConfig) {
           name: 'Bolt Modern Manifest',
         },
       }),
-    ],
+    ].filter(item => item !== undefined),
     module: {
       rules: [
         {
@@ -459,10 +402,7 @@ async function createWebpackConfig(buildConfig) {
           use: [
             {
               loader: 'babel-loader',
-              options: {
-                babelrc: false,
-                presets: [babelConfig],
-              },
+              options: babelConfig,
             },
           ],
         },
@@ -478,38 +418,16 @@ async function createWebpackConfig(buildConfig) {
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: [
-                // 'css-hot-loader',
-                MiniCssExtractPlugin.loader,
-                getSassLoaders(true),
-              ].reduce((acc, val) => acc.concat(val), []),
+              use: [MiniCssExtractPlugin.loader, getSassLoaders(true)].reduce(
+                (acc, val) => acc.concat(val),
+                [],
+              ),
             },
           ],
         },
       ],
     },
   });
-
-  // cache mode significantly speeds up subsequent build times
-  if (config.enableCache) {
-    webpackConfig.plugins.push(
-      new HardSourceWebpackPlugin({
-        info: {
-          level: 'warn',
-        },
-        cacheDirectory: path.join(process.cwd(), `./cache/webpack`),
-        // Clean up large, old caches automatically.
-        cachePrune: {
-          // Caches younger than `maxAge` are not considered for deletion. They must
-          // be at least this (default: 2 days) old in milliseconds.
-          maxAge: 2 * 24 * 60 * 60 * 1000,
-          // All caches together must be larger than `sizeThreshold` before any
-          // caches will be deleted. Together they must be at least 300MB in size
-          sizeThreshold: 300 * 1024 * 1024,
-        },
-      }),
-    );
-  }
 
   let outputConfig = [];
 

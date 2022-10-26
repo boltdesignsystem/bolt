@@ -3,11 +3,8 @@ const log = require('@bolt/build-utils/log');
 const manifest = require('@bolt/build-utils/manifest');
 const timer = require('@bolt/build-utils/timer');
 const { getConfig } = require('@bolt/build-utils/config-store');
-const events = require('@bolt/build-utils/events');
 const webpackTasks = require('./webpack-tasks');
-// const criticalcssTasks = require('./criticalcss-tasks');
 const internalTasks = require('./internal-tasks');
-const imageTasks = require('./image-tasks');
 const iconComponentTasks = require('./icon-component-tasks');
 const iconTasks = require('./icon-tasks');
 
@@ -153,24 +150,6 @@ async function serve(buildTime = timer.start()) {
   }
 }
 
-// async function criticalcss() {
-//   try {
-//     const criticalTasks = [];
-//     criticalTasks.push(criticalcssTasks.build());
-//     return Promise.all(criticalTasks);
-//   } catch (error) {
-//     log.errorAndExit('Critical CSS failed', error);
-//   }
-// }
-
-async function images() {
-  try {
-    await imageTasks.processImages();
-  } catch (error) {
-    log.errorAndExit('Images failed', error);
-  }
-}
-
 async function buildPrep(cleanAll = false) {
   config = config || (await getConfig());
   try {
@@ -209,10 +188,6 @@ async function build(shouldReturnTime = false) {
     }
 
     config.prod || config.watch === false ? await webpackTasks.compile() : '';
-    await images().catch(error => {
-      console.log(error);
-      // log.errorAndExit('Image task failed', error);
-    });
 
     config.prod || config.watch === false
       ? await Promise.all(await compileBasedOnEnvironment())
@@ -284,10 +259,8 @@ async function start() {
 module.exports = {
   serve,
   start,
-  images,
   build,
   buildPrep,
   watch,
   clean,
-  // criticalcss,
 };

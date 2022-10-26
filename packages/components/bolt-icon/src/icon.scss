@@ -1,5 +1,8 @@
 @import '@bolt/core-v3.x';
 
+// Dev Notes
+// 1. https://stackoverflow.com/questions/57455245/how-to-i-solve-this-sass-interpolation-issue
+
 // @todo: in next minor release (v2.30) test removing ':host' altogether.
 // Icon always renders to light dom, so ':host' should not be necessary.
 @include bolt-repeat-rule(('bolt-icon', ':host(bolt-icon)')) {
@@ -119,7 +122,8 @@
 // helper function to generate pre-defined color palettes for icons + backgrounds
 // optionally allows for the icon color (when used by itself or with an "outline" background) to be a different color than the one used when the icon is inverted on a solid color background
 @mixin bolt-icon-theme($name, $iconColor, $backgroundColor: '') {
-  .c-bolt-icon--#{$name} {
+  // [1]
+  .c-bolt-icon--#{'' + $name} {
     @if $backgroundColor == '' {
       $backgroundColor: $iconColor;
     }

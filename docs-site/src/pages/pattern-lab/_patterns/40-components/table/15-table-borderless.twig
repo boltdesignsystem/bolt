@@ -1,35 +1,189 @@
-<h3>Remove the vertical border in between cells.</h3>
+{% set description %}
+  If a design calls for borderless tables, use the <code>borderless</code> prop to remove all borders.
+{% endset %}
+
+{% set notes %}
+  Take a look at <a href="{{ link['components-table-examples'] }}" class="e-bolt-text-link">real examples of tables</a> currently on our sites
+{% endset %}
+
+{% set demo %}
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a header cell in table header',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a header cell in table header',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a header cell in table header',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-table/table.twig' with {
+    borderless: true,
+    header: {
+      content: header,
+    },
+    body: {
+      content: [
+        row1,
+        row2,
+        row3,
+      ],
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set header %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a header cell in table header',
+      header: true,
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a header cell in table header',
+      header: true,
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a header cell in table header',
+      header: true,
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row1 %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row2 %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row3 %}
+  {% set cells %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-components-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
 {% include '@bolt-components-table/table.twig' with {
   borderless: true,
-  headers: {
-    top: {
-      cells: [
-        'Description',
-        'Team',
-        'Vehicle Form',
-      ]
-    },
-    side: {
-      cells: [
-        'Optimus Prime',
-        'Bumblebee',
-      ]
-    }
+  header: {
+    content: header,
   },
-  rows: [
-    {
-      cells: [
-        'The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.',
-        'Autobots',
-        'Peterbilt Truck',
-      ]
-    },
-    {
-      cells: [
-        'One of Optimus Prime\'s most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.',
-        'Autobots',
-        'VW Beetle',
-      ]
-    },
-  ],
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Borderless table',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
 } only %}

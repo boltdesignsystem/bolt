@@ -1,6 +1,6 @@
 {# Images #}
 {% set user_avatar %}
-  <img src="/images/docs/500x500.jpg" alt="CEO Alan" width=16 height=16>
+  <img src="/images/placeholders/square.jpg" alt="CEO Alan" width=16 height=16>
 {% endset %}
 
 {# Icons #}
@@ -466,7 +466,7 @@
       {% include '@bolt-elements-image/image.twig' with {
         attributes: {
           alt: 'alt text',
-          src: '/images/placeholders/landscape-16x9-mountains.jpg',
+          src: '/images/placeholders/16x9.jpg',
           loading: 'lazy',
 
         },
@@ -943,7 +943,7 @@
 
 {% set user_flag %}
   <div class="c-bolt-page-header__user-flag">
-    <img src="/images/docs/500x500.jpg" alt="CEO Alan" class="c-bolt-page-header__user-flag__img">
+    <img src="/images/placeholders/square.jpg" alt="CEO Alan" class="c-bolt-page-header__user-flag__img">
     <div class="c-bolt-page-header__user-flag__content">
       {% include '@bolt-components-headline/eyebrow.twig' with {
         text: 'Hello',
@@ -1815,7 +1815,7 @@
         content: pega_sites_teaser_list_2,
       } only %}
     {% endset %}
-    
+
     {% include '@bolt-layouts-layout/layout.twig' with {
       template: [
         'tiles'
@@ -1874,7 +1874,7 @@
         content: pega_sites_teaser_support,
       } only %}
     {% endset %}
-    
+
     {% include '@bolt-layouts-layout/layout.twig' with {
       template: [
         'tiles'
@@ -2036,7 +2036,7 @@
 
 {% include '@bolt-components-page-header/page-header.twig' with {
   logo: {
-    image_src: '/images/logos/pega-logo.svg',
+    image_src: '/images/content/logos/pega-logo.svg',
     label: 'Pegasystems',
     attributes: {
       href: 'https://google.com',

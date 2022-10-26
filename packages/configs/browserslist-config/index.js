@@ -1,8 +1,4 @@
-module.exports = [
-  'last 2 Chrome versions',
-  'last 2 Safari versions',
-  'last 2 iOS versions',
-  'last 2 Edge versions',
-  'Firefox ESR',
-  'Edge 18',
-];
+// https://browsersl.ist/#q=%3E+2%25%2C+last+2+versions%2C+not+dead
+// Important: run `npx browserslist@latest --update-db` regularly!
+// @see https://github.com/browserslist/update-db
+module.exports = ['> 2%', 'last 2 versions', 'not dead'];

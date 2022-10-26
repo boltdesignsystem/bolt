@@ -1,7 +1,7 @@
 {% set image %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
-      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+      src: '/images/placeholders/4x3.jpg',
       loading: 'lazy',
     }
   } only %}
@@ -34,54 +34,127 @@
 {% endset %}
 
 {% set table %}
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: '',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Col 1',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Col 2',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Col 3',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Row 1',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'R1C1',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'R1C2',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'R1C3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Row 2',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'R2C1',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'R2C2',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'R2C3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Row 3',
+        header: true,
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'R3C1',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'R3C2',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'R3C3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set footer %}
+    {% set cells %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'Footer',
+        header: true,
+      } only %}
+        {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'FC1',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'FC2',
+      } only %}
+      {% include '@bolt-components-table/table-cell.twig' with {
+        content: 'FC3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
   {% include '@bolt-components-table/table.twig' with {
-    headers: {
-      top: {
-        cells: [
-          'Column 1',
-          'Column 2',
-          'Column 3',
-        ]
-      },
-      side: {
-        cells: [
-          'Row 1',
-          'Row 2',
-          'Row 3',
-          'Footer',
-        ]
-      }
+    header: {
+      content: header,
     },
-    rows: [
-      {
-        cells: [
-          'R1C1',
-          'R1C2',
-          'R1C3',
-        ]
-      },
-      {
-        cells: [
-          'R2C1',
-          'R2C2',
-          'R2C3',
-        ]
-      },
-      {
-        cells: [
-          'R3C1',
-          'R3C2',
-          'R3C3',
-        ]
-      }
-    ],
+    body: {
+      content: [
+        row1,
+        row2,
+        row3,
+      ],
+    },
     footer: {
-      cells: [
-        'FC1',
-        'FC2',
-        'FC3',
-      ]
-    }
+      content: footer,
+    },
   } only %}
 {% endset %}
 

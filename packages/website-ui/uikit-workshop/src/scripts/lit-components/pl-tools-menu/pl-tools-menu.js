@@ -178,6 +178,20 @@ class ToolsMenu extends BaseLitComponent {
             ? html`
                 <li class="pl-c-tools__item">
                   <pl-button
+                    href="https://browsersl.ist/#q=%3E+2%25%2C+last+2+versions%2C+not+dead"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Browser Support
+                    <pl-icon name="browser-support" slot="after"></pl-icon>
+                  </pl-button>
+                </li>
+              `
+            : ''}
+          ${!this.ishControlsHide['tools-docs']
+            ? html`
+                <li class="pl-c-tools__item">
+                  <pl-button
                     href="http://patternlab.io/docs/"
                     target="_blank"
                     rel="noopener"

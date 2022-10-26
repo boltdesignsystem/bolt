@@ -201,16 +201,6 @@ Environment: ${config.prod ? 'Production' : 'Development'}
         require('./tasks/task-collections').buildPrep();
       });
 
-    // `bolt prep`
-    program
-      .command('criticalcss')
-      .description('Generate Critical CSS')
-      .action(async options => {
-        log.info('Starting critical CSS');
-        await updateConfig(options, program);
-        require('./tasks/task-collections').criticalcss();
-      });
-
     program
       .command('serve')
       .description('Spin up local server')
@@ -269,15 +259,6 @@ Environment: ${config.prod ? 'Production' : 'Development'}
       .description("A linter... that doesn't work!")
       .action(async options => {
         await updateConfig(options, program);
-      });
-
-    program
-      .command('img')
-      .alias('images')
-      .description('Image process')
-      .action(async options => {
-        await updateConfig(options, program);
-        require('./tasks/task-collections').images();
       });
 
     program
