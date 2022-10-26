@@ -28,6 +28,10 @@
       type: boolean
       description: Configures internal tasks to watch for changes vs exiting when finished.
       default: false
+    analyze:
+      type: boolean
+      description: If `true` enables webpack-bundle-analyzer on `bolt start` and `bolt build`.
+      default: false
     sourceMaps:
       type: boolean
       description: When set to true, generates sourcemaps when CSS and JS files are compiled.

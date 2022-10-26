@@ -122,6 +122,11 @@ program
         config.watch =
           typeof options.watch === 'undefined' ? config.watch : options.watch;
 
+        config.analyze =
+          typeof options.analyze === 'undefined'
+            ? config.analyze
+            : options.analyze;
+
         config.prod =
           typeof program.prod === 'undefined' ? config.prod : program.prod;
 
@@ -178,6 +183,7 @@ Environment: ${config.prod ? 'Production' : 'Development'}
       )
       .option('-I, --i18n', configSchema.properties.i18n.description)
       .option('-Q, --quick', configSchema.properties.quick.description)
+      .option('--analyze', configSchema.properties.analyze.description)
       .action(async options => {
         log.info(
           `Starting build (${options.parallel ? 'parallel' : 'serial'})`,
@@ -240,6 +246,7 @@ Environment: ${config.prod ? 'Production' : 'Development'}
         configSchema.properties.webpackDevServer.description,
       )
       .option('--watch', configSchema.properties.watch.description)
+      .option('--analyze', configSchema.properties.analyze.description)
       .action(async options => {
         if (options.watch === undefined) {
           options.watch = true;

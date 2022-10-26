@@ -10,6 +10,8 @@
   "license": "MIT",
   "main": "bolt.js",
   "scripts": {
+    "analyze": "bolt start --analyze",
+    "analyze:prod": "bolt build --prod --analyze",
     "build": "bolt build",
     "build:lang": "bolt build --i18n",
     "build:noisy": "bolt build --verbosity 5",
