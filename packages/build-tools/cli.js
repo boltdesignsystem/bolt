@@ -26,6 +26,7 @@ program
     '-C, --config-file <path>',
     'Pass in a specific config file instead of default of ".boltrc.js/json".',
   )
+  .option('--async', 'Use `--async` if your config file returns a promise.')
   .option('--prod', configSchema.properties.prod.description)
   .option(
     '-v, --verbosity <amount>',
@@ -41,7 +42,11 @@ program
       console.error(`Error, config file does not exist: ${configFilePath}`);
       process.exit(1);
     }
-    const configFile = require(configFilePath);
+
+    const configFile = program.async
+      ? await require(configFilePath)
+      : require(configFilePath);
+
     userConfig = {
       ...configFile,
       configFileUsed: configFilePath,

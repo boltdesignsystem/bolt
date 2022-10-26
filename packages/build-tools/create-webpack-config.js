@@ -22,6 +22,8 @@ const sassExportData = require('@bolt/sass-export-data'); // @todo: Solve this p
 const babelConfig = require('@bolt/babel-preset-bolt');
 const log = require('@bolt/build-utils/log');
 
+const { ThemeRegistry } = require('@pega_bolt_theme/theme-util');
+
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
 
@@ -428,6 +430,33 @@ async function createWebpackConfig(buildConfig) {
   });
 
   let outputConfig = [];
+
+  if (config.env === 'drupal') {
+    const themes = new ThemeRegistry(config.subThemeDir);
+    const themeNames = await themes.getThemeNames();
+    const themeRegExp = new RegExp('^(' + themeNames.join('|') + ')-');
+    const disablePlugins = ['ManifestPlugin'];
+
+    // Remove any empty entries (for example one that just has a Twig template)
+    for (const i in webpackConfig.entry) {
+      if (!webpackConfig.entry[i].length) {
+        delete webpackConfig.entry[i];
+      }
+    }
+
+    const entries = {};
+    for (const name in webpackConfig.entry) {
+      // Replace "-" with "/", e.g. `@pega_bolt_theme-components-wysiwyg` => `@pega_bolt_theme/components-wysiwyg`
+      // Replace "@" with "", e.g. `@pega_bolt_theme/components-wysiwyg` => `pega_bolt_theme/components-wysiwyg`
+      const updatedName = name.replace(themeRegExp, '$1/').replace(/@/g, '');
+      entries[updatedName] = webpackConfig.entry[name];
+    }
+    webpackConfig.entry = entries;
+
+    webpackConfig.plugins = webpackConfig.plugins.filter(plugin => {
+      return !disablePlugins.includes(plugin.constructor.name);
+    });
+  }
 
   outputConfig.push(webpackConfig);
 
