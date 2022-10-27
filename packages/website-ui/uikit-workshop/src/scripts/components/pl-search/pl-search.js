@@ -4,7 +4,7 @@ import { h } from 'preact';
 import { store } from '../../store.js'; // connect to redux
 
 import Fuse from 'fuse.js';
-import ReactHtmlParser from 'react-html-parser';
+import parse from 'html-react-parser';
 import classNames from 'classnames';
 import Mousetrap from 'mousetrap';
 import VisuallyHidden from '@reach/visually-hidden';
@@ -189,7 +189,7 @@ class Search extends BaseComponent {
         }
         resultItem.item.highlightedLabel = result.join('');
 
-        resultItem.item.highlightedLabel = ReactHtmlParser(
+        resultItem.item.highlightedLabel = parse(
           resultItem.item.highlightedLabel
         );
 
