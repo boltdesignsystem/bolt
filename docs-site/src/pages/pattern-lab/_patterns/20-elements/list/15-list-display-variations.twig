@@ -1,15 +1,15 @@
 {% set description %}
-    The display of a list items can be changed from block, thru flex to inline, and there is an extra option to make it transform from inline to block at the specific breakpoint.
+    The display of the List Element's items can be changed from block, flex or inline.
 {% endset %}
 
 {% set notes %}
 <bolt-ol>
-  <bolt-li>When<code>display</code> prop set to <code>block</code> makes all list items full width stacked one on another.</bolt-li>
-  <bolt-li>When <code>display</code> prop set to <code>flex</code> all list elements are side by side, have equal size and take the all available space. When there is not enough space, list items start to wrap. Resize the browser to small and see the behavior below.</bolt-li>
-  <bolt-li>When <code>display</code> prop set to <code>inline</code> all list elements are side by side and take the width of the content. This means those list items can be of different widths if the content differs in length. Resize the browser to small and see the behavior below.</bolt-li>
-  <bolt-li>If we want o use <code>inline/inline@breakpoint</code> prop and have all the list items equal widths, add <code>inline_full_width</code> prop.</bolt-li>
-  <bolt-li>The difference between <code>flex</code> and <code>inline</code> prop is that <code>flex</code> lists will stack one on another if we have more than one and <code>inline</code> lists will be rendered side by side. See the behavior below.</bolt-li>
-  <bolt-li>When <code>display</code> prop is set to <code>Inline@breakpoint</code>, it means the list is block display below the chosen breakpoint, and transform to inline display from specific breakpoint and up. Resize the browser to see the demo below.</bolt-li>
+  <bolt-li>When the <code>display</code> prop is set to <code>block</code>, all list items are full width stacked one on another.</bolt-li>
+  <bolt-li>When the <code>display</code> prop is set to <code>flex</code>, all list items are side by side, have equal size and take the all available space. When there is not enough space, the list items will start to wrap and equally fill in the second row. In addition, when more that one <code>flex</code> List Elements brerak to another line, the Lists will stack stack one after another.</bolt-li>
+  <bolt-li>When the <code>display</code> prop is set to <code>inline</code>, all list items are side by side and take the width of the content. This means those list items can be of different widths if the content differs in length. In addition, when more that one <code>inline</code> List Elements break to another line, the Lists will rendered side by side</bolt-li>
+  <bolt-li>When the <code>display</code> prop is set to <code>inline@[Breakpoint]</code>, all list items are <code>block</code> below the specified breakpoint (<code>xxsmall</code>, <code>xsmall</code>, <code>small</code> or <code>medium</code>) and <code>inline</code> above the breakpoint.</bolt-li>
+  <bolt-li>In order to make the list items display evenly when using the <code>inline</code> or <code>inline@[Breakpoint]</code> props, set the <code>inline_full_width</code> boolean prop to true.</bolt-li>
+  <bolt-li>View the following List Elements in different viewports to observe the behavior.</bolt-li>
 </bolt-ol>
 {% endset %}
 
@@ -17,37 +17,61 @@
   {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
   {% set placeholder_1 %}
     {% include '@bolt-components-placeholder/placeholder.twig' with {
-      text: 'Item 1',
+      text: 'Item One',
       size: 'xsmall',
     } only %}
   {% endset %}
   {% set placeholder_2 %}
     {% include '@bolt-components-placeholder/placeholder.twig' with {
-      text: 'Item 2',
+      text: 'Item Two',
       size: 'xsmall',
     } only %}
   {% endset %}
   {% set placeholder_3 %}
     {% include '@bolt-components-placeholder/placeholder.twig' with {
-      text: 'Item 3',
+      text: 'Item Three',
       size: 'xsmall',
     } only %}
   {% endset %}
   {% set placeholder_4 %}
     {% include '@bolt-components-placeholder/placeholder.twig' with {
-      text: 'Item 4',
+      text: 'Item Four',
       size: 'xsmall',
     } only %}
   {% endset %}
   {% set placeholder_5 %}
     {% include '@bolt-components-placeholder/placeholder.twig' with {
-      text: 'Item 5',
+      text: 'Item Five',
       size: 'xsmall',
     } only %}
   {% endset %}
   {% set placeholder_6 %}
     {% include '@bolt-components-placeholder/placeholder.twig' with {
-      text: 'Item 6',
+      text: 'Item Six',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_7 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Seven',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_8 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Eight',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_9 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Nine',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_10 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Ten',
       size: 'xsmall',
     } only %}
   {% endset %}
@@ -72,6 +96,40 @@
       content: placeholder_6,
     } only %}
   {% endset %}
+
+  {% set list_items_extended %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_4,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_5,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_6,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_7,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_8,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_9,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_10,
+    } only %}
+  {% endset %}
+
   <h3>Block list items take full width.</h3>
   {% include '@bolt-elements-list/list.twig' with {
     display: 'block',
@@ -80,7 +138,7 @@
   <h3>Flex list items wrap and take the whole available space.</h3>
   {% include '@bolt-elements-list/list.twig' with {
     display: 'flex',
-    items: list_items
+    items: list_items_extended
   } only %}
   <h3>If there is more than one of Flex list, they are stacked one on another.</h3>
   {% include '@bolt-elements-list/list.twig' with {
@@ -94,7 +152,7 @@
   <h3>Inline list items wrap and take only content width.</h3>
   {% include '@bolt-elements-list/list.twig' with {
     display: 'inline',
-    items: list_items
+    items: list_items_extended
   } only %}
   <h3>If there is more than one of inline/inline@breakpoint list, they are side by side if there is space enough.</h3>
   {% include '@bolt-elements-list/list.twig' with {
@@ -147,7 +205,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'List display behavior',
+  title: 'List Element with Display Variations',
   description: description,
   notes: notes,
   demo: demo,

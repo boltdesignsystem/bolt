@@ -1,11 +1,12 @@
 {% set description %}
-  Preventing wrapping list elements can be achieved with the <code>nowrap</code> prop.
+  Preventing the wrapping of a List Element's items with the <code>nowrap</code> prop.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Nowrap prop only works with inline and flex display, it has no effects on block display.</bolt-li>
-    <bolt-li>This prop prevents list elements from wrapping. This means that list items can overflow the parent container when there's no space enough. Resize the window to see how element behave below.</bolt-li>
+    <bolt-li>The <code>nowrap</code> prop only works when the <code>display</code> prop has the value of <code>inline</code> or <code>flex</code>.</bolt-li>
+    <bolt-li>This prop prevents List Items from within a List Element from wrapping. This means that List Items can potentially break out of it's  parent container.</bolt-li>
+    <bolt-li>View the following List Elements in different viewports to observe the behavior.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -64,7 +65,7 @@
       size: 'xsmall',
     } only %}
   {% endset %}
-  
+
   {% set list_items %}
     {% include '@bolt-elements-list/list-item.twig' with {
       content: placeholder_1,
@@ -147,7 +148,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'List wrapping',
+  title: 'List Element with No Wrapping',
   description: description,
   notes: notes,
   demo: demo,

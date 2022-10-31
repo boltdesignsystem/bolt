@@ -70,7 +70,7 @@ module.exports = {
     },
     inline_full_width: {
       type: 'boolean',
-      description: 'Makes inline list items take up eual space.',
+      description: 'Makes inline list items take up equal space.',
       default: false,
     },
   },

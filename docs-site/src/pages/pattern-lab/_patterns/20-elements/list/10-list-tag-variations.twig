@@ -1,5 +1,5 @@
 {% set description %}
-    Choose between <code>ul</code> and <code>ol</code> tags when creating a list.
+    Choose between <code>ul</code> and <code>ol</code> tags when creating a List Element.
 {% endset %}
 
 {% set notes %}
@@ -11,6 +11,12 @@
 
 {% set demo %}
   {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
+  {% set placeholder %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
   {% set placeholder_1 %}
     {% include '@bolt-components-placeholder/placeholder.twig' with {
       text: 'Item 1',
@@ -32,6 +38,18 @@
 
   {% set list_items %}
     {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder,
+    } only %}
+  {% endset %}
+
+  {% set list_items_ol %}
+    {% include '@bolt-elements-list/list-item.twig' with {
       content: placeholder_1,
     } only %}
     {% include '@bolt-elements-list/list-item.twig' with {
@@ -42,13 +60,17 @@
     } only %}
   {% endset %}
 
-  {% for tag in schema.properties.tag.enum %}
-    <h3>{{ tag|capitalize }}</h3>
-    {% include '@bolt-elements-list/list.twig' with {
-      tag: tag,
-      items: list_items
-    } only %}
-  {% endfor %}
+  <h3>UL</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    tag: 'ul',
+    items: list_items
+  } only %}
+
+  <h3>OL</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    tag: 'ol',
+    items: list_items_ol
+  } only %}
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
@@ -81,7 +103,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'List semantics',
+  title: 'List Element Basics',
   description: description,
   notes: notes,
   demo: demo,

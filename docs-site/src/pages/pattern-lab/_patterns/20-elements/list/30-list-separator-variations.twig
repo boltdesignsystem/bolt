@@ -1,11 +1,11 @@
 {% set description %}
-  A list items can be separated by horizotal or vertical line. Choose between <code>solid</code> and <code>dashed</code> separator.
+  A List Element's items can be separated by horizotal or vertical line. The line can be further customized between a <code>solid</code> and <code>dashed</code> separator.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>The color of the separator adjusts automatically.</bolt-li>
-    <bolt-li>The separator's color can be also chosen manually using <code>attributes</code> object on the list item.</bolt-li>
+    <bolt-li>The List Element's separator color adjusts automatically based on the <a href="{{ link['visual-styles-theming-system'] }}" class="e-bolt-text-link">Theming System</a>.</bolt-li>
+    <bolt-li>If required, you can override the separator's color by chainging the List Item's <code>--m-bolt-border</code> CSS var with a <code>attributes</code> object.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -96,7 +96,7 @@
 {% endverbatim %}
 {% endset %}
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'List separators',
+  title: 'List Element with Separator Variations',
   description: description,
   notes: notes,
   demo: demo,
