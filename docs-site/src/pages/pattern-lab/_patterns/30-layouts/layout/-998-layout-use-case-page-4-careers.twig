@@ -1,4 +1,64 @@
+{# START HERO LAYER #}
+  {% set layer_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Are you up for the challenge?",
+      tag: 'h1',
+      size: 'xxxlarge',
+    } only %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Join us as we help the world’s biggest brands simplify how they do business.",
+      tag: 'h2',
+      size: 'large',
+      weight: 'regular',
+    } only %}
+  {% endset %}
+
+  {% set layer_form %}
+    [form card]
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_form,
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'xlarge',
+    padding_bottom: 'xlarge',
+    align_items: 'center',
+    template: [
+      '75@from-small',
+      '67@from-medium',
+    ],
+    attributes: {
+      class: 't-bolt-dark'
+    }
+  } only %}
+{# END HERO LAYER #}
+
 {# START RELATED LAYER #}
+  {% set layer_headline %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Explore #LifeAtPega",
+      tag: 'h3',
+      size: 'xxlarge',
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+  {% endset %}
+
   {% set layer_teaser %}
     {% set card_thumbnail %}
       {% include '@bolt-elements-image/image.twig' with {
@@ -37,13 +97,245 @@
     {% endfor %}
   {% endset %}
 
+  {% set layer_cards %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layer_items,
+      padding_top: 'none',
+      padding_bottom: 'none',
+      align_items: 'center',
+      template: [
+        'thirds@from-medium',
+      ],
+    } only %}
+  {% endset %}
+
+  {% set layer_content %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_headline,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_cards,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_content,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    align_items: 'center',
+  } only %}
+{# END RELATED LAYER #}
+
+{# START RELATED LAYER #}
+  {% set layer_headline %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Explore #LifeAtPega",
+      tag: 'h3',
+      size: 'xxlarge',
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_teaser %}
+    {% set card_thumbnail %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/tout-4x3-climber.jpg',
+          alt: 'A Rock Climber',
+          loading: 'lazy',
+          width: 400,
+          height: 150,
+        }
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-teaser/teaser.twig' with {
+      signifier: card_thumbnail,
+      headline: {
+        text: 'Culture & benefits',
+        link_attributes: {
+          href: '#!',
+          target: '_blank',
+          rel: 'noopener'
+        },
+      },
+      description: {
+        content: "We're caring, collaborative, and committed to balancing work with well-being.",
+      }
+    } %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% for i in 1..6 %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: layer_teaser,
+      } only %}
+    {% endfor %}
+  {% endset %}
+
+  {% set layer_cards %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layer_items,
+      padding_top: 'none',
+      padding_bottom: 'none',
+      template: [
+        'thirds@from-medium',
+      ],
+    } only %}
+  {% endset %}
+
+  {% set layer_content %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_headline,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_cards,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_content,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    align_items: 'center',
+    attributes: {
+      class: 't-bolt-gray-xlight'
+    }
+  } only %}
+{# END RELATED LAYER #}
+
+{# START MAP LAYER #}
+  {% set layer_links %}
+    {% set icon_chevron_right %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'chevron-right',
+      } only %}
+    {% endset %}
+    {% set link %}
+      {% include '@bolt-elements-text-link/text-link.twig' with {
+        content: 'United States',
+        icon_after: icon_chevron_right,
+        attributes: {
+          href: '#!',
+        }
+      } only %}
+    {% endset %}
+    {% for i in 1..9 %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: link,
+      } only %}
+    {% endfor %}
+  {% endset %}
+
+  {% set layer_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Explore Pega near you",
+      tag: 'h3',
+      size: 'xxlarge',
+    } only %}
+
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layer_links,
+      padding_top: 'none',
+      padding_bottom: 'none',
+      template: [
+        'thirds@from-small',
+      ],
+    } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: "[placeholder image]",
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+    } only %}
+  {% endset %}
+
   {% include '@bolt-layouts-layout/layout.twig' with {
     content: layer_items,
     padding_top: 'large',
     padding_bottom: 'large',
-    align_items: 'center',
     template: [
-      'thirds@from-medium',
+      'halves@from-medium',
     ],
+    attributes: {
+      class: 't-bolt-dark'
+    }
   } only %}
-{# END RELATED LAYER #}
+{# END MAP LAYER #}
+
+{# START CONNECT LAYER #}
+  {% set layer_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Join the team",
+      tag: 'h3',
+      size: 'xlarge',
+    } only %}
+
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Search job listings',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_share %}
+    {% set icon %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'star-solid',
+        size: 'large'
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Connect on social",
+      tag: 'h3',
+      size: 'xlarge',
+    } only %}
+
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      spacing: 'medium',
+      align: 'center',
+      valign: 'center',
+      items: [
+        icon,
+        icon,
+        icon,
+        icon
+      ]
+    } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_share,
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    template: [
+      'halves@from-medium',
+    ],
+    attributes: {
+      class: 't-bolt-gray-xlight'
+    }
+  } only %}
+{# END CONNECT LAYER #}
