@@ -1,0 +1,277 @@
+{# START LAYER #}
+  {% set layer_supplement %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        loading: 'lazy',
+        width: 800,
+        height: 600,
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_content %}
+    <h1 class="u-bolt-margin-none" style="font-size: 2rem; text-align: left;"><span style="font-weight: 100; color: #fff;">PegaWorld</span><span style="color: #ffc936;"><strong>iN</strong></span><span style="font-weight: 400; color: #fff;">spire</span></h1>
+    <strong>June 11-13, 2023 | Las Vegas</strong>
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Registration opens December 2022",
+      tag: 'h2',
+      size: 'xxxlarge',
+    } only %}
+    <p>Step outside the ordinary and into our world.</p>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Save the date',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_supplement,
+      order: 'last@from-medium',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    valign_items: 'center',
+    template: [
+      '33/67@from-medium',
+    ],
+    attributes: {
+      class: 't-bolt-violet',
+    }
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_supplement %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        loading: 'lazy',
+        width: 800,
+        height: 600,
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "In this world, we’re building for change",
+      tag: 'h2',
+      size: 'xlarge',
+    } only %}
+    <p>It’s time to start your countdown: Next June, PegaWorld is returning live to Las Vegas. Break free from life's distractions and hear the stories, meet the people, and tour the tech that will inspire you to create smarter, more adaptable ways of working. With all the momentum building, are you ready to step inside?</p>
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_supplement,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'large',
+    padding_bottom: 'none',
+    valign_items: 'center',
+    template: [
+      'halves@from-medium',
+    ],
+    attributes: {
+      class: 't-bolt-light',
+      style: 'background-color: var(--bolt-color-navy-xlight);'
+    }
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_supplement,
+      order: 'last@from-medium',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'large',
+    padding_bottom: 'none',
+    valign_items: 'center',
+    template: [
+      'halves@from-medium',
+    ],
+    attributes: {
+      class: 't-bolt-light',
+      style: 'background-color: var(--bolt-color-navy-xlight);'
+    }
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "PegaWorld iNspire 2022 highlights",
+      tag: 'h2',
+      size: 'xlarge',
+    } only %}
+    <p>Thank you to all our clients, partners, and speakers who shifted perspectives with us in 2022.</p>
+  {% endset %}
+
+  {% set layer_cards %}
+    {% set layer_card %}
+      {% set video_thumbnail %}
+        {% set image %}
+          {% include '@bolt-elements-image/image.twig' with {
+            attributes: {
+              src: '/images/placeholders/16x9.jpg',
+              alt: 'A Rock Climber',
+              loading: 'lazy',
+              width: 400,
+              height: 300,
+            }
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+          content: image,
+          video: {
+            title: 'This is a Video Title',
+            duration: '4:26',
+            show_title: true
+          }
+        } only %}
+      {% endset %}
+
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        signifier: video_thumbnail,
+        headline: {
+          text: 'Booking.com’s Mission to Create Simplified and Connected Experiences',
+          link_attributes: {
+            type: 'button',
+            'data-bolt-modal-target': '#' ~ '000',
+          },
+        },
+        description: {
+          content: 'Booking.com is on a mission to make it easier for everyone to experience the world.',
+        }
+      } only %}
+    {% endset %}
+
+    {% set layer_items %}
+      {% for i in 1..3 %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: layer_card,
+        } only %}
+      {% endfor %}
+    {% endset %}
+
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layer_items,
+      padding_top: 'small',
+      padding_bottom: 'small',
+      template: [
+        'thirds@from-medium',
+      ],
+    } only %}
+  {% endset %}
+
+  {% set layer_button %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Watch all replays',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_cards,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_button,
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    attributes: {
+      class: 't-bolt-light',
+      style: 'background-color: var(--bolt-color-navy-xlight);'
+    }
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_supplement %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/tout-4x3-climber.jpg',
+        alt: 'A Rock Climber',
+        loading: 'lazy',
+        width: 800,
+        height: 600,
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_quote %}
+    {% include '@bolt-components-blockquote/blockquote.twig' with {
+      author: {
+        name: 'PegaWorld attendee',
+      },
+      content: '<p>Extraordinary conference with excellent, engaging keynotes and shared experiences from around the world. No better opportunity to meet likeminded colleagues interested in state-of-the-art technology. Great access to partners, C-Suite Pega execs, and specialists.</p>'
+    } %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_supplement,
+      order: 'last@from-medium',
+      valign_self : 'end-offset',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_quote,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    valign_items: 'center',
+    template: [
+      'halves@from-medium',
+    ],
+    attributes: {
+      class: 't-bolt-violet',
+    }
+  } only %}
+{# END LAYER #}

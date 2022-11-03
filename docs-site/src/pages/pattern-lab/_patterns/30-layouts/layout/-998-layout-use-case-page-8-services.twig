@@ -14,7 +14,23 @@
 
   {% set layer_cards %}
     {% set layer_card %}
-      card
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        variant: 'card',
+        headline: {
+          text: 'Work with a Partner',
+          link_attributes: {
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
+          }
+        },
+        description: {
+          content: 'Learn about Pega partners available and evaluate which one fits your unique business needs.',
+        },
+        attributes: {
+          class: 't-bolt-dark'
+        }
+      } %}
     {% endset %}
 
     {% set layer_items %}
