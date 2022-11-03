@@ -22,8 +22,6 @@ const sassExportData = require('@bolt/sass-export-data'); // @todo: Solve this p
 const babelConfig = require('@bolt/babel-preset-bolt');
 const log = require('@bolt/build-utils/log');
 
-const { ThemeRegistry } = require('@pega_bolt_theme/theme-util');
-
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
 
@@ -432,9 +430,7 @@ async function createWebpackConfig(buildConfig) {
   let outputConfig = [];
 
   if (config.env === 'drupal') {
-    const themes = new ThemeRegistry(config.subThemeDir);
-    const themeNames = await themes.getThemeNames();
-    const themeRegExp = new RegExp('^(' + themeNames.join('|') + ')-');
+    const themeRegExp = new RegExp('^(' + config.themeNames.join('|') + ')-');
     const disablePlugins = ['ManifestPlugin'];
 
     // Remove any empty entries (for example one that just has a Twig template)
