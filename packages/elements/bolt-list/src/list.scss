@@ -28,28 +28,10 @@
 }
 
 // Display variations
-.e-bolt-list--display-flex {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 0 var(--bolt-spacing-x-small);
-
-  .e-bolt-list__item {
-    flex: 1;
-  }
-}
-
-.e-bolt-list--display-inline {
+.e-bolt-list--display-horizontal {
   display: inline-flex;
   flex-flow: row wrap;
   gap: 0 var(--bolt-spacing-x-small);
-}
-
-.e-bolt-list--inline-full-width {
-  width: 100%;
-
-  .e-bolt-list__item {
-    flex: 1;
-  }
 }
 
 @each $breakpoint in $bolt-breakpoints {
@@ -63,7 +45,7 @@
       $breakpoint-name !=
       'xxlarge'
   ) {
-    .e-bolt-list--display-inline\@#{$breakpoint-name} {
+    .e-bolt-list--display-horizontal\@#{$breakpoint-name} {
       display: flex;
       flex-flow: column wrap;
 
@@ -90,8 +72,7 @@
     .e-bolt-list--spacing-#{$size-name}.e-bolt-list--inset {
       gap: 0 var(--bolt-spacing-y-small);
 
-      &.e-bolt-list--display-inline,
-      &.e-bolt-list--display-flex {
+      &.e-bolt-list--display-horizontal {
         gap: 0;
       }
 
@@ -102,8 +83,7 @@
     }
 
     .e-bolt-list--spacing-#{$size-name} {
-      &.e-bolt-list--display-inline,
-      &.e-bolt-list--display-flex {
+      &.e-bolt-list--display-horizontal {
         gap: var(--bolt-spacing-y-#{$size-name})
           var(--bolt-spacing-x-#{$size-name});
       }
@@ -119,13 +99,13 @@
             $breakpoint-name !=
             'xxlarge'
         ) {
-          &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+          &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
             @include bolt-mq($breakpoint-name) {
               gap: var(--bolt-spacing-y-#{$size-name})
                 var(--bolt-spacing-x-#{$size-name});
             }
           }
-          &.e-bolt-list--display-inline\@#{$breakpoint-name}.e-bolt-list--inset {
+          &.e-bolt-list--display-horizontal\@#{$breakpoint-name}.e-bolt-list--inset {
             @include bolt-mq($breakpoint-name) {
               gap: var(--bolt-spacing-x-#{$size-name}) 0;
             }
@@ -156,8 +136,7 @@ $bolt-list-separator-styles: solid, dashed;
     }
   }
 
-  &.e-bolt-list--display-inline,
-  &.e-bolt-list--display-flex {
+  &.e-bolt-list--display-horizontal {
     .e-bolt-list__item {
       &:not(.e-bolt-list__item:last-of-type) {
         border-right-width: 1px;
@@ -177,7 +156,7 @@ $bolt-list-separator-styles: solid, dashed;
         $breakpoint-name !=
         'xxlarge'
     ) {
-      &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+      &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
         .e-bolt-list__item {
           &:not(.e-bolt-list__item:last-of-type) {
             border-bottom-width: 1px;
@@ -205,8 +184,7 @@ $bolt-list-separator-styles: solid, dashed;
           }
         }
 
-        &.e-bolt-list--display-inline,
-        &.e-bolt-list--display-flex {
+        &.e-bolt-list--display-horizontal {
           .e-bolt-list__item {
             &:not(.e-bolt-list__item:last-of-type) {
               padding-right: var(--bolt-spacing-x-#{$size-name});
@@ -215,8 +193,7 @@ $bolt-list-separator-styles: solid, dashed;
           }
         }
 
-        &.e-bolt-list--display-inline,
-        &.e-bolt-list--display-flex {
+        &.e-bolt-list--display-horizontal {
           &.e-bolt-list--inset {
             .e-bolt-list__item {
               &:not(.e-bolt-list__item:last-of-type) {
@@ -240,7 +217,7 @@ $bolt-list-separator-styles: solid, dashed;
               'xxlarge'
           ) {
             &.e-bolt-list--spacing-#{$size-name} {
-              &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+              &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
                 .e-bolt-list__item {
                   padding-bottom: var(--bolt-spacing-y-#{$size-name});
 
@@ -265,7 +242,7 @@ $bolt-list-alignments: start, center, end, justify;
   .e-bolt-list--align-#{$alignment} {
     width: 100%;
 
-    &.e-bolt-list--display-inline {
+    &.e-bolt-list--display-horizontal {
       @if $alignment != center and $alignment != justify {
         justify-content: flex-#{$alignment};
       } @else if $alignment == justify {
@@ -286,7 +263,7 @@ $bolt-list-alignments: start, center, end, justify;
           $breakpoint-name !=
           'xxlarge'
       ) {
-        &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+        &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
           @include bolt-mq($breakpoint-name) {
             @if $alignment != center and $alignment != justify {
               justify-content: flex-#{$alignment};
@@ -307,8 +284,7 @@ $bolt-list-valignments: start, center, end;
 
 @each $alignment in $bolt-list-valignments {
   .e-bolt-list--valign-#{$alignment} {
-    &.e-bolt-list--display-inline,
-    &.e-bolt-list--display-flex {
+    &.e-bolt-list--display-horizontal {
       @if $alignment != center {
         align-items: flex-#{$alignment};
       } @else {
@@ -327,7 +303,7 @@ $bolt-list-valignments: start, center, end;
           $breakpoint-name !=
           'xxlarge'
       ) {
-        &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+        &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
           @include bolt-mq($breakpoint-name) {
             @if $alignment != center {
               align-items: flex-#{$alignment};
@@ -343,8 +319,7 @@ $bolt-list-valignments: start, center, end;
 
 // Nowrap
 .e-bolt-list--nowrap {
-  &.e-bolt-list--display-inline,
-  &.e-bolt-list--display-flex {
+  &.e-bolt-list--display-horizontal {
     flex-flow: row nowrap;
   }
 
@@ -359,7 +334,7 @@ $bolt-list-valignments: start, center, end;
         $breakpoint-name !=
         'xxlarge'
     ) {
-      &.e-bolt-list--display-inline\@#{$breakpoint-name} {
+      &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
         @include bolt-mq($breakpoint-name) {
           flex-flow: row nowrap;
         }
