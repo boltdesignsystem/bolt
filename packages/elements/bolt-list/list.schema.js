@@ -68,10 +68,5 @@ module.exports = {
         'Prevent inline/flex list items from wrapping to a second line.',
       default: false,
     },
-    inline_full_width: {
-      type: 'boolean',
-      description: 'Makes inline list items take up equal space.',
-      default: false,
-    },
   },
 };

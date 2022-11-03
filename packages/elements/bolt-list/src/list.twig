@@ -26,7 +26,6 @@
   this.data.valign.value != schema.properties.valign.default ? 'e-bolt-list--valign-' ~ this.data.valign.value : 'e-bolt-list--valign-' ~ schema.properties.valign.default,
   this.data.inset.value != schema.properties.inset.default ? 'e-bolt-list--inset',
   this.data.nowrap.value != schema.properties.nowrap.default ? 'e-bolt-list--nowrap',
-  this.data.inline_full_width.value != schema.properties.inline_full_width.default ? 'e-bolt-list--inline-full-width',
 ] %}
 
 <{{ this.data.tag.value }} {{ attributes.addClass(classes) }}>
