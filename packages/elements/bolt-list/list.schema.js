@@ -21,16 +21,15 @@ module.exports = {
     display: {
       type: 'string',
       description:
-        'Display either an inline list of items or a block (stacked) list of items. Responsive options are also available for transforming from block to inline at specific breakpoints.',
-      default: 'block',
+        'Display either an horizontal list of items or a vertical list of items. Responsive options are also available for transforming from block to horizontal at specific breakpoints.',
+      default: 'vertical',
       enum: [
-        'block',
-        'flex',
-        'inline',
-        'inline@xxsmall',
-        'inline@xsmall',
-        'inline@small',
-        'inline@medium',
+        'vertical',
+        'horizontal',
+        'horizontal@xxsmall',
+        'horizontal@xsmall',
+        'horizontal@small',
+        'horizontal@medium',
       ],
     },
     spacing: {
@@ -65,7 +64,7 @@ module.exports = {
     nowrap: {
       type: 'boolean',
       description:
-        'Prevent inline/flex list items from wrapping to a second line.',
+        'Prevent horizontal/flex list items from wrapping to a second line.',
       default: false,
     },
   },
