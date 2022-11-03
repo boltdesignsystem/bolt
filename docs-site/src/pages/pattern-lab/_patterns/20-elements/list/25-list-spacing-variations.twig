@@ -9,7 +9,7 @@
 {% set demo %}
   {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
   {% set spacing = schema.properties.spacing.enum %}
-  {% set display = ['block', 'flex', 'inline', 'inline@medium'] %}
+  {% set display = ['vertical', 'horizontal', 'horizontal@medium'] %}
   {% set placeholder_1 %}
     {% include '@bolt-components-placeholder/placeholder.twig' with {
       text: 'Item 1',

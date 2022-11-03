@@ -4,7 +4,7 @@
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>The <code>nowrap</code> prop only works when the <code>display</code> prop has the value of <code>inline</code> or <code>flex</code>.</bolt-li>
+    <bolt-li>The <code>nowrap</code> prop only works when the <code>display</code> prop has the value of <code>horizontal</code>.</bolt-li>
     <bolt-li>This prop prevents List Items from within a List Element from wrapping. This means that List Items can potentially break out of it's  parent container.</bolt-li>
     <bolt-li>View the following List Elements in different viewports to observe the behavior.</bolt-li>
   </bolt-ol>
@@ -96,16 +96,9 @@
     } only %}
   {% endset %}
 
-  <h3>Inline list with nowrap</h3>
+  <h3>Horizontal list with nowrap</h3>
   {% include '@bolt-elements-list/list.twig' with {
-    display: 'inline',
-    nowrap: true,
-    items: list_items
-  } only %}
-
-  <h3>Flex list with nowrap</h3>
-  {% include '@bolt-elements-list/list.twig' with {
-    display: 'flex',
+    display: 'horizontal',
     nowrap: true,
     items: list_items
   } only %}
@@ -125,7 +118,7 @@
   ...
 {% endset %}
 {% include '@bolt-elements-list/list.twig' with {
-  display: 'inline',
+  display: 'horizontal',
   nowrap: true,
   items: list_items
 } only %}
@@ -133,7 +126,7 @@
 
 {% set html_markup %}
 {% verbatim %}
-<ul class="e-bolt-list e-bolt-list--display-inline e-bolt-list--nowrap">
+<ul class="e-bolt-list e-bolt-list--display-horizontal e-bolt-list--nowrap">
   <li class="e-bolt-list__item">First item</li>
   <li class="e-bolt-list__item">Second item</li>
   <li class="e-bolt-list__item">Third item</li>

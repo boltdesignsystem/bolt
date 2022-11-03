@@ -1,14 +1,12 @@
 {% set description %}
-    The display of the List Element's items can be changed from block, flex or inline.
+    The display of the List Element's items can be changed from vertical, or horizontal.
 {% endset %}
 
 {% set notes %}
 <bolt-ol>
-  <bolt-li>When the <code>display</code> prop is set to <code>block</code>, all list items are full width stacked one on another.</bolt-li>
-  <bolt-li>When the <code>display</code> prop is set to <code>flex</code>, all list items are side by side, have equal size and take the all available space. When there is not enough space, the list items will start to wrap and equally fill in the second row. In addition, when more that one <code>flex</code> List Elements brerak to another line, the Lists will stack stack one after another.</bolt-li>
-  <bolt-li>When the <code>display</code> prop is set to <code>inline</code>, all list items are side by side and take the width of the content. This means those list items can be of different widths if the content differs in length. In addition, when more that one <code>inline</code> List Elements break to another line, the Lists will rendered side by side</bolt-li>
-  <bolt-li>When the <code>display</code> prop is set to <code>inline@[Breakpoint]</code>, all list items are <code>block</code> below the specified breakpoint (<code>xxsmall</code>, <code>xsmall</code>, <code>small</code> or <code>medium</code>) and <code>inline</code> above the breakpoint.</bolt-li>
-  <bolt-li>In order to make the list items display evenly when using the <code>inline</code> or <code>inline@[Breakpoint]</code> props, set the <code>inline_full_width</code> boolean prop to true.</bolt-li>
+  <bolt-li>When the <code>display</code> prop is set to <code>vertical</code>, all list items are full width stacked one on another.</bolt-li>
+  <bolt-li>When the <code>display</code> prop is set to <code>horizontal</code>, all list items are side by side and take the width of the content. This means those list items can be of different widths if the content differs in length. In addition, when more that one <code>horizontal</code> List Elements break to another line, the Lists will rendered side by side</bolt-li>
+  <bolt-li>When the <code>display</code> prop is set to <code>horizontal@[Breakpoint]</code>, all list items are <code>vertical</code> below the specified breakpoint (<code>xxsmall</code>, <code>xsmall</code>, <code>small</code> or <code>medium</code>) and <code>horizontal</code> above the breakpoint.</bolt-li>
   <bolt-li>View the following List Elements in different viewports to observe the behavior.</bolt-li>
 </bolt-ol>
 {% endset %}
@@ -132,40 +130,17 @@
 
   <h3>Block list items take full width.</h3>
   {% include '@bolt-elements-list/list.twig' with {
-    display: 'block',
+    display: 'vertical',
     items: list_items
   } only %}
-  <h3>Flex list items wrap and take the whole available space.</h3>
+  <h3>Horizontal list items wrap and take only content width.</h3>
   {% include '@bolt-elements-list/list.twig' with {
-    display: 'flex',
+    display: 'horizontal',
     items: list_items_extended
   } only %}
-  <h3>If there is more than one of Flex list, they are stacked one on another.</h3>
+  <h3>An example of horizontal@medium list that has horizontal behavior above chosen breakpoint. Below that breakpoint list items are vertical.</h3>
   {% include '@bolt-elements-list/list.twig' with {
-    display: 'flex',
-    items: list_items,
-  } only %}
-  {% include '@bolt-elements-list/list.twig' with {
-    display: 'flex',
-    items: list_items,
-  } only %}
-  <h3>Inline list items wrap and take only content width.</h3>
-  {% include '@bolt-elements-list/list.twig' with {
-    display: 'inline',
-    items: list_items_extended
-  } only %}
-  <h3>If there is more than one of inline/inline@breakpoint list, they are side by side if there is space enough.</h3>
-  {% include '@bolt-elements-list/list.twig' with {
-    display: 'inline',
-    items: list_items
-  } only %}
-  {% include '@bolt-elements-list/list.twig' with {
-    display: 'inline',
-    items: list_items
-  } only %}
-  <h3>An example of Inline@medium list that has inline behavior above chosen breakpoint. Below that breakpoint list items are block.</h3>
-  {% include '@bolt-elements-list/list.twig' with {
-    display: 'inline@medium',
+    display: 'horizontal@medium',
     items: list_items
   } only %}
 {% endset %}
@@ -183,14 +158,14 @@
     } only %}
   {% endset %}
 {% include '@bolt-elements-list/list.twig' with {
-  display: 'flex',
+  display: 'horizontal',
   items: list_items
 } only %}
 {% endverbatim %}{% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<ul class="e-bolt-list e-bolt-list--display-flex">
+<ul class="e-bolt-list e-bolt-list--display-horizontal">
   <li class="e-bolt-list__item">First item</li>
   <li class="e-bolt-list__item">Second item</li>
   <li class="e-bolt-list__item">Thitd item</li>

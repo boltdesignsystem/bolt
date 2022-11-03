@@ -9,9 +9,8 @@
 {% set demo %}
 {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
 {% set regular_display_options = [
-  'block',
-  'inline',
-  'flex',
+  'vertical',
+  'horizontal',
 ] %}
 {% set placeholder_1 %}
   {% include '@bolt-components-placeholder/placeholder.twig' with {

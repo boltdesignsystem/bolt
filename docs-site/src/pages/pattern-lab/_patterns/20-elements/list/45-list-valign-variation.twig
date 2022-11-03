@@ -3,7 +3,7 @@
 {% endset %}
 
 {% set notes %}
-  The <code>valign</code> prop will only work with the <code>inline</code> or <code>flex</code> values for the <code>display</code> prop.
+  The <code>valign</code> prop will only work with the <code>horizontal</code>  value for the <code>display</code> prop.
 {% endset %}
 
 {% set demo %}
@@ -40,7 +40,7 @@
 
 {% for valign in schema.properties.valign.enum %}
   {% for display in schema.properties.display.enum %}
-    {% if display != 'block' %}
+    {% if display != 'vertical' %}
       <h3>Horizontally align {{ display }} items: {{ align }}</h3>
       {% include '@bolt-elements-list/list.twig' with {
         display: display,

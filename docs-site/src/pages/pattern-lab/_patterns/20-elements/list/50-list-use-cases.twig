@@ -21,143 +21,6 @@
 {% endset %}
 
 {% set demo %}
-  {% set placeholder_1 %}
-    {% set icon %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'pega-people',
-      } only %}
-    {% endset %}
-    {% include '@bolt-elements-shape/shape.twig' with {
-      content: icon,
-      size: 'xlarge',
-      attributes: {
-        class: 't-bolt-navy'
-      }
-    } only %}
-    {% include '@bolt-elements-type/type.twig' with {
-      content: '<strong class="u-bolt-color-navy-dark">6,500</strong> global employees.',
-      size: 'xlarge',
-    } only %}
-  {% endset %}
-
-  {% set placeholder_2 %}
-    {% set icon %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'industries',
-      } only %}
-    {% endset %}
-    {% include '@bolt-elements-shape/shape.twig' with {
-      content: icon,
-      size: 'xlarge',
-      attributes: {
-        class: 't-bolt-navy'
-      }
-    } only %}
-    {% include '@bolt-elements-type/type.twig' with {
-      content: '<strong>3</strong> regional HQs in North America, Europe, and Asia Pacific.',
-      size: 'xlarge',
-    } only %}
-  {% endset %}
-
-  {% set placeholder_3 %}
-    {% set icon %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'pega-handshake',
-      } only %}
-    {% endset %}
-    {% include '@bolt-elements-shape/shape.twig' with {
-      content: icon,
-      size: 'xlarge',
-      attributes: {
-        class: 't-bolt-navy'
-      }
-    } only %}
-    {% include '@bolt-elements-type/type.twig' with {
-      content: '<strong>250+</strong> global partners.',
-      size: 'xlarge',
-    } only %}
-  {% endset %}
-
-  {% set placeholder_4 %}
-    {% set icon %}
-      {% include '@bolt-elements-icon/icon.twig' with {
-        name: 'ribbon',
-      } only %}
-    {% endset %}
-    {% include '@bolt-elements-shape/shape.twig' with {
-      content: icon,
-      size: 'xlarge',
-      attributes: {
-        class: 't-bolt-navy'
-      }
-    } only %}
-    {% include '@bolt-elements-type/type.twig' with {
-      content: '<strong>Dozens</strong> of culture & technology awards.',
-      size: 'xlarge',
-    } only %}
-  {% endset %}
-
-  {% set list_items %}
-    {% include '@bolt-elements-list/list-item.twig' with {
-      content: placeholder_1,
-    } only %}
-    {% include '@bolt-elements-list/list-item.twig' with {
-      content: placeholder_2,
-    } only %}
-    {% include '@bolt-elements-list/list-item.twig' with {
-      content: placeholder_3,
-    } only %}
-    {% include '@bolt-elements-list/list-item.twig' with {
-      content: placeholder_4,
-    } only %}
-  {% endset %}
-
-  {% set section %}
-    {% include '@bolt-elements-type/type.twig' with {
-      content: 'What characterizes us',
-      hierarchy: 'headline',
-      tag: 'h2',
-      size: 'xxlarge',
-    } only %}
-    {# this div below is only for demo purpose #}
-    <div class="u-bolt-margin-bottom-small list-demo">
-    {% include '@bolt-elements-list/list.twig' with {
-      display: 'inline@medium',
-      spacing: 'medium',
-      valign: 'start',
-      align: 'justify',
-      inset: true,
-      inline_full_width: true,
-      items: list_items,
-      attributes: {
-        class: [
-        'u-bolt-text-align-center'
-        ]
-      }
-    } only %}
-    </div>
-    {% include '@bolt-elements-button/button.twig' with {
-      content: 'Download corporate fact sheet',
-      attributes: {
-        type: 'button',
-      }
-    } only %}
-  {% endset %}
-
-  {% set layout_items %}
-    {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: section,
-      attributes: {
-        class: 'u-bolt-text-align-center'
-      }
-    } only %}
-  {% endset %}
-  {% include '@bolt-layouts-layout/layout.twig' with {
-    content: layout_items,
-  } only %}
-
-  <hr>
-
   {% set intro %}
     {% include '@bolt-elements-type/type.twig' with {
       content: 'What we do',
@@ -196,7 +59,7 @@
     {# this div below is only for demo purpose #}
     <div class="u-bolt-padding-small list-demo list-demo--buttons">
     {% include '@bolt-elements-list/list.twig' with {
-      display: 'inline',
+      display: 'horizontal',
       items: list_items,
     } only %}
     </div>
@@ -320,89 +183,62 @@
 {% endset %}
 
 {% set twig_markup %}{% verbatim %}
-{% set placeholder_1 %}
-  {% set icon %}
-    {% include '@bolt-elements-icon/icon.twig' with {
-      name: 'pega-people',
-    } only %}
-  {% endset %}
-  {% include '@bolt-elements-shape/shape.twig' with {
-    content: icon,
-    size: 'xlarge',
-    attributes: {
-      class: 't-bolt-navy'
-    }
-  } only %}
+{% set intro %}
   {% include '@bolt-elements-type/type.twig' with {
-    content: '<strong class="u-bolt-color-navy-dark">6,500</strong> global employees.',
-    size: 'xlarge',
-  } only %}
-{% endset %}
-//More icon sets if needed
-{% set list_items %}
-  {% include '@bolt-elements-list/list-item.twig' with {
-    content: placeholder_1,
-  } only %}
-//More list items if needed
-{% endset %}
-{% set section %}
-  {% include '@bolt-elements-type/type.twig' with {
-    content: 'What characterizes us',
+    content: 'What we do',
     hierarchy: 'headline',
     tag: 'h2',
     size: 'xxlarge',
   } only %}
-  {% include '@bolt-elements-list/list.twig' with {
-    display: 'inline@medium',
-    spacing: 'medium',
-    valign: 'start',
-    align: 'justify',
-    inset: true,
-    inline_full_width: true,
-    items: list_items,
-    attributes: {
-      class: [
-      'u-bolt-text-align-center'
-      ]
-    }
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'The Pega Platform™ makes it simpler for enterprises to work smarter...',
   } only %}
-  {% include '@bolt-elements-button/button.twig' with {
-    content: 'Download corporate fact sheet',
-    attributes: {
-      type: 'button',
-    }
+  {% set list_items %}
+    {% set button_1 %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Explore products',
+        attributes: {
+          href: 'https://google.com',
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: button_1,
+    } only %}
+    //More buttons if needed
+  {% endset %}
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'horizontal',
+    items: list_items,
   } only %}
 {% endset %}
 {% set layout_items %}
   {% include '@bolt-layouts-layout/layout-item.twig' with {
-    content: section,
-    attributes: {
-      class: 'u-bolt-text-align-center'
-    }
+    content: intro
   } only %}
 {% endset %}
 {% include '@bolt-layouts-layout/layout.twig' with {
   content: layout_items,
+  template: [
+    '50@from-medium',
+  ],
 } only %}
 {% endverbatim %}{% endset %}
 
 {% set html_markup %}
 {% verbatim %}
-<bolt-layout>
+<bolt-layout template="50@from-medium">
   <bolt-layout-item>
-    <h2 class="e-bolt-type e-bolt-type--size-xxlarge e-bolt-type--headline">What characterizes us</h2>
-    <ul class="u-bolt-text-align-center e-bolt-list e-bolt-list--display-inline@medium e-bolt-list--spacing-medium e-bolt-list--align-justify e-bolt-list--valign-start e-bolt-list--inset e-bolt-list--inline-full-width">
+    <p class="e-bolt-type">
+      The Pega Platform™ makes it simpler for enterprises to work smarter, unify experiences, and adapt instantly. Thanks to our scalable, made-to-measure architecture, even the biggest organizations can stay streamlined and ready for what’s next.</p>
+    <ul class="e-bolt-list e-bolt-list--display-horizontal e-bolt-list--spacing-xsmall e-bolt-list--align-start e-bolt-list--valign-center">
       <li class="e-bolt-list__item">
-        <span class="t-bolt-navy e-bolt-shape e-bolt-shape--xlarge e-bolt-shape--border-radius-full">
-          <span class="e-bolt-shape__content">
-            <svg class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">...</svg>
-          </span>
-        </span>
-        <p class="e-bolt-type e-bolt-type--size-xlarge"><strong>6,500</strong> global employees.  </p>
+        <a href="https://google.com" class="e-bolt-button">Explore products</a>      
       </li>
-      ...
+      <li class="e-bolt-list__item">
+      <a href="https://google.com" class="e-bolt-button e-bolt-button--secondary">Why Pega</a>      
+      </li>
     </ul>
-    <button type="button" class="e-bolt-button">Download corporate fact sheet</button>
   </bolt-layout-item>
 </bolt-layout>
 {% endverbatim %}
