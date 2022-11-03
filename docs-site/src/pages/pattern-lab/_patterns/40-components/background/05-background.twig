@@ -1,4 +1,4 @@
-<div style="height: 400px; position: relative;" class="t-bolt-navy-dark">
+<div style="height: 400px; position: relative;" class="t-bolt-black">
   {% set image %}
     {% include '@bolt-elements-image/image.twig' with {
       background: true,
@@ -12,7 +12,6 @@
     } only %}
   {% endset %}
   {% include '@bolt-components-background/background.twig' with {
-    opacity: 'heavy',
     fill: 'gradient',
     items: [
       image
