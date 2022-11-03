@@ -1,12 +1,12 @@
 {% set description %}
-  Preventing the wrapping of a List Element's items with the <code>nowrap</code> prop.
+  Prevent List Items from wrapping with the <code>nowrap</code> prop.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>The <code>nowrap</code> prop only works when the <code>display</code> prop has the value of <code>horizontal</code>.</bolt-li>
-    <bolt-li>This prop prevents List Items from within a List Element from wrapping. This means that List Items can potentially break out of it's  parent container.</bolt-li>
-    <bolt-li>View the following List Elements in different viewports to observe the behavior.</bolt-li>
+    <bolt-li>The <code>nowrap</code> prop only works when the <code>display</code> prop is set to <code>horizontal</code>.</bolt-li>
+    <bolt-li>This prop prevents List Items from wrapping, which means they can potentially overflow the parent container.</bolt-li>
+    <bolt-li>View the following List in different viewports to observe the behavior.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -141,7 +141,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'List Element with No Wrapping',
+  title: 'List with No Wrapping',
   description: description,
   notes: notes,
   demo: demo,

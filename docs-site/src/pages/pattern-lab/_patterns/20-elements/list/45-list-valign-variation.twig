@@ -1,9 +1,9 @@
 {% set description %}
-  Adjust the List Element's items vertical alignment.
+  Adjust the vertical alignment of List Items.
 {% endset %}
 
 {% set notes %}
-  The <code>valign</code> prop will only work with the <code>horizontal</code>  value for the <code>display</code> prop.
+  The <code>valign</code> prop only works when the <code>display</code> prop is set to <code>horizontal</code>.
 {% endset %}
 
 {% set demo %}
@@ -41,7 +41,7 @@
 {% for valign in schema.properties.valign.enum %}
   {% for display in schema.properties.display.enum %}
     {% if display != 'vertical' %}
-      <h3>Horizontally align {{ display }} items: {{ align }}</h3>
+      <h3>Vertically align {{ display }} items: {{ align }}</h3>
       {% include '@bolt-elements-list/list.twig' with {
         display: display,
         valign: valign,
@@ -69,7 +69,7 @@
 {% endverbatim %}
 {% endset %}
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'List Element with Vertically Aligned Variations',
+  title: 'List with Vertical Alignment',
   description: description,
   notes: notes,
   demo: demo,

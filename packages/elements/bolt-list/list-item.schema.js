@@ -10,7 +10,7 @@ module.exports = {
     },
     content: {
       type: 'any',
-      description: 'Set the label text for the link.',
+      description: 'Content of the List Item.',
     },
   },
 };

@@ -10,11 +10,11 @@ module.exports = {
     },
     items: {
       type: 'any',
-      description: 'An array of renderable items to place in the list.',
+      description: 'Content of the List. List Items are expected here.',
     },
     tag: {
       type: 'string',
-      description: 'Apply the semantic tag for the list.',
+      description: 'Set the semantic tag for the list.',
       default: 'ul',
       enum: ['ul', 'ol'],
     },
@@ -58,7 +58,7 @@ module.exports = {
     },
     inset: {
       type: 'boolean',
-      description: 'Turn spacing to the inside of each item.',
+      description: 'Set spacing on the inside of each item.',
       default: false,
     },
     nowrap: {

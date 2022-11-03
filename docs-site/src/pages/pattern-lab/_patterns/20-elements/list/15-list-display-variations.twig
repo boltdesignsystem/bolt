@@ -1,13 +1,13 @@
 {% set description %}
-    The display of the List Element's items can be changed from vertical, or horizontal.
+  The display of the List Items can be set to vertical or horizontal.
 {% endset %}
 
 {% set notes %}
 <bolt-ol>
-  <bolt-li>When the <code>display</code> prop is set to <code>vertical</code>, all list items are full width stacked one on another.</bolt-li>
-  <bolt-li>When the <code>display</code> prop is set to <code>horizontal</code>, all list items are side by side and take the width of the content. This means those list items can be of different widths if the content differs in length. In addition, when more that one <code>horizontal</code> List Elements break to another line, the Lists will rendered side by side</bolt-li>
-  <bolt-li>When the <code>display</code> prop is set to <code>horizontal@[Breakpoint]</code>, all list items are <code>vertical</code> below the specified breakpoint (<code>xxsmall</code>, <code>xsmall</code>, <code>small</code> or <code>medium</code>) and <code>horizontal</code> above the breakpoint.</bolt-li>
-  <bolt-li>View the following List Elements in different viewports to observe the behavior.</bolt-li>
+  <bolt-li>When the <code>display</code> prop is set to <code>vertical</code>, List Items are full-width, stacked on one another.</bolt-li>
+  <bolt-li>When the <code>display</code> prop is set to <code>horizontal</code>, List Items are side by side and take the width of the content. List Items can be of different widths if the content differs in length.</bolt-li>
+  <bolt-li>When the <code>display</code> prop is set to <code>horizontal@[Breakpoint]</code>, List Items are <code>vertical</code> below the specified breakpoint (<code>xxsmall</code>, <code>xsmall</code>, <code>small</code> or <code>medium</code>) and <code>horizontal</code> above the breakpoint.</bolt-li>
+  <bolt-li>View the following Lists in different viewports to observe the behavior.</bolt-li>
 </bolt-ol>
 {% endset %}
 
@@ -128,17 +128,17 @@
     } only %}
   {% endset %}
 
-  <h3>Block list items take full width.</h3>
+  <h3>Vertical List Items are full-width.</h3>
   {% include '@bolt-elements-list/list.twig' with {
     display: 'vertical',
     items: list_items
   } only %}
-  <h3>Horizontal list items wrap and take only content width.</h3>
+  <h3>Horizontal List Items wrap and are only content-width.</h3>
   {% include '@bolt-elements-list/list.twig' with {
     display: 'horizontal',
     items: list_items_extended
   } only %}
-  <h3>An example of horizontal@medium list that has horizontal behavior above chosen breakpoint. Below that breakpoint list items are vertical.</h3>
+  <h3>A <code>horizontal@medium</code> List is horizontal above the chosen breakpoint and vertical below.</h3>
   {% include '@bolt-elements-list/list.twig' with {
     display: 'horizontal@medium',
     items: list_items
@@ -174,7 +174,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'List Element with Display Variations',
+  title: 'List Display',
   description: description,
   notes: notes,
   demo: demo,
