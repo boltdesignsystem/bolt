@@ -131,17 +131,17 @@
   <h3>Vertical List Items are full-width.</h3>
   {% include '@bolt-elements-list/list.twig' with {
     display: 'vertical',
-    items: list_items
+    content: list_items
   } only %}
   <h3>Horizontal List Items wrap and are only content-width.</h3>
   {% include '@bolt-elements-list/list.twig' with {
     display: 'horizontal',
-    items: list_items_extended
+    content: list_items_extended
   } only %}
   <h3>A <code>horizontal@medium</code> List is horizontal above the chosen breakpoint and vertical below.</h3>
   {% include '@bolt-elements-list/list.twig' with {
     display: 'horizontal@medium',
-    items: list_items
+    content: list_items
   } only %}
 {% endset %}
 
@@ -159,7 +159,7 @@
   {% endset %}
 {% include '@bolt-elements-list/list.twig' with {
   display: 'horizontal',
-  items: list_items
+  content: list_items
 } only %}
 {% endverbatim %}{% endset %}
 

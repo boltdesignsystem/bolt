@@ -46,11 +46,11 @@
 {% for valign in schema.properties.valign.enum %}
   {% for display in regular_display_options %}
     {% if display != 'vertical' %}
-      <h3>Vertically align {{ display }} items: {{ align }}</h3>
+      <h3>Vertically align {{ display }} content: {{ align }}</h3>
       {% include '@bolt-elements-list/list.twig' with {
         display: display,
         valign: valign,
-        items: list_items
+        content: list_items
       } only %}
     {% endif %}
   {% endfor %}
@@ -60,7 +60,7 @@
 {% set twig_markup %}{% verbatim %}
 {% include '@bolt-elements-list/list.twig' with {
   valign: 'start',
-  items: list_items
+  content: list_items
 } only %}
 {% endverbatim %}{% endset %}
 

@@ -46,11 +46,11 @@
 {% for align in schema.properties.align.enum %}
   {% for display in regular_display_options %}
     {% if display != 'vertical' %}
-      <h3>Horizontally align {{ display }} items: {{ align }}</h3>
+      <h3>Horizontally align {{ display }} content: {{ align }}</h3>
       {% include '@bolt-elements-list/list.twig' with {
         display: display,
         align: align,
-        items: list_items
+        content: list_items
       } only %}
     {% endif %}
   {% endfor %}
@@ -71,7 +71,7 @@
 {% endset %}
 {% include '@bolt-elements-list/list.twig' with {
   align: 'justify',
-  items: list_items
+  content: list_items
 } only %}
 {% endverbatim %}{% endset %}
 

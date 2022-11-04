@@ -51,7 +51,7 @@
         display: display,
         spacing: 'medium',
         separator: 'solid',
-        items: list_items
+        content: list_items
       } only %}
     </bolt-grid-item>
     <bolt-grid-item column-start="1 7@medium" column-span="12 6@medium">
@@ -61,7 +61,7 @@
         spacing: 'medium',
         separator: 'solid',
         inset: true,
-        items: list_items
+        content: list_items
       } only %}
     </bolt-grid-item>
 </bolt-grid>
@@ -84,7 +84,7 @@
 {% include '@bolt-elements-list/list.twig' with {
   separator: 'solid',
   inset: true,
-  items: list_items
+  content: list_items
 } only %}
 {% endverbatim %}{% endset %}
 

@@ -60,7 +60,7 @@
     <div class="u-bolt-padding-small list-demo list-demo--buttons">
     {% include '@bolt-elements-list/list.twig' with {
       display: 'horizontal',
-      items: list_items,
+      content: list_items,
     } only %}
     </div>
   {% endset %}
@@ -161,7 +161,7 @@
     {# this div below is only for demo purpose #}
     <div class="u-bolt-padding-small list-demo">
     {% include '@bolt-elements-list/list.twig' with {
-      items: list_items,
+      content: list_items,
       separator: 'solid'
     } only %}
     </div>
@@ -209,7 +209,7 @@
   {% endset %}
   {% include '@bolt-elements-list/list.twig' with {
     display: 'horizontal',
-    items: list_items,
+    content: list_items,
   } only %}
 {% endset %}
 {% set layout_items %}

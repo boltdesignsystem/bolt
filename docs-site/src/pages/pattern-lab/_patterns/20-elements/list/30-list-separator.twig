@@ -40,7 +40,7 @@
           {% include '@bolt-elements-list/list.twig' with {
             display: display,
             separator: separator,
-            items: list_items
+            content: list_items
           } only %}
         {% endset %}
         {% if display == 'vertical' %}
@@ -77,7 +77,7 @@
 {% endset %}
 {% include '@bolt-elements-list/list.twig' with {
   separator: 'solid',
-  items: list_items
+  content: list_items
 } only %}
 {% endverbatim %}{% endset %}
 

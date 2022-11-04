@@ -63,13 +63,13 @@
   <h3>UL</h3>
   {% include '@bolt-elements-list/list.twig' with {
     tag: 'ul',
-    items: list_items
+    content: list_items
   } only %}
 
   <h3>OL</h3>
   {% include '@bolt-elements-list/list.twig' with {
     tag: 'ol',
-    items: list_items_ol
+    content: list_items_ol
   } only %}
 {% endset %}
 
@@ -88,7 +88,7 @@
 
 {% include '@bolt-elements-list/list.twig' with {
   tag: 'ol',
-  items: list_items
+  content: list_items
 } only %}
 {% endverbatim %}{% endset %}
 
