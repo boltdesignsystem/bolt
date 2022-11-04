@@ -8,6 +8,11 @@
 
 {% set demo %}
 {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
+{% set regular_display_options = [
+  'vertical',
+  'horizontal',
+  'horizontal@medium'
+] %}
 {% set placeholder_1 %}
   {% include '@bolt-components-placeholder/placeholder.twig' with {
     text: 'Item 1',
@@ -39,7 +44,7 @@
 {% endset %}
 
 {% for valign in schema.properties.valign.enum %}
-  {% for display in schema.properties.display.enum %}
+  {% for display in regular_display_options %}
     {% if display != 'vertical' %}
       <h3>Vertically align {{ display }} items: {{ align }}</h3>
       {% include '@bolt-elements-list/list.twig' with {

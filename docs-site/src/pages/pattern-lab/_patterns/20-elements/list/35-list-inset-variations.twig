@@ -11,6 +11,7 @@
 {% set regular_display_options = [
   'vertical',
   'horizontal',
+  'horizontal@medium'
 ] %}
 {% set placeholder_1 %}
   {% include '@bolt-components-placeholder/placeholder.twig' with {
@@ -42,7 +43,7 @@
   } only %}
 {% endset %}
 
-{% for display in schema.properties.display.enum %}
+{% for display in regular_display_options %}
   <bolt-grid gutter="medium" row-gutter="medium">
     <bolt-grid-item column-start="1" column-span="12 6@medium">
       <h3>Regular spacing in a {{ display }} list</h3>
