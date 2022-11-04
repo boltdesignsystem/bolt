@@ -132,6 +132,8 @@ deploy release:
     URL_LATEST: "latest.${PROD_DOMAIN}" # latest.boltdesignsystem.com
   rules:
     - if: $CI_COMMIT_TAG
+  before_script:
+    - yarn release:tags ${CI_COMMIT_TAG}
   script:
     - export
     - npm i -g vercel
@@ -153,8 +155,6 @@ create release:
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   rules:
     - if: $CI_COMMIT_TAG
-  before_script:
-    - yarn release:tags ${CI_COMMIT_TAG}
   script:
     - echo "Creating the ${CI_COMMIT_TAG} release"
   release:
