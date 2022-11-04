@@ -8,7 +8,7 @@ module.exports = {
       description:
         'A Drupal-style attributes object with extra attributes to append to this element.',
     },
-    items: {
+    content: {
       type: 'any',
       description: 'Content of the List. List Items are expected here.',
     },
