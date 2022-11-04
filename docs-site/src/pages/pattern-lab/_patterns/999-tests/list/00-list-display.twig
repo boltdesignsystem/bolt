@@ -1,0 +1,98 @@
+  {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
+  {% set spacing = schema.properties.spacing.enum %}
+  {% set display = schema.properties.display.enum %}
+  {% set placeholder_1 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 1',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_2 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 2',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_3 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 3',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_4 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 4',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_5 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 5',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_6 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 6',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_7 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 7',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_8 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 8',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_9 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 9',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set list_items %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_4,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_5,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_6,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_7,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_8,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_9,
+    } only %}
+  {% endset %}
+  {% for display in display %}
+    {% for spacing in spacing %}
+      <h3>{{ display|capitalize }} list with spacing ({{ spacing }})</h3>
+      {% include '@bolt-elements-list/list.twig' with {
+        spacing: spacing,
+        display: display,
+        items: list_items,
+      } only %}
+    {% endfor %}
+  {% endfor %}
+
+
