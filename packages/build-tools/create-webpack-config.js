@@ -23,9 +23,6 @@ const sassExportData = require('@bolt/sass-export-data'); // @todo: Solve this p
 const babelConfig = require('@bolt/babel-preset-bolt');
 const log = require('@bolt/build-utils/log');
 
-// Store set of webpack configs used in multiple builds
-let webpackConfigs = [];
-
 async function createWebpackConfig(buildConfig) {
   const config = buildConfig;
 
@@ -37,11 +34,6 @@ async function createWebpackConfig(buildConfig) {
     : config.wwwDir
     ? `/${path.relative(config.wwwDir, config.buildDir)}/`
     : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
-
-  // map out Twig namespaces with the NPM package name
-
-  // filename suffix to tack on based on lang being compiled for
-  let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 
   /**
    * Build WebPack config's `entry` object
@@ -86,11 +78,7 @@ async function createWebpackConfig(buildConfig) {
 
   function getSassLoaders() {
     // Default global Sass data defined
-    let globalSassData = [
-      `$bolt-namespace: ${config.namespace};`,
-      // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
-      `${config.lang ? `$bolt-lang: ${config.lang};` : '$bolt-lang: null;'}`,
-    ];
+    let globalSassData = [`$bolt-namespace: ${config.namespace};`];
 
     // Merge together global Sass data overrides specified in a .boltrc config
     if (config.globalData.scss && config.globalData.scss.length !== 0) {
@@ -334,7 +322,6 @@ async function createWebpackConfig(buildConfig) {
         namespace: JSON.stringify(config.namespace),
         config: {
           prod: config.prod,
-          lang: JSON.stringify(config.lang),
           env: JSON.stringify(config.env),
         },
       },
@@ -358,18 +345,16 @@ async function createWebpackConfig(buildConfig) {
     return globalJsData;
   }
 
-  const webpackConfig = merge(sharedWebpackConfig, {
-    entry: await buildWebpackEntry(true),
+  const mergedConfig = merge(sharedWebpackConfig, {
+    entry: await buildWebpackEntry(),
     resolve: {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
     },
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
-      filename: `[name]${langSuffix}${
-        config.mode !== 'client' ? `.${config.mode}` : ''
-      }.js`,
-      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
+      filename: `[name]${config.mode !== 'client' ? `.${config.mode}` : ''}.js`,
+      chunkFilename: `[name]-bundle-[chunkhash].js`,
       publicPath,
     },
     plugins: [
@@ -379,12 +364,12 @@ async function createWebpackConfig(buildConfig) {
         ? new CopyWebpackPlugin({ patterns: config.copy })
         : undefined,
       new MiniCssExtractPlugin({
-        filename: `[name]${langSuffix}.css`,
-        chunkFilename: `[id]${langSuffix}.css`,
+        filename: `[name].css`,
+        chunkFilename: `[id].css`,
       }),
       // @todo This needs to be in `config.dataDir`
       new WebpackManifestPlugin({
-        fileName: `bolt-webpack-manifest${langSuffix}${
+        fileName: `bolt-webpack-manifest${
           config.mode === 'client' ? '' : `.${config.mode}`
         }.json`,
         publicPath,
@@ -431,51 +416,15 @@ async function createWebpackConfig(buildConfig) {
     },
   });
 
-  let outputConfig = [];
-
-  outputConfig.push(webpackConfig);
-
-  return outputConfig;
-}
-
-// Helper function to associate each unique language in the build config with a separate Webpack build instance (making filenames, etc unique);
-async function assignLangToWebpackConfig(config, lang) {
-  let langSpecificConfig = config;
-
-  if (lang) {
-    langSpecificConfig.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
-  }
-
-  let langSpecificWebpackConfigs = await createWebpackConfig(
-    langSpecificConfig,
-  );
-
-  langSpecificWebpackConfigs.forEach(langSpecificWebpackConfig => {
-    webpackConfigs.push(langSpecificWebpackConfig);
-  });
+  return mergedConfig;
 }
 
 module.exports = async function() {
-  const config = await getConfig();
+  const boltConfig = await getConfig();
+  const webpackConfig = await createWebpackConfig(boltConfig);
 
-  return new Promise(async (resolve, reject) => {
-    const langs = config.lang;
-    const promises = [];
-
-    // update the array of Webpack configs so each config is assigned to only one language (used in the filename's suffix when bundling language-tailed CSS and JS)
-    if (Array.isArray(langs)) {
-      for (const lang of langs) {
-        /* eslint-disable no-await-in-loop */
-        promises.push(await assignLangToWebpackConfig(config, lang));
-      }
-    } else if (langs === 'en') {
-      promises.push(await assignLangToWebpackConfig(config, null));
-    } else {
-      promises.push(await assignLangToWebpackConfig(config, config.lang));
-    }
-
-    await Promise.all(promises).then(() => {
-      return resolve(webpackConfigs);
-    });
-  });
+  // Bolt still expects an array of configs even though we only pass one,
+  // a hold over from the multi-lang support.
+  // @todo: Update this to handle just a single configuration object.
+  return [webpackConfig];
 };
