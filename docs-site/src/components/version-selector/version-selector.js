@@ -3,51 +3,6 @@ const boltSelect = document.querySelector('.js-bolt-version-selector');
 let shouldOpenInNewWindow = false;
 
 if (boltSelect) {
-  const boltSelectTag = boltSelect.querySelector('select');
-
-  // group together the latest vs previous Bolt releases
-  if (boltSelectTag) {
-    const currentVersionText = 'v' + window?.bolt?.data?.fullManifest?.version;
-
-    const latestOption = document.createElement('optgroup');
-    const prevOption = document.createElement('optgroup');
-
-    latestOption.setAttribute('label', 'Latest Release');
-    prevOption.setAttribute('label', 'Previous Releases');
-
-    const selectOptions = Array.from(boltSelectTag.options);
-    const originalSelectedIndex = boltSelectTag.selectedIndex;
-
-    for (var i = 0; i < selectOptions.length; i++) {
-      const selectOption = selectOptions[i];
-
-      if (i === 0) {
-        latestOption.appendChild(selectOption);
-      } else {
-        prevOption.appendChild(selectOption);
-      }
-    }
-
-    boltSelectTag.appendChild(latestOption);
-    boltSelectTag.appendChild(prevOption);
-
-    boltSelectTag.selectedIndex = originalSelectedIndex;
-
-    if (
-      boltSelectTag.selectedIndex === 0 &&
-      boltSelectTag.options[0].text !== currentVersionText
-    ) {
-      for (var i = 0; i < boltSelectTag.options.length; i++) {
-        if (boltSelectTag.options[i].text === currentVersionText) {
-          boltSelectTag.selectedIndex = i;
-          break;
-        }
-      }
-    }
-  }
-}
-
-if (boltSelect) {
   boltSelect.addEventListener('mousedown', function(e) {
     if (e.metaKey === true) {
       shouldOpenInNewWindow = true;
