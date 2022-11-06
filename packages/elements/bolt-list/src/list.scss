@@ -11,7 +11,7 @@
 .e-bolt-list {
   display: flex;
   flex-direction: column;
-  gap: var(--bolt-spacing-y-small) 0;
+  gap: var(--bolt-spacing-y-xsmall);
   margin: 0 0 var(--bolt-spacing-y-medium) 0;
   padding: 0;
   font-family: var(--bolt-type-font-family-body);
@@ -31,7 +31,7 @@
 .e-bolt-list--display-horizontal {
   display: inline-flex;
   flex-flow: row wrap;
-  gap: 0 var(--bolt-spacing-x-small);
+  gap: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
 }
 
 @each $breakpoint in $bolt-breakpoints {
@@ -48,6 +48,7 @@
     .e-bolt-list--display-horizontal\@#{$breakpoint-name} {
       display: flex;
       flex-flow: column wrap;
+      gap: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
 
       @include bolt-mq($breakpoint-name) {
         display: inline-flex;
@@ -68,9 +69,21 @@
     .e-bolt-list--spacing-#{$size-name} {
       gap: var(--bolt-spacing-y-#{$size-name}) 0;
     }
+    ///
+    .e-bolt-list--inset {
+      gap: 0 var(--bolt-spacing-y-xsmall);
 
+      &.e-bolt-list--display-horizontal {
+        gap: 0;
+      }
+
+      & .e-bolt-list__item {
+        padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+      }
+    }
+    ///
     .e-bolt-list--spacing-#{$size-name}.e-bolt-list--inset {
-      gap: 0 var(--bolt-spacing-y-small);
+      gap: 0 var(--bolt-spacing-y-xsmall);
 
       &.e-bolt-list--display-horizontal {
         gap: 0;
@@ -173,6 +186,24 @@ $bolt-list-separator-styles: solid, dashed;
 }
 
 [class*='e-bolt-list--separator'] {
+  .e-bolt-list__item {
+    padding-bottom: var(--bolt-spacing-y-xsmall);
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+  }
+
+  &.e-bolt-list--display-horizontal {
+    .e-bolt-list__item {
+      padding-right: var(--bolt-spacing-x-xsmall);
+      padding-bottom: 0;
+
+      &:last-of-type {
+        padding-right: 0;
+      }
+    }
+  }
   @each $size in $bolt-spacing-multiplier-system {
     $size-name: nth($size, 1);
 
@@ -216,6 +247,20 @@ $bolt-list-separator-styles: solid, dashed;
               $breakpoint-name !=
               'xxlarge'
           ) {
+            ///
+            &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
+              .e-bolt-list__item {
+                &:last-of-type {
+                  padding-right: 0;
+                }
+
+                @include bolt-mq($breakpoint-name) {
+                  padding-right: var(--bolt-spacing-x-xsmall);
+                  padding-bottom: 0;
+                }
+              }
+            }
+            ////
             &.e-bolt-list--spacing-#{$size-name} {
               &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
                 .e-bolt-list__item {
