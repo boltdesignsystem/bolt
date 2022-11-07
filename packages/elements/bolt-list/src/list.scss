@@ -5,7 +5,15 @@
 @import '@bolt/core-v3.x';
 
 /**
- * 1. Provide line-comments like this.
+ * List
+ *
+ * Dev notes:
+ * 1. Display prop.
+ * 2. Spacing prop.
+ * 3. Separator prop.
+ * 4. Align prop.
+ * 5. Valign prop.
+ * 6. Nowrap prop.
  */
 
 .e-bolt-list {
@@ -27,10 +35,11 @@
   }
 }
 
-// Display variations
+/* [1] */
 .e-bolt-list--display-horizontal {
   display: inline-flex;
   flex-flow: row wrap;
+  align-items: center;
   gap: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
 }
 
@@ -53,12 +62,13 @@
       @include bolt-mq($breakpoint-name) {
         display: inline-flex;
         flex-flow: row wrap;
+        align-items: center;
       }
     }
   }
 }
 
-// Spacing Prop
+/* [2] */
 .e-bolt-list--spacing-none {
   gap: 0;
 }
@@ -69,19 +79,14 @@
     .e-bolt-list--spacing-#{$size-name} {
       gap: var(--bolt-spacing-y-#{$size-name}) 0;
     }
-    ///
-    .e-bolt-list--inset {
-      gap: 0 var(--bolt-spacing-y-xsmall);
 
-      &.e-bolt-list--display-horizontal {
-        gap: 0;
-      }
+    .e-bolt-list--inset {
+      gap: 0;
 
       & .e-bolt-list__item {
         padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
       }
     }
-    ///
     .e-bolt-list--spacing-#{$size-name}.e-bolt-list--inset {
       gap: 0 var(--bolt-spacing-y-xsmall);
 
@@ -129,7 +134,7 @@
   }
 }
 
-// Separator Prop
+/* [3] */
 $bolt-list-separator-styles: solid, dashed;
 
 @each $separator-style in $bolt-list-separator-styles {
@@ -186,21 +191,23 @@ $bolt-list-separator-styles: solid, dashed;
 }
 
 [class*='e-bolt-list--separator'] {
-  .e-bolt-list__item {
-    padding-bottom: var(--bolt-spacing-y-xsmall);
-
-    &:last-of-type {
-      padding-bottom: 0;
-    }
-  }
-
-  &.e-bolt-list--display-horizontal {
+  &:not(.e-bolt-list--inset) {
     .e-bolt-list__item {
-      padding-right: var(--bolt-spacing-x-xsmall);
-      padding-bottom: 0;
+      padding-bottom: var(--bolt-spacing-y-xsmall);
 
       &:last-of-type {
-        padding-right: 0;
+        padding-bottom: 0;
+      }
+    }
+
+    &.e-bolt-list--display-horizontal {
+      .e-bolt-list__item {
+        padding-right: var(--bolt-spacing-x-xsmall);
+        padding-bottom: 0;
+
+        &:last-of-type {
+          padding-right: 0;
+        }
       }
     }
   }
@@ -247,11 +254,11 @@ $bolt-list-separator-styles: solid, dashed;
               $breakpoint-name !=
               'xxlarge'
           ) {
-            ///
             &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
               .e-bolt-list__item {
                 &:last-of-type {
                   padding-right: 0;
+                  padding-bottom: 0;
                 }
 
                 @include bolt-mq($breakpoint-name) {
@@ -260,7 +267,6 @@ $bolt-list-separator-styles: solid, dashed;
                 }
               }
             }
-            ////
             &.e-bolt-list--spacing-#{$size-name} {
               &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
                 .e-bolt-list__item {
@@ -280,7 +286,7 @@ $bolt-list-separator-styles: solid, dashed;
   }
 }
 
-// Align options
+/* [4] */
 $bolt-list-alignments: start, center, end, justify;
 
 @each $alignment in $bolt-list-alignments {
@@ -324,7 +330,7 @@ $bolt-list-alignments: start, center, end, justify;
   }
 }
 
-// Valign options
+/* [5] */
 $bolt-list-valignments: start, center, end;
 
 @each $alignment in $bolt-list-valignments {
@@ -362,7 +368,7 @@ $bolt-list-valignments: start, center, end;
   }
 }
 
-// Nowrap
+/* [6] */
 .e-bolt-list--nowrap {
   &.e-bolt-list--display-horizontal {
     flex-flow: row nowrap;
