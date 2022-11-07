@@ -46,7 +46,7 @@
 {% for valign in schema.properties.valign.enum %}
   {% for display in regular_display_options %}
     {% if display != 'vertical' %}
-      <h3>Vertically align {{ display }} content: {{ align }}</h3>
+      <h3>Vertically align {{ display }} content: {{ valign }}</h3>
       {% include '@bolt-elements-list/list.twig' with {
         display: display,
         valign: valign,
