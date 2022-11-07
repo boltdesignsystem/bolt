@@ -1,0 +1,173 @@
+{% set description %}
+  This is the most basic usage of the Table Element.
+{% endset %}
+
+{% set notes %}
+{% spaceless %}
+  <bolt-ol>
+    <bolt-li>Take a look at <a href="{{ link['elements-table-examples'] }}" class="e-bolt-text-link">real examples of tables</a> currently on our sites</bolt-li>
+    <bolt-li>The Table Element is designed to work with both Twig and vanilla HTML (Twig is the recommended method).</bolt-li>
+  </bolt-ol>
+{% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-elements-table/table.twig' with {
+    body: {
+      content: [
+        row1,
+        row2,
+        row3,
+      ],
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set row1 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row2 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row3 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% include '@bolt-elements-table/table.twig' with {
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<table class="e-bolt-table">
+  <tbody>
+    <tr>
+      <td>This is a regular cell.</td>
+      <td>This is a regular cell.</td>
+      <td>This is a regular cell.</td>
+    </tr>
+    <tr>
+      <td>This is a regular cell.</td>
+      <td>This is a regular cell.</td>
+      <td>This is a regular cell.</td>
+    </tr>
+    <tr>
+      <td>This is a regular cell.</td>
+      <td>This is a regular cell.</td>
+      <td>This is a regular cell.</td>
+    </tr>
+  </tbody>
+</table>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table Element with Rows Only',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

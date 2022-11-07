@@ -14,6 +14,7 @@ module.exports = {
       '@bolt/elements-text-link',
       '@bolt/elements-icon',
       '@bolt/elements-shape',
+      '@bolt/elements-table',
       '@bolt/elements-type',
       '@bolt/layouts-holy-grail',
       '@bolt/layouts-layout',
