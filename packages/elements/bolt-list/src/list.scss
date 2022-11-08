@@ -4,18 +4,6 @@
 
 @import '@bolt/core-v3.x';
 
-/**
- * List
- *
- * Dev notes:
- * 1. Display prop.
- * 2. Spacing prop.
- * 3. Separator prop.
- * 4. Align prop.
- * 5. Valign prop.
- * 6. Nowrap prop.
- */
-
 .e-bolt-list {
   display: flex;
   flex-direction: column;
@@ -35,7 +23,7 @@
   }
 }
 
-/* [1] */
+// Display prop
 .e-bolt-list--display-horizontal {
   display: inline-flex;
   flex-flow: row wrap;
@@ -68,7 +56,7 @@
   }
 }
 
-/* [2] */
+// Spacing prop
 .e-bolt-list--spacing-none {
   gap: 0;
 }
@@ -134,7 +122,7 @@
   }
 }
 
-/* [3] */
+// Separator prop
 $bolt-list-separator-styles: solid, dashed;
 
 @each $separator-style in $bolt-list-separator-styles {
@@ -286,7 +274,7 @@ $bolt-list-separator-styles: solid, dashed;
   }
 }
 
-/* [4] */
+// Align prop
 $bolt-list-alignments: start, center, end, justify;
 
 @each $alignment in $bolt-list-alignments {
@@ -330,7 +318,7 @@ $bolt-list-alignments: start, center, end, justify;
   }
 }
 
-/* [5] */
+// Valign prop
 $bolt-list-valignments: start, center, end;
 
 @each $alignment in $bolt-list-valignments {
@@ -368,7 +356,7 @@ $bolt-list-valignments: start, center, end;
   }
 }
 
-/* [6] */
+// Nowrap prop
 .e-bolt-list--nowrap {
   &.e-bolt-list--display-horizontal {
     flex-flow: row nowrap;
