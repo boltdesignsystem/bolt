@@ -138,16 +138,4 @@ describe('Bolt List prop -', () => {
       await expect(results.html).toMatchSnapshot();
     });
   });
-  [true, false].forEach(async fullWidthOption => {
-    test(`full width option: ${fullWidthOption}`, async () => {
-      const results = await render('@bolt-elements-list/list.twig', {
-        ...fixtures.defaultData,
-        inline_full_width: fullWidthOption,
-        items: ['item 1', 'item 2', 'item 3'],
-      });
-
-      await expect(results.ok).toBe(true);
-      await expect(results.html).toMatchSnapshot();
-    });
-  });
 });
