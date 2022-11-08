@@ -21,8 +21,12 @@ beforeAll(async () => {
     timeout: 0,
   });
 
+  const listItem = await render('@bolt-elements-list/list-item.twig', {
+    content: 'This is a list item',
+  });
+
   const defaultData = {
-    content: 'This is a list',
+    content: [listItem.html, listItem.html, listItem.html].join(''),
   };
 
   fixtures = {
@@ -47,7 +51,6 @@ describe('Bolt List prop -', () => {
       const results = await render('@bolt-elements-list/list.twig', {
         ...fixtures.defaultData,
         tag: option,
-        items: ['item 1', 'item 2', 'item 3'],
       });
 
       await expect(results.ok).toBe(true);
@@ -59,7 +62,6 @@ describe('Bolt List prop -', () => {
       const results = await render('@bolt-elements-list/list.twig', {
         ...fixtures.defaultData,
         display: option,
-        items: ['item 1', 'item 2', 'item 3'],
       });
 
       await expect(results.ok).toBe(true);
@@ -71,7 +73,6 @@ describe('Bolt List prop -', () => {
       const results = await render('@bolt-elements-list/list.twig', {
         ...fixtures.defaultData,
         spacing: option,
-        items: ['item 1', 'item 2', 'item 3'],
       });
 
       await expect(results.ok).toBe(true);
@@ -83,7 +84,6 @@ describe('Bolt List prop -', () => {
       const results = await render('@bolt-elements-list/list.twig', {
         ...fixtures.defaultData,
         align: option,
-        items: ['item 1', 'item 2', 'item 3'],
       });
 
       await expect(results.ok).toBe(true);
@@ -95,7 +95,6 @@ describe('Bolt List prop -', () => {
       const results = await render('@bolt-elements-list/list.twig', {
         ...fixtures.defaultData,
         valign: option,
-        items: ['item 1', 'item 2', 'item 3'],
       });
 
       await expect(results.ok).toBe(true);
@@ -107,7 +106,6 @@ describe('Bolt List prop -', () => {
       const results = await render('@bolt-elements-list/list.twig', {
         ...fixtures.defaultData,
         separator: option,
-        items: ['item 1', 'item 2', 'item 3'],
       });
 
       await expect(results.ok).toBe(true);
@@ -119,7 +117,6 @@ describe('Bolt List prop -', () => {
       const results = await render('@bolt-elements-list/list.twig', {
         ...fixtures.defaultData,
         inset: insetOption,
-        items: ['item 1', 'item 2', 'item 3'],
       });
 
       await expect(results.ok).toBe(true);
@@ -131,7 +128,6 @@ describe('Bolt List prop -', () => {
       const results = await render('@bolt-elements-list/list.twig', {
         ...fixtures.defaultData,
         nowrap: nowrapOption,
-        items: ['item 1', 'item 2', 'item 3'],
       });
 
       await expect(results.ok).toBe(true);
