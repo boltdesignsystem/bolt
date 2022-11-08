@@ -37,7 +37,6 @@ async function getDefaultConfig() {
     watch: configSchema.properties.watch.default,
     analyze: configSchema.properties.analyze.default,
     sourceMaps: configSchema.properties.sourceMaps.default,
-    i18n: configSchema.properties.i18n.default,
     renderingService: configSchema.properties.renderingService.default,
     namespace: configSchema.properties.namespace.default,
     templatesDir: configSchema.properties.templatesDir.default,

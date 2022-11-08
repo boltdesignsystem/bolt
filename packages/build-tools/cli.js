@@ -130,20 +130,6 @@ program
         config.prod =
           typeof program.prod === 'undefined' ? config.prod : program.prod;
 
-        // automatically enable i18n in production builds if undefined
-        config.i18n =
-          typeof options.i18n !== 'undefined'
-            ? options.i18n
-            : config.prod
-            ? true
-            : false;
-
-        // If i18n is disabled, ignore and remove lang config settings
-        if (config.lang && config.i18n === false) {
-          // Remove any lang-specific settings for local dev to speed things up.
-          delete config['lang'];
-        }
-
         return config;
       });
 
@@ -181,7 +167,6 @@ Environment: ${config.prod ? 'Production' : 'Development'}
         '--webpack-stats',
         configSchema.properties.webpackStats.description,
       )
-      .option('-I, --i18n', configSchema.properties.i18n.description)
       .option('-Q, --quick', configSchema.properties.quick.description)
       .option('--analyze', configSchema.properties.analyze.description)
       .action(async options => {
@@ -239,7 +224,6 @@ Environment: ${config.prod ? 'Production' : 'Development'}
         '-O, --open',
         configSchema.properties.openServerAtStart.description,
       )
-      .option('-I, --i18n', configSchema.properties.i18n.description)
       .option('-Q, --quick', configSchema.properties.quick.description)
       .option(
         '--webpack-dev-server',

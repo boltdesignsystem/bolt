@@ -1,12 +1,5 @@
-{% if bolt.data.config.lang is iterable %}
-  {% set lang = bolt.data.config.lang[0] %}
-{% else %}
-  {% set lang = bolt.data.config.lang %}
-{% endif %}
-
-
 {# @TODO: how do we get this to use the exact same values from our global .js config without having the source of truth live as a .yml or .json file...? #}
-{% set manifestConfig = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.json" %}
+{% set manifestConfig = "@bolt-assets/bolt-webpack-manifest.json" %}
 
 {% set assets = [] %}
 
