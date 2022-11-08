@@ -1,0 +1,51 @@
+/* ------------------------------------ *\
+   GRADIENT UTILITIES
+\* ------------------------------------ */
+
+:root,
+.u-bolt-bg-gradient--focus-bottom-right {
+  --bolt-gradient-focus: 100% 100%;
+}
+
+.u-bolt-bg-gradient--focus-bottom-center {
+  --bolt-gradient-focus: 50% 100%;
+}
+
+.u-bolt-bg-gradient--focus-bottom-left {
+  --bolt-gradient-focus: 0% 100%;
+}
+
+.u-bolt-bg-gradient--focus-center-right {
+  --bolt-gradient-focus: 100% 50%;
+}
+
+.u-bolt-bg-gradient--focus-center-center {
+  --bolt-gradient-focus: 50% 50%;
+}
+
+.u-bolt-bg-gradient--focus-center-left {
+  --bolt-gradient-focus: 0% 50%;
+}
+
+.u-bolt-bg-gradient--focus-top-right {
+  --bolt-gradient-focus: 100% 0%;
+}
+
+.u-bolt-bg-gradient--focus-top-center {
+  --bolt-gradient-focus: 50% 0%;
+}
+
+.u-bolt-bg-gradient--focus-top-left {
+  --bolt-gradient-focus: 0% 0%;
+}
+
+.u-bolt-bg-gradient {
+  background-image:
+    radial-gradient(
+      circle at var(--bolt-gradient-focus),
+      var(--m-bolt-bg-highlight) 20%,
+      var(--m-bolt-bg-lowlight) 80%
+    );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
