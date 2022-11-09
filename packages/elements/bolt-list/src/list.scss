@@ -71,7 +71,7 @@
     .e-bolt-list--inset {
       gap: 0;
 
-      & .e-bolt-list__item {
+      & li {
         padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
       }
     }
@@ -82,7 +82,7 @@
         gap: 0;
       }
 
-      & .e-bolt-list__item {
+      & li {
         padding: var(--bolt-spacing-y-#{$size-name})
           var(--bolt-spacing-x-#{$size-name});
       }
@@ -127,7 +127,7 @@ $bolt-list-separator-styles: solid, dashed;
 
 @each $separator-style in $bolt-list-separator-styles {
   .e-bolt-list--separator-#{$separator-style} {
-    .e-bolt-list__item {
+    li {
       border-width: 0;
       border-style: #{$separator-style};
       border-color: var(--m-bolt-border);
@@ -136,15 +136,15 @@ $bolt-list-separator-styles: solid, dashed;
 }
 
 [class*='e-bolt-list--separator'] {
-  .e-bolt-list__item {
-    &:not(.e-bolt-list__item:last-of-type) {
+  li {
+    &:not(li:last-of-type) {
       border-bottom-width: 1px;
     }
   }
 
   &.e-bolt-list--display-horizontal {
-    .e-bolt-list__item {
-      &:not(.e-bolt-list__item:last-of-type) {
+    li {
+      &:not(li:last-of-type) {
         border-right-width: 1px;
         border-bottom-width: 0;
       }
@@ -163,8 +163,8 @@ $bolt-list-separator-styles: solid, dashed;
         'xxlarge'
     ) {
       &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
-        .e-bolt-list__item {
-          &:not(.e-bolt-list__item:last-of-type) {
+        li {
+          &:not(li:last-of-type) {
             border-bottom-width: 1px;
 
             @include bolt-mq($breakpoint-name) {
@@ -180,7 +180,7 @@ $bolt-list-separator-styles: solid, dashed;
 
 [class*='e-bolt-list--separator'] {
   &:not(.e-bolt-list--inset) {
-    .e-bolt-list__item {
+    li {
       padding-bottom: var(--bolt-spacing-y-xsmall);
 
       &:last-of-type {
@@ -189,7 +189,7 @@ $bolt-list-separator-styles: solid, dashed;
     }
 
     &.e-bolt-list--display-horizontal {
-      .e-bolt-list__item {
+      li {
         padding-right: var(--bolt-spacing-x-xsmall);
         padding-bottom: 0;
 
@@ -204,15 +204,15 @@ $bolt-list-separator-styles: solid, dashed;
 
     @if ($size-name != 'xxlarge') {
       &.e-bolt-list--spacing-#{$size-name} {
-        .e-bolt-list__item {
-          &:not(.e-bolt-list__item:last-of-type) {
+        li {
+          &:not(li:last-of-type) {
             padding-bottom: var(--bolt-spacing-y-#{$size-name});
           }
         }
 
         &.e-bolt-list--display-horizontal {
-          .e-bolt-list__item {
-            &:not(.e-bolt-list__item:last-of-type) {
+          li {
+            &:not(li:last-of-type) {
               padding-right: var(--bolt-spacing-x-#{$size-name});
               padding-bottom: 0;
             }
@@ -221,8 +221,8 @@ $bolt-list-separator-styles: solid, dashed;
 
         &.e-bolt-list--display-horizontal {
           &.e-bolt-list--inset {
-            .e-bolt-list__item {
-              &:not(.e-bolt-list__item:last-of-type) {
+            li {
+              &:not(li:last-of-type) {
                 padding-bottom: var(--bolt-spacing-y-#{$size-name});
               }
             }
@@ -243,7 +243,7 @@ $bolt-list-separator-styles: solid, dashed;
               'xxlarge'
           ) {
             &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
-              .e-bolt-list__item {
+              li {
                 &:last-of-type {
                   padding-right: 0;
                   padding-bottom: 0;
@@ -257,7 +257,7 @@ $bolt-list-separator-styles: solid, dashed;
             }
             &.e-bolt-list--spacing-#{$size-name} {
               &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
-                .e-bolt-list__item {
+                li {
                   padding-bottom: var(--bolt-spacing-y-#{$size-name});
 
                   @include bolt-mq($breakpoint-name) {
