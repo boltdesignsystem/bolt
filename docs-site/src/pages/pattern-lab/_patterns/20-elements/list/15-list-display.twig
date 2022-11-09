@@ -1,0 +1,183 @@
+{% set description %}
+  The display of the List Items can be set to vertical or horizontal.
+{% endset %}
+
+{% set notes %}
+<bolt-ol>
+  <bolt-li>When the <code>display</code> prop is set to <code>vertical</code>, List Items are full-width, stacked on one another.</bolt-li>
+  <bolt-li>When the <code>display</code> prop is set to <code>horizontal</code>, List Items are side by side and take the width of the content. List Items can be of different widths if the content differs in length.</bolt-li>
+  <bolt-li>When the <code>display</code> prop is set to <code>horizontal@[Breakpoint]</code>, List Items are <code>vertical</code> below the specified breakpoint (<code>xxsmall</code>, <code>xsmall</code>, <code>small</code> or <code>medium</code>) and <code>horizontal</code> above the breakpoint.</bolt-li>
+  <bolt-li>View the following Lists in different viewports to observe the behavior.</bolt-li>
+</bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
+  {% set placeholder_1 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item One',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_2 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Two',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_3 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Three',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_4 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Four',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_5 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Five',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_6 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Six',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_7 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Seven',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_8 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Eight',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_9 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Nine',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_10 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item Ten',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+
+  {% set list_items %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_4,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_5,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_6,
+    } only %}
+  {% endset %}
+
+  {% set list_items_extended %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_4,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_5,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_6,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_7,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_8,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_9,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_10,
+    } only %}
+  {% endset %}
+
+  <h3>Vertical List Items are full-width.</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'vertical',
+    content: list_items
+  } only %}
+  <h3>Horizontal List Items wrap and are only content-width.</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'horizontal',
+    content: list_items_extended
+  } only %}
+  <h3>A <code>horizontal@medium</code> List is horizontal above the chosen breakpoint and vertical below.</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'horizontal@medium',
+    content: list_items
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+  {% set list_items %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+  {% endset %}
+{% include '@bolt-elements-list/list.twig' with {
+  display: 'horizontal',
+  content: list_items
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<ul class="e-bolt-list e-bolt-list--display-horizontal">
+  <li class="e-bolt-list__item">First item</li>
+  <li class="e-bolt-list__item">Second item</li>
+  <li class="e-bolt-list__item">Thitd item</li>
+</ul>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'List Display',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

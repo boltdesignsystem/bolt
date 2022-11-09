@@ -1,0 +1,89 @@
+{% set description %}
+  Modify the space between List Items.
+{% endset %}
+
+{% set notes %}
+  Regular spacing used in combination with the <a href="{{ link['elements-list-inset'] }}" class="e-bolt-text-link">inset</a> prop puts additional spacing around each List Item.
+{% endset %}
+
+{% set demo %}
+  {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
+  {% set spacing = schema.properties.spacing.enum %}
+  {% set display = ['vertical', 'horizontal'] %}
+  {% set placeholder_1 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 1',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_2 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 2',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_3 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 3',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set list_items %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+  {% endset %}
+  {% for display in display %}
+    {% for spacing in spacing %}
+      <h3>{{ display|capitalize }} list with spacing ({{ spacing }})</h3>
+      {% include '@bolt-elements-list/list.twig' with {
+        spacing: spacing,
+        display: display,
+        content: list_items,
+      } only %}
+    {% endfor %}
+  {% endfor %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set list_items %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_1,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_2,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_3,
+  } only %}
+{% endset %}
+{% include '@bolt-elements-list/list.twig' with {
+  spacing: 'medium',
+  content: list_items,
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<ul class="e-bolt-list e-bolt-list--spacing-medium">
+  <li class="e-bolt-list__item">First item</li>
+  <li class="e-bolt-list__item">Second item</li>
+  <li class="e-bolt-list__item">Third item</li>
+</ul>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'List Spacing',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

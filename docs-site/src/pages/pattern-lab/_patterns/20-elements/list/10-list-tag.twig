@@ -1,0 +1,112 @@
+{% set description %}
+  Choose between <code>ul</code> and <code>ol</code> tags when creating a List.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>ul</code> tag is for grouping a collection of items that do not have a numerical ordering, and their order in the list is meaningless.</bolt-li>
+    <bolt-li>On the other hand, with the <code>ol</code> tag, the order is meaningful.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
+  {% set placeholder %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_1 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 1',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_2 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 2',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_3 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 3',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+
+  {% set list_items %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder,
+    } only %}
+  {% endset %}
+
+  {% set list_items_ol %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+  {% endset %}
+
+  <h3>UL</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    tag: 'ul',
+    content: list_items
+  } only %}
+
+  <h3>OL</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    tag: 'ol',
+    content: list_items_ol
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set list_items %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_1,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_2,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_3,
+  } only %}
+{% endset %}
+
+{% include '@bolt-elements-list/list.twig' with {
+  tag: 'ol',
+  content: list_items
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<ol class="e-bolt-list">
+  <li class="e-bolt-list__item">First item</li>
+  <li class="e-bolt-list__item">Second item</li>
+  <li class="e-bolt-list__item">Third item</li>
+</ol>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'List Tag',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}
