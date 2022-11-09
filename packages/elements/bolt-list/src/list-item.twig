@@ -8,10 +8,6 @@
 {% set this = init(schema) %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{% set classes = [
-  'e-bolt-list__item',
-] %}
-
-<li {{ attributes.addClass(classes) }}>
+<li {{ attributes }}>
   {{ content }}
 </li>
