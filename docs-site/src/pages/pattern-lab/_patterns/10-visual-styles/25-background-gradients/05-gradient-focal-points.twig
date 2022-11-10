@@ -1,0 +1,80 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>.u-bolt-bg-gradient</code> base class is required.</bolt-li>
+    <bolt-li>The position of the focal point sets the lightest part in the background gradient.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set vertical_positions = ['top', 'center', 'bottom'] %}
+  {% set horizontal_positions = ['left', 'center', 'right'] %}
+
+  <bolt-layout gutter="small" row-gutter="small" template="thirds@from-small">
+    {% for vertical_position in vertical_positions %}
+      {% for horizontal_position in horizontal_positions %}
+        {% set focal_point_class = 'u-bolt-bg-gradient--focus-' ~ vertical_position ~ '-' ~ horizontal_position %}
+        {% set suffix = vertical_position == 'bottom' and horizontal_position == 'right' ? '(default)' : '' %}
+
+        <bolt-layout-item>
+          {% include '@bolt-components-teaser/teaser.twig' with {
+            attributes: {
+              class: [
+                'u-bolt-bg-gradient',
+                focal_point_class,
+                'u-bolt-height-full',
+                'u-bolt-padding-top-xlarge',
+                'u-bolt-padding-bottom-xlarge',
+                'u-bolt-padding-left-small',
+                'u-bolt-padding-right-small',
+                't-bolt-navy',
+              ],
+            },
+            variant: 'card',
+            headline: {
+              text: vertical_position|capitalize ~ ' ' ~ horizontal_position|capitalize ~ ' ' ~ suffix,
+            },
+            description: {
+              content: '<p>This container has the following modifier class:</p><p><code>.' ~ focal_point_class ~ '</code></p>'
+            }
+          } only %}
+        </bolt-layout-item>
+      {% endfor %}
+    {% endfor %}
+  </bolt-layout>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-teaser/teaser.twig' with {
+  attributes: {
+    class: [
+      'u-bolt-bg-gradient',
+      'u-bolt-bg-gradient--focus-top-left',
+      'u-bolt-padding-large',
+      't-bolt-navy',
+    ],
+  },
+  variant: 'card',
+  headline: {
+    text: 'Top Left Gradient Focal Point',
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<div class="u-bolt-bg-gradient u-bolt-bg-gradient--focus-top-left t-bolt-navy u-bolt-padding-large">
+  <h2>Top Left Gradient Focal Point</h2>
+</div>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Gradient Focal Points',
+  description: '<p>You can optionally add a modifier class in the form <code>u-bolt-bg-gradient--focus-[vertical]-[horizontal]</code> to change the gradient focal point.</p>',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
