@@ -247,59 +247,39 @@ bolt-background {
 
 :root,
 .c-bolt-background__overlay--right-bottom-focus {
-  --c-bolt-background-radial-gradient-focus: 100% 100%;
   --c-bolt-background-gradient-angle: -35deg;
 }
 
 .c-bolt-background__overlay--center-bottom-focus {
-  --c-bolt-background-radial-gradient-focus: 50% 100%;
   --c-bolt-background-gradient-angle: 0deg;
 }
 
 .c-bolt-background__overlay--left-bottom-focus {
-  --c-bolt-background-radial-gradient-focus: 0% 100%;
   --c-bolt-background-gradient-angle: 35deg;
 }
 
 .c-bolt-background__overlay--right-center-focus {
-  --c-bolt-background-radial-gradient-focus: 100% 50%;
   --c-bolt-background-gradient-angle: -90deg;
 }
 
 .c-bolt-background__overlay--center-center-focus {
-  --c-bolt-background-radial-gradient-focus: 50% 50%;
   --c-bolt-background-gradient-angle: 0deg;
 }
 
 .c-bolt-background__overlay--left-center-focus {
-  --c-bolt-background-radial-gradient-focus: 0% 50%;
   --c-bolt-background-gradient-angle: 90deg;
 }
 
 .c-bolt-background__overlay--right-top-focus {
-  --c-bolt-background-radial-gradient-focus: 100% 0%;
   --c-bolt-background-gradient-angle: -125deg;
 }
 
 .c-bolt-background__overlay--center-top-focus {
-  --c-bolt-background-radial-gradient-focus: 50% 0%;
   --c-bolt-background-gradient-angle: 180deg;
 }
 
 .c-bolt-background__overlay--left-top-focus {
-  --c-bolt-background-radial-gradient-focus: 0% 0%;
   --c-bolt-background-gradient-angle: 125deg;
-}
-
-.c-bolt-background__overlay--radial-gradient-fill {
-  background-image:
-    radial-gradient(
-      circle at var(--c-bolt-background-radial-gradient-focus),
-      var(--m-bolt-bg-highlight) 20%,
-      var(--m-bolt-bg-lowlight) 80%
-    );
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 
 .c-bolt-background__overlay--gradient-fill {

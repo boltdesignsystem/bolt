@@ -29,9 +29,12 @@
       'title': 'Black Theme',
       'theme_class': 't-bolt-black',
     },
+    {
+      'title': 'Dark Navy Theme',
+      'theme_class': 't-bolt-navy-dark',
+    },
   ] %}
 
-  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Background themes with image overlay (fill: solid)</bolt-text>
   <p>All <a href="{{ link['visual-styles-theming-system'] }}" class="e-bolt-text-link">themes</a> are supported.  A few examples are shown below.</p>
   {% for example in examples %}
     <bolt-stack>
@@ -46,44 +49,6 @@
         <bolt-layout-item>
           <bolt-text headline font-size="xxlarge">{{ example.title }}</bolt-text>
           <p>This background has a <code>solid</code> fill and the surrounding theme is <code>{{ example.theme_class }}</code></p>
-        </bolt-layout-item>
-      </bolt-layout>
-    </bolt-stack>
-  {% endfor %}
-
-  {% set examples = [
-    {
-      'title': 'Dark Navy Theme',
-      'theme_class': 't-bolt-navy-dark',
-    },
-    {
-      'title': 'Navy Theme',
-      'theme_class': 't-bolt-navy',
-    },
-    {
-      'title': 'Teal Theme',
-      'theme_class': 't-bolt-teal',
-    },
-    {
-      'title': 'Yellow Theme',
-      'theme_class': 't-bolt-yellow',
-    },
-  ] %}
-
-  <bolt-text headline font-size="xxsmall" text-transform="uppercase" letter-spacing="wide">Background themes with radial-gradient fill</bolt-text>
-  <p>All <a href="{{ link['visual-styles-theming-system'] }}" class="e-bolt-text-link">themes</a> are supported.  A few examples are shown below.</p>
-  {% for example in examples %}
-    <bolt-stack>
-      <bolt-layout padding-top="xlarge" padding-bottom="xlarge" class="{{ example.theme_class }}">
-        {% include '@bolt-components-background/background.twig' with {
-          fill: 'radial-gradient',
-          items: [
-            image,
-          ],
-        } only %}
-        <bolt-layout-item>
-          <bolt-text headline font-size="xxlarge">{{ example.title }}</bolt-text>
-          <p>This background has a <code>radial-gradient</code> fill and the surrounding theme is <code>{{ example.theme_class }}</code></p>
         </bolt-layout-item>
       </bolt-layout>
     </bolt-stack>

@@ -5,11 +5,6 @@
   {% set focal_point = focalPoint %}
 {% endif %}
 
-{# Radial gradients do not support opacity. #}
-{% if fill == 'radial-gradient' %}
-  {% set opacity = 'full' %}
-{% endif %}
-
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute({}) %}
