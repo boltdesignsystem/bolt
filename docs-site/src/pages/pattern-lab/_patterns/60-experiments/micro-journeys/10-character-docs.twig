@@ -15,110 +15,46 @@
 {% include '@utils/schema-docs.twig' with { schema: schema } only %}
 
 <h3>Slots</h3>
-{% set header %}
-  {% set cells %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: 'Name',
-      header: true,
-    } only %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: 'Required?',
-      header: true,
-    } only %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: 'Description',
-      header: true,
-    } only %}
-  {% endset %}
-  {% include '@bolt-components-table/table-row.twig' with {
-    content: cells,
-  } only %}
-{% endset %}
-
-{% set row1 %}
-  {% set cells %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: '<code>top</code>',
-    } only %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: 'No',
-    } only %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: '',
-    } only %}
-  {% endset %}
-  {% include '@bolt-components-table/table-row.twig' with {
-    content: cells,
-  } only %}
-{% endset %}
-
-{% set row2 %}
-  {% set cells %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: '<code>right</code>',
-    } only %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: 'No',
-    } only %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: '',
-    } only %}
-  {% endset %}
-  {% include '@bolt-components-table/table-row.twig' with {
-    content: cells,
-  } only %}
-{% endset %}
-
-{% set row3 %}
-  {% set cells %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: '<code>bottom</code>',
-    } only %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: 'No',
-    } only %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: '',
-    } only %}
-  {% endset %}
-  {% include '@bolt-components-table/table-row.twig' with {
-    content: cells,
-  } only %}
-{% endset %}
-
-{% set row4 %}
-  {% set cells %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: '<code>left</code>',
-    } only %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: 'No',
-    } only %}
-    {% include '@bolt-components-table/table-cell.twig' with {
-      content: '',
-    } only %}
-  {% endset %}
-  {% include '@bolt-components-table/table-row.twig' with {
-    content: cells,
-  } only %}
-{% endset %}
-
-{% include '@bolt-components-table/table.twig' with {
-  header: {
-    content: header,
+{% include "@bolt-components-table/table.twig" with {
+  first_col_fixed_width: false,
+  headers: {
+    top: {
+      cells: [
+        "Name",
+        "Requred?",
+        "Description",
+      ]
+    },
   },
-  body: {
-    content: [
-      row1,
-      row2,
-      row3,
-      row4,
-    ],
-  },
-  attributes: {
-    class: [
-      'u-bolt-block'
-    ]
-  }
+  rows: [
+    {
+      cells: [
+        "<code>top</code>",
+        "No",
+        "",
+      ]
+    },
+    {
+      cells: [
+        "<code>right</code>",
+        "No",
+        "",
+      ]
+    },
+    {
+      cells: [
+        "<code>bottom</code>",
+        "No",
+        "",
+      ]
+    },
+    {
+      cells: [
+        "<code>left</code>",
+        "No",
+        "",
+      ]
+    },
+  ],
 } only %}
 
