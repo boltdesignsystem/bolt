@@ -1,0 +1,263 @@
+{% set description %}
+  An example of a Table Element with top and side headers.
+{% endset %}
+
+{% set notes %}
+{% spaceless %}
+  <bolt-ol>
+    <bolt-li>Refer to the <a href="{{ link['elements-table-top-header'] }}" class="e-bolt-text-link">Table Element with Top Header</a> page for information on adding a top header.</bolt-li>
+    <bolt-li>Refer to the <a href="{{ link['elements-table-side-header'] }}" class="e-bolt-text-link">Table Element with Side Header</a> page for information on adding a side header.</bolt-li>
+    <bolt-li><strong>Twig/HTML:</strong> To align the table columns correctly, include a blank <code>&lt;th&gt;</code> to the <code>&lt;thead&gt;</code> as the first cell.</bolt-li>
+  </bolt-ol>
+{% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  {% set header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Top table header.',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Top table header.',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Top table header.',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Side table header.',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Side table header.',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3 %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Side table header.',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'This is a regular cell.',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-elements-table/table.twig' with {
+    header: {
+      content: header,
+    },
+    body: {
+      content: [
+        row1,
+        row2,
+        row3,
+      ],
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set header %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Top table header.',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Top table header.',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Top table header.',
+      header: true,
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row1 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Side table header.',
+      header: true
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row2 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Side table header.',
+      header: true
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row3 %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Side table header.',
+      header: true
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'This is a regular cell.',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% include '@bolt-elements-table/table.twig' with {
+  header: {
+    content: header,
+  },
+  body: {
+    content: [
+      row1,
+      row2,
+      row3,
+    ],
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<table class="e-bolt-table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Top table header.</th>
+      <th>Top table header.</th>
+      <th>Top table header.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Side table header.</th>
+      <td>This is a regular cell.</td>
+      <td>This is a regular cell.</td>
+      <td>This is a regular cell.</td>
+    </tr>
+    <tr>
+      <th>Side table header.</th>
+      <td>This is a regular cell.</td>
+      <td>This is a regular cell.</td>
+      <td>This is a regular cell.</td>
+    </tr>
+    <tr>
+      <th>Side table header.</th>
+      <td>This is a regular cell.</td>
+      <td>This is a regular cell.</td>
+      <td>This is a regular cell.</td>
+    </tr>
+  </tbody>
+</table>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table Element with Top and Side Headers',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

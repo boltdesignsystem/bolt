@@ -1,0 +1,266 @@
+{% set description %}
+  An example of a Table Element with a full width layout.
+{% endset %}
+
+{% set notes %}
+{% spaceless %}
+  <bolt-ol>
+    <bolt-li>Refer to the <a href="{{ link['elements-table-top-side-headers'] }}" class="e-bolt-text-link">Table Element with Top and Side Headers</a> page for information on adding the side and top headers.</bolt-li>
+    <bolt-li><strong>Twig:</strong> Use the <code>full_width</code> boolean prop to make a table display full width.</bolt-li>
+    <bolt-li><strong>HTML:</strong> Add a <code>e-bolt-table--full-width</code> class to the <code>&lt;table&gt;</code> to make the table display full width.</bolt-li>
+  </bolt-ol>
+{% endspaceless %}
+{% endset %}
+
+{% set demo %}
+  {% set header_with_space %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: '',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Column 1',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Column 2',
+        header: true,
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Column 3',
+        header: true,
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row1_with_header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Row 1',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R1C1',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R12',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R1C3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row2_with_header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Row 2',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R2C1',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R2C2',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R2C3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% set row3_with_header %}
+    {% set cells %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'Row 3',
+        header: true
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R3C1',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R32',
+      } only %}
+      {% include '@bolt-elements-table/table-cell.twig' with {
+        content: 'R3C3',
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-table/table-row.twig' with {
+      content: cells,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-elements-table/table.twig' with {
+    full_width: true,
+    header: {
+      content: header_with_space
+    },
+    body: {
+      content: [
+        row1_with_header,
+        row2_with_header,
+        row3_with_header
+      ],
+    },
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set header_with_space %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: '',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Column 1',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Column 2',
+      header: true,
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Column 3',
+      header: true,
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row1_with_header %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Row 1',
+      header: true
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'R1C1',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'R12',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'R1C3',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row2_with_header %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Row 2',
+      header: true
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'R2C1',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'R2C2',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'R2C3',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% set row3_with_header %}
+  {% set cells %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'Row 3',
+      header: true
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'R3C1',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'R32',
+    } only %}
+    {% include '@bolt-elements-table/table-cell.twig' with {
+      content: 'R3C3',
+    } only %}
+  {% endset %}
+  {% include '@bolt-elements-table/table-row.twig' with {
+    content: cells,
+  } only %}
+{% endset %}
+
+{% include '@bolt-elements-table/table.twig' with {
+  full_width: true,
+  header: {
+    content: header_with_space
+  },
+  body: {
+    content: [
+      row1_with_header,
+      row2_with_header,
+      row3_with_header
+    ],
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<table class="e-bolt-table e-bolt-table--full-width">
+  <thead>
+    <tr>
+      <th>
+      </th>
+      <th>Column 1</th>
+      <th>Column 2</th>
+      <th>Column 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Row 1</th>
+      <td>R1C1</td>
+      <td>R12</td>
+      <td>R1C3</td>
+    </tr>
+    <tr>
+      <th>Row 2</th>
+      <td>R2C1</td>
+      <td>R2C2</td>
+      <td>R2C3</td>
+    </tr>
+    <tr>
+      <th>Row 3</th>
+      <td>R3C1</td>
+      <td>R32</td>
+      <td>R3C3</td>
+    </tr>
+  </tbody>
+</table>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Table Element with Full Width Display',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}
