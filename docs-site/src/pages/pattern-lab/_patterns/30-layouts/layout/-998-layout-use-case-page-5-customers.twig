@@ -1,4 +1,4 @@
-{# START HERO LAYER #}
+{# START LAYER #}
   {% set layer_content %}
     {% include '@bolt-components-headline/eyebrow.twig' with {
       text: "Case Study",
@@ -11,12 +11,30 @@
     } only %}
   {% endset %}
 
+  {% set layer_supplement %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="6236693947001"
+        data-media-duration
+        data-media-title
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
   {% set layer_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: layer_content,
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: '[layer_supplement]',
+      content: layer_supplement,
     } only %}
   {% endset %}
 
@@ -24,6 +42,7 @@
     content: layer_items,
     padding_top: 'large',
     padding_bottom: 'medium',
+    valign_items: 'center',
     template: [
       'halves@from-medium',
     ],
@@ -31,9 +50,9 @@
       class: 't-bolt-dark'
     }
   } only %}
-{# END HERO LAYER #}
+{# END LAYER #}
 
-{# START FLAG LAYER #}
+{# START LAYER #}
   {% set layer_flag %}
     {% set flag_icon %}
       {% include '@bolt-elements-icon/icon.twig' with {
@@ -89,9 +108,9 @@
       class: 't-bolt-dark'
     }
   } only %}
-{# END FLAG LAYER #}
+{# END LAYER #}
 
-{# START MAIN LAYER #}
+{# START LAYER #}
   {% set layer_items %}
     {% set column_content %}
       {% include '@bolt-components-blockquote/blockquote.twig' with {
@@ -181,31 +200,31 @@
       '67/33@from-medium',
     ],
   } only %}
-{# END MAIN LAYER #}
+{# END LAYER #}
 
-{# START BUTTON LAYER #}
-  {% set layer_items %}
-    {% set layer_content %}
-      {% set icon %}
-        {% include '@bolt-elements-icon/icon.twig' with {
-          name: 'energy',
-          size: 'large'
-        } only %}
-      {% endset %}
-      {% include '@bolt-elements-shape/shape.twig' with {
-        content: icon,
-        size: 'xlarge',
-        attributes: {
-          class: 't-bolt-teal',
-        }
-      } only %}
-      {% include '@bolt-components-headline/headline.twig' with {
-        text: "Pega Customer Decision Hub",
-        tag: 'h3',
-        size: 'xxlarge',
+{# START LAYER #}
+  {% set layer_content %}
+    {% set icon %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'energy',
+        size: 'large'
       } only %}
     {% endset %}
+    {% include '@bolt-elements-shape/shape.twig' with {
+      content: icon,
+      size: 'xlarge',
+      attributes: {
+        class: 't-bolt-teal',
+      }
+    } only %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Pega Customer Decision Hub",
+      tag: 'h3',
+      size: 'xxlarge',
+    } only %}
+  {% endset %}
 
+  {% set layer_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: layer_content,
       attributes: {
@@ -226,4 +245,4 @@
       class: 't-bolt-dark'
     }
   } only %}
-{# END BUTTON LAYER #}
+{# END LAYER #}

@@ -1,5 +1,5 @@
-{# START HERO #}
-  {% set hero_content %}
+{# START LAYER #}
+  {% set layer_content %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: "Hi, we're Pegasystems.<br />But you can call us Pega.",
       tag: 'h1',
@@ -12,7 +12,7 @@
     } only %}
   {% endset %}
 
-  {% set hero_supplement %}
+  {% set layer_supplement %}
     {% set video %}
       <video-js
         data-account="1900410236"
@@ -30,38 +30,21 @@
     } only %}
   {% endset %}
 
-  {% set hero_layout_items %}
+  {% set layer_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: hero_content
+      content: layer_content
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: hero_supplement
-    } only %}
-  {% endset %}
-
-  {% set hero_layout %}
-    {% set content %}
-      {% include '@bolt-layouts-layout/layout.twig' with {
-        content: hero_layout_items,
-        gutter: 'large',
-        row_gutter: 'large',
-        valign_items: 'center',
-        template: [
-          'halves@from-medium'
-        ]
-      } only %}
-    {% endset %}
-    {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: content,
+      content: layer_supplement
     } only %}
   {% endset %}
 
-  {% set hero_background %}
+  {% set layer_background %}
     {% include '@bolt-elements-image/image.twig' with {
       background: true,
       attributes: {
         alt: 'Image alt text',
-        src: '/images/heros/live-assets/about-hero-bg.jpg',
+        src: '/images/placeholders/backgrounds/background-light.jpg',
         loading: 'eager',
         width: '100vw'
       },
@@ -69,23 +52,29 @@
   {% endset %}
 
   {% include '@bolt-layouts-layout/layout.twig' with {
-    content: hero_layout,
-    padding_top: 'large',
+    content: layer_items,
+    background: layer_background,
+    padding_top: 'xlarge',
     padding_bottom: 'large',
-    background: hero_background,
+    gutter: 'large',
+    row_gutter: 'large',
+    valign_items: 'center',
+    template: [
+      'halves@from-medium'
+    ],
     attributes: {
       class: 't-bolt-gray-xlight'
     }
   } only %}
-{# END HERO #}
+{# END LAYER #}
 
-{# START FIRST LAYER #}
+{# START LAYER #}
   {% set layer_tiles %}
     {% set tile %}
-      {# {% include '@bolt-elements-image/image.twig' with {
+      {% include '@bolt-elements-image/image.twig' with {
         attributes: {
           alt: 'Image alt text',
-          src: '/images/heros/live-assets/icon-employees.png',
+          src: '/images/content/icons/employees.png',
           loading: 'eager',
           width: 80,
           height: 80,
@@ -93,8 +82,7 @@
             class: 'u-bolt-margin-bottom-small',
           },
         },
-      } only %} #}
-      [placeholder image icon]
+      } only %}
       {% include '@bolt-components-headline/subheadline.twig' with {
         text: '<strong>6,000</strong> global employees',
         tag: 'h3',
@@ -112,24 +100,7 @@
     {% endfor %}
   {% endset %}
 
-  {% set layer_button %}
-    {% set button %}
-      {% include '@bolt-elements-button/button.twig' with {
-        content: 'Download corporate fact sheet',
-        attributes: {
-          href: '#!',
-        }
-      } only %}
-    {% endset %}
-    {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: button,
-      attributes: {
-        class: 'u-bolt-text-align-center',
-      }
-    } only %}
-  {% endset %}
-
-  {% set layer_layout %}
+  {% set layer_content %}
     {% include '@bolt-layouts-layout/layout.twig' with {
       content: layer_tiles,
       gutter: 'large',
@@ -140,29 +111,32 @@
     } only %}
   {% endset %}
 
-  {% set button_layout %}
-    {% include '@bolt-layouts-layout/layout.twig' with {
+  {% set layer_button %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Download corporate fact sheet',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: layer_button,
     } only %}
   {% endset %}
 
-  {% set layer_layout %}
-    {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: layer_layout,
-    } only %}
-    {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: button_layout,
-    } only %}
-  {% endset %}
-
   {% include '@bolt-layouts-layout/layout.twig' with {
-    content: layer_layout,
-    top: 'large',
+    content: layer_items,
+    padding_top: 'large',
     padding_bottom: 'large',
   } only %}
-{# END FIRST LAYER #}
+{# END LAYER #}
 
-{# START SECOND LAYER #}
+{# START LAYER #}
   {% set layer_content %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: "What we do",
@@ -200,32 +174,39 @@
   {% endset %}
 
   {% set layer_supplement %}
-    [placeholder image]
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/placeholders/16x9.jpg',
+        loading: 'eager',
+        width: 800,
+        height: 450,
+        style: 'display: block;',
+      },
+    } only %}
   {% endset %}
 
-  {% set layer_layout %}
+  {% set layer_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: layer_content,
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: layer_supplement,
+      valign_self: 'end-offset',
     } only %}
   {% endset %}
 
   {% include '@bolt-layouts-layout/layout.twig' with {
-    content: layer_layout,
+    content: layer_items,
     padding_top: 'large',
     padding_bottom: 'large',
     template: [
       'halves@from-medium'
-    ],
-    attributes: {
-      class: 't-bolt-gray-xlight'
-    }
+    ]
   } only %}
-{# END SECOND LAYER #}
+{# END LAYER #}
 
-{# START THIRD LAYER #}
+{# START LAYER #}
   {% set layer_headline %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: "Meet our industry-leading clients",
@@ -237,18 +218,27 @@
     } only %}
   {% endset %}
 
-  {% set layer_items %}
-    {% for i in 1..5 %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: '[placeholder logo ' ~ i ~ ']',
+  {% set layer_content %}
+    {% set layer_logo %}
+      {% include '@bolt-elements-image/image.twig' with {
         attributes: {
-          class: 'u-bolt-text-align-center',
-        }
+          src: '/images/content/logos/logo-atos.png',
+          alt: 'Image alt text',
+        },
       } only %}
-    {% endfor %}
-  {% endset %}
+    {% endset %}
 
-  {% set layer_layout %}
+    {% set layer_items %}
+      {% for i in 1..5 %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: layer_logo,
+          attributes: {
+            class: 'u-bolt-text-align-center',
+          }
+        } only %}
+      {% endfor %}
+    {% endset %}
+
     {% include '@bolt-layouts-layout/layout.twig' with {
       content: layer_items,
       template: [
@@ -266,12 +256,12 @@
       } only %}
   {% endset %}
 
-  {% set layout_content %}
+  {% set layout_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: layer_headline,
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: layer_layout,
+      content: layer_content,
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: layer_button,
@@ -282,14 +272,17 @@
   {% endset %}
 
   {% include '@bolt-layouts-layout/layout.twig' with {
-    content: layout_content,
+    content: layout_items,
     top: 'large',
     padding_bottom: 'large',
+    attributes: {
+      class: 't-bolt-gray-xlight'
+    }
   } only %}
-{# END THIRD LAYER #}
+{# END LAYER #}
 
-{# START FOURTH LAYER #}
-  {% set stat_headline %}
+{# START LAYER #}
+  {% set layer_headline %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: "See how we deliver value, fast",
       tag: 'h2',
@@ -309,47 +302,47 @@
     } only %}
   {% endset %}
 
-  {% set stat_item %}
-    {% include '@bolt-components-headline/headline.twig' with {
-      text: "$000M+%",
-      tag: 'span',
-      size: 'xxlarge',
-      attributes: {
-        class: 'u-bolt-text-align-center',
-      }
-    } only %}
-    {% include '@bolt-components-headline/headline.twig' with {
-      text: "in something important",
-      tag: 'span',
-      size: 'large',
-      weight: 'regular',
-      attributes: {
-        class: 'u-bolt-text-align-center',
-      }
-    } only %}
-  {% endset %}
-
-  {% set stat_items %}
-    {% for i in 1..3 %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: stat_item,
+  {% set layer_content %}
+    {% set stat_item %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: "$000M+%",
+        tag: 'span',
+        size: 'xxlarge',
         attributes: {
           class: 'u-bolt-text-align-center',
         }
       } only %}
-    {% endfor %}
-  {% endset %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: "in something important",
+        tag: 'span',
+        size: 'large',
+        weight: 'regular',
+        attributes: {
+          class: 'u-bolt-text-align-center',
+        }
+      } only %}
+    {% endset %}
 
-  {% set stat_layer_items %}
+    {% set layer_items %}
+      {% for i in 1..3 %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: stat_item,
+          attributes: {
+            class: 'u-bolt-text-align-center',
+          }
+        } only %}
+      {% endfor %}
+    {% endset %}
+
     {% include '@bolt-layouts-layout/layout.twig' with {
-      content: stat_items,
+      content: layer_items,
       template: [
         'tiles@from-small'
       ]
     } only %}
   {% endset %}
 
-  {% set stat_layer_button %}
+  {% set layer_button %}
       {% include '@bolt-elements-button/button.twig' with {
         content: 'Get the reports',
         attributes: {
@@ -358,15 +351,15 @@
       } only %}
   {% endset %}
 
-  {% set stat_layout_content %}
+  {% set layer_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: stat_headline,
+      content: layer_headline,
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: stat_layer_items,
+      content: layer_content,
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: stat_layer_button,
+      content: layer_button,
       attributes: {
         class: 'u-bolt-text-align-center',
       }
@@ -374,17 +367,17 @@
   {% endset %}
 
   {% include '@bolt-layouts-layout/layout.twig' with {
-    content: stat_layout_content,
+    content: layer_items,
     top: 'large',
     padding_bottom: 'large',
     attributes: {
       class: 't-bolt-gray-xlight'
     }
   } only %}
-{# END FOURTH LAYER #}
+{# END LAYER #}
 
-{# START FIFTH LAYER #}
-  {% set second_layer_left_content %}
+{# START LAYER #}
+  {% set layer_content %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: "Who we are",
       tag: 'h2',
@@ -399,7 +392,17 @@
     } only %}
   {% endset %}
 
-  {% set alan_quote %}
+  {% set layer_supplement %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/content/icons/badge-pw.png',
+        width: 200,
+      },
+    } only %}
+  {% endset %}
+
+  {% set layer_quote %}
     {% include '@bolt-components-blockquote/blockquote.twig' with {
       'author': {
         'name': 'Alan Trefler',
@@ -417,29 +420,32 @@
     } only %}
   {% endset %}
 
-  {% set second_layer_content %}
+  {% set layer_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: second_layer_left_content,
+      content: layer_content,
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: 'right-side',
+      content: layer_supplement,
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: alan_quote,
+      content: layer_quote,
     } only %}
   {% endset %}
 
   {% include '@bolt-layouts-layout/layout.twig' with {
-    content: second_layer_content,
+    content: layer_items,
     padding_top: 'large',
     padding_bottom: 'large',
     template: [
       '50/25/25@from-medium'
     ],
   } only %}
-{# END FIFTH LAYER #}
+{# END LAYER #}
 
-{# START SIXTH LAYER #}
+{# START LAYER #}
   {% set layer_content %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: "We care about our people...",
@@ -461,7 +467,16 @@
   {% endset %}
 
   {% set layer_supplement %}
-    [placeholder image]
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/placeholders/16x9.jpg',
+        loading: 'eager',
+        width: 800,
+        height: 450,
+        style: 'display: block;',
+      },
+    } only %}
   {% endset %}
 
   {% set layer_items %}
@@ -471,6 +486,7 @@
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: layer_supplement,
+      valign_self: 'end-offset',
     } only %}
   {% endset %}
 
@@ -485,9 +501,9 @@
       class: 't-bolt-gray-xlight'
     }
   } only %}
-{# END SIXTH LAYER #}
+{# END LAYER #}
 
-{# START SEVENTH LAYER #}
+{# START LAYER #}
   {% set layer_content %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: "And give back to our communities",
@@ -504,7 +520,15 @@
   {% endset %}
 
   {% set layer_supplement %}
-    [placeholder image]
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/placeholders/16x9.jpg',
+        loading: 'eager',
+        width: 800,
+        height: 450,
+      },
+    } only %}
   {% endset %}
 
   {% set layer_items %}
@@ -524,9 +548,9 @@
       'halves@from-small'
     ],
   } only %}
-{# END SEVENTH LAYER #}
+{# END LAYER #}
 
-{# START EIGTH LAYER #}
+{# START LAYER #}
   {% set layer_headline %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: "Get to know us better",
@@ -538,14 +562,14 @@
     } only %}
   {% endset %}
 
-  {% set layer_icon %}
-    {% include '@bolt-elements-icon/icon.twig' with {
-      name: 'download',
-      size: 'large'
-    } %}
-  {% endset %}
-
   {% set layer_actions %}
+    {% set layer_icon %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'download',
+        size: 'large'
+      } %}
+    {% endset %}
+
     {% include '@bolt-components-action-blocks/action-blocks.twig' with {
       items: [
         {
@@ -582,7 +606,7 @@
     } only %}
   {% endset %}
 
-  {% set layout_content %}
+  {% set layout_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: layer_headline,
     } only %}
@@ -592,16 +616,16 @@
   {% endset %}
 
   {% include '@bolt-layouts-layout/layout.twig' with {
-    content: layout_content,
+    content: layout_items,
     top: 'large',
     padding_bottom: 'large',
     attributes: {
       class: 't-bolt-gray-xlight'
     }
   } only %}
-{# END EIGTH LAYER #}
+{# END LAYER #}
 
-{# START NINTH LAYER #}
+{# START LAYER #}
   {% set layer_headline %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: "Ready to connect?",
@@ -609,6 +633,7 @@
       size: 'xxlarge',
     } only %}
   {% endset %}
+
   {% set layer_button %}
     {% include '@bolt-elements-button/button.twig' with {
       content: 'Contact our sales team',
@@ -635,4 +660,4 @@
       class: 'u-bolt-text-align-center',
     }
   } only %}
-{# END NINTH LAYER #}
+{# END LAYER #}

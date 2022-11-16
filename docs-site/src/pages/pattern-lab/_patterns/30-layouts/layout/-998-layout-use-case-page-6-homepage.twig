@@ -1,4 +1,4 @@
-{# START HERO LAYER #}
+{# START LAYER #}
   {% set layer_content %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: "Build for whatever <br />comes next — right now",
@@ -37,33 +37,32 @@
       '50@from-medium',
     ],
     attributes: {
-      class: 't-bolt-yellow',
+      class: 't-bolt-light',
     }
   } only %}
-{# END HERO LAYER #}
+{# END LAYER #}
 
 {# START LAYER #}
-
-  {% set headline_content %}
-    {% include '@bolt-components-headline/headline.twig' with {
-      text: "Learn how Pega’s low code platform for AI-powered decisioning and workflow automation lets you:",
-      tag: 'h3',
-      size: 'xxlarge',
-    } only %}
-  {% endset %}
-
-  {% set headline_items %}
-    {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: headline_content,
-      attributes: {
-        class: 'u-bolt-text-align-center',
-      }
-    } only %}
-  {% endset %}
-
   {% set layer_headline %}
+    {% set layer_content %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: "Learn how Pega’s low code platform for AI-powered decisioning and workflow automation lets you:",
+        tag: 'h3',
+        size: 'xxlarge',
+      } only %}
+    {% endset %}
+
+    {% set layer_items %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: layer_content,
+        attributes: {
+          class: 'u-bolt-text-align-center',
+        }
+      } only %}
+    {% endset %}
+
     {% include '@bolt-layouts-layout/layout.twig' with {
-      content: headline_items,
+      content: layer_items,
       padding_top: 'none',
       padding_bottom: 'none',
       align_items: 'center',
@@ -73,35 +72,42 @@
     } only %}
   {% endset %}
 
-  {% set thirds_content %}
-    [image]
-    {% include '@bolt-components-headline/headline.twig' with {
-      text: "Maximize value",
-      tag: 'h3',
-      size: 'xlarge',
-      url: '#!'
-    } only %}
-    {% include '@bolt-components-headline/subheadline.twig' with {
-      text: "Handle anything, fast, with automation and AI.",
-      tag: 'div',
-      size: 'large',
-    } only %}
-  {% endset %}
-
-  {% set thirds_items %}
-    {% for i in 1..3 %}
-      {% include '@bolt-layouts-layout/layout-item.twig' with {
-        content: thirds_content,
-        attributes: {
-          class: 'u-bolt-text-align-center',
-        }
-      } only %}
-    {% endfor %}
-  {% endset %}
-
   {% set layer_thirds %}
+    {% set layer_content %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          alt: 'Image alt text',
+          src: '/images/content/icons/badge-pw.png',
+          width: 150,
+        },
+      } only %}
+
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: "Maximize value",
+        tag: 'h3',
+        size: 'xlarge',
+        url: '#!'
+      } only %}
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: "Handle anything, fast, with automation and AI.",
+        tag: 'div',
+        size: 'large',
+      } only %}
+    {% endset %}
+
+    {% set layer_items %}
+      {% for i in 1..3 %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: layer_content,
+          attributes: {
+            class: 'u-bolt-text-align-center',
+          }
+        } only %}
+      {% endfor %}
+    {% endset %}
+
     {% include '@bolt-layouts-layout/layout.twig' with {
-      content: thirds_items,
+      content: layer_items,
       padding_top: 'none',
       padding_bottom: 'none',
       align_items: 'center',
@@ -128,8 +134,8 @@
 
   {% include '@bolt-layouts-layout/layout.twig' with {
     content: layer_items,
-    padding_top: 'large',
-    padding_bottom: 'large',
+    padding_top: 'xlarge',
+    padding_bottom: 'xlarge',
   } only %}
 {# END LAYER #}
 
@@ -153,11 +159,8 @@
       {% set image %}
         {% include '@bolt-elements-image/image.twig' with {
           attributes: {
-            src: '/images/placeholders/tout-4x3-climber.jpg',
-            alt: 'A Rock Climber',
-            loading: 'lazy',
-            width: 400,
-            height: 300,
+            src: '/images/placeholders/16x9-1024.jpg',
+            alt: 'Image alt text',
           }
         } only %}
       {% endset %}
@@ -193,11 +196,8 @@
       {% set flag_image %}
         {% include '@bolt-elements-image/image.twig' with {
           attributes: {
-            src: '/images/placeholders/tout-4x3-climber.jpg',
-            alt: 'A Rock Climber',
-            loading: 'lazy',
-            width: 400,
-            height: 300,
+            src: '/images/placeholders/square.jpg',
+            alt: 'Image alt text',
           }
         } only %}
       {% endset %}
@@ -237,6 +237,9 @@
           template: [
             'flag',
           ],
+          attributes: {
+            style :'--l-bolt-layout-flag-media-width: 120px'
+          }
         } only %}
       {% endfor %}
     {% endset %}
@@ -254,6 +257,7 @@
       content: layer_items,
       padding_top: 'none',
       padding_bottom: 'none',
+      gutter: 'large',
       template: [
         '33/67@from-medium',
       ],
@@ -298,14 +302,11 @@
 {# END LAYER #}
 
 {# START LAYER #}
-  {% set layer_image %}
+  {% set layer_supplement %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
-        src: '/images/placeholders/tout-4x3-climber.jpg',
-        alt: 'A Rock Climber',
-        loading: 'lazy',
-        width: 400,
-        height: 300,
+        src: '/images/placeholders/square.jpg',
+        alt: 'Image alt text',
       }
     } only %}
   {% endset %}
@@ -348,7 +349,7 @@
 
   {% set layer_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: layer_image,
+      content: layer_supplement,
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: layer_content,
@@ -381,7 +382,12 @@
 
   {% set layer_tiles %}
     {% set layer_tile %}
-      [image]
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/content/logos/logo-atos.png',
+          alt: 'Image alt text',
+        },
+      } only %}
     {% endset %}
 
     {% set layer_items %}
@@ -400,6 +406,7 @@
       padding_top: 'none',
       padding_bottom: 'none',
       valign_items: 'center',
+      gutter: 'large',
       template: [
         'tiles@from-medium',
       ]
@@ -448,9 +455,24 @@
     } only %}
   {% endset %}
 
+  {% set layer_supplement %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/content/heroes/foreground-person.png',
+        alt: 'Image alt text',
+        style: 'display: block;',
+        width: 250,
+      },
+    } only %}
+  {% endset %}
+
   {% set layer_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
       content: layer_content,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_supplement,
+      valign_self: 'end-offset',
     } only %}
   {% endset %}
 
@@ -458,8 +480,9 @@
     content: layer_items,
     padding_top: 'xlarge',
     padding_bottom: 'xlarge',
+    valign_items: 'center',
     template: [
-      '50@from-medium',
+      'halves@from-medium',
     ]
   } only %}
 {# END LAYER #}
@@ -474,7 +497,7 @@
   {% endset %}
 
   {% set layer_content %}
-   {% set icon %}
+    {% set icon %}
       {% include '@bolt-elements-icon/icon.twig' with {
         name: 'check',
         size: 'xlarge',

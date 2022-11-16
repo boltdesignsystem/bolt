@@ -43,7 +43,7 @@
 
     {% include '@bolt-layouts-layout/layout.twig' with {
       content: layer_items,
-      padding_top: 'large',
+      padding_top: 'medium',
       padding_bottom: 'none',
       template: [
         'thirds@from-medium',
@@ -77,11 +77,8 @@
   {% set layer_supplement %}
     {% include '@bolt-elements-image/image.twig' with {
       attributes: {
-        src: '/images/placeholders/tout-4x3-climber.jpg',
-        alt: 'A Rock Climber',
-        loading: 'lazy',
-        width: 800,
-        height: 450,
+        src: '/images/placeholders/16x9-1024.jpg',
+        alt: 'Image alt text',
       }
     } only %}
   {% endset %}

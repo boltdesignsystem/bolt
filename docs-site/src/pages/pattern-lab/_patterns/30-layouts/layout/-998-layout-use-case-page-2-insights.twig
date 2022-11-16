@@ -1,9 +1,17 @@
-{# START HERO LAYER #}
-  {% set hero_supplement %}
-    [placeholder image]
+{# START LAYER #}
+  {% set layer_supplement %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/placeholders/16x9.jpg',
+        loading: 'eager',
+        width: 800,
+        height: 450,
+      },
+    } only %}
   {% endset %}
 
-  {% set hero_content %}
+  {% set layer_content %}
     {% include '@bolt-components-headline/headline.twig' with {
       text: "Meet Pega: What we do & why we’re different",
       tag: 'h1',
@@ -67,30 +75,29 @@
     } only %}
   {% endset %}
 
-  {% set hero_items %}
+  {% set layer_items %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: hero_supplement,
+      content: layer_supplement,
     } only %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: hero_content,
+      content: layer_content,
     } only %}
   {% endset %}
 
   {% include '@bolt-layouts-layout/layout.twig' with {
-    content: hero_items,
+    content: layer_items,
     padding_top: 'large',
     padding_bottom: 'large',
     template: [
       '33/67@from-medium',
     ],
     attributes: {
-      class: 't-bolt-dark',
+      class: 't-bolt-navy-dark',
     },
   } only %}
+{# END LAYER #}
 
-{# END HERO LAYER #}
-
-{# START CONTENT LAYER #}
+{# START LAYER #}
   {% set layer_content %}
     <p>Okay, so you’re reading this blog from Pega. But do you really know who we are?</p>
     <p>Put simply, we crush the complexity that stands in the way of your success.</p>
@@ -115,20 +122,20 @@
       '67',
     ],
   } only %}
-{# END CONTENT LAYER #}
+{# END LAYER #}
 
-{# START RELATED LAYER #}
+{# START LAYER #}
   {% set layer_teaser %}
     {% set video_thumbnail %}
       {% set image %}
         {% include '@bolt-elements-image/image.twig' with {
           attributes: {
-            src: '/images/placeholders/tout-4x3-climber.jpg',
-            alt: 'A Rock Climber',
-            loading: 'lazy',
-            width: 400,
-            height: 300,
-          }
+            alt: 'Image alt text',
+            src: '/images/placeholders/16x9.jpg',
+            loading: 'eager',
+            width: 800,
+            height: 450,
+          },
         } only %}
       {% endset %}
       {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
@@ -231,79 +238,79 @@
       class: 't-bolt-dark',
     },
   } only %}
-{# END RELATED LAYER #}
+{# END LAYER #}
 
-{# START ABOUT LAYER #}
+{# START LAYER #}
   {% set layer_content %}
-    {% include '@bolt-components-headline/headline.twig' with {
-      text: "Tags",
-      tag: 'h3',
-      size: 'xlarge',
-    } only %}
+    {% set layer_content %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: "Tags",
+        tag: 'h3',
+        size: 'xlarge',
+      } only %}
 
-    {% include '@bolt-components-chip-list/chip-list.twig' with {
-      items: [
-        {
-          text: 'Chip 1',
-        },
-        {
-          text: 'Chip 2',
-        },
-        {
-          text: 'Chip 3',
-        }
-      ]
-    } only %}
-
-    {% include '@bolt-components-headline/headline.twig' with {
-      text: "About the Author",
-      tag: 'h3',
-      size: 'xlarge',
-    } only %}
-
-    <p>As Head of Brand, Creative, and Content Marketing at Pega, <a href="#!">Molly Sullivan</a> helps tell Pega’s story of crushing complexity.</p>
-
-    {% include '@bolt-components-share/share.twig' with {
-      size: 'medium',
-      sources: [
-        {
-          name: 'facebook',
-          attributes: {
-            href: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse'
+      {% include '@bolt-components-chip-list/chip-list.twig' with {
+        items: [
+          {
+            text: 'Chip 1',
+          },
+          {
+            text: 'Chip 2',
+          },
+          {
+            text: 'Chip 3',
           }
-        },
-        {
-          name: 'twitter',
-          attributes: {
-            href:  'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
-          }
-        },
-        {
-          name: 'linkedin',
-          attributes: {
-            href: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com'
-          }
-        },
-        {
-          name: 'email',
-          attributes: {
-            href: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
-          }
-        }
-      ],
-      copy_to_clipboard: {
-        text_to_copy: 'https://boltdesignsystem.com'
-      },
-    } only %}
-  {% endset %}
+        ]
+      } only %}
 
-  {% set layer_item %}
-    {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: layer_content,
-    } only %}
-  {% endset %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: "About the Author",
+        tag: 'h3',
+        size: 'xlarge',
+      } only %}
 
-  {% set nested_layer %}
+      <p>As Head of Brand, Creative, and Content Marketing at Pega, <a href="#!">Molly Sullivan</a> helps tell Pega’s story of crushing complexity.</p>
+
+      {% include '@bolt-components-share/share.twig' with {
+        size: 'medium',
+        sources: [
+          {
+            name: 'facebook',
+            attributes: {
+              href: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse'
+            }
+          },
+          {
+            name: 'twitter',
+            attributes: {
+              href:  'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+            }
+          },
+          {
+            name: 'linkedin',
+            attributes: {
+              href: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com'
+            }
+          },
+          {
+            name: 'email',
+            attributes: {
+              href: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
+            }
+          }
+        ],
+        copy_to_clipboard: {
+          text_to_copy: 'https://boltdesignsystem.com'
+        },
+      } only %}
+    {% endset %}
+
+    {% set layer_item %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: layer_content,
+      } only %}
+    {% endset %}
+
     {% include '@bolt-layouts-layout/layout.twig' with {
       content: layer_item,
       padding_top: 'large',
@@ -311,9 +318,9 @@
     } only %}
   {% endset %}
 
-  {% set nested_item %}
+  {% set layout_item %}
     {% include '@bolt-layouts-layout/layout-item.twig' with {
-      content: nested_layer,
+      content: layer_content,
       attributes: {
         class: 't-bolt-light u-bolt-padding-right-large u-bolt-padding-left-large',
       },
@@ -321,7 +328,7 @@
   {% endset %}
 
   {% include '@bolt-layouts-layout/layout.twig' with {
-    content: nested_item,
+    content: layout_item,
     align_items: 'center',
     padding_top: 'none',
     padding_bottom: 'large',
@@ -329,4 +336,4 @@
       '67@from-medium',
     ],
   } only %}
-{# END ABOUT LAYER #}
+{# END LAYER #}
