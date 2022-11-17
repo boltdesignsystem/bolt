@@ -152,6 +152,47 @@
       class: "js-bolt-modal--demo-3",
     },
   } only %}
+
+
+
+  {% set modal_content_4 %}
+    {% set video %}
+      <video-js
+        data-account="1519050010001"
+        data-player="SbPkVn9I9l"
+        data-embed="default"
+        data-video-id="6246283072001"
+        data-social-url="https://google.com"
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  <h2>Video in Modal with Chaptering</h2>
+
+  {% include "@bolt-elements-button/button.twig" with {
+    content: "Play the video",
+    attributes: {
+      type: 'button',
+      "data-bolt-modal-target": ".js-bolt-modal--demo-4",
+    }
+  } only %}
+
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: modal_content_4,
+    width: "optimal",
+    spacing: "none",
+    theme: "none",
+    scroll: "overall",
+    attributes: {
+      class: "js-bolt-modal--demo-4",
+    },
+  } only %}
 {% endset %}
 
 {% include '@bolt-layouts-site/site.twig' with {
