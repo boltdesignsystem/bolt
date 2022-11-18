@@ -20,7 +20,7 @@
 
 .c-bolt-teaser--horizontal {
   --c-bolt-teaser-signifier-aspect-ratio: 1/1;
-  
+
   align-items: center;
   grid-template-columns: auto 1fr;
 }
@@ -36,14 +36,104 @@
   --c-bolt-teaser-gutter: var(--bolt-spacing-x-small);
 }
 
-.c-bolt-teaser--horizontal,
-.c-bolt-teaser--responsive,
 .c-bolt-teaser--gutter-medium {
   --c-bolt-teaser-gutter: var(--bolt-spacing-x-medium);
 }
 
 .c-bolt-teaser--gutter-large {
   --c-bolt-teaser-gutter: var(--bolt-spacing-x-large);
+}
+
+@mixin bolt-teaser-horizontal-variant-card {
+  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+
+  &.c-bolt-teaser--border-radius-small {
+    .c-bolt-teaser__signifier,
+    .c-bolt-teaser__signifier img {
+      border-radius: bolt-border-radius(small);
+    }
+  }
+
+  &.c-bolt-teaser--border-radius-large {
+    .c-bolt-teaser__signifier,
+    .c-bolt-teaser__signifier img {
+      border-radius: bolt-border-radius(large);
+    }
+  }
+
+  .c-bolt-teaser__content {
+    padding: 0;
+  }
+
+  &.c-bolt-teaser--spacing-medium {
+    padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+  }
+
+  &.c-bolt-teaser--spacing-large {
+    padding: var(--bolt-spacing-y-large) var(--bolt-spacing-x-large);
+  }
+}
+
+.c-bolt-teaser--variant-card {
+  @include bolt-shadow('level-20');
+
+  &.c-bolt-teaser--spacing-medium {
+    .c-bolt-teaser__content {
+      padding: var(--bolt-spacing-y-medium) var(--bolt-spacing-x-medium);
+    }
+  }
+
+  &.c-bolt-teaser--spacing-large {
+    .c-bolt-teaser__content {
+      padding: var(--bolt-spacing-y-large) var(--bolt-spacing-x-large);
+    }
+  }
+
+  &.c-bolt-teaser--border-radius-small {
+    border-radius: bolt-border-radius(small);
+
+    .c-bolt-teaser__signifier,
+    .c-bolt-teaser__signifier img {
+      border-top-right-radius: bolt-border-radius(small);
+      border-top-left-radius: bolt-border-radius(small);
+    }
+  }
+
+  &.c-bolt-teaser--border-radius-large {
+    border-radius: bolt-border-radius(large);
+
+    .c-bolt-teaser__signifier,
+    .c-bolt-teaser__signifier img {
+      border-top-right-radius: bolt-border-radius(large);
+      border-top-left-radius: bolt-border-radius(large);
+    }
+  }
+
+  border: 1px solid var(--m-bolt-border);
+  background-color: var(--m-bolt-bg);
+
+  .c-bolt-teaser__signifier {
+    --c-bolt-teaser-signifier-aspect-ratio: unset;
+    margin-bottom: 0;
+  }
+
+  .c-bolt-teaser__signifier-image {
+    all: unset;
+  }
+
+  .c-bolt-teaser__content {
+    padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
+  }
+
+  &.c-bolt-teaser--horizontal {
+    @include bolt-teaser-horizontal-variant-card;
+  }
+
+  @include bolt-mq(medium) {
+    &.c-bolt-teaser--responsive {
+      @include bolt-teaser-horizontal-variant-card;
+    }
+  }
 }
 
 .c-bolt-teaser__signifier {
@@ -332,53 +422,4 @@
 
 .c-bolt-teaser__views-icon {
   @include bolt-inline-icon-wrapper;
-}
-
-@mixin bolt-teaser-horizontal-variant-card {
-  padding: var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
-
-  .c-bolt-teaser__signifier,
-  .c-bolt-teaser__signifier img {
-    border-radius: bolt-border-radius(small);
-  }
-
-  .c-bolt-teaser__content {
-    padding: 0;
-  }
-}
-
-.c-bolt-teaser--variant-card {
-  @include bolt-shadow('level-20');
-
-  border: 1px solid var(--m-bolt-border);
-  border-radius: bolt-border-radius(small);
-  background-color: var(--m-bolt-bg);
-
-  .c-bolt-teaser__signifier,
-  .c-bolt-teaser__signifier img {
-    border-top-right-radius: bolt-border-radius(small);
-    border-top-left-radius: bolt-border-radius(small);
-  }
-
-  .c-bolt-teaser__signifier {
-    --c-bolt-teaser-signifier-aspect-ratio: unset;
-  }
-
-  .c-bolt-teaser__signifier-image {
-    all: unset;
-  }
-
-  .c-bolt-teaser__content {
-    padding: 0 var(--bolt-spacing-x-small) var(--bolt-spacing-y-small) var(--bolt-spacing-x-small);
-  }
-
-  &.c-bolt-teaser--horizontal {
-    @include bolt-teaser-horizontal-variant-card;
-  }
-
-  @include bolt-mq(medium) {
-    &.c-bolt-teaser--responsive {
-      @include bolt-teaser-horizontal-variant-card;
-    }
-  }
 }
