@@ -1,0 +1,141 @@
+{% extends "_drupal-admin-ui-template.twig" %}
+
+{% block ui_component_name %}
+  Button Paragraph
+{% endblock %}
+
+{% block description %}
+  The button paragraph combines the list component and the button element.
+{% endblock %}
+
+{% block main %}
+  {% embed '_main-content.twig' %}
+    {% block fieldset_inner %}
+      <legend>Button(s)</legend>
+      <details>
+        <summary><strong>Display Options</strong></summary>
+        <ram>
+          <div>
+            <label>
+              <div><strong><small>Button display</small></strong></div>
+              <select>
+                <option value="Inline" selected>Inline</option>
+                <option value="Block">Block</option>
+                <option value="inline@from-small">Block, change to inline when above small breakpoint</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              <div><strong><small>Gap between buttons</small></strong></div>
+              <select>
+                <option value="xxsmall">xxsmall</option>
+                <option value="xsmall">xsmall</option>
+                <option value="small">small</option>
+                <option value="medium">medium</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              <div><strong><small>Align</small></strong></div>
+              <select>
+                <option value="start">start</option>
+                <option value="center">center</option>
+                <option value="end">end</option>
+                <option value="justify">justify</option>
+              </select>
+            </label>
+          </div>
+        </ram>
+      </details>
+      <details open>
+        <summary><strong>Button 1</strong></summary>
+        <ul>
+          <li>
+            <label>
+              <div><strong><small>Display Label</small></strong></div>
+              <div>
+                <input type="text" placeholder="Enter plain text">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label>
+              <div><strong><small>Accessible Label</small></strong></div>
+              <div>
+                <input type="text" placeholder="Enter plain text">
+              </div>
+            </label>
+          </li>
+          <li>
+            <ram>
+              <div>
+                <label>
+                  <div><strong><small>Hierarchy</small></strong></div>
+                  <select>
+                    <option value="Primary">Primary</option>
+                    <option value="Secondary">Secondary</option>
+                    <option value="Tertiary">Tertiary</option>
+                    <option value="Tranparent">Tranparent</option>
+                  </select>
+                </label>
+              </div>
+              <div>
+                <label>
+                  <div><strong><small>Size</small></strong></div>
+                  <select>
+                    <option value="Xsmall">Xsmall</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="Large">Large</option>
+                  </select>
+                </label>
+              </div>
+              <div>
+                <label>
+                  <div><strong><small>Border Radius</small></strong></div>
+                  <select>
+                    <option value="Small">Small</option>
+                    <option value="Large">Large</option>
+                    <option value="Full">Full</option>
+                  </select>
+                </label>
+              </div>
+            </ram>
+          </li>
+        </ul>
+        {% embed 'tabs/_tabs-set.twig' %}
+          {% block tabs %}
+            {% include 'tabs/_tab-action.twig' %}
+            {% include 'tabs/_tab-icon-only.twig' %}
+            {% include 'tabs/_tab-animation.twig' %}
+            {% include 'tabs/_tab-overrides.twig' %}
+          {% endblock %}
+        {% endembed %}
+        </details>
+        <p>
+          <button type="button">Add another button</button>
+        </p>
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
+
+{% block code_snippet %}
+<bolt-list display="inline" spacing="xsmall">
+  <bolt-list-item>
+    <button class="e-bolt-button">...</button>
+  </bolt-list-item>
+</bolt-list>
+{% endblock %}
+
+{% block dev_notes %}
+<bolt-banner align="start">
+  <h3>Dev Notes</h3>
+  <ol>
+    <li>Regardless of how many buttons are created, always render a list. This removes the need to have two paragraphs (button and button group).</li>
+    <li>List Options section should be a conditional based on how many buttons are created. It does not appear if only 1 button is created.</li>
+  </ol>
+</bolt-banner>
+{% endblock %}
+

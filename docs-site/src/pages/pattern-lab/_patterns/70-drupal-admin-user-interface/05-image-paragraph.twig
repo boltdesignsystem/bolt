@@ -1,0 +1,104 @@
+{% extends "_drupal-admin-ui-template.twig" %}
+
+{% block ui_component_name %}
+  Image paragraph
+{% endblock %}
+
+{% block description %}
+  Image paragraph can be stand-alone content and nested within other paragraphs that requires images.
+{% endblock %}
+
+{% block main %}
+  {% embed '_main-content.twig' %}
+    {% block fieldset_inner %}
+      <legend>Image</legend>
+      <ul>
+        <li>
+          <button>Select an image</button>
+        </li>
+        <li>
+          <div>
+            <label>
+              <div><strong><small>Image size</small></strong></div>
+              <select name="image-size">
+                <option value="Source">Source</option>
+                <option value="Stretch">Stretch</option>
+                <option value="Custom">Custom</option>
+              </select>
+            </label>
+          </div>
+        </li>
+      </ul>
+      {% embed 'tabs/_tabs-set.twig' %}
+        {% block tabs %}
+          {% include 'tabs/_tab-modal.twig' %}
+          {% include 'tabs/_tab-animation.twig' %}
+          {% include 'tabs/_tab-overrides.twig' %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+  {% endembed %}
+  {% embed '_main-content.twig' %}
+    {% block settings_title %}
+      <h3>Custom image workflow</h3>
+    {% endblock %}
+    {% block fieldset_inner %}
+      <legend>Image</legend>
+      <ul>
+        <li>
+          <button>Select an image</button>
+        </li>
+        <li>
+          <div><strong><small>Image size</small></strong></div>
+          <label>
+            <select name="image-size">
+              <option value="Source">Source</option>
+              <option value="Stretch">Stretch</option>
+              <option value="Custom" selected>Custom</option>
+            </select>
+          </label>
+          <label>
+            <input type="text" placeholder="eg. 320px">
+          </label>
+        </li>
+        <li>
+          <info>
+            <div indented>
+              <p><i><svg viewBox="0 0 512 512" width="100" title="info-circle"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" /></svg></i> Note: the pixel value will be set as the max-wdith for the responsive image to display at.</p>
+              <div><strong>Legacy sizes</strong></div>
+              <ol>
+                <li>80px (small)</li>
+                <li>150px (medium)</li>
+                <li>250px (large)</li>
+                <li>550px (xlarge)</li>
+                <li>170px (ABM headshot)</li>
+                <li>400px</li>
+              </ol>
+            </div>
+          </info>
+        </li>
+      </ul>
+      ...
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
+
+{% block code_snippet %}
+<img src="image.jpg" class="e-bolt-image" width=500 height=500>
+
+<figure>
+  <img src="image.jpg" class="e-bolt-image" width=500 height=500>
+  <figcaption>...</figcaption>
+</figure>
+{% endblock %}
+
+{% block dev_notes %}
+<bolt-banner align="start">
+  <h3>Dev Notes</h3>
+  <ol>
+    <li>Source image size will set the <code>width</code> and <code>height</code> attributes according to the source file's dimentions.</li>
+    <li>Stretch image size will set the <code>fill</code> prop on the image element to <code>true</code>.</li>
+    <li>If custom image size is set, it would override the <code>width</code> attribute, the value for <code>height</code> attribute would need to be updated programatically.</li>
+  </ol>
+</bolt-banner>
+{% endblock %}
