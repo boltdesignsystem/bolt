@@ -1,0 +1,36 @@
+{% set link %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'This is a link',
+    attributes: {
+      href: '#'
+    }
+  } only %}
+{% endset %}
+
+{% set button %}
+  {% include '@bolt-elements-button/button.twig' with {
+    content: 'This is a button',
+    attributes: {
+      type: 'submit'
+    }
+  } only %}
+{% endset %}
+
+{% set trigger %}
+  {% include '@bolt-elements-button/button.twig' with {
+  content: 'This triggers a popover',
+  attributes: {
+    type: 'button'
+  }
+} only %}
+{% endset %}
+
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: trigger,
+  content: link,
+} only %}
+
+{% include '@bolt-components-popover/popover.twig' with {
+  trigger: trigger,
+  content: button,
+} only %}
