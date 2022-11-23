@@ -1,0 +1,126 @@
+{% extends "_drupal-admin-ui-template.twig" %}
+
+{% block ui_component_name %}
+  Action Blocks Paragraph
+{% endblock %}
+
+{% block description %}
+  Action Blocks is a sub-layout paragraph.
+{% endblock %}
+
+{% block main %}
+  {% embed '_main-content.twig' %}
+
+    {% block ui_component_info %}
+      <h3>1. Action Blocks can be added to any layout items.</h3>
+    {% endblock %}
+
+    {% block ui_component_showcase %}
+      <h3>2. After adding Action Blocks to a layout item. Render the action blocks as you do for other types of content.</h3>
+      <h4>Action Blocks (<a href="">edit</a>)</h4>
+      <action-blocks>
+        <a href="#!">
+          <svg viewBox="0 0 640 512" width="100" title="ambulance">
+            <path d="M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h16c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm144-248c0 4.4-3.6 8-8 8h-56v56c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-56h-56c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h56v-56c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v56h56c4.4 0 8 3.6 8 8v48zm176 248c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z" />
+          </svg>
+          <p>Item 1</p>
+        </a>
+        <a href="#!">
+          <svg viewBox="0 0 512 512" width="100" title="baby-carriage">
+            <path d="M144.8 17c-11.3-17.8-37.2-22.8-54-9.4C35.3 51.9 0 118 0 192h256L144.8 17zM496 96h-48c-35.3 0-64 28.7-64 64v64H0c0 50.6 23 96.4 60.3 130.7C25.7 363.6 0 394.7 0 432c0 44.2 35.8 80 80 80s80-35.8 80-80c0-8.9-1.8-17.2-4.4-25.2 21.6 5.9 44.6 9.2 68.4 9.2s46.9-3.3 68.4-9.2c-2.7 8-4.4 16.3-4.4 25.2 0 44.2 35.8 80 80 80s80-35.8 80-80c0-37.3-25.7-68.4-60.3-77.3C425 320.4 448 274.6 448 224v-64h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM80 464c-17.6 0-32-14.4-32-32s14.4-32 32-32 32 14.4 32 32-14.4 32-32 32zm320-32c0 17.6-14.4 32-32 32s-32-14.4-32-32 14.4-32 32-32 32 14.4 32 32z" />
+          </svg>
+          <p>Item 2</p>
+        </a>
+        <a href="#!">
+          <svg viewBox="0 0 640 512" width="100" title="balance-scale">
+            <path d="M256 336h-.02c0-16.18 1.34-8.73-85.05-181.51-17.65-35.29-68.19-35.36-85.87 0C-2.06 328.75.02 320.33.02 336H0c0 44.18 57.31 80 128 80s128-35.82 128-80zM128 176l72 144H56l72-144zm511.98 160c0-16.18 1.34-8.73-85.05-181.51-17.65-35.29-68.19-35.36-85.87 0-87.12 174.26-85.04 165.84-85.04 181.51H384c0 44.18 57.31 80 128 80s128-35.82 128-80h-.02zM440 320l72-144 72 144H440zm88 128H352V153.25c23.51-10.29 41.16-31.48 46.39-57.25H528c8.84 0 16-7.16 16-16V48c0-8.84-7.16-16-16-16H383.64C369.04 12.68 346.09 0 320 0s-49.04 12.68-63.64 32H112c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h129.61c5.23 25.76 22.87 46.96 46.39 57.25V448H112c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h416c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z" />
+          </svg>
+          <p>Item 3</p>
+        </a>
+      </action-blocks>
+    {% endblock %}
+
+    {% block settings_title %}
+      <h3>3. Editing the Action Blocks will bring up these options in a modal.</h3>
+    {% endblock %}
+
+    {% block fieldset_inner %}
+      <legend>Action Blocks</legend>
+      <ul>
+        <li>
+          <ram>
+            <div>
+              <label>
+                <div><strong><small>Items</small></strong></div>
+                <select>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3" selected>3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+              </label>
+            </div>
+            <div>
+              <label>
+                <div><strong><small>Max Items Per Row</small></strong></div>
+                <select>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6" selected>6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+              </label>
+            </div>
+          </ram>
+        </li>
+        <li>
+          <ram>
+            <div>
+              <label>
+                <div><strong><small>Spacing</small></strong></div>
+                <select>
+                  <option value="xsmall">xsmall</option>
+                  <option value="small">small</option>
+                  <option value="medium" selected>medium</option>
+                </select>
+              </label>
+            </div>
+            <div>
+              <label>
+                <div><strong><small>Vertical Alignment</small></strong></div>
+                <select>
+                  <option value="start">start</option>
+                  <option value="center">center</option>
+                  <option value="end">end</option>
+                </select>
+              </label>
+            </div>
+          </ram>
+        </li>
+      </ul>
+      {% embed '_tabs-set.twig' %}
+        {% block tabs %}
+          {% include '_tab-item-options.twig' %}
+          {% include '_tab-animation.twig' %}
+          {% include '_tab-overrides.twig' %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+
+  {% endembed %}
+{% endblock %}

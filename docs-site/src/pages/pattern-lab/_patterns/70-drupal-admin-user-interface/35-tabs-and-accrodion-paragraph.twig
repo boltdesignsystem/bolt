@@ -1,0 +1,127 @@
+{% extends "_drupal-admin-ui-template.twig" %}
+
+{% block ui_component_name %}
+  Tabs/Accordion Paragraph
+{% endblock %}
+
+{% block description %}
+  The tabs/accordion paragraph is a sub-layout paragraph. It acts similarly to Layout but can be only added on a Layout Item level rather than on the blank canvas level.
+{% endblock %}
+
+{% block main %}
+  {% embed '_main-content.twig' %}
+
+    {% block ui_component_info %}
+      <h3>1. Tabs/accordion be added to any layout items.</h3>
+    {% endblock %}
+
+    {% block ui_component_showcase %}
+      <h3>2. After adding a tabs/accordion to a layout item. The plus icon button in each tabs/accordion item adds content, the same workflow as in layout items.</h3>
+      <h4>Tabs/Accordion (<a href="">edit</a>)</h4>
+      <accordion>
+        <details open>
+          <summary>Item 1</summary>
+          <button>+ Add content</button>
+        </details>
+        <details>
+          <summary>Item 2</summary>
+          <button>+ Add content</button>
+        </details>
+        <details>
+          <summary>Item 3</summary>
+          <button>+ Add content</button>
+        </details>
+      </accordion>
+    {% endblock %}
+
+    {% block settings_title %}
+      <h3>3. Editing the tabs/accordion will bring up these options in a modal.</h3>
+    {% endblock %}
+
+    {% block fieldset_inner %}
+      <legend>Tabs/Accordion Options</legend>
+      <ul>
+        <li>
+          <ram>
+            <label>
+              <div><strong><small>Type</small></strong></div>
+              <select>
+                <option value="Accordion" selected>Accordion</option>
+                <option value="Tabs">Tabs</option>
+              </select>
+            </label>
+            <label>
+              <div><strong><small>Items</small></strong></div>
+              <select>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </label>
+          </ram>
+        </li>
+      </ul>
+      {% embed '_tabs-set.twig' %}
+        {% block tabs %}
+          {% include '_tab-visual-accordion.twig' %}
+          {% include '_tab-item-options-accordion.twig' %}
+          {% include '_tab-animation.twig' %}
+          {% include '_tab-overrides.twig' %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+
+  {% endembed %}
+
+  {% embed '_main-content.twig' %}
+    {% block fieldset_inner %}
+      <legend>Tabs/Accordion Options</legend>
+      <ul>
+        <li>
+          <ram>
+            <label>
+              <div><strong><small>Type</small></strong></div>
+              <select>
+                <option value="Accordion">Accordion</option>
+                <option value="Tabs" selected>Tabs</option>
+              </select>
+            </label>
+            <label>
+              <div><strong><small>Items</small></strong></div>
+              <select>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </label>
+          </ram>
+        </li>
+      </ul>
+      {% embed '_tabs-set.twig' %}
+        {% block tabs %}
+          {% include '_tab-visual-tabs.twig' %}
+          {% include '_tab-item-options-tabs.twig' %}
+          {% include '_tab-animation.twig' %}
+          {% include '_tab-overrides.twig' %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+
+  {% endembed %}
+{% endblock %}

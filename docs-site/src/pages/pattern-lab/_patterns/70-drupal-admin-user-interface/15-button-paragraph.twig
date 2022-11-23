@@ -108,6 +108,8 @@
         {% embed 'tabs/_tabs-set.twig' %}
           {% block tabs %}
             {% include 'tabs/_tab-action.twig' %}
+            {% include 'tabs/_tab-icon-before.twig' %}
+            {% include 'tabs/_tab-icon-after.twig' %}
             {% include 'tabs/_tab-icon-only.twig' %}
             {% include 'tabs/_tab-animation.twig' %}
             {% include 'tabs/_tab-overrides.twig' %}
@@ -130,12 +132,9 @@
 {% endblock %}
 
 {% block dev_notes %}
-<bolt-banner align="start">
-  <h3>Dev Notes</h3>
-  <ol>
-    <li>Regardless of how many buttons are created, always render a list. This removes the need to have two paragraphs (button and button group).</li>
-    <li>List Options section should be a conditional based on how many buttons are created. It does not appear if only 1 button is created.</li>
-  </ol>
-</bolt-banner>
+<ol>
+  <li>Regardless of how many buttons are created, always render a list. This removes the need to have two paragraphs (button and button group).</li>
+  <li>List Options section should be a conditional based on how many buttons are created. It does not appear if only 1 button is created.</li>
+</ol>
 {% endblock %}
 
