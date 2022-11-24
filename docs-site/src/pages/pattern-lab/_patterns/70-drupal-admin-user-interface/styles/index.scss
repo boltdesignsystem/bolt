@@ -5,8 +5,25 @@
 .c-drupal-admin-ui {
   padding: 2rem var(--page-padding-x);
 
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.17rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
   form {
     margin-bottom: 1.35rem;
+
+    button {
+      cursor: pointer;
+      background-color: #efefef;
+    }
   }
 
   form ul {
@@ -76,6 +93,35 @@
     width: auto;
   }
 
+  .enable-animation {
+    & ~ .c-drupal-admin-ui__info,
+    & ~ .c-drupal-admin-ui__grid {
+      display: none;
+    }
+
+    &:checked {
+      & ~ .c-drupal-admin-ui__info,
+      & ~ .c-drupal-admin-ui__grid {
+        display: grid;
+      }
+    }
+  }
+
+  blockquote {
+    padding-left: 2rem;
+    border-left: 4px solid blue;
+
+    > p {
+      margin-bottom: 0.4125rem;
+      font-size: 1.17rem;
+    }
+  }
+
+  hr {
+    margin-top: 3.3rem;
+    margin-bottom: 3.3rem;
+  }
+
   &__info {
     display: block;
     padding: 3px;
@@ -121,6 +167,11 @@
       padding: 0.75rem 1rem;
       background-color: white;
 
+      // @include bolt-mq($until: medium) {
+      //   position: relative;
+      //   width: 100%;
+      // }
+
       &:target {
         display: block;
 
@@ -139,6 +190,10 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       border-right: inherit;
+      // @include bolt-mq($until: xsmall) {
+      //   order: -1;
+      //   width: 100%;
+      // }
 
       & ~ a {
         border-top: inherit;
