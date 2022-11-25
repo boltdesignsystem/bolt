@@ -10,7 +10,7 @@
 
 {% block main %}
   {% embed '_main-content.twig' %}
-    {% block fieldset_inner %}
+    {% block settings %}
       <legend>Button(s)</legend>
       <details>
         <summary><strong>Display Options</strong></summary>
@@ -105,14 +105,14 @@
             </div>
           </li>
         </ul>
-        {% embed 'tabs/_tabs-set.twig' %}
+        {% embed '_tabs-set.twig' %}
           {% block tabs %}
-            {% include 'tabs/_tab-action.twig' %}
-            {% include 'tabs/_tab-icon-before.twig' %}
-            {% include 'tabs/_tab-icon-after.twig' %}
-            {% include 'tabs/_tab-icon-only.twig' %}
-            {% include 'tabs/_tab-animation.twig' %}
-            {% include 'tabs/_tab-overrides.twig' %}
+            {% include '_tab-action.twig' %}
+            {% include '_tab-icon-before.twig' %}
+            {% include '_tab-icon-after.twig' %}
+            {% include '_tab-icon-only.twig' %}
+            {% include '_tab-animation.twig' %}
+            {% include '_tab-overrides.twig' %}
           {% endblock %}
         {% endembed %}
         </details>

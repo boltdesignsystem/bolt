@@ -10,7 +10,7 @@
 
 {% block main %}
   {% embed '_main-content.twig' %}
-    {% block fieldset_inner %}
+    {% block settings %}
       <legend>Icon</legend>
         <ul>
           <li>
@@ -57,11 +57,11 @@
             </ul>
           </li>
         </ul>
-        {% embed 'tabs/_tabs-set.twig' %}
+        {% embed '_tabs-set.twig' %}
           {% block tabs %}
-            {% include 'tabs/_tab-shape.twig' %}
-            {% include 'tabs/_tab-animation.twig' %}
-            {% include 'tabs/_tab-overrides.twig' %}
+            {% include '_tab-shape.twig' %}
+            {% include '_tab-animation.twig' %}
+            {% include '_tab-overrides.twig' %}
           {% endblock %}
         {% endembed %}
     {% endblock %}
@@ -70,7 +70,7 @@
     {% block settings_title %}
       <h3>Custom icon workflow</h3>
     {% endblock %}
-    {% block fieldset_inner %}
+    {% block settings %}
       <legend>Icon</legend>
       <ul>
         <li>

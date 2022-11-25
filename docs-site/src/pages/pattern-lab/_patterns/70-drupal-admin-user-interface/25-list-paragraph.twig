@@ -19,9 +19,9 @@
       <h3>2. After adding a list to a layout, placeholder spaces will be reserved for each list item. User can add other paragraphs inside each item.</h3>
       <h4>List (<a href="">edit</a>)</h4>
       <div class="c-drupal-admin-ui__placeholder" inline>
-        <div class="c-drupal-admin-ui__placeholder"><button>Add content</button></div>
-        <div class="c-drupal-admin-ui__placeholder"><button>Add content</button></div>
-        <div class="c-drupal-admin-ui__placeholder"><button>Add content</button></div>
+        {% for item in 1..3 %}
+          <div class="c-drupal-admin-ui__placeholder"><button>Add content</button></div>
+        {% endfor %}
       </div>
     {% endblock %}
 
@@ -29,7 +29,7 @@
       <h3>3. Editing the list will bring up these options in a modal.</h3>
     {% endblock %}
 
-    {% block fieldset_inner %}
+    {% block settings %}
       <legend>List Options</legend>
       <ul>
         <li>

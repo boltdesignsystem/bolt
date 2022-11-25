@@ -28,7 +28,7 @@
       <h3>3. Editing the Blockquote will bring up these options in a modal.</h3>
     {% endblock %}
 
-    {% block fieldset_inner %}
+    {% block settings %}
       <legend>Blockquote</legend>
       <ul>
         <li>
@@ -64,11 +64,11 @@
       </ul>
       {% embed '_tabs-set.twig' %}
         {% block tabs %}
-          {% include '_tab-visual.twig' %}
+          {% include '_tab-visual-blockquote.twig' %}
           {% include '_tab-avatar.twig' %}
-          {% include '_tab-logo.twig' %}
+          {# {% include '_tab-logo.twig' %}
           {% include '_tab-animation.twig' %}
-          {% include '_tab-overrides.twig' %}
+          {% include '_tab-overrides.twig' %} #}
         {% endblock %}
       {% endembed %}
     {% endblock %}

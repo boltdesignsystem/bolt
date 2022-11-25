@@ -44,7 +44,7 @@
       <h3>3. Editing the Action Blocks will bring up these options in a modal.</h3>
     {% endblock %}
 
-    {% block fieldset_inner %}
+    {% block settings %}
       <legend>Action Blocks</legend>
       <ul>
         <li>
@@ -115,7 +115,7 @@
       </ul>
       {% embed '_tabs-set.twig' %}
         {% block tabs %}
-          {% include '_tab-item-options.twig' %}
+          {% include '_tab-item-options-action-blocks.twig' %}
           {% include '_tab-animation.twig' %}
           {% include '_tab-overrides.twig' %}
         {% endblock %}
