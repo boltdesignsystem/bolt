@@ -1,5 +1,5 @@
 :root {
-  --page-padding-x: calc((100vw - min(80vw, 75ch)) / 2);
+  --page-padding-x: calc((100vw - min(80vw, 90ch)) / 2);
 }
 
 .c-drupal-admin-ui {
@@ -19,11 +19,6 @@
 
   form {
     margin-bottom: 1.35rem;
-
-    button {
-      cursor: pointer;
-      background-color: #efefef;
-    }
   }
 
   form ul {
@@ -62,8 +57,6 @@
     max-width: 100%;
     margin-bottom: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif;
     font-size: 0.67rem;
     font-weight: 700;
     color: inherit;
@@ -91,6 +84,24 @@
   input[type='radio'],
   input[type='checkbox'] {
     width: auto;
+  }
+
+  input,
+  label {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  button {
+    @include bolt-mq($until: medium) {
+      width: 100%;
+      margin-bottom: 0.3rem;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
   }
 
   .enable-animation {
@@ -143,6 +154,9 @@
     min-height: 324px;
     border: 1px solid lightgray;
     background-color: #f4f4f4;
+    @include bolt-mq($until: medium) {
+      min-height: auto;
+    }
 
     &:before {
       content: 'Select a tab on the side';
@@ -154,6 +168,9 @@
       transform: translateY(-50%);
       width: calc(100% - 180px);
       color: gray;
+      @include bolt-mq($until: medium) {
+        display: none;
+      }
     }
 
     > section {
@@ -167,10 +184,16 @@
       padding: 0.75rem 1rem;
       background-color: white;
 
-      // @include bolt-mq($until: medium) {
-      //   position: relative;
-      //   width: 100%;
-      // }
+      &:last-of-type {
+        & + a {
+          border-bottom: 1px solid lightgray;
+        }
+      }
+
+      @include bolt-mq($until: medium) {
+        position: relative;
+        width: 100%;
+      }
 
       &:target {
         display: block;
@@ -190,10 +213,10 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       border-right: inherit;
-      // @include bolt-mq($until: xsmall) {
-      //   order: -1;
-      //   width: 100%;
-      // }
+      @include bolt-mq($until: medium) {
+        order: -1;
+        width: 100%;
+      }
 
       & ~ a {
         border-top: inherit;
