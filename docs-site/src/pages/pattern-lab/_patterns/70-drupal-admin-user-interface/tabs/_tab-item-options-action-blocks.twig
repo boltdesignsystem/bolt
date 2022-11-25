@@ -1,0 +1,57 @@
+<section id="item-options">
+  <ul>
+    {% for item in 1..3 %}
+      <li>
+        <details>
+          <summary>Item {{ loop.index }}</summary>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <label>
+                    <div><strong><small>Item label</small></strong></div>
+                    <input type="text">
+                  </label>
+                </li>
+                <li>
+                  <div><strong><small>Action Type</small></strong></div>
+                  <div>
+                    <label><input type="radio" name="link-type" {% if loop.first %}checked{% endif %}> <small>Link</small></label>
+                    <div indented>
+                      <div>
+                        <label><input type="url" value="https://"></label>
+                      </div>
+                      <div>
+                        <label><input type="checkbox" name="reversed-underline"> <small>Open in new window</small></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <label><input type="radio" name="link-type"> <small>Open a content modal</small></label>
+                    <div indented>
+                      <input type="text" placeholder="Enter modal ID">
+                    </div>
+                  </div>
+                  <div>
+                    <label><input type="radio" name="link-type"> <small>Open a video modal</small></label>
+                    <div indented>
+                      <input type="text" placeholder="Enter video ID">
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div><strong><small>Choose an icon from the library</small></strong></div>
+                  <div>
+                    <button>Select icon</button>
+                    <button>Use custom icon</button>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </details>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+<a href="#item-options">Item options</a>
