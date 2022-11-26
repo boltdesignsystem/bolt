@@ -357,6 +357,11 @@ async function createWebpackConfig(buildConfig) {
       chunkFilename: `[name]-bundle-[chunkhash].js`,
       publicPath,
     },
+    // Emulate Drupal environment, where react/react-dom is on the window (temporary until DS-863 is done)
+    externals: {
+      react: 'React',
+      'react-dom': 'ReactDOM',
+    },
     plugins: [
       new webpack.DefinePlugin(getGlobalJSData(true)),
       // CopyWebpackPlugin throws an error if you don't pass it a configuration object

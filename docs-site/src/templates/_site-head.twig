@@ -53,6 +53,10 @@
       window.bolt.data.fullManifest.version = window.bolt.data.fullManifest.version || {{ bolt.data.fullManifest.version|json_encode|raw }};
     </script>
 
+    {# Emulate Drupal environment, where react/react-dom is on the window (temporary until DS-863 is done) #}
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
     <script type="module" src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}"></script>
 
     <noscript>
