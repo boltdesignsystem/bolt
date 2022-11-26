@@ -421,6 +421,31 @@ async function createWebpackConfig(buildConfig) {
     },
   });
 
+  if (config.env === 'drupal') {
+    const themeRegExp = new RegExp('^(' + config.themeNames.join('|') + ')-');
+    const disablePlugins = ['ManifestPlugin'];
+
+    // Remove any empty entries (for example one that just has a Twig template)
+    for (const i in mergedConfig.entry) {
+      if (!mergedConfig.entry[i].length) {
+        delete mergedConfig.entry[i];
+      }
+    }
+
+    const entries = {};
+    for (const name in mergedConfig.entry) {
+      // Replace "-" with "/", e.g. `@pega_bolt_theme-components-wysiwyg` => `@pega_bolt_theme/components-wysiwyg`
+      // Replace "@" with "", e.g. `@pega_bolt_theme/components-wysiwyg` => `pega_bolt_theme/components-wysiwyg`
+      const updatedName = name.replace(themeRegExp, '$1/').replace(/@/g, '');
+      entries[updatedName] = mergedConfig.entry[name];
+    }
+    mergedConfig.entry = entries;
+
+    mergedConfig.plugins = mergedConfig.plugins.filter(plugin => {
+      return !disablePlugins.includes(plugin.constructor.name);
+    });
+  }
+
   return mergedConfig;
 }
 
