@@ -57,10 +57,23 @@ async function watch(customConfig) {
   return new Promise((resolve, reject) => {
     const compiler = boltWebpackMessages(webpack(webpackConfig));
 
-    compiler.watch({
-      // https://webpack.js.org/configuration/watch/#watchoptions
-      aggregateTimeout: 300,
-    });
+    compiler.watch(
+      {
+        // https://webpack.js.org/configuration/watch/#watchoptions
+        aggregateTimeout: 300,
+        poll: 1000,
+      },
+      (err, stats) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+
+        console.log(
+          stats.toString(statsPreset(webpackStats[boltBuildConfig.verbosity])),
+        );
+      },
+    );
   });
 }
 
