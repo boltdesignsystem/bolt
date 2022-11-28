@@ -50,6 +50,7 @@
       <label>
         <div><strong><small>Animation delay</small></strong></div>
         <select>
+          <option>None</option>
           <option>Short</option>
           <option>Long</option>
         </select>
@@ -57,13 +58,14 @@
     </div>
     <div>
       <label>
-        <div><strong><small>Cascade behavior</small></strong></div>
+        <div><strong><small>Cascade</small></strong></div>
         <select>
-          <option>Fast</option>
+          <option>None/All at once</option>
+          <option selected>Fast</option>
           <option>Slow</option>
-          <option>None</option>
         </select>
       </label>
+      <p>When <em>cascade</em> is enabled, animations will run in sequence rather than all at once.</p>
     </div>
   </div>
 </section>
