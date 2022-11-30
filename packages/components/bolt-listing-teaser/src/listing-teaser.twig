@@ -59,7 +59,10 @@
           {% spaceless %}<ul class="c-bolt-listing-teaser__meta">{% for item in meta_items %}<li class="c-bolt-listing-teaser__meta__item">{{ item }}</li>{% endfor %}</ul>{% endspaceless %}
         {% endif %}
         {% if description %}
-          <div class="c-bolt-listing-teaser__flag-content__item">
+          <div class="
+            c-bolt-listing-teaser__flag-content__item
+            {{ this.data.description_clamp.value ? '' : 'c-bolt-listing-teaser__flag-content__item--no-clamp' }}
+          ">
             {{ description }}
           </div>
         {% endif %}
