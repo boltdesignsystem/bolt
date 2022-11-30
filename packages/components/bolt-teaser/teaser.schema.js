@@ -132,6 +132,20 @@ module.exports = {
       enum: ['transparent', 'card'],
       default: 'transparent',
     },
+    spacing: {
+      type: 'string',
+      description:
+        'This works only with the card variant teaser. Set spacing around the component content',
+      enum: ['small', 'medium', 'large'],
+      default: 'small',
+    },
+    border_radius: {
+      type: 'string',
+      description:
+        'This works only with the card variant teaser. Set rounded corners on the component.',
+      enum: ['none', 'small', 'large'],
+      default: 'none',
+    },
     type: {
       title: 'DEPRECATED',
       type: 'string',
