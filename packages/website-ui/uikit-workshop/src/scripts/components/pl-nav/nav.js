@@ -117,29 +117,23 @@ class Nav extends BaseComponent {
       this.handleURLChange(); // so the nav logic is always correct (ex. layout changes)
     }
 
-    this.handleTestFolder();
-    this.handleArchiveFolder();
-    this.handleDrupalFolder();
+    this.handleHiddenFolders();
   }
 
-  handleTestFolder() {
-    if (this.testElem !== undefined) {
+  handleHiddenFolders() {
+    if (this.testElem) {
       this.testMode
         ? this.testElem.classList.remove('pl-c-nav__list-item--hidden')
         : this.testElem.classList.add('pl-c-nav__list-item--hidden');
     }
-  }
 
-  handleArchiveFolder() {
-    if (this.archiveElem !== undefined) {
+    if (this.archiveElem) {
       this.archiveMode
         ? this.archiveElem.classList.remove('pl-c-nav__list-item--hidden')
         : this.archiveElem.classList.add('pl-c-nav__list-item--hidden');
     }
-  }
 
-  handleDrupalFolder() {
-    if (this.drupalElem !== undefined) {
+    if (this.drupalElem) {
       this.drupalMode
         ? this.drupalElem.classList.remove('pl-c-nav__list-item--hidden')
         : this.drupalElem.classList.add('pl-c-nav__list-item--hidden');
@@ -275,13 +269,12 @@ class Nav extends BaseComponent {
     }
 
     this.testElem = document.querySelector('.pl-c-nav__list-item--tests');
-    this.handleTestFolder();
 
     this.archiveElem = document.querySelector('.pl-c-nav__list-item--archive');
-    this.handleArchiveFolder();
 
     this.drupalElem = document.querySelector('.pl-c-nav__list-item--drupal');
-    this.handleDrupalFolder();
+
+    this.handleHiddenFolders();
   }
 
   render({ layoutMode }) {
