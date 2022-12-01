@@ -83,7 +83,7 @@ class HiddenFoldersToggle extends LitElement {
         class="pl-c-tools__action pl-c-toggle-hidden-folders__action"
         title="Toggle Hidden Folders"
         @click="${() => this.toggleFolders()}"
-        >${this.testMode ? 'Hide' : 'Show'} Archive and Test Folders
+        >${this.testMode ? 'Hide' : 'Show'} Internal Tabs
         <pl-icon slot="after" name="test"></pl-icon>
       </pl-button>
     `;
