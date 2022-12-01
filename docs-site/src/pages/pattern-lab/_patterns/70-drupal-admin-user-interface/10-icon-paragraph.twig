@@ -12,57 +12,57 @@
   {% embed '_main-content.twig' %}
     {% block settings %}
       <legend>Icon</legend>
-        <ul>
-          <li>
-            <div><strong><small>Choose an icon from the library</small></strong></div>
-            <div>
-              <button>Select icon</button>
-              <button>Use custom icon</button>
-            </div>
-          </li>
-          <li>
-            <ul>
-              <li>
-                <div class="c-drupal-admin-ui__grid">
-                  <div>
-                    <label>
-                      <div><strong><small>Icon Size</small></strong></div>
-                      <select name="size">
-                        <option value="none">Inherit from text size</option>
-                        <option value="Small">Small</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Large">Large</option>
-                        <option value="Xlarge">Xlarge</option>
-                      </select>
-                    </label>
-                  </div>
-                  <div>
-                    <label>
-                      <div><strong><small>Icon Color</small></strong></div>
-                      <select name="gutter">
-                        <option value="none">Inherit from text color</option>
-                        <option value="Teal">Teal</option>
-                        <option value="Navy">Navy</option>
-                        <option value="Yellow">Yellow</option>
-                        <option value="Orange">Orange</option>
-                        <option value="Pink">Pink</option>
-                        <option value="Berry">Berry</option>
-                        <option value="Wine">Wine</option>
-                        <option value="Violet">Violet</option>
-                      </select>
-                    </label>
-                  </div>
+      <ul>
+        <li>
+          <div><strong><small>Choose an icon from the library</small></strong></div>
+          <div>
+            <button>Select icon</button>
+            <button>Use custom icon</button>
+          </div>
+        </li>
+        <li>
+          <ul>
+            <li>
+              <div class="c-drupal-admin-ui__grid">
+                <div>
+                  <label>
+                    <div><strong><small>Icon Size</small></strong></div>
+                    <select name="size">
+                      <option value="none">Inherit from text size</option>
+                      <option value="Small">Small</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Large">Large</option>
+                      <option value="Xlarge">Xlarge</option>
+                    </select>
+                  </label>
                 </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        {% embed '_tabs-set.twig' %}
-          {% block tabs %}
-            {% include '_tab-shape.twig' %}
-            {% include '_tab-overrides.twig' %}
-          {% endblock %}
-        {% endembed %}
+                <div>
+                  <label>
+                    <div><strong><small>Icon Color</small></strong></div>
+                    <select name="gutter">
+                      <option value="none">Inherit from text color</option>
+                      <option value="Teal">Teal</option>
+                      <option value="Navy">Navy</option>
+                      <option value="Yellow">Yellow</option>
+                      <option value="Orange">Orange</option>
+                      <option value="Pink">Pink</option>
+                      <option value="Berry">Berry</option>
+                      <option value="Wine">Wine</option>
+                      <option value="Violet">Violet</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      {% embed '_tabs-set.twig' %}
+        {% block tabs %}
+          {% include '_tab-shape.twig' %}
+          {% include '_tab-overrides.twig' %}
+        {% endblock %}
+      {% endembed %}
     {% endblock %}
   {% endembed %}
   {% embed '_main-content.twig' %}
