@@ -170,6 +170,13 @@ class BoltPopover extends BoltElement {
     this.initTippy();
     this.setAttribute('ready', '');
 
+    // close popover when inner action is clicked
+    for (const innerAction of this.content.querySelectorAll('a, button')) {
+      innerAction.addEventListener('click', () => {
+        this.popover?.hide();
+      });
+    }
+
     // Call super and dispatch "ready" event _after_ Tippy is setup
     super.firstUpdated && super.firstUpdated();
   }
