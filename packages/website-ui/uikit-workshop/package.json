@@ -22,7 +22,7 @@
   "scripts": {
     "build": "webpack-cli --config webpack.config.js --stats=minimal",
     "prepublish": "npm run build",
-    "start": "node ./build-tools.js",
+    "start": "yarn node ./build-tools.js",
     "watch": "webpack-cli --config webpack.config.js --progress --watch --stats=minimal"
   },
   "browserslist": [
