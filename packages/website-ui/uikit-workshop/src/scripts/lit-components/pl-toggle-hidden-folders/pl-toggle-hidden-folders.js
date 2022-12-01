@@ -3,6 +3,7 @@ import { LitElement, html, customElement } from 'lit-element';
 import { store } from '../../store.js'; // connect to the Redux store.
 import { updateTestMode } from '../../actions/app.js'; // redux actions needed
 import { updateArchiveMode } from '../../actions/app.js'; // redux actions needed
+import { updateDrupalMode } from '../../actions/app.js'; // redux actions needed
 import styles from './pl-toggle-hidden-folders.scss?external';
 
 @customElement('pl-toggle-hidden-folders')
@@ -28,6 +29,10 @@ class HiddenFoldersToggle extends LitElement {
         attribute: true,
         type: Boolean,
       },
+      drupalMode: {
+        attribute: true,
+        type: Boolean,
+      },
     };
   }
 
@@ -44,6 +49,7 @@ class HiddenFoldersToggle extends LitElement {
     const state = store.getState();
     this.testMode = state.app.testMode || false;
     this.archiveMode = state.app.archiveMode || false;
+    this.drupalMode = state.app.drupalMode || false;
 
     this.__storeUnsubscribe = store.subscribe(() =>
       this._stateChanged(store.getState()),
@@ -52,11 +58,13 @@ class HiddenFoldersToggle extends LitElement {
 
     store.dispatch(updateTestMode(this.testMode));
     store.dispatch(updateArchiveMode(this.archiveMode));
+    store.dispatch(updateDrupalMode(this.drupalMode));
   }
 
   toggleFolders() {
     store.dispatch(updateTestMode(!this.testMode));
     store.dispatch(updateArchiveMode(!this.archiveMode));
+    store.dispatch(updateDrupalMode(!this.drupalMode));
   }
 
   disconnectedCallback() {
@@ -74,6 +82,9 @@ class HiddenFoldersToggle extends LitElement {
     }
     if (this.archiveMode !== state.app.archiveMode) {
       this.archiveMode = state.app.archiveMode;
+    }
+    if (this.drupalMode !== state.app.drupalMode) {
+      this.drupalMode = state.app.drupalMode;
     }
   }
 
