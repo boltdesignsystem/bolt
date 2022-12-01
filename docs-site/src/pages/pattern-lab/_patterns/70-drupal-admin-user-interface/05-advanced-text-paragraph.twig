@@ -80,6 +80,9 @@
       </ul>
       {% embed '_tabs-set.twig' %}
         {% block tabs %}
+          {% include '_tab-action-advanced-paragraph.twig'%}
+          {% include '_tab-icon-before-advanced-paragraph.twig'%}
+          {% include '_tab-icon-after-advanced-paragraph.twig'%}
           {% include '_tab-overrides.twig' %}
         {% endblock %}
       {% endembed %}
