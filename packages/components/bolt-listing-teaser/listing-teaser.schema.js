@@ -126,6 +126,12 @@ module.exports = {
       description:
         'Render a short description for the listing. Listing summary usually goes here. Do not pass links here unless absolutely necessary.',
     },
+    description_clamp: {
+      type: 'boolean',
+      description:
+        'Set prop to false to remove the default line clamping on the description.',
+      default: true,
+    },
     warning: {
       type: 'any',
       description:
