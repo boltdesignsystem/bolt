@@ -1,0 +1,73 @@
+{% set icon_announce %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'pega-announce',
+    size: 'medium',
+  } only %}
+{% endset %}
+{% set header_actions %}
+  {% include '@bolt-components-notifications/notifications-header-action.twig' with {
+    icon: icon_check_circle,
+    label: 'Mark all as read',
+    attributes: {
+      type: 'button',
+    },
+  } only %}
+  {% include '@bolt-components-notifications/notifications-header-action.twig' with {
+    icon: icon_pega_setting,
+    label: 'Notification settings',
+    attributes: {
+      href: '#!',
+    },
+  } only %}
+{% endset %}
+{% set content %}
+  {% set list_content %}
+    {% include '@bolt-components-notifications/notifications-list-heading-divider.twig' with {
+      content: 'Latest',
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_announce,
+      site_name: 'Community',
+      timestamp: '5 min ago',
+      message: {
+        content: 'This a test how it will behave when we have a very long string without spaces for example in the URL like this one: <em>http://www.this-is/a/very-long/pega-link/withoutanyspacesitsfortestingthebehaviourofwrappingaverylongstrings.com</em>.',
+        attributes: {
+          href: '#!',
+        },
+      },
+    } only %}
+    {% include '@bolt-components-notifications/notifications-list-item.twig' with {
+      signifier: icon_announce,
+      site_name: 'Collaboration Center',
+      timestamp: '10 min ago',
+      message: {
+        content: 'This is a <em>read notification</em>.',
+        attributes: {
+          href: '#!',
+        },
+      },
+      read: true,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-notifications/notifications-list.twig' with {
+    content: list_content,
+  } only %}
+{% endset %}
+{% set footer_content %}
+  {% include '@bolt-elements-text-link/text-link.twig' with {
+    content: 'View all notifications',
+    reversed_underline: true,
+    expand_click_target: true,
+    attributes: {
+      href: '#!',
+    }
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-notifications/notifications.twig' with {
+  content: content,
+  footer: {
+    content: footer_content,
+  },
+} only %}
