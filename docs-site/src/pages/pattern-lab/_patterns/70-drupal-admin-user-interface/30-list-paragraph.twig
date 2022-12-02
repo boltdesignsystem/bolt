@@ -1,0 +1,80 @@
+{% extends "_drupal-admin-ui-template.twig" %}
+
+{% block ui_component_name %}
+  List Paragraph
+{% endblock %}
+
+{% block description %}
+  The list paragraph is a sub-layout paragraph. It acts similarly to Layout but can be only added on a Layout Item level rather than on the blank canvas level.
+{% endblock %}
+
+{% block main %}
+  {% embed '_main-content.twig' %}
+
+    {% block ui_component_info %}
+      <h3>1. List will be similar to a nested Layout.</h3>
+    {% endblock %}
+
+    {% block ui_component_showcase %}
+      <h3>2. After adding a list to a layout, placeholder spaces will be reserved for each list item. User can add other paragraphs inside each item.</h3>
+      <h4>List (<a href="">edit</a>)</h4>
+      <div class="c-drupal-admin-ui__placeholder" inline>
+        {% for item in 1..3 %}
+          <div class="c-drupal-admin-ui__placeholder"><button>Add content</button></div>
+        {% endfor %}
+      </div>
+    {% endblock %}
+
+    {% block settings_title %}
+      <h3>3. Editing the list will bring up these options in a modal.</h3>
+    {% endblock %}
+
+    {% block settings %}
+      <legend>List Options</legend>
+      <ul>
+        <li>
+          <div class="c-drupal-admin-ui__grid">
+            <div>
+              <label>
+                <div><strong><small>Display</small></strong></div>
+                <select>
+                  <option value="Inline" selected>Inline</option>
+                  <option value="Block">Block</option>
+                  <option value="inline@from-small">Block, change to inline when above small breakpoint</option>
+                  <option value="Flex">Flex</option>
+                </select>
+              </label>
+            </div>
+            <div>
+              <label>
+                <div><strong><small>Separator</small></strong></div>
+                <select>
+                  <option value="none">none</option>
+                  <option value="solid">solid</option>
+                  <option value="dashed">dashed</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </li>
+      </ul>
+      {% embed '_tabs-set.twig' %}
+        {% block tabs %}
+          {% include '_tab-spacing.twig' %}
+          {% include '_tab-item-alignment.twig' %}
+          {% include '_tab-animation.twig' %}
+          {% include '_tab-overrides.twig' %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+
+  {% endembed %}
+{% endblock %}
+
+{% block code_snippet %}
+<bolt-list display="inline" spacing="xsmall">
+  <bolt-list-item>
+    ...
+  </bolt-list-item>
+</bolt-list>
+{% endblock %}

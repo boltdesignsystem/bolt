@@ -1,0 +1,18 @@
+{% block ui_component_info %}{% endblock %}
+{% if block('ui_component_info') is not empty %}                                 
+  <hr>                                                                 
+{% endif %}
+{% block ui_component_showcase %}{% endblock %}
+{% if block('ui_component_showcase') is not empty %}                                 
+  <hr>                                                                 
+{% endif %}
+{% block settings_title %}{% endblock %}
+<form action="">
+  <fieldset>
+    {% block settings %}{% endblock %}
+  </fieldset>
+  <p>
+    <button type="submit">Save Changes</button>
+    <button type="reset">Cancel</button>
+  </p>
+</form>
