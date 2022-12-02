@@ -1,0 +1,20 @@
+{% set usage %}{% verbatim %}
+{% set list_items %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_1,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_2,
+  } only %}
+  ...
+{% include '@bolt-elements-list/list.twig' with {
+  content: list_items
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'list',
+  componentGroup: 'elements',
+  usage: usage
+} only %}
+

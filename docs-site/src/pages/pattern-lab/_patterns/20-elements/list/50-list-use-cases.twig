@@ -1,0 +1,254 @@
+{# Only demo purpose #}
+<style>
+  .list-demo {
+    background: var(--bolt-color-navy-xlight);
+    border: 2px dashed #545da6;
+  }
+  .list-demo--buttons {
+    display: inline-block;
+  }
+</style>
+
+{% set description %}
+  The List element represents a list of items.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>A List is for grouping a collection of items and shouldn't be used for creating layouts. For creating a page layout, it's recommended to use <a href="{{ link['viewall-layouts-layout'] }}" class="e-bolt-text-link">Layout</a>.</bolt-li>
+    <bolt-li>Below are examples of List usage inside a layout. The blue color indication is for demo purposes only.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set intro %}
+    {% include '@bolt-elements-type/type.twig' with {
+      content: 'What we do',
+      hierarchy: 'headline',
+      tag: 'h2',
+      size: 'xxlarge',
+    } only %}
+    {% include '@bolt-elements-type/type.twig' with {
+      content: 'The Pega Platform™ makes it simpler for enterprises to work smarter, unify experiences, and adapt instantly. Thanks to our scalable, made-to-measure architecture, even the biggest organizations can stay streamlined and ready for what’s next.',
+    } only %}
+    {% set list_items %}
+      {% set button_1 %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Explore products',
+          attributes: {
+            href: 'https://google.com',
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-list/list-item.twig' with {
+        content: button_1,
+      } only %}
+      {% set button_2 %}
+        {% include '@bolt-elements-button/button.twig' with {
+          content: 'Why Pega',
+          hierarchy: 'secondary',
+          attributes: {
+            href: 'https://google.com',
+          }
+        } only %}
+      {% endset %}
+      {% include '@bolt-elements-list/list-item.twig' with {
+        content: button_2,
+      } only %}
+    {% endset %}
+    {# this div below is only for demo purpose #}
+    <div class="u-bolt-padding-small list-demo list-demo--buttons">
+    {% include '@bolt-elements-list/list.twig' with {
+      display: 'horizontal',
+      content: list_items,
+    } only %}
+    </div>
+  {% endset %}
+  {% set layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: intro
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_items,
+    template: [
+      '50@from-medium',
+    ],
+  } only %}
+
+  <hr>
+
+  {% set intro %}
+    {% include '@bolt-elements-type/type.twig' with {
+      content: 'Governance',
+      hierarchy: 'headline',
+      tag: 'h2',
+      size: 'xxlarge',
+    } only %}
+    {% include '@bolt-elements-type/type.twig' with {
+      content: 'One of the objectives of Pega is to build a fast-growing, profitable enterprise that rewards our employees, shareholders, and partners. To achieve this, we must continuously earn the trust of our many stakeholders: employees, customers, partners, suppliers, shareholders, government officials, and the general public.',
+    } only %}
+  {% endset %}
+
+  {% set icon_chevron_right %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'chevron-right',
+    } only %}
+  {% endset %}
+  {% set list_items %}
+    {% set list_1 %}
+      {% include '@bolt-elements-type/type.twig' with {
+        content: 'Code of Conduct',
+        hierarchy: 'headline',
+        tag: 'h3',
+        size: 'large',
+        icon_after: icon_chevron_right,
+        link_attributes: {
+          href: '#!',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: list_1,
+    } only %}
+    {% set list_2 %}
+      {% include '@bolt-elements-type/type.twig' with {
+        content: 'Reporting Accounting Control Concerns',
+        hierarchy: 'headline',
+        tag: 'h3',
+        size: 'large',
+        icon_after: icon_chevron_right,
+        link_attributes: {
+          href: '#!',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: list_2,
+    } only %}
+    {% set list_3 %}
+      {% include '@bolt-elements-type/type.twig' with {
+        content: 'Related Person Transaction Policy',
+        hierarchy: 'headline',
+        tag: 'h3',
+        size: 'large',
+        icon_after: icon_chevron_right,
+        link_attributes: {
+          href: '#!',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: list_3,
+    } only %}
+    {% set list_4 %}
+      {% include '@bolt-elements-type/type.twig' with {
+        content: 'Audit Committee',
+        hierarchy: 'headline',
+        tag: 'h3',
+        size: 'large',
+        icon_after: icon_chevron_right,
+        link_attributes: {
+          href: '#!',
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: list_4,
+    } only %}
+  {% endset %}
+  {% set list_of_links %}
+    {# this div below is only for demo purpose #}
+    <div class="u-bolt-padding-small list-demo">
+    {% include '@bolt-elements-list/list.twig' with {
+      content: list_items,
+      separator: 'solid'
+    } only %}
+    </div>
+  {% endset %}
+  {% set layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: intro
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: list_of_links
+    } only %}
+  {% endset %}
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_items,
+    template: [
+      'halves@from-small',
+    ],
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set intro %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'What we do',
+    hierarchy: 'headline',
+    tag: 'h2',
+    size: 'xxlarge',
+  } only %}
+  {% include '@bolt-elements-type/type.twig' with {
+    content: 'The Pega Platform™ makes it simpler for enterprises to work smarter...',
+  } only %}
+  {% set list_items %}
+    {% set button_1 %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Explore products',
+        attributes: {
+          href: 'https://google.com',
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: button_1,
+    } only %}
+    //More buttons if needed
+  {% endset %}
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'horizontal',
+    content: list_items,
+  } only %}
+{% endset %}
+{% set layout_items %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: intro
+  } only %}
+{% endset %}
+{% include '@bolt-layouts-layout/layout.twig' with {
+  content: layout_items,
+  template: [
+    '50@from-medium',
+  ],
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-layout template="50@from-medium">
+  <bolt-layout-item>
+    <p class="e-bolt-type">
+      The Pega Platform™ makes it simpler for enterprises to work smarter, unify experiences, and adapt instantly. Thanks to our scalable, made-to-measure architecture, even the biggest organizations can stay streamlined and ready for what’s next.</p>
+    <ul class="e-bolt-list e-bolt-list--display-horizontal e-bolt-list--spacing-xsmall e-bolt-list--align-start e-bolt-list--valign-center">
+      <li class="e-bolt-list__item">
+        <a href="https://google.com" class="e-bolt-button">Explore products</a>
+      </li>
+      <li class="e-bolt-list__item">
+      <a href="https://google.com" class="e-bolt-button e-bolt-button--secondary">Why Pega</a>
+      </li>
+    </ul>
+  </bolt-layout-item>
+</bolt-layout>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'List Use Cases',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

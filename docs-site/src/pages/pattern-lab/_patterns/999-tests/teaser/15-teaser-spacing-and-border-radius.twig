@@ -1,0 +1,69 @@
+  {% set schema = bolt.data.components['@bolt-components-teaser'].schema %}
+  {% set layout = schema.properties.layout.enum %}
+  {% set spacing = schema.properties.spacing.enum %}
+  {% set border_radius = schema.properties.border_radius.enum %}
+
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/16x9.jpg',
+      alt: 'Alt text.',
+      loading: 'lazy',
+      width: 800,
+      height: 450,
+    }
+  } only %}
+{% endset %}
+<bolt-grid gutter="small" row-gutter="medium">
+  {% set layout_info = 'This is a card variant vertical' %}
+  {% set border_radius_info = 'This card has no border radius' %}
+  {% set spacing_info = 'This card has the spacing set to small' %}
+  {% for layout in layout %}
+    {# Layout options #}
+    {% if layout == 'horizontal' %}
+      {% set layout_info = 'This is a card variant horizontal' %}
+    {% elseif layout == 'responsive' %}
+      {% set layout_info = 'This is a card variant responsive' %}
+    {% endif %}
+    {% for spacing in spacing %}
+      {# Spacing options #}
+      {% if spacing == 'small' %}
+        {% set spacing_info = 'The <strong>spacing is set to small</strong>.' %}
+      {% elseif spacing == 'medium' %}
+        {% set spacing_info = 'The <strong>spacing is set to medium</strong>.' %}
+      {% else %}
+        {% set spacing_info = 'The <strong>spacing is set to large</strong>.' %}
+      {% endif %}
+      {% for border_radius in border_radius %}
+        {# Border radius options #}
+        {% if border_radius == 'small' %}
+          {% set border_radius_info = 'This card has the <strong>border radius set to small</strong>. ' %}
+        {% elseif border_radius == 'large' %}
+          {% set border_radius_info = 'This card has the <strong>border radius set to large</strong>. ' %}
+        {% else %}
+          {% set border_radius_info = 'This card has <strong>no border radius</strong>. ' %}
+        {% endif %}
+        <bolt-grid-item row-start="auto" row-span="auto" column-start="auto" column-span="12 6@medium" valign="auto" class="u-bolt-padding-medium">
+          {% include '@bolt-components-teaser/teaser.twig' with {
+            layout: layout,
+            signifier: image,
+            variant: 'card',
+            spacing: spacing,
+            border_radius: border_radius,
+            headline: {
+              text: layout_info,
+              link_attributes: {
+                href: 'https://www.google.com',
+                target: '_blank',
+                rel: 'noopener'
+              }
+            },
+            description: {
+              content: 'This card has an image signifier and a title and a few lines of text. ' ~ border_radius_info ~ spacing_info ~ ' Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+            },
+          } only %}
+        </bolt-grid-item>
+      {% endfor %}
+    {% endfor %}
+  {% endfor %}
+</bolt-grid>

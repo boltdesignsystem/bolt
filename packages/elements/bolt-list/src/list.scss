@@ -1,0 +1,383 @@
+/* ------------------------------------ *\
+   List
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+.e-bolt-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bolt-spacing-y-xsmall);
+  margin: 0 0 var(--bolt-spacing-y-medium) 0;
+  padding: 0;
+  font-family: var(--bolt-type-font-family-body);
+  font-size: var(--bolt-type-font-size-medium);
+  font-weight: var(--bolt-type-font-weight-regular);
+  list-style: none;
+  list-style-type: none;
+  line-height: var(--bolt-type-line-height-medium);
+  text-align: start;
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+// Display prop
+.e-bolt-list--display-horizontal {
+  display: inline-flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+}
+
+@each $breakpoint in $bolt-breakpoints {
+  $breakpoint-name: nth($breakpoint, 1);
+
+  @if (
+    $breakpoint-name !=
+      'large' and
+      $breakpoint-name !=
+      'xlarge' and
+      $breakpoint-name !=
+      'xxlarge'
+  ) {
+    .e-bolt-list--display-horizontal\@#{$breakpoint-name} {
+      display: flex;
+      flex-flow: column wrap;
+      gap: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+
+      @include bolt-mq($breakpoint-name) {
+        display: inline-flex;
+        flex-flow: row wrap;
+        align-items: center;
+      }
+    }
+  }
+}
+
+// Spacing prop
+.e-bolt-list--spacing-none {
+  gap: 0;
+}
+
+@each $size in $bolt-spacing-multiplier-system {
+  $size-name: nth($size, 1);
+  @if ($size-name != 'xxlarge') {
+    .e-bolt-list--spacing-#{$size-name} {
+      gap: var(--bolt-spacing-y-#{$size-name}) 0;
+    }
+
+    .e-bolt-list--inset {
+      gap: 0;
+
+      & li {
+        padding: var(--bolt-spacing-y-xsmall) var(--bolt-spacing-x-xsmall);
+      }
+    }
+    .e-bolt-list--spacing-#{$size-name}.e-bolt-list--inset {
+      gap: 0 var(--bolt-spacing-y-xsmall);
+
+      &.e-bolt-list--display-horizontal {
+        gap: 0;
+      }
+
+      & li {
+        padding: var(--bolt-spacing-y-#{$size-name})
+          var(--bolt-spacing-x-#{$size-name});
+      }
+    }
+
+    .e-bolt-list--spacing-#{$size-name} {
+      &.e-bolt-list--display-horizontal {
+        gap: var(--bolt-spacing-y-#{$size-name})
+          var(--bolt-spacing-x-#{$size-name});
+      }
+
+      @each $breakpoint in $bolt-breakpoints {
+        $breakpoint-name: nth($breakpoint, 1);
+
+        @if (
+          $breakpoint-name !=
+            'large' and
+            $breakpoint-name !=
+            'xlarge' and
+            $breakpoint-name !=
+            'xxlarge'
+        ) {
+          &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
+            @include bolt-mq($breakpoint-name) {
+              gap: var(--bolt-spacing-y-#{$size-name})
+                var(--bolt-spacing-x-#{$size-name});
+            }
+          }
+          &.e-bolt-list--display-horizontal\@#{$breakpoint-name}.e-bolt-list--inset {
+            @include bolt-mq($breakpoint-name) {
+              gap: var(--bolt-spacing-x-#{$size-name}) 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Separator prop
+$bolt-list-separator-styles: solid, dashed;
+
+@each $separator-style in $bolt-list-separator-styles {
+  .e-bolt-list--separator-#{$separator-style} {
+    li {
+      border-width: 0;
+      border-style: #{$separator-style};
+      border-color: var(--m-bolt-border);
+    }
+  }
+}
+
+[class*='e-bolt-list--separator'] {
+  li {
+    &:not(li:last-of-type) {
+      border-bottom-width: 1px;
+    }
+  }
+
+  &.e-bolt-list--display-horizontal {
+    li {
+      &:not(li:last-of-type) {
+        border-right-width: 1px;
+        border-bottom-width: 0;
+      }
+    }
+  }
+
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    @if (
+      $breakpoint-name !=
+        'large' and
+        $breakpoint-name !=
+        'xlarge' and
+        $breakpoint-name !=
+        'xxlarge'
+    ) {
+      &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
+        li {
+          &:not(li:last-of-type) {
+            border-bottom-width: 1px;
+
+            @include bolt-mq($breakpoint-name) {
+              border-right-width: 1px;
+              border-bottom-width: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+[class*='e-bolt-list--separator'] {
+  &:not(.e-bolt-list--inset) {
+    li {
+      padding-bottom: var(--bolt-spacing-y-xsmall);
+
+      &:last-of-type {
+        padding-bottom: 0;
+      }
+    }
+
+    &.e-bolt-list--display-horizontal {
+      li {
+        padding-right: var(--bolt-spacing-x-xsmall);
+        padding-bottom: 0;
+
+        &:last-of-type {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+  @each $size in $bolt-spacing-multiplier-system {
+    $size-name: nth($size, 1);
+
+    @if ($size-name != 'xxlarge') {
+      &.e-bolt-list--spacing-#{$size-name} {
+        li {
+          &:not(li:last-of-type) {
+            padding-bottom: var(--bolt-spacing-y-#{$size-name});
+          }
+        }
+
+        &.e-bolt-list--display-horizontal {
+          li {
+            &:not(li:last-of-type) {
+              padding-right: var(--bolt-spacing-x-#{$size-name});
+              padding-bottom: 0;
+            }
+          }
+        }
+
+        &.e-bolt-list--display-horizontal {
+          &.e-bolt-list--inset {
+            li {
+              &:not(li:last-of-type) {
+                padding-bottom: var(--bolt-spacing-y-#{$size-name});
+              }
+            }
+          }
+        }
+      }
+
+      &:not(.e-bolt-list--inset) {
+        @each $breakpoint in $bolt-breakpoints {
+          $breakpoint-name: nth($breakpoint, 1);
+
+          @if (
+            $breakpoint-name !=
+              'large' and
+              $breakpoint-name !=
+              'xlarge' and
+              $breakpoint-name !=
+              'xxlarge'
+          ) {
+            &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
+              li {
+                &:last-of-type {
+                  padding-right: 0;
+                  padding-bottom: 0;
+                }
+
+                @include bolt-mq($breakpoint-name) {
+                  padding-right: var(--bolt-spacing-x-xsmall);
+                  padding-bottom: 0;
+                }
+              }
+            }
+            &.e-bolt-list--spacing-#{$size-name} {
+              &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
+                li {
+                  padding-bottom: var(--bolt-spacing-y-#{$size-name});
+
+                  @include bolt-mq($breakpoint-name) {
+                    padding-right: var(--bolt-spacing-x-#{$size-name});
+                    padding-bottom: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Align prop
+$bolt-list-alignments: start, center, end, justify;
+
+@each $alignment in $bolt-list-alignments {
+  .e-bolt-list--align-#{$alignment} {
+    width: 100%;
+
+    &.e-bolt-list--display-horizontal {
+      @if $alignment != center and $alignment != justify {
+        justify-content: flex-#{$alignment};
+      } @else if $alignment == justify {
+        justify-content: space-between;
+      } @else {
+        justify-content: #{$alignment};
+      }
+    }
+
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
+
+      @if (
+        $breakpoint-name !=
+          'large' and
+          $breakpoint-name !=
+          'xlarge' and
+          $breakpoint-name !=
+          'xxlarge'
+      ) {
+        &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
+          @include bolt-mq($breakpoint-name) {
+            @if $alignment != center and $alignment != justify {
+              justify-content: flex-#{$alignment};
+            } @else if $alignment == justify {
+              justify-content: space-between;
+            } @else {
+              justify-content: #{$alignment};
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Valign prop
+$bolt-list-valignments: start, center, end;
+
+@each $alignment in $bolt-list-valignments {
+  .e-bolt-list--valign-#{$alignment} {
+    &.e-bolt-list--display-horizontal {
+      @if $alignment != center {
+        align-items: flex-#{$alignment};
+      } @else {
+        align-items: #{$alignment};
+      }
+    }
+
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
+
+      @if (
+        $breakpoint-name !=
+          'large' and
+          $breakpoint-name !=
+          'xlarge' and
+          $breakpoint-name !=
+          'xxlarge'
+      ) {
+        &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
+          @include bolt-mq($breakpoint-name) {
+            @if $alignment != center {
+              align-items: flex-#{$alignment};
+            } @else {
+              align-items: #{$alignment};
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Nowrap prop
+.e-bolt-list--nowrap {
+  &.e-bolt-list--display-horizontal {
+    flex-flow: row nowrap;
+  }
+
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    @if (
+      $breakpoint-name !=
+        'large' and
+        $breakpoint-name !=
+        'xlarge' and
+        $breakpoint-name !=
+        'xxlarge'
+    ) {
+      &.e-bolt-list--display-horizontal\@#{$breakpoint-name} {
+        @include bolt-mq($breakpoint-name) {
+          flex-flow: row nowrap;
+        }
+      }
+    }
+  }
+}

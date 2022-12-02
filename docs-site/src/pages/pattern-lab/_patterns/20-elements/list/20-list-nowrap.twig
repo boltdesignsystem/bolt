@@ -1,0 +1,150 @@
+{% set description %}
+  Prevent List Items from wrapping with the <code>nowrap</code> prop.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The <code>nowrap</code> prop only works when the <code>display</code> prop is set to <code>horizontal</code>.</bolt-li>
+    <bolt-li>This prop prevents List Items from wrapping, which means they can potentially overflow the parent container.</bolt-li>
+    <bolt-li>View the following List in different viewports to observe the behavior.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set placeholder_1 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 1',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_2 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 2',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_3 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 3',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_4 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 4',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_5 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 5',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_6 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 6',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_7 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 7',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_8 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 8',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+  {% set placeholder_9 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 9',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+
+  {% set list_items %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+      {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_4,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_5,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_6,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_7,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_8,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_9,
+    } only %}
+  {% endset %}
+
+  <h3>Horizontal list with nowrap</h3>
+  {% include '@bolt-elements-list/list.twig' with {
+    display: 'horizontal',
+    nowrap: true,
+    content: list_items
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set list_items %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_1,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_2,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_3,
+  } only %}
+  ...
+{% endset %}
+{% include '@bolt-elements-list/list.twig' with {
+  display: 'horizontal',
+  nowrap: true,
+  content: list_items
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<ul class="e-bolt-list e-bolt-list--display-horizontal e-bolt-list--nowrap">
+  <li class="e-bolt-list__item">First item</li>
+  <li class="e-bolt-list__item">Second item</li>
+  <li class="e-bolt-list__item">Third item</li>
+  <li class="e-bolt-list__item">Fourth item</li>
+  <li class="e-bolt-list__item">Fifth item</li>
+  <li class="e-bolt-list__item">Sixth item</li>
+  <li class="e-bolt-list__item">Seventh item</li>
+  <li class="e-bolt-list__item">Eighth item</li>
+  <li class="e-bolt-list__item">Ninth item</li>
+</ul>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'List with No Wrapping',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}
