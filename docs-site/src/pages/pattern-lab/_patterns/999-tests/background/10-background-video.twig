@@ -543,3 +543,88 @@
       {% endblock band_content %}
     {% endembed %}
   {% endfor %}
+{# ///////// #}
+{# //////////// #}
+{# {% set themes = ['light', 'dark'] %} #}
+
+  {# Hero Band #}
+  {# {% for theme in themes %} #}
+  <div class="t-bolt-orange">
+    {% embed '@bolt-components-band/band.twig' with {
+      size: 'large',
+      theme: 'none',
+      background: {
+        opacity: 'heavy',
+        fill: 'solid',
+        video: true,
+        items: [
+          background_video,
+        ]
+      },
+      attributes: {
+        class: "u-bolt-margin-bottom-large"
+      }
+    } %}
+      {% block band_background %}
+        {{ background_video }}
+        {{ parent() }}
+      {% endblock %}
+
+      {% block band_content %}
+        {% include '@bolt-components-grid/grid.twig' with {
+          gutter: 'small',
+          row_gutter: 'small',
+          items: [
+            {
+              column_start: '1 2@small 4@large',
+              column_span: '12 10@small 6@large',
+              content: headline_and_text,
+            },
+            {
+              column_start: '1 2@small 3@medium',
+              column_span: '12 10@small 8@medium',
+              row_start: '4',
+              content: card_with_form,
+            },
+          ]
+        } only %}
+        {{ parent() }}
+      {% endblock band_content %}
+    {% endembed %}
+    {# {% embed '@bolt-components-band/band.twig' with {
+      size: 'large',
+      theme: 'none',
+      background: {
+        opacity: 'heavy',
+        fill: 'solid',
+        video: true,
+        items: [
+          background_video,
+        ]
+      },
+      attributes: {
+        class: "u-bolt-margin-bottom-large"
+      }
+    } %}
+      {% block band_background %}
+        {{ background_video }}
+        {{ parent() }}
+      {% endblock %}
+
+      {% block band_content %}
+        {% include '@bolt-components-grid/grid.twig' with {
+          gutter: 'small',
+          row_gutter: 'small',
+          items: [
+            {
+              column_start: '1 2@small 3@medium',
+              column_span: '12 10@small 8@medium',
+              content: card_with_form,
+            },
+          ]
+        } only %}
+        {{ parent() }}
+      {% endblock band_content %}
+    {% endembed %} #}
+  {# {% endfor %} #}
+  </div>
