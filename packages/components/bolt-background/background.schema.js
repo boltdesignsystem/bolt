@@ -66,6 +66,11 @@ module.exports = {
         },
       },
     },
+    video: {
+      type: 'boolean',
+      description: 'Set to true if you like to use video as a background.',
+      default: false,
+    },
     items: {
       type: 'array',
       description: 'An array of renderable items to place in the background.',
