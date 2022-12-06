@@ -2,7 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 const program = require('commander');
-const cosmiconfig = require('cosmiconfig');
+// const cosmiconfig = require('cosmiconfig');
+const { cosmiconfig } = require('cosmiconfig');
 const explorer = cosmiconfig('bolt');
 const configStore = require('@bolt/build-utils/config-store');
 const log = require('@bolt/build-utils/log');
@@ -21,6 +22,7 @@ const parseIntWithRadix = string => parseInt(string, 10);
 
 // global `bolt` cli options & meta
 program
+  .name('bolt')
   .version(packageJson.version)
   .option(
     '-C, --config-file <path>',

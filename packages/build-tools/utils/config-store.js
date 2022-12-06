@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const path = require('path');
-const cosmiconfig = require('cosmiconfig');
+const { cosmiconfig } = require('cosmiconfig');
 const argv = require('yargs').argv;
 const explorer = cosmiconfig('bolt');
 const address = require('address');

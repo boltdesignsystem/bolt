@@ -2795,9 +2795,9 @@ __metadata:
     check-links: ^1.1.8
     cheerio: ^1.0.0-rc.3
     chokidar: ^3.3.1
-    commander: ^2.20.0
+    commander: ^9.4.1
     copy-webpack-plugin: ^11.0.0
-    cosmiconfig: ^5.2.1
+    cosmiconfig: ^8.0.0
     css-loader: ^6.7.1
     css-minimizer-webpack-plugin: ^4.2.2
     deepmerge: ^4.2.2
@@ -2860,7 +2860,7 @@ __metadata:
     address: ^1.1.0
     chalk: ^2.4.2
     convert-hrtime: ^3.0.0
-    cosmiconfig: ^5.2.1
+    cosmiconfig: ^8.0.0
     del: ^4.1.1
     execa: ^1.0.0
     globby: ^11.0.0
@@ -4128,7 +4128,7 @@ __metadata:
     clean-webpack-plugin: 0.1.19
     clipboard: ^2.0.4
     copy-webpack-plugin: ^11.0.0
-    cosmiconfig: ^5.0.6
+    cosmiconfig: ^8.0.0
     css-loader: ^6.7.1
     ejs: ^3.0.1
     express: ^4.17.1
@@ -7334,6 +7334,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"argparse@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "argparse@npm:2.0.1"
+  checksum: 83644b56493e89a254bae05702abf3a1101b4fa4d0ca31df1c9985275a5a5bd47b3c27b7fa0b71098d41114d8ca000e6ed90cad764b306f8a503665e4d517ced
+  languageName: node
+  linkType: hard
+
 "arr-diff@npm:^2.0.0":
   version: 2.0.0
   resolution: "arr-diff@npm:2.0.0"
@@ -10031,6 +10038,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"commander@npm:^9.4.1":
+  version: 9.4.1
+  resolution: "commander@npm:9.4.1"
+  checksum: bfb18e325a5bdf772763c2213d5c7d9e77144d944124e988bcd8e5e65fb6d45d5d4e86b09155d0f2556c9a59c31e428720e57968bcd050b2306e910a0bf3cf13
+  languageName: node
+  linkType: hard
+
 "commander@npm:~2.1.0":
   version: 2.1.0
   resolution: "commander@npm:2.1.0"
@@ -10550,7 +10564,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:^5.0.6, cosmiconfig@npm:^5.2.0, cosmiconfig@npm:^5.2.1":
+"cosmiconfig@npm:^5.2.0, cosmiconfig@npm:^5.2.1":
   version: 5.2.1
   resolution: "cosmiconfig@npm:5.2.1"
   dependencies:
@@ -10585,6 +10599,18 @@ __metadata:
     path-type: ^4.0.0
     yaml: ^1.10.0
   checksum: 4be63e7117955fd88333d7460e4c466a90f556df6ef34efd59034d2463484e339666c41f02b523d574a797ec61f4a91918c5b89a316db2ea2f834e0d2d09465b
+  languageName: node
+  linkType: hard
+
+"cosmiconfig@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "cosmiconfig@npm:8.0.0"
+  dependencies:
+    import-fresh: ^3.2.1
+    js-yaml: ^4.1.0
+    parse-json: ^5.0.0
+    path-type: ^4.0.0
+  checksum: ff4cdf89ac1ae52e7520816622c21a9e04380d04b82d653f5139ec581aa4f7f29e096d46770bc76c4a63c225367e88a1dfa233ea791669a35101f5f9b972c7d1
   languageName: node
   linkType: hard
 
@@ -17832,6 +17858,17 @@ __metadata:
   bin:
     js-yaml: bin/js-yaml.js
   checksum: 7511b764abb66d8aa963379f7d2a404f078457d106552d05a7b556d204f7932384e8477513c124749fa2de52eb328961834562bd09924902c6432e40daa408bc
+  languageName: node
+  linkType: hard
+
+"js-yaml@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "js-yaml@npm:4.1.0"
+  dependencies:
+    argparse: ^2.0.1
+  bin:
+    js-yaml: bin/js-yaml.js
+  checksum: c7830dfd456c3ef2c6e355cc5a92e6700ceafa1d14bba54497b34a99f0376cecbb3e9ac14d3e5849b426d5a5140709a66237a8c991c675431271c4ce5504151a
   languageName: node
   linkType: hard
 
