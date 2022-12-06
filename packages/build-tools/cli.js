@@ -2,7 +2,6 @@
 const fs = require('fs');
 const path = require('path');
 const program = require('commander');
-// const cosmiconfig = require('cosmiconfig');
 const { cosmiconfig } = require('cosmiconfig');
 const explorer = cosmiconfig('bolt');
 const configStore = require('@bolt/build-utils/config-store');
