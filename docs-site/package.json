@@ -11,7 +11,7 @@
   "scripts": {
     "analyze": "bolt start --analyze",
     "analyze:prod": "bolt build --prod --analyze",
-    "build": "yarn run node bolt build",
+    "bolt:build": "bolt build",
     "build:noisy": "bolt build --verbosity 5",
     "build:pl": "bolt prep && yarn run lerna exec --scope @bolt/uikit-workshop --loglevel=silent -- yarn run build",
     "build:prod": "bolt build --prod",

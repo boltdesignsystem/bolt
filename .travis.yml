@@ -90,9 +90,7 @@ jobs:
       script:
         # - yarn run generate # generate static version of Drupal Lab in the integration folder
         # - cd ../../
-        - which bolt
-        - bolt --version
-        - yarn run build
+        - yarn node packages/build-tools build
         - travis_retry yarn gds -a create -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
         - travis_retry yarn gds -a in_progress -e ${TRAVIS_BRANCH}--${GIT_SHA}--commit-preview -r ${TRAVIS_BRANCH}
         - yarn run deploy
