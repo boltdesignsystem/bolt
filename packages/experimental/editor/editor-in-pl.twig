@@ -1,6 +1,10 @@
+{# Emulate Drupal environment, where react/react-dom is on the window (temporary until DS-863 is done) #}
 {% include '@bolt-components-editor/editor.twig' with {
   styles: ['/build/bolt-global.css'],
-  scripts: ['/build/bolt-global.js'],
+  scripts: [
+    'https://unpkg.com/react@18/umd/react.production.min.js',
+    'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js',
+    '/build/bolt-global.js'],
   content: content,
   id: 'example-id-in-pl',
 } only %}

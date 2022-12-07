@@ -119,6 +119,14 @@
     iconDir:
       type: array
       description: The iconDir config specifies from where Bolt will be taking svg for icons creation.
+    subThemeDir:
+      type: string
+      title: Path to Drupal sub-theme
+      description: The path to your Drupal sub-theme.
+    themeNames:
+      type: array
+      title: List of theme names
+      description: List of Drupal theme names, used by Webpack for renaming entry keys.
     startPath:
       type: string
       title: Local server start path

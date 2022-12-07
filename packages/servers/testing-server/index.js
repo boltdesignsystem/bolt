@@ -20,6 +20,9 @@ getConfig().then(async boltConfig => {
         <head>
           <title>Test</title>
           <link rel="stylesheet" href="/build/bolt-global.css" />
+          <!-- Emulate Drupal environment, where react/react-dom is on the window (temporary until DS-863 is done) -->
+          <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+          <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
           <script type="module" src="/build/bolt-global.js"></script>
         </head>
         <body>

@@ -177,7 +177,7 @@ async function createWebpackConfig(buildConfig) {
           test: /\.(woff|woff2)$/,
           type: 'asset/resource',
           generator: {
-            filename: 'fonts/[name].[ext]',
+            filename: 'fonts/[name][ext]',
           },
         },
         {
@@ -357,6 +357,11 @@ async function createWebpackConfig(buildConfig) {
       chunkFilename: `[name]-bundle-[chunkhash].js`,
       publicPath,
     },
+    // Emulate Drupal environment, where react/react-dom is on the window (temporary until DS-863 is done)
+    externals: {
+      react: 'React',
+      'react-dom': 'ReactDOM',
+    },
     plugins: [
       new webpack.DefinePlugin(getGlobalJSData(true)),
       // CopyWebpackPlugin throws an error if you don't pass it a configuration object
@@ -415,6 +420,31 @@ async function createWebpackConfig(buildConfig) {
       ],
     },
   });
+
+  if (config.env === 'drupal') {
+    const themeRegExp = new RegExp('^(' + config.themeNames.join('|') + ')-');
+    const disablePlugins = ['ManifestPlugin'];
+
+    // Remove any empty entries (for example one that just has a Twig template)
+    for (const i in mergedConfig.entry) {
+      if (!mergedConfig.entry[i].length) {
+        delete mergedConfig.entry[i];
+      }
+    }
+
+    const entries = {};
+    for (const name in mergedConfig.entry) {
+      // Replace "-" with "/", e.g. `@pega_bolt_theme-components-wysiwyg` => `@pega_bolt_theme/components-wysiwyg`
+      // Replace "@" with "", e.g. `@pega_bolt_theme/components-wysiwyg` => `pega_bolt_theme/components-wysiwyg`
+      const updatedName = name.replace(themeRegExp, '$1/').replace(/@/g, '');
+      entries[updatedName] = mergedConfig.entry[name];
+    }
+    mergedConfig.entry = entries;
+
+    mergedConfig.plugins = mergedConfig.plugins.filter(plugin => {
+      return !disablePlugins.includes(plugin.constructor.name);
+    });
+  }
 
   return mergedConfig;
 }
