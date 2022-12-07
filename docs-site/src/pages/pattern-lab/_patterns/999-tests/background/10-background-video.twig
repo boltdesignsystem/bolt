@@ -14,62 +14,6 @@
 {% set hero_background_video_id = '5999324539001' %}
 {% set themes = ['light', 'dark'] %}
 
-
-{# Snowflake Styles #}
-<style>
-  .c-pega-careers-background-video {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .c-pega-careers-background-video img {
-    display: block !important;
-  }
-
-  .c-pega-careers-background-video__video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 180%;
-    transform: translate(-50%, -50%);
-  }
-
-  @media screen and (max-aspect-ratio: 3/4) {
-    .c-pega-careers-background-video__video {
-      display: none;
-    }
-  }
-
-  @media screen and (max-width: 49.99em) {
-    .c-pega-careers-background-video__video {
-      display: none;
-    }
-  }
-
-  .c-pega-careers-reorderable-form-field--first {
-    order: 1;
-  }
-
-  .c-pega-careers-reorderable-form-field--second {
-    order: 2;
-  }
-
-  .c-pega-careers-reorderable-form-field--third {
-    order: 3;
-  }
-
-  @media screen and (min-width: 37.5em) {
-    .c-pega-careers-reorderable-form-field--second\@small {
-      order: 2;
-    }
-  }
-</style>
-
 {# Headline and Text #}
 {% set headline_and_text %}
   {% if hero_headline %}
@@ -120,7 +64,7 @@
   {% endset %}
 
   {% set select_elements %}
-    <div class="gsc-careers-cta">
+    {# <div class="gsc-careers-cta"> #}
         {% set country %}
           {% set label %}
             {% include '@bolt-components-form/form-label.twig' with {
@@ -211,7 +155,7 @@
           },
         ]
       } only %}
-    </div>
+    {# </div> #}
   {% endset %}
 
   {% set form_button %}
@@ -259,108 +203,6 @@
   {% endembed %}
 {% endset %}
 
-
-{# Background Video #}
-{% set background_video %}
-  <div class="c-pega-careers-background-video">
-    {% include '@bolt-elements-image/image.twig' with {
-      attributes: {
-        src: hero_background_video_poster,
-        background: true,
-        loading: 'lazy',
-      }
-    } only %}
-    <div class="c-pega-careers-background-video__video">
-      {% set video %}
-        <video-js
-          data-account="1900410236"
-          data-player="O3FkeBiaDz"
-          data-embed="default"
-          data-video-id="{{ hero_background_video_id }}"
-          controls="false"
-          autoplay loop
-          class="c-base-video"></video-js>
-      {% endset %}
-
-      {% include '@bolt-elements-ratio/ratio.twig' with {
-        content: video,
-        ratio: 'wide'
-      } only %}
-    </div>
-  </div>
-{% endset %}
-
-
-<div>
-  {# Hero Band #}
-  {% for theme in themes %}
-    {% embed '@bolt-components-band/band.twig' with {
-      size: 'large',
-      theme: theme,
-      background: {
-        opacity: 'heavy',
-      },
-      attributes: {
-        class: "u-bolt-margin-bottom-large"
-      }
-    } %}
-      {% block band_background %}
-        {{ background_video }}
-        {{ parent() }}
-      {% endblock %}
-
-      {% block band_content %}
-        {% include '@bolt-components-grid/grid.twig' with {
-          gutter: 'small',
-          row_gutter: 'small',
-          items: [
-            {
-              column_start: '1 2@small 4@large',
-              column_span: '12 10@small 6@large',
-              content: headline_and_text,
-            },
-            {
-              column_start: '1 2@small 3@medium',
-              column_span: '12 10@small 8@medium',
-              row_start: '4',
-              content: card_with_form,
-            },
-          ]
-        } only %}
-        {{ parent() }}
-      {% endblock band_content %}
-    {% endembed %}
-    {% embed '@bolt-components-band/band.twig' with {
-      size: 'large',
-      theme: theme,
-      background: {
-        opacity: 'heavy',
-      },
-      attributes: {
-        class: "u-bolt-margin-bottom-large"
-      }
-    } %}
-      {% block band_background %}
-        {{ background_video }}
-        {{ parent() }}
-      {% endblock %}
-
-      {% block band_content %}
-        {% include '@bolt-components-grid/grid.twig' with {
-          gutter: 'small',
-          row_gutter: 'small',
-          items: [
-            {
-              column_start: '1 2@small 3@medium',
-              column_span: '12 10@small 8@medium',
-              content: card_with_form,
-            },
-          ]
-        } only %}
-        {{ parent() }}
-      {% endblock band_content %}
-    {% endembed %}
-  {% endfor %}
 {# ////////////////////// #}
 {% set image %}
   {% include '@bolt-elements-image/image.twig' with {
@@ -411,41 +253,38 @@
 </style>
 {# Background Video #}
 {% set background_video %}
-  {# <div class="c-pega-careers-background-video"> #}
-    {% include '@bolt-elements-image/image.twig' with {
-      attributes: {
-        src: hero_background_video_poster,
-        background: true,
-        loading: 'lazy',
-      }
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: hero_background_video_poster,
+      background: true,
+      loading: 'lazy',
+    }
+  } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="{{ hero_background_video_id }}"
+        controls="false"
+        autoplay loop
+        class="c-base-video"></video-js>
+    {% endset %}
+
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
     } only %}
-    {# <div class="c-pega-careers-background-video__video"> #}
-      {% set video %}
-        <video-js
-          data-account="1900410236"
-          data-player="O3FkeBiaDz"
-          data-embed="default"
-          data-video-id="{{ hero_background_video_id }}"
-          controls="false"
-          autoplay loop
-          class="c-base-video"></video-js>
-      {% endset %}
-
-      {% include '@bolt-elements-ratio/ratio.twig' with {
-        content: video,
-        ratio: 'wide'
-      } only %}
-    {# </div> #}
-  {# </div> #}
 {% endset %}
-
+{# Video with text on it t-bolt classes usage #}
 {% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'violet', 'teal', 'yellow', 'orange', 'pink', 'berry', 'wine'] %}
+<h2>Video with text on it t-bolt classes usage</h2>
 
 <div data-bolt-mode="light">
   {% for theme in themes %}
     {% set theme_class = 't-bolt-' ~ theme %}
 
-    <p>T-bolt-teal theming class.</p>
+    <p>{{ theme_class }} theming class.</p>
     <div class="{{ theme_class }} u-bolt-margin-bottom-large">
       {% include './_00-background-band-demo.twig' with {
         theme: 'none',
@@ -461,7 +300,9 @@
     </div>
   {% endfor %}
 </div>
-{# //////////// #}
+{# Video with forms, light and dark mode usage #}
+<h2>Video with forms, light and dark mode usage</h2>
+
 {% set themes = ['light', 'dark'] %}
 
   {# Hero Band #}
@@ -543,13 +384,19 @@
       {% endblock band_content %}
     {% endembed %}
   {% endfor %}
-{# ///////// #}
-{# //////////// #}
-{# {% set themes = ['light', 'dark'] %} #}
 
+{# video with form t-bolt classes #}
+<h2>Video with forms, t-bolt classes</h2>
+{% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'violet', 'teal', 'yellow', 'orange', 'pink', 'berry', 'wine'] %}
+<h2>Video with text on it t-bolt classes usage</h2>
+
+{# <div data-bolt-mode="light"> #}
+  {% for theme in themes %}
+    {% set theme_class = 't-bolt-' ~ theme %}
+
+    <p>{{ theme_class }} theming class.</p>
+    <div class="{{ theme_class }} u-bolt-margin-bottom-large">
   {# Hero Band #}
-  {# {% for theme in themes %} #}
-  <div class="t-bolt-orange">
     {% embed '@bolt-components-band/band.twig' with {
       size: 'large',
       theme: 'none',
@@ -591,40 +438,5 @@
         {{ parent() }}
       {% endblock band_content %}
     {% endembed %}
-    {# {% embed '@bolt-components-band/band.twig' with {
-      size: 'large',
-      theme: 'none',
-      background: {
-        opacity: 'heavy',
-        fill: 'solid',
-        video: true,
-        items: [
-          background_video,
-        ]
-      },
-      attributes: {
-        class: "u-bolt-margin-bottom-large"
-      }
-    } %}
-      {% block band_background %}
-        {{ background_video }}
-        {{ parent() }}
-      {% endblock %}
-
-      {% block band_content %}
-        {% include '@bolt-components-grid/grid.twig' with {
-          gutter: 'small',
-          row_gutter: 'small',
-          items: [
-            {
-              column_start: '1 2@small 3@medium',
-              column_span: '12 10@small 8@medium',
-              content: card_with_form,
-            },
-          ]
-        } only %}
-        {{ parent() }}
-      {% endblock band_content %}
-    {% endembed %} #}
-  {# {% endfor %} #}
   </div>
+  {% endfor %}
