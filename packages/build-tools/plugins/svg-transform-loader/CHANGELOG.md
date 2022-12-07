@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.9.0](https://github.com/boltdesignsystem/bolt/compare/v5.8.2...v5.9.0) (2022-12-02)
+
+**Note:** Version bump only for package @bolt/svg-transform-loader
+
+
+
+
+
 # [5.0.0](https://github.com/boltdesignsystem/bolt/compare/v4.7.0...v5.0.0) (2021-11-10)
 
 **Note:** Version bump only for package @bolt/svg-transform-loader
