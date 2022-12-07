@@ -8,11 +8,10 @@
     "url": "https://github.com/bolt-design-system/bolt"
   },
   "license": "MIT",
-  "main": "bolt.js",
   "scripts": {
     "analyze": "bolt start --analyze",
     "analyze:prod": "bolt build --prod --analyze",
-    "build": "bolt build",
+    "build": "yarn run node bolt build",
     "build:noisy": "bolt build --verbosity 5",
     "build:pl": "bolt prep && yarn run lerna exec --scope @bolt/uikit-workshop --loglevel=silent -- yarn run build",
     "build:prod": "bolt build --prod",
