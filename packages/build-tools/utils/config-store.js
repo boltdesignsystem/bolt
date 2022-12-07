@@ -1,8 +1,8 @@
 const chalk = require('chalk');
 const path = require('path');
-const cosmiconfig = require('cosmiconfig');
+const { cosmiconfigSync } = require('cosmiconfig');
 const argv = require('yargs').argv;
-const explorer = cosmiconfig('bolt');
+const explorerSync = cosmiconfigSync('bolt');
 const address = require('address');
 
 const { readYamlFileSync } = require('./yaml');
@@ -85,7 +85,7 @@ async function isReady() {
     //     'Bolt config not yet setup -- trying to find a .boltconfig.rc file...',
     //   ),
     // );
-    const searchedFor = explorer.searchSync();
+    const searchedFor = explorerSync.search();
     if (searchedFor) {
       if (searchedFor.config) {
         await init({

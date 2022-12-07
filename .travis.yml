@@ -23,7 +23,7 @@ before_cache:
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
   - nvm install # version lifted from `.nvmrc`
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.19.1
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.19
   - export PATH="$HOME/.yarn/bin:$PATH"
   - composer config --global github-oauth.github.com ${GITHUB_TOKEN}
 
@@ -42,6 +42,7 @@ jobs:
     - stage: Pre-deploy
       name: 'Smoke Tests: Jest Component-Specific Tests'
       install:
+        - yarn
         - yarn run setup
         - yarn workspace @bolt/website prep # creates data and manifest files
       # before_script: ./scripts/check-run-queue.js 'Jest Component Tests'
@@ -54,6 +55,7 @@ jobs:
     - stage: Pre-deploy
       name: 'Smoke Tests: Lint + Jest Unit Tests'
       install:
+        - yarn
         - yarn run setup
         - yarn workspace @bolt/website prep # creates data and manifest files
       # before_script: ./scripts/check-run-queue.js 'Lint + Unit Tests'
@@ -76,6 +78,7 @@ jobs:
       name: 'Build + Deploy Website + Lighthouse CLI'
       if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
       install:
+        - yarn
         - yarn run setup
         - npx lerna run postbootstrap
         - export GIT_SHA=$(./scripts/get-git-sha.js)
@@ -109,6 +112,7 @@ jobs:
       name: 'Build + Deploy Website (Full)'
       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
       install:
+        - yarn
         - yarn run setup
         - export GIT_SHA=$(./scripts/get-git-sha.js)
       before_script:

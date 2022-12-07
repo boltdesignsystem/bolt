@@ -28,13 +28,8 @@
       "docs-site/src/components/radio-switch",
       "packages/*",
       "packages/*/*",
-      "packages/build-tools/__tests__/*",
       "packages/build-tools/plugins/*",
       "scripts"
-    ],
-    "nohoist": [
-      "lazysizes",
-      "**/lazysizes"
     ]
   },
   "scripts": {
@@ -43,39 +38,39 @@
     "build": "cd docs-site && yarn run build:prod",
     "cc": "yarn create:component",
     "ce": "yarn create:element",
-    "clean": "npx npm-run-all --parallel clean:*",
-    "clean:cache": "find . -name 'cache' -type d -exec rm -rf {} +",
-    "clean:composer": "find . -name 'vendor' -type d -exec rm -rf {} +",
+    "clean": "yarn npm-run-all --parallel 'clean:*'",
+    "clean:cache": "find . -name 'cache' -type d -exec rm -rf '{}' +",
+    "clean:composer": "find . -name 'vendor' -type d -exec rm -rf '{}' +",
     "clean:empty": "find . -empty -type d -delete",
-    "clean:npm": "find . -name 'node_modules' -type d -exec rm -rf {} +",
-    "clean:www": "find . -name 'www' -type d -exec rm -rf {} +",
-    "create:component": "plop component --plopfile ./packages/generators/bolt-generator/plopfile.js",
-    "create:element": "plop element --plopfile ./packages/generators/bolt-generator/plopfile.js",
+    "clean:npm": "find . -name 'node_modules' -type d -exec rm -rf '{}' +",
+    "clean:www": "find . -name 'www' -type d -exec rm -rf '{}' +",
+    "create:component": "yarn run plop component --plopfile ${PROJECT_CWD}/packages/generators/bolt-generator/plopfile.js",
+    "create:element": "yarn run plop element --plopfile ${PROJECT_CWD}/packages/generators/bolt-generator/plopfile.js",
     "deploy": "./scripts/deploy.js",
-    "fix": "yarn lint:js --fix; yarn lint:scss --fix",
+    "fix": "yarn run lint:js --fix; yarn run lint:scss --fix",
     "gds": "github-deploy-status -u boltdesignsystem -p bolt --token ${GITHUB_TOKEN}",
-    "postinstall": "patch-package && npx lerna run postbootstrap",
+    "postinstall": "patch-package && yarn run lerna run postbootstrap",
     "jest": "jest --maxWorkers=3 --all --colors",
-    "lint": "npm-run-all --parallel lint:*",
+    "lint": "yarn npm-run-all --parallel 'lint:*'",
     "lint:js": "eslint '**/*.js'",
     "lint:scss": "stylelint '**/*.scss' --config .stylelintrc",
-    "release": "node ./auto-release.js",
-    "serve": "node packages/servers/default-server",
-    "setup": "yarn && yarn run setup:php",
+    "release": "yarn node ./auto-release.js",
+    "serve": "yarn node packages/servers/default-server",
+    "setup": "yarn run setup:php",
     "setup:full": "yarn --force && yarn run setup:php",
-    "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer install --prefer-dist",
+    "setup:php": "yarn run lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer install --prefer-dist",
     "setup:quick": "yarn && yarn run setup:php",
     "start": "cd docs-site && yarn run start",
     "start:compat": "cd docs-site && yarn run start:compat",
-    "test": "npm-run-all --parallel --aggregate-output test:js test:php test:monorepo test:build-tools",
+    "test": "yarn npm-run-all --parallel --aggregate-output 'test:js test:php test:monorepo test:build-tools'",
     "test:build-tools": "cd packages/build-tools && yarn run test",
-    "pretest:js": "npm run setup:php",
-    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests ",
-    "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
+    "pretest:js": "yarn run setup:php",
+    "test:js": "yarn pretest:js && NODE_ENV='test' yarn run jest --all --colors 'packages|scripts' --passWithNoTests ",
+    "test:js:quick": "NODE_ENV='test' yarn run jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
     "test:js:update": "yarn run test:js -u",
-    "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
+    "test:monorepo": "yarn run jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
     "test:php": "cd packages/twig-integration/twig-extensions-shared && composer run test",
-    "test:pkgs": "npx lerna run test --ignore=@bolt/uikit-* --stream",
+    "test:pkgs": "yarn run lerna run test --ignore='@bolt/uikit-*' --stream",
     "test:types": "tsc"
   },
   "husky": {
@@ -111,6 +106,8 @@
     "ci-utils": "^0.6.0",
     "conf": "^5.0.0",
     "eslint": "^6.0.1",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.0",
     "find-pkg": "^2.0.0",
     "fs-extra": "^8.1.0",
@@ -123,7 +120,6 @@
     "lint-staged": "^9.5.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.1",
-    "npm-run-all": "^4.1.5",
     "patch-package": "^6.1.2",
     "postcss": "^8.4.18",
     "semver": "^7.1.1",
@@ -132,6 +128,8 @@
     "typescript": "^3.5.3"
   },
   "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "plop": "^3.1.1",
     "stylelint": "^14.8.2"
   },
   "optionalDependencies": {
@@ -139,5 +137,12 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "installConfig": {
+    "hoistingLimits": [
+      "lazysizes",
+      "**/lazysizes"
+    ]
+  },
+  "packageManager": "yarn@3.3.0"
 }
