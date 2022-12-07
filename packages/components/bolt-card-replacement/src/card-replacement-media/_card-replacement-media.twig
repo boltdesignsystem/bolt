@@ -12,7 +12,7 @@
       <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media">
         {% if _card_replacement_image %}
           {# DEPRECATED. Pass a renderable image for media.image instead of structured data.  #}
-          {% if _card_replacement_image is iterable and  _card_replacement_image.src %}
+          {% if _card_replacement_image is iterable and (_card_replacement_image.src or _card_replacement_image.attributes.src) %}
             {% if horizontal and _card_replacement_image %}
               {% set _card_replacement_image = _card_replacement_image|merge({
                 ratio: false,
