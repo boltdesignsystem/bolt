@@ -44,8 +44,6 @@ jobs:
       name: 'Smoke Tests: Jest Component-Specific Tests'
       install:
         - yarn
-        - which yarn
-        - which bolt
         - yarn run setup
         - yarn workspace @bolt/website prep # creates data and manifest files
       # before_script: ./scripts/check-run-queue.js 'Jest Component Tests'
