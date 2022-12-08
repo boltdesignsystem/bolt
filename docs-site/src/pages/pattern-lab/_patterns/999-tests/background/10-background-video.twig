@@ -204,7 +204,43 @@
 {% endset %}
 
 {# ////////////////////// #}
-{% set image %}
+<style>
+  .c-bolt-background__item--video {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .c-bolt-background__item--video img {
+    display: block !important;
+  }
+  
+  .c-bolt-background__item--video img + *  {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180%;
+    transform: translate(-50%, -50%);
+    aspect-ratio: 16/9;
+  }
+
+  @media screen and (max-aspect-ratio: 3/4) {
+    .c-bolt-background__item--video img + * {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 49.99em) {
+    .c-bolt-background__item--video img + * {
+      display: none;
+    }
+  }
+</style>
+{# {% set image %}
   {% include '@bolt-elements-image/image.twig' with {
     background: true,
     attributes: {
@@ -215,44 +251,19 @@
       height: 2160,
     },
   } only %}
-{% endset %}
-<style>
-  .c-bolt-background__item-video {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .c-bolt-background__item-video img {
-    display: block !important;
-  }
-  
-  .c-bolt-background__item-video > * {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 180%;
-    transform: translate(-50%, -50%);
-  }
-
-  @media screen and (max-aspect-ratio: 3/4) {
-    .c-bolt-background__item-video > * {
-      display: none;
-    }
-  }
-
-  @media screen and (max-width: 49.99em) {
-    .c-bolt-background__item-video > * {
-      display: none;
-    }
-  }
-</style>
+{% endset %} #}
 {# Background Video #}
 {% set background_video %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="{{ hero_background_video_id }}"
+      controls="false"
+      autoplay loop
+      class="c-base-video"></video-js>
+  {% endset %}
   {% include '@bolt-elements-image/image.twig' with {
     attributes: {
       src: hero_background_video_poster,
@@ -260,21 +271,11 @@
       loading: 'lazy',
     }
   } only %}
-    {% set video %}
-      <video-js
-        data-account="1900410236"
-        data-player="O3FkeBiaDz"
-        data-embed="default"
-        data-video-id="{{ hero_background_video_id }}"
-        controls="false"
-        autoplay loop
-        class="c-base-video"></video-js>
-    {% endset %}
 
-    {% include '@bolt-elements-ratio/ratio.twig' with {
-      content: video,
-      ratio: 'wide'
-    } only %}
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video,
+    ratio: 'wide'
+  } only %}
 {% endset %}
 {# Video with text on it t-bolt classes usage #}
 {% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'violet', 'teal', 'yellow', 'orange', 'pink', 'berry', 'wine'] %}
@@ -385,18 +386,16 @@
     {% endembed %}
   {% endfor %}
 
-{# video with form t-bolt classes #}
-<h2>Video with forms, t-bolt classes</h2>
+{# video with form t-bolt classes usage #}
 {% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'violet', 'teal', 'yellow', 'orange', 'pink', 'berry', 'wine'] %}
 <h2>Video with text on it t-bolt classes usage</h2>
 
-{# <div data-bolt-mode="light"> #}
-  {% for theme in themes %}
-    {% set theme_class = 't-bolt-' ~ theme %}
+{% for theme in themes %}
+  {% set theme_class = 't-bolt-' ~ theme %}
 
-    <p>{{ theme_class }} theming class.</p>
-    <div class="{{ theme_class }} u-bolt-margin-bottom-large">
-  {# Hero Band #}
+  <p>{{ theme_class }} theming class.</p>
+  <div class="{{ theme_class }} u-bolt-margin-bottom-large">
+    {# Hero Band #}
     {% embed '@bolt-components-band/band.twig' with {
       size: 'large',
       theme: 'none',
@@ -439,4 +438,4 @@
       {% endblock band_content %}
     {% endembed %}
   </div>
-  {% endfor %}
+{% endfor %}
