@@ -46,12 +46,8 @@
           {% include '@bolt-components-background/background-item.twig' %}
         {% else %}
           {% if this.data.video.value == true %}
-            <div class="{{ 'c-bolt-background__item' }}">
-              <div class="c-bolt-background__item-video">
-                {# <div class="c-pega-careers-background-video__video"> #}
-                  {{ item }}
-                {# </div>  #}
-              </div>
+            <div class="c-bolt-background__item--video">
+              {{ item }}
             </div>
           {% else %}
             <div class="c-bolt-background__item">
