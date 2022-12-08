@@ -9,9 +9,10 @@
 
 {# Variables that are editable by the content editor #}
 {% set hero_headline = 'Powerful software. Powered by you.' %}
-{# {% set hero_text = 'We are on a mission to change the way the world builds software to create unprecedented business outcomes in customer engagement and operational excellence.' %} #}
 {% set hero_background_video_poster = '/images/placeholders/landscape-16x9-mountains.jpg' %}
 {% set hero_background_video_id = '5999324539001' %}
+{# {% set hero_background_video_id = '6236693947001' %} 
+{% set hero_background_video_id = '5609376179001' %} #}
 {% set themes = ['light', 'dark'] %}
 
 {# Headline and Text #}
@@ -64,98 +65,96 @@
   {% endset %}
 
   {% set select_elements %}
-    {# <div class="gsc-careers-cta"> #}
-        {% set country %}
-          {% set label %}
-            {% include '@bolt-components-form/form-label.twig' with {
-              title: 'Country',
-              displayType: 'floating',
-            } only %}
-          {% endset %}
-          {% set select %}
-            {% include '@bolt-components-form/form-select.twig' with {
-              options: [
-                {
-                  type: 'option',
-                  value: '',
-                  label: '- Select an option -',
-                  attributes: {
-                    disabled: true,
-                  }
-                },
-                {
-                  type: 'option',
-                  value: 'a',
-                  label: 'Argentina'
-                },
-                {
-                  type: 'option',
-                  value: 'b',
-                  label: 'Belgium'
-                },
-                {
-                  type: 'option',
-                  value: 'c',
-                  label: 'Croatia'
-                }
-              ]
-            } only %}
-          {% endset %}
-          {% include '@bolt-components-form/form-element.twig' with {
-            label: label,
-            children: select,
-          } only %}
-          {% endset %}
-
-        {% set categories %}
-        {% set label %}
-            {% include '@bolt-components-form/form-label.twig' with {
-              title: 'Categories',
-              displayType: 'floating',
-            } only %}
-          {% endset %}
-          {% set select %}
-            {% include '@bolt-components-form/form-select.twig' with {
-              options: [
-                {
-                  type: 'option',
-                  value: '',
-                  label: '- Select a Category -',
-                  attributes: {
-                    disabled: true,
-                  }
-                },
-                {
-                  type: 'option',
-                  value: 'sales',
-                  label: 'Sales'
-                },
-              ]
-            } only %}
-          {% endset %}
-          {% include '@bolt-components-form/form-element.twig' with {
-            label: label,
-            children: select,
-          } only %}
-          {% endset %}
-
-      {% include '@bolt-components-grid/grid.twig' with {
-        gutter: 'small',
-        row_gutter: 'small',
-        items: [
-          {
-            column_start: '1',
-            column_span: '12 6@medium',
-            content: country,
-          },
-          {
-            column_start: '1 7@medium',
-            column_span: '12 6@medium',
-            content: categories,
-          },
-        ]
+    {% set country %}
+      {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Country',
+          displayType: 'floating',
+        } only %}
+      {% endset %}
+      {% set select %}
+        {% include '@bolt-components-form/form-select.twig' with {
+          options: [
+            {
+              type: 'option',
+              value: '',
+              label: '- Select an option -',
+              attributes: {
+                disabled: true,
+              }
+            },
+            {
+              type: 'option',
+              value: 'a',
+              label: 'Argentina'
+            },
+            {
+              type: 'option',
+              value: 'b',
+              label: 'Belgium'
+            },
+            {
+              type: 'option',
+              value: 'c',
+              label: 'Croatia'
+            }
+          ]
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: select,
       } only %}
-    {# </div> #}
+      {% endset %}
+
+    {% set categories %}
+    {% set label %}
+        {% include '@bolt-components-form/form-label.twig' with {
+          title: 'Categories',
+          displayType: 'floating',
+        } only %}
+      {% endset %}
+      {% set select %}
+        {% include '@bolt-components-form/form-select.twig' with {
+          options: [
+            {
+              type: 'option',
+              value: '',
+              label: '- Select a Category -',
+              attributes: {
+                disabled: true,
+              }
+            },
+            {
+              type: 'option',
+              value: 'sales',
+              label: 'Sales'
+            },
+          ]
+        } only %}
+      {% endset %}
+      {% include '@bolt-components-form/form-element.twig' with {
+        label: label,
+        children: select,
+      } only %}
+    {% endset %}
+
+    {% include '@bolt-components-grid/grid.twig' with {
+      gutter: 'small',
+      row_gutter: 'small',
+      items: [
+        {
+          column_start: '1',
+          column_span: '12 6@medium',
+          content: country,
+        },
+        {
+          column_start: '1 7@medium',
+          column_span: '12 6@medium',
+          content: categories,
+        },
+      ]
+    } only %}
   {% endset %}
 
   {% set form_button %}
@@ -203,57 +202,14 @@
   {% endembed %}
 {% endset %}
 
-{# ////////////////////// #}
-<style>
-  .c-bolt-background__item--video {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .c-bolt-background__item--video img {
-    display: block !important;
-  }
-  
-  .c-bolt-background__item--video img + *  {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 180%;
-    transform: translate(-50%, -50%);
-    aspect-ratio: 16/9;
-  }
-
-  @media screen and (max-aspect-ratio: 3/4) {
-    .c-bolt-background__item--video img + * {
-      display: none;
-    }
-  }
-
-  @media screen and (max-width: 49.99em) {
-    .c-bolt-background__item--video img + * {
-      display: none;
-    }
-  }
-</style>
-{# {% set image %}
-  {% include '@bolt-elements-image/image.twig' with {
-    background: true,
-    attributes: {
-      alt: 'Alt text.',
-      loading: 'lazy',
-      src: '/images/content/backgrounds/background-tall-4.jpg',
-      width: 3840,
-      height: 2160,
-    },
-  } only %}
-{% endset %} #}
-{# Background Video #}
 {% set background_video %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: hero_background_video_poster,
+      background: true,
+      loading: 'lazy',
+    }
+  } only %}
   {% set video %}
     <video-js
       data-account="1900410236"
@@ -264,131 +220,100 @@
       autoplay loop
       class="c-base-video"></video-js>
   {% endset %}
-  {% include '@bolt-elements-image/image.twig' with {
-    attributes: {
-      src: hero_background_video_poster,
-      background: true,
-      loading: 'lazy',
-    }
-  } only %}
-
   {% include '@bolt-elements-ratio/ratio.twig' with {
     content: video,
     ratio: 'wide'
   } only %}
 {% endset %}
-{# Video with text on it t-bolt classes usage #}
-{% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'violet', 'teal', 'yellow', 'orange', 'pink', 'berry', 'wine'] %}
-<h2>Video with text on it t-bolt classes usage</h2>
 
-<div data-bolt-mode="light">
-  {% for theme in themes %}
-    {% set theme_class = 't-bolt-' ~ theme %}
-
-    <p>{{ theme_class }} theming class.</p>
-    <div class="{{ theme_class }} u-bolt-margin-bottom-large">
-      {% include './_00-background-band-demo.twig' with {
-        theme: 'none',
-        background: {
-          fill: 'solid',
-          video: true,
-          opacity: 'heavy',
-          items: [
-            background_video,
-          ]
-        }
-      } only %}
-    </div>
-  {% endfor %}
-</div>
 {# Video with forms, light and dark mode usage #}
 <h2>Video with forms, light and dark mode usage</h2>
 
 {% set themes = ['light', 'dark'] %}
 
-  {# Hero Band #}
-  {% for theme in themes %}
-    {% embed '@bolt-components-band/band.twig' with {
-      size: 'large',
-      theme: theme,
-      background: {
-        opacity: 'heavy',
-        fill: 'solid',
-        video: true,
+{# Hero Band #}
+{% for theme in themes %}
+  {% embed '@bolt-components-band/band.twig' with {
+    size: 'large',
+    theme: theme,
+    background: {
+      opacity: 'heavy',
+      fill: 'solid',
+      video: true,
+      items: [
+        background_video,
+      ]
+    },
+    attributes: {
+      class: "u-bolt-margin-bottom-large"
+    }
+  } %}
+    {% block band_background %}
+      {{ background_video }}
+      {{ parent() }}
+    {% endblock %}
+
+    {% block band_content %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        gutter: 'small',
+        row_gutter: 'small',
         items: [
-          background_video,
+          {
+            column_start: '1 2@small 4@large',
+            column_span: '12 10@small 6@large',
+            content: headline_and_text,
+          },
+          {
+            column_start: '1 2@small 3@medium',
+            column_span: '12 10@small 8@medium',
+            row_start: '4',
+            content: card_with_form,
+          },
         ]
-      },
-      attributes: {
-        class: "u-bolt-margin-bottom-large"
-      }
-    } %}
-      {% block band_background %}
-        {{ background_video }}
-        {{ parent() }}
-      {% endblock %}
+      } only %}
+      {{ parent() }}
+    {% endblock band_content %}
+  {% endembed %}
+  {% embed '@bolt-components-band/band.twig' with {
+    size: 'large',
+    theme: theme,
+    background: {
+      opacity: 'heavy',
+      fill: 'solid',
+      video: true,
+      items: [
+        background_video,
+      ]
+    },
+    attributes: {
+      class: "u-bolt-margin-bottom-large"
+    }
+  } %}
+    {% block band_background %}
+      {{ background_video }}
+      {{ parent() }}
+    {% endblock %}
 
-      {% block band_content %}
-        {% include '@bolt-components-grid/grid.twig' with {
-          gutter: 'small',
-          row_gutter: 'small',
-          items: [
-            {
-              column_start: '1 2@small 4@large',
-              column_span: '12 10@small 6@large',
-              content: headline_and_text,
-            },
-            {
-              column_start: '1 2@small 3@medium',
-              column_span: '12 10@small 8@medium',
-              row_start: '4',
-              content: card_with_form,
-            },
-          ]
-        } only %}
-        {{ parent() }}
-      {% endblock band_content %}
-    {% endembed %}
-    {% embed '@bolt-components-band/band.twig' with {
-      size: 'large',
-      theme: theme,
-      background: {
-        opacity: 'heavy',
-        fill: 'solid',
-        video: true,
+    {% block band_content %}
+      {% include '@bolt-components-grid/grid.twig' with {
+        gutter: 'small',
+        row_gutter: 'small',
         items: [
-          background_video,
+          {
+            column_start: '1 2@small 3@medium',
+            column_span: '12 10@small 8@medium',
+            content: card_with_form,
+          },
         ]
-      },
-      attributes: {
-        class: "u-bolt-margin-bottom-large"
-      }
-    } %}
-      {% block band_background %}
-        {{ background_video }}
-        {{ parent() }}
-      {% endblock %}
+      } only %}
+      {{ parent() }}
+    {% endblock band_content %}
+  {% endembed %}
+{% endfor %}
 
-      {% block band_content %}
-        {% include '@bolt-components-grid/grid.twig' with {
-          gutter: 'small',
-          row_gutter: 'small',
-          items: [
-            {
-              column_start: '1 2@small 3@medium',
-              column_span: '12 10@small 8@medium',
-              content: card_with_form,
-            },
-          ]
-        } only %}
-        {{ parent() }}
-      {% endblock band_content %}
-    {% endembed %}
-  {% endfor %}
-
-{# video with form t-bolt classes usage #}
+{# video with form, t-bolt classes usage #}
 {% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'violet', 'teal', 'yellow', 'orange', 'pink', 'berry', 'wine'] %}
-<h2>Video with text on it t-bolt classes usage</h2>
+<h2>Video with the forms, t-bolt classes usage</h2>
 
 {% for theme in themes %}
   {% set theme_class = 't-bolt-' ~ theme %}
@@ -439,3 +364,28 @@
     {% endembed %}
   </div>
 {% endfor %}
+
+{# Video with text on it t-bolt classes usage #}
+{% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'violet', 'teal', 'yellow', 'orange', 'pink', 'berry', 'wine'] %}
+<h2>Video with text on it, t-bolt classes usage</h2>
+
+<div data-bolt-mode="light">
+  {% for theme in themes %}
+    {% set theme_class = 't-bolt-' ~ theme %}
+
+    <p>{{ theme_class }} theming class.</p>
+    <div class="{{ theme_class }} u-bolt-margin-bottom-large">
+      {% include './_00-background-band-demo.twig' with {
+        theme: 'none',
+        background: {
+          fill: 'solid',
+          video: true,
+          opacity: 'heavy',
+          items: [
+            background_video,
+          ]
+        }
+      } only %}
+    </div>
+  {% endfor %}
+</div>
