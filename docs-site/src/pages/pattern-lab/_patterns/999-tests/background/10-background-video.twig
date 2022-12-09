@@ -1,18 +1,7 @@
-{# Limitations of this custom solution #}
-{#
-   1. Background video must be square to accommodate all screen sizes and the dynamic height and width of the band.
-   2. Background video should only be served as a decoration, expect it to be cropped anywhere within its square size.
-   3. Background video disappears when the browser size falls below 800px, this is where the white space is diminishing to a point that makes the height of the band longer than width of the band, which could result in the video not covering the entire background.
-   4. Background video poster must be provided as a fallback for when video disappears.
- #}
-
-
 {# Variables that are editable by the content editor #}
 {% set hero_headline = 'Powerful software. Powered by you.' %}
 {% set hero_background_video_poster = '/images/placeholders/landscape-16x9-mountains.jpg' %}
 {% set hero_background_video_id = '5999324539001' %}
-{# {% set hero_background_video_id = '6236693947001' %} 
-{% set hero_background_video_id = '5609376179001' %} #}
 {% set themes = ['light', 'dark'] %}
 
 {# Headline and Text #}
@@ -108,7 +97,7 @@
       {% endset %}
 
     {% set categories %}
-    {% set label %}
+      {% set label %}
         {% include '@bolt-components-form/form-label.twig' with {
           title: 'Categories',
           displayType: 'floating',
@@ -225,6 +214,27 @@
     ratio: 'wide'
   } only %}
 {% endset %}
+
+{# Video with text in the layout #}
+<h2>Video with a text nested in the layout, with theme class usage</h2>
+
+<bolt-stack>
+  <bolt-layout padding-top="xlarge" padding-bottom="xlarge" class="t-bolt-teal">
+    {% include '@bolt-components-background/background.twig' with {
+      fill: 'solid',
+      opacity: 'heavy',
+      video: true,
+      items: [
+        background_video,
+      ],
+    } only %}
+    <bolt-layout-item>
+      <bolt-text headline font-size="xxlarge">{{ example.title }}</bolt-text>
+      <p>This background has a <code>solid</code> fill and <code>video</code> prop set to <code>true</code> and the surrounding theme is <code>t-bolt-teal</code></p>
+    </bolt-layout-item>
+  </bolt-layout>
+</bolt-stack>
+
 
 {# Video with forms, light and dark mode usage #}
 <h2>Video with forms, light and dark mode usage</h2>
@@ -367,7 +377,7 @@
 
 {# Video with text on it t-bolt classes usage #}
 {% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'violet', 'teal', 'yellow', 'orange', 'pink', 'berry', 'wine'] %}
-<h2>Video with text on it, t-bolt classes usage</h2>
+<h2>Video with a text on it, t-bolt classes usage</h2>
 
 <div data-bolt-mode="light">
   {% for theme in themes %}
