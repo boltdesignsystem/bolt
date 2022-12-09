@@ -1,0 +1,50 @@
+{% set main_content %}
+  {% set video %}
+    <video-js
+      data-account="1519050010001"
+      data-player="obdhcLv77W"
+      data-embed="default"
+      data-video-id="6316471376112"
+      muted
+      data-autoplay-on-viewport
+      loop
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  <h2>Video Playting as a "Gif"</h2>
+  <div style="max-width: 42.4%;position:relative;display:block;padding-bottom:23.85%;height:0;">
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'standard'
+    } only %}
+  </div>
+
+  <div style="position:relative;height:1000px;"></div>
+
+  {% set video_1 %}
+    <video-js
+      data-account="1519050010001"
+      data-player="obdhcLv77W"
+      data-embed="default"
+      data-video-id="6316471376112"
+      data-autoplay-on-viewport
+      muted
+      loop
+      class="c-base-video"></video-js>
+  {% endset %}
+
+  <h2>Video Playting as a "Gif" in Viewport (will only play while it is within the viewport)</h2>
+
+  <div style="max-width: 42.4%;position:relative;display:block;padding-bottom:23.85%;height:0;">
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video_1,
+      ratio: 'standard'
+    } only %}
+  </div>
+{% endset %}
+
+{% include '@bolt-layouts-site/site.twig' with {
+  main: {
+    content: main_content,
+  }
+} only %}
