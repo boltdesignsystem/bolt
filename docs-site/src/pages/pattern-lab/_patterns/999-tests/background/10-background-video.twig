@@ -184,7 +184,10 @@
 {% endset %}
 
 {% set card_with_form %}
-  {% embed '@bolt-components-card-replacement/card-replacement.twig' %}
+  {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
+    height: 'auto',
+  }
+  %}
     {% block body %}
       {{ form }}
     {% endblock %}
@@ -216,7 +219,7 @@
 {% endset %}
 
 {# Video with text in the layout #}
-<h2>Video with a text nested in the layout, with theme class usage</h2>
+<h2>Video with a form in the layout, with theme class usage</h2>
 
 <bolt-stack>
   <bolt-layout padding-top="xlarge" padding-bottom="xlarge" class="t-bolt-teal">
@@ -231,6 +234,7 @@
     <bolt-layout-item>
       <bolt-text headline font-size="xxlarge">{{ example.title }}</bolt-text>
       <p>This background has a <code>solid</code> fill and <code>video</code> prop set to <code>true</code> and the surrounding theme is <code>t-bolt-teal</code></p>
+      {{ card_with_form }}
     </bolt-layout-item>
   </bolt-layout>
 </bolt-stack>
