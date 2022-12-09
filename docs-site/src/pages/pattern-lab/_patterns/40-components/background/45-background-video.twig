@@ -1,0 +1,94 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Set <code>video</code> prop to <code>true</code> when you want use the Background component with the rendered video.</bolt-li>
+    <bolt-li>Video you are using must be square to accommodate all screen sizes and the dynamic height and width of the band.</bolt-li>
+    <bolt-li>Background video should only be served as a decoration, expect it to be cropped anywhere within its square size.</bolt-li>
+    <bolt-li>Background video disappears when the browser size falls below 800px, this is where the white space is diminishing to a point that makes the height of the band longer than width of the band, which could result in the video not covering the entire background.</bolt-li>
+    <bolt-li>Background video poster must be provided as a fallback for when video disappears.</bolt-li>
+    <bolt-li>Background video should be nested inside the ratio element.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set background_video %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/landscape-16x9-mountains.jpg',
+        background: true,
+        loading: 'lazy',
+      }
+    } only %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="5999324539001"
+        controls="false"
+        autoplay=loop
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+  <div class="t-bolt-navy">
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        fill: 'solid',
+        video: true,
+        opacity: 'heavy',
+        items: [
+          background_video,
+        ]
+      }
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set background_video %}
+  {% include '@bolt-elements-image/image.twig' with {
+    attributes: {
+      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+      background: true,
+      loading: 'lazy',
+    }
+  } only %}
+  {% set video %}
+    <video-js
+      data-account="1900410236"
+      data-player="O3FkeBiaDz"
+      data-embed="default"
+      data-video-id="5999324539001"
+      controls="false"
+      autoplay=loop
+      class="c-base-video"></video-js>
+  {% endset %}
+  {% include '@bolt-elements-ratio/ratio.twig' with {
+    content: video,
+    ratio: 'wide'
+  } only %}
+{% endset %}
+{% include './_00-background-band-demo.twig' with {
+  background: {
+    fill: 'solid',
+    video: true,
+    opacity: 'heavy',
+    items: [
+      background_video,
+    ]
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Background Video',
+  description: 'Background Video should be used only for decorative purposes.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
