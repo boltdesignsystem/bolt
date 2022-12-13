@@ -45,7 +45,7 @@
           {# DEPRECATED.  pattern_template() should no longer be used to render each item. #}
           {% include '@bolt-components-background/background-item.twig' %}
         {% else %}
-          {% if this.data.video.value == true %}
+          {% if this.data.video.value %}
             <div class="c-bolt-background__item--video">
               {{ item }}
             </div>
