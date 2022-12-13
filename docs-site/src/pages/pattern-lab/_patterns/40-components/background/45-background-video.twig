@@ -1,6 +1,7 @@
 {% set notes %}
   <bolt-ol>
     <bolt-li>Set <code>video</code> boolean prop to <code>true</code> when you want to render a background video.</bolt-li>
+    <bolt-li>When creating the video element, it is required to make sure the <code>controls</code> attribute is <em>not</em> present. In addition, make sure the following attributes are present on the video element; <code>autoplay</code>, <code>loop</code>, and <code>muted</code>.</bolt-li>
     <bolt-li>Consider this video as decoration and not content (limit elements like words, prominant faces, or brand marks from the video), expect it to be cropped at some point.</bolt-li>
     <bolt-li>By design, the background video will disappear when the device witdth is below 800px (this is for visible stablity on smaller screens).</bolt-li>
     <bolt-li>The background video should be nested inside the Ratio Element, refer to the <a href="{{ link['viewall-elements-ratio'] }}" class="e-bolt-text-link">Ratio Element</a> docs for more information.</bolt-li>
@@ -23,7 +24,7 @@
         data-player="O3FkeBiaDz"
         data-embed="default"
         data-video-id="5999324539001"
-        autoplay loop muted loop
+        autoplay loop muted
         class="c-base-video"></video-js>
     {% endset %}
     {% include '@bolt-elements-ratio/ratio.twig' with {
@@ -61,7 +62,7 @@
       data-player="O3FkeBiaDz"
       data-embed="default"
       data-video-id="5999324539001"
-      autoplay loop muted loop
+      autoplay loop muted
       class="c-base-video"></video-js>
   {% endset %}
   {% include '@bolt-elements-ratio/ratio.twig' with {
