@@ -1,11 +1,10 @@
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Set <code>video</code> prop to <code>true</code> when you want use the Background component with the rendered video.</bolt-li>
-    <bolt-li>Video you are using must be square to accommodate all screen sizes and the dynamic height and width of the band.</bolt-li>
-    <bolt-li>Background video should only be served as a decoration, expect it to be cropped anywhere within its square size.</bolt-li>
-    <bolt-li>Background video disappears when the browser size falls below 800px, this is where the white space is diminishing to a point that makes the height of the band longer than width of the band, which could result in the video not covering the entire background.</bolt-li>
-    <bolt-li>Background video poster must be provided as a fallback for when video disappears.</bolt-li>
-    <bolt-li>Background video should be nested inside the ratio element.</bolt-li>
+    <bolt-li>Set <code>video</code> boolean prop to <code>true</code> when you want to render a background video.</bolt-li>
+    <bolt-li>Consider this video as decoration and not content (limit elements like words, prominant faces, or brand marks from the video), expect it to be cropped at some point.</bolt-li>
+    <bolt-li>By design, the background video will disappear when the device witdth is below 800px (this is for visible stablity on smaller screens).</bolt-li>
+    <bolt-li>The background video should be nested inside the Ratio Element, refer to the <a href="{{ link['viewall-elements-ratio'] }}" class="e-bolt-text-link">Ratio Element</a> docs for more information.</bolt-li>
+    <bolt-li>Provide a poster background image as a fallback. This will be displayed when the video is being loaded and smaller screen sizes, refer to the <a href="{{ link['elements-image-background'] }}" class="e-bolt-text-link">Background Image Element</a> docs for more information.</bolt-li>
   </bolt-ol>
 {% endset %}
 
