@@ -1,13 +1,11 @@
 {% set description %}
-  A teaser can be vertical, horizontal, or responsive. Each has a different layout design that accommodates particular use cases. Additionally, the card variant can turn a teaser into a teaser card.
+  The variant card prop can turn a teaser into a teaser card.
 {% endset %}
 
 {% set notes %}
   <bolt-ol>
-    <bolt-li>Vertical or responsive teaser accepts 16:9 aspect ratio signifier. Any other aspect ratio will automatically be cropped to a 16:9 ratio.</bolt-li>
-    <bolt-li>Horizontal teaser accepts 1:1 (square) aspect ratio signifier. Any other aspect ratio will automatically be cropped to a 1:1 ratio.</bolt-li>
-    <bolt-li>The above restrictions do not apply to the card variant.</bolt-li>
-    <bolt-li>Reference <a href="{{ link['viewall-components-teaser'] }}?selected-tab=schema" class="e-bolt-text-link">the schema</a> for all options.</bolt-li>
+    <bolt-li>When the <code>variant</code> prop is set to <code>card</code> it's possible to apply spacing around the teaser and rounding the teaser's corners.</bolt-li>
+    <bolt-li>Reference <a href="{{ link['viewall-components-teaser'] }}?selected-tab=schema" class="e-bolt-text-link">the schema</a> for <code>spacing</code> and <code>border_radius</code> props.</bolt-li>
   </bolt-ol>
 {% endset %}
 
@@ -36,30 +34,13 @@
   {% endset %}
 
   <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--large">
-    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
-      {% include '@bolt-components-teaser/teaser.twig' with {
-        layout: 'vertical',
-        signifier: wide_image,
-        headline: {
-          text: 'This is a vertical teaser',
-          link_attributes: {
-            href: 'https://www.google.com',
-            target: '_blank',
-            rel: 'noopener'
-          }
-        },
-        description: {
-          content: 'The signifier is using a 16:9 aspect ratio image. Aliquip sint mollit irure eiusmod duis aliquip duis qui nostrud enim ea aute in enim.',
-        },
-      } only %}
-    </div>
-    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@medium">
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
       {% include '@bolt-components-teaser/teaser.twig' with {
         layout: 'vertical',
         signifier: wide_image,
         variant: 'card',
         headline: {
-          text: 'This is a card variant vertical teaser',
+          text: 'A card variant vertical teaser',
           link_attributes: {
             href: 'https://www.google.com',
             target: '_blank',
@@ -67,32 +48,17 @@
           }
         },
         description: {
-          content: 'The signifier is using a 16:9 aspect ratio image. Aliquip sint mollit irure eiusmod duis aliquip duis qui nostrud enim ea aute in enim.',
+          content: 'This card has the <code>border_radius</code> set to <strong>small</strong>. The prop <code>spacing</code> is set to <strong>small</strong>. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
         },
       } only %}
     </div>
-    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-8/12@small">
-      {% include '@bolt-components-teaser/teaser.twig' with {
-        layout: 'horizontal',
-        signifier: square_image,
-        headline: {
-          text: 'This is a horizontal teaser',
-          link_attributes: {
-            href: 'https://www.google.com',
-            target: '_blank',
-            rel: 'noopener'
-          }
-        },
-        description: {
-          content: 'The signifier is using a 1:1 aspect ratio image. Aliquip sint mollit irure eiusmod duis aliquip duis qui nostrud enim ea aute in enim. Do et eiusmod sint velit est do exercitation qui minim.',
-        },
-      } only %}
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
       {% include '@bolt-components-teaser/teaser.twig' with {
         layout: 'horizontal',
         signifier: square_image,
         variant: 'card',
         headline: {
-          text: 'This is a card variant horizontal teaser',
+          text: 'A card variant horizontal teaser',
           link_attributes: {
             href: 'https://www.google.com',
             target: '_blank',
@@ -100,17 +66,17 @@
           }
         },
         description: {
-          content: 'The signifier is using a 1:1 aspect ratio image. Aliquip sint mollit irure eiusmod duis aliquip duis qui nostrud enim ea aute in enim.',
+          content: 'This card has the prop <code>border_radius</code> set to <strong>small</strong>. The prop <code>spacing</code> is set to <strong>small</strong>. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
         },
       } only %}
     </div>
     <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-10/12@small">
       {% include '@bolt-components-teaser/teaser.twig' with {
         layout: 'responsive',
-        gutter: 'large',
         signifier: wide_image,
+        variant: 'card',
         headline: {
-          text: 'This is a responsive teaser',
+          text: 'A card variant responsive teaser',
           link_attributes: {
             href: 'https://www.google.com',
             target: '_blank',
@@ -118,15 +84,59 @@
           }
         },
         description: {
-          content: 'The signifier is using a 16:9 aspect ratio image. Duis dolore labore cillum excepteur aute veniam dolore consectetur est sint exercitation sit. Dolor eiusmod officia laborum tempor. Enim eiusmod Lorem laboris aliqua dolore.',
+          content: 'This card has the prop <code>border_radius</code> set to <strong>small</strong>. The prop <code>spacing</code> is set to <strong>small</strong>. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
         },
       } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'vertical',
+        signifier: wide_image,
+        variant: 'card',
+        border_radius: 'large',
+        spacing: 'medium',
+        headline: {
+          text: 'A card variant vertical teaser',
+          link_attributes: {
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
+          }
+        },
+        description: {
+          content: 'This card has the prop <code>border_radius</code> set to <strong>large</strong>. The prop <code>spacing</code> is set to <strong>medium</strong>. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'horizontal',
+        signifier: square_image,
+        variant: 'card',
+        border_radius: 'large',
+        spacing: 'medium',
+        headline: {
+          text: 'A card variant horizontal teaser',
+          link_attributes: {
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
+          }
+        },
+        description: {
+          content: 'This card has the prop <code>border_radius</code> set to <strong>large</strong>. The prop <code>spacing</code> is set to <strong>medium</strong>. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-10/12@small">
       {% include '@bolt-components-teaser/teaser.twig' with {
         layout: 'responsive',
         signifier: wide_image,
         variant: 'card',
+        border_radius: 'large',
+        spacing: 'medium',
         headline: {
-          text: 'This is a card variant responsive teaser',
+          text: 'A card variant responsive teaser',
           link_attributes: {
             href: 'https://www.google.com',
             target: '_blank',
@@ -134,7 +144,7 @@
           }
         },
         description: {
-          content: 'The signifier is using a 16:9 aspect ratio image. Duis dolore labore cillum excepteur aute veniam dolore consectetur est sint exercitation sit. Dolor eiusmod officia laborum tempor.',
+          content: 'This card has the prop <code>border_radius</code> set to <strong>large</strong>. The prop <code>spacing</code> is set to <strong>medium</strong>. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
         },
       } only %}
     </div>
@@ -146,6 +156,8 @@
 {% include '@bolt-components-teaser/teaser.twig' with {
   layout: 'horizontal',
   variant: 'card',
+  border_radius: 'large',
+  spacing: 'medium',
   signifier: image,
   headline: {
     text: 'This is the teaser headline',
@@ -160,7 +172,7 @@
 {% endset %}
 
 {% include '@utils/pattern-doc-page.twig' with {
-  title: 'Teaser Layout and Variant',
+  title: 'Teaser Card Variant',
   description: description,
   notes: notes,
   demo: demo,

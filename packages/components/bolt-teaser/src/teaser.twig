@@ -14,9 +14,11 @@
   this.data.layout.value ? 'c-bolt-teaser--' ~ this.data.layout.value,
   this.data.gutter.value ? 'c-bolt-teaser--gutter-' ~ this.data.gutter.value,
   this.data.variant.value != 'transparent' ? 'c-bolt-teaser--variant-' ~ this.data.variant.value,
+  this.data.variant.value != 'transparent' ? this.data.border_radius.value != 'none' ? 'c-bolt-teaser--border-radius-' ~ this.data.border_radius.value,
+  this.data.variant.value != 'transparent' ? this.data.spacing.value != 'small' ? 'c-bolt-teaser--spacing-' ~ this.data.spacing.value,
 ] %}
 
-<article {{ attributes.addClass(classes) }}>
+<article {{ attributes.addClass(classes) }} >
   {% if signifier %}
     <div class="c-bolt-teaser__signifier">
       <div class="c-bolt-teaser__signifier-image">

@@ -28,7 +28,7 @@
     >
       {% if icon_before %}<replace-with-children class="{{ base_class ~ '__icon-before'}}" aria-hidden="true"><span slot="icon-before">{{ icon_before }}</span></replace-with-children>{% endif %}
       {{ content }}
-      {% if icon_after %}<replace-with-children class="{{ base_class ~ '__icon-after'}}" aria-hidden="true"><span slot="icon-before">{{ icon_after }}</span></replace-with-children>{% endif %}
+      {% if icon_after %}<replace-with-children class="{{ base_class ~ '__icon-after'}}" aria-hidden="true"><span slot="icon-after">{{ icon_after }}</span></replace-with-children>{% endif %}
     </ssr-keep>
   {% endset %}
   {% set trigger_options = {

@@ -1,0 +1,13 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-elements-list'].schema['list-item'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+<li {{ attributes }}>
+  {{ content }}
+</li>

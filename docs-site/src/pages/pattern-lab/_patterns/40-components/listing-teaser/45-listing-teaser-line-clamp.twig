@@ -1,0 +1,68 @@
+{% set demo %}
+  {% set icon_questions %}
+    {% include '@bolt-elements-icon/icon.twig' with {
+      name: 'pega-chat-question',
+      size: 'large',
+      color: 'teal',
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    signifier: icon_questions,
+    variant: 'card',
+    headline: {
+      text: 'Listing Teaser with Default Line Clamp',
+      tag: 'h3',
+      size: 'large',
+      link_attributes: {
+        href: 'https://google.com'
+      },
+    },
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae. Leo vel fringilla est ullamcorper eget nulla facilisi. Quis blandit turpis cursus in. Praesent semper feugiat nibh sed pulvinar proin. Fermentum posuere urna nec tincidunt praesent semper. Donec pretium vulputate sapien nec. Euismod nisi porta lorem mollis aliquam ut porttitor. Eget lorem dolor sed viverra. Donec enim diam vulputate ut pharetra sit amet aliquam. Commodo viverra maecenas accumsan lacus vel facilisis volutpat est velit. Hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Purus non enim praesent elementum facilisis leo vel fringilla est. Eget duis at tellus at urna condimentum mattis. Ultrices mi tempus imperdiet nulla malesuada pellentesque. Dolor purus non enim praesent elementum facilisis leo vel.',
+    meta_items: [
+      'Posted 8 hours 15 minutes ago',
+      'Last activity: 2 minutes ago',
+    ],
+    attributes: {
+      class: 'u-bolt-margin-bottom-medium'
+    }
+  } only %}
+
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    signifier: icon_questions,
+    variant: 'card',
+    headline: {
+      text: 'Listing Teaser with <code>description_clamp</code> set to <code>false</code>',
+      tag: 'h3',
+      size: 'large',
+      link_attributes: {
+        href: 'https://google.com'
+      },
+    },
+    description_clamp: false,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae. Leo vel fringilla est ullamcorper eget nulla facilisi. Quis blandit turpis cursus in. Praesent semper feugiat nibh sed pulvinar proin. Fermentum posuere urna nec tincidunt praesent semper. Donec pretium vulputate sapien nec. Euismod nisi porta lorem mollis aliquam ut porttitor. Eget lorem dolor sed viverra. Donec enim diam vulputate ut pharetra sit amet aliquam. Commodo viverra maecenas accumsan lacus vel facilisis volutpat est velit. Hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Purus non enim praesent elementum facilisis leo vel fringilla est. Eget duis at tellus at urna condimentum mattis. Ultrices mi tempus imperdiet nulla malesuada pellentesque. Dolor purus non enim praesent elementum facilisis leo vel.',
+    meta_items: [
+      'Posted 8 hours 15 minutes ago',
+      'Last activity: 2 minutes ago',
+    ],
+    attributes: {
+      class: 'u-bolt-margin-bottom-medium'
+    }
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+  {% include '@bolt-components-listing-teaser/listing-teaser.twig' with {
+    description_clamp: false,
+    ...
+  } only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Listing Teaser Line Clamp',
+  description: 'By defualt, a listing teaser will shorten the description after a number of lines determind by a breakpoint. Setting this prop to false will allow the entire description to be previewed.',
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

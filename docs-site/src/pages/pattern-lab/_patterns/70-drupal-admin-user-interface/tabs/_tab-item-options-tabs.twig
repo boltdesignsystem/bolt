@@ -1,0 +1,25 @@
+<section id="item-options-tabs">
+  <ul>
+    {% for item in 1..3 %}
+    <li>
+      <details>
+        <summary>Item {{ loop.index }}</summary>
+        <ul>
+          <li>
+            <label>
+              <div><strong><small>Label</small></strong></div>
+              <input type="text">
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="default-tab" {% if loop.index0 == 1 %}checked{% endif %}> <small>Expand this item on page load.</small>
+            </label>
+          </li>
+        </ul>
+      </details>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+<a href="#item-options-tabs">Item options</a>

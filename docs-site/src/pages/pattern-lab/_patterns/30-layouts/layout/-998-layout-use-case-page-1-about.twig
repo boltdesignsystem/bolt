@@ -1,0 +1,663 @@
+{# START LAYER #}
+  {% set layer_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Hi, we're Pegasystems.<br />But you can call us Pega.",
+      tag: 'h1',
+      size: 'xxxlarge',
+    } only %}
+    {% include '@bolt-components-headline/subheadline.twig' with {
+      text: "Looking for innovative software that crushes business complexity? A growing company with a deep commitment to our clients and communities? You've come to the right place.",
+      tag: 'h2',
+      size: 'large',
+    } only %}
+  {% endset %}
+
+  {% set layer_supplement %}
+    {% set video %}
+      <video-js
+        data-account="1900410236"
+        data-player="O3FkeBiaDz"
+        data-embed="default"
+        data-video-id="6236693947001"
+        data-media-duration
+        data-media-title
+        controls
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_supplement
+    } only %}
+  {% endset %}
+
+  {% set layer_background %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/placeholders/backgrounds/background-light.jpg',
+        loading: 'eager',
+        width: '100vw'
+      },
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    background: layer_background,
+    padding_top: 'xlarge',
+    padding_bottom: 'large',
+    gutter: 'large',
+    row_gutter: 'large',
+    valign_items: 'center',
+    template: [
+      'halves@from-medium'
+    ],
+    attributes: {
+      class: 't-bolt-gray-xlight'
+    }
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_tiles %}
+    {% set tile %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          alt: 'Image alt text',
+          src: '/images/content/icons/employees.png',
+          loading: 'eager',
+          width: 80,
+          height: 80,
+          attributes: {
+            class: 'u-bolt-margin-bottom-small',
+          },
+        },
+      } only %}
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: '<strong>6,000</strong> global employees',
+        tag: 'h3',
+        size: 'large',
+      } only %}
+    {% endset %}
+
+    {% for i in 1..4 %}
+      {% include '@bolt-layouts-layout/layout-item.twig' with {
+        content: tile,
+        attributes: {
+          class: 'u-bolt-text-align-center',
+        }
+      } only %}
+    {% endfor %}
+  {% endset %}
+
+  {% set layer_content %}
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layer_tiles,
+      gutter: 'large',
+      padding_bottom: 'medium',
+      template: [
+        'tiles@from-small'
+      ]
+    } only %}
+  {% endset %}
+
+  {% set layer_button %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Download corporate fact sheet',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_button,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'large',
+    padding_bottom: 'large',
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "What we do",
+      tag: 'h2',
+      size: 'xxlarge',
+    } only %}
+    <p>The <a href="https://www.pega.com/products/platform" data-google-analytics-et-processed="true">Pega Platform™</a> makes it simpler for enterprises to work smarter, unify experiences, and adapt instantly. Thanks to our scalable, made-to-measure architecture, even the biggest organizations can stay streamlined and ready for what’s next.</p>
+    {% set button_1 %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Explore Products',
+        display: 'block',
+        attributes: {
+          href: '#!',
+        }
+      } only %}
+    {% endset %}
+    {% set button_2 %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Why Pega',
+        display: 'block',
+        hierarchy: 'secondary',
+        attributes: {
+          href: '#!',
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-list/list.twig' with {
+      display: 'inline',
+      spacing: 'small',
+      items: [
+        button_1,
+        button_2
+      ]
+    } only %}
+  {% endset %}
+
+  {% set layer_supplement %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/placeholders/16x9.jpg',
+        loading: 'eager',
+        width: 800,
+        height: 450,
+        style: 'display: block;',
+      },
+    } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_supplement,
+      valign_self: 'end-offset',
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    template: [
+      'halves@from-medium'
+    ]
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_headline %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Meet our industry-leading clients",
+      tag: 'h2',
+      size: 'xlarge',
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_content %}
+    {% set layer_logo %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/content/logos/logo-atos.png',
+          alt: 'Image alt text',
+        },
+      } only %}
+    {% endset %}
+
+    {% set layer_items %}
+      {% for i in 1..5 %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: layer_logo,
+          attributes: {
+            class: 'u-bolt-text-align-center',
+          }
+        } only %}
+      {% endfor %}
+    {% endset %}
+
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layer_items,
+      template: [
+        'tiles@from-small'
+      ]
+    } only %}
+  {% endset %}
+
+  {% set layer_button %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'See more clients',
+        attributes: {
+          href: '#!',
+        }
+      } only %}
+  {% endset %}
+
+  {% set layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_headline,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_button,
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_items,
+    top: 'large',
+    padding_bottom: 'large',
+    attributes: {
+      class: 't-bolt-gray-xlight'
+    }
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_headline %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "See how we deliver value, fast",
+      tag: 'h2',
+      size: 'xlarge',
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Forrester measured Pega's Total Economic Impact™:",
+      tag: 'span',
+      size: 'large',
+      weight: 'regular',
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_content %}
+    {% set stat_item %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: "$000M+%",
+        tag: 'span',
+        size: 'xxlarge',
+        attributes: {
+          class: 'u-bolt-text-align-center',
+        }
+      } only %}
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: "in something important",
+        tag: 'span',
+        size: 'large',
+        weight: 'regular',
+        attributes: {
+          class: 'u-bolt-text-align-center',
+        }
+      } only %}
+    {% endset %}
+
+    {% set layer_items %}
+      {% for i in 1..3 %}
+        {% include '@bolt-layouts-layout/layout-item.twig' with {
+          content: stat_item,
+          attributes: {
+            class: 'u-bolt-text-align-center',
+          }
+        } only %}
+      {% endfor %}
+    {% endset %}
+
+    {% include '@bolt-layouts-layout/layout.twig' with {
+      content: layer_items,
+      template: [
+        'tiles@from-small'
+      ]
+    } only %}
+  {% endset %}
+
+  {% set layer_button %}
+      {% include '@bolt-elements-button/button.twig' with {
+        content: 'Get the reports',
+        attributes: {
+          href: '#!',
+        }
+      } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_headline,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_button,
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    top: 'large',
+    padding_bottom: 'large',
+    attributes: {
+      class: 't-bolt-gray-xlight'
+    }
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Who we are",
+      tag: 'h2',
+      size: 'xxlarge',
+    } only %}
+    <p>We’re a <a href="/insights/resources/history-pega-our-founder-ceo-looks-back" data-google-analytics-et-processed="true">different kind of tech company</a>. A global business rooted in family. A relentless, client-first innovator since 1983. And a trusted partner to the world’s leading brands.</p>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Meet our leadership team',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_supplement %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/content/icons/badge-pw.png',
+        width: 200,
+      },
+    } only %}
+  {% endset %}
+
+  {% set layer_quote %}
+    {% include '@bolt-components-blockquote/blockquote.twig' with {
+      'author': {
+        'name': 'Alan Trefler',
+        'title': 'Pegasystems Founder &amp; CEO'
+      },
+      size: 'large',
+      border: 'none',
+      content: 'We’ve gone from an idea, to a sustainable business, to a business that can really help organizations and help people globally. At the same time, I see so much more that is possible.'
+    } %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Watch Alan tell the Pega story",
+      tag: 'span',
+      size: 'xsmall',
+      url: '#!'
+    } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_supplement,
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_quote,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    template: [
+      '50/25/25@from-medium'
+    ],
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "We care about our people...",
+      tag: 'h2',
+      size: 'xxlarge',
+    } only %}
+    <p>To us #LifeAtPega means a safe, respectful work environment that supports our employees and their families. We offer highly competitive benefits and robust programs focused on:</p>
+    <ul>
+      <li>Employee wellness</li>
+      <li>Inclusion &amp; diversity</li>
+      <li>Professional growth &amp; education</li>
+    </ul>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Work with us',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_supplement %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/placeholders/16x9.jpg',
+        loading: 'eager',
+        width: 800,
+        height: 450,
+        style: 'display: block;',
+      },
+    } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+      order: 'last@from-small',
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_supplement,
+      valign_self: 'end-offset',
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    template: [
+      'halves@from-small'
+    ],
+    attributes: {
+      class: 't-bolt-gray-xlight'
+    }
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_content %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "And give back to our communities",
+      tag: 'h2',
+      size: 'xxlarge',
+    } only %}
+    <p>From environmental sustainability to volunteering, we strive to be responsible corporate citizens and active contributors in the communities where we live and work.&nbsp;And we partner with <a href="/brand-ambassadors" data-google-analytics-et-processed="true">brand ambassadors</a> who share our values.</p>
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Find out more',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_supplement %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        alt: 'Image alt text',
+        src: '/images/placeholders/16x9.jpg',
+        loading: 'eager',
+        width: 800,
+        height: 450,
+      },
+    } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_content,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_supplement,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    template: [
+      'halves@from-small'
+    ],
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_headline %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Get to know us better",
+      tag: 'h2',
+      size: 'xlarge',
+      attributes: {
+        class: 'u-bolt-text-align-center',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_actions %}
+    {% set layer_icon %}
+      {% include '@bolt-elements-icon/icon.twig' with {
+        name: 'download',
+        size: 'large'
+      } %}
+    {% endset %}
+
+    {% include '@bolt-components-action-blocks/action-blocks.twig' with {
+      items: [
+        {
+          text: 'Action Item',
+          url: '#!',
+          media: layer_icon,
+        },
+        {
+          text: 'Action Item',
+          url: '#!',
+          media: layer_icon,
+        },
+        {
+          text: 'Action Item',
+          url: '#!',
+          media: layer_icon,
+        },
+        {
+          text: 'Action Item',
+          url: '#!',
+          media: layer_icon,
+        },
+        {
+          text: 'Action Item',
+          url: '#!',
+          media: layer_icon,
+        },
+        {
+          text: 'Action Item',
+          url: '#!',
+          media: layer_icon,
+        },
+      ]
+    } only %}
+  {% endset %}
+
+  {% set layout_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_headline,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_actions,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layout_items,
+    top: 'large',
+    padding_bottom: 'large',
+    attributes: {
+      class: 't-bolt-gray-xlight'
+    }
+  } only %}
+{# END LAYER #}
+
+{# START LAYER #}
+  {% set layer_headline %}
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: "Ready to connect?",
+      tag: 'h2',
+      size: 'xxlarge',
+    } only %}
+  {% endset %}
+
+  {% set layer_button %}
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Contact our sales team',
+      attributes: {
+        href: '#!',
+      }
+    } only %}
+  {% endset %}
+
+  {% set layer_items %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_headline,
+    } only %}
+    {% include '@bolt-layouts-layout/layout-item.twig' with {
+      content: layer_button,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-layouts-layout/layout.twig' with {
+    content: layer_items,
+    padding_top: 'large',
+    padding_bottom: 'large',
+    attributes: {
+      class: 'u-bolt-text-align-center',
+    }
+  } only %}
+{# END LAYER #}
