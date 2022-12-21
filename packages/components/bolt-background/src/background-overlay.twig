@@ -10,10 +10,10 @@
 {% set attributes = create_attribute({}) %}
 
 {# Validate focal_point manually since it is an object. #}
-{% set schema_horizontal = schema.properties.focal_point.properties.horizontal %}
-{% set schema_vertical = schema.properties.focal_point.properties.vertical %}
-{% set focal_point_vertical = focal_point.vertical in schema_vertical.enum ? focal_point.vertical : schema_vertical.default %}
-{% set focal_point_horizontal = focal_point.horizontal in schema_horizontal.enum ? focal_point.horizontal : schema_horizontal.default %}
+{% set schema_focal_point_horizontal = schema.properties.focal_point.properties.horizontal %}
+{% set schema_focal_point_vertical = schema.properties.focal_point.properties.vertical %}
+{% set focal_point_vertical = focal_point.vertical in schema_focal_point_vertical.enum ? focal_point.vertical : schema_focal_point_vertical.default %}
+{% set focal_point_horizontal = focal_point.horizontal in schema_focal_point_horizontal.enum ? focal_point.horizontal : schema_focal_point_horizontal.default %}
 
 {% set classes = [
   'c-bolt-background__overlay',
