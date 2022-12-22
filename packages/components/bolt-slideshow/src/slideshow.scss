@@ -1,0 +1,50 @@
+/* ------------------------------------ *\
+   Slideshow
+\* ------------------------------------ */
+
+@import '@bolt/core-v3.x';
+
+@import 'swiper/swiper';
+// @import 'swiper/modules/navigation/navigation';
+@import 'swiper/modules/pagination/pagination';
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-slideshow', block, medium);
+
+.c-bolt-slideshow {
+  --swiper-theme-color: var(--m-bolt-primary);
+  --swiper-pagination-bullet-inactive-color: var(--m-bolt-text);
+  --swiper-navigation-size: 2rem;
+
+  display: block;
+
+  .c-bolt-slideshow__navigation {
+    // color: var(--bolt-color-white);
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    height: calc(100% - 24px);
+    margin-top: 0;
+
+    button {
+      position: static;
+
+      &::after {
+        content: '';
+        position: absolute;
+        height: 100%;
+      }
+    }
+
+    &-next {
+      right: 0;
+    }
+  }
+
+  .c-bolt-slideshow__pagination {
+    position: relative;
+    bottom: auto !important;
+  }
+}

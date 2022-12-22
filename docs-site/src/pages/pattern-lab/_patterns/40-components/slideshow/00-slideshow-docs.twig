@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-slideshow/slideshow.twig' with {
+  content: 'This is a slideshow component.'
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  componentName: 'slideshow',
+  usage: usage
+} only %}

@@ -1,0 +1,56 @@
+{% set description %}
+    A description of the component and what it is used for.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>List out important information about this component and its usage.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set palceholder %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Slide',
+      size: 'xlarge',
+    } only %}
+  {% endset %}
+
+  {% set slides %}
+    {% include '@bolt-components-slideshow/slideshow-slide.twig' with {
+      content: palceholder,
+    } only %}
+    {% include '@bolt-components-slideshow/slideshow-slide.twig' with {
+      content: palceholder,
+    } only %}
+    {% include '@bolt-components-slideshow/slideshow-slide.twig' with {
+      content: palceholder,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-components-slideshow/slideshow.twig' with {
+    content: slides
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% include '@bolt-components-slideshow/slideshow.twig' with {
+  content: 'This is a slideshow component.'
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}{% verbatim %}
+<div class="c-bolt-slideshow">
+  This is a slideshow component.
+</div>
+{% endverbatim %}{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic Slideshow',
+  description: description,
+  notes: notes,
+  demo: demo,
+  demo_light_dark: true,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

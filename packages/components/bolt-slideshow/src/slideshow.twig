@@ -1,0 +1,57 @@
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-components-slideshow'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  'c-bolt-slideshow',
+  'swiper',
+] %}
+
+{% set chevron_left %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-left',
+  } only %}
+{% endset %}
+
+{% set chevron_right %}
+  {% include '@bolt-elements-icon/icon.twig' with {
+    name: 'chevron-right',
+  } only %}
+{% endset %}
+
+<div {{ attributes.addClass(classes) }}>
+  <div class="swiper-wrapper">
+    {% if content %}
+      {{ content }}
+    {% endif %}
+  </div>
+  <div class="c-bolt-slideshow__navigation c-bolt-slideshow__navigation-prev">
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Previous',
+      icon_only: chevron_left,
+      attributes: {
+        type: 'button',
+        class: 'c-bolt-slideshow__navigation-prev-btn'
+      }
+    } only %}
+  </div>
+  <div class="c-bolt-slideshow__navigation c-bolt-slideshow__navigation-next">
+    {% include '@bolt-elements-button/button.twig' with {
+      content: 'Next',
+      icon_only: chevron_right,
+      attributes: {
+        type: 'button',
+        class: 'c-bolt-slideshow__navigation-next-btn'
+      }
+    } only %}
+  </div>
+  <div class="swiper-pagination c-bolt-slideshow__pagination"></div>
+</div>
+

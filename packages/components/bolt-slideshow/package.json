@@ -1,0 +1,32 @@
+{
+  "name": "@bolt/components-slideshow",
+  "version": "5.9.1",
+  "description": "a replacement for carousel",
+  "keywords": [
+    "bolt design system"
+  ],
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-slideshow"
+  },
+  "license": "MIT",
+  "author": "CJ White <hello@cjwhitedev.com>",
+  "main": "index.js",
+  "style": "index.scss",
+  "dependencies": {
+    "@bolt/core-v3.x": "^5.8.0",
+    "swiper": "^8.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "schema": [
+    "slideshow.schema.js",
+    "slideshow-slide.schema.js"
+  ],
+  "twig": "src/slideshow.twig"
+}
