@@ -1,0 +1,107 @@
+{% set description %}
+  The List element represents a list of items.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>A List is for grouping a collection of items and shouldn't be used for creating layouts. For creating a page layout, it's recommended to use <a href="{{ link['viewall-layouts-layout'] }}" class="e-bolt-text-link">Layout</a>.</bolt-li>
+    <bolt-li>The List element is a replacement for the <a href="{{ link['viewall-components-list'] }}" class="e-bolt-text-link">List component</a>.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set placeholder_1 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 1',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+
+  {% set placeholder_2 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 2',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+
+  {% set placeholder_3 %}
+    {% include '@bolt-components-placeholder/placeholder.twig' with {
+      text: 'Item 3',
+      size: 'xsmall',
+    } only %}
+  {% endset %}
+
+  {% set list_items %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_1,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_2,
+    } only %}
+    {% include '@bolt-elements-list/list-item.twig' with {
+      content: placeholder_3,
+    } only %}
+  {% endset %}
+
+  {% include '@bolt-elements-list/list.twig' with {
+    content: list_items
+  } only %}
+{% endset %}
+
+{% set twig_markup %}{% verbatim %}
+{% set placeholder_1 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Item 1',
+    size: 'xsmall',
+  } only %}
+{% endset %}
+
+{% set placeholder_2 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Item 2',
+    size: 'xsmall',
+  } only %}
+{% endset %}
+
+{% set placeholder_3 %}
+  {% include '@bolt-components-placeholder/placeholder.twig' with {
+    text: 'Item 3',
+    size: 'xsmall',
+  } only %}
+{% endset %}
+
+{% set list_items %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_1,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_2,
+  } only %}
+  {% include '@bolt-elements-list/list-item.twig' with {
+    content: placeholder_3,
+  } only %}
+{% endset %}
+
+{% include '@bolt-elements-list/list.twig' with {
+  content: list_items
+} only %}
+{% endverbatim %}{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<ul class="e-bolt-list">
+  <li class="e-bolt-list__item">Item 1</li>
+  <li class="e-bolt-list__item">Item 2</li>
+  <li class="e-bolt-list__item">Item 3</li>
+</ul>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Basic List',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup
+} only %}

@@ -1,13 +1,14 @@
 // @ts-nocheck
+// Note: `React` is required here even though it isn't used explicitly
+import React from 'react';
 import { customElement } from '@bolt/element';
 import { props } from 'skatejs';
-import { h, withPreact, Fragment } from '@bolt/core-v3.x/renderers';
+import { withReact } from '@bolt/core-v3.x/renderers';
 import { getUniqueId } from '@bolt/core-v3.x/utils/get-unique-id';
 import Fuse from 'fuse.js';
-import ReactHtmlParser from 'react-html-parser';
+import parse from 'html-react-parser';
 import Mousetrap from 'mousetrap';
 import Autosuggest from 'react-autosuggest';
-import { TypeaheadStatus } from './typeahead.status';
 import { bind } from './classnames';
 
 import styles from './typeahead.scoped.scss';
@@ -36,7 +37,7 @@ export const highlightSearchResults = function(item) {
     }
     resultItem.item.highlightedLabel = result.join('');
 
-    resultItem.item.highlightedLabel = ReactHtmlParser(
+    resultItem.item.highlightedLabel = parse(
       resultItem.item.highlightedLabel,
     );
 
@@ -49,39 +50,9 @@ export const highlightSearchResults = function(item) {
 };
 
 @customElement('bolt-autosuggest')
-class BoltAutosuggest extends withPreact {
+class BoltAutosuggest extends withReact {
   get getParent() {
     return this.$parent;
-  }
-
-  a11yStatusResults(length, contentSelectedOption) {
-    const words = {
-      result: length === 1 ? 'result' : 'results',
-      is: length === 1 ? 'is' : 'are',
-    };
-    return (
-      <span>
-        {length} {words.result} {words.is} available. {contentSelectedOption}
-      </span>
-    );
-  }
-
-  a11ySelectedOption(selectedOption, length, index) {
-    return `${selectedOption} ${
-      index + 1 <= length ? index + 1 : index
-    } of ${length} is highlighted`;
-  }
-
-  a11yQueryTooShort(minQueryLength) {
-    return `Type in ${minQueryLength} or more characters for results`;
-  }
-
-  a11yNoResults() {
-    return 'No search results';
-  }
-
-  a11yAssistiveHint() {
-    return 'When autocomplete results are available use up and down arrows to review and enter to select.  Touch device users, explore by touch or with swipe gestures.';
   }
 
   // @todo: replace with auto-wired up props approach originally used in Carousel
@@ -192,8 +163,6 @@ class BoltAutosuggest extends withPreact {
     self.state = {
       value: '',
       suggestions: [],
-      selectedOptionIndex: -1,
-      selectedOptionText: null,
       shouldMenuAutoOpen: true,
     };
 
@@ -298,16 +267,7 @@ class BoltAutosuggest extends withPreact {
   // customized UI that the search results are rendered within
   // we customize the default from react-autosuggest by adding optional footer UI
   renderSuggestionsContainer({ containerProps, children, query }) {
-    return (
-      <div {...containerProps}>
-        {children}
-        <span id={`hint-${this.id || ''}`} style={{ display: 'none' }}>
-          {this.$parent.a11yAssistiveHint
-            ? this.$parent.a11yAssistiveHint()
-            : this.a11yAssistiveHint()}
-        </span>
-      </div>
-    );
+    return <div {...containerProps}>{children}</div>;
   }
 
   // highlights keywords in the search results in a react-friendly way + limits the total number of results displayed
@@ -372,26 +332,23 @@ class BoltAutosuggest extends withPreact {
    */
   onChange = (event, { newValue, method }) => {
     this._fire('onChange', method, newValue);
-
-    // @todo: replace this workaround with this.results.findIndex(findSelectedIndex) once `findIndex` can be safely polyfilled
-    const suggestionIndex = this.results.indexOf(
-      this.results.find(result => result.item.label === newValue),
-    );
-
     this.setState({
       value: newValue,
-      selectedOptionText: suggestionIndex === -1 ? null : newValue,
-      selectedOptionIndex: suggestionIndex === -1 ? -1 : suggestionIndex,
     });
   };
 
   // Autosuggest calls this every time you need to update suggestions.
   onSuggestionsFetchRequested = async ({ value }) => {
     await this._fire('onSuggestionsFetchRequested', value);
-    await this._setState({ isOpen: true });
+
+    const suggestions = await this.getSuggestions(value);
+    const suggestionIndex = this.results.findIndex(
+      result => result.item.label === value,
+    );
 
     await this._setState({
-      suggestions: await this.getSuggestions(value),
+      suggestions,
+      isOpen: true,
     });
   };
 
@@ -434,40 +391,9 @@ class BoltAutosuggest extends withPreact {
     this._fire('onRenderInput', value);
 
     return (
-      <>
-        <TypeaheadStatus
-          id={`bolt-typeahead-status--${this.id}`}
-          length={this.state.suggestions.length}
-          queryLength={value.length}
-          minQueryLength={0}
-          selectedOption={this.state.selectedOptionText}
-          selectedOptionIndex={this.state.selectedOptionIndex}
-          isInFocus={true}
-          tQueryTooShort={
-            this.$parent.a11yQueryTooShort
-              ? this.$parent.a11yQueryTooShort
-              : this.a11yQueryTooShort
-          }
-          tNoResults={
-            this.$parent.a11yNoResults
-              ? this.$parent.a11yNoResults
-              : this.a11yNoResults
-          }
-          tSelectedOption={
-            this.$parent.a11ySelectedOption
-              ? this.$parent.a11ySelectedOption
-              : this.a11ySelectedOption
-          }
-          tResults={
-            this.$parent.a11yStatusResults
-              ? this.$parent.a11yStatusResults
-              : this.a11yStatusResults
-          }
-        />
-        <div className={cx(`c-bolt-typeahead__input-wrapper`, {})}>
-          <input {...inputProps} />
-        </div>
-      </>
+      <div className={cx(`c-bolt-typeahead__input-wrapper`, {})}>
+        <input {...inputProps} />
+      </div>
     );
   }
 
@@ -510,8 +436,8 @@ class BoltAutosuggest extends withPreact {
 
     return (
       <div
-        class={cx('c-bolt-typeahead__wrapper')}
-        style={`--typeahead-height: ${this.offsetHeight}px;`}>
+        className={cx('c-bolt-typeahead__wrapper')}
+        style={{ '--typeahead-height': `${this.offsetHeight}px` }}>
         {this.addStyles([styles])}
         <Autosuggest
           theme={theme}

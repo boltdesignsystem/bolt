@@ -1,0 +1,22 @@
+{% set schema = bolt.data.components['@bolt-elements-table'].schema['table-cell'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Array of classes based on the defined + default props #}
+
+{% if header %}
+  <th {{ attributes }}>
+    {{ content }}
+  </th>
+{% else %}
+  <td {{ attributes }}>
+    {{ content }}
+  </td>
+{% endif %}
+
+

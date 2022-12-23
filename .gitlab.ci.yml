@@ -1,0 +1,161 @@
+image: registry.gitlab.com/pegadigital/bolt/bolt:php7.4-slim
+
+variables:
+  FF_USE_FASTZIP: "true"
+  # These can be specified per job or per pipeline
+  ARTIFACT_COMPRESSION_LEVEL: "fast"
+  CACHE_COMPRESSION_LEVEL: "fast"
+
+# Node Modules Caching Variables
+.node_modules_files: &node_modules_files
+  files:
+    - yarn.lock
+.node_modules_paths: &node_modules_paths
+  paths:
+    - node_modules/
+
+# Vendors Caching Variables
+.vendor_files: &vendor_files
+  files:
+    - docs-site/composer.lock
+.vendor_paths: &vendor_paths
+  paths:
+    - docs-site/vendor/
+
+# Packages Caching Variables
+.packages_paths: &packages_paths
+  paths:
+    - packages/
+
+stages:
+  - setup
+  - test
+  - release
+  - deploy
+
+before_script:
+  - ". ~/.nvm/nvm.sh"
+  - export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+setup:
+  interruptible: true
+  stage: setup
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - yarn run setup
+    - yarn workspace @bolt/website prep
+    - yarn build
+  cache:
+    - key:
+        <<: *node_modules_files
+      <<: *node_modules_paths
+      policy: pull-push
+    - key:
+        <<: *vendor_files
+      <<: *vendor_paths
+      policy: pull-push
+    - key: packages-$CI_JOB_IMAGE
+      <<: *packages_paths
+      policy: pull-push
+  artifacts:
+    paths:
+      - www
+
+deploy commit:
+  interruptible: true
+  stage: deploy
+  variables:
+    URL_PREVIEW: "${CI_COMMIT_REF_SLUG}.${PROD_DOMAIN}" # [BRANCH NAME].boltdesignsystem.com
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - npm i -g vercel
+    # Vercel is using VERCEL_ORG_ID, and VERCEL_PROJECT_ID written in settings by default,
+    # No need to specify them in the command (command is cleaner)
+    - URL_DEPLOYMENT=$(vercel --confirm -t $VERCEL_ACCESS_TOKEN -S $VERCEL_SCOPE --cwd www)
+    - echo "Deploying to https://${URL_PREVIEW}"
+    - vercel alias set $URL_DEPLOYMENT $URL_PREVIEW -t $VERCEL_ACCESS_TOKEN -S $VERCEL_SCOPE
+
+jest test:
+  interruptible: true
+  stage: test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - yarn test:js
+  cache:
+    - key:
+        <<: *node_modules_files
+      <<: *node_modules_paths
+      policy: pull
+    - key: packages-$CI_JOB_IMAGE
+      <<: *packages_paths
+      policy: pull
+
+php tests:
+  interruptible: true
+  stage: test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - yarn run lint
+    - yarn test:php
+  cache:
+    - key:
+        <<: *node_modules_files
+      <<: *node_modules_paths
+      policy: pull
+    - key: packages-$CI_JOB_IMAGE
+      <<: *packages_paths
+      policy: pull
+
+monorepo tests:
+  interruptible: true
+  stage: test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - yarn test:monorepo --maxWorkers=1
+    - yarn test:pkgs
+  cache:
+    - key:
+        <<: *node_modules_files
+      <<: *node_modules_paths
+      policy: pull
+
+deploy release:
+  stage: deploy
+  variables:
+    URL_TAG: "${CI_COMMIT_TAG}.${PROD_DOMAIN}" #vx-x-x.boltdesignsystem.com
+    URL_PROD: "${PROD_DOMAIN}" # boltdesignsystem.com
+    URL_LATEST: "latest.${PROD_DOMAIN}" # latest.boltdesignsystem.com
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - export
+    - npm i -g vercel
+    # Vercel is using VERCEL_ORG_ID, and VERCEL_PROJECT_ID written in settings by default,
+    # No need to specify them in the command (command is cleaner)
+    - URL_DEPLOYMENT=$(vercel --confirm -t $VERCEL_ACCESS_TOKEN -S $VERCEL_SCOPE --cwd www)
+    # Grab the tags compare current tag to latest?
+    - echo "Deploying to https://${URL_TAG}"
+    # - vercel alias set $URL_DEPLOYMENT $URL_TAG -t $VERCEL_ACCESS_TOKEN -S $VERCEL_SCOPE
+    - echo "Deploying to https://${URL_PROD}"
+    # - vercel alias set $URL_DEPLOYMENT $URL_PROD -t $VERCEL_ACCESS_TOKEN -S $VERCEL_SCOPE
+    - echo "Deploying to https://www.${URL_PROD}"
+    # - vercel alias set $URL_DEPLOYMENT "www.${URL_PROD}" -t $VERCEL_ACCESS_TOKEN -S $VERCEL_SCOPE
+    - echo "Deploying to https://${URL_LATEST}"
+    # - vercel alias set $URL_DEPLOYMENT $URL_LATEST -t $VERCEL_ACCESS_TOKEN -S $VERCEL_SCOPE
+
+create release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - echo "Creating the ${CI_COMMIT_TAG} release"
+  release:
+    tag_name: '$CI_COMMIT_TAG'
+    description: '$CI_COMMIT_TAG'
+

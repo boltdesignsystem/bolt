@@ -178,7 +178,7 @@ class ToolsMenu extends BaseLitComponent {
             ? html`
                 <li class="pl-c-tools__item">
                   <pl-button
-                    href="https://browserslist.dev/?q=PiAyJSBvciBsYXN0IDIgdmVyc2lvbnMgYW5kIG5vdCBJRSAxMSBhbmQgbm90IGRlYWQ%3D"
+                    href="https://browsersl.ist/#q=%3E+2%25%2C+last+2+versions%2C+not+dead"
                     target="_blank"
                     rel="noopener"
                   >

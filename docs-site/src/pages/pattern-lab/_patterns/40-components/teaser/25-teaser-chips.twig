@@ -1,0 +1,85 @@
+{% set description %}
+  Chips can be rendered at the bottom of a teaser to display more information.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use the <code>chip_list</code> prop to pass a Chip List component.</bolt-li>
+    <bolt-li>If linked chips are used, they will work as expected and be excluded from the overall clickable area of the teaser.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set wide_image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/16x9.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+      }
+    } only %}
+  {% endset %}
+  {% set chip_list %}
+    {% include '@bolt-components-chip-list/chip-list.twig' with {
+      size: 'xsmall',
+      items: [
+        {
+          text: 'Video',
+        },
+        {
+          text: 'Research',
+        },
+      ],
+    } only %}
+  {% endset %}
+
+  <div style="max-width: 60ch;">
+    {% include '@bolt-components-teaser/teaser.twig' with {
+      signifier: wide_image,
+      headline: {
+        text: 'This is a teaser with chips',
+        tag: 'h2',
+        size: 'xlarge',
+        link_attributes: {
+          href: 'https://www.google.com',
+          target: '_blank',
+          rel: 'noopener'
+        },
+      },
+      description: {
+        content: 'Aliqua voluptate amet do laborum culpa tempor consectetur culpa consectetur ea. Ea officia quis do enim. Id consectetur dolor voluptate eu veniam anim adipisicing dolor ut occaecat officia fugiat magna reprehenderit.',
+      },
+      chip_list: chip_list,
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set chip_list %}
+  {% include '@bolt-components-chip-list/chip-list.twig' with {
+    size: 'xsmall',
+    items: [
+      {
+        text: 'Video',
+      },
+      {
+        text: 'Research',
+      },
+    ],
+  } only %}
+{% endset %}
+{% include '@bolt-components-teaser/teaser.twig' with {
+  chip_list: chip_list,
+  ...
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Teaser Chips',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

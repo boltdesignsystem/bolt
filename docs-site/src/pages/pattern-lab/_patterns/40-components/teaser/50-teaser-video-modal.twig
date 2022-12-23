@@ -1,0 +1,129 @@
+{% set description %}
+  A teaser about a video resource can trigger a video to be played in a modal.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>Use the <a href="{{ link['viewall-components-video-thumbnail'] }}" class="e-bolt-text-link">Video Thumbnail component</a> as a teaser signifier. Only set up the image, do not make it interactive.</bolt-li>
+    <bolt-li>Interactivity (triggering of the modal) should be handled via the headline&rsquo;s <code>link_attributes</code>.</bolt-li>
+    <bolt-li>Do not use <code>time</code> prop since it will conflict with the Video Thumbnail&rsquo;s <code>duration</code> prop.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set modal_id = 'js-bolt-modal-' ~ random() %}
+
+  {% set modal_content %}
+    {% set video %}
+      <video-js
+        data-delayed-account='1900410236'
+        data-delayed-player='O3FkeBiaDz'
+        data-embed='default'
+        data-delayed-video-id='4892122320001'
+        data-video-delayed
+        controls
+        data-media-title
+        data-media-duration
+        class="c-base-video"></video-js>
+    {% endset %}
+    {% include '@bolt-elements-ratio/ratio.twig' with {
+      content: video,
+      ratio: 'wide'
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-modal/modal.twig' with {
+    content: modal_content,
+    width: 'optimal',
+    spacing: 'none',
+    theme: 'none',
+    scroll: 'overall',
+    attributes: {
+      id: modal_id,
+    },
+  } only %}
+
+  {% set video_thumbnail %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        attributes: {
+          src: '/images/placeholders/16x9.jpg',
+          alt: 'A Rock Climber',
+          loading: 'lazy',
+          width: 400,
+          height: 300,
+        }
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+      content: image,
+      video: {
+        title: 'This is a Video Title',
+        duration: '4:26',
+      }
+    } only %}
+  {% endset %}
+  <div style="max-width: 60ch;">
+    {% include '@bolt-components-teaser/teaser.twig' with {
+      signifier: video_thumbnail,
+      headline: {
+        text: 'The signifier of this teaser is showing a play icon and video duration',
+        link_attributes: {
+          type: 'button',
+          'data-bolt-modal-target': '#' ~ modal_id,
+        },
+      },
+      description: {
+        content: 'Lorem reprehenderit aute aliqua duis anim ex ullamco sunt occaecat nostrud ex tempor occaecat in. Ex veniam eu mollit magna.',
+      }
+    } only %}
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{# Set up video thumbnail as image #}
+{% set video_thumbnail %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/16x9.jpg',
+        alt: 'A Rock Climber',
+        loading: 'lazy',
+        width: 400,
+        height: 300,
+      }
+    } only %}
+  {% endset %}
+  {% include '@bolt-components-video-thumbnail/video-thumbnail.twig' with {
+    content: image,
+    video: {
+      title: 'This is a Video Title',
+      duration: '4:26',
+    }
+  } only %}
+{% endset %}
+
+{# Pass video thumbnail as signifier, use link attributes to handle the trigger of modal #}
+{% include '@bolt-components-teaser/teaser.twig' with {
+  signifier: video_thumbnail,
+  headline: {
+    text: 'The signifier headline.',
+    link_attributes: {
+      type: 'button',
+      'data-bolt-modal-target': '#' ~ modal_id,
+    },
+  },
+  description: {
+    content: 'Description.',
+  }
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Teaser Video Within Modal',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

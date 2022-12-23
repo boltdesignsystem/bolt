@@ -100,7 +100,7 @@
       $breakpoint-name !=
       'xxlarge'
   ) {
-    &.c-bolt-list--display-inline\@#{$breakpoint-name} {
+    .c-bolt-list--display-inline\@#{$breakpoint-name} {
       @include bolt-mq($breakpoint-name) {
         width: 100%; // [3]
       }
@@ -111,11 +111,7 @@
 // Spacing Prop
 @each $size in $bolt-spacing-multiplier-system {
   $size-name: nth($size, 1);
-  @if (
-    $size-name !=
-      'xxlarge'
-  ) {
-
+  @if ($size-name != 'xxlarge') {
     .c-bolt-list--spacing-#{$size-name}:not(.c-bolt-list--inset) {
       margin-bottom: calc(var(--bolt-spacing-y-#{$size-name}) * -1);
       margin-left: calc(var(--bolt-spacing-x-#{$size-name}) * -1);
@@ -283,7 +279,7 @@ $bolt-list-valignments: start, center, end;
         $breakpoint-name !=
         'xxlarge'
     ) {
-    &.c-bolt-list--display-inline\@#{$breakpoint-name} {
+      &.c-bolt-list--display-inline\@#{$breakpoint-name} {
         @include bolt-mq($breakpoint-name) {
           flex-flow: row nowrap;
         }

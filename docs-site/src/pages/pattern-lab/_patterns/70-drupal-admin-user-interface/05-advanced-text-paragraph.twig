@@ -1,0 +1,124 @@
+{% extends "_drupal-admin-ui-template.twig" %}
+
+{% block ui_component_name %}
+  Advanced Text Paragraph
+{% endblock %}
+
+{% block description %}
+  Advanced Text is specialized paragraph for creating single headline or text paragraph. It serves the purpose of layout building rather than long form writing. It does not support multiple paragraphs and general content like lists, table, and codeblock.
+{% endblock %}
+
+{% block main %}
+  {% embed '_main-content.twig' %}
+    {% block settings %}
+      <legend>Advanced Text</legend>
+      <ul>
+        <li>
+          <label>
+            <div><strong><small>Content</small></strong></div>
+            <div>
+              <textarea cols="30" rows="5" placeholder="Enter content."></textarea>
+            </div>
+          </label>
+          <div class="c-drupal-admin-ui__grid" style="align-items: center;">
+            <label>
+              <select name="format">
+                <option value="rich-text">Rich text (CKEditor)</option>
+                <option value="plain-text">Plain text</option>
+                <option value="raw-html">Raw HTML</option>
+              </select>
+            </label>
+            <small style="text-align: right;">
+              About text format <i><svg viewBox="0 0 512 512" width="100" title="info-circle"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" /></svg></i>
+            </small>
+          </div>
+        </li>
+        <li>
+          <div class="c-drupal-admin-ui__grid">
+            <div>
+              <label>
+                <div><strong><small>Hierarchy</small></strong></div>
+                <select name="size">
+                  <option value="Body" selected>Body</option>
+                  <option value="Headline">Headline</option>
+                  <option value="Subheadline">Subheadline</option>
+                  <option value="Eyebrow">Eyebrow</option>
+                </select>
+              </label>
+            </div>
+            <div>
+              <label>
+                <div><strong><small>Size</small></strong></div>
+                <select name="size">
+                  <option value="xxsmall">xxsmall</option>
+                  <option value="xsmall">xsmall</option>
+                  <option value="small">small</option>
+                  <option value="medium" selected>medium</option>
+                  <option value="large">large</option>
+                  <option value="xlarge">xlarge</option>
+                  <option value="xxlarge">xxlarge</option>
+                  <option value="xxxlarge">xxxlarge</option>
+                </select>
+              </label>
+            </div>
+            <div>
+              <label>
+                <div><strong><small>Tag</small></strong></div>
+                <select name="tag">
+                  <option value="div" selected>div</option>
+                  <option value="h1">h1</option>
+                  <option value="h2">h2</option>
+                  <option value="h3">h3</option>
+                  <option value="h4">h4</option>
+                  <option value="h5">h5</option>
+                  <option value="h6">h6</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </li>
+      </ul>
+      {% embed '_tabs-set.twig' %}
+        {% block tabs %}
+          {% include '_tab-action-advanced-paragraph.twig'%}
+          {% include '_tab-icon-before-advanced-paragraph.twig'%}
+          {% include '_tab-icon-after-advanced-paragraph.twig'%}
+          {% include '_tab-overrides.twig' %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
+
+{% block code_snippet %}
+<h1 class="e-bolt-text e-bolt-text--headline e-bolt-text--xxxlarge u-bolt-text-align-center">
+  Content goes here
+</h1>
+{% endblock %}
+
+{% block dev_notes %}
+<ol>
+  <li>
+    Rich Text (CKEditor) format provides limited options:
+    <ul>
+      <li>
+        align
+        <ul>
+          <li>left (add <code>u-bolt-text-align-left</code> class to container)</li>
+          <li>center (add <code>u-bolt-text-align-center</code> class to container)</li>
+          <li>right (add <code>u-bolt-text-align-right</code> class to container)</li>
+        </ul>
+      </li>
+      <li>italic (wrap <code>&lt;em&gt;</code> around selected text)</li>
+      <li>bold (wrap <code>&lt;strong&gt;</code> around selected text)</li>
+      <li>superscript (wrap <code>&lt;sup&gt;</code> around selected text)</li>
+      <li>subscript (wrap <code>&lt;sub&gt;</code> around selected text)</li>
+      <li>quote (wrap <code>&lt;q&gt;</code> around selected text)</li>
+      <li>inline code (wrap <code>&lt;code&gt;</code> around selected text)</li>
+    </ul>
+  </li>
+  <li>Plain Text format: escape all special characters, print as exactly typed.</li>
+  <li>Raw HTML format: print HTML.</li>
+  <li>If <code>eyebrow</code> is selected for Hierarchy, disable Size select input, because Eyebrow only has one size.</li>
+</ol>
+{% endblock %}

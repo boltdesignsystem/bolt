@@ -1,6 +1,7 @@
 module.exports = {
   components: {
     global: [
+      '@bolt/elements-list',
       '@bolt/elements-wrapper',
       '@bolt/components-dialog',
       '@bolt/elements-ratio',
@@ -13,6 +14,7 @@ module.exports = {
       '@bolt/elements-text-link',
       '@bolt/elements-icon',
       '@bolt/elements-shape',
+      '@bolt/elements-table',
       '@bolt/elements-type',
       '@bolt/layouts-holy-grail',
       '@bolt/layouts-layout',

@@ -4,8 +4,8 @@ import {
   lazyDefinitions,
   lazyDefinitionObserver,
   registerUndefinedCustomElements,
-} from './lazy-definition-observer';
-import { idleQueue } from './idle-queue';
+} from './lazy-definition-observer.mjs';
+import { idleQueue } from './idle-queue.mjs';
 
 lazyDefinitionObserver.observe(document.body, {
   childList: true,

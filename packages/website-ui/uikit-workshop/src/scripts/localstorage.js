@@ -71,6 +71,16 @@ export const loadState = () => {
       }
     }
 
+    if (state.app.drupalMode === undefined) {
+      try {
+        if (window.config.theme.drupal !== undefined) {
+          state.app.drupalMode = window.config.theme.drupal;
+        }
+      } catch (e) {
+        state.app.drupalMode = false;
+      }
+    }
+
     if (state.app.layoutMode === undefined) {
       try {
         if (window.config.theme.layout !== undefined) {

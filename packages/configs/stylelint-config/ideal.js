@@ -8,7 +8,6 @@ module.exports = {
   plugins: [
     'stylelint-order',
     'stylelint-scss',
-    'stylelint-declaration-use-variable',
     'stylelint-declaration-strict-value',
   ],
   rules: {

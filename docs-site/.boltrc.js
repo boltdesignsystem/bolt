@@ -5,10 +5,6 @@ const deepmerge = require('deepmerge');
 const baseConfig = require('@bolt/starter-kit/.boltrc.js');
 
 const config = deepmerge(baseConfig, {
-  // array of languages to compile the design system. note, these are ignored when the --i18n flag is set to false
-  // Note: if lang is defined, the first item is currently the one used by default in the Pattern Lab build, pending further iterations on this!
-  // lang: ['en', 'ja'],
-
   renderingService: false, // starts PHP service for rendering Twig templates
   openServerAtStart: true,
   // Environmental variable / preset to use
@@ -110,6 +106,10 @@ const config = deepmerge(baseConfig, {
   },
   copy: [
     {
+      from: `src/assets/images`,
+      to: path.join(__dirname, '../www/images'),
+    },
+    {
       from: path.join(
         path.dirname(require.resolve(`@bolt/components-typeahead`)),
         '__demos__/typeahead.data.json',
@@ -119,19 +119,16 @@ const config = deepmerge(baseConfig, {
     {
       from: `src/assets/bolt-sketch.zip`,
       to: path.join(__dirname, '../www/assets'),
-      flatten: true,
     },
     {
       from: `src/assets/videos`,
       to: path.join(__dirname, '../www/videos'),
-      flatten: true,
     },
     {
       from: `${path.dirname(
         resolve.sync('@bolt/global/package.json'),
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
-      flatten: true,
     },
     {
       from: `src/custom-brightcove.js`,
