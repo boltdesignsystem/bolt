@@ -1,0 +1,74 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The background component does not have a <code>theme</code> prop.  Theme is instead determined by a <code>t-bolt-*</code> class on the nearest parent element.</bolt-li>
+    <bolt-li>Theme affects both background color and text, buttons, etc.  For this reason, do not add a <code>t-bolt-*</code> class to the background itself, but rather a parent element that is also a parent of any overlaid text.</bolt-li>
+    <bolt-li>Accessibility may vary with gradient fills or opacity less than <code>full</code>.  Use the <code>focal_point</code> prop, text positioning, and good judgment in these scenarios.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        alt: 'Alt text.',
+        loading: 'lazy',
+        src: '/images/content/backgrounds/background-tall-4.jpg',
+        width: 3840,
+        height: 2160,
+      },
+    } only %}
+  {% endset %}
+
+  {% set examples = [
+    {
+      'title': 'White Theme',
+      'theme_class': 't-bolt-white',
+    },
+    {
+      'title': 'Black Theme',
+      'theme_class': 't-bolt-black',
+    },
+    {
+      'title': 'Dark Navy Theme',
+      'theme_class': 't-bolt-navy-dark',
+    },
+  ] %}
+
+  <p>All <a href="{{ link['visual-styles-theming-system'] }}" class="e-bolt-text-link">themes</a> are supported.  A few examples are shown below.</p>
+  {% for example in examples %}
+    <bolt-stack>
+      <bolt-layout padding-top="xlarge" padding-bottom="xlarge" class="{{ example.theme_class }}">
+        {% include '@bolt-components-background/background.twig' with {
+          fill: 'solid',
+          opacity: 'heavy',
+          items: [
+            image,
+          ],
+        } only %}
+        <bolt-layout-item>
+          <bolt-text headline font-size="xxlarge">{{ example.title }}</bolt-text>
+          <p>This background has a <code>solid</code> fill and the surrounding theme is <code>{{ example.theme_class }}</code></p>
+        </bolt-layout-item>
+      </bolt-layout>
+    </bolt-stack>
+  {% endfor %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+<div class="t-bolt-navy-dark">
+  {% include '@bolt-components-background/background.twig' with {
+    fill: 'solid',
+  } only %}
+</div>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Theme',
+  description: 'Background inherits its theme from the closest parent element with a theming class.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

@@ -29,18 +29,6 @@ module.exports = {
       default: 'none',
       enum: ['none', 'light', 'medium', 'heavy', 'full'],
     },
-    shape_group: {
-      type: 'string',
-      description: 'Add a Bolt Background Shapes group.',
-      default: 'none',
-      enum: ['A', 'B', 'none'],
-    },
-    shape_alignment: {
-      type: 'string',
-      description: 'Alignment of shape group.',
-      default: 'right',
-      enum: ['left', 'right'],
-    },
     fill: {
       type: 'string',
       description: 'Type of fill to use for the overlay.',
@@ -49,20 +37,27 @@ module.exports = {
     },
     focal_point: {
       type: 'object',
-      description: 'Where the opacity background should originate.',
+      description:
+        'Point where the background gradient highlight should originate.',
       properties: {
         horizontal: {
           type: 'string',
-          description: "Currently only reverses gradient on 'left'.",
+          description: 'X-axis positioning for the background focal point',
           enum: ['center', 'left', 'right'],
+          default: 'right',
+        },
+        vertical: {
+          type: 'string',
+          description: 'Y-axis positioning for the background focal point',
+          enum: ['center', 'top', 'bottom'],
+          default: 'bottom',
         },
       },
-      vertical: {
-        type: 'string',
-        description:
-          "Currently doesn't use this value. Intended future application.",
-        enum: ['center', 'top', 'bottom'],
-      },
+    },
+    video: {
+      type: 'boolean',
+      description: 'Set to true if you like to use video as a background.',
+      default: false,
     },
     items: {
       type: 'array',
@@ -70,6 +65,14 @@ module.exports = {
       items: {
         type: 'any',
       },
+    },
+    shape_group: {
+      title: 'DEPRECATED',
+      description: 'Add a Bolt Background Shapes group.',
+    },
+    shape_alignment: {
+      title: 'DEPRECATED',
+      description: 'Alignment of shape group.',
     },
     overlay: {
       title: 'DEPRECATED',

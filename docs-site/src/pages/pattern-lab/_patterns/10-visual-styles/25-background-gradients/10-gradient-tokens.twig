@@ -1,0 +1,77 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>It's recommended to set a theme class (t-bolt-*) on the same element as your custom colors.  This theme will set the color of text, buttons, drop shadows, etc, so should be similar to the custom colors.</bolt-li>
+    <bolt-li>Do not put an element with a theme class inside .</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set examples = [
+    {
+      title: 'Custom Dark Gradient Colors',
+      style: '--m-bolt-bg-highlight: var(--bolt-color-teal); --m-bolt-bg-lowlight: var(--bolt-color-navy-dark)',
+      theme: 't-bolt-navy-light',
+    },
+    {
+      title: 'Custom Light Gradient Colors',
+      style: '--m-bolt-bg-highlight: #FFFACD; --m-bolt-bg-lowlight: #AFEEEE;',
+      theme: 't-bolt-white',
+    },
+  ] %}
+
+  {% for example in examples %}
+    {% include '@bolt-components-teaser/teaser.twig' with {
+      attributes: {
+        style: example.style,
+        class: [
+          'u-bolt-bg-gradient',
+          'u-bolt-padding-xlarge',
+          example.theme,
+        ],
+      },
+      variant: 'card',
+      headline: {
+        text: example.title,
+      },
+      description: {
+        content: '<p>This element has the following style attribute:</p><p><code>' ~ example.style ~ '</code></p>'
+      }
+    } only %}
+  {% endfor %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-teaser/teaser.twig' with {
+  attributes: {
+    style: '--m-bolt-bg-highlight: var(--bolt-color-teal); --m-bolt-bg-lowlight: var(--bolt-color-navy-dark)',
+    class: [
+      'u-bolt-bg-gradient',
+      'u-bolt-padding-xlarge',
+      't-bolt-navy-light',
+    ],
+  },
+  variant: 'card',
+  headline: {
+    text: 'Custom Gradient Colors',
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<div class="u-bolt-bg-gradient t-bolt-navy-light u-bolt-padding-xlarge" style="--m-bolt-bg-highlight: var(--bolt-color-teal); --m-bolt-bg-lowlight: var(--bolt-color-navy-dark)">
+  <h2>Custom Gradient Colors</h2>
+</div>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Gradient Tokens',
+  description: 'You can set custom colors for the gradient by setting values for the custom variables <code>--m-bolt-bg-highlight</code> and <code>--m-bolt-bg-lowlight</code>.',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

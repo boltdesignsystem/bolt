@@ -1,0 +1,69 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The coordinates of the point represent the lightest or most transparent part of the gradient.</bolt-li>
+    <bolt-li>Use this prop to make overlayed text more readible or change the point of interest in background colors and/or image.</bolt-li>
+    <bolt-li>Focal point only makes sense with gradients.  It has no effect on solid backgrounds.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set examples = [
+    {
+      horizontal: 'left',
+      vertical: 'top',
+    },
+    {
+      horizontal: 'left',
+      vertical: 'bottom',
+    }
+  ] %}
+
+  {% for example in examples %}
+    <bolt-stack>
+      <bolt-layout padding-top="xlarge" padding-bottom="xlarge" class="t-bolt-black" template="50" align-items="end">
+        {% set image %}
+          {% include '@bolt-elements-image/image.twig' with {
+            background: true,
+            attributes: {
+              src: '/images/content/backgrounds/background-tall-4.jpg'
+            },
+          } only %}
+        {% endset %}
+        {% include '@bolt-components-background/background.twig' with {
+          opacity: 'heavy',
+          fill: 'gradient',
+          focal_point: {
+            horizontal: example.horizontal,
+            vertical: example.vertical,
+          },
+          items: [
+            image,
+          ]
+        } only %}
+        <bolt-layout-item>
+          This background has a <code>gradient</code> fill and the focal point is set to horiztonal: <code>{{ example.horizontal }}</code> and vertical: <code>{{ example.vertical }}</code>
+        </bolt-layout-item>
+      </bolt-layout>
+    </bolt-stack>
+  {% endfor %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-background/background.twig' with {
+  fill: 'gradient',
+  focal_point: {
+    vertical: 'top',
+    horizontal: 'left',
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Focal Point',
+  description: '<code>focal_point</code> sets the horizontal and vertical alignment of the gradient (if applicable).',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
