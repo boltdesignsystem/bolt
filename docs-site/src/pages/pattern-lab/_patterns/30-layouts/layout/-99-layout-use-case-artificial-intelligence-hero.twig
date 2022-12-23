@@ -74,12 +74,7 @@
       } only %}
     {% endset %}
     {% include '@bolt-components-background/background.twig' with {
-      opacity: 'heavy',
-      fill: 'gradient',
-      focalPoint: {
-        vertical: 'center',
-        horizontal: 'center'
-      },
+      fill: 'solid',
       items: [
        image
       ]
@@ -98,7 +93,7 @@
       '67/33@from-medium'
     ],
     attributes: {
-      class: 't-bolt-navy'
+      class: 't-bolt-black',
     }
   } only %}
 {% endset %}
@@ -155,12 +150,7 @@
     } only %}
   {% endset %}
   {% include '@bolt-components-background/background.twig' with {
-    opacity: 'heavy',
-    fill: 'gradient',
-    focalPoint: {
-      vertical: 'center',
-      horizontal: 'center'
-    },
+    fill: 'solid',
     items: [
       image
     ]
@@ -179,7 +169,7 @@
     '67/33@from-medium'
   ],
   attributes: {
-    class: 't-bolt-navy'
+    class: 't-bolt-black',
   }
 } only %}
 {% endverbatim %}

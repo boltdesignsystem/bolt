@@ -11,24 +11,24 @@
   } only %}
 {% endset %}
 
-{% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'teal', 'yellow', 'orange', 'pink', 'wine', 'berry', 'violet'] %}
+{% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'violet', 'teal', 'yellow', 'orange', 'pink', 'berry', 'wine'] %}
 
-{% for fill in ['solid', 'gradient'] %}
-  <h2>Fill: {{ fill }}</h2>
+<div data-bolt-mode="light">
   {% for theme in themes %}
     {% set theme_class = 't-bolt-' ~ theme %}
-    <p>Fill: {{ fill }} with <code>{{ theme_class }}</code> theming class.</p>
+
+    <p>{{ theme_class }}</code> theming class.</p>
     <div class="{{ theme_class }} u-bolt-margin-bottom-large">
       {% include './_00-background-band-demo.twig' with {
         theme: 'none',
         background: {
-          fill: fill,
-          opacity: 'heavy',
+          fill: 'solid',
+          opacity: 'medium',
           items: [
-            image ,
+            image,
           ]
         }
       } only %}
     </div>
   {% endfor %}
-{% endfor %}
+</div>
