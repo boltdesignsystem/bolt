@@ -26,20 +26,8 @@ module.exports = {
     opacity: {
       type: 'string',
       description: 'Overlay opacity',
-      default: 'medium',
-      enum: ['none', 'light', 'medium', 'heavy', 'full'],
-    },
-    shape_group: {
-      type: 'string',
-      description: 'Add a Bolt Background Shapes group.',
       default: 'none',
-      enum: ['A', 'B', 'none'],
-    },
-    shape_alignment: {
-      type: 'string',
-      description: 'Alignment of shape group.',
-      default: 'right',
-      enum: ['left', 'right'],
+      enum: ['none', 'light', 'medium', 'heavy', 'full'],
     },
     fill: {
       type: 'string',
@@ -77,6 +65,14 @@ module.exports = {
       items: {
         type: 'any',
       },
+    },
+    shape_group: {
+      title: 'DEPRECATED',
+      description: 'Add a Bolt Background Shapes group.',
+    },
+    shape_alignment: {
+      title: 'DEPRECATED',
+      description: 'Alignment of shape group.',
     },
     overlay: {
       title: 'DEPRECATED',
