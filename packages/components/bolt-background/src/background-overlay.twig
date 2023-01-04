@@ -1,10 +1,5 @@
 {% set schema = bolt.data.components['@bolt-components-background'].schema %}
 
-{# DEPRECATED.  Use the property `focal_point` instead of `focalPoint`. #}
-{% if focalPoint %}
-  {% set focal_point = focalPoint %}
-{% endif %}
-
 {# Variables #}
 {% set this = init(schema) %}
 {% set attributes = create_attribute({}) %}
