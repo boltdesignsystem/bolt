@@ -1,26 +1,72 @@
-<bolt-banner status="warning" align="start">
-  <bolt-text>Warning! <code>shape_group</code> and <code>shape_alignemnt</code> props are deprecated and are no longer supported. Please don't use them.</bolt-text>
-</bolt-banner>
+{% set description %}
+Examples of a Background Component with Background Shapes and Background Alignment.
+{% endset %}
 
-<p>Background Shapes: Shape Group A</p>
-{% include './_00-background-band-demo.twig' with {
-  background: {
-    shape_group: 'A'
-  }
-} %}
+{% set notes %}
+<bolt-ol>
+  <bolt-li>The <code>shape_group</code> and <code>shape_alignemnt</code> props are <strong>deprecated</strong> and are no longer supported. Please don't use them.</bolt-li>
+</bolt-ol>
+{% endset %}
 
-<p>Background Shapes: Shape Group B</p>
-{% include './_00-background-band-demo.twig' with {
-  background: {
-    shape_group: 'B'
-  }
-} %}
+{% set demo %}
+  {% set shape_a %}
+    <h3>Example of a Background Shape "A"</h3>
+    {% include './_00-background-band-demo.twig' with {
+        background: {
+          shape_group: 'A'
+        }
+      } %}
+  {% endset %}
 
-<p>Background Shapes: Shape Group A, Alignment Left</p>
-{% include './_00-background-band-demo.twig' with {
-  background: {
-    shape_group: 'A',
-    shape_alignment: 'left'
-  },
-  teaserPosition: 'right'
-} %}
+  {% set shape_b %}
+    <h3>Example of a Background Shape "B"</h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        shape_group: 'B'
+      }
+    } %}
+  {% endset %}
+
+  {% set shape_a_alignment_left %}
+    <h3>Example of a Background Shape "A" with Shape Alignment Left</h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        shape_group: 'A',
+        shape_alignment: 'left'
+      },
+      teaserPosition: 'right'
+    } %}
+  {% endset %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: shape_a,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: shape_b,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: shape_a_alignment_left,
+    spacing: 'medium'
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-background/background.twig' with {
+  shape_group: 'A',
+  shape_alignment: 'left'
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Background Component with Background Shapes',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

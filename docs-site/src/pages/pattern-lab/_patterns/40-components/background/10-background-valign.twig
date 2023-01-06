@@ -1,0 +1,163 @@
+{% set description %}
+Examples of a Background Component with the different <code>valign</code> options.
+{% endset %}
+
+{% set notes %}
+<bolt-ol>
+  <bolt-li>Alignment of an background image can be achieved by leveraging the Image Element's <code>attributes</code>	prop with the a CSS var. Please refer to the <a href="{{ link['elements-image-use-case-background-fit-and-position'] }}" class="e-bolt-text-link">fit and position</a> documentation for more information.</bolt-li>
+</bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set background_center %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: '/images/placeholders/backgrounds/background-light-tall.jpg',
+          srcset: '/images/placeholders/backgrounds/background-light-tall-640.jpg 640w, /images/placeholders/backgrounds/background-light-tall-1024.jpg 1024w, /images/placeholders/backgrounds/background-light-tall-1920.jpg 1920w',
+          width: 4320,
+          height: 2880,
+          style: '--e-bolt-image-position: center center;',
+        },
+      } only %}
+    {% endset %}
+
+    <h3>Background Component with an image vertically centered</h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        opacity: 'medium',
+        items: [
+          image
+        ]
+      }
+    } %}
+  {% endset %}
+
+  {% set background_top %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: '/images/placeholders/backgrounds/background-light-tall.jpg',
+          srcset: '/images/placeholders/backgrounds/background-light-tall-640.jpg 640w, /images/placeholders/backgrounds/background-light-tall-1024.jpg 1024w, /images/placeholders/backgrounds/background-light-tall-1920.jpg 1920w',
+          width: 4320,
+          height: 2880,
+          style: '--e-bolt-image-position: center top;',
+        },
+      } only %}
+    {% endset %}
+
+    <h3>Background Component with an image vertically aligned to top</h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        opacity: 'medium',
+        items: [
+          image
+        ]
+      }
+    } %}
+  {% endset %}
+
+  {% set background_bottom %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: '/images/placeholders/backgrounds/background-light-tall.jpg',
+          srcset: '/images/placeholders/backgrounds/background-light-tall-640.jpg 640w, /images/placeholders/backgrounds/background-light-tall-1024.jpg 1024w, /images/placeholders/backgrounds/background-light-tall-1920.jpg 1920w',
+          width: 4320,
+          height: 2880,
+          style: '--e-bolt-image-position: center bottom;',
+        },
+      } only %}
+    {% endset %}
+
+    <h3>Background Component with an image vertically aligned to bottom</h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        opacity: 'medium',
+        items: [
+          image
+        ]
+      }
+    } %}
+  {% endset %}
+
+  {% set background_25 %}
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: '/images/placeholders/backgrounds/background-light-tall.jpg',
+          srcset: '/images/placeholders/backgrounds/background-light-tall-640.jpg 640w, /images/placeholders/backgrounds/background-light-tall-1024.jpg 1024w, /images/placeholders/backgrounds/background-light-tall-1920.jpg 1920w',
+          width: 4320,
+          height: 2880,
+          style: '--e-bolt-image-position: center 25%;',
+        },
+      } only %}
+    {% endset %}
+
+    <h3>Background Component with an image vertically aligned 25% from top</h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        opacity: 'medium',
+        items: [
+          image
+        ]
+      }
+    } %}
+  {% endset %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: background_center,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: background_top,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: background_bottom,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: background_25,
+    spacing: 'medium'
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/placeholders/backgrounds/background-light-tall.jpg',
+      srcset: '/images/placeholders/backgrounds/background-light-tall-640.jpg 640w, /images/placeholders/backgrounds/background-light-tall-1024.jpg 1024w, /images/placeholders/backgrounds/background-light-tall-1920.jpg 1920w',
+      width: 4320,
+      height: 2880,
+      style: '--e-bolt-image-position: center center;',
+    },
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-background/background.twig' with {
+  opacity: 'medium',
+  items: [
+    image
+  ]
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Background Component with a Valign',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

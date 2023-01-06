@@ -54,12 +54,16 @@ module.exports = {
       },
     },
     shape_group: {
-      title: 'DEPRECATED',
+      type: 'string',
       description: 'Add a Bolt Background Shapes group.',
+      default: 'none',
+      enum: ['A', 'B', 'none'],
     },
     shape_alignment: {
-      title: 'DEPRECATED',
+      type: 'string',
       description: 'Alignment of shape group.',
+      default: 'right',
+      enum: ['left', 'right'],
     },
   },
 };

@@ -1,4 +1,15 @@
-<div style="height: 400px; position: relative;" class="t-bolt-black">
+{% set description %}
+Example of a default Background Component.
+{% endset %}
+
+{% set notes %}
+<bolt-ol>
+  <bolt-li>When adding an image to the Background Component always consider the contrast ratio between the foreground text and background image.</bolt-li>
+  <bolt-li>The Background Component has a couple of options to add contrast, the <a href="{{ link['components-background-opacity'] }}" class="e-bolt-text-link">Opacity</a> prop, the <a href="{{ link['components-background-fill'] }}" class="e-bolt-text-link">Fill</a> prop and the <a href="{{ link['visual-styles-gradients'] }}" class="e-bolt-text-link">Gradient Utility</a> class. Please refer to the documentation for more information.</bolt-li>
+</bolt-ol>
+{% endset %}
+
+{% set demo %}
   {% set image %}
     {% include '@bolt-elements-image/image.twig' with {
       background: true,
@@ -11,11 +22,32 @@
       },
     } only %}
   {% endset %}
-  {% include '@bolt-components-background/background.twig' with {
-    fill: 'gradient',
-    items: [
-      image
-    ]
-} only %}
 
-</div>
+  {% include './_00-background-band-demo.twig' with {
+    background: {
+      opacity: 'medium',
+      items: [
+        image
+      ]
+    }
+  } %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-background/background.twig' with {
+  opacity: 'medium',
+  items: [
+    image
+  ]
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Background Component Basic Usage',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

@@ -1,0 +1,128 @@
+{% set description %}
+Examples of a Background Component with Opacity options.
+{% endset %}
+
+{% set notes %}
+<bolt-ol>
+	<bolt-li>The default opacity color is the brand navy color.</bolt-li>
+</bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        alt: 'Alt text.',
+        loading: 'lazy',
+        src: '/images/placeholders/backgrounds/background-light-tall.jpg',
+        width: 3840,
+        height: 2160,
+      },
+    } only %}
+  {% endset %}
+
+  {% set opacity_none %}
+    <h3>Example of a Background Component with <code>opacity: none</code></h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        opacity: 'none',
+        items: [
+          image
+        ]
+      }
+    } %}
+  {% endset %}
+
+  {% set opacity_light %}
+    <h3>Example of a Background Component with <code>opacity: light</code></h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        opacity: 'light',
+        items: [
+          image
+        ]
+      }
+    } %}
+  {% endset %}
+
+  {% set opacity_medium %}
+    <h3>Example of a Background Component with <code>opacity: medium</code></h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        opacity: 'medium',
+        items: [
+          image
+        ]
+      }
+    } %}
+  {% endset %}
+
+  {% set opacity_heavy %}
+    <h3>Example of a Background Component with <code>opacity: heavy</code></h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        opacity: 'heavy',
+        items: [
+          image
+        ]
+      }
+    } %}
+  {% endset %}
+
+  {% set opacity_full %}
+    <h3>Example of a Background Component with <code>opacity: full</code></h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        opacity: 'full',
+        items: [
+          image
+        ]
+      }
+    } %}
+  {% endset %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: opacity_none,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: opacity_light,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: opacity_medium,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: opacity_heavy,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: opacity_full,
+    spacing: 'medium'
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+	{% include '@bolt-components-background/background.twig' with {
+  opacity: 'medium',
+  items: [
+    image
+  ]
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Background Component with Opacity',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
