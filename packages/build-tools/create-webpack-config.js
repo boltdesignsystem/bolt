@@ -13,6 +13,7 @@ const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 
 // Helpers/config
 const { getConfig } = require('@bolt/build-utils/config-store');
@@ -76,7 +77,7 @@ async function createWebpackConfig(buildConfig) {
     return entry;
   }
 
-  function getSassLoaders() {
+  function getSassLoaders(issuerIsJS) {
     // Default global Sass data defined
     let globalSassData = [`$bolt-namespace: ${config.namespace};`];
 
@@ -114,10 +115,13 @@ async function createWebpackConfig(buildConfig) {
           sourceMap: config.sourceMaps,
           postcssOptions: {
             plugins: [
+              // This rule is required for web components that inject CSS into the JS.
+              // Otherwise, that CSS is unminified (and huge) in production.
+              issuerIsJS && config.prod ? cssnano : undefined,
               postcssDiscardDuplicates,
               // @todo: Consider switching to postcss-preset-env which polyfills modern CSS
               autoprefixer,
-            ],
+            ].filter(item => item !== undefined),
           },
         },
       },
@@ -410,7 +414,7 @@ async function createWebpackConfig(buildConfig) {
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: [MiniCssExtractPlugin.loader, getSassLoaders(true)].reduce(
+              use: [MiniCssExtractPlugin.loader, getSassLoaders()].reduce(
                 (acc, val) => acc.concat(val),
                 [],
               ),
