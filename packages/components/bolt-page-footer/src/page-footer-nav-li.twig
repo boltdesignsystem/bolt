@@ -15,9 +15,12 @@
 
 <li {{ attributes.addClass(classes) }}>
   <{{ _link_tag }} {{ link_attributes.addClass('c-bolt-page-footer__nav-link')|without('aria-describedby') }} {% if link_attributes.target == '_blank' %}aria-describedby="page-footer-new-window"{% endif %}>
+  {% if link.icon_before %}
+    <span class="c-bolt-page-footer__nav-link__icon">{{ link.icon_before }}</span>
+  {% endif %}
     <span class="c-bolt-page-footer__nav-link__text">{{ link.content }}</span>
-    {% if link.icon_before %}
-      <span class="c-bolt-page-footer__nav-link__icon">{{ link.icon_before }}</span>
-    {% endif %}
+  {% if link.icon_after %}
+    <span class="c-bolt-page-footer__nav-link__icon">{{ link.icon_after }}</span>
+  {% endif %}
   </{{ _link_tag }}>
 </li>
