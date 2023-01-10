@@ -1,0 +1,2311 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Drupal page</title>
+        <link rel="stylesheet" href="lib/bolt-global.css">
+        <link rel="stylesheet" href="notification-feed.css">
+    </head>
+    <body>
+      <header class="c-bolt-page-header js-bolt-sticky-page-header">
+        <div class="c-bolt-page-header__primary">
+          <a  href="https://google.com" class="c-bolt-page-header__logo" aria-label="Pegasystems">
+          <span class="c-bolt-page-header__logo__img" aria-hidden="true">
+          <img src="https://place-hold.it/300x65" alt="">
+          </span>
+          </a>
+          <div class="c-bolt-page-header__toolbar">
+            <button aria-expanded="false" class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--search js-bolt-page-header-trigger" id="js-bolt-page-header-search-toggle">
+              <span class="c-bolt-page-header__action-trigger__text">
+              Toggle Search Panel
+              </span>
+              <span class="c-bolt-page-header__action-trigger__icon" aria-hidden="true">
+                <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                  <path fill="#151619" fill-rule="evenodd" d="M12 20.9c-4.9 0-8.8-4-8.8-8.8 0-4.9 4-8.8 8.8-8.8s8.8 4 8.8 8.8c.1 4.8-3.9 8.8-8.8 8.8m19.5 8.4l-10-10c1.5-2 2.5-4.5 2.5-7.3 0-6.6-5.4-12-12-12S0 5.4 0 12s5.4 12 12 12c2.7 0 5.3-.9 7.3-2.5l10 10c.3.3.7.5 1.1.5s.8-.2 1.1-.5c.7-.6.7-1.6 0-2.2" clip-rule="evenodd"/>
+                </svg>
+              </span>
+              <span class="c-bolt-page-header__action-trigger__icon c-bolt-page-header__action-trigger__icon--close" aria-hidden="true">
+                <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                  <path fill="#151619" fill-rule="evenodd" d="M18.6 16l9.8-9.8c.7-.7.7-1.9 0-2.6s-1.9-.7-2.6 0L16 13.4 6.2 3.5c-.7-.7-1.9-.7-2.6 0s-.7 1.9 0 2.6l9.8 9.8-9.8 9.8c-.7.7-.7 1.9 0 2.6.3.5.8.7 1.3.7s1-.2 1.3-.6l9.8-9.8 9.8 9.8c.3.3.8.6 1.3.6s1-.2 1.3-.6c.7-.7.7-1.9 0-2.6z" clip-rule="evenodd"/>
+                </svg>
+              </span>
+            </button>
+            <div  class="c-bolt-page-header__search" id="js-bolt-page-header-search">
+              <bolt-stack spacing="small">
+                <form>
+                  <bolt-typeahead  input-placeholder="Search Pega">
+                    <div class="c-bolt-typeahead">
+                      <label for="371577951" class="c-bolt-typeahead__label"><span class="u-bolt-visuallyhidden"></span></label><input id="371577951" type="text" autocomplete="off" aria-autocomplete="list" class="c-bolt-typeahead__input" placeholder="Search Pega" value="" required name="" />
+                      <button  type="reset" onclick="this.previousElementSibling.focus()" class="c-bolt-typeahead__button c-bolt-typeahead__button--clear e-bolt-button e-bolt-button--transparent e-bolt-button--icon-only" aria-label="Clear search results">
+                        <span class="e-bolt-button__icon-center" aria-hidden="true">
+                          <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                            <path fill="#151619" d="M16 0C7.2 0 0 7.2 0 16s7.2 16 16 16 16-7.2 16-16S24.8 0 16 0zm5.1 19.1c.6.6.6 1.5 0 2.1-.6.6-1.5.6-2.1 0l-3-3.1-3.1 3.1c-.6.6-1.5.6-2.1 0-.6-.6-.6-1.5 0-2.1l3.1-3.1-3.1-3.1c-.6-.6-.6-1.5 0-2.1s1.5-.6 2.1 0l3.1 3.1 3.1-3.1c.6-.6 1.5-.6 2.1 0s.6 1.5 0 2.1L18.1 16z"/>
+                          </svg>
+                        </span>
+                      </button>
+                      <div class="c-bolt-typeahead__button c-bolt-typeahead__button--submit">
+                        <button  type="submit" onclick="this.previousElementSibling.focus()" class="c-bolt-typeahead__button c-bolt-typeahead__button--submit e-bolt-button e-bolt-button--transparent e-bolt-button--icon-only" aria-label="Submit">
+                          <span class="e-bolt-button__icon-center" aria-hidden="true">
+                            <svg  class="c-bolt-typeahead__icon e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                              <path fill="#151619" fill-rule="evenodd" d="M12 20.9c-4.9 0-8.8-4-8.8-8.8 0-4.9 4-8.8 8.8-8.8s8.8 4 8.8 8.8c.1 4.8-3.9 8.8-8.8 8.8m19.5 8.4l-10-10c1.5-2 2.5-4.5 2.5-7.3 0-6.6-5.4-12-12-12S0 5.4 0 12s5.4 12 12 12c2.7 0 5.3-.9 7.3-2.5l10 10c.3.3.7.5 1.1.5s.8-.2 1.1-.5c.7-.6.7-1.6 0-2.2" clip-rule="evenodd"/>
+                            </svg>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </bolt-typeahead>
+                </form>
+              </bolt-stack>
+              <p  class="c-bolt-text c-bolt-text--regular c-bolt-text--center c-bolt-text--normal c-bolt-text--small c-bolt-text--icon-position-before">
+                <span class="c-bolt-headline__text">
+                  <span class="c-bolt-headline__icon c-bolt-headline__icon--position-before">
+                    <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                      <g fill="#151619" fill-rule="evenodd" clip-rule="evenodd">
+                        <path d="M16 29.1C8.8 29.1 2.9 23.2 2.9 16S8.8 2.9 16 2.9 29.1 8.8 29.1 16 23.2 29.1 16 29.1M16 0C7.2 0 0 7.2 0 16s7.2 16 16 16 16-7.2 16-16S24.8 0 16 0"/>
+                        <path d="M16 14.5c-.8 0-1.5.7-1.5 1.5v5.8c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5V16c0-.8-.7-1.5-1.5-1.5M16 8.7c-.4 0-.8.2-1 .4s-.4.6-.4 1 .2.8.4 1c.3.3.6.4 1 .4s.8-.2 1-.4c.3-.3.4-.6.4-1s-.2-.8-.4-1-.6-.4-1-.4"/>
+                      </g>
+                    </svg>
+                  </span>
+                  Placeholder for helper text.
+                </span>
+              </p>
+            </div>
+            <button aria-expanded="false" class="c-bolt-page-header__action-trigger c-bolt-page-header__action-trigger--nav js-bolt-page-header-trigger" id="js-bolt-page-header-primary-nav-toggle">
+              <span class="c-bolt-page-header__action-trigger__text">
+              Toggle Main Site Navigation
+              </span>
+              <span class="c-bolt-page-header__action-trigger__icon" aria-hidden="true">
+                <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                  <g fill="#151619" fill-rule="evenodd" clip-rule="evenodd">
+                    <path d="M30.4 14.4H1.6c-.9 0-1.6.7-1.6 1.6s.7 1.6 1.6 1.6h28.8c.9 0 1.6-.7 1.6-1.6s-.7-1.6-1.6-1.6M1.6 6.4h28.8c.9 0 1.6-.7 1.6-1.6s-.7-1.6-1.6-1.6H1.6C.7 3.2 0 3.9 0 4.8s.7 1.6 1.6 1.6M30.4 25.6H1.6c-.9 0-1.6.7-1.6 1.6s.7 1.6 1.6 1.6h28.8c.9 0 1.6-.7 1.6-1.6s-.7-1.6-1.6-1.6"/>
+                  </g>
+                </svg>
+              </span>
+              <span class="c-bolt-page-header__action-trigger__icon c-bolt-page-header__action-trigger__icon--close" aria-hidden="true">
+                <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                  <path fill="#151619" fill-rule="evenodd" d="M18.6 16l9.8-9.8c.7-.7.7-1.9 0-2.6s-1.9-.7-2.6 0L16 13.4 6.2 3.5c-.7-.7-1.9-.7-2.6 0s-.7 1.9 0 2.6l9.8 9.8-9.8 9.8c-.7.7-.7 1.9 0 2.6.3.5.8.7 1.3.7s1-.2 1.3-.6l9.8-9.8 9.8 9.8c.3.3.8.6 1.3.6s1-.2 1.3-.6c.7-.7.7-1.9 0-2.6z" clip-rule="evenodd"/>
+                </svg>
+              </span>
+            </button>
+            <nav  class="c-bolt-page-header__nav" id="js-bolt-page-header-primary-nav" aria-label="Main Site Navigation">
+              <div class="c-bolt-page-header__nav-list-group">
+                <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list js-bolt-page-header-nav--site c-bolt-page-header__nav-list--site">
+                  <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                    <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__content">
+                    Platform
+                    </span>
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                    </button>
+                    <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Explore Pega Platform
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Explore Pega Platform
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Pega Platform Overview
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Low-code App Development
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Center-out Business Architecture
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Security &amp; Compliance
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Cloud Services
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Upgrade Center
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Latest release: 8.5
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Capabilities
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Capabilities
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            BPM &amp; Case Management
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Chatbots &amp; Virtual Assistants
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            DevOps & Testing
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Real-time Intelligence
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Robotic Process Automation
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            UX Design
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Workforce Intelligence
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Demos &amp; Trials
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Demos &amp; Trials
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Product Demo Videos
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Low-code Live Workshops
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Pega Platform Trial
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                    <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__content">
+                    Solutions
+                    </span>
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                    </button>
+                    <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Products
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Products
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                            <strong class="c-bolt-page-header__nav-link__content">
+                            Intelligent Automation
+                            </strong>
+                            </a>
+                            <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Intelligent Automation
+                            </span>
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                            </button>
+                            <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Low-Code Platform
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Intelligent Automation
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Robotic Process Automation
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Case Management &amp; BPM
+                                </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                            <strong class="c-bolt-page-header__nav-link__content">
+                            Customer Engagement &amp; CRM
+                            </strong>
+                            </a>
+                            <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Customer Engagement &amp; CRM
+                            </span>
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                            </button>
+                            <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                For Marketing &amp; Decisioning
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                For Customer Service
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                For Sales
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                For Onboarding &amp; KYC
+                                </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                            <strong class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </strong>
+                            </a>
+                            <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                            </button>
+                            <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            View all placeholders
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <div class="c-bolt-page-header__nav-content">
+                          <bolt-card-replacement
+                            url="https://google.com"      height="full"
+                            >
+                            <ssr-keep for="bolt-card-replacement"  class="c-bolt-card-replacement c-bolt-card-replacement--border-radius-small">
+                              <bolt-card-replacement-link >
+                                <a href="https://google.com" class="c-bolt-card-replacement__link" >
+                                  <ssr-keep for="bolt-card-replacement-link" class="u-bolt-visuallyhidden">Go to google.com</ssr-keep>
+                                </a>
+                              </bolt-card-replacement-link>
+                              <bolt-card-replacement-media >
+                                <ssr-keep for="bolt-card-replacement-media" class="c-bolt-card_replacement__media">
+                                  <bolt-image
+                                    ratio="1151/638"  placeholder-color="hsl(233, 33%, 97%)"  placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                    style="background-color: hsl(233, 33%, 97%);" src="https://place-hold.it/1151x638" alt="Image alt." srcset="https://place-hold.it/1151x638 50w, https://place-hold.it/1151x638 100w, https://place-hold.it/1151x638 200w, https://place-hold.it/1151x638 320w, https://place-hold.it/1151x638 480w, https://place-hold.it/1151x638 640w, https://place-hold.it/1151x638 800w, https://place-hold.it/1151x638 1024w, https://place-hold.it/1151x638 1151w"
+                                    >
+                                    <bolt-ratio  ratio="1151/638">
+                                      <ssr-keep for="bolt-ratio" class="c-bolt-ratio" style="padding-bottom: calc((638 / 1151) * 100%); --aspect-ratio: 1.8040752351097;">
+                                        <img  class="c-bolt-image__image-placeholder" alt="Image alt." src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+                                        <img  class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload" alt="Image alt." data-srcset="https://place-hold.it/1151x638 50w, https://place-hold.it/1151x638 100w, https://place-hold.it/1151x638 200w, https://place-hold.it/1151x638 320w, https://place-hold.it/1151x638 480w, https://place-hold.it/1151x638 640w, https://place-hold.it/1151x638 800w, https://place-hold.it/1151x638 1024w, https://place-hold.it/1151x638 1151w" data-sizes="auto" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" src="https://place-hold.it/1151x638" />
+                                        <noscript> <img  class="c-bolt-image__image" alt="Image alt." src="https://place-hold.it/1151x638" srcset="https://place-hold.it/1151x638 50w, https://place-hold.it/1151x638 100w, https://place-hold.it/1151x638 200w, https://place-hold.it/1151x638 320w, https://place-hold.it/1151x638 480w, https://place-hold.it/1151x638 640w, https://place-hold.it/1151x638 800w, https://place-hold.it/1151x638 1024w, https://place-hold.it/1151x638 1151w" /> </noscript>
+                                      </ssr-keep>
+                                    </bolt-ratio>
+                                  </bolt-image>
+                                </ssr-keep>
+                              </bolt-card-replacement-media>
+                              <bolt-card-replacement-body >
+                                <ssr-keep for="bolt-card-replacement-body"  class="c-bolt-card_replacement__body c-bolt-card_replacement__body--spacing-medium">
+                                  <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large c-bolt-headline--icon-position-after">
+                                    <span class="c-bolt-headline__text">
+                                      Placeholder Card
+                                      <span class="c-bolt-headline__icon c-bolt-headline__icon--position-after">
+                                        <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                          <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                        </svg>
+                                      </span>
+                                    </span>
+                                  </p>
+                                </ssr-keep>
+                              </bolt-card-replacement-body>
+                            </ssr-keep>
+                          </bolt-card-replacement>
+                        </div>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all c-bolt-page-header__nav-list-item--full-width">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        View all solutions
+                        </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                    <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__content">
+                    Customers
+                    </span>
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                    </button>
+                    <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                            <strong class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </strong>
+                            </a>
+                            <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                            </button>
+                            <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            View all placeholders
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                            <strong class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </strong>
+                            </a>
+                            <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                            </button>
+                            <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            View all placeholders
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                            <strong class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </strong>
+                            </a>
+                            <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                            </button>
+                            <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            View all placeholders
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all c-bolt-page-header__nav-list-item--full-width">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        View all
+                        </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--flat has-children">
+                    <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__content">
+                    Why Pega?
+                    </span>
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                    </button>
+                    <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Flat Level 2
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Flat Level 2
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Flat Level 2
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        View all
+                        </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                    <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__content">
+                    Services &amp; Partners
+                    </span>
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                    </button>
+                    <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                            <strong class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </strong>
+                            </a>
+                            <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                            </button>
+                            <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            View all placeholders
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                            <strong class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </strong>
+                            </a>
+                            <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                            </button>
+                            <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            View all placeholders
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                            <strong class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </strong>
+                            </a>
+                            <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                            </button>
+                            <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            View all placeholders
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all c-bolt-page-header__nav-list-item--full-width">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        View all
+                        </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--flat has-children">
+                    <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__content">
+                    Events
+                    </span>
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                    </button>
+                    <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Flat Level 2
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Flat Level 2
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Flat Level 2
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        View all
+                        </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                    <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__content">
+                    About
+                    </span>
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                    </button>
+                    <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                            <strong class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </strong>
+                            </a>
+                            <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                            </button>
+                            <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            View all placeholders
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                            <strong class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </strong>
+                            </a>
+                            <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                            </button>
+                            <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            View all placeholders
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                        <strong class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </strong>
+                        </a>
+                        <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Placeholder Level 2
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                        </button>
+                        <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item has-children">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link c-bolt-page-header__nav-link--heading">
+                            <strong class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </strong>
+                            </a>
+                            <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                            </button>
+                            <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list">
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                              <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                                <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                                <span class="c-bolt-page-header__nav-link__content">
+                                Placeholder Level 4
+                                </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            Placeholder Level 3
+                            </span>
+                            </a>
+                          </li>
+                          <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all">
+                            <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                            <span class="c-bolt-page-header__nav-link__content">
+                            View all placeholders
+                            </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--view-all c-bolt-page-header__nav-list-item--full-width">
+                        <a  href="https://google.com" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        View all
+                        </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list js-bolt-page-header-nav--related-sites c-bolt-page-header__nav-list--related-sites">
+                  <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--popover has-children">
+                    <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                      <span class="c-bolt-page-header__nav-link__content">
+                        <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--before">
+                          <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                            <g fill="#151619" fill-rule="evenodd" clip-rule="evenodd">
+                              <path d="M7.1 8.1H3c-.6 0-1-.4-1-1V3c0-.6.4-1 1-1h4.1c.6 0 1 .4 1 1v4.1c0 .6-.4 1-1 1zM18 8.1h-4c-.6 0-1-.4-1-1V3c0-.6.4-1 1-1h4c.6 0 1 .4 1 1v4.1c.1.6-.3 1-1 1zM29 8.1h-4.1c-.6 0-1-.4-1-1V3c0-.6.4-1 1-1H29c.6 0 1 .4 1 1v4.1c0 .6-.4 1-1 1zM7.1 19.1H3c-.6 0-1-.4-1-1V14c0-.6.4-1 1-1h4.1c.6 0 1 .4 1 1v4c0 .6-.4 1.1-1 1.1zM18 19.1h-4c-.6 0-1-.4-1-1V14c0-.6.4-1 1-1h4c.6 0 1 .4 1 1v4c.1.6-.3 1.1-1 1.1zM29 19.1h-4.1c-.6 0-1-.4-1-1V14c0-.6.4-1 1-1H29c.6 0 1 .4 1 1v4c0 .6-.4 1.1-1 1.1zM7.1 30H3c-.6 0-1-.4-1-1v-4.1c0-.6.4-1 1-1h4.1c.6 0 1 .4 1 1V29c0 .6-.4 1-1 1zM18 30h-4c-.6 0-1-.4-1-1v-4.1c0-.6.4-1 1-1h4c.6 0 1 .4 1 1V29c.1.6-.3 1-1 1zM29 30h-4.1c-.6 0-1-.4-1-1v-4.1c0-.6.4-1 1-1H29c.6 0 1 .4 1 1V29c0 .6-.4 1-1 1z"/>
+                            </g>
+                          </svg>
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__content__text">Pega Sites</span>
+                      </span>
+                      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                    </button>
+                    <ul  style="--c-bolt-page-header-desktop-popover-width: max(58rem, 40vw)" class="js-bolt-page-header-nav c-bolt-page-header__nav-list c-bolt-page-header__nav-list--edge-start">
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <div class="c-bolt-page-header__nav-content">
+                          <bolt-layout
+                            style="--l-bolt-layout-tile-min-width: 14rem"
+                            template="tiles"
+                            >
+                            <bolt-layout-item
+                              >
+                              <bolt-list
+                                tag="ul"    display="block"    spacing="small"    separator="none"    align="start"    valign="center"
+                                >
+                                <ssr-keep
+                                  for="bolt-list"
+                                  role="list"      class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center"
+                                  >
+                                  <bolt-list-item
+                                    role="presentation"
+                                    >
+                                    <ssr-keep
+                                      for="bolt-list-item"
+                                      role="listitem"      class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start"
+                                      >
+                                      <bolt-layout
+                                        style="--l-bolt-layout-flag-media-width: 35px;" gutter="small" valign-items="start"
+                                        template="flag"
+                                        >
+                                        <bolt-layout-item
+                                          >
+                                          <svg enable-background="new 0 0 250 250" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m128.5 48.5c-2.4 9.8-2.8 20.1-1.1 30.1-2.7-.5-5.3-1.1-7.8-1.5-57.8-9.4-75.1 19-68.4 41.9-17.6 6.6-34.7 14.5-51.2 23.5 22.6-54.2 71.6-101.9 112.9-108.1 13.6-1.8 17.4 6.9 15.6 14.1zm121 43.5s-2.6 4.5-3.7 6.2c-2.1 2.1-5.2 2.6-7.8 1.2-6-3.7-12.6-6.3-19.4-7.8-25.3 2.3-32.2-8.2-33-9.1s-2.3-.5-1.2 1.3c5.5 9.5 21.9 14 21.9 14 2.4 5.6 3.9 11.5 4.6 17.5-4.3-3.3-8.9-6.1-13.7-8.4-18.8-12.3-39.6-21.2-61.5-26.3 1.6-22.3 12.9-54.7 65.4-46.9 6.2 1.1 12.2 3.4 17.7 6.6l-3.9 4c-1 .6-1.3 1.9-.7 2.9.2.3.4.5.7.7l11.7 8.7c-.4 3.8 1 7.5 3.7 10.1 3.5 4.1 16.9 18.3 18.7 20.2 1.1 1.4 1.3 3.4.5 5.1zm-26.4-31.3c-2.2-.9-4.7-.4-6.4 1.3h-.4l5.8 2.8z" fill="var(--m-bolt-link)"/>
+                                            <path d="m133.3 98.3c-28.1 3.4-55.7 10.4-82.1 20.8-6.6-23 10.6-51.3 68.1-41.9 2.8.4 5.5.9 7.8 1.5 1.3 6.7 3.4 13.3 6.2 19.6zm3.2 0c20.7-2.4 41.8.6 61 8.7-18.8-12.3-39.6-21.2-61.5-26.3-.4 5.8-.2 11.6.5 17.3z" fill="var(--bolt-color-navy-xlight)"/>
+                                            <path d="m80.8 193.8h23.4v-10.8h-23.4v-11.2h29.4v-11h-41.5v54.7h41.9v-10.5h-29.8zm44.9-26.9c-11.4 11.8-11.4 30.5 0 42.3 5.7 5.5 13.3 8.5 21.2 8.3 8.6.5 17-2.7 23-8.9v-25.5h-23.7v10.2h12.4v10.3c-3.7 2-7.8 3-12 2.9-10.3-.4-18.2-9.1-17.8-19.4.2-4.6 2.1-9 5.3-12.3 3.6-3.4 8.4-5.2 13.3-5.1 2.4-.1 4.9.3 7.2 1 2.2.7 4.1 1.9 5.9 3.4l6.6-8.4c-5.6-4.9-12.9-7.5-20.4-7.2-7.9-.1-15.4 2.9-21 8.4zm-86.6-6.1h-22.7v54.7h12.1v-16.2h9.1c12.3 0 22.3-6.6 22.3-19.3.2-10.4-8-19-18.4-19.2-.8-.1-1.6 0-2.4 0zm8.5 19.4c-.1 4.7-4 8.4-8.7 8.3-.3 0-.6 0-.9-.1h-9.5v-16.6h9.3c6.1.1 9.8 3 9.8 8.4zm151.5-19.4-23.4 54.7h12.3l5-12.2h23.4l4.9 12.2h12.3l-23.4-54.7zm-1.9 32.2 7.3-17.7 7.3 17.7z" fill="var(--m-bolt-link)"/>
+                                          </svg>
+                                        </bolt-layout-item>
+                                        <bolt-layout-item
+                                          >
+                                          <bolt-stack spacing="none">
+                                            <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xsmall">
+                                              <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                                Pegasystems Inc.
+                                                <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                                  <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                                    <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                                  </svg>
+                                                </span>
+                                              </a>
+                                            </p>
+                                          </bolt-stack>
+                                          <bolt-stack>
+                                            <p  class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">Explore solutions, events, and customers</p>
+                                          </bolt-stack>
+                                        </bolt-layout-item>
+                                      </bolt-layout>
+                                    </ssr-keep>
+                                  </bolt-list-item>
+                                  <bolt-list-item
+                                    role="presentation"
+                                    >
+                                    <ssr-keep
+                                      for="bolt-list-item"
+                                      role="listitem"      class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start"
+                                      >
+                                      <bolt-layout
+                                        style="--l-bolt-layout-flag-media-width: 35px;" gutter="small" valign-items="start"
+                                        template="flag"
+                                        >
+                                        <bolt-layout-item
+                                          >
+                                          <svg enable-background="new 0 0 250 250" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+                                            <g fill="var(--m-bolt-link)">
+                                              <path d="m60.9 54.8c.5-7.4-2.4-14.7-7.8-19.8-6.4-4.9-14.5-7.3-22.6-6.7-8.1-.7-16.2 1.6-22.6 6.6-5.4 5.2-8.3 12.4-7.9 19.9-.8 11.9 7.4 22.6 19.1 25h-11.1c-3.8 0-6.8 3-6.9 6.7v.2 128.3c0 3.8 3 6.8 6.7 6.9h.2 44.4c3.8 0 6.9-3 7-6.8v-.1-128.2c0-3.8-3.1-6.9-6.9-6.9h-.1-10c11.5-2.6 19.4-13.3 18.5-25.1zm-15.6 152.9h-30.2v-114h30.3v114zm-15-140.5c-15 .2-16.3-6.2-16.3-12.4-.4-3.5.8-7 3.2-9.6 3.9-2.5 8.6-3.7 13.3-3.1 4.7-.5 9.5.7 13.4 3.3 2.4 2.5 3.5 6 3.1 9.5 0 6.2-1.2 12.7-16.6 12.7z"/>
+                                              <path d="m243 42.7h-39.9c-3.8 0-7 3.1-7 7v74.7 10.5l-46-88.5c-1.2-2.3-3.5-3.7-6.1-3.7h-58c-3.8 0-6.9 3.1-6.9 6.9v.1 165.3c0 3.8 3 6.8 6.7 6.9h.2 39c3.8 0 6.8-3 6.9-6.7 0-.1 0-.1 0-.2v-74.2c0-3.4 0-7.3 0-11.9l46.5 89.2c1.2 2.3 3.6 3.8 6.2 3.7h58.4c3.8 0 6.9-3 7-6.8v-.1-165.3c0-3.8-3.1-6.9-7-6.9zm-6.8 165.1h-47.4l-58.5-112.6c-1.2-2.3-3.6-3.7-6.2-3.7h-1c-3.8-.1-6.8 2.9-6.9 6.7v.7c1.4 18.1 2.1 32 2.1 41.4v67.6h-25.6v-151.3h46.9l58.2 111.1c2.3 3.6 7.1 4.7 10.8 2.4.4-.2.8-.5 1.1-.8 1.3-1.4 2-3.3 1.9-5.2-1.1-16.5-1.6-29.8-1.6-39.7v-67.8h25.9z"/>
+                                            </g>
+                                          </svg>
+                                        </bolt-layout-item>
+                                        <bolt-layout-item
+                                          >
+                                          <bolt-stack spacing="none">
+                                            <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xsmall">
+                                              <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                                PegaWorld iNspire
+                                                <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                                  <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                                    <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                                  </svg>
+                                                </span>
+                                              </a>
+                                            </p>
+                                          </bolt-stack>
+                                          <bolt-stack>
+                                            <p  class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">Register for our flagship virtual event</p>
+                                          </bolt-stack>
+                                        </bolt-layout-item>
+                                      </bolt-layout>
+                                    </ssr-keep>
+                                  </bolt-list-item>
+                                  <bolt-list-item
+                                    role="presentation"
+                                    >
+                                    <ssr-keep
+                                      for="bolt-list-item"
+                                      role="listitem"      class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start"
+                                      >
+                                      <bolt-layout
+                                        style="--l-bolt-layout-flag-media-width: 35px;" gutter="small" valign-items="start"
+                                        template="flag"
+                                        >
+                                        <bolt-layout-item
+                                          >
+                                          <svg  style="--e-bolt-icon-color: var(--m-bolt-link)" class="e-bolt-icon e-bolt-icon--large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                            <path fill="#151619" d="M31.7 12l-3.54-6.1a2.18 2.18 0 00-1.35-1 2.26 2.26 0 00-1.69.22l-.95.55a2.17 2.17 0 00-1 1.18 17 17 0 00-4.63-.89 6.13 6.13 0 00-2.66.77 5.24 5.24 0 00-2.66-.77 14 14 0 00-4.46.85 2.19 2.19 0 00-1-1.14l-1-.55a2.26 2.26 0 00-1.69-.22 2.18 2.18 0 00-1.35 1L.3 12a2.2 2.2 0 00-.22 1.7 2.15 2.15 0 001 1.35l.94.55a2.2 2.2 0 001.11.3 2.25 2.25 0 00.58-.08 2.2 2.2 0 00.45-.17 5.83 5.83 0 011.19 1.19 3.47 3.47 0 00-1 2 2.17 2.17 0 00.77 1.91 2.39 2.39 0 001 .52 2 2 0 000 .74 2.43 2.43 0 00.87 1.48 2.51 2.51 0 001.46.6 2.42 2.42 0 00.83 1.32 2.5 2.5 0 001.61.62 2 2 0 00.55-.08 2.53 2.53 0 00.55.64l.18.12a2.54 2.54 0 001.1.26 2.6 2.6 0 00.83-.16 3.89 3.89 0 001.67.39 4.24 4.24 0 001.84-.44 2.81 2.81 0 001-.76 2.75 2.75 0 001.92-.59 2.17 2.17 0 00.73-1.14 2.61 2.61 0 002.14-1 2.21 2.21 0 00.37-.85 2.67 2.67 0 002.31-2.75 2.45 2.45 0 00-.28-1 10.91 10.91 0 001-1.73 3.73 3.73 0 01.92-1.36 2.14 2.14 0 00.54.23 2.25 2.25 0 00.58.08 2.2 2.2 0 001.11-.3l.94-.55a2.15 2.15 0 001-1.35A2.2 2.2 0 0031.7 12zM2 13.56a.48.48 0 01-.22-.29.47.47 0 01.05-.37l3.52-6.12a.55.55 0 01.29-.23h.13A.47.47 0 016 6.6l1 .55a.48.48 0 01.23.29.45.45 0 010 .36L6 9.7l-2.41 4.23a.46.46 0 01-.29.22.45.45 0 01-.36-.05zm4.4 4.81l.75 1.12a1 1 0 01-.39.15.62.62 0 01-.47-.2.4.4 0 01-.18-.4 1.56 1.56 0 01.29-.67zm1.4 3.39a.38.38 0 01.11-.32l.44-.52 1.13-1.35a.6.6 0 01.42-.22h.26a.56.56 0 01.2.11.61.61 0 01.21.42.56.56 0 01-.14.45l-1.57 1.91c-.29.34-.78-.06-.8-.07a.72.72 0 01-.26-.41zm2.56 2.33c-.17-.14-.41-.42-.16-.73l1.57-1.87a.65.65 0 01.21-.16h.07a.58.58 0 01.18 0H12.44a.61.61 0 01.21.11.63.63 0 01.07.87l-1 1.2-.56.67c-.3.32-.78-.07-.8-.09zm2.6.75l.76-1a.41.41 0 01.56 0 .41.41 0 010 .59v.06l-.39.52a.82.82 0 01-.87.25c-.2-.26-.12-.34-.02-.42zm2.71.62a1 1 0 00.09-.13 2.23 2.23 0 00.32-.61l.69.51a2.45 2.45 0 01-1.1.23zm8.37-5a.8.8 0 01-.94.19l-.1-.08-3.25-2.51-1.07 1.39L21.9 22l.12.09a.41.41 0 01-.1.26 1.15 1.15 0 01-1.11.15l-2.41-1.72-1 1.42 2.15 1.54a.59.59 0 01-.15.36 1.05 1.05 0 01-1.09.12c-.81-.66-1-.73-1.2-.77L16 23.21a2.34 2.34 0 00-.15-.27.94.94 0 00-.09-.12 2 2 0 00-.31-.34 2.19 2.19 0 00-.37-.25l-.16-.06a1.22 1.22 0 00-.24-.1.57.57 0 000-.13v-.32a1.29 1.29 0 000-.19 1.32 1.32 0 00-.09-.3 1 1 0 00-.07-.18 1.11 1.11 0 00-.17-.3 1.19 1.19 0 00-.09-.15 2.55 2.55 0 00-.36-.38 2.19 2.19 0 00-.37-.25.52.52 0 00-.13-.06 1.39 1.39 0 00-.28-.12h-.14l-.28-.06h-.28v-.13a1.09 1.09 0 00-.05-.17 2.6 2.6 0 00-.1-.25 1 1 0 00-.07-.15l-.16-.24-.08-.12a1.82 1.82 0 00-.31-.31 2.33 2.33 0 00-.38-.26l-.27-.17-.28-.12h-.17l-.25-.05H9.21l-.21.15-.18.09-.23.1-.15.11-1.6-2.25a7.65 7.65 0 00-1.46-1.53l1.15-2L8.64 8.7a13.46 13.46 0 014.61-1 2.72 2.72 0 01.78.11 10.35 10.35 0 00-2.57 2.6 7.17 7.17 0 00-.8 3.68c0 .82 0 2.2 1.19 2.69s2.4-.71 3.05-1.46 1.46-1.59 1.9-2l7.29 6.11a.55.55 0 01.22.43.93.93 0 01-.31.6zm1.19-4.27a11.1 11.1 0 01-.7 1.24l-7.81-6.54-.57.54s-1.15 1.08-2.57 2.71a4.65 4.65 0 01-1 1 2.88 2.88 0 01-.17-1.14 5.4 5.4 0 01.59-2.76 2.86 2.86 0 01.38-.51c1.08-1.21 3.7-3.06 5.2-3.06a17.18 17.18 0 014.81 1.05L24.71 11l1.87 3.24a5.24 5.24 0 00-1.35 1.95zm5-2.92a.48.48 0 01-.22.29l-1 .54a.45.45 0 01-.36.05.46.46 0 01-.29-.22l-.82-1.42-2.67-4.71a.45.45 0 01-.05-.36.48.48 0 01.23-.29L26 6.6a.47.47 0 01.24-.06h.13a.55.55 0 01.29.23l3.53 6.12a.47.47 0 01.04.38z"/>
+                                          </svg>
+                                        </bolt-layout-item>
+                                        <bolt-layout-item
+                                          >
+                                          <bolt-stack spacing="none">
+                                            <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xsmall">
+                                              <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                                Partners
+                                                <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                                  <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                                    <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                                  </svg>
+                                                </span>
+                                              </a>
+                                            </p>
+                                          </bolt-stack>
+                                          <bolt-stack>
+                                            <p  class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">Discover program benefits and enablement resources</p>
+                                          </bolt-stack>
+                                        </bolt-layout-item>
+                                      </bolt-layout>
+                                    </ssr-keep>
+                                  </bolt-list-item>
+                                  <bolt-list-item
+                                    role="presentation"
+                                    >
+                                    <ssr-keep
+                                      for="bolt-list-item"
+                                      role="listitem"      class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start"
+                                      >
+                                      <bolt-layout
+                                        style="--l-bolt-layout-flag-media-width: 35px;" gutter="small" valign-items="start"
+                                        template="flag"
+                                        >
+                                        <bolt-layout-item
+                                          >
+                                          <svg  style="--e-bolt-icon-color: var(--m-bolt-link)" class="e-bolt-icon e-bolt-icon--large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                            <path fill="#151619" fill-rule="evenodd" d="M15 2.6v9.9c0 .6.4 1 1 1s1-.4 1-1V2.6l11.7 5.8L16 14.8 3.3 8.5zm2 13.9L29.9 10v11.8L20.1 17c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4c.1.1.3.2.5.3l9.5 4.7-11.7 6zm-3.5.8c-.2-.4-.7-.7-1.1-.5-.1 0-.1 0-.2.1l-10.1 5V10.1L15 16.5v12.8L3.3 23.5l9.8-4.9c.4-.2.7-.7.5-1.1 0-.1-.1-.2-.1-.2zm18.4-8.8c0-.1 0-.2-.1-.3v-.1c0-.1-.1-.2-.2-.2v-.1c-.1-.1-.2-.1-.2-.2L16.4.1c-.1-.1-.2-.1-.4-.1s-.3 0-.4.1L.6 7.6c-.1 0-.2.1-.2.2v.1c-.1 0-.2 0-.2.1v.1c0 .1-.1.2-.1.3V24c0 .1.1.1.1.2v.1c.1.1.1.1.2.1l14.9 7.5c.2.1.5.1.7.1s.3 0 .4-.1l15.2-7.5c.1 0 .1-.1.2-.1v-.1c.1-.1.1-.1.1-.2v-.5z" clip-rule="evenodd"/>
+                                          </svg>
+                                        </bolt-layout-item>
+                                        <bolt-layout-item
+                                          >
+                                          <bolt-stack spacing="none">
+                                            <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xsmall">
+                                              <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                                Marketplace
+                                                <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                                  <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                                    <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                                  </svg>
+                                                </span>
+                                              </a>
+                                            </p>
+                                          </bolt-stack>
+                                          <bolt-stack>
+                                            <p  class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">Extend Pega with components and apps</p>
+                                          </bolt-stack>
+                                        </bolt-layout-item>
+                                      </bolt-layout>
+                                    </ssr-keep>
+                                  </bolt-list-item>
+                                  <bolt-list-item
+                                    last    role="presentation"
+                                    >
+                                    <ssr-keep
+                                      for="bolt-list-item"
+                                      role="listitem"      class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item"
+                                      >
+                                      <bolt-layout
+                                        style="--l-bolt-layout-flag-media-width: 35px;" gutter="small" valign-items="start"
+                                        template="flag"
+                                        >
+                                        <bolt-layout-item
+                                          >
+                                          <svg  style="--e-bolt-icon-color: var(--m-bolt-link)" class="e-bolt-icon e-bolt-icon--large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                            <path fill="#151619" d="M31.63 17.37a3.37 3.37 0 00-5.79-.89l-2.58-1.14A7 7 0 0022 8.94l2.82-2.61a3.39 3.39 0 10-1.7-2.93 3.38 3.38 0 00.4 1.6l-2.87 2.7a7 7 0 00-10.17 2.06L6.91 8.2a3.39 3.39 0 10-3.35 2.92 3.4 3.4 0 001.24-.23 3.21 3.21 0 001.38-1l3.57 1.56a7.1 7.1 0 00-.28 2 7 7 0 001.18 3.89l-5.43 5.07A3.44 3.44 0 003.53 22a3.43 3.43 0 103 1.75l5.34-5.07a7.16 7.16 0 003.77 1.72v5a3.41 3.41 0 101.81 0v-5a7 7 0 005.08-3.4l2.59 1.14A3.4 3.4 0 0028.47 22a3.41 3.41 0 001.24-.24 3.4 3.4 0 001.92-4.41zM4.14 9.21A1.6 1.6 0 113 6.24a1.49 1.49 0 01.58-.11 1.6 1.6 0 01.59 3.08zM26.48 1.8a1.6 1.6 0 11-1.6 1.6 1.6 1.6 0 011.6-1.6zM3.53 26.94a1.6 1.6 0 010-3.19 1.6 1.6 0 110 3.19zM18.1 28.6a1.6 1.6 0 11-1.6-1.6 1.6 1.6 0 011.6 1.6zm-1.6-10a5.24 5.24 0 115.24-5.23 5.24 5.24 0 01-5.24 5.24zm12.55 1.5a1.57 1.57 0 01-1.22 0 1.6 1.6 0 01.05-2.95 1.49 1.49 0 01.58-.11 1.6 1.6 0 01.59 3.08z"/>
+                                          </svg>
+                                        </bolt-layout-item>
+                                        <bolt-layout-item
+                                          >
+                                          <bolt-stack spacing="none">
+                                            <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xsmall">
+                                              <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                                My Pega
+                                                <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                                  <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                                    <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                                  </svg>
+                                                </span>
+                                              </a>
+                                            </p>
+                                          </bolt-stack>
+                                          <bolt-stack>
+                                            <p  class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">Manage your organization&rsquo;s relationship with Pega</p>
+                                          </bolt-stack>
+                                        </bolt-layout-item>
+                                      </bolt-layout>
+                                    </ssr-keep>
+                                  </bolt-list-item>
+                                </ssr-keep>
+                              </bolt-list>
+                            </bolt-layout-item>
+                            <bolt-layout-item
+                              >
+                              <bolt-list
+                                tag="ul"    display="block"    spacing="small"    separator="none"    align="start"    valign="center"
+                                >
+                                <ssr-keep
+                                  for="bolt-list"
+                                  role="list"      class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-small c-bolt-list--align-start c-bolt-list--valign-center"
+                                  >
+                                  <bolt-list-item
+                                    role="presentation"
+                                    >
+                                    <ssr-keep
+                                      for="bolt-list-item"
+                                      role="listitem"      class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start"
+                                      >
+                                      <bolt-layout
+                                        style="--l-bolt-layout-flag-media-width: 35px;" gutter="small" valign-items="start"
+                                        template="flag"
+                                        >
+                                        <bolt-layout-item
+                                          >
+                                          <svg  style="--e-bolt-icon-color: var(--m-bolt-link)" class="e-bolt-icon e-bolt-icon--large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                            <path fill="#151619" d="M28.89 13.4a4.22 4.22 0 001.45-3.18 4.28 4.28 0 10-7.09 3.19 5.88 5.88 0 00-2.93 3.82 8.78 8.78 0 00-1.12-.64 5.46 5.46 0 10-6.49 0 7.5 7.5 0 00-1 .58 5.92 5.92 0 00-2.92-3.76 4.24 4.24 0 001.46-3.19 4.28 4.28 0 10-8.55 0 4.22 4.22 0 001.41 3.18A5.93 5.93 0 000 18.61v1.18a.91.91 0 101.81 0v-1.18a4.12 4.12 0 018.19-.48.79.79 0 00.14.37 7.66 7.66 0 00-1.91 5.06v1.59a.91.91 0 101.81 0v-1.59a5.89 5.89 0 0111.77 0v1.59a.91.91 0 101.81 0v-1.59a7.67 7.67 0 00-1.84-5 .93.93 0 00.16-.41 4.12 4.12 0 018.22.44v1.18a.91.91 0 101.81 0v-1.16a5.93 5.93 0 00-3.08-5.21zM3.47 10.22a2.47 2.47 0 112.46 2.46 2.47 2.47 0 01-2.46-2.46zm8.84 2A3.65 3.65 0 1116 15.87a3.65 3.65 0 01-3.69-3.65zm11.29-2a2.47 2.47 0 112.47 2.46 2.48 2.48 0 01-2.47-2.46z"/>
+                                          </svg>
+                                        </bolt-layout-item>
+                                        <bolt-layout-item
+                                          >
+                                          <bolt-stack spacing="none">
+                                            <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xsmall">
+                                              <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                                Pega Community
+                                                <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                                  <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                                    <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                                  </svg>
+                                                </span>
+                                              </a>
+                                            </p>
+                                          </bolt-stack>
+                                          <bolt-stack>
+                                            <p  class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">Drive success with centralized content and resources</p>
+                                          </bolt-stack>
+                                        </bolt-layout-item>
+                                      </bolt-layout>
+                                    </ssr-keep>
+                                  </bolt-list-item>
+                                  <bolt-list-item
+                                    role="presentation"
+                                    >
+                                    <ssr-keep
+                                      for="bolt-list-item"
+                                      role="listitem"      class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start"
+                                      >
+                                      <bolt-layout
+                                        style="--l-bolt-layout-flag-media-width: 35px;" gutter="small" valign-items="start"
+                                        template="flag"
+                                        >
+                                        <bolt-layout-item
+                                          >
+                                          <svg  style="--e-bolt-icon-color: var(--m-bolt-link)" class="e-bolt-icon e-bolt-icon--large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                            <path fill="#151619" d="M29.4 6.61h-.22V2.73a.92.92 0 00-.91-.92A18.55 18.55 0 0016 6.09 18.55 18.55 0 003.73 1.81a.92.92 0 00-.91.92v3.88H2.6A2.61 2.61 0 000 9.21v17.07a2.61 2.61 0 002.6 2.6h11.27a1.68 1.68 0 001.69 1.31h.88a1.68 1.68 0 001.69-1.31H29.4a2.61 2.61 0 002.6-2.6V9.21a2.61 2.61 0 00-2.6-2.6zm-2 15.82A18.71 18.71 0 0016.92 26V7.74a16.58 16.58 0 0110.43-4.07zM4.65 3.67a16.58 16.58 0 0110.43 4.07V26a18.71 18.71 0 00-10.43-3.57zM1.84 26.28V9.21a.77.77 0 01.76-.76h.22v14.88a.92.92 0 00.91.92A17.4 17.4 0 0113.39 27H2.6a.76.76 0 01-.76-.72zm28.32 0a.76.76 0 01-.76.76H18.61a17.43 17.43 0 019.66-2.79.92.92 0 00.91-.92V8.45h.22a.76.76 0 01.76.76z"/>
+                                          </svg>
+                                        </bolt-layout-item>
+                                        <bolt-layout-item
+                                          >
+                                          <bolt-stack spacing="none">
+                                            <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xsmall">
+                                              <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                                Documentation
+                                                <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                                  <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                                    <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                                  </svg>
+                                                </span>
+                                              </a>
+                                            </p>
+                                          </bolt-stack>
+                                          <bolt-stack>
+                                            <p  class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">Find product guides and reference docs</p>
+                                          </bolt-stack>
+                                        </bolt-layout-item>
+                                      </bolt-layout>
+                                    </ssr-keep>
+                                  </bolt-list-item>
+                                  <bolt-list-item
+                                    role="presentation"
+                                    >
+                                    <ssr-keep
+                                      for="bolt-list-item"
+                                      role="listitem"      class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start"
+                                      >
+                                      <bolt-layout
+                                        style="--l-bolt-layout-flag-media-width: 35px;" gutter="small" valign-items="start"
+                                        template="flag"
+                                        >
+                                        <bolt-layout-item
+                                          >
+                                          <svg  style="--e-bolt-icon-color: var(--m-bolt-link)" class="e-bolt-icon e-bolt-icon--large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                            <g fill="#151619">
+                                              <path d="M31.4 1.2c-.1-.3-.3-.5-.6-.6-.1 0-9.6-2.8-16 3.6-1.7 1.7-3.3 3.6-4.7 5.6l-.2-.1S5.7 9 3.2 11.5c-1.6 1.8-2.7 4-3.2 6.4-.1.4.1.8.4 1 .4.2.8.1 1.1-.2 1.3-1.3 2.9-2 4.7-2.2-.1.1-.1.3-.2.4-.1.3 0 .7.2 1l7.7 7.7c.3.3.6.3 1 .2l.4-.2c-.2 1.8-1 3.4-2.2 4.7-.4.4-.4.9 0 1.3.2.2.4.3.6.3h.3c2.4-.6 4.6-1.7 6.4-3.2 2.4-2.4 1.8-6.5 1.8-6.6s0-.1-.1-.2c2-1.4 3.8-3 5.6-4.7 6.5-6.4 3.7-15.9 3.7-16zm-4.9 14.7C23 19.4 16.4 23.2 14.9 24L8 17.1c.7-1.3 4.4-8 8-11.6 5-4.9 11.9-3.7 13.7-3.3.5 1.9 1.7 8.8-3.2 13.7zM9 11.5c-.7 1.1-1.3 2.2-1.8 3.2-1.5 0-3 .4-4.4 1 .4-1.1 1.1-2.1 1.8-3 1.1-.9 2.6-1.4 4-1.3zm10.2 15.9c-.9.8-1.9 1.4-3 1.9.7-1.4 1-2.9 1-4.5 1-.5 2.2-1.2 3.2-1.9.3 1.7-.2 3.3-1.2 4.5z"/>
+                                              <path d="M22.9 5.3C20.8 5.3 19 7 19 9.1s1.7 3.9 3.8 3.9c1 0 2-.4 2.8-1.2 1.5-1.5 1.5-4-.1-5.4-.7-.7-1.6-1.1-2.6-1.1zm1.4 5.3c-.8.8-2.1.9-2.9.1s-.9-2.1-.1-2.9 2.1-.9 2.9-.1l.1.1c.8.7.8 2 0 2.8zM4.7 22.6C3.6 23.7 3.1 27.3 3 28c0 .3.1.6.3.8.2.1.4.2.6.2H4c.7-.1 4.2-.6 5.3-1.7 1.3-1.3 1.3-3.4 0-4.7-1.2-1.3-3.3-1.3-4.6 0zM8.1 26c-1 .5-2 .9-3.1 1 .1-1.1.5-2.1 1-3.1.3-.3.6-.4 1-.4s.8.2 1 .4c.7.5.7 1.5.1 2.1z"/>
+                                            </g>
+                                          </svg>
+                                        </bolt-layout-item>
+                                        <bolt-layout-item
+                                          >
+                                          <bolt-stack spacing="none">
+                                            <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xsmall">
+                                              <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                                Academy
+                                                <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                                  <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                                    <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                                  </svg>
+                                                </span>
+                                              </a>
+                                            </p>
+                                          </bolt-stack>
+                                          <bolt-stack>
+                                            <p  class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">Complete missions, earn badges, and stay current</p>
+                                          </bolt-stack>
+                                        </bolt-layout-item>
+                                      </bolt-layout>
+                                    </ssr-keep>
+                                  </bolt-list-item>
+                                  <bolt-list-item
+                                    role="presentation"
+                                    >
+                                    <ssr-keep
+                                      for="bolt-list-item"
+                                      role="listitem"      class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start"
+                                      >
+                                      <bolt-layout
+                                        style="--l-bolt-layout-flag-media-width: 35px;" gutter="small" valign-items="start"
+                                        template="flag"
+                                        >
+                                        <bolt-layout-item
+                                          >
+                                          <svg  style="--e-bolt-icon-color: var(--m-bolt-link)" class="e-bolt-icon e-bolt-icon--large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                            <path fill="#151619" d="M22.15 2.6A10.34 10.34 0 0014 6.18 15.51 15.51 0 0011.88 6C5.11 6 0 10.27 0 15.88a8.86 8.86 0 004.65 8.06v4.55a.93.93 0 00.48.8.9.9 0 00.93 0l5.34-3.54h.48c5.29 0 9.55-2.59 11.17-6.39l3.76 2.48a.88.88 0 00.49.15.81.81 0 00.43-.11.88.88 0 00.48-.79v-3.64A7.34 7.34 0 0032 10.79c0-4.67-4.23-8.19-9.85-8.19zM11.88 23.92H11.19a1 1 0 00-.54.15l-4.19 2.74v-3.42a.91.91 0 00-.5-.81 7.07 7.07 0 01-4.15-6.7c0-4.58 4.33-8 10.07-8A14.16 14.16 0 0114 8a.87.87 0 00.35.07C18.81 8.9 22 12 22 15.88c0 4.58-4.37 8.04-10.12 8.04zm15-7.82a.93.93 0 00-.5.81v2.48l-2.8-1.86a8.87 8.87 0 00.17-1.65c0-4.4-3.15-7.94-7.77-9.27a8.93 8.93 0 016.15-2.2c4.58 0 8 2.75 8 6.38a5.61 5.61 0 01-3.23 5.31z"/>
+                                          </svg>
+                                        </bolt-layout-item>
+                                        <bolt-layout-item
+                                          >
+                                          <bolt-stack spacing="none">
+                                            <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xsmall">
+                                              <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                                Forums
+                                                <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                                  <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                                    <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                                  </svg>
+                                                </span>
+                                              </a>
+                                            </p>
+                                          </bolt-stack>
+                                          <bolt-stack>
+                                            <p  class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">Ask questions and help other Pega professionals</p>
+                                          </bolt-stack>
+                                        </bolt-layout-item>
+                                      </bolt-layout>
+                                    </ssr-keep>
+                                  </bolt-list-item>
+                                  <bolt-list-item
+                                    role="presentation"
+                                    >
+                                    <ssr-keep
+                                      for="bolt-list-item"
+                                      role="listitem"      class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start"
+                                      >
+                                      <bolt-layout
+                                        style="--l-bolt-layout-flag-media-width: 35px;" gutter="small" valign-items="start"
+                                        template="flag"
+                                        >
+                                        <bolt-layout-item
+                                          >
+                                          <svg  style="--e-bolt-icon-color: var(--m-bolt-link)" class="e-bolt-icon e-bolt-icon--large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                            <path fill="#151619" d="M31.73 8a.89.89 0 000-1.28L25.31.29a.93.93 0 00-1.31 0l-6.13 6.16h-4.34a6.8 6.8 0 10-7.64 7.64v4.28h-5a.9.9 0 00-.91.9v11.79a.91.91 0 00.93.94h11.78a.91.91 0 00.91-.91V19.27a.9.9 0 00-.91-.9h-5v-4.28a6.81 6.81 0 005.82-5.83h4.34l5.89 5.89v4.28a6.8 6.8 0 101.82 0v-4.28zM11.79 30.16h-10v-10h10zm-5-17.82a5 5 0 115-5 5 5 0 01-4.99 5zM24.67 2.21l5.15 5.14-5.15 5.15-5.15-5.15zm5 23a5 5 0 11-5.07-5h.16a5 5 0 014.9 4.96z"/>
+                                          </svg>
+                                        </bolt-layout-item>
+                                        <bolt-layout-item
+                                          >
+                                          <bolt-stack spacing="none">
+                                            <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xsmall">
+                                              <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                                Design Pattern Library
+                                                <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                                  <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                                    <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                                  </svg>
+                                                </span>
+                                              </a>
+                                            </p>
+                                          </bolt-stack>
+                                          <bolt-stack>
+                                            <p  class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">Explore common implementation patterns</p>
+                                          </bolt-stack>
+                                        </bolt-layout-item>
+                                      </bolt-layout>
+                                    </ssr-keep>
+                                  </bolt-list-item>
+                                  <bolt-list-item
+                                    last    role="presentation"
+                                    >
+                                    <ssr-keep
+                                      for="bolt-list-item"
+                                      role="listitem"      class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-small c-bolt-list-item--align-start c-bolt-list-item--last-item"
+                                      >
+                                      <bolt-layout
+                                        style="--l-bolt-layout-flag-media-width: 35px;" gutter="small" valign-items="start"
+                                        template="flag"
+                                        >
+                                        <bolt-layout-item
+                                          >
+                                          <svg  style="--e-bolt-icon-color: var(--m-bolt-link)" class="e-bolt-icon e-bolt-icon--large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                            <path fill="#151619" d="M32 14.29a9.52 9.52 0 00-9.52-9.51 10.26 10.26 0 00-1.74.22 13.32 13.32 0 103.47 18.69 9.55 9.55 0 007.79-9.4zM13.32 27.53a11.53 11.53 0 115.13-21.86l-.11.06a8.12 8.12 0 00-1 .58l-.11.07a10.35 10.35 0 00-.91.69l-.11.09a8 8 0 00-.82.83l-.15.17a10.16 10.16 0 00-.69.93l-.1.15c-.2.33-.38.66-.55 1a.3.3 0 010 .08 8.29 8.29 0 00-.41 1.12 1.72 1.72 0 00-.07.21 8.85 8.85 0 00-.25 1.16v.21a10.52 10.52 0 00-.17 1.27v1.32s.06.41.1.61.06.24.08.36.09.36.14.53.09.25.13.37l.18.49c.05.12.11.25.17.37s.14.3.22.45a4 4 0 00.2.35l.26.42a4.15 4.15 0 00.24.34c.09.13.19.26.29.38a4.15 4.15 0 00.27.32c.1.12.21.24.32.35l.3.3.35.32.33.27.37.27.37.25.39.24.39.21.41.2.41.17.44.16.43.14.45.11.45.1.46.07.47.06h.15a11.49 11.49 0 01-8.45 3.71zm10.26-5.59a7.72 7.72 0 01-2.83-15.17 7.3 7.3 0 011.73-.2 7.72 7.72 0 011.1 15.37z"/>
+                                          </svg>
+                                        </bolt-layout-item>
+                                        <bolt-layout-item
+                                          >
+                                          <bolt-stack spacing="none">
+                                            <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xsmall">
+                                              <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                                Pega Cosmos Design System
+                                                <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                                  <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                                    <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                                  </svg>
+                                                </span>
+                                              </a>
+                                            </p>
+                                          </bolt-stack>
+                                          <bolt-stack>
+                                            <p  class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">Browse library of UI/UX templates, patterns, and components</p>
+                                          </bolt-stack>
+                                        </bolt-layout-item>
+                                      </bolt-layout>
+                                    </ssr-keep>
+                                  </bolt-list-item>
+                                </ssr-keep>
+                              </bolt-list>
+                            </bolt-layout-item>
+                          </bolt-layout>
+                          <hr class="u-bolt-margin-bottom-small">
+                          <bolt-layout
+                            template="tiles"
+                            >
+                            <bolt-layout-item
+                              >
+                              <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--center c-bolt-headline--xsmall">
+                                <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                  Careers
+                                  <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                    <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                      <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                    </svg>
+                                  </span>
+                                </a>
+                              </p>
+                            </bolt-layout-item>
+                            <bolt-layout-item
+                              >
+                              <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--center c-bolt-headline--xsmall">
+                                <a  href="https://google.com" class="e-bolt-text-link e-bolt-text-link--reversed-underline">
+                                  Pega Support
+                                  <span class="e-bolt-text-link__icon-after" aria-hidden="true">
+                                    <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                                      <path fill="#151619" fill-rule="evenodd" d="M12.4 5.4c-.6-.6-1.6-.6-2.2 0s-.6 1.6 0 2.3l8.4 8.3-8.3 8.3c-.6.6-.6 1.6 0 2.2.3.3.7.5 1 .5.4 0 .8-.2 1.1-.5l9.4-9.4c.6-.6.6-1.6 0-2.2z" clip-rule="evenodd"/>
+                                    </svg>
+                                  </span>
+                                </a>
+                              </p>
+                            </bolt-layout-item>
+                          </bolt-layout>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list js-bolt-page-header-nav--user c-bolt-page-header__nav-list--user">
+                  <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--popover has-children">
+                    <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                    <span class="c-bolt-page-header__nav-link__content">
+                    <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--before">  <img src="https://place-hold.it/500x500" alt="CEO Alan" width=16 height=16>
+                    </span>
+                    <span class="c-bolt-page-header__nav-link__content__text">    <span aria-hidden="true">Hello Alan</span> <span class="u-bolt-visuallyhidden">User settings</span>
+                    </span>
+                    </span>
+                    <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                    </button>
+                    <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list c-bolt-page-header__nav-list--edge-end">
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <div class="c-bolt-page-header__nav-content">
+                          <div class="c-bolt-page-header__user-flag">
+                            <img src="https://place-hold.it/500x500" alt="CEO Alan" class="c-bolt-page-header__user-flag__img">
+                            <div class="c-bolt-page-header__user-flag__content">
+                              <p  class="c-bolt-eyebrow c-bolt-eyebrow--regular">Hello</p>
+                              <p  class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--large">Alan</p>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        My Pega
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        My Profile
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Notification Settings
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Log Out
+                        </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li id="notification-feed-toolbar-app" class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--popover has-children">
+                    <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                      <span class="c-bolt-page-header__nav-link__content">
+                        <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--only">
+                          <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                            <path fill="#151619" d="M29.7 24.8c-.4-.4-.8-.9-1.2-1.3s-.9-.8-1.3-1.2c0-.1-.1-.3-.1-.4v-3.3c-.1-.5-.1-1.1-.1-1.8V14.1c-.1-.9-.2-1.9-.4-2.8-.2-.8-.5-1.7-.9-2.5-.5-1-1.2-2-2.2-2.8-1.1-1-2.4-1.8-3.7-2.3-.5-.1-.6-.3-.6-.7-.1-.9-.6-1.9-1.3-2.4-1.3-1-3.1-.8-4.3.3-.6.6-.9 1.4-.9 2.4 0 .3-.1.4-.4.5-.5.1-1 .3-1.5.6-1.4.7-2.4 1.5-3.4 2.6-.8.9-1.4 1.8-1.8 3-.4.9-.6 2-.7 3 0 .8-.1 1.5-.1 2.3 0 .6.1 1.1.1 1.8v2.1c0 .5.1 1.1.1 1.8v.8c0 .3 0 .6-.3.9-.7.6-1.5 1.3-2.3 2.1-.6.5-.7 1.3-.5 2.1.3 1 1 1.5 2.1 1.5h9.3c.1.3.1.5.1.7 0 .6.2 1.1.5 1.7 1.1 1.8 3.7 1.5 4.9-.2.4-.7.3-1.4.4-2.1h9c.7 0 1.2-.2 1.8-.7.3-.9.3-2.5-.3-3z"/>
+                          </svg>
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__content__text">Notifications</span>
+                        <!-- span class="c-bolt-page-header__counter"></span -->
+                      </span>
+                      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                    </button>
+                    <ul  style="--c-bolt-page-header-desktop-popover-width: 25rem" class="js-bolt-page-header-nav c-bolt-page-header__nav-list c-bolt-page-header__nav-list--edge-end">
+                      <div  role="listitem">
+                        This content will be replaced.
+                      </div>
+                    </ul>
+                  </li>
+                  <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--popover has-children">
+                    <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                      <span class="c-bolt-page-header__nav-link__content">
+                        <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--only">
+                          <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                            <path fill="#151619" d="M27.91 6.94v-.06a.63.63 0 00-.11-.12 15 15 0 00-23.54 0 1.31 1.31 0 00-.11.12v.07A14.81 14.81 0 001 16a15 15 0 0030 0 14.84 14.84 0 00-3.09-9.06zm-1.07 16.41a17.39 17.39 0 00-3.5-1.41 27 27 0 00.61-5h5.13a12.84 12.84 0 01-2.24 6.41zM2.92 16.91h5.13a26.84 26.84 0 00.61 5 18.37 18.37 0 00-3.51 1.42 12.93 12.93 0 01-2.23-6.42zm2.26-8.3A17 17 0 008.67 10a27 27 0 00-.62 5H2.92a13 13 0 012.26-6.39zM16.94 11a27.52 27.52 0 004.55-.52 24.91 24.91 0 01.58 4.52h-5.13zm0-1.88v-6c1.66.58 3.13 2.65 4.07 5.55a25.09 25.09 0 01-4.07.44zm-1.88-6v6A25.09 25.09 0 0111 8.66c.93-2.9 2.4-4.97 4.06-5.55zm0 7.88v4H9.93a24.91 24.91 0 01.58-4.57 27.52 27.52 0 004.55.57zm-5.13 5.91h5.13V21a27.52 27.52 0 00-4.56.52 24.09 24.09 0 01-.57-4.61zm5.13 5.93v6.05c-1.67-.58-3.14-2.67-4.08-5.59a25.2 25.2 0 014.08-.46zm1.88 6.05v-6.05a25.2 25.2 0 014.06.46c-.92 2.92-2.39 5.01-4.06 5.59zm0-7.93v-4.05h5.13a24.09 24.09 0 01-.57 4.57 27.52 27.52 0 00-4.56-.48zM24 15a27 27 0 00-.62-5 17 17 0 003.49-1.41A13 13 0 0129.08 15zm1.67-7.9a16.88 16.88 0 01-2.79 1.08 14.78 14.78 0 00-2.19-4.43 13.1 13.1 0 014.93 3.39zM11.36 3.79a14.78 14.78 0 00-2.19 4.43 16.88 16.88 0 01-2.79-1.08 13.1 13.1 0 014.98-3.35zm-5 21a16 16 0 012.81-1.09 14.92 14.92 0 002.2 4.47 13.08 13.08 0 01-5.02-3.34zm14.29 3.38a14.92 14.92 0 002.2-4.47 16 16 0 012.81 1.09 13.08 13.08 0 01-5.02 3.42z"/>
+                          </svg>
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__content__text">Language</span>
+                      </span>
+                      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                    </button>
+                    <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list c-bolt-page-header__nav-list--edge-end">
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item is-selected">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" aria-current="true">
+                        <span class="c-bolt-page-header__nav-link__content">
+                        <span class="u-bolt-visuallyhidden">Site language: </span>English
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Français
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Deutsch
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Italiano
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        日本語
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Português
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Español
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Set your preferred language
+                        </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item c-bolt-page-header__nav-list-item--popover has-children">
+                    <button type="button" aria-expanded="false" class="c-bolt-page-header__nav-link js-bolt-page-header-trigger">
+                      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--collapse" aria-hidden="true"></span>
+                      <span class="c-bolt-page-header__nav-link__content">
+                        <span class="c-bolt-page-header__nav-link__content__signifier c-bolt-page-header__nav-link__content__signifier--only">
+                          <svg  class="e-bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                            <g fill="#151619" fill-rule="evenodd" clip-rule="evenodd">
+                              <path d="M16 0C7.5 0 .5 6.3.5 14.2c0 4.6 2.3 8.6 6 11.2V32l5.7-4c1.2.3 2.5.4 3.8.4 8.6 0 15.5-6.4 15.5-14.2C31.5 6.3 24.6 0 16 0zm0 26.4c-1.5 0-2.9-.2-4.3-.6l-3.1 1.9v-3.2c-3.7-2.2-6.2-6-6.2-10.3C2.4 7.3 8.5 1.8 16 1.8s13.6 5.5 13.6 12.3S23.5 26.4 16 26.4z"/>
+                              <path d="M16 18.6c-.7 0-1.3.5-1.3 1.2s.5 1.2 1.2 1.2 1.3-.5 1.3-1.2c.1-.7-.5-1.2-1.2-1.2zM15.9 9.1c-.9 0-1.9.3-2.4.7l-.3.2.7 1.8.4-.3c.3-.2.8-.4 1.3-.4.7 0 1.1.3 1.1.9 0 .5-.3 1-1 1.8-.8.9-1.2 2-1 2.9l.1.8h2v-.8c0-.7.2-1.2.8-1.9.8-.9 1.4-1.7 1.4-2.9-.2-1.5-1.1-2.8-3.1-2.8z"/>
+                            </g>
+                          </svg>
+                        </span>
+                        <span class="c-bolt-page-header__nav-link__content__text">Contact</span>
+                      </span>
+                      <span class="c-bolt-page-header__nav-link__nested-indicator c-bolt-page-header__nav-link__nested-indicator--expand" aria-hidden="true"></span>
+                    </button>
+                    <ul  class="js-bolt-page-header-nav c-bolt-page-header__nav-list c-bolt-page-header__nav-list--edge-end">
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="https://google.com/" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        Contact Us
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="tel: 1-888-PEGA-NOW" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        US: 1-888-PEGA-NOW
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="tel: 0800 014 8123" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        UK: 0800 014 8123
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="tel: 0800 1814783" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        DACH: 0800 1814783
+                        </span>
+                        </a>
+                      </li>
+                      <li  class="js-bolt-page-header-nav-item c-bolt-page-header__nav-list-item">
+                        <a  href="tel: 1800 763 425" class="c-bolt-page-header__nav-link" >
+                        <span class="c-bolt-page-header__nav-link__content">
+                        AU: 1800 763 425
+                        </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <div class="c-bolt-page-header__cta">
+              <a  href="https://google.com/products/try-now" target="_blank" rel="noopener" class="e-bolt-button e-bolt-button--small e-bolt-button--block" >Try Pega</a>
+            </div>
+          </div>
+        </div>
+        <div class="c-bolt-page-header__secondary">
+          <nav  data-bolt-more-text="More" aria-labelledby="js-bolt-navbar-title-1554976074" class="c-bolt-navbar js-bolt-sticky c-bolt-navbar--spacing-small t-bolt-dark">
+            <div class="c-bolt-navbar__inner">
+              <div  class="c-bolt-navbar__title">
+                <div  class="c-bolt-navbar__title-inner">
+                  <span class="c-bolt-navbar__title-icon">
+                    <svg  class="e-bolt-icon e-bolt-icon--large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+                      <g fill="#151619" fill-rule="evenodd" clip-rule="evenodd">
+                        <path d="M30.3 8.8H28c1.3 2.2 2 4.7 2 7.2 0 7.7-6.3 14-14 14S2 23.7 2 16 8.3 2 16 2c2.6 0 5.2.7 7.4 2.1V1.8C21.1.6 18.6 0 16 0 7.2 0 0 7.2 0 16s7.2 16 16 16 16-7.2 16-16c0-2.5-.6-5-1.7-7.2"/>
+                        <path d="M16 8c1.1 0 2.1.2 3.1.6l1.5-1.5C19.2 6.4 17.6 6 16 6 10.5 6 6 10.5 6 16s4.5 10 10 10 10-4.5 10-10c0-1.6-.4-3.3-1.2-4.7l-1.5 1.5c.4 1 .7 2.1.7 3.2 0 4.4-3.6 8-8 8s-8-3.6-8-8 3.6-8 8-8"/>
+                        <path d="M16 16.5c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5zm.9-2.8c-.3-.1-.6-.2-.9-.2-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5c0-.3-.1-.6-.2-.9L25.4 8H30V6h-2.6l1.8-1.8-1.4-1.4L26 4.5V2h-2v4.6z"/>
+                      </g>
+                    </svg>
+                  </span>
+                  <span  id="js-bolt-navbar-title-1554976074" class="c-bolt-navbar__title-text">
+                  Secondary Nav
+                  </span>
+                </div>
+              </div>
+              <div class="c-bolt-navbar__list-wrapper js-bolt-navbar__list-wrapper">
+                <ul  class="c-bolt-navbar__list js-bolt-navbar__list">
+                  <li  class="c-bolt-navbar-item js-bolt-navbar-item">
+                    <div class="c-bolt-navbar-item__inner">
+                      <a  href="#section-1" data-scroll-ignore class="c-bolt-navbar-item__link"><span class="c-bolt-navbar-item__text">Section 1</span></a>
+                    </div>
+                  </li>
+                  <li  class="c-bolt-navbar-item js-bolt-navbar-item">
+                    <div class="c-bolt-navbar-item__inner">
+                      <a  href="#section-2" data-scroll-ignore class="c-bolt-navbar-item__link"><span class="c-bolt-navbar-item__text">Section 2</span></a>
+                    </div>
+                  </li>
+                  <li  class="c-bolt-navbar-item js-bolt-navbar-item">
+                    <div class="c-bolt-navbar-item__inner">
+                      <a  href="#section-3" data-scroll-ignore class="c-bolt-navbar-item__link"><span class="c-bolt-navbar-item__text">Section 3</span></a>
+                    </div>
+                  </li>
+                  <li  class="c-bolt-navbar-item js-bolt-navbar-item">
+                    <div class="c-bolt-navbar-item__inner">
+                      <a  href="#section-4" data-scroll-ignore class="c-bolt-navbar-item__link"><span class="c-bolt-navbar-item__text">Section 4</span></a>
+                    </div>
+                  </li>
+                  <li  class="c-bolt-navbar-item js-bolt-navbar-item">
+                    <div class="c-bolt-navbar-item__inner">
+                      <a  href="#section-5" data-scroll-ignore class="c-bolt-navbar-item__link"><span class="c-bolt-navbar-item__text">Section 5</span></a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <div class="o-bolt-wrapper">
+        <div id="notification-feed-app"></div>
+      </div>
+      <script>
+        var drupalSettings = {
+          user: {},
+          pega_notification_feed: {
+            refresh_on_init: false,
+            refresh_time_limit: 15000,
+            settings_url: '#settings_url',
+            page_url: '#page_url',
+            js_base_path: '/',
+          },
+        };
+      </script>
+      <script src="lib/drupal-functions.js"></script>
+      <script src="lib/bolt-global.js"></script>
+      <script src="lib/react.min.js"></script>
+      <script src="lib/react-dom.min.js"></script>
+      <script src="notification-feed.js"></script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generic page</title>
+  <!-- link rel="stylesheet" href="lib/bolt-global.css" -->
+</head>
+<body>
+  <div class="o-bolt-wrapper">
+    <div id="notification-feed-toolbar-app">[This will be replaced]</div>
+  </div>
+
+  <!-- script src="lib/bolt-global.js"></script -->
+
+  <!-- script src="lib/bolt-global.js"></script -->
+  <script src="notifications.js"></script>
+  <script>
+    if (typeof pegaSettings === 'undefined') {
+      pegaSettings = {};
+    }
+
+    pegaSettings.pegaNotificationFeed = {
+      jsBasePath: '/',
+    };
+
+    (() => {
+      const opts = {
+        refreshOnInit: false,
+        refreshTimeLimit: 2000,
+        pageUrl: '#notifications',
+        settingsUrl: '#settings',
+        apiBaseUrl: '',
+        ssoFrameUrl: '',
+        translate: str => str,
+        rootElement: "#notification-feed-toolbar-app"
+      };
+
+      if (window.pegaComponents?.NotificationFeed) {
+        const NotificationFeed = new window.pegaComponents.NotificationFeed(opts);
+      }
+    })();
+  </script>
+</body>
+</html>

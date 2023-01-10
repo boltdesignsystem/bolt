@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "extends": "@bolt/eslint-config",
+  "rules": {
+    "import/no-unresolved": [
+      "error",
+      {
+        "commonjs": true,
+        "caseSensitive": true,
+        "ignore": ["react", "react-dom"]
+      }
+    ],
+    "camelcase": ["error", { "allow": ["^__webpack"] }]
+  },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  }
+}

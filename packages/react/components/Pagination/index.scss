@@ -1,0 +1,47 @@
+.c-base-react-paginate {
+  display: flex;
+  flex-wrap: wrap; // @todo: component needs better responsive design, for now just make sure it doesn't overflow the container
+  margin: 0;
+  padding: 0;
+  gap: var(--bolt-spacing-x-xsmall);
+  list-style: none;
+}
+
+.c-base-react-paginate__item {
+  margin: 0;
+  padding: 0;
+
+  &.is-disabled {
+    visibility: hidden;
+  }
+}
+
+.c-base-react-paginate__item-button {
+  &.is-active {
+    cursor: default;
+
+    &:active {
+      outline: 0;
+    }
+
+    &:hover {
+      transform: none;
+
+      &:after {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.c-base-react-paginate--align-center {
+  justify-content: center;
+}
+
+.c-base-react-paginate--align-start {
+  justify-content: flex-start;
+}
+
+.c-base-react-paginate--align-end {
+  justify-content: flex-end;
+}
