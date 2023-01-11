@@ -1,0 +1,75 @@
+{% set description %}
+An Example Hero
+{% endset %}
+
+{% set notes %}
+<bolt-ol>
+	<bolt-li>Any images at the top of the page, or in the hero section, should have <code>loading</code> set to <code>eager</code>.</bolt-li>
+</bolt-ol>
+{% endset %}
+
+{% set demo %}
+  <bolt-layout padding-top="xlarge" padding-bottom="xlarge" class="t-bolt-black" template="50" align-items="start">
+    {% set image %}
+      {% include '@bolt-elements-image/image.twig' with {
+        background: true,
+        attributes: {
+          src: '/images/placeholders/backgrounds/background-light-tall.jpg'
+        },
+      } only %}
+    {% endset %}
+    {% include '@bolt-components-background/background.twig' with {
+      opacity: 'heavy',
+      fill: 'gradient',
+      focal_point: {
+        horizontal: 'right',
+        vertical: 'top',
+      },
+      items: [
+        image,
+      ]
+    } only %}
+    <bolt-layout-item>
+      {% include '@bolt-components-headline/headline.twig' with {
+        text: 'Visualization & Simulation',
+        size: 'xxxlarge',
+        tag: 'h1'
+      } only %}
+      {% include '@bolt-components-headline/subheadline.twig' with {
+        text: 'Imagine the Future with Decision Hub',
+        size: 'xxlarge',
+        tag: 'h2'
+      } only %}
+      {% include '@bolt-components-headline/text.twig' with {
+        text: 'Continuously improve results by visualizing how future adjustments to your strategies can impact business performance. Simulate and test your ideas, evaluate the results using intuitive views, and then deploy optimal alterations.'
+      } only %}
+      {% include '@bolt-components-button/button.twig' with {
+        text: 'View the data sheet'
+      } only %}
+    </bolt-layout-item>
+  </bolt-layout>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-background/background.twig' with {
+  opacity: 'heavy',
+  fill: 'gradient',
+  focal_point: {
+    horizontal: 'right',
+    vertical: 'top',
+  },
+  items: [
+    image,
+  ]
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Use Case Hero',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
