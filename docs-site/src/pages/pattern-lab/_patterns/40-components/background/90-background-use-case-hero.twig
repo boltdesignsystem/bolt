@@ -1,0 +1,67 @@
+{% set description %}
+This is an example of a Background Component with an image being used as a hero section.
+{% endset %}
+
+{% set notes %}
+<bolt-ol>
+	<bolt-li>Any images at the top of the page, or in the hero section, should have <code>loading</code> set to <code>eager</code>.</bolt-li>
+</bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/placeholders/backgrounds/background-light-tall.jpg',
+        loading: 'eager'
+      },
+    } only %}
+  {% endset %}
+  {% include './_00-background-band-demo.twig' with {
+    background: {
+      opacity: 'heavy',
+      fill: 'gradient',
+      focal_point: {
+        horizontal: 'right',
+        vertical: 'top',
+      },
+      items: [
+        image,
+      ]
+    }
+  } %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/placeholders/backgrounds/background-light-tall.jpg',
+      loading: 'eager'
+    },
+  } only %}
+{% endset %}
+{% include '@bolt-components-background/background.twig' with {
+  opacity: 'heavy',
+  fill: 'gradient',
+  focal_point: {
+    horizontal: 'right',
+    vertical: 'top',
+  },
+  items: [
+    image,
+  ]
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Background Component Use Case Hero',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

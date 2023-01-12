@@ -8,7 +8,6 @@
 {% set item_attributes = item.pattern ~ 'Attributes' %}
 
 {# Image expects 'ratio' to be passed as string, Video expects boolean #}
-{# todo: in v4.0 remove reference to Video, no longer supported #}
 {% set _ratio_value = item.pattern == 'image' ? 'none' : false %}
 
 {% if item.pattern and item.pattern != 'image' %}

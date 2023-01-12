@@ -1,6 +1,6 @@
 {# Variables that are editable by the content editor #}
 {% set hero_headline = 'Powerful software. Powered by you.' %}
-{% set hero_background_video_poster = '/images/placeholders/backgrounds/background-light2.jpg' %}
+{% set hero_background_video_poster = '/images/placeholders/landscape-16x9-mountains.jpg' %}
 {% set hero_background_video_id = '5999324539001' %}
 {% set themes = ['light', 'dark'] %}
 
@@ -184,7 +184,10 @@
 {% endset %}
 
 {% set card_with_form %}
-  {% embed '@bolt-components-card-replacement/card-replacement.twig' %}
+  {% embed '@bolt-components-card-replacement/card-replacement.twig' with {
+    height: 'auto',
+  }
+  %}
     {% block body %}
       {{ form }}
     {% endblock %}
@@ -213,6 +216,31 @@
     ratio: 'wide'
   } only %}
 {% endset %}
+
+{# Video with text in the layout #}
+<h2>Video with a form in the layout, with theme class usage</h2>
+
+<bolt-stack>
+  <bolt-layout template="67" align-items="center" padding-top="xlarge" padding-bottom="xlarge" class="t-bolt-teal">
+    {% include '@bolt-components-background/background.twig' with {
+      fill: 'solid',
+      opacity: 'heavy',
+      video: true,
+      items: [
+        background_video,
+      ],
+    } only %}
+    <bolt-layout-item>
+      <bolt-text headline font-size="xxlarge">{{ example.title }}</bolt-text>
+      <p>This background has a <code>solid</code> fill and <code>video</code> prop set to <code>true</code> and the surrounding theme is <code>t-bolt-teal</code></p>
+      {{ card_with_form }}
+    </bolt-layout-item>
+  </bolt-layout>
+</bolt-stack>
+
+
+{# Video with forms, light and dark mode usage #}
+<h2>Video with forms, light and dark mode usage</h2>
 
 {% set themes = ['light', 'dark'] %}
 
@@ -259,129 +287,83 @@
       {{ parent() }}
     {% endblock band_content %}
   {% endembed %}
-  {% embed '@bolt-components-band/band.twig' with {
-    size: 'large',
-    theme: theme,
-    background: {
-      opacity: 'heavy',
-      fill: 'solid',
-      video: true,
-      items: [
-        background_video,
-      ]
-    },
-    attributes: {
-      class: "u-bolt-margin-bottom-large"
-    }
-  } %}
-    {% block band_background %}
-      {{ background_video }}
-      {{ parent() }}
-    {% endblock %}
-
-    {% block band_content %}
-      {% include '@bolt-components-grid/grid.twig' with {
-        gutter: 'small',
-        row_gutter: 'small',
-        items: [
-          {
-            column_start: '1 2@small 3@medium',
-            column_span: '12 10@small 8@medium',
-            content: card_with_form,
-          },
-        ]
-      } only %}
-      {{ parent() }}
-    {% endblock band_content %}
-  {% endembed %}
 {% endfor %}
 
+{# video with form, t-bolt classes usage #}
+{% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'violet', 'teal', 'yellow', 'orange', 'pink', 'berry', 'wine'] %}
+<h2>Video with the forms, t-bolt classes usage</h2>
 
-  {# Rest of the page #}
-  {% set cards_in_band %}
-    {% include '@bolt-components-headline/headline.twig' with {
-      text: 'Placeholder for rest of the page',
-      size: 'xxlarge',
-      align: 'center',
-    } only %}
+{% for theme in themes %}
+  {% set theme_class = 't-bolt-' ~ theme %}
 
-    {% set card_1 %}
-      {% set image %}
-        {% include '@bolt-elements-image/image.twig' with {
-          attributes: {
-            alt: 'alt text',
-            src: '/images/placeholders/16x9.jpg',
-            loading: 'lazy',
-          },
+  <p>{{ theme_class }} theming class.</p>
+  <div class="{{ theme_class }} u-bolt-margin-bottom-large">
+    {# Hero Band #}
+    {% embed '@bolt-components-band/band.twig' with {
+      size: 'large',
+      theme: 'none',
+      background: {
+        opacity: 'heavy',
+        fill: 'solid',
+        video: true,
+        items: [
+          background_video,
+        ]
+      },
+      attributes: {
+        class: "u-bolt-margin-bottom-large"
+      }
+    } %}
+      {% block band_background %}
+        {{ background_video }}
+        {{ parent() }}
+      {% endblock %}
+
+      {% block band_content %}
+        {% include '@bolt-components-grid/grid.twig' with {
+          gutter: 'small',
+          row_gutter: 'small',
+          items: [
+            {
+              column_start: '1 2@small 4@large',
+              column_span: '12 10@small 6@large',
+              content: headline_and_text,
+            },
+            {
+              column_start: '1 2@small 3@medium',
+              column_span: '12 10@small 8@medium',
+              row_start: '4',
+              content: card_with_form,
+            },
+          ]
         } only %}
-      {% endset %}
-      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-        media: {
-          image: image,
-        },
-        body: {
-          eyebrow: 'Eyebrow',
-          headline: 'Headline',
-        },
-        actions: [
-          {
-            text: 'Button',
-            url: 'https://google.com',
-          },
-        ],
+        {{ parent() }}
+      {% endblock band_content %}
+    {% endembed %}
+  </div>
+{% endfor %}
+
+{# Video with text on it t-bolt classes usage #}
+{% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'violet', 'teal', 'yellow', 'orange', 'pink', 'berry', 'wine'] %}
+<h2>Video with a text on it, t-bolt classes usage</h2>
+
+<div data-bolt-mode="light">
+  {% for theme in themes %}
+    {% set theme_class = 't-bolt-' ~ theme %}
+
+    <p>{{ theme_class }} theming class.</p>
+    <div class="{{ theme_class }} u-bolt-margin-bottom-large">
+      {% include './_00-background-band-demo.twig' with {
+        theme: 'none',
+        background: {
+          fill: 'solid',
+          video: true,
+          opacity: 'heavy',
+          items: [
+            background_video,
+          ]
+        }
       } only %}
-    {% endset %}
-
-    {% set card_2 %}
-      {% set image %}
-        {% include '@bolt-elements-image/image.twig' with {
-          attributes: {
-            alt: 'alt text',
-            src: '/images/placeholders/16x9.jpg',
-            loading: 'lazy',
-          },
-        } only %}
-      {% endset %}
-      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-        media: {
-          image: image,
-        },
-        body: {
-          headline: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-        },
-      } only %}
-    {% endset %}
-
-    {% set card_3 %}
-      {% include '@bolt-components-card-replacement/card-replacement.twig' with {
-        body: {
-          headline: 'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-        },
-      } only %}
-    {% endset %}
-
-    {% include '@bolt-components-grid/grid.twig' with {
-      items: [
-        {
-          column_start: '1',
-          column_span: '12 4@small',
-          content: card_1,
-        },
-        {
-          column_start: '1 5@small',
-          column_span: '12 4@small',
-          content: card_2,
-        },
-        {
-          column_start: '1 9@small',
-          column_span: '12 4@small',
-          content: card_3,
-        },
-      ]
-    } only %}
-  {% endset %}
-
-  {% include '@bolt-components-band/band.twig' with {
-    content: cards_in_band,
-  } only %}
+    </div>
+  {% endfor %}
 </div>

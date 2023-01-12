@@ -4,16 +4,6 @@ module.exports = {
   description:
     'A content container that delivers important messages to the user.',
   type: 'object',
-  not: {
-    anyOf: [
-      {
-        required: ['contentItems'],
-      },
-      {
-        required: ['content_items'],
-      },
-    ],
-  },
   properties: {
     attributes: {
       type: 'object',
@@ -23,8 +13,45 @@ module.exports = {
     opacity: {
       type: 'string',
       description: 'Overlay opacity',
-      default: 'medium',
+      default: 'none',
       enum: ['none', 'light', 'medium', 'heavy', 'full'],
+    },
+    fill: {
+      type: 'string',
+      description: 'Type of fill to use for the overlay.',
+      default: 'solid',
+      enum: ['solid', 'gradient'],
+    },
+    focal_point: {
+      type: 'object',
+      description:
+        'Point where the background gradient highlight should originate.',
+      properties: {
+        horizontal: {
+          type: 'string',
+          description: 'X-axis positioning for the background focal point',
+          enum: ['center', 'left', 'right'],
+          default: 'right',
+        },
+        vertical: {
+          type: 'string',
+          description: 'Y-axis positioning for the background focal point',
+          enum: ['center', 'top', 'bottom'],
+          default: 'bottom',
+        },
+      },
+    },
+    video: {
+      type: 'boolean',
+      description: 'Set to true if you like to use video as a background.',
+      default: false,
+    },
+    items: {
+      type: 'array',
+      description: 'An array of renderable items to place in the background.',
+      items: {
+        type: 'any',
+      },
     },
     shape_group: {
       type: 'string',
@@ -37,71 +64,6 @@ module.exports = {
       description: 'Alignment of shape group.',
       default: 'right',
       enum: ['left', 'right'],
-    },
-    fill: {
-      type: 'string',
-      description: 'Type of fill to use for the overlay.',
-      default: 'color',
-      enum: ['color', 'gradient', 'linear-gradient', 'radial-gradient'],
-    },
-    fill_color: {
-      type: 'string',
-      description: 'Color of the fill to use in the overlay.',
-      default: 'default',
-      enum: ['default', 'pink', 'navy', 'black'],
-    },
-    focal_point: {
-      type: 'object',
-      description: 'Where the opacity background should originate.',
-      properties: {
-        horizontal: {
-          type: 'string',
-          description: "Currently only reverses gradient on 'left'.",
-          enum: ['center', 'left', 'right'],
-        },
-      },
-      vertical: {
-        type: 'string',
-        description:
-          "Currently doesn't use this value. Intended future application.",
-        enum: ['center', 'top', 'bottom'],
-      },
-    },
-    items: {
-      type: 'array',
-      description: 'An array of renderable items to place in the background.',
-      items: {
-        type: 'any',
-      },
-    },
-    overlay: {
-      title: 'DEPRECATED',
-      description: 'Use opacity instead',
-    },
-    shapeGroup: {
-      title: 'DEPRECATED',
-      description: 'Use shape_group instead.',
-    },
-    shapeAlignment: {
-      title: 'DEPRECATED',
-      description: 'Use shape_alignment instead.',
-    },
-    fillColor: {
-      title: 'DEPRECATED',
-      description: 'Use fill_color instead.',
-    },
-    focalPoint: {
-      title: 'DEPRECATED',
-      description: 'Use focal_point instead.',
-    },
-    contentItems: {
-      title: 'DEPRECATED',
-      description: 'Use content_items instead.',
-    },
-    content_items: {
-      title: 'DEPRECATED',
-      description:
-        'Use items instead (each item must be renderable, e.g. a string or render array.  Arrays inteded to be rendered with pattern_template() are no longer supported)',
     },
   },
 };

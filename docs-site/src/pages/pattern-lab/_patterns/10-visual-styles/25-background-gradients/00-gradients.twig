@@ -1,0 +1,66 @@
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>The color of the gradient applied by <code>.u-bolt-bg-gradient</code> will change depending on the theme.</bolt-li>
+    <bolt-li>It is recommended (but not required) to add a theme class (<code>t-bolt-*</code>) to the same element as <code>u-bolt-bg-gradient</code>.</bolt-li>
+    <bolt-li>All themes are supported, and an example is shown in the <a href="{{ link['visual-styles-theming-system'] }}" class="e-bolt-text-link">documentation for each theme</a>.  A few representative examples are below.</bolt-li>
+    <bolt-li>Gradient backgrounds only work on <em>container</em> elements.  Do not use this class on an element like a button.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set themes = [
+    "navy",
+    "teal",
+    "yellow",
+  ] %}
+
+  <bolt-layout>
+    {% for theme in themes %}
+      <bolt-layout-item class="u-bolt-bg-gradient t-bolt-{{ theme }} u-bolt-padding-xlarge">
+        <bolt-text headline font-size="xxxlarge" tag="h2">
+          {{ theme|capitalize }} Theme
+        </bolt-text>
+        <p>This is a container with the <code>.u-bolt-bg-gradient</code> class and <code>.t-bolt-{{ theme }}</code> theme class.</p>
+      </bolt-layout-item>
+    {% endfor %}
+  </bolt-layout>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set layout_item %}
+  {% include '@bolt-layouts-layout/layout-item.twig' with {
+    content: '<p>This is a layout item with a gradient background.</p>',
+  } only %}
+{% endset %}
+{% include '@bolt-layouts-layout/layout.twig' with {
+  attributes: {
+    class: [
+      'u-bolt-bg-gradient',
+      'u-bolt-padding-medium',
+      't-bolt-navy',
+    ],
+  },
+  content: layout_item,
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% set html_markup %}
+{% verbatim %}
+<bolt-layout class="u-bolt-bg-gradient u-bolt-padding-medium t-bolt-navy">
+  <bolt-layout-item>
+    This is a layout item with a gradient background.
+  </bolt-layout-item>
+</bolt-layout>
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Background Gradient Utility Class',
+  description: '<p>Add a background gradient to any container element (layout, teaser, div, etc.) by adding the <code>u-bolt-bg-gradient</code> utility class to it.</p>',
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+  html_markup: html_markup,
+} only %}

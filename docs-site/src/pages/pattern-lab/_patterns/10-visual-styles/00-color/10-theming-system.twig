@@ -66,6 +66,14 @@
                   <td><span class="c-bds-color-chip c-bds-color-chip--background"></span>&nbsp;&nbsp;var(--m-bolt-bg)</td>
                 </tr>
                 <tr>
+                  <th>Background Highlight</th>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--bg-highlight"></span>&nbsp;&nbsp;var(--m-bolt-bg-highlight)</td>
+                </tr>
+                <tr>
+                  <th>Background Lowlight</th>
+                  <td><span class="c-bds-color-chip c-bds-color-chip--bg-lowlight"></span>&nbsp;&nbsp;var(--m-bolt-bg-lowlight)</td>
+                </tr>
+                <tr>
                   <th>Primary</th>
                   <td><span class="c-bds-color-chip c-bds-color-chip--primary"></span>&nbsp;&nbsp;var(--m-bolt-primary)</td>
                 </tr>
@@ -236,6 +244,24 @@
               </bolt-list>
             </bolt-card-replacement-body>
           </bolt-card-replacement>
+
+          {% include "@bolt-components-headline/headline.twig" with {
+            tag: "h3",
+            size: "small",
+            text: "Background Gradient",
+            attributes: {
+              class: "u-bolt-margin-bottom-xsmall"
+            },
+          } only %}
+          {% include '@bolt-components-teaser/teaser.twig' with {
+            attributes: {
+              class: ['u-bolt-bg-gradient', 'u-bolt-padding-xlarge'],
+            },
+            variant: 'card',
+            headline: {
+              text: 'Background Gradient',
+            },
+          } only %}
         </div>
       </bolt-tab-panel>
     {% endfor %}

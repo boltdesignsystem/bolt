@@ -1,0 +1,97 @@
+{% set description %}
+Examples of a Background Component with the <code>solid</code> and <code>gradient</code> fill options.
+{% endset %}
+
+{% set notes %}
+<bolt-ol>
+  <bolt-li>When using the <code>fill</code> prop consider using an <code>opacity</code> prop as well. For more information on the	<code>opacity</code> prop, reference the <a href="{{ link['components-background-background-opacity'] }}" class="e-bolt-text-link">Background Opacity</a> documentation.</bolt-li>
+</bolt-ol>
+{% endset %}
+
+{% set demo %}
+	{% set image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      background: true,
+      attributes: {
+        src: '/images/placeholders/backgrounds/background-light-tall.jpg',
+        srcset: '/images/placeholders/backgrounds/background-light-tall-640.jpg 640w, /images/placeholders/backgrounds/background-light-tall-1024.jpg 1024w, /images/placeholders/backgrounds/background-light-tall-1920.jpg 1920w',
+        width: 4320,
+        height: 2880
+      },
+    } only %}
+	{% endset %}
+
+  {% set background_solid %}
+    <h3>Background Component with Solid Fill</h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        fill: 'solid',
+        opacity: 'medium',
+        items: [
+          image
+        ]
+      }
+    } %}
+  {% endset %}
+
+  {% set background_gradient %}
+    <h3>Background Component with Gradient Fill</h3>
+    {% include './_00-background-band-demo.twig' with {
+      background: {
+        fill: 'gradient',
+        opacity: 'medium',
+        items: [
+          image
+        ]
+      }
+    } %}
+  {% endset %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: background_solid,
+    spacing: 'medium'
+  } only %}
+
+  {% include '@bolt-components-stack/stack.twig' with {
+    content: background_gradient,
+    spacing: 'medium'
+  } only %}
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      src: '/images/placeholders/backgrounds/background-light-tall.jpg',
+      srcset: '/images/placeholders/backgrounds/background-light-tall-640.jpg 640w, /images/placeholders/backgrounds/background-light-tall-1024.jpg 1024w, /images/placeholders/backgrounds/background-light-tall-1920.jpg 1920w',
+      width: 4320,
+      height: 2880
+    },
+  } only %}
+{% endset %}
+
+{% include '@bolt-components-background/background.twig' with {
+  fill: 'solid',
+  opacity: 'medium',
+  items: [
+    image
+  ]
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Background Component with a Fill',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}
+
+
+
+
+
+

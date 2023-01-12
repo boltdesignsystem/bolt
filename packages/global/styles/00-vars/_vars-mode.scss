@@ -9,6 +9,8 @@
   --m-bolt-neutral: var(--bolt-color-gray-dark);
   --m-bolt-text: var(--bolt-color-black);
   --m-bolt-bg: var(--bolt-color-white);
+  --m-bolt-bg-highlight: var(--bolt-color-white);
+  --m-bolt-bg-lowlight: var(--bolt-color-gray-xlight);
   --m-bolt-headline: var(--bolt-color-navy);
   --m-bolt-link: var(--bolt-color-navy-light);
   --m-bolt-primary: var(--bolt-color-navy-light);
@@ -27,6 +29,8 @@
   --m-bolt-neutral: var(--bolt-color-gray-light);
   --m-bolt-text: var(--bolt-color-white);
   --m-bolt-bg: var(--bolt-color-navy-xdark);
+  --m-bolt-bg-highlight: var(--bolt-color-navy);
+  --m-bolt-bg-lowlight: var(--bolt-color-navy-xdark);
   --m-bolt-headline: var(--bolt-color-white);
   --m-bolt-link: var(--bolt-color-white);
   --m-bolt-primary: var(--bolt-color-yellow);
@@ -74,20 +78,28 @@
 .t-bolt-light,
 bolt-card-replacement[theme='light'] {
   --m-bolt-bg: var(--bolt-color-gray-xlight);
+  --m-bolt-bg-highlight: var(--bolt-color-gray-xlight);
+  --m-bolt-bg-lowlight: var(--bolt-color-gray-light);
 }
 
 .t-bolt-dark,
 bolt-card-replacement[theme='dark'] {
   --m-bolt-bg: var(--bolt-color-navy);
+  --m-bolt-bg-highlight: var(--bolt-color-navy-light);
+  --m-bolt-bg-lowlight: var(--bolt-color-navy);
 }
 
 .t-bolt-xdark,
 bolt-card-replacement[theme='xdark'] {
   --m-bolt-bg: var(--bolt-color-navy-dark);
+  --m-bolt-bg-highlight: var(--bolt-color-navy);
+  --m-bolt-bg-lowlight: var(--bolt-color-navy-xdark);
 }
 
 .t-bolt-xxdark {
   --m-bolt-bg: black;
+  --m-bolt-bg-highlight: var(--bolt-color-gray-dark);
+  --m-bolt-bg-lowlight: var(--bolt-color-black);
 }
 
 // New themes
@@ -97,14 +109,20 @@ bolt-card-replacement[theme='xdark'] {
 
 .t-bolt-gray-xlight {
   --m-bolt-bg: var(--bolt-color-gray-xlight);
+  --m-bolt-bg-highlight: var(--bolt-color-gray-xlight);
+  --m-bolt-bg-lowlight: var(--bolt-color-gray-light);
 }
 
 .t-bolt-orange {
   --m-bolt-bg: var(--bolt-color-orange);
+  --m-bolt-bg-highlight: var(--bolt-color-orange);
+  --m-bolt-bg-lowlight: var(--bolt-color-orange-dark);
 }
 
 .t-bolt-yellow {
   --m-bolt-bg: var(--bolt-color-yellow);
+  --m-bolt-bg-highlight: var(--bolt-color-yellow-light);
+  --m-bolt-bg-lowlight: var(--bolt-color-yellow);
   --m-bolt-link: var(--bolt-color-black);
   --m-bolt-primary: var(--bolt-color-navy-dark);
   --m-bolt-tertiary: hsla(220.4, 80%, 15%, 0.08);
@@ -112,38 +130,56 @@ bolt-card-replacement[theme='xdark'] {
 
 .t-bolt-pink {
   --m-bolt-bg: var(--bolt-color-pink);
+  --m-bolt-bg-highlight: var(--bolt-color-pink);
+  --m-bolt-bg-lowlight: var(--bolt-color-berry);
 }
 
 .t-bolt-black {
   --m-bolt-bg: var(--bolt-color-black);
+  --m-bolt-bg-highlight: var(--bolt-color-gray-dark);
+  --m-bolt-bg-lowlight: var(--bolt-color-black);
 }
 
 .t-bolt-navy-dark {
   --m-bolt-bg: var(--bolt-color-navy-dark);
+  --m-bolt-bg-highlight: var(--bolt-color-navy);
+  --m-bolt-bg-lowlight: var(--bolt-color-navy-xdark);
 }
 
 .t-bolt-navy {
   --m-bolt-bg: var(--bolt-color-navy);
+  --m-bolt-bg-highlight: var(--bolt-color-navy-light);
+  --m-bolt-bg-lowlight: var(--bolt-color-navy);
 }
 
 .t-bolt-navy-light {
   --m-bolt-bg: var(--bolt-color-navy-light);
+  --m-bolt-bg-highlight: var(--bolt-color-navy-xlight);
+  --m-bolt-bg-lowlight: var(--bolt-color-navy-light);
 }
 
 .t-bolt-teal {
   --m-bolt-bg: var(--bolt-color-teal);
+  --m-bolt-bg-highlight: var(--bolt-color-teal);
+  --m-bolt-bg-lowlight: var(--bolt-color-teal-xdark);
 }
 
 .t-bolt-wine {
   --m-bolt-bg: var(--bolt-color-wine);
+  --m-bolt-bg-highlight: var(--bolt-color-wine);
+  --m-bolt-bg-lowlight: var(--bolt-color-black);
 }
 
 .t-bolt-berry {
   --m-bolt-bg: var(--bolt-color-berry);
+  --m-bolt-bg-highlight: var(--bolt-color-berry);
+  --m-bolt-bg-lowlight: var(--bolt-color-wine);
 }
 
 .t-bolt-violet {
   --m-bolt-bg: var(--bolt-color-violet);
+  --m-bolt-bg-highlight: var(--bolt-color-violet);
+  --m-bolt-bg-lowlight: var(--bolt-color-navy);
 }
 
 // Redefine light themes within dark mode
@@ -152,37 +188,51 @@ bolt-card-replacement[theme='xdark'] {
   .t-bolt-xlight {
     @include bolt-base-dark-mode;
     --m-bolt-bg: var(--bolt-color-navy-xdark);
+    --m-bolt-bg-highlight: var(--bolt-color-navy-xdark);
+    --m-bolt-bg-lowlight: var(--bolt-color-black);
   }
 
   .t-bolt-light {
     @include bolt-base-dark-mode;
     --m-bolt-bg: var(--bolt-color-gray-xdark);
+    --m-bolt-bg-highlight: var(--bolt-color-gray-dark);
+    --m-bolt-bg-lowlight: var(--bolt-color-gray-xdark);
   }
 
   // New themes
   .t-bolt-white {
     @include bolt-base-dark-mode;
     --m-bolt-bg: var(--bolt-color-navy-xdark);
+    --m-bolt-bg-highlight: var(--bolt-color-navy-xdark);
+    --m-bolt-bg-lowlight: var(--bolt-color-black);
   }
 
   .t-bolt-gray-xlight {
     @include bolt-base-dark-mode;
     --m-bolt-bg: var(--bolt-color-gray-xdark);
+    --m-bolt-bg-highlight: var(--bolt-color-gray-dark);
+    --m-bolt-bg-lowlight: var(--bolt-color-gray-xdark);
   }
 
   .t-bolt-orange {
     @include bolt-base-dark-mode;
     --m-bolt-bg: var(--bolt-color-orange-dark);
+    --m-bolt-bg-highlight: var(--bolt-color-orange);
+    --m-bolt-bg-lowlight: var(--bolt-color-orange-dark);
   }
 
   .t-bolt-yellow {
     @include bolt-base-dark-mode;
     --m-bolt-bg: var(--bolt-color-gray-dark);
+    --m-bolt-bg-highlight: var(--bolt-color-gray-dark);
+    --m-bolt-bg-lowlight: var(--bolt-color-gray-xdark);
   }
 
   .t-bolt-pink {
     @include bolt-base-dark-mode;
     --m-bolt-bg: var(--bolt-color-pink);
+    --m-bolt-bg-highlight: var(--bolt-color-pink);
+    --m-bolt-bg-lowlight: var(--bolt-color-berry);
   }
 }
 

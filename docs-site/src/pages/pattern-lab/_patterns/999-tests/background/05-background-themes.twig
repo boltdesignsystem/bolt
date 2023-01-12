@@ -1,0 +1,34 @@
+{% set image %}
+  {% include '@bolt-elements-image/image.twig' with {
+    background: true,
+    attributes: {
+      alt: 'Alt text.',
+      loading: 'lazy',
+      src: '/images/content/backgrounds/background-tall-4.jpg',
+      width: 3840,
+      height: 2160,
+    },
+  } only %}
+{% endset %}
+
+{% set themes = ['black', 'white', 'gray-xlight', 'navy-light', 'navy', 'navy-dark', 'violet', 'teal', 'yellow', 'orange', 'pink', 'berry', 'wine'] %}
+
+<div data-bolt-mode="light">
+  {% for theme in themes %}
+    {% set theme_class = 't-bolt-' ~ theme %}
+
+    <p>{{ theme_class }}</code> theming class.</p>
+    <div class="{{ theme_class }} u-bolt-margin-bottom-large">
+      {% include './_00-background-band-demo.twig' with {
+        theme: 'none',
+        background: {
+          fill: 'solid',
+          opacity: 'medium',
+          items: [
+            image,
+          ]
+        }
+      } only %}
+    </div>
+  {% endfor %}
+</div>
