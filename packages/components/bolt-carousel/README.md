@@ -8,7 +8,7 @@ Under the hood, the `<bolt-carousel>` component uses the excellent <a href="http
 yarn add @bolt/components-carousel
 ```
 
-<h2 class="c-bds-docs__heading-fragment c-bolt-headline c-bolt-headline--bold c-bolt-headline--xxlarge c-bolt-headline--link" id="usage"><bolt-link url="#usage" is-headline>Usage</bolt-link></h2>
+<h2 class="c-bds-docs__heading-fragment c-bolt-headline c-bolt-headline--bold c-bolt-headline--xxlarge c-bolt-headline--link" id="usage"><a href="#usage">Usage</a></h2>
 <details open>
   <summary><strong>Via Web Component</strong></summary>
   <section>
