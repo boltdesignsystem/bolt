@@ -5,7 +5,7 @@
 
 Go to **[our official site](https://boltdesignsystem.com)**.
 
-## ~60 Second Quick Start Guide
+## ~ 60 Second Quick Start Guide
 
 ```bash
 git clone https://github.com/boltdesignsystem/bolt.git ~/sites/bolt
