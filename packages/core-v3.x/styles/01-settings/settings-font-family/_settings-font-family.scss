@@ -72,7 +72,3 @@ $bolt-font-families: (
 ) !default;
 
 @include export-data('typography/font-families.bolt.json', $bolt-font-families);
-@include export-data(
-  'typography/font-families.bolt.#{$bolt-lang}.json',
-  $bolt-font-families
-);

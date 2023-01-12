@@ -1,0 +1,35 @@
+{#
+/**
+ * List Element
+ *
+ * Available variables:
+ * - Reference list.schema.js
+ *
+#}
+
+{# Schema Validation #}
+{% set schema = bolt.data.components['@bolt-elements-list'].schema['list'] %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self)|raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set classes = [
+  'e-bolt-list',
+  this.data.display.value != schema.properties.display.default ? 'e-bolt-list--display-' ~ this.data.display.value,
+  this.data.spacing.value != schema.properties.spacing.default ? 'e-bolt-list--spacing-' ~ this.data.spacing.value,
+  this.data.separator.value != schema.properties.separator.default ? 'e-bolt-list--separator-' ~ this.data.separator.value,
+  this.data.align.value != schema.properties.align.default ? 'e-bolt-list--align-' ~ this.data.align.value,
+  this.data.valign.value != schema.properties.valign.default ? 'e-bolt-list--valign-' ~ this.data.valign.value,
+  this.data.inset.value != schema.properties.inset.default ? 'e-bolt-list--inset',
+  this.data.nowrap.value != schema.properties.nowrap.default ? 'e-bolt-list--nowrap',
+] %}
+
+<{{ this.data.tag.value }} {{ attributes.addClass(classes) }}>
+  {{ content }}
+</{{ this.data.tag.value }}>
+
+

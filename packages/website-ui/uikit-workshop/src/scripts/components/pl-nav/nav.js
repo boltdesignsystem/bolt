@@ -66,6 +66,7 @@ class Nav extends BaseComponent {
     this.layoutMode = state.app.layoutMode || '';
     this.testMode = state.app.testMode || false;
     this.archiveMode = state.app.archiveMode || false;
+    this.drupalMode = state.app.drupalMode || false;
     this.currentPattern = state.app.currentPattern || '';
     this.elem = this;
     this.previouslyActiveLinks = [];
@@ -104,6 +105,10 @@ class Nav extends BaseComponent {
       this.archiveMode = state.app.archiveMode || false;
     }
 
+    if (this.drupalMode !== state.app.drupalMode) {
+      this.drupalMode = state.app.drupalMode || false;
+    }
+
     if (
       state.app.currentPattern &&
       this.currentPattern !== state.app.currentPattern
@@ -112,23 +117,26 @@ class Nav extends BaseComponent {
       this.handleURLChange(); // so the nav logic is always correct (ex. layout changes)
     }
 
-    this.handleTestFolder();
-    this.handleArchiveFolder();
+    this.handleHiddenFolders();
   }
 
-  handleTestFolder() {
-    if (this.testElem !== undefined) {
+  handleHiddenFolders() {
+    if (this.testElem) {
       this.testMode
         ? this.testElem.classList.remove('pl-c-nav__list-item--hidden')
         : this.testElem.classList.add('pl-c-nav__list-item--hidden');
     }
-  }
 
-  handleArchiveFolder() {
-    if (this.archiveElem !== undefined) {
+    if (this.archiveElem) {
       this.archiveMode
         ? this.archiveElem.classList.remove('pl-c-nav__list-item--hidden')
         : this.archiveElem.classList.add('pl-c-nav__list-item--hidden');
+    }
+
+    if (this.drupalElem) {
+      this.drupalMode
+        ? this.drupalElem.classList.remove('pl-c-nav__list-item--hidden')
+        : this.drupalElem.classList.add('pl-c-nav__list-item--hidden');
     }
   }
 
@@ -261,10 +269,12 @@ class Nav extends BaseComponent {
     }
 
     this.testElem = document.querySelector('.pl-c-nav__list-item--tests');
-    this.handleTestFolder();
 
     this.archiveElem = document.querySelector('.pl-c-nav__list-item--archive');
-    this.handleArchiveFolder();
+
+    this.drupalElem = document.querySelector('.pl-c-nav__list-item--drupal');
+
+    this.handleHiddenFolders();
   }
 
   render({ layoutMode }) {

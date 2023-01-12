@@ -1,79 +1,130 @@
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Table',
-  description: 'Responsive layout for tabular content.',
+  description: 'Table layout for tabular content.',
   type: 'object',
+  required: ['rows'],
   properties: {
     attributes: {
       type: 'object',
       description:
-        'A Drupal attributes object. Applies extra HTML attributes to the parent element.',
+        'A Drupal-style attributes object with extra attributes to append to this component.',
     },
-    borderless: {
-      type: 'boolean',
-      description: 'Removes all borders from the table.',
-      default: false,
-    },
-    sticky_headers: {
-      type: 'string',
-      description: 'Enables/disables sticky table headers.',
-      default: 'none',
-      enum: ['top', 'side', 'none'],
-    },
-    header: {
+    headers: {
       type: 'object',
-      description: 'Generates a table head &lt;thead&gt; element.',
+      description:
+        'Generates top and side headers, each can contain an array of `cells`.',
       properties: {
-        content: {
+        top: {
           type: 'object',
-          description:
-            'Content must be a table row. Use table-row.twig to render a single table row.',
+          properties: {
+            cells: {
+              description:
+                "Each item represents a cell in the top header.  Accepts either a renderable item (shorthand) or an item with 'content' and 'attributes' keys.",
+              type: 'array',
+              items: {
+                type: 'any',
+                properties: {
+                  content: {
+                    type: 'string',
+                  },
+                  attributes: {
+                    type: 'object',
+                  },
+                },
+              },
+            },
+          },
         },
-        attributes: {
+        side: {
           type: 'object',
+          properties: {
+            cells: {
+              description:
+                "Each item represents a cell in the side header.  Accepts either a renderable item (shorthand) or an item with 'content' and 'attributes' keys",
+              type: 'array',
+              items: {
+                type: 'any',
+                properties: {
+                  content: {
+                    type: 'string',
+                  },
+                  attributes: {
+                    type: 'object',
+                  },
+                },
+              },
+            },
+          },
         },
       },
     },
-    body: {
-      type: 'object',
-      description: 'Generates a main table content &lt;tbody&gt; element.',
+    rows: {
+      type: 'array',
+      description:
+        'Generates an array of rows, each can contain an array of `cells`.',
       properties: {
-        content: {
-          type: 'array',
+        cells: {
           description:
-            'Content must be a collection of table rows. Use table-row.twig to render table rows.',
-        },
-        attributes: {
-          type: 'object',
+            "Each item represents a cell in a row.  Accepts either a renderable item (shorthand) or an item with 'content' and 'attributes' keys",
+          type: 'array',
+          items: {
+            type: 'any',
+            properties: {
+              content: {
+                type: 'string',
+              },
+              attributes: {
+                type: 'object',
+              },
+            },
+          },
         },
       },
     },
     footer: {
       type: 'object',
-      description: 'Generates a table footer &lt;tfoot&gt; element.',
+      description: 'Generates a table footer, can contain an array of `cells`.',
       properties: {
-        content: {
-          type: 'object',
+        cells: {
           description:
-            'Content must be a collection of table rows. Use table-row.twig to render table rows.',
-        },
-        attributes: {
-          type: 'object',
+            "Each item represents a cell in the footer.  Accepts either a renderable item (shorthand) or an item with 'content' and 'attributes' keys",
+          type: 'array',
+          items: {
+            type: 'any',
+            properties: {
+              content: {
+                type: 'string',
+              },
+              attributes: {
+                type: 'object',
+              },
+            },
+          },
         },
       },
     },
+    format: {
+      type: 'string',
+      description:
+        'Display either a regular table or a more complex numeric table.',
+      default: 'regular',
+      enum: ['regular', 'numeric'],
+    },
+    borderless: {
+      type: 'boolean',
+      description: 'Removes the vertical border in between cells.',
+      default: false,
+    },
+    first_col_fixed_width: {
+      type: 'boolean',
+      description:
+        'Sets the width of the first column to be as wide as the longest text.',
+      default: false,
+    },
     caption: {
-      type: 'any',
-      description: 'Generates a table caption &lt;caption&gt; element.',
-      properties: {
-        content: {
-          type: 'any',
-          description: 'Displays a caption at the bottom of the table.',
-        },
-        attributes: {
-          type: 'object',
-        },
-      },
+      type: 'string',
+      description: 'Set a table caption, displayed below the table content.',
     },
   },
 };

@@ -1,6 +1,6 @@
 {
   "name": "@bolt/website",
-  "version": "5.8.2",
+  "version": "5.9.1",
   "private": true,
   "description": "Bolt Design System Website",
   "repository": {
@@ -10,8 +10,9 @@
   "license": "MIT",
   "main": "bolt.js",
   "scripts": {
+    "analyze": "bolt start --analyze",
+    "analyze:prod": "bolt build --prod --analyze",
     "build": "bolt build",
-    "build:lang": "bolt build --i18n",
     "build:noisy": "bolt build --verbosity 5",
     "build:pl": "bolt prep && npx lerna exec --scope @bolt/uikit-workshop --loglevel=silent -- yarn run build",
     "build:prod": "bolt build --prod",
@@ -21,7 +22,6 @@
     "serve": "bolt serve",
     "setup": "cd ../ && npm run setup",
     "start": "bolt start",
-    "start:lang": "bolt start --i18n",
     "start:prod": "bolt start --prod",
     "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
     "watch": "bolt watch"
@@ -38,7 +38,7 @@
     "@bolt/components-search-filter": "^5.8.0",
     "@bolt/lazy-queue": "^5.0.0",
     "@bolt/micro-journeys": "^5.8.0",
-    "@bolt/starter-kit": "^5.8.2",
+    "@bolt/starter-kit": "^5.9.1",
     "@bolt/theme-switcher": "^5.8.0"
   },
   "devDependencies": {

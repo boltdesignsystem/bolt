@@ -26,6 +26,7 @@ program
     '-C, --config-file <path>',
     'Pass in a specific config file instead of default of ".boltrc.js/json".',
   )
+  .option('--async', 'Use `--async` if your config file returns a promise.')
   .option('--prod', configSchema.properties.prod.description)
   .option(
     '-v, --verbosity <amount>',
@@ -41,7 +42,11 @@ program
       console.error(`Error, config file does not exist: ${configFilePath}`);
       process.exit(1);
     }
-    const configFile = require(configFilePath);
+
+    const configFile = program.async
+      ? await require(configFilePath)
+      : require(configFilePath);
+
     userConfig = {
       ...configFile,
       configFileUsed: configFilePath,
@@ -122,22 +127,13 @@ program
         config.watch =
           typeof options.watch === 'undefined' ? config.watch : options.watch;
 
+        config.analyze =
+          typeof options.analyze === 'undefined'
+            ? config.analyze
+            : options.analyze;
+
         config.prod =
           typeof program.prod === 'undefined' ? config.prod : program.prod;
-
-        // automatically enable i18n in production builds if undefined
-        config.i18n =
-          typeof options.i18n !== 'undefined'
-            ? options.i18n
-            : config.prod
-            ? true
-            : false;
-
-        // If i18n is disabled, ignore and remove lang config settings
-        if (config.lang && config.i18n === false) {
-          // Remove any lang-specific settings for local dev to speed things up.
-          delete config['lang'];
-        }
 
         return config;
       });
@@ -176,8 +172,8 @@ Environment: ${config.prod ? 'Production' : 'Development'}
         '--webpack-stats',
         configSchema.properties.webpackStats.description,
       )
-      .option('-I, --i18n', configSchema.properties.i18n.description)
       .option('-Q, --quick', configSchema.properties.quick.description)
+      .option('--analyze', configSchema.properties.analyze.description)
       .action(async options => {
         log.info(
           `Starting build (${options.parallel ? 'parallel' : 'serial'})`,
@@ -233,13 +229,13 @@ Environment: ${config.prod ? 'Production' : 'Development'}
         '-O, --open',
         configSchema.properties.openServerAtStart.description,
       )
-      .option('-I, --i18n', configSchema.properties.i18n.description)
       .option('-Q, --quick', configSchema.properties.quick.description)
       .option(
         '--webpack-dev-server',
         configSchema.properties.webpackDevServer.description,
       )
       .option('--watch', configSchema.properties.watch.description)
+      .option('--analyze', configSchema.properties.analyze.description)
       .action(async options => {
         if (options.watch === undefined) {
           options.watch = true;

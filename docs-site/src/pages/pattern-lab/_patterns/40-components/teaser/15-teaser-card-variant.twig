@@ -1,0 +1,180 @@
+{% set description %}
+  The variant card prop can turn a teaser into a teaser card.
+{% endset %}
+
+{% set notes %}
+  <bolt-ol>
+    <bolt-li>When the <code>variant</code> prop is set to <code>card</code> it's possible to apply spacing around the teaser and rounding the teaser's corners.</bolt-li>
+    <bolt-li>Reference <a href="{{ link['viewall-components-teaser'] }}?selected-tab=schema" class="e-bolt-text-link">the schema</a> for <code>spacing</code> and <code>border_radius</code> props.</bolt-li>
+  </bolt-ol>
+{% endset %}
+
+{% set demo %}
+  {% set wide_image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/16x9.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+        width: 800,
+        height: 450,
+      }
+    } only %}
+  {% endset %}
+  {% set square_image %}
+    {% include '@bolt-elements-image/image.twig' with {
+      attributes: {
+        src: '/images/placeholders/square.jpg',
+        alt: 'Alt text.',
+        loading: 'lazy',
+        width: 500,
+        height: 500,
+      }
+    } only %}
+  {% endset %}
+
+  <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center o-bolt-grid--large">
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'vertical',
+        signifier: wide_image,
+        variant: 'card',
+        headline: {
+          text: 'A card variant vertical teaser',
+          link_attributes: {
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
+          }
+        },
+        description: {
+          content: 'This card has the <code>border_radius</code> set to <strong>small</strong>. The prop <code>spacing</code> is set to <strong>small</strong>. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'horizontal',
+        signifier: square_image,
+        variant: 'card',
+        headline: {
+          text: 'A card variant horizontal teaser',
+          link_attributes: {
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
+          }
+        },
+        description: {
+          content: 'This card has the prop <code>border_radius</code> set to <strong>small</strong>. The prop <code>spacing</code> is set to <strong>small</strong>. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-10/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'responsive',
+        signifier: wide_image,
+        variant: 'card',
+        headline: {
+          text: 'A card variant responsive teaser',
+          link_attributes: {
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
+          }
+        },
+        description: {
+          content: 'This card has the prop <code>border_radius</code> set to <strong>small</strong>. The prop <code>spacing</code> is set to <strong>small</strong>. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'vertical',
+        signifier: wide_image,
+        variant: 'card',
+        border_radius: 'large',
+        spacing: 'medium',
+        headline: {
+          text: 'A card variant vertical teaser',
+          link_attributes: {
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
+          }
+        },
+        description: {
+          content: 'This card has the prop <code>border_radius</code> set to <strong>large</strong>. The prop <code>spacing</code> is set to <strong>medium</strong>. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-6/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'horizontal',
+        signifier: square_image,
+        variant: 'card',
+        border_radius: 'large',
+        spacing: 'medium',
+        headline: {
+          text: 'A card variant horizontal teaser',
+          link_attributes: {
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
+          }
+        },
+        description: {
+          content: 'This card has the prop <code>border_radius</code> set to <strong>large</strong>. The prop <code>spacing</code> is set to <strong>medium</strong>. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        },
+      } only %}
+    </div>
+    <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-10/12@small">
+      {% include '@bolt-components-teaser/teaser.twig' with {
+        layout: 'responsive',
+        signifier: wide_image,
+        variant: 'card',
+        border_radius: 'large',
+        spacing: 'medium',
+        headline: {
+          text: 'A card variant responsive teaser',
+          link_attributes: {
+            href: 'https://www.google.com',
+            target: '_blank',
+            rel: 'noopener'
+          }
+        },
+        description: {
+          content: 'This card has the prop <code>border_radius</code> set to <strong>large</strong>. The prop <code>spacing</code> is set to <strong>medium</strong>. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        },
+      } only %}
+    </div>
+  </div>
+{% endset %}
+
+{% set twig_markup %}
+{% verbatim %}
+{% include '@bolt-components-teaser/teaser.twig' with {
+  layout: 'horizontal',
+  variant: 'card',
+  border_radius: 'large',
+  spacing: 'medium',
+  signifier: image,
+  headline: {
+    text: 'This is the teaser headline',
+    link_attributes: {
+      href: 'https://www.google.com',
+      target: '_blank',
+      rel: 'noopener'
+    }
+  },
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/pattern-doc-page.twig' with {
+  title: 'Teaser Card Variant',
+  description: description,
+  notes: notes,
+  demo: demo,
+  twig_markup: twig_markup,
+} only %}

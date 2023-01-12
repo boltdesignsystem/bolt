@@ -231,6 +231,11 @@ async function watch() {
         watchTasks.push(iconComponentTasks.watch());
         watchTasks.push(iconTasks.watch());
         break;
+      case 'drupal':
+        // Must run `buildPrep` when watch is called from the Drupal env.
+        // Other envs run `buildPrep` as part of `start` command.
+        await buildPrep();
+        break;
     }
 
     return Promise.all(watchTasks);

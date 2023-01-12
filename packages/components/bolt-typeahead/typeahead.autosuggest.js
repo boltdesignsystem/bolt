@@ -6,7 +6,7 @@ import { props } from 'skatejs';
 import { withReact } from '@bolt/core-v3.x/renderers';
 import { getUniqueId } from '@bolt/core-v3.x/utils/get-unique-id';
 import Fuse from 'fuse.js';
-import ReactHtmlParser from 'react-html-parser';
+import parse from 'html-react-parser';
 import Mousetrap from 'mousetrap';
 import Autosuggest from 'react-autosuggest';
 import { bind } from './classnames';
@@ -37,7 +37,7 @@ export const highlightSearchResults = function(item) {
     }
     resultItem.item.highlightedLabel = result.join('');
 
-    resultItem.item.highlightedLabel = ReactHtmlParser(
+    resultItem.item.highlightedLabel = parse(
       resultItem.item.highlightedLabel,
     );
 

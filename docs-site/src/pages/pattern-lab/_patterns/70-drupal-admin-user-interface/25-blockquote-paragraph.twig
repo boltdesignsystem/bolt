@@ -1,0 +1,76 @@
+{% extends "_drupal-admin-ui-template.twig" %}
+
+{% block ui_component_name %}
+  Blockquote Paragraph
+{% endblock %}
+
+{% block description %}
+  Blockquote is a sub-layout paragraph.
+{% endblock %}
+
+{% block main %}
+  {% embed '_main-content.twig' %}
+
+    {% block ui_component_info %}
+      <h3>1. Blockquote can be added to any layout items.</h3>
+    {% endblock %}
+
+    {% block ui_component_showcase %}
+      <h3>2. After adding Blockquote to a layout item. Render the blockquote as you do for other types of content.</h3>
+      <h4>Blockquote (<a href="">edit</a>)</h4>
+      <blockquote>
+        <p>Simplicity is the ultimate sophistication.</p>
+        <cite><small>&mdash;Someone smart</small></cite>
+      </blockquote>
+    {% endblock %}
+
+    {% block settings_title %}
+      <h3>3. Editing the Blockquote will bring up these options in a modal.</h3>
+    {% endblock %}
+
+    {% block settings %}
+      <legend>Blockquote</legend>
+      <ul>
+        <li>
+          <div>
+            <label>
+              <div><strong><small>Quote text</small></strong></div>
+              <textarea name="" id="" cols="30" rows="5"></textarea>
+            </label>
+          </div>
+        </li>
+        <li>
+          <div class="c-drupal-admin-ui__grid">
+            <div>
+              <label>
+                <div><strong><small>Author's name</small></strong></div>
+                <input type="text">
+              </label>
+            </div>
+            <div>
+              <label>
+                <div><strong><small>Author's role</small></strong></div>
+                <input type="text">
+              </label>
+            </div>
+            <div>
+              <label>
+                <div><strong><small>Author's organization</small></strong></div>
+                <input type="text">
+              </label>
+            </div>
+          </div>
+        </li>
+      </ul>
+      {% embed '_tabs-set.twig' %}
+        {% block tabs %}
+          {% include '_tab-visual-blockquote.twig' %}
+          {% include '_tab-avatar.twig' %}
+          {% include '_tab-logo.twig' %}
+          {% include '_tab-overrides.twig' %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+
+  {% endembed %}
+{% endblock %}

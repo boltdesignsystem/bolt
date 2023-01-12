@@ -8,6 +8,7 @@ import {
   UPDATE_THEME_MODE,
   UPDATE_TEST_MODE,
   UPDATE_ARCHIVE_MODE,
+  UPDATE_DRUPAL_MODE,
   IS_VIEWALL_PAGE,
   UPDATE_CURRENT_URL,
   UPDATE_CURRENT_PATTERN,
@@ -54,6 +55,11 @@ const app = (state = {}, action) => {
       return {
         ...state,
         archiveMode: action.archiveMode,
+      };
+    case UPDATE_DRUPAL_MODE:
+      return {
+        ...state,
+        drupalMode: action.drupalMode,
       };
     case UPDATE_DRAWER_STATE:
       return {

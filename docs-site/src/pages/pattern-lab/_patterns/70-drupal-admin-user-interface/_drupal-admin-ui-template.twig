@@ -1,0 +1,31 @@
+<div class="c-drupal-admin-ui">
+  {% if block('ui_component_name') is not empty %}                                 
+    <h2>                                               
+      {% block ui_component_name %}{% endblock %}                                  
+    </h2>                                                                    
+  {% endif %}
+  {% if block('description') is not empty %}                                 
+    <p>                                               
+      {% block description %}{% endblock %}                                  
+    </p>                                                                    
+  {% endif %}
+
+  {% block main %}
+    {# Here goes the main content #}
+  {% endblock %}
+
+  {% if block('code_snippet') is not empty %}                               
+    <h3>Output markup</h3>
+    <div class="c-bolt-code-snippet" data-lang="html" data-mode="dark">
+    <pre><code>{% block code_snippet %}{% endblock %}</code></pre>
+    </div>                                                          
+  {% endif %}
+
+  {% if block('dev_notes') is not empty %}
+    <bolt-banner align="start">
+    <h3>Dev Notes</h3>                            
+    {% block dev_notes %}{% endblock %}
+    </bolt-banner>
+  {% endif %}
+</div>
+

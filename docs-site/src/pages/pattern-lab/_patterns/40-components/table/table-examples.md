@@ -1,3 +1,0 @@
----
-title: "Examples: Existing Tables"
----
