@@ -1,4 +1,17 @@
-{% set options = bolt.data.boltReleases.options %}
+{% set options = [] %}
+{% set versions = bolt.data.tags %}
+
+{% for version in versions %}
+  {# Matches only the 'vX.X.X' sematic versioning pattern #}
+  {% if version matches '/^v((([0-9]+)\.([0-9]+)\.([0-9]+)?))$/' %}
+    {% set versionOption = {
+      'label': version,
+      'type': 'option',
+      'value': 'https://' ~ version|replace({'.': '-'}) ~ '.boltdesignsystem.com'
+    } %}
+    {% set options = options|merge([versionOption]) %}
+  {% endif %}
+{% endfor %}
 
 {% set children %}
   <bolt-select should-sort-items="true" item-select-text="" class="js-bolt-version-selector">
@@ -20,4 +33,3 @@
 {% include("@bolt-components-form/form-element.twig") with {
   children: children,
 } only %}
-

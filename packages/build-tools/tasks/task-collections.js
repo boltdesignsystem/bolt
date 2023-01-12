@@ -157,14 +157,6 @@ async function buildPrep(cleanAll = false) {
     config.prod ? await clean(cleanAll) : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
-    if (
-      config.env === 'pl' ||
-      config.env === 'static' ||
-      config.env === 'pwa'
-    ) {
-      // Do not run in Drupal environment. Lerna is not available there.
-      await require('./api-tasks/bolt-versions').writeBoltVersions();
-    }
     await manifest.writeTwigNamespaceFile();
   } catch (error) {
     log.errorAndExit('Build failed', error);
