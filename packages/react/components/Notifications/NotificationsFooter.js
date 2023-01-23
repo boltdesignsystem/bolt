@@ -13,7 +13,7 @@ const NotificationsFooter = ({ hasExceededTimeLimit, pageUrl, translate }) => {
             {translate('View all notifications')}
           </a>
           {hasExceededTimeLimit && (
-            <bolt-banner className="u-bolt-margin-top-small">
+            <bolt-banner class="u-bolt-margin-top-small">
               {translate('Updates have paused')}.{' '}
               <TextLink
                 type="button"

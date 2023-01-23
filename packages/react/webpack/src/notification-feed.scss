@@ -6,6 +6,25 @@
 
 .c-bolt-page-header__nav-link__container {
   position: relative;
+
+  *::-webkit-scrollbar {
+    width: 11px;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--bolt-color-gray) var(--bolt-color-gray-xlight);
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--bolt-color-gray-xlight);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border: 3px solid var(--bolt-color-gray-xlight);
+    border-radius: 6px;
+    background-color: var(--bolt-color-gray);
+  }
 }
 
 .c-bolt-page-header__nav-link {
@@ -115,4 +134,20 @@
   visibility: visible;
   opacity: 1;
   transform: translate3d(0, calc(2.5rem - 2px), 0);
+}
+
+.c-bolt-notifications__header,
+.c-bolt-notifications__footer {
+  position: sticky !important; // Must override style-loader styles
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.c-bolt-notifications__footer {
+  bottom: 0;
+}
+
+.c-bolt-notifications__header {
+  top: 0;
 }
