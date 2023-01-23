@@ -3,10 +3,10 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const supportedLocales = require('@bolt/react-components/Notifications/locales');
 const eslintConfig = require('./.eslintrc.json');
 const data = require('./public/api/db.json');
 const babelOptions = require('./.babelrc.js');
-const supportedLocales = require('@bolt/react-components/Notifications/locales');
 
 const config = {
   entry: {
@@ -101,6 +101,10 @@ const config = {
       /^date-fns[/\\]locale$/,
       new RegExp(`\\.[/\\\\](${supportedLocales.join('|')})[/\\\\]index\\.js$`),
     ),
+    // Temporary!
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1,
+    }),
   ],
   // resolve: {
   // alias: {

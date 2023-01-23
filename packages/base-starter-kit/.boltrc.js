@@ -9,8 +9,7 @@ module.exports = {
       '@bolt/elements-type',
       '@bolt/components-banner',
       '@bolt/components-notifications',
-      '@bolt/components-popover',
-      '@bolt/components-tooltip',
+      '@bolt/components-switch-button',
     ],
   },
 };

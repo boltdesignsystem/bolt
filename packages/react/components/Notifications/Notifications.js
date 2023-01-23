@@ -281,13 +281,6 @@ const Notifications = ({
       )}
     </div>
   );
-
-  // return <div>ddd</div>;
 };
 
 export default Notifications;
-
-// export default function() {
-//   const [foo, setFoo] = useState(1);
-//   return <div>dd</div>;
-// }

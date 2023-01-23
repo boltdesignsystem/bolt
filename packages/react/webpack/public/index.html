@@ -5,26 +5,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Generic page</title>
-  <!-- link rel="stylesheet" href="lib/bolt-global.css" -->
 </head>
 <body>
   <div class="o-bolt-wrapper">
-    <div id="notification-feed-toolbar-app">[This will be replaced]</div>
+    <div style="display: flex;">
+      <div style="margin-left: auto">
+        <div id="my-bell-icon-component"></div>
+        <bolt-banner>YO</bolt-banner>
+      </div>
+    </div>
   </div>
 
-  <!-- script src="lib/bolt-global.js"></script -->
-
-  <!-- script src="lib/bolt-global.js"></script -->
   <script src="notifications.js"></script>
   <script>
-    if (typeof pegaSettings === 'undefined') {
-      pegaSettings = {};
-    }
-
-    pegaSettings.pegaNotificationFeed = {
-      jsBasePath: '/',
-    };
-
+    /* Example of adding Bell Icon */
     (() => {
       const opts = {
         refreshOnInit: false,
@@ -34,7 +28,7 @@
         apiBaseUrl: '',
         ssoFrameUrl: '',
         translate: str => str,
-        rootElement: "#notification-feed-toolbar-app"
+        rootElement: document.querySelector('#my-bell-icon-component')
       };
 
       if (window.pegaComponents?.NotificationFeed) {

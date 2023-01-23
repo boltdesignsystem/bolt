@@ -100,6 +100,7 @@ async function createWebpackConfig(buildConfig) {
     }
 
     return [
+      !issuerIsJS ? 'style-loader' : undefined,
       {
         loader: 'css-loader',
         options: {
@@ -117,7 +118,7 @@ async function createWebpackConfig(buildConfig) {
             plugins: [
               // This rule is required for web components that inject CSS into the JS.
               // Otherwise, that CSS is unminified (and huge) in production.
-              issuerIsJS && config.prod ? cssnano : undefined,
+              config.prod ? cssnano : undefined,
               postcssDiscardDuplicates,
               // @todo: Consider switching to postcss-preset-env which polyfills modern CSS
               autoprefixer,
@@ -145,7 +146,7 @@ async function createWebpackConfig(buildConfig) {
           },
         },
       },
-    ];
+    ].filter(item => item !== undefined);
   }
 
   let sharedWebpackConfig = {
@@ -418,10 +419,10 @@ async function createWebpackConfig(buildConfig) {
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: [MiniCssExtractPlugin.loader, getSassLoaders()].reduce(
-                (acc, val) => acc.concat(val),
-                [],
-              ),
+              use: [
+                // MiniCssExtractPlugin.loader,
+                getSassLoaders(),
+              ].reduce((acc, val) => acc.concat(val), []),
             },
           ],
         },
