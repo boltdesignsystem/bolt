@@ -100,7 +100,7 @@ async function createWebpackConfig(buildConfig) {
     }
 
     return [
-      !issuerIsJS ? 'style-loader' : undefined,
+      // !issuerIsJS ? 'style-loader' : undefined,
       {
         loader: 'css-loader',
         options: {
@@ -419,10 +419,10 @@ async function createWebpackConfig(buildConfig) {
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: [
-                // MiniCssExtractPlugin.loader,
-                getSassLoaders(),
-              ].reduce((acc, val) => acc.concat(val), []),
+              use: [MiniCssExtractPlugin.loader, getSassLoaders()].reduce(
+                (acc, val) => acc.concat(val),
+                [],
+              ),
             },
           ],
         },

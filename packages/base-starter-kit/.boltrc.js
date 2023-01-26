@@ -6,7 +6,6 @@ module.exports = {
       '@bolt/elements-button',
       '@bolt/elements-text-link',
       '@bolt/elements-icon',
-      '@bolt/elements-type',
       '@bolt/components-banner',
       '@bolt/components-notifications',
       '@bolt/components-switch-button',

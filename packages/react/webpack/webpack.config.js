@@ -77,8 +77,8 @@ const config = {
       {
         test: /\.(scss|css)$/,
         use: [
-          'style-loader',
-          // MiniCssExtractPlugin.loader,
+          // 'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
         ],

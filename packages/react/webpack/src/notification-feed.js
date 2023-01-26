@@ -3,7 +3,6 @@ import Notifications from '@bolt/react-components/Notifications';
 import ErrorBoundary from '@bolt/react-components/ErrorBoundary';
 import ErrorFallback from '@bolt/react-components/Notifications/ErrorFallback';
 import hoverintent from 'hoverintent';
-import notificationElements from './notification-elements';
 import './notification-feed.scss';
 
 class NotificationFeed {
@@ -23,28 +22,26 @@ class NotificationFeed {
 
     if (!rootElement) return;
 
-    const { container, button, popover, root } = notificationElements();
+    const container = document.querySelector('#notification-feed-toolbar-app');
+    const button = container.querySelector('.js-bolt-page-header-button');
+    const popover = container.querySelector('.js-bolt-page-header-button');
+
+    if (!container || !button || !popover) return;
 
     this.container = container;
     this.button = button;
 
-    popover.append(root);
-    container.append(button, popover);
-    rootElement.append(container);
-
     this.addHoverHandler();
-    button.addEventListener('click', () => {
+    this.button.addEventListener('click', () => {
       this.togglePopover();
     });
 
-    if (rootElement) {
-      const reactRoot = createRoot(root);
-      reactRoot.render(
-        <ErrorBoundary fallback={<ErrorFallback {...otherOpts} />}>
-          <Notifications isToolbar={true} {...otherOpts} />
-        </ErrorBoundary>,
-      );
-    }
+    const root = createRoot(rootElement);
+    root.render(
+      <ErrorBoundary fallback={<ErrorFallback {...otherOpts} />}>
+        <Notifications isToolbar={true} {...otherOpts} />
+      </ErrorBoundary>,
+    );
   }
 
   addHoverHandler() {

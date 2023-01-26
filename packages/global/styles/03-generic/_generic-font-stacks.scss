@@ -76,13 +76,13 @@ $bolt-font-stacks: (
     $fontSrc: append($fontSrc, url('#{$path}') format(quote($ext)), comma);
   }
 
-  @font-face {
-    font-family: map-get($fontValue, 'fontFamily');
-    font-style: map-get($fontValue, 'style');
-    font-weight: map-get($fontValue, 'weight');
-    src: $fontSrc;
-    font-display: swap;
-  }
+  // @font-face {
+  //   font-family: map-get($fontValue, 'fontFamily');
+  //   font-style: map-get($fontValue, 'style');
+  //   font-weight: map-get($fontValue, 'weight');
+  //   src: $fontSrc;
+  //   font-display: swap;
+  // }
 }
 
 @include export-data('typography/font-stacks.bolt.json', $bolt-font-stacks);
