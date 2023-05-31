@@ -26,7 +26,7 @@ class BoltTooltip extends BoltElement {
   disconnectedCallback() {
     super.disconnectedCallback && super.disconnectedCallback();
 
-    this.popover?.hide();
+    this.tippyInstance?.hide();
   }
 
   getPaddingTop() {
@@ -73,7 +73,7 @@ class BoltTooltip extends BoltElement {
       : document.body;
 
     // Note: trigger cannot not be a shadow DOM element or Tippy doesn't always hide properly
-    this.popover = tippy(this.trigger, {
+    this.tippyInstance = tippy(this.trigger, {
       content: this.content,
       placement: this.placement || schema.properties.placement.default,
       trigger: 'mouseenter focus', // To help debug styles set to 'click'

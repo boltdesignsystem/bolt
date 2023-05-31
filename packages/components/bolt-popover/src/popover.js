@@ -28,7 +28,7 @@ class BoltPopover extends BoltElement {
   disconnectedCallback() {
     super.disconnectedCallback && super.disconnectedCallback();
 
-    this.popover?.hide();
+    this.tippyInstance?.hide();
   }
 
   getPaddingTop() {
@@ -75,7 +75,7 @@ class BoltPopover extends BoltElement {
       : document.body;
 
     // Note: trigger cannot not be a shadow DOM element or Tippy doesn't always hide properly
-    this.popover = tippy(this.trigger, {
+    this.tippyInstance = tippy(this.trigger, {
       content: this.content,
       placement: this.placement || schema.properties.placement.default,
       trigger: this.triggerEvent === 'hover' ? 'mouseenter click' : 'click',
@@ -173,7 +173,7 @@ class BoltPopover extends BoltElement {
     // close popover when inner action is clicked
     for (const innerAction of this.content.querySelectorAll('a, button')) {
       innerAction.addEventListener('click', () => {
-        this.popover?.hide();
+        this.tippyInstance?.hide();
       });
     }
 
